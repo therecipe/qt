@@ -28,6 +28,12 @@ func cGoUnpackBytes(s C.struct_QtPositioning_PackedString) []byte {
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
+func unpackStringList(s string) []string {
+	if len(s) == 0 {
+		return make([]string, 0)
+	}
+	return strings.Split(s, "¡¦!")
+}
 
 type QGeoAddress struct {
 	ptr unsafe.Pointer
@@ -699,11 +705,11 @@ func (ptr *QGeoAreaMonitorSource) Tr(s string, c string, n int) string {
 }
 
 func QGeoAreaMonitorSource_AvailableSources() []string {
-	return strings.Split(cGoUnpackString(C.QGeoAreaMonitorSource_QGeoAreaMonitorSource_AvailableSources()), "|")
+	return unpackStringList(cGoUnpackString(C.QGeoAreaMonitorSource_QGeoAreaMonitorSource_AvailableSources()))
 }
 
 func (ptr *QGeoAreaMonitorSource) AvailableSources() []string {
-	return strings.Split(cGoUnpackString(C.QGeoAreaMonitorSource_QGeoAreaMonitorSource_AvailableSources()), "|")
+	return unpackStringList(cGoUnpackString(C.QGeoAreaMonitorSource_QGeoAreaMonitorSource_AvailableSources()))
 }
 
 //export callbackQGeoAreaMonitorSource_RequestUpdate
@@ -2930,11 +2936,11 @@ func (ptr *QGeoPositionInfoSource) Tr(s string, c string, n int) string {
 }
 
 func QGeoPositionInfoSource_AvailableSources() []string {
-	return strings.Split(cGoUnpackString(C.QGeoPositionInfoSource_QGeoPositionInfoSource_AvailableSources()), "|")
+	return unpackStringList(cGoUnpackString(C.QGeoPositionInfoSource_QGeoPositionInfoSource_AvailableSources()))
 }
 
 func (ptr *QGeoPositionInfoSource) AvailableSources() []string {
-	return strings.Split(cGoUnpackString(C.QGeoPositionInfoSource_QGeoPositionInfoSource_AvailableSources()), "|")
+	return unpackStringList(cGoUnpackString(C.QGeoPositionInfoSource_QGeoPositionInfoSource_AvailableSources()))
 }
 
 //export callbackQGeoPositionInfoSource_Error2
@@ -4494,11 +4500,11 @@ func (ptr *QGeoSatelliteInfoSource) Tr(s string, c string, n int) string {
 }
 
 func QGeoSatelliteInfoSource_AvailableSources() []string {
-	return strings.Split(cGoUnpackString(C.QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_AvailableSources()), "|")
+	return unpackStringList(cGoUnpackString(C.QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_AvailableSources()))
 }
 
 func (ptr *QGeoSatelliteInfoSource) AvailableSources() []string {
-	return strings.Split(cGoUnpackString(C.QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_AvailableSources()), "|")
+	return unpackStringList(cGoUnpackString(C.QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_AvailableSources()))
 }
 
 //export callbackQGeoSatelliteInfoSource_Error2

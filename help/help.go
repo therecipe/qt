@@ -30,6 +30,12 @@ func cGoUnpackBytes(s C.struct_QtHelp_PackedString) []byte {
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
+func unpackStringList(s string) []string {
+	if len(s) == 0 {
+		return make([]string, 0)
+	}
+	return strings.Split(s, "¡¦!")
+}
 
 type QHelpContentItem struct {
 	ptr unsafe.Pointer
@@ -1659,15 +1665,15 @@ func (ptr *QHelpContentModel) SpanDefault(index core.QModelIndex_ITF) *core.QSiz
 func callbackQHelpContentModel_MimeTypes(ptr unsafe.Pointer) C.struct_QtHelp_PackedString {
 	if signal := qt.GetSignal(ptr, "mimeTypes"); signal != nil {
 		tempVal := (*(*func() []string)(signal))()
-		return C.struct_QtHelp_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtHelp_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 	}
 	tempVal := NewQHelpContentModelFromPointer(ptr).MimeTypesDefault()
-	return C.struct_QtHelp_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtHelp_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 }
 
 func (ptr *QHelpContentModel) MimeTypesDefault() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QHelpContentModel_MimeTypesDefault(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QHelpContentModel_MimeTypesDefault(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -4447,7 +4453,7 @@ func (ptr *QHelpEngineCore) Files(namespaceName string, filterAttributes []strin
 			namespaceNameC = C.CString(namespaceName)
 			defer C.free(unsafe.Pointer(namespaceNameC))
 		}
-		filterAttributesC := C.CString(strings.Join(filterAttributes, "|"))
+		filterAttributesC := C.CString(strings.Join(filterAttributes, "¡¦!"))
 		defer C.free(unsafe.Pointer(filterAttributesC))
 		var extensionFilterC *C.char
 		if extensionFilter != "" {
@@ -4461,7 +4467,7 @@ func (ptr *QHelpEngineCore) Files(namespaceName string, filterAttributes []strin
 				out[i] = tmpList.__files_atList(i)
 			}
 			return out
-		}(C.QHelpEngineCore_Files(ptr.Pointer(), C.struct_QtHelp_PackedString{data: namespaceNameC, len: C.longlong(len(namespaceName))}, C.struct_QtHelp_PackedString{data: filterAttributesC, len: C.longlong(len(strings.Join(filterAttributes, "|")))}, C.struct_QtHelp_PackedString{data: extensionFilterC, len: C.longlong(len(extensionFilter))}))
+		}(C.QHelpEngineCore_Files(ptr.Pointer(), C.struct_QtHelp_PackedString{data: namespaceNameC, len: C.longlong(len(namespaceName))}, C.struct_QtHelp_PackedString{data: filterAttributesC, len: C.longlong(len(strings.Join(filterAttributes, "¡¦!")))}, C.struct_QtHelp_PackedString{data: extensionFilterC, len: C.longlong(len(extensionFilter))}))
 	}
 	return make([]*core.QUrl, 0)
 }
@@ -4563,9 +4569,9 @@ func (ptr *QHelpEngineCore) AddCustomFilter(filterName string, attributes []stri
 			filterNameC = C.CString(filterName)
 			defer C.free(unsafe.Pointer(filterNameC))
 		}
-		attributesC := C.CString(strings.Join(attributes, "|"))
+		attributesC := C.CString(strings.Join(attributes, "¡¦!"))
 		defer C.free(unsafe.Pointer(attributesC))
-		return int8(C.QHelpEngineCore_AddCustomFilter(ptr.Pointer(), C.struct_QtHelp_PackedString{data: filterNameC, len: C.longlong(len(filterName))}, C.struct_QtHelp_PackedString{data: attributesC, len: C.longlong(len(strings.Join(attributes, "|")))})) != 0
+		return int8(C.QHelpEngineCore_AddCustomFilter(ptr.Pointer(), C.struct_QtHelp_PackedString{data: filterNameC, len: C.longlong(len(filterName))}, C.struct_QtHelp_PackedString{data: attributesC, len: C.longlong(len(strings.Join(attributes, "¡¦!")))})) != 0
 	}
 	return false
 }
@@ -5004,14 +5010,14 @@ func (ptr *QHelpEngineCore) Error() string {
 
 func (ptr *QHelpEngineCore) CustomFilters() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QHelpEngineCore_CustomFilters(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QHelpEngineCore_CustomFilters(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QHelpEngineCore) FilterAttributes() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QHelpEngineCore_FilterAttributes(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QHelpEngineCore_FilterAttributes(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -5023,14 +5029,14 @@ func (ptr *QHelpEngineCore) FilterAttributes2(filterName string) []string {
 			filterNameC = C.CString(filterName)
 			defer C.free(unsafe.Pointer(filterNameC))
 		}
-		return strings.Split(cGoUnpackString(C.QHelpEngineCore_FilterAttributes2(ptr.Pointer(), C.struct_QtHelp_PackedString{data: filterNameC, len: C.longlong(len(filterName))})), "|")
+		return unpackStringList(cGoUnpackString(C.QHelpEngineCore_FilterAttributes2(ptr.Pointer(), C.struct_QtHelp_PackedString{data: filterNameC, len: C.longlong(len(filterName))})))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QHelpEngineCore) RegisteredDocumentations() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QHelpEngineCore_RegisteredDocumentations(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QHelpEngineCore_RegisteredDocumentations(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -5102,16 +5108,16 @@ func (ptr *QHelpEngineCore) __files_newList() unsafe.Pointer {
 
 func (ptr *QHelpEngineCore) __filterAttributeSets_atList(i int) []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QHelpEngineCore___filterAttributeSets_atList(ptr.Pointer(), C.int(int32(i)))), "|")
+		return unpackStringList(cGoUnpackString(C.QHelpEngineCore___filterAttributeSets_atList(ptr.Pointer(), C.int(int32(i)))))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QHelpEngineCore) __filterAttributeSets_setList(i []string) {
 	if ptr.Pointer() != nil {
-		iC := C.CString(strings.Join(i, "|"))
+		iC := C.CString(strings.Join(i, "¡¦!"))
 		defer C.free(unsafe.Pointer(iC))
-		C.QHelpEngineCore___filterAttributeSets_setList(ptr.Pointer(), C.struct_QtHelp_PackedString{data: iC, len: C.longlong(len(strings.Join(i, "|")))})
+		C.QHelpEngineCore___filterAttributeSets_setList(ptr.Pointer(), C.struct_QtHelp_PackedString{data: iC, len: C.longlong(len(strings.Join(i, "¡¦!")))})
 	}
 }
 
@@ -6918,15 +6924,15 @@ func (ptr *QHelpIndexModel) SpanDefault(index core.QModelIndex_ITF) *core.QSize 
 func callbackQHelpIndexModel_MimeTypes(ptr unsafe.Pointer) C.struct_QtHelp_PackedString {
 	if signal := qt.GetSignal(ptr, "mimeTypes"); signal != nil {
 		tempVal := (*(*func() []string)(signal))()
-		return C.struct_QtHelp_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtHelp_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 	}
 	tempVal := NewQHelpIndexModelFromPointer(ptr).MimeTypesDefault()
-	return C.struct_QtHelp_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtHelp_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 }
 
 func (ptr *QHelpIndexModel) MimeTypesDefault() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QHelpIndexModel_MimeTypesDefault(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QHelpIndexModel_MimeTypesDefault(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -10414,16 +10420,16 @@ func NewQHelpSearchQuery() *QHelpSearchQuery {
 
 func (ptr *QHelpSearchQuery) WordList() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QHelpSearchQuery_WordList(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QHelpSearchQuery_WordList(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QHelpSearchQuery) SetWordList(vqs []string) {
 	if ptr.Pointer() != nil {
-		vqsC := C.CString(strings.Join(vqs, "|"))
+		vqsC := C.CString(strings.Join(vqs, "¡¦!"))
 		defer C.free(unsafe.Pointer(vqsC))
-		C.QHelpSearchQuery_SetWordList(ptr.Pointer(), C.struct_QtHelp_PackedString{data: vqsC, len: C.longlong(len(strings.Join(vqs, "|")))})
+		C.QHelpSearchQuery_SetWordList(ptr.Pointer(), C.struct_QtHelp_PackedString{data: vqsC, len: C.longlong(len(strings.Join(vqs, "¡¦!")))})
 	}
 }
 

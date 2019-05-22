@@ -29,6 +29,12 @@ func cGoUnpackBytes(s C.struct_QtWidgets_PackedString) []byte {
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
+func unpackStringList(s string) []string {
+	if len(s) == 0 {
+		return make([]string, 0)
+	}
+	return strings.Split(s, "¡¦!")
+}
 
 type QAbstractButton struct {
 	QWidget
@@ -6923,10 +6929,10 @@ func (ptr *QAccessibleWidget) TextDefault(t gui.QAccessible__Text) string {
 func callbackQAccessibleWidget_ActionNames(ptr unsafe.Pointer) C.struct_QtWidgets_PackedString {
 	if signal := qt.GetSignal(ptr, "actionNames"); signal != nil {
 		tempVal := (*(*func() []string)(signal))()
-		return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 	}
 	tempVal := NewQAccessibleWidgetFromPointer(ptr).ActionNamesDefault()
-	return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 }
 
 func (ptr *QAccessibleWidget) ConnectActionNames(f func() []string) {
@@ -6953,14 +6959,14 @@ func (ptr *QAccessibleWidget) DisconnectActionNames() {
 
 func (ptr *QAccessibleWidget) ActionNames() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QAccessibleWidget_ActionNames(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QAccessibleWidget_ActionNames(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QAccessibleWidget) ActionNamesDefault() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QAccessibleWidget_ActionNamesDefault(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QAccessibleWidget_ActionNamesDefault(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -6969,10 +6975,10 @@ func (ptr *QAccessibleWidget) ActionNamesDefault() []string {
 func callbackQAccessibleWidget_KeyBindingsForAction(ptr unsafe.Pointer, actionName C.struct_QtWidgets_PackedString) C.struct_QtWidgets_PackedString {
 	if signal := qt.GetSignal(ptr, "keyBindingsForAction"); signal != nil {
 		tempVal := (*(*func(string) []string)(signal))(cGoUnpackString(actionName))
-		return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 	}
 	tempVal := NewQAccessibleWidgetFromPointer(ptr).KeyBindingsForActionDefault(cGoUnpackString(actionName))
-	return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 }
 
 func (ptr *QAccessibleWidget) ConnectKeyBindingsForAction(f func(actionName string) []string) {
@@ -7004,7 +7010,7 @@ func (ptr *QAccessibleWidget) KeyBindingsForAction(actionName string) []string {
 			actionNameC = C.CString(actionName)
 			defer C.free(unsafe.Pointer(actionNameC))
 		}
-		return strings.Split(cGoUnpackString(C.QAccessibleWidget_KeyBindingsForAction(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: actionNameC, len: C.longlong(len(actionName))})), "|")
+		return unpackStringList(cGoUnpackString(C.QAccessibleWidget_KeyBindingsForAction(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: actionNameC, len: C.longlong(len(actionName))})))
 	}
 	return make([]string, 0)
 }
@@ -7016,7 +7022,7 @@ func (ptr *QAccessibleWidget) KeyBindingsForActionDefault(actionName string) []s
 			actionNameC = C.CString(actionName)
 			defer C.free(unsafe.Pointer(actionNameC))
 		}
-		return strings.Split(cGoUnpackString(C.QAccessibleWidget_KeyBindingsForActionDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: actionNameC, len: C.longlong(len(actionName))})), "|")
+		return unpackStringList(cGoUnpackString(C.QAccessibleWidget_KeyBindingsForActionDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: actionNameC, len: C.longlong(len(actionName))})))
 	}
 	return make([]string, 0)
 }
@@ -15010,9 +15016,9 @@ func (ptr *QComboBox) AddItem(text string, userData core.QVariant_ITF) {
 
 func (ptr *QComboBox) AddItems(texts []string) {
 	if ptr.Pointer() != nil {
-		textsC := C.CString(strings.Join(texts, "|"))
+		textsC := C.CString(strings.Join(texts, "¡¦!"))
 		defer C.free(unsafe.Pointer(textsC))
-		C.QComboBox_AddItems(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textsC, len: C.longlong(len(strings.Join(texts, "|")))})
+		C.QComboBox_AddItems(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textsC, len: C.longlong(len(strings.Join(texts, "¡¦!")))})
 	}
 }
 
@@ -15429,9 +15435,9 @@ func (ptr *QComboBox) InsertItem(index int, text string, userData core.QVariant_
 
 func (ptr *QComboBox) InsertItems(index int, list []string) {
 	if ptr.Pointer() != nil {
-		listC := C.CString(strings.Join(list, "|"))
+		listC := C.CString(strings.Join(list, "¡¦!"))
 		defer C.free(unsafe.Pointer(listC))
-		C.QComboBox_InsertItems(ptr.Pointer(), C.int(int32(index)), C.struct_QtWidgets_PackedString{data: listC, len: C.longlong(len(strings.Join(list, "|")))})
+		C.QComboBox_InsertItems(ptr.Pointer(), C.int(int32(index)), C.struct_QtWidgets_PackedString{data: listC, len: C.longlong(len(strings.Join(list, "¡¦!")))})
 	}
 }
 
@@ -16930,9 +16936,9 @@ func NewQCompleter(parent core.QObject_ITF) *QCompleter {
 }
 
 func NewQCompleter3(list []string, parent core.QObject_ITF) *QCompleter {
-	listC := C.CString(strings.Join(list, "|"))
+	listC := C.CString(strings.Join(list, "¡¦!"))
 	defer C.free(unsafe.Pointer(listC))
-	tmpValue := NewQCompleterFromPointer(C.QCompleter_NewQCompleter3(C.struct_QtWidgets_PackedString{data: listC, len: C.longlong(len(strings.Join(list, "|")))}, core.PointerFromQObject(parent)))
+	tmpValue := NewQCompleterFromPointer(C.QCompleter_NewQCompleter3(C.struct_QtWidgets_PackedString{data: listC, len: C.longlong(len(strings.Join(list, "¡¦!")))}, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -17542,10 +17548,10 @@ func (ptr *QCompleter) PathFromIndexDefault(index core.QModelIndex_ITF) string {
 func callbackQCompleter_SplitPath(ptr unsafe.Pointer, path C.struct_QtWidgets_PackedString) C.struct_QtWidgets_PackedString {
 	if signal := qt.GetSignal(ptr, "splitPath"); signal != nil {
 		tempVal := (*(*func(string) []string)(signal))(cGoUnpackString(path))
-		return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 	}
 	tempVal := NewQCompleterFromPointer(ptr).SplitPathDefault(cGoUnpackString(path))
-	return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 }
 
 func (ptr *QCompleter) ConnectSplitPath(f func(path string) []string) {
@@ -17577,7 +17583,7 @@ func (ptr *QCompleter) SplitPath(path string) []string {
 			pathC = C.CString(path)
 			defer C.free(unsafe.Pointer(pathC))
 		}
-		return strings.Split(cGoUnpackString(C.QCompleter_SplitPath(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: pathC, len: C.longlong(len(path))})), "|")
+		return unpackStringList(cGoUnpackString(C.QCompleter_SplitPath(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: pathC, len: C.longlong(len(path))})))
 	}
 	return make([]string, 0)
 }
@@ -17589,7 +17595,7 @@ func (ptr *QCompleter) SplitPathDefault(path string) []string {
 			pathC = C.CString(path)
 			defer C.free(unsafe.Pointer(pathC))
 		}
-		return strings.Split(cGoUnpackString(C.QCompleter_SplitPathDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: pathC, len: C.longlong(len(path))})), "|")
+		return unpackStringList(cGoUnpackString(C.QCompleter_SplitPathDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: pathC, len: C.longlong(len(path))})))
 	}
 	return make([]string, 0)
 }
@@ -21278,9 +21284,9 @@ func NewQDirModel2(parent core.QObject_ITF) *QDirModel {
 }
 
 func NewQDirModel(nameFilters []string, filters core.QDir__Filter, sort core.QDir__SortFlag, parent core.QObject_ITF) *QDirModel {
-	nameFiltersC := C.CString(strings.Join(nameFilters, "|"))
+	nameFiltersC := C.CString(strings.Join(nameFilters, "¡¦!"))
 	defer C.free(unsafe.Pointer(nameFiltersC))
-	tmpValue := NewQDirModelFromPointer(C.QDirModel_NewQDirModel(C.struct_QtWidgets_PackedString{data: nameFiltersC, len: C.longlong(len(strings.Join(nameFilters, "|")))}, C.longlong(filters), C.longlong(sort), core.PointerFromQObject(parent)))
+	tmpValue := NewQDirModelFromPointer(C.QDirModel_NewQDirModel(C.struct_QtWidgets_PackedString{data: nameFiltersC, len: C.longlong(len(strings.Join(nameFilters, "¡¦!")))}, C.longlong(filters), C.longlong(sort), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -21438,9 +21444,9 @@ func (ptr *QDirModel) SetLazyChildCount(enable bool) {
 
 func (ptr *QDirModel) SetNameFilters(filters []string) {
 	if ptr.Pointer() != nil {
-		filtersC := C.CString(strings.Join(filters, "|"))
+		filtersC := C.CString(strings.Join(filters, "¡¦!"))
 		defer C.free(unsafe.Pointer(filtersC))
-		C.QDirModel_SetNameFilters(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: filtersC, len: C.longlong(len(strings.Join(filters, "|")))})
+		C.QDirModel_SetNameFilters(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: filtersC, len: C.longlong(len(strings.Join(filters, "¡¦!")))})
 	}
 }
 
@@ -21733,22 +21739,22 @@ func (ptr *QDirModel) FilePath(index core.QModelIndex_ITF) string {
 func callbackQDirModel_MimeTypes(ptr unsafe.Pointer) C.struct_QtWidgets_PackedString {
 	if signal := qt.GetSignal(ptr, "mimeTypes"); signal != nil {
 		tempVal := (*(*func() []string)(signal))()
-		return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 	}
 	tempVal := NewQDirModelFromPointer(ptr).MimeTypesDefault()
-	return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 }
 
 func (ptr *QDirModel) MimeTypesDefault() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QDirModel_MimeTypesDefault(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QDirModel_MimeTypesDefault(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QDirModel) NameFilters() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QDirModel_NameFilters(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QDirModel_NameFilters(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -24431,7 +24437,7 @@ func QFileDialog_GetOpenFileUrls(parent QWidget_ITF, caption string, dir core.QU
 		selectedFilterC = C.CString(selectedFilter)
 		defer C.free(unsafe.Pointer(selectedFilterC))
 	}
-	supportedSchemesC := C.CString(strings.Join(supportedSchemes, "|"))
+	supportedSchemesC := C.CString(strings.Join(supportedSchemes, "¡¦!"))
 	defer C.free(unsafe.Pointer(supportedSchemesC))
 	return func(l C.struct_QtWidgets_PackedList) []*core.QUrl {
 		out := make([]*core.QUrl, int(l.len))
@@ -24440,7 +24446,7 @@ func QFileDialog_GetOpenFileUrls(parent QWidget_ITF, caption string, dir core.QU
 			out[i] = tmpList.__getOpenFileUrls_atList(i)
 		}
 		return out
-	}(C.QFileDialog_QFileDialog_GetOpenFileUrls(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, core.PointerFromQUrl(dir), C.struct_QtWidgets_PackedString{data: filterC, len: C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{data: selectedFilterC, len: C.longlong(len(selectedFilter))}, C.longlong(options), C.struct_QtWidgets_PackedString{data: supportedSchemesC, len: C.longlong(len(strings.Join(supportedSchemes, "|")))}))
+	}(C.QFileDialog_QFileDialog_GetOpenFileUrls(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, core.PointerFromQUrl(dir), C.struct_QtWidgets_PackedString{data: filterC, len: C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{data: selectedFilterC, len: C.longlong(len(selectedFilter))}, C.longlong(options), C.struct_QtWidgets_PackedString{data: supportedSchemesC, len: C.longlong(len(strings.Join(supportedSchemes, "¡¦!")))}))
 }
 
 func (ptr *QFileDialog) GetOpenFileUrls(parent QWidget_ITF, caption string, dir core.QUrl_ITF, filter string, selectedFilter string, options QFileDialog__Option, supportedSchemes []string) []*core.QUrl {
@@ -24459,7 +24465,7 @@ func (ptr *QFileDialog) GetOpenFileUrls(parent QWidget_ITF, caption string, dir 
 		selectedFilterC = C.CString(selectedFilter)
 		defer C.free(unsafe.Pointer(selectedFilterC))
 	}
-	supportedSchemesC := C.CString(strings.Join(supportedSchemes, "|"))
+	supportedSchemesC := C.CString(strings.Join(supportedSchemes, "¡¦!"))
 	defer C.free(unsafe.Pointer(supportedSchemesC))
 	return func(l C.struct_QtWidgets_PackedList) []*core.QUrl {
 		out := make([]*core.QUrl, int(l.len))
@@ -24468,7 +24474,7 @@ func (ptr *QFileDialog) GetOpenFileUrls(parent QWidget_ITF, caption string, dir 
 			out[i] = tmpList.__getOpenFileUrls_atList(i)
 		}
 		return out
-	}(C.QFileDialog_QFileDialog_GetOpenFileUrls(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, core.PointerFromQUrl(dir), C.struct_QtWidgets_PackedString{data: filterC, len: C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{data: selectedFilterC, len: C.longlong(len(selectedFilter))}, C.longlong(options), C.struct_QtWidgets_PackedString{data: supportedSchemesC, len: C.longlong(len(strings.Join(supportedSchemes, "|")))}))
+	}(C.QFileDialog_QFileDialog_GetOpenFileUrls(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, core.PointerFromQUrl(dir), C.struct_QtWidgets_PackedString{data: filterC, len: C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{data: selectedFilterC, len: C.longlong(len(selectedFilter))}, C.longlong(options), C.struct_QtWidgets_PackedString{data: supportedSchemesC, len: C.longlong(len(strings.Join(supportedSchemes, "¡¦!")))}))
 }
 
 func QFileDialog_GetExistingDirectory(parent QWidget_ITF, caption string, dir string, options QFileDialog__Option) string {
@@ -24616,7 +24622,7 @@ func QFileDialog_GetOpenFileNames(parent QWidget_ITF, caption string, dir string
 		selectedFilterC = C.CString(selectedFilter)
 		defer C.free(unsafe.Pointer(selectedFilterC))
 	}
-	return strings.Split(cGoUnpackString(C.QFileDialog_QFileDialog_GetOpenFileNames(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, C.struct_QtWidgets_PackedString{data: dirC, len: C.longlong(len(dir))}, C.struct_QtWidgets_PackedString{data: filterC, len: C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{data: selectedFilterC, len: C.longlong(len(selectedFilter))}, C.longlong(options))), "|")
+	return unpackStringList(cGoUnpackString(C.QFileDialog_QFileDialog_GetOpenFileNames(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, C.struct_QtWidgets_PackedString{data: dirC, len: C.longlong(len(dir))}, C.struct_QtWidgets_PackedString{data: filterC, len: C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{data: selectedFilterC, len: C.longlong(len(selectedFilter))}, C.longlong(options))))
 }
 
 func (ptr *QFileDialog) GetOpenFileNames(parent QWidget_ITF, caption string, dir string, filter string, selectedFilter string, options QFileDialog__Option) []string {
@@ -24640,7 +24646,7 @@ func (ptr *QFileDialog) GetOpenFileNames(parent QWidget_ITF, caption string, dir
 		selectedFilterC = C.CString(selectedFilter)
 		defer C.free(unsafe.Pointer(selectedFilterC))
 	}
-	return strings.Split(cGoUnpackString(C.QFileDialog_QFileDialog_GetOpenFileNames(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, C.struct_QtWidgets_PackedString{data: dirC, len: C.longlong(len(dir))}, C.struct_QtWidgets_PackedString{data: filterC, len: C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{data: selectedFilterC, len: C.longlong(len(selectedFilter))}, C.longlong(options))), "|")
+	return unpackStringList(cGoUnpackString(C.QFileDialog_QFileDialog_GetOpenFileNames(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, C.struct_QtWidgets_PackedString{data: dirC, len: C.longlong(len(dir))}, C.struct_QtWidgets_PackedString{data: filterC, len: C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{data: selectedFilterC, len: C.longlong(len(selectedFilter))}, C.longlong(options))))
 }
 
 func QFileDialog_GetExistingDirectoryUrl(parent QWidget_ITF, caption string, dir core.QUrl_ITF, options QFileDialog__Option, supportedSchemes []string) *core.QUrl {
@@ -24649,9 +24655,9 @@ func QFileDialog_GetExistingDirectoryUrl(parent QWidget_ITF, caption string, dir
 		captionC = C.CString(caption)
 		defer C.free(unsafe.Pointer(captionC))
 	}
-	supportedSchemesC := C.CString(strings.Join(supportedSchemes, "|"))
+	supportedSchemesC := C.CString(strings.Join(supportedSchemes, "¡¦!"))
 	defer C.free(unsafe.Pointer(supportedSchemesC))
-	tmpValue := core.NewQUrlFromPointer(C.QFileDialog_QFileDialog_GetExistingDirectoryUrl(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, core.PointerFromQUrl(dir), C.longlong(options), C.struct_QtWidgets_PackedString{data: supportedSchemesC, len: C.longlong(len(strings.Join(supportedSchemes, "|")))}))
+	tmpValue := core.NewQUrlFromPointer(C.QFileDialog_QFileDialog_GetExistingDirectoryUrl(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, core.PointerFromQUrl(dir), C.longlong(options), C.struct_QtWidgets_PackedString{data: supportedSchemesC, len: C.longlong(len(strings.Join(supportedSchemes, "¡¦!")))}))
 	runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 	return tmpValue
 }
@@ -24662,9 +24668,9 @@ func (ptr *QFileDialog) GetExistingDirectoryUrl(parent QWidget_ITF, caption stri
 		captionC = C.CString(caption)
 		defer C.free(unsafe.Pointer(captionC))
 	}
-	supportedSchemesC := C.CString(strings.Join(supportedSchemes, "|"))
+	supportedSchemesC := C.CString(strings.Join(supportedSchemes, "¡¦!"))
 	defer C.free(unsafe.Pointer(supportedSchemesC))
-	tmpValue := core.NewQUrlFromPointer(C.QFileDialog_QFileDialog_GetExistingDirectoryUrl(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, core.PointerFromQUrl(dir), C.longlong(options), C.struct_QtWidgets_PackedString{data: supportedSchemesC, len: C.longlong(len(strings.Join(supportedSchemes, "|")))}))
+	tmpValue := core.NewQUrlFromPointer(C.QFileDialog_QFileDialog_GetExistingDirectoryUrl(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, core.PointerFromQUrl(dir), C.longlong(options), C.struct_QtWidgets_PackedString{data: supportedSchemesC, len: C.longlong(len(strings.Join(supportedSchemes, "¡¦!")))}))
 	runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 	return tmpValue
 }
@@ -24685,9 +24691,9 @@ func QFileDialog_GetOpenFileUrl(parent QWidget_ITF, caption string, dir core.QUr
 		selectedFilterC = C.CString(selectedFilter)
 		defer C.free(unsafe.Pointer(selectedFilterC))
 	}
-	supportedSchemesC := C.CString(strings.Join(supportedSchemes, "|"))
+	supportedSchemesC := C.CString(strings.Join(supportedSchemes, "¡¦!"))
 	defer C.free(unsafe.Pointer(supportedSchemesC))
-	tmpValue := core.NewQUrlFromPointer(C.QFileDialog_QFileDialog_GetOpenFileUrl(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, core.PointerFromQUrl(dir), C.struct_QtWidgets_PackedString{data: filterC, len: C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{data: selectedFilterC, len: C.longlong(len(selectedFilter))}, C.longlong(options), C.struct_QtWidgets_PackedString{data: supportedSchemesC, len: C.longlong(len(strings.Join(supportedSchemes, "|")))}))
+	tmpValue := core.NewQUrlFromPointer(C.QFileDialog_QFileDialog_GetOpenFileUrl(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, core.PointerFromQUrl(dir), C.struct_QtWidgets_PackedString{data: filterC, len: C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{data: selectedFilterC, len: C.longlong(len(selectedFilter))}, C.longlong(options), C.struct_QtWidgets_PackedString{data: supportedSchemesC, len: C.longlong(len(strings.Join(supportedSchemes, "¡¦!")))}))
 	runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 	return tmpValue
 }
@@ -24708,9 +24714,9 @@ func (ptr *QFileDialog) GetOpenFileUrl(parent QWidget_ITF, caption string, dir c
 		selectedFilterC = C.CString(selectedFilter)
 		defer C.free(unsafe.Pointer(selectedFilterC))
 	}
-	supportedSchemesC := C.CString(strings.Join(supportedSchemes, "|"))
+	supportedSchemesC := C.CString(strings.Join(supportedSchemes, "¡¦!"))
 	defer C.free(unsafe.Pointer(supportedSchemesC))
-	tmpValue := core.NewQUrlFromPointer(C.QFileDialog_QFileDialog_GetOpenFileUrl(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, core.PointerFromQUrl(dir), C.struct_QtWidgets_PackedString{data: filterC, len: C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{data: selectedFilterC, len: C.longlong(len(selectedFilter))}, C.longlong(options), C.struct_QtWidgets_PackedString{data: supportedSchemesC, len: C.longlong(len(strings.Join(supportedSchemes, "|")))}))
+	tmpValue := core.NewQUrlFromPointer(C.QFileDialog_QFileDialog_GetOpenFileUrl(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, core.PointerFromQUrl(dir), C.struct_QtWidgets_PackedString{data: filterC, len: C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{data: selectedFilterC, len: C.longlong(len(selectedFilter))}, C.longlong(options), C.struct_QtWidgets_PackedString{data: supportedSchemesC, len: C.longlong(len(strings.Join(supportedSchemes, "¡¦!")))}))
 	runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 	return tmpValue
 }
@@ -24731,9 +24737,9 @@ func QFileDialog_GetSaveFileUrl(parent QWidget_ITF, caption string, dir core.QUr
 		selectedFilterC = C.CString(selectedFilter)
 		defer C.free(unsafe.Pointer(selectedFilterC))
 	}
-	supportedSchemesC := C.CString(strings.Join(supportedSchemes, "|"))
+	supportedSchemesC := C.CString(strings.Join(supportedSchemes, "¡¦!"))
 	defer C.free(unsafe.Pointer(supportedSchemesC))
-	tmpValue := core.NewQUrlFromPointer(C.QFileDialog_QFileDialog_GetSaveFileUrl(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, core.PointerFromQUrl(dir), C.struct_QtWidgets_PackedString{data: filterC, len: C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{data: selectedFilterC, len: C.longlong(len(selectedFilter))}, C.longlong(options), C.struct_QtWidgets_PackedString{data: supportedSchemesC, len: C.longlong(len(strings.Join(supportedSchemes, "|")))}))
+	tmpValue := core.NewQUrlFromPointer(C.QFileDialog_QFileDialog_GetSaveFileUrl(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, core.PointerFromQUrl(dir), C.struct_QtWidgets_PackedString{data: filterC, len: C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{data: selectedFilterC, len: C.longlong(len(selectedFilter))}, C.longlong(options), C.struct_QtWidgets_PackedString{data: supportedSchemesC, len: C.longlong(len(strings.Join(supportedSchemes, "¡¦!")))}))
 	runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 	return tmpValue
 }
@@ -24754,9 +24760,9 @@ func (ptr *QFileDialog) GetSaveFileUrl(parent QWidget_ITF, caption string, dir c
 		selectedFilterC = C.CString(selectedFilter)
 		defer C.free(unsafe.Pointer(selectedFilterC))
 	}
-	supportedSchemesC := C.CString(strings.Join(supportedSchemes, "|"))
+	supportedSchemesC := C.CString(strings.Join(supportedSchemes, "¡¦!"))
 	defer C.free(unsafe.Pointer(supportedSchemesC))
-	tmpValue := core.NewQUrlFromPointer(C.QFileDialog_QFileDialog_GetSaveFileUrl(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, core.PointerFromQUrl(dir), C.struct_QtWidgets_PackedString{data: filterC, len: C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{data: selectedFilterC, len: C.longlong(len(selectedFilter))}, C.longlong(options), C.struct_QtWidgets_PackedString{data: supportedSchemesC, len: C.longlong(len(strings.Join(supportedSchemes, "|")))}))
+	tmpValue := core.NewQUrlFromPointer(C.QFileDialog_QFileDialog_GetSaveFileUrl(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, core.PointerFromQUrl(dir), C.struct_QtWidgets_PackedString{data: filterC, len: C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{data: selectedFilterC, len: C.longlong(len(selectedFilter))}, C.longlong(options), C.struct_QtWidgets_PackedString{data: supportedSchemesC, len: C.longlong(len(strings.Join(supportedSchemes, "¡¦!")))}))
 	runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 	return tmpValue
 }
@@ -25072,7 +25078,7 @@ func (ptr *QFileDialog) FileSelected(file string) {
 //export callbackQFileDialog_FilesSelected
 func callbackQFileDialog_FilesSelected(ptr unsafe.Pointer, selected C.struct_QtWidgets_PackedString) {
 	if signal := qt.GetSignal(ptr, "filesSelected"); signal != nil {
-		(*(*func([]string))(signal))(strings.Split(cGoUnpackString(selected), "|"))
+		(*(*func([]string))(signal))(unpackStringList(cGoUnpackString(selected)))
 	}
 
 }
@@ -25105,9 +25111,9 @@ func (ptr *QFileDialog) DisconnectFilesSelected() {
 
 func (ptr *QFileDialog) FilesSelected(selected []string) {
 	if ptr.Pointer() != nil {
-		selectedC := C.CString(strings.Join(selected, "|"))
+		selectedC := C.CString(strings.Join(selected, "¡¦!"))
 		defer C.free(unsafe.Pointer(selectedC))
-		C.QFileDialog_FilesSelected(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: selectedC, len: C.longlong(len(strings.Join(selected, "|")))})
+		C.QFileDialog_FilesSelected(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: selectedC, len: C.longlong(len(strings.Join(selected, "¡¦!")))})
 	}
 }
 
@@ -25266,9 +25272,9 @@ func (ptr *QFileDialog) SetFilter(filters core.QDir__Filter) {
 
 func (ptr *QFileDialog) SetHistory(paths []string) {
 	if ptr.Pointer() != nil {
-		pathsC := C.CString(strings.Join(paths, "|"))
+		pathsC := C.CString(strings.Join(paths, "¡¦!"))
 		defer C.free(unsafe.Pointer(pathsC))
-		C.QFileDialog_SetHistory(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: pathsC, len: C.longlong(len(strings.Join(paths, "|")))})
+		C.QFileDialog_SetHistory(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: pathsC, len: C.longlong(len(strings.Join(paths, "¡¦!")))})
 	}
 }
 
@@ -25297,9 +25303,9 @@ func (ptr *QFileDialog) SetLabelText(label QFileDialog__DialogLabel, text string
 
 func (ptr *QFileDialog) SetMimeTypeFilters(filters []string) {
 	if ptr.Pointer() != nil {
-		filtersC := C.CString(strings.Join(filters, "|"))
+		filtersC := C.CString(strings.Join(filters, "¡¦!"))
 		defer C.free(unsafe.Pointer(filtersC))
-		C.QFileDialog_SetMimeTypeFilters(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: filtersC, len: C.longlong(len(strings.Join(filters, "|")))})
+		C.QFileDialog_SetMimeTypeFilters(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: filtersC, len: C.longlong(len(strings.Join(filters, "¡¦!")))})
 	}
 }
 
@@ -25322,9 +25328,9 @@ func (ptr *QFileDialog) SetNameFilterDetailsVisible(enabled bool) {
 
 func (ptr *QFileDialog) SetNameFilters(filters []string) {
 	if ptr.Pointer() != nil {
-		filtersC := C.CString(strings.Join(filters, "|"))
+		filtersC := C.CString(strings.Join(filters, "¡¦!"))
 		defer C.free(unsafe.Pointer(filtersC))
-		C.QFileDialog_SetNameFilters(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: filtersC, len: C.longlong(len(strings.Join(filters, "|")))})
+		C.QFileDialog_SetNameFilters(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: filtersC, len: C.longlong(len(strings.Join(filters, "¡¦!")))})
 	}
 }
 
@@ -25372,9 +25378,9 @@ func (ptr *QFileDialog) SetSidebarUrls(urls []*core.QUrl) {
 
 func (ptr *QFileDialog) SetSupportedSchemes(schemes []string) {
 	if ptr.Pointer() != nil {
-		schemesC := C.CString(strings.Join(schemes, "|"))
+		schemesC := C.CString(strings.Join(schemes, "¡¦!"))
 		defer C.free(unsafe.Pointer(schemesC))
-		C.QFileDialog_SetSupportedSchemes(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: schemesC, len: C.longlong(len(strings.Join(schemes, "|")))})
+		C.QFileDialog_SetSupportedSchemes(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: schemesC, len: C.longlong(len(strings.Join(schemes, "¡¦!")))})
 	}
 }
 
@@ -25664,35 +25670,35 @@ func (ptr *QFileDialog) SelectedNameFilter() string {
 
 func (ptr *QFileDialog) History() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QFileDialog_History(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QFileDialog_History(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QFileDialog) MimeTypeFilters() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QFileDialog_MimeTypeFilters(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QFileDialog_MimeTypeFilters(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QFileDialog) NameFilters() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QFileDialog_NameFilters(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QFileDialog_NameFilters(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QFileDialog) SelectedFiles() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QFileDialog_SelectedFiles(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QFileDialog_SelectedFiles(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QFileDialog) SupportedSchemes() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QFileDialog_SupportedSchemes(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QFileDialog_SupportedSchemes(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -26460,9 +26466,9 @@ func (ptr *QFileSystemModel) SetNameFilterDisables(enable bool) {
 
 func (ptr *QFileSystemModel) SetNameFilters(filters []string) {
 	if ptr.Pointer() != nil {
-		filtersC := C.CString(strings.Join(filters, "|"))
+		filtersC := C.CString(strings.Join(filters, "¡¦!"))
 		defer C.free(unsafe.Pointer(filtersC))
-		C.QFileSystemModel_SetNameFilters(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: filtersC, len: C.longlong(len(strings.Join(filters, "|")))})
+		C.QFileSystemModel_SetNameFilters(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: filtersC, len: C.longlong(len(strings.Join(filters, "¡¦!")))})
 	}
 }
 
@@ -26807,22 +26813,22 @@ func (ptr *QFileSystemModel) Type(index core.QModelIndex_ITF) string {
 func callbackQFileSystemModel_MimeTypes(ptr unsafe.Pointer) C.struct_QtWidgets_PackedString {
 	if signal := qt.GetSignal(ptr, "mimeTypes"); signal != nil {
 		tempVal := (*(*func() []string)(signal))()
-		return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 	}
 	tempVal := NewQFileSystemModelFromPointer(ptr).MimeTypesDefault()
-	return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 }
 
 func (ptr *QFileSystemModel) MimeTypesDefault() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QFileSystemModel_MimeTypesDefault(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QFileSystemModel_MimeTypesDefault(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QFileSystemModel) NameFilters() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QFileSystemModel_NameFilters(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QFileSystemModel_NameFilters(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -52940,14 +52946,14 @@ func QInputDialog_GetItem(parent QWidget_ITF, title string, label string, items 
 		labelC = C.CString(label)
 		defer C.free(unsafe.Pointer(labelC))
 	}
-	itemsC := C.CString(strings.Join(items, "|"))
+	itemsC := C.CString(strings.Join(items, "¡¦!"))
 	defer C.free(unsafe.Pointer(itemsC))
 	var okC C.char
 	if ok != nil {
 		okC = C.char(int8(qt.GoBoolToInt(*ok)))
 		defer func() { *ok = int8(okC) != 0 }()
 	}
-	return cGoUnpackString(C.QInputDialog_QInputDialog_GetItem(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))}, C.struct_QtWidgets_PackedString{data: itemsC, len: C.longlong(len(strings.Join(items, "|")))}, C.int(int32(current)), C.char(int8(qt.GoBoolToInt(editable))), &okC, C.longlong(flags), C.longlong(inputMethodHints)))
+	return cGoUnpackString(C.QInputDialog_QInputDialog_GetItem(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))}, C.struct_QtWidgets_PackedString{data: itemsC, len: C.longlong(len(strings.Join(items, "¡¦!")))}, C.int(int32(current)), C.char(int8(qt.GoBoolToInt(editable))), &okC, C.longlong(flags), C.longlong(inputMethodHints)))
 }
 
 func (ptr *QInputDialog) GetItem(parent QWidget_ITF, title string, label string, items []string, current int, editable bool, ok *bool, flags core.Qt__WindowType, inputMethodHints core.Qt__InputMethodHint) string {
@@ -52961,14 +52967,14 @@ func (ptr *QInputDialog) GetItem(parent QWidget_ITF, title string, label string,
 		labelC = C.CString(label)
 		defer C.free(unsafe.Pointer(labelC))
 	}
-	itemsC := C.CString(strings.Join(items, "|"))
+	itemsC := C.CString(strings.Join(items, "¡¦!"))
 	defer C.free(unsafe.Pointer(itemsC))
 	var okC C.char
 	if ok != nil {
 		okC = C.char(int8(qt.GoBoolToInt(*ok)))
 		defer func() { *ok = int8(okC) != 0 }()
 	}
-	return cGoUnpackString(C.QInputDialog_QInputDialog_GetItem(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))}, C.struct_QtWidgets_PackedString{data: itemsC, len: C.longlong(len(strings.Join(items, "|")))}, C.int(int32(current)), C.char(int8(qt.GoBoolToInt(editable))), &okC, C.longlong(flags), C.longlong(inputMethodHints)))
+	return cGoUnpackString(C.QInputDialog_QInputDialog_GetItem(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))}, C.struct_QtWidgets_PackedString{data: itemsC, len: C.longlong(len(strings.Join(items, "¡¦!")))}, C.int(int32(current)), C.char(int8(qt.GoBoolToInt(editable))), &okC, C.longlong(flags), C.longlong(inputMethodHints)))
 }
 
 func QInputDialog_GetMultiLineText(parent QWidget_ITF, title string, label string, text string, ok *bool, flags core.Qt__WindowType, inputMethodHints core.Qt__InputMethodHint) string {
@@ -53414,9 +53420,9 @@ func (ptr *QInputDialog) SetComboBoxEditable(editable bool) {
 
 func (ptr *QInputDialog) SetComboBoxItems(items []string) {
 	if ptr.Pointer() != nil {
-		itemsC := C.CString(strings.Join(items, "|"))
+		itemsC := C.CString(strings.Join(items, "¡¦!"))
 		defer C.free(unsafe.Pointer(itemsC))
-		C.QInputDialog_SetComboBoxItems(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: itemsC, len: C.longlong(len(strings.Join(items, "|")))})
+		C.QInputDialog_SetComboBoxItems(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: itemsC, len: C.longlong(len(strings.Join(items, "¡¦!")))})
 	}
 }
 
@@ -53731,7 +53737,7 @@ func (ptr *QInputDialog) TextValue() string {
 
 func (ptr *QInputDialog) ComboBoxItems() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QInputDialog_ComboBoxItems(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QInputDialog_ComboBoxItems(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -61121,9 +61127,9 @@ func (ptr *QListWidget) AddItem(label string) {
 
 func (ptr *QListWidget) AddItems(labels []string) {
 	if ptr.Pointer() != nil {
-		labelsC := C.CString(strings.Join(labels, "|"))
+		labelsC := C.CString(strings.Join(labels, "¡¦!"))
 		defer C.free(unsafe.Pointer(labelsC))
-		C.QListWidget_AddItems(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: labelsC, len: C.longlong(len(strings.Join(labels, "|")))})
+		C.QListWidget_AddItems(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: labelsC, len: C.longlong(len(strings.Join(labels, "¡¦!")))})
 	}
 }
 
@@ -61326,9 +61332,9 @@ func (ptr *QListWidget) InsertItem2(row int, label string) {
 
 func (ptr *QListWidget) InsertItems(row int, labels []string) {
 	if ptr.Pointer() != nil {
-		labelsC := C.CString(strings.Join(labels, "|"))
+		labelsC := C.CString(strings.Join(labels, "¡¦!"))
 		defer C.free(unsafe.Pointer(labelsC))
-		C.QListWidget_InsertItems(ptr.Pointer(), C.int(int32(row)), C.struct_QtWidgets_PackedString{data: labelsC, len: C.longlong(len(strings.Join(labels, "|")))})
+		C.QListWidget_InsertItems(ptr.Pointer(), C.int(int32(row)), C.struct_QtWidgets_PackedString{data: labelsC, len: C.longlong(len(strings.Join(labels, "¡¦!")))})
 	}
 }
 
@@ -61939,10 +61945,10 @@ func (ptr *QListWidget) VisualItemRect(item QListWidgetItem_ITF) *core.QRect {
 func callbackQListWidget_MimeTypes(ptr unsafe.Pointer) C.struct_QtWidgets_PackedString {
 	if signal := qt.GetSignal(ptr, "mimeTypes"); signal != nil {
 		tempVal := (*(*func() []string)(signal))()
-		return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 	}
 	tempVal := NewQListWidgetFromPointer(ptr).MimeTypesDefault()
-	return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 }
 
 func (ptr *QListWidget) ConnectMimeTypes(f func() []string) {
@@ -61969,14 +61975,14 @@ func (ptr *QListWidget) DisconnectMimeTypes() {
 
 func (ptr *QListWidget) MimeTypes() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QListWidget_MimeTypes(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QListWidget_MimeTypes(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QListWidget) MimeTypesDefault() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QListWidget_MimeTypesDefault(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QListWidget_MimeTypesDefault(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -80037,11 +80043,11 @@ func (ptr *QStyleFactory) DestroyQStyleFactory() {
 }
 
 func QStyleFactory_Keys() []string {
-	return strings.Split(cGoUnpackString(C.QStyleFactory_QStyleFactory_Keys()), "|")
+	return unpackStringList(cGoUnpackString(C.QStyleFactory_QStyleFactory_Keys()))
 }
 
 func (ptr *QStyleFactory) Keys() []string {
-	return strings.Split(cGoUnpackString(C.QStyleFactory_QStyleFactory_Keys()), "|")
+	return unpackStringList(cGoUnpackString(C.QStyleFactory_QStyleFactory_Keys()))
 }
 
 func QStyleFactory_Create(key string) *QStyle {
@@ -90801,9 +90807,9 @@ func (ptr *QTableWidget) SetHorizontalHeaderItem(column int, item QTableWidgetIt
 
 func (ptr *QTableWidget) SetHorizontalHeaderLabels(labels []string) {
 	if ptr.Pointer() != nil {
-		labelsC := C.CString(strings.Join(labels, "|"))
+		labelsC := C.CString(strings.Join(labels, "¡¦!"))
 		defer C.free(unsafe.Pointer(labelsC))
-		C.QTableWidget_SetHorizontalHeaderLabels(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: labelsC, len: C.longlong(len(strings.Join(labels, "|")))})
+		C.QTableWidget_SetHorizontalHeaderLabels(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: labelsC, len: C.longlong(len(strings.Join(labels, "¡¦!")))})
 	}
 }
 
@@ -90839,9 +90845,9 @@ func (ptr *QTableWidget) SetVerticalHeaderItem(row int, item QTableWidgetItem_IT
 
 func (ptr *QTableWidget) SetVerticalHeaderLabels(labels []string) {
 	if ptr.Pointer() != nil {
-		labelsC := C.CString(strings.Join(labels, "|"))
+		labelsC := C.CString(strings.Join(labels, "¡¦!"))
 		defer C.free(unsafe.Pointer(labelsC))
-		C.QTableWidget_SetVerticalHeaderLabels(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: labelsC, len: C.longlong(len(strings.Join(labels, "|")))})
+		C.QTableWidget_SetVerticalHeaderLabels(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: labelsC, len: C.longlong(len(strings.Join(labels, "¡¦!")))})
 	}
 }
 
@@ -91060,10 +91066,10 @@ func (ptr *QTableWidget) VisualItemRect(item QTableWidgetItem_ITF) *core.QRect {
 func callbackQTableWidget_MimeTypes(ptr unsafe.Pointer) C.struct_QtWidgets_PackedString {
 	if signal := qt.GetSignal(ptr, "mimeTypes"); signal != nil {
 		tempVal := (*(*func() []string)(signal))()
-		return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 	}
 	tempVal := NewQTableWidgetFromPointer(ptr).MimeTypesDefault()
-	return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 }
 
 func (ptr *QTableWidget) ConnectMimeTypes(f func() []string) {
@@ -91090,14 +91096,14 @@ func (ptr *QTableWidget) DisconnectMimeTypes() {
 
 func (ptr *QTableWidget) MimeTypes() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QTableWidget_MimeTypes(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QTableWidget_MimeTypes(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QTableWidget) MimeTypesDefault() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QTableWidget_MimeTypesDefault(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QTableWidget_MimeTypesDefault(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -92750,9 +92756,9 @@ func (ptr *QTextBrowser) SetOpenLinks(open bool) {
 
 func (ptr *QTextBrowser) SetSearchPaths(paths []string) {
 	if ptr.Pointer() != nil {
-		pathsC := C.CString(strings.Join(paths, "|"))
+		pathsC := C.CString(strings.Join(paths, "¡¦!"))
 		defer C.free(unsafe.Pointer(pathsC))
-		C.QTextBrowser_SetSearchPaths(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: pathsC, len: C.longlong(len(strings.Join(paths, "|")))})
+		C.QTextBrowser_SetSearchPaths(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: pathsC, len: C.longlong(len(strings.Join(paths, "¡¦!")))})
 	}
 }
 
@@ -92848,7 +92854,7 @@ func (ptr *QTextBrowser) HistoryTitle(i int) string {
 
 func (ptr *QTextBrowser) SearchPaths() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QTextBrowser_SearchPaths(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QTextBrowser_SearchPaths(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -99793,9 +99799,9 @@ func (ptr *QTreeWidget) SetHeaderLabel(label string) {
 
 func (ptr *QTreeWidget) SetHeaderLabels(labels []string) {
 	if ptr.Pointer() != nil {
-		labelsC := C.CString(strings.Join(labels, "|"))
+		labelsC := C.CString(strings.Join(labels, "¡¦!"))
 		defer C.free(unsafe.Pointer(labelsC))
-		C.QTreeWidget_SetHeaderLabels(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: labelsC, len: C.longlong(len(strings.Join(labels, "|")))})
+		C.QTreeWidget_SetHeaderLabels(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: labelsC, len: C.longlong(len(strings.Join(labels, "¡¦!")))})
 	}
 }
 
@@ -99992,10 +99998,10 @@ func (ptr *QTreeWidget) VisualItemRect(item QTreeWidgetItem_ITF) *core.QRect {
 func callbackQTreeWidget_MimeTypes(ptr unsafe.Pointer) C.struct_QtWidgets_PackedString {
 	if signal := qt.GetSignal(ptr, "mimeTypes"); signal != nil {
 		tempVal := (*(*func() []string)(signal))()
-		return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 	}
 	tempVal := NewQTreeWidgetFromPointer(ptr).MimeTypesDefault()
-	return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 }
 
 func (ptr *QTreeWidget) ConnectMimeTypes(f func() []string) {
@@ -100022,14 +100028,14 @@ func (ptr *QTreeWidget) DisconnectMimeTypes() {
 
 func (ptr *QTreeWidget) MimeTypes() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QTreeWidget_MimeTypes(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QTreeWidget_MimeTypes(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QTreeWidget) MimeTypesDefault() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QTreeWidget_MimeTypesDefault(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QTreeWidget_MimeTypesDefault(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -100387,9 +100393,9 @@ func NewQTreeWidgetItem5(parent QTreeWidget_ITF, preceding QTreeWidgetItem_ITF, 
 }
 
 func NewQTreeWidgetItem4(parent QTreeWidget_ITF, strin []string, ty int) *QTreeWidgetItem {
-	strinC := C.CString(strings.Join(strin, "|"))
+	strinC := C.CString(strings.Join(strin, "¡¦!"))
 	defer C.free(unsafe.Pointer(strinC))
-	return NewQTreeWidgetItemFromPointer(C.QTreeWidgetItem_NewQTreeWidgetItem4(PointerFromQTreeWidget(parent), C.struct_QtWidgets_PackedString{data: strinC, len: C.longlong(len(strings.Join(strin, "|")))}, C.int(int32(ty))))
+	return NewQTreeWidgetItemFromPointer(C.QTreeWidgetItem_NewQTreeWidgetItem4(PointerFromQTreeWidget(parent), C.struct_QtWidgets_PackedString{data: strinC, len: C.longlong(len(strings.Join(strin, "¡¦!")))}, C.int(int32(ty))))
 }
 
 func NewQTreeWidgetItem3(parent QTreeWidget_ITF, ty int) *QTreeWidgetItem {
@@ -100401,9 +100407,9 @@ func NewQTreeWidgetItem8(parent QTreeWidgetItem_ITF, preceding QTreeWidgetItem_I
 }
 
 func NewQTreeWidgetItem7(parent QTreeWidgetItem_ITF, strin []string, ty int) *QTreeWidgetItem {
-	strinC := C.CString(strings.Join(strin, "|"))
+	strinC := C.CString(strings.Join(strin, "¡¦!"))
 	defer C.free(unsafe.Pointer(strinC))
-	return NewQTreeWidgetItemFromPointer(C.QTreeWidgetItem_NewQTreeWidgetItem7(PointerFromQTreeWidgetItem(parent), C.struct_QtWidgets_PackedString{data: strinC, len: C.longlong(len(strings.Join(strin, "|")))}, C.int(int32(ty))))
+	return NewQTreeWidgetItemFromPointer(C.QTreeWidgetItem_NewQTreeWidgetItem7(PointerFromQTreeWidgetItem(parent), C.struct_QtWidgets_PackedString{data: strinC, len: C.longlong(len(strings.Join(strin, "¡¦!")))}, C.int(int32(ty))))
 }
 
 func NewQTreeWidgetItem6(parent QTreeWidgetItem_ITF, ty int) *QTreeWidgetItem {
@@ -100411,9 +100417,9 @@ func NewQTreeWidgetItem6(parent QTreeWidgetItem_ITF, ty int) *QTreeWidgetItem {
 }
 
 func NewQTreeWidgetItem2(strin []string, ty int) *QTreeWidgetItem {
-	strinC := C.CString(strings.Join(strin, "|"))
+	strinC := C.CString(strings.Join(strin, "¡¦!"))
 	defer C.free(unsafe.Pointer(strinC))
-	return NewQTreeWidgetItemFromPointer(C.QTreeWidgetItem_NewQTreeWidgetItem2(C.struct_QtWidgets_PackedString{data: strinC, len: C.longlong(len(strings.Join(strin, "|")))}, C.int(int32(ty))))
+	return NewQTreeWidgetItemFromPointer(C.QTreeWidgetItem_NewQTreeWidgetItem2(C.struct_QtWidgets_PackedString{data: strinC, len: C.longlong(len(strings.Join(strin, "¡¦!")))}, C.int(int32(ty))))
 }
 
 func NewQTreeWidgetItem9(other QTreeWidgetItem_ITF) *QTreeWidgetItem {

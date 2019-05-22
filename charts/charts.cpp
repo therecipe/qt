@@ -2743,7 +2743,7 @@ void* QBarCategoryAxis_NewQBarCategoryAxis(void* parent)
 
 struct QtCharts_PackedString QBarCategoryAxis_Categories(void* ptr)
 {
-	return ({ QByteArray tcc0bf4 = static_cast<QBarCategoryAxis*>(ptr)->categories().join("|").toUtf8(); QtCharts_PackedString { const_cast<char*>(tcc0bf4.prepend("WHITESPACE").constData()+10), tcc0bf4.size()-10 }; });
+	return ({ QByteArray tcc0bf4 = static_cast<QBarCategoryAxis*>(ptr)->categories().join("¡¦!").toUtf8(); QtCharts_PackedString { const_cast<char*>(tcc0bf4.prepend("WHITESPACE").constData()+10), tcc0bf4.size()-10 }; });
 }
 
 void QBarCategoryAxis_Append2(void* ptr, struct QtCharts_PackedString category)
@@ -2753,7 +2753,7 @@ void QBarCategoryAxis_Append2(void* ptr, struct QtCharts_PackedString category)
 
 void QBarCategoryAxis_Append(void* ptr, struct QtCharts_PackedString categories)
 {
-	static_cast<QBarCategoryAxis*>(ptr)->append(QString::fromUtf8(categories.data, categories.len).split("|", QString::SkipEmptyParts));
+	static_cast<QBarCategoryAxis*>(ptr)->append(QString::fromUtf8(categories.data, categories.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void QBarCategoryAxis_ConnectCategoriesChanged(void* ptr)
@@ -2853,7 +2853,7 @@ void QBarCategoryAxis_Replace(void* ptr, struct QtCharts_PackedString oldCategor
 
 void QBarCategoryAxis_SetCategories(void* ptr, struct QtCharts_PackedString categories)
 {
-	static_cast<QBarCategoryAxis*>(ptr)->setCategories(QString::fromUtf8(categories.data, categories.len).split("|", QString::SkipEmptyParts));
+	static_cast<QBarCategoryAxis*>(ptr)->setCategories(QString::fromUtf8(categories.data, categories.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void QBarCategoryAxis_SetMax(void* ptr, struct QtCharts_PackedString max)
@@ -6278,7 +6278,7 @@ void* QCategoryAxis_NewQCategoryAxis(void* parent)
 
 struct QtCharts_PackedString QCategoryAxis_CategoriesLabels(void* ptr)
 {
-	return ({ QByteArray t6d5777 = static_cast<QCategoryAxis*>(ptr)->categoriesLabels().join("|").toUtf8(); QtCharts_PackedString { const_cast<char*>(t6d5777.prepend("WHITESPACE").constData()+10), t6d5777.size()-10 }; });
+	return ({ QByteArray t6d5777 = static_cast<QCategoryAxis*>(ptr)->categoriesLabels().join("¡¦!").toUtf8(); QtCharts_PackedString { const_cast<char*>(t6d5777.prepend("WHITESPACE").constData()+10), t6d5777.size()-10 }; });
 }
 
 void QCategoryAxis_Append(void* ptr, struct QtCharts_PackedString categoryLabel, double categoryEndValue)

@@ -73,7 +73,7 @@ func GoInput(name, value string, f *parser.Function, p string) string {
 
 	case "QStringList":
 		{
-			return fmt.Sprintf("C.CString(strings.Join(%v, \"|\"))", name)
+			return fmt.Sprintf("C.CString(strings.Join(%v, \"¡¦!\"))", name)
 		}
 
 	case "void", "GLvoid" /*, ""*/ :
@@ -342,9 +342,9 @@ func cppInput(name, value string, f *parser.Function) string {
 			}
 
 			if parser.UseJs() {
-				return fmt.Sprintf("QString::fromStdString(%v[\"data\"].as<std::string>()).split(\"|\", QString::SkipEmptyParts)", name)
+				return fmt.Sprintf("QString::fromStdString(%v[\"data\"].as<std::string>()).split(\"¡¦!\", QString::SkipEmptyParts)", name)
 			}
-			return fmt.Sprintf("QString::fromUtf8(%[1]v.data, %[1]v.len).split(\"|\", QString::SkipEmptyParts)", name)
+			return fmt.Sprintf("QString::fromUtf8(%[1]v.data, %[1]v.len).split(\"¡¦!\", QString::SkipEmptyParts)", name)
 		}
 
 	case "void", "GLvoid" /*, ""*/ :
@@ -548,12 +548,12 @@ func GoInputJS(name, value string, f *parser.Function, p string) string {
 	case "QStringList":
 		{
 			if parser.UseWasm() {
-				return fmt.Sprintf("func() js.Value {\ntmp := js.TypedArrayOf([]byte(strings.Join(%v, \"|\")))\nreturn js.ValueOf(map[string]interface{}{\"data\": tmp, \"data_ptr\": unsafe.Pointer(&tmp)})\n}()", name)
+				return fmt.Sprintf("func() js.Value {\ntmp := js.TypedArrayOf([]byte(strings.Join(%v, \"¡¦!\")))\nreturn js.ValueOf(map[string]interface{}{\"data\": tmp, \"data_ptr\": unsafe.Pointer(&tmp)})\n}()", name)
 			}
 			if f.SignalMode != parser.CALLBACK {
-				return fmt.Sprintf("func() *js.Object {\ntmp := new(js.Object)\nif js.InternalObject(%v).Get(\"$val\") == js.Undefined {\ntmp.Set(\"data\", []byte(js.InternalObject(%v).Call(\"join\", \"|\").String()))\n} else {\ntmp.Set(\"data\", []byte(strings.Join(%v, \"|\")))\n}\nreturn tmp\n}()", name, name, name) //needed for indirect exported pure js call -> can be ommited if build without js support
+				return fmt.Sprintf("func() *js.Object {\ntmp := new(js.Object)\nif js.InternalObject(%v).Get(\"$val\") == js.Undefined {\ntmp.Set(\"data\", []byte(js.InternalObject(%v).Call(\"join\", \"¡¦!\").String()))\n} else {\ntmp.Set(\"data\", []byte(strings.Join(%v, \"¡¦!\")))\n}\nreturn tmp\n}()", name, name, name) //needed for indirect exported pure js call -> can be ommited if build without js support
 			}
-			return fmt.Sprintf("func() *js.Object {\ntmp := new(js.Object)\ntmp.Set(\"data\", []byte(strings.Join(%v, \"|\")))\nreturn tmp\n}()", name)
+			return fmt.Sprintf("func() *js.Object {\ntmp := new(js.Object)\ntmp.Set(\"data\", []byte(strings.Join(%v, \"¡¦!\")))\nreturn tmp\n}()", name)
 		}
 
 	case "void", "GLvoid", "":

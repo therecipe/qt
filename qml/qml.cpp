@@ -1947,7 +1947,7 @@ void QQmlEngine_QQmlEngine_SetContextForObject(void* object, void* context)
 
 void QQmlEngine_SetImportPathList(void* ptr, struct QtQml_PackedString paths)
 {
-	static_cast<QQmlEngine*>(ptr)->setImportPathList(QString::fromUtf8(paths.data, paths.len).split("|", QString::SkipEmptyParts));
+	static_cast<QQmlEngine*>(ptr)->setImportPathList(QString::fromUtf8(paths.data, paths.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void QQmlEngine_SetIncubationController(void* ptr, void* controller)
@@ -1977,7 +1977,7 @@ void QQmlEngine_SetOutputWarningsToStandardError(void* ptr, char enabled)
 
 void QQmlEngine_SetPluginPathList(void* ptr, struct QtQml_PackedString paths)
 {
-	static_cast<QQmlEngine*>(ptr)->setPluginPathList(QString::fromUtf8(paths.data, paths.len).split("|", QString::SkipEmptyParts));
+	static_cast<QQmlEngine*>(ptr)->setPluginPathList(QString::fromUtf8(paths.data, paths.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void QQmlEngine_TrimComponentCache(void* ptr)
@@ -2048,12 +2048,12 @@ struct QtQml_PackedString QQmlEngine_OfflineStoragePath(void* ptr)
 
 struct QtQml_PackedString QQmlEngine_ImportPathList(void* ptr)
 {
-	return ({ QByteArray t32e5da = static_cast<QQmlEngine*>(ptr)->importPathList().join("|").toUtf8(); QtQml_PackedString { const_cast<char*>(t32e5da.prepend("WHITESPACE").constData()+10), t32e5da.size()-10 }; });
+	return ({ QByteArray t32e5da = static_cast<QQmlEngine*>(ptr)->importPathList().join("¡¦!").toUtf8(); QtQml_PackedString { const_cast<char*>(t32e5da.prepend("WHITESPACE").constData()+10), t32e5da.size()-10 }; });
 }
 
 struct QtQml_PackedString QQmlEngine_PluginPathList(void* ptr)
 {
-	return ({ QByteArray t04b834 = static_cast<QQmlEngine*>(ptr)->pluginPathList().join("|").toUtf8(); QtQml_PackedString { const_cast<char*>(t04b834.prepend("WHITESPACE").constData()+10), t04b834.size()-10 }; });
+	return ({ QByteArray t04b834 = static_cast<QQmlEngine*>(ptr)->pluginPathList().join("¡¦!").toUtf8(); QtQml_PackedString { const_cast<char*>(t04b834.prepend("WHITESPACE").constData()+10), t04b834.size()-10 }; });
 }
 
 void* QQmlEngine_BaseUrl(void* ptr)
@@ -2802,12 +2802,12 @@ struct QtQml_PackedString QQmlFileSelector_QQmlFileSelector_Tr(char* s, char* c,
 
 void QQmlFileSelector_SetExtraSelectors(void* ptr, struct QtQml_PackedString strin)
 {
-	static_cast<QQmlFileSelector*>(ptr)->setExtraSelectors(*(new QStringList(QString::fromUtf8(strin.data, strin.len).split("|", QString::SkipEmptyParts))));
+	static_cast<QQmlFileSelector*>(ptr)->setExtraSelectors(*(new QStringList(QString::fromUtf8(strin.data, strin.len).split("¡¦!", QString::SkipEmptyParts))));
 }
 
 void QQmlFileSelector_SetExtraSelectors2(void* ptr, struct QtQml_PackedString strin)
 {
-	static_cast<QQmlFileSelector*>(ptr)->setExtraSelectors(QString::fromUtf8(strin.data, strin.len).split("|", QString::SkipEmptyParts));
+	static_cast<QQmlFileSelector*>(ptr)->setExtraSelectors(QString::fromUtf8(strin.data, strin.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void QQmlFileSelector_SetSelector(void* ptr, void* selector)
@@ -3759,7 +3759,7 @@ void QQmlPropertyMap_DestroyQQmlPropertyMapDefault(void* ptr)
 
 struct QtQml_PackedString QQmlPropertyMap_Keys(void* ptr)
 {
-	return ({ QByteArray t4c814d = static_cast<QQmlPropertyMap*>(ptr)->keys().join("|").toUtf8(); QtQml_PackedString { const_cast<char*>(t4c814d.prepend("WHITESPACE").constData()+10), t4c814d.size()-10 }; });
+	return ({ QByteArray t4c814d = static_cast<QQmlPropertyMap*>(ptr)->keys().join("¡¦!").toUtf8(); QtQml_PackedString { const_cast<char*>(t4c814d.prepend("WHITESPACE").constData()+10), t4c814d.size()-10 }; });
 }
 
 void* QQmlPropertyMap_Value(void* ptr, struct QtQml_PackedString key)

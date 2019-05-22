@@ -28,6 +28,12 @@ func cGoUnpackBytes(s C.struct_QtRemoteObjects_PackedString) []byte {
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
+func unpackStringList(s string) []string {
+	if len(s) == 0 {
+		return make([]string, 0)
+	}
+	return strings.Split(s, "¡¦!")
+}
 
 type QRemoteObjectAbstractPersistedStore struct {
 	core.QObject
@@ -1421,7 +1427,7 @@ func (ptr *QRemoteObjectNode) Instances2(typeName string) []string {
 			typeNameC = C.CString(typeName)
 			defer C.free(unsafe.Pointer(typeNameC))
 		}
-		return strings.Split(cGoUnpackString(C.QRemoteObjectNode_Instances2(ptr.Pointer(), C.struct_QtRemoteObjects_PackedString{data: typeNameC, len: C.longlong(len(typeName))})), "|")
+		return unpackStringList(cGoUnpackString(C.QRemoteObjectNode_Instances2(ptr.Pointer(), C.struct_QtRemoteObjects_PackedString{data: typeNameC, len: C.longlong(len(typeName))})))
 	}
 	return make([]string, 0)
 }

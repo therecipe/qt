@@ -30,6 +30,12 @@ func cGoUnpackBytes(s C.struct_QtDesigner_PackedString) []byte {
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
+func unpackStringList(s string) []string {
+	if len(s) == 0 {
+		return make([]string, 0)
+	}
+	return strings.Split(s, "¡¦!")
+}
 
 type QAbstractExtensionFactory struct {
 	ptr unsafe.Pointer
@@ -4847,9 +4853,9 @@ func (ptr *QDesignerFormWindowInterface) AboutToUnmanageWidget(widget widgets.QW
 //export callbackQDesignerFormWindowInterface_ActivateResourceFilePaths
 func callbackQDesignerFormWindowInterface_ActivateResourceFilePaths(ptr unsafe.Pointer, paths C.struct_QtDesigner_PackedString, errorCount C.int, errorMessages C.struct_QtDesigner_PackedString) {
 	if signal := qt.GetSignal(ptr, "activateResourceFilePaths"); signal != nil {
-		(*(*func([]string, int, string))(signal))(strings.Split(cGoUnpackString(paths), "|"), int(int32(errorCount)), cGoUnpackString(errorMessages))
+		(*(*func([]string, int, string))(signal))(unpackStringList(cGoUnpackString(paths)), int(int32(errorCount)), cGoUnpackString(errorMessages))
 	} else {
-		NewQDesignerFormWindowInterfaceFromPointer(ptr).ActivateResourceFilePathsDefault(strings.Split(cGoUnpackString(paths), "|"), int(int32(errorCount)), cGoUnpackString(errorMessages))
+		NewQDesignerFormWindowInterfaceFromPointer(ptr).ActivateResourceFilePathsDefault(unpackStringList(cGoUnpackString(paths)), int(int32(errorCount)), cGoUnpackString(errorMessages))
 	}
 }
 
@@ -4877,27 +4883,27 @@ func (ptr *QDesignerFormWindowInterface) DisconnectActivateResourceFilePaths() {
 
 func (ptr *QDesignerFormWindowInterface) ActivateResourceFilePaths(paths []string, errorCount int, errorMessages string) {
 	if ptr.Pointer() != nil {
-		pathsC := C.CString(strings.Join(paths, "|"))
+		pathsC := C.CString(strings.Join(paths, "¡¦!"))
 		defer C.free(unsafe.Pointer(pathsC))
 		var errorMessagesC *C.char
 		if errorMessages != "" {
 			errorMessagesC = C.CString(errorMessages)
 			defer C.free(unsafe.Pointer(errorMessagesC))
 		}
-		C.QDesignerFormWindowInterface_ActivateResourceFilePaths(ptr.Pointer(), C.struct_QtDesigner_PackedString{data: pathsC, len: C.longlong(len(strings.Join(paths, "|")))}, C.int(int32(errorCount)), C.struct_QtDesigner_PackedString{data: errorMessagesC, len: C.longlong(len(errorMessages))})
+		C.QDesignerFormWindowInterface_ActivateResourceFilePaths(ptr.Pointer(), C.struct_QtDesigner_PackedString{data: pathsC, len: C.longlong(len(strings.Join(paths, "¡¦!")))}, C.int(int32(errorCount)), C.struct_QtDesigner_PackedString{data: errorMessagesC, len: C.longlong(len(errorMessages))})
 	}
 }
 
 func (ptr *QDesignerFormWindowInterface) ActivateResourceFilePathsDefault(paths []string, errorCount int, errorMessages string) {
 	if ptr.Pointer() != nil {
-		pathsC := C.CString(strings.Join(paths, "|"))
+		pathsC := C.CString(strings.Join(paths, "¡¦!"))
 		defer C.free(unsafe.Pointer(pathsC))
 		var errorMessagesC *C.char
 		if errorMessages != "" {
 			errorMessagesC = C.CString(errorMessages)
 			defer C.free(unsafe.Pointer(errorMessagesC))
 		}
-		C.QDesignerFormWindowInterface_ActivateResourceFilePathsDefault(ptr.Pointer(), C.struct_QtDesigner_PackedString{data: pathsC, len: C.longlong(len(strings.Join(paths, "|")))}, C.int(int32(errorCount)), C.struct_QtDesigner_PackedString{data: errorMessagesC, len: C.longlong(len(errorMessages))})
+		C.QDesignerFormWindowInterface_ActivateResourceFilePathsDefault(ptr.Pointer(), C.struct_QtDesigner_PackedString{data: pathsC, len: C.longlong(len(strings.Join(paths, "¡¦!")))}, C.int(int32(errorCount)), C.struct_QtDesigner_PackedString{data: errorMessagesC, len: C.longlong(len(errorMessages))})
 	}
 }
 
@@ -5849,7 +5855,7 @@ func (ptr *QDesignerFormWindowInterface) SetGrid(grid core.QPoint_ITF) {
 //export callbackQDesignerFormWindowInterface_SetIncludeHints
 func callbackQDesignerFormWindowInterface_SetIncludeHints(ptr unsafe.Pointer, includeHints C.struct_QtDesigner_PackedString) {
 	if signal := qt.GetSignal(ptr, "setIncludeHints"); signal != nil {
-		(*(*func([]string))(signal))(strings.Split(cGoUnpackString(includeHints), "|"))
+		(*(*func([]string))(signal))(unpackStringList(cGoUnpackString(includeHints)))
 	}
 
 }
@@ -5878,9 +5884,9 @@ func (ptr *QDesignerFormWindowInterface) DisconnectSetIncludeHints() {
 
 func (ptr *QDesignerFormWindowInterface) SetIncludeHints(includeHints []string) {
 	if ptr.Pointer() != nil {
-		includeHintsC := C.CString(strings.Join(includeHints, "|"))
+		includeHintsC := C.CString(strings.Join(includeHints, "¡¦!"))
 		defer C.free(unsafe.Pointer(includeHintsC))
-		C.QDesignerFormWindowInterface_SetIncludeHints(ptr.Pointer(), C.struct_QtDesigner_PackedString{data: includeHintsC, len: C.longlong(len(strings.Join(includeHints, "|")))})
+		C.QDesignerFormWindowInterface_SetIncludeHints(ptr.Pointer(), C.struct_QtDesigner_PackedString{data: includeHintsC, len: C.longlong(len(strings.Join(includeHints, "¡¦!")))})
 	}
 }
 
@@ -6765,7 +6771,7 @@ func (ptr *QDesignerFormWindowInterface) PixmapFunction() string {
 
 func (ptr *QDesignerFormWindowInterface) ActiveResourceFilePaths() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QDesignerFormWindowInterface_ActiveResourceFilePaths(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QDesignerFormWindowInterface_ActiveResourceFilePaths(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -6774,10 +6780,10 @@ func (ptr *QDesignerFormWindowInterface) ActiveResourceFilePaths() []string {
 func callbackQDesignerFormWindowInterface_CheckContents(ptr unsafe.Pointer) C.struct_QtDesigner_PackedString {
 	if signal := qt.GetSignal(ptr, "checkContents"); signal != nil {
 		tempVal := (*(*func() []string)(signal))()
-		return C.struct_QtDesigner_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtDesigner_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 	}
 	tempVal := make([]string, 0)
-	return C.struct_QtDesigner_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtDesigner_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 }
 
 func (ptr *QDesignerFormWindowInterface) ConnectCheckContents(f func() []string) {
@@ -6804,7 +6810,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectCheckContents() {
 
 func (ptr *QDesignerFormWindowInterface) CheckContents() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QDesignerFormWindowInterface_CheckContents(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QDesignerFormWindowInterface_CheckContents(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -6813,10 +6819,10 @@ func (ptr *QDesignerFormWindowInterface) CheckContents() []string {
 func callbackQDesignerFormWindowInterface_IncludeHints(ptr unsafe.Pointer) C.struct_QtDesigner_PackedString {
 	if signal := qt.GetSignal(ptr, "includeHints"); signal != nil {
 		tempVal := (*(*func() []string)(signal))()
-		return C.struct_QtDesigner_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtDesigner_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 	}
 	tempVal := make([]string, 0)
-	return C.struct_QtDesigner_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtDesigner_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 }
 
 func (ptr *QDesignerFormWindowInterface) ConnectIncludeHints(f func() []string) {
@@ -6843,7 +6849,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectIncludeHints() {
 
 func (ptr *QDesignerFormWindowInterface) IncludeHints() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QDesignerFormWindowInterface_IncludeHints(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QDesignerFormWindowInterface_IncludeHints(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -6852,10 +6858,10 @@ func (ptr *QDesignerFormWindowInterface) IncludeHints() []string {
 func callbackQDesignerFormWindowInterface_ResourceFiles(ptr unsafe.Pointer) C.struct_QtDesigner_PackedString {
 	if signal := qt.GetSignal(ptr, "resourceFiles"); signal != nil {
 		tempVal := (*(*func() []string)(signal))()
-		return C.struct_QtDesigner_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtDesigner_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 	}
 	tempVal := make([]string, 0)
-	return C.struct_QtDesigner_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtDesigner_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 }
 
 func (ptr *QDesignerFormWindowInterface) ConnectResourceFiles(f func() []string) {
@@ -6882,7 +6888,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectResourceFiles() {
 
 func (ptr *QDesignerFormWindowInterface) ResourceFiles() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QDesignerFormWindowInterface_ResourceFiles(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QDesignerFormWindowInterface_ResourceFiles(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -16864,9 +16870,9 @@ func (ptr *QFormBuilder) ClearPluginPaths() {
 
 func (ptr *QFormBuilder) SetPluginPath(pluginPaths []string) {
 	if ptr.Pointer() != nil {
-		pluginPathsC := C.CString(strings.Join(pluginPaths, "|"))
+		pluginPathsC := C.CString(strings.Join(pluginPaths, "¡¦!"))
 		defer C.free(unsafe.Pointer(pluginPathsC))
-		C.QFormBuilder_SetPluginPath(ptr.Pointer(), C.struct_QtDesigner_PackedString{data: pluginPathsC, len: C.longlong(len(strings.Join(pluginPaths, "|")))})
+		C.QFormBuilder_SetPluginPath(ptr.Pointer(), C.struct_QtDesigner_PackedString{data: pluginPathsC, len: C.longlong(len(strings.Join(pluginPaths, "¡¦!")))})
 	}
 }
 
@@ -16931,7 +16937,7 @@ func (ptr *QFormBuilder) CustomWidgets() []*QDesignerCustomWidgetInterface {
 
 func (ptr *QFormBuilder) PluginPaths() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QFormBuilder_PluginPaths(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QFormBuilder_PluginPaths(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }

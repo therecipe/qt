@@ -50,7 +50,7 @@ func goOutput(name, value string, f *parser.Function, p string) string {
 
 	case "QStringList":
 		{
-			return fmt.Sprintf("strings.Split(cGoUnpackString(%v), \"|\")", name)
+			return fmt.Sprintf("unpackStringList(cGoUnpackString(%v))", name)
 		}
 
 	case "void", "GLvoid", "":
@@ -333,9 +333,9 @@ func cgoOutput(name, value string, f *parser.Function, p string) string {
 	case "QStringList":
 		{
 			if parser.UseJs() {
-				return fmt.Sprintf("strings.Split(%v, \"|\")", name)
+				return fmt.Sprintf("unpackStringList(%v)", name)
 			}
-			return fmt.Sprintf("strings.Split(cGoUnpackString(%v), \"|\")", name)
+			return fmt.Sprintf("unpackStringList(cGoUnpackString(%v))", name)
 		}
 
 	case "void", "GLvoid", "":
@@ -735,14 +735,14 @@ func cppOutput(name, value string, f *parser.Function) string {
 		{
 			if strings.Contains(vOld, "*") {
 				if parser.UseJs() {
-					return fmt.Sprintf("({ QByteArray t%v = %v->join(\"|\").toUtf8(); %v })", tHashName, name, cppOutputPackingStringForJs("const_cast<char*>(t"+tHashName+".prepend(\"WHITESPACE\").constData()+10)", "t"+tHashName+".size()-10"))
+					return fmt.Sprintf("({ QByteArray t%v = %v->join(\"¡¦!\").toUtf8(); %v })", tHashName, name, cppOutputPackingStringForJs("const_cast<char*>(t"+tHashName+".prepend(\"WHITESPACE\").constData()+10)", "t"+tHashName+".size()-10"))
 				}
-				return fmt.Sprintf("({ QByteArray t%v = %v->join(\"|\").toUtf8(); %v_PackedString { const_cast<char*>(t%v.prepend(\"WHITESPACE\").constData()+10), t%v.size()-10 }; })", tHashName, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName, tHashName)
+				return fmt.Sprintf("({ QByteArray t%v = %v->join(\"¡¦!\").toUtf8(); %v_PackedString { const_cast<char*>(t%v.prepend(\"WHITESPACE\").constData()+10), t%v.size()-10 }; })", tHashName, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName, tHashName)
 			}
 			if parser.UseJs() {
-				return fmt.Sprintf("({ QByteArray t%v = %v.join(\"|\").toUtf8(); %v })", tHashName, name, cppOutputPackingStringForJs("const_cast<char*>(t"+tHashName+".prepend(\"WHITESPACE\").constData()+10)", "t"+tHashName+".size()-10"))
+				return fmt.Sprintf("({ QByteArray t%v = %v.join(\"¡¦!\").toUtf8(); %v })", tHashName, name, cppOutputPackingStringForJs("const_cast<char*>(t"+tHashName+".prepend(\"WHITESPACE\").constData()+10)", "t"+tHashName+".size()-10"))
 			}
-			return fmt.Sprintf("({ QByteArray t%v = %v.join(\"|\").toUtf8(); %v_PackedString { const_cast<char*>(t%v.prepend(\"WHITESPACE\").constData()+10), t%v.size()-10 }; })", tHashName, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName, tHashName)
+			return fmt.Sprintf("({ QByteArray t%v = %v.join(\"¡¦!\").toUtf8(); %v_PackedString { const_cast<char*>(t%v.prepend(\"WHITESPACE\").constData()+10), t%v.size()-10 }; })", tHashName, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName, tHashName)
 		}
 
 	case
@@ -1015,7 +1015,7 @@ func goOutputJS(name, value string, f *parser.Function, p string) string {
 			if f.SignalMode == parser.CALLBACK {
 				return fmt.Sprintf("jsGoUnpackString(%v.Get(\"data\").String())", name)
 			}
-			return fmt.Sprintf("strings.Split(jsGoUnpackString(%v.Get(\"data\").String()), \"|\")", name)
+			return fmt.Sprintf("unpackStringList(jsGoUnpackString(%v.Get(\"data\").String()))", name)
 		}
 
 	case "void", "GLvoid", "":

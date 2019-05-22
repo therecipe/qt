@@ -30,6 +30,12 @@ func cGoUnpackBytes(s C.struct_QtLocation_PackedString) []byte {
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
+func unpackStringList(s string) []string {
+	if len(s) == 0 {
+		return make([]string, 0)
+	}
+	return strings.Split(s, "¡¦!")
+}
 
 type QGeoCodeReply struct {
 	core.QObject
@@ -4093,11 +4099,11 @@ func (ptr *QGeoServiceProvider) Tr(s string, c string, n int) string {
 }
 
 func QGeoServiceProvider_AvailableServiceProviders() []string {
-	return strings.Split(cGoUnpackString(C.QGeoServiceProvider_QGeoServiceProvider_AvailableServiceProviders()), "|")
+	return unpackStringList(cGoUnpackString(C.QGeoServiceProvider_QGeoServiceProvider_AvailableServiceProviders()))
 }
 
 func (ptr *QGeoServiceProvider) AvailableServiceProviders() []string {
-	return strings.Split(cGoUnpackString(C.QGeoServiceProvider_QGeoServiceProvider_AvailableServiceProviders()), "|")
+	return unpackStringList(cGoUnpackString(C.QGeoServiceProvider_QGeoServiceProvider_AvailableServiceProviders()))
 }
 
 func (ptr *QGeoServiceProvider) SetAllowExperimental(allow bool) {

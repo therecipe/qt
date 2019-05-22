@@ -30,6 +30,12 @@ func cGoUnpackBytes(s C.struct_QtSql_PackedString) []byte {
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
+func unpackStringList(s string) []string {
+	if len(s) == 0 {
+		return make([]string, 0)
+	}
+	return strings.Split(s, "¡¦!")
+}
 
 type QSql struct {
 	ptr unsafe.Pointer
@@ -284,19 +290,19 @@ func NewQSqlDatabase3(ty string) *QSqlDatabase {
 }
 
 func QSqlDatabase_ConnectionNames() []string {
-	return strings.Split(cGoUnpackString(C.QSqlDatabase_QSqlDatabase_ConnectionNames()), "|")
+	return unpackStringList(cGoUnpackString(C.QSqlDatabase_QSqlDatabase_ConnectionNames()))
 }
 
 func (ptr *QSqlDatabase) ConnectionNames() []string {
-	return strings.Split(cGoUnpackString(C.QSqlDatabase_QSqlDatabase_ConnectionNames()), "|")
+	return unpackStringList(cGoUnpackString(C.QSqlDatabase_QSqlDatabase_ConnectionNames()))
 }
 
 func QSqlDatabase_Drivers() []string {
-	return strings.Split(cGoUnpackString(C.QSqlDatabase_QSqlDatabase_Drivers()), "|")
+	return unpackStringList(cGoUnpackString(C.QSqlDatabase_QSqlDatabase_Drivers()))
 }
 
 func (ptr *QSqlDatabase) Drivers() []string {
-	return strings.Split(cGoUnpackString(C.QSqlDatabase_QSqlDatabase_Drivers()), "|")
+	return unpackStringList(cGoUnpackString(C.QSqlDatabase_QSqlDatabase_Drivers()))
 }
 
 func (ptr *QSqlDatabase) Commit() bool {
@@ -617,7 +623,7 @@ func (ptr *QSqlDatabase) UserName() string {
 
 func (ptr *QSqlDatabase) Tables(ty QSql__TableType) []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QSqlDatabase_Tables(ptr.Pointer(), C.longlong(ty))), "|")
+		return unpackStringList(cGoUnpackString(C.QSqlDatabase_Tables(ptr.Pointer(), C.longlong(ty))))
 	}
 	return make([]string, 0)
 }
@@ -1792,10 +1798,10 @@ func (ptr *QSqlDriver) StripDelimitersDefault(identifier string, ty QSqlDriver__
 func callbackQSqlDriver_SubscribedToNotifications(ptr unsafe.Pointer) C.struct_QtSql_PackedString {
 	if signal := qt.GetSignal(ptr, "subscribedToNotifications"); signal != nil {
 		tempVal := (*(*func() []string)(signal))()
-		return C.struct_QtSql_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtSql_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 	}
 	tempVal := NewQSqlDriverFromPointer(ptr).SubscribedToNotificationsDefault()
-	return C.struct_QtSql_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtSql_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 }
 
 func (ptr *QSqlDriver) ConnectSubscribedToNotifications(f func() []string) {
@@ -1822,14 +1828,14 @@ func (ptr *QSqlDriver) DisconnectSubscribedToNotifications() {
 
 func (ptr *QSqlDriver) SubscribedToNotifications() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QSqlDriver_SubscribedToNotifications(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QSqlDriver_SubscribedToNotifications(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QSqlDriver) SubscribedToNotificationsDefault() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QSqlDriver_SubscribedToNotificationsDefault(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QSqlDriver_SubscribedToNotificationsDefault(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -1838,10 +1844,10 @@ func (ptr *QSqlDriver) SubscribedToNotificationsDefault() []string {
 func callbackQSqlDriver_Tables(ptr unsafe.Pointer, tableType C.longlong) C.struct_QtSql_PackedString {
 	if signal := qt.GetSignal(ptr, "tables"); signal != nil {
 		tempVal := (*(*func(QSql__TableType) []string)(signal))(QSql__TableType(tableType))
-		return C.struct_QtSql_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtSql_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 	}
 	tempVal := NewQSqlDriverFromPointer(ptr).TablesDefault(QSql__TableType(tableType))
-	return C.struct_QtSql_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtSql_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 }
 
 func (ptr *QSqlDriver) ConnectTables(f func(tableType QSql__TableType) []string) {
@@ -1868,14 +1874,14 @@ func (ptr *QSqlDriver) DisconnectTables() {
 
 func (ptr *QSqlDriver) Tables(tableType QSql__TableType) []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QSqlDriver_Tables(ptr.Pointer(), C.longlong(tableType))), "|")
+		return unpackStringList(cGoUnpackString(C.QSqlDriver_Tables(ptr.Pointer(), C.longlong(tableType))))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QSqlDriver) TablesDefault(tableType QSql__TableType) []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QSqlDriver_TablesDefault(ptr.Pointer(), C.longlong(tableType))), "|")
+		return unpackStringList(cGoUnpackString(C.QSqlDriver_TablesDefault(ptr.Pointer(), C.longlong(tableType))))
 	}
 	return make([]string, 0)
 }
@@ -5587,15 +5593,15 @@ func (ptr *QSqlQueryModel) SpanDefault(index core.QModelIndex_ITF) *core.QSize {
 func callbackQSqlQueryModel_MimeTypes(ptr unsafe.Pointer) C.struct_QtSql_PackedString {
 	if signal := qt.GetSignal(ptr, "mimeTypes"); signal != nil {
 		tempVal := (*(*func() []string)(signal))()
-		return C.struct_QtSql_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtSql_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 	}
 	tempVal := NewQSqlQueryModelFromPointer(ptr).MimeTypesDefault()
-	return C.struct_QtSql_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtSql_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 }
 
 func (ptr *QSqlQueryModel) MimeTypesDefault() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QSqlQueryModel_MimeTypesDefault(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QSqlQueryModel_MimeTypesDefault(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }

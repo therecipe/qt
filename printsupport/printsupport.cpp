@@ -3592,7 +3592,7 @@ struct QtPrintSupport_PackedString QPrinterInfo_QPrinterInfo_DefaultPrinterName(
 
 struct QtPrintSupport_PackedString QPrinterInfo_QPrinterInfo_AvailablePrinterNames()
 {
-	return ({ QByteArray tb6ad9e = QPrinterInfo::availablePrinterNames().join("|").toUtf8(); QtPrintSupport_PackedString { const_cast<char*>(tb6ad9e.prepend("WHITESPACE").constData()+10), tb6ad9e.size()-10 }; });
+	return ({ QByteArray tb6ad9e = QPrinterInfo::availablePrinterNames().join("¡¦!").toUtf8(); QtPrintSupport_PackedString { const_cast<char*>(tb6ad9e.prepend("WHITESPACE").constData()+10), tb6ad9e.size()-10 }; });
 }
 
 void QPrinterInfo_DestroyQPrinterInfo(void* ptr)

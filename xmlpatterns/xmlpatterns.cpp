@@ -1140,7 +1140,7 @@ char QXmlQuery_EvaluateTo5(void* ptr, struct QtXmlPatterns_PackedString output)
 
 char QXmlQuery_EvaluateTo3(void* ptr, struct QtXmlPatterns_PackedString target)
 {
-	return static_cast<QXmlQuery*>(ptr)->evaluateTo(new QStringList(QString::fromUtf8(target.data, target.len).split("|", QString::SkipEmptyParts)));
+	return static_cast<QXmlQuery*>(ptr)->evaluateTo(new QStringList(QString::fromUtf8(target.data, target.len).split("¡¦!", QString::SkipEmptyParts)));
 }
 
 char QXmlQuery_IsValid(void* ptr)

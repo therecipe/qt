@@ -28,6 +28,12 @@ func cGoUnpackBytes(s C.struct_QtVirtualKeyboard_PackedString) []byte {
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
+func unpackStringList(s string) []string {
+	if len(s) == 0 {
+		return make([]string, 0)
+	}
+	return strings.Split(s, "¡¦!")
+}
 
 type QVirtualKeyboardAbstractInputMethod struct {
 	core.QObject
@@ -5604,15 +5610,15 @@ func (ptr *QVirtualKeyboardSelectionListModel) SpanDefault(index core.QModelInde
 func callbackQVirtualKeyboardSelectionListModel_MimeTypes(ptr unsafe.Pointer) C.struct_QtVirtualKeyboard_PackedString {
 	if signal := qt.GetSignal(ptr, "mimeTypes"); signal != nil {
 		tempVal := (*(*func() []string)(signal))()
-		return C.struct_QtVirtualKeyboard_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtVirtualKeyboard_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 	}
 	tempVal := NewQVirtualKeyboardSelectionListModelFromPointer(ptr).MimeTypesDefault()
-	return C.struct_QtVirtualKeyboard_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtVirtualKeyboard_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 }
 
 func (ptr *QVirtualKeyboardSelectionListModel) MimeTypesDefault() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QVirtualKeyboardSelectionListModel_MimeTypesDefault(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QVirtualKeyboardSelectionListModel_MimeTypesDefault(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -6196,9 +6202,9 @@ func (ptr *QVirtualKeyboardTrace) SetChannelData(channel string, index int, data
 
 func (ptr *QVirtualKeyboardTrace) SetChannels(channels []string) {
 	if ptr.Pointer() != nil {
-		channelsC := C.CString(strings.Join(channels, "|"))
+		channelsC := C.CString(strings.Join(channels, "¡¦!"))
 		defer C.free(unsafe.Pointer(channelsC))
-		C.QVirtualKeyboardTrace_SetChannels(ptr.Pointer(), C.struct_QtVirtualKeyboard_PackedString{data: channelsC, len: C.longlong(len(strings.Join(channels, "|")))})
+		C.QVirtualKeyboardTrace_SetChannels(ptr.Pointer(), C.struct_QtVirtualKeyboard_PackedString{data: channelsC, len: C.longlong(len(strings.Join(channels, "¡¦!")))})
 	}
 }
 
@@ -6262,7 +6268,7 @@ func (ptr *QVirtualKeyboardTrace) TraceIdChanged(traceId int) {
 
 func (ptr *QVirtualKeyboardTrace) Channels() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QVirtualKeyboardTrace_Channels(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QVirtualKeyboardTrace_Channels(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }

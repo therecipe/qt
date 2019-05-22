@@ -29,6 +29,12 @@ func cGoUnpackBytes(s C.struct_QtUiTools_PackedString) []byte {
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
+func unpackStringList(s string) []string {
+	if len(s) == 0 {
+		return make([]string, 0)
+	}
+	return strings.Split(s, "¡¦!")
+}
 
 type QUiLoader struct {
 	core.QObject
@@ -482,21 +488,21 @@ func (ptr *QUiLoader) ErrorString() string {
 
 func (ptr *QUiLoader) AvailableLayouts() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QUiLoader_AvailableLayouts(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QUiLoader_AvailableLayouts(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QUiLoader) AvailableWidgets() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QUiLoader_AvailableWidgets(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QUiLoader_AvailableWidgets(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QUiLoader) PluginPaths() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QUiLoader_PluginPaths(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QUiLoader_PluginPaths(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }

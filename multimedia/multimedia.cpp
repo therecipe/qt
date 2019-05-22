@@ -162,7 +162,7 @@ public:
 	QList<int> supportedChannelCounts() { return ({ QList<int>* tmpP = static_cast<QList<int>*>(callbackQAbstractAudioDeviceInfo_SupportedChannelCounts(this)); QList<int> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
 	QList<int> supportedSampleRates() { return ({ QList<int>* tmpP = static_cast<QList<int>*>(callbackQAbstractAudioDeviceInfo_SupportedSampleRates(this)); QList<int> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
 	QList<int> supportedSampleSizes() { return ({ QList<int>* tmpP = static_cast<QList<int>*>(callbackQAbstractAudioDeviceInfo_SupportedSampleSizes(this)); QList<int> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
-	QStringList supportedCodecs() { return ({ QtMultimedia_PackedString tempVal = callbackQAbstractAudioDeviceInfo_SupportedCodecs(this); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	QStringList supportedCodecs() { return ({ QtMultimedia_PackedString tempVal = callbackQAbstractAudioDeviceInfo_SupportedCodecs(this); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	QAudioFormat preferredFormat() const { return *static_cast<QAudioFormat*>(callbackQAbstractAudioDeviceInfo_PreferredFormat(const_cast<void*>(static_cast<const void*>(this)))); };
 	QString deviceName() const { return ({ QtMultimedia_PackedString tempVal = callbackQAbstractAudioDeviceInfo_DeviceName(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	bool isFormatSupported(const QAudioFormat & format) const { return callbackQAbstractAudioDeviceInfo_IsFormatSupported(const_cast<void*>(static_cast<const void*>(this)), const_cast<QAudioFormat*>(&format)) != 0; };
@@ -215,7 +215,7 @@ struct QtMultimedia_PackedString QAbstractAudioDeviceInfo_QAbstractAudioDeviceIn
 
 struct QtMultimedia_PackedString QAbstractAudioDeviceInfo_SupportedCodecs(void* ptr)
 {
-	return ({ QByteArray t6d2a0e = static_cast<QAbstractAudioDeviceInfo*>(ptr)->supportedCodecs().join("|").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t6d2a0e.prepend("WHITESPACE").constData()+10), t6d2a0e.size()-10 }; });
+	return ({ QByteArray t6d2a0e = static_cast<QAbstractAudioDeviceInfo*>(ptr)->supportedCodecs().join("¡¦!").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t6d2a0e.prepend("WHITESPACE").constData()+10), t6d2a0e.size()-10 }; });
 }
 
 void* QAbstractAudioDeviceInfo_PreferredFormat(void* ptr)
@@ -2305,7 +2305,7 @@ void* QAudioDecoder_NewQAudioDecoder(void* parent)
 
 long long QAudioDecoder_QAudioDecoder_HasSupport(struct QtMultimedia_PackedString mimeType, struct QtMultimedia_PackedString codecs)
 {
-	return QAudioDecoder::hasSupport(QString::fromUtf8(mimeType.data, mimeType.len), QString::fromUtf8(codecs.data, codecs.len).split("|", QString::SkipEmptyParts));
+	return QAudioDecoder::hasSupport(QString::fromUtf8(mimeType.data, mimeType.len), QString::fromUtf8(codecs.data, codecs.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void QAudioDecoder_ConnectBufferAvailableChanged(void* ptr)
@@ -2908,7 +2908,7 @@ struct QtMultimedia_PackedString QAudioDeviceInfo_DeviceName(void* ptr)
 
 struct QtMultimedia_PackedString QAudioDeviceInfo_SupportedCodecs(void* ptr)
 {
-	return ({ QByteArray t91bb7c = static_cast<QAudioDeviceInfo*>(ptr)->supportedCodecs().join("|").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t91bb7c.prepend("WHITESPACE").constData()+10), t91bb7c.size()-10 }; });
+	return ({ QByteArray t91bb7c = static_cast<QAudioDeviceInfo*>(ptr)->supportedCodecs().join("¡¦!").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t91bb7c.prepend("WHITESPACE").constData()+10), t91bb7c.size()-10 }; });
 }
 
 char QAudioDeviceInfo_IsFormatSupported(void* ptr, void* settings)
@@ -3200,7 +3200,7 @@ public:
 	QAudioEncoderSettings audioSettings() const { return *static_cast<QAudioEncoderSettings*>(callbackQAudioEncoderSettingsControl_AudioSettings(const_cast<void*>(static_cast<const void*>(this)))); };
 	QList<int> supportedSampleRates(const QAudioEncoderSettings & settings, bool * continuous) const { return ({ QList<int>* tmpP = static_cast<QList<int>*>(callbackQAudioEncoderSettingsControl_SupportedSampleRates(const_cast<void*>(static_cast<const void*>(this)), const_cast<QAudioEncoderSettings*>(&settings), reinterpret_cast<char*>(continuous))); QList<int> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
 	QString codecDescription(const QString & codecName) const { QByteArray t06d49e = codecName.toUtf8(); QtMultimedia_PackedString codecNamePacked = { const_cast<char*>(t06d49e.prepend("WHITESPACE").constData()+10), t06d49e.size()-10 };return ({ QtMultimedia_PackedString tempVal = callbackQAudioEncoderSettingsControl_CodecDescription(const_cast<void*>(static_cast<const void*>(this)), codecNamePacked); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
-	QStringList supportedAudioCodecs() const { return ({ QtMultimedia_PackedString tempVal = callbackQAudioEncoderSettingsControl_SupportedAudioCodecs(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	QStringList supportedAudioCodecs() const { return ({ QtMultimedia_PackedString tempVal = callbackQAudioEncoderSettingsControl_SupportedAudioCodecs(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
@@ -3290,7 +3290,7 @@ struct QtMultimedia_PackedString QAudioEncoderSettingsControl_CodecDescription(v
 
 struct QtMultimedia_PackedString QAudioEncoderSettingsControl_SupportedAudioCodecs(void* ptr)
 {
-	return ({ QByteArray t640ebe = static_cast<QAudioEncoderSettingsControl*>(ptr)->supportedAudioCodecs().join("|").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t640ebe.prepend("WHITESPACE").constData()+10), t640ebe.size()-10 }; });
+	return ({ QByteArray t640ebe = static_cast<QAudioEncoderSettingsControl*>(ptr)->supportedAudioCodecs().join("¡¦!").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t640ebe.prepend("WHITESPACE").constData()+10), t640ebe.size()-10 }; });
 }
 
 int QAudioEncoderSettingsControl___supportedSampleRates_atList(void* ptr, int i)
@@ -4931,7 +4931,7 @@ struct QtMultimedia_PackedString QAudioRecorder_DefaultAudioInput(void* ptr)
 
 struct QtMultimedia_PackedString QAudioRecorder_AudioInputs(void* ptr)
 {
-	return ({ QByteArray tf48c37 = static_cast<QAudioRecorder*>(ptr)->audioInputs().join("|").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tf48c37.prepend("WHITESPACE").constData()+10), tf48c37.size()-10 }; });
+	return ({ QByteArray tf48c37 = static_cast<QAudioRecorder*>(ptr)->audioInputs().join("¡¦!").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tf48c37.prepend("WHITESPACE").constData()+10), tf48c37.size()-10 }; });
 }
 
 class MyQAudioRoleControl: public QAudioRoleControl
@@ -8161,7 +8161,7 @@ struct QtMultimedia_PackedString QCameraImageCapture_ImageCodecDescription(void*
 
 struct QtMultimedia_PackedString QCameraImageCapture_SupportedImageCodecs(void* ptr)
 {
-		return ({ QByteArray t52ceb4 = static_cast<QCameraImageCapture*>(ptr)->supportedImageCodecs().join("|").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t52ceb4.prepend("WHITESPACE").constData()+10), t52ceb4.size()-10 }; });
+		return ({ QByteArray t52ceb4 = static_cast<QCameraImageCapture*>(ptr)->supportedImageCodecs().join("¡¦!").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t52ceb4.prepend("WHITESPACE").constData()+10), t52ceb4.size()-10 }; });
 }
 
 long long QCameraImageCapture_BufferFormat(void* ptr)
@@ -9842,7 +9842,7 @@ public:
 	void setCustomAudioRole(const QString & role) { QByteArray t8dca46 = role.toUtf8(); QtMultimedia_PackedString rolePacked = { const_cast<char*>(t8dca46.prepend("WHITESPACE").constData()+10), t8dca46.size()-10 };callbackQCustomAudioRoleControl_SetCustomAudioRole(this, rolePacked); };
 	 ~MyQCustomAudioRoleControl() { callbackQCustomAudioRoleControl_DestroyQCustomAudioRoleControl(this); };
 	QString customAudioRole() const { return ({ QtMultimedia_PackedString tempVal = callbackQCustomAudioRoleControl_CustomAudioRole(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
-	QStringList supportedCustomAudioRoles() const { return ({ QtMultimedia_PackedString tempVal = callbackQCustomAudioRoleControl_SupportedCustomAudioRoles(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	QStringList supportedCustomAudioRoles() const { return ({ QtMultimedia_PackedString tempVal = callbackQCustomAudioRoleControl_SupportedCustomAudioRoles(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
@@ -9937,7 +9937,7 @@ struct QtMultimedia_PackedString QCustomAudioRoleControl_CustomAudioRole(void* p
 
 struct QtMultimedia_PackedString QCustomAudioRoleControl_SupportedCustomAudioRoles(void* ptr)
 {
-	return ({ QByteArray tdb048f = static_cast<QCustomAudioRoleControl*>(ptr)->supportedCustomAudioRoles().join("|").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tdb048f.prepend("WHITESPACE").constData()+10), tdb048f.size()-10 }; });
+	return ({ QByteArray tdb048f = static_cast<QCustomAudioRoleControl*>(ptr)->supportedCustomAudioRoles().join("¡¦!").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tdb048f.prepend("WHITESPACE").constData()+10), tdb048f.size()-10 }; });
 }
 
 class MyQImageEncoderControl: public QImageEncoderControl
@@ -9949,7 +9949,7 @@ public:
 	QImageEncoderSettings imageSettings() const { return *static_cast<QImageEncoderSettings*>(callbackQImageEncoderControl_ImageSettings(const_cast<void*>(static_cast<const void*>(this)))); };
 	QList<QSize> supportedResolutions(const QImageEncoderSettings & settings, bool * continuous) const { return ({ QList<QSize>* tmpP = static_cast<QList<QSize>*>(callbackQImageEncoderControl_SupportedResolutions(const_cast<void*>(static_cast<const void*>(this)), const_cast<QImageEncoderSettings*>(&settings), reinterpret_cast<char*>(continuous))); QList<QSize> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
 	QString imageCodecDescription(const QString & codec) const { QByteArray td061f6 = codec.toUtf8(); QtMultimedia_PackedString codecPacked = { const_cast<char*>(td061f6.prepend("WHITESPACE").constData()+10), td061f6.size()-10 };return ({ QtMultimedia_PackedString tempVal = callbackQImageEncoderControl_ImageCodecDescription(const_cast<void*>(static_cast<const void*>(this)), codecPacked); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
-	QStringList supportedImageCodecs() const { return ({ QtMultimedia_PackedString tempVal = callbackQImageEncoderControl_SupportedImageCodecs(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	QStringList supportedImageCodecs() const { return ({ QtMultimedia_PackedString tempVal = callbackQImageEncoderControl_SupportedImageCodecs(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
@@ -10039,7 +10039,7 @@ struct QtMultimedia_PackedString QImageEncoderControl_ImageCodecDescription(void
 
 struct QtMultimedia_PackedString QImageEncoderControl_SupportedImageCodecs(void* ptr)
 {
-	return ({ QByteArray t0f36dd = static_cast<QImageEncoderControl*>(ptr)->supportedImageCodecs().join("|").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t0f36dd.prepend("WHITESPACE").constData()+10), t0f36dd.size()-10 }; });
+	return ({ QByteArray t0f36dd = static_cast<QImageEncoderControl*>(ptr)->supportedImageCodecs().join("¡¦!").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t0f36dd.prepend("WHITESPACE").constData()+10), t0f36dd.size()-10 }; });
 }
 
 void* QImageEncoderControl___supportedResolutions_atList(void* ptr, int i)
@@ -10467,7 +10467,7 @@ public:
 	 ~MyQMediaContainerControl() { callbackQMediaContainerControl_DestroyQMediaContainerControl(this); };
 	QString containerDescription(const QString & formatMimeType) const { QByteArray tb6d52e = formatMimeType.toUtf8(); QtMultimedia_PackedString formatMimeTypePacked = { const_cast<char*>(tb6d52e.prepend("WHITESPACE").constData()+10), tb6d52e.size()-10 };return ({ QtMultimedia_PackedString tempVal = callbackQMediaContainerControl_ContainerDescription(const_cast<void*>(static_cast<const void*>(this)), formatMimeTypePacked); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	QString containerFormat() const { return ({ QtMultimedia_PackedString tempVal = callbackQMediaContainerControl_ContainerFormat(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
-	QStringList supportedContainers() const { return ({ QtMultimedia_PackedString tempVal = callbackQMediaContainerControl_SupportedContainers(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	QStringList supportedContainers() const { return ({ QtMultimedia_PackedString tempVal = callbackQMediaContainerControl_SupportedContainers(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
@@ -10552,7 +10552,7 @@ struct QtMultimedia_PackedString QMediaContainerControl_ContainerFormat(void* pt
 
 struct QtMultimedia_PackedString QMediaContainerControl_SupportedContainers(void* ptr)
 {
-	return ({ QByteArray t36aec1 = static_cast<QMediaContainerControl*>(ptr)->supportedContainers().join("|").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t36aec1.prepend("WHITESPACE").constData()+10), t36aec1.size()-10 }; });
+	return ({ QByteArray t36aec1 = static_cast<QMediaContainerControl*>(ptr)->supportedContainers().join("¡¦!").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t36aec1.prepend("WHITESPACE").constData()+10), t36aec1.size()-10 }; });
 }
 
 void* QMediaContent_NewQMediaContent()
@@ -12753,7 +12753,7 @@ long long QMediaObject_AvailabilityDefault(void* ptr)
 
 struct QtMultimedia_PackedString QMediaObject_AvailableMetaData(void* ptr)
 {
-	return ({ QByteArray t26e55a = static_cast<QMediaObject*>(ptr)->availableMetaData().join("|").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t26e55a.prepend("WHITESPACE").constData()+10), t26e55a.size()-10 }; });
+	return ({ QByteArray t26e55a = static_cast<QMediaObject*>(ptr)->availableMetaData().join("¡¦!").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t26e55a.prepend("WHITESPACE").constData()+10), t26e55a.size()-10 }; });
 }
 
 void* QMediaObject_MetaData(void* ptr, struct QtMultimedia_PackedString key)
@@ -13215,7 +13215,7 @@ void* QMediaPlayer_NewQMediaPlayer(void* parent, long long flags)
 
 long long QMediaPlayer_QMediaPlayer_HasSupport(struct QtMultimedia_PackedString mimeType, struct QtMultimedia_PackedString codecs, long long flags)
 {
-	return QMediaPlayer::hasSupport(QString::fromUtf8(mimeType.data, mimeType.len), QString::fromUtf8(codecs.data, codecs.len).split("|", QString::SkipEmptyParts), static_cast<QMediaPlayer::Flag>(flags));
+	return QMediaPlayer::hasSupport(QString::fromUtf8(mimeType.data, mimeType.len), QString::fromUtf8(codecs.data, codecs.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QMediaPlayer::Flag>(flags));
 }
 
 void QMediaPlayer_ConnectAudioAvailableChanged(void* ptr)
@@ -13665,7 +13665,7 @@ struct QtMultimedia_PackedString QMediaPlayer_ErrorString(void* ptr)
 
 struct QtMultimedia_PackedString QMediaPlayer_SupportedCustomAudioRoles(void* ptr)
 {
-	return ({ QByteArray tb5c594 = static_cast<QMediaPlayer*>(ptr)->supportedCustomAudioRoles().join("|").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tb5c594.prepend("WHITESPACE").constData()+10), tb5c594.size()-10 }; });
+	return ({ QByteArray tb5c594 = static_cast<QMediaPlayer*>(ptr)->supportedCustomAudioRoles().join("¡¦!").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tb5c594.prepend("WHITESPACE").constData()+10), tb5c594.size()-10 }; });
 }
 
 char QMediaPlayer_IsAudioAvailable(void* ptr)
@@ -15292,22 +15292,22 @@ struct QtMultimedia_PackedString QMediaRecorder_VideoCodecDescription(void* ptr,
 
 struct QtMultimedia_PackedString QMediaRecorder_AvailableMetaData(void* ptr)
 {
-		return ({ QByteArray t148b06 = static_cast<QMediaRecorder*>(ptr)->availableMetaData().join("|").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t148b06.prepend("WHITESPACE").constData()+10), t148b06.size()-10 }; });
+		return ({ QByteArray t148b06 = static_cast<QMediaRecorder*>(ptr)->availableMetaData().join("¡¦!").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t148b06.prepend("WHITESPACE").constData()+10), t148b06.size()-10 }; });
 }
 
 struct QtMultimedia_PackedString QMediaRecorder_SupportedAudioCodecs(void* ptr)
 {
-		return ({ QByteArray t489f71 = static_cast<QMediaRecorder*>(ptr)->supportedAudioCodecs().join("|").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t489f71.prepend("WHITESPACE").constData()+10), t489f71.size()-10 }; });
+		return ({ QByteArray t489f71 = static_cast<QMediaRecorder*>(ptr)->supportedAudioCodecs().join("¡¦!").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t489f71.prepend("WHITESPACE").constData()+10), t489f71.size()-10 }; });
 }
 
 struct QtMultimedia_PackedString QMediaRecorder_SupportedContainers(void* ptr)
 {
-		return ({ QByteArray t948956 = static_cast<QMediaRecorder*>(ptr)->supportedContainers().join("|").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t948956.prepend("WHITESPACE").constData()+10), t948956.size()-10 }; });
+		return ({ QByteArray t948956 = static_cast<QMediaRecorder*>(ptr)->supportedContainers().join("¡¦!").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t948956.prepend("WHITESPACE").constData()+10), t948956.size()-10 }; });
 }
 
 struct QtMultimedia_PackedString QMediaRecorder_SupportedVideoCodecs(void* ptr)
 {
-		return ({ QByteArray tb262ef = static_cast<QMediaRecorder*>(ptr)->supportedVideoCodecs().join("|").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tb262ef.prepend("WHITESPACE").constData()+10), tb262ef.size()-10 }; });
+		return ({ QByteArray tb262ef = static_cast<QMediaRecorder*>(ptr)->supportedVideoCodecs().join("¡¦!").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tb262ef.prepend("WHITESPACE").constData()+10), tb262ef.size()-10 }; });
 }
 
 void* QMediaRecorder_ActualLocation(void* ptr)
@@ -16798,8 +16798,8 @@ class MyQMediaServiceSupportedFormatsInterface: public QMediaServiceSupportedFor
 {
 public:
 	 ~MyQMediaServiceSupportedFormatsInterface() { callbackQMediaServiceSupportedFormatsInterface_DestroyQMediaServiceSupportedFormatsInterface(this); };
-	QMultimedia::SupportEstimate hasSupport(const QString & mimeType, const QStringList & codecs) const { QByteArray t3313b8 = mimeType.toUtf8(); QtMultimedia_PackedString mimeTypePacked = { const_cast<char*>(t3313b8.prepend("WHITESPACE").constData()+10), t3313b8.size()-10 };QByteArray t7222c0 = codecs.join("|").toUtf8(); QtMultimedia_PackedString codecsPacked = { const_cast<char*>(t7222c0.prepend("WHITESPACE").constData()+10), t7222c0.size()-10 };return static_cast<QMultimedia::SupportEstimate>(callbackQMediaServiceSupportedFormatsInterface_HasSupport(const_cast<void*>(static_cast<const void*>(this)), mimeTypePacked, codecsPacked)); };
-	QStringList supportedMimeTypes() const { return ({ QtMultimedia_PackedString tempVal = callbackQMediaServiceSupportedFormatsInterface_SupportedMimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	QMultimedia::SupportEstimate hasSupport(const QString & mimeType, const QStringList & codecs) const { QByteArray t3313b8 = mimeType.toUtf8(); QtMultimedia_PackedString mimeTypePacked = { const_cast<char*>(t3313b8.prepend("WHITESPACE").constData()+10), t3313b8.size()-10 };QByteArray t7222c0 = codecs.join("¡¦!").toUtf8(); QtMultimedia_PackedString codecsPacked = { const_cast<char*>(t7222c0.prepend("WHITESPACE").constData()+10), t7222c0.size()-10 };return static_cast<QMultimedia::SupportEstimate>(callbackQMediaServiceSupportedFormatsInterface_HasSupport(const_cast<void*>(static_cast<const void*>(this)), mimeTypePacked, codecsPacked)); };
+	QStringList supportedMimeTypes() const { return ({ QtMultimedia_PackedString tempVal = callbackQMediaServiceSupportedFormatsInterface_SupportedMimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 };
 
 void QMediaServiceSupportedFormatsInterface_DestroyQMediaServiceSupportedFormatsInterface(void* ptr)
@@ -16815,12 +16815,12 @@ void QMediaServiceSupportedFormatsInterface_DestroyQMediaServiceSupportedFormats
 
 long long QMediaServiceSupportedFormatsInterface_HasSupport(void* ptr, struct QtMultimedia_PackedString mimeType, struct QtMultimedia_PackedString codecs)
 {
-	return static_cast<QMediaServiceSupportedFormatsInterface*>(ptr)->hasSupport(QString::fromUtf8(mimeType.data, mimeType.len), QString::fromUtf8(codecs.data, codecs.len).split("|", QString::SkipEmptyParts));
+	return static_cast<QMediaServiceSupportedFormatsInterface*>(ptr)->hasSupport(QString::fromUtf8(mimeType.data, mimeType.len), QString::fromUtf8(codecs.data, codecs.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 struct QtMultimedia_PackedString QMediaServiceSupportedFormatsInterface_SupportedMimeTypes(void* ptr)
 {
-	return ({ QByteArray te6e5ca = static_cast<QMediaServiceSupportedFormatsInterface*>(ptr)->supportedMimeTypes().join("|").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(te6e5ca.prepend("WHITESPACE").constData()+10), te6e5ca.size()-10 }; });
+	return ({ QByteArray te6e5ca = static_cast<QMediaServiceSupportedFormatsInterface*>(ptr)->supportedMimeTypes().join("¡¦!").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(te6e5ca.prepend("WHITESPACE").constData()+10), te6e5ca.size()-10 }; });
 }
 
 class MyQMediaStreamsControl: public QMediaStreamsControl
@@ -17220,7 +17220,7 @@ public:
 	void Signal_MetaDataChanged() { callbackQMetaDataReaderControl_MetaDataChanged(this); };
 	void Signal_MetaDataChanged2(const QString & key, const QVariant & value) { QByteArray ta62f22 = key.toUtf8(); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };callbackQMetaDataReaderControl_MetaDataChanged2(this, keyPacked, const_cast<QVariant*>(&value)); };
 	 ~MyQMetaDataReaderControl() { callbackQMetaDataReaderControl_DestroyQMetaDataReaderControl(this); };
-	QStringList availableMetaData() const { return ({ QtMultimedia_PackedString tempVal = callbackQMetaDataReaderControl_AvailableMetaData(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	QStringList availableMetaData() const { return ({ QtMultimedia_PackedString tempVal = callbackQMetaDataReaderControl_AvailableMetaData(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	QVariant metaData(const QString & key) const { QByteArray ta62f22 = key.toUtf8(); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };return *static_cast<QVariant*>(callbackQMetaDataReaderControl_MetaData(const_cast<void*>(static_cast<const void*>(this)), keyPacked)); };
 	bool isMetaDataAvailable() const { return callbackQMetaDataReaderControl_IsMetaDataAvailable(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -17337,7 +17337,7 @@ void QMetaDataReaderControl_DestroyQMetaDataReaderControlDefault(void* ptr)
 
 struct QtMultimedia_PackedString QMetaDataReaderControl_AvailableMetaData(void* ptr)
 {
-	return ({ QByteArray tff69ae = static_cast<QMetaDataReaderControl*>(ptr)->availableMetaData().join("|").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tff69ae.prepend("WHITESPACE").constData()+10), tff69ae.size()-10 }; });
+	return ({ QByteArray tff69ae = static_cast<QMetaDataReaderControl*>(ptr)->availableMetaData().join("¡¦!").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tff69ae.prepend("WHITESPACE").constData()+10), tff69ae.size()-10 }; });
 }
 
 void* QMetaDataReaderControl_MetaData(void* ptr, struct QtMultimedia_PackedString key)
@@ -17360,7 +17360,7 @@ public:
 	void setMetaData(const QString & key, const QVariant & value) { QByteArray ta62f22 = key.toUtf8(); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };callbackQMetaDataWriterControl_SetMetaData(this, keyPacked, const_cast<QVariant*>(&value)); };
 	void Signal_WritableChanged(bool writable) { callbackQMetaDataWriterControl_WritableChanged(this, writable); };
 	 ~MyQMetaDataWriterControl() { callbackQMetaDataWriterControl_DestroyQMetaDataWriterControl(this); };
-	QStringList availableMetaData() const { return ({ QtMultimedia_PackedString tempVal = callbackQMetaDataWriterControl_AvailableMetaData(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	QStringList availableMetaData() const { return ({ QtMultimedia_PackedString tempVal = callbackQMetaDataWriterControl_AvailableMetaData(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	QVariant metaData(const QString & key) const { QByteArray ta62f22 = key.toUtf8(); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };return *static_cast<QVariant*>(callbackQMetaDataWriterControl_MetaData(const_cast<void*>(static_cast<const void*>(this)), keyPacked)); };
 	bool isMetaDataAvailable() const { return callbackQMetaDataWriterControl_IsMetaDataAvailable(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	bool isWritable() const { return callbackQMetaDataWriterControl_IsWritable(const_cast<void*>(static_cast<const void*>(this))) != 0; };
@@ -17498,7 +17498,7 @@ void QMetaDataWriterControl_DestroyQMetaDataWriterControlDefault(void* ptr)
 
 struct QtMultimedia_PackedString QMetaDataWriterControl_AvailableMetaData(void* ptr)
 {
-	return ({ QByteArray te3166d = static_cast<QMetaDataWriterControl*>(ptr)->availableMetaData().join("|").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(te3166d.prepend("WHITESPACE").constData()+10), te3166d.size()-10 }; });
+	return ({ QByteArray te3166d = static_cast<QMetaDataWriterControl*>(ptr)->availableMetaData().join("¡¦!").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(te3166d.prepend("WHITESPACE").constData()+10), te3166d.size()-10 }; });
 }
 
 void* QMetaDataWriterControl_MetaData(void* ptr, struct QtMultimedia_PackedString key)
@@ -19446,7 +19446,7 @@ struct QtMultimedia_PackedString QSoundEffect_QSoundEffect_Tr(char* s, char* c, 
 
 struct QtMultimedia_PackedString QSoundEffect_QSoundEffect_SupportedMimeTypes()
 {
-	return ({ QByteArray t9ca848 = QSoundEffect::supportedMimeTypes().join("|").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t9ca848.prepend("WHITESPACE").constData()+10), t9ca848.size()-10 }; });
+	return ({ QByteArray t9ca848 = QSoundEffect::supportedMimeTypes().join("¡¦!").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t9ca848.prepend("WHITESPACE").constData()+10), t9ca848.size()-10 }; });
 }
 
 void QSoundEffect_ConnectCategoryChanged(void* ptr)
@@ -20214,7 +20214,7 @@ public:
 	QList<QSize> supportedResolutions(const QVideoEncoderSettings & settings, bool * continuous) const { return ({ QList<QSize>* tmpP = static_cast<QList<QSize>*>(callbackQVideoEncoderSettingsControl_SupportedResolutions(const_cast<void*>(static_cast<const void*>(this)), const_cast<QVideoEncoderSettings*>(&settings), reinterpret_cast<char*>(continuous))); QList<QSize> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
 	QList<qreal> supportedFrameRates(const QVideoEncoderSettings & settings, bool * continuous) const { return ({ QList<qreal>* tmpP = static_cast<QList<qreal>*>(callbackQVideoEncoderSettingsControl_SupportedFrameRates(const_cast<void*>(static_cast<const void*>(this)), const_cast<QVideoEncoderSettings*>(&settings), reinterpret_cast<char*>(continuous))); QList<qreal> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
 	QString videoCodecDescription(const QString & codec) const { QByteArray td061f6 = codec.toUtf8(); QtMultimedia_PackedString codecPacked = { const_cast<char*>(td061f6.prepend("WHITESPACE").constData()+10), td061f6.size()-10 };return ({ QtMultimedia_PackedString tempVal = callbackQVideoEncoderSettingsControl_VideoCodecDescription(const_cast<void*>(static_cast<const void*>(this)), codecPacked); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
-	QStringList supportedVideoCodecs() const { return ({ QtMultimedia_PackedString tempVal = callbackQVideoEncoderSettingsControl_SupportedVideoCodecs(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	QStringList supportedVideoCodecs() const { return ({ QtMultimedia_PackedString tempVal = callbackQVideoEncoderSettingsControl_SupportedVideoCodecs(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	QVideoEncoderSettings videoSettings() const { return *static_cast<QVideoEncoderSettings*>(callbackQVideoEncoderSettingsControl_VideoSettings(const_cast<void*>(static_cast<const void*>(this)))); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
@@ -20305,7 +20305,7 @@ struct QtMultimedia_PackedString QVideoEncoderSettingsControl_VideoCodecDescript
 
 struct QtMultimedia_PackedString QVideoEncoderSettingsControl_SupportedVideoCodecs(void* ptr)
 {
-	return ({ QByteArray tf4a8d7 = static_cast<QVideoEncoderSettingsControl*>(ptr)->supportedVideoCodecs().join("|").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tf4a8d7.prepend("WHITESPACE").constData()+10), tf4a8d7.size()-10 }; });
+	return ({ QByteArray tf4a8d7 = static_cast<QVideoEncoderSettingsControl*>(ptr)->supportedVideoCodecs().join("¡¦!").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tf4a8d7.prepend("WHITESPACE").constData()+10), tf4a8d7.size()-10 }; });
 }
 
 void* QVideoEncoderSettingsControl_VideoSettings(void* ptr)

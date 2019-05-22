@@ -37,18 +37,18 @@ func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast b
 	switch mode {
 	case "build", "test":
 
-		if !fast {
+		if !(fast && (strings.HasPrefix(target, "js") || strings.HasPrefix(target, "wasm"))) {
 			err := os.RemoveAll(depPath)
 			if err != nil {
 				utils.Log.WithError(err).Panic("failed to remove deploy folder")
 			}
+		}
 
-			if utils.UseGOMOD(path) {
-				if !utils.ExistsDir(filepath.Join(filepath.Dir(utils.GOMOD(path)), "vendor")) {
-					cmd := exec.Command("go", "mod", "vendor")
-					cmd.Dir = path
-					utils.RunCmd(cmd, "go mod vendor")
-				}
+		if utils.UseGOMOD(path) {
+			if !utils.ExistsDir(filepath.Join(filepath.Dir(utils.GOMOD(path)), "vendor")) {
+				cmd := exec.Command("go", "mod", "vendor")
+				cmd.Dir = path
+				utils.RunCmd(cmd, "go mod vendor")
 			}
 		}
 

@@ -28,6 +28,12 @@ func cGoUnpackBytes(s C.struct_QtGui_PackedString) []byte {
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
+func unpackStringList(s string) []string {
+	if len(s) == 0 {
+		return make([]string, 0)
+	}
+	return strings.Split(s, "¡¦!")
+}
 
 type QAbstractTextDocumentLayout_PaintContext struct {
 	ptr unsafe.Pointer
@@ -1778,10 +1784,10 @@ func (ptr *QAccessibleActionInterface) LocalizedActionNameDefault(actionName str
 func callbackQAccessibleActionInterface_ActionNames(ptr unsafe.Pointer) C.struct_QtGui_PackedString {
 	if signal := qt.GetSignal(ptr, "actionNames"); signal != nil {
 		tempVal := (*(*func() []string)(signal))()
-		return C.struct_QtGui_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtGui_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 	}
 	tempVal := make([]string, 0)
-	return C.struct_QtGui_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtGui_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 }
 
 func (ptr *QAccessibleActionInterface) ConnectActionNames(f func() []string) {
@@ -1808,7 +1814,7 @@ func (ptr *QAccessibleActionInterface) DisconnectActionNames() {
 
 func (ptr *QAccessibleActionInterface) ActionNames() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QAccessibleActionInterface_ActionNames(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QAccessibleActionInterface_ActionNames(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -1817,10 +1823,10 @@ func (ptr *QAccessibleActionInterface) ActionNames() []string {
 func callbackQAccessibleActionInterface_KeyBindingsForAction(ptr unsafe.Pointer, actionName C.struct_QtGui_PackedString) C.struct_QtGui_PackedString {
 	if signal := qt.GetSignal(ptr, "keyBindingsForAction"); signal != nil {
 		tempVal := (*(*func(string) []string)(signal))(cGoUnpackString(actionName))
-		return C.struct_QtGui_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtGui_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 	}
 	tempVal := make([]string, 0)
-	return C.struct_QtGui_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtGui_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 }
 
 func (ptr *QAccessibleActionInterface) ConnectKeyBindingsForAction(f func(actionName string) []string) {
@@ -1852,7 +1858,7 @@ func (ptr *QAccessibleActionInterface) KeyBindingsForAction(actionName string) [
 			actionNameC = C.CString(actionName)
 			defer C.free(unsafe.Pointer(actionNameC))
 		}
-		return strings.Split(cGoUnpackString(C.QAccessibleActionInterface_KeyBindingsForAction(ptr.Pointer(), C.struct_QtGui_PackedString{data: actionNameC, len: C.longlong(len(actionName))})), "|")
+		return unpackStringList(cGoUnpackString(C.QAccessibleActionInterface_KeyBindingsForAction(ptr.Pointer(), C.struct_QtGui_PackedString{data: actionNameC, len: C.longlong(len(actionName))})))
 	}
 	return make([]string, 0)
 }
@@ -8746,11 +8752,11 @@ func NewQColor3(r int, g int, b int, a int) *QColor {
 }
 
 func QColor_ColorNames() []string {
-	return strings.Split(cGoUnpackString(C.QColor_QColor_ColorNames()), "|")
+	return unpackStringList(cGoUnpackString(C.QColor_QColor_ColorNames()))
 }
 
 func (ptr *QColor) ColorNames() []string {
-	return strings.Split(cGoUnpackString(C.QColor_QColor_ColorNames()), "|")
+	return unpackStringList(cGoUnpackString(C.QColor_QColor_ColorNames()))
 }
 
 func QColor_IsValidColor3(name core.QLatin1String_ITF) bool {
@@ -11820,7 +11826,7 @@ func QFont_Substitutes(familyName string) []string {
 		familyNameC = C.CString(familyName)
 		defer C.free(unsafe.Pointer(familyNameC))
 	}
-	return strings.Split(cGoUnpackString(C.QFont_QFont_Substitutes(C.struct_QtGui_PackedString{data: familyNameC, len: C.longlong(len(familyName))})), "|")
+	return unpackStringList(cGoUnpackString(C.QFont_QFont_Substitutes(C.struct_QtGui_PackedString{data: familyNameC, len: C.longlong(len(familyName))})))
 }
 
 func (ptr *QFont) Substitutes(familyName string) []string {
@@ -11829,15 +11835,15 @@ func (ptr *QFont) Substitutes(familyName string) []string {
 		familyNameC = C.CString(familyName)
 		defer C.free(unsafe.Pointer(familyNameC))
 	}
-	return strings.Split(cGoUnpackString(C.QFont_QFont_Substitutes(C.struct_QtGui_PackedString{data: familyNameC, len: C.longlong(len(familyName))})), "|")
+	return unpackStringList(cGoUnpackString(C.QFont_QFont_Substitutes(C.struct_QtGui_PackedString{data: familyNameC, len: C.longlong(len(familyName))})))
 }
 
 func QFont_Substitutions() []string {
-	return strings.Split(cGoUnpackString(C.QFont_QFont_Substitutions()), "|")
+	return unpackStringList(cGoUnpackString(C.QFont_QFont_Substitutions()))
 }
 
 func (ptr *QFont) Substitutions() []string {
-	return strings.Split(cGoUnpackString(C.QFont_QFont_Substitutions()), "|")
+	return unpackStringList(cGoUnpackString(C.QFont_QFont_Substitutions()))
 }
 
 func (ptr *QFont) FromString(descrip string) bool {
@@ -11886,9 +11892,9 @@ func QFont_InsertSubstitutions(familyName string, substituteNames []string) {
 		familyNameC = C.CString(familyName)
 		defer C.free(unsafe.Pointer(familyNameC))
 	}
-	substituteNamesC := C.CString(strings.Join(substituteNames, "|"))
+	substituteNamesC := C.CString(strings.Join(substituteNames, "¡¦!"))
 	defer C.free(unsafe.Pointer(substituteNamesC))
-	C.QFont_QFont_InsertSubstitutions(C.struct_QtGui_PackedString{data: familyNameC, len: C.longlong(len(familyName))}, C.struct_QtGui_PackedString{data: substituteNamesC, len: C.longlong(len(strings.Join(substituteNames, "|")))})
+	C.QFont_QFont_InsertSubstitutions(C.struct_QtGui_PackedString{data: familyNameC, len: C.longlong(len(familyName))}, C.struct_QtGui_PackedString{data: substituteNamesC, len: C.longlong(len(strings.Join(substituteNames, "¡¦!")))})
 }
 
 func (ptr *QFont) InsertSubstitutions(familyName string, substituteNames []string) {
@@ -11897,9 +11903,9 @@ func (ptr *QFont) InsertSubstitutions(familyName string, substituteNames []strin
 		familyNameC = C.CString(familyName)
 		defer C.free(unsafe.Pointer(familyNameC))
 	}
-	substituteNamesC := C.CString(strings.Join(substituteNames, "|"))
+	substituteNamesC := C.CString(strings.Join(substituteNames, "¡¦!"))
 	defer C.free(unsafe.Pointer(substituteNamesC))
-	C.QFont_QFont_InsertSubstitutions(C.struct_QtGui_PackedString{data: familyNameC, len: C.longlong(len(familyName))}, C.struct_QtGui_PackedString{data: substituteNamesC, len: C.longlong(len(strings.Join(substituteNames, "|")))})
+	C.QFont_QFont_InsertSubstitutions(C.struct_QtGui_PackedString{data: familyNameC, len: C.longlong(len(familyName))}, C.struct_QtGui_PackedString{data: substituteNamesC, len: C.longlong(len(strings.Join(substituteNames, "¡¦!")))})
 }
 
 func QFont_RemoveSubstitutions(familyName string) {
@@ -12494,11 +12500,11 @@ func (ptr *QFontDatabase) StyleString2(fontInfo QFontInfo_ITF) string {
 }
 
 func QFontDatabase_ApplicationFontFamilies(id int) []string {
-	return strings.Split(cGoUnpackString(C.QFontDatabase_QFontDatabase_ApplicationFontFamilies(C.int(int32(id)))), "|")
+	return unpackStringList(cGoUnpackString(C.QFontDatabase_QFontDatabase_ApplicationFontFamilies(C.int(int32(id)))))
 }
 
 func (ptr *QFontDatabase) ApplicationFontFamilies(id int) []string {
-	return strings.Split(cGoUnpackString(C.QFontDatabase_QFontDatabase_ApplicationFontFamilies(C.int(int32(id)))), "|")
+	return unpackStringList(cGoUnpackString(C.QFontDatabase_QFontDatabase_ApplicationFontFamilies(C.int(int32(id)))))
 }
 
 func QFontDatabase_RemoveAllApplicationFonts() bool {
@@ -12564,7 +12570,7 @@ func (ptr *QFontDatabase) Font(family string, style string, pointSize int) *QFon
 
 func (ptr *QFontDatabase) Families(writingSystem QFontDatabase__WritingSystem) []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QFontDatabase_Families(ptr.Pointer(), C.longlong(writingSystem))), "|")
+		return unpackStringList(cGoUnpackString(C.QFontDatabase_Families(ptr.Pointer(), C.longlong(writingSystem))))
 	}
 	return make([]string, 0)
 }
@@ -12576,7 +12582,7 @@ func (ptr *QFontDatabase) Styles(family string) []string {
 			familyC = C.CString(family)
 			defer C.free(unsafe.Pointer(familyC))
 		}
-		return strings.Split(cGoUnpackString(C.QFontDatabase_Styles(ptr.Pointer(), C.struct_QtGui_PackedString{data: familyC, len: C.longlong(len(family))})), "|")
+		return unpackStringList(cGoUnpackString(C.QFontDatabase_Styles(ptr.Pointer(), C.struct_QtGui_PackedString{data: familyC, len: C.longlong(len(family))})))
 	}
 	return make([]string, 0)
 }
@@ -14086,11 +14092,11 @@ func (ptr *QGenericPluginFactory) Create(key string, specification string) *core
 }
 
 func QGenericPluginFactory_Keys() []string {
-	return strings.Split(cGoUnpackString(C.QGenericPluginFactory_QGenericPluginFactory_Keys()), "|")
+	return unpackStringList(cGoUnpackString(C.QGenericPluginFactory_QGenericPluginFactory_Keys()))
 }
 
 func (ptr *QGenericPluginFactory) Keys() []string {
-	return strings.Split(cGoUnpackString(C.QGenericPluginFactory_QGenericPluginFactory_Keys()), "|")
+	return unpackStringList(cGoUnpackString(C.QGenericPluginFactory_QGenericPluginFactory_Keys()))
 }
 
 type QGlyphRun struct {
@@ -16603,19 +16609,19 @@ func (ptr *QIcon) ThemeName() string {
 }
 
 func QIcon_FallbackSearchPaths() []string {
-	return strings.Split(cGoUnpackString(C.QIcon_QIcon_FallbackSearchPaths()), "|")
+	return unpackStringList(cGoUnpackString(C.QIcon_QIcon_FallbackSearchPaths()))
 }
 
 func (ptr *QIcon) FallbackSearchPaths() []string {
-	return strings.Split(cGoUnpackString(C.QIcon_QIcon_FallbackSearchPaths()), "|")
+	return unpackStringList(cGoUnpackString(C.QIcon_QIcon_FallbackSearchPaths()))
 }
 
 func QIcon_ThemeSearchPaths() []string {
-	return strings.Split(cGoUnpackString(C.QIcon_QIcon_ThemeSearchPaths()), "|")
+	return unpackStringList(cGoUnpackString(C.QIcon_QIcon_ThemeSearchPaths()))
 }
 
 func (ptr *QIcon) ThemeSearchPaths() []string {
-	return strings.Split(cGoUnpackString(C.QIcon_QIcon_ThemeSearchPaths()), "|")
+	return unpackStringList(cGoUnpackString(C.QIcon_QIcon_ThemeSearchPaths()))
 }
 
 func QIcon_HasThemeIcon(name string) bool {
@@ -16654,15 +16660,15 @@ func (ptr *QIcon) AddPixmap(pixmap QPixmap_ITF, mode QIcon__Mode, state QIcon__S
 }
 
 func QIcon_SetFallbackSearchPaths(paths []string) {
-	pathsC := C.CString(strings.Join(paths, "|"))
+	pathsC := C.CString(strings.Join(paths, "¡¦!"))
 	defer C.free(unsafe.Pointer(pathsC))
-	C.QIcon_QIcon_SetFallbackSearchPaths(C.struct_QtGui_PackedString{data: pathsC, len: C.longlong(len(strings.Join(paths, "|")))})
+	C.QIcon_QIcon_SetFallbackSearchPaths(C.struct_QtGui_PackedString{data: pathsC, len: C.longlong(len(strings.Join(paths, "¡¦!")))})
 }
 
 func (ptr *QIcon) SetFallbackSearchPaths(paths []string) {
-	pathsC := C.CString(strings.Join(paths, "|"))
+	pathsC := C.CString(strings.Join(paths, "¡¦!"))
 	defer C.free(unsafe.Pointer(pathsC))
-	C.QIcon_QIcon_SetFallbackSearchPaths(C.struct_QtGui_PackedString{data: pathsC, len: C.longlong(len(strings.Join(paths, "|")))})
+	C.QIcon_QIcon_SetFallbackSearchPaths(C.struct_QtGui_PackedString{data: pathsC, len: C.longlong(len(strings.Join(paths, "¡¦!")))})
 }
 
 func QIcon_SetFallbackThemeName(name string) {
@@ -16708,15 +16714,15 @@ func (ptr *QIcon) SetThemeName(name string) {
 }
 
 func QIcon_SetThemeSearchPaths(paths []string) {
-	pathsC := C.CString(strings.Join(paths, "|"))
+	pathsC := C.CString(strings.Join(paths, "¡¦!"))
 	defer C.free(unsafe.Pointer(pathsC))
-	C.QIcon_QIcon_SetThemeSearchPaths(C.struct_QtGui_PackedString{data: pathsC, len: C.longlong(len(strings.Join(paths, "|")))})
+	C.QIcon_QIcon_SetThemeSearchPaths(C.struct_QtGui_PackedString{data: pathsC, len: C.longlong(len(strings.Join(paths, "¡¦!")))})
 }
 
 func (ptr *QIcon) SetThemeSearchPaths(paths []string) {
-	pathsC := C.CString(strings.Join(paths, "|"))
+	pathsC := C.CString(strings.Join(paths, "¡¦!"))
 	defer C.free(unsafe.Pointer(pathsC))
-	C.QIcon_QIcon_SetThemeSearchPaths(C.struct_QtGui_PackedString{data: pathsC, len: C.longlong(len(strings.Join(paths, "|")))})
+	C.QIcon_QIcon_SetThemeSearchPaths(C.struct_QtGui_PackedString{data: pathsC, len: C.longlong(len(strings.Join(paths, "¡¦!")))})
 }
 
 func (ptr *QIcon) Swap(other QIcon_ITF) {
@@ -18810,7 +18816,7 @@ func (ptr *QImage) Text(key string) string {
 
 func (ptr *QImage) TextKeys() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QImage_TextKeys(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QImage_TextKeys(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -20741,7 +20747,7 @@ func (ptr *QImageReader) Text(key string) string {
 
 func (ptr *QImageReader) TextKeys() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QImageReader_TextKeys(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QImageReader_TextKeys(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -51851,9 +51857,9 @@ func (ptr *QSessionManager) RequestPhase2() {
 
 func (ptr *QSessionManager) SetDiscardCommand(command []string) {
 	if ptr.Pointer() != nil {
-		commandC := C.CString(strings.Join(command, "|"))
+		commandC := C.CString(strings.Join(command, "¡¦!"))
 		defer C.free(unsafe.Pointer(commandC))
-		C.QSessionManager_SetDiscardCommand(ptr.Pointer(), C.struct_QtGui_PackedString{data: commandC, len: C.longlong(len(strings.Join(command, "|")))})
+		C.QSessionManager_SetDiscardCommand(ptr.Pointer(), C.struct_QtGui_PackedString{data: commandC, len: C.longlong(len(strings.Join(command, "¡¦!")))})
 	}
 }
 
@@ -51880,17 +51886,17 @@ func (ptr *QSessionManager) SetManagerProperty(name string, value []string) {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		valueC := C.CString(strings.Join(value, "|"))
+		valueC := C.CString(strings.Join(value, "¡¦!"))
 		defer C.free(unsafe.Pointer(valueC))
-		C.QSessionManager_SetManagerProperty(ptr.Pointer(), C.struct_QtGui_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtGui_PackedString{data: valueC, len: C.longlong(len(strings.Join(value, "|")))})
+		C.QSessionManager_SetManagerProperty(ptr.Pointer(), C.struct_QtGui_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtGui_PackedString{data: valueC, len: C.longlong(len(strings.Join(value, "¡¦!")))})
 	}
 }
 
 func (ptr *QSessionManager) SetRestartCommand(command []string) {
 	if ptr.Pointer() != nil {
-		commandC := C.CString(strings.Join(command, "|"))
+		commandC := C.CString(strings.Join(command, "¡¦!"))
 		defer C.free(unsafe.Pointer(commandC))
-		C.QSessionManager_SetRestartCommand(ptr.Pointer(), C.struct_QtGui_PackedString{data: commandC, len: C.longlong(len(strings.Join(command, "|")))})
+		C.QSessionManager_SetRestartCommand(ptr.Pointer(), C.struct_QtGui_PackedString{data: commandC, len: C.longlong(len(strings.Join(command, "¡¦!")))})
 	}
 }
 
@@ -51923,14 +51929,14 @@ func (ptr *QSessionManager) SessionKey() string {
 
 func (ptr *QSessionManager) DiscardCommand() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QSessionManager_DiscardCommand(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QSessionManager_DiscardCommand(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QSessionManager) RestartCommand() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QSessionManager_RestartCommand(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QSessionManager_RestartCommand(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -54082,9 +54088,9 @@ func (ptr *QStandardItemModel) SetHorizontalHeaderItem(column int, item QStandar
 
 func (ptr *QStandardItemModel) SetHorizontalHeaderLabels(labels []string) {
 	if ptr.Pointer() != nil {
-		labelsC := C.CString(strings.Join(labels, "|"))
+		labelsC := C.CString(strings.Join(labels, "¡¦!"))
 		defer C.free(unsafe.Pointer(labelsC))
-		C.QStandardItemModel_SetHorizontalHeaderLabels(ptr.Pointer(), C.struct_QtGui_PackedString{data: labelsC, len: C.longlong(len(strings.Join(labels, "|")))})
+		C.QStandardItemModel_SetHorizontalHeaderLabels(ptr.Pointer(), C.struct_QtGui_PackedString{data: labelsC, len: C.longlong(len(strings.Join(labels, "¡¦!")))})
 	}
 }
 
@@ -54138,9 +54144,9 @@ func (ptr *QStandardItemModel) SetVerticalHeaderItem(row int, item QStandardItem
 
 func (ptr *QStandardItemModel) SetVerticalHeaderLabels(labels []string) {
 	if ptr.Pointer() != nil {
-		labelsC := C.CString(strings.Join(labels, "|"))
+		labelsC := C.CString(strings.Join(labels, "¡¦!"))
 		defer C.free(unsafe.Pointer(labelsC))
-		C.QStandardItemModel_SetVerticalHeaderLabels(ptr.Pointer(), C.struct_QtGui_PackedString{data: labelsC, len: C.longlong(len(strings.Join(labels, "|")))})
+		C.QStandardItemModel_SetVerticalHeaderLabels(ptr.Pointer(), C.struct_QtGui_PackedString{data: labelsC, len: C.longlong(len(strings.Join(labels, "¡¦!")))})
 	}
 }
 
@@ -54464,15 +54470,15 @@ func (ptr *QStandardItemModel) VerticalHeaderItem(row int) *QStandardItem {
 func callbackQStandardItemModel_MimeTypes(ptr unsafe.Pointer) C.struct_QtGui_PackedString {
 	if signal := qt.GetSignal(ptr, "mimeTypes"); signal != nil {
 		tempVal := (*(*func() []string)(signal))()
-		return C.struct_QtGui_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtGui_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 	}
 	tempVal := NewQStandardItemModelFromPointer(ptr).MimeTypesDefault()
-	return C.struct_QtGui_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtGui_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 }
 
 func (ptr *QStandardItemModel) MimeTypesDefault() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QStandardItemModel_MimeTypesDefault(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QStandardItemModel_MimeTypesDefault(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -59564,9 +59570,9 @@ func (ptr *QTextCharFormat) SetAnchorHref(value string) {
 
 func (ptr *QTextCharFormat) SetAnchorNames(names []string) {
 	if ptr.Pointer() != nil {
-		namesC := C.CString(strings.Join(names, "|"))
+		namesC := C.CString(strings.Join(names, "¡¦!"))
 		defer C.free(unsafe.Pointer(namesC))
-		C.QTextCharFormat_SetAnchorNames(ptr.Pointer(), C.struct_QtGui_PackedString{data: namesC, len: C.longlong(len(strings.Join(names, "|")))})
+		C.QTextCharFormat_SetAnchorNames(ptr.Pointer(), C.struct_QtGui_PackedString{data: namesC, len: C.longlong(len(strings.Join(names, "¡¦!")))})
 	}
 }
 
@@ -59809,7 +59815,7 @@ func (ptr *QTextCharFormat) ToolTip() string {
 
 func (ptr *QTextCharFormat) AnchorNames() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QTextCharFormat_AnchorNames(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QTextCharFormat_AnchorNames(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }

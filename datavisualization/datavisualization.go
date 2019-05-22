@@ -29,6 +29,12 @@ func cGoUnpackBytes(s C.struct_QtDataVisualization_PackedString) []byte {
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
+func unpackStringList(s string) []string {
+	if len(s) == 0 {
+		return make([]string, 0)
+	}
+	return strings.Split(s, "¡¦!")
+}
 
 type Q3DBars struct {
 	ptr unsafe.Pointer
@@ -6176,9 +6182,9 @@ func (ptr *QAbstract3DAxis) SetLabelAutoRotation(angle float32) {
 
 func (ptr *QAbstract3DAxis) SetLabels(labels []string) {
 	if ptr.Pointer() != nil {
-		labelsC := C.CString(strings.Join(labels, "|"))
+		labelsC := C.CString(strings.Join(labels, "¡¦!"))
 		defer C.free(unsafe.Pointer(labelsC))
-		C.QAbstract3DAxis_SetLabels(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: labelsC, len: C.longlong(len(strings.Join(labels, "|")))})
+		C.QAbstract3DAxis_SetLabels(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: labelsC, len: C.longlong(len(strings.Join(labels, "¡¦!")))})
 	}
 }
 
@@ -6418,7 +6424,7 @@ func (ptr *QAbstract3DAxis) Title() string {
 
 func (ptr *QAbstract3DAxis) Labels() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QAbstract3DAxis_Labels(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QAbstract3DAxis_Labels(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -9404,9 +9410,9 @@ func (ptr *QBarDataProxy) SeriesChanged(series QBar3DSeries_ITF) {
 
 func (ptr *QBarDataProxy) SetColumnLabels(labels []string) {
 	if ptr.Pointer() != nil {
-		labelsC := C.CString(strings.Join(labels, "|"))
+		labelsC := C.CString(strings.Join(labels, "¡¦!"))
 		defer C.free(unsafe.Pointer(labelsC))
-		C.QBarDataProxy_SetColumnLabels(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: labelsC, len: C.longlong(len(strings.Join(labels, "|")))})
+		C.QBarDataProxy_SetColumnLabels(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: labelsC, len: C.longlong(len(strings.Join(labels, "¡¦!")))})
 	}
 }
 
@@ -9424,9 +9430,9 @@ func (ptr *QBarDataProxy) SetItem(rowIndex int, columnIndex int, item QBarDataIt
 
 func (ptr *QBarDataProxy) SetRowLabels(labels []string) {
 	if ptr.Pointer() != nil {
-		labelsC := C.CString(strings.Join(labels, "|"))
+		labelsC := C.CString(strings.Join(labels, "¡¦!"))
 		defer C.free(unsafe.Pointer(labelsC))
-		C.QBarDataProxy_SetRowLabels(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: labelsC, len: C.longlong(len(strings.Join(labels, "|")))})
+		C.QBarDataProxy_SetRowLabels(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: labelsC, len: C.longlong(len(strings.Join(labels, "¡¦!")))})
 	}
 }
 
@@ -9486,14 +9492,14 @@ func (ptr *QBarDataProxy) Series() *QBar3DSeries {
 
 func (ptr *QBarDataProxy) ColumnLabels() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QBarDataProxy_ColumnLabels(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QBarDataProxy_ColumnLabels(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QBarDataProxy) RowLabels() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QBarDataProxy_RowLabels(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QBarDataProxy_RowLabels(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -9675,9 +9681,9 @@ func (ptr *QCategory3DAxis) LabelsChanged() {
 
 func (ptr *QCategory3DAxis) SetLabels(labels []string) {
 	if ptr.Pointer() != nil {
-		labelsC := C.CString(strings.Join(labels, "|"))
+		labelsC := C.CString(strings.Join(labels, "¡¦!"))
 		defer C.free(unsafe.Pointer(labelsC))
-		C.QCategory3DAxis_SetLabels(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: labelsC, len: C.longlong(len(strings.Join(labels, "|")))})
+		C.QCategory3DAxis_SetLabels(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: labelsC, len: C.longlong(len(strings.Join(labels, "¡¦!")))})
 	}
 }
 
@@ -9730,7 +9736,7 @@ func (ptr *QCategory3DAxis) DestroyQCategory3DAxisDefault() {
 
 func (ptr *QCategory3DAxis) Labels() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QCategory3DAxis_Labels(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QCategory3DAxis_Labels(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -12821,11 +12827,11 @@ func NewQItemModelBarDataProxy7(itemModel core.QAbstractItemModel_ITF, rowRole s
 		rotationRoleC = C.CString(rotationRole)
 		defer C.free(unsafe.Pointer(rotationRoleC))
 	}
-	rowCategoriesC := C.CString(strings.Join(rowCategories, "|"))
+	rowCategoriesC := C.CString(strings.Join(rowCategories, "¡¦!"))
 	defer C.free(unsafe.Pointer(rowCategoriesC))
-	columnCategoriesC := C.CString(strings.Join(columnCategories, "|"))
+	columnCategoriesC := C.CString(strings.Join(columnCategories, "¡¦!"))
 	defer C.free(unsafe.Pointer(columnCategoriesC))
-	return NewQItemModelBarDataProxyFromPointer(C.QItemModelBarDataProxy_NewQItemModelBarDataProxy7(core.PointerFromQAbstractItemModel(itemModel), C.struct_QtDataVisualization_PackedString{data: rowRoleC, len: C.longlong(len(rowRole))}, C.struct_QtDataVisualization_PackedString{data: columnRoleC, len: C.longlong(len(columnRole))}, C.struct_QtDataVisualization_PackedString{data: valueRoleC, len: C.longlong(len(valueRole))}, C.struct_QtDataVisualization_PackedString{data: rotationRoleC, len: C.longlong(len(rotationRole))}, C.struct_QtDataVisualization_PackedString{data: rowCategoriesC, len: C.longlong(len(strings.Join(rowCategories, "|")))}, C.struct_QtDataVisualization_PackedString{data: columnCategoriesC, len: C.longlong(len(strings.Join(columnCategories, "|")))}, core.PointerFromQObject(parent)))
+	return NewQItemModelBarDataProxyFromPointer(C.QItemModelBarDataProxy_NewQItemModelBarDataProxy7(core.PointerFromQAbstractItemModel(itemModel), C.struct_QtDataVisualization_PackedString{data: rowRoleC, len: C.longlong(len(rowRole))}, C.struct_QtDataVisualization_PackedString{data: columnRoleC, len: C.longlong(len(columnRole))}, C.struct_QtDataVisualization_PackedString{data: valueRoleC, len: C.longlong(len(valueRole))}, C.struct_QtDataVisualization_PackedString{data: rotationRoleC, len: C.longlong(len(rotationRole))}, C.struct_QtDataVisualization_PackedString{data: rowCategoriesC, len: C.longlong(len(strings.Join(rowCategories, "¡¦!")))}, C.struct_QtDataVisualization_PackedString{data: columnCategoriesC, len: C.longlong(len(strings.Join(columnCategories, "¡¦!")))}, core.PointerFromQObject(parent)))
 }
 
 func NewQItemModelBarDataProxy6(itemModel core.QAbstractItemModel_ITF, rowRole string, columnRole string, valueRole string, rowCategories []string, columnCategories []string, parent core.QObject_ITF) *QItemModelBarDataProxy {
@@ -12844,11 +12850,11 @@ func NewQItemModelBarDataProxy6(itemModel core.QAbstractItemModel_ITF, rowRole s
 		valueRoleC = C.CString(valueRole)
 		defer C.free(unsafe.Pointer(valueRoleC))
 	}
-	rowCategoriesC := C.CString(strings.Join(rowCategories, "|"))
+	rowCategoriesC := C.CString(strings.Join(rowCategories, "¡¦!"))
 	defer C.free(unsafe.Pointer(rowCategoriesC))
-	columnCategoriesC := C.CString(strings.Join(columnCategories, "|"))
+	columnCategoriesC := C.CString(strings.Join(columnCategories, "¡¦!"))
 	defer C.free(unsafe.Pointer(columnCategoriesC))
-	return NewQItemModelBarDataProxyFromPointer(C.QItemModelBarDataProxy_NewQItemModelBarDataProxy6(core.PointerFromQAbstractItemModel(itemModel), C.struct_QtDataVisualization_PackedString{data: rowRoleC, len: C.longlong(len(rowRole))}, C.struct_QtDataVisualization_PackedString{data: columnRoleC, len: C.longlong(len(columnRole))}, C.struct_QtDataVisualization_PackedString{data: valueRoleC, len: C.longlong(len(valueRole))}, C.struct_QtDataVisualization_PackedString{data: rowCategoriesC, len: C.longlong(len(strings.Join(rowCategories, "|")))}, C.struct_QtDataVisualization_PackedString{data: columnCategoriesC, len: C.longlong(len(strings.Join(columnCategories, "|")))}, core.PointerFromQObject(parent)))
+	return NewQItemModelBarDataProxyFromPointer(C.QItemModelBarDataProxy_NewQItemModelBarDataProxy6(core.PointerFromQAbstractItemModel(itemModel), C.struct_QtDataVisualization_PackedString{data: rowRoleC, len: C.longlong(len(rowRole))}, C.struct_QtDataVisualization_PackedString{data: columnRoleC, len: C.longlong(len(columnRole))}, C.struct_QtDataVisualization_PackedString{data: valueRoleC, len: C.longlong(len(valueRole))}, C.struct_QtDataVisualization_PackedString{data: rowCategoriesC, len: C.longlong(len(strings.Join(rowCategories, "¡¦!")))}, C.struct_QtDataVisualization_PackedString{data: columnCategoriesC, len: C.longlong(len(strings.Join(columnCategories, "¡¦!")))}, core.PointerFromQObject(parent)))
 }
 
 func NewQItemModelBarDataProxy3(itemModel core.QAbstractItemModel_ITF, valueRole string, parent core.QObject_ITF) *QItemModelBarDataProxy {
@@ -13268,11 +13274,11 @@ func (ptr *QItemModelBarDataProxy) Remap(rowRole string, columnRole string, valu
 			rotationRoleC = C.CString(rotationRole)
 			defer C.free(unsafe.Pointer(rotationRoleC))
 		}
-		rowCategoriesC := C.CString(strings.Join(rowCategories, "|"))
+		rowCategoriesC := C.CString(strings.Join(rowCategories, "¡¦!"))
 		defer C.free(unsafe.Pointer(rowCategoriesC))
-		columnCategoriesC := C.CString(strings.Join(columnCategories, "|"))
+		columnCategoriesC := C.CString(strings.Join(columnCategories, "¡¦!"))
 		defer C.free(unsafe.Pointer(columnCategoriesC))
-		C.QItemModelBarDataProxy_Remap(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: rowRoleC, len: C.longlong(len(rowRole))}, C.struct_QtDataVisualization_PackedString{data: columnRoleC, len: C.longlong(len(columnRole))}, C.struct_QtDataVisualization_PackedString{data: valueRoleC, len: C.longlong(len(valueRole))}, C.struct_QtDataVisualization_PackedString{data: rotationRoleC, len: C.longlong(len(rotationRole))}, C.struct_QtDataVisualization_PackedString{data: rowCategoriesC, len: C.longlong(len(strings.Join(rowCategories, "|")))}, C.struct_QtDataVisualization_PackedString{data: columnCategoriesC, len: C.longlong(len(strings.Join(columnCategories, "|")))})
+		C.QItemModelBarDataProxy_Remap(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: rowRoleC, len: C.longlong(len(rowRole))}, C.struct_QtDataVisualization_PackedString{data: columnRoleC, len: C.longlong(len(columnRole))}, C.struct_QtDataVisualization_PackedString{data: valueRoleC, len: C.longlong(len(valueRole))}, C.struct_QtDataVisualization_PackedString{data: rotationRoleC, len: C.longlong(len(rotationRole))}, C.struct_QtDataVisualization_PackedString{data: rowCategoriesC, len: C.longlong(len(strings.Join(rowCategories, "¡¦!")))}, C.struct_QtDataVisualization_PackedString{data: columnCategoriesC, len: C.longlong(len(strings.Join(columnCategories, "¡¦!")))})
 	}
 }
 
@@ -13590,9 +13596,9 @@ func (ptr *QItemModelBarDataProxy) SetAutoRowCategories(enable bool) {
 
 func (ptr *QItemModelBarDataProxy) SetColumnCategories(categories []string) {
 	if ptr.Pointer() != nil {
-		categoriesC := C.CString(strings.Join(categories, "|"))
+		categoriesC := C.CString(strings.Join(categories, "¡¦!"))
 		defer C.free(unsafe.Pointer(categoriesC))
-		C.QItemModelBarDataProxy_SetColumnCategories(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: categoriesC, len: C.longlong(len(strings.Join(categories, "|")))})
+		C.QItemModelBarDataProxy_SetColumnCategories(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: categoriesC, len: C.longlong(len(strings.Join(categories, "¡¦!")))})
 	}
 }
 
@@ -13666,9 +13672,9 @@ func (ptr *QItemModelBarDataProxy) SetRotationRoleReplace(replace string) {
 
 func (ptr *QItemModelBarDataProxy) SetRowCategories(categories []string) {
 	if ptr.Pointer() != nil {
-		categoriesC := C.CString(strings.Join(categories, "|"))
+		categoriesC := C.CString(strings.Join(categories, "¡¦!"))
 		defer C.free(unsafe.Pointer(categoriesC))
-		C.QItemModelBarDataProxy_SetRowCategories(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: categoriesC, len: C.longlong(len(strings.Join(categories, "|")))})
+		C.QItemModelBarDataProxy_SetRowCategories(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: categoriesC, len: C.longlong(len(strings.Join(categories, "¡¦!")))})
 	}
 }
 
@@ -14063,14 +14069,14 @@ func (ptr *QItemModelBarDataProxy) ValueRoleReplace() string {
 
 func (ptr *QItemModelBarDataProxy) ColumnCategories() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QItemModelBarDataProxy_ColumnCategories(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QItemModelBarDataProxy_ColumnCategories(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QItemModelBarDataProxy) RowCategories() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QItemModelBarDataProxy_RowCategories(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QItemModelBarDataProxy_RowCategories(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -15264,11 +15270,11 @@ func NewQItemModelSurfaceDataProxy7(itemModel core.QAbstractItemModel_ITF, rowRo
 		zPosRoleC = C.CString(zPosRole)
 		defer C.free(unsafe.Pointer(zPosRoleC))
 	}
-	rowCategoriesC := C.CString(strings.Join(rowCategories, "|"))
+	rowCategoriesC := C.CString(strings.Join(rowCategories, "¡¦!"))
 	defer C.free(unsafe.Pointer(rowCategoriesC))
-	columnCategoriesC := C.CString(strings.Join(columnCategories, "|"))
+	columnCategoriesC := C.CString(strings.Join(columnCategories, "¡¦!"))
 	defer C.free(unsafe.Pointer(columnCategoriesC))
-	return NewQItemModelSurfaceDataProxyFromPointer(C.QItemModelSurfaceDataProxy_NewQItemModelSurfaceDataProxy7(core.PointerFromQAbstractItemModel(itemModel), C.struct_QtDataVisualization_PackedString{data: rowRoleC, len: C.longlong(len(rowRole))}, C.struct_QtDataVisualization_PackedString{data: columnRoleC, len: C.longlong(len(columnRole))}, C.struct_QtDataVisualization_PackedString{data: xPosRoleC, len: C.longlong(len(xPosRole))}, C.struct_QtDataVisualization_PackedString{data: yPosRoleC, len: C.longlong(len(yPosRole))}, C.struct_QtDataVisualization_PackedString{data: zPosRoleC, len: C.longlong(len(zPosRole))}, C.struct_QtDataVisualization_PackedString{data: rowCategoriesC, len: C.longlong(len(strings.Join(rowCategories, "|")))}, C.struct_QtDataVisualization_PackedString{data: columnCategoriesC, len: C.longlong(len(strings.Join(columnCategories, "|")))}, core.PointerFromQObject(parent)))
+	return NewQItemModelSurfaceDataProxyFromPointer(C.QItemModelSurfaceDataProxy_NewQItemModelSurfaceDataProxy7(core.PointerFromQAbstractItemModel(itemModel), C.struct_QtDataVisualization_PackedString{data: rowRoleC, len: C.longlong(len(rowRole))}, C.struct_QtDataVisualization_PackedString{data: columnRoleC, len: C.longlong(len(columnRole))}, C.struct_QtDataVisualization_PackedString{data: xPosRoleC, len: C.longlong(len(xPosRole))}, C.struct_QtDataVisualization_PackedString{data: yPosRoleC, len: C.longlong(len(yPosRole))}, C.struct_QtDataVisualization_PackedString{data: zPosRoleC, len: C.longlong(len(zPosRole))}, C.struct_QtDataVisualization_PackedString{data: rowCategoriesC, len: C.longlong(len(strings.Join(rowCategories, "¡¦!")))}, C.struct_QtDataVisualization_PackedString{data: columnCategoriesC, len: C.longlong(len(strings.Join(columnCategories, "¡¦!")))}, core.PointerFromQObject(parent)))
 }
 
 func NewQItemModelSurfaceDataProxy4(itemModel core.QAbstractItemModel_ITF, rowRole string, columnRole string, yPosRole string, parent core.QObject_ITF) *QItemModelSurfaceDataProxy {
@@ -15306,11 +15312,11 @@ func NewQItemModelSurfaceDataProxy6(itemModel core.QAbstractItemModel_ITF, rowRo
 		yPosRoleC = C.CString(yPosRole)
 		defer C.free(unsafe.Pointer(yPosRoleC))
 	}
-	rowCategoriesC := C.CString(strings.Join(rowCategories, "|"))
+	rowCategoriesC := C.CString(strings.Join(rowCategories, "¡¦!"))
 	defer C.free(unsafe.Pointer(rowCategoriesC))
-	columnCategoriesC := C.CString(strings.Join(columnCategories, "|"))
+	columnCategoriesC := C.CString(strings.Join(columnCategories, "¡¦!"))
 	defer C.free(unsafe.Pointer(columnCategoriesC))
-	return NewQItemModelSurfaceDataProxyFromPointer(C.QItemModelSurfaceDataProxy_NewQItemModelSurfaceDataProxy6(core.PointerFromQAbstractItemModel(itemModel), C.struct_QtDataVisualization_PackedString{data: rowRoleC, len: C.longlong(len(rowRole))}, C.struct_QtDataVisualization_PackedString{data: columnRoleC, len: C.longlong(len(columnRole))}, C.struct_QtDataVisualization_PackedString{data: yPosRoleC, len: C.longlong(len(yPosRole))}, C.struct_QtDataVisualization_PackedString{data: rowCategoriesC, len: C.longlong(len(strings.Join(rowCategories, "|")))}, C.struct_QtDataVisualization_PackedString{data: columnCategoriesC, len: C.longlong(len(strings.Join(columnCategories, "|")))}, core.PointerFromQObject(parent)))
+	return NewQItemModelSurfaceDataProxyFromPointer(C.QItemModelSurfaceDataProxy_NewQItemModelSurfaceDataProxy6(core.PointerFromQAbstractItemModel(itemModel), C.struct_QtDataVisualization_PackedString{data: rowRoleC, len: C.longlong(len(rowRole))}, C.struct_QtDataVisualization_PackedString{data: columnRoleC, len: C.longlong(len(columnRole))}, C.struct_QtDataVisualization_PackedString{data: yPosRoleC, len: C.longlong(len(yPosRole))}, C.struct_QtDataVisualization_PackedString{data: rowCategoriesC, len: C.longlong(len(strings.Join(rowCategories, "¡¦!")))}, C.struct_QtDataVisualization_PackedString{data: columnCategoriesC, len: C.longlong(len(strings.Join(columnCategories, "¡¦!")))}, core.PointerFromQObject(parent)))
 }
 
 func NewQItemModelSurfaceDataProxy3(itemModel core.QAbstractItemModel_ITF, yPosRole string, parent core.QObject_ITF) *QItemModelSurfaceDataProxy {
@@ -15735,11 +15741,11 @@ func (ptr *QItemModelSurfaceDataProxy) Remap(rowRole string, columnRole string, 
 			zPosRoleC = C.CString(zPosRole)
 			defer C.free(unsafe.Pointer(zPosRoleC))
 		}
-		rowCategoriesC := C.CString(strings.Join(rowCategories, "|"))
+		rowCategoriesC := C.CString(strings.Join(rowCategories, "¡¦!"))
 		defer C.free(unsafe.Pointer(rowCategoriesC))
-		columnCategoriesC := C.CString(strings.Join(columnCategories, "|"))
+		columnCategoriesC := C.CString(strings.Join(columnCategories, "¡¦!"))
 		defer C.free(unsafe.Pointer(columnCategoriesC))
-		C.QItemModelSurfaceDataProxy_Remap(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: rowRoleC, len: C.longlong(len(rowRole))}, C.struct_QtDataVisualization_PackedString{data: columnRoleC, len: C.longlong(len(columnRole))}, C.struct_QtDataVisualization_PackedString{data: xPosRoleC, len: C.longlong(len(xPosRole))}, C.struct_QtDataVisualization_PackedString{data: yPosRoleC, len: C.longlong(len(yPosRole))}, C.struct_QtDataVisualization_PackedString{data: zPosRoleC, len: C.longlong(len(zPosRole))}, C.struct_QtDataVisualization_PackedString{data: rowCategoriesC, len: C.longlong(len(strings.Join(rowCategories, "|")))}, C.struct_QtDataVisualization_PackedString{data: columnCategoriesC, len: C.longlong(len(strings.Join(columnCategories, "|")))})
+		C.QItemModelSurfaceDataProxy_Remap(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: rowRoleC, len: C.longlong(len(rowRole))}, C.struct_QtDataVisualization_PackedString{data: columnRoleC, len: C.longlong(len(columnRole))}, C.struct_QtDataVisualization_PackedString{data: xPosRoleC, len: C.longlong(len(xPosRole))}, C.struct_QtDataVisualization_PackedString{data: yPosRoleC, len: C.longlong(len(yPosRole))}, C.struct_QtDataVisualization_PackedString{data: zPosRoleC, len: C.longlong(len(zPosRole))}, C.struct_QtDataVisualization_PackedString{data: rowCategoriesC, len: C.longlong(len(strings.Join(rowCategories, "¡¦!")))}, C.struct_QtDataVisualization_PackedString{data: columnCategoriesC, len: C.longlong(len(strings.Join(columnCategories, "¡¦!")))})
 	}
 }
 
@@ -15927,9 +15933,9 @@ func (ptr *QItemModelSurfaceDataProxy) SetAutoRowCategories(enable bool) {
 
 func (ptr *QItemModelSurfaceDataProxy) SetColumnCategories(categories []string) {
 	if ptr.Pointer() != nil {
-		categoriesC := C.CString(strings.Join(categories, "|"))
+		categoriesC := C.CString(strings.Join(categories, "¡¦!"))
 		defer C.free(unsafe.Pointer(categoriesC))
-		C.QItemModelSurfaceDataProxy_SetColumnCategories(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: categoriesC, len: C.longlong(len(strings.Join(categories, "|")))})
+		C.QItemModelSurfaceDataProxy_SetColumnCategories(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: categoriesC, len: C.longlong(len(strings.Join(categories, "¡¦!")))})
 	}
 }
 
@@ -15975,9 +15981,9 @@ func (ptr *QItemModelSurfaceDataProxy) SetMultiMatchBehavior(behavior QItemModel
 
 func (ptr *QItemModelSurfaceDataProxy) SetRowCategories(categories []string) {
 	if ptr.Pointer() != nil {
-		categoriesC := C.CString(strings.Join(categories, "|"))
+		categoriesC := C.CString(strings.Join(categories, "¡¦!"))
 		defer C.free(unsafe.Pointer(categoriesC))
-		C.QItemModelSurfaceDataProxy_SetRowCategories(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: categoriesC, len: C.longlong(len(strings.Join(categories, "|")))})
+		C.QItemModelSurfaceDataProxy_SetRowCategories(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: categoriesC, len: C.longlong(len(strings.Join(categories, "¡¦!")))})
 	}
 }
 
@@ -16711,14 +16717,14 @@ func (ptr *QItemModelSurfaceDataProxy) ZPosRoleReplace() string {
 
 func (ptr *QItemModelSurfaceDataProxy) ColumnCategories() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QItemModelSurfaceDataProxy_ColumnCategories(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QItemModelSurfaceDataProxy_ColumnCategories(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QItemModelSurfaceDataProxy) RowCategories() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QItemModelSurfaceDataProxy_RowCategories(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QItemModelSurfaceDataProxy_RowCategories(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -20214,7 +20220,7 @@ func (ptr *QValue3DAxisFormatter) StringForValueDefault(value float64, format st
 
 func (ptr *QValue3DAxisFormatter) LabelStrings() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QValue3DAxisFormatter_LabelStrings(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QValue3DAxisFormatter_LabelStrings(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }

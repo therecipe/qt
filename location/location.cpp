@@ -2191,7 +2191,7 @@ struct QtLocation_PackedString QGeoServiceProvider_QGeoServiceProvider_Tr(char* 
 
 struct QtLocation_PackedString QGeoServiceProvider_QGeoServiceProvider_AvailableServiceProviders()
 {
-	return ({ QByteArray teec3ca = QGeoServiceProvider::availableServiceProviders().join("|").toUtf8(); QtLocation_PackedString { const_cast<char*>(teec3ca.prepend("WHITESPACE").constData()+10), teec3ca.size()-10 }; });
+	return ({ QByteArray teec3ca = QGeoServiceProvider::availableServiceProviders().join("¡¦!").toUtf8(); QtLocation_PackedString { const_cast<char*>(teec3ca.prepend("WHITESPACE").constData()+10), teec3ca.size()-10 }; });
 }
 
 void QGeoServiceProvider_SetAllowExperimental(void* ptr, char allow)

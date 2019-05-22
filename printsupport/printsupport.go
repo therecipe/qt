@@ -30,6 +30,12 @@ func cGoUnpackBytes(s C.struct_QtPrintSupport_PackedString) []byte {
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
+func unpackStringList(s string) []string {
+	if len(s) == 0 {
+		return make([]string, 0)
+	}
+	return strings.Split(s, "¡¦!")
+}
 
 type QAbstractPrintDialog struct {
 	widgets.QDialog
@@ -8402,11 +8408,11 @@ func (ptr *QPrinterInfo) DefaultPrinterName() string {
 }
 
 func QPrinterInfo_AvailablePrinterNames() []string {
-	return strings.Split(cGoUnpackString(C.QPrinterInfo_QPrinterInfo_AvailablePrinterNames()), "|")
+	return unpackStringList(cGoUnpackString(C.QPrinterInfo_QPrinterInfo_AvailablePrinterNames()))
 }
 
 func (ptr *QPrinterInfo) AvailablePrinterNames() []string {
-	return strings.Split(cGoUnpackString(C.QPrinterInfo_QPrinterInfo_AvailablePrinterNames()), "|")
+	return unpackStringList(cGoUnpackString(C.QPrinterInfo_QPrinterInfo_AvailablePrinterNames()))
 }
 
 func (ptr *QPrinterInfo) DestroyQPrinterInfo() {

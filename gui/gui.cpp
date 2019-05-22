@@ -743,8 +743,8 @@ public:
 	 ~MyQAccessibleActionInterface() { callbackQAccessibleActionInterface_DestroyQAccessibleActionInterface(this); };
 	QString localizedActionDescription(const QString & actionName) const { QByteArray tcd1a8c = actionName.toUtf8(); QtGui_PackedString actionNamePacked = { const_cast<char*>(tcd1a8c.prepend("WHITESPACE").constData()+10), tcd1a8c.size()-10 };return ({ QtGui_PackedString tempVal = callbackQAccessibleActionInterface_LocalizedActionDescription(const_cast<void*>(static_cast<const void*>(this)), actionNamePacked); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	QString localizedActionName(const QString & actionName) const { QByteArray tcd1a8c = actionName.toUtf8(); QtGui_PackedString actionNamePacked = { const_cast<char*>(tcd1a8c.prepend("WHITESPACE").constData()+10), tcd1a8c.size()-10 };return ({ QtGui_PackedString tempVal = callbackQAccessibleActionInterface_LocalizedActionName(const_cast<void*>(static_cast<const void*>(this)), actionNamePacked); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
-	QStringList actionNames() const { return ({ QtGui_PackedString tempVal = callbackQAccessibleActionInterface_ActionNames(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
-	QStringList keyBindingsForAction(const QString & actionName) const { QByteArray tcd1a8c = actionName.toUtf8(); QtGui_PackedString actionNamePacked = { const_cast<char*>(tcd1a8c.prepend("WHITESPACE").constData()+10), tcd1a8c.size()-10 };return ({ QtGui_PackedString tempVal = callbackQAccessibleActionInterface_KeyBindingsForAction(const_cast<void*>(static_cast<const void*>(this)), actionNamePacked); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	QStringList actionNames() const { return ({ QtGui_PackedString tempVal = callbackQAccessibleActionInterface_ActionNames(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	QStringList keyBindingsForAction(const QString & actionName) const { QByteArray tcd1a8c = actionName.toUtf8(); QtGui_PackedString actionNamePacked = { const_cast<char*>(tcd1a8c.prepend("WHITESPACE").constData()+10), tcd1a8c.size()-10 };return ({ QtGui_PackedString tempVal = callbackQAccessibleActionInterface_KeyBindingsForAction(const_cast<void*>(static_cast<const void*>(this)), actionNamePacked); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 };
 
 struct QtGui_PackedString QAccessibleActionInterface_QAccessibleActionInterface_NextPageAction()
@@ -850,12 +850,12 @@ struct QtGui_PackedString QAccessibleActionInterface_LocalizedActionNameDefault(
 
 struct QtGui_PackedString QAccessibleActionInterface_ActionNames(void* ptr)
 {
-	return ({ QByteArray t71e118 = static_cast<QAccessibleActionInterface*>(ptr)->actionNames().join("|").toUtf8(); QtGui_PackedString { const_cast<char*>(t71e118.prepend("WHITESPACE").constData()+10), t71e118.size()-10 }; });
+	return ({ QByteArray t71e118 = static_cast<QAccessibleActionInterface*>(ptr)->actionNames().join("¡¦!").toUtf8(); QtGui_PackedString { const_cast<char*>(t71e118.prepend("WHITESPACE").constData()+10), t71e118.size()-10 }; });
 }
 
 struct QtGui_PackedString QAccessibleActionInterface_KeyBindingsForAction(void* ptr, struct QtGui_PackedString actionName)
 {
-	return ({ QByteArray te37e4d = static_cast<QAccessibleActionInterface*>(ptr)->keyBindingsForAction(QString::fromUtf8(actionName.data, actionName.len)).join("|").toUtf8(); QtGui_PackedString { const_cast<char*>(te37e4d.prepend("WHITESPACE").constData()+10), te37e4d.size()-10 }; });
+	return ({ QByteArray te37e4d = static_cast<QAccessibleActionInterface*>(ptr)->keyBindingsForAction(QString::fromUtf8(actionName.data, actionName.len)).join("¡¦!").toUtf8(); QtGui_PackedString { const_cast<char*>(te37e4d.prepend("WHITESPACE").constData()+10), te37e4d.size()-10 }; });
 }
 
 class MyQAccessibleEditableTextInterface: public QAccessibleEditableTextInterface
@@ -3547,7 +3547,7 @@ void* QColor_NewQColor3(int r, int g, int b, int a)
 
 struct QtGui_PackedString QColor_QColor_ColorNames()
 {
-	return ({ QByteArray t1b28c6 = QColor::colorNames().join("|").toUtf8(); QtGui_PackedString { const_cast<char*>(t1b28c6.prepend("WHITESPACE").constData()+10), t1b28c6.size()-10 }; });
+	return ({ QByteArray t1b28c6 = QColor::colorNames().join("¡¦!").toUtf8(); QtGui_PackedString { const_cast<char*>(t1b28c6.prepend("WHITESPACE").constData()+10), t1b28c6.size()-10 }; });
 }
 
 char QColor_QColor_IsValidColor3(void* name)
@@ -5143,12 +5143,12 @@ struct QtGui_PackedString QFont_QFont_Substitute(struct QtGui_PackedString famil
 
 struct QtGui_PackedString QFont_QFont_Substitutes(struct QtGui_PackedString familyName)
 {
-	return ({ QByteArray t1934ac = QFont::substitutes(QString::fromUtf8(familyName.data, familyName.len)).join("|").toUtf8(); QtGui_PackedString { const_cast<char*>(t1934ac.prepend("WHITESPACE").constData()+10), t1934ac.size()-10 }; });
+	return ({ QByteArray t1934ac = QFont::substitutes(QString::fromUtf8(familyName.data, familyName.len)).join("¡¦!").toUtf8(); QtGui_PackedString { const_cast<char*>(t1934ac.prepend("WHITESPACE").constData()+10), t1934ac.size()-10 }; });
 }
 
 struct QtGui_PackedString QFont_QFont_Substitutions()
 {
-	return ({ QByteArray t300c5a = QFont::substitutions().join("|").toUtf8(); QtGui_PackedString { const_cast<char*>(t300c5a.prepend("WHITESPACE").constData()+10), t300c5a.size()-10 }; });
+	return ({ QByteArray t300c5a = QFont::substitutions().join("¡¦!").toUtf8(); QtGui_PackedString { const_cast<char*>(t300c5a.prepend("WHITESPACE").constData()+10), t300c5a.size()-10 }; });
 }
 
 char QFont_FromString(void* ptr, struct QtGui_PackedString descrip)
@@ -5163,7 +5163,7 @@ void QFont_QFont_InsertSubstitution(struct QtGui_PackedString familyName, struct
 
 void QFont_QFont_InsertSubstitutions(struct QtGui_PackedString familyName, struct QtGui_PackedString substituteNames)
 {
-	QFont::insertSubstitutions(QString::fromUtf8(familyName.data, familyName.len), QString::fromUtf8(substituteNames.data, substituteNames.len).split("|", QString::SkipEmptyParts));
+	QFont::insertSubstitutions(QString::fromUtf8(familyName.data, familyName.len), QString::fromUtf8(substituteNames.data, substituteNames.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void QFont_QFont_RemoveSubstitutions(struct QtGui_PackedString familyName)
@@ -5478,7 +5478,7 @@ struct QtGui_PackedString QFontDatabase_StyleString2(void* ptr, void* fontInfo)
 
 struct QtGui_PackedString QFontDatabase_QFontDatabase_ApplicationFontFamilies(int id)
 {
-	return ({ QByteArray tf75c72 = QFontDatabase::applicationFontFamilies(id).join("|").toUtf8(); QtGui_PackedString { const_cast<char*>(tf75c72.prepend("WHITESPACE").constData()+10), tf75c72.size()-10 }; });
+	return ({ QByteArray tf75c72 = QFontDatabase::applicationFontFamilies(id).join("¡¦!").toUtf8(); QtGui_PackedString { const_cast<char*>(tf75c72.prepend("WHITESPACE").constData()+10), tf75c72.size()-10 }; });
 }
 
 char QFontDatabase_QFontDatabase_RemoveAllApplicationFonts()
@@ -5508,12 +5508,12 @@ void* QFontDatabase_Font(void* ptr, struct QtGui_PackedString family, struct QtG
 
 struct QtGui_PackedString QFontDatabase_Families(void* ptr, long long writingSystem)
 {
-	return ({ QByteArray t8f80b0 = static_cast<QFontDatabase*>(ptr)->families(static_cast<QFontDatabase::WritingSystem>(writingSystem)).join("|").toUtf8(); QtGui_PackedString { const_cast<char*>(t8f80b0.prepend("WHITESPACE").constData()+10), t8f80b0.size()-10 }; });
+	return ({ QByteArray t8f80b0 = static_cast<QFontDatabase*>(ptr)->families(static_cast<QFontDatabase::WritingSystem>(writingSystem)).join("¡¦!").toUtf8(); QtGui_PackedString { const_cast<char*>(t8f80b0.prepend("WHITESPACE").constData()+10), t8f80b0.size()-10 }; });
 }
 
 struct QtGui_PackedString QFontDatabase_Styles(void* ptr, struct QtGui_PackedString family)
 {
-	return ({ QByteArray ta1e1bf = static_cast<QFontDatabase*>(ptr)->styles(QString::fromUtf8(family.data, family.len)).join("|").toUtf8(); QtGui_PackedString { const_cast<char*>(ta1e1bf.prepend("WHITESPACE").constData()+10), ta1e1bf.size()-10 }; });
+	return ({ QByteArray ta1e1bf = static_cast<QFontDatabase*>(ptr)->styles(QString::fromUtf8(family.data, family.len)).join("¡¦!").toUtf8(); QtGui_PackedString { const_cast<char*>(ta1e1bf.prepend("WHITESPACE").constData()+10), ta1e1bf.size()-10 }; });
 }
 
 char QFontDatabase_Bold(void* ptr, struct QtGui_PackedString family, struct QtGui_PackedString style)
@@ -6295,7 +6295,7 @@ void* QGenericPluginFactory_QGenericPluginFactory_Create(struct QtGui_PackedStri
 
 struct QtGui_PackedString QGenericPluginFactory_QGenericPluginFactory_Keys()
 {
-	return ({ QByteArray t692cb7 = QGenericPluginFactory::keys().join("|").toUtf8(); QtGui_PackedString { const_cast<char*>(t692cb7.prepend("WHITESPACE").constData()+10), t692cb7.size()-10 }; });
+	return ({ QByteArray t692cb7 = QGenericPluginFactory::keys().join("¡¦!").toUtf8(); QtGui_PackedString { const_cast<char*>(t692cb7.prepend("WHITESPACE").constData()+10), t692cb7.size()-10 }; });
 }
 
 void* QGlyphRun_NewQGlyphRun()
@@ -7400,12 +7400,12 @@ struct QtGui_PackedString QIcon_QIcon_ThemeName()
 
 struct QtGui_PackedString QIcon_QIcon_FallbackSearchPaths()
 {
-	return ({ QByteArray t74e953 = QIcon::fallbackSearchPaths().join("|").toUtf8(); QtGui_PackedString { const_cast<char*>(t74e953.prepend("WHITESPACE").constData()+10), t74e953.size()-10 }; });
+	return ({ QByteArray t74e953 = QIcon::fallbackSearchPaths().join("¡¦!").toUtf8(); QtGui_PackedString { const_cast<char*>(t74e953.prepend("WHITESPACE").constData()+10), t74e953.size()-10 }; });
 }
 
 struct QtGui_PackedString QIcon_QIcon_ThemeSearchPaths()
 {
-	return ({ QByteArray t9c13b7 = QIcon::themeSearchPaths().join("|").toUtf8(); QtGui_PackedString { const_cast<char*>(t9c13b7.prepend("WHITESPACE").constData()+10), t9c13b7.size()-10 }; });
+	return ({ QByteArray t9c13b7 = QIcon::themeSearchPaths().join("¡¦!").toUtf8(); QtGui_PackedString { const_cast<char*>(t9c13b7.prepend("WHITESPACE").constData()+10), t9c13b7.size()-10 }; });
 }
 
 char QIcon_QIcon_HasThemeIcon(struct QtGui_PackedString name)
@@ -7425,7 +7425,7 @@ void QIcon_AddPixmap(void* ptr, void* pixmap, long long mode, long long state)
 
 void QIcon_QIcon_SetFallbackSearchPaths(struct QtGui_PackedString paths)
 {
-	QIcon::setFallbackSearchPaths(QString::fromUtf8(paths.data, paths.len).split("|", QString::SkipEmptyParts));
+	QIcon::setFallbackSearchPaths(QString::fromUtf8(paths.data, paths.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void QIcon_QIcon_SetFallbackThemeName(struct QtGui_PackedString name)
@@ -7445,7 +7445,7 @@ void QIcon_QIcon_SetThemeName(struct QtGui_PackedString name)
 
 void QIcon_QIcon_SetThemeSearchPaths(struct QtGui_PackedString paths)
 {
-	QIcon::setThemeSearchPaths(QString::fromUtf8(paths.data, paths.len).split("|", QString::SkipEmptyParts));
+	QIcon::setThemeSearchPaths(QString::fromUtf8(paths.data, paths.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void QIcon_Swap(void* ptr, void* other)
@@ -8373,7 +8373,7 @@ struct QtGui_PackedString QImage_Text(void* ptr, struct QtGui_PackedString key)
 
 struct QtGui_PackedString QImage_TextKeys(void* ptr)
 {
-	return ({ QByteArray t71d2ff = static_cast<QImage*>(ptr)->textKeys().join("|").toUtf8(); QtGui_PackedString { const_cast<char*>(t71d2ff.prepend("WHITESPACE").constData()+10), t71d2ff.size()-10 }; });
+	return ({ QByteArray t71d2ff = static_cast<QImage*>(ptr)->textKeys().join("¡¦!").toUtf8(); QtGui_PackedString { const_cast<char*>(t71d2ff.prepend("WHITESPACE").constData()+10), t71d2ff.size()-10 }; });
 }
 
 struct QtGui_PackedList QImage_ColorTable(void* ptr)
@@ -9201,7 +9201,7 @@ struct QtGui_PackedString QImageReader_Text(void* ptr, struct QtGui_PackedString
 
 struct QtGui_PackedString QImageReader_TextKeys(void* ptr)
 {
-	return ({ QByteArray t436ca8 = static_cast<QImageReader*>(ptr)->textKeys().join("|").toUtf8(); QtGui_PackedString { const_cast<char*>(t436ca8.prepend("WHITESPACE").constData()+10), t436ca8.size()-10 }; });
+	return ({ QByteArray t436ca8 = static_cast<QImageReader*>(ptr)->textKeys().join("¡¦!").toUtf8(); QtGui_PackedString { const_cast<char*>(t436ca8.prepend("WHITESPACE").constData()+10), t436ca8.size()-10 }; });
 }
 
 char QImageReader_AutoDetectImageFormat(void* ptr)
@@ -26175,7 +26175,7 @@ void QSessionManager_RequestPhase2(void* ptr)
 
 void QSessionManager_SetDiscardCommand(void* ptr, struct QtGui_PackedString command)
 {
-	static_cast<QSessionManager*>(ptr)->setDiscardCommand(QString::fromUtf8(command.data, command.len).split("|", QString::SkipEmptyParts));
+	static_cast<QSessionManager*>(ptr)->setDiscardCommand(QString::fromUtf8(command.data, command.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void QSessionManager_SetManagerProperty2(void* ptr, struct QtGui_PackedString name, struct QtGui_PackedString value)
@@ -26185,12 +26185,12 @@ void QSessionManager_SetManagerProperty2(void* ptr, struct QtGui_PackedString na
 
 void QSessionManager_SetManagerProperty(void* ptr, struct QtGui_PackedString name, struct QtGui_PackedString value)
 {
-	static_cast<QSessionManager*>(ptr)->setManagerProperty(QString::fromUtf8(name.data, name.len), QString::fromUtf8(value.data, value.len).split("|", QString::SkipEmptyParts));
+	static_cast<QSessionManager*>(ptr)->setManagerProperty(QString::fromUtf8(name.data, name.len), QString::fromUtf8(value.data, value.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void QSessionManager_SetRestartCommand(void* ptr, struct QtGui_PackedString command)
 {
-	static_cast<QSessionManager*>(ptr)->setRestartCommand(QString::fromUtf8(command.data, command.len).split("|", QString::SkipEmptyParts));
+	static_cast<QSessionManager*>(ptr)->setRestartCommand(QString::fromUtf8(command.data, command.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void QSessionManager_SetRestartHint(void* ptr, long long hint)
@@ -26215,12 +26215,12 @@ struct QtGui_PackedString QSessionManager_SessionKey(void* ptr)
 
 struct QtGui_PackedString QSessionManager_DiscardCommand(void* ptr)
 {
-	return ({ QByteArray t7ed2e8 = static_cast<QSessionManager*>(ptr)->discardCommand().join("|").toUtf8(); QtGui_PackedString { const_cast<char*>(t7ed2e8.prepend("WHITESPACE").constData()+10), t7ed2e8.size()-10 }; });
+	return ({ QByteArray t7ed2e8 = static_cast<QSessionManager*>(ptr)->discardCommand().join("¡¦!").toUtf8(); QtGui_PackedString { const_cast<char*>(t7ed2e8.prepend("WHITESPACE").constData()+10), t7ed2e8.size()-10 }; });
 }
 
 struct QtGui_PackedString QSessionManager_RestartCommand(void* ptr)
 {
-	return ({ QByteArray t8b3c52 = static_cast<QSessionManager*>(ptr)->restartCommand().join("|").toUtf8(); QtGui_PackedString { const_cast<char*>(t8b3c52.prepend("WHITESPACE").constData()+10), t8b3c52.size()-10 }; });
+	return ({ QByteArray t8b3c52 = static_cast<QSessionManager*>(ptr)->restartCommand().join("¡¦!").toUtf8(); QtGui_PackedString { const_cast<char*>(t8b3c52.prepend("WHITESPACE").constData()+10), t8b3c52.size()-10 }; });
 }
 
 char QSessionManager_IsPhase2(void* ptr)
@@ -27129,7 +27129,7 @@ public:
 	QModelIndex index(int row, int column, const QModelIndex & parent) const { return *static_cast<QModelIndex*>(callbackQStandardItemModel_Index(const_cast<void*>(static_cast<const void*>(this)), row, column, const_cast<QModelIndex*>(&parent))); };
 	QModelIndex parent(const QModelIndex & child) const { return *static_cast<QModelIndex*>(callbackQStandardItemModel_Parent(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&child))); };
 	QModelIndex sibling(int row, int column, const QModelIndex & idx) const { return *static_cast<QModelIndex*>(callbackQStandardItemModel_Sibling(const_cast<void*>(static_cast<const void*>(this)), row, column, const_cast<QModelIndex*>(&idx))); };
-	QStringList mimeTypes() const { return ({ QtGui_PackedString tempVal = callbackQStandardItemModel_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	QStringList mimeTypes() const { return ({ QtGui_PackedString tempVal = callbackQStandardItemModel_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	QVariant data(const QModelIndex & index, int role) const { return *static_cast<QVariant*>(callbackQStandardItemModel_Data(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index), role)); };
 	QVariant headerData(int section, Qt::Orientation orientation, int role) const { return *static_cast<QVariant*>(callbackQStandardItemModel_HeaderData(const_cast<void*>(static_cast<const void*>(this)), section, orientation, role)); };
 	Qt::DropActions supportedDropActions() const { return static_cast<Qt::DropAction>(callbackQStandardItemModel_SupportedDropActions(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -27400,7 +27400,7 @@ void QStandardItemModel_SetHorizontalHeaderItem(void* ptr, int column, void* ite
 
 void QStandardItemModel_SetHorizontalHeaderLabels(void* ptr, struct QtGui_PackedString labels)
 {
-	static_cast<QStandardItemModel*>(ptr)->setHorizontalHeaderLabels(QString::fromUtf8(labels.data, labels.len).split("|", QString::SkipEmptyParts));
+	static_cast<QStandardItemModel*>(ptr)->setHorizontalHeaderLabels(QString::fromUtf8(labels.data, labels.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void QStandardItemModel_SetItem2(void* ptr, int row, void* item)
@@ -27440,7 +27440,7 @@ void QStandardItemModel_SetVerticalHeaderItem(void* ptr, int row, void* item)
 
 void QStandardItemModel_SetVerticalHeaderLabels(void* ptr, struct QtGui_PackedString labels)
 {
-	static_cast<QStandardItemModel*>(ptr)->setVerticalHeaderLabels(QString::fromUtf8(labels.data, labels.len).split("|", QString::SkipEmptyParts));
+	static_cast<QStandardItemModel*>(ptr)->setVerticalHeaderLabels(QString::fromUtf8(labels.data, labels.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void QStandardItemModel_SortDefault(void* ptr, int column, long long order)
@@ -27531,7 +27531,7 @@ void* QStandardItemModel_VerticalHeaderItem(void* ptr, int row)
 
 struct QtGui_PackedString QStandardItemModel_MimeTypesDefault(void* ptr)
 {
-		return ({ QByteArray t83a37d = static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::mimeTypes().join("|").toUtf8(); QtGui_PackedString { const_cast<char*>(t83a37d.prepend("WHITESPACE").constData()+10), t83a37d.size()-10 }; });
+		return ({ QByteArray t83a37d = static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::mimeTypes().join("¡¦!").toUtf8(); QtGui_PackedString { const_cast<char*>(t83a37d.prepend("WHITESPACE").constData()+10), t83a37d.size()-10 }; });
 }
 
 void* QStandardItemModel_Data(void* ptr, void* index, int role)
@@ -30150,7 +30150,7 @@ void QTextCharFormat_SetAnchorHref(void* ptr, struct QtGui_PackedString value)
 
 void QTextCharFormat_SetAnchorNames(void* ptr, struct QtGui_PackedString names)
 {
-	static_cast<QTextCharFormat*>(ptr)->setAnchorNames(QString::fromUtf8(names.data, names.len).split("|", QString::SkipEmptyParts));
+	static_cast<QTextCharFormat*>(ptr)->setAnchorNames(QString::fromUtf8(names.data, names.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void QTextCharFormat_SetFont2(void* ptr, void* font)
@@ -30330,7 +30330,7 @@ struct QtGui_PackedString QTextCharFormat_ToolTip(void* ptr)
 
 struct QtGui_PackedString QTextCharFormat_AnchorNames(void* ptr)
 {
-	return ({ QByteArray t55bd77 = static_cast<QTextCharFormat*>(ptr)->anchorNames().join("|").toUtf8(); QtGui_PackedString { const_cast<char*>(t55bd77.prepend("WHITESPACE").constData()+10), t55bd77.size()-10 }; });
+	return ({ QByteArray t55bd77 = static_cast<QTextCharFormat*>(ptr)->anchorNames().join("¡¦!").toUtf8(); QtGui_PackedString { const_cast<char*>(t55bd77.prepend("WHITESPACE").constData()+10), t55bd77.size()-10 }; });
 }
 
 long long QTextCharFormat_UnderlineStyle(void* ptr)

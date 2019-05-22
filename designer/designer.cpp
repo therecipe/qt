@@ -1558,7 +1558,7 @@ public:
 	bool setContents(QIODevice * device, QString * errorMessage) { QByteArray t3f2abc = errorMessage->toUtf8(); QtDesigner_PackedString errorMessagePacked = { const_cast<char*>(t3f2abc.prepend("WHITESPACE").constData()+10), t3f2abc.size()-10 };return callbackQDesignerFormWindowInterface_SetContents(this, device, errorMessagePacked) != 0; };
 	bool setContents(const QString & contents) { QByteArray t4a756c = contents.toUtf8(); QtDesigner_PackedString contentsPacked = { const_cast<char*>(t4a756c.prepend("WHITESPACE").constData()+10), t4a756c.size()-10 };return callbackQDesignerFormWindowInterface_SetContents2(this, contentsPacked) != 0; };
 	void Signal_AboutToUnmanageWidget(QWidget * widget) { callbackQDesignerFormWindowInterface_AboutToUnmanageWidget(this, widget); };
-	void activateResourceFilePaths(const QStringList & paths, int * errorCount, QString * errorMessages) { QByteArray t0c6eec = paths.join("|").toUtf8(); QtDesigner_PackedString pathsPacked = { const_cast<char*>(t0c6eec.prepend("WHITESPACE").constData()+10), t0c6eec.size()-10 };QByteArray t99ab00 = errorMessages->toUtf8(); QtDesigner_PackedString errorMessagesPacked = { const_cast<char*>(t99ab00.prepend("WHITESPACE").constData()+10), t99ab00.size()-10 };callbackQDesignerFormWindowInterface_ActivateResourceFilePaths(this, pathsPacked, *errorCount, errorMessagesPacked); };
+	void activateResourceFilePaths(const QStringList & paths, int * errorCount, QString * errorMessages) { QByteArray t0c6eec = paths.join("¡¦!").toUtf8(); QtDesigner_PackedString pathsPacked = { const_cast<char*>(t0c6eec.prepend("WHITESPACE").constData()+10), t0c6eec.size()-10 };QByteArray t99ab00 = errorMessages->toUtf8(); QtDesigner_PackedString errorMessagesPacked = { const_cast<char*>(t99ab00.prepend("WHITESPACE").constData()+10), t99ab00.size()-10 };callbackQDesignerFormWindowInterface_ActivateResourceFilePaths(this, pathsPacked, *errorCount, errorMessagesPacked); };
 	void Signal_Activated(QWidget * widget) { callbackQDesignerFormWindowInterface_Activated(this, widget); };
 	void addResourceFile(const QString & path) { QByteArray t3150ec = path.toUtf8(); QtDesigner_PackedString pathPacked = { const_cast<char*>(t3150ec.prepend("WHITESPACE").constData()+10), t3150ec.size()-10 };callbackQDesignerFormWindowInterface_AddResourceFile(this, pathPacked); };
 	void Signal_Changed() { callbackQDesignerFormWindowInterface_Changed(this); };
@@ -1583,7 +1583,7 @@ public:
 	void setFeatures(QDesignerFormWindowInterface::Feature features) { callbackQDesignerFormWindowInterface_SetFeatures(this, features); };
 	void setFileName(const QString & fileName) { QByteArray td83e09 = fileName.toUtf8(); QtDesigner_PackedString fileNamePacked = { const_cast<char*>(td83e09.prepend("WHITESPACE").constData()+10), td83e09.size()-10 };callbackQDesignerFormWindowInterface_SetFileName(this, fileNamePacked); };
 	void setGrid(const QPoint & grid) { callbackQDesignerFormWindowInterface_SetGrid(this, const_cast<QPoint*>(&grid)); };
-	void setIncludeHints(const QStringList & includeHints) { QByteArray t14dd6a = includeHints.join("|").toUtf8(); QtDesigner_PackedString includeHintsPacked = { const_cast<char*>(t14dd6a.prepend("WHITESPACE").constData()+10), t14dd6a.size()-10 };callbackQDesignerFormWindowInterface_SetIncludeHints(this, includeHintsPacked); };
+	void setIncludeHints(const QStringList & includeHints) { QByteArray t14dd6a = includeHints.join("¡¦!").toUtf8(); QtDesigner_PackedString includeHintsPacked = { const_cast<char*>(t14dd6a.prepend("WHITESPACE").constData()+10), t14dd6a.size()-10 };callbackQDesignerFormWindowInterface_SetIncludeHints(this, includeHintsPacked); };
 	void setLayoutDefault(int margin, int spacing) { callbackQDesignerFormWindowInterface_SetLayoutDefault(this, margin, spacing); };
 	void setLayoutFunction(const QString & margin, const QString & spacing) { QByteArray t5033fb = margin.toUtf8(); QtDesigner_PackedString marginPacked = { const_cast<char*>(t5033fb.prepend("WHITESPACE").constData()+10), t5033fb.size()-10 };QByteArray t7561d7 = spacing.toUtf8(); QtDesigner_PackedString spacingPacked = { const_cast<char*>(t7561d7.prepend("WHITESPACE").constData()+10), t7561d7.size()-10 };callbackQDesignerFormWindowInterface_SetLayoutFunction(this, marginPacked, spacingPacked); };
 	void setMainContainer(QWidget * mainContainer) { callbackQDesignerFormWindowInterface_SetMainContainer(this, mainContainer); };
@@ -1606,9 +1606,9 @@ public:
 	QString exportMacro() const { return ({ QtDesigner_PackedString tempVal = callbackQDesignerFormWindowInterface_ExportMacro(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	QString fileName() const { return ({ QtDesigner_PackedString tempVal = callbackQDesignerFormWindowInterface_FileName(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	QString pixmapFunction() const { return ({ QtDesigner_PackedString tempVal = callbackQDesignerFormWindowInterface_PixmapFunction(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
-	QStringList checkContents() const { return ({ QtDesigner_PackedString tempVal = callbackQDesignerFormWindowInterface_CheckContents(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
-	QStringList includeHints() const { return ({ QtDesigner_PackedString tempVal = callbackQDesignerFormWindowInterface_IncludeHints(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
-	QStringList resourceFiles() const { return ({ QtDesigner_PackedString tempVal = callbackQDesignerFormWindowInterface_ResourceFiles(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	QStringList checkContents() const { return ({ QtDesigner_PackedString tempVal = callbackQDesignerFormWindowInterface_CheckContents(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	QStringList includeHints() const { return ({ QtDesigner_PackedString tempVal = callbackQDesignerFormWindowInterface_IncludeHints(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	QStringList resourceFiles() const { return ({ QtDesigner_PackedString tempVal = callbackQDesignerFormWindowInterface_ResourceFiles(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	QWidget * formContainer() const { return static_cast<QWidget*>(callbackQDesignerFormWindowInterface_FormContainer(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool hasFeature(QDesignerFormWindowInterface::Feature feature) const { return callbackQDesignerFormWindowInterface_HasFeature(const_cast<void*>(static_cast<const void*>(this)), feature) != 0; };
 	bool isDirty() const { return callbackQDesignerFormWindowInterface_IsDirty(const_cast<void*>(static_cast<const void*>(this))) != 0; };
@@ -1739,12 +1739,12 @@ void QDesignerFormWindowInterface_AboutToUnmanageWidget(void* ptr, void* widget)
 
 void QDesignerFormWindowInterface_ActivateResourceFilePaths(void* ptr, struct QtDesigner_PackedString paths, int errorCount, struct QtDesigner_PackedString errorMessages)
 {
-	QMetaObject::invokeMethod(static_cast<QDesignerFormWindowInterface*>(ptr), "activateResourceFilePaths", Q_ARG(const QStringList, QString::fromUtf8(paths.data, paths.len).split("|", QString::SkipEmptyParts)), Q_ARG(int*, &errorCount), Q_ARG(QString*, new QString(QString::fromUtf8(errorMessages.data, errorMessages.len))));
+	QMetaObject::invokeMethod(static_cast<QDesignerFormWindowInterface*>(ptr), "activateResourceFilePaths", Q_ARG(const QStringList, QString::fromUtf8(paths.data, paths.len).split("¡¦!", QString::SkipEmptyParts)), Q_ARG(int*, &errorCount), Q_ARG(QString*, new QString(QString::fromUtf8(errorMessages.data, errorMessages.len))));
 }
 
 void QDesignerFormWindowInterface_ActivateResourceFilePathsDefault(void* ptr, struct QtDesigner_PackedString paths, int errorCount, struct QtDesigner_PackedString errorMessages)
 {
-		static_cast<QDesignerFormWindowInterface*>(ptr)->QDesignerFormWindowInterface::activateResourceFilePaths(QString::fromUtf8(paths.data, paths.len).split("|", QString::SkipEmptyParts), &errorCount, new QString(QString::fromUtf8(errorMessages.data, errorMessages.len)));
+		static_cast<QDesignerFormWindowInterface*>(ptr)->QDesignerFormWindowInterface::activateResourceFilePaths(QString::fromUtf8(paths.data, paths.len).split("¡¦!", QString::SkipEmptyParts), &errorCount, new QString(QString::fromUtf8(errorMessages.data, errorMessages.len)));
 }
 
 void QDesignerFormWindowInterface_ConnectActivated(void* ptr)
@@ -1965,7 +1965,7 @@ void QDesignerFormWindowInterface_SetGrid(void* ptr, void* grid)
 
 void QDesignerFormWindowInterface_SetIncludeHints(void* ptr, struct QtDesigner_PackedString includeHints)
 {
-	static_cast<QDesignerFormWindowInterface*>(ptr)->setIncludeHints(QString::fromUtf8(includeHints.data, includeHints.len).split("|", QString::SkipEmptyParts));
+	static_cast<QDesignerFormWindowInterface*>(ptr)->setIncludeHints(QString::fromUtf8(includeHints.data, includeHints.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void QDesignerFormWindowInterface_SetLayoutDefault(void* ptr, int margin, int spacing)
@@ -2121,22 +2121,22 @@ struct QtDesigner_PackedString QDesignerFormWindowInterface_PixmapFunction(void*
 
 struct QtDesigner_PackedString QDesignerFormWindowInterface_ActiveResourceFilePaths(void* ptr)
 {
-	return ({ QByteArray t8dca06 = static_cast<QDesignerFormWindowInterface*>(ptr)->activeResourceFilePaths().join("|").toUtf8(); QtDesigner_PackedString { const_cast<char*>(t8dca06.prepend("WHITESPACE").constData()+10), t8dca06.size()-10 }; });
+	return ({ QByteArray t8dca06 = static_cast<QDesignerFormWindowInterface*>(ptr)->activeResourceFilePaths().join("¡¦!").toUtf8(); QtDesigner_PackedString { const_cast<char*>(t8dca06.prepend("WHITESPACE").constData()+10), t8dca06.size()-10 }; });
 }
 
 struct QtDesigner_PackedString QDesignerFormWindowInterface_CheckContents(void* ptr)
 {
-	return ({ QByteArray t13d91e = static_cast<QDesignerFormWindowInterface*>(ptr)->checkContents().join("|").toUtf8(); QtDesigner_PackedString { const_cast<char*>(t13d91e.prepend("WHITESPACE").constData()+10), t13d91e.size()-10 }; });
+	return ({ QByteArray t13d91e = static_cast<QDesignerFormWindowInterface*>(ptr)->checkContents().join("¡¦!").toUtf8(); QtDesigner_PackedString { const_cast<char*>(t13d91e.prepend("WHITESPACE").constData()+10), t13d91e.size()-10 }; });
 }
 
 struct QtDesigner_PackedString QDesignerFormWindowInterface_IncludeHints(void* ptr)
 {
-	return ({ QByteArray ta8d26f = static_cast<QDesignerFormWindowInterface*>(ptr)->includeHints().join("|").toUtf8(); QtDesigner_PackedString { const_cast<char*>(ta8d26f.prepend("WHITESPACE").constData()+10), ta8d26f.size()-10 }; });
+	return ({ QByteArray ta8d26f = static_cast<QDesignerFormWindowInterface*>(ptr)->includeHints().join("¡¦!").toUtf8(); QtDesigner_PackedString { const_cast<char*>(ta8d26f.prepend("WHITESPACE").constData()+10), ta8d26f.size()-10 }; });
 }
 
 struct QtDesigner_PackedString QDesignerFormWindowInterface_ResourceFiles(void* ptr)
 {
-	return ({ QByteArray t55124a = static_cast<QDesignerFormWindowInterface*>(ptr)->resourceFiles().join("|").toUtf8(); QtDesigner_PackedString { const_cast<char*>(t55124a.prepend("WHITESPACE").constData()+10), t55124a.size()-10 }; });
+	return ({ QByteArray t55124a = static_cast<QDesignerFormWindowInterface*>(ptr)->resourceFiles().join("¡¦!").toUtf8(); QtDesigner_PackedString { const_cast<char*>(t55124a.prepend("WHITESPACE").constData()+10), t55124a.size()-10 }; });
 }
 
 void* QDesignerFormWindowInterface_FormContainer(void* ptr)
@@ -5788,7 +5788,7 @@ void QFormBuilder_ClearPluginPaths(void* ptr)
 
 void QFormBuilder_SetPluginPath(void* ptr, struct QtDesigner_PackedString pluginPaths)
 {
-	static_cast<QFormBuilder*>(ptr)->setPluginPath(QString::fromUtf8(pluginPaths.data, pluginPaths.len).split("|", QString::SkipEmptyParts));
+	static_cast<QFormBuilder*>(ptr)->setPluginPath(QString::fromUtf8(pluginPaths.data, pluginPaths.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void QFormBuilder_DestroyQFormBuilder(void* ptr)
@@ -5809,7 +5809,7 @@ struct QtDesigner_PackedList QFormBuilder_CustomWidgets(void* ptr)
 
 struct QtDesigner_PackedString QFormBuilder_PluginPaths(void* ptr)
 {
-	return ({ QByteArray t18141d = static_cast<QFormBuilder*>(ptr)->pluginPaths().join("|").toUtf8(); QtDesigner_PackedString { const_cast<char*>(t18141d.prepend("WHITESPACE").constData()+10), t18141d.size()-10 }; });
+	return ({ QByteArray t18141d = static_cast<QFormBuilder*>(ptr)->pluginPaths().join("¡¦!").toUtf8(); QtDesigner_PackedString { const_cast<char*>(t18141d.prepend("WHITESPACE").constData()+10), t18141d.size()-10 }; });
 }
 
 void* QFormBuilder___customWidgets_atList(void* ptr, int i)

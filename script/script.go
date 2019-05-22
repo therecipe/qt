@@ -28,6 +28,12 @@ func cGoUnpackBytes(s C.struct_QtScript_PackedString) []byte {
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
+func unpackStringList(s string) []string {
+	if len(s) == 0 {
+		return make([]string, 0)
+	}
+	return strings.Split(s, "¡¦!")
+}
 
 type QSOperator struct {
 	ptr unsafe.Pointer
@@ -931,7 +937,7 @@ func (ptr *QScriptContext) ToString() string {
 
 func (ptr *QScriptContext) Backtrace() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QScriptContext_Backtrace(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QScriptContext_Backtrace(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -1048,7 +1054,7 @@ func (ptr *QScriptContextInfo) FunctionName() string {
 
 func (ptr *QScriptContextInfo) FunctionParameterNames() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QScriptContextInfo_FunctionParameterNames(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QScriptContextInfo_FunctionParameterNames(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -1615,21 +1621,21 @@ func (ptr *QScriptEngine) UncaughtException() *QScriptValue {
 
 func (ptr *QScriptEngine) AvailableExtensions() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QScriptEngine_AvailableExtensions(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QScriptEngine_AvailableExtensions(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QScriptEngine) ImportedExtensions() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QScriptEngine_ImportedExtensions(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QScriptEngine_ImportedExtensions(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QScriptEngine) UncaughtExceptionBacktrace() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QScriptEngine_UncaughtExceptionBacktrace(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QScriptEngine_UncaughtExceptionBacktrace(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -2709,10 +2715,10 @@ func (ptr *QScriptExtensionPlugin) SetupPackage(key string, engine QScriptEngine
 func callbackQScriptExtensionPlugin_Keys(ptr unsafe.Pointer) C.struct_QtScript_PackedString {
 	if signal := qt.GetSignal(ptr, "keys"); signal != nil {
 		tempVal := (*(*func() []string)(signal))()
-		return C.struct_QtScript_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtScript_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 	}
 	tempVal := make([]string, 0)
-	return C.struct_QtScript_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtScript_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 }
 
 func (ptr *QScriptExtensionPlugin) ConnectKeys(f func() []string) {
@@ -2739,7 +2745,7 @@ func (ptr *QScriptExtensionPlugin) DisconnectKeys() {
 
 func (ptr *QScriptExtensionPlugin) Keys() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QScriptExtensionPlugin_Keys(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QScriptExtensionPlugin_Keys(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }

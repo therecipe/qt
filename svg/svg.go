@@ -13,6 +13,7 @@ import (
 	"github.com/therecipe/qt/gui"
 	"github.com/therecipe/qt/widgets"
 	"runtime"
+	"strings"
 	"unsafe"
 )
 
@@ -28,6 +29,12 @@ func cGoUnpackBytes(s C.struct_QtSvg_PackedString) []byte {
 		return *(*[]byte)(unsafe.Pointer(&gs))
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
+}
+func unpackStringList(s string) []string {
+	if len(s) == 0 {
+		return make([]string, 0)
+	}
+	return strings.Split(s, "¡¦!")
 }
 
 type QGraphicsSvgItem struct {

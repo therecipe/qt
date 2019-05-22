@@ -29,6 +29,12 @@ func cGoUnpackBytes(s C.struct_QtAndroidExtras_PackedString) []byte {
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
+func unpackStringList(s string) []string {
+	if len(s) == 0 {
+		return make([]string, 0)
+	}
+	return strings.Split(s, "¡¦!")
+}
 func QAndroidJniEnvironment_ExceptionCatch() error {
 	var err error
 	if QAndroidJniEnvironment_ExceptionCheck() {

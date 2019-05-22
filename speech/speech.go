@@ -28,6 +28,12 @@ func cGoUnpackBytes(s C.struct_QtSpeech_PackedString) []byte {
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
+func unpackStringList(s string) []string {
+	if len(s) == 0 {
+		return make([]string, 0)
+	}
+	return strings.Split(s, "¡¦!")
+}
 
 type QTextToSpeech struct {
 	core.QObject
@@ -108,11 +114,11 @@ func (ptr *QTextToSpeech) Tr(s string, c string, n int) string {
 }
 
 func QTextToSpeech_AvailableEngines() []string {
-	return strings.Split(cGoUnpackString(C.QTextToSpeech_QTextToSpeech_AvailableEngines()), "|")
+	return unpackStringList(cGoUnpackString(C.QTextToSpeech_QTextToSpeech_AvailableEngines()))
 }
 
 func (ptr *QTextToSpeech) AvailableEngines() []string {
-	return strings.Split(cGoUnpackString(C.QTextToSpeech_QTextToSpeech_AvailableEngines()), "|")
+	return unpackStringList(cGoUnpackString(C.QTextToSpeech_QTextToSpeech_AvailableEngines()))
 }
 
 func NewQTextToSpeech(parent core.QObject_ITF) *QTextToSpeech {

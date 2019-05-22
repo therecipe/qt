@@ -26,4 +26,4 @@ RUN $GOPATH/bin/qtsetup check
 RUN $GOPATH/bin/qtsetup generate
 RUN cd $GOPATH/src/github.com/therecipe/qt/internal/examples/widgets/line_edits && $GOPATH/bin/qtdeploy build linux && rm -rf ./deploy
 
-RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates git
+RUN zypper -q ref && zypper -n -q install --no-recommends git

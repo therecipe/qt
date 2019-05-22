@@ -410,7 +410,7 @@ struct QtPositioning_PackedString QGeoAreaMonitorSource_QGeoAreaMonitorSource_Tr
 
 struct QtPositioning_PackedString QGeoAreaMonitorSource_QGeoAreaMonitorSource_AvailableSources()
 {
-	return ({ QByteArray t3a05b8 = QGeoAreaMonitorSource::availableSources().join("|").toUtf8(); QtPositioning_PackedString { const_cast<char*>(t3a05b8.prepend("WHITESPACE").constData()+10), t3a05b8.size()-10 }; });
+	return ({ QByteArray t3a05b8 = QGeoAreaMonitorSource::availableSources().join("¡¦!").toUtf8(); QtPositioning_PackedString { const_cast<char*>(t3a05b8.prepend("WHITESPACE").constData()+10), t3a05b8.size()-10 }; });
 }
 
 char QGeoAreaMonitorSource_RequestUpdate(void* ptr, void* monitor, char* sign)
@@ -1440,7 +1440,7 @@ struct QtPositioning_PackedString QGeoPositionInfoSource_QGeoPositionInfoSource_
 
 struct QtPositioning_PackedString QGeoPositionInfoSource_QGeoPositionInfoSource_AvailableSources()
 {
-	return ({ QByteArray t547e22 = QGeoPositionInfoSource::availableSources().join("|").toUtf8(); QtPositioning_PackedString { const_cast<char*>(t547e22.prepend("WHITESPACE").constData()+10), t547e22.size()-10 }; });
+	return ({ QByteArray t547e22 = QGeoPositionInfoSource::availableSources().join("¡¦!").toUtf8(); QtPositioning_PackedString { const_cast<char*>(t547e22.prepend("WHITESPACE").constData()+10), t547e22.size()-10 }; });
 }
 
 void QGeoPositionInfoSource_ConnectError2(void* ptr)
@@ -2087,7 +2087,7 @@ struct QtPositioning_PackedString QGeoSatelliteInfoSource_QGeoSatelliteInfoSourc
 
 struct QtPositioning_PackedString QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_AvailableSources()
 {
-	return ({ QByteArray tab00fe = QGeoSatelliteInfoSource::availableSources().join("|").toUtf8(); QtPositioning_PackedString { const_cast<char*>(tab00fe.prepend("WHITESPACE").constData()+10), tab00fe.size()-10 }; });
+	return ({ QByteArray tab00fe = QGeoSatelliteInfoSource::availableSources().join("¡¦!").toUtf8(); QtPositioning_PackedString { const_cast<char*>(tab00fe.prepend("WHITESPACE").constData()+10), tab00fe.size()-10 }; });
 }
 
 void QGeoSatelliteInfoSource_ConnectError2(void* ptr)

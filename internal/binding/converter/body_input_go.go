@@ -35,7 +35,7 @@ func GoInputParametersForC(function *parser.Function) string {
 									return "C.longlong(-1)"
 								}
 								if parser.CleanValue(parameter.Value) == "QStringList" {
-									return fmt.Sprintf("C.longlong(len(strings.Join(%v, \"|\")))", parser.CleanName(parameter.Name, parameter.Value))
+									return fmt.Sprintf("C.longlong(len(strings.Join(%v, \"¡¦!\")))", parser.CleanName(parameter.Name, parameter.Value))
 								}
 								return fmt.Sprintf("C.longlong(len(%v))", parser.CleanName(parameter.Name, parameter.Value))
 							}()))

@@ -405,7 +405,7 @@ func goFunctionBody(function *parser.Function) string {
 										return "C.longlong(-1)"
 									}
 									if parser.CleanValue(function.Output) == "QStringList" {
-										return "C.longlong(len(strings.Join(tempVal, \"|\")))"
+										return "C.longlong(len(strings.Join(tempVal, \"¡¦!\")))"
 									}
 									return "C.longlong(len(tempVal))"
 								}())
@@ -495,7 +495,7 @@ func goFunctionBody(function *parser.Function) string {
 											return "C.longlong(-1)"
 										}
 										if parser.CleanValue(function.Output) == "QStringList" {
-											return "C.longlong(len(strings.Join(tempVal, \"|\")))"
+											return "C.longlong(len(strings.Join(tempVal, \"¡¦!\")))"
 										}
 										return "C.longlong(len(tempVal))"
 									}())
@@ -556,7 +556,7 @@ func goFunctionBody(function *parser.Function) string {
 										return "C.longlong(-1)"
 									}
 									if parser.CleanValue(function.Output) == "QStringList" {
-										return "C.longlong(len(strings.Join(tempVal, \"|\")))"
+										return "C.longlong(len(strings.Join(tempVal, \"¡¦!\")))"
 									}
 									return "C.longlong(len(tempVal))"
 								}())

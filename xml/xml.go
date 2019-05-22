@@ -28,6 +28,12 @@ func cGoUnpackBytes(s C.struct_QtXml_PackedString) []byte {
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
+func unpackStringList(s string) []string {
+	if len(s) == 0 {
+		return make([]string, 0)
+	}
+	return strings.Split(s, "¡¦!")
+}
 
 type QDomAttr struct {
 	QDomNode
@@ -7435,7 +7441,7 @@ func (ptr *QXmlNamespaceSupport) Uri(prefix string) string {
 
 func (ptr *QXmlNamespaceSupport) Prefixes() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QXmlNamespaceSupport_Prefixes(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QXmlNamespaceSupport_Prefixes(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -7447,7 +7453,7 @@ func (ptr *QXmlNamespaceSupport) Prefixes2(uri string) []string {
 			uriC = C.CString(uri)
 			defer C.free(unsafe.Pointer(uriC))
 		}
-		return strings.Split(cGoUnpackString(C.QXmlNamespaceSupport_Prefixes2(ptr.Pointer(), C.struct_QtXml_PackedString{data: uriC, len: C.longlong(len(uri))})), "|")
+		return unpackStringList(cGoUnpackString(C.QXmlNamespaceSupport_Prefixes2(ptr.Pointer(), C.struct_QtXml_PackedString{data: uriC, len: C.longlong(len(uri))})))
 	}
 	return make([]string, 0)
 }

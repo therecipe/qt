@@ -82,7 +82,7 @@ struct QtSpeech_PackedString QTextToSpeech_QTextToSpeech_Tr(char* s, char* c, in
 
 struct QtSpeech_PackedString QTextToSpeech_QTextToSpeech_AvailableEngines()
 {
-	return ({ QByteArray tb1cc61 = QTextToSpeech::availableEngines().join("|").toUtf8(); QtSpeech_PackedString { const_cast<char*>(tb1cc61.prepend("WHITESPACE").constData()+10), tb1cc61.size()-10 }; });
+	return ({ QByteArray tb1cc61 = QTextToSpeech::availableEngines().join("¡¦!").toUtf8(); QtSpeech_PackedString { const_cast<char*>(tb1cc61.prepend("WHITESPACE").constData()+10), tb1cc61.size()-10 }; });
 }
 
 void* QTextToSpeech_NewQTextToSpeech(void* parent)

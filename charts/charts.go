@@ -30,6 +30,12 @@ func cGoUnpackBytes(s C.struct_QtCharts_PackedString) []byte {
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
+func unpackStringList(s string) []string {
+	if len(s) == 0 {
+		return make([]string, 0)
+	}
+	return strings.Split(s, "¡¦!")
+}
 
 type QAbstractAxis struct {
 	core.QObject
@@ -4532,7 +4538,7 @@ func NewQBarCategoryAxis(parent core.QObject_ITF) *QBarCategoryAxis {
 
 func (ptr *QBarCategoryAxis) Categories() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QBarCategoryAxis_Categories(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QBarCategoryAxis_Categories(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -4550,9 +4556,9 @@ func (ptr *QBarCategoryAxis) Append2(category string) {
 
 func (ptr *QBarCategoryAxis) Append(categories []string) {
 	if ptr.Pointer() != nil {
-		categoriesC := C.CString(strings.Join(categories, "|"))
+		categoriesC := C.CString(strings.Join(categories, "¡¦!"))
 		defer C.free(unsafe.Pointer(categoriesC))
-		C.QBarCategoryAxis_Append(ptr.Pointer(), C.struct_QtCharts_PackedString{data: categoriesC, len: C.longlong(len(strings.Join(categories, "|")))})
+		C.QBarCategoryAxis_Append(ptr.Pointer(), C.struct_QtCharts_PackedString{data: categoriesC, len: C.longlong(len(strings.Join(categories, "¡¦!")))})
 	}
 }
 
@@ -4822,9 +4828,9 @@ func (ptr *QBarCategoryAxis) Replace(oldCategory string, newCategory string) {
 
 func (ptr *QBarCategoryAxis) SetCategories(categories []string) {
 	if ptr.Pointer() != nil {
-		categoriesC := C.CString(strings.Join(categories, "|"))
+		categoriesC := C.CString(strings.Join(categories, "¡¦!"))
 		defer C.free(unsafe.Pointer(categoriesC))
-		C.QBarCategoryAxis_SetCategories(ptr.Pointer(), C.struct_QtCharts_PackedString{data: categoriesC, len: C.longlong(len(strings.Join(categories, "|")))})
+		C.QBarCategoryAxis_SetCategories(ptr.Pointer(), C.struct_QtCharts_PackedString{data: categoriesC, len: C.longlong(len(strings.Join(categories, "¡¦!")))})
 	}
 }
 
@@ -11482,7 +11488,7 @@ func NewQCategoryAxis(parent core.QObject_ITF) *QCategoryAxis {
 
 func (ptr *QCategoryAxis) CategoriesLabels() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QCategoryAxis_CategoriesLabels(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QCategoryAxis_CategoriesLabels(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }

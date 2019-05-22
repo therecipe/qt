@@ -28,6 +28,12 @@ func cGoUnpackBytes(s C.struct_QtCore_PackedString) []byte {
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
+func unpackStringList(s string) []string {
+	if len(s) == 0 {
+		return make([]string, 0)
+	}
+	return strings.Split(s, "¡¦!")
+}
 
 type QAbstractAnimation struct {
 	QObject
@@ -3609,10 +3615,10 @@ func (ptr *QAbstractItemModel) SpanDefault(index QModelIndex_ITF) *QSize {
 func callbackQAbstractItemModel_MimeTypes(ptr unsafe.Pointer) C.struct_QtCore_PackedString {
 	if signal := qt.GetSignal(ptr, "mimeTypes"); signal != nil {
 		tempVal := (*(*func() []string)(signal))()
-		return C.struct_QtCore_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtCore_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 	}
 	tempVal := NewQAbstractItemModelFromPointer(ptr).MimeTypesDefault()
-	return C.struct_QtCore_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtCore_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 }
 
 func (ptr *QAbstractItemModel) ConnectMimeTypes(f func() []string) {
@@ -3639,14 +3645,14 @@ func (ptr *QAbstractItemModel) DisconnectMimeTypes() {
 
 func (ptr *QAbstractItemModel) MimeTypes() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QAbstractItemModel_MimeTypes(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QAbstractItemModel_MimeTypes(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QAbstractItemModel) MimeTypesDefault() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QAbstractItemModel_MimeTypesDefault(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QAbstractItemModel_MimeTypesDefault(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -9290,17 +9296,17 @@ func (ptr *QCborArray) FromJsonArray(array QJsonArray_ITF) *QCborArray {
 }
 
 func QCborArray_FromStringList(list []string) *QCborArray {
-	listC := C.CString(strings.Join(list, "|"))
+	listC := C.CString(strings.Join(list, "¡¦!"))
 	defer C.free(unsafe.Pointer(listC))
-	tmpValue := NewQCborArrayFromPointer(C.QCborArray_QCborArray_FromStringList(C.struct_QtCore_PackedString{data: listC, len: C.longlong(len(strings.Join(list, "|")))}))
+	tmpValue := NewQCborArrayFromPointer(C.QCborArray_QCborArray_FromStringList(C.struct_QtCore_PackedString{data: listC, len: C.longlong(len(strings.Join(list, "¡¦!")))}))
 	runtime.SetFinalizer(tmpValue, (*QCborArray).DestroyQCborArray)
 	return tmpValue
 }
 
 func (ptr *QCborArray) FromStringList(list []string) *QCborArray {
-	listC := C.CString(strings.Join(list, "|"))
+	listC := C.CString(strings.Join(list, "¡¦!"))
 	defer C.free(unsafe.Pointer(listC))
-	tmpValue := NewQCborArrayFromPointer(C.QCborArray_QCborArray_FromStringList(C.struct_QtCore_PackedString{data: listC, len: C.longlong(len(strings.Join(list, "|")))}))
+	tmpValue := NewQCborArrayFromPointer(C.QCborArray_QCborArray_FromStringList(C.struct_QtCore_PackedString{data: listC, len: C.longlong(len(strings.Join(list, "¡¦!")))}))
 	runtime.SetFinalizer(tmpValue, (*QCborArray).DestroyQCborArray)
 	return tmpValue
 }
@@ -11857,15 +11863,15 @@ func NewQCommandLineOption3(name string, description string, valueName string, d
 }
 
 func NewQCommandLineOption2(names []string) *QCommandLineOption {
-	namesC := C.CString(strings.Join(names, "|"))
+	namesC := C.CString(strings.Join(names, "¡¦!"))
 	defer C.free(unsafe.Pointer(namesC))
-	tmpValue := NewQCommandLineOptionFromPointer(C.QCommandLineOption_NewQCommandLineOption2(C.struct_QtCore_PackedString{data: namesC, len: C.longlong(len(strings.Join(names, "|")))}))
+	tmpValue := NewQCommandLineOptionFromPointer(C.QCommandLineOption_NewQCommandLineOption2(C.struct_QtCore_PackedString{data: namesC, len: C.longlong(len(strings.Join(names, "¡¦!")))}))
 	runtime.SetFinalizer(tmpValue, (*QCommandLineOption).DestroyQCommandLineOption)
 	return tmpValue
 }
 
 func NewQCommandLineOption4(names []string, description string, valueName string, defaultValue string) *QCommandLineOption {
-	namesC := C.CString(strings.Join(names, "|"))
+	namesC := C.CString(strings.Join(names, "¡¦!"))
 	defer C.free(unsafe.Pointer(namesC))
 	var descriptionC *C.char
 	if description != "" {
@@ -11882,7 +11888,7 @@ func NewQCommandLineOption4(names []string, description string, valueName string
 		defaultValueC = C.CString(defaultValue)
 		defer C.free(unsafe.Pointer(defaultValueC))
 	}
-	tmpValue := NewQCommandLineOptionFromPointer(C.QCommandLineOption_NewQCommandLineOption4(C.struct_QtCore_PackedString{data: namesC, len: C.longlong(len(strings.Join(names, "|")))}, C.struct_QtCore_PackedString{data: descriptionC, len: C.longlong(len(description))}, C.struct_QtCore_PackedString{data: valueNameC, len: C.longlong(len(valueName))}, C.struct_QtCore_PackedString{data: defaultValueC, len: C.longlong(len(defaultValue))}))
+	tmpValue := NewQCommandLineOptionFromPointer(C.QCommandLineOption_NewQCommandLineOption4(C.struct_QtCore_PackedString{data: namesC, len: C.longlong(len(strings.Join(names, "¡¦!")))}, C.struct_QtCore_PackedString{data: descriptionC, len: C.longlong(len(description))}, C.struct_QtCore_PackedString{data: valueNameC, len: C.longlong(len(valueName))}, C.struct_QtCore_PackedString{data: defaultValueC, len: C.longlong(len(defaultValue))}))
 	runtime.SetFinalizer(tmpValue, (*QCommandLineOption).DestroyQCommandLineOption)
 	return tmpValue
 }
@@ -11900,9 +11906,9 @@ func (ptr *QCommandLineOption) SetDefaultValue(defaultValue string) {
 
 func (ptr *QCommandLineOption) SetDefaultValues(defaultValues []string) {
 	if ptr.Pointer() != nil {
-		defaultValuesC := C.CString(strings.Join(defaultValues, "|"))
+		defaultValuesC := C.CString(strings.Join(defaultValues, "¡¦!"))
 		defer C.free(unsafe.Pointer(defaultValuesC))
-		C.QCommandLineOption_SetDefaultValues(ptr.Pointer(), C.struct_QtCore_PackedString{data: defaultValuesC, len: C.longlong(len(strings.Join(defaultValues, "|")))})
+		C.QCommandLineOption_SetDefaultValues(ptr.Pointer(), C.struct_QtCore_PackedString{data: defaultValuesC, len: C.longlong(len(strings.Join(defaultValues, "¡¦!")))})
 	}
 }
 
@@ -11971,14 +11977,14 @@ func (ptr *QCommandLineOption) ValueName() string {
 
 func (ptr *QCommandLineOption) DefaultValues() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QCommandLineOption_DefaultValues(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QCommandLineOption_DefaultValues(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QCommandLineOption) Names() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QCommandLineOption_Names(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QCommandLineOption_Names(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -12113,9 +12119,9 @@ func (ptr *QCommandLineParser) AddOptions(options []*QCommandLineOption) bool {
 
 func (ptr *QCommandLineParser) Parse(arguments []string) bool {
 	if ptr.Pointer() != nil {
-		argumentsC := C.CString(strings.Join(arguments, "|"))
+		argumentsC := C.CString(strings.Join(arguments, "¡¦!"))
 		defer C.free(unsafe.Pointer(argumentsC))
-		return int8(C.QCommandLineParser_Parse(ptr.Pointer(), C.struct_QtCore_PackedString{data: argumentsC, len: C.longlong(len(strings.Join(arguments, "|")))})) != 0
+		return int8(C.QCommandLineParser_Parse(ptr.Pointer(), C.struct_QtCore_PackedString{data: argumentsC, len: C.longlong(len(strings.Join(arguments, "¡¦!")))})) != 0
 	}
 	return false
 }
@@ -12155,9 +12161,9 @@ func (ptr *QCommandLineParser) Process2(app QCoreApplication_ITF) {
 
 func (ptr *QCommandLineParser) Process(arguments []string) {
 	if ptr.Pointer() != nil {
-		argumentsC := C.CString(strings.Join(arguments, "|"))
+		argumentsC := C.CString(strings.Join(arguments, "¡¦!"))
 		defer C.free(unsafe.Pointer(argumentsC))
-		C.QCommandLineParser_Process(ptr.Pointer(), C.struct_QtCore_PackedString{data: argumentsC, len: C.longlong(len(strings.Join(arguments, "|")))})
+		C.QCommandLineParser_Process(ptr.Pointer(), C.struct_QtCore_PackedString{data: argumentsC, len: C.longlong(len(strings.Join(arguments, "¡¦!")))})
 	}
 }
 
@@ -12246,28 +12252,28 @@ func (ptr *QCommandLineParser) Value(optionName string) string {
 
 func (ptr *QCommandLineParser) OptionNames() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QCommandLineParser_OptionNames(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QCommandLineParser_OptionNames(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QCommandLineParser) PositionalArguments() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QCommandLineParser_PositionalArguments(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QCommandLineParser_PositionalArguments(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QCommandLineParser) UnknownOptionNames() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QCommandLineParser_UnknownOptionNames(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QCommandLineParser_UnknownOptionNames(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QCommandLineParser) Values2(option QCommandLineOption_ITF) []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QCommandLineParser_Values2(ptr.Pointer(), PointerFromQCommandLineOption(option))), "|")
+		return unpackStringList(cGoUnpackString(C.QCommandLineParser_Values2(ptr.Pointer(), PointerFromQCommandLineOption(option))))
 	}
 	return make([]string, 0)
 }
@@ -12279,7 +12285,7 @@ func (ptr *QCommandLineParser) Values(optionName string) []string {
 			optionNameC = C.CString(optionName)
 			defer C.free(unsafe.Pointer(optionNameC))
 		}
-		return strings.Split(cGoUnpackString(C.QCommandLineParser_Values(ptr.Pointer(), C.struct_QtCore_PackedString{data: optionNameC, len: C.longlong(len(optionName))})), "|")
+		return unpackStringList(cGoUnpackString(C.QCommandLineParser_Values(ptr.Pointer(), C.struct_QtCore_PackedString{data: optionNameC, len: C.longlong(len(optionName))})))
 	}
 	return make([]string, 0)
 }
@@ -12527,19 +12533,19 @@ func (ptr *QCoreApplication) Translate(context string, sourceText string, disamb
 }
 
 func QCoreApplication_Arguments() []string {
-	return strings.Split(cGoUnpackString(C.QCoreApplication_QCoreApplication_Arguments()), "|")
+	return unpackStringList(cGoUnpackString(C.QCoreApplication_QCoreApplication_Arguments()))
 }
 
 func (ptr *QCoreApplication) Arguments() []string {
-	return strings.Split(cGoUnpackString(C.QCoreApplication_QCoreApplication_Arguments()), "|")
+	return unpackStringList(cGoUnpackString(C.QCoreApplication_QCoreApplication_Arguments()))
 }
 
 func QCoreApplication_LibraryPaths() []string {
-	return strings.Split(cGoUnpackString(C.QCoreApplication_QCoreApplication_LibraryPaths()), "|")
+	return unpackStringList(cGoUnpackString(C.QCoreApplication_QCoreApplication_LibraryPaths()))
 }
 
 func (ptr *QCoreApplication) LibraryPaths() []string {
-	return strings.Split(cGoUnpackString(C.QCoreApplication_QCoreApplication_LibraryPaths()), "|")
+	return unpackStringList(cGoUnpackString(C.QCoreApplication_QCoreApplication_LibraryPaths()))
 }
 
 func QCoreApplication_ClosingDown() bool {
@@ -12848,15 +12854,15 @@ func (ptr *QCoreApplication) SetEventDispatcher(eventDispatcher QAbstractEventDi
 }
 
 func QCoreApplication_SetLibraryPaths(paths []string) {
-	pathsC := C.CString(strings.Join(paths, "|"))
+	pathsC := C.CString(strings.Join(paths, "¡¦!"))
 	defer C.free(unsafe.Pointer(pathsC))
-	C.QCoreApplication_QCoreApplication_SetLibraryPaths(C.struct_QtCore_PackedString{data: pathsC, len: C.longlong(len(strings.Join(paths, "|")))})
+	C.QCoreApplication_QCoreApplication_SetLibraryPaths(C.struct_QtCore_PackedString{data: pathsC, len: C.longlong(len(strings.Join(paths, "¡¦!")))})
 }
 
 func (ptr *QCoreApplication) SetLibraryPaths(paths []string) {
-	pathsC := C.CString(strings.Join(paths, "|"))
+	pathsC := C.CString(strings.Join(paths, "¡¦!"))
 	defer C.free(unsafe.Pointer(pathsC))
-	C.QCoreApplication_QCoreApplication_SetLibraryPaths(C.struct_QtCore_PackedString{data: pathsC, len: C.longlong(len(strings.Join(paths, "|")))})
+	C.QCoreApplication_QCoreApplication_SetLibraryPaths(C.struct_QtCore_PackedString{data: pathsC, len: C.longlong(len(strings.Join(paths, "¡¦!")))})
 }
 
 func QCoreApplication_SetOrganizationDomain(orgDomain string) {
@@ -14865,7 +14871,7 @@ func QDir_SearchPaths(prefix string) []string {
 		prefixC = C.CString(prefix)
 		defer C.free(unsafe.Pointer(prefixC))
 	}
-	return strings.Split(cGoUnpackString(C.QDir_QDir_SearchPaths(C.struct_QtCore_PackedString{data: prefixC, len: C.longlong(len(prefix))})), "|")
+	return unpackStringList(cGoUnpackString(C.QDir_QDir_SearchPaths(C.struct_QtCore_PackedString{data: prefixC, len: C.longlong(len(prefix))})))
 }
 
 func (ptr *QDir) SearchPaths(prefix string) []string {
@@ -14874,7 +14880,7 @@ func (ptr *QDir) SearchPaths(prefix string) []string {
 		prefixC = C.CString(prefix)
 		defer C.free(unsafe.Pointer(prefixC))
 	}
-	return strings.Split(cGoUnpackString(C.QDir_QDir_SearchPaths(C.struct_QtCore_PackedString{data: prefixC, len: C.longlong(len(prefix))})), "|")
+	return unpackStringList(cGoUnpackString(C.QDir_QDir_SearchPaths(C.struct_QtCore_PackedString{data: prefixC, len: C.longlong(len(prefix))})))
 }
 
 func (ptr *QDir) Cd(dirName string) bool {
@@ -14968,25 +14974,25 @@ func (ptr *QDir) Match(filter string, fileName string) bool {
 }
 
 func QDir_Match2(filters []string, fileName string) bool {
-	filtersC := C.CString(strings.Join(filters, "|"))
+	filtersC := C.CString(strings.Join(filters, "¡¦!"))
 	defer C.free(unsafe.Pointer(filtersC))
 	var fileNameC *C.char
 	if fileName != "" {
 		fileNameC = C.CString(fileName)
 		defer C.free(unsafe.Pointer(fileNameC))
 	}
-	return int8(C.QDir_QDir_Match2(C.struct_QtCore_PackedString{data: filtersC, len: C.longlong(len(strings.Join(filters, "|")))}, C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))})) != 0
+	return int8(C.QDir_QDir_Match2(C.struct_QtCore_PackedString{data: filtersC, len: C.longlong(len(strings.Join(filters, "¡¦!")))}, C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))})) != 0
 }
 
 func (ptr *QDir) Match2(filters []string, fileName string) bool {
-	filtersC := C.CString(strings.Join(filters, "|"))
+	filtersC := C.CString(strings.Join(filters, "¡¦!"))
 	defer C.free(unsafe.Pointer(filtersC))
 	var fileNameC *C.char
 	if fileName != "" {
 		fileNameC = C.CString(fileName)
 		defer C.free(unsafe.Pointer(fileNameC))
 	}
-	return int8(C.QDir_QDir_Match2(C.struct_QtCore_PackedString{data: filtersC, len: C.longlong(len(strings.Join(filters, "|")))}, C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))})) != 0
+	return int8(C.QDir_QDir_Match2(C.struct_QtCore_PackedString{data: filtersC, len: C.longlong(len(strings.Join(filters, "¡¦!")))}, C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))})) != 0
 }
 
 func (ptr *QDir) Remove(fileName string) bool {
@@ -15079,9 +15085,9 @@ func (ptr *QDir) SetFilter(filters QDir__Filter) {
 
 func (ptr *QDir) SetNameFilters(nameFilters []string) {
 	if ptr.Pointer() != nil {
-		nameFiltersC := C.CString(strings.Join(nameFilters, "|"))
+		nameFiltersC := C.CString(strings.Join(nameFilters, "¡¦!"))
 		defer C.free(unsafe.Pointer(nameFiltersC))
-		C.QDir_SetNameFilters(ptr.Pointer(), C.struct_QtCore_PackedString{data: nameFiltersC, len: C.longlong(len(strings.Join(nameFilters, "|")))})
+		C.QDir_SetNameFilters(ptr.Pointer(), C.struct_QtCore_PackedString{data: nameFiltersC, len: C.longlong(len(strings.Join(nameFilters, "¡¦!")))})
 	}
 }
 
@@ -15102,9 +15108,9 @@ func QDir_SetSearchPaths(prefix string, searchPaths []string) {
 		prefixC = C.CString(prefix)
 		defer C.free(unsafe.Pointer(prefixC))
 	}
-	searchPathsC := C.CString(strings.Join(searchPaths, "|"))
+	searchPathsC := C.CString(strings.Join(searchPaths, "¡¦!"))
 	defer C.free(unsafe.Pointer(searchPathsC))
-	C.QDir_QDir_SetSearchPaths(C.struct_QtCore_PackedString{data: prefixC, len: C.longlong(len(prefix))}, C.struct_QtCore_PackedString{data: searchPathsC, len: C.longlong(len(strings.Join(searchPaths, "|")))})
+	C.QDir_QDir_SetSearchPaths(C.struct_QtCore_PackedString{data: prefixC, len: C.longlong(len(prefix))}, C.struct_QtCore_PackedString{data: searchPathsC, len: C.longlong(len(strings.Join(searchPaths, "¡¦!")))})
 }
 
 func (ptr *QDir) SetSearchPaths(prefix string, searchPaths []string) {
@@ -15113,9 +15119,9 @@ func (ptr *QDir) SetSearchPaths(prefix string, searchPaths []string) {
 		prefixC = C.CString(prefix)
 		defer C.free(unsafe.Pointer(prefixC))
 	}
-	searchPathsC := C.CString(strings.Join(searchPaths, "|"))
+	searchPathsC := C.CString(strings.Join(searchPaths, "¡¦!"))
 	defer C.free(unsafe.Pointer(searchPathsC))
-	C.QDir_QDir_SetSearchPaths(C.struct_QtCore_PackedString{data: prefixC, len: C.longlong(len(prefix))}, C.struct_QtCore_PackedString{data: searchPathsC, len: C.longlong(len(strings.Join(searchPaths, "|")))})
+	C.QDir_QDir_SetSearchPaths(C.struct_QtCore_PackedString{data: prefixC, len: C.longlong(len(prefix))}, C.struct_QtCore_PackedString{data: searchPathsC, len: C.longlong(len(strings.Join(searchPaths, "¡¦!")))})
 }
 
 func (ptr *QDir) SetSorting(sort QDir__SortFlag) {
@@ -15168,7 +15174,7 @@ func (ptr *QDir) EntryInfoList2(filters QDir__Filter, sort QDir__SortFlag) []*QF
 
 func (ptr *QDir) EntryInfoList(nameFilters []string, filters QDir__Filter, sort QDir__SortFlag) []*QFileInfo {
 	if ptr.Pointer() != nil {
-		nameFiltersC := C.CString(strings.Join(nameFilters, "|"))
+		nameFiltersC := C.CString(strings.Join(nameFilters, "¡¦!"))
 		defer C.free(unsafe.Pointer(nameFiltersC))
 		return func(l C.struct_QtCore_PackedList) []*QFileInfo {
 			out := make([]*QFileInfo, int(l.len))
@@ -15177,7 +15183,7 @@ func (ptr *QDir) EntryInfoList(nameFilters []string, filters QDir__Filter, sort 
 				out[i] = tmpList.__entryInfoList_atList(i)
 			}
 			return out
-		}(C.QDir_EntryInfoList(ptr.Pointer(), C.struct_QtCore_PackedString{data: nameFiltersC, len: C.longlong(len(strings.Join(nameFilters, "|")))}, C.longlong(filters), C.longlong(sort)))
+		}(C.QDir_EntryInfoList(ptr.Pointer(), C.struct_QtCore_PackedString{data: nameFiltersC, len: C.longlong(len(strings.Join(nameFilters, "¡¦!")))}, C.longlong(filters), C.longlong(sort)))
 	}
 	return make([]*QFileInfo, 0)
 }
@@ -15248,23 +15254,23 @@ func (ptr *QDir) RelativeFilePath(fileName string) string {
 
 func (ptr *QDir) EntryList2(filters QDir__Filter, sort QDir__SortFlag) []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QDir_EntryList2(ptr.Pointer(), C.longlong(filters), C.longlong(sort))), "|")
+		return unpackStringList(cGoUnpackString(C.QDir_EntryList2(ptr.Pointer(), C.longlong(filters), C.longlong(sort))))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QDir) EntryList(nameFilters []string, filters QDir__Filter, sort QDir__SortFlag) []string {
 	if ptr.Pointer() != nil {
-		nameFiltersC := C.CString(strings.Join(nameFilters, "|"))
+		nameFiltersC := C.CString(strings.Join(nameFilters, "¡¦!"))
 		defer C.free(unsafe.Pointer(nameFiltersC))
-		return strings.Split(cGoUnpackString(C.QDir_EntryList(ptr.Pointer(), C.struct_QtCore_PackedString{data: nameFiltersC, len: C.longlong(len(strings.Join(nameFilters, "|")))}, C.longlong(filters), C.longlong(sort))), "|")
+		return unpackStringList(cGoUnpackString(C.QDir_EntryList(ptr.Pointer(), C.struct_QtCore_PackedString{data: nameFiltersC, len: C.longlong(len(strings.Join(nameFilters, "¡¦!")))}, C.longlong(filters), C.longlong(sort))))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QDir) NameFilters() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QDir_NameFilters(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QDir_NameFilters(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -18317,9 +18323,9 @@ func NewQFileSelector(parent QObject_ITF) *QFileSelector {
 
 func (ptr *QFileSelector) SetExtraSelectors(list []string) {
 	if ptr.Pointer() != nil {
-		listC := C.CString(strings.Join(list, "|"))
+		listC := C.CString(strings.Join(list, "¡¦!"))
 		defer C.free(unsafe.Pointer(listC))
-		C.QFileSelector_SetExtraSelectors(ptr.Pointer(), C.struct_QtCore_PackedString{data: listC, len: C.longlong(len(strings.Join(list, "|")))})
+		C.QFileSelector_SetExtraSelectors(ptr.Pointer(), C.struct_QtCore_PackedString{data: listC, len: C.longlong(len(strings.Join(list, "¡¦!")))})
 	}
 }
 
@@ -18384,14 +18390,14 @@ func (ptr *QFileSelector) Select(filePath string) string {
 
 func (ptr *QFileSelector) AllSelectors() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QFileSelector_AllSelectors(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QFileSelector_AllSelectors(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QFileSelector) ExtraSelectors() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QFileSelector_ExtraSelectors(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QFileSelector_ExtraSelectors(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -18452,9 +18458,9 @@ func NewQFileSystemWatcher(parent QObject_ITF) *QFileSystemWatcher {
 }
 
 func NewQFileSystemWatcher2(paths []string, parent QObject_ITF) *QFileSystemWatcher {
-	pathsC := C.CString(strings.Join(paths, "|"))
+	pathsC := C.CString(strings.Join(paths, "¡¦!"))
 	defer C.free(unsafe.Pointer(pathsC))
-	tmpValue := NewQFileSystemWatcherFromPointer(C.QFileSystemWatcher_NewQFileSystemWatcher2(C.struct_QtCore_PackedString{data: pathsC, len: C.longlong(len(strings.Join(paths, "|")))}, PointerFromQObject(parent)))
+	tmpValue := NewQFileSystemWatcherFromPointer(C.QFileSystemWatcher_NewQFileSystemWatcher2(C.struct_QtCore_PackedString{data: pathsC, len: C.longlong(len(strings.Join(paths, "¡¦!")))}, PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -18463,18 +18469,18 @@ func NewQFileSystemWatcher2(paths []string, parent QObject_ITF) *QFileSystemWatc
 
 func (ptr *QFileSystemWatcher) AddPaths(paths []string) []string {
 	if ptr.Pointer() != nil {
-		pathsC := C.CString(strings.Join(paths, "|"))
+		pathsC := C.CString(strings.Join(paths, "¡¦!"))
 		defer C.free(unsafe.Pointer(pathsC))
-		return strings.Split(cGoUnpackString(C.QFileSystemWatcher_AddPaths(ptr.Pointer(), C.struct_QtCore_PackedString{data: pathsC, len: C.longlong(len(strings.Join(paths, "|")))})), "|")
+		return unpackStringList(cGoUnpackString(C.QFileSystemWatcher_AddPaths(ptr.Pointer(), C.struct_QtCore_PackedString{data: pathsC, len: C.longlong(len(strings.Join(paths, "¡¦!")))})))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QFileSystemWatcher) RemovePaths(paths []string) []string {
 	if ptr.Pointer() != nil {
-		pathsC := C.CString(strings.Join(paths, "|"))
+		pathsC := C.CString(strings.Join(paths, "¡¦!"))
 		defer C.free(unsafe.Pointer(pathsC))
-		return strings.Split(cGoUnpackString(C.QFileSystemWatcher_RemovePaths(ptr.Pointer(), C.struct_QtCore_PackedString{data: pathsC, len: C.longlong(len(strings.Join(paths, "|")))})), "|")
+		return unpackStringList(cGoUnpackString(C.QFileSystemWatcher_RemovePaths(ptr.Pointer(), C.struct_QtCore_PackedString{data: pathsC, len: C.longlong(len(strings.Join(paths, "¡¦!")))})))
 	}
 	return make([]string, 0)
 }
@@ -18620,14 +18626,14 @@ func (ptr *QFileSystemWatcher) DestroyQFileSystemWatcherDefault() {
 
 func (ptr *QFileSystemWatcher) Directories() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QFileSystemWatcher_Directories(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QFileSystemWatcher_Directories(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QFileSystemWatcher) Files() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QFileSystemWatcher_Files(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QFileSystemWatcher_Files(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -22696,17 +22702,17 @@ func NewQJsonArrayFromPointer(ptr unsafe.Pointer) (n *QJsonArray) {
 	return
 }
 func QJsonArray_FromStringList(list []string) *QJsonArray {
-	listC := C.CString(strings.Join(list, "|"))
+	listC := C.CString(strings.Join(list, "¡¦!"))
 	defer C.free(unsafe.Pointer(listC))
-	tmpValue := NewQJsonArrayFromPointer(C.QJsonArray_QJsonArray_FromStringList(C.struct_QtCore_PackedString{data: listC, len: C.longlong(len(strings.Join(list, "|")))}))
+	tmpValue := NewQJsonArrayFromPointer(C.QJsonArray_QJsonArray_FromStringList(C.struct_QtCore_PackedString{data: listC, len: C.longlong(len(strings.Join(list, "¡¦!")))}))
 	runtime.SetFinalizer(tmpValue, (*QJsonArray).DestroyQJsonArray)
 	return tmpValue
 }
 
 func (ptr *QJsonArray) FromStringList(list []string) *QJsonArray {
-	listC := C.CString(strings.Join(list, "|"))
+	listC := C.CString(strings.Join(list, "¡¦!"))
 	defer C.free(unsafe.Pointer(listC))
-	tmpValue := NewQJsonArrayFromPointer(C.QJsonArray_QJsonArray_FromStringList(C.struct_QtCore_PackedString{data: listC, len: C.longlong(len(strings.Join(list, "|")))}))
+	tmpValue := NewQJsonArrayFromPointer(C.QJsonArray_QJsonArray_FromStringList(C.struct_QtCore_PackedString{data: listC, len: C.longlong(len(strings.Join(list, "¡¦!")))}))
 	runtime.SetFinalizer(tmpValue, (*QJsonArray).DestroyQJsonArray)
 	return tmpValue
 }
@@ -23364,7 +23370,7 @@ func (ptr *QJsonObject) Value(key string) *QJsonValue {
 
 func (ptr *QJsonObject) Keys() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QJsonObject_Keys(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QJsonObject_Keys(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -26717,9 +26723,9 @@ func (ptr *QLocale) Bcp47Name() string {
 
 func (ptr *QLocale) CreateSeparatedList(list []string) string {
 	if ptr.Pointer() != nil {
-		listC := C.CString(strings.Join(list, "|"))
+		listC := C.CString(strings.Join(list, "¡¦!"))
 		defer C.free(unsafe.Pointer(listC))
-		return cGoUnpackString(C.QLocale_CreateSeparatedList(ptr.Pointer(), C.struct_QtCore_PackedString{data: listC, len: C.longlong(len(strings.Join(list, "|")))}))
+		return cGoUnpackString(C.QLocale_CreateSeparatedList(ptr.Pointer(), C.struct_QtCore_PackedString{data: listC, len: C.longlong(len(strings.Join(list, "¡¦!")))}))
 	}
 	return ""
 }
@@ -27117,7 +27123,7 @@ func (ptr *QLocale) ToUpper(str string) string {
 
 func (ptr *QLocale) UiLanguages() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QLocale_UiLanguages(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QLocale_UiLanguages(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -30189,10 +30195,10 @@ func (ptr *QMimeData) Text() string {
 func callbackQMimeData_Formats(ptr unsafe.Pointer) C.struct_QtCore_PackedString {
 	if signal := qt.GetSignal(ptr, "formats"); signal != nil {
 		tempVal := (*(*func() []string)(signal))()
-		return C.struct_QtCore_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtCore_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 	}
 	tempVal := NewQMimeDataFromPointer(ptr).FormatsDefault()
-	return C.struct_QtCore_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtCore_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 }
 
 func (ptr *QMimeData) ConnectFormats(f func() []string) {
@@ -30219,14 +30225,14 @@ func (ptr *QMimeData) DisconnectFormats() {
 
 func (ptr *QMimeData) Formats() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QMimeData_Formats(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QMimeData_Formats(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QMimeData) FormatsDefault() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QMimeData_FormatsDefault(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QMimeData_FormatsDefault(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -30780,35 +30786,35 @@ func (ptr *QMimeType) PreferredSuffix() string {
 
 func (ptr *QMimeType) Aliases() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QMimeType_Aliases(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QMimeType_Aliases(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QMimeType) AllAncestors() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QMimeType_AllAncestors(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QMimeType_AllAncestors(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QMimeType) GlobPatterns() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QMimeType_GlobPatterns(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QMimeType_GlobPatterns(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QMimeType) ParentMimeTypes() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QMimeType_ParentMimeTypes(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QMimeType_ParentMimeTypes(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QMimeType) Suffixes() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QMimeType_Suffixes(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QMimeType_Suffixes(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -36120,7 +36126,7 @@ func (ptr *QRegExp) Pattern() string {
 
 func (ptr *QRegExp) CapturedTexts() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QRegExp_CapturedTexts(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QRegExp_CapturedTexts(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -36459,7 +36465,7 @@ func (ptr *QRegularExpression) Pattern() string {
 
 func (ptr *QRegularExpression) NamedCaptureGroups() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QRegularExpression_NamedCaptureGroups(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QRegularExpression_NamedCaptureGroups(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -36605,7 +36611,7 @@ func (ptr *QRegularExpressionMatch) Captured(nth int) string {
 
 func (ptr *QRegularExpressionMatch) CapturedTexts() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QRegularExpressionMatch_CapturedTexts(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QRegularExpressionMatch_CapturedTexts(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -37023,7 +37029,7 @@ func (ptr *QResource) FileName() string {
 
 func (ptr *QResource) Children() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QResource_Children(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QResource_Children(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -38512,21 +38518,21 @@ func (ptr *QSettings) OrganizationName() string {
 
 func (ptr *QSettings) AllKeys() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QSettings_AllKeys(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QSettings_AllKeys(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QSettings) ChildGroups() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QSettings_ChildGroups(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QSettings_ChildGroups(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QSettings) ChildKeys() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QSettings_ChildKeys(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QSettings_ChildKeys(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -41421,9 +41427,9 @@ func QStandardPaths_FindExecutable(executableName string, paths []string) string
 		executableNameC = C.CString(executableName)
 		defer C.free(unsafe.Pointer(executableNameC))
 	}
-	pathsC := C.CString(strings.Join(paths, "|"))
+	pathsC := C.CString(strings.Join(paths, "¡¦!"))
 	defer C.free(unsafe.Pointer(pathsC))
-	return cGoUnpackString(C.QStandardPaths_QStandardPaths_FindExecutable(C.struct_QtCore_PackedString{data: executableNameC, len: C.longlong(len(executableName))}, C.struct_QtCore_PackedString{data: pathsC, len: C.longlong(len(strings.Join(paths, "|")))}))
+	return cGoUnpackString(C.QStandardPaths_QStandardPaths_FindExecutable(C.struct_QtCore_PackedString{data: executableNameC, len: C.longlong(len(executableName))}, C.struct_QtCore_PackedString{data: pathsC, len: C.longlong(len(strings.Join(paths, "¡¦!")))}))
 }
 
 func (ptr *QStandardPaths) FindExecutable(executableName string, paths []string) string {
@@ -41432,9 +41438,9 @@ func (ptr *QStandardPaths) FindExecutable(executableName string, paths []string)
 		executableNameC = C.CString(executableName)
 		defer C.free(unsafe.Pointer(executableNameC))
 	}
-	pathsC := C.CString(strings.Join(paths, "|"))
+	pathsC := C.CString(strings.Join(paths, "¡¦!"))
 	defer C.free(unsafe.Pointer(pathsC))
-	return cGoUnpackString(C.QStandardPaths_QStandardPaths_FindExecutable(C.struct_QtCore_PackedString{data: executableNameC, len: C.longlong(len(executableName))}, C.struct_QtCore_PackedString{data: pathsC, len: C.longlong(len(strings.Join(paths, "|")))}))
+	return cGoUnpackString(C.QStandardPaths_QStandardPaths_FindExecutable(C.struct_QtCore_PackedString{data: executableNameC, len: C.longlong(len(executableName))}, C.struct_QtCore_PackedString{data: pathsC, len: C.longlong(len(strings.Join(paths, "¡¦!")))}))
 }
 
 func QStandardPaths_Locate(ty QStandardPaths__StandardLocation, fileName string, options QStandardPaths__LocateOption) string {
@@ -41469,7 +41475,7 @@ func QStandardPaths_LocateAll(ty QStandardPaths__StandardLocation, fileName stri
 		fileNameC = C.CString(fileName)
 		defer C.free(unsafe.Pointer(fileNameC))
 	}
-	return strings.Split(cGoUnpackString(C.QStandardPaths_QStandardPaths_LocateAll(C.longlong(ty), C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, C.longlong(options))), "|")
+	return unpackStringList(cGoUnpackString(C.QStandardPaths_QStandardPaths_LocateAll(C.longlong(ty), C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, C.longlong(options))))
 }
 
 func (ptr *QStandardPaths) LocateAll(ty QStandardPaths__StandardLocation, fileName string, options QStandardPaths__LocateOption) []string {
@@ -41478,15 +41484,15 @@ func (ptr *QStandardPaths) LocateAll(ty QStandardPaths__StandardLocation, fileNa
 		fileNameC = C.CString(fileName)
 		defer C.free(unsafe.Pointer(fileNameC))
 	}
-	return strings.Split(cGoUnpackString(C.QStandardPaths_QStandardPaths_LocateAll(C.longlong(ty), C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, C.longlong(options))), "|")
+	return unpackStringList(cGoUnpackString(C.QStandardPaths_QStandardPaths_LocateAll(C.longlong(ty), C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, C.longlong(options))))
 }
 
 func QStandardPaths_StandardLocations(ty QStandardPaths__StandardLocation) []string {
-	return strings.Split(cGoUnpackString(C.QStandardPaths_QStandardPaths_StandardLocations(C.longlong(ty))), "|")
+	return unpackStringList(cGoUnpackString(C.QStandardPaths_QStandardPaths_StandardLocations(C.longlong(ty))))
 }
 
 func (ptr *QStandardPaths) StandardLocations(ty QStandardPaths__StandardLocation) []string {
-	return strings.Split(cGoUnpackString(C.QStandardPaths_QStandardPaths_StandardLocations(C.longlong(ty))), "|")
+	return unpackStringList(cGoUnpackString(C.QStandardPaths_QStandardPaths_StandardLocations(C.longlong(ty))))
 }
 
 func QStandardPaths_SetTestModeEnabled(testMode bool) {
@@ -43032,9 +43038,9 @@ func NewQStringListModel(parent QObject_ITF) *QStringListModel {
 }
 
 func NewQStringListModel2(strin []string, parent QObject_ITF) *QStringListModel {
-	strinC := C.CString(strings.Join(strin, "|"))
+	strinC := C.CString(strings.Join(strin, "¡¦!"))
 	defer C.free(unsafe.Pointer(strinC))
-	tmpValue := NewQStringListModelFromPointer(C.QStringListModel_NewQStringListModel2(C.struct_QtCore_PackedString{data: strinC, len: C.longlong(len(strings.Join(strin, "|")))}, PointerFromQObject(parent)))
+	tmpValue := NewQStringListModelFromPointer(C.QStringListModel_NewQStringListModel2(C.struct_QtCore_PackedString{data: strinC, len: C.longlong(len(strings.Join(strin, "¡¦!")))}, PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -43043,15 +43049,15 @@ func NewQStringListModel2(strin []string, parent QObject_ITF) *QStringListModel 
 
 func (ptr *QStringListModel) SetStringList(strin []string) {
 	if ptr.Pointer() != nil {
-		strinC := C.CString(strings.Join(strin, "|"))
+		strinC := C.CString(strings.Join(strin, "¡¦!"))
 		defer C.free(unsafe.Pointer(strinC))
-		C.QStringListModel_SetStringList(ptr.Pointer(), C.struct_QtCore_PackedString{data: strinC, len: C.longlong(len(strings.Join(strin, "|")))})
+		C.QStringListModel_SetStringList(ptr.Pointer(), C.struct_QtCore_PackedString{data: strinC, len: C.longlong(len(strings.Join(strin, "¡¦!")))})
 	}
 }
 
 func (ptr *QStringListModel) StringList() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QStringListModel_StringList(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QStringListModel_StringList(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -49854,7 +49860,7 @@ func (ptr *QUrl) ToPercentEncoding(input string, exclude QByteArray_ITF, include
 }
 
 func QUrl_FromStringList(urls []string, mode QUrl__ParsingMode) []*QUrl {
-	urlsC := C.CString(strings.Join(urls, "|"))
+	urlsC := C.CString(strings.Join(urls, "¡¦!"))
 	defer C.free(unsafe.Pointer(urlsC))
 	return func(l C.struct_QtCore_PackedList) []*QUrl {
 		out := make([]*QUrl, int(l.len))
@@ -49863,11 +49869,11 @@ func QUrl_FromStringList(urls []string, mode QUrl__ParsingMode) []*QUrl {
 			out[i] = tmpList.__fromStringList_atList(i)
 		}
 		return out
-	}(C.QUrl_QUrl_FromStringList(C.struct_QtCore_PackedString{data: urlsC, len: C.longlong(len(strings.Join(urls, "|")))}, C.longlong(mode)))
+	}(C.QUrl_QUrl_FromStringList(C.struct_QtCore_PackedString{data: urlsC, len: C.longlong(len(strings.Join(urls, "¡¦!")))}, C.longlong(mode)))
 }
 
 func (ptr *QUrl) FromStringList(urls []string, mode QUrl__ParsingMode) []*QUrl {
-	urlsC := C.CString(strings.Join(urls, "|"))
+	urlsC := C.CString(strings.Join(urls, "¡¦!"))
 	defer C.free(unsafe.Pointer(urlsC))
 	return func(l C.struct_QtCore_PackedList) []*QUrl {
 		out := make([]*QUrl, int(l.len))
@@ -49876,7 +49882,7 @@ func (ptr *QUrl) FromStringList(urls []string, mode QUrl__ParsingMode) []*QUrl {
 			out[i] = tmpList.__fromStringList_atList(i)
 		}
 		return out
-	}(C.QUrl_QUrl_FromStringList(C.struct_QtCore_PackedString{data: urlsC, len: C.longlong(len(strings.Join(urls, "|")))}, C.longlong(mode)))
+	}(C.QUrl_QUrl_FromStringList(C.struct_QtCore_PackedString{data: urlsC, len: C.longlong(len(strings.Join(urls, "¡¦!")))}, C.longlong(mode)))
 }
 
 func QUrl_FromAce(domain QByteArray_ITF) string {
@@ -49896,31 +49902,31 @@ func (ptr *QUrl) FromPercentEncoding(input QByteArray_ITF) string {
 }
 
 func QUrl_IdnWhitelist() []string {
-	return strings.Split(cGoUnpackString(C.QUrl_QUrl_IdnWhitelist()), "|")
+	return unpackStringList(cGoUnpackString(C.QUrl_QUrl_IdnWhitelist()))
 }
 
 func (ptr *QUrl) IdnWhitelist() []string {
-	return strings.Split(cGoUnpackString(C.QUrl_QUrl_IdnWhitelist()), "|")
+	return unpackStringList(cGoUnpackString(C.QUrl_QUrl_IdnWhitelist()))
 }
 
 func QUrl_ToStringList(urls []*QUrl, options QUrl__UrlFormattingOption) []string {
-	return strings.Split(cGoUnpackString(C.QUrl_QUrl_ToStringList(func() unsafe.Pointer {
+	return unpackStringList(cGoUnpackString(C.QUrl_QUrl_ToStringList(func() unsafe.Pointer {
 		tmpList := NewQUrlFromPointer(NewQUrlFromPointer(nil).__toStringList_urls_newList())
 		for _, v := range urls {
 			tmpList.__toStringList_urls_setList(v)
 		}
 		return tmpList.Pointer()
-	}(), C.longlong(options))), "|")
+	}(), C.longlong(options))))
 }
 
 func (ptr *QUrl) ToStringList(urls []*QUrl, options QUrl__UrlFormattingOption) []string {
-	return strings.Split(cGoUnpackString(C.QUrl_QUrl_ToStringList(func() unsafe.Pointer {
+	return unpackStringList(cGoUnpackString(C.QUrl_QUrl_ToStringList(func() unsafe.Pointer {
 		tmpList := NewQUrlFromPointer(NewQUrlFromPointer(nil).__toStringList_urls_newList())
 		for _, v := range urls {
 			tmpList.__toStringList_urls_setList(v)
 		}
 		return tmpList.Pointer()
-	}(), C.longlong(options))), "|")
+	}(), C.longlong(options))))
 }
 
 func QUrl_FromEncoded(input QByteArray_ITF, parsingMode QUrl__ParsingMode) *QUrl {
@@ -50080,15 +50086,15 @@ func (ptr *QUrl) SetHost(host string, mode QUrl__ParsingMode) {
 }
 
 func QUrl_SetIdnWhitelist(list []string) {
-	listC := C.CString(strings.Join(list, "|"))
+	listC := C.CString(strings.Join(list, "¡¦!"))
 	defer C.free(unsafe.Pointer(listC))
-	C.QUrl_QUrl_SetIdnWhitelist(C.struct_QtCore_PackedString{data: listC, len: C.longlong(len(strings.Join(list, "|")))})
+	C.QUrl_QUrl_SetIdnWhitelist(C.struct_QtCore_PackedString{data: listC, len: C.longlong(len(strings.Join(list, "¡¦!")))})
 }
 
 func (ptr *QUrl) SetIdnWhitelist(list []string) {
-	listC := C.CString(strings.Join(list, "|"))
+	listC := C.CString(strings.Join(list, "¡¦!"))
 	defer C.free(unsafe.Pointer(listC))
-	C.QUrl_QUrl_SetIdnWhitelist(C.struct_QtCore_PackedString{data: listC, len: C.longlong(len(strings.Join(list, "|")))})
+	C.QUrl_QUrl_SetIdnWhitelist(C.struct_QtCore_PackedString{data: listC, len: C.longlong(len(strings.Join(list, "¡¦!")))})
 }
 
 func (ptr *QUrl) SetPassword(password string, mode QUrl__ParsingMode) {
@@ -50669,7 +50675,7 @@ func (ptr *QUrlQuery) AllQueryItemValues(key string, encoding QUrl__ComponentFor
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		return strings.Split(cGoUnpackString(C.QUrlQuery_AllQueryItemValues(ptr.Pointer(), C.struct_QtCore_PackedString{data: keyC, len: C.longlong(len(key))}, C.longlong(encoding))), "|")
+		return unpackStringList(cGoUnpackString(C.QUrlQuery_AllQueryItemValues(ptr.Pointer(), C.struct_QtCore_PackedString{data: keyC, len: C.longlong(len(key))}, C.longlong(encoding))))
 	}
 	return make([]string, 0)
 }
@@ -51602,9 +51608,9 @@ func NewQVariant17(val string) *QVariant {
 }
 
 func NewQVariant19(val []string) *QVariant {
-	valC := C.CString(strings.Join(val, "|"))
+	valC := C.CString(strings.Join(val, "¡¦!"))
 	defer C.free(unsafe.Pointer(valC))
-	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant19(C.struct_QtCore_PackedString{data: valC, len: C.longlong(len(strings.Join(val, "|")))}))
+	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant19(C.struct_QtCore_PackedString{data: valC, len: C.longlong(len(strings.Join(val, "¡¦!")))}))
 	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
@@ -51997,7 +52003,7 @@ func (ptr *QVariant) ToString() string {
 
 func (ptr *QVariant) ToStringList() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QVariant_ToStringList(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QVariant_ToStringList(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }

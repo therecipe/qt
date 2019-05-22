@@ -176,7 +176,7 @@ public:
 	QModelIndex sibling(int row, int column, const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQHelpContentModel_Sibling(const_cast<void*>(static_cast<const void*>(this)), row, column, const_cast<QModelIndex*>(&index))); };
 	QList<QModelIndex> match(const QModelIndex & start, int role, const QVariant & value, int hits, Qt::MatchFlags flags) const { return ({ QList<QModelIndex>* tmpP = static_cast<QList<QModelIndex>*>(callbackQHelpContentModel_Match(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&start), role, const_cast<QVariant*>(&value), hits, flags)); QList<QModelIndex> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
 	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQHelpContentModel_Span(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
-	QStringList mimeTypes() const { return ({ QtHelp_PackedString tempVal = callbackQHelpContentModel_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	QStringList mimeTypes() const { return ({ QtHelp_PackedString tempVal = callbackQHelpContentModel_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	QVariant headerData(int section, Qt::Orientation orientation, int role) const { return *static_cast<QVariant*>(callbackQHelpContentModel_HeaderData(const_cast<void*>(static_cast<const void*>(this)), section, orientation, role)); };
 	Qt::DropActions supportedDragActions() const { return static_cast<Qt::DropAction>(callbackQHelpContentModel_SupportedDragActions(const_cast<void*>(static_cast<const void*>(this)))); };
 	Qt::DropActions supportedDropActions() const { return static_cast<Qt::DropAction>(callbackQHelpContentModel_SupportedDropActions(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -779,7 +779,7 @@ void* QHelpContentModel_SpanDefault(void* ptr, void* index)
 
 struct QtHelp_PackedString QHelpContentModel_MimeTypesDefault(void* ptr)
 {
-		return ({ QByteArray tf8824d = static_cast<QHelpContentModel*>(ptr)->QHelpContentModel::mimeTypes().join("|").toUtf8(); QtHelp_PackedString { const_cast<char*>(tf8824d.prepend("WHITESPACE").constData()+10), tf8824d.size()-10 }; });
+		return ({ QByteArray tf8824d = static_cast<QHelpContentModel*>(ptr)->QHelpContentModel::mimeTypes().join("¡¦!").toUtf8(); QtHelp_PackedString { const_cast<char*>(tf8824d.prepend("WHITESPACE").constData()+10), tf8824d.size()-10 }; });
 }
 
 void* QHelpContentModel_HeaderDataDefault(void* ptr, int section, long long orientation, int role)
@@ -1962,7 +1962,7 @@ void* QHelpEngineCore_NewQHelpEngineCore(struct QtHelp_PackedString collectionFi
 
 struct QtHelp_PackedList QHelpEngineCore_Files(void* ptr, struct QtHelp_PackedString namespaceName, struct QtHelp_PackedString filterAttributes, struct QtHelp_PackedString extensionFilter)
 {
-	return ({ QList<QUrl>* tmpValue = new QList<QUrl>(static_cast<QHelpEngineCore*>(ptr)->files(QString::fromUtf8(namespaceName.data, namespaceName.len), QString::fromUtf8(filterAttributes.data, filterAttributes.len).split("|", QString::SkipEmptyParts), QString::fromUtf8(extensionFilter.data, extensionFilter.len))); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QUrl>* tmpValue = new QList<QUrl>(static_cast<QHelpEngineCore*>(ptr)->files(QString::fromUtf8(namespaceName.data, namespaceName.len), QString::fromUtf8(filterAttributes.data, filterAttributes.len).split("¡¦!", QString::SkipEmptyParts), QString::fromUtf8(extensionFilter.data, extensionFilter.len))); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 struct QtHelp_PackedString QHelpEngineCore_DocumentationFileName(void* ptr, struct QtHelp_PackedString namespaceName)
@@ -1987,7 +1987,7 @@ void* QHelpEngineCore_QHelpEngineCore_MetaData(struct QtHelp_PackedString docume
 
 char QHelpEngineCore_AddCustomFilter(void* ptr, struct QtHelp_PackedString filterName, struct QtHelp_PackedString attributes)
 {
-	return static_cast<QHelpEngineCore*>(ptr)->addCustomFilter(QString::fromUtf8(filterName.data, filterName.len), QString::fromUtf8(attributes.data, attributes.len).split("|", QString::SkipEmptyParts));
+	return static_cast<QHelpEngineCore*>(ptr)->addCustomFilter(QString::fromUtf8(filterName.data, filterName.len), QString::fromUtf8(attributes.data, attributes.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 char QHelpEngineCore_CopyCollectionFile(void* ptr, struct QtHelp_PackedString fileName)
@@ -2158,22 +2158,22 @@ struct QtHelp_PackedString QHelpEngineCore_Error(void* ptr)
 
 struct QtHelp_PackedString QHelpEngineCore_CustomFilters(void* ptr)
 {
-	return ({ QByteArray t2b7197 = static_cast<QHelpEngineCore*>(ptr)->customFilters().join("|").toUtf8(); QtHelp_PackedString { const_cast<char*>(t2b7197.prepend("WHITESPACE").constData()+10), t2b7197.size()-10 }; });
+	return ({ QByteArray t2b7197 = static_cast<QHelpEngineCore*>(ptr)->customFilters().join("¡¦!").toUtf8(); QtHelp_PackedString { const_cast<char*>(t2b7197.prepend("WHITESPACE").constData()+10), t2b7197.size()-10 }; });
 }
 
 struct QtHelp_PackedString QHelpEngineCore_FilterAttributes(void* ptr)
 {
-	return ({ QByteArray t22f9b0 = static_cast<QHelpEngineCore*>(ptr)->filterAttributes().join("|").toUtf8(); QtHelp_PackedString { const_cast<char*>(t22f9b0.prepend("WHITESPACE").constData()+10), t22f9b0.size()-10 }; });
+	return ({ QByteArray t22f9b0 = static_cast<QHelpEngineCore*>(ptr)->filterAttributes().join("¡¦!").toUtf8(); QtHelp_PackedString { const_cast<char*>(t22f9b0.prepend("WHITESPACE").constData()+10), t22f9b0.size()-10 }; });
 }
 
 struct QtHelp_PackedString QHelpEngineCore_FilterAttributes2(void* ptr, struct QtHelp_PackedString filterName)
 {
-	return ({ QByteArray t8bd21d = static_cast<QHelpEngineCore*>(ptr)->filterAttributes(QString::fromUtf8(filterName.data, filterName.len)).join("|").toUtf8(); QtHelp_PackedString { const_cast<char*>(t8bd21d.prepend("WHITESPACE").constData()+10), t8bd21d.size()-10 }; });
+	return ({ QByteArray t8bd21d = static_cast<QHelpEngineCore*>(ptr)->filterAttributes(QString::fromUtf8(filterName.data, filterName.len)).join("¡¦!").toUtf8(); QtHelp_PackedString { const_cast<char*>(t8bd21d.prepend("WHITESPACE").constData()+10), t8bd21d.size()-10 }; });
 }
 
 struct QtHelp_PackedString QHelpEngineCore_RegisteredDocumentations(void* ptr)
 {
-	return ({ QByteArray t7c5252 = static_cast<QHelpEngineCore*>(ptr)->registeredDocumentations().join("|").toUtf8(); QtHelp_PackedString { const_cast<char*>(t7c5252.prepend("WHITESPACE").constData()+10), t7c5252.size()-10 }; });
+	return ({ QByteArray t7c5252 = static_cast<QHelpEngineCore*>(ptr)->registeredDocumentations().join("¡¦!").toUtf8(); QtHelp_PackedString { const_cast<char*>(t7c5252.prepend("WHITESPACE").constData()+10), t7c5252.size()-10 }; });
 }
 
 void* QHelpEngineCore_FindFile(void* ptr, void* url)
@@ -2218,12 +2218,12 @@ void* QHelpEngineCore___files_newList(void* ptr)
 
 struct QtHelp_PackedString QHelpEngineCore___filterAttributeSets_atList(void* ptr, int i)
 {
-	return ({ QByteArray tbc37c9 = ({QStringList tmp = static_cast<QList<QStringList>*>(ptr)->at(i); if (i == static_cast<QList<QStringList>*>(ptr)->size()-1) { static_cast<QList<QStringList>*>(ptr)->~QList(); free(ptr); }; tmp; }).join("|").toUtf8(); QtHelp_PackedString { const_cast<char*>(tbc37c9.prepend("WHITESPACE").constData()+10), tbc37c9.size()-10 }; });
+	return ({ QByteArray tbc37c9 = ({QStringList tmp = static_cast<QList<QStringList>*>(ptr)->at(i); if (i == static_cast<QList<QStringList>*>(ptr)->size()-1) { static_cast<QList<QStringList>*>(ptr)->~QList(); free(ptr); }; tmp; }).join("¡¦!").toUtf8(); QtHelp_PackedString { const_cast<char*>(tbc37c9.prepend("WHITESPACE").constData()+10), tbc37c9.size()-10 }; });
 }
 
 void QHelpEngineCore___filterAttributeSets_setList(void* ptr, struct QtHelp_PackedString i)
 {
-	static_cast<QList<QStringList>*>(ptr)->append(QString::fromUtf8(i.data, i.len).split("|", QString::SkipEmptyParts));
+	static_cast<QList<QStringList>*>(ptr)->append(QString::fromUtf8(i.data, i.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void* QHelpEngineCore___filterAttributeSets_newList(void* ptr)
@@ -2510,7 +2510,7 @@ public:
 	QModelIndex parent(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQHelpIndexModel_Parent(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
 	QList<QModelIndex> match(const QModelIndex & start, int role, const QVariant & value, int hits, Qt::MatchFlags flags) const { return ({ QList<QModelIndex>* tmpP = static_cast<QList<QModelIndex>*>(callbackQHelpIndexModel_Match(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&start), role, const_cast<QVariant*>(&value), hits, flags)); QList<QModelIndex> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
 	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQHelpIndexModel_Span(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
-	QStringList mimeTypes() const { return ({ QtHelp_PackedString tempVal = callbackQHelpIndexModel_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	QStringList mimeTypes() const { return ({ QtHelp_PackedString tempVal = callbackQHelpIndexModel_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	QVariant headerData(int section, Qt::Orientation orientation, int role) const { return *static_cast<QVariant*>(callbackQHelpIndexModel_HeaderData(const_cast<void*>(static_cast<const void*>(this)), section, orientation, role)); };
 	Qt::DropActions supportedDragActions() const { return static_cast<Qt::DropAction>(callbackQHelpIndexModel_SupportedDragActions(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQHelpIndexModel_CanDropMimeData(const_cast<void*>(static_cast<const void*>(this)), const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
@@ -3118,7 +3118,7 @@ void* QHelpIndexModel_SpanDefault(void* ptr, void* index)
 
 struct QtHelp_PackedString QHelpIndexModel_MimeTypesDefault(void* ptr)
 {
-		return ({ QByteArray t6c8862 = static_cast<QHelpIndexModel*>(ptr)->QHelpIndexModel::mimeTypes().join("|").toUtf8(); QtHelp_PackedString { const_cast<char*>(t6c8862.prepend("WHITESPACE").constData()+10), t6c8862.size()-10 }; });
+		return ({ QByteArray t6c8862 = static_cast<QHelpIndexModel*>(ptr)->QHelpIndexModel::mimeTypes().join("¡¦!").toUtf8(); QtHelp_PackedString { const_cast<char*>(t6c8862.prepend("WHITESPACE").constData()+10), t6c8862.size()-10 }; });
 }
 
 void* QHelpIndexModel_HeaderDataDefault(void* ptr, int section, long long orientation, int role)
@@ -4520,12 +4520,12 @@ void* QHelpSearchQuery_NewQHelpSearchQuery()
 
 struct QtHelp_PackedString QHelpSearchQuery_WordList(void* ptr)
 {
-	return ({ QByteArray t152f34 = static_cast<QHelpSearchQuery*>(ptr)->wordList.join("|").toUtf8(); QtHelp_PackedString { const_cast<char*>(t152f34.prepend("WHITESPACE").constData()+10), t152f34.size()-10 }; });
+	return ({ QByteArray t152f34 = static_cast<QHelpSearchQuery*>(ptr)->wordList.join("¡¦!").toUtf8(); QtHelp_PackedString { const_cast<char*>(t152f34.prepend("WHITESPACE").constData()+10), t152f34.size()-10 }; });
 }
 
 void QHelpSearchQuery_SetWordList(void* ptr, struct QtHelp_PackedString vqs)
 {
-	static_cast<QHelpSearchQuery*>(ptr)->wordList = QString::fromUtf8(vqs.data, vqs.len).split("|", QString::SkipEmptyParts);
+	static_cast<QHelpSearchQuery*>(ptr)->wordList = QString::fromUtf8(vqs.data, vqs.len).split("¡¦!", QString::SkipEmptyParts);
 }
 
 class MyQHelpSearchQueryWidget: public QHelpSearchQueryWidget

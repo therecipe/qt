@@ -4203,8 +4203,8 @@ public:
 	QColor foregroundColor() const { return *static_cast<QColor*>(callbackQAccessibleWidget_ForegroundColor(const_cast<void*>(static_cast<const void*>(this)))); };
 	QRect rect() const { return *static_cast<QRect*>(callbackQAccessibleWidget_Rect(const_cast<void*>(static_cast<const void*>(this)))); };
 	QString text(QAccessible::Text t) const { return ({ QtWidgets_PackedString tempVal = callbackQAccessibleWidget_Text(const_cast<void*>(static_cast<const void*>(this)), t); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
-	QStringList actionNames() const { return ({ QtWidgets_PackedString tempVal = callbackQAccessibleWidget_ActionNames(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
-	QStringList keyBindingsForAction(const QString & actionName) const { QByteArray tcd1a8c = actionName.toUtf8(); QtWidgets_PackedString actionNamePacked = { const_cast<char*>(tcd1a8c.prepend("WHITESPACE").constData()+10), tcd1a8c.size()-10 };return ({ QtWidgets_PackedString tempVal = callbackQAccessibleWidget_KeyBindingsForAction(const_cast<void*>(static_cast<const void*>(this)), actionNamePacked); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	QStringList actionNames() const { return ({ QtWidgets_PackedString tempVal = callbackQAccessibleWidget_ActionNames(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	QStringList keyBindingsForAction(const QString & actionName) const { QByteArray tcd1a8c = actionName.toUtf8(); QtWidgets_PackedString actionNamePacked = { const_cast<char*>(tcd1a8c.prepend("WHITESPACE").constData()+10), tcd1a8c.size()-10 };return ({ QtWidgets_PackedString tempVal = callbackQAccessibleWidget_KeyBindingsForAction(const_cast<void*>(static_cast<const void*>(this)), actionNamePacked); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	QWindow * window() const { return static_cast<QWindow*>(callbackQAccessibleWidget_Window(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool isValid() const { return callbackQAccessibleWidget_IsValid(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	int childCount() const { return callbackQAccessibleWidget_ChildCount(const_cast<void*>(static_cast<const void*>(this))); };
@@ -4339,22 +4339,22 @@ struct QtWidgets_PackedString QAccessibleWidget_TextDefault(void* ptr, long long
 
 struct QtWidgets_PackedString QAccessibleWidget_ActionNames(void* ptr)
 {
-		return ({ QByteArray t5da01f = static_cast<QAccessibleWidget*>(ptr)->actionNames().join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t5da01f.prepend("WHITESPACE").constData()+10), t5da01f.size()-10 }; });
+		return ({ QByteArray t5da01f = static_cast<QAccessibleWidget*>(ptr)->actionNames().join("¡¦!").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t5da01f.prepend("WHITESPACE").constData()+10), t5da01f.size()-10 }; });
 }
 
 struct QtWidgets_PackedString QAccessibleWidget_ActionNamesDefault(void* ptr)
 {
-		return ({ QByteArray t1fe7fc = static_cast<QAccessibleWidget*>(ptr)->QAccessibleWidget::actionNames().join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t1fe7fc.prepend("WHITESPACE").constData()+10), t1fe7fc.size()-10 }; });
+		return ({ QByteArray t1fe7fc = static_cast<QAccessibleWidget*>(ptr)->QAccessibleWidget::actionNames().join("¡¦!").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t1fe7fc.prepend("WHITESPACE").constData()+10), t1fe7fc.size()-10 }; });
 }
 
 struct QtWidgets_PackedString QAccessibleWidget_KeyBindingsForAction(void* ptr, struct QtWidgets_PackedString actionName)
 {
-		return ({ QByteArray tc977a7 = static_cast<QAccessibleWidget*>(ptr)->keyBindingsForAction(QString::fromUtf8(actionName.data, actionName.len)).join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(tc977a7.prepend("WHITESPACE").constData()+10), tc977a7.size()-10 }; });
+		return ({ QByteArray tc977a7 = static_cast<QAccessibleWidget*>(ptr)->keyBindingsForAction(QString::fromUtf8(actionName.data, actionName.len)).join("¡¦!").toUtf8(); QtWidgets_PackedString { const_cast<char*>(tc977a7.prepend("WHITESPACE").constData()+10), tc977a7.size()-10 }; });
 }
 
 struct QtWidgets_PackedString QAccessibleWidget_KeyBindingsForActionDefault(void* ptr, struct QtWidgets_PackedString actionName)
 {
-		return ({ QByteArray t7d3cdd = static_cast<QAccessibleWidget*>(ptr)->QAccessibleWidget::keyBindingsForAction(QString::fromUtf8(actionName.data, actionName.len)).join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t7d3cdd.prepend("WHITESPACE").constData()+10), t7d3cdd.size()-10 }; });
+		return ({ QByteArray t7d3cdd = static_cast<QAccessibleWidget*>(ptr)->QAccessibleWidget::keyBindingsForAction(QString::fromUtf8(actionName.data, actionName.len)).join("¡¦!").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t7d3cdd.prepend("WHITESPACE").constData()+10), t7d3cdd.size()-10 }; });
 }
 
 void* QAccessibleWidget_Widget(void* ptr)
@@ -8457,7 +8457,7 @@ void QComboBox_AddItem(void* ptr, struct QtWidgets_PackedString text, void* user
 
 void QComboBox_AddItems(void* ptr, struct QtWidgets_PackedString texts)
 {
-	static_cast<QComboBox*>(ptr)->addItems(QString::fromUtf8(texts.data, texts.len).split("|", QString::SkipEmptyParts));
+	static_cast<QComboBox*>(ptr)->addItems(QString::fromUtf8(texts.data, texts.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void QComboBox_Clear(void* ptr)
@@ -8604,7 +8604,7 @@ void QComboBox_InsertItem(void* ptr, int index, struct QtWidgets_PackedString te
 
 void QComboBox_InsertItems(void* ptr, int index, struct QtWidgets_PackedString list)
 {
-	static_cast<QComboBox*>(ptr)->insertItems(index, QString::fromUtf8(list.data, list.len).split("|", QString::SkipEmptyParts));
+	static_cast<QComboBox*>(ptr)->insertItems(index, QString::fromUtf8(list.data, list.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void QComboBox_InsertSeparator(void* ptr, int index)
@@ -9311,7 +9311,7 @@ public:
 	void setWrapAround(bool wrap) { callbackQCompleter_SetWrapAround(this, wrap); };
 	 ~MyQCompleter() { callbackQCompleter_DestroyQCompleter(this); };
 	QString pathFromIndex(const QModelIndex & index) const { return ({ QtWidgets_PackedString tempVal = callbackQCompleter_PathFromIndex(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index)); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
-	QStringList splitPath(const QString & path) const { QByteArray t3150ec = path.toUtf8(); QtWidgets_PackedString pathPacked = { const_cast<char*>(t3150ec.prepend("WHITESPACE").constData()+10), t3150ec.size()-10 };return ({ QtWidgets_PackedString tempVal = callbackQCompleter_SplitPath(const_cast<void*>(static_cast<const void*>(this)), pathPacked); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	QStringList splitPath(const QString & path) const { QByteArray t3150ec = path.toUtf8(); QtWidgets_PackedString pathPacked = { const_cast<char*>(t3150ec.prepend("WHITESPACE").constData()+10), t3150ec.size()-10 };return ({ QtWidgets_PackedString tempVal = callbackQCompleter_SplitPath(const_cast<void*>(static_cast<const void*>(this)), pathPacked); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQCompleter_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void childEvent(QChildEvent * event) { callbackQCompleter_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQCompleter_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -9408,39 +9408,39 @@ void* QCompleter_NewQCompleter(void* parent)
 void* QCompleter_NewQCompleter3(struct QtWidgets_PackedString list, void* parent)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
-		return new MyQCompleter(QString::fromUtf8(list.data, list.len).split("|", QString::SkipEmptyParts), static_cast<QCameraImageCapture*>(parent));
+		return new MyQCompleter(QString::fromUtf8(list.data, list.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
-		return new MyQCompleter(QString::fromUtf8(list.data, list.len).split("|", QString::SkipEmptyParts), static_cast<QDBusPendingCallWatcher*>(parent));
+		return new MyQCompleter(QString::fromUtf8(list.data, list.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QDBusPendingCallWatcher*>(parent));
 	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
-		return new MyQCompleter(QString::fromUtf8(list.data, list.len).split("|", QString::SkipEmptyParts), static_cast<QExtensionFactory*>(parent));
+		return new MyQCompleter(QString::fromUtf8(list.data, list.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QExtensionFactory*>(parent));
 	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
-		return new MyQCompleter(QString::fromUtf8(list.data, list.len).split("|", QString::SkipEmptyParts), static_cast<QExtensionManager*>(parent));
+		return new MyQCompleter(QString::fromUtf8(list.data, list.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QExtensionManager*>(parent));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
-		return new MyQCompleter(QString::fromUtf8(list.data, list.len).split("|", QString::SkipEmptyParts), static_cast<QGraphicsObject*>(parent));
+		return new MyQCompleter(QString::fromUtf8(list.data, list.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QGraphicsObject*>(parent));
 	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQCompleter(QString::fromUtf8(list.data, list.len).split("|", QString::SkipEmptyParts), static_cast<QGraphicsWidget*>(parent));
+		return new MyQCompleter(QString::fromUtf8(list.data, list.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QGraphicsWidget*>(parent));
 	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
-		return new MyQCompleter(QString::fromUtf8(list.data, list.len).split("|", QString::SkipEmptyParts), static_cast<QLayout*>(parent));
+		return new MyQCompleter(QString::fromUtf8(list.data, list.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QLayout*>(parent));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
-		return new MyQCompleter(QString::fromUtf8(list.data, list.len).split("|", QString::SkipEmptyParts), static_cast<QMediaPlaylist*>(parent));
+		return new MyQCompleter(QString::fromUtf8(list.data, list.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
-		return new MyQCompleter(QString::fromUtf8(list.data, list.len).split("|", QString::SkipEmptyParts), static_cast<QMediaRecorder*>(parent));
+		return new MyQCompleter(QString::fromUtf8(list.data, list.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QMediaRecorder*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
-		return new MyQCompleter(QString::fromUtf8(list.data, list.len).split("|", QString::SkipEmptyParts), static_cast<QOffscreenSurface*>(parent));
+		return new MyQCompleter(QString::fromUtf8(list.data, list.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQCompleter(QString::fromUtf8(list.data, list.len).split("|", QString::SkipEmptyParts), static_cast<QPaintDeviceWindow*>(parent));
+		return new MyQCompleter(QString::fromUtf8(list.data, list.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QPaintDeviceWindow*>(parent));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
-		return new MyQCompleter(QString::fromUtf8(list.data, list.len).split("|", QString::SkipEmptyParts), static_cast<QPdfWriter*>(parent));
+		return new MyQCompleter(QString::fromUtf8(list.data, list.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QPdfWriter*>(parent));
 	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
-		return new MyQCompleter(QString::fromUtf8(list.data, list.len).split("|", QString::SkipEmptyParts), static_cast<QQuickItem*>(parent));
+		return new MyQCompleter(QString::fromUtf8(list.data, list.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
-		return new MyQCompleter(QString::fromUtf8(list.data, list.len).split("|", QString::SkipEmptyParts), static_cast<QRadioData*>(parent));
+		return new MyQCompleter(QString::fromUtf8(list.data, list.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQCompleter(QString::fromUtf8(list.data, list.len).split("|", QString::SkipEmptyParts), static_cast<QWidget*>(parent));
+		return new MyQCompleter(QString::fromUtf8(list.data, list.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQCompleter(QString::fromUtf8(list.data, list.len).split("|", QString::SkipEmptyParts), static_cast<QWindow*>(parent));
+		return new MyQCompleter(QString::fromUtf8(list.data, list.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QWindow*>(parent));
 	} else {
-		return new MyQCompleter(QString::fromUtf8(list.data, list.len).split("|", QString::SkipEmptyParts), static_cast<QObject*>(parent));
+		return new MyQCompleter(QString::fromUtf8(list.data, list.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QObject*>(parent));
 	}
 }
 
@@ -9677,12 +9677,12 @@ struct QtWidgets_PackedString QCompleter_PathFromIndexDefault(void* ptr, void* i
 
 struct QtWidgets_PackedString QCompleter_SplitPath(void* ptr, struct QtWidgets_PackedString path)
 {
-	return ({ QByteArray t40101c = static_cast<QCompleter*>(ptr)->splitPath(QString::fromUtf8(path.data, path.len)).join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t40101c.prepend("WHITESPACE").constData()+10), t40101c.size()-10 }; });
+	return ({ QByteArray t40101c = static_cast<QCompleter*>(ptr)->splitPath(QString::fromUtf8(path.data, path.len)).join("¡¦!").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t40101c.prepend("WHITESPACE").constData()+10), t40101c.size()-10 }; });
 }
 
 struct QtWidgets_PackedString QCompleter_SplitPathDefault(void* ptr, struct QtWidgets_PackedString path)
 {
-		return ({ QByteArray tdf319d = static_cast<QCompleter*>(ptr)->QCompleter::splitPath(QString::fromUtf8(path.data, path.len)).join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(tdf319d.prepend("WHITESPACE").constData()+10), tdf319d.size()-10 }; });
+		return ({ QByteArray tdf319d = static_cast<QCompleter*>(ptr)->QCompleter::splitPath(QString::fromUtf8(path.data, path.len)).join("¡¦!").toUtf8(); QtWidgets_PackedString { const_cast<char*>(tdf319d.prepend("WHITESPACE").constData()+10), tdf319d.size()-10 }; });
 }
 
 void* QCompleter_Widget(void* ptr)
@@ -11921,7 +11921,7 @@ public:
 	QMimeData * mimeData(const QModelIndexList & indexes) const { return static_cast<QMimeData*>(callbackQDirModel_MimeData(const_cast<void*>(static_cast<const void*>(this)), ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(indexes); QtWidgets_PackedList { tmpValue, tmpValue->size() }; }))); };
 	QModelIndex index(int row, int column, const QModelIndex & parent) const { return *static_cast<QModelIndex*>(callbackQDirModel_Index(const_cast<void*>(static_cast<const void*>(this)), row, column, const_cast<QModelIndex*>(&parent))); };
 	QModelIndex parent(const QModelIndex & child) const { return *static_cast<QModelIndex*>(callbackQDirModel_Parent(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&child))); };
-	QStringList mimeTypes() const { return ({ QtWidgets_PackedString tempVal = callbackQDirModel_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	QStringList mimeTypes() const { return ({ QtWidgets_PackedString tempVal = callbackQDirModel_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	QVariant data(const QModelIndex & index, int role) const { return *static_cast<QVariant*>(callbackQDirModel_Data(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index), role)); };
 	QVariant headerData(int section, Qt::Orientation orientation, int role) const { return *static_cast<QVariant*>(callbackQDirModel_HeaderData(const_cast<void*>(static_cast<const void*>(this)), section, orientation, role)); };
 	Qt::DropActions supportedDropActions() const { return static_cast<Qt::DropAction>(callbackQDirModel_SupportedDropActions(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -12032,39 +12032,39 @@ void* QDirModel_NewQDirModel2(void* parent)
 void* QDirModel_NewQDirModel(struct QtWidgets_PackedString nameFilters, long long filters, long long sort, void* parent)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
-		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("|", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QCameraImageCapture*>(parent));
+		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
-		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("|", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QDBusPendingCallWatcher*>(parent));
+		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QDBusPendingCallWatcher*>(parent));
 	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
-		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("|", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QExtensionFactory*>(parent));
+		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QExtensionFactory*>(parent));
 	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
-		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("|", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QExtensionManager*>(parent));
+		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QExtensionManager*>(parent));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
-		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("|", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QGraphicsObject*>(parent));
+		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QGraphicsObject*>(parent));
 	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("|", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QGraphicsWidget*>(parent));
+		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QGraphicsWidget*>(parent));
 	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
-		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("|", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QLayout*>(parent));
+		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QLayout*>(parent));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
-		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("|", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QMediaPlaylist*>(parent));
+		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
-		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("|", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QMediaRecorder*>(parent));
+		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QMediaRecorder*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
-		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("|", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QOffscreenSurface*>(parent));
+		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("|", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QPaintDeviceWindow*>(parent));
+		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QPaintDeviceWindow*>(parent));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
-		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("|", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QPdfWriter*>(parent));
+		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QPdfWriter*>(parent));
 	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
-		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("|", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QQuickItem*>(parent));
+		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
-		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("|", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QRadioData*>(parent));
+		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("|", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QWidget*>(parent));
+		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("|", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QWindow*>(parent));
+		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QWindow*>(parent));
 	} else {
-		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("|", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QObject*>(parent));
+		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QObject*>(parent));
 	}
 }
 
@@ -12125,7 +12125,7 @@ void QDirModel_SetLazyChildCount(void* ptr, char enable)
 
 void QDirModel_SetNameFilters(void* ptr, struct QtWidgets_PackedString filters)
 {
-	static_cast<QDirModel*>(ptr)->setNameFilters(QString::fromUtf8(filters.data, filters.len).split("|", QString::SkipEmptyParts));
+	static_cast<QDirModel*>(ptr)->setNameFilters(QString::fromUtf8(filters.data, filters.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void QDirModel_SetReadOnly(void* ptr, char enable)
@@ -12226,12 +12226,12 @@ struct QtWidgets_PackedString QDirModel_FilePath(void* ptr, void* index)
 
 struct QtWidgets_PackedString QDirModel_MimeTypesDefault(void* ptr)
 {
-		return ({ QByteArray td08e24 = static_cast<QDirModel*>(ptr)->QDirModel::mimeTypes().join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(td08e24.prepend("WHITESPACE").constData()+10), td08e24.size()-10 }; });
+		return ({ QByteArray td08e24 = static_cast<QDirModel*>(ptr)->QDirModel::mimeTypes().join("¡¦!").toUtf8(); QtWidgets_PackedString { const_cast<char*>(td08e24.prepend("WHITESPACE").constData()+10), td08e24.size()-10 }; });
 }
 
 struct QtWidgets_PackedString QDirModel_NameFilters(void* ptr)
 {
-	return ({ QByteArray taf268e = static_cast<QDirModel*>(ptr)->nameFilters().join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(taf268e.prepend("WHITESPACE").constData()+10), taf268e.size()-10 }; });
+	return ({ QByteArray taf268e = static_cast<QDirModel*>(ptr)->nameFilters().join("¡¦!").toUtf8(); QtWidgets_PackedString { const_cast<char*>(taf268e.prepend("WHITESPACE").constData()+10), taf268e.size()-10 }; });
 }
 
 void* QDirModel_Data(void* ptr, void* index, int role)
@@ -13516,7 +13516,7 @@ public:
 	void Signal_DirectoryUrlEntered(const QUrl & directory) { callbackQFileDialog_DirectoryUrlEntered(this, const_cast<QUrl*>(&directory)); };
 	void done(int result) { callbackQFileDialog_Done(this, result); };
 	void Signal_FileSelected(const QString & file) { QByteArray t971c41 = file.toUtf8(); QtWidgets_PackedString filePacked = { const_cast<char*>(t971c41.prepend("WHITESPACE").constData()+10), t971c41.size()-10 };callbackQFileDialog_FileSelected(this, filePacked); };
-	void Signal_FilesSelected(const QStringList & selected) { QByteArray t835f3b = selected.join("|").toUtf8(); QtWidgets_PackedString selectedPacked = { const_cast<char*>(t835f3b.prepend("WHITESPACE").constData()+10), t835f3b.size()-10 };callbackQFileDialog_FilesSelected(this, selectedPacked); };
+	void Signal_FilesSelected(const QStringList & selected) { QByteArray t835f3b = selected.join("¡¦!").toUtf8(); QtWidgets_PackedString selectedPacked = { const_cast<char*>(t835f3b.prepend("WHITESPACE").constData()+10), t835f3b.size()-10 };callbackQFileDialog_FilesSelected(this, selectedPacked); };
 	void Signal_FilterSelected(const QString & filter) { QByteArray t4bb4ca = filter.toUtf8(); QtWidgets_PackedString filterPacked = { const_cast<char*>(t4bb4ca.prepend("WHITESPACE").constData()+10), t4bb4ca.size()-10 };callbackQFileDialog_FilterSelected(this, filterPacked); };
 	void setVisible(bool visible) { callbackQDialog_SetVisible(this, visible); };
 	void Signal_UrlSelected(const QUrl & url) { callbackQFileDialog_UrlSelected(this, const_cast<QUrl*>(&url)); };
@@ -13613,7 +13613,7 @@ void* QFileDialog_NewQFileDialog2(void* parent, struct QtWidgets_PackedString ca
 
 struct QtWidgets_PackedList QFileDialog_QFileDialog_GetOpenFileUrls(void* parent, struct QtWidgets_PackedString caption, void* dir, struct QtWidgets_PackedString filter, struct QtWidgets_PackedString selectedFilter, long long options, struct QtWidgets_PackedString supportedSchemes)
 {
-		return ({ QList<QUrl>* tmpValue = new QList<QUrl>(QFileDialog::getOpenFileUrls(static_cast<QWidget*>(parent), QString::fromUtf8(caption.data, caption.len), *static_cast<QUrl*>(dir), QString::fromUtf8(filter.data, filter.len), new QString(QString::fromUtf8(selectedFilter.data, selectedFilter.len)), static_cast<QFileDialog::Option>(options), QString::fromUtf8(supportedSchemes.data, supportedSchemes.len).split("|", QString::SkipEmptyParts))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QList<QUrl>* tmpValue = new QList<QUrl>(QFileDialog::getOpenFileUrls(static_cast<QWidget*>(parent), QString::fromUtf8(caption.data, caption.len), *static_cast<QUrl*>(dir), QString::fromUtf8(filter.data, filter.len), new QString(QString::fromUtf8(selectedFilter.data, selectedFilter.len)), static_cast<QFileDialog::Option>(options), QString::fromUtf8(supportedSchemes.data, supportedSchemes.len).split("¡¦!", QString::SkipEmptyParts))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 struct QtWidgets_PackedString QFileDialog_QFileDialog_GetExistingDirectory(void* parent, struct QtWidgets_PackedString caption, struct QtWidgets_PackedString dir, long long options)
@@ -13633,22 +13633,22 @@ struct QtWidgets_PackedString QFileDialog_QFileDialog_GetSaveFileName(void* pare
 
 struct QtWidgets_PackedString QFileDialog_QFileDialog_GetOpenFileNames(void* parent, struct QtWidgets_PackedString caption, struct QtWidgets_PackedString dir, struct QtWidgets_PackedString filter, struct QtWidgets_PackedString selectedFilter, long long options)
 {
-		return ({ QByteArray t77ac08 = QFileDialog::getOpenFileNames(static_cast<QWidget*>(parent), QString::fromUtf8(caption.data, caption.len), QString::fromUtf8(dir.data, dir.len), QString::fromUtf8(filter.data, filter.len), new QString(QString::fromUtf8(selectedFilter.data, selectedFilter.len)), static_cast<QFileDialog::Option>(options)).join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t77ac08.prepend("WHITESPACE").constData()+10), t77ac08.size()-10 }; });
+		return ({ QByteArray t77ac08 = QFileDialog::getOpenFileNames(static_cast<QWidget*>(parent), QString::fromUtf8(caption.data, caption.len), QString::fromUtf8(dir.data, dir.len), QString::fromUtf8(filter.data, filter.len), new QString(QString::fromUtf8(selectedFilter.data, selectedFilter.len)), static_cast<QFileDialog::Option>(options)).join("¡¦!").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t77ac08.prepend("WHITESPACE").constData()+10), t77ac08.size()-10 }; });
 }
 
 void* QFileDialog_QFileDialog_GetExistingDirectoryUrl(void* parent, struct QtWidgets_PackedString caption, void* dir, long long options, struct QtWidgets_PackedString supportedSchemes)
 {
-		return new QUrl(QFileDialog::getExistingDirectoryUrl(static_cast<QWidget*>(parent), QString::fromUtf8(caption.data, caption.len), *static_cast<QUrl*>(dir), static_cast<QFileDialog::Option>(options), QString::fromUtf8(supportedSchemes.data, supportedSchemes.len).split("|", QString::SkipEmptyParts)));
+		return new QUrl(QFileDialog::getExistingDirectoryUrl(static_cast<QWidget*>(parent), QString::fromUtf8(caption.data, caption.len), *static_cast<QUrl*>(dir), static_cast<QFileDialog::Option>(options), QString::fromUtf8(supportedSchemes.data, supportedSchemes.len).split("¡¦!", QString::SkipEmptyParts)));
 }
 
 void* QFileDialog_QFileDialog_GetOpenFileUrl(void* parent, struct QtWidgets_PackedString caption, void* dir, struct QtWidgets_PackedString filter, struct QtWidgets_PackedString selectedFilter, long long options, struct QtWidgets_PackedString supportedSchemes)
 {
-		return new QUrl(QFileDialog::getOpenFileUrl(static_cast<QWidget*>(parent), QString::fromUtf8(caption.data, caption.len), *static_cast<QUrl*>(dir), QString::fromUtf8(filter.data, filter.len), new QString(QString::fromUtf8(selectedFilter.data, selectedFilter.len)), static_cast<QFileDialog::Option>(options), QString::fromUtf8(supportedSchemes.data, supportedSchemes.len).split("|", QString::SkipEmptyParts)));
+		return new QUrl(QFileDialog::getOpenFileUrl(static_cast<QWidget*>(parent), QString::fromUtf8(caption.data, caption.len), *static_cast<QUrl*>(dir), QString::fromUtf8(filter.data, filter.len), new QString(QString::fromUtf8(selectedFilter.data, selectedFilter.len)), static_cast<QFileDialog::Option>(options), QString::fromUtf8(supportedSchemes.data, supportedSchemes.len).split("¡¦!", QString::SkipEmptyParts)));
 }
 
 void* QFileDialog_QFileDialog_GetSaveFileUrl(void* parent, struct QtWidgets_PackedString caption, void* dir, struct QtWidgets_PackedString filter, struct QtWidgets_PackedString selectedFilter, long long options, struct QtWidgets_PackedString supportedSchemes)
 {
-		return new QUrl(QFileDialog::getSaveFileUrl(static_cast<QWidget*>(parent), QString::fromUtf8(caption.data, caption.len), *static_cast<QUrl*>(dir), QString::fromUtf8(filter.data, filter.len), new QString(QString::fromUtf8(selectedFilter.data, selectedFilter.len)), static_cast<QFileDialog::Option>(options), QString::fromUtf8(supportedSchemes.data, supportedSchemes.len).split("|", QString::SkipEmptyParts)));
+		return new QUrl(QFileDialog::getSaveFileUrl(static_cast<QWidget*>(parent), QString::fromUtf8(caption.data, caption.len), *static_cast<QUrl*>(dir), QString::fromUtf8(filter.data, filter.len), new QString(QString::fromUtf8(selectedFilter.data, selectedFilter.len)), static_cast<QFileDialog::Option>(options), QString::fromUtf8(supportedSchemes.data, supportedSchemes.len).split("¡¦!", QString::SkipEmptyParts)));
 }
 
 char QFileDialog_RestoreState(void* ptr, void* state)
@@ -13763,7 +13763,7 @@ void QFileDialog_DisconnectFilesSelected(void* ptr)
 
 void QFileDialog_FilesSelected(void* ptr, struct QtWidgets_PackedString selected)
 {
-	static_cast<QFileDialog*>(ptr)->filesSelected(QString::fromUtf8(selected.data, selected.len).split("|", QString::SkipEmptyParts));
+	static_cast<QFileDialog*>(ptr)->filesSelected(QString::fromUtf8(selected.data, selected.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void QFileDialog_ConnectFilterSelected(void* ptr)
@@ -13858,7 +13858,7 @@ void QFileDialog_SetFilter(void* ptr, long long filters)
 
 void QFileDialog_SetHistory(void* ptr, struct QtWidgets_PackedString paths)
 {
-	static_cast<QFileDialog*>(ptr)->setHistory(QString::fromUtf8(paths.data, paths.len).split("|", QString::SkipEmptyParts));
+	static_cast<QFileDialog*>(ptr)->setHistory(QString::fromUtf8(paths.data, paths.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void QFileDialog_SetIconProvider(void* ptr, void* provider)
@@ -13878,7 +13878,7 @@ void QFileDialog_SetLabelText(void* ptr, long long label, struct QtWidgets_Packe
 
 void QFileDialog_SetMimeTypeFilters(void* ptr, struct QtWidgets_PackedString filters)
 {
-	static_cast<QFileDialog*>(ptr)->setMimeTypeFilters(QString::fromUtf8(filters.data, filters.len).split("|", QString::SkipEmptyParts));
+	static_cast<QFileDialog*>(ptr)->setMimeTypeFilters(QString::fromUtf8(filters.data, filters.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void QFileDialog_SetNameFilter(void* ptr, struct QtWidgets_PackedString filter)
@@ -13893,7 +13893,7 @@ void QFileDialog_SetNameFilterDetailsVisible(void* ptr, char enabled)
 
 void QFileDialog_SetNameFilters(void* ptr, struct QtWidgets_PackedString filters)
 {
-	static_cast<QFileDialog*>(ptr)->setNameFilters(QString::fromUtf8(filters.data, filters.len).split("|", QString::SkipEmptyParts));
+	static_cast<QFileDialog*>(ptr)->setNameFilters(QString::fromUtf8(filters.data, filters.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void QFileDialog_SetOption(void* ptr, long long option, char on)
@@ -13928,7 +13928,7 @@ void QFileDialog_SetSidebarUrls(void* ptr, void* urls)
 
 void QFileDialog_SetSupportedSchemes(void* ptr, struct QtWidgets_PackedString schemes)
 {
-	static_cast<QFileDialog*>(ptr)->setSupportedSchemes(QString::fromUtf8(schemes.data, schemes.len).split("|", QString::SkipEmptyParts));
+	static_cast<QFileDialog*>(ptr)->setSupportedSchemes(QString::fromUtf8(schemes.data, schemes.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void QFileDialog_SetViewMode(void* ptr, long long mode)
@@ -14059,27 +14059,27 @@ struct QtWidgets_PackedString QFileDialog_SelectedNameFilter(void* ptr)
 
 struct QtWidgets_PackedString QFileDialog_History(void* ptr)
 {
-	return ({ QByteArray t242067 = static_cast<QFileDialog*>(ptr)->history().join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t242067.prepend("WHITESPACE").constData()+10), t242067.size()-10 }; });
+	return ({ QByteArray t242067 = static_cast<QFileDialog*>(ptr)->history().join("¡¦!").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t242067.prepend("WHITESPACE").constData()+10), t242067.size()-10 }; });
 }
 
 struct QtWidgets_PackedString QFileDialog_MimeTypeFilters(void* ptr)
 {
-	return ({ QByteArray t17a2a7 = static_cast<QFileDialog*>(ptr)->mimeTypeFilters().join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t17a2a7.prepend("WHITESPACE").constData()+10), t17a2a7.size()-10 }; });
+	return ({ QByteArray t17a2a7 = static_cast<QFileDialog*>(ptr)->mimeTypeFilters().join("¡¦!").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t17a2a7.prepend("WHITESPACE").constData()+10), t17a2a7.size()-10 }; });
 }
 
 struct QtWidgets_PackedString QFileDialog_NameFilters(void* ptr)
 {
-	return ({ QByteArray t4389e5 = static_cast<QFileDialog*>(ptr)->nameFilters().join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t4389e5.prepend("WHITESPACE").constData()+10), t4389e5.size()-10 }; });
+	return ({ QByteArray t4389e5 = static_cast<QFileDialog*>(ptr)->nameFilters().join("¡¦!").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t4389e5.prepend("WHITESPACE").constData()+10), t4389e5.size()-10 }; });
 }
 
 struct QtWidgets_PackedString QFileDialog_SelectedFiles(void* ptr)
 {
-	return ({ QByteArray tc6127b = static_cast<QFileDialog*>(ptr)->selectedFiles().join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(tc6127b.prepend("WHITESPACE").constData()+10), tc6127b.size()-10 }; });
+	return ({ QByteArray tc6127b = static_cast<QFileDialog*>(ptr)->selectedFiles().join("¡¦!").toUtf8(); QtWidgets_PackedString { const_cast<char*>(tc6127b.prepend("WHITESPACE").constData()+10), tc6127b.size()-10 }; });
 }
 
 struct QtWidgets_PackedString QFileDialog_SupportedSchemes(void* ptr)
 {
-	return ({ QByteArray tfcd263 = static_cast<QFileDialog*>(ptr)->supportedSchemes().join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(tfcd263.prepend("WHITESPACE").constData()+10), tfcd263.size()-10 }; });
+	return ({ QByteArray tfcd263 = static_cast<QFileDialog*>(ptr)->supportedSchemes().join("¡¦!").toUtf8(); QtWidgets_PackedString { const_cast<char*>(tfcd263.prepend("WHITESPACE").constData()+10), tfcd263.size()-10 }; });
 }
 
 void* QFileDialog_DirectoryUrl(void* ptr)
@@ -14276,7 +14276,7 @@ public:
 	QModelIndex index(int row, int column, const QModelIndex & parent) const { return *static_cast<QModelIndex*>(callbackQFileSystemModel_Index(const_cast<void*>(static_cast<const void*>(this)), row, column, const_cast<QModelIndex*>(&parent))); };
 	QModelIndex parent(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQFileSystemModel_Parent(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
 	QModelIndex sibling(int row, int column, const QModelIndex & idx) const { return *static_cast<QModelIndex*>(callbackQFileSystemModel_Sibling(const_cast<void*>(static_cast<const void*>(this)), row, column, const_cast<QModelIndex*>(&idx))); };
-	QStringList mimeTypes() const { return ({ QtWidgets_PackedString tempVal = callbackQFileSystemModel_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	QStringList mimeTypes() const { return ({ QtWidgets_PackedString tempVal = callbackQFileSystemModel_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	QVariant data(const QModelIndex & index, int role) const { return *static_cast<QVariant*>(callbackQFileSystemModel_Data(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index), role)); };
 	QVariant headerData(int section, Qt::Orientation orientation, int role) const { return *static_cast<QVariant*>(callbackQFileSystemModel_HeaderData(const_cast<void*>(static_cast<const void*>(this)), section, orientation, role)); };
 	Qt::DropActions supportedDropActions() const { return static_cast<Qt::DropAction>(callbackQFileSystemModel_SupportedDropActions(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -14497,7 +14497,7 @@ void QFileSystemModel_SetNameFilterDisables(void* ptr, char enable)
 
 void QFileSystemModel_SetNameFilters(void* ptr, struct QtWidgets_PackedString filters)
 {
-	static_cast<QFileSystemModel*>(ptr)->setNameFilters(QString::fromUtf8(filters.data, filters.len).split("|", QString::SkipEmptyParts));
+	static_cast<QFileSystemModel*>(ptr)->setNameFilters(QString::fromUtf8(filters.data, filters.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void QFileSystemModel_SetReadOnly(void* ptr, char enable)
@@ -14618,12 +14618,12 @@ struct QtWidgets_PackedString QFileSystemModel_Type(void* ptr, void* index)
 
 struct QtWidgets_PackedString QFileSystemModel_MimeTypesDefault(void* ptr)
 {
-		return ({ QByteArray t836878 = static_cast<QFileSystemModel*>(ptr)->QFileSystemModel::mimeTypes().join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t836878.prepend("WHITESPACE").constData()+10), t836878.size()-10 }; });
+		return ({ QByteArray t836878 = static_cast<QFileSystemModel*>(ptr)->QFileSystemModel::mimeTypes().join("¡¦!").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t836878.prepend("WHITESPACE").constData()+10), t836878.size()-10 }; });
 }
 
 struct QtWidgets_PackedString QFileSystemModel_NameFilters(void* ptr)
 {
-	return ({ QByteArray te17825 = static_cast<QFileSystemModel*>(ptr)->nameFilters().join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(te17825.prepend("WHITESPACE").constData()+10), te17825.size()-10 }; });
+	return ({ QByteArray te17825 = static_cast<QFileSystemModel*>(ptr)->nameFilters().join("¡¦!").toUtf8(); QtWidgets_PackedString { const_cast<char*>(te17825.prepend("WHITESPACE").constData()+10), te17825.size()-10 }; });
 }
 
 void* QFileSystemModel_Data(void* ptr, void* index, int role)
@@ -32018,7 +32018,7 @@ void* QInputDialog_NewQInputDialog(void* parent, long long flags)
 
 struct QtWidgets_PackedString QInputDialog_QInputDialog_GetItem(void* parent, struct QtWidgets_PackedString title, struct QtWidgets_PackedString label, struct QtWidgets_PackedString items, int current, char editable, char* ok, long long flags, long long inputMethodHints)
 {
-		return ({ QByteArray taf7dcc = QInputDialog::getItem(static_cast<QWidget*>(parent), QString::fromUtf8(title.data, title.len), QString::fromUtf8(label.data, label.len), QString::fromUtf8(items.data, items.len).split("|", QString::SkipEmptyParts), current, editable != 0, reinterpret_cast<bool*>(ok), static_cast<Qt::WindowType>(flags), static_cast<Qt::InputMethodHint>(inputMethodHints)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(taf7dcc.prepend("WHITESPACE").constData()+10), taf7dcc.size()-10 }; });
+		return ({ QByteArray t589f5f = QInputDialog::getItem(static_cast<QWidget*>(parent), QString::fromUtf8(title.data, title.len), QString::fromUtf8(label.data, label.len), QString::fromUtf8(items.data, items.len).split("¡¦!", QString::SkipEmptyParts), current, editable != 0, reinterpret_cast<bool*>(ok), static_cast<Qt::WindowType>(flags), static_cast<Qt::InputMethodHint>(inputMethodHints)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t589f5f.prepend("WHITESPACE").constData()+10), t589f5f.size()-10 }; });
 }
 
 struct QtWidgets_PackedString QInputDialog_QInputDialog_GetMultiLineText(void* parent, struct QtWidgets_PackedString title, struct QtWidgets_PackedString label, struct QtWidgets_PackedString text, char* ok, long long flags, long long inputMethodHints)
@@ -32143,7 +32143,7 @@ void QInputDialog_SetComboBoxEditable(void* ptr, char editable)
 
 void QInputDialog_SetComboBoxItems(void* ptr, struct QtWidgets_PackedString items)
 {
-	static_cast<QInputDialog*>(ptr)->setComboBoxItems(QString::fromUtf8(items.data, items.len).split("|", QString::SkipEmptyParts));
+	static_cast<QInputDialog*>(ptr)->setComboBoxItems(QString::fromUtf8(items.data, items.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void QInputDialog_SetDoubleDecimals(void* ptr, int decimals)
@@ -32314,7 +32314,7 @@ struct QtWidgets_PackedString QInputDialog_TextValue(void* ptr)
 
 struct QtWidgets_PackedString QInputDialog_ComboBoxItems(void* ptr)
 {
-	return ({ QByteArray t976d54 = static_cast<QInputDialog*>(ptr)->comboBoxItems().join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t976d54.prepend("WHITESPACE").constData()+10), t976d54.size()-10 }; });
+	return ({ QByteArray t976d54 = static_cast<QInputDialog*>(ptr)->comboBoxItems().join("¡¦!").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t976d54.prepend("WHITESPACE").constData()+10), t976d54.size()-10 }; });
 }
 
 char QInputDialog_IsComboBoxEditable(void* ptr)
@@ -36242,7 +36242,7 @@ public:
 	void setSelectionModel(QItemSelectionModel * selectionModel) { callbackQAbstractItemView_SetSelectionModel(this, selectionModel); };
 	 ~MyQListWidget() { callbackQListWidget_DestroyQListWidget(this); };
 	QMimeData * mimeData(const QList<QListWidgetItem *> items) const { return static_cast<QMimeData*>(callbackQListWidget_MimeData(const_cast<void*>(static_cast<const void*>(this)), ({ QList<QListWidgetItem *>* tmpValue = new QList<QListWidgetItem *>(items); QtWidgets_PackedList { tmpValue, tmpValue->size() }; }))); };
-	QStringList mimeTypes() const { return ({ QtWidgets_PackedString tempVal = callbackQListWidget_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	QStringList mimeTypes() const { return ({ QtWidgets_PackedString tempVal = callbackQListWidget_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	Qt::DropActions supportedDropActions() const { return static_cast<Qt::DropAction>(callbackQListWidget_SupportedDropActions(const_cast<void*>(static_cast<const void*>(this)))); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	QModelIndex moveCursor(QAbstractItemView::CursorAction cursorAction, Qt::KeyboardModifiers modifiers) { return *static_cast<QModelIndex*>(callbackQListView_MoveCursor(this, cursorAction, modifiers)); };
@@ -36396,7 +36396,7 @@ void QListWidget_AddItem(void* ptr, struct QtWidgets_PackedString label)
 
 void QListWidget_AddItems(void* ptr, struct QtWidgets_PackedString labels)
 {
-	static_cast<QListWidget*>(ptr)->addItems(QString::fromUtf8(labels.data, labels.len).split("|", QString::SkipEmptyParts));
+	static_cast<QListWidget*>(ptr)->addItems(QString::fromUtf8(labels.data, labels.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void QListWidget_Clear(void* ptr)
@@ -36476,7 +36476,7 @@ void QListWidget_InsertItem2(void* ptr, int row, struct QtWidgets_PackedString l
 
 void QListWidget_InsertItems(void* ptr, int row, struct QtWidgets_PackedString labels)
 {
-	static_cast<QListWidget*>(ptr)->insertItems(row, QString::fromUtf8(labels.data, labels.len).split("|", QString::SkipEmptyParts));
+	static_cast<QListWidget*>(ptr)->insertItems(row, QString::fromUtf8(labels.data, labels.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void QListWidget_ConnectItemActivated(void* ptr)
@@ -36713,12 +36713,12 @@ void* QListWidget_VisualItemRect(void* ptr, void* item)
 
 struct QtWidgets_PackedString QListWidget_MimeTypes(void* ptr)
 {
-	return ({ QByteArray t46fd45 = static_cast<QListWidget*>(ptr)->mimeTypes().join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t46fd45.prepend("WHITESPACE").constData()+10), t46fd45.size()-10 }; });
+	return ({ QByteArray t46fd45 = static_cast<QListWidget*>(ptr)->mimeTypes().join("¡¦!").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t46fd45.prepend("WHITESPACE").constData()+10), t46fd45.size()-10 }; });
 }
 
 struct QtWidgets_PackedString QListWidget_MimeTypesDefault(void* ptr)
 {
-		return ({ QByteArray tc474fd = static_cast<QListWidget*>(ptr)->QListWidget::mimeTypes().join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(tc474fd.prepend("WHITESPACE").constData()+10), tc474fd.size()-10 }; });
+		return ({ QByteArray tc474fd = static_cast<QListWidget*>(ptr)->QListWidget::mimeTypes().join("¡¦!").toUtf8(); QtWidgets_PackedString { const_cast<char*>(tc474fd.prepend("WHITESPACE").constData()+10), tc474fd.size()-10 }; });
 }
 
 void* QListWidget_ItemWidget(void* ptr, void* item)
@@ -45783,7 +45783,7 @@ void QStyle_TimerEventDefault(void* ptr, void* event)
 
 struct QtWidgets_PackedString QStyleFactory_QStyleFactory_Keys()
 {
-	return ({ QByteArray t733aa8 = QStyleFactory::keys().join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t733aa8.prepend("WHITESPACE").constData()+10), t733aa8.size()-10 }; });
+	return ({ QByteArray t733aa8 = QStyleFactory::keys().join("¡¦!").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t733aa8.prepend("WHITESPACE").constData()+10), t733aa8.size()-10 }; });
 }
 
 void* QStyleFactory_QStyleFactory_Create(struct QtWidgets_PackedString key)
@@ -50280,7 +50280,7 @@ public:
 	void scrollToItem(const QTableWidgetItem * item, QAbstractItemView::ScrollHint hint) { callbackQTableWidget_ScrollToItem(this, const_cast<QTableWidgetItem*>(item), hint); };
 	 ~MyQTableWidget() { callbackQTableWidget_DestroyQTableWidget(this); };
 	QMimeData * mimeData(const QList<QTableWidgetItem *> items) const { return static_cast<QMimeData*>(callbackQTableWidget_MimeData(const_cast<void*>(static_cast<const void*>(this)), ({ QList<QTableWidgetItem *>* tmpValue = new QList<QTableWidgetItem *>(items); QtWidgets_PackedList { tmpValue, tmpValue->size() }; }))); };
-	QStringList mimeTypes() const { return ({ QtWidgets_PackedString tempVal = callbackQTableWidget_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	QStringList mimeTypes() const { return ({ QtWidgets_PackedString tempVal = callbackQTableWidget_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	Qt::DropActions supportedDropActions() const { return static_cast<Qt::DropAction>(callbackQTableWidget_SupportedDropActions(const_cast<void*>(static_cast<const void*>(this)))); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	QModelIndex moveCursor(QAbstractItemView::CursorAction cursorAction, Qt::KeyboardModifiers modifiers) { return *static_cast<QModelIndex*>(callbackQTableView_MoveCursor(this, cursorAction, modifiers)); };
@@ -50808,7 +50808,7 @@ void QTableWidget_SetHorizontalHeaderItem(void* ptr, int column, void* item)
 
 void QTableWidget_SetHorizontalHeaderLabels(void* ptr, struct QtWidgets_PackedString labels)
 {
-	static_cast<QTableWidget*>(ptr)->setHorizontalHeaderLabels(QString::fromUtf8(labels.data, labels.len).split("|", QString::SkipEmptyParts));
+	static_cast<QTableWidget*>(ptr)->setHorizontalHeaderLabels(QString::fromUtf8(labels.data, labels.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void QTableWidget_SetItem(void* ptr, int row, int column, void* item)
@@ -50838,7 +50838,7 @@ void QTableWidget_SetVerticalHeaderItem(void* ptr, int row, void* item)
 
 void QTableWidget_SetVerticalHeaderLabels(void* ptr, struct QtWidgets_PackedString labels)
 {
-	static_cast<QTableWidget*>(ptr)->setVerticalHeaderLabels(QString::fromUtf8(labels.data, labels.len).split("|", QString::SkipEmptyParts));
+	static_cast<QTableWidget*>(ptr)->setVerticalHeaderLabels(QString::fromUtf8(labels.data, labels.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void QTableWidget_SortItems(void* ptr, int column, long long order)
@@ -50899,12 +50899,12 @@ void* QTableWidget_VisualItemRect(void* ptr, void* item)
 
 struct QtWidgets_PackedString QTableWidget_MimeTypes(void* ptr)
 {
-	return ({ QByteArray t94a601 = static_cast<QTableWidget*>(ptr)->mimeTypes().join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t94a601.prepend("WHITESPACE").constData()+10), t94a601.size()-10 }; });
+	return ({ QByteArray t94a601 = static_cast<QTableWidget*>(ptr)->mimeTypes().join("¡¦!").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t94a601.prepend("WHITESPACE").constData()+10), t94a601.size()-10 }; });
 }
 
 struct QtWidgets_PackedString QTableWidget_MimeTypesDefault(void* ptr)
 {
-		return ({ QByteArray t43ec64 = static_cast<QTableWidget*>(ptr)->QTableWidget::mimeTypes().join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t43ec64.prepend("WHITESPACE").constData()+10), t43ec64.size()-10 }; });
+		return ({ QByteArray t43ec64 = static_cast<QTableWidget*>(ptr)->QTableWidget::mimeTypes().join("¡¦!").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t43ec64.prepend("WHITESPACE").constData()+10), t43ec64.size()-10 }; });
 }
 
 void* QTableWidget_CurrentItem(void* ptr)
@@ -51773,7 +51773,7 @@ void QTextBrowser_SetOpenLinks(void* ptr, char open)
 
 void QTextBrowser_SetSearchPaths(void* ptr, struct QtWidgets_PackedString paths)
 {
-	static_cast<QTextBrowser*>(ptr)->setSearchPaths(QString::fromUtf8(paths.data, paths.len).split("|", QString::SkipEmptyParts));
+	static_cast<QTextBrowser*>(ptr)->setSearchPaths(QString::fromUtf8(paths.data, paths.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void QTextBrowser_SetSource(void* ptr, void* name)
@@ -51808,7 +51808,7 @@ struct QtWidgets_PackedString QTextBrowser_HistoryTitle(void* ptr, int i)
 
 struct QtWidgets_PackedString QTextBrowser_SearchPaths(void* ptr)
 {
-	return ({ QByteArray t6868fa = static_cast<QTextBrowser*>(ptr)->searchPaths().join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t6868fa.prepend("WHITESPACE").constData()+10), t6868fa.size()-10 }; });
+	return ({ QByteArray t6868fa = static_cast<QTextBrowser*>(ptr)->searchPaths().join("¡¦!").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t6868fa.prepend("WHITESPACE").constData()+10), t6868fa.size()-10 }; });
 }
 
 void* QTextBrowser_HistoryUrl(void* ptr, int i)
@@ -54788,7 +54788,7 @@ public:
 	void setSelectionModel(QItemSelectionModel * selectionModel) { callbackQAbstractItemView_SetSelectionModel(this, selectionModel); };
 	 ~MyQTreeWidget() { callbackQTreeWidget_DestroyQTreeWidget(this); };
 	QMimeData * mimeData(const QList<QTreeWidgetItem *> items) const { return static_cast<QMimeData*>(callbackQTreeWidget_MimeData(const_cast<void*>(static_cast<const void*>(this)), ({ QList<QTreeWidgetItem *>* tmpValue = new QList<QTreeWidgetItem *>(items); QtWidgets_PackedList { tmpValue, tmpValue->size() }; }))); };
-	QStringList mimeTypes() const { return ({ QtWidgets_PackedString tempVal = callbackQTreeWidget_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	QStringList mimeTypes() const { return ({ QtWidgets_PackedString tempVal = callbackQTreeWidget_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	Qt::DropActions supportedDropActions() const { return static_cast<Qt::DropAction>(callbackQTreeWidget_SupportedDropActions(const_cast<void*>(static_cast<const void*>(this)))); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	QModelIndex moveCursor(QAbstractItemView::CursorAction cursorAction, Qt::KeyboardModifiers modifiers) { return *static_cast<QModelIndex*>(callbackQTreeView_MoveCursor(this, cursorAction, modifiers)); };
@@ -55214,7 +55214,7 @@ void QTreeWidget_SetHeaderLabel(void* ptr, struct QtWidgets_PackedString label)
 
 void QTreeWidget_SetHeaderLabels(void* ptr, struct QtWidgets_PackedString labels)
 {
-	static_cast<QTreeWidget*>(ptr)->setHeaderLabels(QString::fromUtf8(labels.data, labels.len).split("|", QString::SkipEmptyParts));
+	static_cast<QTreeWidget*>(ptr)->setHeaderLabels(QString::fromUtf8(labels.data, labels.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void QTreeWidget_SetItemWidget(void* ptr, void* item, int column, void* widget)
@@ -55270,12 +55270,12 @@ void* QTreeWidget_VisualItemRect(void* ptr, void* item)
 
 struct QtWidgets_PackedString QTreeWidget_MimeTypes(void* ptr)
 {
-	return ({ QByteArray t212f68 = static_cast<QTreeWidget*>(ptr)->mimeTypes().join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t212f68.prepend("WHITESPACE").constData()+10), t212f68.size()-10 }; });
+	return ({ QByteArray t212f68 = static_cast<QTreeWidget*>(ptr)->mimeTypes().join("¡¦!").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t212f68.prepend("WHITESPACE").constData()+10), t212f68.size()-10 }; });
 }
 
 struct QtWidgets_PackedString QTreeWidget_MimeTypesDefault(void* ptr)
 {
-		return ({ QByteArray te2438e = static_cast<QTreeWidget*>(ptr)->QTreeWidget::mimeTypes().join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(te2438e.prepend("WHITESPACE").constData()+10), te2438e.size()-10 }; });
+		return ({ QByteArray te2438e = static_cast<QTreeWidget*>(ptr)->QTreeWidget::mimeTypes().join("¡¦!").toUtf8(); QtWidgets_PackedString { const_cast<char*>(te2438e.prepend("WHITESPACE").constData()+10), te2438e.size()-10 }; });
 }
 
 void* QTreeWidget_CurrentItem(void* ptr)
@@ -55506,7 +55506,7 @@ void* QTreeWidgetItem_NewQTreeWidgetItem5(void* parent, void* preceding, int ty)
 
 void* QTreeWidgetItem_NewQTreeWidgetItem4(void* parent, struct QtWidgets_PackedString strin, int ty)
 {
-	return new MyQTreeWidgetItem(static_cast<QTreeWidget*>(parent), QString::fromUtf8(strin.data, strin.len).split("|", QString::SkipEmptyParts), ty);
+	return new MyQTreeWidgetItem(static_cast<QTreeWidget*>(parent), QString::fromUtf8(strin.data, strin.len).split("¡¦!", QString::SkipEmptyParts), ty);
 }
 
 void* QTreeWidgetItem_NewQTreeWidgetItem3(void* parent, int ty)
@@ -55521,7 +55521,7 @@ void* QTreeWidgetItem_NewQTreeWidgetItem8(void* parent, void* preceding, int ty)
 
 void* QTreeWidgetItem_NewQTreeWidgetItem7(void* parent, struct QtWidgets_PackedString strin, int ty)
 {
-	return new MyQTreeWidgetItem(static_cast<QTreeWidgetItem*>(parent), QString::fromUtf8(strin.data, strin.len).split("|", QString::SkipEmptyParts), ty);
+	return new MyQTreeWidgetItem(static_cast<QTreeWidgetItem*>(parent), QString::fromUtf8(strin.data, strin.len).split("¡¦!", QString::SkipEmptyParts), ty);
 }
 
 void* QTreeWidgetItem_NewQTreeWidgetItem6(void* parent, int ty)
@@ -55531,7 +55531,7 @@ void* QTreeWidgetItem_NewQTreeWidgetItem6(void* parent, int ty)
 
 void* QTreeWidgetItem_NewQTreeWidgetItem2(struct QtWidgets_PackedString strin, int ty)
 {
-	return new MyQTreeWidgetItem(QString::fromUtf8(strin.data, strin.len).split("|", QString::SkipEmptyParts), ty);
+	return new MyQTreeWidgetItem(QString::fromUtf8(strin.data, strin.len).split("¡¦!", QString::SkipEmptyParts), ty);
 }
 
 void* QTreeWidgetItem_NewQTreeWidgetItem9(void* other)

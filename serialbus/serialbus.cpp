@@ -96,7 +96,7 @@ struct QtSerialBus_PackedList QCanBus_AvailableDevices(void* ptr, struct QtSeria
 
 struct QtSerialBus_PackedString QCanBus_Plugins(void* ptr)
 {
-	return ({ QByteArray t48ad25 = static_cast<QCanBus*>(ptr)->plugins().join("|").toUtf8(); QtSerialBus_PackedString { const_cast<char*>(t48ad25.prepend("WHITESPACE").constData()+10), t48ad25.size()-10 }; });
+	return ({ QByteArray t48ad25 = static_cast<QCanBus*>(ptr)->plugins().join("¡¦!").toUtf8(); QtSerialBus_PackedString { const_cast<char*>(t48ad25.prepend("WHITESPACE").constData()+10), t48ad25.size()-10 }; });
 }
 
 void* QCanBus_MetaObjectDefault(void* ptr)

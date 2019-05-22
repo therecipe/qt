@@ -875,9 +875,9 @@ char QDBusConnection_Connect2(void* ptr, struct QtDBus_PackedString service, str
 char QDBusConnection_Connect3(void* ptr, struct QtDBus_PackedString service, struct QtDBus_PackedString path, struct QtDBus_PackedString interfa, struct QtDBus_PackedString name, struct QtDBus_PackedString argumentMatch, struct QtDBus_PackedString signature, void* receiver, char* slot)
 {
 	if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(receiver))) {
-		return static_cast<QDBusConnection*>(ptr)->connect(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), QString::fromUtf8(name.data, name.len), QString::fromUtf8(argumentMatch.data, argumentMatch.len).split("|", QString::SkipEmptyParts), QString::fromUtf8(signature.data, signature.len), static_cast<QDBusPendingCallWatcher*>(receiver), const_cast<const char*>(slot));
+		return static_cast<QDBusConnection*>(ptr)->connect(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), QString::fromUtf8(name.data, name.len), QString::fromUtf8(argumentMatch.data, argumentMatch.len).split("¡¦!", QString::SkipEmptyParts), QString::fromUtf8(signature.data, signature.len), static_cast<QDBusPendingCallWatcher*>(receiver), const_cast<const char*>(slot));
 	} else {
-		return static_cast<QDBusConnection*>(ptr)->connect(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), QString::fromUtf8(name.data, name.len), QString::fromUtf8(argumentMatch.data, argumentMatch.len).split("|", QString::SkipEmptyParts), QString::fromUtf8(signature.data, signature.len), static_cast<QObject*>(receiver), const_cast<const char*>(slot));
+		return static_cast<QDBusConnection*>(ptr)->connect(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), QString::fromUtf8(name.data, name.len), QString::fromUtf8(argumentMatch.data, argumentMatch.len).split("¡¦!", QString::SkipEmptyParts), QString::fromUtf8(signature.data, signature.len), static_cast<QObject*>(receiver), const_cast<const char*>(slot));
 	}
 }
 
@@ -902,9 +902,9 @@ char QDBusConnection_Disconnect2(void* ptr, struct QtDBus_PackedString service, 
 char QDBusConnection_Disconnect3(void* ptr, struct QtDBus_PackedString service, struct QtDBus_PackedString path, struct QtDBus_PackedString interfa, struct QtDBus_PackedString name, struct QtDBus_PackedString argumentMatch, struct QtDBus_PackedString signature, void* receiver, char* slot)
 {
 	if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(receiver))) {
-		return static_cast<QDBusConnection*>(ptr)->disconnect(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), QString::fromUtf8(name.data, name.len), QString::fromUtf8(argumentMatch.data, argumentMatch.len).split("|", QString::SkipEmptyParts), QString::fromUtf8(signature.data, signature.len), static_cast<QDBusPendingCallWatcher*>(receiver), const_cast<const char*>(slot));
+		return static_cast<QDBusConnection*>(ptr)->disconnect(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), QString::fromUtf8(name.data, name.len), QString::fromUtf8(argumentMatch.data, argumentMatch.len).split("¡¦!", QString::SkipEmptyParts), QString::fromUtf8(signature.data, signature.len), static_cast<QDBusPendingCallWatcher*>(receiver), const_cast<const char*>(slot));
 	} else {
-		return static_cast<QDBusConnection*>(ptr)->disconnect(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), QString::fromUtf8(name.data, name.len), QString::fromUtf8(argumentMatch.data, argumentMatch.len).split("|", QString::SkipEmptyParts), QString::fromUtf8(signature.data, signature.len), static_cast<QObject*>(receiver), const_cast<const char*>(slot));
+		return static_cast<QDBusConnection*>(ptr)->disconnect(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), QString::fromUtf8(name.data, name.len), QString::fromUtf8(argumentMatch.data, argumentMatch.len).split("¡¦!", QString::SkipEmptyParts), QString::fromUtf8(signature.data, signature.len), static_cast<QObject*>(receiver), const_cast<const char*>(slot));
 	}
 }
 
@@ -2272,7 +2272,7 @@ void QDBusServiceWatcher_SetWatchMode(void* ptr, long long mode)
 
 void QDBusServiceWatcher_SetWatchedServices(void* ptr, struct QtDBus_PackedString services)
 {
-	static_cast<QDBusServiceWatcher*>(ptr)->setWatchedServices(QString::fromUtf8(services.data, services.len).split("|", QString::SkipEmptyParts));
+	static_cast<QDBusServiceWatcher*>(ptr)->setWatchedServices(QString::fromUtf8(services.data, services.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void QDBusServiceWatcher_DestroyQDBusServiceWatcher(void* ptr)
@@ -2298,7 +2298,7 @@ long long QDBusServiceWatcher_WatchMode(void* ptr)
 
 struct QtDBus_PackedString QDBusServiceWatcher_WatchedServices(void* ptr)
 {
-	return ({ QByteArray t4599ca = static_cast<QDBusServiceWatcher*>(ptr)->watchedServices().join("|").toUtf8(); QtDBus_PackedString { const_cast<char*>(t4599ca.prepend("WHITESPACE").constData()+10), t4599ca.size()-10 }; });
+	return ({ QByteArray t4599ca = static_cast<QDBusServiceWatcher*>(ptr)->watchedServices().join("¡¦!").toUtf8(); QtDBus_PackedString { const_cast<char*>(t4599ca.prepend("WHITESPACE").constData()+10), t4599ca.size()-10 }; });
 }
 
 void* QDBusServiceWatcher_MetaObjectDefault(void* ptr)

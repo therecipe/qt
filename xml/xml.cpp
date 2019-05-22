@@ -2154,12 +2154,12 @@ struct QtXml_PackedString QXmlNamespaceSupport_Uri(void* ptr, struct QtXml_Packe
 
 struct QtXml_PackedString QXmlNamespaceSupport_Prefixes(void* ptr)
 {
-	return ({ QByteArray t8faa65 = static_cast<QXmlNamespaceSupport*>(ptr)->prefixes().join("|").toUtf8(); QtXml_PackedString { const_cast<char*>(t8faa65.prepend("WHITESPACE").constData()+10), t8faa65.size()-10 }; });
+	return ({ QByteArray t8faa65 = static_cast<QXmlNamespaceSupport*>(ptr)->prefixes().join("¡¦!").toUtf8(); QtXml_PackedString { const_cast<char*>(t8faa65.prepend("WHITESPACE").constData()+10), t8faa65.size()-10 }; });
 }
 
 struct QtXml_PackedString QXmlNamespaceSupport_Prefixes2(void* ptr, struct QtXml_PackedString uri)
 {
-	return ({ QByteArray t763c75 = static_cast<QXmlNamespaceSupport*>(ptr)->prefixes(QString::fromUtf8(uri.data, uri.len)).join("|").toUtf8(); QtXml_PackedString { const_cast<char*>(t763c75.prepend("WHITESPACE").constData()+10), t763c75.size()-10 }; });
+	return ({ QByteArray t763c75 = static_cast<QXmlNamespaceSupport*>(ptr)->prefixes(QString::fromUtf8(uri.data, uri.len)).join("¡¦!").toUtf8(); QtXml_PackedString { const_cast<char*>(t763c75.prepend("WHITESPACE").constData()+10), t763c75.size()-10 }; });
 }
 
 void QXmlNamespaceSupport_ProcessName(void* ptr, struct QtXml_PackedString qname, char isAttribute, struct QtXml_PackedString nsuri, struct QtXml_PackedString localname)

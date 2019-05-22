@@ -29,6 +29,12 @@ func cGoUnpackBytes(s C.struct_QtXmlPatterns_PackedString) []byte {
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
+func unpackStringList(s string) []string {
+	if len(s) == 0 {
+		return make([]string, 0)
+	}
+	return strings.Split(s, "¡¦!")
+}
 
 type QAbstractMessageHandler struct {
 	core.QObject
@@ -3077,9 +3083,9 @@ func (ptr *QXmlQuery) EvaluateTo5(output string) bool {
 
 func (ptr *QXmlQuery) EvaluateTo3(target []string) bool {
 	if ptr.Pointer() != nil {
-		targetC := C.CString(strings.Join(target, "|"))
+		targetC := C.CString(strings.Join(target, "¡¦!"))
 		defer C.free(unsafe.Pointer(targetC))
-		return int8(C.QXmlQuery_EvaluateTo3(ptr.Pointer(), C.struct_QtXmlPatterns_PackedString{data: targetC, len: C.longlong(len(strings.Join(target, "|")))})) != 0
+		return int8(C.QXmlQuery_EvaluateTo3(ptr.Pointer(), C.struct_QtXmlPatterns_PackedString{data: targetC, len: C.longlong(len(strings.Join(target, "¡¦!")))})) != 0
 	}
 	return false
 }

@@ -31,6 +31,12 @@ func cGoUnpackBytes(s C.struct_QtMultimedia_PackedString) []byte {
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
+func unpackStringList(s string) []string {
+	if len(s) == 0 {
+		return make([]string, 0)
+	}
+	return strings.Split(s, "¡¦!")
+}
 
 type QAbstractAudioDeviceInfo struct {
 	core.QObject
@@ -388,10 +394,10 @@ func (ptr *QAbstractAudioDeviceInfo) Tr(s string, c string, n int) string {
 func callbackQAbstractAudioDeviceInfo_SupportedCodecs(ptr unsafe.Pointer) C.struct_QtMultimedia_PackedString {
 	if signal := qt.GetSignal(ptr, "supportedCodecs"); signal != nil {
 		tempVal := (*(*func() []string)(signal))()
-		return C.struct_QtMultimedia_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtMultimedia_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 	}
 	tempVal := make([]string, 0)
-	return C.struct_QtMultimedia_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtMultimedia_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 }
 
 func (ptr *QAbstractAudioDeviceInfo) ConnectSupportedCodecs(f func() []string) {
@@ -418,7 +424,7 @@ func (ptr *QAbstractAudioDeviceInfo) DisconnectSupportedCodecs() {
 
 func (ptr *QAbstractAudioDeviceInfo) SupportedCodecs() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QAbstractAudioDeviceInfo_SupportedCodecs(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QAbstractAudioDeviceInfo_SupportedCodecs(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -5515,9 +5521,9 @@ func QAudioDecoder_HasSupport(mimeType string, codecs []string) QMultimedia__Sup
 		mimeTypeC = C.CString(mimeType)
 		defer C.free(unsafe.Pointer(mimeTypeC))
 	}
-	codecsC := C.CString(strings.Join(codecs, "|"))
+	codecsC := C.CString(strings.Join(codecs, "¡¦!"))
 	defer C.free(unsafe.Pointer(codecsC))
-	return QMultimedia__SupportEstimate(C.QAudioDecoder_QAudioDecoder_HasSupport(C.struct_QtMultimedia_PackedString{data: mimeTypeC, len: C.longlong(len(mimeType))}, C.struct_QtMultimedia_PackedString{data: codecsC, len: C.longlong(len(strings.Join(codecs, "|")))}))
+	return QMultimedia__SupportEstimate(C.QAudioDecoder_QAudioDecoder_HasSupport(C.struct_QtMultimedia_PackedString{data: mimeTypeC, len: C.longlong(len(mimeType))}, C.struct_QtMultimedia_PackedString{data: codecsC, len: C.longlong(len(strings.Join(codecs, "¡¦!")))}))
 }
 
 func (ptr *QAudioDecoder) HasSupport(mimeType string, codecs []string) QMultimedia__SupportEstimate {
@@ -5526,9 +5532,9 @@ func (ptr *QAudioDecoder) HasSupport(mimeType string, codecs []string) QMultimed
 		mimeTypeC = C.CString(mimeType)
 		defer C.free(unsafe.Pointer(mimeTypeC))
 	}
-	codecsC := C.CString(strings.Join(codecs, "|"))
+	codecsC := C.CString(strings.Join(codecs, "¡¦!"))
 	defer C.free(unsafe.Pointer(codecsC))
-	return QMultimedia__SupportEstimate(C.QAudioDecoder_QAudioDecoder_HasSupport(C.struct_QtMultimedia_PackedString{data: mimeTypeC, len: C.longlong(len(mimeType))}, C.struct_QtMultimedia_PackedString{data: codecsC, len: C.longlong(len(strings.Join(codecs, "|")))}))
+	return QMultimedia__SupportEstimate(C.QAudioDecoder_QAudioDecoder_HasSupport(C.struct_QtMultimedia_PackedString{data: mimeTypeC, len: C.longlong(len(mimeType))}, C.struct_QtMultimedia_PackedString{data: codecsC, len: C.longlong(len(strings.Join(codecs, "¡¦!")))}))
 }
 
 //export callbackQAudioDecoder_BufferAvailableChanged
@@ -7282,7 +7288,7 @@ func (ptr *QAudioDeviceInfo) DeviceName() string {
 
 func (ptr *QAudioDeviceInfo) SupportedCodecs() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QAudioDeviceInfo_SupportedCodecs(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QAudioDeviceInfo_SupportedCodecs(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -8014,10 +8020,10 @@ func (ptr *QAudioEncoderSettingsControl) CodecDescription(codecName string) stri
 func callbackQAudioEncoderSettingsControl_SupportedAudioCodecs(ptr unsafe.Pointer) C.struct_QtMultimedia_PackedString {
 	if signal := qt.GetSignal(ptr, "supportedAudioCodecs"); signal != nil {
 		tempVal := (*(*func() []string)(signal))()
-		return C.struct_QtMultimedia_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtMultimedia_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 	}
 	tempVal := make([]string, 0)
-	return C.struct_QtMultimedia_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtMultimedia_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 }
 
 func (ptr *QAudioEncoderSettingsControl) ConnectSupportedAudioCodecs(f func() []string) {
@@ -8044,7 +8050,7 @@ func (ptr *QAudioEncoderSettingsControl) DisconnectSupportedAudioCodecs() {
 
 func (ptr *QAudioEncoderSettingsControl) SupportedAudioCodecs() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QAudioEncoderSettingsControl_SupportedAudioCodecs(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QAudioEncoderSettingsControl_SupportedAudioCodecs(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -10868,7 +10874,7 @@ func (ptr *QAudioRecorder) DefaultAudioInput() string {
 
 func (ptr *QAudioRecorder) AudioInputs() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QAudioRecorder_AudioInputs(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QAudioRecorder_AudioInputs(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -18440,7 +18446,7 @@ func (ptr *QCameraImageCapture) ImageCodecDescription(codec string) string {
 
 func (ptr *QCameraImageCapture) SupportedImageCodecs() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QCameraImageCapture_SupportedImageCodecs(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QCameraImageCapture_SupportedImageCodecs(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -22224,10 +22230,10 @@ func (ptr *QCustomAudioRoleControl) CustomAudioRole() string {
 func callbackQCustomAudioRoleControl_SupportedCustomAudioRoles(ptr unsafe.Pointer) C.struct_QtMultimedia_PackedString {
 	if signal := qt.GetSignal(ptr, "supportedCustomAudioRoles"); signal != nil {
 		tempVal := (*(*func() []string)(signal))()
-		return C.struct_QtMultimedia_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtMultimedia_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 	}
 	tempVal := make([]string, 0)
-	return C.struct_QtMultimedia_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtMultimedia_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 }
 
 func (ptr *QCustomAudioRoleControl) ConnectSupportedCustomAudioRoles(f func() []string) {
@@ -22254,7 +22260,7 @@ func (ptr *QCustomAudioRoleControl) DisconnectSupportedCustomAudioRoles() {
 
 func (ptr *QCustomAudioRoleControl) SupportedCustomAudioRoles() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QCustomAudioRoleControl_SupportedCustomAudioRoles(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QCustomAudioRoleControl_SupportedCustomAudioRoles(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -22540,10 +22546,10 @@ func (ptr *QImageEncoderControl) ImageCodecDescription(codec string) string {
 func callbackQImageEncoderControl_SupportedImageCodecs(ptr unsafe.Pointer) C.struct_QtMultimedia_PackedString {
 	if signal := qt.GetSignal(ptr, "supportedImageCodecs"); signal != nil {
 		tempVal := (*(*func() []string)(signal))()
-		return C.struct_QtMultimedia_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtMultimedia_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 	}
 	tempVal := make([]string, 0)
-	return C.struct_QtMultimedia_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtMultimedia_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 }
 
 func (ptr *QImageEncoderControl) ConnectSupportedImageCodecs(f func() []string) {
@@ -22570,7 +22576,7 @@ func (ptr *QImageEncoderControl) DisconnectSupportedImageCodecs() {
 
 func (ptr *QImageEncoderControl) SupportedImageCodecs() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QImageEncoderControl_SupportedImageCodecs(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QImageEncoderControl_SupportedImageCodecs(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -23619,10 +23625,10 @@ func (ptr *QMediaContainerControl) ContainerFormat() string {
 func callbackQMediaContainerControl_SupportedContainers(ptr unsafe.Pointer) C.struct_QtMultimedia_PackedString {
 	if signal := qt.GetSignal(ptr, "supportedContainers"); signal != nil {
 		tempVal := (*(*func() []string)(signal))()
-		return C.struct_QtMultimedia_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtMultimedia_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 	}
 	tempVal := make([]string, 0)
-	return C.struct_QtMultimedia_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtMultimedia_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 }
 
 func (ptr *QMediaContainerControl) ConnectSupportedContainers(f func() []string) {
@@ -23649,7 +23655,7 @@ func (ptr *QMediaContainerControl) DisconnectSupportedContainers() {
 
 func (ptr *QMediaContainerControl) SupportedContainers() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QMediaContainerControl_SupportedContainers(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QMediaContainerControl_SupportedContainers(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -25430,7 +25436,7 @@ func (ptr *QMediaObject) AvailabilityDefault() QMultimedia__AvailabilityStatus {
 
 func (ptr *QMediaObject) AvailableMetaData() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QMediaObject_AvailableMetaData(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QMediaObject_AvailableMetaData(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -25869,9 +25875,9 @@ func QMediaPlayer_HasSupport(mimeType string, codecs []string, flags QMediaPlaye
 		mimeTypeC = C.CString(mimeType)
 		defer C.free(unsafe.Pointer(mimeTypeC))
 	}
-	codecsC := C.CString(strings.Join(codecs, "|"))
+	codecsC := C.CString(strings.Join(codecs, "¡¦!"))
 	defer C.free(unsafe.Pointer(codecsC))
-	return QMultimedia__SupportEstimate(C.QMediaPlayer_QMediaPlayer_HasSupport(C.struct_QtMultimedia_PackedString{data: mimeTypeC, len: C.longlong(len(mimeType))}, C.struct_QtMultimedia_PackedString{data: codecsC, len: C.longlong(len(strings.Join(codecs, "|")))}, C.longlong(flags)))
+	return QMultimedia__SupportEstimate(C.QMediaPlayer_QMediaPlayer_HasSupport(C.struct_QtMultimedia_PackedString{data: mimeTypeC, len: C.longlong(len(mimeType))}, C.struct_QtMultimedia_PackedString{data: codecsC, len: C.longlong(len(strings.Join(codecs, "¡¦!")))}, C.longlong(flags)))
 }
 
 func (ptr *QMediaPlayer) HasSupport(mimeType string, codecs []string, flags QMediaPlayer__Flag) QMultimedia__SupportEstimate {
@@ -25880,9 +25886,9 @@ func (ptr *QMediaPlayer) HasSupport(mimeType string, codecs []string, flags QMed
 		mimeTypeC = C.CString(mimeType)
 		defer C.free(unsafe.Pointer(mimeTypeC))
 	}
-	codecsC := C.CString(strings.Join(codecs, "|"))
+	codecsC := C.CString(strings.Join(codecs, "¡¦!"))
 	defer C.free(unsafe.Pointer(codecsC))
-	return QMultimedia__SupportEstimate(C.QMediaPlayer_QMediaPlayer_HasSupport(C.struct_QtMultimedia_PackedString{data: mimeTypeC, len: C.longlong(len(mimeType))}, C.struct_QtMultimedia_PackedString{data: codecsC, len: C.longlong(len(strings.Join(codecs, "|")))}, C.longlong(flags)))
+	return QMultimedia__SupportEstimate(C.QMediaPlayer_QMediaPlayer_HasSupport(C.struct_QtMultimedia_PackedString{data: mimeTypeC, len: C.longlong(len(mimeType))}, C.struct_QtMultimedia_PackedString{data: codecsC, len: C.longlong(len(strings.Join(codecs, "¡¦!")))}, C.longlong(flags)))
 }
 
 //export callbackQMediaPlayer_AudioAvailableChanged
@@ -27198,7 +27204,7 @@ func (ptr *QMediaPlayer) ErrorString() string {
 
 func (ptr *QMediaPlayer) SupportedCustomAudioRoles() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QMediaPlayer_SupportedCustomAudioRoles(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QMediaPlayer_SupportedCustomAudioRoles(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -31336,28 +31342,28 @@ func (ptr *QMediaRecorder) VideoCodecDescription(codec string) string {
 
 func (ptr *QMediaRecorder) AvailableMetaData() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QMediaRecorder_AvailableMetaData(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QMediaRecorder_AvailableMetaData(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QMediaRecorder) SupportedAudioCodecs() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QMediaRecorder_SupportedAudioCodecs(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QMediaRecorder_SupportedAudioCodecs(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QMediaRecorder) SupportedContainers() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QMediaRecorder_SupportedContainers(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QMediaRecorder_SupportedContainers(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QMediaRecorder) SupportedVideoCodecs() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QMediaRecorder_SupportedVideoCodecs(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QMediaRecorder_SupportedVideoCodecs(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -34535,7 +34541,7 @@ func (ptr *QMediaServiceSupportedFormatsInterface) DestroyQMediaServiceSupported
 //export callbackQMediaServiceSupportedFormatsInterface_HasSupport
 func callbackQMediaServiceSupportedFormatsInterface_HasSupport(ptr unsafe.Pointer, mimeType C.struct_QtMultimedia_PackedString, codecs C.struct_QtMultimedia_PackedString) C.longlong {
 	if signal := qt.GetSignal(ptr, "hasSupport"); signal != nil {
-		return C.longlong((*(*func(string, []string) QMultimedia__SupportEstimate)(signal))(cGoUnpackString(mimeType), strings.Split(cGoUnpackString(codecs), "|")))
+		return C.longlong((*(*func(string, []string) QMultimedia__SupportEstimate)(signal))(cGoUnpackString(mimeType), unpackStringList(cGoUnpackString(codecs))))
 	}
 
 	return C.longlong(0)
@@ -34570,9 +34576,9 @@ func (ptr *QMediaServiceSupportedFormatsInterface) HasSupport(mimeType string, c
 			mimeTypeC = C.CString(mimeType)
 			defer C.free(unsafe.Pointer(mimeTypeC))
 		}
-		codecsC := C.CString(strings.Join(codecs, "|"))
+		codecsC := C.CString(strings.Join(codecs, "¡¦!"))
 		defer C.free(unsafe.Pointer(codecsC))
-		return QMultimedia__SupportEstimate(C.QMediaServiceSupportedFormatsInterface_HasSupport(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: mimeTypeC, len: C.longlong(len(mimeType))}, C.struct_QtMultimedia_PackedString{data: codecsC, len: C.longlong(len(strings.Join(codecs, "|")))}))
+		return QMultimedia__SupportEstimate(C.QMediaServiceSupportedFormatsInterface_HasSupport(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: mimeTypeC, len: C.longlong(len(mimeType))}, C.struct_QtMultimedia_PackedString{data: codecsC, len: C.longlong(len(strings.Join(codecs, "¡¦!")))}))
 	}
 	return 0
 }
@@ -34581,10 +34587,10 @@ func (ptr *QMediaServiceSupportedFormatsInterface) HasSupport(mimeType string, c
 func callbackQMediaServiceSupportedFormatsInterface_SupportedMimeTypes(ptr unsafe.Pointer) C.struct_QtMultimedia_PackedString {
 	if signal := qt.GetSignal(ptr, "supportedMimeTypes"); signal != nil {
 		tempVal := (*(*func() []string)(signal))()
-		return C.struct_QtMultimedia_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtMultimedia_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 	}
 	tempVal := make([]string, 0)
-	return C.struct_QtMultimedia_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtMultimedia_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 }
 
 func (ptr *QMediaServiceSupportedFormatsInterface) ConnectSupportedMimeTypes(f func() []string) {
@@ -34611,7 +34617,7 @@ func (ptr *QMediaServiceSupportedFormatsInterface) DisconnectSupportedMimeTypes(
 
 func (ptr *QMediaServiceSupportedFormatsInterface) SupportedMimeTypes() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QMediaServiceSupportedFormatsInterface_SupportedMimeTypes(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QMediaServiceSupportedFormatsInterface_SupportedMimeTypes(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -35681,10 +35687,10 @@ func (ptr *QMetaDataReaderControl) DestroyQMetaDataReaderControlDefault() {
 func callbackQMetaDataReaderControl_AvailableMetaData(ptr unsafe.Pointer) C.struct_QtMultimedia_PackedString {
 	if signal := qt.GetSignal(ptr, "availableMetaData"); signal != nil {
 		tempVal := (*(*func() []string)(signal))()
-		return C.struct_QtMultimedia_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtMultimedia_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 	}
 	tempVal := make([]string, 0)
-	return C.struct_QtMultimedia_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtMultimedia_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 }
 
 func (ptr *QMetaDataReaderControl) ConnectAvailableMetaData(f func() []string) {
@@ -35711,7 +35717,7 @@ func (ptr *QMetaDataReaderControl) DisconnectAvailableMetaData() {
 
 func (ptr *QMetaDataReaderControl) AvailableMetaData() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QMetaDataReaderControl_AvailableMetaData(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QMetaDataReaderControl_AvailableMetaData(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -36102,10 +36108,10 @@ func (ptr *QMetaDataWriterControl) DestroyQMetaDataWriterControlDefault() {
 func callbackQMetaDataWriterControl_AvailableMetaData(ptr unsafe.Pointer) C.struct_QtMultimedia_PackedString {
 	if signal := qt.GetSignal(ptr, "availableMetaData"); signal != nil {
 		tempVal := (*(*func() []string)(signal))()
-		return C.struct_QtMultimedia_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtMultimedia_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 	}
 	tempVal := make([]string, 0)
-	return C.struct_QtMultimedia_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtMultimedia_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 }
 
 func (ptr *QMetaDataWriterControl) ConnectAvailableMetaData(f func() []string) {
@@ -36132,7 +36138,7 @@ func (ptr *QMetaDataWriterControl) DisconnectAvailableMetaData() {
 
 func (ptr *QMetaDataWriterControl) AvailableMetaData() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QMetaDataWriterControl_AvailableMetaData(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QMetaDataWriterControl_AvailableMetaData(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -41348,11 +41354,11 @@ func (ptr *QSoundEffect) Tr(s string, c string, n int) string {
 }
 
 func QSoundEffect_SupportedMimeTypes() []string {
-	return strings.Split(cGoUnpackString(C.QSoundEffect_QSoundEffect_SupportedMimeTypes()), "|")
+	return unpackStringList(cGoUnpackString(C.QSoundEffect_QSoundEffect_SupportedMimeTypes()))
 }
 
 func (ptr *QSoundEffect) SupportedMimeTypes() []string {
-	return strings.Split(cGoUnpackString(C.QSoundEffect_QSoundEffect_SupportedMimeTypes()), "|")
+	return unpackStringList(cGoUnpackString(C.QSoundEffect_QSoundEffect_SupportedMimeTypes()))
 }
 
 //export callbackQSoundEffect_CategoryChanged
@@ -43293,10 +43299,10 @@ func (ptr *QVideoEncoderSettingsControl) VideoCodecDescription(codec string) str
 func callbackQVideoEncoderSettingsControl_SupportedVideoCodecs(ptr unsafe.Pointer) C.struct_QtMultimedia_PackedString {
 	if signal := qt.GetSignal(ptr, "supportedVideoCodecs"); signal != nil {
 		tempVal := (*(*func() []string)(signal))()
-		return C.struct_QtMultimedia_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtMultimedia_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 	}
 	tempVal := make([]string, 0)
-	return C.struct_QtMultimedia_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtMultimedia_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 }
 
 func (ptr *QVideoEncoderSettingsControl) ConnectSupportedVideoCodecs(f func() []string) {
@@ -43323,7 +43329,7 @@ func (ptr *QVideoEncoderSettingsControl) DisconnectSupportedVideoCodecs() {
 
 func (ptr *QVideoEncoderSettingsControl) SupportedVideoCodecs() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QVideoEncoderSettingsControl_SupportedVideoCodecs(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QVideoEncoderSettingsControl_SupportedVideoCodecs(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }

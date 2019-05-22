@@ -28,6 +28,12 @@ func cGoUnpackBytes(s C.struct_QtSerialBus_PackedString) []byte {
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
+func unpackStringList(s string) []string {
+	if len(s) == 0 {
+		return make([]string, 0)
+	}
+	return strings.Split(s, "¡¦!")
+}
 
 type Diagnostics struct {
 	ptr unsafe.Pointer
@@ -286,7 +292,7 @@ func (ptr *QCanBus) AvailableDevices(plugin string, errorMessage string) []*QCan
 
 func (ptr *QCanBus) Plugins() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QCanBus_Plugins(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QCanBus_Plugins(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }

@@ -28,6 +28,12 @@ func cGoUnpackBytes(s C.struct_QtDBus_PackedString) []byte {
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
+func unpackStringList(s string) []string {
+	if len(s) == 0 {
+		return make([]string, 0)
+	}
+	return strings.Split(s, "¡¦!")
+}
 
 type QDBus struct {
 	ptr unsafe.Pointer
@@ -1659,7 +1665,7 @@ func (ptr *QDBusConnection) Connect3(service string, path string, interfa string
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		argumentMatchC := C.CString(strings.Join(argumentMatch, "|"))
+		argumentMatchC := C.CString(strings.Join(argumentMatch, "¡¦!"))
 		defer C.free(unsafe.Pointer(argumentMatchC))
 		var signatureC *C.char
 		if signature != "" {
@@ -1671,7 +1677,7 @@ func (ptr *QDBusConnection) Connect3(service string, path string, interfa string
 			slotC = C.CString(slot)
 			defer C.free(unsafe.Pointer(slotC))
 		}
-		return int8(C.QDBusConnection_Connect3(ptr.Pointer(), C.struct_QtDBus_PackedString{data: serviceC, len: C.longlong(len(service))}, C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}, C.struct_QtDBus_PackedString{data: interfaC, len: C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtDBus_PackedString{data: argumentMatchC, len: C.longlong(len(strings.Join(argumentMatch, "|")))}, C.struct_QtDBus_PackedString{data: signatureC, len: C.longlong(len(signature))}, core.PointerFromQObject(receiver), slotC)) != 0
+		return int8(C.QDBusConnection_Connect3(ptr.Pointer(), C.struct_QtDBus_PackedString{data: serviceC, len: C.longlong(len(service))}, C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}, C.struct_QtDBus_PackedString{data: interfaC, len: C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtDBus_PackedString{data: argumentMatchC, len: C.longlong(len(strings.Join(argumentMatch, "¡¦!")))}, C.struct_QtDBus_PackedString{data: signatureC, len: C.longlong(len(signature))}, core.PointerFromQObject(receiver), slotC)) != 0
 	}
 	return false
 }
@@ -1767,7 +1773,7 @@ func (ptr *QDBusConnection) Disconnect3(service string, path string, interfa str
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		argumentMatchC := C.CString(strings.Join(argumentMatch, "|"))
+		argumentMatchC := C.CString(strings.Join(argumentMatch, "¡¦!"))
 		defer C.free(unsafe.Pointer(argumentMatchC))
 		var signatureC *C.char
 		if signature != "" {
@@ -1779,7 +1785,7 @@ func (ptr *QDBusConnection) Disconnect3(service string, path string, interfa str
 			slotC = C.CString(slot)
 			defer C.free(unsafe.Pointer(slotC))
 		}
-		return int8(C.QDBusConnection_Disconnect3(ptr.Pointer(), C.struct_QtDBus_PackedString{data: serviceC, len: C.longlong(len(service))}, C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}, C.struct_QtDBus_PackedString{data: interfaC, len: C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtDBus_PackedString{data: argumentMatchC, len: C.longlong(len(strings.Join(argumentMatch, "|")))}, C.struct_QtDBus_PackedString{data: signatureC, len: C.longlong(len(signature))}, core.PointerFromQObject(receiver), slotC)) != 0
+		return int8(C.QDBusConnection_Disconnect3(ptr.Pointer(), C.struct_QtDBus_PackedString{data: serviceC, len: C.longlong(len(service))}, C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}, C.struct_QtDBus_PackedString{data: interfaC, len: C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtDBus_PackedString{data: argumentMatchC, len: C.longlong(len(strings.Join(argumentMatch, "¡¦!")))}, C.struct_QtDBus_PackedString{data: signatureC, len: C.longlong(len(signature))}, core.PointerFromQObject(receiver), slotC)) != 0
 	}
 	return false
 }
@@ -4698,9 +4704,9 @@ func (ptr *QDBusServiceWatcher) SetWatchMode(mode QDBusServiceWatcher__WatchMode
 
 func (ptr *QDBusServiceWatcher) SetWatchedServices(services []string) {
 	if ptr.Pointer() != nil {
-		servicesC := C.CString(strings.Join(services, "|"))
+		servicesC := C.CString(strings.Join(services, "¡¦!"))
 		defer C.free(unsafe.Pointer(servicesC))
-		C.QDBusServiceWatcher_SetWatchedServices(ptr.Pointer(), C.struct_QtDBus_PackedString{data: servicesC, len: C.longlong(len(strings.Join(services, "|")))})
+		C.QDBusServiceWatcher_SetWatchedServices(ptr.Pointer(), C.struct_QtDBus_PackedString{data: servicesC, len: C.longlong(len(strings.Join(services, "¡¦!")))})
 	}
 }
 
@@ -4769,7 +4775,7 @@ func (ptr *QDBusServiceWatcher) WatchMode() QDBusServiceWatcher__WatchModeFlag {
 
 func (ptr *QDBusServiceWatcher) WatchedServices() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QDBusServiceWatcher_WatchedServices(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QDBusServiceWatcher_WatchedServices(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }

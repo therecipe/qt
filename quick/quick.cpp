@@ -6382,7 +6382,7 @@ void QSGMaterialShader_SetShaderSourceFile(void* ptr, long long ty, struct QtQui
 
 void QSGMaterialShader_SetShaderSourceFiles(void* ptr, long long ty, struct QtQuick_PackedString sourceFiles)
 {
-	static_cast<QSGMaterialShader*>(ptr)->setShaderSourceFiles(static_cast<QOpenGLShader::ShaderTypeBit>(ty), QString::fromUtf8(sourceFiles.data, sourceFiles.len).split("|", QString::SkipEmptyParts));
+	static_cast<QSGMaterialShader*>(ptr)->setShaderSourceFiles(static_cast<QOpenGLShader::ShaderTypeBit>(ty), QString::fromUtf8(sourceFiles.data, sourceFiles.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 struct QtQuick_PackedString QSGMaterialShader_FragmentShader(void* ptr)

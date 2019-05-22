@@ -817,7 +817,7 @@ public:
 	QModelIndex sibling(int row, int column, const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQAbstractItemModel_Sibling(const_cast<void*>(static_cast<const void*>(this)), row, column, const_cast<QModelIndex*>(&index))); };
 	QList<QModelIndex> match(const QModelIndex & start, int role, const QVariant & value, int hits, Qt::MatchFlags flags) const { return ({ QList<QModelIndex>* tmpP = static_cast<QList<QModelIndex>*>(callbackQAbstractItemModel_Match(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&start), role, const_cast<QVariant*>(&value), hits, flags)); QList<QModelIndex> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
 	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQAbstractItemModel_Span(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
-	QStringList mimeTypes() const { return ({ QtCore_PackedString tempVal = callbackQAbstractItemModel_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	QStringList mimeTypes() const { return ({ QtCore_PackedString tempVal = callbackQAbstractItemModel_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	QVariant data(const QModelIndex & index, int role) const { return *static_cast<QVariant*>(callbackQAbstractItemModel_Data(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index), role)); };
 	QVariant headerData(int section, Qt::Orientation orientation, int role) const { return *static_cast<QVariant*>(callbackQAbstractItemModel_HeaderData(const_cast<void*>(static_cast<const void*>(this)), section, orientation, role)); };
 	Qt::DropActions supportedDragActions() const { return static_cast<Qt::DropAction>(callbackQAbstractItemModel_SupportedDragActions(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -1765,25 +1765,25 @@ void* QAbstractItemModel_SpanDefault(void* ptr, void* index)
 
 struct QtCore_PackedString QAbstractItemModel_MimeTypes(void* ptr)
 {
-	return ({ QByteArray ta50262 = static_cast<QAbstractItemModel*>(ptr)->mimeTypes().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(ta50262.prepend("WHITESPACE").constData()+10), ta50262.size()-10 }; });
+	return ({ QByteArray ta50262 = static_cast<QAbstractItemModel*>(ptr)->mimeTypes().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(ta50262.prepend("WHITESPACE").constData()+10), ta50262.size()-10 }; });
 }
 
 struct QtCore_PackedString QAbstractItemModel_MimeTypesDefault(void* ptr)
 {
 	if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
-		return ({ QByteArray tf2dad9 = static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::mimeTypes().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(tf2dad9.prepend("WHITESPACE").constData()+10), tf2dad9.size()-10 }; });
+		return ({ QByteArray tf2dad9 = static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::mimeTypes().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(tf2dad9.prepend("WHITESPACE").constData()+10), tf2dad9.size()-10 }; });
 	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
-		return ({ QByteArray tf2dad9 = static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::mimeTypes().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(tf2dad9.prepend("WHITESPACE").constData()+10), tf2dad9.size()-10 }; });
+		return ({ QByteArray tf2dad9 = static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::mimeTypes().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(tf2dad9.prepend("WHITESPACE").constData()+10), tf2dad9.size()-10 }; });
 	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
-		return ({ QByteArray tf2dad9 = static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::mimeTypes().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(tf2dad9.prepend("WHITESPACE").constData()+10), tf2dad9.size()-10 }; });
+		return ({ QByteArray tf2dad9 = static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::mimeTypes().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(tf2dad9.prepend("WHITESPACE").constData()+10), tf2dad9.size()-10 }; });
 	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
-		return ({ QByteArray tf2dad9 = static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::mimeTypes().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(tf2dad9.prepend("WHITESPACE").constData()+10), tf2dad9.size()-10 }; });
+		return ({ QByteArray tf2dad9 = static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::mimeTypes().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(tf2dad9.prepend("WHITESPACE").constData()+10), tf2dad9.size()-10 }; });
 	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
-		return ({ QByteArray tf2dad9 = static_cast<QStringListModel*>(ptr)->QStringListModel::mimeTypes().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(tf2dad9.prepend("WHITESPACE").constData()+10), tf2dad9.size()-10 }; });
+		return ({ QByteArray tf2dad9 = static_cast<QStringListModel*>(ptr)->QStringListModel::mimeTypes().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(tf2dad9.prepend("WHITESPACE").constData()+10), tf2dad9.size()-10 }; });
 	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
-		return ({ QByteArray tf2dad9 = static_cast<QAbstractListModel*>(ptr)->QAbstractListModel::mimeTypes().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(tf2dad9.prepend("WHITESPACE").constData()+10), tf2dad9.size()-10 }; });
+		return ({ QByteArray tf2dad9 = static_cast<QAbstractListModel*>(ptr)->QAbstractListModel::mimeTypes().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(tf2dad9.prepend("WHITESPACE").constData()+10), tf2dad9.size()-10 }; });
 	} else {
-		return ({ QByteArray tf2dad9 = static_cast<QAbstractItemModel*>(ptr)->QAbstractItemModel::mimeTypes().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(tf2dad9.prepend("WHITESPACE").constData()+10), tf2dad9.size()-10 }; });
+		return ({ QByteArray tf2dad9 = static_cast<QAbstractItemModel*>(ptr)->QAbstractItemModel::mimeTypes().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(tf2dad9.prepend("WHITESPACE").constData()+10), tf2dad9.size()-10 }; });
 	}
 }
 
@@ -2358,7 +2358,7 @@ public:
 	QModelIndex parent(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQAbstractListModel_Parent(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
 	QList<QModelIndex> match(const QModelIndex & start, int role, const QVariant & value, int hits, Qt::MatchFlags flags) const { return ({ QList<QModelIndex>* tmpP = static_cast<QList<QModelIndex>*>(callbackQAbstractItemModel_Match(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&start), role, const_cast<QVariant*>(&value), hits, flags)); QList<QModelIndex> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
 	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQAbstractItemModel_Span(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
-	QStringList mimeTypes() const { return ({ QtCore_PackedString tempVal = callbackQAbstractItemModel_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	QStringList mimeTypes() const { return ({ QtCore_PackedString tempVal = callbackQAbstractItemModel_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	QVariant data(const QModelIndex & index, int role) const { return *static_cast<QVariant*>(callbackQAbstractListModel_Data(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index), role)); };
 	QVariant headerData(int section, Qt::Orientation orientation, int role) const { return *static_cast<QVariant*>(callbackQAbstractItemModel_HeaderData(const_cast<void*>(static_cast<const void*>(this)), section, orientation, role)); };
 	Qt::DropActions supportedDragActions() const { return static_cast<Qt::DropAction>(callbackQAbstractItemModel_SupportedDragActions(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -2558,7 +2558,7 @@ public:
 	QModelIndex mapToSource(const QModelIndex & proxyIndex) const { return *static_cast<QModelIndex*>(callbackQAbstractProxyModel_MapToSource(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&proxyIndex))); };
 	QModelIndex sibling(int row, int column, const QModelIndex & idx) const { return *static_cast<QModelIndex*>(callbackQAbstractItemModel_Sibling(const_cast<void*>(static_cast<const void*>(this)), row, column, const_cast<QModelIndex*>(&idx))); };
 	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQAbstractItemModel_Span(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
-	QStringList mimeTypes() const { return ({ QtCore_PackedString tempVal = callbackQAbstractItemModel_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	QStringList mimeTypes() const { return ({ QtCore_PackedString tempVal = callbackQAbstractItemModel_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	QVariant data(const QModelIndex & proxyIndex, int role) const { return *static_cast<QVariant*>(callbackQAbstractProxyModel_Data(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&proxyIndex), role)); };
 	QVariant headerData(int section, Qt::Orientation orientation, int role) const { return *static_cast<QVariant*>(callbackQAbstractItemModel_HeaderData(const_cast<void*>(static_cast<const void*>(this)), section, orientation, role)); };
 	Qt::DropActions supportedDragActions() const { return static_cast<Qt::DropAction>(callbackQAbstractItemModel_SupportedDragActions(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -3001,7 +3001,7 @@ public:
 	QModelIndex parent(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQAbstractTableModel_Parent(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
 	QList<QModelIndex> match(const QModelIndex & start, int role, const QVariant & value, int hits, Qt::MatchFlags flags) const { return ({ QList<QModelIndex>* tmpP = static_cast<QList<QModelIndex>*>(callbackQAbstractItemModel_Match(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&start), role, const_cast<QVariant*>(&value), hits, flags)); QList<QModelIndex> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
 	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQAbstractItemModel_Span(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
-	QStringList mimeTypes() const { return ({ QtCore_PackedString tempVal = callbackQAbstractItemModel_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	QStringList mimeTypes() const { return ({ QtCore_PackedString tempVal = callbackQAbstractItemModel_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	QVariant data(const QModelIndex & index, int role) const { return *static_cast<QVariant*>(callbackQAbstractTableModel_Data(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index), role)); };
 	QVariant headerData(int section, Qt::Orientation orientation, int role) const { return *static_cast<QVariant*>(callbackQAbstractItemModel_HeaderData(const_cast<void*>(static_cast<const void*>(this)), section, orientation, role)); };
 	Qt::DropActions supportedDragActions() const { return static_cast<Qt::DropAction>(callbackQAbstractItemModel_SupportedDragActions(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -4575,7 +4575,7 @@ void* QCborArray_QCborArray_FromJsonArray(void* array)
 
 void* QCborArray_QCborArray_FromStringList(struct QtCore_PackedString list)
 {
-	return new QCborArray(QCborArray::fromStringList(QString::fromUtf8(list.data, list.len).split("|", QString::SkipEmptyParts)));
+	return new QCborArray(QCborArray::fromStringList(QString::fromUtf8(list.data, list.len).split("¡¦!", QString::SkipEmptyParts)));
 }
 
 void* QCborArray_QCborArray_FromVariantList(void* list)
@@ -5700,12 +5700,12 @@ void* QCommandLineOption_NewQCommandLineOption3(struct QtCore_PackedString name,
 
 void* QCommandLineOption_NewQCommandLineOption2(struct QtCore_PackedString names)
 {
-	return new QCommandLineOption(QString::fromUtf8(names.data, names.len).split("|", QString::SkipEmptyParts));
+	return new QCommandLineOption(QString::fromUtf8(names.data, names.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void* QCommandLineOption_NewQCommandLineOption4(struct QtCore_PackedString names, struct QtCore_PackedString description, struct QtCore_PackedString valueName, struct QtCore_PackedString defaultValue)
 {
-	return new QCommandLineOption(QString::fromUtf8(names.data, names.len).split("|", QString::SkipEmptyParts), QString::fromUtf8(description.data, description.len), QString::fromUtf8(valueName.data, valueName.len), QString::fromUtf8(defaultValue.data, defaultValue.len));
+	return new QCommandLineOption(QString::fromUtf8(names.data, names.len).split("¡¦!", QString::SkipEmptyParts), QString::fromUtf8(description.data, description.len), QString::fromUtf8(valueName.data, valueName.len), QString::fromUtf8(defaultValue.data, defaultValue.len));
 }
 
 void QCommandLineOption_SetDefaultValue(void* ptr, struct QtCore_PackedString defaultValue)
@@ -5715,7 +5715,7 @@ void QCommandLineOption_SetDefaultValue(void* ptr, struct QtCore_PackedString de
 
 void QCommandLineOption_SetDefaultValues(void* ptr, struct QtCore_PackedString defaultValues)
 {
-	static_cast<QCommandLineOption*>(ptr)->setDefaultValues(QString::fromUtf8(defaultValues.data, defaultValues.len).split("|", QString::SkipEmptyParts));
+	static_cast<QCommandLineOption*>(ptr)->setDefaultValues(QString::fromUtf8(defaultValues.data, defaultValues.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void QCommandLineOption_SetDescription(void* ptr, struct QtCore_PackedString description)
@@ -5760,12 +5760,12 @@ struct QtCore_PackedString QCommandLineOption_ValueName(void* ptr)
 
 struct QtCore_PackedString QCommandLineOption_DefaultValues(void* ptr)
 {
-	return ({ QByteArray t2b2409 = static_cast<QCommandLineOption*>(ptr)->defaultValues().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(t2b2409.prepend("WHITESPACE").constData()+10), t2b2409.size()-10 }; });
+	return ({ QByteArray t2b2409 = static_cast<QCommandLineOption*>(ptr)->defaultValues().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(t2b2409.prepend("WHITESPACE").constData()+10), t2b2409.size()-10 }; });
 }
 
 struct QtCore_PackedString QCommandLineOption_Names(void* ptr)
 {
-	return ({ QByteArray t15f7c9 = static_cast<QCommandLineOption*>(ptr)->names().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(t15f7c9.prepend("WHITESPACE").constData()+10), t15f7c9.size()-10 }; });
+	return ({ QByteArray t15f7c9 = static_cast<QCommandLineOption*>(ptr)->names().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(t15f7c9.prepend("WHITESPACE").constData()+10), t15f7c9.size()-10 }; });
 }
 
 void* QCommandLineParser_AddHelpOption(void* ptr)
@@ -5800,7 +5800,7 @@ char QCommandLineParser_AddOptions(void* ptr, void* options)
 
 char QCommandLineParser_Parse(void* ptr, struct QtCore_PackedString arguments)
 {
-	return static_cast<QCommandLineParser*>(ptr)->parse(QString::fromUtf8(arguments.data, arguments.len).split("|", QString::SkipEmptyParts));
+	return static_cast<QCommandLineParser*>(ptr)->parse(QString::fromUtf8(arguments.data, arguments.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void QCommandLineParser_AddPositionalArgument(void* ptr, struct QtCore_PackedString name, struct QtCore_PackedString description, struct QtCore_PackedString syntax)
@@ -5820,7 +5820,7 @@ void QCommandLineParser_Process2(void* ptr, void* app)
 
 void QCommandLineParser_Process(void* ptr, struct QtCore_PackedString arguments)
 {
-	static_cast<QCommandLineParser*>(ptr)->process(QString::fromUtf8(arguments.data, arguments.len).split("|", QString::SkipEmptyParts));
+	static_cast<QCommandLineParser*>(ptr)->process(QString::fromUtf8(arguments.data, arguments.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void QCommandLineParser_SetApplicationDescription(void* ptr, struct QtCore_PackedString description)
@@ -5880,27 +5880,27 @@ struct QtCore_PackedString QCommandLineParser_Value(void* ptr, struct QtCore_Pac
 
 struct QtCore_PackedString QCommandLineParser_OptionNames(void* ptr)
 {
-	return ({ QByteArray tc902b8 = static_cast<QCommandLineParser*>(ptr)->optionNames().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(tc902b8.prepend("WHITESPACE").constData()+10), tc902b8.size()-10 }; });
+	return ({ QByteArray tc902b8 = static_cast<QCommandLineParser*>(ptr)->optionNames().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(tc902b8.prepend("WHITESPACE").constData()+10), tc902b8.size()-10 }; });
 }
 
 struct QtCore_PackedString QCommandLineParser_PositionalArguments(void* ptr)
 {
-	return ({ QByteArray t6fd298 = static_cast<QCommandLineParser*>(ptr)->positionalArguments().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(t6fd298.prepend("WHITESPACE").constData()+10), t6fd298.size()-10 }; });
+	return ({ QByteArray t6fd298 = static_cast<QCommandLineParser*>(ptr)->positionalArguments().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(t6fd298.prepend("WHITESPACE").constData()+10), t6fd298.size()-10 }; });
 }
 
 struct QtCore_PackedString QCommandLineParser_UnknownOptionNames(void* ptr)
 {
-	return ({ QByteArray t00a30a = static_cast<QCommandLineParser*>(ptr)->unknownOptionNames().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(t00a30a.prepend("WHITESPACE").constData()+10), t00a30a.size()-10 }; });
+	return ({ QByteArray t00a30a = static_cast<QCommandLineParser*>(ptr)->unknownOptionNames().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(t00a30a.prepend("WHITESPACE").constData()+10), t00a30a.size()-10 }; });
 }
 
 struct QtCore_PackedString QCommandLineParser_Values2(void* ptr, void* option)
 {
-	return ({ QByteArray tafc470 = static_cast<QCommandLineParser*>(ptr)->values(*static_cast<QCommandLineOption*>(option)).join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(tafc470.prepend("WHITESPACE").constData()+10), tafc470.size()-10 }; });
+	return ({ QByteArray tafc470 = static_cast<QCommandLineParser*>(ptr)->values(*static_cast<QCommandLineOption*>(option)).join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(tafc470.prepend("WHITESPACE").constData()+10), tafc470.size()-10 }; });
 }
 
 struct QtCore_PackedString QCommandLineParser_Values(void* ptr, struct QtCore_PackedString optionName)
 {
-	return ({ QByteArray te65c16 = static_cast<QCommandLineParser*>(ptr)->values(QString::fromUtf8(optionName.data, optionName.len)).join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(te65c16.prepend("WHITESPACE").constData()+10), te65c16.size()-10 }; });
+	return ({ QByteArray te65c16 = static_cast<QCommandLineParser*>(ptr)->values(QString::fromUtf8(optionName.data, optionName.len)).join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(te65c16.prepend("WHITESPACE").constData()+10), te65c16.size()-10 }; });
 }
 
 char QCommandLineParser_IsSet2(void* ptr, void* option)
@@ -6012,12 +6012,12 @@ struct QtCore_PackedString QCoreApplication_QCoreApplication_Translate(char* con
 
 struct QtCore_PackedString QCoreApplication_QCoreApplication_Arguments()
 {
-	return ({ QByteArray tee588f = QCoreApplication::arguments().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(tee588f.prepend("WHITESPACE").constData()+10), tee588f.size()-10 }; });
+	return ({ QByteArray tee588f = QCoreApplication::arguments().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(tee588f.prepend("WHITESPACE").constData()+10), tee588f.size()-10 }; });
 }
 
 struct QtCore_PackedString QCoreApplication_QCoreApplication_LibraryPaths()
 {
-	return ({ QByteArray tec17c7 = QCoreApplication::libraryPaths().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(tec17c7.prepend("WHITESPACE").constData()+10), tec17c7.size()-10 }; });
+	return ({ QByteArray tec17c7 = QCoreApplication::libraryPaths().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(tec17c7.prepend("WHITESPACE").constData()+10), tec17c7.size()-10 }; });
 }
 
 char QCoreApplication_QCoreApplication_ClosingDown()
@@ -6162,7 +6162,7 @@ void QCoreApplication_QCoreApplication_SetEventDispatcher(void* eventDispatcher)
 
 void QCoreApplication_QCoreApplication_SetLibraryPaths(struct QtCore_PackedString paths)
 {
-	QCoreApplication::setLibraryPaths(QString::fromUtf8(paths.data, paths.len).split("|", QString::SkipEmptyParts));
+	QCoreApplication::setLibraryPaths(QString::fromUtf8(paths.data, paths.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void QCoreApplication_QCoreApplication_SetOrganizationDomain(struct QtCore_PackedString orgDomain)
@@ -7028,7 +7028,7 @@ struct QtCore_PackedString QDir_QDir_ToNativeSeparators(struct QtCore_PackedStri
 
 struct QtCore_PackedString QDir_QDir_SearchPaths(struct QtCore_PackedString prefix)
 {
-	return ({ QByteArray t5d6556 = QDir::searchPaths(QString::fromUtf8(prefix.data, prefix.len)).join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(t5d6556.prepend("WHITESPACE").constData()+10), t5d6556.size()-10 }; });
+	return ({ QByteArray t5d6556 = QDir::searchPaths(QString::fromUtf8(prefix.data, prefix.len)).join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(t5d6556.prepend("WHITESPACE").constData()+10), t5d6556.size()-10 }; });
 }
 
 char QDir_Cd(void* ptr, struct QtCore_PackedString dirName)
@@ -7063,7 +7063,7 @@ char QDir_QDir_Match(struct QtCore_PackedString filter, struct QtCore_PackedStri
 
 char QDir_QDir_Match2(struct QtCore_PackedString filters, struct QtCore_PackedString fileName)
 {
-	return QDir::match(QString::fromUtf8(filters.data, filters.len).split("|", QString::SkipEmptyParts), QString::fromUtf8(fileName.data, fileName.len));
+	return QDir::match(QString::fromUtf8(filters.data, filters.len).split("¡¦!", QString::SkipEmptyParts), QString::fromUtf8(fileName.data, fileName.len));
 }
 
 char QDir_Remove(void* ptr, struct QtCore_PackedString fileName)
@@ -7098,7 +7098,7 @@ void QDir_SetFilter(void* ptr, long long filters)
 
 void QDir_SetNameFilters(void* ptr, struct QtCore_PackedString nameFilters)
 {
-	static_cast<QDir*>(ptr)->setNameFilters(QString::fromUtf8(nameFilters.data, nameFilters.len).split("|", QString::SkipEmptyParts));
+	static_cast<QDir*>(ptr)->setNameFilters(QString::fromUtf8(nameFilters.data, nameFilters.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void QDir_SetPath(void* ptr, struct QtCore_PackedString path)
@@ -7108,7 +7108,7 @@ void QDir_SetPath(void* ptr, struct QtCore_PackedString path)
 
 void QDir_QDir_SetSearchPaths(struct QtCore_PackedString prefix, struct QtCore_PackedString searchPaths)
 {
-	QDir::setSearchPaths(QString::fromUtf8(prefix.data, prefix.len), QString::fromUtf8(searchPaths.data, searchPaths.len).split("|", QString::SkipEmptyParts));
+	QDir::setSearchPaths(QString::fromUtf8(prefix.data, prefix.len), QString::fromUtf8(searchPaths.data, searchPaths.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void QDir_SetSorting(void* ptr, long long sort)
@@ -7143,7 +7143,7 @@ struct QtCore_PackedList QDir_EntryInfoList2(void* ptr, long long filters, long 
 
 struct QtCore_PackedList QDir_EntryInfoList(void* ptr, struct QtCore_PackedString nameFilters, long long filters, long long sort)
 {
-	return ({ QList<QFileInfo>* tmpValue = new QList<QFileInfo>(static_cast<QDir*>(ptr)->entryInfoList(QString::fromUtf8(nameFilters.data, nameFilters.len).split("|", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort))); QtCore_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QFileInfo>* tmpValue = new QList<QFileInfo>(static_cast<QDir*>(ptr)->entryInfoList(QString::fromUtf8(nameFilters.data, nameFilters.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort))); QtCore_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 struct QtCore_PackedString QDir_AbsoluteFilePath(void* ptr, struct QtCore_PackedString fileName)
@@ -7183,17 +7183,17 @@ struct QtCore_PackedString QDir_RelativeFilePath(void* ptr, struct QtCore_Packed
 
 struct QtCore_PackedString QDir_EntryList2(void* ptr, long long filters, long long sort)
 {
-	return ({ QByteArray t2244e4 = static_cast<QDir*>(ptr)->entryList(static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort)).join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(t2244e4.prepend("WHITESPACE").constData()+10), t2244e4.size()-10 }; });
+	return ({ QByteArray t2244e4 = static_cast<QDir*>(ptr)->entryList(static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort)).join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(t2244e4.prepend("WHITESPACE").constData()+10), t2244e4.size()-10 }; });
 }
 
 struct QtCore_PackedString QDir_EntryList(void* ptr, struct QtCore_PackedString nameFilters, long long filters, long long sort)
 {
-	return ({ QByteArray tc12da8 = static_cast<QDir*>(ptr)->entryList(QString::fromUtf8(nameFilters.data, nameFilters.len).split("|", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort)).join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(tc12da8.prepend("WHITESPACE").constData()+10), tc12da8.size()-10 }; });
+	return ({ QByteArray t2f8008 = static_cast<QDir*>(ptr)->entryList(QString::fromUtf8(nameFilters.data, nameFilters.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort)).join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(t2f8008.prepend("WHITESPACE").constData()+10), t2f8008.size()-10 }; });
 }
 
 struct QtCore_PackedString QDir_NameFilters(void* ptr)
 {
-	return ({ QByteArray t429f9f = static_cast<QDir*>(ptr)->nameFilters().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(t429f9f.prepend("WHITESPACE").constData()+10), t429f9f.size()-10 }; });
+	return ({ QByteArray t429f9f = static_cast<QDir*>(ptr)->nameFilters().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(t429f9f.prepend("WHITESPACE").constData()+10), t429f9f.size()-10 }; });
 }
 
 char QDir_Exists2(void* ptr)
@@ -8610,7 +8610,7 @@ void* QFileSelector_NewQFileSelector(void* parent)
 
 void QFileSelector_SetExtraSelectors(void* ptr, struct QtCore_PackedString list)
 {
-	static_cast<QFileSelector*>(ptr)->setExtraSelectors(QString::fromUtf8(list.data, list.len).split("|", QString::SkipEmptyParts));
+	static_cast<QFileSelector*>(ptr)->setExtraSelectors(QString::fromUtf8(list.data, list.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void QFileSelector_DestroyQFileSelector(void* ptr)
@@ -8631,12 +8631,12 @@ struct QtCore_PackedString QFileSelector_Select(void* ptr, struct QtCore_PackedS
 
 struct QtCore_PackedString QFileSelector_AllSelectors(void* ptr)
 {
-	return ({ QByteArray tac6e92 = static_cast<QFileSelector*>(ptr)->allSelectors().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(tac6e92.prepend("WHITESPACE").constData()+10), tac6e92.size()-10 }; });
+	return ({ QByteArray tac6e92 = static_cast<QFileSelector*>(ptr)->allSelectors().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(tac6e92.prepend("WHITESPACE").constData()+10), tac6e92.size()-10 }; });
 }
 
 struct QtCore_PackedString QFileSelector_ExtraSelectors(void* ptr)
 {
-	return ({ QByteArray t31d53e = static_cast<QFileSelector*>(ptr)->extraSelectors().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(t31d53e.prepend("WHITESPACE").constData()+10), t31d53e.size()-10 }; });
+	return ({ QByteArray t31d53e = static_cast<QFileSelector*>(ptr)->extraSelectors().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(t31d53e.prepend("WHITESPACE").constData()+10), t31d53e.size()-10 }; });
 }
 
 void* QFileSelector_Select2(void* ptr, void* filePath)
@@ -8711,50 +8711,50 @@ void* QFileSystemWatcher_NewQFileSystemWatcher(void* parent)
 void* QFileSystemWatcher_NewQFileSystemWatcher2(struct QtCore_PackedString paths, void* parent)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
-		return new MyQFileSystemWatcher(QString::fromUtf8(paths.data, paths.len).split("|", QString::SkipEmptyParts), static_cast<QCameraImageCapture*>(parent));
+		return new MyQFileSystemWatcher(QString::fromUtf8(paths.data, paths.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
-		return new MyQFileSystemWatcher(QString::fromUtf8(paths.data, paths.len).split("|", QString::SkipEmptyParts), static_cast<QDBusPendingCallWatcher*>(parent));
+		return new MyQFileSystemWatcher(QString::fromUtf8(paths.data, paths.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QDBusPendingCallWatcher*>(parent));
 	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
-		return new MyQFileSystemWatcher(QString::fromUtf8(paths.data, paths.len).split("|", QString::SkipEmptyParts), static_cast<QExtensionFactory*>(parent));
+		return new MyQFileSystemWatcher(QString::fromUtf8(paths.data, paths.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QExtensionFactory*>(parent));
 	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
-		return new MyQFileSystemWatcher(QString::fromUtf8(paths.data, paths.len).split("|", QString::SkipEmptyParts), static_cast<QExtensionManager*>(parent));
+		return new MyQFileSystemWatcher(QString::fromUtf8(paths.data, paths.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QExtensionManager*>(parent));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
-		return new MyQFileSystemWatcher(QString::fromUtf8(paths.data, paths.len).split("|", QString::SkipEmptyParts), static_cast<QGraphicsObject*>(parent));
+		return new MyQFileSystemWatcher(QString::fromUtf8(paths.data, paths.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QGraphicsObject*>(parent));
 	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQFileSystemWatcher(QString::fromUtf8(paths.data, paths.len).split("|", QString::SkipEmptyParts), static_cast<QGraphicsWidget*>(parent));
+		return new MyQFileSystemWatcher(QString::fromUtf8(paths.data, paths.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QGraphicsWidget*>(parent));
 	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
-		return new MyQFileSystemWatcher(QString::fromUtf8(paths.data, paths.len).split("|", QString::SkipEmptyParts), static_cast<QLayout*>(parent));
+		return new MyQFileSystemWatcher(QString::fromUtf8(paths.data, paths.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QLayout*>(parent));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
-		return new MyQFileSystemWatcher(QString::fromUtf8(paths.data, paths.len).split("|", QString::SkipEmptyParts), static_cast<QMediaPlaylist*>(parent));
+		return new MyQFileSystemWatcher(QString::fromUtf8(paths.data, paths.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
-		return new MyQFileSystemWatcher(QString::fromUtf8(paths.data, paths.len).split("|", QString::SkipEmptyParts), static_cast<QMediaRecorder*>(parent));
+		return new MyQFileSystemWatcher(QString::fromUtf8(paths.data, paths.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QMediaRecorder*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
-		return new MyQFileSystemWatcher(QString::fromUtf8(paths.data, paths.len).split("|", QString::SkipEmptyParts), static_cast<QOffscreenSurface*>(parent));
+		return new MyQFileSystemWatcher(QString::fromUtf8(paths.data, paths.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQFileSystemWatcher(QString::fromUtf8(paths.data, paths.len).split("|", QString::SkipEmptyParts), static_cast<QPaintDeviceWindow*>(parent));
+		return new MyQFileSystemWatcher(QString::fromUtf8(paths.data, paths.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QPaintDeviceWindow*>(parent));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
-		return new MyQFileSystemWatcher(QString::fromUtf8(paths.data, paths.len).split("|", QString::SkipEmptyParts), static_cast<QPdfWriter*>(parent));
+		return new MyQFileSystemWatcher(QString::fromUtf8(paths.data, paths.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QPdfWriter*>(parent));
 	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
-		return new MyQFileSystemWatcher(QString::fromUtf8(paths.data, paths.len).split("|", QString::SkipEmptyParts), static_cast<QQuickItem*>(parent));
+		return new MyQFileSystemWatcher(QString::fromUtf8(paths.data, paths.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
-		return new MyQFileSystemWatcher(QString::fromUtf8(paths.data, paths.len).split("|", QString::SkipEmptyParts), static_cast<QRadioData*>(parent));
+		return new MyQFileSystemWatcher(QString::fromUtf8(paths.data, paths.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQFileSystemWatcher(QString::fromUtf8(paths.data, paths.len).split("|", QString::SkipEmptyParts), static_cast<QWidget*>(parent));
+		return new MyQFileSystemWatcher(QString::fromUtf8(paths.data, paths.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQFileSystemWatcher(QString::fromUtf8(paths.data, paths.len).split("|", QString::SkipEmptyParts), static_cast<QWindow*>(parent));
+		return new MyQFileSystemWatcher(QString::fromUtf8(paths.data, paths.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QWindow*>(parent));
 	} else {
-		return new MyQFileSystemWatcher(QString::fromUtf8(paths.data, paths.len).split("|", QString::SkipEmptyParts), static_cast<QObject*>(parent));
+		return new MyQFileSystemWatcher(QString::fromUtf8(paths.data, paths.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QObject*>(parent));
 	}
 }
 
 struct QtCore_PackedString QFileSystemWatcher_AddPaths(void* ptr, struct QtCore_PackedString paths)
 {
-	return ({ QByteArray te79994 = static_cast<QFileSystemWatcher*>(ptr)->addPaths(QString::fromUtf8(paths.data, paths.len).split("|", QString::SkipEmptyParts)).join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(te79994.prepend("WHITESPACE").constData()+10), te79994.size()-10 }; });
+	return ({ QByteArray t3b4030 = static_cast<QFileSystemWatcher*>(ptr)->addPaths(QString::fromUtf8(paths.data, paths.len).split("¡¦!", QString::SkipEmptyParts)).join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(t3b4030.prepend("WHITESPACE").constData()+10), t3b4030.size()-10 }; });
 }
 
 struct QtCore_PackedString QFileSystemWatcher_RemovePaths(void* ptr, struct QtCore_PackedString paths)
 {
-	return ({ QByteArray t8135a8 = static_cast<QFileSystemWatcher*>(ptr)->removePaths(QString::fromUtf8(paths.data, paths.len).split("|", QString::SkipEmptyParts)).join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(t8135a8.prepend("WHITESPACE").constData()+10), t8135a8.size()-10 }; });
+	return ({ QByteArray te8a7c4 = static_cast<QFileSystemWatcher*>(ptr)->removePaths(QString::fromUtf8(paths.data, paths.len).split("¡¦!", QString::SkipEmptyParts)).join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(te8a7c4.prepend("WHITESPACE").constData()+10), te8a7c4.size()-10 }; });
 }
 
 char QFileSystemWatcher_AddPath(void* ptr, struct QtCore_PackedString path)
@@ -8800,12 +8800,12 @@ void QFileSystemWatcher_DestroyQFileSystemWatcherDefault(void* ptr)
 
 struct QtCore_PackedString QFileSystemWatcher_Directories(void* ptr)
 {
-	return ({ QByteArray t4c1489 = static_cast<QFileSystemWatcher*>(ptr)->directories().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(t4c1489.prepend("WHITESPACE").constData()+10), t4c1489.size()-10 }; });
+	return ({ QByteArray t4c1489 = static_cast<QFileSystemWatcher*>(ptr)->directories().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(t4c1489.prepend("WHITESPACE").constData()+10), t4c1489.size()-10 }; });
 }
 
 struct QtCore_PackedString QFileSystemWatcher_Files(void* ptr)
 {
-	return ({ QByteArray t536197 = static_cast<QFileSystemWatcher*>(ptr)->files().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(t536197.prepend("WHITESPACE").constData()+10), t536197.size()-10 }; });
+	return ({ QByteArray t536197 = static_cast<QFileSystemWatcher*>(ptr)->files().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(t536197.prepend("WHITESPACE").constData()+10), t536197.size()-10 }; });
 }
 
 class MyQFinalState: public QFinalState
@@ -9752,7 +9752,7 @@ public:
 	QMimeData * mimeData(const QModelIndexList & indexes) const { return static_cast<QMimeData*>(callbackQAbstractItemModel_MimeData(const_cast<void*>(static_cast<const void*>(this)), ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(indexes); QtCore_PackedList { tmpValue, tmpValue->size() }; }))); };
 	QModelIndex buddy(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQAbstractItemModel_Buddy(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
 	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQAbstractItemModel_Span(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
-	QStringList mimeTypes() const { return ({ QtCore_PackedString tempVal = callbackQAbstractItemModel_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	QStringList mimeTypes() const { return ({ QtCore_PackedString tempVal = callbackQAbstractItemModel_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	QVariant data(const QModelIndex & proxyIndex, int role) const { return *static_cast<QVariant*>(callbackQAbstractProxyModel_Data(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&proxyIndex), role)); };
 	Qt::DropActions supportedDragActions() const { return static_cast<Qt::DropAction>(callbackQAbstractItemModel_SupportedDragActions(const_cast<void*>(static_cast<const void*>(this)))); };
 	Qt::DropActions supportedDropActions() const { return static_cast<Qt::DropAction>(callbackQAbstractItemModel_SupportedDropActions(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -10452,7 +10452,7 @@ void* QItemSelectionRange___indexes_newList(void* ptr)
 
 void* QJsonArray_QJsonArray_FromStringList(struct QtCore_PackedString list)
 {
-	return new QJsonArray(QJsonArray::fromStringList(QString::fromUtf8(list.data, list.len).split("|", QString::SkipEmptyParts)));
+	return new QJsonArray(QJsonArray::fromStringList(QString::fromUtf8(list.data, list.len).split("¡¦!", QString::SkipEmptyParts)));
 }
 
 void* QJsonArray_QJsonArray_FromVariantList(void* list)
@@ -10799,7 +10799,7 @@ void* QJsonObject_Value(void* ptr, struct QtCore_PackedString key)
 
 struct QtCore_PackedString QJsonObject_Keys(void* ptr)
 {
-	return ({ QByteArray t6c6b45 = static_cast<QJsonObject*>(ptr)->keys().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(t6c6b45.prepend("WHITESPACE").constData()+10), t6c6b45.size()-10 }; });
+	return ({ QByteArray t6c6b45 = static_cast<QJsonObject*>(ptr)->keys().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(t6c6b45.prepend("WHITESPACE").constData()+10), t6c6b45.size()-10 }; });
 }
 
 struct QtCore_PackedList QJsonObject_ToVariantHash(void* ptr)
@@ -12018,7 +12018,7 @@ struct QtCore_PackedString QLocale_Bcp47Name(void* ptr)
 
 struct QtCore_PackedString QLocale_CreateSeparatedList(void* ptr, struct QtCore_PackedString list)
 {
-	return ({ QByteArray t9ebe78 = static_cast<QLocale*>(ptr)->createSeparatedList(QString::fromUtf8(list.data, list.len).split("|", QString::SkipEmptyParts)).toUtf8(); QtCore_PackedString { const_cast<char*>(t9ebe78.prepend("WHITESPACE").constData()+10), t9ebe78.size()-10 }; });
+	return ({ QByteArray t6f2da9 = static_cast<QLocale*>(ptr)->createSeparatedList(QString::fromUtf8(list.data, list.len).split("¡¦!", QString::SkipEmptyParts)).toUtf8(); QtCore_PackedString { const_cast<char*>(t6f2da9.prepend("WHITESPACE").constData()+10), t6f2da9.size()-10 }; });
 }
 
 struct QtCore_PackedString QLocale_CurrencySymbol(void* ptr, long long format)
@@ -12238,7 +12238,7 @@ struct QtCore_PackedString QLocale_ToUpper(void* ptr, struct QtCore_PackedString
 
 struct QtCore_PackedString QLocale_UiLanguages(void* ptr)
 {
-	return ({ QByteArray tf4f58b = static_cast<QLocale*>(ptr)->uiLanguages().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(tf4f58b.prepend("WHITESPACE").constData()+10), tf4f58b.size()-10 }; });
+	return ({ QByteArray tf4f58b = static_cast<QLocale*>(ptr)->uiLanguages().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(tf4f58b.prepend("WHITESPACE").constData()+10), tf4f58b.size()-10 }; });
 }
 
 void* QLocale_ToTime(void* ptr, struct QtCore_PackedString stri, long long format)
@@ -13410,7 +13410,7 @@ class MyQMimeData: public QMimeData
 public:
 	MyQMimeData() : QMimeData() {QMimeData_QMimeData_QRegisterMetaType();};
 	 ~MyQMimeData() { callbackQMimeData_DestroyQMimeData(this); };
-	QStringList formats() const { return ({ QtCore_PackedString tempVal = callbackQMimeData_Formats(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	QStringList formats() const { return ({ QtCore_PackedString tempVal = callbackQMimeData_Formats(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	QVariant retrieveData(const QString & mimeType, QVariant::Type ty) const { QByteArray t3313b8 = mimeType.toUtf8(); QtCore_PackedString mimeTypePacked = { const_cast<char*>(t3313b8.prepend("WHITESPACE").constData()+10), t3313b8.size()-10 };return *static_cast<QVariant*>(callbackQMimeData_RetrieveData(const_cast<void*>(static_cast<const void*>(this)), mimeTypePacked, ty)); };
 	bool hasFormat(const QString & mimeType) const { QByteArray t3313b8 = mimeType.toUtf8(); QtCore_PackedString mimeTypePacked = { const_cast<char*>(t3313b8.prepend("WHITESPACE").constData()+10), t3313b8.size()-10 };return callbackQMimeData_HasFormat(const_cast<void*>(static_cast<const void*>(this)), mimeTypePacked) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQObject_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -13508,12 +13508,12 @@ struct QtCore_PackedString QMimeData_Text(void* ptr)
 
 struct QtCore_PackedString QMimeData_Formats(void* ptr)
 {
-	return ({ QByteArray t353e58 = static_cast<QMimeData*>(ptr)->formats().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(t353e58.prepend("WHITESPACE").constData()+10), t353e58.size()-10 }; });
+	return ({ QByteArray t353e58 = static_cast<QMimeData*>(ptr)->formats().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(t353e58.prepend("WHITESPACE").constData()+10), t353e58.size()-10 }; });
 }
 
 struct QtCore_PackedString QMimeData_FormatsDefault(void* ptr)
 {
-		return ({ QByteArray td5c1b6 = static_cast<QMimeData*>(ptr)->QMimeData::formats().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(td5c1b6.prepend("WHITESPACE").constData()+10), td5c1b6.size()-10 }; });
+		return ({ QByteArray td5c1b6 = static_cast<QMimeData*>(ptr)->QMimeData::formats().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(td5c1b6.prepend("WHITESPACE").constData()+10), td5c1b6.size()-10 }; });
 }
 
 void* QMimeData_ColorData(void* ptr)
@@ -13752,27 +13752,27 @@ struct QtCore_PackedString QMimeType_PreferredSuffix(void* ptr)
 
 struct QtCore_PackedString QMimeType_Aliases(void* ptr)
 {
-	return ({ QByteArray t7480d3 = static_cast<QMimeType*>(ptr)->aliases().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(t7480d3.prepend("WHITESPACE").constData()+10), t7480d3.size()-10 }; });
+	return ({ QByteArray t7480d3 = static_cast<QMimeType*>(ptr)->aliases().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(t7480d3.prepend("WHITESPACE").constData()+10), t7480d3.size()-10 }; });
 }
 
 struct QtCore_PackedString QMimeType_AllAncestors(void* ptr)
 {
-	return ({ QByteArray tf171fc = static_cast<QMimeType*>(ptr)->allAncestors().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(tf171fc.prepend("WHITESPACE").constData()+10), tf171fc.size()-10 }; });
+	return ({ QByteArray tf171fc = static_cast<QMimeType*>(ptr)->allAncestors().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(tf171fc.prepend("WHITESPACE").constData()+10), tf171fc.size()-10 }; });
 }
 
 struct QtCore_PackedString QMimeType_GlobPatterns(void* ptr)
 {
-	return ({ QByteArray te56904 = static_cast<QMimeType*>(ptr)->globPatterns().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(te56904.prepend("WHITESPACE").constData()+10), te56904.size()-10 }; });
+	return ({ QByteArray te56904 = static_cast<QMimeType*>(ptr)->globPatterns().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(te56904.prepend("WHITESPACE").constData()+10), te56904.size()-10 }; });
 }
 
 struct QtCore_PackedString QMimeType_ParentMimeTypes(void* ptr)
 {
-	return ({ QByteArray t4917fb = static_cast<QMimeType*>(ptr)->parentMimeTypes().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(t4917fb.prepend("WHITESPACE").constData()+10), t4917fb.size()-10 }; });
+	return ({ QByteArray t4917fb = static_cast<QMimeType*>(ptr)->parentMimeTypes().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(t4917fb.prepend("WHITESPACE").constData()+10), t4917fb.size()-10 }; });
 }
 
 struct QtCore_PackedString QMimeType_Suffixes(void* ptr)
 {
-	return ({ QByteArray t2e296a = static_cast<QMimeType*>(ptr)->suffixes().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(t2e296a.prepend("WHITESPACE").constData()+10), t2e296a.size()-10 }; });
+	return ({ QByteArray t2e296a = static_cast<QMimeType*>(ptr)->suffixes().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(t2e296a.prepend("WHITESPACE").constData()+10), t2e296a.size()-10 }; });
 }
 
 char QMimeType_Inherits(void* ptr, struct QtCore_PackedString mimeTypeName)
@@ -17114,7 +17114,7 @@ struct QtCore_PackedString QRegExp_Pattern(void* ptr)
 
 struct QtCore_PackedString QRegExp_CapturedTexts(void* ptr)
 {
-	return ({ QByteArray t69e4cf = static_cast<QRegExp*>(ptr)->capturedTexts().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(t69e4cf.prepend("WHITESPACE").constData()+10), t69e4cf.size()-10 }; });
+	return ({ QByteArray t69e4cf = static_cast<QRegExp*>(ptr)->capturedTexts().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(t69e4cf.prepend("WHITESPACE").constData()+10), t69e4cf.size()-10 }; });
 }
 
 long long QRegExp_CaseSensitivity(void* ptr)
@@ -17254,7 +17254,7 @@ struct QtCore_PackedString QRegularExpression_Pattern(void* ptr)
 
 struct QtCore_PackedString QRegularExpression_NamedCaptureGroups(void* ptr)
 {
-	return ({ QByteArray t5a80a4 = static_cast<QRegularExpression*>(ptr)->namedCaptureGroups().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(t5a80a4.prepend("WHITESPACE").constData()+10), t5a80a4.size()-10 }; });
+	return ({ QByteArray t5a80a4 = static_cast<QRegularExpression*>(ptr)->namedCaptureGroups().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(t5a80a4.prepend("WHITESPACE").constData()+10), t5a80a4.size()-10 }; });
 }
 
 char QRegularExpression_IsValid(void* ptr)
@@ -17329,7 +17329,7 @@ struct QtCore_PackedString QRegularExpressionMatch_Captured(void* ptr, int nth)
 
 struct QtCore_PackedString QRegularExpressionMatch_CapturedTexts(void* ptr)
 {
-	return ({ QByteArray t75c0a9 = static_cast<QRegularExpressionMatch*>(ptr)->capturedTexts().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(t75c0a9.prepend("WHITESPACE").constData()+10), t75c0a9.size()-10 }; });
+	return ({ QByteArray t75c0a9 = static_cast<QRegularExpressionMatch*>(ptr)->capturedTexts().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(t75c0a9.prepend("WHITESPACE").constData()+10), t75c0a9.size()-10 }; });
 }
 
 void* QRegularExpressionMatch_CapturedRef3(void* ptr, void* name)
@@ -17484,7 +17484,7 @@ struct QtCore_PackedString QResource_FileName(void* ptr)
 
 struct QtCore_PackedString QResource_Children(void* ptr)
 {
-	return ({ QByteArray t6aef35 = static_cast<QResource*>(ptr)->children().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(t6aef35.prepend("WHITESPACE").constData()+10), t6aef35.size()-10 }; });
+	return ({ QByteArray t6aef35 = static_cast<QResource*>(ptr)->children().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(t6aef35.prepend("WHITESPACE").constData()+10), t6aef35.size()-10 }; });
 }
 
 char QResource_IsCompressed(void* ptr)
@@ -18301,17 +18301,17 @@ struct QtCore_PackedString QSettings_OrganizationName(void* ptr)
 
 struct QtCore_PackedString QSettings_AllKeys(void* ptr)
 {
-	return ({ QByteArray t39d6f3 = static_cast<QSettings*>(ptr)->allKeys().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(t39d6f3.prepend("WHITESPACE").constData()+10), t39d6f3.size()-10 }; });
+	return ({ QByteArray t39d6f3 = static_cast<QSettings*>(ptr)->allKeys().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(t39d6f3.prepend("WHITESPACE").constData()+10), t39d6f3.size()-10 }; });
 }
 
 struct QtCore_PackedString QSettings_ChildGroups(void* ptr)
 {
-	return ({ QByteArray t85b658 = static_cast<QSettings*>(ptr)->childGroups().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(t85b658.prepend("WHITESPACE").constData()+10), t85b658.size()-10 }; });
+	return ({ QByteArray t85b658 = static_cast<QSettings*>(ptr)->childGroups().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(t85b658.prepend("WHITESPACE").constData()+10), t85b658.size()-10 }; });
 }
 
 struct QtCore_PackedString QSettings_ChildKeys(void* ptr)
 {
-	return ({ QByteArray t28840d = static_cast<QSettings*>(ptr)->childKeys().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(t28840d.prepend("WHITESPACE").constData()+10), t28840d.size()-10 }; });
+	return ({ QByteArray t28840d = static_cast<QSettings*>(ptr)->childKeys().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(t28840d.prepend("WHITESPACE").constData()+10), t28840d.size()-10 }; });
 }
 
 void* QSettings_IniCodec(void* ptr)
@@ -19288,7 +19288,7 @@ public:
 	QModelIndex sibling(int row, int column, const QModelIndex & idx) const { return *static_cast<QModelIndex*>(callbackQAbstractItemModel_Sibling(const_cast<void*>(static_cast<const void*>(this)), row, column, const_cast<QModelIndex*>(&idx))); };
 	QList<QModelIndex> match(const QModelIndex & start, int role, const QVariant & value, int hits, Qt::MatchFlags flags) const { return ({ QList<QModelIndex>* tmpP = static_cast<QList<QModelIndex>*>(callbackQAbstractItemModel_Match(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&start), role, const_cast<QVariant*>(&value), hits, flags)); QList<QModelIndex> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
 	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQAbstractItemModel_Span(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
-	QStringList mimeTypes() const { return ({ QtCore_PackedString tempVal = callbackQAbstractItemModel_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	QStringList mimeTypes() const { return ({ QtCore_PackedString tempVal = callbackQAbstractItemModel_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	QVariant data(const QModelIndex & index, int role) const { return *static_cast<QVariant*>(callbackQAbstractProxyModel_Data(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index), role)); };
 	QVariant headerData(int section, Qt::Orientation orientation, int role) const { return *static_cast<QVariant*>(callbackQAbstractItemModel_HeaderData(const_cast<void*>(static_cast<const void*>(this)), section, orientation, role)); };
 	Qt::DropActions supportedDropActions() const { return static_cast<Qt::DropAction>(callbackQAbstractItemModel_SupportedDropActions(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -19658,7 +19658,7 @@ struct QtCore_PackedString QStandardPaths_QStandardPaths_DisplayName(long long t
 
 struct QtCore_PackedString QStandardPaths_QStandardPaths_FindExecutable(struct QtCore_PackedString executableName, struct QtCore_PackedString paths)
 {
-	return ({ QByteArray t196743 = QStandardPaths::findExecutable(QString::fromUtf8(executableName.data, executableName.len), QString::fromUtf8(paths.data, paths.len).split("|", QString::SkipEmptyParts)).toUtf8(); QtCore_PackedString { const_cast<char*>(t196743.prepend("WHITESPACE").constData()+10), t196743.size()-10 }; });
+	return ({ QByteArray t2ef25b = QStandardPaths::findExecutable(QString::fromUtf8(executableName.data, executableName.len), QString::fromUtf8(paths.data, paths.len).split("¡¦!", QString::SkipEmptyParts)).toUtf8(); QtCore_PackedString { const_cast<char*>(t2ef25b.prepend("WHITESPACE").constData()+10), t2ef25b.size()-10 }; });
 }
 
 struct QtCore_PackedString QStandardPaths_QStandardPaths_Locate(long long ty, struct QtCore_PackedString fileName, long long options)
@@ -19673,12 +19673,12 @@ struct QtCore_PackedString QStandardPaths_QStandardPaths_WritableLocation(long l
 
 struct QtCore_PackedString QStandardPaths_QStandardPaths_LocateAll(long long ty, struct QtCore_PackedString fileName, long long options)
 {
-	return ({ QByteArray t84546e = QStandardPaths::locateAll(static_cast<QStandardPaths::StandardLocation>(ty), QString::fromUtf8(fileName.data, fileName.len), static_cast<QStandardPaths::LocateOption>(options)).join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(t84546e.prepend("WHITESPACE").constData()+10), t84546e.size()-10 }; });
+	return ({ QByteArray t84546e = QStandardPaths::locateAll(static_cast<QStandardPaths::StandardLocation>(ty), QString::fromUtf8(fileName.data, fileName.len), static_cast<QStandardPaths::LocateOption>(options)).join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(t84546e.prepend("WHITESPACE").constData()+10), t84546e.size()-10 }; });
 }
 
 struct QtCore_PackedString QStandardPaths_QStandardPaths_StandardLocations(long long ty)
 {
-	return ({ QByteArray t70622a = QStandardPaths::standardLocations(static_cast<QStandardPaths::StandardLocation>(ty)).join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(t70622a.prepend("WHITESPACE").constData()+10), t70622a.size()-10 }; });
+	return ({ QByteArray t70622a = QStandardPaths::standardLocations(static_cast<QStandardPaths::StandardLocation>(ty)).join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(t70622a.prepend("WHITESPACE").constData()+10), t70622a.size()-10 }; });
 }
 
 void QStandardPaths_QStandardPaths_SetTestModeEnabled(char testMode)
@@ -20386,7 +20386,7 @@ public:
 	QModelIndex parent(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQAbstractListModel_Parent(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
 	QList<QModelIndex> match(const QModelIndex & start, int role, const QVariant & value, int hits, Qt::MatchFlags flags) const { return ({ QList<QModelIndex>* tmpP = static_cast<QList<QModelIndex>*>(callbackQAbstractItemModel_Match(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&start), role, const_cast<QVariant*>(&value), hits, flags)); QList<QModelIndex> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
 	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQAbstractItemModel_Span(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
-	QStringList mimeTypes() const { return ({ QtCore_PackedString tempVal = callbackQAbstractItemModel_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	QStringList mimeTypes() const { return ({ QtCore_PackedString tempVal = callbackQAbstractItemModel_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	QVariant headerData(int section, Qt::Orientation orientation, int role) const { return *static_cast<QVariant*>(callbackQAbstractItemModel_HeaderData(const_cast<void*>(static_cast<const void*>(this)), section, orientation, role)); };
 	Qt::DropActions supportedDragActions() const { return static_cast<Qt::DropAction>(callbackQAbstractItemModel_SupportedDragActions(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQAbstractItemModel_CanDropMimeData(const_cast<void*>(static_cast<const void*>(this)), const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
@@ -20451,50 +20451,50 @@ void* QStringListModel_NewQStringListModel(void* parent)
 void* QStringListModel_NewQStringListModel2(struct QtCore_PackedString strin, void* parent)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
-		return new MyQStringListModel(QString::fromUtf8(strin.data, strin.len).split("|", QString::SkipEmptyParts), static_cast<QCameraImageCapture*>(parent));
+		return new MyQStringListModel(QString::fromUtf8(strin.data, strin.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
-		return new MyQStringListModel(QString::fromUtf8(strin.data, strin.len).split("|", QString::SkipEmptyParts), static_cast<QDBusPendingCallWatcher*>(parent));
+		return new MyQStringListModel(QString::fromUtf8(strin.data, strin.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QDBusPendingCallWatcher*>(parent));
 	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
-		return new MyQStringListModel(QString::fromUtf8(strin.data, strin.len).split("|", QString::SkipEmptyParts), static_cast<QExtensionFactory*>(parent));
+		return new MyQStringListModel(QString::fromUtf8(strin.data, strin.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QExtensionFactory*>(parent));
 	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
-		return new MyQStringListModel(QString::fromUtf8(strin.data, strin.len).split("|", QString::SkipEmptyParts), static_cast<QExtensionManager*>(parent));
+		return new MyQStringListModel(QString::fromUtf8(strin.data, strin.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QExtensionManager*>(parent));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
-		return new MyQStringListModel(QString::fromUtf8(strin.data, strin.len).split("|", QString::SkipEmptyParts), static_cast<QGraphicsObject*>(parent));
+		return new MyQStringListModel(QString::fromUtf8(strin.data, strin.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QGraphicsObject*>(parent));
 	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQStringListModel(QString::fromUtf8(strin.data, strin.len).split("|", QString::SkipEmptyParts), static_cast<QGraphicsWidget*>(parent));
+		return new MyQStringListModel(QString::fromUtf8(strin.data, strin.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QGraphicsWidget*>(parent));
 	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
-		return new MyQStringListModel(QString::fromUtf8(strin.data, strin.len).split("|", QString::SkipEmptyParts), static_cast<QLayout*>(parent));
+		return new MyQStringListModel(QString::fromUtf8(strin.data, strin.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QLayout*>(parent));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
-		return new MyQStringListModel(QString::fromUtf8(strin.data, strin.len).split("|", QString::SkipEmptyParts), static_cast<QMediaPlaylist*>(parent));
+		return new MyQStringListModel(QString::fromUtf8(strin.data, strin.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
-		return new MyQStringListModel(QString::fromUtf8(strin.data, strin.len).split("|", QString::SkipEmptyParts), static_cast<QMediaRecorder*>(parent));
+		return new MyQStringListModel(QString::fromUtf8(strin.data, strin.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QMediaRecorder*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
-		return new MyQStringListModel(QString::fromUtf8(strin.data, strin.len).split("|", QString::SkipEmptyParts), static_cast<QOffscreenSurface*>(parent));
+		return new MyQStringListModel(QString::fromUtf8(strin.data, strin.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQStringListModel(QString::fromUtf8(strin.data, strin.len).split("|", QString::SkipEmptyParts), static_cast<QPaintDeviceWindow*>(parent));
+		return new MyQStringListModel(QString::fromUtf8(strin.data, strin.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QPaintDeviceWindow*>(parent));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
-		return new MyQStringListModel(QString::fromUtf8(strin.data, strin.len).split("|", QString::SkipEmptyParts), static_cast<QPdfWriter*>(parent));
+		return new MyQStringListModel(QString::fromUtf8(strin.data, strin.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QPdfWriter*>(parent));
 	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
-		return new MyQStringListModel(QString::fromUtf8(strin.data, strin.len).split("|", QString::SkipEmptyParts), static_cast<QQuickItem*>(parent));
+		return new MyQStringListModel(QString::fromUtf8(strin.data, strin.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
-		return new MyQStringListModel(QString::fromUtf8(strin.data, strin.len).split("|", QString::SkipEmptyParts), static_cast<QRadioData*>(parent));
+		return new MyQStringListModel(QString::fromUtf8(strin.data, strin.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQStringListModel(QString::fromUtf8(strin.data, strin.len).split("|", QString::SkipEmptyParts), static_cast<QWidget*>(parent));
+		return new MyQStringListModel(QString::fromUtf8(strin.data, strin.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQStringListModel(QString::fromUtf8(strin.data, strin.len).split("|", QString::SkipEmptyParts), static_cast<QWindow*>(parent));
+		return new MyQStringListModel(QString::fromUtf8(strin.data, strin.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QWindow*>(parent));
 	} else {
-		return new MyQStringListModel(QString::fromUtf8(strin.data, strin.len).split("|", QString::SkipEmptyParts), static_cast<QObject*>(parent));
+		return new MyQStringListModel(QString::fromUtf8(strin.data, strin.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QObject*>(parent));
 	}
 }
 
 void QStringListModel_SetStringList(void* ptr, struct QtCore_PackedString strin)
 {
-	static_cast<QStringListModel*>(ptr)->setStringList(QString::fromUtf8(strin.data, strin.len).split("|", QString::SkipEmptyParts));
+	static_cast<QStringListModel*>(ptr)->setStringList(QString::fromUtf8(strin.data, strin.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 struct QtCore_PackedString QStringListModel_StringList(void* ptr)
 {
-	return ({ QByteArray t02c9ed = static_cast<QStringListModel*>(ptr)->stringList().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(t02c9ed.prepend("WHITESPACE").constData()+10), t02c9ed.size()-10 }; });
+	return ({ QByteArray t02c9ed = static_cast<QStringListModel*>(ptr)->stringList().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(t02c9ed.prepend("WHITESPACE").constData()+10), t02c9ed.size()-10 }; });
 }
 
 void* QStringListModel_Data(void* ptr, void* index, int role)
@@ -23478,7 +23478,7 @@ void* QUrl_QUrl_ToPercentEncoding(struct QtCore_PackedString input, void* exclud
 
 struct QtCore_PackedList QUrl_QUrl_FromStringList(struct QtCore_PackedString urls, long long mode)
 {
-	return ({ QList<QUrl>* tmpValue = new QList<QUrl>(QUrl::fromStringList(QString::fromUtf8(urls.data, urls.len).split("|", QString::SkipEmptyParts), static_cast<QUrl::ParsingMode>(mode))); QtCore_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QUrl>* tmpValue = new QList<QUrl>(QUrl::fromStringList(QString::fromUtf8(urls.data, urls.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QUrl::ParsingMode>(mode))); QtCore_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 struct QtCore_PackedString QUrl_QUrl_FromAce(void* domain)
@@ -23493,12 +23493,12 @@ struct QtCore_PackedString QUrl_QUrl_FromPercentEncoding(void* input)
 
 struct QtCore_PackedString QUrl_QUrl_IdnWhitelist()
 {
-	return ({ QByteArray t7d801d = QUrl::idnWhitelist().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(t7d801d.prepend("WHITESPACE").constData()+10), t7d801d.size()-10 }; });
+	return ({ QByteArray t7d801d = QUrl::idnWhitelist().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(t7d801d.prepend("WHITESPACE").constData()+10), t7d801d.size()-10 }; });
 }
 
 struct QtCore_PackedString QUrl_QUrl_ToStringList(void* urls, long long options)
 {
-	return ({ QByteArray tc32440 = QUrl::toStringList(*static_cast<QList<QUrl>*>(urls), static_cast<QUrl::UrlFormattingOption>(options)).join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(tc32440.prepend("WHITESPACE").constData()+10), tc32440.size()-10 }; });
+	return ({ QByteArray tc32440 = QUrl::toStringList(*static_cast<QList<QUrl>*>(urls), static_cast<QUrl::UrlFormattingOption>(options)).join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(tc32440.prepend("WHITESPACE").constData()+10), tc32440.size()-10 }; });
 }
 
 void* QUrl_QUrl_FromEncoded(void* input, long long parsingMode)
@@ -23563,7 +23563,7 @@ void QUrl_SetHost(void* ptr, struct QtCore_PackedString host, long long mode)
 
 void QUrl_QUrl_SetIdnWhitelist(struct QtCore_PackedString list)
 {
-	QUrl::setIdnWhitelist(QString::fromUtf8(list.data, list.len).split("|", QString::SkipEmptyParts));
+	QUrl::setIdnWhitelist(QString::fromUtf8(list.data, list.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void QUrl_SetPassword(void* ptr, struct QtCore_PackedString password, long long mode)
@@ -23906,7 +23906,7 @@ struct QtCore_PackedString QUrlQuery_ToString(void* ptr, long long encoding)
 
 struct QtCore_PackedString QUrlQuery_AllQueryItemValues(void* ptr, struct QtCore_PackedString key, long long encoding)
 {
-	return ({ QByteArray tad6e07 = static_cast<QUrlQuery*>(ptr)->allQueryItemValues(QString::fromUtf8(key.data, key.len), static_cast<QUrl::ComponentFormattingOption>(encoding)).join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(tad6e07.prepend("WHITESPACE").constData()+10), tad6e07.size()-10 }; });
+	return ({ QByteArray tad6e07 = static_cast<QUrlQuery*>(ptr)->allQueryItemValues(QString::fromUtf8(key.data, key.len), static_cast<QUrl::ComponentFormattingOption>(encoding)).join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(tad6e07.prepend("WHITESPACE").constData()+10), tad6e07.size()-10 }; });
 }
 
 char QUrlQuery_HasQueryItem(void* ptr, struct QtCore_PackedString key)
@@ -24216,7 +24216,7 @@ void* QVariant_NewQVariant17(struct QtCore_PackedString val)
 
 void* QVariant_NewQVariant19(struct QtCore_PackedString val)
 {
-	return new QVariant(QString::fromUtf8(val.data, val.len).split("|", QString::SkipEmptyParts));
+	return new QVariant(QString::fromUtf8(val.data, val.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void* QVariant_NewQVariant22(void* val)
@@ -24446,7 +24446,7 @@ struct QtCore_PackedString QVariant_ToString(void* ptr)
 
 struct QtCore_PackedString QVariant_ToStringList(void* ptr)
 {
-	return ({ QByteArray tf99cb6 = static_cast<QVariant*>(ptr)->toStringList().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(tf99cb6.prepend("WHITESPACE").constData()+10), tf99cb6.size()-10 }; });
+	return ({ QByteArray tf99cb6 = static_cast<QVariant*>(ptr)->toStringList().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(tf99cb6.prepend("WHITESPACE").constData()+10), tf99cb6.size()-10 }; });
 }
 
 void* QVariant_ToTime(void* ptr)

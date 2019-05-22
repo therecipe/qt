@@ -33,6 +33,12 @@ func cGoUnpackBytes(s C.struct_QtWebEngine_PackedString) []byte {
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
+func unpackStringList(s string) []string {
+	if len(s) == 0 {
+		return make([]string, 0)
+	}
+	return strings.Split(s, "¡¦!")
+}
 
 type QQuickWebEngineProfile struct {
 	core.QObject
@@ -577,9 +583,9 @@ func (ptr *QQuickWebEngineProfile) SetSpellCheckEnabled(enabled bool) {
 
 func (ptr *QQuickWebEngineProfile) SetSpellCheckLanguages(languages []string) {
 	if ptr.Pointer() != nil {
-		languagesC := C.CString(strings.Join(languages, "|"))
+		languagesC := C.CString(strings.Join(languages, "¡¦!"))
 		defer C.free(unsafe.Pointer(languagesC))
-		C.QQuickWebEngineProfile_SetSpellCheckLanguages(ptr.Pointer(), C.struct_QtWebEngine_PackedString{data: languagesC, len: C.longlong(len(strings.Join(languages, "|")))})
+		C.QQuickWebEngineProfile_SetSpellCheckLanguages(ptr.Pointer(), C.struct_QtWebEngine_PackedString{data: languagesC, len: C.longlong(len(strings.Join(languages, "¡¦!")))})
 	}
 }
 
@@ -765,7 +771,7 @@ func (ptr *QQuickWebEngineProfile) StorageName() string {
 
 func (ptr *QQuickWebEngineProfile) SpellCheckLanguages() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QQuickWebEngineProfile_SpellCheckLanguages(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QQuickWebEngineProfile_SpellCheckLanguages(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -2840,11 +2846,11 @@ func (ptr *QWebEnginePage) Tr(s string, c string, n int) string {
 //export callbackQWebEnginePage_ChooseFiles
 func callbackQWebEnginePage_ChooseFiles(ptr unsafe.Pointer, mode C.longlong, oldFiles C.struct_QtWebEngine_PackedString, acceptedMimeTypes C.struct_QtWebEngine_PackedString) C.struct_QtWebEngine_PackedString {
 	if signal := qt.GetSignal(ptr, "chooseFiles"); signal != nil {
-		tempVal := (*(*func(QWebEnginePage__FileSelectionMode, []string, []string) []string)(signal))(QWebEnginePage__FileSelectionMode(mode), strings.Split(cGoUnpackString(oldFiles), "|"), strings.Split(cGoUnpackString(acceptedMimeTypes), "|"))
-		return C.struct_QtWebEngine_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+		tempVal := (*(*func(QWebEnginePage__FileSelectionMode, []string, []string) []string)(signal))(QWebEnginePage__FileSelectionMode(mode), unpackStringList(cGoUnpackString(oldFiles)), unpackStringList(cGoUnpackString(acceptedMimeTypes)))
+		return C.struct_QtWebEngine_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 	}
-	tempVal := NewQWebEnginePageFromPointer(ptr).ChooseFilesDefault(QWebEnginePage__FileSelectionMode(mode), strings.Split(cGoUnpackString(oldFiles), "|"), strings.Split(cGoUnpackString(acceptedMimeTypes), "|"))
-	return C.struct_QtWebEngine_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+	tempVal := NewQWebEnginePageFromPointer(ptr).ChooseFilesDefault(QWebEnginePage__FileSelectionMode(mode), unpackStringList(cGoUnpackString(oldFiles)), unpackStringList(cGoUnpackString(acceptedMimeTypes)))
+	return C.struct_QtWebEngine_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 }
 
 func (ptr *QWebEnginePage) ConnectChooseFiles(f func(mode QWebEnginePage__FileSelectionMode, oldFiles []string, acceptedMimeTypes []string) []string) {
@@ -2871,22 +2877,22 @@ func (ptr *QWebEnginePage) DisconnectChooseFiles() {
 
 func (ptr *QWebEnginePage) ChooseFiles(mode QWebEnginePage__FileSelectionMode, oldFiles []string, acceptedMimeTypes []string) []string {
 	if ptr.Pointer() != nil {
-		oldFilesC := C.CString(strings.Join(oldFiles, "|"))
+		oldFilesC := C.CString(strings.Join(oldFiles, "¡¦!"))
 		defer C.free(unsafe.Pointer(oldFilesC))
-		acceptedMimeTypesC := C.CString(strings.Join(acceptedMimeTypes, "|"))
+		acceptedMimeTypesC := C.CString(strings.Join(acceptedMimeTypes, "¡¦!"))
 		defer C.free(unsafe.Pointer(acceptedMimeTypesC))
-		return strings.Split(cGoUnpackString(C.QWebEnginePage_ChooseFiles(ptr.Pointer(), C.longlong(mode), C.struct_QtWebEngine_PackedString{data: oldFilesC, len: C.longlong(len(strings.Join(oldFiles, "|")))}, C.struct_QtWebEngine_PackedString{data: acceptedMimeTypesC, len: C.longlong(len(strings.Join(acceptedMimeTypes, "|")))})), "|")
+		return unpackStringList(cGoUnpackString(C.QWebEnginePage_ChooseFiles(ptr.Pointer(), C.longlong(mode), C.struct_QtWebEngine_PackedString{data: oldFilesC, len: C.longlong(len(strings.Join(oldFiles, "¡¦!")))}, C.struct_QtWebEngine_PackedString{data: acceptedMimeTypesC, len: C.longlong(len(strings.Join(acceptedMimeTypes, "¡¦!")))})))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QWebEnginePage) ChooseFilesDefault(mode QWebEnginePage__FileSelectionMode, oldFiles []string, acceptedMimeTypes []string) []string {
 	if ptr.Pointer() != nil {
-		oldFilesC := C.CString(strings.Join(oldFiles, "|"))
+		oldFilesC := C.CString(strings.Join(oldFiles, "¡¦!"))
 		defer C.free(unsafe.Pointer(oldFilesC))
-		acceptedMimeTypesC := C.CString(strings.Join(acceptedMimeTypes, "|"))
+		acceptedMimeTypesC := C.CString(strings.Join(acceptedMimeTypes, "¡¦!"))
 		defer C.free(unsafe.Pointer(acceptedMimeTypesC))
-		return strings.Split(cGoUnpackString(C.QWebEnginePage_ChooseFilesDefault(ptr.Pointer(), C.longlong(mode), C.struct_QtWebEngine_PackedString{data: oldFilesC, len: C.longlong(len(strings.Join(oldFiles, "|")))}, C.struct_QtWebEngine_PackedString{data: acceptedMimeTypesC, len: C.longlong(len(strings.Join(acceptedMimeTypes, "|")))})), "|")
+		return unpackStringList(cGoUnpackString(C.QWebEnginePage_ChooseFilesDefault(ptr.Pointer(), C.longlong(mode), C.struct_QtWebEngine_PackedString{data: oldFilesC, len: C.longlong(len(strings.Join(oldFiles, "¡¦!")))}, C.struct_QtWebEngine_PackedString{data: acceptedMimeTypesC, len: C.longlong(len(strings.Join(acceptedMimeTypes, "¡¦!")))})))
 	}
 	return make([]string, 0)
 }
@@ -5136,9 +5142,9 @@ func (ptr *QWebEngineProfile) SetSpellCheckEnabled(enabled bool) {
 
 func (ptr *QWebEngineProfile) SetSpellCheckLanguages(languages []string) {
 	if ptr.Pointer() != nil {
-		languagesC := C.CString(strings.Join(languages, "|"))
+		languagesC := C.CString(strings.Join(languages, "¡¦!"))
 		defer C.free(unsafe.Pointer(languagesC))
-		C.QWebEngineProfile_SetSpellCheckLanguages(ptr.Pointer(), C.struct_QtWebEngine_PackedString{data: languagesC, len: C.longlong(len(strings.Join(languages, "|")))})
+		C.QWebEngineProfile_SetSpellCheckLanguages(ptr.Pointer(), C.struct_QtWebEngine_PackedString{data: languagesC, len: C.longlong(len(strings.Join(languages, "¡¦!")))})
 	}
 }
 
@@ -5226,7 +5232,7 @@ func (ptr *QWebEngineProfile) StorageName() string {
 
 func (ptr *QWebEngineProfile) SpellCheckLanguages() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QWebEngineProfile_SpellCheckLanguages(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QWebEngineProfile_SpellCheckLanguages(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }

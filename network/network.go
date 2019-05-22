@@ -29,6 +29,12 @@ func cGoUnpackBytes(s C.struct_QtNetwork_PackedString) []byte {
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
+func unpackStringList(s string) []string {
+	if len(s) == 0 {
+		return make([]string, 0)
+	}
+	return strings.Split(s, "¡¦!")
+}
 
 type Http2 struct {
 	ptr unsafe.Pointer
@@ -8011,7 +8017,7 @@ func (ptr *QNetworkAccessManager) RedirectPolicy() QNetworkRequest__RedirectPoli
 
 func (ptr *QNetworkAccessManager) SupportedSchemes() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QNetworkAccessManager_SupportedSchemes(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QNetworkAccessManager_SupportedSchemes(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -8020,10 +8026,10 @@ func (ptr *QNetworkAccessManager) SupportedSchemes() []string {
 func callbackQNetworkAccessManager_SupportedSchemesImplementation(ptr unsafe.Pointer) C.struct_QtNetwork_PackedString {
 	if signal := qt.GetSignal(ptr, "supportedSchemesImplementation"); signal != nil {
 		tempVal := (*(*func() []string)(signal))()
-		return C.struct_QtNetwork_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtNetwork_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 	}
 	tempVal := NewQNetworkAccessManagerFromPointer(ptr).SupportedSchemesImplementationDefault()
-	return C.struct_QtNetwork_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtNetwork_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 }
 
 func (ptr *QNetworkAccessManager) ConnectSupportedSchemesImplementation(f func() []string) {
@@ -8050,14 +8056,14 @@ func (ptr *QNetworkAccessManager) DisconnectSupportedSchemesImplementation() {
 
 func (ptr *QNetworkAccessManager) SupportedSchemesImplementation() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QNetworkAccessManager_SupportedSchemesImplementation(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QNetworkAccessManager_SupportedSchemesImplementation(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QNetworkAccessManager) SupportedSchemesImplementationDefault() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QNetworkAccessManager_SupportedSchemesImplementationDefault(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QNetworkAccessManager_SupportedSchemesImplementationDefault(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -16353,28 +16359,28 @@ func (ptr *QSslCertificate) ToText() string {
 
 func (ptr *QSslCertificate) IssuerInfo(subject QSslCertificate__SubjectInfo) []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QSslCertificate_IssuerInfo(ptr.Pointer(), C.longlong(subject))), "|")
+		return unpackStringList(cGoUnpackString(C.QSslCertificate_IssuerInfo(ptr.Pointer(), C.longlong(subject))))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QSslCertificate) IssuerInfo2(attribute core.QByteArray_ITF) []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QSslCertificate_IssuerInfo2(ptr.Pointer(), core.PointerFromQByteArray(attribute))), "|")
+		return unpackStringList(cGoUnpackString(C.QSslCertificate_IssuerInfo2(ptr.Pointer(), core.PointerFromQByteArray(attribute))))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QSslCertificate) SubjectInfo(subject QSslCertificate__SubjectInfo) []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QSslCertificate_SubjectInfo(ptr.Pointer(), C.longlong(subject))), "|")
+		return unpackStringList(cGoUnpackString(C.QSslCertificate_SubjectInfo(ptr.Pointer(), C.longlong(subject))))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QSslCertificate) SubjectInfo2(attribute core.QByteArray_ITF) []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QSslCertificate_SubjectInfo2(ptr.Pointer(), core.PointerFromQByteArray(attribute))), "|")
+		return unpackStringList(cGoUnpackString(C.QSslCertificate_SubjectInfo2(ptr.Pointer(), core.PointerFromQByteArray(attribute))))
 	}
 	return make([]string, 0)
 }

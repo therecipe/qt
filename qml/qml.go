@@ -29,6 +29,12 @@ func cGoUnpackBytes(s C.struct_QtQml_PackedString) []byte {
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
+func unpackStringList(s string) []string {
+	if len(s) == 0 {
+		return make([]string, 0)
+	}
+	return strings.Split(s, "¡¦!")
+}
 
 type QJSEngine struct {
 	core.QObject
@@ -3313,9 +3319,9 @@ func (ptr *QQmlEngine) SetContextForObject(object core.QObject_ITF, context QQml
 
 func (ptr *QQmlEngine) SetImportPathList(paths []string) {
 	if ptr.Pointer() != nil {
-		pathsC := C.CString(strings.Join(paths, "|"))
+		pathsC := C.CString(strings.Join(paths, "¡¦!"))
 		defer C.free(unsafe.Pointer(pathsC))
-		C.QQmlEngine_SetImportPathList(ptr.Pointer(), C.struct_QtQml_PackedString{data: pathsC, len: C.longlong(len(strings.Join(paths, "|")))})
+		C.QQmlEngine_SetImportPathList(ptr.Pointer(), C.struct_QtQml_PackedString{data: pathsC, len: C.longlong(len(strings.Join(paths, "¡¦!")))})
 	}
 }
 
@@ -3358,9 +3364,9 @@ func (ptr *QQmlEngine) SetOutputWarningsToStandardError(enabled bool) {
 
 func (ptr *QQmlEngine) SetPluginPathList(paths []string) {
 	if ptr.Pointer() != nil {
-		pathsC := C.CString(strings.Join(paths, "|"))
+		pathsC := C.CString(strings.Join(paths, "¡¦!"))
 		defer C.free(unsafe.Pointer(pathsC))
-		C.QQmlEngine_SetPluginPathList(ptr.Pointer(), C.struct_QtQml_PackedString{data: pathsC, len: C.longlong(len(strings.Join(paths, "|")))})
+		C.QQmlEngine_SetPluginPathList(ptr.Pointer(), C.struct_QtQml_PackedString{data: pathsC, len: C.longlong(len(strings.Join(paths, "¡¦!")))})
 	}
 }
 
@@ -3539,14 +3545,14 @@ func (ptr *QQmlEngine) OfflineStoragePath() string {
 
 func (ptr *QQmlEngine) ImportPathList() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QQmlEngine_ImportPathList(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QQmlEngine_ImportPathList(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QQmlEngine) PluginPathList() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QQmlEngine_PluginPathList(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QQmlEngine_PluginPathList(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -4908,17 +4914,17 @@ func (ptr *QQmlFileSelector) Tr(s string, c string, n int) string {
 
 func (ptr *QQmlFileSelector) SetExtraSelectors(strin []string) {
 	if ptr.Pointer() != nil {
-		strinC := C.CString(strings.Join(strin, "|"))
+		strinC := C.CString(strings.Join(strin, "¡¦!"))
 		defer C.free(unsafe.Pointer(strinC))
-		C.QQmlFileSelector_SetExtraSelectors(ptr.Pointer(), C.struct_QtQml_PackedString{data: strinC, len: C.longlong(len(strings.Join(strin, "|")))})
+		C.QQmlFileSelector_SetExtraSelectors(ptr.Pointer(), C.struct_QtQml_PackedString{data: strinC, len: C.longlong(len(strings.Join(strin, "¡¦!")))})
 	}
 }
 
 func (ptr *QQmlFileSelector) SetExtraSelectors2(strin []string) {
 	if ptr.Pointer() != nil {
-		strinC := C.CString(strings.Join(strin, "|"))
+		strinC := C.CString(strings.Join(strin, "¡¦!"))
 		defer C.free(unsafe.Pointer(strinC))
-		C.QQmlFileSelector_SetExtraSelectors2(ptr.Pointer(), C.struct_QtQml_PackedString{data: strinC, len: C.longlong(len(strings.Join(strin, "|")))})
+		C.QQmlFileSelector_SetExtraSelectors2(ptr.Pointer(), C.struct_QtQml_PackedString{data: strinC, len: C.longlong(len(strings.Join(strin, "¡¦!")))})
 	}
 }
 
@@ -6931,7 +6937,7 @@ func (ptr *QQmlPropertyMap) DestroyQQmlPropertyMapDefault() {
 
 func (ptr *QQmlPropertyMap) Keys() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QQmlPropertyMap_Keys(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QQmlPropertyMap_Keys(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }

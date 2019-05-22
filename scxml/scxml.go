@@ -28,6 +28,12 @@ func cGoUnpackBytes(s C.struct_QtScxml_PackedString) []byte {
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
+func unpackStringList(s string) []string {
+	if len(s) == 0 {
+		return make([]string, 0)
+	}
+	return strings.Split(s, "¡¦!")
+}
 
 type QScxmlCompiler struct {
 	ptr unsafe.Pointer
@@ -3861,14 +3867,14 @@ func (ptr *QScxmlStateMachine) SessionId() string {
 
 func (ptr *QScxmlStateMachine) ActiveStateNames(compress bool) []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QScxmlStateMachine_ActiveStateNames(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(compress))))), "|")
+		return unpackStringList(cGoUnpackString(C.QScxmlStateMachine_ActiveStateNames(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(compress))))))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QScxmlStateMachine) StateNames(compress bool) []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QScxmlStateMachine_StateNames(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(compress))))), "|")
+		return unpackStringList(cGoUnpackString(C.QScxmlStateMachine_StateNames(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(compress))))))
 	}
 	return make([]string, 0)
 }

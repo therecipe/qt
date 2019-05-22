@@ -31,6 +31,12 @@ func cGoUnpackBytes(s C.struct_QtQuick_PackedString) []byte {
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
+func unpackStringList(s string) []string {
+	if len(s) == 0 {
+		return make([]string, 0)
+	}
+	return strings.Split(s, "¡¦!")
+}
 
 type QQuickAsyncImageProvider struct {
 	QQuickImageProvider
@@ -13541,9 +13547,9 @@ func (ptr *QSGMaterialShader) SetShaderSourceFile(ty gui.QOpenGLShader__ShaderTy
 
 func (ptr *QSGMaterialShader) SetShaderSourceFiles(ty gui.QOpenGLShader__ShaderTypeBit, sourceFiles []string) {
 	if ptr.Pointer() != nil {
-		sourceFilesC := C.CString(strings.Join(sourceFiles, "|"))
+		sourceFilesC := C.CString(strings.Join(sourceFiles, "¡¦!"))
 		defer C.free(unsafe.Pointer(sourceFilesC))
-		C.QSGMaterialShader_SetShaderSourceFiles(ptr.Pointer(), C.longlong(ty), C.struct_QtQuick_PackedString{data: sourceFilesC, len: C.longlong(len(strings.Join(sourceFiles, "|")))})
+		C.QSGMaterialShader_SetShaderSourceFiles(ptr.Pointer(), C.longlong(ty), C.struct_QtQuick_PackedString{data: sourceFilesC, len: C.longlong(len(strings.Join(sourceFiles, "¡¦!")))})
 	}
 }
 

@@ -5225,39 +5225,39 @@ int QSensorGesture_QSensorGesture_QRegisterMetaType(){qRegisterMetaType<QSensorG
 void* QSensorGesture_NewQSensorGesture(struct QtSensors_PackedString ids, void* parent)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
-		return new MyQSensorGesture(QString::fromUtf8(ids.data, ids.len).split("|", QString::SkipEmptyParts), static_cast<QCameraImageCapture*>(parent));
+		return new MyQSensorGesture(QString::fromUtf8(ids.data, ids.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
-		return new MyQSensorGesture(QString::fromUtf8(ids.data, ids.len).split("|", QString::SkipEmptyParts), static_cast<QDBusPendingCallWatcher*>(parent));
+		return new MyQSensorGesture(QString::fromUtf8(ids.data, ids.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QDBusPendingCallWatcher*>(parent));
 	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
-		return new MyQSensorGesture(QString::fromUtf8(ids.data, ids.len).split("|", QString::SkipEmptyParts), static_cast<QExtensionFactory*>(parent));
+		return new MyQSensorGesture(QString::fromUtf8(ids.data, ids.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QExtensionFactory*>(parent));
 	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
-		return new MyQSensorGesture(QString::fromUtf8(ids.data, ids.len).split("|", QString::SkipEmptyParts), static_cast<QExtensionManager*>(parent));
+		return new MyQSensorGesture(QString::fromUtf8(ids.data, ids.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QExtensionManager*>(parent));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
-		return new MyQSensorGesture(QString::fromUtf8(ids.data, ids.len).split("|", QString::SkipEmptyParts), static_cast<QGraphicsObject*>(parent));
+		return new MyQSensorGesture(QString::fromUtf8(ids.data, ids.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QGraphicsObject*>(parent));
 	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQSensorGesture(QString::fromUtf8(ids.data, ids.len).split("|", QString::SkipEmptyParts), static_cast<QGraphicsWidget*>(parent));
+		return new MyQSensorGesture(QString::fromUtf8(ids.data, ids.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QGraphicsWidget*>(parent));
 	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
-		return new MyQSensorGesture(QString::fromUtf8(ids.data, ids.len).split("|", QString::SkipEmptyParts), static_cast<QLayout*>(parent));
+		return new MyQSensorGesture(QString::fromUtf8(ids.data, ids.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QLayout*>(parent));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
-		return new MyQSensorGesture(QString::fromUtf8(ids.data, ids.len).split("|", QString::SkipEmptyParts), static_cast<QMediaPlaylist*>(parent));
+		return new MyQSensorGesture(QString::fromUtf8(ids.data, ids.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
-		return new MyQSensorGesture(QString::fromUtf8(ids.data, ids.len).split("|", QString::SkipEmptyParts), static_cast<QMediaRecorder*>(parent));
+		return new MyQSensorGesture(QString::fromUtf8(ids.data, ids.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QMediaRecorder*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
-		return new MyQSensorGesture(QString::fromUtf8(ids.data, ids.len).split("|", QString::SkipEmptyParts), static_cast<QOffscreenSurface*>(parent));
+		return new MyQSensorGesture(QString::fromUtf8(ids.data, ids.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQSensorGesture(QString::fromUtf8(ids.data, ids.len).split("|", QString::SkipEmptyParts), static_cast<QPaintDeviceWindow*>(parent));
+		return new MyQSensorGesture(QString::fromUtf8(ids.data, ids.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QPaintDeviceWindow*>(parent));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
-		return new MyQSensorGesture(QString::fromUtf8(ids.data, ids.len).split("|", QString::SkipEmptyParts), static_cast<QPdfWriter*>(parent));
+		return new MyQSensorGesture(QString::fromUtf8(ids.data, ids.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QPdfWriter*>(parent));
 	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
-		return new MyQSensorGesture(QString::fromUtf8(ids.data, ids.len).split("|", QString::SkipEmptyParts), static_cast<QQuickItem*>(parent));
+		return new MyQSensorGesture(QString::fromUtf8(ids.data, ids.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
-		return new MyQSensorGesture(QString::fromUtf8(ids.data, ids.len).split("|", QString::SkipEmptyParts), static_cast<QRadioData*>(parent));
+		return new MyQSensorGesture(QString::fromUtf8(ids.data, ids.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQSensorGesture(QString::fromUtf8(ids.data, ids.len).split("|", QString::SkipEmptyParts), static_cast<QWidget*>(parent));
+		return new MyQSensorGesture(QString::fromUtf8(ids.data, ids.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQSensorGesture(QString::fromUtf8(ids.data, ids.len).split("|", QString::SkipEmptyParts), static_cast<QWindow*>(parent));
+		return new MyQSensorGesture(QString::fromUtf8(ids.data, ids.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QWindow*>(parent));
 	} else {
-		return new MyQSensorGesture(QString::fromUtf8(ids.data, ids.len).split("|", QString::SkipEmptyParts), static_cast<QObject*>(parent));
+		return new MyQSensorGesture(QString::fromUtf8(ids.data, ids.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QObject*>(parent));
 	}
 }
 
@@ -5310,17 +5310,17 @@ void QSensorGesture_DestroyQSensorGestureDefault(void* ptr)
 
 struct QtSensors_PackedString QSensorGesture_GestureSignals(void* ptr)
 {
-	return ({ QByteArray t7a3c3d = static_cast<QSensorGesture*>(ptr)->gestureSignals().join("|").toUtf8(); QtSensors_PackedString { const_cast<char*>(t7a3c3d.prepend("WHITESPACE").constData()+10), t7a3c3d.size()-10 }; });
+	return ({ QByteArray t7a3c3d = static_cast<QSensorGesture*>(ptr)->gestureSignals().join("¡¦!").toUtf8(); QtSensors_PackedString { const_cast<char*>(t7a3c3d.prepend("WHITESPACE").constData()+10), t7a3c3d.size()-10 }; });
 }
 
 struct QtSensors_PackedString QSensorGesture_InvalidIds(void* ptr)
 {
-	return ({ QByteArray ta7952e = static_cast<QSensorGesture*>(ptr)->invalidIds().join("|").toUtf8(); QtSensors_PackedString { const_cast<char*>(ta7952e.prepend("WHITESPACE").constData()+10), ta7952e.size()-10 }; });
+	return ({ QByteArray ta7952e = static_cast<QSensorGesture*>(ptr)->invalidIds().join("¡¦!").toUtf8(); QtSensors_PackedString { const_cast<char*>(ta7952e.prepend("WHITESPACE").constData()+10), ta7952e.size()-10 }; });
 }
 
 struct QtSensors_PackedString QSensorGesture_ValidIds(void* ptr)
 {
-	return ({ QByteArray t98eddb = static_cast<QSensorGesture*>(ptr)->validIds().join("|").toUtf8(); QtSensors_PackedString { const_cast<char*>(t98eddb.prepend("WHITESPACE").constData()+10), t98eddb.size()-10 }; });
+	return ({ QByteArray t98eddb = static_cast<QSensorGesture*>(ptr)->validIds().join("¡¦!").toUtf8(); QtSensors_PackedString { const_cast<char*>(t98eddb.prepend("WHITESPACE").constData()+10), t98eddb.size()-10 }; });
 }
 
 void* QSensorGesture___dynamicPropertyNames_atList(void* ptr, int i)
@@ -5553,12 +5553,12 @@ void QSensorGestureManager_DestroyQSensorGestureManagerDefault(void* ptr)
 
 struct QtSensors_PackedString QSensorGestureManager_GestureIds(void* ptr)
 {
-	return ({ QByteArray t5f71c3 = static_cast<QSensorGestureManager*>(ptr)->gestureIds().join("|").toUtf8(); QtSensors_PackedString { const_cast<char*>(t5f71c3.prepend("WHITESPACE").constData()+10), t5f71c3.size()-10 }; });
+	return ({ QByteArray t5f71c3 = static_cast<QSensorGestureManager*>(ptr)->gestureIds().join("¡¦!").toUtf8(); QtSensors_PackedString { const_cast<char*>(t5f71c3.prepend("WHITESPACE").constData()+10), t5f71c3.size()-10 }; });
 }
 
 struct QtSensors_PackedString QSensorGestureManager_RecognizerSignals(void* ptr, struct QtSensors_PackedString gestureId)
 {
-	return ({ QByteArray t0f00fe = static_cast<QSensorGestureManager*>(ptr)->recognizerSignals(QString::fromUtf8(gestureId.data, gestureId.len)).join("|").toUtf8(); QtSensors_PackedString { const_cast<char*>(t0f00fe.prepend("WHITESPACE").constData()+10), t0f00fe.size()-10 }; });
+	return ({ QByteArray t0f00fe = static_cast<QSensorGestureManager*>(ptr)->recognizerSignals(QString::fromUtf8(gestureId.data, gestureId.len)).join("¡¦!").toUtf8(); QtSensors_PackedString { const_cast<char*>(t0f00fe.prepend("WHITESPACE").constData()+10), t0f00fe.size()-10 }; });
 }
 
 void* QSensorGestureManager_MetaObjectDefault(void* ptr)
@@ -5693,7 +5693,7 @@ public:
 	QList<QSensorGestureRecognizer *> createRecognizers() { return ({ QList<QSensorGestureRecognizer *>* tmpP = static_cast<QList<QSensorGestureRecognizer *>*>(callbackQSensorGesturePluginInterface_CreateRecognizers(this)); QList<QSensorGestureRecognizer *> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
 	 ~MyQSensorGesturePluginInterface() { callbackQSensorGesturePluginInterface_DestroyQSensorGesturePluginInterface(this); };
 	QString name() const { return ({ QtSensors_PackedString tempVal = callbackQSensorGesturePluginInterface_Name(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
-	QStringList supportedIds() const { return ({ QtSensors_PackedString tempVal = callbackQSensorGesturePluginInterface_SupportedIds(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	QStringList supportedIds() const { return ({ QtSensors_PackedString tempVal = callbackQSensorGesturePluginInterface_SupportedIds(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 };
 
 struct QtSensors_PackedList QSensorGesturePluginInterface_CreateRecognizers(void* ptr)
@@ -5724,7 +5724,7 @@ struct QtSensors_PackedString QSensorGesturePluginInterface_Name(void* ptr)
 
 struct QtSensors_PackedString QSensorGesturePluginInterface_SupportedIds(void* ptr)
 {
-	return ({ QByteArray tab1a26 = static_cast<QSensorGesturePluginInterface*>(ptr)->supportedIds().join("|").toUtf8(); QtSensors_PackedString { const_cast<char*>(tab1a26.prepend("WHITESPACE").constData()+10), tab1a26.size()-10 }; });
+	return ({ QByteArray tab1a26 = static_cast<QSensorGesturePluginInterface*>(ptr)->supportedIds().join("¡¦!").toUtf8(); QtSensors_PackedString { const_cast<char*>(tab1a26.prepend("WHITESPACE").constData()+10), tab1a26.size()-10 }; });
 }
 
 void* QSensorGesturePluginInterface___createRecognizers_atList(void* ptr, int i)
@@ -5883,7 +5883,7 @@ struct QtSensors_PackedString QSensorGestureRecognizer_Id(void* ptr)
 
 struct QtSensors_PackedString QSensorGestureRecognizer_GestureSignals(void* ptr)
 {
-	return ({ QByteArray t79f8ee = static_cast<QSensorGestureRecognizer*>(ptr)->gestureSignals().join("|").toUtf8(); QtSensors_PackedString { const_cast<char*>(t79f8ee.prepend("WHITESPACE").constData()+10), t79f8ee.size()-10 }; });
+	return ({ QByteArray t79f8ee = static_cast<QSensorGestureRecognizer*>(ptr)->gestureSignals().join("¡¦!").toUtf8(); QtSensors_PackedString { const_cast<char*>(t79f8ee.prepend("WHITESPACE").constData()+10), t79f8ee.size()-10 }; });
 }
 
 void* QSensorGestureRecognizer_MetaObjectDefault(void* ptr)

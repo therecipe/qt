@@ -4,9 +4,16 @@ package androidextras
 
 import (
 	"github.com/therecipe/qt/core"
+	"strings"
 	"unsafe"
 )
 
+func unpackStringList(s string) []string {
+	if len(s) == 0 {
+		return make([]string, 0)
+	}
+	return strings.Split(s, "¡¦!")
+}
 func QAndroidJniEnvironment_ExceptionCatch() error {
 	return nil
 }

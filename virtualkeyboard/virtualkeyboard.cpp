@@ -1850,7 +1850,7 @@ public:
 	QModelIndex parent(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQVirtualKeyboardSelectionListModel_Parent(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
 	QList<QModelIndex> match(const QModelIndex & start, int role, const QVariant & value, int hits, Qt::MatchFlags flags) const { return ({ QList<QModelIndex>* tmpP = static_cast<QList<QModelIndex>*>(callbackQVirtualKeyboardSelectionListModel_Match(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&start), role, const_cast<QVariant*>(&value), hits, static_cast<qint64>(flags))); QList<QModelIndex> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
 	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQVirtualKeyboardSelectionListModel_Span(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
-	QStringList mimeTypes() const { return ({ QtVirtualKeyboard_PackedString tempVal = callbackQVirtualKeyboardSelectionListModel_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	QStringList mimeTypes() const { return ({ QtVirtualKeyboard_PackedString tempVal = callbackQVirtualKeyboardSelectionListModel_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	QVariant data(const QModelIndex & index, int role) const { return *static_cast<QVariant*>(callbackQVirtualKeyboardSelectionListModel_Data(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index), role)); };
 	QVariant headerData(int section, Qt::Orientation orientation, int role) const { return *static_cast<QVariant*>(callbackQVirtualKeyboardSelectionListModel_HeaderData(const_cast<void*>(static_cast<const void*>(this)), section, static_cast<qint64>(orientation), role)); };
 	Qt::DropActions supportedDragActions() const { return static_cast<Qt::DropAction>(callbackQVirtualKeyboardSelectionListModel_SupportedDragActions(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -2419,7 +2419,7 @@ void* QVirtualKeyboardSelectionListModel_SpanDefault(void* ptr, void* index)
 
 struct QtVirtualKeyboard_PackedString QVirtualKeyboardSelectionListModel_MimeTypesDefault(void* ptr)
 {
-		return ({ QByteArray t30b194 = static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::mimeTypes().join("|").toUtf8(); QtVirtualKeyboard_PackedString { const_cast<char*>(t30b194.prepend("WHITESPACE").constData()+10), t30b194.size()-10 }; });
+		return ({ QByteArray t30b194 = static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::mimeTypes().join("¡¦!").toUtf8(); QtVirtualKeyboard_PackedString { const_cast<char*>(t30b194.prepend("WHITESPACE").constData()+10), t30b194.size()-10 }; });
 }
 
 void* QVirtualKeyboardSelectionListModel_DataDefault(void* ptr, void* index, int role)
@@ -2630,7 +2630,7 @@ void QVirtualKeyboardTrace_SetChannelData(void* ptr, struct QtVirtualKeyboard_Pa
 
 void QVirtualKeyboardTrace_SetChannels(void* ptr, struct QtVirtualKeyboard_PackedString channels)
 {
-	static_cast<QVirtualKeyboardTrace*>(ptr)->setChannels(QString::fromUtf8(channels.data, channels.len).split("|", QString::SkipEmptyParts));
+	static_cast<QVirtualKeyboardTrace*>(ptr)->setChannels(QString::fromUtf8(channels.data, channels.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
 void QVirtualKeyboardTrace_SetFinal(void* ptr, char final)
@@ -2665,7 +2665,7 @@ void QVirtualKeyboardTrace_TraceIdChanged(void* ptr, int traceId)
 
 struct QtVirtualKeyboard_PackedString QVirtualKeyboardTrace_Channels(void* ptr)
 {
-	return ({ QByteArray t8a9301 = static_cast<QVirtualKeyboardTrace*>(ptr)->channels().join("|").toUtf8(); QtVirtualKeyboard_PackedString { const_cast<char*>(t8a9301.prepend("WHITESPACE").constData()+10), t8a9301.size()-10 }; });
+	return ({ QByteArray t8a9301 = static_cast<QVirtualKeyboardTrace*>(ptr)->channels().join("¡¦!").toUtf8(); QtVirtualKeyboard_PackedString { const_cast<char*>(t8a9301.prepend("WHITESPACE").constData()+10), t8a9301.size()-10 }; });
 }
 
 struct QtVirtualKeyboard_PackedList QVirtualKeyboardTrace_ChannelData(void* ptr, struct QtVirtualKeyboard_PackedString channel, int pos, int count)

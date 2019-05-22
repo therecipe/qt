@@ -11,6 +11,7 @@ import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"runtime"
+	"strings"
 	"unsafe"
 )
 
@@ -26,6 +27,12 @@ func cGoUnpackBytes(s C.struct_QtGamepad_PackedString) []byte {
 		return *(*[]byte)(unsafe.Pointer(&gs))
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
+}
+func unpackStringList(s string) []string {
+	if len(s) == 0 {
+		return make([]string, 0)
+	}
+	return strings.Split(s, "¡¦!")
 }
 
 type QGamepad struct {

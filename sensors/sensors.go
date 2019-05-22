@@ -28,6 +28,12 @@ func cGoUnpackBytes(s C.struct_QtSensors_PackedString) []byte {
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
+func unpackStringList(s string) []string {
+	if len(s) == 0 {
+		return make([]string, 0)
+	}
+	return strings.Split(s, "¡¦!")
+}
 
 type AndroidSensors struct {
 	ptr unsafe.Pointer
@@ -8763,9 +8769,9 @@ func NewQSensorGestureFromPointer(ptr unsafe.Pointer) (n *QSensorGesture) {
 	return
 }
 func NewQSensorGesture(ids []string, parent core.QObject_ITF) *QSensorGesture {
-	idsC := C.CString(strings.Join(ids, "|"))
+	idsC := C.CString(strings.Join(ids, "¡¦!"))
 	defer C.free(unsafe.Pointer(idsC))
-	tmpValue := NewQSensorGestureFromPointer(C.QSensorGesture_NewQSensorGesture(C.struct_QtSensors_PackedString{data: idsC, len: C.longlong(len(strings.Join(ids, "|")))}, core.PointerFromQObject(parent)))
+	tmpValue := NewQSensorGestureFromPointer(C.QSensorGesture_NewQSensorGesture(C.struct_QtSensors_PackedString{data: idsC, len: C.longlong(len(strings.Join(ids, "¡¦!")))}, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -8885,21 +8891,21 @@ func (ptr *QSensorGesture) DestroyQSensorGestureDefault() {
 
 func (ptr *QSensorGesture) GestureSignals() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QSensorGesture_GestureSignals(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QSensorGesture_GestureSignals(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QSensorGesture) InvalidIds() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QSensorGesture_InvalidIds(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QSensorGesture_InvalidIds(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QSensorGesture) ValidIds() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QSensorGesture_ValidIds(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QSensorGesture_ValidIds(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -9358,7 +9364,7 @@ func (ptr *QSensorGestureManager) DestroyQSensorGestureManagerDefault() {
 
 func (ptr *QSensorGestureManager) GestureIds() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QSensorGestureManager_GestureIds(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QSensorGestureManager_GestureIds(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -9370,7 +9376,7 @@ func (ptr *QSensorGestureManager) RecognizerSignals(gestureId string) []string {
 			gestureIdC = C.CString(gestureId)
 			defer C.free(unsafe.Pointer(gestureIdC))
 		}
-		return strings.Split(cGoUnpackString(C.QSensorGestureManager_RecognizerSignals(ptr.Pointer(), C.struct_QtSensors_PackedString{data: gestureIdC, len: C.longlong(len(gestureId))})), "|")
+		return unpackStringList(cGoUnpackString(C.QSensorGestureManager_RecognizerSignals(ptr.Pointer(), C.struct_QtSensors_PackedString{data: gestureIdC, len: C.longlong(len(gestureId))})))
 	}
 	return make([]string, 0)
 }
@@ -9820,10 +9826,10 @@ func (ptr *QSensorGesturePluginInterface) Name() string {
 func callbackQSensorGesturePluginInterface_SupportedIds(ptr unsafe.Pointer) C.struct_QtSensors_PackedString {
 	if signal := qt.GetSignal(ptr, "supportedIds"); signal != nil {
 		tempVal := (*(*func() []string)(signal))()
-		return C.struct_QtSensors_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtSensors_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 	}
 	tempVal := make([]string, 0)
-	return C.struct_QtSensors_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtSensors_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
 }
 
 func (ptr *QSensorGesturePluginInterface) ConnectSupportedIds(f func() []string) {
@@ -9850,7 +9856,7 @@ func (ptr *QSensorGesturePluginInterface) DisconnectSupportedIds() {
 
 func (ptr *QSensorGesturePluginInterface) SupportedIds() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QSensorGesturePluginInterface_SupportedIds(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QSensorGesturePluginInterface_SupportedIds(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
@@ -10251,7 +10257,7 @@ func (ptr *QSensorGestureRecognizer) Id() string {
 
 func (ptr *QSensorGestureRecognizer) GestureSignals() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QSensorGestureRecognizer_GestureSignals(ptr.Pointer())), "|")
+		return unpackStringList(cGoUnpackString(C.QSensorGestureRecognizer_GestureSignals(ptr.Pointer())))
 	}
 	return make([]string, 0)
 }
