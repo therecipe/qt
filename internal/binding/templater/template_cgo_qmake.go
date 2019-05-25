@@ -385,7 +385,11 @@ func createMakefile(module, path, target string, mode int) {
 			pPath := filepath.Join(path, fmt.Sprintf("%v%v.cpp", filepath.Base(path), suf))
 			if (utils.QT_STATIC()) && utils.ExistsFile(pPath) {
 				if content := utils.Load(pPath); !strings.Contains(content, "+build linux") {
-					utils.Save(pPath, "// +build linux\r\n"+content)
+					if strings.ToLower(module) == "core" && suf == "_plugin_import" && utils.ExistsFile(filepath.Join(utils.QT_INSTALL_PREFIX(target), "plugins", "platforminputcontexts", "libfcitxplatforminputcontextplugin.a")) {
+						utils.Save(pPath, "// +build linux\r\n"+content+"Q_IMPORT_PLUGIN(QFcitxPlatformInputContextPlugin)\r\n")
+					} else {
+						utils.Save(pPath, "// +build linux\r\n"+content)
+					}
 				}
 			}
 			if mode == MOC || mode == RCC || !utils.QT_STATIC() || (module != "Qml" && strings.Contains(pPath, "_qml_")) {
@@ -476,6 +480,13 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 	fmt.Fprintf(bb, "package %v\n\n/*\n", pkg)
 
 	//
+
+	switch target {
+	case "linux":
+		if f := filepath.Join(utils.QT_INSTALL_PREFIX(target), "plugins", "platforminputcontexts", "libfcitxplatforminputcontextplugin.a"); utils.QT_STATIC() && strings.ToLower(module) == "core" && utils.ExistsFile(f) {
+			fmt.Fprintf(bb, "#cgo LDFLAGS: %v\n", f)
+		}
+	}
 
 	file := "Mfile"
 	if target == "windows" {
