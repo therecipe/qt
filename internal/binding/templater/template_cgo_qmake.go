@@ -242,6 +242,9 @@ func createProject(module, path, target string, mode int, libs []string) {
 	if hasVirtualKeyboard && (utils.QT_STATIC() || target == "js" || target == "wasm") {
 		fmt.Fprintf(bb, "QTPLUGIN += qtvirtualkeyboardplugin\n")
 	}
+	if utils.QT_STATIC() && strings.ToLower(module) == "core" {
+		fmt.Fprintf(bb, "QTPLUGIN += ibusplatforminputcontextplugin\n")
+	}
 	utils.SaveBytes(proPath, bb.Bytes())
 }
 
