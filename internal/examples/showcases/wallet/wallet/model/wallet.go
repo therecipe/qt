@@ -46,22 +46,22 @@ func (m *WalletModel) data(index *core.QModelIndex, role int) *core.QVariant {
 
 	switch {
 	case role == int(core.Qt__UserRole)+1:
-		return core.NewQVariant14(dbItem.Status)
+		return core.NewQVariant1(dbItem.Status)
 
 	case role == int(core.Qt__UserRole)+2:
-		return core.NewQVariant14(dbItem.Date)
+		return core.NewQVariant1(dbItem.Date)
 
 	case role == int(core.Qt__UserRole)+3:
-		return core.NewQVariant14(dbItem.Amount)
+		return core.NewQVariant1(dbItem.Amount)
 
 	case role == int(core.Qt__UserRole)+4:
-		return core.NewQVariant14(dbItem.Type)
+		return core.NewQVariant1(dbItem.Type)
 
 	case role == int(core.Qt__UserRole)+5:
-		return core.NewQVariant14(dbItem.Total)
+		return core.NewQVariant1(dbItem.Total)
 
 	case role == int(core.Qt__UserRole)+6:
-		return core.NewQVariant14(dbItem.ID)
+		return core.NewQVariant1(dbItem.ID)
 	}
 
 	return core.NewQVariant()

@@ -117,7 +117,7 @@ func createEditor(parent *widgets.QWidget, option *widgets.QStyleOptionViewItem,
 }
 
 func textchanged(text string) {
-	model.SetData(textIndex, core.NewQVariant14(text), 2) // edit role
+	model.SetData(textIndex, core.NewQVariant1(text), 2) // edit role
 }
 
 func setEditorData(editor *widgets.QWidget, index *core.QModelIndex) {
@@ -129,7 +129,7 @@ func setEditorData(editor *widgets.QWidget, index *core.QModelIndex) {
 func setModelData(editor *widgets.QWidget, model *core.QAbstractItemModel, index *core.QModelIndex) {
 	lineedit := widgets.NewQLineEditFromPointer(editor.Pointer())
 	text := lineedit.Text()
-	model.SetData(index, core.NewQVariant14(text), int(core.Qt__EditRole))
+	model.SetData(index, core.NewQVariant1(text), int(core.Qt__EditRole))
 
 }
 
@@ -139,14 +139,14 @@ func updateEditorGeometry(editor *widgets.QWidget, option *widgets.QStyleOptionV
 
 func headerdata(section int, orientation core.Qt__Orientation, role int) *core.QVariant {
 	if orientation == 1 && role == 0 { // Qt__Horizontal, Qt__DisplayRole
-		return core.NewQVariant14("column" + strconv.Itoa(section+1))
+		return core.NewQVariant1("column" + strconv.Itoa(section+1))
 	}
 
 	if orientation == 2 && role == 0 {
 		if section < list.Size()-1 {
-			return core.NewQVariant14(strconv.Itoa(section + 1))
+			return core.NewQVariant1(strconv.Itoa(section + 1))
 		} else {
-			return core.NewQVariant14("*")
+			return core.NewQVariant1("*")
 		}
 	}
 	return core.NewQVariant()
@@ -167,11 +167,11 @@ func data(index *core.QModelIndex, role int) *core.QVariant {
 			switch deducedText := text.(type) {
 			case int:
 				{
-					return core.NewQVariant7(deducedText)
+					return core.NewQVariant1(deducedText)
 				}
 			case string:
 				{
-					return core.NewQVariant14(deducedText)
+					return core.NewQVariant1(deducedText)
 				}
 			}
 		}

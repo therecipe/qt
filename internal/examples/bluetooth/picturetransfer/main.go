@@ -20,7 +20,7 @@ func main() {
 
 	view := quick.NewQQuickView(nil)
 	view.RootContext().SetContextProperty("fileTransfer", fileTransfer)
-	view.RootContext().SetContextProperty2("SystemPictureFolder", core.NewQVariant14(core.QStandardPaths_StandardLocations(core.QStandardPaths__PicturesLocation)[0]))
+	view.RootContext().SetContextProperty2("SystemPictureFolder", core.NewQVariant1(core.QStandardPaths_StandardLocations(core.QStandardPaths__PicturesLocation)[0]))
 
 	fmt.Println(core.QStandardPaths_StandardLocations(core.QStandardPaths__PicturesLocation))
 

@@ -40,8 +40,8 @@ func (c *Chart) init() {
 	c.AddSeries(c.m_series)
 	c.CreateDefaultAxes()
 	c.SetAxisX(c.m_axis, c.m_series)
-	c.AxisX(nil).SetRange(core.NewQVariant12(0), core.NewQVariant12(10))
-	c.AxisY(nil).SetRange(core.NewQVariant12(-5), core.NewQVariant12(10))
+	c.AxisX(nil).SetRange(core.NewQVariant1(0), core.NewQVariant1(10))
+	c.AxisY(nil).SetRange(core.NewQVariant1(-5), core.NewQVariant1(10))
 
 	c.m_timer.Start2()
 }

@@ -33,4 +33,4 @@ RUN $GOPATH/bin/qtsetup check
 RUN $GOPATH/bin/qtsetup generate
 RUN cd $GOPATH/src/github.com/therecipe/qt/internal/examples/widgets/line_edits && $GOPATH/bin/qtdeploy build linux && rm -rf ./deploy
 
-RUN pacman -S --noconfirm --needed --noprogressbar --quiet ca-certificates git
+RUN pacman -S --noconfirm --needed --noprogressbar --quiet ca-certificates git pkg-config

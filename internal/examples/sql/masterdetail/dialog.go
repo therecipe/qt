@@ -97,9 +97,9 @@ func (d *Dialog) addNewArtist(name string) int {
 	f2 := sql.NewQSqlField("artist", core.QVariant__String)
 	f3 := sql.NewQSqlField("albumcount", core.QVariant__Int)
 
-	f1.SetValue(core.NewQVariant7(id))
-	f2.SetValue(core.NewQVariant14(name))
-	f3.SetValue(core.NewQVariant7(0))
+	f1.SetValue(core.NewQVariant1(id))
+	f2.SetValue(core.NewQVariant1(name))
+	f3.SetValue(core.NewQVariant1(0))
 	record.Append(f1)
 	record.Append(f2)
 	record.Append(f3)
@@ -118,10 +118,10 @@ func (d *Dialog) addNewAlbum(title string, artistId int) int {
 	f3 := sql.NewQSqlField("artistid", core.QVariant__Int)
 	f4 := sql.NewQSqlField("year", core.QVariant__Int)
 
-	f1.SetValue(core.NewQVariant7(id))
-	f2.SetValue(core.NewQVariant14(title))
-	f3.SetValue(core.NewQVariant7(artistId))
-	f4.SetValue(core.NewQVariant7(d.yearEditor.Value()))
+	f1.SetValue(core.NewQVariant1(id))
+	f2.SetValue(core.NewQVariant1(title))
+	f3.SetValue(core.NewQVariant1(artistId))
+	f4.SetValue(core.NewQVariant1(d.yearEditor.Value()))
 	record.Append(f1)
 	record.Append(f2)
 	record.Append(f3)
@@ -175,7 +175,7 @@ func (d *Dialog) increaseAlbumCount(artistIndex *core.QModelIndex) {
 	albumCountIndex := artistIndex.Sibling(artistIndex.Row(), 2)
 
 	albumCount := albumCountIndex.Data(0).ToInt(nil)
-	artistModel.SetData(albumCountIndex, core.NewQVariant7(albumCount+1), 0)
+	artistModel.SetData(albumCountIndex, core.NewQVariant1(albumCount+1), 0)
 }
 
 func (d *Dialog) revert() {

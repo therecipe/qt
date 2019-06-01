@@ -63,8 +63,8 @@ func NewCustomReply(op network.QNetworkAccessManager__Operation, req *network.QN
 		*data = string(content[offset : offset+number])
 		offset += number
 
-		customReply.SetAttribute(network.QNetworkRequest__HttpStatusCodeAttribute, core.NewQVariant7(200))
-		customReply.SetAttribute(network.QNetworkRequest__HttpReasonPhraseAttribute, core.NewQVariant14("OK"))
+		customReply.SetAttribute(network.QNetworkRequest__HttpStatusCodeAttribute, core.NewQVariant1(200))
+		customReply.SetAttribute(network.QNetworkRequest__HttpReasonPhraseAttribute, core.NewQVariant1("OK"))
 
 		return number
 	})
@@ -78,7 +78,7 @@ func NewCustomReply(op network.QNetworkAccessManager__Operation, req *network.QN
 	})
 
 	customReply.Open(core.QIODevice__ReadOnly | core.QIODevice__Unbuffered)
-	customReply.SetHeader(network.QNetworkRequest__ContentLengthHeader, core.NewQVariant9(int64(len(content))))
+	customReply.SetHeader(network.QNetworkRequest__ContentLengthHeader, core.NewQVariant1(int64(len(content))))
 
 	customReply.MetaDataChanged()
 	customReply.DownloadProgress(int64(len(content)), int64(len(content)))

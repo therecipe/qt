@@ -237,7 +237,7 @@ func (w *MainWindow) decreaseAlbumCount(artistIndex *core.QModelIndex) {
 		artists.RemoveRow(row, core.NewQModelIndex())
 		w.showImageLabel()
 	} else {
-		artists.SetData(albumCountIndex, core.NewQVariant7(albumCount-1), 0)
+		artists.SetData(albumCountIndex, core.NewQVariant1(albumCount-1), 0)
 	}
 }
 

@@ -54,7 +54,7 @@ func build(mode, target, path, ldFlagsCustom, tagsCustom, name, depPath string, 
 	}
 
 	var pattern string
-	if strings.Contains(runtime.Version(), "1.1") || strings.Contains(runtime.Version(), "devel") {
+	if v := utils.GOVERSION(); strings.Contains(v, "1.1") || strings.Contains(v, "devel") {
 		pattern = "all="
 	}
 
@@ -186,7 +186,7 @@ func build_sailfish(target, path, ldFlagsCustom, name string) {
 	sailfish_ssh("2222", "root", "ln", "-s", fmt.Sprintf("/srv/mer/toolings/SailfishOS-"+utils.QT_SAILFISH_VERSION()+"/opt/cross/bin/%v-meego-linux-%v-ld", arch, gcc), fmt.Sprintf("/srv/mer/toolings/SailfishOS-"+utils.QT_SAILFISH_VERSION()+"/opt/cross/libexec/gcc/%v-meego-linux-%v/4.8.3/ld", arch, gcc))
 
 	var pattern string
-	if strings.Contains(runtime.Version(), "1.1") || strings.Contains(runtime.Version(), "devel") {
+	if v := utils.GOVERSION(); strings.Contains(v, "1.1") || strings.Contains(v, "devel") {
 		pattern = "all="
 	}
 

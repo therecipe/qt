@@ -33,8 +33,8 @@ func init() {
 
 func (m *PersonModel) init() {
 	m.SetRoles(map[int]*core.QByteArray{
-		FirstName: core.NewQByteArray2("firstName", len("firstName")),
-		LastName:  core.NewQByteArray2("lastName", len("lastName")),
+		FirstName: core.NewQByteArray2("firstName", -1),
+		LastName:  core.NewQByteArray2("lastName", -1),
 	})
 
 	m.ConnectData(m.data)
@@ -61,12 +61,12 @@ func (m *PersonModel) data(index *core.QModelIndex, role int) *core.QVariant {
 	switch role {
 	case FirstName:
 		{
-			return core.NewQVariant14(p.FirstName())
+			return core.NewQVariant1(p.FirstName())
 		}
 
 	case LastName:
 		{
-			return core.NewQVariant14(p.LastName())
+			return core.NewQVariant1(p.LastName())
 		}
 
 	default:

@@ -80,7 +80,7 @@ func main() {
 	stopbutton.SetMaximumSize(sx)
 	stopbutton.ConnectClicked(func(_ bool) { stopbutton_click() })
 
-	gif := core.NewQByteArray2("gif", len("gif"))
+	gif := core.NewQByteArray2("gif", -1)
 	NavImage = gui.NewQMovie3(":/icons/loading.gif", gif, window)
 	NavImage.SetScaledSize(core.NewQSize2(35, 35))
 	NavImage.SetSpeed(200)

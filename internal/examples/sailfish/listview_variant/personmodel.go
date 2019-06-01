@@ -33,8 +33,8 @@ func init() {
 
 func (m *PersonModel) init() {
 	m.SetRoles(map[int]*core.QByteArray{
-		FirstName: core.NewQByteArray2("firstName", len("firstName")),
-		LastName:  core.NewQByteArray2("lastName", len("lastName")),
+		FirstName: core.NewQByteArray2("firstName", -1),
+		LastName:  core.NewQByteArray2("lastName", -1),
 	})
 
 	m.ConnectData(m.data)

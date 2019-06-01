@@ -360,7 +360,7 @@ func GoList(args ...string) *exec.Cmd {
 
 	var skip bool
 	for i := 5; i <= 10; i++ {
-		if v := runtime.Version(); strings.Contains(v, fmt.Sprintf("go1.%v.", i)) || strings.HasSuffix(v, fmt.Sprintf("go1.%v", i)) {
+		if v := GOVERSION(); strings.Contains(v, fmt.Sprintf("go1.%v.", i)) || strings.HasSuffix(v, fmt.Sprintf("go1.%v", i)) {
 			skip = true
 			break
 		}
@@ -403,4 +403,19 @@ func QT_STATIC() bool {
 
 func QT_NOT_CACHED() bool {
 	return os.Getenv("QT_NOT_CACHED") == "true"
+}
+
+var (
+	goVersionCache      string
+	goVersionCacheMutex = new(sync.Mutex)
+)
+
+func GOVERSION() (r string) {
+	goVersionCacheMutex.Lock()
+	if goVersionCache == "" {
+		goVersionCache = strings.Split(RunCmd(exec.Command("go", "version"), "get go version"), " ")[2]
+	}
+	r = goVersionCache
+	goVersionCacheMutex.Unlock()
+	return r
 }

@@ -31,7 +31,7 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 		minimal.Minimal(path, target, "")
 
 		var pattern string
-		if strings.Contains(runtime.Version(), "1.1") || strings.Contains(runtime.Version(), "devel") {
+		if v := utils.GOVERSION(); strings.Contains(v, "1.1") || strings.Contains(v, "devel") {
 			pattern = "all="
 		}
 

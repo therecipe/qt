@@ -34,7 +34,7 @@ func (t *WebSocketTransport) sendMessage(message *core.QJsonObject) {
 
 func (t *WebSocketTransport) textMessageReceived(messageData string) {
 	var error *core.QJsonParseError
-	message := core.QJsonDocument_FromJson(core.NewQByteArray2(messageData, len(messageData)), error)
+	message := core.QJsonDocument_FromJson(core.NewQByteArray2(messageData, -1), error)
 
 	if error.Error() != 0 {
 		fmt.Printf("Failed to parse text message as JSON object: %v\nError is: %v\n", messageData, error.ErrorString())

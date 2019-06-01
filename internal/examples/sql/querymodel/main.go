@@ -12,9 +12,9 @@ import (
 
 func initializeModel(model *sql.QSqlQueryModel) {
 	model.SetQuery2("select * from person", db)
-	model.SetHeaderData(0, core.Qt__Horizontal, core.NewQVariant14("ID"), 0)
-	model.SetHeaderData(1, core.Qt__Horizontal, core.NewQVariant14("First name"), 0)
-	model.SetHeaderData(2, core.Qt__Horizontal, core.NewQVariant14("Last name"), 0)
+	model.SetHeaderData(0, core.Qt__Horizontal, core.NewQVariant1("ID"), 0)
+	model.SetHeaderData(1, core.Qt__Horizontal, core.NewQVariant1("First name"), 0)
+	model.SetHeaderData(2, core.Qt__Horizontal, core.NewQVariant1("Last name"), 0)
 }
 
 var offset int

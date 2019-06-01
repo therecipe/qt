@@ -55,20 +55,20 @@ func (m *FilesModel) data(index *core.QModelIndex, role int) *core.QVariant {
 	switch {
 	case index.Column() == 0 && role == int(core.Qt__DisplayRole) || //needed for sort filter model
 		role == int(core.Qt__UserRole)+1:
-		return core.NewQVariant14(dbItem.Name)
+		return core.NewQVariant1(dbItem.Name)
 
 	case role == int(core.Qt__UserRole)+2:
-		return core.NewQVariant14(dbItem.Size)
+		return core.NewQVariant1(dbItem.Size)
 
 	case role == int(core.Qt__UserRole)+3:
-		return core.NewQVariant14(dbItem.Redundancy)
+		return core.NewQVariant1(dbItem.Redundancy)
 
 	case role == int(core.Qt__UserRole)+4:
-		return core.NewQVariant25(map[string]*core.QVariant{
-			"available": core.NewQVariant11(dbItem.Available),
-			"text":      core.NewQVariant14(dbItem.ProgressText),
-			"value":     core.NewQVariant12(dbItem.ProgressValue),
-			"error":     core.NewQVariant11(dbItem.Error != ""),
+		return core.NewQVariant1(map[string]*core.QVariant{
+			"available": core.NewQVariant1(dbItem.Available),
+			"text":      core.NewQVariant1(dbItem.ProgressText),
+			"value":     core.NewQVariant1(dbItem.ProgressValue),
+			"error":     core.NewQVariant1(dbItem.Error != ""),
 		})
 	}
 

@@ -22,9 +22,9 @@ func main() {
 		style    = quickcontrols2.QQuickStyle_Name()
 	)
 	if style != "" {
-		settings.SetValue("style", core.NewQVariant14(style))
+		settings.SetValue("style", core.NewQVariant1(style))
 	} else {
-		quickcontrols2.QQuickStyle_SetStyle(settings.Value("style", core.NewQVariant14("")).ToString())
+		quickcontrols2.QQuickStyle_SetStyle(settings.Value("style", core.NewQVariant1("")).ToString())
 	}
 
 	var engine = qml.NewQQmlApplicationEngine(nil)

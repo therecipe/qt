@@ -19,8 +19,8 @@ func main() {
 
 	var someBool bool
 	fmt.Println("Property value:", object.Property("someNumber").ToInt(&someBool), someBool)
-	object.SetProperty("someNumber", core.NewQVariant7(5000))
+	object.SetProperty("someNumber", core.NewQVariant1(5000))
 	fmt.Println("Property value:", object.Property("someNumber").ToInt(&someBool), someBool)
-	object.SetProperty("someNumber", core.NewQVariant7(200))
+	object.SetProperty("someNumber", core.NewQVariant1(200))
 	fmt.Println("Property value:", object.Property("someNumber").ToInt(&someBool), someBool)
 }

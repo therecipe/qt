@@ -26,7 +26,7 @@ func itemViews() {
 		if _, ok := listRoles[role]; !ok {
 			return core.NewQVariant()
 		}
-		return core.NewQVariant14(listDB[index.Row()][listRoles[role].ConstData()])
+		return core.NewQVariant1(listDB[index.Row()][listRoles[role].ConstData()])
 	})
 	listModel.ConnectRoleNames(func() map[int]*core.QByteArray {
 		return listRoles

@@ -25,9 +25,9 @@ func (m *CustomSqlModel) data(index *core.QModelIndex, role int) *core.QVariant 
 	var value = m.DataDefault(index, role)
 	if value.IsValid() && role == int(core.Qt__DisplayRole) {
 		if index.Column() == 0 {
-			return core.NewQVariant14("#" + value.ToString())
+			return core.NewQVariant1("#" + value.ToString())
 		} else if index.Column() == 2 {
-			return core.NewQVariant14(strings.ToUpper(value.ToString()))
+			return core.NewQVariant1(strings.ToUpper(value.ToString()))
 		}
 	}
 

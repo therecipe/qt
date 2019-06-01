@@ -55,7 +55,7 @@ func (v *SlideView) updateStatus(status quick.QQuickView__Status) {
 		println("Found qml Presentation as rootObject")
 	}
 
-	ri.SetProperty("allowDelay", core.NewQVariant11(false)) //Disable partial reveals on slide pages
+	ri.SetProperty("allowDelay", core.NewQVariant1(false)) //Disable partial reveals on slide pages
 	slides := ri.Property("slides").ToList()
 	v.m_slidesLeft = len(slides)
 

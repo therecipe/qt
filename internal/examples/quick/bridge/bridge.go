@@ -95,7 +95,7 @@ func initQmlContext(quickWidget *quick.QQuickWidget) {
 	if err != nil {
 		log.Println("initQmlContext", err)
 	}
-	quickWidget.RootContext().SetContextProperty2("qmlInitContext", core.NewQVariant14(string(b)))
+	quickWidget.RootContext().SetContextProperty2("qmlInitContext", core.NewQVariant1(string(b)))
 }
 
 type QmlBridge struct {

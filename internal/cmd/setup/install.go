@@ -98,7 +98,7 @@ func Install(target string, docker, vagrant, failfast bool) {
 			env["CGO_ENABLED"] = "0"
 		}
 
-		cmd := exec.Command("go", "install", "-i", "-p", strconv.Itoa(runtime.GOMAXPROCS(0)), "-v")
+		cmd := exec.Command("go", "install", "-p", strconv.Itoa(runtime.GOMAXPROCS(0)), "-v")
 		if len(tags) > 0 {
 			cmd.Args = append(cmd.Args, fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))
 		}
@@ -115,7 +115,7 @@ func Install(target string, docker, vagrant, failfast bool) {
 		if target == "js" {
 			cmd.Args = append(cmd.Args, "-v")
 		} else {
-			if target == "linux" && (utils.QT_PKG_CONFIG() || utils.QT_STATIC()) {
+			if target == "linux" {
 				env["CGO_LDFLAGS"] = strings.Replace(env["CGO_LDFLAGS"], "-Wl,-rpath,$ORIGIN/lib -Wl,--disable-new-dtags", "", -1)
 			}
 			for key, value := range env {

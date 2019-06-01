@@ -249,7 +249,11 @@ func shouldBuildForTarget(module, target string, min bool) bool {
 		for _, m := range cmd.GetQtStdImports() {
 			if strings.ToLower(module) == strings.ToLower(m) ||
 				(strings.ToLower(module) == "svg" && (target == "js" || target == "wasm" || strings.HasPrefix(target, "ios") || utils.QT_STATIC())) {
-				return true
+				if State.Minimal {
+					return true
+				} else {
+					return shouldBuildForTarget(module, target, false)
+				}
 			}
 		}
 		return false

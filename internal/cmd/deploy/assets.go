@@ -689,7 +689,7 @@ export CXX=%v
 
 go tool link -f -o $PWD/relinked -importcfg $PWD/b001/importcfg.link -buildmode=%v -w -extld=%v $PWD/b001/_pkg_.a`,
 
-		runtime.Version(),
+		utils.GOVERSION(),
 		runtime.GOOS,
 		runtime.GOARCH,
 		utils.QT_VERSION(),

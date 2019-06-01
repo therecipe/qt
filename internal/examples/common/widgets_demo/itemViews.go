@@ -22,7 +22,7 @@ func itemViews() {
 		if role != int(core.Qt__DisplayRole) {
 			return core.NewQVariant()
 		}
-		return core.NewQVariant14(list[index.Row()])
+		return core.NewQVariant1(list[index.Row()])
 	})
 	listView.SetModel(listModel)
 	addWidget(listView)
@@ -83,7 +83,7 @@ func itemViews() {
 		if role != int(core.Qt__DisplayRole) {
 			return core.NewQVariant()
 		}
-		return core.NewQVariant14(table[index.Row()][index.Column()])
+		return core.NewQVariant1(table[index.Row()][index.Column()])
 	})
 	tableView.SetModel(tableModel)
 	addWidget(tableView)

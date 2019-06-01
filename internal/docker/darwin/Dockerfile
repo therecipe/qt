@@ -14,7 +14,7 @@ RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install automak
 RUN git clone -q --depth 1 https://github.com/mackyle/xar.git && cd /xar/xar && ./autogen.sh --prefix=/osxcross/target && make -j $(grep -c ^processor /proc/cpuinfo) && make install -j $(grep -c ^processor /proc/cpuinfo) && ./autogen.sh --prefix=/usr && make -j $(grep -c ^processor /proc/cpuinfo) && make install -j $(grep -c ^processor /proc/cpuinfo)
 
 ENV LD_LIBRARY_PATH=/osxcross/target/lib
-RUN git clone -q --depth 1 -b 2.0.0 https://github.com/tpoechtrager/apple-libtapi.git && cd /apple-libtapi && INSTALLPREFIX=/osxcross/target ./build.sh && ./install.sh
+RUN git clone -q --depth 1 -b 1000.10.8 https://github.com/tpoechtrager/apple-libtapi.git && cd /apple-libtapi && INSTALLPREFIX=/osxcross/target ./build.sh && ./install.sh
 RUN git clone -q --depth 1 https://github.com/tpoechtrager/cctools-port.git && cd /cctools-port/cctools && ./configure --prefix=/osxcross/target --target=x86_64-apple-darwin18 --with-libtapi=/osxcross/target && make -j $(grep -c ^processor /proc/cpuinfo) && make install -j $(grep -c ^processor /proc/cpuinfo)
 
 
@@ -76,4 +76,4 @@ RUN $GOPATH/bin/qtsetup check darwin
 RUN $GOPATH/bin/qtsetup generate darwin
 RUN cd $GOPATH/src/github.com/therecipe/qt/internal/examples/widgets/line_edits && $GOPATH/bin/qtdeploy build darwin && rm -rf ./deploy
 
-RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates git
+RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates git pkg-config

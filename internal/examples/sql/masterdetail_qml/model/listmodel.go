@@ -27,5 +27,5 @@ func (m *listModel) data(index *core.QModelIndex, role int) *core.QVariant {
 	if role != int(core.Qt__DisplayRole) {
 		return core.NewQVariant()
 	}
-	return core.NewQVariant14(getArtistForID(index.Row()).Name)
+	return core.NewQVariant1(getArtistForID(index.Row()).Name)
 }

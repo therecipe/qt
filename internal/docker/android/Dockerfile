@@ -89,4 +89,4 @@ RUN $GOPATH/bin/qtsetup generate android-emulator
 RUN $GOPATH/bin/qtsetup install android-emulator
 RUN cd $GOPATH/src/github.com/therecipe/qt/internal/examples/androidextras/jni && $GOPATH/bin/qtdeploy build android-emulator || true && rm -rf ./deploy
 
-RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates git
+RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates git pkg-config

@@ -848,7 +848,7 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 		env["PATH"] = env["PATH"] + ":" + env["EMSDK"] + ":" + env["LLVM_ROOT"] + ":" + env["NODE_JS"] + ":" + env["EMSCRIPTEN"]
 	}
 
-	if runtime.GOOS != target || strings.Contains(runtime.Version(), "1.10") {
+	if runtime.GOOS != target || strings.Contains(utils.GOVERSION(), "1.10") {
 		env["CGO_CFLAGS_ALLOW"] = utils.CGO_CFLAGS_ALLOW()
 		env["CGO_CXXFLAGS_ALLOW"] = utils.CGO_CXXFLAGS_ALLOW()
 		env["CGO_LDFLAGS_ALLOW"] = utils.CGO_LDFLAGS_ALLOW()

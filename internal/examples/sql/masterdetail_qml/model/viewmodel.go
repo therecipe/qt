@@ -27,16 +27,16 @@ func (m *ViewModel) headerData(section int, orientation core.Qt__Orientation, ro
 
 	switch section {
 	case 0:
-		return core.NewQVariant14("ID")
+		return core.NewQVariant1("ID")
 
 	case 1:
-		return core.NewQVariant14("Title")
+		return core.NewQVariant1("Title")
 
 	case 2:
-		return core.NewQVariant14("Artist")
+		return core.NewQVariant1("Artist")
 
 	case 3:
-		return core.NewQVariant14("Year")
+		return core.NewQVariant1("Year")
 	}
 
 	return core.NewQVariant()
@@ -67,25 +67,25 @@ func (m *ViewModel) data(index *core.QModelIndex, role int) *core.QVariant {
 		index.Column() == 0 && role == int(core.Qt__DisplayRole) || //widgets
 			role == int(core.Qt__UserRole)+1: //qml
 
-		return core.NewQVariant7(dbItem.Album.ID)
+		return core.NewQVariant1(dbItem.Album.ID)
 
 	case
 		index.Column() == 1 && role == int(core.Qt__DisplayRole) || //widgets
 			role == int(core.Qt__UserRole)+2: //qml
 
-		return core.NewQVariant14(dbItem.Album.Title)
+		return core.NewQVariant1(dbItem.Album.Title)
 
 	case
 		index.Column() == 2 && role == int(core.Qt__DisplayRole) || //widgets
 			role == int(core.Qt__UserRole)+3: //qml
 
-		return core.NewQVariant14(dbItem.Artist.Name)
+		return core.NewQVariant1(dbItem.Artist.Name)
 
 	case
 		index.Column() == 3 && role == int(core.Qt__DisplayRole) || //widgets
 			role == int(core.Qt__UserRole)+4: //qml
 
-		return core.NewQVariant7(dbItem.Album.Year)
+		return core.NewQVariant1(dbItem.Album.Year)
 	}
 
 	return core.NewQVariant()

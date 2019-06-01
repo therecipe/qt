@@ -45,9 +45,9 @@ func main() {
 		ret.ConnectSayHello(func(s string) []*core.QVariant {
 			var out, err = client.SayHello(s)
 			if err != nil {
-				return []*core.QVariant{core.NewQVariant14(out), core.NewQVariant14(err.Error())}
+				return []*core.QVariant{core.NewQVariant1(out), core.NewQVariant1(err.Error())}
 			}
-			return []*core.QVariant{core.NewQVariant14(out)}
+			return []*core.QVariant{core.NewQVariant1(out)}
 		})
 
 		ret.ConnectShutdown(func() error {

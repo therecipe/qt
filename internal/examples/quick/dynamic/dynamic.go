@@ -52,7 +52,7 @@ Item {
 }
 `
 
-	mainComponent.SetData(core.NewQByteArray2(qmlString, len(qmlString)), core.NewQUrl())
+	mainComponent.SetData(core.NewQByteArray2(qmlString, -1), core.NewQUrl())
 
 	view.Show()
 	widgets.QApplication_Exec()

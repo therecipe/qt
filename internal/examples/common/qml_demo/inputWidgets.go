@@ -16,7 +16,7 @@ func inputWidgets() {
 		if role != int(core.Qt__DisplayRole) {
 			return core.NewQVariant()
 		}
-		return core.NewQVariant14(listDB[index.Row()])
+		return core.NewQVariant1(listDB[index.Row()])
 	})
 
 	//Combo Box

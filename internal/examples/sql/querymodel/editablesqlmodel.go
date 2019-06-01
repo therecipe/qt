@@ -53,23 +53,23 @@ func (m *EditableSqlModel) setData(index *core.QModelIndex, value *core.QVariant
 
 func (m *EditableSqlModel) refresh() {
 	m.SetQuery2("select * from person", db)
-	m.SetHeaderData(0, core.Qt__Horizontal, core.NewQVariant14("ID"), 0)
-	m.SetHeaderData(1, core.Qt__Horizontal, core.NewQVariant14("First Name"), 0)
-	m.SetHeaderData(2, core.Qt__Horizontal, core.NewQVariant14("Last Name"), 0)
+	m.SetHeaderData(0, core.Qt__Horizontal, core.NewQVariant1("ID"), 0)
+	m.SetHeaderData(1, core.Qt__Horizontal, core.NewQVariant1("First Name"), 0)
+	m.SetHeaderData(2, core.Qt__Horizontal, core.NewQVariant1("Last Name"), 0)
 }
 
 func (m *EditableSqlModel) setFirstName(personId int, firstName string) bool {
 	var query = sql.NewQSqlQuery3(db)
 	query.Prepare("update person set firstname = ? where id = ?")
-	query.AddBindValue(core.NewQVariant14(firstName), 0)
-	query.AddBindValue(core.NewQVariant7(personId), 0)
+	query.AddBindValue(core.NewQVariant1(firstName), 0)
+	query.AddBindValue(core.NewQVariant1(personId), 0)
 	return query.Exec2()
 }
 
 func (m *EditableSqlModel) setLastName(personId int, lastName string) bool {
 	var query = sql.NewQSqlQuery3(db)
 	query.Prepare("update person set lastname = ? where id = ?")
-	query.AddBindValue(core.NewQVariant14(lastName), 0)
-	query.AddBindValue(core.NewQVariant7(personId), 0)
+	query.AddBindValue(core.NewQVariant1(lastName), 0)
+	query.AddBindValue(core.NewQVariant1(personId), 0)
 	return query.Exec2()
 }

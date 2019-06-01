@@ -32,7 +32,7 @@ func inputWidgets() {
 		if role != int(core.Qt__DisplayRole) {
 			return core.NewQVariant()
 		}
-		return core.NewQVariant14(items[index.Row()])
+		return core.NewQVariant1(items[index.Row()])
 	})
 
 	comboBoxL.SetModel(listModel)
