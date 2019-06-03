@@ -312,7 +312,7 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 							l = strings.Replace(l, n+"::", "gui."+n+"__", -1)
 						}
 
-						for _, n := range []string{"QDockWidget", "QLCDNumber", "QLayout", "QTextEdit", "QSlider", "QFrame", "QFormLayout", "QDialogButtonBox", "QSizePolicy", "QLineEdit", "QListView", "QAbstractItemView"} {
+						for _, n := range []string{"QDockWidget", "QLCDNumber", "QLayout", "QTextEdit", "QPlainTextEdit", "QSlider", "QFrame", "QFormLayout", "QDialogButtonBox", "QSizePolicy", "QLineEdit", "QListView", "QAbstractItemView"} {
 							l = strings.Replace(l, n+"::", "widgets."+n+"__", -1)
 						}
 
