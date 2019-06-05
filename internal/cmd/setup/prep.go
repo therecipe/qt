@@ -62,7 +62,7 @@ func Prep(target string) {
 		}
 	}
 
-	if runtime.GOOS == "linux" && target == runtime.GOOS && !utils.QT_PKG_CONFIG() {
+	if runtime.GOOS == "linux" && target == runtime.GOOS && !(utils.QT_PKG_CONFIG() || utils.QT_STATIC()) {
 		sysQtDir := "/usr/lib/x86_64-linux-gnu/qt5/"
 		file := "plugins/platforminputcontexts/libfcitxplatforminputcontextplugin.so"
 		if f := filepath.Join(sysQtDir, file); utils.ExistsFile(f) {

@@ -96,6 +96,8 @@ func InitEnv(target string) {
 	}
 
 	switch runtime.GOOS {
+	case "freebsd":
+		return
 	case "linux":
 		if utils.QT_PKG_CONFIG() || utils.QT_MXE() || utils.QT_STATIC() {
 			return
@@ -286,7 +288,7 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 			args = []string{"source /home/vagrant/.profile"}
 		}
 	}
-	if runtime.GOOS == "linux" {
+	if runtime.GOOS == "linux" || runtime.GOOS == "freebsd" {
 		u, err := user.Current()
 		if err != nil {
 			utils.Log.WithError(err).Error("failed to lookup current user")
@@ -365,6 +367,10 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 
 	if utils.CI() {
 		args = append(args, []string{"-e", "CI=true"}...)
+	}
+
+	if p, ok := os.LookupEnv("PKG_CONFIG_PATH"); ok {
+		args = append(args, []string{"-e", "PKG_CONFIG_PATH=" + p}...)
 	}
 
 	if utils.QT_WEBKIT() {
@@ -733,6 +739,26 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 
 		if _, ok := os.LookupEnv("CGO_LDFLAGS"); target == "linux" && !(utils.QT_STATIC() || utils.QT_PKG_CONFIG() || ok) {
 			env["CGO_LDFLAGS"] = "-Wl,-rpath,$ORIGIN/lib -Wl,--disable-new-dtags"
+		}
+
+	case "freebsd":
+		ldFlags = []string{"-s", "-w"}
+		out = filepath.Join(depPath, name)
+		env = map[string]string{
+			"PATH":   os.Getenv("PATH"),
+			"GOPATH": utils.GOPATH(),
+			"GOROOT": runtime.GOROOT(),
+
+			"GOOS":   "freebsd",
+			"GOARCH": utils.GOARCH(),
+
+			"CGO_ENABLED": "1",
+		}
+
+		if arm, ok := os.LookupEnv("GOARM"); ok {
+			env["GOARM"] = arm
+			env["CC"] = os.Getenv("CC")
+			env["CXX"] = os.Getenv("CXX")
 		}
 
 	case "rpi1", "rpi2", "rpi3":

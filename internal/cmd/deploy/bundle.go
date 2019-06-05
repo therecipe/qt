@@ -86,7 +86,7 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 		dep.Dir = filepath.Dir(dep.Path)
 		utils.RunCmd(dep, fmt.Sprintf("deploy for %v on %v", target, runtime.GOOS))
 
-	case "linux", "rpi1", "rpi2", "rpi3":
+	case "linux", "rpi1", "rpi2", "rpi3", "freebsd":
 		var rpiToolPath string
 		if strings.HasPrefix(target, "rpi") {
 			env, _, _, _ := cmd.BuildEnv(target, "", "")
@@ -113,7 +113,7 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 		}()
 
 		//copy default assets
-		if target != "linux" || name == "lib" {
+		if !(target == "linux" || target == "freebsd") || name == "lib" {
 			utils.SaveExec(filepath.Join(depPath, fmt.Sprintf("%v.sh", name)), linux_sh(target, name))
 		}
 
@@ -122,16 +122,12 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 		utils.MkdirAll(assets)
 		copy(assets+"/.", depPath)
 
-		if utils.QT_STATIC() {
+		if utils.QT_STATIC() || utils.QT_PKG_CONFIG() {
 			break
 		}
 
 		//TODO: -->
 		{
-			if utils.QT_PKG_CONFIG() {
-				break
-			}
-
 			libDir := "lib"
 			if name == libDir {
 				libDir = "libs"
@@ -213,14 +209,44 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 
 			if usesWebEngine {
 				utils.RunCmd(exec.Command("cp", filepath.Join(libraryPath, "libexec", "QtWebEngineProcess"), depPath), fmt.Sprintf("copy QtWebEngineProcess for %v on %v", target, runtime.GOOS))
-				var fileList, err = ioutil.ReadDir(filepath.Join(libraryPath, "resources"))
+				utils.RunCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "resources/"), depPath), fmt.Sprintf("copy resource dir for %v on %v", target, runtime.GOOS))
+				utils.MkdirAll(filepath.Join(depPath, "translations/"))
+				utils.RunCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "translations/qtwebengine_locales/"), filepath.Join(depPath, "translations/")), fmt.Sprintf("copy qtwebengine_locales dir for %v on %v", target, runtime.GOOS))
+
+				//patch QtWebEngineProcess rpath
+				pPath := "lib"
+				fn := filepath.Join(depPath, "QtWebEngineProcess")
+				data, err := ioutil.ReadFile(fn)
 				if err != nil {
-					utils.Log.WithError(err).Error("failed to read resource folder")
+					utils.Log.WithError(err).Warn("couldn't find", fn)
+					break
 				}
-				for _, file := range fileList {
-					utils.RunCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "resources", file.Name()), depPath), fmt.Sprintf("copy resource %v for %v on %v", file.Name(), target, runtime.GOOS))
+
+				prefPath := "$ORIGIN/"
+
+				start := bytes.Index(data, []byte(prefPath))
+				if start == -1 {
+					break
 				}
-				utils.RunCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "translations/qtwebengine_locales/"), depPath), fmt.Sprintf("copy qtwebengine_locales dir for %v on %v", target, runtime.GOOS))
+
+				end := bytes.IndexByte(data[start:], byte(0))
+				if end == -1 {
+					break
+				}
+
+				rep := append([]byte(prefPath), []byte(pPath)...)
+				if lendiff := end - len(rep); lendiff < 0 {
+					end -= lendiff
+				} else {
+					rep = append(rep, bytes.Repeat([]byte{0}, lendiff)...)
+				}
+				data = bytes.Replace(data, data[start:start+end], rep, -1)
+
+				if err := ioutil.WriteFile(fn, data, 0755); err != nil {
+					utils.Log.WithError(err).Warn("couldn't patch", fn)
+				} else {
+					utils.Log.Debug("patched", fn)
+				}
 			}
 
 			//patch QtCore path

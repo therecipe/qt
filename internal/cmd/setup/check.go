@@ -82,7 +82,7 @@ func Check(target string, docker, vagrant bool) {
 			utils.Log.WithError(err).Panic("failed to find clang++, did you install Xcode?; please run: xcode-select --install")
 		}
 
-	case "linux", "ubports":
+	case "linux", "ubports", "freebsd":
 		vars = append(vars, [][]string{
 			{"QT_DISTRO", utils.QT_DISTRO()},
 			{"QT_PKG_CONFIG", fmt.Sprint(utils.QT_PKG_CONFIG())},
@@ -95,8 +95,9 @@ func Check(target string, docker, vagrant bool) {
 			}...)
 		}
 
-		if _, err := exec.LookPath("g++"); err != nil {
-			utils.Log.WithError(err).Panic("failed to find g++, did you install g++?")
+		compiler := strings.TrimSpace(utils.RunCmd(exec.Command("go", "env", "CXX"), "get compiler name"))
+		if _, err := exec.LookPath(compiler); err != nil {
+			utils.Log.WithError(err).Panicf("failed to find %v, did you install %v?", compiler, compiler)
 		}
 
 	case "windows":

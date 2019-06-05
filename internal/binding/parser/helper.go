@@ -325,7 +325,7 @@ func shouldBuildForTarget(module, target string, min bool) bool {
 			}
 		}
 
-	case "linux":
+	case "linux", "freebsd":
 		if utils.QT_STATIC() && module == "WebEngine" {
 			return false
 		}
@@ -424,10 +424,10 @@ func GetLibs() []string {
 
 	for i := len(libs) - 1; i >= 0; i-- {
 		switch {
-		case !(runtime.GOOS == "darwin" || runtime.GOOS == "linux") && (libs[i] == "WebEngine" || libs[i] == "WebView"),
+		case !(runtime.GOOS == "darwin" || runtime.GOOS == "linux" || runtime.GOOS == "freebsd") && (libs[i] == "WebEngine" || libs[i] == "WebView"),
 			runtime.GOOS != "windows" && libs[i] == "WinExtras",
 			runtime.GOOS != "darwin" && libs[i] == "MacExtras",
-			runtime.GOOS != "linux" && libs[i] == "X11Extras":
+			!(runtime.GOOS == "linux" || runtime.GOOS == "freebsd") && libs[i] == "X11Extras":
 			libs = append(libs[:i], libs[i+1:]...)
 
 		case utils.QT_VERSION_NUM() < 5080 && libs[i] == "Speech":

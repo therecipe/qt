@@ -37,7 +37,7 @@ func run(target, name, depPath, device string) {
 	case "darwin":
 		exec.Command("open", filepath.Join(depPath, fmt.Sprintf("%v.app", name))).Start()
 
-	case "linux":
+	case "linux", "freebsd":
 		exec.Command(filepath.Join(depPath, name)).Start()
 
 	case "windows":

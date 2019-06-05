@@ -150,7 +150,7 @@ func CheckBuildTarget(buildTarget string, docker bool) {
 		"rpi1", "rpi2", "rpi3",
 		"windows", "darwin", "linux",
 		"homebrew", "ubports",
-		"js", "wasm": //TODO: pkg_config ?
+		"js", "wasm", "freebsd": //TODO: pkg_config ?
 	default:
 		if !strings.Contains(buildTarget, "_") {
 			Log.Panicf("failed to recognize build target %v", buildTarget)
@@ -229,7 +229,7 @@ func ToolPath(tool, target string) string {
 			return path
 		}
 		return filepath.Join(QT_MXE_DIR(), "usr", QT_MXE_TRIPLET(), "qt5", "bin", tool)
-	case "linux", "ubports":
+	case "linux", "ubports", "freebsd":
 		if QT_PKG_CONFIG() {
 			return filepath.Join(strings.TrimSpace(RunCmd(exec.Command("pkg-config", "--variable=host_bins", "Qt5Core"), "utils.PKG_CONFIG_hostBins")), tool)
 		}

@@ -174,7 +174,7 @@ func isAlreadyCached(module, path, target string, mode int, libs []string) bool 
 			}
 
 			switch target {
-			case "darwin", "linux", "windows", "ubports":
+			case "darwin", "linux", "windows", "ubports", "freebsd":
 				//TODO: msys pkg-config mxe brew
 				switch {
 				case utils.QT_HOMEBREW(), utils.QT_MACPORTS(), utils.QT_NIX(), utils.QT_FELGO(), utils.QT_MSYS2():
@@ -293,6 +293,8 @@ func createMakefile(module, path, target string, mode int) {
 		cmd.Args = append(cmd.Args, []string{"-spec", "win32-g++", "CONFIG+=" + subsystem}...)
 	case "linux":
 		cmd.Args = append(cmd.Args, []string{"-spec", "linux-g++"}...)
+	case "freebsd":
+		cmd.Args = append(cmd.Args, []string{"-spec", "freebsd-clang"}...)
 	case "ios":
 		cmd.Args = append(cmd.Args, []string{"-spec", "macx-ios-clang", "CONFIG+=iphoneos", "CONFIG+=device"}...)
 	case "ios-simulator":
@@ -423,6 +425,7 @@ func createMakefile(module, path, target string, mode int) {
 	case "asteroid":
 	case "rpi1", "rpi2", "rpi3":
 	case "ubports":
+	case "freebsd":
 	case "js", "wasm":
 		for _, suf := range []string{".js_plugin_import", ".js_qml_plugin_import"} {
 			pPath := filepath.Join(path, fmt.Sprintf("%v%v.cpp", filepath.Base(path), suf))
@@ -638,7 +641,7 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 			if mode == RCC {
 				utils.Save(filepath.Join(path, strings.Replace(file, "_cgo_", "_stub_", -1)), "package "+pkg+"\n")
 			}
-		case "linux":
+		case "linux", "freebsd":
 			tmp = strings.Replace(tmp, "-Wl,-O1", "-O1", -1)
 			tmp = strings.Replace(tmp, "-ffunction-sections", "", -1)
 			tmp = strings.Replace(tmp, "-fdata-sections", "", -1)
@@ -675,6 +678,8 @@ func cgoFileNames(module, path, target string, mode int) []string {
 		sFixes = []string{"darwin_amd64"}
 	case "linux":
 		sFixes = []string{"linux_" + utils.GOARCH()}
+	case "freebsd":
+		sFixes = []string{"freebsd_" + utils.GOARCH()}
 	case "windows":
 		if utils.QT_MXE_ARCH() == "amd64" || (utils.QT_MSYS2() && utils.QT_MSYS2_ARCH() == "amd64") ||
 			(!utils.QT_MXE() && !utils.QT_MSYS2() && utils.QT_VERSION_NUM() >= 5120) {

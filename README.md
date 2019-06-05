@@ -68,6 +68,7 @@ Deployment Targets
 |           iOS            |    arm64    |          static           |        No         |  macOS  |
 |      iOS-Simulator       |     64      |          static           |        No         |  macOS  |
 |        AsteroidOS        |     arm     |          system           |        No         |  Linux  |
+|         FreeBSD          |   32 / 64   |          system           |        No         | FreeBSD |
 
 License
 -------

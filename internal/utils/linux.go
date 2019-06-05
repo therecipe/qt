@@ -30,6 +30,8 @@ func QT_DOC_DIR() string {
 		return "/usr/share/doc/qt-" + QT_VERSION()
 	case "darwin":
 		return ""
+	case "freebsd":
+		return "/usr/local/share/doc/qt5"
 	default:
 		Log.Error("failed to detect the Linux distro")
 		return ""
@@ -51,8 +53,8 @@ func QT_DISTRO() string {
 	if distro, ok := os.LookupEnv("QT_DISTRO"); ok {
 		return distro
 	}
-	if runtime.GOOS == "darwin" {
-		return "darwin"
+	if runtime.GOOS == "darwin" || runtime.GOOS == "freebsd" {
+		return runtime.GOOS
 	}
 	if _, err := exec.LookPath("pacman"); err == nil {
 		return "arch"
