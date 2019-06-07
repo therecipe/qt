@@ -82,4 +82,4 @@ RUN $GOPATH/bin/qtsetup generate sailfish-emulator
 RUN $GOPATH/bin/qtsetup install sailfish-emulator
 RUN cd $GOPATH/src/github.com/therecipe/qt/internal/examples/sailfish/listview && $GOPATH/bin/qtdeploy build sailfish-emulator && rm -rf ./deploy
 
-RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates git
+RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates pkg-config
