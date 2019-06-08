@@ -15,6 +15,8 @@ RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install libglib
 RUN QT_QPA_PLATFORM=minimal ./$QT --no-force-installations --script $GOPATH/src/github.com/therecipe/qt/internal/ci/iscript.qs LINUX=true VERSION=563
 RUN find /opt/Qt5.6.3/5.6.3 -type f -name "*.debug" -delete
 RUN find /opt/Qt5.6.3/Docs -type f ! -name "*.index" -delete
+RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install binutils
+RUN find /opt/Qt5.6.3/gcc_64 -type f ! -name "*.a" ! -name "*.la" ! -name "*.prl" -name "lib*" -exec strip -s {} \;
 
 
 FROM ubuntu:16.04

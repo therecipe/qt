@@ -7,15 +7,15 @@ RUN apt-add-repository "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-6.
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install clang-6.0 && ln -s /usr/bin/clang-6.0 /usr/bin/clang && ln -s /usr/bin/clang++-6.0 /usr/bin/clang++
 
 RUN git clone -q --depth 1 https://github.com/tpoechtrager/osxcross.git
-RUN sed -i -e 's,/usr/include/c++/v1,/usr/include/c++,g' /osxcross/wrapper/target.cpp
-RUN sed -i -e 's,test_compiler o,#test_compiler o,g' -e 's,-f "have,true || -f "have,g' /osxcross/build.sh
+#RUN sed -i -e 's,/usr/include/c++/v1,/usr/include/c++,g' /osxcross/wrapper/target.cpp
+#RUN sed -i -e 's,test_compiler o,#test_compiler o,g' -e 's,-f "have,true || -f "have,g' /osxcross/build.sh
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install automake libxml2-dev libssl-dev
-RUN git clone -q --depth 1 https://github.com/mackyle/xar.git && cd /xar/xar && ./autogen.sh --prefix=/osxcross/target && make -j $(grep -c ^processor /proc/cpuinfo) && make install -j $(grep -c ^processor /proc/cpuinfo) && ./autogen.sh --prefix=/usr && make -j $(grep -c ^processor /proc/cpuinfo) && make install -j $(grep -c ^processor /proc/cpuinfo)
+#RUN git clone -q --depth 1 https://github.com/mackyle/xar.git && cd /xar/xar && ./autogen.sh --prefix=/osxcross/target && make -j $(grep -c ^processor /proc/cpuinfo) && make install -j $(grep -c ^processor /proc/cpuinfo) && ./autogen.sh --prefix=/usr && make -j $(grep -c ^processor /proc/cpuinfo) && make install -j $(grep -c ^processor /proc/cpuinfo)
 
-ENV LD_LIBRARY_PATH=/osxcross/target/lib
-RUN git clone -q --depth 1 -b 1000.10.8 https://github.com/tpoechtrager/apple-libtapi.git && cd /apple-libtapi && INSTALLPREFIX=/osxcross/target ./build.sh && ./install.sh
-RUN git clone -q --depth 1 https://github.com/tpoechtrager/cctools-port.git && cd /cctools-port/cctools && ./configure --prefix=/osxcross/target --target=x86_64-apple-darwin18 --with-libtapi=/osxcross/target && make -j $(grep -c ^processor /proc/cpuinfo) && make install -j $(grep -c ^processor /proc/cpuinfo)
+#ENV LD_LIBRARY_PATH=/osxcross/target/lib
+#RUN git clone -q --depth 1 -b 1000.10.8 https://github.com/tpoechtrager/apple-libtapi.git && cd /apple-libtapi && INSTALLPREFIX=/osxcross/target ./build.sh && ./install.sh
+#RUN git clone -q --depth 1 https://github.com/tpoechtrager/cctools-port.git && cd /cctools-port/cctools && ./configure --prefix=/osxcross/target --target=x86_64-apple-darwin18 --with-libtapi=/osxcross/target && make -j $(grep -c ^processor /proc/cpuinfo) && make install -j $(grep -c ^processor /proc/cpuinfo)
 
 
 #RUN curl -sL --retry 10 --retry-delay 60 -o /osxcross/tarballs/MacOSX10.14.sdk.tar.xz https://.../MacOSX10.14.sdk.tar.xz
@@ -23,7 +23,7 @@ COPY MacOSX10.14.sdk.tar.xz /osxcross/tarballs/MacOSX10.14.sdk.tar.xz
 
 
 RUN cd /osxcross && OSX_VERSION_MIN=10.12 UNATTENDED=1 ./build.sh
-RUN find /osxcross/target/ -name '*.tbd' -exec sed -i'' s/zippered/macosx/ {} \;
+#RUN find /osxcross/target/ -name '*.tbd' -exec sed -i'' s/zippered/macosx/ {} \;
 RUN cd /osxcross && ./target/bin/o64-clang++-libc++ -o osxcross ./oclang/test_libcxx.cpp
 
 

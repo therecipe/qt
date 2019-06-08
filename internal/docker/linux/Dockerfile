@@ -12,7 +12,8 @@ RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install dbus fo
 RUN QT=qt-unified-linux-x64-online.run && curl -sL --retry 10 --retry-delay 60 -O https://download.qt.io/official_releases/online_installers/$QT && chmod +x $QT && QT_QPA_PLATFORM=minimal ./$QT --no-force-installations --script $GOPATH/src/github.com/therecipe/qt/internal/ci/iscript.qs LINUX=true VERSION=qt5.5123
 RUN find /opt/Qt/5.12.3 -type f -name "*.debug" -delete
 RUN find /opt/Qt/Docs -type f ! -name "*.index" -delete
-RUN find /opt/Qt/5.12.3/gcc_64 -type f ! -name "*.a" -name "lib*" -exec strip -s {} \;
+RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install binutils
+RUN find /opt/Qt/5.12.3/gcc_64 -type f ! -name "*.a" ! -name "*.la" ! -name "*.prl" -name "lib*" -exec strip -s {} \;
 
 
 FROM ubuntu:16.04
@@ -22,6 +23,7 @@ ENV USER user
 ENV HOME /home/$USER
 ENV GOPATH $HOME/work
 ENV PATH /usr/local/go/bin:$PATH
+ENV QT_API 5.12.0
 ENV QT_VERSION 5.12.3
 ENV QT_DIR /opt/Qt
 ENV QT_DOCKER true

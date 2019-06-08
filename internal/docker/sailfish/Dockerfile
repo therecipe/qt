@@ -27,13 +27,13 @@ COPY --from=base $GOPATH/src/github.com/therecipe/qt $GOPATH/src/github.com/ther
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates curl p7zip-full && apt-get -qq clean
 RUN apt-get -qq update && apt-get -y -qq purge python && apt-get -qq clean
 
-RUN SF_SDK_TOOLING=Sailfish_OS-latest-Sailfish_SDK_Tooling-i486.tar.7z && mkdir -p $SF_SDK_TOOLING_DIR && curl -sL --retry 10 --retry-delay 60 -O https://releases.sailfishos.org/sdk/targets/$SF_SDK_TOOLING && 7z x -so $SF_SDK_TOOLING | tar --numeric-owner -p -xf - -C $SF_SDK_TOOLING_DIR && rm -f $SF_SDK_TOOLING
+RUN SF_SDK_TOOLING=Sailfish_OS-3.0.2.8-Sailfish_SDK_Tooling-i486.tar.7z && mkdir -p $SF_SDK_TOOLING_DIR && curl -sL --retry 10 --retry-delay 60 -O https://releases.sailfishos.org/sdk/targets/$SF_SDK_TOOLING && 7z x -so $SF_SDK_TOOLING | tar --numeric-owner -p -xf - -C $SF_SDK_TOOLING_DIR && rm -f $SF_SDK_TOOLING
 
-RUN SF_SDK_TOOLING=Jolla-latest-SailfishOS_Platform_SDK_Chroot-i486.tar.bz2 && mkdir -p $SF_SDK_TOOLING_DIR && curl -sL --retry 10 --retry-delay 60 -O https://releases.sailfishos.org/sdk/installers/latest/$SF_SDK_TOOLING && tar --numeric-owner -p -xjf $SF_SDK_TOOLING -C $SF_SDK_TOOLING_DIR && rm -f $SF_SDK_TOOLING
+RUN SF_SDK_TOOLING=Sailfish_OS-3.0.2.8-Platform_SDK_Chroot-i486.tar.bz2 && mkdir -p $SF_SDK_TOOLING_DIR && curl -sL --retry 10 --retry-delay 60 -O https://releases.sailfishos.org/sdk/installers/2.0/$SF_SDK_TOOLING && tar --numeric-owner -p -xjf $SF_SDK_TOOLING -C $SF_SDK_TOOLING_DIR && rm -f $SF_SDK_TOOLING
 
-RUN SF_SDK_TARGET=Sailfish_OS-latest-Sailfish_SDK_Target-i486.tar.7z && mkdir -p /srv/mer/targets/SailfishOS-2.2.1.18-i486 && curl -sL --retry 10 --retry-delay 60 -O https://releases.sailfishos.org/sdk/targets/$SF_SDK_TARGET && 7z x -so $SF_SDK_TARGET | tar --numeric-owner -p -xf - -C /srv/mer/targets/SailfishOS-2.2.1.18-i486 && rm -f $SF_SDK_TARGET
+RUN SF_SDK_TARGET=Sailfish_OS-3.0.2.8-Sailfish_SDK_Target-i486.tar.7z && mkdir -p /srv/mer/targets/SailfishOS-2.2.1.18-i486 && curl -sL --retry 10 --retry-delay 60 -O https://releases.sailfishos.org/sdk/targets/$SF_SDK_TARGET && 7z x -so $SF_SDK_TARGET | tar --numeric-owner -p -xf - -C /srv/mer/targets/SailfishOS-2.2.1.18-i486 && rm -f $SF_SDK_TARGET
 
-RUN SF_SDK_TARGET=Sailfish_OS-latest-Sailfish_SDK_Target-armv7hl.tar.7z && mkdir -p /srv/mer/targets/SailfishOS-2.2.1.18-armv7hl && curl -sL --retry 10 --retry-delay 60 -O https://releases.sailfishos.org/sdk/targets/$SF_SDK_TARGET && 7z x -so $SF_SDK_TARGET | tar --numeric-owner -p -xf - -C /srv/mer/targets/SailfishOS-2.2.1.18-armv7hl && rm -f $SF_SDK_TARGET
+RUN SF_SDK_TARGET=Sailfish_OS-3.0.2.8-Sailfish_SDK_Target-armv7hl.tar.7z && mkdir -p /srv/mer/targets/SailfishOS-2.2.1.18-armv7hl && curl -sL --retry 10 --retry-delay 60 -O https://releases.sailfishos.org/sdk/targets/$SF_SDK_TARGET && 7z x -so $SF_SDK_TARGET | tar --numeric-owner -p -xf - -C /srv/mer/targets/SailfishOS-2.2.1.18-armv7hl && rm -f $SF_SDK_TARGET
 
 ENV PATH $SF_SDK_TOOLING_DIR/usr/bin/:$PATH
 
@@ -43,11 +43,11 @@ RUN ln -s $SF_SDK_TOOLING_DIR/usr/lib/libgmp.so.10 /usr/lib/
 RUN ln -s $SF_SDK_TOOLING_DIR/usr/lib/libpthread_nonshared.a /usr/lib/
 RUN ln -s $SF_SDK_TOOLING_DIR/usr/lib/libc_nonshared.a /usr/lib/
 
-RUN ln -s $SF_SDK_TOOLING_DIR/opt/cross/bin/i486-meego-linux-gnu-as $SF_SDK_TOOLING_DIR/opt/cross/libexec/gcc/i486-meego-linux-gnu/4.9.4/as
-RUN ln -s $SF_SDK_TOOLING_DIR/opt/cross/bin/i486-meego-linux-gnu-ld $SF_SDK_TOOLING_DIR/opt/cross/libexec/gcc/i486-meego-linux-gnu/4.9.4/ld
+RUN ln -s $SF_SDK_TOOLING_DIR/opt/cross/bin/i486-meego-linux-gnu-as $SF_SDK_TOOLING_DIR/opt/cross/libexec/gcc/i486-meego-linux-gnu/4.8.3/as
+RUN ln -s $SF_SDK_TOOLING_DIR/opt/cross/bin/i486-meego-linux-gnu-ld $SF_SDK_TOOLING_DIR/opt/cross/libexec/gcc/i486-meego-linux-gnu/4.8.3/ld
 
-RUN ln -s $SF_SDK_TOOLING_DIR/opt/cross/bin/armv7hl-meego-linux-gnueabi-as $SF_SDK_TOOLING_DIR/opt/cross/libexec/gcc/armv7hl-meego-linux-gnueabi/4.9.4/as
-RUN ln -s $SF_SDK_TOOLING_DIR/opt/cross/bin/armv7hl-meego-linux-gnueabi-ld $SF_SDK_TOOLING_DIR/opt/cross/libexec/gcc/armv7hl-meego-linux-gnueabi/4.9.4/ld
+RUN ln -s $SF_SDK_TOOLING_DIR/opt/cross/bin/armv7hl-meego-linux-gnueabi-as $SF_SDK_TOOLING_DIR/opt/cross/libexec/gcc/armv7hl-meego-linux-gnueabi/4.8.3/as
+RUN ln -s $SF_SDK_TOOLING_DIR/opt/cross/bin/armv7hl-meego-linux-gnueabi-ld $SF_SDK_TOOLING_DIR/opt/cross/libexec/gcc/armv7hl-meego-linux-gnueabi/4.8.3/ld
 
 RUN cd /srv/mer/targets/SailfishOS-2.2.1.18-i486/ && $SF_SDK_TOOLING_DIR/usr/bin/sb2-init -L "--sysroot=/" -C "--sysroot=/" -n -N -t / i486-meego-linux-gnu $SF_SDK_TOOLING_DIR/opt/cross/bin/i486-meego-linux-gnu-gcc
 

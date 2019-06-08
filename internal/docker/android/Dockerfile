@@ -71,7 +71,7 @@ COPY --from=therecipe/qt:linux $GOPATH/bin $GOPATH/bin
 COPY --from=therecipe/qt:linux $GOPATH/src/github.com/therecipe/qt $GOPATH/src/github.com/therecipe/qt
 COPY --from=therecipe/qt:linux /opt/Qt/5.12.3/android_armv7 /opt/Qt/5.12.3/android_armv7
 COPY --from=therecipe/qt:linux /opt/Qt/5.12.3/android_x86 /opt/Qt/5.12.3/android_x86
-COPY --from=therecipe/qt:linux /opt/Qt/5.12.3/android_arm64 /opt/Qt/5.12.3/android_arm64
+COPY --from=therecipe/qt:linux /opt/Qt/5.12.3/android_arm64_v8a /opt/Qt/5.12.3/android_arm64_v8a
 COPY --from=base $HOME/android-sdk-linux $HOME/android-sdk-linux
 COPY --from=base $HOME/android-ndk-r18b $HOME/android-ndk-r18b
 COPY --from=base $HOME/openssl-1.0.2r-arm $HOME/openssl-1.0.2r-arm
@@ -84,16 +84,16 @@ RUN $GOPATH/bin/qtsetup prep
 RUN $GOPATH/bin/qtsetup check android
 RUN $GOPATH/bin/qtsetup generate android
 RUN $GOPATH/bin/qtsetup install android
-RUN cd $GOPATH/src/github.com/therecipe/qt/internal/examples/androidextras/jni && $GOPATH/bin/qtdeploy build android || true && rm -rf ./deploy
+RUN cd $GOPATH/src/github.com/therecipe/qt/internal/examples/androidextras/jni && $GOPATH/bin/qtdeploy build android && rm -rf ./deploy
 
-RUN GOARCH=arm64 && $GOPATH/bin/qtsetup check android
-RUN GOARCH=arm64 && $GOPATH/bin/qtsetup generate android
-RUN GOARCH=arm64 && $GOPATH/bin/qtsetup install android
-RUN GOARCH=arm64 && cd $GOPATH/src/github.com/therecipe/qt/internal/examples/androidextras/jni && $GOPATH/bin/qtdeploy build android || true && rm -rf ./deploy
+RUN GOARCH=arm64 $GOPATH/bin/qtsetup check android
+RUN GOARCH=arm64 $GOPATH/bin/qtsetup generate android
+RUN GOARCH=arm64 $GOPATH/bin/qtsetup install android
+RUN cd $GOPATH/src/github.com/therecipe/qt/internal/examples/androidextras/jni && GOARCH=arm64 $GOPATH/bin/qtdeploy -debug build android && rm -rf ./deploy
 
 RUN $GOPATH/bin/qtsetup check android-emulator
 RUN $GOPATH/bin/qtsetup generate android-emulator
 RUN $GOPATH/bin/qtsetup install android-emulator
-RUN cd $GOPATH/src/github.com/therecipe/qt/internal/examples/androidextras/jni && $GOPATH/bin/qtdeploy build android-emulator || true && rm -rf ./deploy
+RUN cd $GOPATH/src/github.com/therecipe/qt/internal/examples/androidextras/jni && $GOPATH/bin/qtdeploy build android-emulator && rm -rf ./deploy
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates git pkg-config
