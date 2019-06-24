@@ -231,6 +231,9 @@ func Minimal(path, target, tags string) {
 		}
 	case "js", "wasm":
 		exportClass(parser.State.ClassMap["QSvgWidget"], files)
+	case "android", "android-emulator": //TODO: generate minimal androidextras instead?
+		exportClass(parser.State.ClassMap["QChildEvent"], files)
+		exportClass(parser.State.ClassMap["QTimerEvent"], files)
 	}
 	if utils.QT_STATIC() {
 		exportClass(parser.State.ClassMap["QSvgWidget"], files)

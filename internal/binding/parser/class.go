@@ -309,8 +309,22 @@ func (c *Class) IsSupported() bool {
 
 		"QtDwmApiDll", "QWinMime",
 
-		"QAbstract3DGraph": //TODO: only for arch with pkg_config
+		"QAbstract3DGraph", //TODO: only block for arch with pkg_config
+
+		"QQuickFolderListModel", "QFileDialogOptions", "QMessageDialogOptions",
+		"QGeoServiceProviderFactoryV3", "QTextToSpeechProcessorFlite", "QOpenVGMatrix",
+		"QSvgIOHandler", "QSvgIconEngine", "QQuickProfilerAdapter",
+		"QWavefrontMesh", "QM3uPlaylistPlugin", "QOpenSLESAudioInput",
+		"QSGSimpleMaterialComparableMaterial", "QGStreamerAvailabilityControl",
+		"QGstreamerV4L2Input":
 		{
+			c.Access = "unsupported_isBlockedClass"
+			return false
+		}
+	}
+
+	for _, cn := range []string{"QTextToSpeechPlugin", "QTextToSpeechEngine"} {
+		if strings.HasPrefix(c.Name, cn) && c.Name != cn {
 			c.Access = "unsupported_isBlockedClass"
 			return false
 		}
@@ -324,11 +338,27 @@ func (c *Class) IsSupported() bool {
 
 		strings.HasSuffix(c.Name, "terator"), strings.Contains(c.Brief, "emplate"), //needs template
 
-		strings.HasPrefix(c.Name, "QVulkan"):
+		strings.HasPrefix(c.Name, "QVulkan"),
 
+		!strings.HasPrefix(c.Name, "Q") && strings.HasPrefix(c.Module, "Qt") && c.Module != "QtSailfish" && c.Name != "PaintContext",
+		strings.HasPrefix(c.Name, "Qml") && c.Module == "QtSensors",
+		strings.HasPrefix(c.Name, "QQml") && (c.Module == "QtQuick" || c.Module == "QtWebSockets"),
+		strings.HasPrefix(c.Name, "QAndroid") && strings.HasPrefix(c.Module, "QtMultimedia"),
+		strings.HasPrefix(c.Name, "QDesigner") && !(strings.HasSuffix(c.Name, "Interface") || strings.HasSuffix(c.Name, "Extension")) && c.Module == "QtDesigner",
+		strings.HasPrefix(c.Name, "QV4") && c.Module == "QtQuick",
+		strings.HasPrefix(c.Name, "QSG") && (strings.HasPrefix(c.Module, "QtMultimedia") || (strings.Contains(c.Name, "Cache") && c.Module == "QtQuick")),
+		strings.HasPrefix(c.Name, "QSGOpenVG") && c.Module == "QtQuick",
+		strings.HasPrefix(c.Name, "QPlatform") && (c.Module == "QtGui" || c.Module == "QtPrintSupport") && c.Name != "QPlatformSurfaceEvent",
+		strings.HasPrefix(c.Name, "QAlsa") && strings.HasPrefix(c.Module, "QtMultimedia"),
+		strings.Contains(c.Name, "Qnx") && (strings.HasPrefix(c.Module, "QtMultimedia") || c.Module == "QtRemoteObjects"),
+		(strings.HasPrefix(c.Name, "QGstreamer") || strings.HasPrefix(c.Name, "QWin") ||
+			strings.HasPrefix(c.Name, "QPulse") || strings.HasPrefix(c.Name, "QOpenSLES") ||
+			strings.HasPrefix(c.Name, "QWasapi")) && strings.HasPrefix(c.Module, "QtMultimedia"):
 		{
-			c.Access = "unsupported_isBlockedClass"
-			return false
+			if c.Module != MOC {
+				c.Access = "unsupported_isBlockedClass"
+				return false
+			}
 		}
 	}
 

@@ -26,7 +26,6 @@ int QFileDevice_QFileDevice_QRegisterMetaType();
 int QFileSelector_QFileSelector_QRegisterMetaType();
 int QFileSystemWatcher_QFileSystemWatcher_QRegisterMetaType();
 int QFinalState_QFinalState_QRegisterMetaType();
-int QFutureWatcher_QFutureWatcher_QRegisterMetaType();
 int QHistoryState_QHistoryState_QRegisterMetaType();
 int QIODevice_QIODevice_QRegisterMetaType();
 int QIdentityProxyModel_QIdentityProxyModel_QRegisterMetaType();
@@ -38,7 +37,6 @@ int QObjectCleanupHandler_QObjectCleanupHandler_QRegisterMetaType();
 int QParallelAnimationGroup_QParallelAnimationGroup_QRegisterMetaType();
 int QPauseAnimation_QPauseAnimation_QRegisterMetaType();
 int QPluginLoader_QPluginLoader_QRegisterMetaType();
-int QProcess_QProcess_QRegisterMetaType();
 int QPropertyAnimation_QPropertyAnimation_QRegisterMetaType();
 int QSaveFile_QSaveFile_QRegisterMetaType();
 int QSequentialAnimationGroup_QSequentialAnimationGroup_QRegisterMetaType();
@@ -58,7 +56,6 @@ int QTimeLine_QTimeLine_QRegisterMetaType();
 int QTimer_QTimer_QRegisterMetaType();
 int QTranslator_QTranslator_QRegisterMetaType();
 int QVariantAnimation_QVariantAnimation_QRegisterMetaType();
-int QWinEventNotifier_QWinEventNotifier_QRegisterMetaType();
 extern "C" {
 #endif
 

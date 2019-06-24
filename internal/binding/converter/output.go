@@ -845,7 +845,7 @@ func cppOutput(name, value string, f *parser.Function) string {
 			f.NeedsFinalizer = true
 
 			switch value {
-			case "QModelIndex", "QMetaMethod", "QItemSelection":
+			case "QModelIndex", "QMetaMethod", "QItemSelection", "QVoice", "QNdefNfcIconRecord":
 				{
 					return fmt.Sprintf("new %v(%v)", value, name)
 				}

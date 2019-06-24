@@ -712,7 +712,7 @@ func TestProperties(t *testing.T) {
 			t.Fatal(propObject, o0, propObject.ToString(), o0.ToString())
 		}
 	})
-	o0 = core.NewQVariant14("test")
+	o0 = core.NewQVariant1("test")
 	test.SetPropObject(o0)
 	test.PropObjectChanged(o0)
 	if test.PropObject().ToString() != o0.ToString() {
@@ -946,7 +946,7 @@ func TestPropertiesList(t *testing.T) {
 			t.Fatal(propObject, o0, propObject[0].ToString(), o0.ToString())
 		}
 	})
-	o0 = core.NewQVariant14("test")
+	o0 = core.NewQVariant1("test")
 	test.SetPropListObject([]*core.QVariant{o0})
 	test.PropListObjectChanged([]*core.QVariant{o0})
 	if test.PropListObject()[0].ToString() != o0.ToString() {
@@ -1191,7 +1191,7 @@ func TestPropertiesMap(t *testing.T) {
 			t.Fatal(propObject, o0, propObject[0].ToString(), o0.ToString())
 		}
 	})
-	o0 = core.NewQVariant14("test")
+	o0 = core.NewQVariant1("test")
 	test.SetPropMapObject(map[int]*core.QVariant{0: o0})
 	test.PropMapObjectChanged(map[int]*core.QVariant{0: o0})
 	if test.PropMapObject()[0].ToString() != o0.ToString() {
@@ -1345,7 +1345,7 @@ func TestSignalInput(t *testing.T) {
 	test.StringSignalInput(s0, s1)
 	test.PointerSignalInput(p0, p1)
 
-	o0 = core.NewQVariant14("test")
+	o0 = core.NewQVariant1("test")
 	o1 = core.NewQObject(nil)
 	o1.SetObjectName("test")
 	test.ObjectSignalInput(o0, o1)
@@ -1426,7 +1426,7 @@ func TestSignalListInput(t *testing.T) {
 	test.FloatSignalListInput(f0L, f1L)
 	test.PointerSignalListInput(p0L, p1L)
 
-	o0 = core.NewQVariant14("test")
+	o0 = core.NewQVariant1("test")
 	o1 = core.NewQObject(nil)
 	o1.SetObjectName("test")
 	test.ObjectSignalListInput([]*core.QVariant{o0}, []*core.QObject{o1})
@@ -1520,7 +1520,7 @@ func TestSlotInput(t *testing.T) {
 	test.StringSlotInput(s0, s1)
 	test.PointerSlotInput(p0, p1)
 
-	o0 = core.NewQVariant14("test")
+	o0 = core.NewQVariant1("test")
 	o1 = core.NewQObject(nil)
 	o1.SetObjectName("test")
 	test.ObjectSlotInput(o0, o1)
@@ -1636,7 +1636,7 @@ func TestSlotOutput(t *testing.T) {
 		t.Fatal("PointerSlotOutput2")
 	}
 
-	o0 = core.NewQVariant14("test")
+	o0 = core.NewQVariant1("test")
 	o1 = core.NewQObject(nil)
 	o1.SetObjectName("test")
 

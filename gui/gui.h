@@ -48,7 +48,6 @@ int QTextList_QTextList_QRegisterMetaType();
 int QTextObject_QTextObject_QRegisterMetaType();
 int QTextTable_QTextTable_QRegisterMetaType();
 int QValidator_QValidator_QRegisterMetaType();
-int QVulkanWindow_QVulkanWindow_QRegisterMetaType();
 int QWindow_QWindow_QRegisterMetaType();
 extern "C" {
 #endif

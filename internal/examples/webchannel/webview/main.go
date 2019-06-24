@@ -75,7 +75,7 @@ func main() {
 	url := core.QUrl_FromLocalFile(htmlFileInfo.AbsoluteFilePath())
 
 	var view = qml.NewQQmlApplicationEngine(nil)
-	view.RootContext().SetContextProperty2("pathToIndex", core.NewQVariant14(url.ToString(0)))
+	view.RootContext().SetContextProperty2("pathToIndex", core.NewQVariant1(url.ToString(0)))
 	view.Load(core.NewQUrl3("qrc:/main.qml", 0))
 
 	gui.QGuiApplication_Exec()

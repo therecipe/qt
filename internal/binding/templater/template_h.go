@@ -35,7 +35,7 @@ func HTemplate(m string, mode int, tags string) []byte {
 
 	fmt.Fprint(bb, "#ifdef __cplusplus\n")
 	for _, c := range parser.SortedClassNamesForModule(m, true) {
-		if parser.State.ClassMap[c].IsSubClassOfQObject() {
+		if parser.State.ClassMap[c].IsSubClassOfQObject() && parser.State.ClassMap[c].IsSupported() {
 			if m == parser.MOC {
 				fmt.Fprintf(bb, "class %v;\n", c)
 				fmt.Fprintf(bb, "void %[1]v_%[1]v_QRegisterMetaTypes();\n", c)
