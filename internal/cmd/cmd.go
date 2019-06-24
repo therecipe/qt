@@ -342,7 +342,7 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 		gpath += pathseperator + gpfs
 		args = append(args, []string{"-e", "QT_STUB=true"}...)
 	} else {
-		if strings.Contains(path, "github.com/therecipe/qt/internal/examples") {
+		if strings.Contains(path, "github.com/therecipe/qt/internal/examples") && !strings.Contains(path, "github.com/therecipe/qt/internal/examples/androidextras") {
 			gpath += pathseperator + gpfs
 		} else {
 			gpath = gpfs + pathseperator + gpath

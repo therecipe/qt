@@ -61,16 +61,16 @@ ENV HOME /home/$USER
 ENV GOPATH $HOME/work
 ENV JDK_DIR /usr/lib/jvm/java-8-openjdk-amd64
 ENV PATH /usr/local/go/bin:$PATH
-ENV QT_VERSION 5.12.3
+ENV QT_VERSION 5.12.4
 ENV QT_DIR /opt/Qt
 ENV QT_DOCKER true
 
 COPY --from=therecipe/qt:linux /usr/local/go /usr/local/go
 COPY --from=therecipe/qt:linux $GOPATH/bin $GOPATH/bin
 COPY --from=therecipe/qt:linux $GOPATH/src/github.com/therecipe/qt $GOPATH/src/github.com/therecipe/qt
-COPY --from=therecipe/qt:linux /opt/Qt/5.12.3/android_armv7 /opt/Qt/5.12.3/android_armv7
-COPY --from=therecipe/qt:linux /opt/Qt/5.12.3/android_x86 /opt/Qt/5.12.3/android_x86
-COPY --from=therecipe/qt:linux /opt/Qt/5.12.3/android_arm64_v8a /opt/Qt/5.12.3/android_arm64_v8a
+COPY --from=therecipe/qt:linux /opt/Qt/5.12.4/android_armv7 /opt/Qt/5.12.4/android_armv7
+COPY --from=therecipe/qt:linux /opt/Qt/5.12.4/android_x86 /opt/Qt/5.12.4/android_x86
+COPY --from=therecipe/qt:linux /opt/Qt/5.12.4/android_arm64_v8a /opt/Qt/5.12.4/android_arm64_v8a
 COPY --from=therecipe/qt:linux /opt/Qt/Docs /opt/Qt/Docs
 COPY --from=base $HOME/android-sdk-linux $HOME/android-sdk-linux
 COPY --from=base $HOME/android-ndk-r18b $HOME/android-ndk-r18b
