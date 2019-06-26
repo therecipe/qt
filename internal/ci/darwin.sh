@@ -14,7 +14,7 @@ then
   brew update
   brew install qt5
   brew outdated qt5 || brew upgrade qt5
-  ln -s /usr/local/Cellar/qt/5.11.2 $HOME/Desktop/Qt5.11.2
+  ln -s /usr/local/Cellar/qt/5.12.3 $HOME/Desktop/Qt
 else
   #download and install qt
   QT=qt-unified-mac-x64-online
@@ -43,7 +43,7 @@ then
 
   #install deps for android sdk
   $HOME/android-sdk-macosx/tools/bin/sdkmanager --list --verbose
-  echo "y" | $HOME/android-sdk-macosx/tools/bin/sdkmanager "platform-tools" "build-tools;26.0.0" "platforms;android-25"
+  echo "y" | $HOME/android-sdk-macosx/tools/bin/sdkmanager "platform-tools" "build-tools;28.0.3" "platforms;android-28"
   echo "y" | $HOME/android-sdk-macosx/tools/bin/sdkmanager --update
 
   #download and install android ndk

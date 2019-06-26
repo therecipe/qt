@@ -135,6 +135,7 @@ func Check(target string, docker, vagrant bool) {
 
 	case "sailfish", "sailfish-emulator":
 		vars = append(vars, [][]string{
+			{"QT_SAILFISH_VERSION", utils.QT_SAILFISH_VERSION()},
 			{"VIRTUALBOX_DIR", utils.VIRTUALBOX_DIR()},
 			{"SAILFISH_DIR", utils.SAILFISH_DIR()},
 		}...)
@@ -155,7 +156,7 @@ func Check(target string, docker, vagrant bool) {
 		if !strings.HasSuffix(v[0], "_DIR") {
 			continue
 		}
-		if v[0] == "QT_DIR" && (utils.QT_HOMEBREW() || utils.QT_MACPORTS() || utils.QT_NIX() || utils.QT_FELGO() || utils.QT_MSYS2() || utils.QT_PKG_CONFIG() || utils.MSYS_DOCKER() || utils.QT_DOCKER()) {
+		if v[0] == "QT_DIR" && (utils.QT_HOMEBREW() || utils.QT_MACPORTS() || utils.QT_NIX() || utils.QT_FELGO() || utils.QT_MSYS2() || utils.QT_PKG_CONFIG() || utils.MSYS_DOCKER() || utils.QT_DOCKER() || utils.QT_STATIC()) {
 			continue
 		}
 		if v[0] == "XCODE_DIR" && runtime.GOOS != "darwin" {

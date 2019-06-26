@@ -46,5 +46,5 @@ func QT_SAILFISH_VERSION() string {
 	if ver, ok := os.LookupEnv("QT_SAILFISH_VERSION"); ok {
 		return ver
 	}
-	return "2.2.1.18"
+	return "3.0.3.9"
 }

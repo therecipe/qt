@@ -51,13 +51,19 @@ func run(target, name, depPath, device string) {
 		if utils.QT_SAILFISH() {
 			return
 		}
-		utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "registervm", filepath.Join(utils.SAILFISH_DIR(), "emulator", "Sailfish OS Emulator", "Sailfish OS Emulator.vbox")), "register vm")
-		utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "sharedfolder", "add", "Sailfish OS Emulator", "--name", "GOPATH", "--hostpath", utils.MustGoPath(), "--automount"), "mount GOPATH")
+
+		emulator := "Sailfish OS Emulator"
+		if strings.HasPrefix(utils.QT_SAILFISH_VERSION(), "3.") {
+			emulator = fmt.Sprintf("Sailfish OS Emulator %v", utils.QT_SAILFISH_VERSION())
+		}
+
+		utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "registervm", filepath.Join(utils.SAILFISH_DIR(), "emulator", emulator, emulator+".vbox")), "register vm")
+		utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "sharedfolder", "add", emulator, "--name", "GOPATH", "--hostpath", utils.MustGoPath(), "--automount"), "mount GOPATH")
 
 		if runtime.GOOS == "windows" {
-			utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "startvm", "Sailfish OS Emulator"), "start emulator")
+			utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "startvm", emulator), "start emulator")
 		} else {
-			utils.RunCmdOptional(exec.Command("nohup", filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "startvm", "Sailfish OS Emulator"), "start emulator")
+			utils.RunCmdOptional(exec.Command("nohup", filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "startvm", emulator), "start emulator")
 		}
 
 		time.Sleep(10 * time.Second)

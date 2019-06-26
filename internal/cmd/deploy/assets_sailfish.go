@@ -16,6 +16,9 @@ import (
 func sailfish_ssh(port, login string, cmd ...string) error {
 
 	typ := "SailfishOS_Emulator"
+	if strings.HasPrefix(utils.QT_SAILFISH_VERSION(), "3.") {
+		typ = "Sailfish_OS-Emulator-latest"
+	}
 	if port == "2222" {
 		typ = "engine"
 	}

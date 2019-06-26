@@ -147,5 +147,10 @@ func qT_DARWIN_DIR() string {
 	if QT_NIX() {
 		return QT_INSTALL_PREFIX("darwin")
 	}
+
+	if p := filepath.Join(QT_DIR(), fmt.Sprintf("%v/clang_64", QT_VERSION())); ExistsDir(p) {
+		return p
+	}
+
 	return filepath.Join(QT_DIR(), fmt.Sprintf("%v/clang_64", QT_VERSION_MAJOR()))
 }

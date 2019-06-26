@@ -32,7 +32,7 @@ set PATH=%PATH%;C:\Progra~1\Git\bin
 
 
 ::install Go + pull repo
-set GO=go1.11.2.windows-amd64.msi
+set GO=go1.12.6.windows-amd64.msi
 curl -sL --retry 10 --retry-delay 10 -o %TMP%\%GO% https://storage.googleapis.com/golang/%GO%
 %TMP%\%GO% /passive /norestart
 del %TMP%\%GO% /Q
@@ -137,6 +137,7 @@ if "%ANDROID%" == "true" (
   7z x %TMP%\!SDK! -oC:\android-sdk-windows\
   del %TMP%\!SDK! /Q
 
+  ::TODO update license hashes for sdkmanager
   mkdir C:\android-sdk-windows\licenses
   echo fc946e8f231f3e3159bf0b7c655c924cb2e38330>> C:\android-sdk-windows\licenses\android-googletv-license
   echo d56f5187479451eabf01fb78af6dfcb131a6481e>> C:\android-sdk-windows\licenses\android-sdk-license

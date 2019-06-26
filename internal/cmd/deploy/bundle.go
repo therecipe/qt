@@ -167,6 +167,19 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 
 					if utils.ExistsFile(filepath.Join(libraryPath, libName)) {
 						utils.RunCmd(exec.Command("cp", "-L", strings.TrimSuffix(filepath.Join(libraryPath, libName), ".5"), filepath.Join(depPath, libDir, libName)), fmt.Sprintf("copy %v for %v on %v", libName, target, runtime.GOOS))
+
+						if strings.HasPrefix(libName, "libQt5Multimedia") {
+							libName = "libQt5MultimediaWidgets.so.5"
+							utils.RunCmdOptional(exec.Command("cp", "-L", strings.TrimSuffix(filepath.Join(libraryPath, libName), ".5"), filepath.Join(depPath, libDir, libName)), fmt.Sprintf("copy %v for %v on %v", libName, target, runtime.GOOS))
+						}
+						if strings.HasPrefix(libName, "libQt5WebEngine") {
+							libName = "libQt5WebEngineWidgets.so.5"
+							utils.RunCmdOptional(exec.Command("cp", "-L", strings.TrimSuffix(filepath.Join(libraryPath, libName), ".5"), filepath.Join(depPath, libDir, libName)), fmt.Sprintf("copy %v for %v on %v", libName, target, runtime.GOOS))
+						}
+						if strings.HasPrefix(libName, "libQt5Quick") {
+							libName = "libQt5QuickWidgets.so.5"
+							utils.RunCmdOptional(exec.Command("cp", "-L", strings.TrimSuffix(filepath.Join(libraryPath, libName), ".5"), filepath.Join(depPath, libDir, libName)), fmt.Sprintf("copy %v for %v on %v", libName, target, runtime.GOOS))
+						}
 					}
 
 					if strings.Contains(dep, "WebEngine") || strings.Contains(dep, "WebView") {

@@ -32,8 +32,8 @@ if [ "$QT_MXE" == "true" ]
 then
   #download and install qt (and wine) for cross compilation
   sudo apt-get -y -qq install wine && sudo apt-get -qq clean
-  echo "deb http://pkg.mxe.cc/repos/apt/debian wheezy main" | sudo tee --append /etc/apt/sources.list.d/mxeapt.list > /dev/null
-  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys D43A795B73B16ABE9643FE1AFD8FFF16DB45C6AB
+  echo "deb http://pkg.mxe.cc/repos/apt trusty main" | sudo tee --append /etc/apt/sources.list.d/mxeapt.list > /dev/null
+  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 86B72ED9
   sudo apt-get -qq update
 
   if [ "$QT_MXE_STATIC" == "true" ]
@@ -71,7 +71,7 @@ if [ "$ANDROID" == "true" ]; then
 
   #install deps for android sdk
   $HOME/android-sdk-linux/tools/bin/sdkmanager --list --verbose
-  echo "y" | $HOME/android-sdk-linux/tools/bin/sdkmanager "platform-tools" "build-tools;26.0.0" "platforms;android-25"
+  echo "y" | $HOME/android-sdk-linux/tools/bin/sdkmanager "platform-tools" "build-tools;28.0.3" "platforms;android-28"
   $HOME/android-sdk-linux/tools/bin/sdkmanager --update
 
   #download and install android ndk

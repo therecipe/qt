@@ -8,6 +8,7 @@ import (
 	"sync"
 
 	"github.com/sirupsen/logrus"
+
 	"github.com/therecipe/qt/internal/utils"
 )
 
@@ -155,10 +156,11 @@ func LoadModule(m string) *Module {
 		}
 	}
 	if err != nil {
-		if m != "DataVisualization" && m != "Charts" {
-			utils.Log.WithFields(logFields).WithError(err).Warn(logName)
-		} else {
+		switch m {
+		case "Charts", "DataVisualization", "VirtualKeyboard":
 			utils.Log.WithFields(logFields).WithError(err).Debug(logName)
+		default:
+			utils.Log.WithFields(logFields).WithError(err).Warn(logName)
 		}
 		return nil
 	}

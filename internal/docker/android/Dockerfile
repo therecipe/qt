@@ -89,7 +89,7 @@ RUN cd $GOPATH/src/github.com/therecipe/qt/internal/examples/androidextras/jni &
 RUN GOARCH=arm64 $GOPATH/bin/qtsetup check android
 RUN GOARCH=arm64 $GOPATH/bin/qtsetup generate android
 RUN GOARCH=arm64 $GOPATH/bin/qtsetup install android
-RUN cd $GOPATH/src/github.com/therecipe/qt/internal/examples/androidextras/jni && GOARCH=arm64 $GOPATH/bin/qtdeploy -debug build android && rm -rf ./deploy
+RUN cd $GOPATH/src/github.com/therecipe/qt/internal/examples/androidextras/jni && GOARCH=arm64 $GOPATH/bin/qtdeploy build android && rm -rf ./deploy
 
 RUN $GOPATH/bin/qtsetup check android-emulator
 RUN $GOPATH/bin/qtsetup generate android-emulator

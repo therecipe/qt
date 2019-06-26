@@ -170,7 +170,7 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 				vagrantsystem,
 				false,
 				true,
-				true,
+				!strings.HasPrefix(target, "sailfish"),
 			)
 			templater.CleanupDepsForCI()
 			templater.CleanupDepsForCI = func() {}

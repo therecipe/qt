@@ -340,7 +340,7 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 	gpath := strings.Join(paths, pathseperator)
 	if writeCacheToHost {
 		gpath += pathseperator + gpfs
-		args = append(args, []string{"-e", "QT_STUB=true"}...)
+		args = append(args, []string{"-e", "QT_STUB=true"}...) //TODO: won't work with wine images atm
 	} else {
 		if strings.Contains(path, "github.com/therecipe/qt/internal/examples") && !strings.Contains(path, "github.com/therecipe/qt/internal/examples/androidextras") {
 			gpath += pathseperator + gpfs
@@ -370,7 +370,7 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 	}
 
 	if p, ok := os.LookupEnv("PKG_CONFIG_PATH"); ok {
-		args = append(args, []string{"-e", "PKG_CONFIG_PATH=" + p}...)
+		args = append(args, []string{"-e", "PKG_CONFIG_PATH=" + p}...) //TODO: won't work with wine images atm
 	}
 
 	if utils.QT_WEBKIT() {
@@ -666,8 +666,8 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 					env["GOARCH"] = utils.GOARCH()
 				}
 
-				//TODO: support 32 and 64 bit support; fix InitEnv as well
-				if strings.Contains(utils.QT_INSTALL_PREFIX(target), "env_windows_amd64") {
+				//TODO: support 32 and 64 bit; fix InitEnv as well (for 32 bit support)
+				if strings.Contains(utils.QT_INSTALL_PREFIX(target), "env_windows_amd64") && utils.QT_VERSION_NUM() < 5130 { //TODO: fix env_windows_amd64_512 instead
 					env["CGO_LDFLAGS"] = filepath.Join("C:\\", "Users", "Public", "env_windows_amd64", "Tools", "mingw730_64", "x86_64-w64-mingw32", "lib", "libmsvcrt.a")
 				}
 			}

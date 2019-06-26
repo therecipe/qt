@@ -269,6 +269,9 @@ func (c *Class) fixBases() {
 				}
 				prefixPath = pkgConfigIncludeDir
 				pkgConfigIncludeDirMutex.Unlock()
+			} else if strings.HasPrefix(State.Target, "sailfish") && runtime.GOOS == "darwin" {
+				infixPath = "lib"
+				suffixPath = ".framework/Headers/"
 			}
 		}
 	}

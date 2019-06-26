@@ -174,6 +174,7 @@ func build_sailfish(target, path, ldFlagsCustom, name string) {
 	time.Sleep(10 * time.Second)
 
 	for _, l := range []string{"libmpc.so.3", "libmpfr.so.4", "libgmp.so.10", "libpthread_nonshared.a", "libc_nonshared.a"} {
+		sailfish_ssh("2222", "root", "rm", fmt.Sprintf("/usr/lib/%v", l))
 		sailfish_ssh("2222", "root", "ln", "-s", fmt.Sprintf("/srv/mer/toolings/SailfishOS-"+utils.QT_SAILFISH_VERSION()+"/usr/lib/%v", l), fmt.Sprintf("/usr/lib/%v", l))
 	}
 
@@ -182,8 +183,12 @@ func build_sailfish(target, path, ldFlagsCustom, name string) {
 		arch, gcc = "armv7hl", "gnueabi"
 	}
 
-	sailfish_ssh("2222", "root", "ln", "-s", fmt.Sprintf("/srv/mer/toolings/SailfishOS-"+utils.QT_SAILFISH_VERSION()+"/opt/cross/bin/%v-meego-linux-%v-as", arch, gcc), fmt.Sprintf("/srv/mer/toolings/SailfishOS-"+utils.QT_SAILFISH_VERSION()+"/opt/cross/libexec/gcc/%v-meego-linux-%v/4.8.3/as", arch, gcc))
-	sailfish_ssh("2222", "root", "ln", "-s", fmt.Sprintf("/srv/mer/toolings/SailfishOS-"+utils.QT_SAILFISH_VERSION()+"/opt/cross/bin/%v-meego-linux-%v-ld", arch, gcc), fmt.Sprintf("/srv/mer/toolings/SailfishOS-"+utils.QT_SAILFISH_VERSION()+"/opt/cross/libexec/gcc/%v-meego-linux-%v/4.8.3/ld", arch, gcc))
+	gccVersion := "4.8.3"
+	if strings.HasPrefix(utils.QT_SAILFISH_VERSION(), "3.") {
+		gccVersion = "4.9.4"
+	}
+	sailfish_ssh("2222", "root", "ln", "-s", fmt.Sprintf("/srv/mer/toolings/SailfishOS-"+utils.QT_SAILFISH_VERSION()+"/opt/cross/bin/%v-meego-linux-%v-as", arch, gcc), fmt.Sprintf("/srv/mer/toolings/SailfishOS-"+utils.QT_SAILFISH_VERSION()+"/opt/cross/libexec/gcc/%v-meego-linux-%v/%v/as", arch, gcc, gccVersion))
+	sailfish_ssh("2222", "root", "ln", "-s", fmt.Sprintf("/srv/mer/toolings/SailfishOS-"+utils.QT_SAILFISH_VERSION()+"/opt/cross/bin/%v-meego-linux-%v-ld", arch, gcc), fmt.Sprintf("/srv/mer/toolings/SailfishOS-"+utils.QT_SAILFISH_VERSION()+"/opt/cross/libexec/gcc/%v-meego-linux-%v/%v/ld", arch, gcc, gccVersion))
 
 	var pattern string
 	if v := utils.GOVERSION(); strings.Contains(v, "1.1") || strings.Contains(v, "devel") {

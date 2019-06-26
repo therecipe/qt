@@ -5,12 +5,12 @@ ENV HOME /home/$USER
 ENV GOPATH $HOME/work
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates curl git
-RUN GO=go1.12.4.linux-amd64.tar.gz && curl -sL --retry 10 --retry-delay 60 -O https://dl.google.com/go/$GO && tar -xzf $GO -C /usr/local
+RUN GO=go1.12.6.linux-amd64.tar.gz && curl -sL --retry 10 --retry-delay 60 -O https://dl.google.com/go/$GO && tar -xzf $GO -C /usr/local
 RUN /usr/local/go/bin/go get -tags=no_env github.com/therecipe/qt/cmd/...
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install dbus fontconfig libx11-6 libx11-xcb1
 ENV QT=qt-opensource-linux-x64-5.6.3.run
-RUN curl -sL --retry 10 --retry-delay 60 -O https://download.qt.io/official_releases/qt/5.6/5.6.3/$QT && chmod +x $QT 
+RUN curl -sL --retry 10 --retry-delay 60 -O https://download.qt.io/archive/qt/5.6/5.6.3/$QT && chmod +x $QT 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install libglib2.0-dev libglu1-mesa-dev
 RUN QT_QPA_PLATFORM=minimal ./$QT --no-force-installations --script $GOPATH/src/github.com/therecipe/qt/internal/ci/iscript.qs LINUX=true VERSION=563
 RUN find /opt/Qt5.6.3/5.6.3 -type f -name "*.debug" -delete
