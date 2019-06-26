@@ -325,7 +325,7 @@ func shouldBuildForTarget(module, target string, min bool) bool {
 			}
 		}
 
-	case "linux", "freebsd":
+	case "linux", "freebsd", "darwin":
 		if utils.QT_STATIC() && module == "WebEngine" {
 			return false
 		}

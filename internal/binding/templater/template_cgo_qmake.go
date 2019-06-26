@@ -242,7 +242,7 @@ func createProject(module, path, target string, mode int, libs []string) {
 	if hasVirtualKeyboard && (utils.QT_STATIC() || target == "js" || target == "wasm") {
 		fmt.Fprintf(bb, "QTPLUGIN += qtvirtualkeyboardplugin\n")
 	}
-	if utils.QT_STATIC() && strings.ToLower(module) == "core" {
+	if utils.QT_STATIC() && strings.ToLower(module) == "core" && target == "linux" {
 		fmt.Fprintf(bb, "QTPLUGIN += ibusplatforminputcontextplugin\n")
 	}
 	utils.SaveBytes(proPath, bb.Bytes())
@@ -370,6 +370,17 @@ func createMakefile(module, path, target string, mode int) {
 	utils.RemoveAll(filepath.Join(path, ".qmake.stash"))
 	switch target {
 	case "darwin":
+		for _, suf := range []string{"_plugin_import", "_qml_plugin_import"} {
+			pPath := filepath.Join(path, fmt.Sprintf("%v%v.cpp", filepath.Base(path), suf))
+			if utils.QT_STATIC() && utils.ExistsFile(pPath) {
+				if content := utils.Load(pPath); !strings.Contains(content, "+build darwin") {
+					utils.Save(pPath, "// +build darwin\r\n"+content)
+				}
+			}
+			if mode == MOC || mode == RCC || !utils.QT_STATIC() || (module != "Qml" && strings.Contains(pPath, "_qml_")) {
+				utils.RemoveAll(pPath)
+			}
+		}
 	case "windows":
 		for _, suf := range []string{"_plugin_import", "_qml_plugin_import"} {
 			pPath := filepath.Join(path, fmt.Sprintf("%v%v.cpp", filepath.Base(path), suf))
@@ -388,7 +399,7 @@ func createMakefile(module, path, target string, mode int) {
 	case "linux":
 		for _, suf := range []string{"_plugin_import", "_qml_plugin_import"} {
 			pPath := filepath.Join(path, fmt.Sprintf("%v%v.cpp", filepath.Base(path), suf))
-			if (utils.QT_STATIC()) && utils.ExistsFile(pPath) {
+			if utils.QT_STATIC() && utils.ExistsFile(pPath) {
 				if content := utils.Load(pPath); !strings.Contains(content, "+build linux") {
 					if strings.ToLower(module) == "core" && suf == "_plugin_import" && utils.ExistsFile(filepath.Join(utils.QT_INSTALL_PREFIX(target), "plugins", "platforminputcontexts", "libfcitxplatforminputcontextplugin.a")) {
 						utils.Save(pPath, "// +build linux\r\n"+content+"Q_IMPORT_PLUGIN(QFcitxPlatformInputContextPlugin)\r\n")
@@ -606,6 +617,9 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 			tmp = strings.Replace(tmp, "-Wl,-rpath,@executable_path/Frameworks", "", -1)
 			tmp = strings.Replace(tmp, "-Wl,-rpath,@executable_path/../Frameworks", "", -1)
 			tmp = strings.Replace(tmp, "-weak_framework XCTest", "", -1)
+			tmp = strings.Replace(tmp, "-ffunction-sections", "", -1)
+			tmp = strings.Replace(tmp, "-fdata-sections", "", -1)
+			tmp = strings.Replace(tmp, "-Wl,-dead_strip", "", -1)
 		case "windows":
 			if utils.QT_MSYS2() {
 				tmp = strings.Replace(tmp, ",--relax,--gc-sections", "", -1)
@@ -657,13 +671,13 @@ func cgoFileNames(module, path, target string, mode int) []string {
 	var pFix string
 	switch mode {
 	case RCC:
-		if utils.QT_STATIC() { //TODO: fix wrong order issue in LDFLAGS instead
+		if utils.QT_STATIC() && target == "linux" { //TODO: fix wrong order issue in LDFLAGS instead
 			pFix = "moc_"
 		} else {
 			pFix = "rcc_"
 		}
 	case MOC:
-		if utils.QT_STATIC() { //TODO: fix wrong order issue in LDFLAGS instead
+		if utils.QT_STATIC() && target == "linux" { //TODO: fix wrong order issue in LDFLAGS instead
 			pFix = "rcc_"
 		} else {
 			pFix = "moc_"

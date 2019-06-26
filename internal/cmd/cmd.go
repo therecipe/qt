@@ -103,7 +103,7 @@ func InitEnv(target string) {
 			return
 		}
 	case "darwin":
-		if utils.QT_PKG_CONFIG() || utils.QT_HOMEBREW() || utils.QT_MACPORTS() || utils.QT_NIX() || utils.QT_FELGO() {
+		if utils.QT_PKG_CONFIG() || utils.QT_HOMEBREW() || utils.QT_MACPORTS() || utils.QT_NIX() || utils.QT_FELGO() || utils.QT_STATIC() {
 			return
 		}
 	case "windows":

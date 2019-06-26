@@ -66,6 +66,10 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 		utils.MkdirAll(assets)
 		copy(assets+"/.", filepath.Join(depPath, name+".app"))
 
+		if utils.QT_STATIC() {
+			break
+		}
+
 		if utils.QT_NIX() {
 			/*
 				TODO:

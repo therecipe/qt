@@ -251,7 +251,7 @@ func (c *Class) fixBases() {
 						break
 					}
 				}
-			} else {
+			} else if !utils.QT_STATIC() {
 				infixPath = "lib"
 				suffixPath = ".framework/Headers/"
 			}
