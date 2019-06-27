@@ -104,10 +104,19 @@ func build(mode, target, path, ldFlagsCustom, tagsCustom, name, depPath string, 
 	//TODO: seems to be an go module issue
 	if v := utils.GOVERSION(); strings.Contains(v, "1.13") || strings.Contains(v, "devel") {
 		if utils.UseGOMOD(path) {
+			var String = func(c *exec.Cmd) string {
+				b := new(strings.Builder)
+				b.WriteString(c.Path)
+				for _, a := range c.Args[1:] {
+					b.WriteByte(' ')
+					b.WriteString(a)
+				}
+				return b.String()
+			}
 			if runtime.GOOS != "windows" {
-				cmd.Args = []string{"bash", "-c", cmd.String()}
+				cmd.Args = []string{"bash", "-c", String(cmd)}
 			} else {
-				//cmd.Args = []string{"cmd", "/C", cmd.String()}
+				//cmd.Args = []string{"cmd", "/C", String(cmd)}
 			}
 			cmd.Args = append(cmd.Args, fmt.Sprintf("-ldflags=%v%v", pattern, escapeFlags(ldFlags, ldFlagsCustom)))
 			cmd.Path, _ = exec.LookPath(cmd.Args[0])
