@@ -19,13 +19,13 @@
 #include <QMediaPlaylist>
 #include <QMediaRecorder>
 #include <QMetaMethod>
-#include <QMetaObject>
 #include <QObject>
 #include <QOffscreenSurface>
 #include <QPaintDeviceWindow>
 #include <QPdfWriter>
 #include <QQuickItem>
 #include <QRadioData>
+#include <QRemoteObjectPendingCallWatcher>
 #include <QScriptEngine>
 #include <QScriptEngineDebugger>
 #include <QString>
@@ -40,15 +40,14 @@ public:
 	void Signal_EvaluationResumed() { callbackQScriptEngineDebugger_EvaluationResumed(this); };
 	void Signal_EvaluationSuspended() { callbackQScriptEngineDebugger_EvaluationSuspended(this); };
 	 ~MyQScriptEngineDebugger() { callbackQScriptEngineDebugger_DestroyQScriptEngineDebugger(this); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQScriptEngineDebugger_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	bool event(QEvent * e) { return callbackQScriptEngineDebugger_Event(this, e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQScriptEngineDebugger_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQScriptEngineDebugger_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQScriptEngineDebugger_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQScriptEngineDebugger_CustomEvent(this, event); };
 	void deleteLater() { callbackQScriptEngineDebugger_DeleteLater(this); };
 	void Signal_Destroyed(QObject * obj) { callbackQScriptEngineDebugger_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQScriptEngineDebugger_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQScriptEngineDebugger_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQScriptEngineDebugger_EventFilter(this, watched, event) != 0; };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtScriptTools_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQScriptEngineDebugger_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQScriptEngineDebugger_TimerEvent(this, event); };
 };
@@ -56,11 +55,6 @@ public:
 Q_DECLARE_METATYPE(MyQScriptEngineDebugger*)
 
 int QScriptEngineDebugger_QScriptEngineDebugger_QRegisterMetaType(){qRegisterMetaType<QScriptEngineDebugger*>(); return qRegisterMetaType<MyQScriptEngineDebugger*>();}
-
-void* QScriptEngineDebugger_CreateStandardMenu(void* ptr, void* parent)
-{
-	return static_cast<QScriptEngineDebugger*>(ptr)->createStandardMenu(static_cast<QWidget*>(parent));
-}
 
 void* QScriptEngineDebugger_NewQScriptEngineDebugger(void* parent)
 {
@@ -92,6 +86,8 @@ void* QScriptEngineDebugger_NewQScriptEngineDebugger(void* parent)
 		return new MyQScriptEngineDebugger(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQScriptEngineDebugger(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQScriptEngineDebugger(static_cast<QRemoteObjectPendingCallWatcher*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQScriptEngineDebugger(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -101,19 +97,29 @@ void* QScriptEngineDebugger_NewQScriptEngineDebugger(void* parent)
 	}
 }
 
-struct QtScriptTools_PackedString QScriptEngineDebugger_QScriptEngineDebugger_Tr(char* s, char* c, int n)
+void* QScriptEngineDebugger_Action(void* ptr, long long action)
 {
-	return ({ QByteArray tcf93f8 = QScriptEngineDebugger::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtScriptTools_PackedString { const_cast<char*>(tcf93f8.prepend("WHITESPACE").constData()+10), tcf93f8.size()-10 }; });
-}
-
-void* QScriptEngineDebugger_CreateStandardToolBar(void* ptr, void* parent)
-{
-	return static_cast<QScriptEngineDebugger*>(ptr)->createStandardToolBar(static_cast<QWidget*>(parent));
+	return static_cast<QScriptEngineDebugger*>(ptr)->action(static_cast<QScriptEngineDebugger::DebuggerAction>(action));
 }
 
 void QScriptEngineDebugger_AttachTo(void* ptr, void* engine)
 {
 	static_cast<QScriptEngineDebugger*>(ptr)->attachTo(static_cast<QScriptEngine*>(engine));
+}
+
+char QScriptEngineDebugger_AutoShowStandardWindow(void* ptr)
+{
+	return static_cast<QScriptEngineDebugger*>(ptr)->autoShowStandardWindow();
+}
+
+void* QScriptEngineDebugger_CreateStandardMenu(void* ptr, void* parent)
+{
+	return static_cast<QScriptEngineDebugger*>(ptr)->createStandardMenu(static_cast<QWidget*>(parent));
+}
+
+void* QScriptEngineDebugger_CreateStandardToolBar(void* ptr, void* parent)
+{
+	return static_cast<QScriptEngineDebugger*>(ptr)->createStandardToolBar(static_cast<QWidget*>(parent));
 }
 
 void QScriptEngineDebugger_Detach(void* ptr)
@@ -156,22 +162,6 @@ void QScriptEngineDebugger_SetAutoShowStandardWindow(void* ptr, char autoShow)
 	static_cast<QScriptEngineDebugger*>(ptr)->setAutoShowStandardWindow(autoShow != 0);
 }
 
-void QScriptEngineDebugger_DestroyQScriptEngineDebugger(void* ptr)
-{
-	static_cast<QScriptEngineDebugger*>(ptr)->~QScriptEngineDebugger();
-}
-
-void QScriptEngineDebugger_DestroyQScriptEngineDebuggerDefault(void* ptr)
-{
-	Q_UNUSED(ptr);
-
-}
-
-void* QScriptEngineDebugger_Action(void* ptr, long long action)
-{
-	return static_cast<QScriptEngineDebugger*>(ptr)->action(static_cast<QScriptEngineDebugger::DebuggerAction>(action));
-}
-
 void* QScriptEngineDebugger_StandardWindow(void* ptr)
 {
 	return static_cast<QScriptEngineDebugger*>(ptr)->standardWindow();
@@ -187,14 +177,31 @@ void* QScriptEngineDebugger_Widget(void* ptr, long long widget)
 	return static_cast<QScriptEngineDebugger*>(ptr)->widget(static_cast<QScriptEngineDebugger::DebuggerWidget>(widget));
 }
 
-char QScriptEngineDebugger_AutoShowStandardWindow(void* ptr)
+void QScriptEngineDebugger_DestroyQScriptEngineDebugger(void* ptr)
 {
-	return static_cast<QScriptEngineDebugger*>(ptr)->autoShowStandardWindow();
+	static_cast<QScriptEngineDebugger*>(ptr)->~QScriptEngineDebugger();
 }
 
-void* QScriptEngineDebugger_MetaObjectDefault(void* ptr)
+void QScriptEngineDebugger_DestroyQScriptEngineDebuggerDefault(void* ptr)
 {
-		return const_cast<QMetaObject*>(static_cast<QScriptEngineDebugger*>(ptr)->QScriptEngineDebugger::metaObject());
+	Q_UNUSED(ptr);
+
+}
+
+void* QScriptEngineDebugger___children_atList(void* ptr, int i)
+{
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void QScriptEngineDebugger___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QScriptEngineDebugger___children_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject *>();
 }
 
 void* QScriptEngineDebugger___dynamicPropertyNames_atList(void* ptr, int i)
@@ -213,17 +220,17 @@ void* QScriptEngineDebugger___dynamicPropertyNames_newList(void* ptr)
 	return new QList<QByteArray>();
 }
 
-void* QScriptEngineDebugger___findChildren_atList2(void* ptr, int i)
+void* QScriptEngineDebugger___findChildren_atList(void* ptr, int i)
 {
 	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QScriptEngineDebugger___findChildren_setList2(void* ptr, void* i)
+void QScriptEngineDebugger___findChildren_setList(void* ptr, void* i)
 {
 	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
-void* QScriptEngineDebugger___findChildren_newList2(void* ptr)
+void* QScriptEngineDebugger___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();
@@ -245,46 +252,20 @@ void* QScriptEngineDebugger___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QScriptEngineDebugger___findChildren_atList(void* ptr, int i)
+void* QScriptEngineDebugger___qFindChildren_atList2(void* ptr, int i)
 {
 	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QScriptEngineDebugger___findChildren_setList(void* ptr, void* i)
+void QScriptEngineDebugger___qFindChildren_setList2(void* ptr, void* i)
 {
 	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
-void* QScriptEngineDebugger___findChildren_newList(void* ptr)
+void* QScriptEngineDebugger___qFindChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();
-}
-
-void* QScriptEngineDebugger___children_atList(void* ptr, int i)
-{
-	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QScriptEngineDebugger___children_setList(void* ptr, void* i)
-{
-	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QScriptEngineDebugger___children_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject *>();
-}
-
-char QScriptEngineDebugger_EventDefault(void* ptr, void* e)
-{
-		return static_cast<QScriptEngineDebugger*>(ptr)->QScriptEngineDebugger::event(static_cast<QEvent*>(e));
-}
-
-char QScriptEngineDebugger_EventFilterDefault(void* ptr, void* watched, void* event)
-{
-		return static_cast<QScriptEngineDebugger*>(ptr)->QScriptEngineDebugger::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
 void QScriptEngineDebugger_ChildEventDefault(void* ptr, void* event)
@@ -310,6 +291,16 @@ void QScriptEngineDebugger_DeleteLaterDefault(void* ptr)
 void QScriptEngineDebugger_DisconnectNotifyDefault(void* ptr, void* sign)
 {
 		static_cast<QScriptEngineDebugger*>(ptr)->QScriptEngineDebugger::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+char QScriptEngineDebugger_EventDefault(void* ptr, void* e)
+{
+		return static_cast<QScriptEngineDebugger*>(ptr)->QScriptEngineDebugger::event(static_cast<QEvent*>(e));
+}
+
+char QScriptEngineDebugger_EventFilterDefault(void* ptr, void* watched, void* event)
+{
+		return static_cast<QScriptEngineDebugger*>(ptr)->QScriptEngineDebugger::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
 void QScriptEngineDebugger_TimerEventDefault(void* ptr, void* event)

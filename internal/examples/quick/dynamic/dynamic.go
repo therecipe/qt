@@ -15,7 +15,7 @@ func main() {
 	var view = quick.NewQQuickView(nil)
 	view.SetResizeMode(quick.QQuickView__SizeRootObjectToView)
 
-	var mainComponent = qml.NewQQmlComponent(view.Engine(), nil)
+	var mainComponent = qml.NewQQmlComponent2(view.Engine(), nil)
 	mainComponent.ConnectStatusChanged(func(status qml.QQmlComponent__Status) {
 		if status == qml.QQmlComponent__Ready {
 

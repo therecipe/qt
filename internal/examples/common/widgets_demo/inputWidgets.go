@@ -15,8 +15,8 @@ func inputWidgets() {
 	items := []string{"Some", "Combo", "Box", "Items"}
 	comboBox.AddItems(items)
 
-	comboBox.ConnectCurrentIndexChanged2(func(text string) {
-		println("Combo Box Index Changed To:", text)
+	comboBox.ConnectCurrentTextChanged(func(text string) {
+		println("Combo Box Text Changed To:", text)
 	})
 	addWidget(comboBox)
 
@@ -37,8 +37,8 @@ func inputWidgets() {
 
 	comboBoxL.SetModel(listModel)
 
-	comboBoxL.ConnectCurrentIndexChanged2(func(text string) {
-		println("Combo Box Index Changed To:", text)
+	comboBoxL.ConnectCurrentTextChanged(func(text string) {
+		println("Combo Box Text Changed To:", text)
 	})
 	addWidget(comboBoxL)
 
@@ -46,8 +46,8 @@ func inputWidgets() {
 	comboBoxSL := widgets.NewQComboBox(nil)
 	comboBoxSL.SetWindowTitle("Combo Box + String List Model")
 	comboBoxSL.SetModel(core.NewQStringListModel2(items, nil))
-	comboBoxSL.ConnectCurrentIndexChanged2(func(text string) {
-		println("Combo Box Index Changed To:", text)
+	comboBoxSL.ConnectCurrentTextChanged(func(text string) {
+		println("Combo Box Text Changed To:", text)
 	})
 	addWidget(comboBoxSL)
 

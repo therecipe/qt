@@ -24,6 +24,6 @@ RUN zypper -q ref && zypper -n -q install --no-recommends libqt5-qt*-devel && zy
 RUN $GOPATH/bin/qtsetup prep
 RUN $GOPATH/bin/qtsetup check
 RUN $GOPATH/bin/qtsetup generate
-RUN cd $GOPATH/src/github.com/therecipe/qt/internal/examples/widgets/line_edits && $GOPATH/bin/qtdeploy build linux && rm -rf ./deploy
+RUN cd $GOPATH/src/github.com/therecipe/qt/internal/examples/widgets/line_edits && sed -i -e 's/AddWidget2/AddWidget/g' line_edits.go && $GOPATH/bin/qtdeploy build linux && rm -rf ./deploy
 
 RUN zypper -q ref && zypper -n -q install --no-recommends git pkg-config

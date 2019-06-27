@@ -314,6 +314,9 @@ func Minimal(path, target, tags string) {
 }
 
 func exportClass(c *parser.Class, files []string) {
+	if c == nil {
+		return
+	}
 	c.Lock()
 	exp := c.Export
 	c.Unlock()
@@ -372,6 +375,9 @@ func exportClass(c *parser.Class, files []string) {
 }
 
 func exportFunction(f *parser.Function, files []string) {
+	if f == nil {
+		return
+	}
 	if f.Export {
 		return
 	}

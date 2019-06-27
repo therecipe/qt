@@ -23,7 +23,6 @@
 #include <QMediaPlaylist>
 #include <QMediaRecorder>
 #include <QMetaMethod>
-#include <QMetaObject>
 #include <QMimeData>
 #include <QModelIndex>
 #include <QObject>
@@ -35,6 +34,7 @@
 #include <QQuickItem>
 #include <QRadioData>
 #include <QRectF>
+#include <QRemoteObjectPendingCallWatcher>
 #include <QSize>
 #include <QString>
 #include <QTimerEvent>
@@ -53,34 +53,34 @@ class MyQVirtualKeyboardAbstractInputMethod: public QVirtualKeyboardAbstractInpu
 {
 public:
 	MyQVirtualKeyboardAbstractInputMethod(QObject *parent = Q_NULLPTR) : QVirtualKeyboardAbstractInputMethod(parent) {QVirtualKeyboardAbstractInputMethod_QVirtualKeyboardAbstractInputMethod_QRegisterMetaType();};
-	QList<QVirtualKeyboardInputEngine::InputMode> inputModes(const QString & locale) { QByteArray t0e038a = locale.toUtf8(); QtVirtualKeyboard_PackedString localePacked = { const_cast<char*>(t0e038a.prepend("WHITESPACE").constData()+10), t0e038a.size()-10 };return ({ QList<QVirtualKeyboardInputEngine::InputMode>* tmpP = static_cast<QList<QVirtualKeyboardInputEngine::InputMode>*>(callbackQVirtualKeyboardAbstractInputMethod_InputModes(this, localePacked)); QList<QVirtualKeyboardInputEngine::InputMode> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
-	QList<QVirtualKeyboardSelectionListModel::Type> selectionLists() { return ({ QList<QVirtualKeyboardSelectionListModel::Type>* tmpP = static_cast<QList<QVirtualKeyboardSelectionListModel::Type>*>(callbackQVirtualKeyboardAbstractInputMethod_SelectionLists(this)); QList<QVirtualKeyboardSelectionListModel::Type> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
-	QVariant selectionListData(QVirtualKeyboardSelectionListModel::Type ty, int index, QVirtualKeyboardSelectionListModel::Role role) { return *static_cast<QVariant*>(callbackQVirtualKeyboardAbstractInputMethod_SelectionListData(this, static_cast<qint64>(ty), index, static_cast<qint64>(role))); };
-	QVirtualKeyboardTrace * traceBegin(int traceId, QVirtualKeyboardInputEngine::PatternRecognitionMode patternRecognitionMode, const QVariantMap & traceCaptureDeviceInfo, const QVariantMap & traceScreenInfo) { return static_cast<QVirtualKeyboardTrace*>(callbackQVirtualKeyboardAbstractInputMethod_TraceBegin(this, traceId, static_cast<qint64>(patternRecognitionMode), ({ QMap<QString, QVariant>* tmpValue = new QMap<QString, QVariant>(traceCaptureDeviceInfo); QtVirtualKeyboard_PackedList { tmpValue, tmpValue->size() }; }), ({ QMap<QString, QVariant>* tmpValue = new QMap<QString, QVariant>(traceScreenInfo); QtVirtualKeyboard_PackedList { tmpValue, tmpValue->size() }; }))); };
 	bool clickPreeditText(int cursorPosition) { return callbackQVirtualKeyboardAbstractInputMethod_ClickPreeditText(this, cursorPosition) != 0; };
+	QList<QVirtualKeyboardInputEngine::InputMode> inputModes(const QString & locale) { QByteArray t0e038a = locale.toUtf8(); QtVirtualKeyboard_PackedString localePacked = { const_cast<char*>(t0e038a.prepend("WHITESPACE").constData()+10), t0e038a.size()-10 };return ({ QList<QVirtualKeyboardInputEngine::InputMode>* tmpP = static_cast<QList<QVirtualKeyboardInputEngine::InputMode>*>(callbackQVirtualKeyboardAbstractInputMethod_InputModes(this, localePacked)); QList<QVirtualKeyboardInputEngine::InputMode> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
 	bool keyEvent(Qt::Key key, const QString & text, Qt::KeyboardModifiers modifiers) { QByteArray t372ea0 = text.toUtf8(); QtVirtualKeyboard_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };return callbackQVirtualKeyboardAbstractInputMethod_KeyEvent(this, static_cast<qint64>(key), textPacked, static_cast<qint64>(modifiers)) != 0; };
-	bool selectionListRemoveItem(QVirtualKeyboardSelectionListModel::Type ty, int index) { return callbackQVirtualKeyboardAbstractInputMethod_SelectionListRemoveItem(this, static_cast<qint64>(ty), index) != 0; };
-	bool setInputMode(const QString & locale, QVirtualKeyboardInputEngine::InputMode inputMode) { QByteArray t0e038a = locale.toUtf8(); QtVirtualKeyboard_PackedString localePacked = { const_cast<char*>(t0e038a.prepend("WHITESPACE").constData()+10), t0e038a.size()-10 };return callbackQVirtualKeyboardAbstractInputMethod_SetInputMode(this, localePacked, static_cast<qint64>(inputMode)) != 0; };
-	bool setTextCase(QVirtualKeyboardInputEngine::TextCase textCase) { return callbackQVirtualKeyboardAbstractInputMethod_SetTextCase(this, static_cast<qint64>(textCase)) != 0; };
-	bool traceEnd(QVirtualKeyboardTrace * trace) { return callbackQVirtualKeyboardAbstractInputMethod_TraceEnd(this, trace) != 0; };
-	int selectionListItemCount(QVirtualKeyboardSelectionListModel::Type ty) { return callbackQVirtualKeyboardAbstractInputMethod_SelectionListItemCount(this, static_cast<qint64>(ty)); };
+	QList<QVirtualKeyboardInputEngine::PatternRecognitionMode> patternRecognitionModes() const { return ({ QList<QVirtualKeyboardInputEngine::PatternRecognitionMode>* tmpP = static_cast<QList<QVirtualKeyboardInputEngine::PatternRecognitionMode>*>(callbackQVirtualKeyboardAbstractInputMethod_PatternRecognitionModes(const_cast<void*>(static_cast<const void*>(this)))); QList<QVirtualKeyboardInputEngine::PatternRecognitionMode> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
+	bool reselect(int cursorPosition, const QVirtualKeyboardInputEngine::ReselectFlags & reselectFlags) { return callbackQVirtualKeyboardAbstractInputMethod_Reselect(this, cursorPosition, static_cast<qint64>(reselectFlags)) != 0; };
 	void reset() { callbackQVirtualKeyboardAbstractInputMethod_Reset(this); };
 	void Signal_SelectionListActiveItemChanged(QVirtualKeyboardSelectionListModel::Type ty, int index) { callbackQVirtualKeyboardAbstractInputMethod_SelectionListActiveItemChanged(this, static_cast<qint64>(ty), index); };
 	void Signal_SelectionListChanged(QVirtualKeyboardSelectionListModel::Type ty) { callbackQVirtualKeyboardAbstractInputMethod_SelectionListChanged(this, static_cast<qint64>(ty)); };
+	QVariant selectionListData(QVirtualKeyboardSelectionListModel::Type ty, int index, QVirtualKeyboardSelectionListModel::Role role) { return *static_cast<QVariant*>(callbackQVirtualKeyboardAbstractInputMethod_SelectionListData(this, static_cast<qint64>(ty), index, static_cast<qint64>(role))); };
+	int selectionListItemCount(QVirtualKeyboardSelectionListModel::Type ty) { return callbackQVirtualKeyboardAbstractInputMethod_SelectionListItemCount(this, static_cast<qint64>(ty)); };
 	void selectionListItemSelected(QVirtualKeyboardSelectionListModel::Type ty, int index) { callbackQVirtualKeyboardAbstractInputMethod_SelectionListItemSelected(this, static_cast<qint64>(ty), index); };
+	bool selectionListRemoveItem(QVirtualKeyboardSelectionListModel::Type ty, int index) { return callbackQVirtualKeyboardAbstractInputMethod_SelectionListRemoveItem(this, static_cast<qint64>(ty), index) != 0; };
+	QList<QVirtualKeyboardSelectionListModel::Type> selectionLists() { return ({ QList<QVirtualKeyboardSelectionListModel::Type>* tmpP = static_cast<QList<QVirtualKeyboardSelectionListModel::Type>*>(callbackQVirtualKeyboardAbstractInputMethod_SelectionLists(this)); QList<QVirtualKeyboardSelectionListModel::Type> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
 	void Signal_SelectionListsChanged() { callbackQVirtualKeyboardAbstractInputMethod_SelectionListsChanged(this); };
+	bool setInputMode(const QString & locale, QVirtualKeyboardInputEngine::InputMode inputMode) { QByteArray t0e038a = locale.toUtf8(); QtVirtualKeyboard_PackedString localePacked = { const_cast<char*>(t0e038a.prepend("WHITESPACE").constData()+10), t0e038a.size()-10 };return callbackQVirtualKeyboardAbstractInputMethod_SetInputMode(this, localePacked, static_cast<qint64>(inputMode)) != 0; };
+	bool setTextCase(QVirtualKeyboardInputEngine::TextCase textCase) { return callbackQVirtualKeyboardAbstractInputMethod_SetTextCase(this, static_cast<qint64>(textCase)) != 0; };
+	QVirtualKeyboardTrace * traceBegin(int traceId, QVirtualKeyboardInputEngine::PatternRecognitionMode patternRecognitionMode, const QVariantMap & traceCaptureDeviceInfo, const QVariantMap & traceScreenInfo) { return static_cast<QVirtualKeyboardTrace*>(callbackQVirtualKeyboardAbstractInputMethod_TraceBegin(this, traceId, static_cast<qint64>(patternRecognitionMode), ({ QMap<QString, QVariant>* tmpValue = new QMap<QString, QVariant>(traceCaptureDeviceInfo); QtVirtualKeyboard_PackedList { tmpValue, tmpValue->size() }; }), ({ QMap<QString, QVariant>* tmpValue = new QMap<QString, QVariant>(traceScreenInfo); QtVirtualKeyboard_PackedList { tmpValue, tmpValue->size() }; }))); };
+	bool traceEnd(QVirtualKeyboardTrace * trace) { return callbackQVirtualKeyboardAbstractInputMethod_TraceEnd(this, trace) != 0; };
 	void update() { callbackQVirtualKeyboardAbstractInputMethod_Update(this); };
 	 ~MyQVirtualKeyboardAbstractInputMethod() { callbackQVirtualKeyboardAbstractInputMethod_DestroyQVirtualKeyboardAbstractInputMethod(this); };
-	QList<QVirtualKeyboardInputEngine::PatternRecognitionMode> patternRecognitionModes() const { return ({ QList<QVirtualKeyboardInputEngine::PatternRecognitionMode>* tmpP = static_cast<QList<QVirtualKeyboardInputEngine::PatternRecognitionMode>*>(callbackQVirtualKeyboardAbstractInputMethod_PatternRecognitionModes(const_cast<void*>(static_cast<const void*>(this)))); QList<QVirtualKeyboardInputEngine::PatternRecognitionMode> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQVirtualKeyboardAbstractInputMethod_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	bool event(QEvent * e) { return callbackQVirtualKeyboardAbstractInputMethod_Event(this, e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQVirtualKeyboardAbstractInputMethod_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQVirtualKeyboardAbstractInputMethod_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQVirtualKeyboardAbstractInputMethod_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQVirtualKeyboardAbstractInputMethod_CustomEvent(this, event); };
 	void deleteLater() { callbackQVirtualKeyboardAbstractInputMethod_DeleteLater(this); };
 	void Signal_Destroyed(QObject * obj) { callbackQVirtualKeyboardAbstractInputMethod_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQVirtualKeyboardAbstractInputMethod_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQVirtualKeyboardAbstractInputMethod_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQVirtualKeyboardAbstractInputMethod_EventFilter(this, watched, event) != 0; };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtVirtualKeyboard_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQVirtualKeyboardAbstractInputMethod_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQVirtualKeyboardAbstractInputMethod_TimerEvent(this, event); };
 };
@@ -88,36 +88,6 @@ public:
 Q_DECLARE_METATYPE(MyQVirtualKeyboardAbstractInputMethod*)
 
 int QVirtualKeyboardAbstractInputMethod_QVirtualKeyboardAbstractInputMethod_QRegisterMetaType(){qRegisterMetaType<QVirtualKeyboardAbstractInputMethod*>(); return qRegisterMetaType<MyQVirtualKeyboardAbstractInputMethod*>();}
-
-struct QtVirtualKeyboard_PackedList QVirtualKeyboardAbstractInputMethod_InputModes(void* ptr, struct QtVirtualKeyboard_PackedString locale)
-{
-	return ({ QList<QVirtualKeyboardInputEngine::InputMode>* tmpValue = new QList<QVirtualKeyboardInputEngine::InputMode>(static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->inputModes(QString::fromUtf8(locale.data, locale.len))); QtVirtualKeyboard_PackedList { tmpValue, tmpValue->size() }; });
-}
-
-struct QtVirtualKeyboard_PackedList QVirtualKeyboardAbstractInputMethod_SelectionLists(void* ptr)
-{
-	return ({ QList<QVirtualKeyboardSelectionListModel::Type>* tmpValue = new QList<QVirtualKeyboardSelectionListModel::Type>(static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->selectionLists()); QtVirtualKeyboard_PackedList { tmpValue, tmpValue->size() }; });
-}
-
-struct QtVirtualKeyboard_PackedList QVirtualKeyboardAbstractInputMethod_SelectionListsDefault(void* ptr)
-{
-		return ({ QList<QVirtualKeyboardSelectionListModel::Type>* tmpValue = new QList<QVirtualKeyboardSelectionListModel::Type>(static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->QVirtualKeyboardAbstractInputMethod::selectionLists()); QtVirtualKeyboard_PackedList { tmpValue, tmpValue->size() }; });
-}
-
-struct QtVirtualKeyboard_PackedString QVirtualKeyboardAbstractInputMethod_QVirtualKeyboardAbstractInputMethod_Tr(char* s, char* c, int n)
-{
-	return ({ QByteArray tf3b2db = QVirtualKeyboardAbstractInputMethod::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtVirtualKeyboard_PackedString { const_cast<char*>(tf3b2db.prepend("WHITESPACE").constData()+10), tf3b2db.size()-10 }; });
-}
-
-void* QVirtualKeyboardAbstractInputMethod_SelectionListData(void* ptr, long long ty, int index, long long role)
-{
-	return new QVariant(static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->selectionListData(static_cast<QVirtualKeyboardSelectionListModel::Type>(ty), index, static_cast<QVirtualKeyboardSelectionListModel::Role>(role)));
-}
-
-void* QVirtualKeyboardAbstractInputMethod_SelectionListDataDefault(void* ptr, long long ty, int index, long long role)
-{
-		return new QVariant(static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->QVirtualKeyboardAbstractInputMethod::selectionListData(static_cast<QVirtualKeyboardSelectionListModel::Type>(ty), index, static_cast<QVirtualKeyboardSelectionListModel::Role>(role)));
-}
 
 void* QVirtualKeyboardAbstractInputMethod_NewQVirtualKeyboardAbstractInputMethod(void* parent)
 {
@@ -149,6 +119,8 @@ void* QVirtualKeyboardAbstractInputMethod_NewQVirtualKeyboardAbstractInputMethod
 		return new MyQVirtualKeyboardAbstractInputMethod(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQVirtualKeyboardAbstractInputMethod(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQVirtualKeyboardAbstractInputMethod(static_cast<QRemoteObjectPendingCallWatcher*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQVirtualKeyboardAbstractInputMethod(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -156,16 +128,6 @@ void* QVirtualKeyboardAbstractInputMethod_NewQVirtualKeyboardAbstractInputMethod
 	} else {
 		return new MyQVirtualKeyboardAbstractInputMethod(static_cast<QObject*>(parent));
 	}
-}
-
-void* QVirtualKeyboardAbstractInputMethod_TraceBegin(void* ptr, int traceId, long long patternRecognitionMode, void* traceCaptureDeviceInfo, void* traceScreenInfo)
-{
-	return static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->traceBegin(traceId, static_cast<QVirtualKeyboardInputEngine::PatternRecognitionMode>(patternRecognitionMode), ({ QMap<QString, QVariant>* tmpP = static_cast<QMap<QString, QVariant>*>(traceCaptureDeviceInfo); QMap<QString, QVariant> tmpV = *tmpP; tmpP->~QMap(); free(tmpP); tmpV; }), ({ QMap<QString, QVariant>* tmpP = static_cast<QMap<QString, QVariant>*>(traceScreenInfo); QMap<QString, QVariant> tmpV = *tmpP; tmpP->~QMap(); free(tmpP); tmpV; }));
-}
-
-void* QVirtualKeyboardAbstractInputMethod_TraceBeginDefault(void* ptr, int traceId, long long patternRecognitionMode, void* traceCaptureDeviceInfo, void* traceScreenInfo)
-{
-		return static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->QVirtualKeyboardAbstractInputMethod::traceBegin(traceId, static_cast<QVirtualKeyboardInputEngine::PatternRecognitionMode>(patternRecognitionMode), ({ QMap<QString, QVariant>* tmpP = static_cast<QMap<QString, QVariant>*>(traceCaptureDeviceInfo); QMap<QString, QVariant> tmpV = *tmpP; tmpP->~QMap(); free(tmpP); tmpV; }), ({ QMap<QString, QVariant>* tmpP = static_cast<QMap<QString, QVariant>*>(traceScreenInfo); QMap<QString, QVariant> tmpV = *tmpP; tmpP->~QMap(); free(tmpP); tmpV; }));
 }
 
 char QVirtualKeyboardAbstractInputMethod_ClickPreeditText(void* ptr, int cursorPosition)
@@ -178,49 +140,44 @@ char QVirtualKeyboardAbstractInputMethod_ClickPreeditTextDefault(void* ptr, int 
 		return static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->QVirtualKeyboardAbstractInputMethod::clickPreeditText(cursorPosition);
 }
 
+void* QVirtualKeyboardAbstractInputMethod_InputContext(void* ptr)
+{
+	return static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->inputContext();
+}
+
+void* QVirtualKeyboardAbstractInputMethod_InputEngine(void* ptr)
+{
+	return static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->inputEngine();
+}
+
+struct QtVirtualKeyboard_PackedList QVirtualKeyboardAbstractInputMethod_InputModes(void* ptr, struct QtVirtualKeyboard_PackedString locale)
+{
+	return ({ QList<QVirtualKeyboardInputEngine::InputMode>* tmpValue = new QList<QVirtualKeyboardInputEngine::InputMode>(static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->inputModes(QString::fromUtf8(locale.data, locale.len))); QtVirtualKeyboard_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 char QVirtualKeyboardAbstractInputMethod_KeyEvent(void* ptr, long long key, struct QtVirtualKeyboard_PackedString text, long long modifiers)
 {
 	return static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->keyEvent(static_cast<Qt::Key>(key), QString::fromUtf8(text.data, text.len), static_cast<Qt::KeyboardModifier>(modifiers));
 }
 
-char QVirtualKeyboardAbstractInputMethod_SelectionListRemoveItem(void* ptr, long long ty, int index)
+struct QtVirtualKeyboard_PackedList QVirtualKeyboardAbstractInputMethod_PatternRecognitionModes(void* ptr)
 {
-	return static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->selectionListRemoveItem(static_cast<QVirtualKeyboardSelectionListModel::Type>(ty), index);
+	return ({ QList<QVirtualKeyboardInputEngine::PatternRecognitionMode>* tmpValue = new QList<QVirtualKeyboardInputEngine::PatternRecognitionMode>(static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->patternRecognitionModes()); QtVirtualKeyboard_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-char QVirtualKeyboardAbstractInputMethod_SelectionListRemoveItemDefault(void* ptr, long long ty, int index)
+struct QtVirtualKeyboard_PackedList QVirtualKeyboardAbstractInputMethod_PatternRecognitionModesDefault(void* ptr)
 {
-		return static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->QVirtualKeyboardAbstractInputMethod::selectionListRemoveItem(static_cast<QVirtualKeyboardSelectionListModel::Type>(ty), index);
+		return ({ QList<QVirtualKeyboardInputEngine::PatternRecognitionMode>* tmpValue = new QList<QVirtualKeyboardInputEngine::PatternRecognitionMode>(static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->QVirtualKeyboardAbstractInputMethod::patternRecognitionModes()); QtVirtualKeyboard_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-char QVirtualKeyboardAbstractInputMethod_SetInputMode(void* ptr, struct QtVirtualKeyboard_PackedString locale, long long inputMode)
+char QVirtualKeyboardAbstractInputMethod_Reselect(void* ptr, int cursorPosition, long long reselectFlags)
 {
-	return static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->setInputMode(QString::fromUtf8(locale.data, locale.len), static_cast<QVirtualKeyboardInputEngine::InputMode>(inputMode));
+	return static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->reselect(cursorPosition, static_cast<QVirtualKeyboardInputEngine::ReselectFlag>(reselectFlags));
 }
 
-char QVirtualKeyboardAbstractInputMethod_SetTextCase(void* ptr, long long textCase)
+char QVirtualKeyboardAbstractInputMethod_ReselectDefault(void* ptr, int cursorPosition, long long reselectFlags)
 {
-	return static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->setTextCase(static_cast<QVirtualKeyboardInputEngine::TextCase>(textCase));
-}
-
-char QVirtualKeyboardAbstractInputMethod_TraceEnd(void* ptr, void* trace)
-{
-	return static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->traceEnd(static_cast<QVirtualKeyboardTrace*>(trace));
-}
-
-char QVirtualKeyboardAbstractInputMethod_TraceEndDefault(void* ptr, void* trace)
-{
-		return static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->QVirtualKeyboardAbstractInputMethod::traceEnd(static_cast<QVirtualKeyboardTrace*>(trace));
-}
-
-int QVirtualKeyboardAbstractInputMethod_SelectionListItemCount(void* ptr, long long ty)
-{
-	return static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->selectionListItemCount(static_cast<QVirtualKeyboardSelectionListModel::Type>(ty));
-}
-
-int QVirtualKeyboardAbstractInputMethod_SelectionListItemCountDefault(void* ptr, long long ty)
-{
-		return static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->QVirtualKeyboardAbstractInputMethod::selectionListItemCount(static_cast<QVirtualKeyboardSelectionListModel::Type>(ty));
+		return static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->QVirtualKeyboardAbstractInputMethod::reselect(cursorPosition, static_cast<QVirtualKeyboardInputEngine::ReselectFlag>(reselectFlags));
 }
 
 void QVirtualKeyboardAbstractInputMethod_Reset(void* ptr)
@@ -265,6 +222,26 @@ void QVirtualKeyboardAbstractInputMethod_SelectionListChanged(void* ptr, long lo
 	static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->selectionListChanged(static_cast<QVirtualKeyboardSelectionListModel::Type>(ty));
 }
 
+void* QVirtualKeyboardAbstractInputMethod_SelectionListData(void* ptr, long long ty, int index, long long role)
+{
+	return new QVariant(static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->selectionListData(static_cast<QVirtualKeyboardSelectionListModel::Type>(ty), index, static_cast<QVirtualKeyboardSelectionListModel::Role>(role)));
+}
+
+void* QVirtualKeyboardAbstractInputMethod_SelectionListDataDefault(void* ptr, long long ty, int index, long long role)
+{
+		return new QVariant(static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->QVirtualKeyboardAbstractInputMethod::selectionListData(static_cast<QVirtualKeyboardSelectionListModel::Type>(ty), index, static_cast<QVirtualKeyboardSelectionListModel::Role>(role)));
+}
+
+int QVirtualKeyboardAbstractInputMethod_SelectionListItemCount(void* ptr, long long ty)
+{
+	return static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->selectionListItemCount(static_cast<QVirtualKeyboardSelectionListModel::Type>(ty));
+}
+
+int QVirtualKeyboardAbstractInputMethod_SelectionListItemCountDefault(void* ptr, long long ty)
+{
+		return static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->QVirtualKeyboardAbstractInputMethod::selectionListItemCount(static_cast<QVirtualKeyboardSelectionListModel::Type>(ty));
+}
+
 void QVirtualKeyboardAbstractInputMethod_SelectionListItemSelected(void* ptr, long long ty, int index)
 {
 	static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->selectionListItemSelected(static_cast<QVirtualKeyboardSelectionListModel::Type>(ty), index);
@@ -273,6 +250,26 @@ void QVirtualKeyboardAbstractInputMethod_SelectionListItemSelected(void* ptr, lo
 void QVirtualKeyboardAbstractInputMethod_SelectionListItemSelectedDefault(void* ptr, long long ty, int index)
 {
 		static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->QVirtualKeyboardAbstractInputMethod::selectionListItemSelected(static_cast<QVirtualKeyboardSelectionListModel::Type>(ty), index);
+}
+
+char QVirtualKeyboardAbstractInputMethod_SelectionListRemoveItem(void* ptr, long long ty, int index)
+{
+	return static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->selectionListRemoveItem(static_cast<QVirtualKeyboardSelectionListModel::Type>(ty), index);
+}
+
+char QVirtualKeyboardAbstractInputMethod_SelectionListRemoveItemDefault(void* ptr, long long ty, int index)
+{
+		return static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->QVirtualKeyboardAbstractInputMethod::selectionListRemoveItem(static_cast<QVirtualKeyboardSelectionListModel::Type>(ty), index);
+}
+
+struct QtVirtualKeyboard_PackedList QVirtualKeyboardAbstractInputMethod_SelectionLists(void* ptr)
+{
+	return ({ QList<QVirtualKeyboardSelectionListModel::Type>* tmpValue = new QList<QVirtualKeyboardSelectionListModel::Type>(static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->selectionLists()); QtVirtualKeyboard_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtVirtualKeyboard_PackedList QVirtualKeyboardAbstractInputMethod_SelectionListsDefault(void* ptr)
+{
+		return ({ QList<QVirtualKeyboardSelectionListModel::Type>* tmpValue = new QList<QVirtualKeyboardSelectionListModel::Type>(static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->QVirtualKeyboardAbstractInputMethod::selectionLists()); QtVirtualKeyboard_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 void QVirtualKeyboardAbstractInputMethod_ConnectSelectionListsChanged(void* ptr)
@@ -288,6 +285,36 @@ void QVirtualKeyboardAbstractInputMethod_DisconnectSelectionListsChanged(void* p
 void QVirtualKeyboardAbstractInputMethod_SelectionListsChanged(void* ptr)
 {
 	static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->selectionListsChanged();
+}
+
+char QVirtualKeyboardAbstractInputMethod_SetInputMode(void* ptr, struct QtVirtualKeyboard_PackedString locale, long long inputMode)
+{
+	return static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->setInputMode(QString::fromUtf8(locale.data, locale.len), static_cast<QVirtualKeyboardInputEngine::InputMode>(inputMode));
+}
+
+char QVirtualKeyboardAbstractInputMethod_SetTextCase(void* ptr, long long textCase)
+{
+	return static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->setTextCase(static_cast<QVirtualKeyboardInputEngine::TextCase>(textCase));
+}
+
+void* QVirtualKeyboardAbstractInputMethod_TraceBegin(void* ptr, int traceId, long long patternRecognitionMode, void* traceCaptureDeviceInfo, void* traceScreenInfo)
+{
+	return static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->traceBegin(traceId, static_cast<QVirtualKeyboardInputEngine::PatternRecognitionMode>(patternRecognitionMode), ({ QMap<QString, QVariant>* tmpP = static_cast<QMap<QString, QVariant>*>(traceCaptureDeviceInfo); QMap<QString, QVariant> tmpV = *tmpP; tmpP->~QMap(); free(tmpP); tmpV; }), ({ QMap<QString, QVariant>* tmpP = static_cast<QMap<QString, QVariant>*>(traceScreenInfo); QMap<QString, QVariant> tmpV = *tmpP; tmpP->~QMap(); free(tmpP); tmpV; }));
+}
+
+void* QVirtualKeyboardAbstractInputMethod_TraceBeginDefault(void* ptr, int traceId, long long patternRecognitionMode, void* traceCaptureDeviceInfo, void* traceScreenInfo)
+{
+		return static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->QVirtualKeyboardAbstractInputMethod::traceBegin(traceId, static_cast<QVirtualKeyboardInputEngine::PatternRecognitionMode>(patternRecognitionMode), ({ QMap<QString, QVariant>* tmpP = static_cast<QMap<QString, QVariant>*>(traceCaptureDeviceInfo); QMap<QString, QVariant> tmpV = *tmpP; tmpP->~QMap(); free(tmpP); tmpV; }), ({ QMap<QString, QVariant>* tmpP = static_cast<QMap<QString, QVariant>*>(traceScreenInfo); QMap<QString, QVariant> tmpV = *tmpP; tmpP->~QMap(); free(tmpP); tmpV; }));
+}
+
+char QVirtualKeyboardAbstractInputMethod_TraceEnd(void* ptr, void* trace)
+{
+	return static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->traceEnd(static_cast<QVirtualKeyboardTrace*>(trace));
+}
+
+char QVirtualKeyboardAbstractInputMethod_TraceEndDefault(void* ptr, void* trace)
+{
+		return static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->QVirtualKeyboardAbstractInputMethod::traceEnd(static_cast<QVirtualKeyboardTrace*>(trace));
 }
 
 void QVirtualKeyboardAbstractInputMethod_Update(void* ptr)
@@ -311,31 +338,6 @@ void QVirtualKeyboardAbstractInputMethod_DestroyQVirtualKeyboardAbstractInputMet
 
 }
 
-struct QtVirtualKeyboard_PackedList QVirtualKeyboardAbstractInputMethod_PatternRecognitionModes(void* ptr)
-{
-	return ({ QList<QVirtualKeyboardInputEngine::PatternRecognitionMode>* tmpValue = new QList<QVirtualKeyboardInputEngine::PatternRecognitionMode>(static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->patternRecognitionModes()); QtVirtualKeyboard_PackedList { tmpValue, tmpValue->size() }; });
-}
-
-struct QtVirtualKeyboard_PackedList QVirtualKeyboardAbstractInputMethod_PatternRecognitionModesDefault(void* ptr)
-{
-		return ({ QList<QVirtualKeyboardInputEngine::PatternRecognitionMode>* tmpValue = new QList<QVirtualKeyboardInputEngine::PatternRecognitionMode>(static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->QVirtualKeyboardAbstractInputMethod::patternRecognitionModes()); QtVirtualKeyboard_PackedList { tmpValue, tmpValue->size() }; });
-}
-
-void* QVirtualKeyboardAbstractInputMethod_InputContext(void* ptr)
-{
-	return static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->inputContext();
-}
-
-void* QVirtualKeyboardAbstractInputMethod_InputEngine(void* ptr)
-{
-	return static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->inputEngine();
-}
-
-void* QVirtualKeyboardAbstractInputMethod_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->QVirtualKeyboardAbstractInputMethod::metaObject());
-}
-
 long long QVirtualKeyboardAbstractInputMethod___inputModes_atList(void* ptr, int i)
 {
 	return static_cast<qint64>(({QVirtualKeyboardInputEngine::InputMode tmp = static_cast<QList<QVirtualKeyboardInputEngine::InputMode>*>(ptr)->at(i); if (i == static_cast<QList<QVirtualKeyboardInputEngine::InputMode>*>(ptr)->size()-1) { static_cast<QList<QVirtualKeyboardInputEngine::InputMode>*>(ptr)->~QList(); free(ptr); }; tmp; }));
@@ -350,6 +352,22 @@ void* QVirtualKeyboardAbstractInputMethod___inputModes_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QVirtualKeyboardInputEngine::InputMode>();
+}
+
+long long QVirtualKeyboardAbstractInputMethod___patternRecognitionModes_atList(void* ptr, int i)
+{
+	return static_cast<qint64>(({QVirtualKeyboardInputEngine::PatternRecognitionMode tmp = static_cast<QList<QVirtualKeyboardInputEngine::PatternRecognitionMode>*>(ptr)->at(i); if (i == static_cast<QList<QVirtualKeyboardInputEngine::PatternRecognitionMode>*>(ptr)->size()-1) { static_cast<QList<QVirtualKeyboardInputEngine::PatternRecognitionMode>*>(ptr)->~QList(); free(ptr); }; tmp; }));
+}
+
+void QVirtualKeyboardAbstractInputMethod___patternRecognitionModes_setList(void* ptr, long long i)
+{
+	static_cast<QList<QVirtualKeyboardInputEngine::PatternRecognitionMode>*>(ptr)->append(static_cast<QVirtualKeyboardInputEngine::PatternRecognitionMode>(i));
+}
+
+void* QVirtualKeyboardAbstractInputMethod___patternRecognitionModes_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QVirtualKeyboardInputEngine::PatternRecognitionMode>();
 }
 
 long long QVirtualKeyboardAbstractInputMethod___selectionLists_atList(void* ptr, int i)
@@ -410,22 +428,6 @@ struct QtVirtualKeyboard_PackedList QVirtualKeyboardAbstractInputMethod___traceB
 	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QVariant>*>(ptr)->keys()); QtVirtualKeyboard_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-long long QVirtualKeyboardAbstractInputMethod___patternRecognitionModes_atList(void* ptr, int i)
-{
-	return static_cast<qint64>(({QVirtualKeyboardInputEngine::PatternRecognitionMode tmp = static_cast<QList<QVirtualKeyboardInputEngine::PatternRecognitionMode>*>(ptr)->at(i); if (i == static_cast<QList<QVirtualKeyboardInputEngine::PatternRecognitionMode>*>(ptr)->size()-1) { static_cast<QList<QVirtualKeyboardInputEngine::PatternRecognitionMode>*>(ptr)->~QList(); free(ptr); }; tmp; }));
-}
-
-void QVirtualKeyboardAbstractInputMethod___patternRecognitionModes_setList(void* ptr, long long i)
-{
-	static_cast<QList<QVirtualKeyboardInputEngine::PatternRecognitionMode>*>(ptr)->append(static_cast<QVirtualKeyboardInputEngine::PatternRecognitionMode>(i));
-}
-
-void* QVirtualKeyboardAbstractInputMethod___patternRecognitionModes_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QVirtualKeyboardInputEngine::PatternRecognitionMode>();
-}
-
 struct QtVirtualKeyboard_PackedString QVirtualKeyboardAbstractInputMethod_____traceBegin_traceCaptureDeviceInfo_keyList_atList(void* ptr, int i)
 {
 	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtVirtualKeyboard_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
@@ -458,6 +460,22 @@ void* QVirtualKeyboardAbstractInputMethod_____traceBegin_traceScreenInfo_keyList
 	return new QList<QString>();
 }
 
+void* QVirtualKeyboardAbstractInputMethod___children_atList(void* ptr, int i)
+{
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void QVirtualKeyboardAbstractInputMethod___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QVirtualKeyboardAbstractInputMethod___children_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject *>();
+}
+
 void* QVirtualKeyboardAbstractInputMethod___dynamicPropertyNames_atList(void* ptr, int i)
 {
 	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(ptr)->at(i); if (i == static_cast<QList<QByteArray>*>(ptr)->size()-1) { static_cast<QList<QByteArray>*>(ptr)->~QList(); free(ptr); }; tmp; }));
@@ -474,17 +492,17 @@ void* QVirtualKeyboardAbstractInputMethod___dynamicPropertyNames_newList(void* p
 	return new QList<QByteArray>();
 }
 
-void* QVirtualKeyboardAbstractInputMethod___findChildren_atList2(void* ptr, int i)
+void* QVirtualKeyboardAbstractInputMethod___findChildren_atList(void* ptr, int i)
 {
 	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QVirtualKeyboardAbstractInputMethod___findChildren_setList2(void* ptr, void* i)
+void QVirtualKeyboardAbstractInputMethod___findChildren_setList(void* ptr, void* i)
 {
 	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
-void* QVirtualKeyboardAbstractInputMethod___findChildren_newList2(void* ptr)
+void* QVirtualKeyboardAbstractInputMethod___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();
@@ -506,46 +524,20 @@ void* QVirtualKeyboardAbstractInputMethod___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QVirtualKeyboardAbstractInputMethod___findChildren_atList(void* ptr, int i)
+void* QVirtualKeyboardAbstractInputMethod___qFindChildren_atList2(void* ptr, int i)
 {
 	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QVirtualKeyboardAbstractInputMethod___findChildren_setList(void* ptr, void* i)
+void QVirtualKeyboardAbstractInputMethod___qFindChildren_setList2(void* ptr, void* i)
 {
 	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
-void* QVirtualKeyboardAbstractInputMethod___findChildren_newList(void* ptr)
+void* QVirtualKeyboardAbstractInputMethod___qFindChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();
-}
-
-void* QVirtualKeyboardAbstractInputMethod___children_atList(void* ptr, int i)
-{
-	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QVirtualKeyboardAbstractInputMethod___children_setList(void* ptr, void* i)
-{
-	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QVirtualKeyboardAbstractInputMethod___children_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject *>();
-}
-
-char QVirtualKeyboardAbstractInputMethod_EventDefault(void* ptr, void* e)
-{
-		return static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->QVirtualKeyboardAbstractInputMethod::event(static_cast<QEvent*>(e));
-}
-
-char QVirtualKeyboardAbstractInputMethod_EventFilterDefault(void* ptr, void* watched, void* event)
-{
-		return static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->QVirtualKeyboardAbstractInputMethod::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
 void QVirtualKeyboardAbstractInputMethod_ChildEventDefault(void* ptr, void* event)
@@ -573,6 +565,16 @@ void QVirtualKeyboardAbstractInputMethod_DisconnectNotifyDefault(void* ptr, void
 		static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->QVirtualKeyboardAbstractInputMethod::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
+char QVirtualKeyboardAbstractInputMethod_EventDefault(void* ptr, void* e)
+{
+		return static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->QVirtualKeyboardAbstractInputMethod::event(static_cast<QEvent*>(e));
+}
+
+char QVirtualKeyboardAbstractInputMethod_EventFilterDefault(void* ptr, void* watched, void* event)
+{
+		return static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->QVirtualKeyboardAbstractInputMethod::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
 void QVirtualKeyboardAbstractInputMethod_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->QVirtualKeyboardAbstractInputMethod::timerEvent(static_cast<QTimerEvent*>(event));
@@ -581,17 +583,15 @@ void QVirtualKeyboardAbstractInputMethod_TimerEventDefault(void* ptr, void* even
 class MyQVirtualKeyboardExtensionPlugin: public QVirtualKeyboardExtensionPlugin
 {
 public:
-	 ~MyQVirtualKeyboardExtensionPlugin() { callbackQVirtualKeyboardExtensionPlugin_DestroyQVirtualKeyboardExtensionPlugin(this); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQVirtualKeyboardExtensionPlugin_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void registerTypes(const char * uri) const { QtVirtualKeyboard_PackedString uriPacked = { const_cast<char*>(uri), -1 };callbackQVirtualKeyboardExtensionPlugin_RegisterTypes(const_cast<void*>(static_cast<const void*>(this)), uriPacked); };
-	bool event(QEvent * e) { return callbackQVirtualKeyboardExtensionPlugin_Event(this, e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQVirtualKeyboardExtensionPlugin_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQVirtualKeyboardExtensionPlugin_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQVirtualKeyboardExtensionPlugin_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQVirtualKeyboardExtensionPlugin_CustomEvent(this, event); };
 	void deleteLater() { callbackQVirtualKeyboardExtensionPlugin_DeleteLater(this); };
 	void Signal_Destroyed(QObject * obj) { callbackQVirtualKeyboardExtensionPlugin_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQVirtualKeyboardExtensionPlugin_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQVirtualKeyboardExtensionPlugin_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQVirtualKeyboardExtensionPlugin_EventFilter(this, watched, event) != 0; };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtVirtualKeyboard_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQVirtualKeyboardExtensionPlugin_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQVirtualKeyboardExtensionPlugin_TimerEvent(this, event); };
 };
@@ -599,27 +599,6 @@ public:
 Q_DECLARE_METATYPE(MyQVirtualKeyboardExtensionPlugin*)
 
 int QVirtualKeyboardExtensionPlugin_QVirtualKeyboardExtensionPlugin_QRegisterMetaType(){qRegisterMetaType<QVirtualKeyboardExtensionPlugin*>(); return qRegisterMetaType<MyQVirtualKeyboardExtensionPlugin*>();}
-
-struct QtVirtualKeyboard_PackedString QVirtualKeyboardExtensionPlugin_QVirtualKeyboardExtensionPlugin_Tr(char* s, char* c, int n)
-{
-	return ({ QByteArray t89bf28 = QVirtualKeyboardExtensionPlugin::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtVirtualKeyboard_PackedString { const_cast<char*>(t89bf28.prepend("WHITESPACE").constData()+10), t89bf28.size()-10 }; });
-}
-
-void QVirtualKeyboardExtensionPlugin_DestroyQVirtualKeyboardExtensionPlugin(void* ptr)
-{
-	static_cast<QVirtualKeyboardExtensionPlugin*>(ptr)->~QVirtualKeyboardExtensionPlugin();
-}
-
-void QVirtualKeyboardExtensionPlugin_DestroyQVirtualKeyboardExtensionPluginDefault(void* ptr)
-{
-	Q_UNUSED(ptr);
-
-}
-
-void* QVirtualKeyboardExtensionPlugin_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QVirtualKeyboardExtensionPlugin*>(ptr)->QVirtualKeyboardExtensionPlugin::metaObject());
-}
 
 void QVirtualKeyboardExtensionPlugin_RegisterTypes(void* ptr, char* uri)
 {
@@ -629,6 +608,22 @@ void QVirtualKeyboardExtensionPlugin_RegisterTypes(void* ptr, char* uri)
 void QVirtualKeyboardExtensionPlugin_RegisterTypesDefault(void* ptr, char* uri)
 {
 		static_cast<QVirtualKeyboardExtensionPlugin*>(ptr)->QVirtualKeyboardExtensionPlugin::registerTypes(const_cast<const char*>(uri));
+}
+
+void* QVirtualKeyboardExtensionPlugin___children_atList(void* ptr, int i)
+{
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void QVirtualKeyboardExtensionPlugin___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QVirtualKeyboardExtensionPlugin___children_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject *>();
 }
 
 void* QVirtualKeyboardExtensionPlugin___dynamicPropertyNames_atList(void* ptr, int i)
@@ -647,17 +642,17 @@ void* QVirtualKeyboardExtensionPlugin___dynamicPropertyNames_newList(void* ptr)
 	return new QList<QByteArray>();
 }
 
-void* QVirtualKeyboardExtensionPlugin___findChildren_atList2(void* ptr, int i)
+void* QVirtualKeyboardExtensionPlugin___findChildren_atList(void* ptr, int i)
 {
 	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QVirtualKeyboardExtensionPlugin___findChildren_setList2(void* ptr, void* i)
+void QVirtualKeyboardExtensionPlugin___findChildren_setList(void* ptr, void* i)
 {
 	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
-void* QVirtualKeyboardExtensionPlugin___findChildren_newList2(void* ptr)
+void* QVirtualKeyboardExtensionPlugin___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();
@@ -679,46 +674,20 @@ void* QVirtualKeyboardExtensionPlugin___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QVirtualKeyboardExtensionPlugin___findChildren_atList(void* ptr, int i)
+void* QVirtualKeyboardExtensionPlugin___qFindChildren_atList2(void* ptr, int i)
 {
 	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QVirtualKeyboardExtensionPlugin___findChildren_setList(void* ptr, void* i)
+void QVirtualKeyboardExtensionPlugin___qFindChildren_setList2(void* ptr, void* i)
 {
 	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
-void* QVirtualKeyboardExtensionPlugin___findChildren_newList(void* ptr)
+void* QVirtualKeyboardExtensionPlugin___qFindChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();
-}
-
-void* QVirtualKeyboardExtensionPlugin___children_atList(void* ptr, int i)
-{
-	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QVirtualKeyboardExtensionPlugin___children_setList(void* ptr, void* i)
-{
-	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QVirtualKeyboardExtensionPlugin___children_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject *>();
-}
-
-char QVirtualKeyboardExtensionPlugin_EventDefault(void* ptr, void* e)
-{
-		return static_cast<QVirtualKeyboardExtensionPlugin*>(ptr)->QVirtualKeyboardExtensionPlugin::event(static_cast<QEvent*>(e));
-}
-
-char QVirtualKeyboardExtensionPlugin_EventFilterDefault(void* ptr, void* watched, void* event)
-{
-		return static_cast<QVirtualKeyboardExtensionPlugin*>(ptr)->QVirtualKeyboardExtensionPlugin::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
 void QVirtualKeyboardExtensionPlugin_ChildEventDefault(void* ptr, void* event)
@@ -746,6 +715,16 @@ void QVirtualKeyboardExtensionPlugin_DisconnectNotifyDefault(void* ptr, void* si
 		static_cast<QVirtualKeyboardExtensionPlugin*>(ptr)->QVirtualKeyboardExtensionPlugin::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
+char QVirtualKeyboardExtensionPlugin_EventDefault(void* ptr, void* e)
+{
+		return static_cast<QVirtualKeyboardExtensionPlugin*>(ptr)->QVirtualKeyboardExtensionPlugin::event(static_cast<QEvent*>(e));
+}
+
+char QVirtualKeyboardExtensionPlugin_EventFilterDefault(void* ptr, void* watched, void* event)
+{
+		return static_cast<QVirtualKeyboardExtensionPlugin*>(ptr)->QVirtualKeyboardExtensionPlugin::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
 void QVirtualKeyboardExtensionPlugin_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QVirtualKeyboardExtensionPlugin*>(ptr)->QVirtualKeyboardExtensionPlugin::timerEvent(static_cast<QTimerEvent*>(event));
@@ -762,6 +741,7 @@ public:
 	void Signal_CursorPositionChanged() { callbackQVirtualKeyboardInputContext_CursorPositionChanged(this); };
 	void Signal_CursorRectIntersectsClipRectChanged() { callbackQVirtualKeyboardInputContext_CursorRectIntersectsClipRectChanged(this); };
 	void Signal_CursorRectangleChanged() { callbackQVirtualKeyboardInputContext_CursorRectangleChanged(this); };
+	void Signal_InputItemChanged() { callbackQVirtualKeyboardInputContext_InputItemChanged(this); };
 	void Signal_InputMethodHintsChanged() { callbackQVirtualKeyboardInputContext_InputMethodHintsChanged(this); };
 	void Signal_LocaleChanged() { callbackQVirtualKeyboardInputContext_LocaleChanged(this); };
 	void Signal_PreeditTextChanged() { callbackQVirtualKeyboardInputContext_PreeditTextChanged(this); };
@@ -770,15 +750,14 @@ public:
 	void Signal_ShiftActiveChanged() { callbackQVirtualKeyboardInputContext_ShiftActiveChanged(this); };
 	void Signal_SurroundingTextChanged() { callbackQVirtualKeyboardInputContext_SurroundingTextChanged(this); };
 	void Signal_UppercaseChanged() { callbackQVirtualKeyboardInputContext_UppercaseChanged(this); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQVirtualKeyboardInputContext_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	bool event(QEvent * e) { return callbackQVirtualKeyboardInputContext_Event(this, e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQVirtualKeyboardInputContext_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQVirtualKeyboardInputContext_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQVirtualKeyboardInputContext_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQVirtualKeyboardInputContext_CustomEvent(this, event); };
 	void deleteLater() { callbackQVirtualKeyboardInputContext_DeleteLater(this); };
 	void Signal_Destroyed(QObject * obj) { callbackQVirtualKeyboardInputContext_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQVirtualKeyboardInputContext_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQVirtualKeyboardInputContext_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQVirtualKeyboardInputContext_EventFilter(this, watched, event) != 0; };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtVirtualKeyboard_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQVirtualKeyboardInputContext_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQVirtualKeyboardInputContext_TimerEvent(this, event); };
 };
@@ -787,9 +766,9 @@ Q_DECLARE_METATYPE(MyQVirtualKeyboardInputContext*)
 
 int QVirtualKeyboardInputContext_QVirtualKeyboardInputContext_QRegisterMetaType(){qRegisterMetaType<QVirtualKeyboardInputContext*>(); return qRegisterMetaType<MyQVirtualKeyboardInputContext*>();}
 
-struct QtVirtualKeyboard_PackedString QVirtualKeyboardInputContext_QVirtualKeyboardInputContext_Tr(char* s, char* c, int n)
+int QVirtualKeyboardInputContext_AnchorPosition(void* ptr)
 {
-	return ({ QByteArray t206ce1 = QVirtualKeyboardInputContext::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtVirtualKeyboard_PackedString { const_cast<char*>(t206ce1.prepend("WHITESPACE").constData()+10), t206ce1.size()-10 }; });
+	return static_cast<QVirtualKeyboardInputContext*>(ptr)->anchorPosition();
 }
 
 void QVirtualKeyboardInputContext_ConnectAnchorPositionChanged(void* ptr)
@@ -807,6 +786,11 @@ void QVirtualKeyboardInputContext_AnchorPositionChanged(void* ptr)
 	static_cast<QVirtualKeyboardInputContext*>(ptr)->anchorPositionChanged();
 }
 
+char QVirtualKeyboardInputContext_AnchorRectIntersectsClipRect(void* ptr)
+{
+	return static_cast<QVirtualKeyboardInputContext*>(ptr)->anchorRectIntersectsClipRect();
+}
+
 void QVirtualKeyboardInputContext_ConnectAnchorRectIntersectsClipRectChanged(void* ptr)
 {
 	QObject::connect(static_cast<QVirtualKeyboardInputContext*>(ptr), static_cast<void (QVirtualKeyboardInputContext::*)()>(&QVirtualKeyboardInputContext::anchorRectIntersectsClipRectChanged), static_cast<MyQVirtualKeyboardInputContext*>(ptr), static_cast<void (MyQVirtualKeyboardInputContext::*)()>(&MyQVirtualKeyboardInputContext::Signal_AnchorRectIntersectsClipRectChanged));
@@ -820,6 +804,11 @@ void QVirtualKeyboardInputContext_DisconnectAnchorRectIntersectsClipRectChanged(
 void QVirtualKeyboardInputContext_AnchorRectIntersectsClipRectChanged(void* ptr)
 {
 	static_cast<QVirtualKeyboardInputContext*>(ptr)->anchorRectIntersectsClipRectChanged();
+}
+
+void* QVirtualKeyboardInputContext_AnchorRectangle(void* ptr)
+{
+	return ({ QRectF tmpValue = static_cast<QVirtualKeyboardInputContext*>(ptr)->anchorRectangle(); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
 void QVirtualKeyboardInputContext_ConnectAnchorRectangleChanged(void* ptr)
@@ -882,6 +871,11 @@ void QVirtualKeyboardInputContext_Commit2(void* ptr, struct QtVirtualKeyboard_Pa
 	static_cast<QVirtualKeyboardInputContext*>(ptr)->commit(QString::fromUtf8(text.data, text.len), replaceFrom, replaceLength);
 }
 
+int QVirtualKeyboardInputContext_CursorPosition(void* ptr)
+{
+	return static_cast<QVirtualKeyboardInputContext*>(ptr)->cursorPosition();
+}
+
 void QVirtualKeyboardInputContext_ConnectCursorPositionChanged(void* ptr)
 {
 	QObject::connect(static_cast<QVirtualKeyboardInputContext*>(ptr), static_cast<void (QVirtualKeyboardInputContext::*)()>(&QVirtualKeyboardInputContext::cursorPositionChanged), static_cast<MyQVirtualKeyboardInputContext*>(ptr), static_cast<void (MyQVirtualKeyboardInputContext::*)()>(&MyQVirtualKeyboardInputContext::Signal_CursorPositionChanged));
@@ -895,6 +889,11 @@ void QVirtualKeyboardInputContext_DisconnectCursorPositionChanged(void* ptr)
 void QVirtualKeyboardInputContext_CursorPositionChanged(void* ptr)
 {
 	static_cast<QVirtualKeyboardInputContext*>(ptr)->cursorPositionChanged();
+}
+
+char QVirtualKeyboardInputContext_CursorRectIntersectsClipRect(void* ptr)
+{
+	return static_cast<QVirtualKeyboardInputContext*>(ptr)->cursorRectIntersectsClipRect();
 }
 
 void QVirtualKeyboardInputContext_ConnectCursorRectIntersectsClipRectChanged(void* ptr)
@@ -912,6 +911,11 @@ void QVirtualKeyboardInputContext_CursorRectIntersectsClipRectChanged(void* ptr)
 	static_cast<QVirtualKeyboardInputContext*>(ptr)->cursorRectIntersectsClipRectChanged();
 }
 
+void* QVirtualKeyboardInputContext_CursorRectangle(void* ptr)
+{
+	return ({ QRectF tmpValue = static_cast<QVirtualKeyboardInputContext*>(ptr)->cursorRectangle(); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
+}
+
 void QVirtualKeyboardInputContext_ConnectCursorRectangleChanged(void* ptr)
 {
 	QObject::connect(static_cast<QVirtualKeyboardInputContext*>(ptr), static_cast<void (QVirtualKeyboardInputContext::*)()>(&QVirtualKeyboardInputContext::cursorRectangleChanged), static_cast<MyQVirtualKeyboardInputContext*>(ptr), static_cast<void (MyQVirtualKeyboardInputContext::*)()>(&MyQVirtualKeyboardInputContext::Signal_CursorRectangleChanged));
@@ -925,6 +929,36 @@ void QVirtualKeyboardInputContext_DisconnectCursorRectangleChanged(void* ptr)
 void QVirtualKeyboardInputContext_CursorRectangleChanged(void* ptr)
 {
 	static_cast<QVirtualKeyboardInputContext*>(ptr)->cursorRectangleChanged();
+}
+
+void* QVirtualKeyboardInputContext_InputEngine(void* ptr)
+{
+	return static_cast<QVirtualKeyboardInputContext*>(ptr)->inputEngine();
+}
+
+void* QVirtualKeyboardInputContext_InputItem(void* ptr)
+{
+	return static_cast<QVirtualKeyboardInputContext*>(ptr)->inputItem();
+}
+
+void QVirtualKeyboardInputContext_ConnectInputItemChanged(void* ptr)
+{
+	QObject::connect(static_cast<QVirtualKeyboardInputContext*>(ptr), static_cast<void (QVirtualKeyboardInputContext::*)()>(&QVirtualKeyboardInputContext::inputItemChanged), static_cast<MyQVirtualKeyboardInputContext*>(ptr), static_cast<void (MyQVirtualKeyboardInputContext::*)()>(&MyQVirtualKeyboardInputContext::Signal_InputItemChanged));
+}
+
+void QVirtualKeyboardInputContext_DisconnectInputItemChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QVirtualKeyboardInputContext*>(ptr), static_cast<void (QVirtualKeyboardInputContext::*)()>(&QVirtualKeyboardInputContext::inputItemChanged), static_cast<MyQVirtualKeyboardInputContext*>(ptr), static_cast<void (MyQVirtualKeyboardInputContext::*)()>(&MyQVirtualKeyboardInputContext::Signal_InputItemChanged));
+}
+
+void QVirtualKeyboardInputContext_InputItemChanged(void* ptr)
+{
+	static_cast<QVirtualKeyboardInputContext*>(ptr)->inputItemChanged();
+}
+
+long long QVirtualKeyboardInputContext_InputMethodHints(void* ptr)
+{
+	return static_cast<qint64>(static_cast<QVirtualKeyboardInputContext*>(ptr)->inputMethodHints());
 }
 
 void QVirtualKeyboardInputContext_ConnectInputMethodHintsChanged(void* ptr)
@@ -942,6 +976,36 @@ void QVirtualKeyboardInputContext_InputMethodHintsChanged(void* ptr)
 	static_cast<QVirtualKeyboardInputContext*>(ptr)->inputMethodHintsChanged();
 }
 
+char QVirtualKeyboardInputContext_IsAnimating(void* ptr)
+{
+	return static_cast<QVirtualKeyboardInputContext*>(ptr)->isAnimating();
+}
+
+char QVirtualKeyboardInputContext_IsCapsLockActive(void* ptr)
+{
+	return static_cast<QVirtualKeyboardInputContext*>(ptr)->isCapsLockActive();
+}
+
+char QVirtualKeyboardInputContext_IsSelectionControlVisible(void* ptr)
+{
+	return static_cast<QVirtualKeyboardInputContext*>(ptr)->isSelectionControlVisible();
+}
+
+char QVirtualKeyboardInputContext_IsShiftActive(void* ptr)
+{
+	return static_cast<QVirtualKeyboardInputContext*>(ptr)->isShiftActive();
+}
+
+char QVirtualKeyboardInputContext_IsUppercase(void* ptr)
+{
+	return static_cast<QVirtualKeyboardInputContext*>(ptr)->isUppercase();
+}
+
+struct QtVirtualKeyboard_PackedString QVirtualKeyboardInputContext_Locale(void* ptr)
+{
+	return ({ QByteArray tb5677a = static_cast<QVirtualKeyboardInputContext*>(ptr)->locale().toUtf8(); QtVirtualKeyboard_PackedString { const_cast<char*>(tb5677a.prepend("WHITESPACE").constData()+10), tb5677a.size()-10 }; });
+}
+
 void QVirtualKeyboardInputContext_ConnectLocaleChanged(void* ptr)
 {
 	QObject::connect(static_cast<QVirtualKeyboardInputContext*>(ptr), static_cast<void (QVirtualKeyboardInputContext::*)()>(&QVirtualKeyboardInputContext::localeChanged), static_cast<MyQVirtualKeyboardInputContext*>(ptr), static_cast<void (MyQVirtualKeyboardInputContext::*)()>(&MyQVirtualKeyboardInputContext::Signal_LocaleChanged));
@@ -957,6 +1021,11 @@ void QVirtualKeyboardInputContext_LocaleChanged(void* ptr)
 	static_cast<QVirtualKeyboardInputContext*>(ptr)->localeChanged();
 }
 
+struct QtVirtualKeyboard_PackedString QVirtualKeyboardInputContext_PreeditText(void* ptr)
+{
+	return ({ QByteArray t2c7998 = static_cast<QVirtualKeyboardInputContext*>(ptr)->preeditText().toUtf8(); QtVirtualKeyboard_PackedString { const_cast<char*>(t2c7998.prepend("WHITESPACE").constData()+10), t2c7998.size()-10 }; });
+}
+
 void QVirtualKeyboardInputContext_ConnectPreeditTextChanged(void* ptr)
 {
 	QObject::connect(static_cast<QVirtualKeyboardInputContext*>(ptr), static_cast<void (QVirtualKeyboardInputContext::*)()>(&QVirtualKeyboardInputContext::preeditTextChanged), static_cast<MyQVirtualKeyboardInputContext*>(ptr), static_cast<void (MyQVirtualKeyboardInputContext::*)()>(&MyQVirtualKeyboardInputContext::Signal_PreeditTextChanged));
@@ -970,6 +1039,11 @@ void QVirtualKeyboardInputContext_DisconnectPreeditTextChanged(void* ptr)
 void QVirtualKeyboardInputContext_PreeditTextChanged(void* ptr)
 {
 	static_cast<QVirtualKeyboardInputContext*>(ptr)->preeditTextChanged();
+}
+
+struct QtVirtualKeyboard_PackedString QVirtualKeyboardInputContext_SelectedText(void* ptr)
+{
+	return ({ QByteArray tafca69 = static_cast<QVirtualKeyboardInputContext*>(ptr)->selectedText().toUtf8(); QtVirtualKeyboard_PackedString { const_cast<char*>(tafca69.prepend("WHITESPACE").constData()+10), tafca69.size()-10 }; });
 }
 
 void QVirtualKeyboardInputContext_ConnectSelectedTextChanged(void* ptr)
@@ -1027,6 +1101,11 @@ void QVirtualKeyboardInputContext_ShiftActiveChanged(void* ptr)
 	static_cast<QVirtualKeyboardInputContext*>(ptr)->shiftActiveChanged();
 }
 
+struct QtVirtualKeyboard_PackedString QVirtualKeyboardInputContext_SurroundingText(void* ptr)
+{
+	return ({ QByteArray t710186 = static_cast<QVirtualKeyboardInputContext*>(ptr)->surroundingText().toUtf8(); QtVirtualKeyboard_PackedString { const_cast<char*>(t710186.prepend("WHITESPACE").constData()+10), t710186.size()-10 }; });
+}
+
 void QVirtualKeyboardInputContext_ConnectSurroundingTextChanged(void* ptr)
 {
 	QObject::connect(static_cast<QVirtualKeyboardInputContext*>(ptr), static_cast<void (QVirtualKeyboardInputContext::*)()>(&QVirtualKeyboardInputContext::surroundingTextChanged), static_cast<MyQVirtualKeyboardInputContext*>(ptr), static_cast<void (MyQVirtualKeyboardInputContext::*)()>(&MyQVirtualKeyboardInputContext::Signal_SurroundingTextChanged));
@@ -1057,94 +1136,10 @@ void QVirtualKeyboardInputContext_UppercaseChanged(void* ptr)
 	static_cast<QVirtualKeyboardInputContext*>(ptr)->uppercaseChanged();
 }
 
-void* QVirtualKeyboardInputContext_AnchorRectangle(void* ptr)
+void* QVirtualKeyboardInputContext___preeditTextAttributes_newList(void* ptr)
 {
-	return ({ QRectF tmpValue = static_cast<QVirtualKeyboardInputContext*>(ptr)->anchorRectangle(); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
-}
-
-void* QVirtualKeyboardInputContext_CursorRectangle(void* ptr)
-{
-	return ({ QRectF tmpValue = static_cast<QVirtualKeyboardInputContext*>(ptr)->cursorRectangle(); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
-}
-
-struct QtVirtualKeyboard_PackedString QVirtualKeyboardInputContext_Locale(void* ptr)
-{
-	return ({ QByteArray tb5677a = static_cast<QVirtualKeyboardInputContext*>(ptr)->locale().toUtf8(); QtVirtualKeyboard_PackedString { const_cast<char*>(tb5677a.prepend("WHITESPACE").constData()+10), tb5677a.size()-10 }; });
-}
-
-struct QtVirtualKeyboard_PackedString QVirtualKeyboardInputContext_PreeditText(void* ptr)
-{
-	return ({ QByteArray t2c7998 = static_cast<QVirtualKeyboardInputContext*>(ptr)->preeditText().toUtf8(); QtVirtualKeyboard_PackedString { const_cast<char*>(t2c7998.prepend("WHITESPACE").constData()+10), t2c7998.size()-10 }; });
-}
-
-struct QtVirtualKeyboard_PackedString QVirtualKeyboardInputContext_SelectedText(void* ptr)
-{
-	return ({ QByteArray tafca69 = static_cast<QVirtualKeyboardInputContext*>(ptr)->selectedText().toUtf8(); QtVirtualKeyboard_PackedString { const_cast<char*>(tafca69.prepend("WHITESPACE").constData()+10), tafca69.size()-10 }; });
-}
-
-struct QtVirtualKeyboard_PackedString QVirtualKeyboardInputContext_SurroundingText(void* ptr)
-{
-	return ({ QByteArray t710186 = static_cast<QVirtualKeyboardInputContext*>(ptr)->surroundingText().toUtf8(); QtVirtualKeyboard_PackedString { const_cast<char*>(t710186.prepend("WHITESPACE").constData()+10), t710186.size()-10 }; });
-}
-
-void* QVirtualKeyboardInputContext_InputEngine(void* ptr)
-{
-	return static_cast<QVirtualKeyboardInputContext*>(ptr)->inputEngine();
-}
-
-long long QVirtualKeyboardInputContext_InputMethodHints(void* ptr)
-{
-	return static_cast<qint64>(static_cast<QVirtualKeyboardInputContext*>(ptr)->inputMethodHints());
-}
-
-char QVirtualKeyboardInputContext_AnchorRectIntersectsClipRect(void* ptr)
-{
-	return static_cast<QVirtualKeyboardInputContext*>(ptr)->anchorRectIntersectsClipRect();
-}
-
-char QVirtualKeyboardInputContext_CursorRectIntersectsClipRect(void* ptr)
-{
-	return static_cast<QVirtualKeyboardInputContext*>(ptr)->cursorRectIntersectsClipRect();
-}
-
-char QVirtualKeyboardInputContext_IsAnimating(void* ptr)
-{
-	return static_cast<QVirtualKeyboardInputContext*>(ptr)->isAnimating();
-}
-
-char QVirtualKeyboardInputContext_IsCapsLockActive(void* ptr)
-{
-	return static_cast<QVirtualKeyboardInputContext*>(ptr)->isCapsLockActive();
-}
-
-char QVirtualKeyboardInputContext_IsSelectionControlVisible(void* ptr)
-{
-	return static_cast<QVirtualKeyboardInputContext*>(ptr)->isSelectionControlVisible();
-}
-
-char QVirtualKeyboardInputContext_IsShiftActive(void* ptr)
-{
-	return static_cast<QVirtualKeyboardInputContext*>(ptr)->isShiftActive();
-}
-
-char QVirtualKeyboardInputContext_IsUppercase(void* ptr)
-{
-	return static_cast<QVirtualKeyboardInputContext*>(ptr)->isUppercase();
-}
-
-void* QVirtualKeyboardInputContext_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QVirtualKeyboardInputContext*>(ptr)->QVirtualKeyboardInputContext::metaObject());
-}
-
-int QVirtualKeyboardInputContext_AnchorPosition(void* ptr)
-{
-	return static_cast<QVirtualKeyboardInputContext*>(ptr)->anchorPosition();
-}
-
-int QVirtualKeyboardInputContext_CursorPosition(void* ptr)
-{
-	return static_cast<QVirtualKeyboardInputContext*>(ptr)->cursorPosition();
+	Q_UNUSED(ptr);
+	return new QList<QInputMethodEvent::Attribute>();
 }
 
 void* QVirtualKeyboardInputContext___setPreeditText_attributes_newList(void* ptr)
@@ -1153,10 +1148,20 @@ void* QVirtualKeyboardInputContext___setPreeditText_attributes_newList(void* ptr
 	return new QList<QInputMethodEvent::Attribute>();
 }
 
-void* QVirtualKeyboardInputContext___preeditTextAttributes_newList(void* ptr)
+void* QVirtualKeyboardInputContext___children_atList(void* ptr, int i)
+{
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void QVirtualKeyboardInputContext___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QVirtualKeyboardInputContext___children_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QInputMethodEvent::Attribute>();
+	return new QList<QObject *>();
 }
 
 void* QVirtualKeyboardInputContext___dynamicPropertyNames_atList(void* ptr, int i)
@@ -1175,17 +1180,17 @@ void* QVirtualKeyboardInputContext___dynamicPropertyNames_newList(void* ptr)
 	return new QList<QByteArray>();
 }
 
-void* QVirtualKeyboardInputContext___findChildren_atList2(void* ptr, int i)
+void* QVirtualKeyboardInputContext___findChildren_atList(void* ptr, int i)
 {
 	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QVirtualKeyboardInputContext___findChildren_setList2(void* ptr, void* i)
+void QVirtualKeyboardInputContext___findChildren_setList(void* ptr, void* i)
 {
 	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
-void* QVirtualKeyboardInputContext___findChildren_newList2(void* ptr)
+void* QVirtualKeyboardInputContext___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();
@@ -1207,46 +1212,20 @@ void* QVirtualKeyboardInputContext___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QVirtualKeyboardInputContext___findChildren_atList(void* ptr, int i)
+void* QVirtualKeyboardInputContext___qFindChildren_atList2(void* ptr, int i)
 {
 	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QVirtualKeyboardInputContext___findChildren_setList(void* ptr, void* i)
+void QVirtualKeyboardInputContext___qFindChildren_setList2(void* ptr, void* i)
 {
 	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
-void* QVirtualKeyboardInputContext___findChildren_newList(void* ptr)
+void* QVirtualKeyboardInputContext___qFindChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();
-}
-
-void* QVirtualKeyboardInputContext___children_atList(void* ptr, int i)
-{
-	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QVirtualKeyboardInputContext___children_setList(void* ptr, void* i)
-{
-	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QVirtualKeyboardInputContext___children_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject *>();
-}
-
-char QVirtualKeyboardInputContext_EventDefault(void* ptr, void* e)
-{
-		return static_cast<QVirtualKeyboardInputContext*>(ptr)->QVirtualKeyboardInputContext::event(static_cast<QEvent*>(e));
-}
-
-char QVirtualKeyboardInputContext_EventFilterDefault(void* ptr, void* watched, void* event)
-{
-		return static_cast<QVirtualKeyboardInputContext*>(ptr)->QVirtualKeyboardInputContext::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
 void QVirtualKeyboardInputContext_ChildEventDefault(void* ptr, void* event)
@@ -1274,6 +1253,16 @@ void QVirtualKeyboardInputContext_DisconnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QVirtualKeyboardInputContext*>(ptr)->QVirtualKeyboardInputContext::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
+char QVirtualKeyboardInputContext_EventDefault(void* ptr, void* e)
+{
+		return static_cast<QVirtualKeyboardInputContext*>(ptr)->QVirtualKeyboardInputContext::event(static_cast<QEvent*>(e));
+}
+
+char QVirtualKeyboardInputContext_EventFilterDefault(void* ptr, void* watched, void* event)
+{
+		return static_cast<QVirtualKeyboardInputContext*>(ptr)->QVirtualKeyboardInputContext::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
 void QVirtualKeyboardInputContext_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QVirtualKeyboardInputContext*>(ptr)->QVirtualKeyboardInputContext::timerEvent(static_cast<QTimerEvent*>(event));
@@ -1293,15 +1282,14 @@ public:
 	void Signal_VirtualKeyClicked(Qt::Key key, const QString & text, Qt::KeyboardModifiers modifiers, bool isAutoRepeat) { QByteArray t372ea0 = text.toUtf8(); QtVirtualKeyboard_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQVirtualKeyboardInputEngine_VirtualKeyClicked(this, static_cast<qint64>(key), textPacked, static_cast<qint64>(modifiers), isAutoRepeat); };
 	void Signal_WordCandidateListModelChanged() { callbackQVirtualKeyboardInputEngine_WordCandidateListModelChanged(this); };
 	void Signal_WordCandidateListVisibleHintChanged() { callbackQVirtualKeyboardInputEngine_WordCandidateListVisibleHintChanged(this); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQVirtualKeyboardInputEngine_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	bool event(QEvent * e) { return callbackQVirtualKeyboardInputEngine_Event(this, e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQVirtualKeyboardInputEngine_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQVirtualKeyboardInputEngine_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQVirtualKeyboardInputEngine_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQVirtualKeyboardInputEngine_CustomEvent(this, event); };
 	void deleteLater() { callbackQVirtualKeyboardInputEngine_DeleteLater(this); };
 	void Signal_Destroyed(QObject * obj) { callbackQVirtualKeyboardInputEngine_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQVirtualKeyboardInputEngine_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQVirtualKeyboardInputEngine_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQVirtualKeyboardInputEngine_EventFilter(this, watched, event) != 0; };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtVirtualKeyboard_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQVirtualKeyboardInputEngine_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQVirtualKeyboardInputEngine_TimerEvent(this, event); };
 };
@@ -1310,34 +1298,9 @@ Q_DECLARE_METATYPE(MyQVirtualKeyboardInputEngine*)
 
 int QVirtualKeyboardInputEngine_QVirtualKeyboardInputEngine_QRegisterMetaType(){qRegisterMetaType<QVirtualKeyboardInputEngine*>(); return qRegisterMetaType<MyQVirtualKeyboardInputEngine*>();}
 
-struct QtVirtualKeyboard_PackedString QVirtualKeyboardInputEngine_QVirtualKeyboardInputEngine_Tr(char* s, char* c, int n)
+long long QVirtualKeyboardInputEngine_ActiveKey(void* ptr)
 {
-	return ({ QByteArray tfca3e4 = QVirtualKeyboardInputEngine::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtVirtualKeyboard_PackedString { const_cast<char*>(tfca3e4.prepend("WHITESPACE").constData()+10), tfca3e4.size()-10 }; });
-}
-
-void* QVirtualKeyboardInputEngine_TraceBegin(void* ptr, int traceId, long long patternRecognitionMode, void* traceCaptureDeviceInfo, void* traceScreenInfo)
-{
-	return static_cast<QVirtualKeyboardInputEngine*>(ptr)->traceBegin(traceId, static_cast<QVirtualKeyboardInputEngine::PatternRecognitionMode>(patternRecognitionMode), ({ QMap<QString, QVariant>* tmpP = static_cast<QMap<QString, QVariant>*>(traceCaptureDeviceInfo); QMap<QString, QVariant> tmpV = *tmpP; tmpP->~QMap(); free(tmpP); tmpV; }), ({ QMap<QString, QVariant>* tmpP = static_cast<QMap<QString, QVariant>*>(traceScreenInfo); QMap<QString, QVariant> tmpV = *tmpP; tmpP->~QMap(); free(tmpP); tmpV; }));
-}
-
-char QVirtualKeyboardInputEngine_TraceEnd(void* ptr, void* trace)
-{
-	return static_cast<QVirtualKeyboardInputEngine*>(ptr)->traceEnd(static_cast<QVirtualKeyboardTrace*>(trace));
-}
-
-char QVirtualKeyboardInputEngine_VirtualKeyClick(void* ptr, long long key, struct QtVirtualKeyboard_PackedString text, long long modifiers)
-{
-	return static_cast<QVirtualKeyboardInputEngine*>(ptr)->virtualKeyClick(static_cast<Qt::Key>(key), QString::fromUtf8(text.data, text.len), static_cast<Qt::KeyboardModifier>(modifiers));
-}
-
-char QVirtualKeyboardInputEngine_VirtualKeyPress(void* ptr, long long key, struct QtVirtualKeyboard_PackedString text, long long modifiers, char repeat)
-{
-	return static_cast<QVirtualKeyboardInputEngine*>(ptr)->virtualKeyPress(static_cast<Qt::Key>(key), QString::fromUtf8(text.data, text.len), static_cast<Qt::KeyboardModifier>(modifiers), repeat != 0);
-}
-
-char QVirtualKeyboardInputEngine_VirtualKeyRelease(void* ptr, long long key, struct QtVirtualKeyboard_PackedString text, long long modifiers)
-{
-	return static_cast<QVirtualKeyboardInputEngine*>(ptr)->virtualKeyRelease(static_cast<Qt::Key>(key), QString::fromUtf8(text.data, text.len), static_cast<Qt::KeyboardModifier>(modifiers));
+	return static_cast<qint64>(static_cast<QVirtualKeyboardInputEngine*>(ptr)->activeKey());
 }
 
 void QVirtualKeyboardInputEngine_ConnectActiveKeyChanged(void* ptr)
@@ -1354,6 +1317,16 @@ void QVirtualKeyboardInputEngine_DisconnectActiveKeyChanged(void* ptr)
 void QVirtualKeyboardInputEngine_ActiveKeyChanged(void* ptr, long long key)
 {
 	static_cast<QVirtualKeyboardInputEngine*>(ptr)->activeKeyChanged(static_cast<Qt::Key>(key));
+}
+
+void* QVirtualKeyboardInputEngine_InputContext(void* ptr)
+{
+	return static_cast<QVirtualKeyboardInputEngine*>(ptr)->inputContext();
+}
+
+void* QVirtualKeyboardInputEngine_InputMethod(void* ptr)
+{
+	return static_cast<QVirtualKeyboardInputEngine*>(ptr)->inputMethod();
 }
 
 void QVirtualKeyboardInputEngine_ConnectInputMethodChanged(void* ptr)
@@ -1401,6 +1374,11 @@ void QVirtualKeyboardInputEngine_InputMethodUpdate(void* ptr)
 	static_cast<QVirtualKeyboardInputEngine*>(ptr)->inputMethodUpdate();
 }
 
+long long QVirtualKeyboardInputEngine_InputMode(void* ptr)
+{
+	return static_cast<qint64>(static_cast<QVirtualKeyboardInputEngine*>(ptr)->inputMode());
+}
+
 void QVirtualKeyboardInputEngine_ConnectInputModeChanged(void* ptr)
 {
 	QObject::connect(static_cast<QVirtualKeyboardInputEngine*>(ptr), static_cast<void (QVirtualKeyboardInputEngine::*)()>(&QVirtualKeyboardInputEngine::inputModeChanged), static_cast<MyQVirtualKeyboardInputEngine*>(ptr), static_cast<void (MyQVirtualKeyboardInputEngine::*)()>(&MyQVirtualKeyboardInputEngine::Signal_InputModeChanged));
@@ -1414,6 +1392,11 @@ void QVirtualKeyboardInputEngine_DisconnectInputModeChanged(void* ptr)
 void QVirtualKeyboardInputEngine_InputModeChanged(void* ptr)
 {
 	static_cast<QVirtualKeyboardInputEngine*>(ptr)->inputModeChanged();
+}
+
+struct QtVirtualKeyboard_PackedList QVirtualKeyboardInputEngine_InputModes(void* ptr)
+{
+	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QVirtualKeyboardInputEngine*>(ptr)->inputModes()); QtVirtualKeyboard_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 void QVirtualKeyboardInputEngine_ConnectInputModesChanged(void* ptr)
@@ -1431,6 +1414,11 @@ void QVirtualKeyboardInputEngine_InputModesChanged(void* ptr)
 	static_cast<QVirtualKeyboardInputEngine*>(ptr)->inputModesChanged();
 }
 
+struct QtVirtualKeyboard_PackedList QVirtualKeyboardInputEngine_PatternRecognitionModes(void* ptr)
+{
+	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QVirtualKeyboardInputEngine*>(ptr)->patternRecognitionModes()); QtVirtualKeyboard_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QVirtualKeyboardInputEngine_ConnectPatternRecognitionModesChanged(void* ptr)
 {
 	QObject::connect(static_cast<QVirtualKeyboardInputEngine*>(ptr), static_cast<void (QVirtualKeyboardInputEngine::*)()>(&QVirtualKeyboardInputEngine::patternRecognitionModesChanged), static_cast<MyQVirtualKeyboardInputEngine*>(ptr), static_cast<void (MyQVirtualKeyboardInputEngine::*)()>(&MyQVirtualKeyboardInputEngine::Signal_PatternRecognitionModesChanged));
@@ -1444,6 +1432,11 @@ void QVirtualKeyboardInputEngine_DisconnectPatternRecognitionModesChanged(void* 
 void QVirtualKeyboardInputEngine_PatternRecognitionModesChanged(void* ptr)
 {
 	static_cast<QVirtualKeyboardInputEngine*>(ptr)->patternRecognitionModesChanged();
+}
+
+long long QVirtualKeyboardInputEngine_PreviousKey(void* ptr)
+{
+	return static_cast<qint64>(static_cast<QVirtualKeyboardInputEngine*>(ptr)->previousKey());
 }
 
 void QVirtualKeyboardInputEngine_ConnectPreviousKeyChanged(void* ptr)
@@ -1462,6 +1455,11 @@ void QVirtualKeyboardInputEngine_PreviousKeyChanged(void* ptr, long long key)
 	static_cast<QVirtualKeyboardInputEngine*>(ptr)->previousKeyChanged(static_cast<Qt::Key>(key));
 }
 
+char QVirtualKeyboardInputEngine_Reselect(void* ptr, int cursorPosition, long long reselectFlags)
+{
+	return static_cast<QVirtualKeyboardInputEngine*>(ptr)->reselect(cursorPosition, static_cast<QVirtualKeyboardInputEngine::ReselectFlag>(reselectFlags));
+}
+
 void QVirtualKeyboardInputEngine_SetInputMethod(void* ptr, void* inputMethod)
 {
 	static_cast<QVirtualKeyboardInputEngine*>(ptr)->setInputMethod(static_cast<QVirtualKeyboardAbstractInputMethod*>(inputMethod));
@@ -1472,9 +1470,24 @@ void QVirtualKeyboardInputEngine_SetInputMode(void* ptr, long long inputMode)
 	static_cast<QVirtualKeyboardInputEngine*>(ptr)->setInputMode(static_cast<QVirtualKeyboardInputEngine::InputMode>(inputMode));
 }
 
+void* QVirtualKeyboardInputEngine_TraceBegin(void* ptr, int traceId, long long patternRecognitionMode, void* traceCaptureDeviceInfo, void* traceScreenInfo)
+{
+	return static_cast<QVirtualKeyboardInputEngine*>(ptr)->traceBegin(traceId, static_cast<QVirtualKeyboardInputEngine::PatternRecognitionMode>(patternRecognitionMode), ({ QMap<QString, QVariant>* tmpP = static_cast<QMap<QString, QVariant>*>(traceCaptureDeviceInfo); QMap<QString, QVariant> tmpV = *tmpP; tmpP->~QMap(); free(tmpP); tmpV; }), ({ QMap<QString, QVariant>* tmpP = static_cast<QMap<QString, QVariant>*>(traceScreenInfo); QMap<QString, QVariant> tmpV = *tmpP; tmpP->~QMap(); free(tmpP); tmpV; }));
+}
+
+char QVirtualKeyboardInputEngine_TraceEnd(void* ptr, void* trace)
+{
+	return static_cast<QVirtualKeyboardInputEngine*>(ptr)->traceEnd(static_cast<QVirtualKeyboardTrace*>(trace));
+}
+
 void QVirtualKeyboardInputEngine_VirtualKeyCancel(void* ptr)
 {
 	static_cast<QVirtualKeyboardInputEngine*>(ptr)->virtualKeyCancel();
+}
+
+char QVirtualKeyboardInputEngine_VirtualKeyClick(void* ptr, long long key, struct QtVirtualKeyboard_PackedString text, long long modifiers)
+{
+	return static_cast<QVirtualKeyboardInputEngine*>(ptr)->virtualKeyClick(static_cast<Qt::Key>(key), QString::fromUtf8(text.data, text.len), static_cast<Qt::KeyboardModifier>(modifiers));
 }
 
 void QVirtualKeyboardInputEngine_ConnectVirtualKeyClicked(void* ptr)
@@ -1494,6 +1507,21 @@ void QVirtualKeyboardInputEngine_VirtualKeyClicked(void* ptr, long long key, str
 	static_cast<QVirtualKeyboardInputEngine*>(ptr)->virtualKeyClicked(static_cast<Qt::Key>(key), QString::fromUtf8(text.data, text.len), static_cast<Qt::KeyboardModifier>(modifiers), isAutoRepeat != 0);
 }
 
+char QVirtualKeyboardInputEngine_VirtualKeyPress(void* ptr, long long key, struct QtVirtualKeyboard_PackedString text, long long modifiers, char repeat)
+{
+	return static_cast<QVirtualKeyboardInputEngine*>(ptr)->virtualKeyPress(static_cast<Qt::Key>(key), QString::fromUtf8(text.data, text.len), static_cast<Qt::KeyboardModifier>(modifiers), repeat != 0);
+}
+
+char QVirtualKeyboardInputEngine_VirtualKeyRelease(void* ptr, long long key, struct QtVirtualKeyboard_PackedString text, long long modifiers)
+{
+	return static_cast<QVirtualKeyboardInputEngine*>(ptr)->virtualKeyRelease(static_cast<Qt::Key>(key), QString::fromUtf8(text.data, text.len), static_cast<Qt::KeyboardModifier>(modifiers));
+}
+
+void* QVirtualKeyboardInputEngine_WordCandidateListModel(void* ptr)
+{
+	return static_cast<QVirtualKeyboardInputEngine*>(ptr)->wordCandidateListModel();
+}
+
 void QVirtualKeyboardInputEngine_ConnectWordCandidateListModelChanged(void* ptr)
 {
 	QObject::connect(static_cast<QVirtualKeyboardInputEngine*>(ptr), static_cast<void (QVirtualKeyboardInputEngine::*)()>(&QVirtualKeyboardInputEngine::wordCandidateListModelChanged), static_cast<MyQVirtualKeyboardInputEngine*>(ptr), static_cast<void (MyQVirtualKeyboardInputEngine::*)()>(&MyQVirtualKeyboardInputEngine::Signal_WordCandidateListModelChanged));
@@ -1507,6 +1535,11 @@ void QVirtualKeyboardInputEngine_DisconnectWordCandidateListModelChanged(void* p
 void QVirtualKeyboardInputEngine_WordCandidateListModelChanged(void* ptr)
 {
 	static_cast<QVirtualKeyboardInputEngine*>(ptr)->wordCandidateListModelChanged();
+}
+
+char QVirtualKeyboardInputEngine_WordCandidateListVisibleHint(void* ptr)
+{
+	return static_cast<QVirtualKeyboardInputEngine*>(ptr)->wordCandidateListVisibleHint();
 }
 
 void QVirtualKeyboardInputEngine_ConnectWordCandidateListVisibleHintChanged(void* ptr)
@@ -1524,54 +1557,36 @@ void QVirtualKeyboardInputEngine_WordCandidateListVisibleHintChanged(void* ptr)
 	static_cast<QVirtualKeyboardInputEngine*>(ptr)->wordCandidateListVisibleHintChanged();
 }
 
-struct QtVirtualKeyboard_PackedList QVirtualKeyboardInputEngine_InputModes(void* ptr)
+int QVirtualKeyboardInputEngine___inputModes_atList(void* ptr, int i)
 {
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QVirtualKeyboardInputEngine*>(ptr)->inputModes()); QtVirtualKeyboard_PackedList { tmpValue, tmpValue->size() }; });
+	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-struct QtVirtualKeyboard_PackedList QVirtualKeyboardInputEngine_PatternRecognitionModes(void* ptr)
+void QVirtualKeyboardInputEngine___inputModes_setList(void* ptr, int i)
 {
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QVirtualKeyboardInputEngine*>(ptr)->patternRecognitionModes()); QtVirtualKeyboard_PackedList { tmpValue, tmpValue->size() }; });
+	static_cast<QList<int>*>(ptr)->append(i);
 }
 
-void* QVirtualKeyboardInputEngine_InputMethod(void* ptr)
+void* QVirtualKeyboardInputEngine___inputModes_newList(void* ptr)
 {
-	return static_cast<QVirtualKeyboardInputEngine*>(ptr)->inputMethod();
+	Q_UNUSED(ptr);
+	return new QList<int>();
 }
 
-void* QVirtualKeyboardInputEngine_InputContext(void* ptr)
+int QVirtualKeyboardInputEngine___patternRecognitionModes_atList(void* ptr, int i)
 {
-	return static_cast<QVirtualKeyboardInputEngine*>(ptr)->inputContext();
+	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-long long QVirtualKeyboardInputEngine_InputMode(void* ptr)
+void QVirtualKeyboardInputEngine___patternRecognitionModes_setList(void* ptr, int i)
 {
-	return static_cast<qint64>(static_cast<QVirtualKeyboardInputEngine*>(ptr)->inputMode());
+	static_cast<QList<int>*>(ptr)->append(i);
 }
 
-void* QVirtualKeyboardInputEngine_WordCandidateListModel(void* ptr)
+void* QVirtualKeyboardInputEngine___patternRecognitionModes_newList(void* ptr)
 {
-	return static_cast<QVirtualKeyboardInputEngine*>(ptr)->wordCandidateListModel();
-}
-
-long long QVirtualKeyboardInputEngine_ActiveKey(void* ptr)
-{
-	return static_cast<qint64>(static_cast<QVirtualKeyboardInputEngine*>(ptr)->activeKey());
-}
-
-long long QVirtualKeyboardInputEngine_PreviousKey(void* ptr)
-{
-	return static_cast<qint64>(static_cast<QVirtualKeyboardInputEngine*>(ptr)->previousKey());
-}
-
-char QVirtualKeyboardInputEngine_WordCandidateListVisibleHint(void* ptr)
-{
-	return static_cast<QVirtualKeyboardInputEngine*>(ptr)->wordCandidateListVisibleHint();
-}
-
-void* QVirtualKeyboardInputEngine_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QVirtualKeyboardInputEngine*>(ptr)->QVirtualKeyboardInputEngine::metaObject());
+	Q_UNUSED(ptr);
+	return new QList<int>();
 }
 
 void* QVirtualKeyboardInputEngine___traceBegin_traceCaptureDeviceInfo_atList(void* ptr, struct QtVirtualKeyboard_PackedString v, int i)
@@ -1616,38 +1631,6 @@ struct QtVirtualKeyboard_PackedList QVirtualKeyboardInputEngine___traceBegin_tra
 	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QVariant>*>(ptr)->keys()); QtVirtualKeyboard_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-int QVirtualKeyboardInputEngine___inputModes_atList(void* ptr, int i)
-{
-	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QVirtualKeyboardInputEngine___inputModes_setList(void* ptr, int i)
-{
-	static_cast<QList<int>*>(ptr)->append(i);
-}
-
-void* QVirtualKeyboardInputEngine___inputModes_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<int>();
-}
-
-int QVirtualKeyboardInputEngine___patternRecognitionModes_atList(void* ptr, int i)
-{
-	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QVirtualKeyboardInputEngine___patternRecognitionModes_setList(void* ptr, int i)
-{
-	static_cast<QList<int>*>(ptr)->append(i);
-}
-
-void* QVirtualKeyboardInputEngine___patternRecognitionModes_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<int>();
-}
-
 struct QtVirtualKeyboard_PackedString QVirtualKeyboardInputEngine_____traceBegin_traceCaptureDeviceInfo_keyList_atList(void* ptr, int i)
 {
 	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtVirtualKeyboard_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
@@ -1680,6 +1663,22 @@ void* QVirtualKeyboardInputEngine_____traceBegin_traceScreenInfo_keyList_newList
 	return new QList<QString>();
 }
 
+void* QVirtualKeyboardInputEngine___children_atList(void* ptr, int i)
+{
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void QVirtualKeyboardInputEngine___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QVirtualKeyboardInputEngine___children_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject *>();
+}
+
 void* QVirtualKeyboardInputEngine___dynamicPropertyNames_atList(void* ptr, int i)
 {
 	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(ptr)->at(i); if (i == static_cast<QList<QByteArray>*>(ptr)->size()-1) { static_cast<QList<QByteArray>*>(ptr)->~QList(); free(ptr); }; tmp; }));
@@ -1696,17 +1695,17 @@ void* QVirtualKeyboardInputEngine___dynamicPropertyNames_newList(void* ptr)
 	return new QList<QByteArray>();
 }
 
-void* QVirtualKeyboardInputEngine___findChildren_atList2(void* ptr, int i)
+void* QVirtualKeyboardInputEngine___findChildren_atList(void* ptr, int i)
 {
 	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QVirtualKeyboardInputEngine___findChildren_setList2(void* ptr, void* i)
+void QVirtualKeyboardInputEngine___findChildren_setList(void* ptr, void* i)
 {
 	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
-void* QVirtualKeyboardInputEngine___findChildren_newList2(void* ptr)
+void* QVirtualKeyboardInputEngine___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();
@@ -1728,46 +1727,20 @@ void* QVirtualKeyboardInputEngine___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QVirtualKeyboardInputEngine___findChildren_atList(void* ptr, int i)
+void* QVirtualKeyboardInputEngine___qFindChildren_atList2(void* ptr, int i)
 {
 	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QVirtualKeyboardInputEngine___findChildren_setList(void* ptr, void* i)
+void QVirtualKeyboardInputEngine___qFindChildren_setList2(void* ptr, void* i)
 {
 	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
-void* QVirtualKeyboardInputEngine___findChildren_newList(void* ptr)
+void* QVirtualKeyboardInputEngine___qFindChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();
-}
-
-void* QVirtualKeyboardInputEngine___children_atList(void* ptr, int i)
-{
-	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QVirtualKeyboardInputEngine___children_setList(void* ptr, void* i)
-{
-	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QVirtualKeyboardInputEngine___children_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject *>();
-}
-
-char QVirtualKeyboardInputEngine_EventDefault(void* ptr, void* e)
-{
-		return static_cast<QVirtualKeyboardInputEngine*>(ptr)->QVirtualKeyboardInputEngine::event(static_cast<QEvent*>(e));
-}
-
-char QVirtualKeyboardInputEngine_EventFilterDefault(void* ptr, void* watched, void* event)
-{
-		return static_cast<QVirtualKeyboardInputEngine*>(ptr)->QVirtualKeyboardInputEngine::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
 void QVirtualKeyboardInputEngine_ChildEventDefault(void* ptr, void* event)
@@ -1795,6 +1768,16 @@ void QVirtualKeyboardInputEngine_DisconnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QVirtualKeyboardInputEngine*>(ptr)->QVirtualKeyboardInputEngine::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
+char QVirtualKeyboardInputEngine_EventDefault(void* ptr, void* e)
+{
+		return static_cast<QVirtualKeyboardInputEngine*>(ptr)->QVirtualKeyboardInputEngine::event(static_cast<QEvent*>(e));
+}
+
+char QVirtualKeyboardInputEngine_EventFilterDefault(void* ptr, void* watched, void* event)
+{
+		return static_cast<QVirtualKeyboardInputEngine*>(ptr)->QVirtualKeyboardInputEngine::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
 void QVirtualKeyboardInputEngine_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QVirtualKeyboardInputEngine*>(ptr)->QVirtualKeyboardInputEngine::timerEvent(static_cast<QTimerEvent*>(event));
@@ -1804,70 +1787,68 @@ class MyQVirtualKeyboardSelectionListModel: public QVirtualKeyboardSelectionList
 {
 public:
 	void Signal_ActiveItemChanged(int index) { callbackQVirtualKeyboardSelectionListModel_ActiveItemChanged(this, index); };
-	void Signal_CountChanged() { callbackQVirtualKeyboardSelectionListModel_CountChanged(this); };
 	void Signal_ItemSelected(int index) { callbackQVirtualKeyboardSelectionListModel_ItemSelected(this, index); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQVirtualKeyboardSelectionListModel_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQVirtualKeyboardSelectionListModel_DropMimeData(this, const_cast<QMimeData*>(data), static_cast<qint64>(action), row, column, const_cast<QModelIndex*>(&parent)) != 0; };
+	Qt::ItemFlags flags(const QModelIndex & index) const { return static_cast<Qt::ItemFlag>(callbackQVirtualKeyboardSelectionListModel_Flags(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
 	QModelIndex index(int row, int column, const QModelIndex & parent) const { return *static_cast<QModelIndex*>(callbackQVirtualKeyboardSelectionListModel_Index(const_cast<void*>(static_cast<const void*>(this)), row, column, const_cast<QModelIndex*>(&parent))); };
 	QModelIndex sibling(int row, int column, const QModelIndex & idx) const { return *static_cast<QModelIndex*>(callbackQVirtualKeyboardSelectionListModel_Sibling(const_cast<void*>(static_cast<const void*>(this)), row, column, const_cast<QModelIndex*>(&idx))); };
-	Qt::ItemFlags flags(const QModelIndex & index) const { return static_cast<Qt::ItemFlag>(callbackQVirtualKeyboardSelectionListModel_Flags(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
-	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQVirtualKeyboardSelectionListModel_InsertColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };
-	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQVirtualKeyboardSelectionListModel_InsertRows(this, row, count, const_cast<QModelIndex*>(&parent)) != 0; };
-	bool moveColumns(const QModelIndex & sourceParent, int sourceColumn, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQVirtualKeyboardSelectionListModel_MoveColumns(this, const_cast<QModelIndex*>(&sourceParent), sourceColumn, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
-	bool moveRows(const QModelIndex & sourceParent, int sourceRow, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQVirtualKeyboardSelectionListModel_MoveRows(this, const_cast<QModelIndex*>(&sourceParent), sourceRow, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
-	bool removeColumns(int column, int count, const QModelIndex & parent) { return callbackQVirtualKeyboardSelectionListModel_RemoveColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };
-	bool removeRows(int row, int count, const QModelIndex & parent) { return callbackQVirtualKeyboardSelectionListModel_RemoveRows(this, row, count, const_cast<QModelIndex*>(&parent)) != 0; };
-	bool setData(const QModelIndex & index, const QVariant & value, int role) { return callbackQVirtualKeyboardSelectionListModel_SetData(this, const_cast<QModelIndex*>(&index), const_cast<QVariant*>(&value), role) != 0; };
-	bool setHeaderData(int section, Qt::Orientation orientation, const QVariant & value, int role) { return callbackQVirtualKeyboardSelectionListModel_SetHeaderData(this, section, static_cast<qint64>(orientation), const_cast<QVariant*>(&value), role) != 0; };
-	bool setItemData(const QModelIndex & index, const QMap<int, QVariant> & roles) { return callbackQVirtualKeyboardSelectionListModel_SetItemData(this, const_cast<QModelIndex*>(&index), ({ QMap<int, QVariant>* tmpValue = new QMap<int, QVariant>(roles); QtVirtualKeyboard_PackedList { tmpValue, tmpValue->size() }; })) != 0; };
-	bool submit() { return callbackQVirtualKeyboardSelectionListModel_Submit(this) != 0; };
+	QModelIndex buddy(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQVirtualKeyboardSelectionListModel_Buddy(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
+	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQVirtualKeyboardSelectionListModel_CanDropMimeData(const_cast<void*>(static_cast<const void*>(this)), const_cast<QMimeData*>(data), static_cast<qint64>(action), row, column, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool canFetchMore(const QModelIndex & parent) const { return callbackQVirtualKeyboardSelectionListModel_CanFetchMore(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&parent)) != 0; };
+	int columnCount(const QModelIndex & parent) const { return callbackQVirtualKeyboardSelectionListModel_ColumnCount(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&parent)); };
 	void Signal_ColumnsAboutToBeInserted(const QModelIndex & parent, int first, int last) { callbackQVirtualKeyboardSelectionListModel_ColumnsAboutToBeInserted(this, const_cast<QModelIndex*>(&parent), first, last); };
 	void Signal_ColumnsAboutToBeMoved(const QModelIndex & sourceParent, int sourceStart, int sourceEnd, const QModelIndex & destinationParent, int destinationColumn) { callbackQVirtualKeyboardSelectionListModel_ColumnsAboutToBeMoved(this, const_cast<QModelIndex*>(&sourceParent), sourceStart, sourceEnd, const_cast<QModelIndex*>(&destinationParent), destinationColumn); };
 	void Signal_ColumnsAboutToBeRemoved(const QModelIndex & parent, int first, int last) { callbackQVirtualKeyboardSelectionListModel_ColumnsAboutToBeRemoved(this, const_cast<QModelIndex*>(&parent), first, last); };
 	void Signal_ColumnsInserted(const QModelIndex & parent, int first, int last) { callbackQVirtualKeyboardSelectionListModel_ColumnsInserted(this, const_cast<QModelIndex*>(&parent), first, last); };
 	void Signal_ColumnsMoved(const QModelIndex & parent, int start, int end, const QModelIndex & destination, int column) { callbackQVirtualKeyboardSelectionListModel_ColumnsMoved(this, const_cast<QModelIndex*>(&parent), start, end, const_cast<QModelIndex*>(&destination), column); };
 	void Signal_ColumnsRemoved(const QModelIndex & parent, int first, int last) { callbackQVirtualKeyboardSelectionListModel_ColumnsRemoved(this, const_cast<QModelIndex*>(&parent), first, last); };
+	QVariant data(const QModelIndex & index, int role) const { return *static_cast<QVariant*>(callbackQVirtualKeyboardSelectionListModel_Data(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index), role)); };
 	void Signal_DataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQVirtualKeyboardSelectionListModel_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = new QVector<int>(roles); QtVirtualKeyboard_PackedList { tmpValue, tmpValue->size() }; })); };
 	void fetchMore(const QModelIndex & parent) { callbackQVirtualKeyboardSelectionListModel_FetchMore(this, const_cast<QModelIndex*>(&parent)); };
+	bool hasChildren(const QModelIndex & parent) const { return callbackQVirtualKeyboardSelectionListModel_HasChildren(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&parent)) != 0; };
+	QVariant headerData(int section, Qt::Orientation orientation, int role) const { return *static_cast<QVariant*>(callbackQVirtualKeyboardSelectionListModel_HeaderData(const_cast<void*>(static_cast<const void*>(this)), section, static_cast<qint64>(orientation), role)); };
 	void Signal_HeaderDataChanged(Qt::Orientation orientation, int first, int last) { callbackQVirtualKeyboardSelectionListModel_HeaderDataChanged(this, static_cast<qint64>(orientation), first, last); };
+	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQVirtualKeyboardSelectionListModel_InsertColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQVirtualKeyboardSelectionListModel_InsertRows(this, row, count, const_cast<QModelIndex*>(&parent)) != 0; };
+	QMap<int, QVariant> itemData(const QModelIndex & index) const { return ({ QMap<int, QVariant>* tmpP = static_cast<QMap<int, QVariant>*>(callbackQVirtualKeyboardSelectionListModel_ItemData(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); QMap<int, QVariant> tmpV = *tmpP; tmpP->~QMap(); free(tmpP); tmpV; }); };
 	void Signal_LayoutAboutToBeChanged(const QList<QPersistentModelIndex> & parents, QAbstractItemModel::LayoutChangeHint hint) { callbackQVirtualKeyboardSelectionListModel_LayoutAboutToBeChanged(this, ({ QList<QPersistentModelIndex>* tmpValue = new QList<QPersistentModelIndex>(parents); QtVirtualKeyboard_PackedList { tmpValue, tmpValue->size() }; }), static_cast<qint64>(hint)); };
 	void Signal_LayoutChanged(const QList<QPersistentModelIndex> & parents, QAbstractItemModel::LayoutChangeHint hint) { callbackQVirtualKeyboardSelectionListModel_LayoutChanged(this, ({ QList<QPersistentModelIndex>* tmpValue = new QList<QPersistentModelIndex>(parents); QtVirtualKeyboard_PackedList { tmpValue, tmpValue->size() }; }), static_cast<qint64>(hint)); };
+	QList<QModelIndex> match(const QModelIndex & start, int role, const QVariant & value, int hits, Qt::MatchFlags flags) const { return ({ QList<QModelIndex>* tmpP = static_cast<QList<QModelIndex>*>(callbackQVirtualKeyboardSelectionListModel_Match(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&start), role, const_cast<QVariant*>(&value), hits, static_cast<qint64>(flags))); QList<QModelIndex> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
+	QMimeData * mimeData(const QModelIndexList & indexes) const { return static_cast<QMimeData*>(callbackQVirtualKeyboardSelectionListModel_MimeData(const_cast<void*>(static_cast<const void*>(this)), ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(indexes); QtVirtualKeyboard_PackedList { tmpValue, tmpValue->size() }; }))); };
+	QStringList mimeTypes() const { return ({ QtVirtualKeyboard_PackedString tempVal = callbackQVirtualKeyboardSelectionListModel_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	void Signal_ModelAboutToBeReset() { callbackQVirtualKeyboardSelectionListModel_ModelAboutToBeReset(this); };
 	void Signal_ModelReset() { callbackQVirtualKeyboardSelectionListModel_ModelReset(this); };
+	bool moveColumns(const QModelIndex & sourceParent, int sourceColumn, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQVirtualKeyboardSelectionListModel_MoveColumns(this, const_cast<QModelIndex*>(&sourceParent), sourceColumn, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
+	bool moveRows(const QModelIndex & sourceParent, int sourceRow, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQVirtualKeyboardSelectionListModel_MoveRows(this, const_cast<QModelIndex*>(&sourceParent), sourceRow, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
+	QModelIndex parent(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQVirtualKeyboardSelectionListModel_Parent(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
+	bool removeColumns(int column, int count, const QModelIndex & parent) { return callbackQVirtualKeyboardSelectionListModel_RemoveColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool removeRows(int row, int count, const QModelIndex & parent) { return callbackQVirtualKeyboardSelectionListModel_RemoveRows(this, row, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	void resetInternalData() { callbackQVirtualKeyboardSelectionListModel_ResetInternalData(this); };
 	void revert() { callbackQVirtualKeyboardSelectionListModel_Revert(this); };
+	QHash<int, QByteArray> roleNames() const { return ({ QHash<int, QByteArray>* tmpP = static_cast<QHash<int, QByteArray>*>(callbackQVirtualKeyboardSelectionListModel_RoleNames(const_cast<void*>(static_cast<const void*>(this)))); QHash<int, QByteArray> tmpV = *tmpP; tmpP->~QHash(); free(tmpP); tmpV; }); };
+	int rowCount(const QModelIndex & parent) const { return callbackQVirtualKeyboardSelectionListModel_RowCount(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&parent)); };
 	void Signal_RowsAboutToBeInserted(const QModelIndex & parent, int start, int end) { callbackQVirtualKeyboardSelectionListModel_RowsAboutToBeInserted(this, const_cast<QModelIndex*>(&parent), start, end); };
 	void Signal_RowsAboutToBeMoved(const QModelIndex & sourceParent, int sourceStart, int sourceEnd, const QModelIndex & destinationParent, int destinationRow) { callbackQVirtualKeyboardSelectionListModel_RowsAboutToBeMoved(this, const_cast<QModelIndex*>(&sourceParent), sourceStart, sourceEnd, const_cast<QModelIndex*>(&destinationParent), destinationRow); };
 	void Signal_RowsAboutToBeRemoved(const QModelIndex & parent, int first, int last) { callbackQVirtualKeyboardSelectionListModel_RowsAboutToBeRemoved(this, const_cast<QModelIndex*>(&parent), first, last); };
 	void Signal_RowsInserted(const QModelIndex & parent, int first, int last) { callbackQVirtualKeyboardSelectionListModel_RowsInserted(this, const_cast<QModelIndex*>(&parent), first, last); };
 	void Signal_RowsMoved(const QModelIndex & parent, int start, int end, const QModelIndex & destination, int row) { callbackQVirtualKeyboardSelectionListModel_RowsMoved(this, const_cast<QModelIndex*>(&parent), start, end, const_cast<QModelIndex*>(&destination), row); };
 	void Signal_RowsRemoved(const QModelIndex & parent, int first, int last) { callbackQVirtualKeyboardSelectionListModel_RowsRemoved(this, const_cast<QModelIndex*>(&parent), first, last); };
+	bool setData(const QModelIndex & index, const QVariant & value, int role) { return callbackQVirtualKeyboardSelectionListModel_SetData(this, const_cast<QModelIndex*>(&index), const_cast<QVariant*>(&value), role) != 0; };
+	bool setHeaderData(int section, Qt::Orientation orientation, const QVariant & value, int role) { return callbackQVirtualKeyboardSelectionListModel_SetHeaderData(this, section, static_cast<qint64>(orientation), const_cast<QVariant*>(&value), role) != 0; };
+	bool setItemData(const QModelIndex & index, const QMap<int, QVariant> & roles) { return callbackQVirtualKeyboardSelectionListModel_SetItemData(this, const_cast<QModelIndex*>(&index), ({ QMap<int, QVariant>* tmpValue = new QMap<int, QVariant>(roles); QtVirtualKeyboard_PackedList { tmpValue, tmpValue->size() }; })) != 0; };
 	void sort(int column, Qt::SortOrder order) { callbackQVirtualKeyboardSelectionListModel_Sort(this, column, static_cast<qint64>(order)); };
-	QHash<int, QByteArray> roleNames() const { return ({ QHash<int, QByteArray>* tmpP = static_cast<QHash<int, QByteArray>*>(callbackQVirtualKeyboardSelectionListModel_RoleNames(const_cast<void*>(static_cast<const void*>(this)))); QHash<int, QByteArray> tmpV = *tmpP; tmpP->~QHash(); free(tmpP); tmpV; }); };
-	QMap<int, QVariant> itemData(const QModelIndex & index) const { return ({ QMap<int, QVariant>* tmpP = static_cast<QMap<int, QVariant>*>(callbackQVirtualKeyboardSelectionListModel_ItemData(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); QMap<int, QVariant> tmpV = *tmpP; tmpP->~QMap(); free(tmpP); tmpV; }); };
-	QMimeData * mimeData(const QModelIndexList & indexes) const { return static_cast<QMimeData*>(callbackQVirtualKeyboardSelectionListModel_MimeData(const_cast<void*>(static_cast<const void*>(this)), ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(indexes); QtVirtualKeyboard_PackedList { tmpValue, tmpValue->size() }; }))); };
-	QModelIndex buddy(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQVirtualKeyboardSelectionListModel_Buddy(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
-	QModelIndex parent(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQVirtualKeyboardSelectionListModel_Parent(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
-	QList<QModelIndex> match(const QModelIndex & start, int role, const QVariant & value, int hits, Qt::MatchFlags flags) const { return ({ QList<QModelIndex>* tmpP = static_cast<QList<QModelIndex>*>(callbackQVirtualKeyboardSelectionListModel_Match(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&start), role, const_cast<QVariant*>(&value), hits, static_cast<qint64>(flags))); QList<QModelIndex> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
 	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQVirtualKeyboardSelectionListModel_Span(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
-	QStringList mimeTypes() const { return ({ QtVirtualKeyboard_PackedString tempVal = callbackQVirtualKeyboardSelectionListModel_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
-	QVariant data(const QModelIndex & index, int role) const { return *static_cast<QVariant*>(callbackQVirtualKeyboardSelectionListModel_Data(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index), role)); };
-	QVariant headerData(int section, Qt::Orientation orientation, int role) const { return *static_cast<QVariant*>(callbackQVirtualKeyboardSelectionListModel_HeaderData(const_cast<void*>(static_cast<const void*>(this)), section, static_cast<qint64>(orientation), role)); };
+	bool submit() { return callbackQVirtualKeyboardSelectionListModel_Submit(this) != 0; };
 	Qt::DropActions supportedDragActions() const { return static_cast<Qt::DropAction>(callbackQVirtualKeyboardSelectionListModel_SupportedDragActions(const_cast<void*>(static_cast<const void*>(this)))); };
 	Qt::DropActions supportedDropActions() const { return static_cast<Qt::DropAction>(callbackQVirtualKeyboardSelectionListModel_SupportedDropActions(const_cast<void*>(static_cast<const void*>(this)))); };
-	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQVirtualKeyboardSelectionListModel_CanDropMimeData(const_cast<void*>(static_cast<const void*>(this)), const_cast<QMimeData*>(data), static_cast<qint64>(action), row, column, const_cast<QModelIndex*>(&parent)) != 0; };
-	bool canFetchMore(const QModelIndex & parent) const { return callbackQVirtualKeyboardSelectionListModel_CanFetchMore(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&parent)) != 0; };
-	bool hasChildren(const QModelIndex & parent) const { return callbackQVirtualKeyboardSelectionListModel_HasChildren(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&parent)) != 0; };
-	int columnCount(const QModelIndex & parent) const { return callbackQVirtualKeyboardSelectionListModel_ColumnCount(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&parent)); };
-	int rowCount(const QModelIndex & parent) const { return callbackQVirtualKeyboardSelectionListModel_RowCount(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&parent)); };
-	bool event(QEvent * e) { return callbackQVirtualKeyboardSelectionListModel_Event(this, e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQVirtualKeyboardSelectionListModel_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQVirtualKeyboardSelectionListModel_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQVirtualKeyboardSelectionListModel_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQVirtualKeyboardSelectionListModel_CustomEvent(this, event); };
 	void deleteLater() { callbackQVirtualKeyboardSelectionListModel_DeleteLater(this); };
 	void Signal_Destroyed(QObject * obj) { callbackQVirtualKeyboardSelectionListModel_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQVirtualKeyboardSelectionListModel_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQVirtualKeyboardSelectionListModel_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQVirtualKeyboardSelectionListModel_EventFilter(this, watched, event) != 0; };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtVirtualKeyboard_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQVirtualKeyboardSelectionListModel_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQVirtualKeyboardSelectionListModel_TimerEvent(this, event); };
 };
@@ -1875,11 +1856,6 @@ public:
 Q_DECLARE_METATYPE(MyQVirtualKeyboardSelectionListModel*)
 
 int QVirtualKeyboardSelectionListModel_QVirtualKeyboardSelectionListModel_QRegisterMetaType(){qRegisterMetaType<QVirtualKeyboardSelectionListModel*>(); return qRegisterMetaType<MyQVirtualKeyboardSelectionListModel*>();}
-
-struct QtVirtualKeyboard_PackedString QVirtualKeyboardSelectionListModel_QVirtualKeyboardSelectionListModel_Tr(char* s, char* c, int n)
-{
-	return ({ QByteArray tbd4ab0 = QVirtualKeyboardSelectionListModel::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtVirtualKeyboard_PackedString { const_cast<char*>(tbd4ab0.prepend("WHITESPACE").constData()+10), tbd4ab0.size()-10 }; });
-}
 
 void QVirtualKeyboardSelectionListModel_ConnectActiveItemChanged(void* ptr)
 {
@@ -1894,21 +1870,6 @@ void QVirtualKeyboardSelectionListModel_DisconnectActiveItemChanged(void* ptr)
 void QVirtualKeyboardSelectionListModel_ActiveItemChanged(void* ptr, int index)
 {
 	static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->activeItemChanged(index);
-}
-
-void QVirtualKeyboardSelectionListModel_ConnectCountChanged(void* ptr)
-{
-	QObject::connect(static_cast<QVirtualKeyboardSelectionListModel*>(ptr), static_cast<void (QVirtualKeyboardSelectionListModel::*)()>(&QVirtualKeyboardSelectionListModel::countChanged), static_cast<MyQVirtualKeyboardSelectionListModel*>(ptr), static_cast<void (MyQVirtualKeyboardSelectionListModel::*)()>(&MyQVirtualKeyboardSelectionListModel::Signal_CountChanged));
-}
-
-void QVirtualKeyboardSelectionListModel_DisconnectCountChanged(void* ptr)
-{
-	QObject::disconnect(static_cast<QVirtualKeyboardSelectionListModel*>(ptr), static_cast<void (QVirtualKeyboardSelectionListModel::*)()>(&QVirtualKeyboardSelectionListModel::countChanged), static_cast<MyQVirtualKeyboardSelectionListModel*>(ptr), static_cast<void (MyQVirtualKeyboardSelectionListModel::*)()>(&MyQVirtualKeyboardSelectionListModel::Signal_CountChanged));
-}
-
-void QVirtualKeyboardSelectionListModel_CountChanged(void* ptr)
-{
-	static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->countChanged();
 }
 
 void QVirtualKeyboardSelectionListModel_ConnectItemSelected(void* ptr)
@@ -1934,11 +1895,6 @@ void QVirtualKeyboardSelectionListModel_RemoveItem(void* ptr, int index)
 void QVirtualKeyboardSelectionListModel_SelectItem(void* ptr, int index)
 {
 	static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->selectItem(index);
-}
-
-void* QVirtualKeyboardSelectionListModel_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::metaObject());
 }
 
 void* QVirtualKeyboardSelectionListModel___roleNames_atList(void* ptr, int v, int i)
@@ -1978,22 +1934,6 @@ void* QVirtualKeyboardSelectionListModel_____roleNames_keyList_newList(void* ptr
 	return new QList<int>();
 }
 
-int QVirtualKeyboardSelectionListModel_____setItemData_roles_keyList_atList(void* ptr, int i)
-{
-	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QVirtualKeyboardSelectionListModel_____setItemData_roles_keyList_setList(void* ptr, int i)
-{
-	static_cast<QList<int>*>(ptr)->append(i);
-}
-
-void* QVirtualKeyboardSelectionListModel_____setItemData_roles_keyList_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<int>();
-}
-
 int QVirtualKeyboardSelectionListModel_____itemData_keyList_atList(void* ptr, int i)
 {
 	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
@@ -2010,25 +1950,20 @@ void* QVirtualKeyboardSelectionListModel_____itemData_keyList_newList(void* ptr)
 	return new QList<int>();
 }
 
-void* QVirtualKeyboardSelectionListModel___setItemData_roles_atList(void* ptr, int v, int i)
+int QVirtualKeyboardSelectionListModel_____setItemData_roles_keyList_atList(void* ptr, int i)
 {
-	return new QVariant(({ QVariant tmp = static_cast<QMap<int, QVariant>*>(ptr)->value(v); if (i == static_cast<QMap<int, QVariant>*>(ptr)->size()-1) { static_cast<QMap<int, QVariant>*>(ptr)->~QMap(); free(ptr); }; tmp; }));
+	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QVirtualKeyboardSelectionListModel___setItemData_roles_setList(void* ptr, int key, void* i)
+void QVirtualKeyboardSelectionListModel_____setItemData_roles_keyList_setList(void* ptr, int i)
 {
-	static_cast<QMap<int, QVariant>*>(ptr)->insert(key, *static_cast<QVariant*>(i));
+	static_cast<QList<int>*>(ptr)->append(i);
 }
 
-void* QVirtualKeyboardSelectionListModel___setItemData_roles_newList(void* ptr)
+void* QVirtualKeyboardSelectionListModel_____setItemData_roles_keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QMap<int, QVariant>();
-}
-
-struct QtVirtualKeyboard_PackedList QVirtualKeyboardSelectionListModel___setItemData_roles_keyList(void* ptr)
-{
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtVirtualKeyboard_PackedList { tmpValue, tmpValue->size() }; });
+	return new QList<int>();
 }
 
 void* QVirtualKeyboardSelectionListModel___changePersistentIndexList_from_atList(void* ptr, int i)
@@ -2079,6 +2014,27 @@ void* QVirtualKeyboardSelectionListModel___dataChanged_roles_newList(void* ptr)
 	return new QVector<int>();
 }
 
+void* QVirtualKeyboardSelectionListModel___itemData_atList(void* ptr, int v, int i)
+{
+	return new QVariant(({ QVariant tmp = static_cast<QMap<int, QVariant>*>(ptr)->value(v); if (i == static_cast<QMap<int, QVariant>*>(ptr)->size()-1) { static_cast<QMap<int, QVariant>*>(ptr)->~QMap(); free(ptr); }; tmp; }));
+}
+
+void QVirtualKeyboardSelectionListModel___itemData_setList(void* ptr, int key, void* i)
+{
+	static_cast<QMap<int, QVariant>*>(ptr)->insert(key, *static_cast<QVariant*>(i));
+}
+
+void* QVirtualKeyboardSelectionListModel___itemData_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QMap<int, QVariant>();
+}
+
+struct QtVirtualKeyboard_PackedList QVirtualKeyboardSelectionListModel___itemData_keyList(void* ptr)
+{
+	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtVirtualKeyboard_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void* QVirtualKeyboardSelectionListModel___layoutAboutToBeChanged_parents_atList(void* ptr, int i)
 {
 	return new QPersistentModelIndex(({QPersistentModelIndex tmp = static_cast<QList<QPersistentModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QPersistentModelIndex>*>(ptr)->size()-1) { static_cast<QList<QPersistentModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
@@ -2111,25 +2067,20 @@ void* QVirtualKeyboardSelectionListModel___layoutChanged_parents_newList(void* p
 	return new QList<QPersistentModelIndex>();
 }
 
-void* QVirtualKeyboardSelectionListModel___itemData_atList(void* ptr, int v, int i)
+void* QVirtualKeyboardSelectionListModel___match_atList(void* ptr, int i)
 {
-	return new QVariant(({ QVariant tmp = static_cast<QMap<int, QVariant>*>(ptr)->value(v); if (i == static_cast<QMap<int, QVariant>*>(ptr)->size()-1) { static_cast<QMap<int, QVariant>*>(ptr)->~QMap(); free(ptr); }; tmp; }));
+	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QModelIndex>*>(ptr)->size()-1) { static_cast<QList<QModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
 }
 
-void QVirtualKeyboardSelectionListModel___itemData_setList(void* ptr, int key, void* i)
+void QVirtualKeyboardSelectionListModel___match_setList(void* ptr, void* i)
 {
-	static_cast<QMap<int, QVariant>*>(ptr)->insert(key, *static_cast<QVariant*>(i));
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
 }
 
-void* QVirtualKeyboardSelectionListModel___itemData_newList(void* ptr)
+void* QVirtualKeyboardSelectionListModel___match_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QMap<int, QVariant>();
-}
-
-struct QtVirtualKeyboard_PackedList QVirtualKeyboardSelectionListModel___itemData_keyList(void* ptr)
-{
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtVirtualKeyboard_PackedList { tmpValue, tmpValue->size() }; });
+	return new QList<QModelIndex>();
 }
 
 void* QVirtualKeyboardSelectionListModel___mimeData_indexes_atList(void* ptr, int i)
@@ -2143,22 +2094,6 @@ void QVirtualKeyboardSelectionListModel___mimeData_indexes_setList(void* ptr, vo
 }
 
 void* QVirtualKeyboardSelectionListModel___mimeData_indexes_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QModelIndex>();
-}
-
-void* QVirtualKeyboardSelectionListModel___match_atList(void* ptr, int i)
-{
-	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QModelIndex>*>(ptr)->size()-1) { static_cast<QList<QModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
-}
-
-void QVirtualKeyboardSelectionListModel___match_setList(void* ptr, void* i)
-{
-	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
-}
-
-void* QVirtualKeyboardSelectionListModel___match_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QModelIndex>();
@@ -2178,6 +2113,27 @@ void* QVirtualKeyboardSelectionListModel___persistentIndexList_newList(void* ptr
 {
 	Q_UNUSED(ptr);
 	return new QList<QModelIndex>();
+}
+
+void* QVirtualKeyboardSelectionListModel___setItemData_roles_atList(void* ptr, int v, int i)
+{
+	return new QVariant(({ QVariant tmp = static_cast<QMap<int, QVariant>*>(ptr)->value(v); if (i == static_cast<QMap<int, QVariant>*>(ptr)->size()-1) { static_cast<QMap<int, QVariant>*>(ptr)->~QMap(); free(ptr); }; tmp; }));
+}
+
+void QVirtualKeyboardSelectionListModel___setItemData_roles_setList(void* ptr, int key, void* i)
+{
+	static_cast<QMap<int, QVariant>*>(ptr)->insert(key, *static_cast<QVariant*>(i));
+}
+
+void* QVirtualKeyboardSelectionListModel___setItemData_roles_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QMap<int, QVariant>();
+}
+
+struct QtVirtualKeyboard_PackedList QVirtualKeyboardSelectionListModel___setItemData_roles_keyList(void* ptr)
+{
+	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtVirtualKeyboard_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 int QVirtualKeyboardSelectionListModel_____doSetRoleNames_roleNames_keyList_atList(void* ptr, int i)
@@ -2212,6 +2168,22 @@ void* QVirtualKeyboardSelectionListModel_____setRoleNames_roleNames_keyList_newL
 	return new QList<int>();
 }
 
+void* QVirtualKeyboardSelectionListModel___children_atList(void* ptr, int i)
+{
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void QVirtualKeyboardSelectionListModel___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QVirtualKeyboardSelectionListModel___children_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject *>();
+}
+
 void* QVirtualKeyboardSelectionListModel___dynamicPropertyNames_atList(void* ptr, int i)
 {
 	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(ptr)->at(i); if (i == static_cast<QList<QByteArray>*>(ptr)->size()-1) { static_cast<QList<QByteArray>*>(ptr)->~QList(); free(ptr); }; tmp; }));
@@ -2228,17 +2200,17 @@ void* QVirtualKeyboardSelectionListModel___dynamicPropertyNames_newList(void* pt
 	return new QList<QByteArray>();
 }
 
-void* QVirtualKeyboardSelectionListModel___findChildren_atList2(void* ptr, int i)
+void* QVirtualKeyboardSelectionListModel___findChildren_atList(void* ptr, int i)
 {
 	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QVirtualKeyboardSelectionListModel___findChildren_setList2(void* ptr, void* i)
+void QVirtualKeyboardSelectionListModel___findChildren_setList(void* ptr, void* i)
 {
 	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
-void* QVirtualKeyboardSelectionListModel___findChildren_newList2(void* ptr)
+void* QVirtualKeyboardSelectionListModel___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();
@@ -2260,41 +2232,30 @@ void* QVirtualKeyboardSelectionListModel___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QVirtualKeyboardSelectionListModel___findChildren_atList(void* ptr, int i)
+void* QVirtualKeyboardSelectionListModel___qFindChildren_atList2(void* ptr, int i)
 {
 	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QVirtualKeyboardSelectionListModel___findChildren_setList(void* ptr, void* i)
+void QVirtualKeyboardSelectionListModel___qFindChildren_setList2(void* ptr, void* i)
 {
 	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
-void* QVirtualKeyboardSelectionListModel___findChildren_newList(void* ptr)
+void* QVirtualKeyboardSelectionListModel___qFindChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();
 }
 
-void* QVirtualKeyboardSelectionListModel___children_atList(void* ptr, int i)
-{
-	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QVirtualKeyboardSelectionListModel___children_setList(void* ptr, void* i)
-{
-	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QVirtualKeyboardSelectionListModel___children_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject *>();
-}
-
 char QVirtualKeyboardSelectionListModel_DropMimeDataDefault(void* ptr, void* data, long long action, int row, int column, void* parent)
 {
 		return static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::dropMimeData(static_cast<QMimeData*>(data), static_cast<Qt::DropAction>(action), row, column, *static_cast<QModelIndex*>(parent));
+}
+
+long long QVirtualKeyboardSelectionListModel_FlagsDefault(void* ptr, void* index)
+{
+		return static_cast<qint64>(static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::flags(*static_cast<QModelIndex*>(index)));
 }
 
 void* QVirtualKeyboardSelectionListModel_IndexDefault(void* ptr, int row, int column, void* parent)
@@ -2307,9 +2268,44 @@ void* QVirtualKeyboardSelectionListModel_SiblingDefault(void* ptr, int row, int 
 		return new QModelIndex(static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::sibling(row, column, *static_cast<QModelIndex*>(idx)));
 }
 
-long long QVirtualKeyboardSelectionListModel_FlagsDefault(void* ptr, void* index)
+void* QVirtualKeyboardSelectionListModel_BuddyDefault(void* ptr, void* index)
 {
-		return static_cast<qint64>(static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::flags(*static_cast<QModelIndex*>(index)));
+		return new QModelIndex(static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::buddy(*static_cast<QModelIndex*>(index)));
+}
+
+char QVirtualKeyboardSelectionListModel_CanDropMimeDataDefault(void* ptr, void* data, long long action, int row, int column, void* parent)
+{
+		return static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::canDropMimeData(static_cast<QMimeData*>(data), static_cast<Qt::DropAction>(action), row, column, *static_cast<QModelIndex*>(parent));
+}
+
+char QVirtualKeyboardSelectionListModel_CanFetchMoreDefault(void* ptr, void* parent)
+{
+		return static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::canFetchMore(*static_cast<QModelIndex*>(parent));
+}
+
+int QVirtualKeyboardSelectionListModel_ColumnCountDefault(void* ptr, void* parent)
+{
+		return static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::columnCount(*static_cast<QModelIndex*>(parent));
+}
+
+void* QVirtualKeyboardSelectionListModel_DataDefault(void* ptr, void* index, int role)
+{
+		return new QVariant(static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::data(*static_cast<QModelIndex*>(index), role));
+}
+
+void QVirtualKeyboardSelectionListModel_FetchMoreDefault(void* ptr, void* parent)
+{
+		static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::fetchMore(*static_cast<QModelIndex*>(parent));
+}
+
+char QVirtualKeyboardSelectionListModel_HasChildrenDefault(void* ptr, void* parent)
+{
+		return static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::hasChildren(*static_cast<QModelIndex*>(parent));
+}
+
+void* QVirtualKeyboardSelectionListModel_HeaderDataDefault(void* ptr, int section, long long orientation, int role)
+{
+		return new QVariant(static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::headerData(section, static_cast<Qt::Orientation>(orientation), role));
 }
 
 char QVirtualKeyboardSelectionListModel_InsertColumnsDefault(void* ptr, int column, int count, void* parent)
@@ -2322,6 +2318,26 @@ char QVirtualKeyboardSelectionListModel_InsertRowsDefault(void* ptr, int row, in
 		return static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::insertRows(row, count, *static_cast<QModelIndex*>(parent));
 }
 
+struct QtVirtualKeyboard_PackedList QVirtualKeyboardSelectionListModel_ItemDataDefault(void* ptr, void* index)
+{
+		return ({ QMap<int, QVariant>* tmpValue = new QMap<int, QVariant>(static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::itemData(*static_cast<QModelIndex*>(index))); QtVirtualKeyboard_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtVirtualKeyboard_PackedList QVirtualKeyboardSelectionListModel_MatchDefault(void* ptr, void* start, int role, void* value, int hits, long long flags)
+{
+		return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::match(*static_cast<QModelIndex*>(start), role, *static_cast<QVariant*>(value), hits, static_cast<Qt::MatchFlag>(flags))); QtVirtualKeyboard_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* QVirtualKeyboardSelectionListModel_MimeDataDefault(void* ptr, void* indexes)
+{
+		return static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::mimeData(({ QList<QModelIndex>* tmpP = static_cast<QList<QModelIndex>*>(indexes); QList<QModelIndex> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }));
+}
+
+struct QtVirtualKeyboard_PackedString QVirtualKeyboardSelectionListModel_MimeTypesDefault(void* ptr)
+{
+		return ({ QByteArray t30b194 = static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::mimeTypes().join("¡¦!").toUtf8(); QtVirtualKeyboard_PackedString { const_cast<char*>(t30b194.prepend("WHITESPACE").constData()+10), t30b194.size()-10 }; });
+}
+
 char QVirtualKeyboardSelectionListModel_MoveColumnsDefault(void* ptr, void* sourceParent, int sourceColumn, int count, void* destinationParent, int destinationChild)
 {
 		return static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::moveColumns(*static_cast<QModelIndex*>(sourceParent), sourceColumn, count, *static_cast<QModelIndex*>(destinationParent), destinationChild);
@@ -2332,6 +2348,11 @@ char QVirtualKeyboardSelectionListModel_MoveRowsDefault(void* ptr, void* sourceP
 		return static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::moveRows(*static_cast<QModelIndex*>(sourceParent), sourceRow, count, *static_cast<QModelIndex*>(destinationParent), destinationChild);
 }
 
+void* QVirtualKeyboardSelectionListModel_ParentDefault(void* ptr, void* index)
+{
+		return new QModelIndex(static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::parent(*static_cast<QModelIndex*>(index)));
+}
+
 char QVirtualKeyboardSelectionListModel_RemoveColumnsDefault(void* ptr, int column, int count, void* parent)
 {
 		return static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::removeColumns(column, count, *static_cast<QModelIndex*>(parent));
@@ -2340,6 +2361,26 @@ char QVirtualKeyboardSelectionListModel_RemoveColumnsDefault(void* ptr, int colu
 char QVirtualKeyboardSelectionListModel_RemoveRowsDefault(void* ptr, int row, int count, void* parent)
 {
 		return static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::removeRows(row, count, *static_cast<QModelIndex*>(parent));
+}
+
+void QVirtualKeyboardSelectionListModel_ResetInternalDataDefault(void* ptr)
+{
+		static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::resetInternalData();
+}
+
+void QVirtualKeyboardSelectionListModel_RevertDefault(void* ptr)
+{
+		static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::revert();
+}
+
+struct QtVirtualKeyboard_PackedList QVirtualKeyboardSelectionListModel_RoleNamesDefault(void* ptr)
+{
+		return ({ QHash<int, QByteArray>* tmpValue = new QHash<int, QByteArray>(static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::roleNames()); QtVirtualKeyboard_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+int QVirtualKeyboardSelectionListModel_RowCountDefault(void* ptr, void* parent)
+{
+		return static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::rowCount(*static_cast<QModelIndex*>(parent));
 }
 
 char QVirtualKeyboardSelectionListModel_SetDataDefault(void* ptr, void* index, void* value, int role)
@@ -2357,59 +2398,9 @@ char QVirtualKeyboardSelectionListModel_SetItemDataDefault(void* ptr, void* inde
 		return static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::setItemData(*static_cast<QModelIndex*>(index), *static_cast<QMap<int, QVariant>*>(roles));
 }
 
-char QVirtualKeyboardSelectionListModel_SubmitDefault(void* ptr)
-{
-		return static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::submit();
-}
-
-void QVirtualKeyboardSelectionListModel_FetchMoreDefault(void* ptr, void* parent)
-{
-		static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::fetchMore(*static_cast<QModelIndex*>(parent));
-}
-
-void QVirtualKeyboardSelectionListModel_ResetInternalDataDefault(void* ptr)
-{
-		static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::resetInternalData();
-}
-
-void QVirtualKeyboardSelectionListModel_RevertDefault(void* ptr)
-{
-		static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::revert();
-}
-
 void QVirtualKeyboardSelectionListModel_SortDefault(void* ptr, int column, long long order)
 {
 		static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::sort(column, static_cast<Qt::SortOrder>(order));
-}
-
-struct QtVirtualKeyboard_PackedList QVirtualKeyboardSelectionListModel_RoleNamesDefault(void* ptr)
-{
-		return ({ QHash<int, QByteArray>* tmpValue = new QHash<int, QByteArray>(static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::roleNames()); QtVirtualKeyboard_PackedList { tmpValue, tmpValue->size() }; });
-}
-
-struct QtVirtualKeyboard_PackedList QVirtualKeyboardSelectionListModel_ItemDataDefault(void* ptr, void* index)
-{
-		return ({ QMap<int, QVariant>* tmpValue = new QMap<int, QVariant>(static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::itemData(*static_cast<QModelIndex*>(index))); QtVirtualKeyboard_PackedList { tmpValue, tmpValue->size() }; });
-}
-
-void* QVirtualKeyboardSelectionListModel_MimeDataDefault(void* ptr, void* indexes)
-{
-		return static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::mimeData(({ QList<QModelIndex>* tmpP = static_cast<QList<QModelIndex>*>(indexes); QList<QModelIndex> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }));
-}
-
-void* QVirtualKeyboardSelectionListModel_BuddyDefault(void* ptr, void* index)
-{
-		return new QModelIndex(static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::buddy(*static_cast<QModelIndex*>(index)));
-}
-
-void* QVirtualKeyboardSelectionListModel_ParentDefault(void* ptr, void* index)
-{
-		return new QModelIndex(static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::parent(*static_cast<QModelIndex*>(index)));
-}
-
-struct QtVirtualKeyboard_PackedList QVirtualKeyboardSelectionListModel_MatchDefault(void* ptr, void* start, int role, void* value, int hits, long long flags)
-{
-		return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::match(*static_cast<QModelIndex*>(start), role, *static_cast<QVariant*>(value), hits, static_cast<Qt::MatchFlag>(flags))); QtVirtualKeyboard_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 void* QVirtualKeyboardSelectionListModel_SpanDefault(void* ptr, void* index)
@@ -2417,19 +2408,9 @@ void* QVirtualKeyboardSelectionListModel_SpanDefault(void* ptr, void* index)
 		return ({ QSize tmpValue = static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::span(*static_cast<QModelIndex*>(index)); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
-struct QtVirtualKeyboard_PackedString QVirtualKeyboardSelectionListModel_MimeTypesDefault(void* ptr)
+char QVirtualKeyboardSelectionListModel_SubmitDefault(void* ptr)
 {
-		return ({ QByteArray t30b194 = static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::mimeTypes().join("¡¦!").toUtf8(); QtVirtualKeyboard_PackedString { const_cast<char*>(t30b194.prepend("WHITESPACE").constData()+10), t30b194.size()-10 }; });
-}
-
-void* QVirtualKeyboardSelectionListModel_DataDefault(void* ptr, void* index, int role)
-{
-		return new QVariant(static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::data(*static_cast<QModelIndex*>(index), role));
-}
-
-void* QVirtualKeyboardSelectionListModel_HeaderDataDefault(void* ptr, int section, long long orientation, int role)
-{
-		return new QVariant(static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::headerData(section, static_cast<Qt::Orientation>(orientation), role));
+		return static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::submit();
 }
 
 long long QVirtualKeyboardSelectionListModel_SupportedDragActionsDefault(void* ptr)
@@ -2440,41 +2421,6 @@ long long QVirtualKeyboardSelectionListModel_SupportedDragActionsDefault(void* p
 long long QVirtualKeyboardSelectionListModel_SupportedDropActionsDefault(void* ptr)
 {
 		return static_cast<qint64>(static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::supportedDropActions());
-}
-
-char QVirtualKeyboardSelectionListModel_CanDropMimeDataDefault(void* ptr, void* data, long long action, int row, int column, void* parent)
-{
-		return static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::canDropMimeData(static_cast<QMimeData*>(data), static_cast<Qt::DropAction>(action), row, column, *static_cast<QModelIndex*>(parent));
-}
-
-char QVirtualKeyboardSelectionListModel_CanFetchMoreDefault(void* ptr, void* parent)
-{
-		return static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::canFetchMore(*static_cast<QModelIndex*>(parent));
-}
-
-char QVirtualKeyboardSelectionListModel_HasChildrenDefault(void* ptr, void* parent)
-{
-		return static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::hasChildren(*static_cast<QModelIndex*>(parent));
-}
-
-int QVirtualKeyboardSelectionListModel_ColumnCountDefault(void* ptr, void* parent)
-{
-		return static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::columnCount(*static_cast<QModelIndex*>(parent));
-}
-
-int QVirtualKeyboardSelectionListModel_RowCountDefault(void* ptr, void* parent)
-{
-		return static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::rowCount(*static_cast<QModelIndex*>(parent));
-}
-
-char QVirtualKeyboardSelectionListModel_EventDefault(void* ptr, void* e)
-{
-		return static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::event(static_cast<QEvent*>(e));
-}
-
-char QVirtualKeyboardSelectionListModel_EventFilterDefault(void* ptr, void* watched, void* event)
-{
-		return static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
 void QVirtualKeyboardSelectionListModel_ChildEventDefault(void* ptr, void* event)
@@ -2502,6 +2448,16 @@ void QVirtualKeyboardSelectionListModel_DisconnectNotifyDefault(void* ptr, void*
 		static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
+char QVirtualKeyboardSelectionListModel_EventDefault(void* ptr, void* e)
+{
+		return static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::event(static_cast<QEvent*>(e));
+}
+
+char QVirtualKeyboardSelectionListModel_EventFilterDefault(void* ptr, void* watched, void* event)
+{
+		return static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
 void QVirtualKeyboardSelectionListModel_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::timerEvent(static_cast<QTimerEvent*>(event));
@@ -2516,15 +2472,14 @@ public:
 	void Signal_LengthChanged(int length) { callbackQVirtualKeyboardTrace_LengthChanged(this, length); };
 	void Signal_OpacityChanged(qreal opacity) { callbackQVirtualKeyboardTrace_OpacityChanged(this, opacity); };
 	void Signal_TraceIdChanged(int traceId) { callbackQVirtualKeyboardTrace_TraceIdChanged(this, traceId); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQVirtualKeyboardTrace_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	bool event(QEvent * e) { return callbackQVirtualKeyboardTrace_Event(this, e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQVirtualKeyboardTrace_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQVirtualKeyboardTrace_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQVirtualKeyboardTrace_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQVirtualKeyboardTrace_CustomEvent(this, event); };
 	void deleteLater() { callbackQVirtualKeyboardTrace_DeleteLater(this); };
 	void Signal_Destroyed(QObject * obj) { callbackQVirtualKeyboardTrace_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQVirtualKeyboardTrace_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQVirtualKeyboardTrace_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQVirtualKeyboardTrace_EventFilter(this, watched, event) != 0; };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtVirtualKeyboard_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQVirtualKeyboardTrace_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQVirtualKeyboardTrace_TimerEvent(this, event); };
 };
@@ -2532,11 +2487,6 @@ public:
 Q_DECLARE_METATYPE(MyQVirtualKeyboardTrace*)
 
 int QVirtualKeyboardTrace_QVirtualKeyboardTrace_QRegisterMetaType(){qRegisterMetaType<QVirtualKeyboardTrace*>(); return qRegisterMetaType<MyQVirtualKeyboardTrace*>();}
-
-struct QtVirtualKeyboard_PackedString QVirtualKeyboardTrace_QVirtualKeyboardTrace_Tr(char* s, char* c, int n)
-{
-	return ({ QByteArray td22a1d = QVirtualKeyboardTrace::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtVirtualKeyboard_PackedString { const_cast<char*>(td22a1d.prepend("WHITESPACE").constData()+10), td22a1d.size()-10 }; });
-}
 
 int QVirtualKeyboardTrace_AddPoint(void* ptr, void* point)
 {
@@ -2556,6 +2506,16 @@ void QVirtualKeyboardTrace_DisconnectCanceledChanged(void* ptr)
 void QVirtualKeyboardTrace_CanceledChanged(void* ptr, char isCanceled)
 {
 	static_cast<QVirtualKeyboardTrace*>(ptr)->canceledChanged(isCanceled != 0);
+}
+
+struct QtVirtualKeyboard_PackedList QVirtualKeyboardTrace_ChannelData(void* ptr, struct QtVirtualKeyboard_PackedString channel, int pos, int count)
+{
+	return ({ QList<QVariant>* tmpValue = new QList<QVariant>(static_cast<QVirtualKeyboardTrace*>(ptr)->channelData(QString::fromUtf8(channel.data, channel.len), pos, count)); QtVirtualKeyboard_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtVirtualKeyboard_PackedString QVirtualKeyboardTrace_Channels(void* ptr)
+{
+	return ({ QByteArray t8a9301 = static_cast<QVirtualKeyboardTrace*>(ptr)->channels().join("¡¦!").toUtf8(); QtVirtualKeyboard_PackedString { const_cast<char*>(t8a9301.prepend("WHITESPACE").constData()+10), t8a9301.size()-10 }; });
 }
 
 void QVirtualKeyboardTrace_ConnectChannelsChanged(void* ptr)
@@ -2588,6 +2548,21 @@ void QVirtualKeyboardTrace_FinalChanged(void* ptr, char isFinal)
 	static_cast<QVirtualKeyboardTrace*>(ptr)->finalChanged(isFinal != 0);
 }
 
+char QVirtualKeyboardTrace_IsCanceled(void* ptr)
+{
+	return static_cast<QVirtualKeyboardTrace*>(ptr)->isCanceled();
+}
+
+char QVirtualKeyboardTrace_IsFinal(void* ptr)
+{
+	return static_cast<QVirtualKeyboardTrace*>(ptr)->isFinal();
+}
+
+int QVirtualKeyboardTrace_Length(void* ptr)
+{
+	return static_cast<QVirtualKeyboardTrace*>(ptr)->length();
+}
+
 void QVirtualKeyboardTrace_ConnectLengthChanged(void* ptr)
 {
 	QObject::connect(static_cast<QVirtualKeyboardTrace*>(ptr), static_cast<void (QVirtualKeyboardTrace::*)(int)>(&QVirtualKeyboardTrace::lengthChanged), static_cast<MyQVirtualKeyboardTrace*>(ptr), static_cast<void (MyQVirtualKeyboardTrace::*)(int)>(&MyQVirtualKeyboardTrace::Signal_LengthChanged));
@@ -2603,6 +2578,11 @@ void QVirtualKeyboardTrace_LengthChanged(void* ptr, int length)
 	static_cast<QVirtualKeyboardTrace*>(ptr)->lengthChanged(length);
 }
 
+double QVirtualKeyboardTrace_Opacity(void* ptr)
+{
+	return static_cast<QVirtualKeyboardTrace*>(ptr)->opacity();
+}
+
 void QVirtualKeyboardTrace_ConnectOpacityChanged(void* ptr)
 {
 	QObject::connect(static_cast<QVirtualKeyboardTrace*>(ptr), static_cast<void (QVirtualKeyboardTrace::*)(qreal)>(&QVirtualKeyboardTrace::opacityChanged), static_cast<MyQVirtualKeyboardTrace*>(ptr), static_cast<void (MyQVirtualKeyboardTrace::*)(qreal)>(&MyQVirtualKeyboardTrace::Signal_OpacityChanged));
@@ -2616,6 +2596,11 @@ void QVirtualKeyboardTrace_DisconnectOpacityChanged(void* ptr)
 void QVirtualKeyboardTrace_OpacityChanged(void* ptr, double opacity)
 {
 	static_cast<QVirtualKeyboardTrace*>(ptr)->opacityChanged(opacity);
+}
+
+struct QtVirtualKeyboard_PackedList QVirtualKeyboardTrace_Points(void* ptr, int pos, int count)
+{
+	return ({ QList<QVariant>* tmpValue = new QList<QVariant>(static_cast<QVirtualKeyboardTrace*>(ptr)->points(pos, count)); QtVirtualKeyboard_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 void QVirtualKeyboardTrace_SetCanceled(void* ptr, char canceled)
@@ -2648,6 +2633,11 @@ void QVirtualKeyboardTrace_SetTraceId(void* ptr, int id)
 	static_cast<QVirtualKeyboardTrace*>(ptr)->setTraceId(id);
 }
 
+int QVirtualKeyboardTrace_TraceId(void* ptr)
+{
+	return static_cast<QVirtualKeyboardTrace*>(ptr)->traceId();
+}
+
 void QVirtualKeyboardTrace_ConnectTraceIdChanged(void* ptr)
 {
 	QObject::connect(static_cast<QVirtualKeyboardTrace*>(ptr), static_cast<void (QVirtualKeyboardTrace::*)(int)>(&QVirtualKeyboardTrace::traceIdChanged), static_cast<MyQVirtualKeyboardTrace*>(ptr), static_cast<void (MyQVirtualKeyboardTrace::*)(int)>(&MyQVirtualKeyboardTrace::Signal_TraceIdChanged));
@@ -2661,51 +2651,6 @@ void QVirtualKeyboardTrace_DisconnectTraceIdChanged(void* ptr)
 void QVirtualKeyboardTrace_TraceIdChanged(void* ptr, int traceId)
 {
 	static_cast<QVirtualKeyboardTrace*>(ptr)->traceIdChanged(traceId);
-}
-
-struct QtVirtualKeyboard_PackedString QVirtualKeyboardTrace_Channels(void* ptr)
-{
-	return ({ QByteArray t8a9301 = static_cast<QVirtualKeyboardTrace*>(ptr)->channels().join("¡¦!").toUtf8(); QtVirtualKeyboard_PackedString { const_cast<char*>(t8a9301.prepend("WHITESPACE").constData()+10), t8a9301.size()-10 }; });
-}
-
-struct QtVirtualKeyboard_PackedList QVirtualKeyboardTrace_ChannelData(void* ptr, struct QtVirtualKeyboard_PackedString channel, int pos, int count)
-{
-	return ({ QList<QVariant>* tmpValue = new QList<QVariant>(static_cast<QVirtualKeyboardTrace*>(ptr)->channelData(QString::fromUtf8(channel.data, channel.len), pos, count)); QtVirtualKeyboard_PackedList { tmpValue, tmpValue->size() }; });
-}
-
-struct QtVirtualKeyboard_PackedList QVirtualKeyboardTrace_Points(void* ptr, int pos, int count)
-{
-	return ({ QList<QVariant>* tmpValue = new QList<QVariant>(static_cast<QVirtualKeyboardTrace*>(ptr)->points(pos, count)); QtVirtualKeyboard_PackedList { tmpValue, tmpValue->size() }; });
-}
-
-char QVirtualKeyboardTrace_IsCanceled(void* ptr)
-{
-	return static_cast<QVirtualKeyboardTrace*>(ptr)->isCanceled();
-}
-
-char QVirtualKeyboardTrace_IsFinal(void* ptr)
-{
-	return static_cast<QVirtualKeyboardTrace*>(ptr)->isFinal();
-}
-
-void* QVirtualKeyboardTrace_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QVirtualKeyboardTrace*>(ptr)->QVirtualKeyboardTrace::metaObject());
-}
-
-int QVirtualKeyboardTrace_Length(void* ptr)
-{
-	return static_cast<QVirtualKeyboardTrace*>(ptr)->length();
-}
-
-int QVirtualKeyboardTrace_TraceId(void* ptr)
-{
-	return static_cast<QVirtualKeyboardTrace*>(ptr)->traceId();
-}
-
-double QVirtualKeyboardTrace_Opacity(void* ptr)
-{
-	return static_cast<QVirtualKeyboardTrace*>(ptr)->opacity();
 }
 
 void* QVirtualKeyboardTrace___channelData_atList(void* ptr, int i)
@@ -2740,6 +2685,22 @@ void* QVirtualKeyboardTrace___points_newList(void* ptr)
 	return new QList<QVariant>();
 }
 
+void* QVirtualKeyboardTrace___children_atList(void* ptr, int i)
+{
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void QVirtualKeyboardTrace___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QVirtualKeyboardTrace___children_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject *>();
+}
+
 void* QVirtualKeyboardTrace___dynamicPropertyNames_atList(void* ptr, int i)
 {
 	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(ptr)->at(i); if (i == static_cast<QList<QByteArray>*>(ptr)->size()-1) { static_cast<QList<QByteArray>*>(ptr)->~QList(); free(ptr); }; tmp; }));
@@ -2756,17 +2717,17 @@ void* QVirtualKeyboardTrace___dynamicPropertyNames_newList(void* ptr)
 	return new QList<QByteArray>();
 }
 
-void* QVirtualKeyboardTrace___findChildren_atList2(void* ptr, int i)
+void* QVirtualKeyboardTrace___findChildren_atList(void* ptr, int i)
 {
 	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QVirtualKeyboardTrace___findChildren_setList2(void* ptr, void* i)
+void QVirtualKeyboardTrace___findChildren_setList(void* ptr, void* i)
 {
 	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
-void* QVirtualKeyboardTrace___findChildren_newList2(void* ptr)
+void* QVirtualKeyboardTrace___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();
@@ -2788,46 +2749,20 @@ void* QVirtualKeyboardTrace___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QVirtualKeyboardTrace___findChildren_atList(void* ptr, int i)
+void* QVirtualKeyboardTrace___qFindChildren_atList2(void* ptr, int i)
 {
 	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QVirtualKeyboardTrace___findChildren_setList(void* ptr, void* i)
+void QVirtualKeyboardTrace___qFindChildren_setList2(void* ptr, void* i)
 {
 	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
-void* QVirtualKeyboardTrace___findChildren_newList(void* ptr)
+void* QVirtualKeyboardTrace___qFindChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();
-}
-
-void* QVirtualKeyboardTrace___children_atList(void* ptr, int i)
-{
-	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QVirtualKeyboardTrace___children_setList(void* ptr, void* i)
-{
-	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QVirtualKeyboardTrace___children_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject *>();
-}
-
-char QVirtualKeyboardTrace_EventDefault(void* ptr, void* e)
-{
-		return static_cast<QVirtualKeyboardTrace*>(ptr)->QVirtualKeyboardTrace::event(static_cast<QEvent*>(e));
-}
-
-char QVirtualKeyboardTrace_EventFilterDefault(void* ptr, void* watched, void* event)
-{
-		return static_cast<QVirtualKeyboardTrace*>(ptr)->QVirtualKeyboardTrace::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
 void QVirtualKeyboardTrace_ChildEventDefault(void* ptr, void* event)
@@ -2853,6 +2788,16 @@ void QVirtualKeyboardTrace_DeleteLaterDefault(void* ptr)
 void QVirtualKeyboardTrace_DisconnectNotifyDefault(void* ptr, void* sign)
 {
 		static_cast<QVirtualKeyboardTrace*>(ptr)->QVirtualKeyboardTrace::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+char QVirtualKeyboardTrace_EventDefault(void* ptr, void* e)
+{
+		return static_cast<QVirtualKeyboardTrace*>(ptr)->QVirtualKeyboardTrace::event(static_cast<QEvent*>(e));
+}
+
+char QVirtualKeyboardTrace_EventFilterDefault(void* ptr, void* watched, void* event)
+{
+		return static_cast<QVirtualKeyboardTrace*>(ptr)->QVirtualKeyboardTrace::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
 void QVirtualKeyboardTrace_TimerEventDefault(void* ptr, void* event)

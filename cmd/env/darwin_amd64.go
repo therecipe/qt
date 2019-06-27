@@ -2,4 +2,4 @@
 
 package env
 
-import _ "github.com/therecipe/env_darwin_amd64_512"
+import _ "github.com/therecipe/env_darwin_amd64_513"

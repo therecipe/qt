@@ -38,10 +38,16 @@ func (c *Chart) init() {
 	c.m_series.Append(c.m_x, c.m_y)
 
 	c.AddSeries(c.m_series)
-	c.CreateDefaultAxes()
-	c.SetAxisX(c.m_axis, c.m_series)
-	c.AxisX(nil).SetRange(core.NewQVariant1(0), core.NewQVariant1(10))
-	c.AxisY(nil).SetRange(core.NewQVariant1(-5), core.NewQVariant1(10))
+
+	c.AddAxis(c.m_axis, core.Qt__AlignBottom)
+	c.m_series.AttachAxis(c.m_axis)
+
+	yAxis := charts.NewQValueAxis(nil)
+	c.AddAxis(yAxis, core.Qt__AlignLeft)
+	c.m_series.AttachAxis(yAxis)
+
+	c.Axes(core.Qt__Horizontal, c.m_series)[0].SetRange(core.NewQVariant1(0), core.NewQVariant1(10))
+	c.Axes(core.Qt__Vertical, c.m_series)[0].SetRange(core.NewQVariant1(-5), core.NewQVariant1(10))
 
 	c.m_timer.Start2()
 }

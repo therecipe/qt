@@ -1,7 +1,8 @@
 FROM therecipe/qt:wine_base_xp as base
 
-RUN QT=qt-opensource-windows-x86-mingw492-5.6.3.exe && curl -sL --retry 10 --retry-delay 60 -O https://download.qt.io/archive/qt/5.6/5.6.3/$QT \
-	&& QT_QPA_PLATFORM=minimal xvfb-run wine Z:\\$QT --no-force-installations --script=C:\\gopath\\src\\github.com\\therecipe\\qt\\internal\\ci\\iscript.qs WINDOWS=true VERSION=563 && rm -f $QT
+ENV QT qt-opensource-windows-x86-mingw492-5.6.3.exe
+RUN curl -sL --retry 10 --retry-delay 60 -O https://download.qt.io/archive/qt/5.6/5.6.3/$QT
+RUN QT_QPA_PLATFORM=minimal xvfb-run wine Z:\\$QT --no-force-installations --script=C:\\gopath\\src\\github.com\\therecipe\\qt\\internal\\ci\\iscript.qs WINDOWS=true VERSION=563 && rm -f $QT
 RUN rm -f $(find $HOME/.wine/drive_c/Qt/Qt5.6.3/5.6.3/mingw49_32 -name "*d.a" -exec grep -l "gnu_debug" {} \+)
 RUN rm -f $(find $HOME/.wine/drive_c/Qt/Qt5.6.3/5.6.3/mingw49_32 -name "*d.dll" -exec grep -l "gnu_debug" {} \+)
 RUN rm -f $(find $HOME/.wine/drive_c/Qt/Qt5.6.3/5.6.3/mingw49_32 -name "*d.dll.a" -exec grep -l "gnu_debug" {} \+)
@@ -41,7 +42,7 @@ RUN echo 'REGEDIT4\n\n\
 RUN wine $GOPATH\\bin\\qtsetup prep
 RUN wine $GOPATH\\bin\\qtsetup check
 RUN wine $GOPATH\\bin\\qtsetup generate
-RUN cd $HOME/.wine/drive_c/gopath/src/github.com/therecipe/qt/internal/examples/widgets/line_edits && wine qtdeploy build windows && rm -rf ./deploy
+RUN cd $HOME/.wine/drive_c/gopath/src/github.com/therecipe/qt/internal/examples/widgets/line_edits && sed -i -e 's/AddWidget2/AddWidget/g' line_edits.go && wine qtdeploy build windows && rm -rf ./deploy
 
 RUN echo "#!/bin/bash\nexport GOPATH=\$(winepath -0 -w \$(echo \$GOPATH | sed -e 's/:/ /g') | sed -e 's/Z:/;Z:/2g')" > /usr/bin/qtpath && chmod +x /usr/bin/qtpath
 RUN echo '#!/bin/bash\nsource qtpath\nwine qtdeploy "$@"' > /usr/bin/qtdeploy && chmod +x /usr/bin/qtdeploy

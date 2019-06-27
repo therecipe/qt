@@ -15,4 +15,4 @@ jobs:
       -
         script: 'while ! docker ps 2>/dev/null; do sleep 5; echo "waiting for docker to come up"; docker ps; done'
       -
-        script: 'cd internal/docker/darwin && ./build.sh && ./save.sh'
+        script: 'cd internal/docker/darwin && ./build.sh && ./save.sh && rm -f darwin.tar.gz && docker build -f Dockerfile.512 .'

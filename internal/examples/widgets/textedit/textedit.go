@@ -307,7 +307,7 @@ func (t *TextEdit) setupTextActions() {
 
 	menu.AddSeparator()
 
-	var pix = gui.NewQPixmap3(16, 16)
+	var pix = gui.NewQPixmap2(core.NewQSize2(16, 16))
 	pix.Fill(gui.NewQColor2(core.Qt__black))
 	t.actionTextColor = menu.AddAction2(gui.NewQIcon2(pix), "&Color...")
 	t.actionTextColor.ConnectTriggered(func(checked bool) { t.textColor() })
@@ -366,7 +366,7 @@ func (t *TextEdit) fontChanged(f *gui.QFont) {
 }
 
 func (t *TextEdit) colorChanged(c *gui.QColor) {
-	var pix = gui.NewQPixmap3(16, 16)
+	var pix = gui.NewQPixmap2(core.NewQSize2(16, 16))
 	pix.Fill(c)
 	t.actionTextColor.SetIcon(gui.NewQIcon2(pix))
 }

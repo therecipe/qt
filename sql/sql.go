@@ -162,24 +162,31 @@ func NewQSqlDatabaseFromPointer(ptr unsafe.Pointer) (n *QSqlDatabase) {
 	n.SetPointer(ptr)
 	return
 }
-func QSqlDatabase_AddDatabase2(driver QSqlDriver_ITF, connectionName string) *QSqlDatabase {
-	var connectionNameC *C.char
-	if connectionName != "" {
-		connectionNameC = C.CString(connectionName)
-		defer C.free(unsafe.Pointer(connectionNameC))
-	}
-	tmpValue := NewQSqlDatabaseFromPointer(C.QSqlDatabase_QSqlDatabase_AddDatabase2(PointerFromQSqlDriver(driver), C.struct_QtSql_PackedString{data: connectionNameC, len: C.longlong(len(connectionName))}))
+func NewQSqlDatabase() *QSqlDatabase {
+	tmpValue := NewQSqlDatabaseFromPointer(C.QSqlDatabase_NewQSqlDatabase())
 	runtime.SetFinalizer(tmpValue, (*QSqlDatabase).DestroyQSqlDatabase)
 	return tmpValue
 }
 
-func (ptr *QSqlDatabase) AddDatabase2(driver QSqlDriver_ITF, connectionName string) *QSqlDatabase {
-	var connectionNameC *C.char
-	if connectionName != "" {
-		connectionNameC = C.CString(connectionName)
-		defer C.free(unsafe.Pointer(connectionNameC))
+func NewQSqlDatabase2(other QSqlDatabase_ITF) *QSqlDatabase {
+	tmpValue := NewQSqlDatabaseFromPointer(C.QSqlDatabase_NewQSqlDatabase2(PointerFromQSqlDatabase(other)))
+	runtime.SetFinalizer(tmpValue, (*QSqlDatabase).DestroyQSqlDatabase)
+	return tmpValue
+}
+
+func NewQSqlDatabase3(ty string) *QSqlDatabase {
+	var tyC *C.char
+	if ty != "" {
+		tyC = C.CString(ty)
+		defer C.free(unsafe.Pointer(tyC))
 	}
-	tmpValue := NewQSqlDatabaseFromPointer(C.QSqlDatabase_QSqlDatabase_AddDatabase2(PointerFromQSqlDriver(driver), C.struct_QtSql_PackedString{data: connectionNameC, len: C.longlong(len(connectionName))}))
+	tmpValue := NewQSqlDatabaseFromPointer(C.QSqlDatabase_NewQSqlDatabase3(C.struct_QtSql_PackedString{data: tyC, len: C.longlong(len(ty))}))
+	runtime.SetFinalizer(tmpValue, (*QSqlDatabase).DestroyQSqlDatabase)
+	return tmpValue
+}
+
+func NewQSqlDatabase4(driver QSqlDriver_ITF) *QSqlDatabase {
+	tmpValue := NewQSqlDatabaseFromPointer(C.QSqlDatabase_NewQSqlDatabase4(PointerFromQSqlDriver(driver)))
 	runtime.SetFinalizer(tmpValue, (*QSqlDatabase).DestroyQSqlDatabase)
 	return tmpValue
 }
@@ -216,6 +223,28 @@ func (ptr *QSqlDatabase) AddDatabase(ty string, connectionName string) *QSqlData
 	return tmpValue
 }
 
+func QSqlDatabase_AddDatabase2(driver QSqlDriver_ITF, connectionName string) *QSqlDatabase {
+	var connectionNameC *C.char
+	if connectionName != "" {
+		connectionNameC = C.CString(connectionName)
+		defer C.free(unsafe.Pointer(connectionNameC))
+	}
+	tmpValue := NewQSqlDatabaseFromPointer(C.QSqlDatabase_QSqlDatabase_AddDatabase2(PointerFromQSqlDriver(driver), C.struct_QtSql_PackedString{data: connectionNameC, len: C.longlong(len(connectionName))}))
+	runtime.SetFinalizer(tmpValue, (*QSqlDatabase).DestroyQSqlDatabase)
+	return tmpValue
+}
+
+func (ptr *QSqlDatabase) AddDatabase2(driver QSqlDriver_ITF, connectionName string) *QSqlDatabase {
+	var connectionNameC *C.char
+	if connectionName != "" {
+		connectionNameC = C.CString(connectionName)
+		defer C.free(unsafe.Pointer(connectionNameC))
+	}
+	tmpValue := NewQSqlDatabaseFromPointer(C.QSqlDatabase_QSqlDatabase_AddDatabase2(PointerFromQSqlDriver(driver), C.struct_QtSql_PackedString{data: connectionNameC, len: C.longlong(len(connectionName))}))
+	runtime.SetFinalizer(tmpValue, (*QSqlDatabase).DestroyQSqlDatabase)
+	return tmpValue
+}
+
 func QSqlDatabase_CloneDatabase(other QSqlDatabase_ITF, connectionName string) *QSqlDatabase {
 	var connectionNameC *C.char
 	if connectionName != "" {
@@ -236,6 +265,91 @@ func (ptr *QSqlDatabase) CloneDatabase(other QSqlDatabase_ITF, connectionName st
 	tmpValue := NewQSqlDatabaseFromPointer(C.QSqlDatabase_QSqlDatabase_CloneDatabase(PointerFromQSqlDatabase(other), C.struct_QtSql_PackedString{data: connectionNameC, len: C.longlong(len(connectionName))}))
 	runtime.SetFinalizer(tmpValue, (*QSqlDatabase).DestroyQSqlDatabase)
 	return tmpValue
+}
+
+func QSqlDatabase_CloneDatabase2(other string, connectionName string) *QSqlDatabase {
+	var otherC *C.char
+	if other != "" {
+		otherC = C.CString(other)
+		defer C.free(unsafe.Pointer(otherC))
+	}
+	var connectionNameC *C.char
+	if connectionName != "" {
+		connectionNameC = C.CString(connectionName)
+		defer C.free(unsafe.Pointer(connectionNameC))
+	}
+	tmpValue := NewQSqlDatabaseFromPointer(C.QSqlDatabase_QSqlDatabase_CloneDatabase2(C.struct_QtSql_PackedString{data: otherC, len: C.longlong(len(other))}, C.struct_QtSql_PackedString{data: connectionNameC, len: C.longlong(len(connectionName))}))
+	runtime.SetFinalizer(tmpValue, (*QSqlDatabase).DestroyQSqlDatabase)
+	return tmpValue
+}
+
+func (ptr *QSqlDatabase) CloneDatabase2(other string, connectionName string) *QSqlDatabase {
+	var otherC *C.char
+	if other != "" {
+		otherC = C.CString(other)
+		defer C.free(unsafe.Pointer(otherC))
+	}
+	var connectionNameC *C.char
+	if connectionName != "" {
+		connectionNameC = C.CString(connectionName)
+		defer C.free(unsafe.Pointer(connectionNameC))
+	}
+	tmpValue := NewQSqlDatabaseFromPointer(C.QSqlDatabase_QSqlDatabase_CloneDatabase2(C.struct_QtSql_PackedString{data: otherC, len: C.longlong(len(other))}, C.struct_QtSql_PackedString{data: connectionNameC, len: C.longlong(len(connectionName))}))
+	runtime.SetFinalizer(tmpValue, (*QSqlDatabase).DestroyQSqlDatabase)
+	return tmpValue
+}
+
+func (ptr *QSqlDatabase) Close() {
+	if ptr.Pointer() != nil {
+		C.QSqlDatabase_Close(ptr.Pointer())
+	}
+}
+
+func (ptr *QSqlDatabase) Commit() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlDatabase_Commit(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlDatabase) ConnectOptions() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QSqlDatabase_ConnectOptions(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QSqlDatabase) ConnectionName() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QSqlDatabase_ConnectionName(ptr.Pointer()))
+	}
+	return ""
+}
+
+func QSqlDatabase_ConnectionNames() []string {
+	return unpackStringList(cGoUnpackString(C.QSqlDatabase_QSqlDatabase_ConnectionNames()))
+}
+
+func (ptr *QSqlDatabase) ConnectionNames() []string {
+	return unpackStringList(cGoUnpackString(C.QSqlDatabase_QSqlDatabase_ConnectionNames()))
+}
+
+func QSqlDatabase_Contains(connectionName string) bool {
+	var connectionNameC *C.char
+	if connectionName != "" {
+		connectionNameC = C.CString(connectionName)
+		defer C.free(unsafe.Pointer(connectionNameC))
+	}
+	return int8(C.QSqlDatabase_QSqlDatabase_Contains(C.struct_QtSql_PackedString{data: connectionNameC, len: C.longlong(len(connectionName))})) != 0
+}
+
+func (ptr *QSqlDatabase) Contains(connectionName string) bool {
+	var connectionNameC *C.char
+	if connectionName != "" {
+		connectionNameC = C.CString(connectionName)
+		defer C.free(unsafe.Pointer(connectionNameC))
+	}
+	return int8(C.QSqlDatabase_QSqlDatabase_Contains(C.struct_QtSql_PackedString{data: connectionNameC, len: C.longlong(len(connectionName))})) != 0
 }
 
 func QSqlDatabase_Database(connectionName string, open bool) *QSqlDatabase {
@@ -260,41 +374,29 @@ func (ptr *QSqlDatabase) Database(connectionName string, open bool) *QSqlDatabas
 	return tmpValue
 }
 
-func NewQSqlDatabase() *QSqlDatabase {
-	tmpValue := NewQSqlDatabaseFromPointer(C.QSqlDatabase_NewQSqlDatabase())
-	runtime.SetFinalizer(tmpValue, (*QSqlDatabase).DestroyQSqlDatabase)
-	return tmpValue
-}
-
-func NewQSqlDatabase4(driver QSqlDriver_ITF) *QSqlDatabase {
-	tmpValue := NewQSqlDatabaseFromPointer(C.QSqlDatabase_NewQSqlDatabase4(PointerFromQSqlDriver(driver)))
-	runtime.SetFinalizer(tmpValue, (*QSqlDatabase).DestroyQSqlDatabase)
-	return tmpValue
-}
-
-func NewQSqlDatabase2(other QSqlDatabase_ITF) *QSqlDatabase {
-	tmpValue := NewQSqlDatabaseFromPointer(C.QSqlDatabase_NewQSqlDatabase2(PointerFromQSqlDatabase(other)))
-	runtime.SetFinalizer(tmpValue, (*QSqlDatabase).DestroyQSqlDatabase)
-	return tmpValue
-}
-
-func NewQSqlDatabase3(ty string) *QSqlDatabase {
-	var tyC *C.char
-	if ty != "" {
-		tyC = C.CString(ty)
-		defer C.free(unsafe.Pointer(tyC))
+func (ptr *QSqlDatabase) DatabaseName() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QSqlDatabase_DatabaseName(ptr.Pointer()))
 	}
-	tmpValue := NewQSqlDatabaseFromPointer(C.QSqlDatabase_NewQSqlDatabase3(C.struct_QtSql_PackedString{data: tyC, len: C.longlong(len(ty))}))
-	runtime.SetFinalizer(tmpValue, (*QSqlDatabase).DestroyQSqlDatabase)
-	return tmpValue
+	return ""
 }
 
-func QSqlDatabase_ConnectionNames() []string {
-	return unpackStringList(cGoUnpackString(C.QSqlDatabase_QSqlDatabase_ConnectionNames()))
+func (ptr *QSqlDatabase) Driver() *QSqlDriver {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQSqlDriverFromPointer(C.QSqlDatabase_Driver(ptr.Pointer()))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QSqlDatabase) ConnectionNames() []string {
-	return unpackStringList(cGoUnpackString(C.QSqlDatabase_QSqlDatabase_ConnectionNames()))
+func (ptr *QSqlDatabase) DriverName() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QSqlDatabase_DriverName(ptr.Pointer()))
+	}
+	return ""
 }
 
 func QSqlDatabase_Drivers() []string {
@@ -305,29 +407,25 @@ func (ptr *QSqlDatabase) Drivers() []string {
 	return unpackStringList(cGoUnpackString(C.QSqlDatabase_QSqlDatabase_Drivers()))
 }
 
-func (ptr *QSqlDatabase) Commit() bool {
+func (ptr *QSqlDatabase) Exec(query string) *QSqlQuery {
 	if ptr.Pointer() != nil {
-		return int8(C.QSqlDatabase_Commit(ptr.Pointer())) != 0
+		var queryC *C.char
+		if query != "" {
+			queryC = C.CString(query)
+			defer C.free(unsafe.Pointer(queryC))
+		}
+		tmpValue := NewQSqlQueryFromPointer(C.QSqlDatabase_Exec(ptr.Pointer(), C.struct_QtSql_PackedString{data: queryC, len: C.longlong(len(query))}))
+		runtime.SetFinalizer(tmpValue, (*QSqlQuery).DestroyQSqlQuery)
+		return tmpValue
 	}
-	return false
+	return nil
 }
 
-func QSqlDatabase_Contains(connectionName string) bool {
-	var connectionNameC *C.char
-	if connectionName != "" {
-		connectionNameC = C.CString(connectionName)
-		defer C.free(unsafe.Pointer(connectionNameC))
+func (ptr *QSqlDatabase) HostName() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QSqlDatabase_HostName(ptr.Pointer()))
 	}
-	return int8(C.QSqlDatabase_QSqlDatabase_Contains(C.struct_QtSql_PackedString{data: connectionNameC, len: C.longlong(len(connectionName))})) != 0
-}
-
-func (ptr *QSqlDatabase) Contains(connectionName string) bool {
-	var connectionNameC *C.char
-	if connectionName != "" {
-		connectionNameC = C.CString(connectionName)
-		defer C.free(unsafe.Pointer(connectionNameC))
-	}
-	return int8(C.QSqlDatabase_QSqlDatabase_Contains(C.struct_QtSql_PackedString{data: connectionNameC, len: C.longlong(len(connectionName))})) != 0
+	return ""
 }
 
 func QSqlDatabase_IsDriverAvailable(name string) bool {
@@ -346,6 +444,43 @@ func (ptr *QSqlDatabase) IsDriverAvailable(name string) bool {
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	return int8(C.QSqlDatabase_QSqlDatabase_IsDriverAvailable(C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
+}
+
+func (ptr *QSqlDatabase) IsOpen() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlDatabase_IsOpen(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlDatabase) IsOpenError() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlDatabase_IsOpenError(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlDatabase) IsValid() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlDatabase_IsValid(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlDatabase) LastError() *QSqlError {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQSqlErrorFromPointer(C.QSqlDatabase_LastError(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QSqlError).DestroyQSqlError)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSqlDatabase) NumericalPrecisionPolicy() QSql__NumericalPrecisionPolicy {
+	if ptr.Pointer() != nil {
+		return QSql__NumericalPrecisionPolicy(C.QSqlDatabase_NumericalPrecisionPolicy(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QSqlDatabase) Open() bool {
@@ -372,24 +507,46 @@ func (ptr *QSqlDatabase) Open2(user string, password string) bool {
 	return false
 }
 
-func (ptr *QSqlDatabase) Rollback() bool {
+func (ptr *QSqlDatabase) Password() string {
 	if ptr.Pointer() != nil {
-		return int8(C.QSqlDatabase_Rollback(ptr.Pointer())) != 0
+		return cGoUnpackString(C.QSqlDatabase_Password(ptr.Pointer()))
 	}
-	return false
+	return ""
 }
 
-func (ptr *QSqlDatabase) Transaction() bool {
+func (ptr *QSqlDatabase) Port() int {
 	if ptr.Pointer() != nil {
-		return int8(C.QSqlDatabase_Transaction(ptr.Pointer())) != 0
+		return int(int32(C.QSqlDatabase_Port(ptr.Pointer())))
 	}
-	return false
+	return 0
 }
 
-func (ptr *QSqlDatabase) Close() {
+func (ptr *QSqlDatabase) PrimaryIndex(tablename string) *QSqlIndex {
 	if ptr.Pointer() != nil {
-		C.QSqlDatabase_Close(ptr.Pointer())
+		var tablenameC *C.char
+		if tablename != "" {
+			tablenameC = C.CString(tablename)
+			defer C.free(unsafe.Pointer(tablenameC))
+		}
+		tmpValue := NewQSqlIndexFromPointer(C.QSqlDatabase_PrimaryIndex(ptr.Pointer(), C.struct_QtSql_PackedString{data: tablenameC, len: C.longlong(len(tablename))}))
+		runtime.SetFinalizer(tmpValue, (*QSqlIndex).DestroyQSqlIndex)
+		return tmpValue
 	}
+	return nil
+}
+
+func (ptr *QSqlDatabase) Record(tablename string) *QSqlRecord {
+	if ptr.Pointer() != nil {
+		var tablenameC *C.char
+		if tablename != "" {
+			tablenameC = C.CString(tablename)
+			defer C.free(unsafe.Pointer(tablenameC))
+		}
+		tmpValue := NewQSqlRecordFromPointer(C.QSqlDatabase_Record(ptr.Pointer(), C.struct_QtSql_PackedString{data: tablenameC, len: C.longlong(len(tablename))}))
+		runtime.SetFinalizer(tmpValue, (*QSqlRecord).DestroyQSqlRecord)
+		return tmpValue
+	}
+	return nil
 }
 
 func QSqlDatabase_RegisterSqlDriver(name string, creator QSqlDriverCreatorBase_ITF) {
@@ -426,6 +583,13 @@ func (ptr *QSqlDatabase) RemoveDatabase(connectionName string) {
 		defer C.free(unsafe.Pointer(connectionNameC))
 	}
 	C.QSqlDatabase_QSqlDatabase_RemoveDatabase(C.struct_QtSql_PackedString{data: connectionNameC, len: C.longlong(len(connectionName))})
+}
+
+func (ptr *QSqlDatabase) Rollback() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlDatabase_Rollback(ptr.Pointer())) != 0
+	}
+	return false
 }
 
 func (ptr *QSqlDatabase) SetConnectOptions(options string) {
@@ -495,123 +659,18 @@ func (ptr *QSqlDatabase) SetUserName(name string) {
 	}
 }
 
-func (ptr *QSqlDatabase) DestroyQSqlDatabase() {
+func (ptr *QSqlDatabase) Tables(ty QSql__TableType) []string {
 	if ptr.Pointer() != nil {
-		C.QSqlDatabase_DestroyQSqlDatabase(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		return unpackStringList(cGoUnpackString(C.QSqlDatabase_Tables(ptr.Pointer(), C.longlong(ty))))
 	}
+	return make([]string, 0)
 }
 
-func (ptr *QSqlDatabase) NumericalPrecisionPolicy() QSql__NumericalPrecisionPolicy {
+func (ptr *QSqlDatabase) Transaction() bool {
 	if ptr.Pointer() != nil {
-		return QSql__NumericalPrecisionPolicy(C.QSqlDatabase_NumericalPrecisionPolicy(ptr.Pointer()))
+		return int8(C.QSqlDatabase_Transaction(ptr.Pointer())) != 0
 	}
-	return 0
-}
-
-func (ptr *QSqlDatabase) Driver() *QSqlDriver {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSqlDriverFromPointer(C.QSqlDatabase_Driver(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlDatabase) LastError() *QSqlError {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSqlErrorFromPointer(C.QSqlDatabase_LastError(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QSqlError).DestroyQSqlError)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlDatabase) PrimaryIndex(tablename string) *QSqlIndex {
-	if ptr.Pointer() != nil {
-		var tablenameC *C.char
-		if tablename != "" {
-			tablenameC = C.CString(tablename)
-			defer C.free(unsafe.Pointer(tablenameC))
-		}
-		tmpValue := NewQSqlIndexFromPointer(C.QSqlDatabase_PrimaryIndex(ptr.Pointer(), C.struct_QtSql_PackedString{data: tablenameC, len: C.longlong(len(tablename))}))
-		runtime.SetFinalizer(tmpValue, (*QSqlIndex).DestroyQSqlIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlDatabase) Exec(query string) *QSqlQuery {
-	if ptr.Pointer() != nil {
-		var queryC *C.char
-		if query != "" {
-			queryC = C.CString(query)
-			defer C.free(unsafe.Pointer(queryC))
-		}
-		tmpValue := NewQSqlQueryFromPointer(C.QSqlDatabase_Exec(ptr.Pointer(), C.struct_QtSql_PackedString{data: queryC, len: C.longlong(len(query))}))
-		runtime.SetFinalizer(tmpValue, (*QSqlQuery).DestroyQSqlQuery)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlDatabase) Record(tablename string) *QSqlRecord {
-	if ptr.Pointer() != nil {
-		var tablenameC *C.char
-		if tablename != "" {
-			tablenameC = C.CString(tablename)
-			defer C.free(unsafe.Pointer(tablenameC))
-		}
-		tmpValue := NewQSqlRecordFromPointer(C.QSqlDatabase_Record(ptr.Pointer(), C.struct_QtSql_PackedString{data: tablenameC, len: C.longlong(len(tablename))}))
-		runtime.SetFinalizer(tmpValue, (*QSqlRecord).DestroyQSqlRecord)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlDatabase) ConnectOptions() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSqlDatabase_ConnectOptions(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QSqlDatabase) ConnectionName() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSqlDatabase_ConnectionName(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QSqlDatabase) DatabaseName() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSqlDatabase_DatabaseName(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QSqlDatabase) DriverName() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSqlDatabase_DriverName(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QSqlDatabase) HostName() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSqlDatabase_HostName(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QSqlDatabase) Password() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSqlDatabase_Password(ptr.Pointer()))
-	}
-	return ""
+	return false
 }
 
 func (ptr *QSqlDatabase) UserName() string {
@@ -621,47 +680,12 @@ func (ptr *QSqlDatabase) UserName() string {
 	return ""
 }
 
-func (ptr *QSqlDatabase) Tables(ty QSql__TableType) []string {
+func (ptr *QSqlDatabase) DestroyQSqlDatabase() {
 	if ptr.Pointer() != nil {
-		return unpackStringList(cGoUnpackString(C.QSqlDatabase_Tables(ptr.Pointer(), C.longlong(ty))))
+		C.QSqlDatabase_DestroyQSqlDatabase(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
-	return make([]string, 0)
-}
-
-func (ptr *QSqlDatabase) IsOpen() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlDatabase_IsOpen(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlDatabase) IsOpenError() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlDatabase_IsOpenError(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlDatabase) IsValid() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlDatabase_IsValid(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlDatabase) Port() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QSqlDatabase_Port(ptr.Pointer())))
-	}
-	return 0
-}
-
-func QSqlDatabase_DefaultConnection() string {
-	return cGoUnpackString(C.QSqlDatabase_QSqlDatabase_DefaultConnection())
-}
-
-func (ptr *QSqlDatabase) DefaultConnection() string {
-	return cGoUnpackString(C.QSqlDatabase_QSqlDatabase_DefaultConnection())
 }
 
 type QSqlDriver struct {
@@ -725,6 +749,18 @@ const (
 	QSqlDriver__CancelQuery            QSqlDriver__DriverFeature = QSqlDriver__DriverFeature(14)
 )
 
+//go:generate stringer -type=QSqlDriver__StatementType
+//QSqlDriver::StatementType
+type QSqlDriver__StatementType int64
+
+const (
+	QSqlDriver__WhereStatement  QSqlDriver__StatementType = QSqlDriver__StatementType(0)
+	QSqlDriver__SelectStatement QSqlDriver__StatementType = QSqlDriver__StatementType(1)
+	QSqlDriver__UpdateStatement QSqlDriver__StatementType = QSqlDriver__StatementType(2)
+	QSqlDriver__InsertStatement QSqlDriver__StatementType = QSqlDriver__StatementType(3)
+	QSqlDriver__DeleteStatement QSqlDriver__StatementType = QSqlDriver__StatementType(4)
+)
+
 //go:generate stringer -type=QSqlDriver__IdentifierType
 //QSqlDriver::IdentifierType
 type QSqlDriver__IdentifierType int64
@@ -744,52 +780,12 @@ const (
 	QSqlDriver__OtherSource   QSqlDriver__NotificationSource = QSqlDriver__NotificationSource(2)
 )
 
-//go:generate stringer -type=QSqlDriver__StatementType
-//QSqlDriver::StatementType
-type QSqlDriver__StatementType int64
-
-const (
-	QSqlDriver__WhereStatement  QSqlDriver__StatementType = QSqlDriver__StatementType(0)
-	QSqlDriver__SelectStatement QSqlDriver__StatementType = QSqlDriver__StatementType(1)
-	QSqlDriver__UpdateStatement QSqlDriver__StatementType = QSqlDriver__StatementType(2)
-	QSqlDriver__InsertStatement QSqlDriver__StatementType = QSqlDriver__StatementType(3)
-	QSqlDriver__DeleteStatement QSqlDriver__StatementType = QSqlDriver__StatementType(4)
-)
-
 func NewQSqlDriver(parent core.QObject_ITF) *QSqlDriver {
 	tmpValue := NewQSqlDriverFromPointer(C.QSqlDriver_NewQSqlDriver(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
-}
-
-func QSqlDriver_Tr(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QSqlDriver_QSqlDriver_Tr(sC, cC, C.int(int32(n))))
-}
-
-func (ptr *QSqlDriver) Tr(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QSqlDriver_QSqlDriver_Tr(sC, cC, C.int(int32(n))))
 }
 
 //export callbackQSqlDriver_BeginTransaction
@@ -837,6 +833,42 @@ func (ptr *QSqlDriver) BeginTransactionDefault() bool {
 	return false
 }
 
+//export callbackQSqlDriver_Close
+func callbackQSqlDriver_Close(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "close"); signal != nil {
+		(*(*func())(signal))()
+	}
+
+}
+
+func (ptr *QSqlDriver) ConnectClose(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "close"); signal != nil {
+			f := func() {
+				(*(*func())(signal))()
+				f()
+			}
+			qt.ConnectSignal(ptr.Pointer(), "close", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "close", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QSqlDriver) DisconnectClose() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "close")
+	}
+}
+
+func (ptr *QSqlDriver) Close() {
+	if ptr.Pointer() != nil {
+		C.QSqlDriver_Close(ptr.Pointer())
+	}
+}
+
 //export callbackQSqlDriver_CommitTransaction
 func callbackQSqlDriver_CommitTransaction(ptr unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "commitTransaction"); signal != nil {
@@ -880,666 +912,6 @@ func (ptr *QSqlDriver) CommitTransactionDefault() bool {
 		return int8(C.QSqlDriver_CommitTransactionDefault(ptr.Pointer())) != 0
 	}
 	return false
-}
-
-//export callbackQSqlDriver_Open
-func callbackQSqlDriver_Open(ptr unsafe.Pointer, db C.struct_QtSql_PackedString, user C.struct_QtSql_PackedString, password C.struct_QtSql_PackedString, host C.struct_QtSql_PackedString, port C.int, options C.struct_QtSql_PackedString) C.char {
-	if signal := qt.GetSignal(ptr, "open"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(string, string, string, string, int, string) bool)(signal))(cGoUnpackString(db), cGoUnpackString(user), cGoUnpackString(password), cGoUnpackString(host), int(int32(port)), cGoUnpackString(options)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(false)))
-}
-
-func (ptr *QSqlDriver) ConnectOpen(f func(db string, user string, password string, host string, port int, options string) bool) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "open"); signal != nil {
-			f := func(db string, user string, password string, host string, port int, options string) bool {
-				(*(*func(string, string, string, string, int, string) bool)(signal))(db, user, password, host, port, options)
-				return f(db, user, password, host, port, options)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "open", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "open", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QSqlDriver) DisconnectOpen() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "open")
-	}
-}
-
-func (ptr *QSqlDriver) Open(db string, user string, password string, host string, port int, options string) bool {
-	if ptr.Pointer() != nil {
-		var dbC *C.char
-		if db != "" {
-			dbC = C.CString(db)
-			defer C.free(unsafe.Pointer(dbC))
-		}
-		var userC *C.char
-		if user != "" {
-			userC = C.CString(user)
-			defer C.free(unsafe.Pointer(userC))
-		}
-		var passwordC *C.char
-		if password != "" {
-			passwordC = C.CString(password)
-			defer C.free(unsafe.Pointer(passwordC))
-		}
-		var hostC *C.char
-		if host != "" {
-			hostC = C.CString(host)
-			defer C.free(unsafe.Pointer(hostC))
-		}
-		var optionsC *C.char
-		if options != "" {
-			optionsC = C.CString(options)
-			defer C.free(unsafe.Pointer(optionsC))
-		}
-		return int8(C.QSqlDriver_Open(ptr.Pointer(), C.struct_QtSql_PackedString{data: dbC, len: C.longlong(len(db))}, C.struct_QtSql_PackedString{data: userC, len: C.longlong(len(user))}, C.struct_QtSql_PackedString{data: passwordC, len: C.longlong(len(password))}, C.struct_QtSql_PackedString{data: hostC, len: C.longlong(len(host))}, C.int(int32(port)), C.struct_QtSql_PackedString{data: optionsC, len: C.longlong(len(options))})) != 0
-	}
-	return false
-}
-
-//export callbackQSqlDriver_RollbackTransaction
-func callbackQSqlDriver_RollbackTransaction(ptr unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "rollbackTransaction"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func() bool)(signal))())))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSqlDriverFromPointer(ptr).RollbackTransactionDefault())))
-}
-
-func (ptr *QSqlDriver) ConnectRollbackTransaction(f func() bool) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "rollbackTransaction"); signal != nil {
-			f := func() bool {
-				(*(*func() bool)(signal))()
-				return f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "rollbackTransaction", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "rollbackTransaction", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QSqlDriver) DisconnectRollbackTransaction() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "rollbackTransaction")
-	}
-}
-
-func (ptr *QSqlDriver) RollbackTransaction() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlDriver_RollbackTransaction(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlDriver) RollbackTransactionDefault() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlDriver_RollbackTransactionDefault(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-//export callbackQSqlDriver_SubscribeToNotification
-func callbackQSqlDriver_SubscribeToNotification(ptr unsafe.Pointer, name C.struct_QtSql_PackedString) C.char {
-	if signal := qt.GetSignal(ptr, "subscribeToNotification"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(string) bool)(signal))(cGoUnpackString(name)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSqlDriverFromPointer(ptr).SubscribeToNotificationDefault(cGoUnpackString(name)))))
-}
-
-func (ptr *QSqlDriver) ConnectSubscribeToNotification(f func(name string) bool) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "subscribeToNotification"); signal != nil {
-			f := func(name string) bool {
-				(*(*func(string) bool)(signal))(name)
-				return f(name)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "subscribeToNotification", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "subscribeToNotification", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QSqlDriver) DisconnectSubscribeToNotification() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "subscribeToNotification")
-	}
-}
-
-func (ptr *QSqlDriver) SubscribeToNotification(name string) bool {
-	if ptr.Pointer() != nil {
-		var nameC *C.char
-		if name != "" {
-			nameC = C.CString(name)
-			defer C.free(unsafe.Pointer(nameC))
-		}
-		return int8(C.QSqlDriver_SubscribeToNotification(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlDriver) SubscribeToNotificationDefault(name string) bool {
-	if ptr.Pointer() != nil {
-		var nameC *C.char
-		if name != "" {
-			nameC = C.CString(name)
-			defer C.free(unsafe.Pointer(nameC))
-		}
-		return int8(C.QSqlDriver_SubscribeToNotificationDefault(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
-	}
-	return false
-}
-
-//export callbackQSqlDriver_UnsubscribeFromNotification
-func callbackQSqlDriver_UnsubscribeFromNotification(ptr unsafe.Pointer, name C.struct_QtSql_PackedString) C.char {
-	if signal := qt.GetSignal(ptr, "unsubscribeFromNotification"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(string) bool)(signal))(cGoUnpackString(name)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSqlDriverFromPointer(ptr).UnsubscribeFromNotificationDefault(cGoUnpackString(name)))))
-}
-
-func (ptr *QSqlDriver) ConnectUnsubscribeFromNotification(f func(name string) bool) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "unsubscribeFromNotification"); signal != nil {
-			f := func(name string) bool {
-				(*(*func(string) bool)(signal))(name)
-				return f(name)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "unsubscribeFromNotification", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "unsubscribeFromNotification", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QSqlDriver) DisconnectUnsubscribeFromNotification() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "unsubscribeFromNotification")
-	}
-}
-
-func (ptr *QSqlDriver) UnsubscribeFromNotification(name string) bool {
-	if ptr.Pointer() != nil {
-		var nameC *C.char
-		if name != "" {
-			nameC = C.CString(name)
-			defer C.free(unsafe.Pointer(nameC))
-		}
-		return int8(C.QSqlDriver_UnsubscribeFromNotification(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlDriver) UnsubscribeFromNotificationDefault(name string) bool {
-	if ptr.Pointer() != nil {
-		var nameC *C.char
-		if name != "" {
-			nameC = C.CString(name)
-			defer C.free(unsafe.Pointer(nameC))
-		}
-		return int8(C.QSqlDriver_UnsubscribeFromNotificationDefault(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
-	}
-	return false
-}
-
-//export callbackQSqlDriver_Close
-func callbackQSqlDriver_Close(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "close"); signal != nil {
-		(*(*func())(signal))()
-	}
-
-}
-
-func (ptr *QSqlDriver) ConnectClose(f func()) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "close"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "close", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "close", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QSqlDriver) DisconnectClose() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "close")
-	}
-}
-
-func (ptr *QSqlDriver) Close() {
-	if ptr.Pointer() != nil {
-		C.QSqlDriver_Close(ptr.Pointer())
-	}
-}
-
-//export callbackQSqlDriver_Notification
-func callbackQSqlDriver_Notification(ptr unsafe.Pointer, name C.struct_QtSql_PackedString) {
-	if signal := qt.GetSignal(ptr, "notification"); signal != nil {
-		(*(*func(string))(signal))(cGoUnpackString(name))
-	}
-
-}
-
-func (ptr *QSqlDriver) ConnectNotification(f func(name string)) {
-	if ptr.Pointer() != nil {
-
-		if !qt.ExistsSignal(ptr.Pointer(), "notification") {
-			C.QSqlDriver_ConnectNotification(ptr.Pointer())
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "notification"); signal != nil {
-			f := func(name string) {
-				(*(*func(string))(signal))(name)
-				f(name)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "notification", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "notification", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QSqlDriver) DisconnectNotification() {
-	if ptr.Pointer() != nil {
-		C.QSqlDriver_DisconnectNotification(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "notification")
-	}
-}
-
-func (ptr *QSqlDriver) Notification(name string) {
-	if ptr.Pointer() != nil {
-		var nameC *C.char
-		if name != "" {
-			nameC = C.CString(name)
-			defer C.free(unsafe.Pointer(nameC))
-		}
-		C.QSqlDriver_Notification(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))})
-	}
-}
-
-//export callbackQSqlDriver_Notification2
-func callbackQSqlDriver_Notification2(ptr unsafe.Pointer, name C.struct_QtSql_PackedString, source C.longlong, payload unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "notification2"); signal != nil {
-		(*(*func(string, QSqlDriver__NotificationSource, *core.QVariant))(signal))(cGoUnpackString(name), QSqlDriver__NotificationSource(source), core.NewQVariantFromPointer(payload))
-	}
-
-}
-
-func (ptr *QSqlDriver) ConnectNotification2(f func(name string, source QSqlDriver__NotificationSource, payload *core.QVariant)) {
-	if ptr.Pointer() != nil {
-
-		if !qt.ExistsSignal(ptr.Pointer(), "notification2") {
-			C.QSqlDriver_ConnectNotification2(ptr.Pointer())
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "notification2"); signal != nil {
-			f := func(name string, source QSqlDriver__NotificationSource, payload *core.QVariant) {
-				(*(*func(string, QSqlDriver__NotificationSource, *core.QVariant))(signal))(name, source, payload)
-				f(name, source, payload)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "notification2", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "notification2", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QSqlDriver) DisconnectNotification2() {
-	if ptr.Pointer() != nil {
-		C.QSqlDriver_DisconnectNotification2(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "notification2")
-	}
-}
-
-func (ptr *QSqlDriver) Notification2(name string, source QSqlDriver__NotificationSource, payload core.QVariant_ITF) {
-	if ptr.Pointer() != nil {
-		var nameC *C.char
-		if name != "" {
-			nameC = C.CString(name)
-			defer C.free(unsafe.Pointer(nameC))
-		}
-		C.QSqlDriver_Notification2(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))}, C.longlong(source), core.PointerFromQVariant(payload))
-	}
-}
-
-//export callbackQSqlDriver_SetLastError
-func callbackQSqlDriver_SetLastError(ptr unsafe.Pointer, error unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "setLastError"); signal != nil {
-		(*(*func(*QSqlError))(signal))(NewQSqlErrorFromPointer(error))
-	} else {
-		NewQSqlDriverFromPointer(ptr).SetLastErrorDefault(NewQSqlErrorFromPointer(error))
-	}
-}
-
-func (ptr *QSqlDriver) ConnectSetLastError(f func(error *QSqlError)) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "setLastError"); signal != nil {
-			f := func(error *QSqlError) {
-				(*(*func(*QSqlError))(signal))(error)
-				f(error)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "setLastError", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setLastError", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QSqlDriver) DisconnectSetLastError() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "setLastError")
-	}
-}
-
-func (ptr *QSqlDriver) SetLastError(error QSqlError_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSqlDriver_SetLastError(ptr.Pointer(), PointerFromQSqlError(error))
-	}
-}
-
-func (ptr *QSqlDriver) SetLastErrorDefault(error QSqlError_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSqlDriver_SetLastErrorDefault(ptr.Pointer(), PointerFromQSqlError(error))
-	}
-}
-
-func (ptr *QSqlDriver) SetNumericalPrecisionPolicy(precisionPolicy QSql__NumericalPrecisionPolicy) {
-	if ptr.Pointer() != nil {
-		C.QSqlDriver_SetNumericalPrecisionPolicy(ptr.Pointer(), C.longlong(precisionPolicy))
-	}
-}
-
-//export callbackQSqlDriver_SetOpen
-func callbackQSqlDriver_SetOpen(ptr unsafe.Pointer, open C.char) {
-	if signal := qt.GetSignal(ptr, "setOpen"); signal != nil {
-		(*(*func(bool))(signal))(int8(open) != 0)
-	} else {
-		NewQSqlDriverFromPointer(ptr).SetOpenDefault(int8(open) != 0)
-	}
-}
-
-func (ptr *QSqlDriver) ConnectSetOpen(f func(open bool)) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "setOpen"); signal != nil {
-			f := func(open bool) {
-				(*(*func(bool))(signal))(open)
-				f(open)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "setOpen", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setOpen", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QSqlDriver) DisconnectSetOpen() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "setOpen")
-	}
-}
-
-func (ptr *QSqlDriver) SetOpen(open bool) {
-	if ptr.Pointer() != nil {
-		C.QSqlDriver_SetOpen(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(open))))
-	}
-}
-
-func (ptr *QSqlDriver) SetOpenDefault(open bool) {
-	if ptr.Pointer() != nil {
-		C.QSqlDriver_SetOpenDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(open))))
-	}
-}
-
-//export callbackQSqlDriver_SetOpenError
-func callbackQSqlDriver_SetOpenError(ptr unsafe.Pointer, error C.char) {
-	if signal := qt.GetSignal(ptr, "setOpenError"); signal != nil {
-		(*(*func(bool))(signal))(int8(error) != 0)
-	} else {
-		NewQSqlDriverFromPointer(ptr).SetOpenErrorDefault(int8(error) != 0)
-	}
-}
-
-func (ptr *QSqlDriver) ConnectSetOpenError(f func(error bool)) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "setOpenError"); signal != nil {
-			f := func(error bool) {
-				(*(*func(bool))(signal))(error)
-				f(error)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "setOpenError", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setOpenError", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QSqlDriver) DisconnectSetOpenError() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "setOpenError")
-	}
-}
-
-func (ptr *QSqlDriver) SetOpenError(error bool) {
-	if ptr.Pointer() != nil {
-		C.QSqlDriver_SetOpenError(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(error))))
-	}
-}
-
-func (ptr *QSqlDriver) SetOpenErrorDefault(error bool) {
-	if ptr.Pointer() != nil {
-		C.QSqlDriver_SetOpenErrorDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(error))))
-	}
-}
-
-//export callbackQSqlDriver_DestroyQSqlDriver
-func callbackQSqlDriver_DestroyQSqlDriver(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QSqlDriver"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQSqlDriverFromPointer(ptr).DestroyQSqlDriverDefault()
-	}
-}
-
-func (ptr *QSqlDriver) ConnectDestroyQSqlDriver(f func()) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "~QSqlDriver"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QSqlDriver", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QSqlDriver", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QSqlDriver) DisconnectDestroyQSqlDriver() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "~QSqlDriver")
-	}
-}
-
-func (ptr *QSqlDriver) DestroyQSqlDriver() {
-	if ptr.Pointer() != nil {
-		C.QSqlDriver_DestroyQSqlDriver(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
-}
-
-func (ptr *QSqlDriver) DestroyQSqlDriverDefault() {
-	if ptr.Pointer() != nil {
-		C.QSqlDriver_DestroyQSqlDriverDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
-}
-
-func (ptr *QSqlDriver) NumericalPrecisionPolicy() QSql__NumericalPrecisionPolicy {
-	if ptr.Pointer() != nil {
-		return QSql__NumericalPrecisionPolicy(C.QSqlDriver_NumericalPrecisionPolicy(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QSqlDriver) LastError() *QSqlError {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSqlErrorFromPointer(C.QSqlDriver_LastError(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QSqlError).DestroyQSqlError)
-		return tmpValue
-	}
-	return nil
-}
-
-//export callbackQSqlDriver_PrimaryIndex
-func callbackQSqlDriver_PrimaryIndex(ptr unsafe.Pointer, tableName C.struct_QtSql_PackedString) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "primaryIndex"); signal != nil {
-		return PointerFromQSqlIndex((*(*func(string) *QSqlIndex)(signal))(cGoUnpackString(tableName)))
-	}
-
-	return PointerFromQSqlIndex(NewQSqlDriverFromPointer(ptr).PrimaryIndexDefault(cGoUnpackString(tableName)))
-}
-
-func (ptr *QSqlDriver) ConnectPrimaryIndex(f func(tableName string) *QSqlIndex) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "primaryIndex"); signal != nil {
-			f := func(tableName string) *QSqlIndex {
-				(*(*func(string) *QSqlIndex)(signal))(tableName)
-				return f(tableName)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "primaryIndex", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "primaryIndex", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QSqlDriver) DisconnectPrimaryIndex() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "primaryIndex")
-	}
-}
-
-func (ptr *QSqlDriver) PrimaryIndex(tableName string) *QSqlIndex {
-	if ptr.Pointer() != nil {
-		var tableNameC *C.char
-		if tableName != "" {
-			tableNameC = C.CString(tableName)
-			defer C.free(unsafe.Pointer(tableNameC))
-		}
-		tmpValue := NewQSqlIndexFromPointer(C.QSqlDriver_PrimaryIndex(ptr.Pointer(), C.struct_QtSql_PackedString{data: tableNameC, len: C.longlong(len(tableName))}))
-		runtime.SetFinalizer(tmpValue, (*QSqlIndex).DestroyQSqlIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlDriver) PrimaryIndexDefault(tableName string) *QSqlIndex {
-	if ptr.Pointer() != nil {
-		var tableNameC *C.char
-		if tableName != "" {
-			tableNameC = C.CString(tableName)
-			defer C.free(unsafe.Pointer(tableNameC))
-		}
-		tmpValue := NewQSqlIndexFromPointer(C.QSqlDriver_PrimaryIndexDefault(ptr.Pointer(), C.struct_QtSql_PackedString{data: tableNameC, len: C.longlong(len(tableName))}))
-		runtime.SetFinalizer(tmpValue, (*QSqlIndex).DestroyQSqlIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-//export callbackQSqlDriver_Record
-func callbackQSqlDriver_Record(ptr unsafe.Pointer, tableName C.struct_QtSql_PackedString) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "record"); signal != nil {
-		return PointerFromQSqlRecord((*(*func(string) *QSqlRecord)(signal))(cGoUnpackString(tableName)))
-	}
-
-	return PointerFromQSqlRecord(NewQSqlDriverFromPointer(ptr).RecordDefault(cGoUnpackString(tableName)))
-}
-
-func (ptr *QSqlDriver) ConnectRecord(f func(tableName string) *QSqlRecord) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "record"); signal != nil {
-			f := func(tableName string) *QSqlRecord {
-				(*(*func(string) *QSqlRecord)(signal))(tableName)
-				return f(tableName)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "record", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "record", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QSqlDriver) DisconnectRecord() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "record")
-	}
-}
-
-func (ptr *QSqlDriver) Record(tableName string) *QSqlRecord {
-	if ptr.Pointer() != nil {
-		var tableNameC *C.char
-		if tableName != "" {
-			tableNameC = C.CString(tableName)
-			defer C.free(unsafe.Pointer(tableNameC))
-		}
-		tmpValue := NewQSqlRecordFromPointer(C.QSqlDriver_Record(ptr.Pointer(), C.struct_QtSql_PackedString{data: tableNameC, len: C.longlong(len(tableName))}))
-		runtime.SetFinalizer(tmpValue, (*QSqlRecord).DestroyQSqlRecord)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlDriver) RecordDefault(tableName string) *QSqlRecord {
-	if ptr.Pointer() != nil {
-		var tableNameC *C.char
-		if tableName != "" {
-			tableNameC = C.CString(tableName)
-			defer C.free(unsafe.Pointer(tableNameC))
-		}
-		tmpValue := NewQSqlRecordFromPointer(C.QSqlDriver_RecordDefault(ptr.Pointer(), C.struct_QtSql_PackedString{data: tableNameC, len: C.longlong(len(tableName))}))
-		runtime.SetFinalizer(tmpValue, (*QSqlRecord).DestroyQSqlRecord)
-		return tmpValue
-	}
-	return nil
 }
 
 //export callbackQSqlDriver_CreateResult
@@ -1680,210 +1052,6 @@ func (ptr *QSqlDriver) FormatValueDefault(field QSqlField_ITF, trimStrings bool)
 		return cGoUnpackString(C.QSqlDriver_FormatValueDefault(ptr.Pointer(), PointerFromQSqlField(field), C.char(int8(qt.GoBoolToInt(trimStrings)))))
 	}
 	return ""
-}
-
-//export callbackQSqlDriver_SqlStatement
-func callbackQSqlDriver_SqlStatement(ptr unsafe.Pointer, ty C.longlong, tableName C.struct_QtSql_PackedString, rec unsafe.Pointer, preparedStatement C.char) C.struct_QtSql_PackedString {
-	if signal := qt.GetSignal(ptr, "sqlStatement"); signal != nil {
-		tempVal := (*(*func(QSqlDriver__StatementType, string, *QSqlRecord, bool) string)(signal))(QSqlDriver__StatementType(ty), cGoUnpackString(tableName), NewQSqlRecordFromPointer(rec), int8(preparedStatement) != 0)
-		return C.struct_QtSql_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
-	}
-	tempVal := NewQSqlDriverFromPointer(ptr).SqlStatementDefault(QSqlDriver__StatementType(ty), cGoUnpackString(tableName), NewQSqlRecordFromPointer(rec), int8(preparedStatement) != 0)
-	return C.struct_QtSql_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
-}
-
-func (ptr *QSqlDriver) ConnectSqlStatement(f func(ty QSqlDriver__StatementType, tableName string, rec *QSqlRecord, preparedStatement bool) string) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "sqlStatement"); signal != nil {
-			f := func(ty QSqlDriver__StatementType, tableName string, rec *QSqlRecord, preparedStatement bool) string {
-				(*(*func(QSqlDriver__StatementType, string, *QSqlRecord, bool) string)(signal))(ty, tableName, rec, preparedStatement)
-				return f(ty, tableName, rec, preparedStatement)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "sqlStatement", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "sqlStatement", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QSqlDriver) DisconnectSqlStatement() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "sqlStatement")
-	}
-}
-
-func (ptr *QSqlDriver) SqlStatement(ty QSqlDriver__StatementType, tableName string, rec QSqlRecord_ITF, preparedStatement bool) string {
-	if ptr.Pointer() != nil {
-		var tableNameC *C.char
-		if tableName != "" {
-			tableNameC = C.CString(tableName)
-			defer C.free(unsafe.Pointer(tableNameC))
-		}
-		return cGoUnpackString(C.QSqlDriver_SqlStatement(ptr.Pointer(), C.longlong(ty), C.struct_QtSql_PackedString{data: tableNameC, len: C.longlong(len(tableName))}, PointerFromQSqlRecord(rec), C.char(int8(qt.GoBoolToInt(preparedStatement)))))
-	}
-	return ""
-}
-
-func (ptr *QSqlDriver) SqlStatementDefault(ty QSqlDriver__StatementType, tableName string, rec QSqlRecord_ITF, preparedStatement bool) string {
-	if ptr.Pointer() != nil {
-		var tableNameC *C.char
-		if tableName != "" {
-			tableNameC = C.CString(tableName)
-			defer C.free(unsafe.Pointer(tableNameC))
-		}
-		return cGoUnpackString(C.QSqlDriver_SqlStatementDefault(ptr.Pointer(), C.longlong(ty), C.struct_QtSql_PackedString{data: tableNameC, len: C.longlong(len(tableName))}, PointerFromQSqlRecord(rec), C.char(int8(qt.GoBoolToInt(preparedStatement)))))
-	}
-	return ""
-}
-
-//export callbackQSqlDriver_StripDelimiters
-func callbackQSqlDriver_StripDelimiters(ptr unsafe.Pointer, identifier C.struct_QtSql_PackedString, ty C.longlong) C.struct_QtSql_PackedString {
-	if signal := qt.GetSignal(ptr, "stripDelimiters"); signal != nil {
-		tempVal := (*(*func(string, QSqlDriver__IdentifierType) string)(signal))(cGoUnpackString(identifier), QSqlDriver__IdentifierType(ty))
-		return C.struct_QtSql_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
-	}
-	tempVal := NewQSqlDriverFromPointer(ptr).StripDelimitersDefault(cGoUnpackString(identifier), QSqlDriver__IdentifierType(ty))
-	return C.struct_QtSql_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
-}
-
-func (ptr *QSqlDriver) ConnectStripDelimiters(f func(identifier string, ty QSqlDriver__IdentifierType) string) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "stripDelimiters"); signal != nil {
-			f := func(identifier string, ty QSqlDriver__IdentifierType) string {
-				(*(*func(string, QSqlDriver__IdentifierType) string)(signal))(identifier, ty)
-				return f(identifier, ty)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "stripDelimiters", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "stripDelimiters", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QSqlDriver) DisconnectStripDelimiters() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "stripDelimiters")
-	}
-}
-
-func (ptr *QSqlDriver) StripDelimiters(identifier string, ty QSqlDriver__IdentifierType) string {
-	if ptr.Pointer() != nil {
-		var identifierC *C.char
-		if identifier != "" {
-			identifierC = C.CString(identifier)
-			defer C.free(unsafe.Pointer(identifierC))
-		}
-		return cGoUnpackString(C.QSqlDriver_StripDelimiters(ptr.Pointer(), C.struct_QtSql_PackedString{data: identifierC, len: C.longlong(len(identifier))}, C.longlong(ty)))
-	}
-	return ""
-}
-
-func (ptr *QSqlDriver) StripDelimitersDefault(identifier string, ty QSqlDriver__IdentifierType) string {
-	if ptr.Pointer() != nil {
-		var identifierC *C.char
-		if identifier != "" {
-			identifierC = C.CString(identifier)
-			defer C.free(unsafe.Pointer(identifierC))
-		}
-		return cGoUnpackString(C.QSqlDriver_StripDelimitersDefault(ptr.Pointer(), C.struct_QtSql_PackedString{data: identifierC, len: C.longlong(len(identifier))}, C.longlong(ty)))
-	}
-	return ""
-}
-
-//export callbackQSqlDriver_SubscribedToNotifications
-func callbackQSqlDriver_SubscribedToNotifications(ptr unsafe.Pointer) C.struct_QtSql_PackedString {
-	if signal := qt.GetSignal(ptr, "subscribedToNotifications"); signal != nil {
-		tempVal := (*(*func() []string)(signal))()
-		return C.struct_QtSql_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
-	}
-	tempVal := NewQSqlDriverFromPointer(ptr).SubscribedToNotificationsDefault()
-	return C.struct_QtSql_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
-}
-
-func (ptr *QSqlDriver) ConnectSubscribedToNotifications(f func() []string) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "subscribedToNotifications"); signal != nil {
-			f := func() []string {
-				(*(*func() []string)(signal))()
-				return f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "subscribedToNotifications", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "subscribedToNotifications", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QSqlDriver) DisconnectSubscribedToNotifications() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "subscribedToNotifications")
-	}
-}
-
-func (ptr *QSqlDriver) SubscribedToNotifications() []string {
-	if ptr.Pointer() != nil {
-		return unpackStringList(cGoUnpackString(C.QSqlDriver_SubscribedToNotifications(ptr.Pointer())))
-	}
-	return make([]string, 0)
-}
-
-func (ptr *QSqlDriver) SubscribedToNotificationsDefault() []string {
-	if ptr.Pointer() != nil {
-		return unpackStringList(cGoUnpackString(C.QSqlDriver_SubscribedToNotificationsDefault(ptr.Pointer())))
-	}
-	return make([]string, 0)
-}
-
-//export callbackQSqlDriver_Tables
-func callbackQSqlDriver_Tables(ptr unsafe.Pointer, tableType C.longlong) C.struct_QtSql_PackedString {
-	if signal := qt.GetSignal(ptr, "tables"); signal != nil {
-		tempVal := (*(*func(QSql__TableType) []string)(signal))(QSql__TableType(tableType))
-		return C.struct_QtSql_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
-	}
-	tempVal := NewQSqlDriverFromPointer(ptr).TablesDefault(QSql__TableType(tableType))
-	return C.struct_QtSql_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
-}
-
-func (ptr *QSqlDriver) ConnectTables(f func(tableType QSql__TableType) []string) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "tables"); signal != nil {
-			f := func(tableType QSql__TableType) []string {
-				(*(*func(QSql__TableType) []string)(signal))(tableType)
-				return f(tableType)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "tables", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "tables", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QSqlDriver) DisconnectTables() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "tables")
-	}
-}
-
-func (ptr *QSqlDriver) Tables(tableType QSql__TableType) []string {
-	if ptr.Pointer() != nil {
-		return unpackStringList(cGoUnpackString(C.QSqlDriver_Tables(ptr.Pointer(), C.longlong(tableType))))
-	}
-	return make([]string, 0)
-}
-
-func (ptr *QSqlDriver) TablesDefault(tableType QSql__TableType) []string {
-	if ptr.Pointer() != nil {
-		return unpackStringList(cGoUnpackString(C.QSqlDriver_TablesDefault(ptr.Pointer(), C.longlong(tableType))))
-	}
-	return make([]string, 0)
 }
 
 //export callbackQSqlDriver_Handle
@@ -2080,102 +1248,832 @@ func (ptr *QSqlDriver) IsOpenError() bool {
 	return false
 }
 
-//export callbackQSqlDriver_MetaObject
-func callbackQSqlDriver_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQSqlDriverFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QSqlDriver) MetaObjectDefault() *core.QMetaObject {
+func (ptr *QSqlDriver) LastError() *QSqlError {
 	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QSqlDriver_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
-func (ptr *QSqlDriver) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QSqlDriver___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		tmpValue := NewQSqlErrorFromPointer(C.QSqlDriver_LastError(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QSqlError).DestroyQSqlError)
 		return tmpValue
 	}
 	return nil
 }
 
-func (ptr *QSqlDriver) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSqlDriver___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+//export callbackQSqlDriver_Notification
+func callbackQSqlDriver_Notification(ptr unsafe.Pointer, name C.struct_QtSql_PackedString) {
+	if signal := qt.GetSignal(ptr, "notification"); signal != nil {
+		(*(*func(string))(signal))(cGoUnpackString(name))
 	}
+
 }
 
-func (ptr *QSqlDriver) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return C.QSqlDriver___dynamicPropertyNames_newList(ptr.Pointer())
-}
-
-func (ptr *QSqlDriver) __findChildren_atList2(i int) *core.QObject {
+func (ptr *QSqlDriver) ConnectNotification(f func(name string)) {
 	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSqlDriver___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+
+		if !qt.ExistsSignal(ptr.Pointer(), "notification") {
+			C.QSqlDriver_ConnectNotification(ptr.Pointer())
 		}
-		return tmpValue
-	}
-	return nil
-}
 
-func (ptr *QSqlDriver) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSqlDriver___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QSqlDriver) __findChildren_newList2() unsafe.Pointer {
-	return C.QSqlDriver___findChildren_newList2(ptr.Pointer())
-}
-
-func (ptr *QSqlDriver) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSqlDriver___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		if signal := qt.LendSignal(ptr.Pointer(), "notification"); signal != nil {
+			f := func(name string) {
+				(*(*func(string))(signal))(name)
+				f(name)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "notification", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "notification", unsafe.Pointer(&f))
 		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlDriver) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSqlDriver___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *QSqlDriver) __findChildren_newList3() unsafe.Pointer {
-	return C.QSqlDriver___findChildren_newList3(ptr.Pointer())
+func (ptr *QSqlDriver) DisconnectNotification() {
+	if ptr.Pointer() != nil {
+		C.QSqlDriver_DisconnectNotification(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "notification")
+	}
 }
 
-func (ptr *QSqlDriver) __findChildren_atList(i int) *core.QObject {
+func (ptr *QSqlDriver) Notification(name string) {
 	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSqlDriver___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
 		}
+		C.QSqlDriver_Notification(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))})
+	}
+}
+
+//export callbackQSqlDriver_Notification2
+func callbackQSqlDriver_Notification2(ptr unsafe.Pointer, name C.struct_QtSql_PackedString, source C.longlong, payload unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "notification2"); signal != nil {
+		(*(*func(string, QSqlDriver__NotificationSource, *core.QVariant))(signal))(cGoUnpackString(name), QSqlDriver__NotificationSource(source), core.NewQVariantFromPointer(payload))
+	}
+
+}
+
+func (ptr *QSqlDriver) ConnectNotification2(f func(name string, source QSqlDriver__NotificationSource, payload *core.QVariant)) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "notification2") {
+			C.QSqlDriver_ConnectNotification2(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "notification2"); signal != nil {
+			f := func(name string, source QSqlDriver__NotificationSource, payload *core.QVariant) {
+				(*(*func(string, QSqlDriver__NotificationSource, *core.QVariant))(signal))(name, source, payload)
+				f(name, source, payload)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "notification2", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "notification2", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QSqlDriver) DisconnectNotification2() {
+	if ptr.Pointer() != nil {
+		C.QSqlDriver_DisconnectNotification2(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "notification2")
+	}
+}
+
+func (ptr *QSqlDriver) Notification2(name string, source QSqlDriver__NotificationSource, payload core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
+		C.QSqlDriver_Notification2(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))}, C.longlong(source), core.PointerFromQVariant(payload))
+	}
+}
+
+func (ptr *QSqlDriver) NumericalPrecisionPolicy() QSql__NumericalPrecisionPolicy {
+	if ptr.Pointer() != nil {
+		return QSql__NumericalPrecisionPolicy(C.QSqlDriver_NumericalPrecisionPolicy(ptr.Pointer()))
+	}
+	return 0
+}
+
+//export callbackQSqlDriver_Open
+func callbackQSqlDriver_Open(ptr unsafe.Pointer, db C.struct_QtSql_PackedString, user C.struct_QtSql_PackedString, password C.struct_QtSql_PackedString, host C.struct_QtSql_PackedString, port C.int, options C.struct_QtSql_PackedString) C.char {
+	if signal := qt.GetSignal(ptr, "open"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(string, string, string, string, int, string) bool)(signal))(cGoUnpackString(db), cGoUnpackString(user), cGoUnpackString(password), cGoUnpackString(host), int(int32(port)), cGoUnpackString(options)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(false)))
+}
+
+func (ptr *QSqlDriver) ConnectOpen(f func(db string, user string, password string, host string, port int, options string) bool) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "open"); signal != nil {
+			f := func(db string, user string, password string, host string, port int, options string) bool {
+				(*(*func(string, string, string, string, int, string) bool)(signal))(db, user, password, host, port, options)
+				return f(db, user, password, host, port, options)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "open", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "open", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QSqlDriver) DisconnectOpen() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "open")
+	}
+}
+
+func (ptr *QSqlDriver) Open(db string, user string, password string, host string, port int, options string) bool {
+	if ptr.Pointer() != nil {
+		var dbC *C.char
+		if db != "" {
+			dbC = C.CString(db)
+			defer C.free(unsafe.Pointer(dbC))
+		}
+		var userC *C.char
+		if user != "" {
+			userC = C.CString(user)
+			defer C.free(unsafe.Pointer(userC))
+		}
+		var passwordC *C.char
+		if password != "" {
+			passwordC = C.CString(password)
+			defer C.free(unsafe.Pointer(passwordC))
+		}
+		var hostC *C.char
+		if host != "" {
+			hostC = C.CString(host)
+			defer C.free(unsafe.Pointer(hostC))
+		}
+		var optionsC *C.char
+		if options != "" {
+			optionsC = C.CString(options)
+			defer C.free(unsafe.Pointer(optionsC))
+		}
+		return int8(C.QSqlDriver_Open(ptr.Pointer(), C.struct_QtSql_PackedString{data: dbC, len: C.longlong(len(db))}, C.struct_QtSql_PackedString{data: userC, len: C.longlong(len(user))}, C.struct_QtSql_PackedString{data: passwordC, len: C.longlong(len(password))}, C.struct_QtSql_PackedString{data: hostC, len: C.longlong(len(host))}, C.int(int32(port)), C.struct_QtSql_PackedString{data: optionsC, len: C.longlong(len(options))})) != 0
+	}
+	return false
+}
+
+//export callbackQSqlDriver_PrimaryIndex
+func callbackQSqlDriver_PrimaryIndex(ptr unsafe.Pointer, tableName C.struct_QtSql_PackedString) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "primaryIndex"); signal != nil {
+		return PointerFromQSqlIndex((*(*func(string) *QSqlIndex)(signal))(cGoUnpackString(tableName)))
+	}
+
+	return PointerFromQSqlIndex(NewQSqlDriverFromPointer(ptr).PrimaryIndexDefault(cGoUnpackString(tableName)))
+}
+
+func (ptr *QSqlDriver) ConnectPrimaryIndex(f func(tableName string) *QSqlIndex) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "primaryIndex"); signal != nil {
+			f := func(tableName string) *QSqlIndex {
+				(*(*func(string) *QSqlIndex)(signal))(tableName)
+				return f(tableName)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "primaryIndex", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "primaryIndex", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QSqlDriver) DisconnectPrimaryIndex() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "primaryIndex")
+	}
+}
+
+func (ptr *QSqlDriver) PrimaryIndex(tableName string) *QSqlIndex {
+	if ptr.Pointer() != nil {
+		var tableNameC *C.char
+		if tableName != "" {
+			tableNameC = C.CString(tableName)
+			defer C.free(unsafe.Pointer(tableNameC))
+		}
+		tmpValue := NewQSqlIndexFromPointer(C.QSqlDriver_PrimaryIndex(ptr.Pointer(), C.struct_QtSql_PackedString{data: tableNameC, len: C.longlong(len(tableName))}))
+		runtime.SetFinalizer(tmpValue, (*QSqlIndex).DestroyQSqlIndex)
 		return tmpValue
 	}
 	return nil
 }
 
-func (ptr *QSqlDriver) __findChildren_setList(i core.QObject_ITF) {
+func (ptr *QSqlDriver) PrimaryIndexDefault(tableName string) *QSqlIndex {
 	if ptr.Pointer() != nil {
-		C.QSqlDriver___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+		var tableNameC *C.char
+		if tableName != "" {
+			tableNameC = C.CString(tableName)
+			defer C.free(unsafe.Pointer(tableNameC))
+		}
+		tmpValue := NewQSqlIndexFromPointer(C.QSqlDriver_PrimaryIndexDefault(ptr.Pointer(), C.struct_QtSql_PackedString{data: tableNameC, len: C.longlong(len(tableName))}))
+		runtime.SetFinalizer(tmpValue, (*QSqlIndex).DestroyQSqlIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQSqlDriver_Record
+func callbackQSqlDriver_Record(ptr unsafe.Pointer, tableName C.struct_QtSql_PackedString) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "record"); signal != nil {
+		return PointerFromQSqlRecord((*(*func(string) *QSqlRecord)(signal))(cGoUnpackString(tableName)))
+	}
+
+	return PointerFromQSqlRecord(NewQSqlDriverFromPointer(ptr).RecordDefault(cGoUnpackString(tableName)))
+}
+
+func (ptr *QSqlDriver) ConnectRecord(f func(tableName string) *QSqlRecord) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "record"); signal != nil {
+			f := func(tableName string) *QSqlRecord {
+				(*(*func(string) *QSqlRecord)(signal))(tableName)
+				return f(tableName)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "record", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "record", unsafe.Pointer(&f))
+		}
 	}
 }
 
-func (ptr *QSqlDriver) __findChildren_newList() unsafe.Pointer {
-	return C.QSqlDriver___findChildren_newList(ptr.Pointer())
+func (ptr *QSqlDriver) DisconnectRecord() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "record")
+	}
+}
+
+func (ptr *QSqlDriver) Record(tableName string) *QSqlRecord {
+	if ptr.Pointer() != nil {
+		var tableNameC *C.char
+		if tableName != "" {
+			tableNameC = C.CString(tableName)
+			defer C.free(unsafe.Pointer(tableNameC))
+		}
+		tmpValue := NewQSqlRecordFromPointer(C.QSqlDriver_Record(ptr.Pointer(), C.struct_QtSql_PackedString{data: tableNameC, len: C.longlong(len(tableName))}))
+		runtime.SetFinalizer(tmpValue, (*QSqlRecord).DestroyQSqlRecord)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSqlDriver) RecordDefault(tableName string) *QSqlRecord {
+	if ptr.Pointer() != nil {
+		var tableNameC *C.char
+		if tableName != "" {
+			tableNameC = C.CString(tableName)
+			defer C.free(unsafe.Pointer(tableNameC))
+		}
+		tmpValue := NewQSqlRecordFromPointer(C.QSqlDriver_RecordDefault(ptr.Pointer(), C.struct_QtSql_PackedString{data: tableNameC, len: C.longlong(len(tableName))}))
+		runtime.SetFinalizer(tmpValue, (*QSqlRecord).DestroyQSqlRecord)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQSqlDriver_RollbackTransaction
+func callbackQSqlDriver_RollbackTransaction(ptr unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "rollbackTransaction"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func() bool)(signal))())))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSqlDriverFromPointer(ptr).RollbackTransactionDefault())))
+}
+
+func (ptr *QSqlDriver) ConnectRollbackTransaction(f func() bool) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "rollbackTransaction"); signal != nil {
+			f := func() bool {
+				(*(*func() bool)(signal))()
+				return f()
+			}
+			qt.ConnectSignal(ptr.Pointer(), "rollbackTransaction", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "rollbackTransaction", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QSqlDriver) DisconnectRollbackTransaction() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "rollbackTransaction")
+	}
+}
+
+func (ptr *QSqlDriver) RollbackTransaction() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlDriver_RollbackTransaction(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlDriver) RollbackTransactionDefault() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlDriver_RollbackTransactionDefault(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+//export callbackQSqlDriver_SetLastError
+func callbackQSqlDriver_SetLastError(ptr unsafe.Pointer, error unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "setLastError"); signal != nil {
+		(*(*func(*QSqlError))(signal))(NewQSqlErrorFromPointer(error))
+	} else {
+		NewQSqlDriverFromPointer(ptr).SetLastErrorDefault(NewQSqlErrorFromPointer(error))
+	}
+}
+
+func (ptr *QSqlDriver) ConnectSetLastError(f func(error *QSqlError)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "setLastError"); signal != nil {
+			f := func(error *QSqlError) {
+				(*(*func(*QSqlError))(signal))(error)
+				f(error)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "setLastError", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "setLastError", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QSqlDriver) DisconnectSetLastError() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "setLastError")
+	}
+}
+
+func (ptr *QSqlDriver) SetLastError(error QSqlError_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSqlDriver_SetLastError(ptr.Pointer(), PointerFromQSqlError(error))
+	}
+}
+
+func (ptr *QSqlDriver) SetLastErrorDefault(error QSqlError_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSqlDriver_SetLastErrorDefault(ptr.Pointer(), PointerFromQSqlError(error))
+	}
+}
+
+func (ptr *QSqlDriver) SetNumericalPrecisionPolicy(precisionPolicy QSql__NumericalPrecisionPolicy) {
+	if ptr.Pointer() != nil {
+		C.QSqlDriver_SetNumericalPrecisionPolicy(ptr.Pointer(), C.longlong(precisionPolicy))
+	}
+}
+
+//export callbackQSqlDriver_SetOpen
+func callbackQSqlDriver_SetOpen(ptr unsafe.Pointer, open C.char) {
+	if signal := qt.GetSignal(ptr, "setOpen"); signal != nil {
+		(*(*func(bool))(signal))(int8(open) != 0)
+	} else {
+		NewQSqlDriverFromPointer(ptr).SetOpenDefault(int8(open) != 0)
+	}
+}
+
+func (ptr *QSqlDriver) ConnectSetOpen(f func(open bool)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "setOpen"); signal != nil {
+			f := func(open bool) {
+				(*(*func(bool))(signal))(open)
+				f(open)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "setOpen", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "setOpen", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QSqlDriver) DisconnectSetOpen() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "setOpen")
+	}
+}
+
+func (ptr *QSqlDriver) SetOpen(open bool) {
+	if ptr.Pointer() != nil {
+		C.QSqlDriver_SetOpen(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(open))))
+	}
+}
+
+func (ptr *QSqlDriver) SetOpenDefault(open bool) {
+	if ptr.Pointer() != nil {
+		C.QSqlDriver_SetOpenDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(open))))
+	}
+}
+
+//export callbackQSqlDriver_SetOpenError
+func callbackQSqlDriver_SetOpenError(ptr unsafe.Pointer, error C.char) {
+	if signal := qt.GetSignal(ptr, "setOpenError"); signal != nil {
+		(*(*func(bool))(signal))(int8(error) != 0)
+	} else {
+		NewQSqlDriverFromPointer(ptr).SetOpenErrorDefault(int8(error) != 0)
+	}
+}
+
+func (ptr *QSqlDriver) ConnectSetOpenError(f func(error bool)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "setOpenError"); signal != nil {
+			f := func(error bool) {
+				(*(*func(bool))(signal))(error)
+				f(error)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "setOpenError", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "setOpenError", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QSqlDriver) DisconnectSetOpenError() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "setOpenError")
+	}
+}
+
+func (ptr *QSqlDriver) SetOpenError(error bool) {
+	if ptr.Pointer() != nil {
+		C.QSqlDriver_SetOpenError(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(error))))
+	}
+}
+
+func (ptr *QSqlDriver) SetOpenErrorDefault(error bool) {
+	if ptr.Pointer() != nil {
+		C.QSqlDriver_SetOpenErrorDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(error))))
+	}
+}
+
+//export callbackQSqlDriver_SqlStatement
+func callbackQSqlDriver_SqlStatement(ptr unsafe.Pointer, ty C.longlong, tableName C.struct_QtSql_PackedString, rec unsafe.Pointer, preparedStatement C.char) C.struct_QtSql_PackedString {
+	if signal := qt.GetSignal(ptr, "sqlStatement"); signal != nil {
+		tempVal := (*(*func(QSqlDriver__StatementType, string, *QSqlRecord, bool) string)(signal))(QSqlDriver__StatementType(ty), cGoUnpackString(tableName), NewQSqlRecordFromPointer(rec), int8(preparedStatement) != 0)
+		return C.struct_QtSql_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+	}
+	tempVal := NewQSqlDriverFromPointer(ptr).SqlStatementDefault(QSqlDriver__StatementType(ty), cGoUnpackString(tableName), NewQSqlRecordFromPointer(rec), int8(preparedStatement) != 0)
+	return C.struct_QtSql_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+}
+
+func (ptr *QSqlDriver) ConnectSqlStatement(f func(ty QSqlDriver__StatementType, tableName string, rec *QSqlRecord, preparedStatement bool) string) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "sqlStatement"); signal != nil {
+			f := func(ty QSqlDriver__StatementType, tableName string, rec *QSqlRecord, preparedStatement bool) string {
+				(*(*func(QSqlDriver__StatementType, string, *QSqlRecord, bool) string)(signal))(ty, tableName, rec, preparedStatement)
+				return f(ty, tableName, rec, preparedStatement)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "sqlStatement", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "sqlStatement", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QSqlDriver) DisconnectSqlStatement() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "sqlStatement")
+	}
+}
+
+func (ptr *QSqlDriver) SqlStatement(ty QSqlDriver__StatementType, tableName string, rec QSqlRecord_ITF, preparedStatement bool) string {
+	if ptr.Pointer() != nil {
+		var tableNameC *C.char
+		if tableName != "" {
+			tableNameC = C.CString(tableName)
+			defer C.free(unsafe.Pointer(tableNameC))
+		}
+		return cGoUnpackString(C.QSqlDriver_SqlStatement(ptr.Pointer(), C.longlong(ty), C.struct_QtSql_PackedString{data: tableNameC, len: C.longlong(len(tableName))}, PointerFromQSqlRecord(rec), C.char(int8(qt.GoBoolToInt(preparedStatement)))))
+	}
+	return ""
+}
+
+func (ptr *QSqlDriver) SqlStatementDefault(ty QSqlDriver__StatementType, tableName string, rec QSqlRecord_ITF, preparedStatement bool) string {
+	if ptr.Pointer() != nil {
+		var tableNameC *C.char
+		if tableName != "" {
+			tableNameC = C.CString(tableName)
+			defer C.free(unsafe.Pointer(tableNameC))
+		}
+		return cGoUnpackString(C.QSqlDriver_SqlStatementDefault(ptr.Pointer(), C.longlong(ty), C.struct_QtSql_PackedString{data: tableNameC, len: C.longlong(len(tableName))}, PointerFromQSqlRecord(rec), C.char(int8(qt.GoBoolToInt(preparedStatement)))))
+	}
+	return ""
+}
+
+//export callbackQSqlDriver_StripDelimiters
+func callbackQSqlDriver_StripDelimiters(ptr unsafe.Pointer, identifier C.struct_QtSql_PackedString, ty C.longlong) C.struct_QtSql_PackedString {
+	if signal := qt.GetSignal(ptr, "stripDelimiters"); signal != nil {
+		tempVal := (*(*func(string, QSqlDriver__IdentifierType) string)(signal))(cGoUnpackString(identifier), QSqlDriver__IdentifierType(ty))
+		return C.struct_QtSql_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+	}
+	tempVal := NewQSqlDriverFromPointer(ptr).StripDelimitersDefault(cGoUnpackString(identifier), QSqlDriver__IdentifierType(ty))
+	return C.struct_QtSql_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+}
+
+func (ptr *QSqlDriver) ConnectStripDelimiters(f func(identifier string, ty QSqlDriver__IdentifierType) string) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "stripDelimiters"); signal != nil {
+			f := func(identifier string, ty QSqlDriver__IdentifierType) string {
+				(*(*func(string, QSqlDriver__IdentifierType) string)(signal))(identifier, ty)
+				return f(identifier, ty)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "stripDelimiters", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "stripDelimiters", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QSqlDriver) DisconnectStripDelimiters() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "stripDelimiters")
+	}
+}
+
+func (ptr *QSqlDriver) StripDelimiters(identifier string, ty QSqlDriver__IdentifierType) string {
+	if ptr.Pointer() != nil {
+		var identifierC *C.char
+		if identifier != "" {
+			identifierC = C.CString(identifier)
+			defer C.free(unsafe.Pointer(identifierC))
+		}
+		return cGoUnpackString(C.QSqlDriver_StripDelimiters(ptr.Pointer(), C.struct_QtSql_PackedString{data: identifierC, len: C.longlong(len(identifier))}, C.longlong(ty)))
+	}
+	return ""
+}
+
+func (ptr *QSqlDriver) StripDelimitersDefault(identifier string, ty QSqlDriver__IdentifierType) string {
+	if ptr.Pointer() != nil {
+		var identifierC *C.char
+		if identifier != "" {
+			identifierC = C.CString(identifier)
+			defer C.free(unsafe.Pointer(identifierC))
+		}
+		return cGoUnpackString(C.QSqlDriver_StripDelimitersDefault(ptr.Pointer(), C.struct_QtSql_PackedString{data: identifierC, len: C.longlong(len(identifier))}, C.longlong(ty)))
+	}
+	return ""
+}
+
+//export callbackQSqlDriver_SubscribeToNotification
+func callbackQSqlDriver_SubscribeToNotification(ptr unsafe.Pointer, name C.struct_QtSql_PackedString) C.char {
+	if signal := qt.GetSignal(ptr, "subscribeToNotification"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(string) bool)(signal))(cGoUnpackString(name)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSqlDriverFromPointer(ptr).SubscribeToNotificationDefault(cGoUnpackString(name)))))
+}
+
+func (ptr *QSqlDriver) ConnectSubscribeToNotification(f func(name string) bool) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "subscribeToNotification"); signal != nil {
+			f := func(name string) bool {
+				(*(*func(string) bool)(signal))(name)
+				return f(name)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "subscribeToNotification", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "subscribeToNotification", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QSqlDriver) DisconnectSubscribeToNotification() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "subscribeToNotification")
+	}
+}
+
+func (ptr *QSqlDriver) SubscribeToNotification(name string) bool {
+	if ptr.Pointer() != nil {
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
+		return int8(C.QSqlDriver_SubscribeToNotification(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlDriver) SubscribeToNotificationDefault(name string) bool {
+	if ptr.Pointer() != nil {
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
+		return int8(C.QSqlDriver_SubscribeToNotificationDefault(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
+	}
+	return false
+}
+
+//export callbackQSqlDriver_SubscribedToNotifications
+func callbackQSqlDriver_SubscribedToNotifications(ptr unsafe.Pointer) C.struct_QtSql_PackedString {
+	if signal := qt.GetSignal(ptr, "subscribedToNotifications"); signal != nil {
+		tempVal := (*(*func() []string)(signal))()
+		return C.struct_QtSql_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
+	}
+	tempVal := NewQSqlDriverFromPointer(ptr).SubscribedToNotificationsDefault()
+	return C.struct_QtSql_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
+}
+
+func (ptr *QSqlDriver) ConnectSubscribedToNotifications(f func() []string) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "subscribedToNotifications"); signal != nil {
+			f := func() []string {
+				(*(*func() []string)(signal))()
+				return f()
+			}
+			qt.ConnectSignal(ptr.Pointer(), "subscribedToNotifications", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "subscribedToNotifications", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QSqlDriver) DisconnectSubscribedToNotifications() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "subscribedToNotifications")
+	}
+}
+
+func (ptr *QSqlDriver) SubscribedToNotifications() []string {
+	if ptr.Pointer() != nil {
+		return unpackStringList(cGoUnpackString(C.QSqlDriver_SubscribedToNotifications(ptr.Pointer())))
+	}
+	return make([]string, 0)
+}
+
+func (ptr *QSqlDriver) SubscribedToNotificationsDefault() []string {
+	if ptr.Pointer() != nil {
+		return unpackStringList(cGoUnpackString(C.QSqlDriver_SubscribedToNotificationsDefault(ptr.Pointer())))
+	}
+	return make([]string, 0)
+}
+
+//export callbackQSqlDriver_Tables
+func callbackQSqlDriver_Tables(ptr unsafe.Pointer, tableType C.longlong) C.struct_QtSql_PackedString {
+	if signal := qt.GetSignal(ptr, "tables"); signal != nil {
+		tempVal := (*(*func(QSql__TableType) []string)(signal))(QSql__TableType(tableType))
+		return C.struct_QtSql_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
+	}
+	tempVal := NewQSqlDriverFromPointer(ptr).TablesDefault(QSql__TableType(tableType))
+	return C.struct_QtSql_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
+}
+
+func (ptr *QSqlDriver) ConnectTables(f func(tableType QSql__TableType) []string) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "tables"); signal != nil {
+			f := func(tableType QSql__TableType) []string {
+				(*(*func(QSql__TableType) []string)(signal))(tableType)
+				return f(tableType)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "tables", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "tables", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QSqlDriver) DisconnectTables() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "tables")
+	}
+}
+
+func (ptr *QSqlDriver) Tables(tableType QSql__TableType) []string {
+	if ptr.Pointer() != nil {
+		return unpackStringList(cGoUnpackString(C.QSqlDriver_Tables(ptr.Pointer(), C.longlong(tableType))))
+	}
+	return make([]string, 0)
+}
+
+func (ptr *QSqlDriver) TablesDefault(tableType QSql__TableType) []string {
+	if ptr.Pointer() != nil {
+		return unpackStringList(cGoUnpackString(C.QSqlDriver_TablesDefault(ptr.Pointer(), C.longlong(tableType))))
+	}
+	return make([]string, 0)
+}
+
+//export callbackQSqlDriver_UnsubscribeFromNotification
+func callbackQSqlDriver_UnsubscribeFromNotification(ptr unsafe.Pointer, name C.struct_QtSql_PackedString) C.char {
+	if signal := qt.GetSignal(ptr, "unsubscribeFromNotification"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(string) bool)(signal))(cGoUnpackString(name)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSqlDriverFromPointer(ptr).UnsubscribeFromNotificationDefault(cGoUnpackString(name)))))
+}
+
+func (ptr *QSqlDriver) ConnectUnsubscribeFromNotification(f func(name string) bool) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "unsubscribeFromNotification"); signal != nil {
+			f := func(name string) bool {
+				(*(*func(string) bool)(signal))(name)
+				return f(name)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "unsubscribeFromNotification", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "unsubscribeFromNotification", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QSqlDriver) DisconnectUnsubscribeFromNotification() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "unsubscribeFromNotification")
+	}
+}
+
+func (ptr *QSqlDriver) UnsubscribeFromNotification(name string) bool {
+	if ptr.Pointer() != nil {
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
+		return int8(C.QSqlDriver_UnsubscribeFromNotification(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlDriver) UnsubscribeFromNotificationDefault(name string) bool {
+	if ptr.Pointer() != nil {
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
+		return int8(C.QSqlDriver_UnsubscribeFromNotificationDefault(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
+	}
+	return false
+}
+
+//export callbackQSqlDriver_DestroyQSqlDriver
+func callbackQSqlDriver_DestroyQSqlDriver(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "~QSqlDriver"); signal != nil {
+		(*(*func())(signal))()
+	} else {
+		NewQSqlDriverFromPointer(ptr).DestroyQSqlDriverDefault()
+	}
+}
+
+func (ptr *QSqlDriver) ConnectDestroyQSqlDriver(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "~QSqlDriver"); signal != nil {
+			f := func() {
+				(*(*func())(signal))()
+				f()
+			}
+			qt.ConnectSignal(ptr.Pointer(), "~QSqlDriver", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "~QSqlDriver", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QSqlDriver) DisconnectDestroyQSqlDriver() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "~QSqlDriver")
+	}
+}
+
+func (ptr *QSqlDriver) DestroyQSqlDriver() {
+	if ptr.Pointer() != nil {
+		C.QSqlDriver_DestroyQSqlDriver(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *QSqlDriver) DestroyQSqlDriverDefault() {
+	if ptr.Pointer() != nil {
+		C.QSqlDriver_DestroyQSqlDriverDefault(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
 }
 
 func (ptr *QSqlDriver) __children_atList(i int) *core.QObject {
@@ -2199,36 +2097,86 @@ func (ptr *QSqlDriver) __children_newList() unsafe.Pointer {
 	return C.QSqlDriver___children_newList(ptr.Pointer())
 }
 
-//export callbackQSqlDriver_Event
-func callbackQSqlDriver_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSqlDriverFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
-}
-
-func (ptr *QSqlDriver) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QSqlDriver) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
-		return int8(C.QSqlDriver_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+		tmpValue := core.NewQByteArrayFromPointer(C.QSqlDriver___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
 	}
-	return false
+	return nil
 }
 
-//export callbackQSqlDriver_EventFilter
-func callbackQSqlDriver_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSqlDriverFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QSqlDriver) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+func (ptr *QSqlDriver) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		return int8(C.QSqlDriver_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+		C.QSqlDriver___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
 	}
-	return false
+}
+
+func (ptr *QSqlDriver) __dynamicPropertyNames_newList() unsafe.Pointer {
+	return C.QSqlDriver___dynamicPropertyNames_newList(ptr.Pointer())
+}
+
+func (ptr *QSqlDriver) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QSqlDriver___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSqlDriver) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSqlDriver___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QSqlDriver) __findChildren_newList() unsafe.Pointer {
+	return C.QSqlDriver___findChildren_newList(ptr.Pointer())
+}
+
+func (ptr *QSqlDriver) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QSqlDriver___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSqlDriver) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSqlDriver___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QSqlDriver) __findChildren_newList3() unsafe.Pointer {
+	return C.QSqlDriver___findChildren_newList3(ptr.Pointer())
+}
+
+func (ptr *QSqlDriver) __qFindChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QSqlDriver___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSqlDriver) __qFindChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSqlDriver___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QSqlDriver) __qFindChildren_newList2() unsafe.Pointer {
+	return C.QSqlDriver___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQSqlDriver_ChildEvent
@@ -2313,6 +2261,38 @@ func (ptr *QSqlDriver) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 	if ptr.Pointer() != nil {
 		C.QSqlDriver_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
+}
+
+//export callbackQSqlDriver_Event
+func callbackQSqlDriver_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSqlDriverFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QSqlDriver) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlDriver_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+	}
+	return false
+}
+
+//export callbackQSqlDriver_EventFilter
+func callbackQSqlDriver_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSqlDriverFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QSqlDriver) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlDriver_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+	}
+	return false
 }
 
 //export callbackQSqlDriver_ObjectNameChanged
@@ -2424,6 +2404,48 @@ func NewQSqlDriverCreatorBaseFromPointer(ptr unsafe.Pointer) (n *QSqlDriverCreat
 	return
 }
 
+//export callbackQSqlDriverCreatorBase_CreateObject
+func callbackQSqlDriverCreatorBase_CreateObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "createObject"); signal != nil {
+		return PointerFromQSqlDriver((*(*func() *QSqlDriver)(signal))())
+	}
+
+	return PointerFromQSqlDriver(NewQSqlDriver(nil))
+}
+
+func (ptr *QSqlDriverCreatorBase) ConnectCreateObject(f func() *QSqlDriver) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "createObject"); signal != nil {
+			f := func() *QSqlDriver {
+				(*(*func() *QSqlDriver)(signal))()
+				return f()
+			}
+			qt.ConnectSignal(ptr.Pointer(), "createObject", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "createObject", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QSqlDriverCreatorBase) DisconnectCreateObject() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "createObject")
+	}
+}
+
+func (ptr *QSqlDriverCreatorBase) CreateObject() *QSqlDriver {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQSqlDriverFromPointer(C.QSqlDriverCreatorBase_CreateObject(ptr.Pointer()))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
 //export callbackQSqlDriverCreatorBase_DestroyQSqlDriverCreatorBase
 func callbackQSqlDriverCreatorBase_DestroyQSqlDriverCreatorBase(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "~QSqlDriverCreatorBase"); signal != nil {
@@ -2469,48 +2491,6 @@ func (ptr *QSqlDriverCreatorBase) DestroyQSqlDriverCreatorBaseDefault() {
 	}
 }
 
-//export callbackQSqlDriverCreatorBase_CreateObject
-func callbackQSqlDriverCreatorBase_CreateObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "createObject"); signal != nil {
-		return PointerFromQSqlDriver((*(*func() *QSqlDriver)(signal))())
-	}
-
-	return PointerFromQSqlDriver(NewQSqlDriver(nil))
-}
-
-func (ptr *QSqlDriverCreatorBase) ConnectCreateObject(f func() *QSqlDriver) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "createObject"); signal != nil {
-			f := func() *QSqlDriver {
-				(*(*func() *QSqlDriver)(signal))()
-				return f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "createObject", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "createObject", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QSqlDriverCreatorBase) DisconnectCreateObject() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "createObject")
-	}
-}
-
-func (ptr *QSqlDriverCreatorBase) CreateObject() *QSqlDriver {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSqlDriverFromPointer(C.QSqlDriverCreatorBase_CreateObject(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
 type QSqlDriverPlugin struct {
 	core.QObject
 }
@@ -2548,6 +2528,13 @@ func NewQSqlDriverPluginFromPointer(ptr unsafe.Pointer) (n *QSqlDriverPlugin) {
 	n = new(QSqlDriverPlugin)
 	n.SetPointer(ptr)
 	return
+}
+func NewQSqlDriverPlugin(parent core.QObject_ITF) *QSqlDriverPlugin {
+	tmpValue := NewQSqlDriverPluginFromPointer(C.QSqlDriverPlugin_NewQSqlDriverPlugin(core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
 }
 
 //export callbackQSqlDriverPlugin_Create
@@ -2597,42 +2584,6 @@ func (ptr *QSqlDriverPlugin) Create(key string) *QSqlDriver {
 	return nil
 }
 
-func NewQSqlDriverPlugin(parent core.QObject_ITF) *QSqlDriverPlugin {
-	tmpValue := NewQSqlDriverPluginFromPointer(C.QSqlDriverPlugin_NewQSqlDriverPlugin(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
-}
-
-func QSqlDriverPlugin_Tr(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QSqlDriverPlugin_QSqlDriverPlugin_Tr(sC, cC, C.int(int32(n))))
-}
-
-func (ptr *QSqlDriverPlugin) Tr(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QSqlDriverPlugin_QSqlDriverPlugin_Tr(sC, cC, C.int(int32(n))))
-}
-
 //export callbackQSqlDriverPlugin_DestroyQSqlDriverPlugin
 func callbackQSqlDriverPlugin_DestroyQSqlDriverPlugin(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "~QSqlDriverPlugin"); signal != nil {
@@ -2680,20 +2631,25 @@ func (ptr *QSqlDriverPlugin) DestroyQSqlDriverPluginDefault() {
 	}
 }
 
-//export callbackQSqlDriverPlugin_MetaObject
-func callbackQSqlDriverPlugin_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQSqlDriverPluginFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QSqlDriverPlugin) MetaObjectDefault() *core.QMetaObject {
+func (ptr *QSqlDriverPlugin) __children_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QSqlDriverPlugin_MetaObjectDefault(ptr.Pointer()))
+		tmpValue := core.NewQObjectFromPointer(C.QSqlDriverPlugin___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
 	return nil
+}
+
+func (ptr *QSqlDriverPlugin) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSqlDriverPlugin___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QSqlDriverPlugin) __children_newList() unsafe.Pointer {
+	return C.QSqlDriverPlugin___children_newList(ptr.Pointer())
 }
 
 func (ptr *QSqlDriverPlugin) __dynamicPropertyNames_atList(i int) *core.QByteArray {
@@ -2713,48 +2669,6 @@ func (ptr *QSqlDriverPlugin) __dynamicPropertyNames_setList(i core.QByteArray_IT
 
 func (ptr *QSqlDriverPlugin) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QSqlDriverPlugin___dynamicPropertyNames_newList(ptr.Pointer())
-}
-
-func (ptr *QSqlDriverPlugin) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSqlDriverPlugin___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlDriverPlugin) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSqlDriverPlugin___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QSqlDriverPlugin) __findChildren_newList2() unsafe.Pointer {
-	return C.QSqlDriverPlugin___findChildren_newList2(ptr.Pointer())
-}
-
-func (ptr *QSqlDriverPlugin) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSqlDriverPlugin___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlDriverPlugin) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSqlDriverPlugin___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QSqlDriverPlugin) __findChildren_newList3() unsafe.Pointer {
-	return C.QSqlDriverPlugin___findChildren_newList3(ptr.Pointer())
 }
 
 func (ptr *QSqlDriverPlugin) __findChildren_atList(i int) *core.QObject {
@@ -2778,9 +2692,9 @@ func (ptr *QSqlDriverPlugin) __findChildren_newList() unsafe.Pointer {
 	return C.QSqlDriverPlugin___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QSqlDriverPlugin) __children_atList(i int) *core.QObject {
+func (ptr *QSqlDriverPlugin) __findChildren_atList3(i int) *core.QObject {
 	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSqlDriverPlugin___children_atList(ptr.Pointer(), C.int(int32(i))))
+		tmpValue := core.NewQObjectFromPointer(C.QSqlDriverPlugin___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -2789,46 +2703,35 @@ func (ptr *QSqlDriverPlugin) __children_atList(i int) *core.QObject {
 	return nil
 }
 
-func (ptr *QSqlDriverPlugin) __children_setList(i core.QObject_ITF) {
+func (ptr *QSqlDriverPlugin) __findChildren_setList3(i core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		C.QSqlDriverPlugin___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+		C.QSqlDriverPlugin___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *QSqlDriverPlugin) __children_newList() unsafe.Pointer {
-	return C.QSqlDriverPlugin___children_newList(ptr.Pointer())
+func (ptr *QSqlDriverPlugin) __findChildren_newList3() unsafe.Pointer {
+	return C.QSqlDriverPlugin___findChildren_newList3(ptr.Pointer())
 }
 
-//export callbackQSqlDriverPlugin_Event
-func callbackQSqlDriverPlugin_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSqlDriverPluginFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
-}
-
-func (ptr *QSqlDriverPlugin) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QSqlDriverPlugin) __qFindChildren_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
-		return int8(C.QSqlDriverPlugin_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+		tmpValue := core.NewQObjectFromPointer(C.QSqlDriverPlugin___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return false
+	return nil
 }
 
-//export callbackQSqlDriverPlugin_EventFilter
-func callbackQSqlDriverPlugin_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSqlDriverPluginFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QSqlDriverPlugin) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+func (ptr *QSqlDriverPlugin) __qFindChildren_setList2(i core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		return int8(C.QSqlDriverPlugin_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+		C.QSqlDriverPlugin___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
 	}
-	return false
+}
+
+func (ptr *QSqlDriverPlugin) __qFindChildren_newList2() unsafe.Pointer {
+	return C.QSqlDriverPlugin___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQSqlDriverPlugin_ChildEvent
@@ -2915,6 +2818,38 @@ func (ptr *QSqlDriverPlugin) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) 
 	}
 }
 
+//export callbackQSqlDriverPlugin_Event
+func callbackQSqlDriverPlugin_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSqlDriverPluginFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QSqlDriverPlugin) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlDriverPlugin_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+	}
+	return false
+}
+
+//export callbackQSqlDriverPlugin_EventFilter
+func callbackQSqlDriverPlugin_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSqlDriverPluginFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QSqlDriverPlugin) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlDriverPlugin_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+	}
+	return false
+}
+
 //export callbackQSqlDriverPlugin_ObjectNameChanged
 func callbackQSqlDriverPlugin_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtSql_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -2988,19 +2923,7 @@ const (
 	QSqlError__UnknownError     QSqlError__ErrorType = QSqlError__ErrorType(4)
 )
 
-func NewQSqlError4(other QSqlError_ITF) *QSqlError {
-	tmpValue := NewQSqlErrorFromPointer(C.QSqlError_NewQSqlError4(PointerFromQSqlError(other)))
-	runtime.SetFinalizer(tmpValue, (*QSqlError).DestroyQSqlError)
-	return tmpValue
-}
-
-func NewQSqlError3(other QSqlError_ITF) *QSqlError {
-	tmpValue := NewQSqlErrorFromPointer(C.QSqlError_NewQSqlError3(PointerFromQSqlError(other)))
-	runtime.SetFinalizer(tmpValue, (*QSqlError).DestroyQSqlError)
-	return tmpValue
-}
-
-func NewQSqlError(driverText string, databaseText string, ty QSqlError__ErrorType, code string) *QSqlError {
+func NewQSqlError2(driverText string, databaseText string, ty QSqlError__ErrorType, code string) *QSqlError {
 	var driverTextC *C.char
 	if driverText != "" {
 		driverTextC = C.CString(driverText)
@@ -3016,30 +2939,21 @@ func NewQSqlError(driverText string, databaseText string, ty QSqlError__ErrorTyp
 		codeC = C.CString(code)
 		defer C.free(unsafe.Pointer(codeC))
 	}
-	tmpValue := NewQSqlErrorFromPointer(C.QSqlError_NewQSqlError(C.struct_QtSql_PackedString{data: driverTextC, len: C.longlong(len(driverText))}, C.struct_QtSql_PackedString{data: databaseTextC, len: C.longlong(len(databaseText))}, C.longlong(ty), C.struct_QtSql_PackedString{data: codeC, len: C.longlong(len(code))}))
+	tmpValue := NewQSqlErrorFromPointer(C.QSqlError_NewQSqlError2(C.struct_QtSql_PackedString{data: driverTextC, len: C.longlong(len(driverText))}, C.struct_QtSql_PackedString{data: databaseTextC, len: C.longlong(len(databaseText))}, C.longlong(ty), C.struct_QtSql_PackedString{data: codeC, len: C.longlong(len(code))}))
 	runtime.SetFinalizer(tmpValue, (*QSqlError).DestroyQSqlError)
 	return tmpValue
 }
 
-func (ptr *QSqlError) Swap(other QSqlError_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSqlError_Swap(ptr.Pointer(), PointerFromQSqlError(other))
-	}
+func NewQSqlError3(other QSqlError_ITF) *QSqlError {
+	tmpValue := NewQSqlErrorFromPointer(C.QSqlError_NewQSqlError3(PointerFromQSqlError(other)))
+	runtime.SetFinalizer(tmpValue, (*QSqlError).DestroyQSqlError)
+	return tmpValue
 }
 
-func (ptr *QSqlError) DestroyQSqlError() {
-	if ptr.Pointer() != nil {
-		C.QSqlError_DestroyQSqlError(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
-}
-
-func (ptr *QSqlError) Type() QSqlError__ErrorType {
-	if ptr.Pointer() != nil {
-		return QSqlError__ErrorType(C.QSqlError_Type(ptr.Pointer()))
-	}
-	return 0
+func NewQSqlError4(other QSqlError_ITF) *QSqlError {
+	tmpValue := NewQSqlErrorFromPointer(C.QSqlError_NewQSqlError4(PointerFromQSqlError(other)))
+	runtime.SetFinalizer(tmpValue, (*QSqlError).DestroyQSqlError)
+	return tmpValue
 }
 
 func (ptr *QSqlError) DatabaseText() string {
@@ -3056,11 +2970,24 @@ func (ptr *QSqlError) DriverText() string {
 	return ""
 }
 
+func (ptr *QSqlError) IsValid() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlError_IsValid(ptr.Pointer())) != 0
+	}
+	return false
+}
+
 func (ptr *QSqlError) NativeErrorCode() string {
 	if ptr.Pointer() != nil {
 		return cGoUnpackString(C.QSqlError_NativeErrorCode(ptr.Pointer()))
 	}
 	return ""
+}
+
+func (ptr *QSqlError) Swap(other QSqlError_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSqlError_Swap(ptr.Pointer(), PointerFromQSqlError(other))
+	}
 }
 
 func (ptr *QSqlError) Text() string {
@@ -3070,11 +2997,19 @@ func (ptr *QSqlError) Text() string {
 	return ""
 }
 
-func (ptr *QSqlError) IsValid() bool {
+func (ptr *QSqlError) Type() QSqlError__ErrorType {
 	if ptr.Pointer() != nil {
-		return int8(C.QSqlError_IsValid(ptr.Pointer())) != 0
+		return QSqlError__ErrorType(C.QSqlError_Type(ptr.Pointer()))
 	}
-	return false
+	return 0
+}
+
+func (ptr *QSqlError) DestroyQSqlError() {
+	if ptr.Pointer() != nil {
+		C.QSqlError_DestroyQSqlError(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
 }
 
 type QSqlField struct {
@@ -3125,12 +3060,6 @@ const (
 	QSqlField__Required QSqlField__RequiredStatus = QSqlField__RequiredStatus(1)
 )
 
-func NewQSqlField3(other QSqlField_ITF) *QSqlField {
-	tmpValue := NewQSqlFieldFromPointer(C.QSqlField_NewQSqlField3(PointerFromQSqlField(other)))
-	runtime.SetFinalizer(tmpValue, (*QSqlField).DestroyQSqlField)
-	return tmpValue
-}
-
 func NewQSqlField(fieldName string, ty core.QVariant__Type) *QSqlField {
 	var fieldNameC *C.char
 	if fieldName != "" {
@@ -3158,10 +3087,88 @@ func NewQSqlField2(fieldName string, ty core.QVariant__Type, table string) *QSql
 	return tmpValue
 }
 
+func NewQSqlField3(other QSqlField_ITF) *QSqlField {
+	tmpValue := NewQSqlFieldFromPointer(C.QSqlField_NewQSqlField3(PointerFromQSqlField(other)))
+	runtime.SetFinalizer(tmpValue, (*QSqlField).DestroyQSqlField)
+	return tmpValue
+}
+
 func (ptr *QSqlField) Clear() {
 	if ptr.Pointer() != nil {
 		C.QSqlField_Clear(ptr.Pointer())
 	}
+}
+
+func (ptr *QSqlField) DefaultValue() *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QSqlField_DefaultValue(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSqlField) IsAutoValue() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlField_IsAutoValue(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlField) IsGenerated() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlField_IsGenerated(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlField) IsNull() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlField_IsNull(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlField) IsReadOnly() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlField_IsReadOnly(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlField) IsValid() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlField_IsValid(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlField) Length() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QSqlField_Length(ptr.Pointer())))
+	}
+	return 0
+}
+
+func (ptr *QSqlField) Name() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QSqlField_Name(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QSqlField) Precision() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QSqlField_Precision(ptr.Pointer())))
+	}
+	return 0
+}
+
+func (ptr *QSqlField) RequiredStatus() QSqlField__RequiredStatus {
+	if ptr.Pointer() != nil {
+		return QSqlField__RequiredStatus(C.QSqlField_RequiredStatus(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QSqlField) SetAutoValue(autoVal bool) {
@@ -3246,28 +3253,6 @@ func (ptr *QSqlField) SetValue(value core.QVariant_ITF) {
 	}
 }
 
-func (ptr *QSqlField) DestroyQSqlField() {
-	if ptr.Pointer() != nil {
-		C.QSqlField_DestroyQSqlField(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
-}
-
-func (ptr *QSqlField) RequiredStatus() QSqlField__RequiredStatus {
-	if ptr.Pointer() != nil {
-		return QSqlField__RequiredStatus(C.QSqlField_RequiredStatus(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QSqlField) Name() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSqlField_Name(ptr.Pointer()))
-	}
-	return ""
-}
-
 func (ptr *QSqlField) TableName() string {
 	if ptr.Pointer() != nil {
 		return cGoUnpackString(C.QSqlField_TableName(ptr.Pointer()))
@@ -3275,13 +3260,11 @@ func (ptr *QSqlField) TableName() string {
 	return ""
 }
 
-func (ptr *QSqlField) DefaultValue() *core.QVariant {
+func (ptr *QSqlField) Type() core.QVariant__Type {
 	if ptr.Pointer() != nil {
-		tmpValue := core.NewQVariantFromPointer(C.QSqlField_DefaultValue(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
+		return core.QVariant__Type(C.QSqlField_Type(ptr.Pointer()))
 	}
-	return nil
+	return 0
 }
 
 func (ptr *QSqlField) Value() *core.QVariant {
@@ -3293,60 +3276,12 @@ func (ptr *QSqlField) Value() *core.QVariant {
 	return nil
 }
 
-func (ptr *QSqlField) Type() core.QVariant__Type {
+func (ptr *QSqlField) DestroyQSqlField() {
 	if ptr.Pointer() != nil {
-		return core.QVariant__Type(C.QSqlField_Type(ptr.Pointer()))
+		C.QSqlField_DestroyQSqlField(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
-	return 0
-}
-
-func (ptr *QSqlField) IsAutoValue() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlField_IsAutoValue(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlField) IsGenerated() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlField_IsGenerated(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlField) IsNull() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlField_IsNull(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlField) IsReadOnly() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlField_IsReadOnly(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlField) IsValid() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlField_IsValid(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlField) Length() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QSqlField_Length(ptr.Pointer())))
-	}
-	return 0
-}
-
-func (ptr *QSqlField) Precision() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QSqlField_Precision(ptr.Pointer())))
-	}
-	return 0
 }
 
 type QSqlIndex struct {
@@ -3387,12 +3322,6 @@ func NewQSqlIndexFromPointer(ptr unsafe.Pointer) (n *QSqlIndex) {
 	n.SetPointer(ptr)
 	return
 }
-func NewQSqlIndex2(other QSqlIndex_ITF) *QSqlIndex {
-	tmpValue := NewQSqlIndexFromPointer(C.QSqlIndex_NewQSqlIndex2(PointerFromQSqlIndex(other)))
-	runtime.SetFinalizer(tmpValue, (*QSqlIndex).DestroyQSqlIndex)
-	return tmpValue
-}
-
 func NewQSqlIndex(cursorname string, name string) *QSqlIndex {
 	var cursornameC *C.char
 	if cursorname != "" {
@@ -3409,10 +3338,37 @@ func NewQSqlIndex(cursorname string, name string) *QSqlIndex {
 	return tmpValue
 }
 
+func NewQSqlIndex2(other QSqlIndex_ITF) *QSqlIndex {
+	tmpValue := NewQSqlIndexFromPointer(C.QSqlIndex_NewQSqlIndex2(PointerFromQSqlIndex(other)))
+	runtime.SetFinalizer(tmpValue, (*QSqlIndex).DestroyQSqlIndex)
+	return tmpValue
+}
+
 func (ptr *QSqlIndex) Append2(field QSqlField_ITF, desc bool) {
 	if ptr.Pointer() != nil {
 		C.QSqlIndex_Append2(ptr.Pointer(), PointerFromQSqlField(field), C.char(int8(qt.GoBoolToInt(desc))))
 	}
+}
+
+func (ptr *QSqlIndex) CursorName() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QSqlIndex_CursorName(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QSqlIndex) IsDescending(i int) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlIndex_IsDescending(ptr.Pointer(), C.int(int32(i)))) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlIndex) Name() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QSqlIndex_Name(ptr.Pointer()))
+	}
+	return ""
 }
 
 func (ptr *QSqlIndex) SetCursorName(cursorName string) {
@@ -3449,27 +3405,6 @@ func (ptr *QSqlIndex) DestroyQSqlIndex() {
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
-}
-
-func (ptr *QSqlIndex) CursorName() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSqlIndex_CursorName(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QSqlIndex) Name() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSqlIndex_Name(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QSqlIndex) IsDescending(i int) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlIndex_IsDescending(ptr.Pointer(), C.int(int32(i)))) != 0
-	}
-	return false
 }
 
 func (ptr *QSqlIndex) __sorts_atList(i int) bool {
@@ -3553,20 +3488,8 @@ const (
 	QSqlQuery__ValuesAsColumns QSqlQuery__BatchExecutionMode = QSqlQuery__BatchExecutionMode(1)
 )
 
-func NewQSqlQuery3(db QSqlDatabase_ITF) *QSqlQuery {
-	tmpValue := NewQSqlQueryFromPointer(C.QSqlQuery_NewQSqlQuery3(PointerFromQSqlDatabase(db)))
-	runtime.SetFinalizer(tmpValue, (*QSqlQuery).DestroyQSqlQuery)
-	return tmpValue
-}
-
 func NewQSqlQuery(result QSqlResult_ITF) *QSqlQuery {
 	tmpValue := NewQSqlQueryFromPointer(C.QSqlQuery_NewQSqlQuery(PointerFromQSqlResult(result)))
-	runtime.SetFinalizer(tmpValue, (*QSqlQuery).DestroyQSqlQuery)
-	return tmpValue
-}
-
-func NewQSqlQuery4(other QSqlQuery_ITF) *QSqlQuery {
-	tmpValue := NewQSqlQueryFromPointer(C.QSqlQuery_NewQSqlQuery4(PointerFromQSqlQuery(other)))
 	runtime.SetFinalizer(tmpValue, (*QSqlQuery).DestroyQSqlQuery)
 	return tmpValue
 }
@@ -3582,90 +3505,29 @@ func NewQSqlQuery2(query string, db QSqlDatabase_ITF) *QSqlQuery {
 	return tmpValue
 }
 
-func (ptr *QSqlQuery) Exec2() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlQuery_Exec2(ptr.Pointer())) != 0
-	}
-	return false
+func NewQSqlQuery3(db QSqlDatabase_ITF) *QSqlQuery {
+	tmpValue := NewQSqlQueryFromPointer(C.QSqlQuery_NewQSqlQuery3(PointerFromQSqlDatabase(db)))
+	runtime.SetFinalizer(tmpValue, (*QSqlQuery).DestroyQSqlQuery)
+	return tmpValue
 }
 
-func (ptr *QSqlQuery) Exec(query string) bool {
-	if ptr.Pointer() != nil {
-		var queryC *C.char
-		if query != "" {
-			queryC = C.CString(query)
-			defer C.free(unsafe.Pointer(queryC))
-		}
-		return int8(C.QSqlQuery_Exec(ptr.Pointer(), C.struct_QtSql_PackedString{data: queryC, len: C.longlong(len(query))})) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlQuery) ExecBatch(mode QSqlQuery__BatchExecutionMode) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlQuery_ExecBatch(ptr.Pointer(), C.longlong(mode))) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlQuery) First() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlQuery_First(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlQuery) Last() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlQuery_Last(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlQuery) Next() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlQuery_Next(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlQuery) NextResult() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlQuery_NextResult(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlQuery) Prepare(query string) bool {
-	if ptr.Pointer() != nil {
-		var queryC *C.char
-		if query != "" {
-			queryC = C.CString(query)
-			defer C.free(unsafe.Pointer(queryC))
-		}
-		return int8(C.QSqlQuery_Prepare(ptr.Pointer(), C.struct_QtSql_PackedString{data: queryC, len: C.longlong(len(query))})) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlQuery) Previous() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlQuery_Previous(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlQuery) Seek(index int, relative bool) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlQuery_Seek(ptr.Pointer(), C.int(int32(index)), C.char(int8(qt.GoBoolToInt(relative))))) != 0
-	}
-	return false
+func NewQSqlQuery4(other QSqlQuery_ITF) *QSqlQuery {
+	tmpValue := NewQSqlQueryFromPointer(C.QSqlQuery_NewQSqlQuery4(PointerFromQSqlQuery(other)))
+	runtime.SetFinalizer(tmpValue, (*QSqlQuery).DestroyQSqlQuery)
+	return tmpValue
 }
 
 func (ptr *QSqlQuery) AddBindValue(val core.QVariant_ITF, paramType QSql__ParamTypeFlag) {
 	if ptr.Pointer() != nil {
 		C.QSqlQuery_AddBindValue(ptr.Pointer(), core.PointerFromQVariant(val), C.longlong(paramType))
 	}
+}
+
+func (ptr *QSqlQuery) At() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QSqlQuery_At(ptr.Pointer())))
+	}
+	return 0
 }
 
 func (ptr *QSqlQuery) BindValue(placeholder string, val core.QVariant_ITF, paramType QSql__ParamTypeFlag) {
@@ -3683,91 +3545,6 @@ func (ptr *QSqlQuery) BindValue2(pos int, val core.QVariant_ITF, paramType QSql_
 	if ptr.Pointer() != nil {
 		C.QSqlQuery_BindValue2(ptr.Pointer(), C.int(int32(pos)), core.PointerFromQVariant(val), C.longlong(paramType))
 	}
-}
-
-func (ptr *QSqlQuery) Clear() {
-	if ptr.Pointer() != nil {
-		C.QSqlQuery_Clear(ptr.Pointer())
-	}
-}
-
-func (ptr *QSqlQuery) Finish() {
-	if ptr.Pointer() != nil {
-		C.QSqlQuery_Finish(ptr.Pointer())
-	}
-}
-
-func (ptr *QSqlQuery) SetForwardOnly(forward bool) {
-	if ptr.Pointer() != nil {
-		C.QSqlQuery_SetForwardOnly(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(forward))))
-	}
-}
-
-func (ptr *QSqlQuery) SetNumericalPrecisionPolicy(precisionPolicy QSql__NumericalPrecisionPolicy) {
-	if ptr.Pointer() != nil {
-		C.QSqlQuery_SetNumericalPrecisionPolicy(ptr.Pointer(), C.longlong(precisionPolicy))
-	}
-}
-
-func (ptr *QSqlQuery) DestroyQSqlQuery() {
-	if ptr.Pointer() != nil {
-		C.QSqlQuery_DestroyQSqlQuery(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
-}
-
-func (ptr *QSqlQuery) BoundValues() map[string]*core.QVariant {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtSql_PackedList) map[string]*core.QVariant {
-			out := make(map[string]*core.QVariant, int(l.len))
-			tmpList := NewQSqlQueryFromPointer(l.data)
-			for i, v := range tmpList.__boundValues_keyList() {
-				out[v] = tmpList.__boundValues_atList(v, i)
-			}
-			return out
-		}(C.QSqlQuery_BoundValues(ptr.Pointer()))
-	}
-	return make(map[string]*core.QVariant, 0)
-}
-
-func (ptr *QSqlQuery) NumericalPrecisionPolicy() QSql__NumericalPrecisionPolicy {
-	if ptr.Pointer() != nil {
-		return QSql__NumericalPrecisionPolicy(C.QSqlQuery_NumericalPrecisionPolicy(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QSqlQuery) LastError() *QSqlError {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSqlErrorFromPointer(C.QSqlQuery_LastError(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QSqlError).DestroyQSqlError)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlQuery) Record() *QSqlRecord {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSqlRecordFromPointer(C.QSqlQuery_Record(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QSqlRecord).DestroyQSqlRecord)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlQuery) ExecutedQuery() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSqlQuery_ExecutedQuery(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QSqlQuery) LastQuery() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSqlQuery_LastQuery(ptr.Pointer()))
-	}
-	return ""
 }
 
 func (ptr *QSqlQuery) BoundValue(placeholder string) *core.QVariant {
@@ -3793,9 +3570,254 @@ func (ptr *QSqlQuery) BoundValue2(pos int) *core.QVariant {
 	return nil
 }
 
+func (ptr *QSqlQuery) BoundValues() map[string]*core.QVariant {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtSql_PackedList) map[string]*core.QVariant {
+			out := make(map[string]*core.QVariant, int(l.len))
+			tmpList := NewQSqlQueryFromPointer(l.data)
+			for i, v := range tmpList.__boundValues_keyList() {
+				out[v] = tmpList.__boundValues_atList(v, i)
+			}
+			return out
+		}(C.QSqlQuery_BoundValues(ptr.Pointer()))
+	}
+	return make(map[string]*core.QVariant, 0)
+}
+
+func (ptr *QSqlQuery) Clear() {
+	if ptr.Pointer() != nil {
+		C.QSqlQuery_Clear(ptr.Pointer())
+	}
+}
+
+func (ptr *QSqlQuery) Driver() *QSqlDriver {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQSqlDriverFromPointer(C.QSqlQuery_Driver(ptr.Pointer()))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSqlQuery) Exec(query string) bool {
+	if ptr.Pointer() != nil {
+		var queryC *C.char
+		if query != "" {
+			queryC = C.CString(query)
+			defer C.free(unsafe.Pointer(queryC))
+		}
+		return int8(C.QSqlQuery_Exec(ptr.Pointer(), C.struct_QtSql_PackedString{data: queryC, len: C.longlong(len(query))})) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlQuery) Exec2() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlQuery_Exec2(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlQuery) ExecBatch(mode QSqlQuery__BatchExecutionMode) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlQuery_ExecBatch(ptr.Pointer(), C.longlong(mode))) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlQuery) ExecutedQuery() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QSqlQuery_ExecutedQuery(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QSqlQuery) Finish() {
+	if ptr.Pointer() != nil {
+		C.QSqlQuery_Finish(ptr.Pointer())
+	}
+}
+
+func (ptr *QSqlQuery) First() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlQuery_First(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlQuery) IsActive() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlQuery_IsActive(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlQuery) IsForwardOnly() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlQuery_IsForwardOnly(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlQuery) IsNull(field int) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlQuery_IsNull(ptr.Pointer(), C.int(int32(field)))) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlQuery) IsNull2(name string) bool {
+	if ptr.Pointer() != nil {
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
+		return int8(C.QSqlQuery_IsNull2(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlQuery) IsSelect() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlQuery_IsSelect(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlQuery) IsValid() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlQuery_IsValid(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlQuery) Last() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlQuery_Last(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlQuery) LastError() *QSqlError {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQSqlErrorFromPointer(C.QSqlQuery_LastError(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QSqlError).DestroyQSqlError)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QSqlQuery) LastInsertId() *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QSqlQuery_LastInsertId(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSqlQuery) LastQuery() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QSqlQuery_LastQuery(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QSqlQuery) Next() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlQuery_Next(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlQuery) NextResult() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlQuery_NextResult(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlQuery) NumRowsAffected() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QSqlQuery_NumRowsAffected(ptr.Pointer())))
+	}
+	return 0
+}
+
+func (ptr *QSqlQuery) NumericalPrecisionPolicy() QSql__NumericalPrecisionPolicy {
+	if ptr.Pointer() != nil {
+		return QSql__NumericalPrecisionPolicy(C.QSqlQuery_NumericalPrecisionPolicy(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QSqlQuery) Prepare(query string) bool {
+	if ptr.Pointer() != nil {
+		var queryC *C.char
+		if query != "" {
+			queryC = C.CString(query)
+			defer C.free(unsafe.Pointer(queryC))
+		}
+		return int8(C.QSqlQuery_Prepare(ptr.Pointer(), C.struct_QtSql_PackedString{data: queryC, len: C.longlong(len(query))})) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlQuery) Previous() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlQuery_Previous(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlQuery) Record() *QSqlRecord {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQSqlRecordFromPointer(C.QSqlQuery_Record(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QSqlRecord).DestroyQSqlRecord)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSqlQuery) Result() *QSqlResult {
+	if ptr.Pointer() != nil {
+		return NewQSqlResultFromPointer(C.QSqlQuery_Result(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSqlQuery) Seek(index int, relative bool) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlQuery_Seek(ptr.Pointer(), C.int(int32(index)), C.char(int8(qt.GoBoolToInt(relative))))) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlQuery) SetForwardOnly(forward bool) {
+	if ptr.Pointer() != nil {
+		C.QSqlQuery_SetForwardOnly(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(forward))))
+	}
+}
+
+func (ptr *QSqlQuery) SetNumericalPrecisionPolicy(precisionPolicy QSql__NumericalPrecisionPolicy) {
+	if ptr.Pointer() != nil {
+		C.QSqlQuery_SetNumericalPrecisionPolicy(ptr.Pointer(), C.longlong(precisionPolicy))
+	}
+}
+
+func (ptr *QSqlQuery) Size() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QSqlQuery_Size(ptr.Pointer())))
+	}
+	return 0
+}
+
+func (ptr *QSqlQuery) Value(index int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QSqlQuery_Value(ptr.Pointer(), C.int(int32(index))))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -3816,99 +3838,12 @@ func (ptr *QSqlQuery) Value2(name string) *core.QVariant {
 	return nil
 }
 
-func (ptr *QSqlQuery) Value(index int) *core.QVariant {
+func (ptr *QSqlQuery) DestroyQSqlQuery() {
 	if ptr.Pointer() != nil {
-		tmpValue := core.NewQVariantFromPointer(C.QSqlQuery_Value(ptr.Pointer(), C.int(int32(index))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
+		C.QSqlQuery_DestroyQSqlQuery(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
-	return nil
-}
-
-func (ptr *QSqlQuery) IsActive() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlQuery_IsActive(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlQuery) IsForwardOnly() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlQuery_IsForwardOnly(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlQuery) IsNull2(name string) bool {
-	if ptr.Pointer() != nil {
-		var nameC *C.char
-		if name != "" {
-			nameC = C.CString(name)
-			defer C.free(unsafe.Pointer(nameC))
-		}
-		return int8(C.QSqlQuery_IsNull2(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlQuery) IsNull(field int) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlQuery_IsNull(ptr.Pointer(), C.int(int32(field)))) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlQuery) IsSelect() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlQuery_IsSelect(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlQuery) IsValid() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlQuery_IsValid(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlQuery) Driver() *QSqlDriver {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSqlDriverFromPointer(C.QSqlQuery_Driver(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlQuery) Result() *QSqlResult {
-	if ptr.Pointer() != nil {
-		return NewQSqlResultFromPointer(C.QSqlQuery_Result(ptr.Pointer()))
-	}
-	return nil
-}
-
-func (ptr *QSqlQuery) At() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QSqlQuery_At(ptr.Pointer())))
-	}
-	return 0
-}
-
-func (ptr *QSqlQuery) NumRowsAffected() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QSqlQuery_NumRowsAffected(ptr.Pointer())))
-	}
-	return 0
-}
-
-func (ptr *QSqlQuery) Size() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QSqlQuery_Size(ptr.Pointer())))
-	}
-	return 0
 }
 
 func (ptr *QSqlQuery) __boundValues_atList(v string, i int) *core.QVariant {
@@ -4022,78 +3957,18 @@ func NewQSqlQueryModel(parent core.QObject_ITF) *QSqlQueryModel {
 	return tmpValue
 }
 
-func QSqlQueryModel_Tr(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
+//export callbackQSqlQueryModel_CanFetchMore
+func callbackQSqlQueryModel_CanFetchMore(ptr unsafe.Pointer, parent unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "canFetchMore"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QModelIndex) bool)(signal))(core.NewQModelIndexFromPointer(parent)))))
 	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QSqlQueryModel_QSqlQueryModel_Tr(sC, cC, C.int(int32(n))))
+
+	return C.char(int8(qt.GoBoolToInt(NewQSqlQueryModelFromPointer(ptr).CanFetchMoreDefault(core.NewQModelIndexFromPointer(parent)))))
 }
 
-func (ptr *QSqlQueryModel) Tr(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QSqlQueryModel_QSqlQueryModel_Tr(sC, cC, C.int(int32(n))))
-}
-
-//export callbackQSqlQueryModel_InsertColumns
-func callbackQSqlQueryModel_InsertColumns(ptr unsafe.Pointer, column C.int, count C.int, parent unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "insertColumns"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(int, int, *core.QModelIndex) bool)(signal))(int(int32(column)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSqlQueryModelFromPointer(ptr).InsertColumnsDefault(int(int32(column)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
-}
-
-func (ptr *QSqlQueryModel) InsertColumnsDefault(column int, count int, parent core.QModelIndex_ITF) bool {
+func (ptr *QSqlQueryModel) CanFetchMoreDefault(parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return int8(C.QSqlQueryModel_InsertColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), core.PointerFromQModelIndex(parent))) != 0
-	}
-	return false
-}
-
-//export callbackQSqlQueryModel_RemoveColumns
-func callbackQSqlQueryModel_RemoveColumns(ptr unsafe.Pointer, column C.int, count C.int, parent unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "removeColumns"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(int, int, *core.QModelIndex) bool)(signal))(int(int32(column)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSqlQueryModelFromPointer(ptr).RemoveColumnsDefault(int(int32(column)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
-}
-
-func (ptr *QSqlQueryModel) RemoveColumnsDefault(column int, count int, parent core.QModelIndex_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlQueryModel_RemoveColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), core.PointerFromQModelIndex(parent))) != 0
-	}
-	return false
-}
-
-//export callbackQSqlQueryModel_SetHeaderData
-func callbackQSqlQueryModel_SetHeaderData(ptr unsafe.Pointer, section C.int, orientation C.longlong, value unsafe.Pointer, role C.int) C.char {
-	if signal := qt.GetSignal(ptr, "setHeaderData"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(int, core.Qt__Orientation, *core.QVariant, int) bool)(signal))(int(int32(section)), core.Qt__Orientation(orientation), core.NewQVariantFromPointer(value), int(int32(role))))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSqlQueryModelFromPointer(ptr).SetHeaderDataDefault(int(int32(section)), core.Qt__Orientation(orientation), core.NewQVariantFromPointer(value), int(int32(role))))))
-}
-
-func (ptr *QSqlQueryModel) SetHeaderDataDefault(section int, orientation core.Qt__Orientation, value core.QVariant_ITF, role int) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlQueryModel_SetHeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), core.PointerFromQVariant(value), C.int(int32(role)))) != 0
+		return int8(C.QSqlQueryModel_CanFetchMoreDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -4141,6 +4016,100 @@ func (ptr *QSqlQueryModel) ClearDefault() {
 	}
 }
 
+//export callbackQSqlQueryModel_ColumnCount
+func callbackQSqlQueryModel_ColumnCount(ptr unsafe.Pointer, index unsafe.Pointer) C.int {
+	if signal := qt.GetSignal(ptr, "columnCount"); signal != nil {
+		return C.int(int32((*(*func(*core.QModelIndex) int)(signal))(core.NewQModelIndexFromPointer(index))))
+	}
+
+	return C.int(int32(NewQSqlQueryModelFromPointer(ptr).ColumnCountDefault(core.NewQModelIndexFromPointer(index))))
+}
+
+func (ptr *QSqlQueryModel) ConnectColumnCount(f func(index *core.QModelIndex) int) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "columnCount"); signal != nil {
+			f := func(index *core.QModelIndex) int {
+				(*(*func(*core.QModelIndex) int)(signal))(index)
+				return f(index)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "columnCount", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "columnCount", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QSqlQueryModel) DisconnectColumnCount() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "columnCount")
+	}
+}
+
+func (ptr *QSqlQueryModel) ColumnCount(index core.QModelIndex_ITF) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QSqlQueryModel_ColumnCount(ptr.Pointer(), core.PointerFromQModelIndex(index))))
+	}
+	return 0
+}
+
+func (ptr *QSqlQueryModel) ColumnCountDefault(index core.QModelIndex_ITF) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QSqlQueryModel_ColumnCountDefault(ptr.Pointer(), core.PointerFromQModelIndex(index))))
+	}
+	return 0
+}
+
+//export callbackQSqlQueryModel_Data
+func callbackQSqlQueryModel_Data(ptr unsafe.Pointer, item unsafe.Pointer, role C.int) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "data"); signal != nil {
+		return core.PointerFromQVariant((*(*func(*core.QModelIndex, int) *core.QVariant)(signal))(core.NewQModelIndexFromPointer(item), int(int32(role))))
+	}
+
+	return core.PointerFromQVariant(NewQSqlQueryModelFromPointer(ptr).DataDefault(core.NewQModelIndexFromPointer(item), int(int32(role))))
+}
+
+func (ptr *QSqlQueryModel) ConnectData(f func(item *core.QModelIndex, role int) *core.QVariant) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "data"); signal != nil {
+			f := func(item *core.QModelIndex, role int) *core.QVariant {
+				(*(*func(*core.QModelIndex, int) *core.QVariant)(signal))(item, role)
+				return f(item, role)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "data", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "data", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QSqlQueryModel) DisconnectData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "data")
+	}
+}
+
+func (ptr *QSqlQueryModel) Data(item core.QModelIndex_ITF, role int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QSqlQueryModel_Data(ptr.Pointer(), core.PointerFromQModelIndex(item), C.int(int32(role))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSqlQueryModel) DataDefault(item core.QModelIndex_ITF, role int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QSqlQueryModel_DataDefault(ptr.Pointer(), core.PointerFromQModelIndex(item), C.int(int32(role))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
 //export callbackQSqlQueryModel_FetchMore
 func callbackQSqlQueryModel_FetchMore(ptr unsafe.Pointer, parent unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "fetchMore"); signal != nil {
@@ -4154,6 +4123,107 @@ func (ptr *QSqlQueryModel) FetchMoreDefault(parent core.QModelIndex_ITF) {
 	if ptr.Pointer() != nil {
 		C.QSqlQueryModel_FetchMoreDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))
 	}
+}
+
+//export callbackQSqlQueryModel_HeaderData
+func callbackQSqlQueryModel_HeaderData(ptr unsafe.Pointer, section C.int, orientation C.longlong, role C.int) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "headerData"); signal != nil {
+		return core.PointerFromQVariant((*(*func(int, core.Qt__Orientation, int) *core.QVariant)(signal))(int(int32(section)), core.Qt__Orientation(orientation), int(int32(role))))
+	}
+
+	return core.PointerFromQVariant(NewQSqlQueryModelFromPointer(ptr).HeaderDataDefault(int(int32(section)), core.Qt__Orientation(orientation), int(int32(role))))
+}
+
+func (ptr *QSqlQueryModel) HeaderDataDefault(section int, orientation core.Qt__Orientation, role int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QSqlQueryModel_HeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), C.int(int32(role))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQSqlQueryModel_IndexInQuery
+func callbackQSqlQueryModel_IndexInQuery(ptr unsafe.Pointer, item unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "indexInQuery"); signal != nil {
+		return core.PointerFromQModelIndex((*(*func(*core.QModelIndex) *core.QModelIndex)(signal))(core.NewQModelIndexFromPointer(item)))
+	}
+
+	return core.PointerFromQModelIndex(NewQSqlQueryModelFromPointer(ptr).IndexInQueryDefault(core.NewQModelIndexFromPointer(item)))
+}
+
+func (ptr *QSqlQueryModel) ConnectIndexInQuery(f func(item *core.QModelIndex) *core.QModelIndex) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "indexInQuery"); signal != nil {
+			f := func(item *core.QModelIndex) *core.QModelIndex {
+				(*(*func(*core.QModelIndex) *core.QModelIndex)(signal))(item)
+				return f(item)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "indexInQuery", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "indexInQuery", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QSqlQueryModel) DisconnectIndexInQuery() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "indexInQuery")
+	}
+}
+
+func (ptr *QSqlQueryModel) IndexInQuery(item core.QModelIndex_ITF) *core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQModelIndexFromPointer(C.QSqlQueryModel_IndexInQuery(ptr.Pointer(), core.PointerFromQModelIndex(item)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSqlQueryModel) IndexInQueryDefault(item core.QModelIndex_ITF) *core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQModelIndexFromPointer(C.QSqlQueryModel_IndexInQueryDefault(ptr.Pointer(), core.PointerFromQModelIndex(item)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQSqlQueryModel_InsertColumns
+func callbackQSqlQueryModel_InsertColumns(ptr unsafe.Pointer, column C.int, count C.int, parent unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "insertColumns"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(int, int, *core.QModelIndex) bool)(signal))(int(int32(column)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSqlQueryModelFromPointer(ptr).InsertColumnsDefault(int(int32(column)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *QSqlQueryModel) InsertColumnsDefault(column int, count int, parent core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlQueryModel_InsertColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), core.PointerFromQModelIndex(parent))) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlQueryModel) LastError() *QSqlError {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQSqlErrorFromPointer(C.QSqlQueryModel_LastError(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QSqlError).DestroyQSqlError)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSqlQueryModel) Query() *QSqlQuery {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQSqlQueryFromPointer(C.QSqlQueryModel_Query(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QSqlQuery).DestroyQSqlQuery)
+		return tmpValue
+	}
+	return nil
 }
 
 //export callbackQSqlQueryModel_QueryChange
@@ -4197,6 +4267,136 @@ func (ptr *QSqlQueryModel) QueryChangeDefault() {
 	if ptr.Pointer() != nil {
 		C.QSqlQueryModel_QueryChangeDefault(ptr.Pointer())
 	}
+}
+
+func (ptr *QSqlQueryModel) Record(row int) *QSqlRecord {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQSqlRecordFromPointer(C.QSqlQueryModel_Record(ptr.Pointer(), C.int(int32(row))))
+		runtime.SetFinalizer(tmpValue, (*QSqlRecord).DestroyQSqlRecord)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSqlQueryModel) Record2() *QSqlRecord {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQSqlRecordFromPointer(C.QSqlQueryModel_Record2(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QSqlRecord).DestroyQSqlRecord)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQSqlQueryModel_RemoveColumns
+func callbackQSqlQueryModel_RemoveColumns(ptr unsafe.Pointer, column C.int, count C.int, parent unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "removeColumns"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(int, int, *core.QModelIndex) bool)(signal))(int(int32(column)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSqlQueryModelFromPointer(ptr).RemoveColumnsDefault(int(int32(column)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *QSqlQueryModel) RemoveColumnsDefault(column int, count int, parent core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlQueryModel_RemoveColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), core.PointerFromQModelIndex(parent))) != 0
+	}
+	return false
+}
+
+//export callbackQSqlQueryModel_RoleNames
+func callbackQSqlQueryModel_RoleNames(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "roleNames"); signal != nil {
+		return func() unsafe.Pointer {
+			tmpList := NewQSqlQueryModelFromPointer(NewQSqlQueryModelFromPointer(nil).__roleNames_newList())
+			for k, v := range (*(*func() map[int]*core.QByteArray)(signal))() {
+				tmpList.__roleNames_setList(k, v)
+			}
+			return tmpList.Pointer()
+		}()
+	}
+
+	return func() unsafe.Pointer {
+		tmpList := NewQSqlQueryModelFromPointer(NewQSqlQueryModelFromPointer(nil).__roleNames_newList())
+		for k, v := range NewQSqlQueryModelFromPointer(ptr).RoleNamesDefault() {
+			tmpList.__roleNames_setList(k, v)
+		}
+		return tmpList.Pointer()
+	}()
+}
+
+func (ptr *QSqlQueryModel) RoleNamesDefault() map[int]*core.QByteArray {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtSql_PackedList) map[int]*core.QByteArray {
+			out := make(map[int]*core.QByteArray, int(l.len))
+			tmpList := NewQSqlQueryModelFromPointer(l.data)
+			for i, v := range tmpList.__roleNames_keyList() {
+				out[v] = tmpList.__roleNames_atList(v, i)
+			}
+			return out
+		}(C.QSqlQueryModel_RoleNamesDefault(ptr.Pointer()))
+	}
+	return make(map[int]*core.QByteArray, 0)
+}
+
+//export callbackQSqlQueryModel_RowCount
+func callbackQSqlQueryModel_RowCount(ptr unsafe.Pointer, parent unsafe.Pointer) C.int {
+	if signal := qt.GetSignal(ptr, "rowCount"); signal != nil {
+		return C.int(int32((*(*func(*core.QModelIndex) int)(signal))(core.NewQModelIndexFromPointer(parent))))
+	}
+
+	return C.int(int32(NewQSqlQueryModelFromPointer(ptr).RowCountDefault(core.NewQModelIndexFromPointer(parent))))
+}
+
+func (ptr *QSqlQueryModel) ConnectRowCount(f func(parent *core.QModelIndex) int) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "rowCount"); signal != nil {
+			f := func(parent *core.QModelIndex) int {
+				(*(*func(*core.QModelIndex) int)(signal))(parent)
+				return f(parent)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "rowCount", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "rowCount", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QSqlQueryModel) DisconnectRowCount() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "rowCount")
+	}
+}
+
+func (ptr *QSqlQueryModel) RowCount(parent core.QModelIndex_ITF) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QSqlQueryModel_RowCount(ptr.Pointer(), core.PointerFromQModelIndex(parent))))
+	}
+	return 0
+}
+
+func (ptr *QSqlQueryModel) RowCountDefault(parent core.QModelIndex_ITF) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QSqlQueryModel_RowCountDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))))
+	}
+	return 0
+}
+
+//export callbackQSqlQueryModel_SetHeaderData
+func callbackQSqlQueryModel_SetHeaderData(ptr unsafe.Pointer, section C.int, orientation C.longlong, value unsafe.Pointer, role C.int) C.char {
+	if signal := qt.GetSignal(ptr, "setHeaderData"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(int, core.Qt__Orientation, *core.QVariant, int) bool)(signal))(int(int32(section)), core.Qt__Orientation(orientation), core.NewQVariantFromPointer(value), int(int32(role))))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSqlQueryModelFromPointer(ptr).SetHeaderDataDefault(int(int32(section)), core.Qt__Orientation(orientation), core.NewQVariantFromPointer(value), int(int32(role))))))
+}
+
+func (ptr *QSqlQueryModel) SetHeaderDataDefault(section int, orientation core.Qt__Orientation, value core.QVariant_ITF, role int) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlQueryModel_SetHeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), core.PointerFromQVariant(value), C.int(int32(role)))) != 0
+	}
+	return false
 }
 
 func (ptr *QSqlQueryModel) SetLastError(error QSqlError_ITF) {
@@ -4269,315 +4469,6 @@ func (ptr *QSqlQueryModel) DestroyQSqlQueryModelDefault() {
 	}
 }
 
-//export callbackQSqlQueryModel_RoleNames
-func callbackQSqlQueryModel_RoleNames(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "roleNames"); signal != nil {
-		return func() unsafe.Pointer {
-			tmpList := NewQSqlQueryModelFromPointer(NewQSqlQueryModelFromPointer(nil).__roleNames_newList())
-			for k, v := range (*(*func() map[int]*core.QByteArray)(signal))() {
-				tmpList.__roleNames_setList(k, v)
-			}
-			return tmpList.Pointer()
-		}()
-	}
-
-	return func() unsafe.Pointer {
-		tmpList := NewQSqlQueryModelFromPointer(NewQSqlQueryModelFromPointer(nil).__roleNames_newList())
-		for k, v := range NewQSqlQueryModelFromPointer(ptr).RoleNamesDefault() {
-			tmpList.__roleNames_setList(k, v)
-		}
-		return tmpList.Pointer()
-	}()
-}
-
-func (ptr *QSqlQueryModel) RoleNamesDefault() map[int]*core.QByteArray {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtSql_PackedList) map[int]*core.QByteArray {
-			out := make(map[int]*core.QByteArray, int(l.len))
-			tmpList := NewQSqlQueryModelFromPointer(l.data)
-			for i, v := range tmpList.__roleNames_keyList() {
-				out[v] = tmpList.__roleNames_atList(v, i)
-			}
-			return out
-		}(C.QSqlQueryModel_RoleNamesDefault(ptr.Pointer()))
-	}
-	return make(map[int]*core.QByteArray, 0)
-}
-
-//export callbackQSqlQueryModel_IndexInQuery
-func callbackQSqlQueryModel_IndexInQuery(ptr unsafe.Pointer, item unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "indexInQuery"); signal != nil {
-		return core.PointerFromQModelIndex((*(*func(*core.QModelIndex) *core.QModelIndex)(signal))(core.NewQModelIndexFromPointer(item)))
-	}
-
-	return core.PointerFromQModelIndex(NewQSqlQueryModelFromPointer(ptr).IndexInQueryDefault(core.NewQModelIndexFromPointer(item)))
-}
-
-func (ptr *QSqlQueryModel) ConnectIndexInQuery(f func(item *core.QModelIndex) *core.QModelIndex) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "indexInQuery"); signal != nil {
-			f := func(item *core.QModelIndex) *core.QModelIndex {
-				(*(*func(*core.QModelIndex) *core.QModelIndex)(signal))(item)
-				return f(item)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "indexInQuery", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "indexInQuery", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QSqlQueryModel) DisconnectIndexInQuery() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "indexInQuery")
-	}
-}
-
-func (ptr *QSqlQueryModel) IndexInQuery(item core.QModelIndex_ITF) *core.QModelIndex {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQModelIndexFromPointer(C.QSqlQueryModel_IndexInQuery(ptr.Pointer(), core.PointerFromQModelIndex(item)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlQueryModel) IndexInQueryDefault(item core.QModelIndex_ITF) *core.QModelIndex {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQModelIndexFromPointer(C.QSqlQueryModel_IndexInQueryDefault(ptr.Pointer(), core.PointerFromQModelIndex(item)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlQueryModel) LastError() *QSqlError {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSqlErrorFromPointer(C.QSqlQueryModel_LastError(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QSqlError).DestroyQSqlError)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlQueryModel) Query() *QSqlQuery {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSqlQueryFromPointer(C.QSqlQueryModel_Query(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QSqlQuery).DestroyQSqlQuery)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlQueryModel) Record2() *QSqlRecord {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSqlRecordFromPointer(C.QSqlQueryModel_Record2(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QSqlRecord).DestroyQSqlRecord)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlQueryModel) Record(row int) *QSqlRecord {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSqlRecordFromPointer(C.QSqlQueryModel_Record(ptr.Pointer(), C.int(int32(row))))
-		runtime.SetFinalizer(tmpValue, (*QSqlRecord).DestroyQSqlRecord)
-		return tmpValue
-	}
-	return nil
-}
-
-//export callbackQSqlQueryModel_Data
-func callbackQSqlQueryModel_Data(ptr unsafe.Pointer, item unsafe.Pointer, role C.int) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "data"); signal != nil {
-		return core.PointerFromQVariant((*(*func(*core.QModelIndex, int) *core.QVariant)(signal))(core.NewQModelIndexFromPointer(item), int(int32(role))))
-	}
-
-	return core.PointerFromQVariant(NewQSqlQueryModelFromPointer(ptr).DataDefault(core.NewQModelIndexFromPointer(item), int(int32(role))))
-}
-
-func (ptr *QSqlQueryModel) ConnectData(f func(item *core.QModelIndex, role int) *core.QVariant) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "data"); signal != nil {
-			f := func(item *core.QModelIndex, role int) *core.QVariant {
-				(*(*func(*core.QModelIndex, int) *core.QVariant)(signal))(item, role)
-				return f(item, role)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "data", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "data", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QSqlQueryModel) DisconnectData() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "data")
-	}
-}
-
-func (ptr *QSqlQueryModel) Data(item core.QModelIndex_ITF, role int) *core.QVariant {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQVariantFromPointer(C.QSqlQueryModel_Data(ptr.Pointer(), core.PointerFromQModelIndex(item), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlQueryModel) DataDefault(item core.QModelIndex_ITF, role int) *core.QVariant {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQVariantFromPointer(C.QSqlQueryModel_DataDefault(ptr.Pointer(), core.PointerFromQModelIndex(item), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
-}
-
-//export callbackQSqlQueryModel_HeaderData
-func callbackQSqlQueryModel_HeaderData(ptr unsafe.Pointer, section C.int, orientation C.longlong, role C.int) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "headerData"); signal != nil {
-		return core.PointerFromQVariant((*(*func(int, core.Qt__Orientation, int) *core.QVariant)(signal))(int(int32(section)), core.Qt__Orientation(orientation), int(int32(role))))
-	}
-
-	return core.PointerFromQVariant(NewQSqlQueryModelFromPointer(ptr).HeaderDataDefault(int(int32(section)), core.Qt__Orientation(orientation), int(int32(role))))
-}
-
-func (ptr *QSqlQueryModel) HeaderDataDefault(section int, orientation core.Qt__Orientation, role int) *core.QVariant {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQVariantFromPointer(C.QSqlQueryModel_HeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
-}
-
-//export callbackQSqlQueryModel_CanFetchMore
-func callbackQSqlQueryModel_CanFetchMore(ptr unsafe.Pointer, parent unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "canFetchMore"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QModelIndex) bool)(signal))(core.NewQModelIndexFromPointer(parent)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSqlQueryModelFromPointer(ptr).CanFetchMoreDefault(core.NewQModelIndexFromPointer(parent)))))
-}
-
-func (ptr *QSqlQueryModel) CanFetchMoreDefault(parent core.QModelIndex_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlQueryModel_CanFetchMoreDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))) != 0
-	}
-	return false
-}
-
-//export callbackQSqlQueryModel_MetaObject
-func callbackQSqlQueryModel_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQSqlQueryModelFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QSqlQueryModel) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QSqlQueryModel_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
-//export callbackQSqlQueryModel_ColumnCount
-func callbackQSqlQueryModel_ColumnCount(ptr unsafe.Pointer, index unsafe.Pointer) C.int {
-	if signal := qt.GetSignal(ptr, "columnCount"); signal != nil {
-		return C.int(int32((*(*func(*core.QModelIndex) int)(signal))(core.NewQModelIndexFromPointer(index))))
-	}
-
-	return C.int(int32(NewQSqlQueryModelFromPointer(ptr).ColumnCountDefault(core.NewQModelIndexFromPointer(index))))
-}
-
-func (ptr *QSqlQueryModel) ConnectColumnCount(f func(index *core.QModelIndex) int) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "columnCount"); signal != nil {
-			f := func(index *core.QModelIndex) int {
-				(*(*func(*core.QModelIndex) int)(signal))(index)
-				return f(index)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "columnCount", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "columnCount", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QSqlQueryModel) DisconnectColumnCount() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "columnCount")
-	}
-}
-
-func (ptr *QSqlQueryModel) ColumnCount(index core.QModelIndex_ITF) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QSqlQueryModel_ColumnCount(ptr.Pointer(), core.PointerFromQModelIndex(index))))
-	}
-	return 0
-}
-
-func (ptr *QSqlQueryModel) ColumnCountDefault(index core.QModelIndex_ITF) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QSqlQueryModel_ColumnCountDefault(ptr.Pointer(), core.PointerFromQModelIndex(index))))
-	}
-	return 0
-}
-
-//export callbackQSqlQueryModel_RowCount
-func callbackQSqlQueryModel_RowCount(ptr unsafe.Pointer, parent unsafe.Pointer) C.int {
-	if signal := qt.GetSignal(ptr, "rowCount"); signal != nil {
-		return C.int(int32((*(*func(*core.QModelIndex) int)(signal))(core.NewQModelIndexFromPointer(parent))))
-	}
-
-	return C.int(int32(NewQSqlQueryModelFromPointer(ptr).RowCountDefault(core.NewQModelIndexFromPointer(parent))))
-}
-
-func (ptr *QSqlQueryModel) ConnectRowCount(f func(parent *core.QModelIndex) int) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "rowCount"); signal != nil {
-			f := func(parent *core.QModelIndex) int {
-				(*(*func(*core.QModelIndex) int)(signal))(parent)
-				return f(parent)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "rowCount", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "rowCount", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QSqlQueryModel) DisconnectRowCount() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "rowCount")
-	}
-}
-
-func (ptr *QSqlQueryModel) RowCount(parent core.QModelIndex_ITF) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QSqlQueryModel_RowCount(ptr.Pointer(), core.PointerFromQModelIndex(parent))))
-	}
-	return 0
-}
-
-func (ptr *QSqlQueryModel) RowCountDefault(parent core.QModelIndex_ITF) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QSqlQueryModel_RowCountDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))))
-	}
-	return 0
-}
-
 func (ptr *QSqlQueryModel) __roleNames_atList(v int, i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QSqlQueryModel___roleNames_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
@@ -4628,23 +4519,6 @@ func (ptr *QSqlQueryModel) ____roleNames_keyList_newList() unsafe.Pointer {
 	return C.QSqlQueryModel_____roleNames_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QSqlQueryModel) ____setItemData_roles_keyList_atList(i int) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QSqlQueryModel_____setItemData_roles_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
-	}
-	return 0
-}
-
-func (ptr *QSqlQueryModel) ____setItemData_roles_keyList_setList(i int) {
-	if ptr.Pointer() != nil {
-		C.QSqlQueryModel_____setItemData_roles_keyList_setList(ptr.Pointer(), C.int(int32(i)))
-	}
-}
-
-func (ptr *QSqlQueryModel) ____setItemData_roles_keyList_newList() unsafe.Pointer {
-	return C.QSqlQueryModel_____setItemData_roles_keyList_newList(ptr.Pointer())
-}
-
 func (ptr *QSqlQueryModel) ____itemData_keyList_atList(i int) int {
 	if ptr.Pointer() != nil {
 		return int(int32(C.QSqlQueryModel_____itemData_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
@@ -4662,37 +4536,21 @@ func (ptr *QSqlQueryModel) ____itemData_keyList_newList() unsafe.Pointer {
 	return C.QSqlQueryModel_____itemData_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QSqlQueryModel) __setItemData_roles_atList(v int, i int) *core.QVariant {
+func (ptr *QSqlQueryModel) ____setItemData_roles_keyList_atList(i int) int {
 	if ptr.Pointer() != nil {
-		tmpValue := core.NewQVariantFromPointer(C.QSqlQueryModel___setItemData_roles_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
+		return int(int32(C.QSqlQueryModel_____setItemData_roles_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
 	}
-	return nil
+	return 0
 }
 
-func (ptr *QSqlQueryModel) __setItemData_roles_setList(key int, i core.QVariant_ITF) {
+func (ptr *QSqlQueryModel) ____setItemData_roles_keyList_setList(i int) {
 	if ptr.Pointer() != nil {
-		C.QSqlQueryModel___setItemData_roles_setList(ptr.Pointer(), C.int(int32(key)), core.PointerFromQVariant(i))
+		C.QSqlQueryModel_____setItemData_roles_keyList_setList(ptr.Pointer(), C.int(int32(i)))
 	}
 }
 
-func (ptr *QSqlQueryModel) __setItemData_roles_newList() unsafe.Pointer {
-	return C.QSqlQueryModel___setItemData_roles_newList(ptr.Pointer())
-}
-
-func (ptr *QSqlQueryModel) __setItemData_roles_keyList() []int {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtSql_PackedList) []int {
-			out := make([]int, int(l.len))
-			tmpList := NewQSqlQueryModelFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____setItemData_roles_keyList_atList(i)
-			}
-			return out
-		}(C.QSqlQueryModel___setItemData_roles_keyList(ptr.Pointer()))
-	}
-	return make([]int, 0)
+func (ptr *QSqlQueryModel) ____setItemData_roles_keyList_newList() unsafe.Pointer {
+	return C.QSqlQueryModel_____setItemData_roles_keyList_newList(ptr.Pointer())
 }
 
 func (ptr *QSqlQueryModel) __changePersistentIndexList_from_atList(i int) *core.QModelIndex {
@@ -4750,6 +4608,39 @@ func (ptr *QSqlQueryModel) __dataChanged_roles_newList() unsafe.Pointer {
 	return C.QSqlQueryModel___dataChanged_roles_newList(ptr.Pointer())
 }
 
+func (ptr *QSqlQueryModel) __itemData_atList(v int, i int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QSqlQueryModel___itemData_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSqlQueryModel) __itemData_setList(key int, i core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSqlQueryModel___itemData_setList(ptr.Pointer(), C.int(int32(key)), core.PointerFromQVariant(i))
+	}
+}
+
+func (ptr *QSqlQueryModel) __itemData_newList() unsafe.Pointer {
+	return C.QSqlQueryModel___itemData_newList(ptr.Pointer())
+}
+
+func (ptr *QSqlQueryModel) __itemData_keyList() []int {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtSql_PackedList) []int {
+			out := make([]int, int(l.len))
+			tmpList := NewQSqlQueryModelFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.____itemData_keyList_atList(i)
+			}
+			return out
+		}(C.QSqlQueryModel___itemData_keyList(ptr.Pointer()))
+	}
+	return make([]int, 0)
+}
+
 func (ptr *QSqlQueryModel) __layoutAboutToBeChanged_parents_atList(i int) *core.QPersistentModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPersistentModelIndexFromPointer(C.QSqlQueryModel___layoutAboutToBeChanged_parents_atList(ptr.Pointer(), C.int(int32(i))))
@@ -4788,37 +4679,23 @@ func (ptr *QSqlQueryModel) __layoutChanged_parents_newList() unsafe.Pointer {
 	return C.QSqlQueryModel___layoutChanged_parents_newList(ptr.Pointer())
 }
 
-func (ptr *QSqlQueryModel) __itemData_atList(v int, i int) *core.QVariant {
+func (ptr *QSqlQueryModel) __match_atList(i int) *core.QModelIndex {
 	if ptr.Pointer() != nil {
-		tmpValue := core.NewQVariantFromPointer(C.QSqlQueryModel___itemData_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		tmpValue := core.NewQModelIndexFromPointer(C.QSqlQueryModel___match_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
 }
 
-func (ptr *QSqlQueryModel) __itemData_setList(key int, i core.QVariant_ITF) {
+func (ptr *QSqlQueryModel) __match_setList(i core.QModelIndex_ITF) {
 	if ptr.Pointer() != nil {
-		C.QSqlQueryModel___itemData_setList(ptr.Pointer(), C.int(int32(key)), core.PointerFromQVariant(i))
+		C.QSqlQueryModel___match_setList(ptr.Pointer(), core.PointerFromQModelIndex(i))
 	}
 }
 
-func (ptr *QSqlQueryModel) __itemData_newList() unsafe.Pointer {
-	return C.QSqlQueryModel___itemData_newList(ptr.Pointer())
-}
-
-func (ptr *QSqlQueryModel) __itemData_keyList() []int {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtSql_PackedList) []int {
-			out := make([]int, int(l.len))
-			tmpList := NewQSqlQueryModelFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____itemData_keyList_atList(i)
-			}
-			return out
-		}(C.QSqlQueryModel___itemData_keyList(ptr.Pointer()))
-	}
-	return make([]int, 0)
+func (ptr *QSqlQueryModel) __match_newList() unsafe.Pointer {
+	return C.QSqlQueryModel___match_newList(ptr.Pointer())
 }
 
 func (ptr *QSqlQueryModel) __mimeData_indexes_atList(i int) *core.QModelIndex {
@@ -4840,25 +4717,6 @@ func (ptr *QSqlQueryModel) __mimeData_indexes_newList() unsafe.Pointer {
 	return C.QSqlQueryModel___mimeData_indexes_newList(ptr.Pointer())
 }
 
-func (ptr *QSqlQueryModel) __match_atList(i int) *core.QModelIndex {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQModelIndexFromPointer(C.QSqlQueryModel___match_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlQueryModel) __match_setList(i core.QModelIndex_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSqlQueryModel___match_setList(ptr.Pointer(), core.PointerFromQModelIndex(i))
-	}
-}
-
-func (ptr *QSqlQueryModel) __match_newList() unsafe.Pointer {
-	return C.QSqlQueryModel___match_newList(ptr.Pointer())
-}
-
 func (ptr *QSqlQueryModel) __persistentIndexList_atList(i int) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QSqlQueryModel___persistentIndexList_atList(ptr.Pointer(), C.int(int32(i))))
@@ -4876,6 +4734,39 @@ func (ptr *QSqlQueryModel) __persistentIndexList_setList(i core.QModelIndex_ITF)
 
 func (ptr *QSqlQueryModel) __persistentIndexList_newList() unsafe.Pointer {
 	return C.QSqlQueryModel___persistentIndexList_newList(ptr.Pointer())
+}
+
+func (ptr *QSqlQueryModel) __setItemData_roles_atList(v int, i int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QSqlQueryModel___setItemData_roles_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSqlQueryModel) __setItemData_roles_setList(key int, i core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSqlQueryModel___setItemData_roles_setList(ptr.Pointer(), C.int(int32(key)), core.PointerFromQVariant(i))
+	}
+}
+
+func (ptr *QSqlQueryModel) __setItemData_roles_newList() unsafe.Pointer {
+	return C.QSqlQueryModel___setItemData_roles_newList(ptr.Pointer())
+}
+
+func (ptr *QSqlQueryModel) __setItemData_roles_keyList() []int {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtSql_PackedList) []int {
+			out := make([]int, int(l.len))
+			tmpList := NewQSqlQueryModelFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.____setItemData_roles_keyList_atList(i)
+			}
+			return out
+		}(C.QSqlQueryModel___setItemData_roles_keyList(ptr.Pointer()))
+	}
+	return make([]int, 0)
 }
 
 func (ptr *QSqlQueryModel) ____doSetRoleNames_roleNames_keyList_atList(i int) int {
@@ -4912,6 +4803,27 @@ func (ptr *QSqlQueryModel) ____setRoleNames_roleNames_keyList_newList() unsafe.P
 	return C.QSqlQueryModel_____setRoleNames_roleNames_keyList_newList(ptr.Pointer())
 }
 
+func (ptr *QSqlQueryModel) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QSqlQueryModel___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSqlQueryModel) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSqlQueryModel___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QSqlQueryModel) __children_newList() unsafe.Pointer {
+	return C.QSqlQueryModel___children_newList(ptr.Pointer())
+}
+
 func (ptr *QSqlQueryModel) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QSqlQueryModel___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
@@ -4929,48 +4841,6 @@ func (ptr *QSqlQueryModel) __dynamicPropertyNames_setList(i core.QByteArray_ITF)
 
 func (ptr *QSqlQueryModel) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QSqlQueryModel___dynamicPropertyNames_newList(ptr.Pointer())
-}
-
-func (ptr *QSqlQueryModel) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSqlQueryModel___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlQueryModel) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSqlQueryModel___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QSqlQueryModel) __findChildren_newList2() unsafe.Pointer {
-	return C.QSqlQueryModel___findChildren_newList2(ptr.Pointer())
-}
-
-func (ptr *QSqlQueryModel) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSqlQueryModel___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlQueryModel) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSqlQueryModel___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QSqlQueryModel) __findChildren_newList3() unsafe.Pointer {
-	return C.QSqlQueryModel___findChildren_newList3(ptr.Pointer())
 }
 
 func (ptr *QSqlQueryModel) __findChildren_atList(i int) *core.QObject {
@@ -4994,9 +4864,9 @@ func (ptr *QSqlQueryModel) __findChildren_newList() unsafe.Pointer {
 	return C.QSqlQueryModel___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QSqlQueryModel) __children_atList(i int) *core.QObject {
+func (ptr *QSqlQueryModel) __findChildren_atList3(i int) *core.QObject {
 	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSqlQueryModel___children_atList(ptr.Pointer(), C.int(int32(i))))
+		tmpValue := core.NewQObjectFromPointer(C.QSqlQueryModel___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -5005,14 +4875,35 @@ func (ptr *QSqlQueryModel) __children_atList(i int) *core.QObject {
 	return nil
 }
 
-func (ptr *QSqlQueryModel) __children_setList(i core.QObject_ITF) {
+func (ptr *QSqlQueryModel) __findChildren_setList3(i core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		C.QSqlQueryModel___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+		C.QSqlQueryModel___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *QSqlQueryModel) __children_newList() unsafe.Pointer {
-	return C.QSqlQueryModel___children_newList(ptr.Pointer())
+func (ptr *QSqlQueryModel) __findChildren_newList3() unsafe.Pointer {
+	return C.QSqlQueryModel___findChildren_newList3(ptr.Pointer())
+}
+
+func (ptr *QSqlQueryModel) __qFindChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QSqlQueryModel___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSqlQueryModel) __qFindChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSqlQueryModel___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QSqlQueryModel) __qFindChildren_newList2() unsafe.Pointer {
+	return C.QSqlQueryModel___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQSqlQueryModel_DropMimeData
@@ -5029,6 +4920,22 @@ func (ptr *QSqlQueryModel) DropMimeDataDefault(data core.QMimeData_ITF, action c
 		return int8(C.QSqlQueryModel_DropMimeDataDefault(ptr.Pointer(), core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
+}
+
+//export callbackQSqlQueryModel_Flags
+func callbackQSqlQueryModel_Flags(ptr unsafe.Pointer, index unsafe.Pointer) C.longlong {
+	if signal := qt.GetSignal(ptr, "flags"); signal != nil {
+		return C.longlong((*(*func(*core.QModelIndex) core.Qt__ItemFlag)(signal))(core.NewQModelIndexFromPointer(index)))
+	}
+
+	return C.longlong(NewQSqlQueryModelFromPointer(ptr).FlagsDefault(core.NewQModelIndexFromPointer(index)))
+}
+
+func (ptr *QSqlQueryModel) FlagsDefault(index core.QModelIndex_ITF) core.Qt__ItemFlag {
+	if ptr.Pointer() != nil {
+		return core.Qt__ItemFlag(C.QSqlQueryModel_FlagsDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+	}
+	return 0
 }
 
 //export callbackQSqlQueryModel_Index
@@ -5067,150 +4974,36 @@ func (ptr *QSqlQueryModel) SiblingDefault(row int, column int, idx core.QModelIn
 	return nil
 }
 
-//export callbackQSqlQueryModel_Flags
-func callbackQSqlQueryModel_Flags(ptr unsafe.Pointer, index unsafe.Pointer) C.longlong {
-	if signal := qt.GetSignal(ptr, "flags"); signal != nil {
-		return C.longlong((*(*func(*core.QModelIndex) core.Qt__ItemFlag)(signal))(core.NewQModelIndexFromPointer(index)))
+//export callbackQSqlQueryModel_Buddy
+func callbackQSqlQueryModel_Buddy(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "buddy"); signal != nil {
+		return core.PointerFromQModelIndex((*(*func(*core.QModelIndex) *core.QModelIndex)(signal))(core.NewQModelIndexFromPointer(index)))
 	}
 
-	return C.longlong(NewQSqlQueryModelFromPointer(ptr).FlagsDefault(core.NewQModelIndexFromPointer(index)))
+	return core.PointerFromQModelIndex(NewQSqlQueryModelFromPointer(ptr).BuddyDefault(core.NewQModelIndexFromPointer(index)))
 }
 
-func (ptr *QSqlQueryModel) FlagsDefault(index core.QModelIndex_ITF) core.Qt__ItemFlag {
+func (ptr *QSqlQueryModel) BuddyDefault(index core.QModelIndex_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
-		return core.Qt__ItemFlag(C.QSqlQueryModel_FlagsDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		tmpValue := core.NewQModelIndexFromPointer(C.QSqlQueryModel_BuddyDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
-	return 0
+	return nil
 }
 
-//export callbackQSqlQueryModel_InsertRows
-func callbackQSqlQueryModel_InsertRows(ptr unsafe.Pointer, row C.int, count C.int, parent unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "insertRows"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(int, int, *core.QModelIndex) bool)(signal))(int(int32(row)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
+//export callbackQSqlQueryModel_CanDropMimeData
+func callbackQSqlQueryModel_CanDropMimeData(ptr unsafe.Pointer, data unsafe.Pointer, action C.longlong, row C.int, column C.int, parent unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "canDropMimeData"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QMimeData, core.Qt__DropAction, int, int, *core.QModelIndex) bool)(signal))(core.NewQMimeDataFromPointer(data), core.Qt__DropAction(action), int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(parent)))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewQSqlQueryModelFromPointer(ptr).InsertRowsDefault(int(int32(row)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
+	return C.char(int8(qt.GoBoolToInt(NewQSqlQueryModelFromPointer(ptr).CanDropMimeDataDefault(core.NewQMimeDataFromPointer(data), core.Qt__DropAction(action), int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(parent)))))
 }
 
-func (ptr *QSqlQueryModel) InsertRowsDefault(row int, count int, parent core.QModelIndex_ITF) bool {
+func (ptr *QSqlQueryModel) CanDropMimeDataDefault(data core.QMimeData_ITF, action core.Qt__DropAction, row int, column int, parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return int8(C.QSqlQueryModel_InsertRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), core.PointerFromQModelIndex(parent))) != 0
-	}
-	return false
-}
-
-//export callbackQSqlQueryModel_MoveColumns
-func callbackQSqlQueryModel_MoveColumns(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceColumn C.int, count C.int, destinationParent unsafe.Pointer, destinationChild C.int) C.char {
-	if signal := qt.GetSignal(ptr, "moveColumns"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QModelIndex, int, int, *core.QModelIndex, int) bool)(signal))(core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceColumn)), int(int32(count)), core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSqlQueryModelFromPointer(ptr).MoveColumnsDefault(core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceColumn)), int(int32(count)), core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
-}
-
-func (ptr *QSqlQueryModel) MoveColumnsDefault(sourceParent core.QModelIndex_ITF, sourceColumn int, count int, destinationParent core.QModelIndex_ITF, destinationChild int) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlQueryModel_MoveColumnsDefault(ptr.Pointer(), core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceColumn)), C.int(int32(count)), core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild)))) != 0
-	}
-	return false
-}
-
-//export callbackQSqlQueryModel_MoveRows
-func callbackQSqlQueryModel_MoveRows(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceRow C.int, count C.int, destinationParent unsafe.Pointer, destinationChild C.int) C.char {
-	if signal := qt.GetSignal(ptr, "moveRows"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QModelIndex, int, int, *core.QModelIndex, int) bool)(signal))(core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceRow)), int(int32(count)), core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSqlQueryModelFromPointer(ptr).MoveRowsDefault(core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceRow)), int(int32(count)), core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
-}
-
-func (ptr *QSqlQueryModel) MoveRowsDefault(sourceParent core.QModelIndex_ITF, sourceRow int, count int, destinationParent core.QModelIndex_ITF, destinationChild int) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlQueryModel_MoveRowsDefault(ptr.Pointer(), core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceRow)), C.int(int32(count)), core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild)))) != 0
-	}
-	return false
-}
-
-//export callbackQSqlQueryModel_RemoveRows
-func callbackQSqlQueryModel_RemoveRows(ptr unsafe.Pointer, row C.int, count C.int, parent unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "removeRows"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(int, int, *core.QModelIndex) bool)(signal))(int(int32(row)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSqlQueryModelFromPointer(ptr).RemoveRowsDefault(int(int32(row)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
-}
-
-func (ptr *QSqlQueryModel) RemoveRowsDefault(row int, count int, parent core.QModelIndex_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlQueryModel_RemoveRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), core.PointerFromQModelIndex(parent))) != 0
-	}
-	return false
-}
-
-//export callbackQSqlQueryModel_SetData
-func callbackQSqlQueryModel_SetData(ptr unsafe.Pointer, index unsafe.Pointer, value unsafe.Pointer, role C.int) C.char {
-	if signal := qt.GetSignal(ptr, "setData"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QModelIndex, *core.QVariant, int) bool)(signal))(core.NewQModelIndexFromPointer(index), core.NewQVariantFromPointer(value), int(int32(role))))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSqlQueryModelFromPointer(ptr).SetDataDefault(core.NewQModelIndexFromPointer(index), core.NewQVariantFromPointer(value), int(int32(role))))))
-}
-
-func (ptr *QSqlQueryModel) SetDataDefault(index core.QModelIndex_ITF, value core.QVariant_ITF, role int) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlQueryModel_SetDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), core.PointerFromQVariant(value), C.int(int32(role)))) != 0
-	}
-	return false
-}
-
-//export callbackQSqlQueryModel_SetItemData
-func callbackQSqlQueryModel_SetItemData(ptr unsafe.Pointer, index unsafe.Pointer, roles C.struct_QtSql_PackedList) C.char {
-	if signal := qt.GetSignal(ptr, "setItemData"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QModelIndex, map[int]*core.QVariant) bool)(signal))(core.NewQModelIndexFromPointer(index), func(l C.struct_QtSql_PackedList) map[int]*core.QVariant {
-			out := make(map[int]*core.QVariant, int(l.len))
-			tmpList := NewQSqlQueryModelFromPointer(l.data)
-			for i, v := range tmpList.__setItemData_roles_keyList() {
-				out[v] = tmpList.__setItemData_roles_atList(v, i)
-			}
-			return out
-		}(roles)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSqlQueryModelFromPointer(ptr).SetItemDataDefault(core.NewQModelIndexFromPointer(index), func(l C.struct_QtSql_PackedList) map[int]*core.QVariant {
-		out := make(map[int]*core.QVariant, int(l.len))
-		tmpList := NewQSqlQueryModelFromPointer(l.data)
-		for i, v := range tmpList.__setItemData_roles_keyList() {
-			out[v] = tmpList.__setItemData_roles_atList(v, i)
-		}
-		return out
-	}(roles)))))
-}
-
-func (ptr *QSqlQueryModel) SetItemDataDefault(index core.QModelIndex_ITF, roles map[int]*core.QVariant) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlQueryModel_SetItemDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), func() unsafe.Pointer {
-			tmpList := NewQSqlQueryModelFromPointer(NewQSqlQueryModelFromPointer(nil).__setItemData_roles_newList())
-			for k, v := range roles {
-				tmpList.__setItemData_roles_setList(k, v)
-			}
-			return tmpList.Pointer()
-		}())) != 0
-	}
-	return false
-}
-
-//export callbackQSqlQueryModel_Submit
-func callbackQSqlQueryModel_Submit(ptr unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "submit"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func() bool)(signal))())))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSqlQueryModelFromPointer(ptr).SubmitDefault())))
-}
-
-func (ptr *QSqlQueryModel) SubmitDefault() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlQueryModel_SubmitDefault(ptr.Pointer())) != 0
+		return int8(C.QSqlQueryModel_CanDropMimeDataDefault(ptr.Pointer(), core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -5278,12 +5071,79 @@ func callbackQSqlQueryModel_DataChanged(ptr unsafe.Pointer, topLeft unsafe.Point
 
 }
 
+//export callbackQSqlQueryModel_HasChildren
+func callbackQSqlQueryModel_HasChildren(ptr unsafe.Pointer, parent unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "hasChildren"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QModelIndex) bool)(signal))(core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSqlQueryModelFromPointer(ptr).HasChildrenDefault(core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *QSqlQueryModel) HasChildrenDefault(parent core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlQueryModel_HasChildrenDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))) != 0
+	}
+	return false
+}
+
 //export callbackQSqlQueryModel_HeaderDataChanged
 func callbackQSqlQueryModel_HeaderDataChanged(ptr unsafe.Pointer, orientation C.longlong, first C.int, last C.int) {
 	if signal := qt.GetSignal(ptr, "headerDataChanged"); signal != nil {
 		(*(*func(core.Qt__Orientation, int, int))(signal))(core.Qt__Orientation(orientation), int(int32(first)), int(int32(last)))
 	}
 
+}
+
+//export callbackQSqlQueryModel_InsertRows
+func callbackQSqlQueryModel_InsertRows(ptr unsafe.Pointer, row C.int, count C.int, parent unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "insertRows"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(int, int, *core.QModelIndex) bool)(signal))(int(int32(row)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSqlQueryModelFromPointer(ptr).InsertRowsDefault(int(int32(row)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *QSqlQueryModel) InsertRowsDefault(row int, count int, parent core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlQueryModel_InsertRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), core.PointerFromQModelIndex(parent))) != 0
+	}
+	return false
+}
+
+//export callbackQSqlQueryModel_ItemData
+func callbackQSqlQueryModel_ItemData(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "itemData"); signal != nil {
+		return func() unsafe.Pointer {
+			tmpList := NewQSqlQueryModelFromPointer(NewQSqlQueryModelFromPointer(nil).__itemData_newList())
+			for k, v := range (*(*func(*core.QModelIndex) map[int]*core.QVariant)(signal))(core.NewQModelIndexFromPointer(index)) {
+				tmpList.__itemData_setList(k, v)
+			}
+			return tmpList.Pointer()
+		}()
+	}
+
+	return func() unsafe.Pointer {
+		tmpList := NewQSqlQueryModelFromPointer(NewQSqlQueryModelFromPointer(nil).__itemData_newList())
+		for k, v := range NewQSqlQueryModelFromPointer(ptr).ItemDataDefault(core.NewQModelIndexFromPointer(index)) {
+			tmpList.__itemData_setList(k, v)
+		}
+		return tmpList.Pointer()
+	}()
+}
+
+func (ptr *QSqlQueryModel) ItemDataDefault(index core.QModelIndex_ITF) map[int]*core.QVariant {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtSql_PackedList) map[int]*core.QVariant {
+			out := make(map[int]*core.QVariant, int(l.len))
+			tmpList := NewQSqlQueryModelFromPointer(l.data)
+			for i, v := range tmpList.__itemData_keyList() {
+				out[v] = tmpList.__itemData_atList(v, i)
+			}
+			return out
+		}(C.QSqlQueryModel_ItemDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+	}
+	return make(map[int]*core.QVariant, 0)
 }
 
 //export callbackQSqlQueryModel_LayoutAboutToBeChanged
@@ -5316,6 +5176,98 @@ func callbackQSqlQueryModel_LayoutChanged(ptr unsafe.Pointer, parents C.struct_Q
 
 }
 
+//export callbackQSqlQueryModel_Match
+func callbackQSqlQueryModel_Match(ptr unsafe.Pointer, start unsafe.Pointer, role C.int, value unsafe.Pointer, hits C.int, flags C.longlong) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "match"); signal != nil {
+		return func() unsafe.Pointer {
+			tmpList := NewQSqlQueryModelFromPointer(NewQSqlQueryModelFromPointer(nil).__match_newList())
+			for _, v := range (*(*func(*core.QModelIndex, int, *core.QVariant, int, core.Qt__MatchFlag) []*core.QModelIndex)(signal))(core.NewQModelIndexFromPointer(start), int(int32(role)), core.NewQVariantFromPointer(value), int(int32(hits)), core.Qt__MatchFlag(flags)) {
+				tmpList.__match_setList(v)
+			}
+			return tmpList.Pointer()
+		}()
+	}
+
+	return func() unsafe.Pointer {
+		tmpList := NewQSqlQueryModelFromPointer(NewQSqlQueryModelFromPointer(nil).__match_newList())
+		for _, v := range NewQSqlQueryModelFromPointer(ptr).MatchDefault(core.NewQModelIndexFromPointer(start), int(int32(role)), core.NewQVariantFromPointer(value), int(int32(hits)), core.Qt__MatchFlag(flags)) {
+			tmpList.__match_setList(v)
+		}
+		return tmpList.Pointer()
+	}()
+}
+
+func (ptr *QSqlQueryModel) MatchDefault(start core.QModelIndex_ITF, role int, value core.QVariant_ITF, hits int, flags core.Qt__MatchFlag) []*core.QModelIndex {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtSql_PackedList) []*core.QModelIndex {
+			out := make([]*core.QModelIndex, int(l.len))
+			tmpList := NewQSqlQueryModelFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__match_atList(i)
+			}
+			return out
+		}(C.QSqlQueryModel_MatchDefault(ptr.Pointer(), core.PointerFromQModelIndex(start), C.int(int32(role)), core.PointerFromQVariant(value), C.int(int32(hits)), C.longlong(flags)))
+	}
+	return make([]*core.QModelIndex, 0)
+}
+
+//export callbackQSqlQueryModel_MimeData
+func callbackQSqlQueryModel_MimeData(ptr unsafe.Pointer, indexes C.struct_QtSql_PackedList) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "mimeData"); signal != nil {
+		return core.PointerFromQMimeData((*(*func([]*core.QModelIndex) *core.QMimeData)(signal))(func(l C.struct_QtSql_PackedList) []*core.QModelIndex {
+			out := make([]*core.QModelIndex, int(l.len))
+			tmpList := NewQSqlQueryModelFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__mimeData_indexes_atList(i)
+			}
+			return out
+		}(indexes)))
+	}
+
+	return core.PointerFromQMimeData(NewQSqlQueryModelFromPointer(ptr).MimeDataDefault(func(l C.struct_QtSql_PackedList) []*core.QModelIndex {
+		out := make([]*core.QModelIndex, int(l.len))
+		tmpList := NewQSqlQueryModelFromPointer(l.data)
+		for i := 0; i < len(out); i++ {
+			out[i] = tmpList.__mimeData_indexes_atList(i)
+		}
+		return out
+	}(indexes)))
+}
+
+func (ptr *QSqlQueryModel) MimeDataDefault(indexes []*core.QModelIndex) *core.QMimeData {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQMimeDataFromPointer(C.QSqlQueryModel_MimeDataDefault(ptr.Pointer(), func() unsafe.Pointer {
+			tmpList := NewQSqlQueryModelFromPointer(NewQSqlQueryModelFromPointer(nil).__mimeData_indexes_newList())
+			for _, v := range indexes {
+				tmpList.__mimeData_indexes_setList(v)
+			}
+			return tmpList.Pointer()
+		}()))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQSqlQueryModel_MimeTypes
+func callbackQSqlQueryModel_MimeTypes(ptr unsafe.Pointer) C.struct_QtSql_PackedString {
+	if signal := qt.GetSignal(ptr, "mimeTypes"); signal != nil {
+		tempVal := (*(*func() []string)(signal))()
+		return C.struct_QtSql_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
+	}
+	tempVal := NewQSqlQueryModelFromPointer(ptr).MimeTypesDefault()
+	return C.struct_QtSql_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
+}
+
+func (ptr *QSqlQueryModel) MimeTypesDefault() []string {
+	if ptr.Pointer() != nil {
+		return unpackStringList(cGoUnpackString(C.QSqlQueryModel_MimeTypesDefault(ptr.Pointer())))
+	}
+	return make([]string, 0)
+}
+
 //export callbackQSqlQueryModel_ModelAboutToBeReset
 func callbackQSqlQueryModel_ModelAboutToBeReset(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "modelAboutToBeReset"); signal != nil {
@@ -5330,6 +5282,72 @@ func callbackQSqlQueryModel_ModelReset(ptr unsafe.Pointer) {
 		(*(*func())(signal))()
 	}
 
+}
+
+//export callbackQSqlQueryModel_MoveColumns
+func callbackQSqlQueryModel_MoveColumns(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceColumn C.int, count C.int, destinationParent unsafe.Pointer, destinationChild C.int) C.char {
+	if signal := qt.GetSignal(ptr, "moveColumns"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QModelIndex, int, int, *core.QModelIndex, int) bool)(signal))(core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceColumn)), int(int32(count)), core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSqlQueryModelFromPointer(ptr).MoveColumnsDefault(core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceColumn)), int(int32(count)), core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
+}
+
+func (ptr *QSqlQueryModel) MoveColumnsDefault(sourceParent core.QModelIndex_ITF, sourceColumn int, count int, destinationParent core.QModelIndex_ITF, destinationChild int) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlQueryModel_MoveColumnsDefault(ptr.Pointer(), core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceColumn)), C.int(int32(count)), core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild)))) != 0
+	}
+	return false
+}
+
+//export callbackQSqlQueryModel_MoveRows
+func callbackQSqlQueryModel_MoveRows(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceRow C.int, count C.int, destinationParent unsafe.Pointer, destinationChild C.int) C.char {
+	if signal := qt.GetSignal(ptr, "moveRows"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QModelIndex, int, int, *core.QModelIndex, int) bool)(signal))(core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceRow)), int(int32(count)), core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSqlQueryModelFromPointer(ptr).MoveRowsDefault(core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceRow)), int(int32(count)), core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
+}
+
+func (ptr *QSqlQueryModel) MoveRowsDefault(sourceParent core.QModelIndex_ITF, sourceRow int, count int, destinationParent core.QModelIndex_ITF, destinationChild int) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlQueryModel_MoveRowsDefault(ptr.Pointer(), core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceRow)), C.int(int32(count)), core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild)))) != 0
+	}
+	return false
+}
+
+//export callbackQSqlQueryModel_Parent
+func callbackQSqlQueryModel_Parent(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "parent"); signal != nil {
+		return core.PointerFromQModelIndex((*(*func(*core.QModelIndex) *core.QModelIndex)(signal))(core.NewQModelIndexFromPointer(index)))
+	}
+
+	return core.PointerFromQModelIndex(NewQSqlQueryModelFromPointer(ptr).ParentDefault(core.NewQModelIndexFromPointer(index)))
+}
+
+func (ptr *QSqlQueryModel) ParentDefault(index core.QModelIndex_ITF) *core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQModelIndexFromPointer(C.QSqlQueryModel_ParentDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQSqlQueryModel_RemoveRows
+func callbackQSqlQueryModel_RemoveRows(ptr unsafe.Pointer, row C.int, count C.int, parent unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "removeRows"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(int, int, *core.QModelIndex) bool)(signal))(int(int32(row)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSqlQueryModelFromPointer(ptr).RemoveRowsDefault(int(int32(row)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *QSqlQueryModel) RemoveRowsDefault(row int, count int, parent core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlQueryModel_RemoveRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), core.PointerFromQModelIndex(parent))) != 0
+	}
+	return false
 }
 
 //export callbackQSqlQueryModel_ResetInternalData
@@ -5410,6 +5428,58 @@ func callbackQSqlQueryModel_RowsRemoved(ptr unsafe.Pointer, parent unsafe.Pointe
 
 }
 
+//export callbackQSqlQueryModel_SetData
+func callbackQSqlQueryModel_SetData(ptr unsafe.Pointer, index unsafe.Pointer, value unsafe.Pointer, role C.int) C.char {
+	if signal := qt.GetSignal(ptr, "setData"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QModelIndex, *core.QVariant, int) bool)(signal))(core.NewQModelIndexFromPointer(index), core.NewQVariantFromPointer(value), int(int32(role))))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSqlQueryModelFromPointer(ptr).SetDataDefault(core.NewQModelIndexFromPointer(index), core.NewQVariantFromPointer(value), int(int32(role))))))
+}
+
+func (ptr *QSqlQueryModel) SetDataDefault(index core.QModelIndex_ITF, value core.QVariant_ITF, role int) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlQueryModel_SetDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), core.PointerFromQVariant(value), C.int(int32(role)))) != 0
+	}
+	return false
+}
+
+//export callbackQSqlQueryModel_SetItemData
+func callbackQSqlQueryModel_SetItemData(ptr unsafe.Pointer, index unsafe.Pointer, roles C.struct_QtSql_PackedList) C.char {
+	if signal := qt.GetSignal(ptr, "setItemData"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QModelIndex, map[int]*core.QVariant) bool)(signal))(core.NewQModelIndexFromPointer(index), func(l C.struct_QtSql_PackedList) map[int]*core.QVariant {
+			out := make(map[int]*core.QVariant, int(l.len))
+			tmpList := NewQSqlQueryModelFromPointer(l.data)
+			for i, v := range tmpList.__setItemData_roles_keyList() {
+				out[v] = tmpList.__setItemData_roles_atList(v, i)
+			}
+			return out
+		}(roles)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSqlQueryModelFromPointer(ptr).SetItemDataDefault(core.NewQModelIndexFromPointer(index), func(l C.struct_QtSql_PackedList) map[int]*core.QVariant {
+		out := make(map[int]*core.QVariant, int(l.len))
+		tmpList := NewQSqlQueryModelFromPointer(l.data)
+		for i, v := range tmpList.__setItemData_roles_keyList() {
+			out[v] = tmpList.__setItemData_roles_atList(v, i)
+		}
+		return out
+	}(roles)))))
+}
+
+func (ptr *QSqlQueryModel) SetItemDataDefault(index core.QModelIndex_ITF, roles map[int]*core.QVariant) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlQueryModel_SetItemDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), func() unsafe.Pointer {
+			tmpList := NewQSqlQueryModelFromPointer(NewQSqlQueryModelFromPointer(nil).__setItemData_roles_newList())
+			for k, v := range roles {
+				tmpList.__setItemData_roles_setList(k, v)
+			}
+			return tmpList.Pointer()
+		}())) != 0
+	}
+	return false
+}
+
 //export callbackQSqlQueryModel_Sort
 func callbackQSqlQueryModel_Sort(ptr unsafe.Pointer, column C.int, order C.longlong) {
 	if signal := qt.GetSignal(ptr, "sort"); signal != nil {
@@ -5423,152 +5493,6 @@ func (ptr *QSqlQueryModel) SortDefault(column int, order core.Qt__SortOrder) {
 	if ptr.Pointer() != nil {
 		C.QSqlQueryModel_SortDefault(ptr.Pointer(), C.int(int32(column)), C.longlong(order))
 	}
-}
-
-//export callbackQSqlQueryModel_ItemData
-func callbackQSqlQueryModel_ItemData(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "itemData"); signal != nil {
-		return func() unsafe.Pointer {
-			tmpList := NewQSqlQueryModelFromPointer(NewQSqlQueryModelFromPointer(nil).__itemData_newList())
-			for k, v := range (*(*func(*core.QModelIndex) map[int]*core.QVariant)(signal))(core.NewQModelIndexFromPointer(index)) {
-				tmpList.__itemData_setList(k, v)
-			}
-			return tmpList.Pointer()
-		}()
-	}
-
-	return func() unsafe.Pointer {
-		tmpList := NewQSqlQueryModelFromPointer(NewQSqlQueryModelFromPointer(nil).__itemData_newList())
-		for k, v := range NewQSqlQueryModelFromPointer(ptr).ItemDataDefault(core.NewQModelIndexFromPointer(index)) {
-			tmpList.__itemData_setList(k, v)
-		}
-		return tmpList.Pointer()
-	}()
-}
-
-func (ptr *QSqlQueryModel) ItemDataDefault(index core.QModelIndex_ITF) map[int]*core.QVariant {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtSql_PackedList) map[int]*core.QVariant {
-			out := make(map[int]*core.QVariant, int(l.len))
-			tmpList := NewQSqlQueryModelFromPointer(l.data)
-			for i, v := range tmpList.__itemData_keyList() {
-				out[v] = tmpList.__itemData_atList(v, i)
-			}
-			return out
-		}(C.QSqlQueryModel_ItemDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-	}
-	return make(map[int]*core.QVariant, 0)
-}
-
-//export callbackQSqlQueryModel_MimeData
-func callbackQSqlQueryModel_MimeData(ptr unsafe.Pointer, indexes C.struct_QtSql_PackedList) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "mimeData"); signal != nil {
-		return core.PointerFromQMimeData((*(*func([]*core.QModelIndex) *core.QMimeData)(signal))(func(l C.struct_QtSql_PackedList) []*core.QModelIndex {
-			out := make([]*core.QModelIndex, int(l.len))
-			tmpList := NewQSqlQueryModelFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__mimeData_indexes_atList(i)
-			}
-			return out
-		}(indexes)))
-	}
-
-	return core.PointerFromQMimeData(NewQSqlQueryModelFromPointer(ptr).MimeDataDefault(func(l C.struct_QtSql_PackedList) []*core.QModelIndex {
-		out := make([]*core.QModelIndex, int(l.len))
-		tmpList := NewQSqlQueryModelFromPointer(l.data)
-		for i := 0; i < len(out); i++ {
-			out[i] = tmpList.__mimeData_indexes_atList(i)
-		}
-		return out
-	}(indexes)))
-}
-
-func (ptr *QSqlQueryModel) MimeDataDefault(indexes []*core.QModelIndex) *core.QMimeData {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQMimeDataFromPointer(C.QSqlQueryModel_MimeDataDefault(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewQSqlQueryModelFromPointer(NewQSqlQueryModelFromPointer(nil).__mimeData_indexes_newList())
-			for _, v := range indexes {
-				tmpList.__mimeData_indexes_setList(v)
-			}
-			return tmpList.Pointer()
-		}()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-//export callbackQSqlQueryModel_Buddy
-func callbackQSqlQueryModel_Buddy(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "buddy"); signal != nil {
-		return core.PointerFromQModelIndex((*(*func(*core.QModelIndex) *core.QModelIndex)(signal))(core.NewQModelIndexFromPointer(index)))
-	}
-
-	return core.PointerFromQModelIndex(NewQSqlQueryModelFromPointer(ptr).BuddyDefault(core.NewQModelIndexFromPointer(index)))
-}
-
-func (ptr *QSqlQueryModel) BuddyDefault(index core.QModelIndex_ITF) *core.QModelIndex {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQModelIndexFromPointer(C.QSqlQueryModel_BuddyDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-//export callbackQSqlQueryModel_Parent
-func callbackQSqlQueryModel_Parent(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "parent"); signal != nil {
-		return core.PointerFromQModelIndex((*(*func(*core.QModelIndex) *core.QModelIndex)(signal))(core.NewQModelIndexFromPointer(index)))
-	}
-
-	return core.PointerFromQModelIndex(NewQSqlQueryModelFromPointer(ptr).ParentDefault(core.NewQModelIndexFromPointer(index)))
-}
-
-func (ptr *QSqlQueryModel) ParentDefault(index core.QModelIndex_ITF) *core.QModelIndex {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQModelIndexFromPointer(C.QSqlQueryModel_ParentDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-//export callbackQSqlQueryModel_Match
-func callbackQSqlQueryModel_Match(ptr unsafe.Pointer, start unsafe.Pointer, role C.int, value unsafe.Pointer, hits C.int, flags C.longlong) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "match"); signal != nil {
-		return func() unsafe.Pointer {
-			tmpList := NewQSqlQueryModelFromPointer(NewQSqlQueryModelFromPointer(nil).__match_newList())
-			for _, v := range (*(*func(*core.QModelIndex, int, *core.QVariant, int, core.Qt__MatchFlag) []*core.QModelIndex)(signal))(core.NewQModelIndexFromPointer(start), int(int32(role)), core.NewQVariantFromPointer(value), int(int32(hits)), core.Qt__MatchFlag(flags)) {
-				tmpList.__match_setList(v)
-			}
-			return tmpList.Pointer()
-		}()
-	}
-
-	return func() unsafe.Pointer {
-		tmpList := NewQSqlQueryModelFromPointer(NewQSqlQueryModelFromPointer(nil).__match_newList())
-		for _, v := range NewQSqlQueryModelFromPointer(ptr).MatchDefault(core.NewQModelIndexFromPointer(start), int(int32(role)), core.NewQVariantFromPointer(value), int(int32(hits)), core.Qt__MatchFlag(flags)) {
-			tmpList.__match_setList(v)
-		}
-		return tmpList.Pointer()
-	}()
-}
-
-func (ptr *QSqlQueryModel) MatchDefault(start core.QModelIndex_ITF, role int, value core.QVariant_ITF, hits int, flags core.Qt__MatchFlag) []*core.QModelIndex {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtSql_PackedList) []*core.QModelIndex {
-			out := make([]*core.QModelIndex, int(l.len))
-			tmpList := NewQSqlQueryModelFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__match_atList(i)
-			}
-			return out
-		}(C.QSqlQueryModel_MatchDefault(ptr.Pointer(), core.PointerFromQModelIndex(start), C.int(int32(role)), core.PointerFromQVariant(value), C.int(int32(hits)), C.longlong(flags)))
-	}
-	return make([]*core.QModelIndex, 0)
 }
 
 //export callbackQSqlQueryModel_Span
@@ -5589,21 +5513,20 @@ func (ptr *QSqlQueryModel) SpanDefault(index core.QModelIndex_ITF) *core.QSize {
 	return nil
 }
 
-//export callbackQSqlQueryModel_MimeTypes
-func callbackQSqlQueryModel_MimeTypes(ptr unsafe.Pointer) C.struct_QtSql_PackedString {
-	if signal := qt.GetSignal(ptr, "mimeTypes"); signal != nil {
-		tempVal := (*(*func() []string)(signal))()
-		return C.struct_QtSql_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
+//export callbackQSqlQueryModel_Submit
+func callbackQSqlQueryModel_Submit(ptr unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "submit"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func() bool)(signal))())))
 	}
-	tempVal := NewQSqlQueryModelFromPointer(ptr).MimeTypesDefault()
-	return C.struct_QtSql_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSqlQueryModelFromPointer(ptr).SubmitDefault())))
 }
 
-func (ptr *QSqlQueryModel) MimeTypesDefault() []string {
+func (ptr *QSqlQueryModel) SubmitDefault() bool {
 	if ptr.Pointer() != nil {
-		return unpackStringList(cGoUnpackString(C.QSqlQueryModel_MimeTypesDefault(ptr.Pointer())))
+		return int8(C.QSqlQueryModel_SubmitDefault(ptr.Pointer())) != 0
 	}
-	return make([]string, 0)
+	return false
 }
 
 //export callbackQSqlQueryModel_SupportedDragActions
@@ -5636,70 +5559,6 @@ func (ptr *QSqlQueryModel) SupportedDropActionsDefault() core.Qt__DropAction {
 		return core.Qt__DropAction(C.QSqlQueryModel_SupportedDropActionsDefault(ptr.Pointer()))
 	}
 	return 0
-}
-
-//export callbackQSqlQueryModel_CanDropMimeData
-func callbackQSqlQueryModel_CanDropMimeData(ptr unsafe.Pointer, data unsafe.Pointer, action C.longlong, row C.int, column C.int, parent unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "canDropMimeData"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QMimeData, core.Qt__DropAction, int, int, *core.QModelIndex) bool)(signal))(core.NewQMimeDataFromPointer(data), core.Qt__DropAction(action), int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(parent)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSqlQueryModelFromPointer(ptr).CanDropMimeDataDefault(core.NewQMimeDataFromPointer(data), core.Qt__DropAction(action), int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(parent)))))
-}
-
-func (ptr *QSqlQueryModel) CanDropMimeDataDefault(data core.QMimeData_ITF, action core.Qt__DropAction, row int, column int, parent core.QModelIndex_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlQueryModel_CanDropMimeDataDefault(ptr.Pointer(), core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent))) != 0
-	}
-	return false
-}
-
-//export callbackQSqlQueryModel_HasChildren
-func callbackQSqlQueryModel_HasChildren(ptr unsafe.Pointer, parent unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "hasChildren"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QModelIndex) bool)(signal))(core.NewQModelIndexFromPointer(parent)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSqlQueryModelFromPointer(ptr).HasChildrenDefault(core.NewQModelIndexFromPointer(parent)))))
-}
-
-func (ptr *QSqlQueryModel) HasChildrenDefault(parent core.QModelIndex_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlQueryModel_HasChildrenDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))) != 0
-	}
-	return false
-}
-
-//export callbackQSqlQueryModel_Event
-func callbackQSqlQueryModel_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSqlQueryModelFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
-}
-
-func (ptr *QSqlQueryModel) EventDefault(e core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlQueryModel_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
-	}
-	return false
-}
-
-//export callbackQSqlQueryModel_EventFilter
-func callbackQSqlQueryModel_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSqlQueryModelFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QSqlQueryModel) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlQueryModel_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
-	}
-	return false
 }
 
 //export callbackQSqlQueryModel_ChildEvent
@@ -5784,6 +5643,38 @@ func (ptr *QSqlQueryModel) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 	if ptr.Pointer() != nil {
 		C.QSqlQueryModel_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
+}
+
+//export callbackQSqlQueryModel_Event
+func callbackQSqlQueryModel_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSqlQueryModelFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QSqlQueryModel) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlQueryModel_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+	}
+	return false
+}
+
+//export callbackQSqlQueryModel_EventFilter
+func callbackQSqlQueryModel_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSqlQueryModelFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QSqlQueryModel) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlQueryModel_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+	}
+	return false
 }
 
 //export callbackQSqlQueryModel_ObjectNameChanged
@@ -5876,81 +5767,32 @@ func (ptr *QSqlRecord) ClearValues() {
 	}
 }
 
-func (ptr *QSqlRecord) Insert(pos int, field QSqlField_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSqlRecord_Insert(ptr.Pointer(), C.int(int32(pos)), PointerFromQSqlField(field))
-	}
-}
-
-func (ptr *QSqlRecord) Remove(pos int) {
-	if ptr.Pointer() != nil {
-		C.QSqlRecord_Remove(ptr.Pointer(), C.int(int32(pos)))
-	}
-}
-
-func (ptr *QSqlRecord) Replace(pos int, field QSqlField_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSqlRecord_Replace(ptr.Pointer(), C.int(int32(pos)), PointerFromQSqlField(field))
-	}
-}
-
-func (ptr *QSqlRecord) SetGenerated(name string, generated bool) {
+func (ptr *QSqlRecord) Contains(name string) bool {
 	if ptr.Pointer() != nil {
 		var nameC *C.char
 		if name != "" {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QSqlRecord_SetGenerated(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))}, C.char(int8(qt.GoBoolToInt(generated))))
+		return int8(C.QSqlRecord_Contains(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 	}
+	return false
 }
 
-func (ptr *QSqlRecord) SetGenerated2(index int, generated bool) {
+func (ptr *QSqlRecord) Count() int {
 	if ptr.Pointer() != nil {
-		C.QSqlRecord_SetGenerated2(ptr.Pointer(), C.int(int32(index)), C.char(int8(qt.GoBoolToInt(generated))))
+		return int(int32(C.QSqlRecord_Count(ptr.Pointer())))
 	}
+	return 0
 }
 
-func (ptr *QSqlRecord) SetNull2(name string) {
+func (ptr *QSqlRecord) Field(index int) *QSqlField {
 	if ptr.Pointer() != nil {
-		var nameC *C.char
-		if name != "" {
-			nameC = C.CString(name)
-			defer C.free(unsafe.Pointer(nameC))
-		}
-		C.QSqlRecord_SetNull2(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))})
+		tmpValue := NewQSqlFieldFromPointer(C.QSqlRecord_Field(ptr.Pointer(), C.int(int32(index))))
+		runtime.SetFinalizer(tmpValue, (*QSqlField).DestroyQSqlField)
+		return tmpValue
 	}
-}
-
-func (ptr *QSqlRecord) SetNull(index int) {
-	if ptr.Pointer() != nil {
-		C.QSqlRecord_SetNull(ptr.Pointer(), C.int(int32(index)))
-	}
-}
-
-func (ptr *QSqlRecord) SetValue2(name string, val core.QVariant_ITF) {
-	if ptr.Pointer() != nil {
-		var nameC *C.char
-		if name != "" {
-			nameC = C.CString(name)
-			defer C.free(unsafe.Pointer(nameC))
-		}
-		C.QSqlRecord_SetValue2(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQVariant(val))
-	}
-}
-
-func (ptr *QSqlRecord) SetValue(index int, val core.QVariant_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSqlRecord_SetValue(ptr.Pointer(), C.int(int32(index)), core.PointerFromQVariant(val))
-	}
-}
-
-func (ptr *QSqlRecord) DestroyQSqlRecord() {
-	if ptr.Pointer() != nil {
-		C.QSqlRecord_DestroyQSqlRecord(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
+	return nil
 }
 
 func (ptr *QSqlRecord) Field2(name string) *QSqlField {
@@ -5967,24 +5809,6 @@ func (ptr *QSqlRecord) Field2(name string) *QSqlField {
 	return nil
 }
 
-func (ptr *QSqlRecord) Field(index int) *QSqlField {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSqlFieldFromPointer(C.QSqlRecord_Field(ptr.Pointer(), C.int(int32(index))))
-		runtime.SetFinalizer(tmpValue, (*QSqlField).DestroyQSqlField)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlRecord) KeyValues(keyFields QSqlRecord_ITF) *QSqlRecord {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSqlRecordFromPointer(C.QSqlRecord_KeyValues(ptr.Pointer(), PointerFromQSqlRecord(keyFields)))
-		runtime.SetFinalizer(tmpValue, (*QSqlRecord).DestroyQSqlRecord)
-		return tmpValue
-	}
-	return nil
-}
-
 func (ptr *QSqlRecord) FieldName(index int) string {
 	if ptr.Pointer() != nil {
 		return cGoUnpackString(C.QSqlRecord_FieldName(ptr.Pointer(), C.int(int32(index))))
@@ -5992,39 +5816,22 @@ func (ptr *QSqlRecord) FieldName(index int) string {
 	return ""
 }
 
-func (ptr *QSqlRecord) Value2(name string) *core.QVariant {
+func (ptr *QSqlRecord) IndexOf(name string) int {
 	if ptr.Pointer() != nil {
 		var nameC *C.char
 		if name != "" {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		tmpValue := core.NewQVariantFromPointer(C.QSqlRecord_Value2(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))}))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
+		return int(int32(C.QSqlRecord_IndexOf(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))})))
 	}
-	return nil
+	return 0
 }
 
-func (ptr *QSqlRecord) Value(index int) *core.QVariant {
+func (ptr *QSqlRecord) Insert(pos int, field QSqlField_ITF) {
 	if ptr.Pointer() != nil {
-		tmpValue := core.NewQVariantFromPointer(C.QSqlRecord_Value(ptr.Pointer(), C.int(int32(index))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
+		C.QSqlRecord_Insert(ptr.Pointer(), C.int(int32(pos)), PointerFromQSqlField(field))
 	}
-	return nil
-}
-
-func (ptr *QSqlRecord) Contains(name string) bool {
-	if ptr.Pointer() != nil {
-		var nameC *C.char
-		if name != "" {
-			nameC = C.CString(name)
-			defer C.free(unsafe.Pointer(nameC))
-		}
-		return int8(C.QSqlRecord_Contains(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
-	}
-	return false
 }
 
 func (ptr *QSqlRecord) IsEmpty() bool {
@@ -6072,23 +5879,107 @@ func (ptr *QSqlRecord) IsNull2(index int) bool {
 	return false
 }
 
-func (ptr *QSqlRecord) Count() int {
+func (ptr *QSqlRecord) KeyValues(keyFields QSqlRecord_ITF) *QSqlRecord {
 	if ptr.Pointer() != nil {
-		return int(int32(C.QSqlRecord_Count(ptr.Pointer())))
+		tmpValue := NewQSqlRecordFromPointer(C.QSqlRecord_KeyValues(ptr.Pointer(), PointerFromQSqlRecord(keyFields)))
+		runtime.SetFinalizer(tmpValue, (*QSqlRecord).DestroyQSqlRecord)
+		return tmpValue
 	}
-	return 0
+	return nil
 }
 
-func (ptr *QSqlRecord) IndexOf(name string) int {
+func (ptr *QSqlRecord) Remove(pos int) {
+	if ptr.Pointer() != nil {
+		C.QSqlRecord_Remove(ptr.Pointer(), C.int(int32(pos)))
+	}
+}
+
+func (ptr *QSqlRecord) Replace(pos int, field QSqlField_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSqlRecord_Replace(ptr.Pointer(), C.int(int32(pos)), PointerFromQSqlField(field))
+	}
+}
+
+func (ptr *QSqlRecord) SetGenerated(name string, generated bool) {
 	if ptr.Pointer() != nil {
 		var nameC *C.char
 		if name != "" {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return int(int32(C.QSqlRecord_IndexOf(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))})))
+		C.QSqlRecord_SetGenerated(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))}, C.char(int8(qt.GoBoolToInt(generated))))
 	}
-	return 0
+}
+
+func (ptr *QSqlRecord) SetGenerated2(index int, generated bool) {
+	if ptr.Pointer() != nil {
+		C.QSqlRecord_SetGenerated2(ptr.Pointer(), C.int(int32(index)), C.char(int8(qt.GoBoolToInt(generated))))
+	}
+}
+
+func (ptr *QSqlRecord) SetNull(index int) {
+	if ptr.Pointer() != nil {
+		C.QSqlRecord_SetNull(ptr.Pointer(), C.int(int32(index)))
+	}
+}
+
+func (ptr *QSqlRecord) SetNull2(name string) {
+	if ptr.Pointer() != nil {
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
+		C.QSqlRecord_SetNull2(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))})
+	}
+}
+
+func (ptr *QSqlRecord) SetValue(index int, val core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSqlRecord_SetValue(ptr.Pointer(), C.int(int32(index)), core.PointerFromQVariant(val))
+	}
+}
+
+func (ptr *QSqlRecord) SetValue2(name string, val core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
+		C.QSqlRecord_SetValue2(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQVariant(val))
+	}
+}
+
+func (ptr *QSqlRecord) Value(index int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QSqlRecord_Value(ptr.Pointer(), C.int(int32(index))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSqlRecord) Value2(name string) *core.QVariant {
+	if ptr.Pointer() != nil {
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
+		tmpValue := core.NewQVariantFromPointer(C.QSqlRecord_Value2(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))}))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSqlRecord) DestroyQSqlRecord() {
+	if ptr.Pointer() != nil {
+		C.QSqlRecord_DestroyQSqlRecord(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
 }
 
 type QSqlRelation struct {
@@ -6164,12 +6055,6 @@ func NewQSqlRelation2(tableName string, indexColumn string, displayColumn string
 	return tmpValue
 }
 
-func (ptr *QSqlRelation) Swap(other QSqlRelation_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSqlRelation_Swap(ptr.Pointer(), PointerFromQSqlRelation(other))
-	}
-}
-
 func (ptr *QSqlRelation) DisplayColumn() string {
 	if ptr.Pointer() != nil {
 		return cGoUnpackString(C.QSqlRelation_DisplayColumn(ptr.Pointer()))
@@ -6184,18 +6069,24 @@ func (ptr *QSqlRelation) IndexColumn() string {
 	return ""
 }
 
-func (ptr *QSqlRelation) TableName() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSqlRelation_TableName(ptr.Pointer()))
-	}
-	return ""
-}
-
 func (ptr *QSqlRelation) IsValid() bool {
 	if ptr.Pointer() != nil {
 		return int8(C.QSqlRelation_IsValid(ptr.Pointer())) != 0
 	}
 	return false
+}
+
+func (ptr *QSqlRelation) Swap(other QSqlRelation_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSqlRelation_Swap(ptr.Pointer(), PointerFromQSqlRelation(other))
+	}
+}
+
+func (ptr *QSqlRelation) TableName() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QSqlRelation_TableName(ptr.Pointer()))
+	}
+	return ""
 }
 
 type QSqlRelationalDelegate struct {
@@ -6242,6 +6133,41 @@ func NewQSqlRelationalDelegate(parent core.QObject_ITF) *QSqlRelationalDelegate 
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
+}
+
+//export callbackQSqlRelationalDelegate_CreateEditor
+func callbackQSqlRelationalDelegate_CreateEditor(ptr unsafe.Pointer, parent unsafe.Pointer, option unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "createEditor"); signal != nil {
+		return widgets.PointerFromQWidget((*(*func(*widgets.QWidget, *widgets.QStyleOptionViewItem, *core.QModelIndex) *widgets.QWidget)(signal))(widgets.NewQWidgetFromPointer(parent), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index)))
+	}
+
+	return widgets.PointerFromQWidget(NewQSqlRelationalDelegateFromPointer(ptr).CreateEditorDefault(widgets.NewQWidgetFromPointer(parent), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index)))
+}
+
+func (ptr *QSqlRelationalDelegate) CreateEditorDefault(parent widgets.QWidget_ITF, option widgets.QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) *widgets.QWidget {
+	if ptr.Pointer() != nil {
+		tmpValue := widgets.NewQWidgetFromPointer(C.QSqlRelationalDelegate_CreateEditorDefault(ptr.Pointer(), widgets.PointerFromQWidget(parent), widgets.PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index)))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQSqlRelationalDelegate_SetModelData
+func callbackQSqlRelationalDelegate_SetModelData(ptr unsafe.Pointer, editor unsafe.Pointer, model unsafe.Pointer, index unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "setModelData"); signal != nil {
+		(*(*func(*widgets.QWidget, *core.QAbstractItemModel, *core.QModelIndex))(signal))(widgets.NewQWidgetFromPointer(editor), core.NewQAbstractItemModelFromPointer(model), core.NewQModelIndexFromPointer(index))
+	} else {
+		NewQSqlRelationalDelegateFromPointer(ptr).SetModelDataDefault(widgets.NewQWidgetFromPointer(editor), core.NewQAbstractItemModelFromPointer(model), core.NewQModelIndexFromPointer(index))
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) SetModelDataDefault(editor widgets.QWidget_ITF, model core.QAbstractItemModel_ITF, index core.QModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSqlRelationalDelegate_SetModelDataDefault(ptr.Pointer(), widgets.PointerFromQWidget(editor), core.PointerFromQAbstractItemModel(model), core.PointerFromQModelIndex(index))
+	}
 }
 
 //export callbackQSqlRelationalDelegate_DestroyQSqlRelationalDelegate
@@ -6291,18 +6217,9 @@ func (ptr *QSqlRelationalDelegate) DestroyQSqlRelationalDelegateDefault() {
 	}
 }
 
-//export callbackQSqlRelationalDelegate_CreateEditor
-func callbackQSqlRelationalDelegate_CreateEditor(ptr unsafe.Pointer, parent unsafe.Pointer, option unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "createEditor"); signal != nil {
-		return widgets.PointerFromQWidget((*(*func(*widgets.QWidget, *widgets.QStyleOptionViewItem, *core.QModelIndex) *widgets.QWidget)(signal))(widgets.NewQWidgetFromPointer(parent), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index)))
-	}
-
-	return widgets.PointerFromQWidget(NewQSqlRelationalDelegateFromPointer(ptr).CreateEditorDefault(widgets.NewQWidgetFromPointer(parent), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index)))
-}
-
-func (ptr *QSqlRelationalDelegate) CreateEditorDefault(parent widgets.QWidget_ITF, option widgets.QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) *widgets.QWidget {
+func (ptr *QSqlRelationalDelegate) __children_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
-		tmpValue := widgets.NewQWidgetFromPointer(C.QSqlRelationalDelegate_CreateEditorDefault(ptr.Pointer(), widgets.PointerFromQWidget(parent), widgets.PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index)))
+		tmpValue := core.NewQObjectFromPointer(C.QSqlRelationalDelegate___children_atList(ptr.Pointer(), C.int(int32(i))))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -6311,34 +6228,14 @@ func (ptr *QSqlRelationalDelegate) CreateEditorDefault(parent widgets.QWidget_IT
 	return nil
 }
 
-//export callbackQSqlRelationalDelegate_SetEditorData
-func callbackQSqlRelationalDelegate_SetEditorData(ptr unsafe.Pointer, editor unsafe.Pointer, index unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "setEditorData"); signal != nil {
-		(*(*func(*widgets.QWidget, *core.QModelIndex))(signal))(widgets.NewQWidgetFromPointer(editor), core.NewQModelIndexFromPointer(index))
-	} else {
-		NewQSqlRelationalDelegateFromPointer(ptr).SetEditorDataDefault(widgets.NewQWidgetFromPointer(editor), core.NewQModelIndexFromPointer(index))
-	}
-}
-
-func (ptr *QSqlRelationalDelegate) SetEditorDataDefault(editor widgets.QWidget_ITF, index core.QModelIndex_ITF) {
+func (ptr *QSqlRelationalDelegate) __children_setList(i core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		C.QSqlRelationalDelegate_SetEditorDataDefault(ptr.Pointer(), widgets.PointerFromQWidget(editor), core.PointerFromQModelIndex(index))
+		C.QSqlRelationalDelegate___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
 	}
 }
 
-//export callbackQSqlRelationalDelegate_SetModelData
-func callbackQSqlRelationalDelegate_SetModelData(ptr unsafe.Pointer, editor unsafe.Pointer, model unsafe.Pointer, index unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "setModelData"); signal != nil {
-		(*(*func(*widgets.QWidget, *core.QAbstractItemModel, *core.QModelIndex))(signal))(widgets.NewQWidgetFromPointer(editor), core.NewQAbstractItemModelFromPointer(model), core.NewQModelIndexFromPointer(index))
-	} else {
-		NewQSqlRelationalDelegateFromPointer(ptr).SetModelDataDefault(widgets.NewQWidgetFromPointer(editor), core.NewQAbstractItemModelFromPointer(model), core.NewQModelIndexFromPointer(index))
-	}
-}
-
-func (ptr *QSqlRelationalDelegate) SetModelDataDefault(editor widgets.QWidget_ITF, model core.QAbstractItemModel_ITF, index core.QModelIndex_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSqlRelationalDelegate_SetModelDataDefault(ptr.Pointer(), widgets.PointerFromQWidget(editor), core.PointerFromQAbstractItemModel(model), core.PointerFromQModelIndex(index))
-	}
+func (ptr *QSqlRelationalDelegate) __children_newList() unsafe.Pointer {
+	return C.QSqlRelationalDelegate___children_newList(ptr.Pointer())
 }
 
 func (ptr *QSqlRelationalDelegate) __dynamicPropertyNames_atList(i int) *core.QByteArray {
@@ -6358,48 +6255,6 @@ func (ptr *QSqlRelationalDelegate) __dynamicPropertyNames_setList(i core.QByteAr
 
 func (ptr *QSqlRelationalDelegate) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QSqlRelationalDelegate___dynamicPropertyNames_newList(ptr.Pointer())
-}
-
-func (ptr *QSqlRelationalDelegate) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSqlRelationalDelegate___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlRelationalDelegate) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSqlRelationalDelegate___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QSqlRelationalDelegate) __findChildren_newList2() unsafe.Pointer {
-	return C.QSqlRelationalDelegate___findChildren_newList2(ptr.Pointer())
-}
-
-func (ptr *QSqlRelationalDelegate) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSqlRelationalDelegate___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlRelationalDelegate) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSqlRelationalDelegate___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QSqlRelationalDelegate) __findChildren_newList3() unsafe.Pointer {
-	return C.QSqlRelationalDelegate___findChildren_newList3(ptr.Pointer())
 }
 
 func (ptr *QSqlRelationalDelegate) __findChildren_atList(i int) *core.QObject {
@@ -6423,9 +6278,9 @@ func (ptr *QSqlRelationalDelegate) __findChildren_newList() unsafe.Pointer {
 	return C.QSqlRelationalDelegate___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QSqlRelationalDelegate) __children_atList(i int) *core.QObject {
+func (ptr *QSqlRelationalDelegate) __findChildren_atList3(i int) *core.QObject {
 	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSqlRelationalDelegate___children_atList(ptr.Pointer(), C.int(int32(i))))
+		tmpValue := core.NewQObjectFromPointer(C.QSqlRelationalDelegate___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -6434,80 +6289,35 @@ func (ptr *QSqlRelationalDelegate) __children_atList(i int) *core.QObject {
 	return nil
 }
 
-func (ptr *QSqlRelationalDelegate) __children_setList(i core.QObject_ITF) {
+func (ptr *QSqlRelationalDelegate) __findChildren_setList3(i core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		C.QSqlRelationalDelegate___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+		C.QSqlRelationalDelegate___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *QSqlRelationalDelegate) __children_newList() unsafe.Pointer {
-	return C.QSqlRelationalDelegate___children_newList(ptr.Pointer())
+func (ptr *QSqlRelationalDelegate) __findChildren_newList3() unsafe.Pointer {
+	return C.QSqlRelationalDelegate___findChildren_newList3(ptr.Pointer())
 }
 
-//export callbackQSqlRelationalDelegate_EditorEvent
-func callbackQSqlRelationalDelegate_EditorEvent(ptr unsafe.Pointer, event unsafe.Pointer, model unsafe.Pointer, option unsafe.Pointer, index unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "editorEvent"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent, *core.QAbstractItemModel, *widgets.QStyleOptionViewItem, *core.QModelIndex) bool)(signal))(core.NewQEventFromPointer(event), core.NewQAbstractItemModelFromPointer(model), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSqlRelationalDelegateFromPointer(ptr).EditorEventDefault(core.NewQEventFromPointer(event), core.NewQAbstractItemModelFromPointer(model), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index)))))
-}
-
-func (ptr *QSqlRelationalDelegate) EditorEventDefault(event core.QEvent_ITF, model core.QAbstractItemModel_ITF, option widgets.QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) bool {
+func (ptr *QSqlRelationalDelegate) __qFindChildren_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
-		return int8(C.QSqlRelationalDelegate_EditorEventDefault(ptr.Pointer(), core.PointerFromQEvent(event), core.PointerFromQAbstractItemModel(model), widgets.PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index))) != 0
-	}
-	return false
-}
-
-//export callbackQSqlRelationalDelegate_EventFilter
-func callbackQSqlRelationalDelegate_EventFilter(ptr unsafe.Pointer, editor unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(editor), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSqlRelationalDelegateFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(editor), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QSqlRelationalDelegate) EventFilterDefault(editor core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlRelationalDelegate_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(editor), core.PointerFromQEvent(event))) != 0
-	}
-	return false
-}
-
-//export callbackQSqlRelationalDelegate_SizeHint
-func callbackQSqlRelationalDelegate_SizeHint(ptr unsafe.Pointer, option unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "sizeHint"); signal != nil {
-		return core.PointerFromQSize((*(*func(*widgets.QStyleOptionViewItem, *core.QModelIndex) *core.QSize)(signal))(widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index)))
-	}
-
-	return core.PointerFromQSize(NewQSqlRelationalDelegateFromPointer(ptr).SizeHintDefault(widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index)))
-}
-
-func (ptr *QSqlRelationalDelegate) SizeHintDefault(option widgets.QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) *core.QSize {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQSizeFromPointer(C.QSqlRelationalDelegate_SizeHintDefault(ptr.Pointer(), widgets.PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		tmpValue := core.NewQObjectFromPointer(C.QSqlRelationalDelegate___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
 		return tmpValue
 	}
 	return nil
 }
 
-//export callbackQSqlRelationalDelegate_MetaObject
-func callbackQSqlRelationalDelegate_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+func (ptr *QSqlRelationalDelegate) __qFindChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSqlRelationalDelegate___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
 	}
-
-	return core.PointerFromQMetaObject(NewQSqlRelationalDelegateFromPointer(ptr).MetaObjectDefault())
 }
 
-func (ptr *QSqlRelationalDelegate) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QSqlRelationalDelegate_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
+func (ptr *QSqlRelationalDelegate) __qFindChildren_newList2() unsafe.Pointer {
+	return C.QSqlRelationalDelegate___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQSqlRelationalDelegate_DrawCheck
@@ -6575,6 +6385,38 @@ func (ptr *QSqlRelationalDelegate) DrawFocusDefault(painter gui.QPainter_ITF, op
 	}
 }
 
+//export callbackQSqlRelationalDelegate_EditorEvent
+func callbackQSqlRelationalDelegate_EditorEvent(ptr unsafe.Pointer, event unsafe.Pointer, model unsafe.Pointer, option unsafe.Pointer, index unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "editorEvent"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent, *core.QAbstractItemModel, *widgets.QStyleOptionViewItem, *core.QModelIndex) bool)(signal))(core.NewQEventFromPointer(event), core.NewQAbstractItemModelFromPointer(model), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSqlRelationalDelegateFromPointer(ptr).EditorEventDefault(core.NewQEventFromPointer(event), core.NewQAbstractItemModelFromPointer(model), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index)))))
+}
+
+func (ptr *QSqlRelationalDelegate) EditorEventDefault(event core.QEvent_ITF, model core.QAbstractItemModel_ITF, option widgets.QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlRelationalDelegate_EditorEventDefault(ptr.Pointer(), core.PointerFromQEvent(event), core.PointerFromQAbstractItemModel(model), widgets.PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index))) != 0
+	}
+	return false
+}
+
+//export callbackQSqlRelationalDelegate_EventFilter
+func callbackQSqlRelationalDelegate_EventFilter(ptr unsafe.Pointer, editor unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(editor), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSqlRelationalDelegateFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(editor), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QSqlRelationalDelegate) EventFilterDefault(editor core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlRelationalDelegate_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(editor), core.PointerFromQEvent(event))) != 0
+	}
+	return false
+}
+
 //export callbackQSqlRelationalDelegate_Paint
 func callbackQSqlRelationalDelegate_Paint(ptr unsafe.Pointer, painter unsafe.Pointer, option unsafe.Pointer, index unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "paint"); signal != nil {
@@ -6588,6 +6430,39 @@ func (ptr *QSqlRelationalDelegate) PaintDefault(painter gui.QPainter_ITF, option
 	if ptr.Pointer() != nil {
 		C.QSqlRelationalDelegate_PaintDefault(ptr.Pointer(), gui.PointerFromQPainter(painter), widgets.PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index))
 	}
+}
+
+//export callbackQSqlRelationalDelegate_SetEditorData
+func callbackQSqlRelationalDelegate_SetEditorData(ptr unsafe.Pointer, editor unsafe.Pointer, index unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "setEditorData"); signal != nil {
+		(*(*func(*widgets.QWidget, *core.QModelIndex))(signal))(widgets.NewQWidgetFromPointer(editor), core.NewQModelIndexFromPointer(index))
+	} else {
+		NewQSqlRelationalDelegateFromPointer(ptr).SetEditorDataDefault(widgets.NewQWidgetFromPointer(editor), core.NewQModelIndexFromPointer(index))
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) SetEditorDataDefault(editor widgets.QWidget_ITF, index core.QModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSqlRelationalDelegate_SetEditorDataDefault(ptr.Pointer(), widgets.PointerFromQWidget(editor), core.PointerFromQModelIndex(index))
+	}
+}
+
+//export callbackQSqlRelationalDelegate_SizeHint
+func callbackQSqlRelationalDelegate_SizeHint(ptr unsafe.Pointer, option unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "sizeHint"); signal != nil {
+		return core.PointerFromQSize((*(*func(*widgets.QStyleOptionViewItem, *core.QModelIndex) *core.QSize)(signal))(widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index)))
+	}
+
+	return core.PointerFromQSize(NewQSqlRelationalDelegateFromPointer(ptr).SizeHintDefault(widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index)))
+}
+
+func (ptr *QSqlRelationalDelegate) SizeHintDefault(option widgets.QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) *core.QSize {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQSizeFromPointer(C.QSqlRelationalDelegate_SizeHintDefault(ptr.Pointer(), widgets.PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
+	}
+	return nil
 }
 
 //export callbackQSqlRelationalDelegate_UpdateEditorGeometry
@@ -6605,22 +6480,6 @@ func (ptr *QSqlRelationalDelegate) UpdateEditorGeometryDefault(editor widgets.QW
 	}
 }
 
-//export callbackQSqlRelationalDelegate_HelpEvent
-func callbackQSqlRelationalDelegate_HelpEvent(ptr unsafe.Pointer, event unsafe.Pointer, view unsafe.Pointer, option unsafe.Pointer, index unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "helpEvent"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*gui.QHelpEvent, *widgets.QAbstractItemView, *widgets.QStyleOptionViewItem, *core.QModelIndex) bool)(signal))(gui.NewQHelpEventFromPointer(event), widgets.NewQAbstractItemViewFromPointer(view), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSqlRelationalDelegateFromPointer(ptr).HelpEventDefault(gui.NewQHelpEventFromPointer(event), widgets.NewQAbstractItemViewFromPointer(view), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index)))))
-}
-
-func (ptr *QSqlRelationalDelegate) HelpEventDefault(event gui.QHelpEvent_ITF, view widgets.QAbstractItemView_ITF, option widgets.QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlRelationalDelegate_HelpEventDefault(ptr.Pointer(), gui.PointerFromQHelpEvent(event), widgets.PointerFromQAbstractItemView(view), widgets.PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index))) != 0
-	}
-	return false
-}
-
 //export callbackQSqlRelationalDelegate_CloseEditor
 func callbackQSqlRelationalDelegate_CloseEditor(ptr unsafe.Pointer, editor unsafe.Pointer, hint C.longlong) {
 	if signal := qt.GetSignal(ptr, "closeEditor"); signal != nil {
@@ -6633,14 +6492,6 @@ func callbackQSqlRelationalDelegate_CloseEditor(ptr unsafe.Pointer, editor unsaf
 func callbackQSqlRelationalDelegate_CommitData(ptr unsafe.Pointer, editor unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "commitData"); signal != nil {
 		(*(*func(*widgets.QWidget))(signal))(widgets.NewQWidgetFromPointer(editor))
-	}
-
-}
-
-//export callbackQSqlRelationalDelegate_SizeHintChanged
-func callbackQSqlRelationalDelegate_SizeHintChanged(ptr unsafe.Pointer, index unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "sizeHintChanged"); signal != nil {
-		(*(*func(*core.QModelIndex))(signal))(core.NewQModelIndexFromPointer(index))
 	}
 
 }
@@ -6660,20 +6511,28 @@ func (ptr *QSqlRelationalDelegate) DestroyEditorDefault(editor widgets.QWidget_I
 	}
 }
 
-//export callbackQSqlRelationalDelegate_Event
-func callbackQSqlRelationalDelegate_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
+//export callbackQSqlRelationalDelegate_HelpEvent
+func callbackQSqlRelationalDelegate_HelpEvent(ptr unsafe.Pointer, event unsafe.Pointer, view unsafe.Pointer, option unsafe.Pointer, index unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "helpEvent"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*gui.QHelpEvent, *widgets.QAbstractItemView, *widgets.QStyleOptionViewItem, *core.QModelIndex) bool)(signal))(gui.NewQHelpEventFromPointer(event), widgets.NewQAbstractItemViewFromPointer(view), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index)))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewQSqlRelationalDelegateFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+	return C.char(int8(qt.GoBoolToInt(NewQSqlRelationalDelegateFromPointer(ptr).HelpEventDefault(gui.NewQHelpEventFromPointer(event), widgets.NewQAbstractItemViewFromPointer(view), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index)))))
 }
 
-func (ptr *QSqlRelationalDelegate) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QSqlRelationalDelegate) HelpEventDefault(event gui.QHelpEvent_ITF, view widgets.QAbstractItemView_ITF, option widgets.QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return int8(C.QSqlRelationalDelegate_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+		return int8(C.QSqlRelationalDelegate_HelpEventDefault(ptr.Pointer(), gui.PointerFromQHelpEvent(event), widgets.PointerFromQAbstractItemView(view), widgets.PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index))) != 0
 	}
 	return false
+}
+
+//export callbackQSqlRelationalDelegate_SizeHintChanged
+func callbackQSqlRelationalDelegate_SizeHintChanged(ptr unsafe.Pointer, index unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "sizeHintChanged"); signal != nil {
+		(*(*func(*core.QModelIndex))(signal))(core.NewQModelIndexFromPointer(index))
+	}
+
 }
 
 //export callbackQSqlRelationalDelegate_ChildEvent
@@ -6760,6 +6619,22 @@ func (ptr *QSqlRelationalDelegate) DisconnectNotifyDefault(sign core.QMetaMethod
 	}
 }
 
+//export callbackQSqlRelationalDelegate_Event
+func callbackQSqlRelationalDelegate_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSqlRelationalDelegateFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QSqlRelationalDelegate) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlRelationalDelegate_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+	}
+	return false
+}
+
 //export callbackQSqlRelationalDelegate_ObjectNameChanged
 func callbackQSqlRelationalDelegate_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtSql_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -6839,49 +6714,66 @@ func NewQSqlRelationalTableModel(parent core.QObject_ITF, db QSqlDatabase_ITF) *
 	return tmpValue
 }
 
-//export callbackQSqlRelationalTableModel_Select
-func callbackQSqlRelationalTableModel_Select(ptr unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "select"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func() bool)(signal))())))
+func (ptr *QSqlRelationalTableModel) Relation(column int) *QSqlRelation {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQSqlRelationFromPointer(C.QSqlRelationalTableModel_Relation(ptr.Pointer(), C.int(int32(column))))
+		runtime.SetFinalizer(tmpValue, (*QSqlRelation).DestroyQSqlRelation)
+		return tmpValue
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSqlRelationalTableModelFromPointer(ptr).SelectDefault())))
+	return nil
 }
 
-func (ptr *QSqlRelationalTableModel) ConnectSelect(f func() bool) {
+//export callbackQSqlRelationalTableModel_RelationModel
+func callbackQSqlRelationalTableModel_RelationModel(ptr unsafe.Pointer, column C.int) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "relationModel"); signal != nil {
+		return PointerFromQSqlTableModel((*(*func(int) *QSqlTableModel)(signal))(int(int32(column))))
+	}
+
+	return PointerFromQSqlTableModel(NewQSqlRelationalTableModelFromPointer(ptr).RelationModelDefault(int(int32(column))))
+}
+
+func (ptr *QSqlRelationalTableModel) ConnectRelationModel(f func(column int) *QSqlTableModel) {
 	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "select"); signal != nil {
-			f := func() bool {
-				(*(*func() bool)(signal))()
-				return f()
+		if signal := qt.LendSignal(ptr.Pointer(), "relationModel"); signal != nil {
+			f := func(column int) *QSqlTableModel {
+				(*(*func(int) *QSqlTableModel)(signal))(column)
+				return f(column)
 			}
-			qt.ConnectSignal(ptr.Pointer(), "select", unsafe.Pointer(&f))
+			qt.ConnectSignal(ptr.Pointer(), "relationModel", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "select", unsafe.Pointer(&f))
+			qt.ConnectSignal(ptr.Pointer(), "relationModel", unsafe.Pointer(&f))
 		}
 	}
 }
 
-func (ptr *QSqlRelationalTableModel) DisconnectSelect() {
+func (ptr *QSqlRelationalTableModel) DisconnectRelationModel() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "select")
+		qt.DisconnectSignal(ptr.Pointer(), "relationModel")
 	}
 }
 
-func (ptr *QSqlRelationalTableModel) Select() bool {
+func (ptr *QSqlRelationalTableModel) RelationModel(column int) *QSqlTableModel {
 	if ptr.Pointer() != nil {
-		return int8(C.QSqlRelationalTableModel_Select(ptr.Pointer())) != 0
+		tmpValue := NewQSqlTableModelFromPointer(C.QSqlRelationalTableModel_RelationModel(ptr.Pointer(), C.int(int32(column))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return false
+	return nil
 }
 
-func (ptr *QSqlRelationalTableModel) SelectDefault() bool {
+func (ptr *QSqlRelationalTableModel) RelationModelDefault(column int) *QSqlTableModel {
 	if ptr.Pointer() != nil {
-		return int8(C.QSqlRelationalTableModel_SelectDefault(ptr.Pointer())) != 0
+		tmpValue := NewQSqlTableModelFromPointer(C.QSqlRelationalTableModel_RelationModelDefault(ptr.Pointer(), C.int(int32(column))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return false
+	return nil
 }
 
 //export callbackQSqlRelationalTableModel_RevertRow
@@ -6925,6 +6817,51 @@ func (ptr *QSqlRelationalTableModel) RevertRowDefault(row int) {
 	if ptr.Pointer() != nil {
 		C.QSqlRelationalTableModel_RevertRowDefault(ptr.Pointer(), C.int(int32(row)))
 	}
+}
+
+//export callbackQSqlRelationalTableModel_Select
+func callbackQSqlRelationalTableModel_Select(ptr unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "select"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func() bool)(signal))())))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSqlRelationalTableModelFromPointer(ptr).SelectDefault())))
+}
+
+func (ptr *QSqlRelationalTableModel) ConnectSelect(f func() bool) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "select"); signal != nil {
+			f := func() bool {
+				(*(*func() bool)(signal))()
+				return f()
+			}
+			qt.ConnectSignal(ptr.Pointer(), "select", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "select", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QSqlRelationalTableModel) DisconnectSelect() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "select")
+	}
+}
+
+func (ptr *QSqlRelationalTableModel) Select() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlRelationalTableModel_Select(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlRelationalTableModel) SelectDefault() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlRelationalTableModel_SelectDefault(ptr.Pointer())) != 0
+	}
+	return false
 }
 
 func (ptr *QSqlRelationalTableModel) SetJoinMode(joinMode QSqlRelationalTableModel__JoinMode) {
@@ -7023,68 +6960,6 @@ func (ptr *QSqlRelationalTableModel) DestroyQSqlRelationalTableModelDefault() {
 	}
 }
 
-func (ptr *QSqlRelationalTableModel) Relation(column int) *QSqlRelation {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSqlRelationFromPointer(C.QSqlRelationalTableModel_Relation(ptr.Pointer(), C.int(int32(column))))
-		runtime.SetFinalizer(tmpValue, (*QSqlRelation).DestroyQSqlRelation)
-		return tmpValue
-	}
-	return nil
-}
-
-//export callbackQSqlRelationalTableModel_RelationModel
-func callbackQSqlRelationalTableModel_RelationModel(ptr unsafe.Pointer, column C.int) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "relationModel"); signal != nil {
-		return PointerFromQSqlTableModel((*(*func(int) *QSqlTableModel)(signal))(int(int32(column))))
-	}
-
-	return PointerFromQSqlTableModel(NewQSqlRelationalTableModelFromPointer(ptr).RelationModelDefault(int(int32(column))))
-}
-
-func (ptr *QSqlRelationalTableModel) ConnectRelationModel(f func(column int) *QSqlTableModel) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "relationModel"); signal != nil {
-			f := func(column int) *QSqlTableModel {
-				(*(*func(int) *QSqlTableModel)(signal))(column)
-				return f(column)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "relationModel", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "relationModel", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QSqlRelationalTableModel) DisconnectRelationModel() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "relationModel")
-	}
-}
-
-func (ptr *QSqlRelationalTableModel) RelationModel(column int) *QSqlTableModel {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSqlTableModelFromPointer(C.QSqlRelationalTableModel_RelationModel(ptr.Pointer(), C.int(int32(column))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlRelationalTableModel) RelationModelDefault(column int) *QSqlTableModel {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSqlTableModelFromPointer(C.QSqlRelationalTableModel_RelationModelDefault(ptr.Pointer(), C.int(int32(column))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
 type QSqlResult struct {
 	ptr unsafe.Pointer
 }
@@ -7136,6 +7011,198 @@ func NewQSqlResult(db QSqlDriver_ITF) *QSqlResult {
 	return NewQSqlResultFromPointer(C.QSqlResult_NewQSqlResult(PointerFromQSqlDriver(db)))
 }
 
+func (ptr *QSqlResult) AddBindValue(val core.QVariant_ITF, paramType QSql__ParamTypeFlag) {
+	if ptr.Pointer() != nil {
+		C.QSqlResult_AddBindValue(ptr.Pointer(), core.PointerFromQVariant(val), C.longlong(paramType))
+	}
+}
+
+func (ptr *QSqlResult) At() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QSqlResult_At(ptr.Pointer())))
+	}
+	return 0
+}
+
+//export callbackQSqlResult_BindValue
+func callbackQSqlResult_BindValue(ptr unsafe.Pointer, index C.int, val unsafe.Pointer, paramType C.longlong) {
+	if signal := qt.GetSignal(ptr, "bindValue"); signal != nil {
+		(*(*func(int, *core.QVariant, QSql__ParamTypeFlag))(signal))(int(int32(index)), core.NewQVariantFromPointer(val), QSql__ParamTypeFlag(paramType))
+	} else {
+		NewQSqlResultFromPointer(ptr).BindValueDefault(int(int32(index)), core.NewQVariantFromPointer(val), QSql__ParamTypeFlag(paramType))
+	}
+}
+
+func (ptr *QSqlResult) ConnectBindValue(f func(index int, val *core.QVariant, paramType QSql__ParamTypeFlag)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "bindValue"); signal != nil {
+			f := func(index int, val *core.QVariant, paramType QSql__ParamTypeFlag) {
+				(*(*func(int, *core.QVariant, QSql__ParamTypeFlag))(signal))(index, val, paramType)
+				f(index, val, paramType)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "bindValue", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "bindValue", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QSqlResult) DisconnectBindValue() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "bindValue")
+	}
+}
+
+func (ptr *QSqlResult) BindValue(index int, val core.QVariant_ITF, paramType QSql__ParamTypeFlag) {
+	if ptr.Pointer() != nil {
+		C.QSqlResult_BindValue(ptr.Pointer(), C.int(int32(index)), core.PointerFromQVariant(val), C.longlong(paramType))
+	}
+}
+
+func (ptr *QSqlResult) BindValueDefault(index int, val core.QVariant_ITF, paramType QSql__ParamTypeFlag) {
+	if ptr.Pointer() != nil {
+		C.QSqlResult_BindValueDefault(ptr.Pointer(), C.int(int32(index)), core.PointerFromQVariant(val), C.longlong(paramType))
+	}
+}
+
+//export callbackQSqlResult_BindValue2
+func callbackQSqlResult_BindValue2(ptr unsafe.Pointer, placeholder C.struct_QtSql_PackedString, val unsafe.Pointer, paramType C.longlong) {
+	if signal := qt.GetSignal(ptr, "bindValue2"); signal != nil {
+		(*(*func(string, *core.QVariant, QSql__ParamTypeFlag))(signal))(cGoUnpackString(placeholder), core.NewQVariantFromPointer(val), QSql__ParamTypeFlag(paramType))
+	} else {
+		NewQSqlResultFromPointer(ptr).BindValue2Default(cGoUnpackString(placeholder), core.NewQVariantFromPointer(val), QSql__ParamTypeFlag(paramType))
+	}
+}
+
+func (ptr *QSqlResult) ConnectBindValue2(f func(placeholder string, val *core.QVariant, paramType QSql__ParamTypeFlag)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "bindValue2"); signal != nil {
+			f := func(placeholder string, val *core.QVariant, paramType QSql__ParamTypeFlag) {
+				(*(*func(string, *core.QVariant, QSql__ParamTypeFlag))(signal))(placeholder, val, paramType)
+				f(placeholder, val, paramType)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "bindValue2", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "bindValue2", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QSqlResult) DisconnectBindValue2() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "bindValue2")
+	}
+}
+
+func (ptr *QSqlResult) BindValue2(placeholder string, val core.QVariant_ITF, paramType QSql__ParamTypeFlag) {
+	if ptr.Pointer() != nil {
+		var placeholderC *C.char
+		if placeholder != "" {
+			placeholderC = C.CString(placeholder)
+			defer C.free(unsafe.Pointer(placeholderC))
+		}
+		C.QSqlResult_BindValue2(ptr.Pointer(), C.struct_QtSql_PackedString{data: placeholderC, len: C.longlong(len(placeholder))}, core.PointerFromQVariant(val), C.longlong(paramType))
+	}
+}
+
+func (ptr *QSqlResult) BindValue2Default(placeholder string, val core.QVariant_ITF, paramType QSql__ParamTypeFlag) {
+	if ptr.Pointer() != nil {
+		var placeholderC *C.char
+		if placeholder != "" {
+			placeholderC = C.CString(placeholder)
+			defer C.free(unsafe.Pointer(placeholderC))
+		}
+		C.QSqlResult_BindValue2Default(ptr.Pointer(), C.struct_QtSql_PackedString{data: placeholderC, len: C.longlong(len(placeholder))}, core.PointerFromQVariant(val), C.longlong(paramType))
+	}
+}
+
+func (ptr *QSqlResult) BindValueType(index int) QSql__ParamTypeFlag {
+	if ptr.Pointer() != nil {
+		return QSql__ParamTypeFlag(C.QSqlResult_BindValueType(ptr.Pointer(), C.int(int32(index))))
+	}
+	return 0
+}
+
+func (ptr *QSqlResult) BindValueType2(placeholder string) QSql__ParamTypeFlag {
+	if ptr.Pointer() != nil {
+		var placeholderC *C.char
+		if placeholder != "" {
+			placeholderC = C.CString(placeholder)
+			defer C.free(unsafe.Pointer(placeholderC))
+		}
+		return QSql__ParamTypeFlag(C.QSqlResult_BindValueType2(ptr.Pointer(), C.struct_QtSql_PackedString{data: placeholderC, len: C.longlong(len(placeholder))}))
+	}
+	return 0
+}
+
+func (ptr *QSqlResult) BindingSyntax() QSqlResult__BindingSyntax {
+	if ptr.Pointer() != nil {
+		return QSqlResult__BindingSyntax(C.QSqlResult_BindingSyntax(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QSqlResult) BoundValue(index int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QSqlResult_BoundValue(ptr.Pointer(), C.int(int32(index))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSqlResult) BoundValue2(placeholder string) *core.QVariant {
+	if ptr.Pointer() != nil {
+		var placeholderC *C.char
+		if placeholder != "" {
+			placeholderC = C.CString(placeholder)
+			defer C.free(unsafe.Pointer(placeholderC))
+		}
+		tmpValue := core.NewQVariantFromPointer(C.QSqlResult_BoundValue2(ptr.Pointer(), C.struct_QtSql_PackedString{data: placeholderC, len: C.longlong(len(placeholder))}))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSqlResult) BoundValueCount() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QSqlResult_BoundValueCount(ptr.Pointer())))
+	}
+	return 0
+}
+
+func (ptr *QSqlResult) BoundValueName(index int) string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QSqlResult_BoundValueName(ptr.Pointer(), C.int(int32(index))))
+	}
+	return ""
+}
+
+func (ptr *QSqlResult) BoundValues() []*core.QVariant {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtSql_PackedList) []*core.QVariant {
+			out := make([]*core.QVariant, int(l.len))
+			tmpList := NewQSqlResultFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__boundValues_atList(i)
+			}
+			return out
+		}(C.QSqlResult_BoundValues(ptr.Pointer()))
+	}
+	return make([]*core.QVariant, 0)
+}
+
+func (ptr *QSqlResult) Clear() {
+	if ptr.Pointer() != nil {
+		C.QSqlResult_Clear(ptr.Pointer())
+	}
+}
+
 //export callbackQSqlResult_Data
 func callbackQSqlResult_Data(ptr unsafe.Pointer, index C.int) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "data"); signal != nil {
@@ -7171,6 +7238,17 @@ func (ptr *QSqlResult) Data(index int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QSqlResult_Data(ptr.Pointer(), C.int(int32(index))))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSqlResult) Driver() *QSqlDriver {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQSqlDriverFromPointer(C.QSqlResult_Driver(ptr.Pointer()))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
 		return tmpValue
 	}
 	return nil
@@ -7219,6 +7297,13 @@ func (ptr *QSqlResult) ExecDefault() bool {
 		return int8(C.QSqlResult_ExecDefault(ptr.Pointer())) != 0
 	}
 	return false
+}
+
+func (ptr *QSqlResult) ExecutedQuery() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QSqlResult_ExecutedQuery(ptr.Pointer()))
+	}
+	return ""
 }
 
 //export callbackQSqlResult_Fetch
@@ -7425,6 +7510,76 @@ func (ptr *QSqlResult) FetchPreviousDefault() bool {
 	return false
 }
 
+//export callbackQSqlResult_Handle
+func callbackQSqlResult_Handle(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "handle"); signal != nil {
+		return core.PointerFromQVariant((*(*func() *core.QVariant)(signal))())
+	}
+
+	return core.PointerFromQVariant(NewQSqlResultFromPointer(ptr).HandleDefault())
+}
+
+func (ptr *QSqlResult) ConnectHandle(f func() *core.QVariant) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "handle"); signal != nil {
+			f := func() *core.QVariant {
+				(*(*func() *core.QVariant)(signal))()
+				return f()
+			}
+			qt.ConnectSignal(ptr.Pointer(), "handle", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "handle", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QSqlResult) DisconnectHandle() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "handle")
+	}
+}
+
+func (ptr *QSqlResult) Handle() *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QSqlResult_Handle(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSqlResult) HandleDefault() *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QSqlResult_HandleDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSqlResult) HasOutValues() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlResult_HasOutValues(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlResult) IsActive() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlResult_IsActive(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlResult) IsForwardOnly() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlResult_IsForwardOnly(ptr.Pointer())) != 0
+	}
+	return false
+}
+
 //export callbackQSqlResult_IsNull
 func callbackQSqlResult_IsNull(ptr unsafe.Pointer, index C.int) C.char {
 	if signal := qt.GetSignal(ptr, "isNull"); signal != nil {
@@ -7461,6 +7616,123 @@ func (ptr *QSqlResult) IsNull(index int) bool {
 		return int8(C.QSqlResult_IsNull(ptr.Pointer(), C.int(int32(index)))) != 0
 	}
 	return false
+}
+
+func (ptr *QSqlResult) IsSelect() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlResult_IsSelect(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlResult) IsValid() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlResult_IsValid(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlResult) LastError() *QSqlError {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQSqlErrorFromPointer(C.QSqlResult_LastError(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QSqlError).DestroyQSqlError)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQSqlResult_LastInsertId
+func callbackQSqlResult_LastInsertId(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "lastInsertId"); signal != nil {
+		return core.PointerFromQVariant((*(*func() *core.QVariant)(signal))())
+	}
+
+	return core.PointerFromQVariant(NewQSqlResultFromPointer(ptr).LastInsertIdDefault())
+}
+
+func (ptr *QSqlResult) ConnectLastInsertId(f func() *core.QVariant) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "lastInsertId"); signal != nil {
+			f := func() *core.QVariant {
+				(*(*func() *core.QVariant)(signal))()
+				return f()
+			}
+			qt.ConnectSignal(ptr.Pointer(), "lastInsertId", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "lastInsertId", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QSqlResult) DisconnectLastInsertId() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "lastInsertId")
+	}
+}
+
+func (ptr *QSqlResult) LastInsertId() *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QSqlResult_LastInsertId(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSqlResult) LastInsertIdDefault() *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QSqlResult_LastInsertIdDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSqlResult) LastQuery() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QSqlResult_LastQuery(ptr.Pointer()))
+	}
+	return ""
+}
+
+//export callbackQSqlResult_NumRowsAffected
+func callbackQSqlResult_NumRowsAffected(ptr unsafe.Pointer) C.int {
+	if signal := qt.GetSignal(ptr, "numRowsAffected"); signal != nil {
+		return C.int(int32((*(*func() int)(signal))()))
+	}
+
+	return C.int(int32(0))
+}
+
+func (ptr *QSqlResult) ConnectNumRowsAffected(f func() int) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "numRowsAffected"); signal != nil {
+			f := func() int {
+				(*(*func() int)(signal))()
+				return f()
+			}
+			qt.ConnectSignal(ptr.Pointer(), "numRowsAffected", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "numRowsAffected", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QSqlResult) DisconnectNumRowsAffected() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "numRowsAffected")
+	}
+}
+
+func (ptr *QSqlResult) NumRowsAffected() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QSqlResult_NumRowsAffected(ptr.Pointer())))
+	}
+	return 0
 }
 
 //export callbackQSqlResult_Prepare
@@ -7518,6 +7790,55 @@ func (ptr *QSqlResult) PrepareDefault(query string) bool {
 	return false
 }
 
+//export callbackQSqlResult_Record
+func callbackQSqlResult_Record(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "record"); signal != nil {
+		return PointerFromQSqlRecord((*(*func() *QSqlRecord)(signal))())
+	}
+
+	return PointerFromQSqlRecord(NewQSqlResultFromPointer(ptr).RecordDefault())
+}
+
+func (ptr *QSqlResult) ConnectRecord(f func() *QSqlRecord) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "record"); signal != nil {
+			f := func() *QSqlRecord {
+				(*(*func() *QSqlRecord)(signal))()
+				return f()
+			}
+			qt.ConnectSignal(ptr.Pointer(), "record", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "record", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QSqlResult) DisconnectRecord() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "record")
+	}
+}
+
+func (ptr *QSqlResult) Record() *QSqlRecord {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQSqlRecordFromPointer(C.QSqlResult_Record(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QSqlRecord).DestroyQSqlRecord)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSqlResult) RecordDefault() *QSqlRecord {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQSqlRecordFromPointer(C.QSqlResult_RecordDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QSqlRecord).DestroyQSqlRecord)
+		return tmpValue
+	}
+	return nil
+}
+
 //export callbackQSqlResult_Reset
 func callbackQSqlResult_Reset(ptr unsafe.Pointer, query C.struct_QtSql_PackedString) C.char {
 	if signal := qt.GetSignal(ptr, "reset"); signal != nil {
@@ -7559,6 +7880,12 @@ func (ptr *QSqlResult) Reset(query string) bool {
 		return int8(C.QSqlResult_Reset(ptr.Pointer(), C.struct_QtSql_PackedString{data: queryC, len: C.longlong(len(query))})) != 0
 	}
 	return false
+}
+
+func (ptr *QSqlResult) ResetBindCount() {
+	if ptr.Pointer() != nil {
+		C.QSqlResult_ResetBindCount(ptr.Pointer())
+	}
 }
 
 //export callbackQSqlResult_SavePrepare
@@ -7614,196 +7941,6 @@ func (ptr *QSqlResult) SavePrepareDefault(query string) bool {
 		return int8(C.QSqlResult_SavePrepareDefault(ptr.Pointer(), C.struct_QtSql_PackedString{data: queryC, len: C.longlong(len(query))})) != 0
 	}
 	return false
-}
-
-//export callbackQSqlResult_NumRowsAffected
-func callbackQSqlResult_NumRowsAffected(ptr unsafe.Pointer) C.int {
-	if signal := qt.GetSignal(ptr, "numRowsAffected"); signal != nil {
-		return C.int(int32((*(*func() int)(signal))()))
-	}
-
-	return C.int(int32(0))
-}
-
-func (ptr *QSqlResult) ConnectNumRowsAffected(f func() int) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "numRowsAffected"); signal != nil {
-			f := func() int {
-				(*(*func() int)(signal))()
-				return f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "numRowsAffected", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "numRowsAffected", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QSqlResult) DisconnectNumRowsAffected() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "numRowsAffected")
-	}
-}
-
-func (ptr *QSqlResult) NumRowsAffected() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QSqlResult_NumRowsAffected(ptr.Pointer())))
-	}
-	return 0
-}
-
-//export callbackQSqlResult_Size
-func callbackQSqlResult_Size(ptr unsafe.Pointer) C.int {
-	if signal := qt.GetSignal(ptr, "size"); signal != nil {
-		return C.int(int32((*(*func() int)(signal))()))
-	}
-
-	return C.int(int32(0))
-}
-
-func (ptr *QSqlResult) ConnectSize(f func() int) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "size"); signal != nil {
-			f := func() int {
-				(*(*func() int)(signal))()
-				return f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "size", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "size", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QSqlResult) DisconnectSize() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "size")
-	}
-}
-
-func (ptr *QSqlResult) Size() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QSqlResult_Size(ptr.Pointer())))
-	}
-	return 0
-}
-
-func (ptr *QSqlResult) AddBindValue(val core.QVariant_ITF, paramType QSql__ParamTypeFlag) {
-	if ptr.Pointer() != nil {
-		C.QSqlResult_AddBindValue(ptr.Pointer(), core.PointerFromQVariant(val), C.longlong(paramType))
-	}
-}
-
-//export callbackQSqlResult_BindValue2
-func callbackQSqlResult_BindValue2(ptr unsafe.Pointer, placeholder C.struct_QtSql_PackedString, val unsafe.Pointer, paramType C.longlong) {
-	if signal := qt.GetSignal(ptr, "bindValue2"); signal != nil {
-		(*(*func(string, *core.QVariant, QSql__ParamTypeFlag))(signal))(cGoUnpackString(placeholder), core.NewQVariantFromPointer(val), QSql__ParamTypeFlag(paramType))
-	} else {
-		NewQSqlResultFromPointer(ptr).BindValue2Default(cGoUnpackString(placeholder), core.NewQVariantFromPointer(val), QSql__ParamTypeFlag(paramType))
-	}
-}
-
-func (ptr *QSqlResult) ConnectBindValue2(f func(placeholder string, val *core.QVariant, paramType QSql__ParamTypeFlag)) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "bindValue2"); signal != nil {
-			f := func(placeholder string, val *core.QVariant, paramType QSql__ParamTypeFlag) {
-				(*(*func(string, *core.QVariant, QSql__ParamTypeFlag))(signal))(placeholder, val, paramType)
-				f(placeholder, val, paramType)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "bindValue2", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "bindValue2", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QSqlResult) DisconnectBindValue2() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "bindValue2")
-	}
-}
-
-func (ptr *QSqlResult) BindValue2(placeholder string, val core.QVariant_ITF, paramType QSql__ParamTypeFlag) {
-	if ptr.Pointer() != nil {
-		var placeholderC *C.char
-		if placeholder != "" {
-			placeholderC = C.CString(placeholder)
-			defer C.free(unsafe.Pointer(placeholderC))
-		}
-		C.QSqlResult_BindValue2(ptr.Pointer(), C.struct_QtSql_PackedString{data: placeholderC, len: C.longlong(len(placeholder))}, core.PointerFromQVariant(val), C.longlong(paramType))
-	}
-}
-
-func (ptr *QSqlResult) BindValue2Default(placeholder string, val core.QVariant_ITF, paramType QSql__ParamTypeFlag) {
-	if ptr.Pointer() != nil {
-		var placeholderC *C.char
-		if placeholder != "" {
-			placeholderC = C.CString(placeholder)
-			defer C.free(unsafe.Pointer(placeholderC))
-		}
-		C.QSqlResult_BindValue2Default(ptr.Pointer(), C.struct_QtSql_PackedString{data: placeholderC, len: C.longlong(len(placeholder))}, core.PointerFromQVariant(val), C.longlong(paramType))
-	}
-}
-
-//export callbackQSqlResult_BindValue
-func callbackQSqlResult_BindValue(ptr unsafe.Pointer, index C.int, val unsafe.Pointer, paramType C.longlong) {
-	if signal := qt.GetSignal(ptr, "bindValue"); signal != nil {
-		(*(*func(int, *core.QVariant, QSql__ParamTypeFlag))(signal))(int(int32(index)), core.NewQVariantFromPointer(val), QSql__ParamTypeFlag(paramType))
-	} else {
-		NewQSqlResultFromPointer(ptr).BindValueDefault(int(int32(index)), core.NewQVariantFromPointer(val), QSql__ParamTypeFlag(paramType))
-	}
-}
-
-func (ptr *QSqlResult) ConnectBindValue(f func(index int, val *core.QVariant, paramType QSql__ParamTypeFlag)) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "bindValue"); signal != nil {
-			f := func(index int, val *core.QVariant, paramType QSql__ParamTypeFlag) {
-				(*(*func(int, *core.QVariant, QSql__ParamTypeFlag))(signal))(index, val, paramType)
-				f(index, val, paramType)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "bindValue", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "bindValue", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QSqlResult) DisconnectBindValue() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "bindValue")
-	}
-}
-
-func (ptr *QSqlResult) BindValue(index int, val core.QVariant_ITF, paramType QSql__ParamTypeFlag) {
-	if ptr.Pointer() != nil {
-		C.QSqlResult_BindValue(ptr.Pointer(), C.int(int32(index)), core.PointerFromQVariant(val), C.longlong(paramType))
-	}
-}
-
-func (ptr *QSqlResult) BindValueDefault(index int, val core.QVariant_ITF, paramType QSql__ParamTypeFlag) {
-	if ptr.Pointer() != nil {
-		C.QSqlResult_BindValueDefault(ptr.Pointer(), C.int(int32(index)), core.PointerFromQVariant(val), C.longlong(paramType))
-	}
-}
-
-func (ptr *QSqlResult) Clear() {
-	if ptr.Pointer() != nil {
-		C.QSqlResult_Clear(ptr.Pointer())
-	}
-}
-
-func (ptr *QSqlResult) ResetBindCount() {
-	if ptr.Pointer() != nil {
-		C.QSqlResult_ResetBindCount(ptr.Pointer())
-	}
 }
 
 //export callbackQSqlResult_SetActive
@@ -8074,6 +8211,44 @@ func (ptr *QSqlResult) SetSelectDefault(sele bool) {
 	}
 }
 
+//export callbackQSqlResult_Size
+func callbackQSqlResult_Size(ptr unsafe.Pointer) C.int {
+	if signal := qt.GetSignal(ptr, "size"); signal != nil {
+		return C.int(int32((*(*func() int)(signal))()))
+	}
+
+	return C.int(int32(0))
+}
+
+func (ptr *QSqlResult) ConnectSize(f func() int) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "size"); signal != nil {
+			f := func() int {
+				(*(*func() int)(signal))()
+				return f()
+			}
+			qt.ConnectSignal(ptr.Pointer(), "size", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "size", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QSqlResult) DisconnectSize() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "size")
+	}
+}
+
+func (ptr *QSqlResult) Size() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QSqlResult_Size(ptr.Pointer())))
+	}
+	return 0
+}
+
 //export callbackQSqlResult_DestroyQSqlResult
 func callbackQSqlResult_DestroyQSqlResult(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "~QSqlResult"); signal != nil {
@@ -8119,306 +8294,6 @@ func (ptr *QSqlResult) DestroyQSqlResultDefault() {
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
-}
-
-func (ptr *QSqlResult) BindValueType2(placeholder string) QSql__ParamTypeFlag {
-	if ptr.Pointer() != nil {
-		var placeholderC *C.char
-		if placeholder != "" {
-			placeholderC = C.CString(placeholder)
-			defer C.free(unsafe.Pointer(placeholderC))
-		}
-		return QSql__ParamTypeFlag(C.QSqlResult_BindValueType2(ptr.Pointer(), C.struct_QtSql_PackedString{data: placeholderC, len: C.longlong(len(placeholder))}))
-	}
-	return 0
-}
-
-func (ptr *QSqlResult) BindValueType(index int) QSql__ParamTypeFlag {
-	if ptr.Pointer() != nil {
-		return QSql__ParamTypeFlag(C.QSqlResult_BindValueType(ptr.Pointer(), C.int(int32(index))))
-	}
-	return 0
-}
-
-func (ptr *QSqlResult) LastError() *QSqlError {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSqlErrorFromPointer(C.QSqlResult_LastError(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QSqlError).DestroyQSqlError)
-		return tmpValue
-	}
-	return nil
-}
-
-//export callbackQSqlResult_Record
-func callbackQSqlResult_Record(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "record"); signal != nil {
-		return PointerFromQSqlRecord((*(*func() *QSqlRecord)(signal))())
-	}
-
-	return PointerFromQSqlRecord(NewQSqlResultFromPointer(ptr).RecordDefault())
-}
-
-func (ptr *QSqlResult) ConnectRecord(f func() *QSqlRecord) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "record"); signal != nil {
-			f := func() *QSqlRecord {
-				(*(*func() *QSqlRecord)(signal))()
-				return f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "record", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "record", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QSqlResult) DisconnectRecord() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "record")
-	}
-}
-
-func (ptr *QSqlResult) Record() *QSqlRecord {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSqlRecordFromPointer(C.QSqlResult_Record(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QSqlRecord).DestroyQSqlRecord)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlResult) RecordDefault() *QSqlRecord {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSqlRecordFromPointer(C.QSqlResult_RecordDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QSqlRecord).DestroyQSqlRecord)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlResult) BindingSyntax() QSqlResult__BindingSyntax {
-	if ptr.Pointer() != nil {
-		return QSqlResult__BindingSyntax(C.QSqlResult_BindingSyntax(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QSqlResult) BoundValueName(index int) string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSqlResult_BoundValueName(ptr.Pointer(), C.int(int32(index))))
-	}
-	return ""
-}
-
-func (ptr *QSqlResult) ExecutedQuery() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSqlResult_ExecutedQuery(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QSqlResult) LastQuery() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSqlResult_LastQuery(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QSqlResult) BoundValue2(placeholder string) *core.QVariant {
-	if ptr.Pointer() != nil {
-		var placeholderC *C.char
-		if placeholder != "" {
-			placeholderC = C.CString(placeholder)
-			defer C.free(unsafe.Pointer(placeholderC))
-		}
-		tmpValue := core.NewQVariantFromPointer(C.QSqlResult_BoundValue2(ptr.Pointer(), C.struct_QtSql_PackedString{data: placeholderC, len: C.longlong(len(placeholder))}))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlResult) BoundValue(index int) *core.QVariant {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQVariantFromPointer(C.QSqlResult_BoundValue(ptr.Pointer(), C.int(int32(index))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
-}
-
-//export callbackQSqlResult_Handle
-func callbackQSqlResult_Handle(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "handle"); signal != nil {
-		return core.PointerFromQVariant((*(*func() *core.QVariant)(signal))())
-	}
-
-	return core.PointerFromQVariant(NewQSqlResultFromPointer(ptr).HandleDefault())
-}
-
-func (ptr *QSqlResult) ConnectHandle(f func() *core.QVariant) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "handle"); signal != nil {
-			f := func() *core.QVariant {
-				(*(*func() *core.QVariant)(signal))()
-				return f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "handle", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "handle", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QSqlResult) DisconnectHandle() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "handle")
-	}
-}
-
-func (ptr *QSqlResult) Handle() *core.QVariant {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQVariantFromPointer(C.QSqlResult_Handle(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlResult) HandleDefault() *core.QVariant {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQVariantFromPointer(C.QSqlResult_HandleDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
-}
-
-//export callbackQSqlResult_LastInsertId
-func callbackQSqlResult_LastInsertId(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "lastInsertId"); signal != nil {
-		return core.PointerFromQVariant((*(*func() *core.QVariant)(signal))())
-	}
-
-	return core.PointerFromQVariant(NewQSqlResultFromPointer(ptr).LastInsertIdDefault())
-}
-
-func (ptr *QSqlResult) ConnectLastInsertId(f func() *core.QVariant) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "lastInsertId"); signal != nil {
-			f := func() *core.QVariant {
-				(*(*func() *core.QVariant)(signal))()
-				return f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "lastInsertId", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "lastInsertId", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QSqlResult) DisconnectLastInsertId() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "lastInsertId")
-	}
-}
-
-func (ptr *QSqlResult) LastInsertId() *core.QVariant {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQVariantFromPointer(C.QSqlResult_LastInsertId(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlResult) LastInsertIdDefault() *core.QVariant {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQVariantFromPointer(C.QSqlResult_LastInsertIdDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlResult) BoundValues() []*core.QVariant {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtSql_PackedList) []*core.QVariant {
-			out := make([]*core.QVariant, int(l.len))
-			tmpList := NewQSqlResultFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__boundValues_atList(i)
-			}
-			return out
-		}(C.QSqlResult_BoundValues(ptr.Pointer()))
-	}
-	return make([]*core.QVariant, 0)
-}
-
-func (ptr *QSqlResult) HasOutValues() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlResult_HasOutValues(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlResult) IsActive() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlResult_IsActive(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlResult) IsForwardOnly() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlResult_IsForwardOnly(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlResult) IsSelect() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlResult_IsSelect(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlResult) IsValid() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlResult_IsValid(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlResult) Driver() *QSqlDriver {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSqlDriverFromPointer(C.QSqlResult_Driver(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlResult) At() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QSqlResult_At(ptr.Pointer())))
-	}
-	return 0
-}
-
-func (ptr *QSqlResult) BoundValueCount() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QSqlResult_BoundValueCount(ptr.Pointer())))
-	}
-	return 0
 }
 
 func (ptr *QSqlResult) __boundValues_atList(i int) *core.QVariant {
@@ -8495,290 +8370,6 @@ func NewQSqlTableModel(parent core.QObject_ITF, db QSqlDatabase_ITF) *QSqlTableM
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
-}
-
-//export callbackQSqlTableModel_DeleteRowFromTable
-func callbackQSqlTableModel_DeleteRowFromTable(ptr unsafe.Pointer, row C.int) C.char {
-	if signal := qt.GetSignal(ptr, "deleteRowFromTable"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(int) bool)(signal))(int(int32(row))))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSqlTableModelFromPointer(ptr).DeleteRowFromTableDefault(int(int32(row))))))
-}
-
-func (ptr *QSqlTableModel) ConnectDeleteRowFromTable(f func(row int) bool) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "deleteRowFromTable"); signal != nil {
-			f := func(row int) bool {
-				(*(*func(int) bool)(signal))(row)
-				return f(row)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "deleteRowFromTable", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "deleteRowFromTable", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QSqlTableModel) DisconnectDeleteRowFromTable() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "deleteRowFromTable")
-	}
-}
-
-func (ptr *QSqlTableModel) DeleteRowFromTable(row int) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlTableModel_DeleteRowFromTable(ptr.Pointer(), C.int(int32(row)))) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlTableModel) DeleteRowFromTableDefault(row int) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlTableModel_DeleteRowFromTableDefault(ptr.Pointer(), C.int(int32(row)))) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlTableModel) InsertRecord(row int, record QSqlRecord_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlTableModel_InsertRecord(ptr.Pointer(), C.int(int32(row)), PointerFromQSqlRecord(record))) != 0
-	}
-	return false
-}
-
-//export callbackQSqlTableModel_InsertRowIntoTable
-func callbackQSqlTableModel_InsertRowIntoTable(ptr unsafe.Pointer, values unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "insertRowIntoTable"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*QSqlRecord) bool)(signal))(NewQSqlRecordFromPointer(values)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSqlTableModelFromPointer(ptr).InsertRowIntoTableDefault(NewQSqlRecordFromPointer(values)))))
-}
-
-func (ptr *QSqlTableModel) ConnectInsertRowIntoTable(f func(values *QSqlRecord) bool) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "insertRowIntoTable"); signal != nil {
-			f := func(values *QSqlRecord) bool {
-				(*(*func(*QSqlRecord) bool)(signal))(values)
-				return f(values)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "insertRowIntoTable", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "insertRowIntoTable", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QSqlTableModel) DisconnectInsertRowIntoTable() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "insertRowIntoTable")
-	}
-}
-
-func (ptr *QSqlTableModel) InsertRowIntoTable(values QSqlRecord_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlTableModel_InsertRowIntoTable(ptr.Pointer(), PointerFromQSqlRecord(values))) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlTableModel) InsertRowIntoTableDefault(values QSqlRecord_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlTableModel_InsertRowIntoTableDefault(ptr.Pointer(), PointerFromQSqlRecord(values))) != 0
-	}
-	return false
-}
-
-//export callbackQSqlTableModel_Select
-func callbackQSqlTableModel_Select(ptr unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "select"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func() bool)(signal))())))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSqlTableModelFromPointer(ptr).SelectDefault())))
-}
-
-func (ptr *QSqlTableModel) ConnectSelect(f func() bool) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "select"); signal != nil {
-			f := func() bool {
-				(*(*func() bool)(signal))()
-				return f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "select", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "select", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QSqlTableModel) DisconnectSelect() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "select")
-	}
-}
-
-func (ptr *QSqlTableModel) Select() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlTableModel_Select(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlTableModel) SelectDefault() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlTableModel_SelectDefault(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-//export callbackQSqlTableModel_SelectRow
-func callbackQSqlTableModel_SelectRow(ptr unsafe.Pointer, row C.int) C.char {
-	if signal := qt.GetSignal(ptr, "selectRow"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(int) bool)(signal))(int(int32(row))))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSqlTableModelFromPointer(ptr).SelectRowDefault(int(int32(row))))))
-}
-
-func (ptr *QSqlTableModel) ConnectSelectRow(f func(row int) bool) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "selectRow"); signal != nil {
-			f := func(row int) bool {
-				(*(*func(int) bool)(signal))(row)
-				return f(row)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "selectRow", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "selectRow", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QSqlTableModel) DisconnectSelectRow() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "selectRow")
-	}
-}
-
-func (ptr *QSqlTableModel) SelectRow(row int) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlTableModel_SelectRow(ptr.Pointer(), C.int(int32(row)))) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlTableModel) SelectRowDefault(row int) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlTableModel_SelectRowDefault(ptr.Pointer(), C.int(int32(row)))) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlTableModel) SetRecord(row int, values QSqlRecord_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlTableModel_SetRecord(ptr.Pointer(), C.int(int32(row)), PointerFromQSqlRecord(values))) != 0
-	}
-	return false
-}
-
-//export callbackQSqlTableModel_SubmitAll
-func callbackQSqlTableModel_SubmitAll(ptr unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "submitAll"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func() bool)(signal))())))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSqlTableModelFromPointer(ptr).SubmitAllDefault())))
-}
-
-func (ptr *QSqlTableModel) ConnectSubmitAll(f func() bool) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "submitAll"); signal != nil {
-			f := func() bool {
-				(*(*func() bool)(signal))()
-				return f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "submitAll", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "submitAll", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QSqlTableModel) DisconnectSubmitAll() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "submitAll")
-	}
-}
-
-func (ptr *QSqlTableModel) SubmitAll() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlTableModel_SubmitAll(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlTableModel) SubmitAllDefault() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlTableModel_SubmitAllDefault(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-//export callbackQSqlTableModel_UpdateRowInTable
-func callbackQSqlTableModel_UpdateRowInTable(ptr unsafe.Pointer, row C.int, values unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "updateRowInTable"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(int, *QSqlRecord) bool)(signal))(int(int32(row)), NewQSqlRecordFromPointer(values)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSqlTableModelFromPointer(ptr).UpdateRowInTableDefault(int(int32(row)), NewQSqlRecordFromPointer(values)))))
-}
-
-func (ptr *QSqlTableModel) ConnectUpdateRowInTable(f func(row int, values *QSqlRecord) bool) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "updateRowInTable"); signal != nil {
-			f := func(row int, values *QSqlRecord) bool {
-				(*(*func(int, *QSqlRecord) bool)(signal))(row, values)
-				return f(row, values)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "updateRowInTable", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "updateRowInTable", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QSqlTableModel) DisconnectUpdateRowInTable() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "updateRowInTable")
-	}
-}
-
-func (ptr *QSqlTableModel) UpdateRowInTable(row int, values QSqlRecord_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlTableModel_UpdateRowInTable(ptr.Pointer(), C.int(int32(row)), PointerFromQSqlRecord(values))) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlTableModel) UpdateRowInTableDefault(row int, values QSqlRecord_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlTableModel_UpdateRowInTableDefault(ptr.Pointer(), C.int(int32(row)), PointerFromQSqlRecord(values))) != 0
-	}
-	return false
 }
 
 //export callbackQSqlTableModel_BeforeDelete
@@ -8899,6 +8490,216 @@ func (ptr *QSqlTableModel) BeforeUpdate(row int, record QSqlRecord_ITF) {
 	if ptr.Pointer() != nil {
 		C.QSqlTableModel_BeforeUpdate(ptr.Pointer(), C.int(int32(row)), PointerFromQSqlRecord(record))
 	}
+}
+
+func (ptr *QSqlTableModel) Database() *QSqlDatabase {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQSqlDatabaseFromPointer(C.QSqlTableModel_Database(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QSqlDatabase).DestroyQSqlDatabase)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQSqlTableModel_DeleteRowFromTable
+func callbackQSqlTableModel_DeleteRowFromTable(ptr unsafe.Pointer, row C.int) C.char {
+	if signal := qt.GetSignal(ptr, "deleteRowFromTable"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(int) bool)(signal))(int(int32(row))))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSqlTableModelFromPointer(ptr).DeleteRowFromTableDefault(int(int32(row))))))
+}
+
+func (ptr *QSqlTableModel) ConnectDeleteRowFromTable(f func(row int) bool) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "deleteRowFromTable"); signal != nil {
+			f := func(row int) bool {
+				(*(*func(int) bool)(signal))(row)
+				return f(row)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "deleteRowFromTable", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "deleteRowFromTable", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QSqlTableModel) DisconnectDeleteRowFromTable() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "deleteRowFromTable")
+	}
+}
+
+func (ptr *QSqlTableModel) DeleteRowFromTable(row int) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlTableModel_DeleteRowFromTable(ptr.Pointer(), C.int(int32(row)))) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlTableModel) DeleteRowFromTableDefault(row int) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlTableModel_DeleteRowFromTableDefault(ptr.Pointer(), C.int(int32(row)))) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlTableModel) EditStrategy() QSqlTableModel__EditStrategy {
+	if ptr.Pointer() != nil {
+		return QSqlTableModel__EditStrategy(C.QSqlTableModel_EditStrategy(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QSqlTableModel) FieldIndex(fieldName string) int {
+	if ptr.Pointer() != nil {
+		var fieldNameC *C.char
+		if fieldName != "" {
+			fieldNameC = C.CString(fieldName)
+			defer C.free(unsafe.Pointer(fieldNameC))
+		}
+		return int(int32(C.QSqlTableModel_FieldIndex(ptr.Pointer(), C.struct_QtSql_PackedString{data: fieldNameC, len: C.longlong(len(fieldName))})))
+	}
+	return 0
+}
+
+func (ptr *QSqlTableModel) Filter() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QSqlTableModel_Filter(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QSqlTableModel) InsertRecord(row int, record QSqlRecord_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlTableModel_InsertRecord(ptr.Pointer(), C.int(int32(row)), PointerFromQSqlRecord(record))) != 0
+	}
+	return false
+}
+
+//export callbackQSqlTableModel_InsertRowIntoTable
+func callbackQSqlTableModel_InsertRowIntoTable(ptr unsafe.Pointer, values unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "insertRowIntoTable"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*QSqlRecord) bool)(signal))(NewQSqlRecordFromPointer(values)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSqlTableModelFromPointer(ptr).InsertRowIntoTableDefault(NewQSqlRecordFromPointer(values)))))
+}
+
+func (ptr *QSqlTableModel) ConnectInsertRowIntoTable(f func(values *QSqlRecord) bool) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "insertRowIntoTable"); signal != nil {
+			f := func(values *QSqlRecord) bool {
+				(*(*func(*QSqlRecord) bool)(signal))(values)
+				return f(values)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "insertRowIntoTable", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "insertRowIntoTable", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QSqlTableModel) DisconnectInsertRowIntoTable() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "insertRowIntoTable")
+	}
+}
+
+func (ptr *QSqlTableModel) InsertRowIntoTable(values QSqlRecord_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlTableModel_InsertRowIntoTable(ptr.Pointer(), PointerFromQSqlRecord(values))) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlTableModel) InsertRowIntoTableDefault(values QSqlRecord_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlTableModel_InsertRowIntoTableDefault(ptr.Pointer(), PointerFromQSqlRecord(values))) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlTableModel) IsDirty(index core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlTableModel_IsDirty(ptr.Pointer(), core.PointerFromQModelIndex(index))) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlTableModel) IsDirty2() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlTableModel_IsDirty2(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+//export callbackQSqlTableModel_OrderByClause
+func callbackQSqlTableModel_OrderByClause(ptr unsafe.Pointer) C.struct_QtSql_PackedString {
+	if signal := qt.GetSignal(ptr, "orderByClause"); signal != nil {
+		tempVal := (*(*func() string)(signal))()
+		return C.struct_QtSql_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+	}
+	tempVal := NewQSqlTableModelFromPointer(ptr).OrderByClauseDefault()
+	return C.struct_QtSql_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+}
+
+func (ptr *QSqlTableModel) ConnectOrderByClause(f func() string) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "orderByClause"); signal != nil {
+			f := func() string {
+				(*(*func() string)(signal))()
+				return f()
+			}
+			qt.ConnectSignal(ptr.Pointer(), "orderByClause", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "orderByClause", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QSqlTableModel) DisconnectOrderByClause() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "orderByClause")
+	}
+}
+
+func (ptr *QSqlTableModel) OrderByClause() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QSqlTableModel_OrderByClause(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QSqlTableModel) OrderByClauseDefault() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QSqlTableModel_OrderByClauseDefault(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QSqlTableModel) PrimaryKey() *QSqlIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQSqlIndexFromPointer(C.QSqlTableModel_PrimaryKey(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QSqlIndex).DestroyQSqlIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSqlTableModel) PrimaryValues(row int) *QSqlRecord {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQSqlRecordFromPointer(C.QSqlTableModel_PrimaryValues(ptr.Pointer(), C.int(int32(row))))
+		runtime.SetFinalizer(tmpValue, (*QSqlRecord).DestroyQSqlRecord)
+		return tmpValue
+	}
+	return nil
 }
 
 //export callbackQSqlTableModel_PrimeInsert
@@ -9027,6 +8828,142 @@ func (ptr *QSqlTableModel) RevertRowDefault(row int) {
 	}
 }
 
+//export callbackQSqlTableModel_Select
+func callbackQSqlTableModel_Select(ptr unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "select"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func() bool)(signal))())))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSqlTableModelFromPointer(ptr).SelectDefault())))
+}
+
+func (ptr *QSqlTableModel) ConnectSelect(f func() bool) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "select"); signal != nil {
+			f := func() bool {
+				(*(*func() bool)(signal))()
+				return f()
+			}
+			qt.ConnectSignal(ptr.Pointer(), "select", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "select", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QSqlTableModel) DisconnectSelect() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "select")
+	}
+}
+
+func (ptr *QSqlTableModel) Select() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlTableModel_Select(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlTableModel) SelectDefault() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlTableModel_SelectDefault(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+//export callbackQSqlTableModel_SelectRow
+func callbackQSqlTableModel_SelectRow(ptr unsafe.Pointer, row C.int) C.char {
+	if signal := qt.GetSignal(ptr, "selectRow"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(int) bool)(signal))(int(int32(row))))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSqlTableModelFromPointer(ptr).SelectRowDefault(int(int32(row))))))
+}
+
+func (ptr *QSqlTableModel) ConnectSelectRow(f func(row int) bool) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "selectRow"); signal != nil {
+			f := func(row int) bool {
+				(*(*func(int) bool)(signal))(row)
+				return f(row)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "selectRow", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "selectRow", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QSqlTableModel) DisconnectSelectRow() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "selectRow")
+	}
+}
+
+func (ptr *QSqlTableModel) SelectRow(row int) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlTableModel_SelectRow(ptr.Pointer(), C.int(int32(row)))) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlTableModel) SelectRowDefault(row int) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlTableModel_SelectRowDefault(ptr.Pointer(), C.int(int32(row)))) != 0
+	}
+	return false
+}
+
+//export callbackQSqlTableModel_SelectStatement
+func callbackQSqlTableModel_SelectStatement(ptr unsafe.Pointer) C.struct_QtSql_PackedString {
+	if signal := qt.GetSignal(ptr, "selectStatement"); signal != nil {
+		tempVal := (*(*func() string)(signal))()
+		return C.struct_QtSql_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+	}
+	tempVal := NewQSqlTableModelFromPointer(ptr).SelectStatementDefault()
+	return C.struct_QtSql_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+}
+
+func (ptr *QSqlTableModel) ConnectSelectStatement(f func() string) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "selectStatement"); signal != nil {
+			f := func() string {
+				(*(*func() string)(signal))()
+				return f()
+			}
+			qt.ConnectSignal(ptr.Pointer(), "selectStatement", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "selectStatement", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QSqlTableModel) DisconnectSelectStatement() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "selectStatement")
+	}
+}
+
+func (ptr *QSqlTableModel) SelectStatement() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QSqlTableModel_SelectStatement(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QSqlTableModel) SelectStatementDefault() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QSqlTableModel_SelectStatementDefault(ptr.Pointer()))
+	}
+	return ""
+}
+
 //export callbackQSqlTableModel_SetEditStrategy
 func callbackQSqlTableModel_SetEditStrategy(ptr unsafe.Pointer, strategy C.longlong) {
 	if signal := qt.GetSignal(ptr, "setEditStrategy"); signal != nil {
@@ -9129,6 +9066,13 @@ func (ptr *QSqlTableModel) SetPrimaryKey(key QSqlIndex_ITF) {
 	}
 }
 
+func (ptr *QSqlTableModel) SetRecord(row int, values QSqlRecord_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlTableModel_SetRecord(ptr.Pointer(), C.int(int32(row)), PointerFromQSqlRecord(values))) != 0
+	}
+	return false
+}
+
 //export callbackQSqlTableModel_SetSort
 func callbackQSqlTableModel_SetSort(ptr unsafe.Pointer, column C.int, order C.longlong) {
 	if signal := qt.GetSignal(ptr, "setSort"); signal != nil {
@@ -9225,6 +9169,103 @@ func (ptr *QSqlTableModel) SetTableDefault(tableName string) {
 	}
 }
 
+//export callbackQSqlTableModel_SubmitAll
+func callbackQSqlTableModel_SubmitAll(ptr unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "submitAll"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func() bool)(signal))())))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSqlTableModelFromPointer(ptr).SubmitAllDefault())))
+}
+
+func (ptr *QSqlTableModel) ConnectSubmitAll(f func() bool) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "submitAll"); signal != nil {
+			f := func() bool {
+				(*(*func() bool)(signal))()
+				return f()
+			}
+			qt.ConnectSignal(ptr.Pointer(), "submitAll", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "submitAll", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QSqlTableModel) DisconnectSubmitAll() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "submitAll")
+	}
+}
+
+func (ptr *QSqlTableModel) SubmitAll() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlTableModel_SubmitAll(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlTableModel) SubmitAllDefault() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlTableModel_SubmitAllDefault(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlTableModel) TableName() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QSqlTableModel_TableName(ptr.Pointer()))
+	}
+	return ""
+}
+
+//export callbackQSqlTableModel_UpdateRowInTable
+func callbackQSqlTableModel_UpdateRowInTable(ptr unsafe.Pointer, row C.int, values unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "updateRowInTable"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(int, *QSqlRecord) bool)(signal))(int(int32(row)), NewQSqlRecordFromPointer(values)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSqlTableModelFromPointer(ptr).UpdateRowInTableDefault(int(int32(row)), NewQSqlRecordFromPointer(values)))))
+}
+
+func (ptr *QSqlTableModel) ConnectUpdateRowInTable(f func(row int, values *QSqlRecord) bool) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "updateRowInTable"); signal != nil {
+			f := func(row int, values *QSqlRecord) bool {
+				(*(*func(int, *QSqlRecord) bool)(signal))(row, values)
+				return f(row, values)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "updateRowInTable", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "updateRowInTable", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QSqlTableModel) DisconnectUpdateRowInTable() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "updateRowInTable")
+	}
+}
+
+func (ptr *QSqlTableModel) UpdateRowInTable(row int, values QSqlRecord_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlTableModel_UpdateRowInTable(ptr.Pointer(), C.int(int32(row)), PointerFromQSqlRecord(values))) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlTableModel) UpdateRowInTableDefault(row int, values QSqlRecord_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSqlTableModel_UpdateRowInTableDefault(ptr.Pointer(), C.int(int32(row)), PointerFromQSqlRecord(values))) != 0
+	}
+	return false
+}
+
 //export callbackQSqlTableModel_DestroyQSqlTableModel
 func callbackQSqlTableModel_DestroyQSqlTableModel(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "~QSqlTableModel"); signal != nil {
@@ -9270,170 +9311,4 @@ func (ptr *QSqlTableModel) DestroyQSqlTableModelDefault() {
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
-}
-
-func (ptr *QSqlTableModel) Database() *QSqlDatabase {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSqlDatabaseFromPointer(C.QSqlTableModel_Database(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QSqlDatabase).DestroyQSqlDatabase)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlTableModel) PrimaryKey() *QSqlIndex {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSqlIndexFromPointer(C.QSqlTableModel_PrimaryKey(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QSqlIndex).DestroyQSqlIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlTableModel) PrimaryValues(row int) *QSqlRecord {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSqlRecordFromPointer(C.QSqlTableModel_PrimaryValues(ptr.Pointer(), C.int(int32(row))))
-		runtime.SetFinalizer(tmpValue, (*QSqlRecord).DestroyQSqlRecord)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlTableModel) EditStrategy() QSqlTableModel__EditStrategy {
-	if ptr.Pointer() != nil {
-		return QSqlTableModel__EditStrategy(C.QSqlTableModel_EditStrategy(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QSqlTableModel) Filter() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSqlTableModel_Filter(ptr.Pointer()))
-	}
-	return ""
-}
-
-//export callbackQSqlTableModel_OrderByClause
-func callbackQSqlTableModel_OrderByClause(ptr unsafe.Pointer) C.struct_QtSql_PackedString {
-	if signal := qt.GetSignal(ptr, "orderByClause"); signal != nil {
-		tempVal := (*(*func() string)(signal))()
-		return C.struct_QtSql_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
-	}
-	tempVal := NewQSqlTableModelFromPointer(ptr).OrderByClauseDefault()
-	return C.struct_QtSql_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
-}
-
-func (ptr *QSqlTableModel) ConnectOrderByClause(f func() string) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "orderByClause"); signal != nil {
-			f := func() string {
-				(*(*func() string)(signal))()
-				return f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "orderByClause", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "orderByClause", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QSqlTableModel) DisconnectOrderByClause() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "orderByClause")
-	}
-}
-
-func (ptr *QSqlTableModel) OrderByClause() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSqlTableModel_OrderByClause(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QSqlTableModel) OrderByClauseDefault() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSqlTableModel_OrderByClauseDefault(ptr.Pointer()))
-	}
-	return ""
-}
-
-//export callbackQSqlTableModel_SelectStatement
-func callbackQSqlTableModel_SelectStatement(ptr unsafe.Pointer) C.struct_QtSql_PackedString {
-	if signal := qt.GetSignal(ptr, "selectStatement"); signal != nil {
-		tempVal := (*(*func() string)(signal))()
-		return C.struct_QtSql_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
-	}
-	tempVal := NewQSqlTableModelFromPointer(ptr).SelectStatementDefault()
-	return C.struct_QtSql_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
-}
-
-func (ptr *QSqlTableModel) ConnectSelectStatement(f func() string) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "selectStatement"); signal != nil {
-			f := func() string {
-				(*(*func() string)(signal))()
-				return f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "selectStatement", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "selectStatement", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QSqlTableModel) DisconnectSelectStatement() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "selectStatement")
-	}
-}
-
-func (ptr *QSqlTableModel) SelectStatement() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSqlTableModel_SelectStatement(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QSqlTableModel) SelectStatementDefault() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSqlTableModel_SelectStatementDefault(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QSqlTableModel) TableName() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSqlTableModel_TableName(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QSqlTableModel) IsDirty2() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlTableModel_IsDirty2(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlTableModel) IsDirty(index core.QModelIndex_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSqlTableModel_IsDirty(ptr.Pointer(), core.PointerFromQModelIndex(index))) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlTableModel) FieldIndex(fieldName string) int {
-	if ptr.Pointer() != nil {
-		var fieldNameC *C.char
-		if fieldName != "" {
-			fieldNameC = C.CString(fieldName)
-			defer C.free(unsafe.Pointer(fieldNameC))
-		}
-		return int(int32(C.QSqlTableModel_FieldIndex(ptr.Pointer(), C.struct_QtSql_PackedString{data: fieldNameC, len: C.longlong(len(fieldName))})))
-	}
-	return 0
 }

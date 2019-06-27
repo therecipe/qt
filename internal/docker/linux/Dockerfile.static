@@ -11,7 +11,7 @@ RUN /usr/local/go/bin/go get -tags=no_env github.com/therecipe/qt/cmd/...
 
 FROM therecipe/qt:linux_static_base as fcitx
 
-ENV CMAKE_PREFIX_PATH /opt/Qt/5.12.0/gcc_64/lib/cmake/Qt5/
+ENV CMAKE_PREFIX_PATH /opt/Qt/5.13.0/gcc_64/lib/cmake/Qt5/
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install build-essential libglib2.0-dev libglu1-mesa-dev \
 	&& apt-get --no-install-recommends -qq -y install ca-certificates cmake git libxkbcommon-dev
@@ -32,7 +32,7 @@ ENV USER user
 ENV HOME /home/$USER
 ENV GOPATH $HOME/work
 ENV PATH /usr/local/go/bin:$PATH
-ENV QT_API 5.12.0
+ENV QT_API 5.13.0
 ENV QT_DIR /opt/Qt
 ENV QT_DOCKER true
 ENV QT_STATIC true
@@ -41,8 +41,8 @@ ENV QT_STATIC true
 COPY --from=base /usr/local/go /usr/local/go
 COPY --from=base $GOPATH/bin $GOPATH/bin
 COPY --from=base $GOPATH/src/github.com/therecipe/qt $GOPATH/src/github.com/therecipe/qt
-COPY --from=therecipe/qt:linux_static_base /opt/Qt/5.12.0 /opt/Qt/5.12.0
-COPY --from=fcitx /fcitx-qt5/platforminputcontext/libfcitxplatforminputcontextplugin.a /opt/Qt/5.12.0/gcc_64/plugins/platforminputcontexts/libfcitxplatforminputcontextplugin.a
+COPY --from=therecipe/qt:linux_static_base /opt/Qt/5.13.0 /opt/Qt/5.13.0
+COPY --from=fcitx /fcitx-qt5/platforminputcontext/libfcitxplatforminputcontextplugin.a /opt/Qt/5.13.0/gcc_64/plugins/platforminputcontexts/libfcitxplatforminputcontextplugin.a
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install build-essential libglib2.0-dev libglu1-mesa-dev libpulse-dev \
 	&& apt-get --no-install-recommends -qq -y install fontconfig libasound2 libegl1-mesa libnss3 libpci3 libxcomposite1 libxcursor1 libxi6 libxrandr2 libxtst6 && apt-get -qq clean

@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
 	"github.com/therecipe/qt/widgets"
 )
@@ -31,7 +32,7 @@ func newColorPicker(n string) *widgets.QPushButton {
 
 	stdcolor := gui.NewQColor6(getCurrentColorFor(n))
 
-	pixmap := gui.NewQPixmap3(36, 36)
+	pixmap := gui.NewQPixmap2(core.NewQSize2(36, 36))
 	pixmap.Fill(stdcolor)
 
 	button := widgets.NewQPushButton(nil)
@@ -46,7 +47,7 @@ func newColorPicker(n string) *widgets.QPushButton {
 	})
 
 	dialog.ConnectCurrentColorChanged(func(c *gui.QColor) {
-		pixmap := gui.NewQPixmap3(36, 36)
+		pixmap := gui.NewQPixmap2(core.NewQSize2(36, 36))
 		pixmap.Fill(c)
 		button.SetIcon(gui.NewQIcon2(pixmap))
 

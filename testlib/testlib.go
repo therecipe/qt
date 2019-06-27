@@ -77,7 +77,6 @@ func NewQAbstractItemModelTesterFromPointer(ptr unsafe.Pointer) (n *QAbstractIte
 func (ptr *QAbstractItemModelTester) DestroyQAbstractItemModelTester() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(ptr.Pointer(), "")
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -93,40 +92,16 @@ const (
 	QAbstractItemModelTester__Fatal   QAbstractItemModelTester__FailureReportingMode = QAbstractItemModelTester__FailureReportingMode(2)
 )
 
-func NewQAbstractItemModelTester2(model core.QAbstractItemModel_ITF, mode QAbstractItemModelTester__FailureReportingMode, parent core.QObject_ITF) *QAbstractItemModelTester {
-	return NewQAbstractItemModelTesterFromPointer(C.QAbstractItemModelTester_NewQAbstractItemModelTester2(core.PointerFromQAbstractItemModel(model), C.longlong(mode), core.PointerFromQObject(parent)))
-}
-
 func NewQAbstractItemModelTester(model core.QAbstractItemModel_ITF, parent core.QObject_ITF) *QAbstractItemModelTester {
-	return NewQAbstractItemModelTesterFromPointer(C.QAbstractItemModelTester_NewQAbstractItemModelTester(core.PointerFromQAbstractItemModel(model), core.PointerFromQObject(parent)))
+	tmpValue := NewQAbstractItemModelTesterFromPointer(C.QAbstractItemModelTester_NewQAbstractItemModelTester(core.PointerFromQAbstractItemModel(model), core.PointerFromQObject(parent)))
+	runtime.SetFinalizer(tmpValue, (*QAbstractItemModelTester).DestroyQAbstractItemModelTester)
+	return tmpValue
 }
 
-func QAbstractItemModelTester_Tr(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QAbstractItemModelTester_QAbstractItemModelTester_Tr(sC, cC, C.int(int32(n))))
-}
-
-func (ptr *QAbstractItemModelTester) Tr(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QAbstractItemModelTester_QAbstractItemModelTester_Tr(sC, cC, C.int(int32(n))))
+func NewQAbstractItemModelTester2(model core.QAbstractItemModel_ITF, mode QAbstractItemModelTester__FailureReportingMode, parent core.QObject_ITF) *QAbstractItemModelTester {
+	tmpValue := NewQAbstractItemModelTesterFromPointer(C.QAbstractItemModelTester_NewQAbstractItemModelTester2(core.PointerFromQAbstractItemModel(model), C.longlong(mode), core.PointerFromQObject(parent)))
+	runtime.SetFinalizer(tmpValue, (*QAbstractItemModelTester).DestroyQAbstractItemModelTester)
+	return tmpValue
 }
 
 func (ptr *QAbstractItemModelTester) Model() *core.QAbstractItemModel {
@@ -140,49 +115,50 @@ func (ptr *QAbstractItemModelTester) Model() *core.QAbstractItemModel {
 	return nil
 }
 
-//export callbackQAbstractItemModelTester_MetaObject
-func callbackQAbstractItemModelTester_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQAbstractItemModelTesterFromPointer(ptr).MetaObjectDefault())
+type QEventSizeOfChecker struct {
+	ptr unsafe.Pointer
 }
 
-func (ptr *QAbstractItemModelTester) ConnectMetaObject(f func() *core.QMetaObject) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "metaObject"); signal != nil {
-			f := func() *core.QMetaObject {
-				(*(*func() *core.QMetaObject)(signal))()
-				return f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "metaObject", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "metaObject", unsafe.Pointer(&f))
-		}
-	}
+type QEventSizeOfChecker_ITF interface {
+	QEventSizeOfChecker_PTR() *QEventSizeOfChecker
 }
 
-func (ptr *QAbstractItemModelTester) DisconnectMetaObject() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "metaObject")
-	}
+func (ptr *QEventSizeOfChecker) QEventSizeOfChecker_PTR() *QEventSizeOfChecker {
+	return ptr
 }
 
-func (ptr *QAbstractItemModelTester) MetaObject() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QAbstractItemModelTester_MetaObject(ptr.Pointer()))
+func (ptr *QEventSizeOfChecker) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (ptr *QAbstractItemModelTester) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QAbstractItemModelTester_MetaObjectDefault(ptr.Pointer()))
+func (ptr *QEventSizeOfChecker) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQEventSizeOfChecker(ptr QEventSizeOfChecker_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QEventSizeOfChecker_PTR().Pointer()
 	}
 	return nil
+}
+
+func NewQEventSizeOfCheckerFromPointer(ptr unsafe.Pointer) (n *QEventSizeOfChecker) {
+	n = new(QEventSizeOfChecker)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QEventSizeOfChecker) DestroyQEventSizeOfChecker() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
 }
 
 type QSignalSpy struct {
@@ -236,9 +212,9 @@ func NewQSignalSpy(object core.QObject_ITF, sign string) *QSignalSpy {
 	return tmpValue
 }
 
-func (ptr *QSignalSpy) Wait(timeout int) bool {
+func (ptr *QSignalSpy) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return int8(C.QSignalSpy_Wait(ptr.Pointer(), C.int(int32(timeout)))) != 0
+		return int8(C.QSignalSpy_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -252,9 +228,9 @@ func (ptr *QSignalSpy) Signal() *core.QByteArray {
 	return nil
 }
 
-func (ptr *QSignalSpy) IsValid() bool {
+func (ptr *QSignalSpy) Wait(timeout int) bool {
 	if ptr.Pointer() != nil {
-		return int8(C.QSignalSpy_IsValid(ptr.Pointer())) != 0
+		return int8(C.QSignalSpy_Wait(ptr.Pointer(), C.int(int32(timeout)))) != 0
 	}
 	return false
 }
@@ -293,6 +269,27 @@ func (ptr *QSignalSpy) __setArgs__newList() unsafe.Pointer {
 	return C.QSignalSpy___setArgs__newList(ptr.Pointer())
 }
 
+func (ptr *QSignalSpy) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QSignalSpy___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSignalSpy) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSignalSpy___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QSignalSpy) __children_newList() unsafe.Pointer {
+	return C.QSignalSpy___children_newList(ptr.Pointer())
+}
+
 func (ptr *QSignalSpy) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QSignalSpy___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
@@ -310,48 +307,6 @@ func (ptr *QSignalSpy) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
 
 func (ptr *QSignalSpy) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QSignalSpy___dynamicPropertyNames_newList(ptr.Pointer())
-}
-
-func (ptr *QSignalSpy) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSignalSpy___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSignalSpy) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSignalSpy___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QSignalSpy) __findChildren_newList2() unsafe.Pointer {
-	return C.QSignalSpy___findChildren_newList2(ptr.Pointer())
-}
-
-func (ptr *QSignalSpy) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSignalSpy___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSignalSpy) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSignalSpy___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QSignalSpy) __findChildren_newList3() unsafe.Pointer {
-	return C.QSignalSpy___findChildren_newList3(ptr.Pointer())
 }
 
 func (ptr *QSignalSpy) __findChildren_atList(i int) *core.QObject {
@@ -375,9 +330,9 @@ func (ptr *QSignalSpy) __findChildren_newList() unsafe.Pointer {
 	return C.QSignalSpy___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QSignalSpy) __children_atList(i int) *core.QObject {
+func (ptr *QSignalSpy) __findChildren_atList3(i int) *core.QObject {
 	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSignalSpy___children_atList(ptr.Pointer(), C.int(int32(i))))
+		tmpValue := core.NewQObjectFromPointer(C.QSignalSpy___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -386,46 +341,35 @@ func (ptr *QSignalSpy) __children_atList(i int) *core.QObject {
 	return nil
 }
 
-func (ptr *QSignalSpy) __children_setList(i core.QObject_ITF) {
+func (ptr *QSignalSpy) __findChildren_setList3(i core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		C.QSignalSpy___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+		C.QSignalSpy___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *QSignalSpy) __children_newList() unsafe.Pointer {
-	return C.QSignalSpy___children_newList(ptr.Pointer())
+func (ptr *QSignalSpy) __findChildren_newList3() unsafe.Pointer {
+	return C.QSignalSpy___findChildren_newList3(ptr.Pointer())
 }
 
-//export callbackQSignalSpy_Event
-func callbackQSignalSpy_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSignalSpyFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
-}
-
-func (ptr *QSignalSpy) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QSignalSpy) __qFindChildren_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
-		return int8(C.QSignalSpy_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+		tmpValue := core.NewQObjectFromPointer(C.QSignalSpy___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return false
+	return nil
 }
 
-//export callbackQSignalSpy_EventFilter
-func callbackQSignalSpy_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSignalSpyFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QSignalSpy) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+func (ptr *QSignalSpy) __qFindChildren_setList2(i core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		return int8(C.QSignalSpy_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+		C.QSignalSpy___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
 	}
-	return false
+}
+
+func (ptr *QSignalSpy) __qFindChildren_newList2() unsafe.Pointer {
+	return C.QSignalSpy___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQSignalSpy_ChildEvent
@@ -512,6 +456,38 @@ func (ptr *QSignalSpy) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 	}
 }
 
+//export callbackQSignalSpy_Event
+func callbackQSignalSpy_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSignalSpyFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QSignalSpy) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSignalSpy_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+	}
+	return false
+}
+
+//export callbackQSignalSpy_EventFilter
+func callbackQSignalSpy_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSignalSpyFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QSignalSpy) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QSignalSpy_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+	}
+	return false
+}
+
 //export callbackQSignalSpy_ObjectNameChanged
 func callbackQSignalSpy_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtTestLib_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -535,20 +511,345 @@ func (ptr *QSignalSpy) TimerEventDefault(event core.QTimerEvent_ITF) {
 	}
 }
 
-//export callbackQSignalSpy_MetaObject
-func callbackQSignalSpy_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQSignalSpyFromPointer(ptr).MetaObjectDefault())
+type QSpontaneKeyEvent struct {
+	ptr unsafe.Pointer
 }
 
-func (ptr *QSignalSpy) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QSignalSpy_MetaObjectDefault(ptr.Pointer()))
+type QSpontaneKeyEvent_ITF interface {
+	QSpontaneKeyEvent_PTR() *QSpontaneKeyEvent
+}
+
+func (ptr *QSpontaneKeyEvent) QSpontaneKeyEvent_PTR() *QSpontaneKeyEvent {
+	return ptr
+}
+
+func (ptr *QSpontaneKeyEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
+}
+
+func (ptr *QSpontaneKeyEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQSpontaneKeyEvent(ptr QSpontaneKeyEvent_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSpontaneKeyEvent_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQSpontaneKeyEventFromPointer(ptr unsafe.Pointer) (n *QSpontaneKeyEvent) {
+	n = new(QSpontaneKeyEvent)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QSpontaneKeyEvent) DestroyQSpontaneKeyEvent() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+type QTest struct {
+	ptr unsafe.Pointer
+}
+
+type QTest_ITF interface {
+	QTest_PTR() *QTest
+}
+
+func (ptr *QTest) QTest_PTR() *QTest {
+	return ptr
+}
+
+func (ptr *QTest) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QTest) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQTest(ptr QTest_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QTest_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQTestFromPointer(ptr unsafe.Pointer) (n *QTest) {
+	n = new(QTest)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QTest) DestroyQTest() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+//go:generate stringer -type=QTest__TestFailMode
+//QTest::TestFailMode
+type QTest__TestFailMode int64
+
+const (
+	QTest__Abort    QTest__TestFailMode = QTest__TestFailMode(1)
+	QTest__Continue QTest__TestFailMode = QTest__TestFailMode(2)
+)
+
+//go:generate stringer -type=QTest__QBenchmarkMetric
+//QTest::QBenchmarkMetric
+type QTest__QBenchmarkMetric int64
+
+const (
+	QTest__FramesPerSecond      QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(0)
+	QTest__BitsPerSecond        QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(1)
+	QTest__BytesPerSecond       QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(2)
+	QTest__WalltimeMilliseconds QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(3)
+	QTest__CPUTicks             QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(4)
+	QTest__InstructionReads     QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(5)
+	QTest__Events               QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(6)
+	QTest__WalltimeNanoseconds  QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(7)
+	QTest__BytesAllocated       QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(8)
+	QTest__CPUMigrations        QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(9)
+	QTest__CPUCycles            QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(10)
+	QTest__BusCycles            QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(11)
+	QTest__StalledCycles        QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(12)
+	QTest__Instructions         QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(13)
+	QTest__BranchInstructions   QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(14)
+	QTest__BranchMisses         QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(15)
+	QTest__CacheReferences      QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(16)
+	QTest__CacheReads           QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(17)
+	QTest__CacheWrites          QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(18)
+	QTest__CachePrefetches      QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(19)
+	QTest__CacheMisses          QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(20)
+	QTest__CacheReadMisses      QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(21)
+	QTest__CacheWriteMisses     QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(22)
+	QTest__CachePrefetchMisses  QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(23)
+	QTest__ContextSwitches      QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(24)
+	QTest__PageFaults           QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(25)
+	QTest__MinorPageFaults      QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(26)
+	QTest__MajorPageFaults      QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(27)
+	QTest__AlignmentFaults      QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(28)
+	QTest__EmulationFaults      QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(29)
+	QTest__RefCPUCycles         QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(30)
+)
+
+//go:generate stringer -type=QTest__KeyAction
+//QTest::KeyAction
+type QTest__KeyAction int64
+
+const (
+	QTest__Press    QTest__KeyAction = QTest__KeyAction(0)
+	QTest__Release  QTest__KeyAction = QTest__KeyAction(1)
+	QTest__Click    QTest__KeyAction = QTest__KeyAction(2)
+	QTest__Shortcut QTest__KeyAction = QTest__KeyAction(3)
+)
+
+//go:generate stringer -type=QTest__MouseAction
+//QTest::MouseAction
+type QTest__MouseAction int64
+
+const (
+	QTest__MousePress   QTest__MouseAction = QTest__MouseAction(0)
+	QTest__MouseRelease QTest__MouseAction = QTest__MouseAction(1)
+	QTest__MouseClick   QTest__MouseAction = QTest__MouseAction(2)
+	QTest__MouseDClick  QTest__MouseAction = QTest__MouseAction(3)
+	QTest__MouseMove    QTest__MouseAction = QTest__MouseAction(4)
+)
+
+//go:generate stringer -type=QTest__AttributeIndex
+//QTest::AttributeIndex
+type QTest__AttributeIndex int64
+
+const (
+	QTest__AI_Undefined     QTest__AttributeIndex = QTest__AttributeIndex(-1)
+	QTest__AI_Name          QTest__AttributeIndex = QTest__AttributeIndex(0)
+	QTest__AI_Result        QTest__AttributeIndex = QTest__AttributeIndex(1)
+	QTest__AI_Tests         QTest__AttributeIndex = QTest__AttributeIndex(2)
+	QTest__AI_Failures      QTest__AttributeIndex = QTest__AttributeIndex(3)
+	QTest__AI_Errors        QTest__AttributeIndex = QTest__AttributeIndex(4)
+	QTest__AI_Type          QTest__AttributeIndex = QTest__AttributeIndex(5)
+	QTest__AI_Description   QTest__AttributeIndex = QTest__AttributeIndex(6)
+	QTest__AI_PropertyValue QTest__AttributeIndex = QTest__AttributeIndex(7)
+	QTest__AI_QTestVersion  QTest__AttributeIndex = QTest__AttributeIndex(8)
+	QTest__AI_QtVersion     QTest__AttributeIndex = QTest__AttributeIndex(9)
+	QTest__AI_File          QTest__AttributeIndex = QTest__AttributeIndex(10)
+	QTest__AI_Line          QTest__AttributeIndex = QTest__AttributeIndex(11)
+	QTest__AI_Metric        QTest__AttributeIndex = QTest__AttributeIndex(12)
+	QTest__AI_Tag           QTest__AttributeIndex = QTest__AttributeIndex(13)
+	QTest__AI_Value         QTest__AttributeIndex = QTest__AttributeIndex(14)
+	QTest__AI_Iterations    QTest__AttributeIndex = QTest__AttributeIndex(15)
+)
+
+//go:generate stringer -type=QTest__LogElementType
+//QTest::LogElementType
+type QTest__LogElementType int64
+
+const (
+	QTest__LET_Undefined   QTest__LogElementType = QTest__LogElementType(-1)
+	QTest__LET_Property    QTest__LogElementType = QTest__LogElementType(0)
+	QTest__LET_Properties  QTest__LogElementType = QTest__LogElementType(1)
+	QTest__LET_Failure     QTest__LogElementType = QTest__LogElementType(2)
+	QTest__LET_Error       QTest__LogElementType = QTest__LogElementType(3)
+	QTest__LET_TestCase    QTest__LogElementType = QTest__LogElementType(4)
+	QTest__LET_TestSuite   QTest__LogElementType = QTest__LogElementType(5)
+	QTest__LET_Benchmark   QTest__LogElementType = QTest__LogElementType(6)
+	QTest__LET_SystemError QTest__LogElementType = QTest__LogElementType(7)
+)
+
+type QTestData struct {
+	ptr unsafe.Pointer
+}
+
+type QTestData_ITF interface {
+	QTestData_PTR() *QTestData
+}
+
+func (ptr *QTestData) QTestData_PTR() *QTestData {
+	return ptr
+}
+
+func (ptr *QTestData) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QTestData) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQTestData(ptr QTestData_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QTestData_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQTestDataFromPointer(ptr unsafe.Pointer) (n *QTestData) {
+	n = new(QTestData)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QTestData) DestroyQTestData() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+type QTestDelayEvent struct {
+	QTestEvent
+}
+
+type QTestDelayEvent_ITF interface {
+	QTestEvent_ITF
+	QTestDelayEvent_PTR() *QTestDelayEvent
+}
+
+func (ptr *QTestDelayEvent) QTestDelayEvent_PTR() *QTestDelayEvent {
+	return ptr
+}
+
+func (ptr *QTestDelayEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QTestEvent_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QTestDelayEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QTestEvent_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQTestDelayEvent(ptr QTestDelayEvent_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QTestDelayEvent_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQTestDelayEventFromPointer(ptr unsafe.Pointer) (n *QTestDelayEvent) {
+	n = new(QTestDelayEvent)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QTestDelayEvent) DestroyQTestDelayEvent() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+type QTestEvent struct {
+	ptr unsafe.Pointer
+}
+
+type QTestEvent_ITF interface {
+	QTestEvent_PTR() *QTestEvent
+}
+
+func (ptr *QTestEvent) QTestEvent_PTR() *QTestEvent {
+	return ptr
+}
+
+func (ptr *QTestEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QTestEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQTestEvent(ptr QTestEvent_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QTestEvent_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQTestEventFromPointer(ptr unsafe.Pointer) (n *QTestEvent) {
+	n = new(QTestEvent)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QTestEvent) DestroyQTestEvent() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
 }
 
 type QTestEventList struct {
@@ -713,6 +1014,193 @@ func (ptr *QTestEventList) Simulate(w widgets.QWidget_ITF) {
 func (ptr *QTestEventList) DestroyQTestEventList() {
 	if ptr.Pointer() != nil {
 		C.QTestEventList_DestroyQTestEventList(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+type QTestEventLoop struct {
+	ptr unsafe.Pointer
+}
+
+type QTestEventLoop_ITF interface {
+	QTestEventLoop_PTR() *QTestEventLoop
+}
+
+func (ptr *QTestEventLoop) QTestEventLoop_PTR() *QTestEventLoop {
+	return ptr
+}
+
+func (ptr *QTestEventLoop) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QTestEventLoop) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQTestEventLoop(ptr QTestEventLoop_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QTestEventLoop_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQTestEventLoopFromPointer(ptr unsafe.Pointer) (n *QTestEventLoop) {
+	n = new(QTestEventLoop)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QTestEventLoop) DestroyQTestEventLoop() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+type QTestKeyClicksEvent struct {
+	QTestEvent
+}
+
+type QTestKeyClicksEvent_ITF interface {
+	QTestEvent_ITF
+	QTestKeyClicksEvent_PTR() *QTestKeyClicksEvent
+}
+
+func (ptr *QTestKeyClicksEvent) QTestKeyClicksEvent_PTR() *QTestKeyClicksEvent {
+	return ptr
+}
+
+func (ptr *QTestKeyClicksEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QTestEvent_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QTestKeyClicksEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QTestEvent_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQTestKeyClicksEvent(ptr QTestKeyClicksEvent_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QTestKeyClicksEvent_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQTestKeyClicksEventFromPointer(ptr unsafe.Pointer) (n *QTestKeyClicksEvent) {
+	n = new(QTestKeyClicksEvent)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QTestKeyClicksEvent) DestroyQTestKeyClicksEvent() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+type QTestKeyEvent struct {
+	QTestEvent
+}
+
+type QTestKeyEvent_ITF interface {
+	QTestEvent_ITF
+	QTestKeyEvent_PTR() *QTestKeyEvent
+}
+
+func (ptr *QTestKeyEvent) QTestKeyEvent_PTR() *QTestKeyEvent {
+	return ptr
+}
+
+func (ptr *QTestKeyEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QTestEvent_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QTestKeyEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QTestEvent_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQTestKeyEvent(ptr QTestKeyEvent_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QTestKeyEvent_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQTestKeyEventFromPointer(ptr unsafe.Pointer) (n *QTestKeyEvent) {
+	n = new(QTestKeyEvent)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QTestKeyEvent) DestroyQTestKeyEvent() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+type QTestMouseEvent struct {
+	QTestEvent
+}
+
+type QTestMouseEvent_ITF interface {
+	QTestEvent_ITF
+	QTestMouseEvent_PTR() *QTestMouseEvent
+}
+
+func (ptr *QTestMouseEvent) QTestMouseEvent_PTR() *QTestMouseEvent {
+	return ptr
+}
+
+func (ptr *QTestMouseEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QTestEvent_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QTestMouseEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QTestEvent_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQTestMouseEvent(ptr QTestMouseEvent_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QTestMouseEvent_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQTestMouseEventFromPointer(ptr unsafe.Pointer) (n *QTestMouseEvent) {
+	n = new(QTestMouseEvent)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QTestMouseEvent) DestroyQTestMouseEvent() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}

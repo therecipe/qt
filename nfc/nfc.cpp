@@ -20,9 +20,9 @@
 #include <QMediaPlaylist>
 #include <QMediaRecorder>
 #include <QMetaMethod>
-#include <QMetaObject>
 #include <QNdefFilter>
 #include <QNdefMessage>
+#include <QNdefNfcIconRecord>
 #include <QNdefNfcSmartPosterRecord>
 #include <QNdefNfcTextRecord>
 #include <QNdefNfcUriRecord>
@@ -38,6 +38,7 @@
 #include <QQmlNdefRecord>
 #include <QQuickItem>
 #include <QRadioData>
+#include <QRemoteObjectPendingCallWatcher>
 #include <QString>
 #include <QTimerEvent>
 #include <QUrl>
@@ -64,16 +65,6 @@ void QNdefFilter_Clear(void* ptr)
 	static_cast<QNdefFilter*>(ptr)->clear();
 }
 
-void QNdefFilter_SetOrderMatch(void* ptr, char on)
-{
-	static_cast<QNdefFilter*>(ptr)->setOrderMatch(on != 0);
-}
-
-void QNdefFilter_DestroyQNdefFilter(void* ptr)
-{
-	static_cast<QNdefFilter*>(ptr)->~QNdefFilter();
-}
-
 char QNdefFilter_OrderMatch(void* ptr)
 {
 	return static_cast<QNdefFilter*>(ptr)->orderMatch();
@@ -84,9 +75,14 @@ int QNdefFilter_RecordCount(void* ptr)
 	return static_cast<QNdefFilter*>(ptr)->recordCount();
 }
 
-void* QNdefMessage_QNdefMessage_FromByteArray(void* message)
+void QNdefFilter_SetOrderMatch(void* ptr, char on)
 {
-	return new QNdefMessage(QNdefMessage::fromByteArray(*static_cast<QByteArray*>(message)));
+	static_cast<QNdefFilter*>(ptr)->setOrderMatch(on != 0);
+}
+
+void QNdefFilter_DestroyQNdefFilter(void* ptr)
+{
+	static_cast<QNdefFilter*>(ptr)->~QNdefFilter();
 }
 
 void* QNdefMessage_NewQNdefMessage()
@@ -94,9 +90,9 @@ void* QNdefMessage_NewQNdefMessage()
 	return new QNdefMessage();
 }
 
-void* QNdefMessage_NewQNdefMessage4(void* records)
+void* QNdefMessage_NewQNdefMessage2(void* record)
 {
-	return new QNdefMessage(*static_cast<QList<QNdefRecord>*>(records));
+	return new QNdefMessage(*static_cast<QNdefRecord*>(record));
 }
 
 void* QNdefMessage_NewQNdefMessage3(void* message)
@@ -104,9 +100,14 @@ void* QNdefMessage_NewQNdefMessage3(void* message)
 	return new QNdefMessage(*static_cast<QNdefMessage*>(message));
 }
 
-void* QNdefMessage_NewQNdefMessage2(void* record)
+void* QNdefMessage_NewQNdefMessage4(void* records)
 {
-	return new QNdefMessage(*static_cast<QNdefRecord*>(record));
+	return new QNdefMessage(*static_cast<QList<QNdefRecord>*>(records));
+}
+
+void* QNdefMessage_QNdefMessage_FromByteArray(void* message)
+{
+	return new QNdefMessage(QNdefMessage::fromByteArray(*static_cast<QByteArray*>(message)));
 }
 
 void* QNdefMessage_ToByteArray(void* ptr)
@@ -135,14 +136,29 @@ void* QNdefNfcSmartPosterRecord_NewQNdefNfcSmartPosterRecord()
 	return new QNdefNfcSmartPosterRecord();
 }
 
+void* QNdefNfcSmartPosterRecord_NewQNdefNfcSmartPosterRecord2(void* other)
+{
+	return new QNdefNfcSmartPosterRecord(*static_cast<QNdefRecord*>(other));
+}
+
 void* QNdefNfcSmartPosterRecord_NewQNdefNfcSmartPosterRecord3(void* other)
 {
 	return new QNdefNfcSmartPosterRecord(*static_cast<QNdefNfcSmartPosterRecord*>(other));
 }
 
-void* QNdefNfcSmartPosterRecord_NewQNdefNfcSmartPosterRecord2(void* other)
+long long QNdefNfcSmartPosterRecord_Action(void* ptr)
 {
-	return new QNdefNfcSmartPosterRecord(*static_cast<QNdefRecord*>(other));
+	return static_cast<QNdefNfcSmartPosterRecord*>(ptr)->action();
+}
+
+void QNdefNfcSmartPosterRecord_AddIcon(void* ptr, void* icon)
+{
+	static_cast<QNdefNfcSmartPosterRecord*>(ptr)->addIcon(*static_cast<QNdefNfcIconRecord*>(icon));
+}
+
+void QNdefNfcSmartPosterRecord_AddIcon2(void* ptr, void* ty, void* data)
+{
+	static_cast<QNdefNfcSmartPosterRecord*>(ptr)->addIcon(*static_cast<QByteArray*>(ty), *static_cast<QByteArray*>(data));
 }
 
 char QNdefNfcSmartPosterRecord_AddTitle(void* ptr, void* text)
@@ -153,96 +169,6 @@ char QNdefNfcSmartPosterRecord_AddTitle(void* ptr, void* text)
 char QNdefNfcSmartPosterRecord_AddTitle2(void* ptr, struct QtNfc_PackedString text, struct QtNfc_PackedString locale, long long encoding)
 {
 	return static_cast<QNdefNfcSmartPosterRecord*>(ptr)->addTitle(QString::fromUtf8(text.data, text.len), QString::fromUtf8(locale.data, locale.len), static_cast<QNdefNfcTextRecord::Encoding>(encoding));
-}
-
-char QNdefNfcSmartPosterRecord_RemoveIcon2(void* ptr, void* ty)
-{
-	return static_cast<QNdefNfcSmartPosterRecord*>(ptr)->removeIcon(*static_cast<QByteArray*>(ty));
-}
-
-char QNdefNfcSmartPosterRecord_RemoveTitle(void* ptr, void* text)
-{
-	return static_cast<QNdefNfcSmartPosterRecord*>(ptr)->removeTitle(*static_cast<QNdefNfcTextRecord*>(text));
-}
-
-char QNdefNfcSmartPosterRecord_RemoveTitle2(void* ptr, struct QtNfc_PackedString locale)
-{
-	return static_cast<QNdefNfcSmartPosterRecord*>(ptr)->removeTitle(QString::fromUtf8(locale.data, locale.len));
-}
-
-void QNdefNfcSmartPosterRecord_AddIcon2(void* ptr, void* ty, void* data)
-{
-	static_cast<QNdefNfcSmartPosterRecord*>(ptr)->addIcon(*static_cast<QByteArray*>(ty), *static_cast<QByteArray*>(data));
-}
-
-void QNdefNfcSmartPosterRecord_SetAction(void* ptr, long long act)
-{
-	static_cast<QNdefNfcSmartPosterRecord*>(ptr)->setAction(static_cast<QNdefNfcSmartPosterRecord::Action>(act));
-}
-
-void QNdefNfcSmartPosterRecord_SetSize(void* ptr, unsigned int size)
-{
-	static_cast<QNdefNfcSmartPosterRecord*>(ptr)->setSize(size);
-}
-
-void QNdefNfcSmartPosterRecord_SetTitles(void* ptr, void* titles)
-{
-	static_cast<QNdefNfcSmartPosterRecord*>(ptr)->setTitles(*static_cast<QList<QNdefNfcTextRecord>*>(titles));
-}
-
-void QNdefNfcSmartPosterRecord_SetTypeInfo(void* ptr, void* ty)
-{
-	static_cast<QNdefNfcSmartPosterRecord*>(ptr)->setTypeInfo(*static_cast<QByteArray*>(ty));
-}
-
-void QNdefNfcSmartPosterRecord_SetUri(void* ptr, void* url)
-{
-	static_cast<QNdefNfcSmartPosterRecord*>(ptr)->setUri(*static_cast<QNdefNfcUriRecord*>(url));
-}
-
-void QNdefNfcSmartPosterRecord_SetUri2(void* ptr, void* url)
-{
-	static_cast<QNdefNfcSmartPosterRecord*>(ptr)->setUri(*static_cast<QUrl*>(url));
-}
-
-void QNdefNfcSmartPosterRecord_DestroyQNdefNfcSmartPosterRecord(void* ptr)
-{
-	static_cast<QNdefNfcSmartPosterRecord*>(ptr)->~QNdefNfcSmartPosterRecord();
-}
-
-void* QNdefNfcSmartPosterRecord_Icon(void* ptr, void* mimetype)
-{
-	return new QByteArray(static_cast<QNdefNfcSmartPosterRecord*>(ptr)->icon(*static_cast<QByteArray*>(mimetype)));
-}
-
-void* QNdefNfcSmartPosterRecord_TypeInfo(void* ptr)
-{
-	return new QByteArray(static_cast<QNdefNfcSmartPosterRecord*>(ptr)->typeInfo());
-}
-
-long long QNdefNfcSmartPosterRecord_Action(void* ptr)
-{
-	return static_cast<QNdefNfcSmartPosterRecord*>(ptr)->action();
-}
-
-void* QNdefNfcSmartPosterRecord_TitleRecord(void* ptr, int index)
-{
-	return new QNdefNfcTextRecord(static_cast<QNdefNfcSmartPosterRecord*>(ptr)->titleRecord(index));
-}
-
-void* QNdefNfcSmartPosterRecord_UriRecord(void* ptr)
-{
-	return new QNdefNfcUriRecord(static_cast<QNdefNfcSmartPosterRecord*>(ptr)->uriRecord());
-}
-
-struct QtNfc_PackedString QNdefNfcSmartPosterRecord_Title(void* ptr, struct QtNfc_PackedString locale)
-{
-	return ({ QByteArray t928b42 = static_cast<QNdefNfcSmartPosterRecord*>(ptr)->title(QString::fromUtf8(locale.data, locale.len)).toUtf8(); QtNfc_PackedString { const_cast<char*>(t928b42.prepend("WHITESPACE").constData()+10), t928b42.size()-10 }; });
-}
-
-void* QNdefNfcSmartPosterRecord_Uri(void* ptr)
-{
-	return new QUrl(static_cast<QNdefNfcSmartPosterRecord*>(ptr)->uri());
 }
 
 char QNdefNfcSmartPosterRecord_HasAction(void* ptr)
@@ -270,9 +196,89 @@ char QNdefNfcSmartPosterRecord_HasTypeInfo(void* ptr)
 	return static_cast<QNdefNfcSmartPosterRecord*>(ptr)->hasTypeInfo();
 }
 
+void* QNdefNfcSmartPosterRecord_Icon(void* ptr, void* mimetype)
+{
+	return new QByteArray(static_cast<QNdefNfcSmartPosterRecord*>(ptr)->icon(*static_cast<QByteArray*>(mimetype)));
+}
+
 int QNdefNfcSmartPosterRecord_IconCount(void* ptr)
 {
 	return static_cast<QNdefNfcSmartPosterRecord*>(ptr)->iconCount();
+}
+
+void* QNdefNfcSmartPosterRecord_IconRecord(void* ptr, int index)
+{
+	return new QNdefNfcIconRecord(static_cast<QNdefNfcSmartPosterRecord*>(ptr)->iconRecord(index));
+}
+
+struct QtNfc_PackedList QNdefNfcSmartPosterRecord_IconRecords(void* ptr)
+{
+	return ({ QList<QNdefNfcIconRecord>* tmpValue = new QList<QNdefNfcIconRecord>(static_cast<QNdefNfcSmartPosterRecord*>(ptr)->iconRecords()); QtNfc_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+char QNdefNfcSmartPosterRecord_RemoveIcon(void* ptr, void* icon)
+{
+	return static_cast<QNdefNfcSmartPosterRecord*>(ptr)->removeIcon(*static_cast<QNdefNfcIconRecord*>(icon));
+}
+
+char QNdefNfcSmartPosterRecord_RemoveIcon2(void* ptr, void* ty)
+{
+	return static_cast<QNdefNfcSmartPosterRecord*>(ptr)->removeIcon(*static_cast<QByteArray*>(ty));
+}
+
+char QNdefNfcSmartPosterRecord_RemoveTitle(void* ptr, void* text)
+{
+	return static_cast<QNdefNfcSmartPosterRecord*>(ptr)->removeTitle(*static_cast<QNdefNfcTextRecord*>(text));
+}
+
+char QNdefNfcSmartPosterRecord_RemoveTitle2(void* ptr, struct QtNfc_PackedString locale)
+{
+	return static_cast<QNdefNfcSmartPosterRecord*>(ptr)->removeTitle(QString::fromUtf8(locale.data, locale.len));
+}
+
+void QNdefNfcSmartPosterRecord_SetAction(void* ptr, long long act)
+{
+	static_cast<QNdefNfcSmartPosterRecord*>(ptr)->setAction(static_cast<QNdefNfcSmartPosterRecord::Action>(act));
+}
+
+void QNdefNfcSmartPosterRecord_SetIcons(void* ptr, void* icons)
+{
+	static_cast<QNdefNfcSmartPosterRecord*>(ptr)->setIcons(*static_cast<QList<QNdefNfcIconRecord>*>(icons));
+}
+
+void QNdefNfcSmartPosterRecord_SetSize(void* ptr, unsigned int size)
+{
+	static_cast<QNdefNfcSmartPosterRecord*>(ptr)->setSize(size);
+}
+
+void QNdefNfcSmartPosterRecord_SetTitles(void* ptr, void* titles)
+{
+	static_cast<QNdefNfcSmartPosterRecord*>(ptr)->setTitles(*static_cast<QList<QNdefNfcTextRecord>*>(titles));
+}
+
+void QNdefNfcSmartPosterRecord_SetTypeInfo(void* ptr, void* ty)
+{
+	static_cast<QNdefNfcSmartPosterRecord*>(ptr)->setTypeInfo(*static_cast<QByteArray*>(ty));
+}
+
+void QNdefNfcSmartPosterRecord_SetUri(void* ptr, void* url)
+{
+	static_cast<QNdefNfcSmartPosterRecord*>(ptr)->setUri(*static_cast<QNdefNfcUriRecord*>(url));
+}
+
+void QNdefNfcSmartPosterRecord_SetUri2(void* ptr, void* url)
+{
+	static_cast<QNdefNfcSmartPosterRecord*>(ptr)->setUri(*static_cast<QUrl*>(url));
+}
+
+unsigned int QNdefNfcSmartPosterRecord_Size(void* ptr)
+{
+	return static_cast<QNdefNfcSmartPosterRecord*>(ptr)->size();
+}
+
+struct QtNfc_PackedString QNdefNfcSmartPosterRecord_Title(void* ptr, struct QtNfc_PackedString locale)
+{
+	return ({ QByteArray t928b42 = static_cast<QNdefNfcSmartPosterRecord*>(ptr)->title(QString::fromUtf8(locale.data, locale.len)).toUtf8(); QtNfc_PackedString { const_cast<char*>(t928b42.prepend("WHITESPACE").constData()+10), t928b42.size()-10 }; });
 }
 
 int QNdefNfcSmartPosterRecord_TitleCount(void* ptr)
@@ -280,9 +286,55 @@ int QNdefNfcSmartPosterRecord_TitleCount(void* ptr)
 	return static_cast<QNdefNfcSmartPosterRecord*>(ptr)->titleCount();
 }
 
-unsigned int QNdefNfcSmartPosterRecord_Size(void* ptr)
+void* QNdefNfcSmartPosterRecord_TitleRecord(void* ptr, int index)
 {
-	return static_cast<QNdefNfcSmartPosterRecord*>(ptr)->size();
+	return new QNdefNfcTextRecord(static_cast<QNdefNfcSmartPosterRecord*>(ptr)->titleRecord(index));
+}
+
+void* QNdefNfcSmartPosterRecord_TypeInfo(void* ptr)
+{
+	return new QByteArray(static_cast<QNdefNfcSmartPosterRecord*>(ptr)->typeInfo());
+}
+
+void* QNdefNfcSmartPosterRecord_Uri(void* ptr)
+{
+	return new QUrl(static_cast<QNdefNfcSmartPosterRecord*>(ptr)->uri());
+}
+
+void* QNdefNfcSmartPosterRecord_UriRecord(void* ptr)
+{
+	return new QNdefNfcUriRecord(static_cast<QNdefNfcSmartPosterRecord*>(ptr)->uriRecord());
+}
+
+void QNdefNfcSmartPosterRecord_DestroyQNdefNfcSmartPosterRecord(void* ptr)
+{
+	static_cast<QNdefNfcSmartPosterRecord*>(ptr)->~QNdefNfcSmartPosterRecord();
+}
+
+void* QNdefNfcSmartPosterRecord___iconRecords_atList(void* ptr, int i)
+{
+	return new QNdefNfcIconRecord(({QNdefNfcIconRecord tmp = static_cast<QList<QNdefNfcIconRecord>*>(ptr)->at(i); if (i == static_cast<QList<QNdefNfcIconRecord>*>(ptr)->size()-1) { static_cast<QList<QNdefNfcIconRecord>*>(ptr)->~QList(); free(ptr); }; tmp; }));
+}
+
+void QNdefNfcSmartPosterRecord___iconRecords_setList(void* ptr, void* i)
+{
+	static_cast<QList<QNdefNfcIconRecord>*>(ptr)->append(*static_cast<QNdefNfcIconRecord*>(i));
+}
+
+void* QNdefNfcSmartPosterRecord___iconRecords_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QNdefNfcIconRecord>();
+}
+
+void* QNdefNfcSmartPosterRecord___setIcons_icons_atList(void* ptr, int i)
+{
+	return new QNdefNfcIconRecord(({QNdefNfcIconRecord tmp = static_cast<QList<QNdefNfcIconRecord>*>(ptr)->at(i); if (i == static_cast<QList<QNdefNfcIconRecord>*>(ptr)->size()-1) { static_cast<QList<QNdefNfcIconRecord>*>(ptr)->~QList(); free(ptr); }; tmp; }));
+}
+
+void QNdefNfcSmartPosterRecord___setIcons_icons_setList(void* ptr, void* i)
+{
+	static_cast<QList<QNdefNfcIconRecord>*>(ptr)->append(*static_cast<QNdefNfcIconRecord*>(i));
 }
 
 void* QNdefNfcSmartPosterRecord___setIcons_icons_newList(void* ptr)
@@ -305,12 +357,6 @@ void* QNdefNfcSmartPosterRecord___setTitles_titles_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QNdefNfcTextRecord>();
-}
-
-void* QNdefNfcSmartPosterRecord___iconRecords_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QNdefNfcIconRecord>();
 }
 
 void* QNdefNfcSmartPosterRecord___titleRecords_atList(void* ptr, int i)
@@ -339,6 +385,16 @@ void* QNdefNfcTextRecord_NewQNdefNfcTextRecord2(void* other)
 	return new QNdefNfcTextRecord(*static_cast<QNdefRecord*>(other));
 }
 
+long long QNdefNfcTextRecord_Encoding(void* ptr)
+{
+	return static_cast<QNdefNfcTextRecord*>(ptr)->encoding();
+}
+
+struct QtNfc_PackedString QNdefNfcTextRecord_Locale(void* ptr)
+{
+	return ({ QByteArray tb8fb0c = static_cast<QNdefNfcTextRecord*>(ptr)->locale().toUtf8(); QtNfc_PackedString { const_cast<char*>(tb8fb0c.prepend("WHITESPACE").constData()+10), tb8fb0c.size()-10 }; });
+}
+
 void QNdefNfcTextRecord_SetEncoding(void* ptr, long long encoding)
 {
 	static_cast<QNdefNfcTextRecord*>(ptr)->setEncoding(static_cast<QNdefNfcTextRecord::Encoding>(encoding));
@@ -352,16 +408,6 @@ void QNdefNfcTextRecord_SetLocale(void* ptr, struct QtNfc_PackedString locale)
 void QNdefNfcTextRecord_SetText(void* ptr, struct QtNfc_PackedString text)
 {
 	static_cast<QNdefNfcTextRecord*>(ptr)->setText(QString::fromUtf8(text.data, text.len));
-}
-
-long long QNdefNfcTextRecord_Encoding(void* ptr)
-{
-	return static_cast<QNdefNfcTextRecord*>(ptr)->encoding();
-}
-
-struct QtNfc_PackedString QNdefNfcTextRecord_Locale(void* ptr)
-{
-	return ({ QByteArray tb8fb0c = static_cast<QNdefNfcTextRecord*>(ptr)->locale().toUtf8(); QtNfc_PackedString { const_cast<char*>(tb8fb0c.prepend("WHITESPACE").constData()+10), tb8fb0c.size()-10 }; });
 }
 
 struct QtNfc_PackedString QNdefNfcTextRecord_Text(void* ptr)
@@ -399,6 +445,21 @@ void* QNdefRecord_NewQNdefRecord2(void* other)
 	return new QNdefRecord(*static_cast<QNdefRecord*>(other));
 }
 
+void* QNdefRecord_Id(void* ptr)
+{
+	return new QByteArray(static_cast<QNdefRecord*>(ptr)->id());
+}
+
+char QNdefRecord_IsEmpty(void* ptr)
+{
+	return static_cast<QNdefRecord*>(ptr)->isEmpty();
+}
+
+void* QNdefRecord_Payload(void* ptr)
+{
+	return new QByteArray(static_cast<QNdefRecord*>(ptr)->payload());
+}
+
 void QNdefRecord_SetId(void* ptr, void* id)
 {
 	static_cast<QNdefRecord*>(ptr)->setId(*static_cast<QByteArray*>(id));
@@ -419,21 +480,6 @@ void QNdefRecord_SetTypeNameFormat(void* ptr, long long typeNameFormat)
 	static_cast<QNdefRecord*>(ptr)->setTypeNameFormat(static_cast<QNdefRecord::TypeNameFormat>(typeNameFormat));
 }
 
-void QNdefRecord_DestroyQNdefRecord(void* ptr)
-{
-	static_cast<QNdefRecord*>(ptr)->~QNdefRecord();
-}
-
-void* QNdefRecord_Id(void* ptr)
-{
-	return new QByteArray(static_cast<QNdefRecord*>(ptr)->id());
-}
-
-void* QNdefRecord_Payload(void* ptr)
-{
-	return new QByteArray(static_cast<QNdefRecord*>(ptr)->payload());
-}
-
 void* QNdefRecord_Type(void* ptr)
 {
 	return new QByteArray(static_cast<QNdefRecord*>(ptr)->type());
@@ -444,9 +490,9 @@ long long QNdefRecord_TypeNameFormat(void* ptr)
 	return static_cast<QNdefRecord*>(ptr)->typeNameFormat();
 }
 
-char QNdefRecord_IsEmpty(void* ptr)
+void QNdefRecord_DestroyQNdefRecord(void* ptr)
 {
-	return static_cast<QNdefRecord*>(ptr)->isEmpty();
+	static_cast<QNdefRecord*>(ptr)->~QNdefRecord();
 }
 
 class MyQNearFieldManager: public QNearFieldManager
@@ -456,15 +502,14 @@ public:
 	void Signal_TargetDetected(QNearFieldTarget * target) { callbackQNearFieldManager_TargetDetected(this, target); };
 	void Signal_TargetLost(QNearFieldTarget * target) { callbackQNearFieldManager_TargetLost(this, target); };
 	 ~MyQNearFieldManager() { callbackQNearFieldManager_DestroyQNearFieldManager(this); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQNearFieldManager_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	bool event(QEvent * e) { return callbackQNearFieldManager_Event(this, e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQNearFieldManager_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQNearFieldManager_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQNearFieldManager_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQNearFieldManager_CustomEvent(this, event); };
 	void deleteLater() { callbackQNearFieldManager_DeleteLater(this); };
 	void Signal_Destroyed(QObject * obj) { callbackQNearFieldManager_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQNearFieldManager_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQNearFieldManager_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQNearFieldManager_EventFilter(this, watched, event) != 0; };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtNfc_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQNearFieldManager_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQNearFieldManager_TimerEvent(this, event); };
 };
@@ -503,6 +548,8 @@ void* QNearFieldManager_NewQNearFieldManager(void* parent)
 		return new MyQNearFieldManager(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQNearFieldManager(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQNearFieldManager(static_cast<QRemoteObjectPendingCallWatcher*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQNearFieldManager(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -512,29 +559,24 @@ void* QNearFieldManager_NewQNearFieldManager(void* parent)
 	}
 }
 
-struct QtNfc_PackedString QNearFieldManager_QNearFieldManager_Tr(char* s, char* c, int n)
+char QNearFieldManager_IsAvailable(void* ptr)
 {
-	return ({ QByteArray t9661e6 = QNearFieldManager::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtNfc_PackedString { const_cast<char*>(t9661e6.prepend("WHITESPACE").constData()+10), t9661e6.size()-10 }; });
+	return static_cast<QNearFieldManager*>(ptr)->isAvailable();
 }
 
-char QNearFieldManager_StartTargetDetection(void* ptr)
+char QNearFieldManager_IsSupported(void* ptr)
 {
-	return static_cast<QNearFieldManager*>(ptr)->startTargetDetection();
-}
-
-char QNearFieldManager_UnregisterNdefMessageHandler(void* ptr, int handlerId)
-{
-	return static_cast<QNearFieldManager*>(ptr)->unregisterNdefMessageHandler(handlerId);
-}
-
-int QNearFieldManager_RegisterNdefMessageHandler2(void* ptr, long long typeNameFormat, void* ty, void* object, char* method)
-{
-	return static_cast<QNearFieldManager*>(ptr)->registerNdefMessageHandler(static_cast<QNdefRecord::TypeNameFormat>(typeNameFormat), *static_cast<QByteArray*>(ty), static_cast<QObject*>(object), const_cast<const char*>(method));
+	return static_cast<QNearFieldManager*>(ptr)->isSupported();
 }
 
 int QNearFieldManager_RegisterNdefMessageHandler(void* ptr, void* object, char* method)
 {
 	return static_cast<QNearFieldManager*>(ptr)->registerNdefMessageHandler(static_cast<QObject*>(object), const_cast<const char*>(method));
+}
+
+int QNearFieldManager_RegisterNdefMessageHandler2(void* ptr, long long typeNameFormat, void* ty, void* object, char* method)
+{
+	return static_cast<QNearFieldManager*>(ptr)->registerNdefMessageHandler(static_cast<QNdefRecord::TypeNameFormat>(typeNameFormat), *static_cast<QByteArray*>(ty), static_cast<QObject*>(object), const_cast<const char*>(method));
 }
 
 int QNearFieldManager_RegisterNdefMessageHandler3(void* ptr, void* filter, void* object, char* method)
@@ -547,9 +589,19 @@ void QNearFieldManager_SetTargetAccessModes(void* ptr, long long accessModes)
 	static_cast<QNearFieldManager*>(ptr)->setTargetAccessModes(static_cast<QNearFieldManager::TargetAccessMode>(accessModes));
 }
 
+char QNearFieldManager_StartTargetDetection(void* ptr)
+{
+	return static_cast<QNearFieldManager*>(ptr)->startTargetDetection();
+}
+
 void QNearFieldManager_StopTargetDetection(void* ptr)
 {
 	static_cast<QNearFieldManager*>(ptr)->stopTargetDetection();
+}
+
+long long QNearFieldManager_TargetAccessModes(void* ptr)
+{
+	return static_cast<QNearFieldManager*>(ptr)->targetAccessModes();
 }
 
 void QNearFieldManager_ConnectTargetDetected(void* ptr)
@@ -582,6 +634,11 @@ void QNearFieldManager_TargetLost(void* ptr, void* target)
 	static_cast<QNearFieldManager*>(ptr)->targetLost(static_cast<QNearFieldTarget*>(target));
 }
 
+char QNearFieldManager_UnregisterNdefMessageHandler(void* ptr, int handlerId)
+{
+	return static_cast<QNearFieldManager*>(ptr)->unregisterNdefMessageHandler(handlerId);
+}
+
 void QNearFieldManager_DestroyQNearFieldManager(void* ptr)
 {
 	static_cast<QNearFieldManager*>(ptr)->~QNearFieldManager();
@@ -593,24 +650,20 @@ void QNearFieldManager_DestroyQNearFieldManagerDefault(void* ptr)
 
 }
 
-long long QNearFieldManager_TargetAccessModes(void* ptr)
+void* QNearFieldManager___children_atList(void* ptr, int i)
 {
-	return static_cast<QNearFieldManager*>(ptr)->targetAccessModes();
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-char QNearFieldManager_IsAvailable(void* ptr)
+void QNearFieldManager___children_setList(void* ptr, void* i)
 {
-	return static_cast<QNearFieldManager*>(ptr)->isAvailable();
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
-char QNearFieldManager_IsSupported(void* ptr)
+void* QNearFieldManager___children_newList(void* ptr)
 {
-	return static_cast<QNearFieldManager*>(ptr)->isSupported();
-}
-
-void* QNearFieldManager_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QNearFieldManager*>(ptr)->QNearFieldManager::metaObject());
+	Q_UNUSED(ptr);
+	return new QList<QObject *>();
 }
 
 void* QNearFieldManager___dynamicPropertyNames_atList(void* ptr, int i)
@@ -629,17 +682,17 @@ void* QNearFieldManager___dynamicPropertyNames_newList(void* ptr)
 	return new QList<QByteArray>();
 }
 
-void* QNearFieldManager___findChildren_atList2(void* ptr, int i)
+void* QNearFieldManager___findChildren_atList(void* ptr, int i)
 {
 	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QNearFieldManager___findChildren_setList2(void* ptr, void* i)
+void QNearFieldManager___findChildren_setList(void* ptr, void* i)
 {
 	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
-void* QNearFieldManager___findChildren_newList2(void* ptr)
+void* QNearFieldManager___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();
@@ -661,46 +714,20 @@ void* QNearFieldManager___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QNearFieldManager___findChildren_atList(void* ptr, int i)
+void* QNearFieldManager___qFindChildren_atList2(void* ptr, int i)
 {
 	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QNearFieldManager___findChildren_setList(void* ptr, void* i)
+void QNearFieldManager___qFindChildren_setList2(void* ptr, void* i)
 {
 	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
-void* QNearFieldManager___findChildren_newList(void* ptr)
+void* QNearFieldManager___qFindChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();
-}
-
-void* QNearFieldManager___children_atList(void* ptr, int i)
-{
-	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QNearFieldManager___children_setList(void* ptr, void* i)
-{
-	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QNearFieldManager___children_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject *>();
-}
-
-char QNearFieldManager_EventDefault(void* ptr, void* e)
-{
-		return static_cast<QNearFieldManager*>(ptr)->QNearFieldManager::event(static_cast<QEvent*>(e));
-}
-
-char QNearFieldManager_EventFilterDefault(void* ptr, void* watched, void* event)
-{
-		return static_cast<QNearFieldManager*>(ptr)->QNearFieldManager::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
 void QNearFieldManager_ChildEventDefault(void* ptr, void* event)
@@ -728,6 +755,16 @@ void QNearFieldManager_DisconnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QNearFieldManager*>(ptr)->QNearFieldManager::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
+char QNearFieldManager_EventDefault(void* ptr, void* e)
+{
+		return static_cast<QNearFieldManager*>(ptr)->QNearFieldManager::event(static_cast<QEvent*>(e));
+}
+
+char QNearFieldManager_EventFilterDefault(void* ptr, void* watched, void* event)
+{
+		return static_cast<QNearFieldManager*>(ptr)->QNearFieldManager::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
 void QNearFieldManager_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QNearFieldManager*>(ptr)->QNearFieldManager::timerEvent(static_cast<QTimerEvent*>(event));
@@ -741,15 +778,14 @@ public:
 	void Signal_ShareModesChanged(QNearFieldShareManager::ShareModes modes) { callbackQNearFieldShareManager_ShareModesChanged(this, modes); };
 	void Signal_TargetDetected(QNearFieldShareTarget * shareTarget) { callbackQNearFieldShareManager_TargetDetected(this, shareTarget); };
 	 ~MyQNearFieldShareManager() { callbackQNearFieldShareManager_DestroyQNearFieldShareManager(this); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQNearFieldShareManager_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	bool event(QEvent * e) { return callbackQNearFieldShareManager_Event(this, e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQNearFieldShareManager_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQNearFieldShareManager_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQNearFieldShareManager_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQNearFieldShareManager_CustomEvent(this, event); };
 	void deleteLater() { callbackQNearFieldShareManager_DeleteLater(this); };
 	void Signal_Destroyed(QObject * obj) { callbackQNearFieldShareManager_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQNearFieldShareManager_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQNearFieldShareManager_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQNearFieldShareManager_EventFilter(this, watched, event) != 0; };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtNfc_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQNearFieldShareManager_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQNearFieldShareManager_TimerEvent(this, event); };
 };
@@ -788,6 +824,8 @@ void* QNearFieldShareManager_NewQNearFieldShareManager(void* parent)
 		return new MyQNearFieldShareManager(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQNearFieldShareManager(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQNearFieldShareManager(static_cast<QRemoteObjectPendingCallWatcher*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQNearFieldShareManager(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -795,16 +833,6 @@ void* QNearFieldShareManager_NewQNearFieldShareManager(void* parent)
 	} else {
 		return new MyQNearFieldShareManager(static_cast<QObject*>(parent));
 	}
-}
-
-long long QNearFieldShareManager_QNearFieldShareManager_SupportedShareModes()
-{
-	return QNearFieldShareManager::supportedShareModes();
-}
-
-struct QtNfc_PackedString QNearFieldShareManager_QNearFieldShareManager_Tr(char* s, char* c, int n)
-{
-	return ({ QByteArray t891e6c = QNearFieldShareManager::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtNfc_PackedString { const_cast<char*>(t891e6c.prepend("WHITESPACE").constData()+10), t891e6c.size()-10 }; });
 }
 
 void QNearFieldShareManager_ConnectError(void* ptr)
@@ -828,6 +856,16 @@ void QNearFieldShareManager_SetShareModes(void* ptr, long long mode)
 	static_cast<QNearFieldShareManager*>(ptr)->setShareModes(static_cast<QNearFieldShareManager::ShareMode>(mode));
 }
 
+long long QNearFieldShareManager_ShareError(void* ptr)
+{
+	return static_cast<QNearFieldShareManager*>(ptr)->shareError();
+}
+
+long long QNearFieldShareManager_ShareModes(void* ptr)
+{
+	return static_cast<QNearFieldShareManager*>(ptr)->shareModes();
+}
+
 void QNearFieldShareManager_ConnectShareModesChanged(void* ptr)
 {
 	QObject::connect(static_cast<QNearFieldShareManager*>(ptr), static_cast<void (QNearFieldShareManager::*)(QNearFieldShareManager::ShareModes)>(&QNearFieldShareManager::shareModesChanged), static_cast<MyQNearFieldShareManager*>(ptr), static_cast<void (MyQNearFieldShareManager::*)(QNearFieldShareManager::ShareModes)>(&MyQNearFieldShareManager::Signal_ShareModesChanged));
@@ -841,6 +879,11 @@ void QNearFieldShareManager_DisconnectShareModesChanged(void* ptr)
 void QNearFieldShareManager_ShareModesChanged(void* ptr, long long modes)
 {
 	static_cast<QNearFieldShareManager*>(ptr)->shareModesChanged(static_cast<QNearFieldShareManager::ShareMode>(modes));
+}
+
+long long QNearFieldShareManager_QNearFieldShareManager_SupportedShareModes()
+{
+	return QNearFieldShareManager::supportedShareModes();
 }
 
 void QNearFieldShareManager_ConnectTargetDetected(void* ptr)
@@ -869,19 +912,20 @@ void QNearFieldShareManager_DestroyQNearFieldShareManagerDefault(void* ptr)
 
 }
 
-long long QNearFieldShareManager_ShareError(void* ptr)
+void* QNearFieldShareManager___children_atList(void* ptr, int i)
 {
-	return static_cast<QNearFieldShareManager*>(ptr)->shareError();
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-long long QNearFieldShareManager_ShareModes(void* ptr)
+void QNearFieldShareManager___children_setList(void* ptr, void* i)
 {
-	return static_cast<QNearFieldShareManager*>(ptr)->shareModes();
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
-void* QNearFieldShareManager_MetaObjectDefault(void* ptr)
+void* QNearFieldShareManager___children_newList(void* ptr)
 {
-		return const_cast<QMetaObject*>(static_cast<QNearFieldShareManager*>(ptr)->QNearFieldShareManager::metaObject());
+	Q_UNUSED(ptr);
+	return new QList<QObject *>();
 }
 
 void* QNearFieldShareManager___dynamicPropertyNames_atList(void* ptr, int i)
@@ -900,17 +944,17 @@ void* QNearFieldShareManager___dynamicPropertyNames_newList(void* ptr)
 	return new QList<QByteArray>();
 }
 
-void* QNearFieldShareManager___findChildren_atList2(void* ptr, int i)
+void* QNearFieldShareManager___findChildren_atList(void* ptr, int i)
 {
 	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QNearFieldShareManager___findChildren_setList2(void* ptr, void* i)
+void QNearFieldShareManager___findChildren_setList(void* ptr, void* i)
 {
 	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
-void* QNearFieldShareManager___findChildren_newList2(void* ptr)
+void* QNearFieldShareManager___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();
@@ -932,46 +976,20 @@ void* QNearFieldShareManager___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QNearFieldShareManager___findChildren_atList(void* ptr, int i)
+void* QNearFieldShareManager___qFindChildren_atList2(void* ptr, int i)
 {
 	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QNearFieldShareManager___findChildren_setList(void* ptr, void* i)
+void QNearFieldShareManager___qFindChildren_setList2(void* ptr, void* i)
 {
 	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
-void* QNearFieldShareManager___findChildren_newList(void* ptr)
+void* QNearFieldShareManager___qFindChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();
-}
-
-void* QNearFieldShareManager___children_atList(void* ptr, int i)
-{
-	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QNearFieldShareManager___children_setList(void* ptr, void* i)
-{
-	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QNearFieldShareManager___children_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject *>();
-}
-
-char QNearFieldShareManager_EventDefault(void* ptr, void* e)
-{
-		return static_cast<QNearFieldShareManager*>(ptr)->QNearFieldShareManager::event(static_cast<QEvent*>(e));
-}
-
-char QNearFieldShareManager_EventFilterDefault(void* ptr, void* watched, void* event)
-{
-		return static_cast<QNearFieldShareManager*>(ptr)->QNearFieldShareManager::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
 void QNearFieldShareManager_ChildEventDefault(void* ptr, void* event)
@@ -999,6 +1017,16 @@ void QNearFieldShareManager_DisconnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QNearFieldShareManager*>(ptr)->QNearFieldShareManager::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
+char QNearFieldShareManager_EventDefault(void* ptr, void* e)
+{
+		return static_cast<QNearFieldShareManager*>(ptr)->QNearFieldShareManager::event(static_cast<QEvent*>(e));
+}
+
+char QNearFieldShareManager_EventFilterDefault(void* ptr, void* watched, void* event)
+{
+		return static_cast<QNearFieldShareManager*>(ptr)->QNearFieldShareManager::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
 void QNearFieldShareManager_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QNearFieldShareManager*>(ptr)->QNearFieldShareManager::timerEvent(static_cast<QTimerEvent*>(event));
@@ -1010,15 +1038,14 @@ public:
 	void Signal_Error(QNearFieldShareManager::ShareError error) { callbackQNearFieldShareTarget_Error(this, error); };
 	void Signal_ShareFinished() { callbackQNearFieldShareTarget_ShareFinished(this); };
 	 ~MyQNearFieldShareTarget() { callbackQNearFieldShareTarget_DestroyQNearFieldShareTarget(this); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQNearFieldShareTarget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	bool event(QEvent * e) { return callbackQNearFieldShareTarget_Event(this, e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQNearFieldShareTarget_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQNearFieldShareTarget_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQNearFieldShareTarget_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQNearFieldShareTarget_CustomEvent(this, event); };
 	void deleteLater() { callbackQNearFieldShareTarget_DeleteLater(this); };
 	void Signal_Destroyed(QObject * obj) { callbackQNearFieldShareTarget_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQNearFieldShareTarget_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQNearFieldShareTarget_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQNearFieldShareTarget_EventFilter(this, watched, event) != 0; };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtNfc_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQNearFieldShareTarget_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQNearFieldShareTarget_TimerEvent(this, event); };
 };
@@ -1026,21 +1053,6 @@ public:
 Q_DECLARE_METATYPE(MyQNearFieldShareTarget*)
 
 int QNearFieldShareTarget_QNearFieldShareTarget_QRegisterMetaType(){qRegisterMetaType<QNearFieldShareTarget*>(); return qRegisterMetaType<MyQNearFieldShareTarget*>();}
-
-struct QtNfc_PackedString QNearFieldShareTarget_QNearFieldShareTarget_Tr(char* s, char* c, int n)
-{
-	return ({ QByteArray te76c4f = QNearFieldShareTarget::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtNfc_PackedString { const_cast<char*>(te76c4f.prepend("WHITESPACE").constData()+10), te76c4f.size()-10 }; });
-}
-
-char QNearFieldShareTarget_Share2(void* ptr, void* files)
-{
-	return static_cast<QNearFieldShareTarget*>(ptr)->share(*static_cast<QList<QFileInfo>*>(files));
-}
-
-char QNearFieldShareTarget_Share(void* ptr, void* message)
-{
-	return static_cast<QNearFieldShareTarget*>(ptr)->share(*static_cast<QNdefMessage*>(message));
-}
 
 void QNearFieldShareTarget_Cancel(void* ptr)
 {
@@ -1063,6 +1075,26 @@ void QNearFieldShareTarget_Error(void* ptr, long long error)
 	static_cast<QNearFieldShareTarget*>(ptr)->error(static_cast<QNearFieldShareManager::ShareError>(error));
 }
 
+char QNearFieldShareTarget_IsShareInProgress(void* ptr)
+{
+	return static_cast<QNearFieldShareTarget*>(ptr)->isShareInProgress();
+}
+
+char QNearFieldShareTarget_Share(void* ptr, void* message)
+{
+	return static_cast<QNearFieldShareTarget*>(ptr)->share(*static_cast<QNdefMessage*>(message));
+}
+
+char QNearFieldShareTarget_Share2(void* ptr, void* files)
+{
+	return static_cast<QNearFieldShareTarget*>(ptr)->share(*static_cast<QList<QFileInfo>*>(files));
+}
+
+long long QNearFieldShareTarget_ShareError(void* ptr)
+{
+	return static_cast<QNearFieldShareTarget*>(ptr)->shareError();
+}
+
 void QNearFieldShareTarget_ConnectShareFinished(void* ptr)
 {
 	QObject::connect(static_cast<QNearFieldShareTarget*>(ptr), static_cast<void (QNearFieldShareTarget::*)()>(&QNearFieldShareTarget::shareFinished), static_cast<MyQNearFieldShareTarget*>(ptr), static_cast<void (MyQNearFieldShareTarget::*)()>(&MyQNearFieldShareTarget::Signal_ShareFinished));
@@ -1078,6 +1110,11 @@ void QNearFieldShareTarget_ShareFinished(void* ptr)
 	static_cast<QNearFieldShareTarget*>(ptr)->shareFinished();
 }
 
+long long QNearFieldShareTarget_ShareModes(void* ptr)
+{
+	return static_cast<QNearFieldShareTarget*>(ptr)->shareModes();
+}
+
 void QNearFieldShareTarget_DestroyQNearFieldShareTarget(void* ptr)
 {
 	static_cast<QNearFieldShareTarget*>(ptr)->~QNearFieldShareTarget();
@@ -1087,26 +1124,6 @@ void QNearFieldShareTarget_DestroyQNearFieldShareTargetDefault(void* ptr)
 {
 	Q_UNUSED(ptr);
 
-}
-
-long long QNearFieldShareTarget_ShareError(void* ptr)
-{
-	return static_cast<QNearFieldShareTarget*>(ptr)->shareError();
-}
-
-long long QNearFieldShareTarget_ShareModes(void* ptr)
-{
-	return static_cast<QNearFieldShareTarget*>(ptr)->shareModes();
-}
-
-char QNearFieldShareTarget_IsShareInProgress(void* ptr)
-{
-	return static_cast<QNearFieldShareTarget*>(ptr)->isShareInProgress();
-}
-
-void* QNearFieldShareTarget_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QNearFieldShareTarget*>(ptr)->QNearFieldShareTarget::metaObject());
 }
 
 void* QNearFieldShareTarget___share_files_atList2(void* ptr, int i)
@@ -1125,6 +1142,22 @@ void* QNearFieldShareTarget___share_files_newList2(void* ptr)
 	return new QList<QFileInfo>();
 }
 
+void* QNearFieldShareTarget___children_atList(void* ptr, int i)
+{
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void QNearFieldShareTarget___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QNearFieldShareTarget___children_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject *>();
+}
+
 void* QNearFieldShareTarget___dynamicPropertyNames_atList(void* ptr, int i)
 {
 	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(ptr)->at(i); if (i == static_cast<QList<QByteArray>*>(ptr)->size()-1) { static_cast<QList<QByteArray>*>(ptr)->~QList(); free(ptr); }; tmp; }));
@@ -1141,17 +1174,17 @@ void* QNearFieldShareTarget___dynamicPropertyNames_newList(void* ptr)
 	return new QList<QByteArray>();
 }
 
-void* QNearFieldShareTarget___findChildren_atList2(void* ptr, int i)
+void* QNearFieldShareTarget___findChildren_atList(void* ptr, int i)
 {
 	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QNearFieldShareTarget___findChildren_setList2(void* ptr, void* i)
+void QNearFieldShareTarget___findChildren_setList(void* ptr, void* i)
 {
 	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
-void* QNearFieldShareTarget___findChildren_newList2(void* ptr)
+void* QNearFieldShareTarget___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();
@@ -1173,46 +1206,20 @@ void* QNearFieldShareTarget___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QNearFieldShareTarget___findChildren_atList(void* ptr, int i)
+void* QNearFieldShareTarget___qFindChildren_atList2(void* ptr, int i)
 {
 	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QNearFieldShareTarget___findChildren_setList(void* ptr, void* i)
+void QNearFieldShareTarget___qFindChildren_setList2(void* ptr, void* i)
 {
 	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
-void* QNearFieldShareTarget___findChildren_newList(void* ptr)
+void* QNearFieldShareTarget___qFindChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();
-}
-
-void* QNearFieldShareTarget___children_atList(void* ptr, int i)
-{
-	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QNearFieldShareTarget___children_setList(void* ptr, void* i)
-{
-	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QNearFieldShareTarget___children_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject *>();
-}
-
-char QNearFieldShareTarget_EventDefault(void* ptr, void* e)
-{
-		return static_cast<QNearFieldShareTarget*>(ptr)->QNearFieldShareTarget::event(static_cast<QEvent*>(e));
-}
-
-char QNearFieldShareTarget_EventFilterDefault(void* ptr, void* watched, void* event)
-{
-		return static_cast<QNearFieldShareTarget*>(ptr)->QNearFieldShareTarget::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
 void QNearFieldShareTarget_ChildEventDefault(void* ptr, void* event)
@@ -1240,6 +1247,16 @@ void QNearFieldShareTarget_DisconnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QNearFieldShareTarget*>(ptr)->QNearFieldShareTarget::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
+char QNearFieldShareTarget_EventDefault(void* ptr, void* e)
+{
+		return static_cast<QNearFieldShareTarget*>(ptr)->QNearFieldShareTarget::event(static_cast<QEvent*>(e));
+}
+
+char QNearFieldShareTarget_EventFilterDefault(void* ptr, void* watched, void* event)
+{
+		return static_cast<QNearFieldShareTarget*>(ptr)->QNearFieldShareTarget::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
 void QNearFieldShareTarget_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QNearFieldShareTarget*>(ptr)->QNearFieldShareTarget::timerEvent(static_cast<QTimerEvent*>(event));
@@ -1249,24 +1266,23 @@ class MyQNearFieldTarget: public QNearFieldTarget
 {
 public:
 	MyQNearFieldTarget(QObject *parent = Q_NULLPTR) : QNearFieldTarget(parent) {QNearFieldTarget_QNearFieldTarget_QRegisterMetaType();};
-	bool hasNdefMessage() { return callbackQNearFieldTarget_HasNdefMessage(this) != 0; };
+	QNearFieldTarget::AccessMethods accessMethods() const { return static_cast<QNearFieldTarget::AccessMethod>(callbackQNearFieldTarget_AccessMethods(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_Disconnected() { callbackQNearFieldTarget_Disconnected(this); };
+	bool hasNdefMessage() { return callbackQNearFieldTarget_HasNdefMessage(this) != 0; };
 	void Signal_NdefMessageRead(const QNdefMessage & message) { callbackQNearFieldTarget_NdefMessageRead(this, const_cast<QNdefMessage*>(&message)); };
 	void Signal_NdefMessagesWritten() { callbackQNearFieldTarget_NdefMessagesWritten(this); };
-	 ~MyQNearFieldTarget() { callbackQNearFieldTarget_DestroyQNearFieldTarget(this); };
-	QByteArray uid() const { return *static_cast<QByteArray*>(callbackQNearFieldTarget_Uid(const_cast<void*>(static_cast<const void*>(this)))); };
-	QNearFieldTarget::AccessMethods accessMethods() const { return static_cast<QNearFieldTarget::AccessMethod>(callbackQNearFieldTarget_AccessMethods(const_cast<void*>(static_cast<const void*>(this)))); };
 	QNearFieldTarget::Type type() const { return static_cast<QNearFieldTarget::Type>(callbackQNearFieldTarget_Type(const_cast<void*>(static_cast<const void*>(this)))); };
+	QByteArray uid() const { return *static_cast<QByteArray*>(callbackQNearFieldTarget_Uid(const_cast<void*>(static_cast<const void*>(this)))); };
 	QUrl url() const { return *static_cast<QUrl*>(callbackQNearFieldTarget_Url(const_cast<void*>(static_cast<const void*>(this)))); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQNearFieldTarget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	bool event(QEvent * e) { return callbackQNearFieldTarget_Event(this, e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQNearFieldTarget_EventFilter(this, watched, event) != 0; };
+	 ~MyQNearFieldTarget() { callbackQNearFieldTarget_DestroyQNearFieldTarget(this); };
 	void childEvent(QChildEvent * event) { callbackQNearFieldTarget_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQNearFieldTarget_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQNearFieldTarget_CustomEvent(this, event); };
 	void deleteLater() { callbackQNearFieldTarget_DeleteLater(this); };
 	void Signal_Destroyed(QObject * obj) { callbackQNearFieldTarget_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQNearFieldTarget_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQNearFieldTarget_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQNearFieldTarget_EventFilter(this, watched, event) != 0; };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtNfc_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQNearFieldTarget_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQNearFieldTarget_TimerEvent(this, event); };
 };
@@ -1305,6 +1321,8 @@ void* QNearFieldTarget_NewQNearFieldTarget(void* parent)
 		return new MyQNearFieldTarget(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQNearFieldTarget(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQNearFieldTarget(static_cast<QRemoteObjectPendingCallWatcher*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQNearFieldTarget(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -1314,29 +1332,14 @@ void* QNearFieldTarget_NewQNearFieldTarget(void* parent)
 	}
 }
 
-struct QtNfc_PackedString QNearFieldTarget_QNearFieldTarget_Tr(char* s, char* c, int n)
+long long QNearFieldTarget_AccessMethods(void* ptr)
 {
-	return ({ QByteArray t6b5b27 = QNearFieldTarget::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtNfc_PackedString { const_cast<char*>(t6b5b27.prepend("WHITESPACE").constData()+10), t6b5b27.size()-10 }; });
+	return static_cast<QNearFieldTarget*>(ptr)->accessMethods();
 }
 
 char QNearFieldTarget_Disconnect(void* ptr)
 {
 	return static_cast<QNearFieldTarget*>(ptr)->disconnect();
-}
-
-char QNearFieldTarget_HasNdefMessage(void* ptr)
-{
-	return static_cast<QNearFieldTarget*>(ptr)->hasNdefMessage();
-}
-
-char QNearFieldTarget_HasNdefMessageDefault(void* ptr)
-{
-		return static_cast<QNearFieldTarget*>(ptr)->QNearFieldTarget::hasNdefMessage();
-}
-
-char QNearFieldTarget_SetKeepConnection(void* ptr, char isPersistent)
-{
-	return static_cast<QNearFieldTarget*>(ptr)->setKeepConnection(isPersistent != 0);
 }
 
 void QNearFieldTarget_ConnectDisconnected(void* ptr)
@@ -1352,6 +1355,31 @@ void QNearFieldTarget_DisconnectDisconnected(void* ptr)
 void QNearFieldTarget_Disconnected(void* ptr)
 {
 	static_cast<QNearFieldTarget*>(ptr)->disconnected();
+}
+
+char QNearFieldTarget_HasNdefMessage(void* ptr)
+{
+	return static_cast<QNearFieldTarget*>(ptr)->hasNdefMessage();
+}
+
+char QNearFieldTarget_HasNdefMessageDefault(void* ptr)
+{
+		return static_cast<QNearFieldTarget*>(ptr)->QNearFieldTarget::hasNdefMessage();
+}
+
+char QNearFieldTarget_IsProcessingCommand(void* ptr)
+{
+	return static_cast<QNearFieldTarget*>(ptr)->isProcessingCommand();
+}
+
+char QNearFieldTarget_KeepConnection(void* ptr)
+{
+	return static_cast<QNearFieldTarget*>(ptr)->keepConnection();
+}
+
+int QNearFieldTarget_MaxCommandLength(void* ptr)
+{
+	return static_cast<QNearFieldTarget*>(ptr)->maxCommandLength();
 }
 
 void QNearFieldTarget_ConnectNdefMessageRead(void* ptr)
@@ -1384,30 +1412,19 @@ void QNearFieldTarget_NdefMessagesWritten(void* ptr)
 	static_cast<QNearFieldTarget*>(ptr)->ndefMessagesWritten();
 }
 
-void QNearFieldTarget_DestroyQNearFieldTarget(void* ptr)
+char QNearFieldTarget_SetKeepConnection(void* ptr, char isPersistent)
 {
-	static_cast<QNearFieldTarget*>(ptr)->~QNearFieldTarget();
-}
-
-void QNearFieldTarget_DestroyQNearFieldTargetDefault(void* ptr)
-{
-	Q_UNUSED(ptr);
-
-}
-
-void* QNearFieldTarget_Uid(void* ptr)
-{
-	return new QByteArray(static_cast<QNearFieldTarget*>(ptr)->uid());
-}
-
-long long QNearFieldTarget_AccessMethods(void* ptr)
-{
-	return static_cast<QNearFieldTarget*>(ptr)->accessMethods();
+	return static_cast<QNearFieldTarget*>(ptr)->setKeepConnection(isPersistent != 0);
 }
 
 long long QNearFieldTarget_Type(void* ptr)
 {
 	return static_cast<QNearFieldTarget*>(ptr)->type();
+}
+
+void* QNearFieldTarget_Uid(void* ptr)
+{
+	return new QByteArray(static_cast<QNearFieldTarget*>(ptr)->uid());
 }
 
 void* QNearFieldTarget_Url(void* ptr)
@@ -1420,24 +1437,15 @@ void* QNearFieldTarget_UrlDefault(void* ptr)
 		return new QUrl(static_cast<QNearFieldTarget*>(ptr)->QNearFieldTarget::url());
 }
 
-char QNearFieldTarget_IsProcessingCommand(void* ptr)
+void QNearFieldTarget_DestroyQNearFieldTarget(void* ptr)
 {
-	return static_cast<QNearFieldTarget*>(ptr)->isProcessingCommand();
+	static_cast<QNearFieldTarget*>(ptr)->~QNearFieldTarget();
 }
 
-char QNearFieldTarget_KeepConnection(void* ptr)
+void QNearFieldTarget_DestroyQNearFieldTargetDefault(void* ptr)
 {
-	return static_cast<QNearFieldTarget*>(ptr)->keepConnection();
-}
+	Q_UNUSED(ptr);
 
-void* QNearFieldTarget_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QNearFieldTarget*>(ptr)->QNearFieldTarget::metaObject());
-}
-
-int QNearFieldTarget_MaxCommandLength(void* ptr)
-{
-	return static_cast<QNearFieldTarget*>(ptr)->maxCommandLength();
 }
 
 void* QNearFieldTarget___sendCommands_commands_atList(void* ptr, int i)
@@ -1472,6 +1480,22 @@ void* QNearFieldTarget___writeNdefMessages_messages_newList(void* ptr)
 	return new QList<QNdefMessage>();
 }
 
+void* QNearFieldTarget___children_atList(void* ptr, int i)
+{
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void QNearFieldTarget___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QNearFieldTarget___children_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject *>();
+}
+
 void* QNearFieldTarget___dynamicPropertyNames_atList(void* ptr, int i)
 {
 	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(ptr)->at(i); if (i == static_cast<QList<QByteArray>*>(ptr)->size()-1) { static_cast<QList<QByteArray>*>(ptr)->~QList(); free(ptr); }; tmp; }));
@@ -1488,17 +1512,17 @@ void* QNearFieldTarget___dynamicPropertyNames_newList(void* ptr)
 	return new QList<QByteArray>();
 }
 
-void* QNearFieldTarget___findChildren_atList2(void* ptr, int i)
+void* QNearFieldTarget___findChildren_atList(void* ptr, int i)
 {
 	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QNearFieldTarget___findChildren_setList2(void* ptr, void* i)
+void QNearFieldTarget___findChildren_setList(void* ptr, void* i)
 {
 	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
-void* QNearFieldTarget___findChildren_newList2(void* ptr)
+void* QNearFieldTarget___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();
@@ -1520,46 +1544,20 @@ void* QNearFieldTarget___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QNearFieldTarget___findChildren_atList(void* ptr, int i)
+void* QNearFieldTarget___qFindChildren_atList2(void* ptr, int i)
 {
 	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QNearFieldTarget___findChildren_setList(void* ptr, void* i)
+void QNearFieldTarget___qFindChildren_setList2(void* ptr, void* i)
 {
 	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
-void* QNearFieldTarget___findChildren_newList(void* ptr)
+void* QNearFieldTarget___qFindChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();
-}
-
-void* QNearFieldTarget___children_atList(void* ptr, int i)
-{
-	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QNearFieldTarget___children_setList(void* ptr, void* i)
-{
-	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QNearFieldTarget___children_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject *>();
-}
-
-char QNearFieldTarget_EventDefault(void* ptr, void* e)
-{
-		return static_cast<QNearFieldTarget*>(ptr)->QNearFieldTarget::event(static_cast<QEvent*>(e));
-}
-
-char QNearFieldTarget_EventFilterDefault(void* ptr, void* watched, void* event)
-{
-		return static_cast<QNearFieldTarget*>(ptr)->QNearFieldTarget::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
 void QNearFieldTarget_ChildEventDefault(void* ptr, void* event)
@@ -1587,6 +1585,16 @@ void QNearFieldTarget_DisconnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QNearFieldTarget*>(ptr)->QNearFieldTarget::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
+char QNearFieldTarget_EventDefault(void* ptr, void* e)
+{
+		return static_cast<QNearFieldTarget*>(ptr)->QNearFieldTarget::event(static_cast<QEvent*>(e));
+}
+
+char QNearFieldTarget_EventFilterDefault(void* ptr, void* watched, void* event)
+{
+		return static_cast<QNearFieldTarget*>(ptr)->QNearFieldTarget::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
 void QNearFieldTarget_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QNearFieldTarget*>(ptr)->QNearFieldTarget::timerEvent(static_cast<QTimerEvent*>(event));
@@ -1601,15 +1609,14 @@ public:
 	void Signal_TypeChanged() { callbackQQmlNdefRecord_TypeChanged(this); };
 	void Signal_TypeNameFormatChanged() { callbackQQmlNdefRecord_TypeNameFormatChanged(this); };
 	 ~MyQQmlNdefRecord() { callbackQQmlNdefRecord_DestroyQQmlNdefRecord(this); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQmlNdefRecord_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	bool event(QEvent * e) { return callbackQQmlNdefRecord_Event(this, e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQQmlNdefRecord_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQQmlNdefRecord_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQQmlNdefRecord_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQQmlNdefRecord_CustomEvent(this, event); };
 	void deleteLater() { callbackQQmlNdefRecord_DeleteLater(this); };
 	void Signal_Destroyed(QObject * obj) { callbackQQmlNdefRecord_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQQmlNdefRecord_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQQmlNdefRecord_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQQmlNdefRecord_EventFilter(this, watched, event) != 0; };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtNfc_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQQmlNdefRecord_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQQmlNdefRecord_TimerEvent(this, event); };
 };
@@ -1648,6 +1655,8 @@ void* QQmlNdefRecord_NewQQmlNdefRecord(void* parent)
 		return new MyQQmlNdefRecord(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQQmlNdefRecord(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlNdefRecord(static_cast<QRemoteObjectPendingCallWatcher*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQQmlNdefRecord(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -1687,6 +1696,8 @@ void* QQmlNdefRecord_NewQQmlNdefRecord2(void* record, void* parent)
 		return new MyQQmlNdefRecord(*static_cast<QNdefRecord*>(record), static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQQmlNdefRecord(*static_cast<QNdefRecord*>(record), static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlNdefRecord(*static_cast<QNdefRecord*>(record), static_cast<QRemoteObjectPendingCallWatcher*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQQmlNdefRecord(*static_cast<QNdefRecord*>(record), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -1696,9 +1707,9 @@ void* QQmlNdefRecord_NewQQmlNdefRecord2(void* record, void* parent)
 	}
 }
 
-struct QtNfc_PackedString QQmlNdefRecord_QQmlNdefRecord_Tr(char* s, char* c, int n)
+void* QQmlNdefRecord_Record(void* ptr)
 {
-	return ({ QByteArray t6484f5 = QQmlNdefRecord::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtNfc_PackedString { const_cast<char*>(t6484f5.prepend("WHITESPACE").constData()+10), t6484f5.size()-10 }; });
+	return new QNdefRecord(static_cast<QQmlNdefRecord*>(ptr)->record());
 }
 
 void QQmlNdefRecord_ConnectRecordChanged(void* ptr)
@@ -1731,6 +1742,11 @@ void QQmlNdefRecord_SetTypeNameFormat(void* ptr, long long newTypeNameFormat)
 	static_cast<QQmlNdefRecord*>(ptr)->setTypeNameFormat(static_cast<QQmlNdefRecord::TypeNameFormat>(newTypeNameFormat));
 }
 
+struct QtNfc_PackedString QQmlNdefRecord_Type(void* ptr)
+{
+	return ({ QByteArray t9a31a1 = static_cast<QQmlNdefRecord*>(ptr)->type().toUtf8(); QtNfc_PackedString { const_cast<char*>(t9a31a1.prepend("WHITESPACE").constData()+10), t9a31a1.size()-10 }; });
+}
+
 void QQmlNdefRecord_ConnectTypeChanged(void* ptr)
 {
 	QObject::connect(static_cast<QQmlNdefRecord*>(ptr), static_cast<void (QQmlNdefRecord::*)()>(&QQmlNdefRecord::typeChanged), static_cast<MyQQmlNdefRecord*>(ptr), static_cast<void (MyQQmlNdefRecord::*)()>(&MyQQmlNdefRecord::Signal_TypeChanged));
@@ -1744,6 +1760,11 @@ void QQmlNdefRecord_DisconnectTypeChanged(void* ptr)
 void QQmlNdefRecord_TypeChanged(void* ptr)
 {
 	static_cast<QQmlNdefRecord*>(ptr)->typeChanged();
+}
+
+long long QQmlNdefRecord_TypeNameFormat(void* ptr)
+{
+	return static_cast<QQmlNdefRecord*>(ptr)->typeNameFormat();
 }
 
 void QQmlNdefRecord_ConnectTypeNameFormatChanged(void* ptr)
@@ -1772,24 +1793,20 @@ void QQmlNdefRecord_DestroyQQmlNdefRecordDefault(void* ptr)
 
 }
 
-void* QQmlNdefRecord_Record(void* ptr)
+void* QQmlNdefRecord___children_atList(void* ptr, int i)
 {
-	return new QNdefRecord(static_cast<QQmlNdefRecord*>(ptr)->record());
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-long long QQmlNdefRecord_TypeNameFormat(void* ptr)
+void QQmlNdefRecord___children_setList(void* ptr, void* i)
 {
-	return static_cast<QQmlNdefRecord*>(ptr)->typeNameFormat();
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
-struct QtNfc_PackedString QQmlNdefRecord_Type(void* ptr)
+void* QQmlNdefRecord___children_newList(void* ptr)
 {
-	return ({ QByteArray t9a31a1 = static_cast<QQmlNdefRecord*>(ptr)->type().toUtf8(); QtNfc_PackedString { const_cast<char*>(t9a31a1.prepend("WHITESPACE").constData()+10), t9a31a1.size()-10 }; });
-}
-
-void* QQmlNdefRecord_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QQmlNdefRecord*>(ptr)->QQmlNdefRecord::metaObject());
+	Q_UNUSED(ptr);
+	return new QList<QObject *>();
 }
 
 void* QQmlNdefRecord___dynamicPropertyNames_atList(void* ptr, int i)
@@ -1808,17 +1825,17 @@ void* QQmlNdefRecord___dynamicPropertyNames_newList(void* ptr)
 	return new QList<QByteArray>();
 }
 
-void* QQmlNdefRecord___findChildren_atList2(void* ptr, int i)
+void* QQmlNdefRecord___findChildren_atList(void* ptr, int i)
 {
 	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QQmlNdefRecord___findChildren_setList2(void* ptr, void* i)
+void QQmlNdefRecord___findChildren_setList(void* ptr, void* i)
 {
 	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
-void* QQmlNdefRecord___findChildren_newList2(void* ptr)
+void* QQmlNdefRecord___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();
@@ -1840,46 +1857,20 @@ void* QQmlNdefRecord___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QQmlNdefRecord___findChildren_atList(void* ptr, int i)
+void* QQmlNdefRecord___qFindChildren_atList2(void* ptr, int i)
 {
 	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QQmlNdefRecord___findChildren_setList(void* ptr, void* i)
+void QQmlNdefRecord___qFindChildren_setList2(void* ptr, void* i)
 {
 	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
-void* QQmlNdefRecord___findChildren_newList(void* ptr)
+void* QQmlNdefRecord___qFindChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();
-}
-
-void* QQmlNdefRecord___children_atList(void* ptr, int i)
-{
-	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QQmlNdefRecord___children_setList(void* ptr, void* i)
-{
-	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QQmlNdefRecord___children_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject *>();
-}
-
-char QQmlNdefRecord_EventDefault(void* ptr, void* e)
-{
-		return static_cast<QQmlNdefRecord*>(ptr)->QQmlNdefRecord::event(static_cast<QEvent*>(e));
-}
-
-char QQmlNdefRecord_EventFilterDefault(void* ptr, void* watched, void* event)
-{
-		return static_cast<QQmlNdefRecord*>(ptr)->QQmlNdefRecord::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
 void QQmlNdefRecord_ChildEventDefault(void* ptr, void* event)
@@ -1905,6 +1896,16 @@ void QQmlNdefRecord_DeleteLaterDefault(void* ptr)
 void QQmlNdefRecord_DisconnectNotifyDefault(void* ptr, void* sign)
 {
 		static_cast<QQmlNdefRecord*>(ptr)->QQmlNdefRecord::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+char QQmlNdefRecord_EventDefault(void* ptr, void* e)
+{
+		return static_cast<QQmlNdefRecord*>(ptr)->QQmlNdefRecord::event(static_cast<QEvent*>(e));
+}
+
+char QQmlNdefRecord_EventFilterDefault(void* ptr, void* watched, void* event)
+{
+		return static_cast<QQmlNdefRecord*>(ptr)->QQmlNdefRecord::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
 void QQmlNdefRecord_TimerEventDefault(void* ptr, void* event)

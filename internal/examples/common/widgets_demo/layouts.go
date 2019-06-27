@@ -36,7 +36,7 @@ func layouts() {
 	grid := widgets.NewQGridLayout(gridWidget)
 	for row := 0; row < 4; row++ {
 		for column := 0; column < 4; column++ {
-			grid.AddWidget(widgets.NewQLabel2(fmt.Sprintf("[%v:%v]", row, column), nil, 0), row, column, core.Qt__AlignCenter)
+			grid.AddWidget2(widgets.NewQLabel2(fmt.Sprintf("[%v:%v]", row, column), nil, 0), row, column, core.Qt__AlignCenter)
 		}
 	}
 	addWidget(gridWidget)

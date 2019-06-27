@@ -27,7 +27,7 @@ func containers() {
 	scrollAreaWidgetLayout := widgets.NewQGridLayout(scrollAreaWidget)
 	for row := 0; row < 25; row++ {
 		for column := 0; column < 25; column++ {
-			scrollAreaWidgetLayout.AddWidget(widgets.NewQLabel2(fmt.Sprintf("[%v:%v]", row, column), nil, 0), row, column, core.Qt__AlignCenter)
+			scrollAreaWidgetLayout.AddWidget2(widgets.NewQLabel2(fmt.Sprintf("[%v:%v]", row, column), nil, 0), row, column, core.Qt__AlignCenter)
 		}
 	}
 

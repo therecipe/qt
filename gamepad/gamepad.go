@@ -81,32 +81,11 @@ func NewQGamepad(deviceId int, parent core.QObject_ITF) *QGamepad {
 	return tmpValue
 }
 
-func QGamepad_Tr(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
+func (ptr *QGamepad) AxisLeftX() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QGamepad_AxisLeftX(ptr.Pointer()))
 	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QGamepad_QGamepad_Tr(sC, cC, C.int(int32(n))))
-}
-
-func (ptr *QGamepad) Tr(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QGamepad_QGamepad_Tr(sC, cC, C.int(int32(n))))
+	return 0
 }
 
 //export callbackQGamepad_AxisLeftXChanged
@@ -149,6 +128,13 @@ func (ptr *QGamepad) AxisLeftXChanged(value float64) {
 	}
 }
 
+func (ptr *QGamepad) AxisLeftY() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QGamepad_AxisLeftY(ptr.Pointer()))
+	}
+	return 0
+}
+
 //export callbackQGamepad_AxisLeftYChanged
 func callbackQGamepad_AxisLeftYChanged(ptr unsafe.Pointer, value C.double) {
 	if signal := qt.GetSignal(ptr, "axisLeftYChanged"); signal != nil {
@@ -187,6 +173,13 @@ func (ptr *QGamepad) AxisLeftYChanged(value float64) {
 	if ptr.Pointer() != nil {
 		C.QGamepad_AxisLeftYChanged(ptr.Pointer(), C.double(value))
 	}
+}
+
+func (ptr *QGamepad) AxisRightX() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QGamepad_AxisRightX(ptr.Pointer()))
+	}
+	return 0
 }
 
 //export callbackQGamepad_AxisRightXChanged
@@ -229,6 +222,13 @@ func (ptr *QGamepad) AxisRightXChanged(value float64) {
 	}
 }
 
+func (ptr *QGamepad) AxisRightY() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QGamepad_AxisRightY(ptr.Pointer()))
+	}
+	return 0
+}
+
 //export callbackQGamepad_AxisRightYChanged
 func callbackQGamepad_AxisRightYChanged(ptr unsafe.Pointer, value C.double) {
 	if signal := qt.GetSignal(ptr, "axisRightYChanged"); signal != nil {
@@ -267,6 +267,13 @@ func (ptr *QGamepad) AxisRightYChanged(value float64) {
 	if ptr.Pointer() != nil {
 		C.QGamepad_AxisRightYChanged(ptr.Pointer(), C.double(value))
 	}
+}
+
+func (ptr *QGamepad) ButtonA() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QGamepad_ButtonA(ptr.Pointer())) != 0
+	}
+	return false
 }
 
 //export callbackQGamepad_ButtonAChanged
@@ -309,6 +316,13 @@ func (ptr *QGamepad) ButtonAChanged(value bool) {
 	}
 }
 
+func (ptr *QGamepad) ButtonB() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QGamepad_ButtonB(ptr.Pointer())) != 0
+	}
+	return false
+}
+
 //export callbackQGamepad_ButtonBChanged
 func callbackQGamepad_ButtonBChanged(ptr unsafe.Pointer, value C.char) {
 	if signal := qt.GetSignal(ptr, "buttonBChanged"); signal != nil {
@@ -347,6 +361,13 @@ func (ptr *QGamepad) ButtonBChanged(value bool) {
 	if ptr.Pointer() != nil {
 		C.QGamepad_ButtonBChanged(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(value))))
 	}
+}
+
+func (ptr *QGamepad) ButtonCenter() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QGamepad_ButtonCenter(ptr.Pointer())) != 0
+	}
+	return false
 }
 
 //export callbackQGamepad_ButtonCenterChanged
@@ -389,6 +410,13 @@ func (ptr *QGamepad) ButtonCenterChanged(value bool) {
 	}
 }
 
+func (ptr *QGamepad) ButtonDown() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QGamepad_ButtonDown(ptr.Pointer())) != 0
+	}
+	return false
+}
+
 //export callbackQGamepad_ButtonDownChanged
 func callbackQGamepad_ButtonDownChanged(ptr unsafe.Pointer, value C.char) {
 	if signal := qt.GetSignal(ptr, "buttonDownChanged"); signal != nil {
@@ -427,6 +455,13 @@ func (ptr *QGamepad) ButtonDownChanged(value bool) {
 	if ptr.Pointer() != nil {
 		C.QGamepad_ButtonDownChanged(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(value))))
 	}
+}
+
+func (ptr *QGamepad) ButtonGuide() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QGamepad_ButtonGuide(ptr.Pointer())) != 0
+	}
+	return false
 }
 
 //export callbackQGamepad_ButtonGuideChanged
@@ -469,6 +504,13 @@ func (ptr *QGamepad) ButtonGuideChanged(value bool) {
 	}
 }
 
+func (ptr *QGamepad) ButtonL1() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QGamepad_ButtonL1(ptr.Pointer())) != 0
+	}
+	return false
+}
+
 //export callbackQGamepad_ButtonL1Changed
 func callbackQGamepad_ButtonL1Changed(ptr unsafe.Pointer, value C.char) {
 	if signal := qt.GetSignal(ptr, "buttonL1Changed"); signal != nil {
@@ -507,6 +549,13 @@ func (ptr *QGamepad) ButtonL1Changed(value bool) {
 	if ptr.Pointer() != nil {
 		C.QGamepad_ButtonL1Changed(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(value))))
 	}
+}
+
+func (ptr *QGamepad) ButtonL2() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QGamepad_ButtonL2(ptr.Pointer()))
+	}
+	return 0
 }
 
 //export callbackQGamepad_ButtonL2Changed
@@ -549,6 +598,13 @@ func (ptr *QGamepad) ButtonL2Changed(value float64) {
 	}
 }
 
+func (ptr *QGamepad) ButtonL3() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QGamepad_ButtonL3(ptr.Pointer())) != 0
+	}
+	return false
+}
+
 //export callbackQGamepad_ButtonL3Changed
 func callbackQGamepad_ButtonL3Changed(ptr unsafe.Pointer, value C.char) {
 	if signal := qt.GetSignal(ptr, "buttonL3Changed"); signal != nil {
@@ -587,6 +643,13 @@ func (ptr *QGamepad) ButtonL3Changed(value bool) {
 	if ptr.Pointer() != nil {
 		C.QGamepad_ButtonL3Changed(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(value))))
 	}
+}
+
+func (ptr *QGamepad) ButtonLeft() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QGamepad_ButtonLeft(ptr.Pointer())) != 0
+	}
+	return false
 }
 
 //export callbackQGamepad_ButtonLeftChanged
@@ -629,6 +692,13 @@ func (ptr *QGamepad) ButtonLeftChanged(value bool) {
 	}
 }
 
+func (ptr *QGamepad) ButtonR1() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QGamepad_ButtonR1(ptr.Pointer())) != 0
+	}
+	return false
+}
+
 //export callbackQGamepad_ButtonR1Changed
 func callbackQGamepad_ButtonR1Changed(ptr unsafe.Pointer, value C.char) {
 	if signal := qt.GetSignal(ptr, "buttonR1Changed"); signal != nil {
@@ -667,6 +737,13 @@ func (ptr *QGamepad) ButtonR1Changed(value bool) {
 	if ptr.Pointer() != nil {
 		C.QGamepad_ButtonR1Changed(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(value))))
 	}
+}
+
+func (ptr *QGamepad) ButtonR2() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QGamepad_ButtonR2(ptr.Pointer()))
+	}
+	return 0
 }
 
 //export callbackQGamepad_ButtonR2Changed
@@ -709,6 +786,13 @@ func (ptr *QGamepad) ButtonR2Changed(value float64) {
 	}
 }
 
+func (ptr *QGamepad) ButtonR3() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QGamepad_ButtonR3(ptr.Pointer())) != 0
+	}
+	return false
+}
+
 //export callbackQGamepad_ButtonR3Changed
 func callbackQGamepad_ButtonR3Changed(ptr unsafe.Pointer, value C.char) {
 	if signal := qt.GetSignal(ptr, "buttonR3Changed"); signal != nil {
@@ -747,6 +831,13 @@ func (ptr *QGamepad) ButtonR3Changed(value bool) {
 	if ptr.Pointer() != nil {
 		C.QGamepad_ButtonR3Changed(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(value))))
 	}
+}
+
+func (ptr *QGamepad) ButtonRight() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QGamepad_ButtonRight(ptr.Pointer())) != 0
+	}
+	return false
 }
 
 //export callbackQGamepad_ButtonRightChanged
@@ -789,6 +880,13 @@ func (ptr *QGamepad) ButtonRightChanged(value bool) {
 	}
 }
 
+func (ptr *QGamepad) ButtonSelect() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QGamepad_ButtonSelect(ptr.Pointer())) != 0
+	}
+	return false
+}
+
 //export callbackQGamepad_ButtonSelectChanged
 func callbackQGamepad_ButtonSelectChanged(ptr unsafe.Pointer, value C.char) {
 	if signal := qt.GetSignal(ptr, "buttonSelectChanged"); signal != nil {
@@ -827,6 +925,13 @@ func (ptr *QGamepad) ButtonSelectChanged(value bool) {
 	if ptr.Pointer() != nil {
 		C.QGamepad_ButtonSelectChanged(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(value))))
 	}
+}
+
+func (ptr *QGamepad) ButtonStart() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QGamepad_ButtonStart(ptr.Pointer())) != 0
+	}
+	return false
 }
 
 //export callbackQGamepad_ButtonStartChanged
@@ -869,6 +974,13 @@ func (ptr *QGamepad) ButtonStartChanged(value bool) {
 	}
 }
 
+func (ptr *QGamepad) ButtonUp() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QGamepad_ButtonUp(ptr.Pointer())) != 0
+	}
+	return false
+}
+
 //export callbackQGamepad_ButtonUpChanged
 func callbackQGamepad_ButtonUpChanged(ptr unsafe.Pointer, value C.char) {
 	if signal := qt.GetSignal(ptr, "buttonUpChanged"); signal != nil {
@@ -909,6 +1021,13 @@ func (ptr *QGamepad) ButtonUpChanged(value bool) {
 	}
 }
 
+func (ptr *QGamepad) ButtonX() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QGamepad_ButtonX(ptr.Pointer())) != 0
+	}
+	return false
+}
+
 //export callbackQGamepad_ButtonXChanged
 func callbackQGamepad_ButtonXChanged(ptr unsafe.Pointer, value C.char) {
 	if signal := qt.GetSignal(ptr, "buttonXChanged"); signal != nil {
@@ -947,6 +1066,13 @@ func (ptr *QGamepad) ButtonXChanged(value bool) {
 	if ptr.Pointer() != nil {
 		C.QGamepad_ButtonXChanged(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(value))))
 	}
+}
+
+func (ptr *QGamepad) ButtonY() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QGamepad_ButtonY(ptr.Pointer())) != 0
+	}
+	return false
 }
 
 //export callbackQGamepad_ButtonYChanged
@@ -1029,6 +1155,13 @@ func (ptr *QGamepad) ConnectedChanged(value bool) {
 	}
 }
 
+func (ptr *QGamepad) DeviceId() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QGamepad_DeviceId(ptr.Pointer())))
+	}
+	return 0
+}
+
 //export callbackQGamepad_DeviceIdChanged
 func callbackQGamepad_DeviceIdChanged(ptr unsafe.Pointer, value C.int) {
 	if signal := qt.GetSignal(ptr, "deviceIdChanged"); signal != nil {
@@ -1067,6 +1200,20 @@ func (ptr *QGamepad) DeviceIdChanged(value int) {
 	if ptr.Pointer() != nil {
 		C.QGamepad_DeviceIdChanged(ptr.Pointer(), C.int(int32(value)))
 	}
+}
+
+func (ptr *QGamepad) IsConnected() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QGamepad_IsConnected(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QGamepad) Name() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QGamepad_Name(ptr.Pointer()))
+	}
+	return ""
 }
 
 //export callbackQGamepad_NameChanged
@@ -1157,242 +1304,25 @@ func (ptr *QGamepad) SetDeviceIdDefault(number int) {
 	}
 }
 
-//export callbackQGamepad_DestroyQGamepad
-func callbackQGamepad_DestroyQGamepad(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QGamepad"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQGamepadFromPointer(ptr).DestroyQGamepadDefault()
-	}
-}
-
-func (ptr *QGamepad) ConnectDestroyQGamepad(f func()) {
+func (ptr *QGamepad) __children_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "~QGamepad"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QGamepad", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QGamepad", unsafe.Pointer(&f))
+		tmpValue := core.NewQObjectFromPointer(C.QGamepad___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
-	}
-}
-
-func (ptr *QGamepad) DisconnectDestroyQGamepad() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "~QGamepad")
-	}
-}
-
-func (ptr *QGamepad) DestroyQGamepad() {
-	if ptr.Pointer() != nil {
-		C.QGamepad_DestroyQGamepad(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
-}
-
-func (ptr *QGamepad) DestroyQGamepadDefault() {
-	if ptr.Pointer() != nil {
-		C.QGamepad_DestroyQGamepadDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
-}
-
-func (ptr *QGamepad) Name() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QGamepad_Name(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QGamepad) ButtonA() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QGamepad_ButtonA(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QGamepad) ButtonB() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QGamepad_ButtonB(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QGamepad) ButtonCenter() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QGamepad_ButtonCenter(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QGamepad) ButtonDown() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QGamepad_ButtonDown(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QGamepad) ButtonGuide() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QGamepad_ButtonGuide(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QGamepad) ButtonL1() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QGamepad_ButtonL1(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QGamepad) ButtonL3() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QGamepad_ButtonL3(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QGamepad) ButtonLeft() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QGamepad_ButtonLeft(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QGamepad) ButtonR1() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QGamepad_ButtonR1(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QGamepad) ButtonR3() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QGamepad_ButtonR3(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QGamepad) ButtonRight() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QGamepad_ButtonRight(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QGamepad) ButtonSelect() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QGamepad_ButtonSelect(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QGamepad) ButtonStart() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QGamepad_ButtonStart(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QGamepad) ButtonUp() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QGamepad_ButtonUp(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QGamepad) ButtonX() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QGamepad_ButtonX(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QGamepad) ButtonY() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QGamepad_ButtonY(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QGamepad) IsConnected() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QGamepad_IsConnected(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-//export callbackQGamepad_MetaObject
-func callbackQGamepad_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQGamepadFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QGamepad) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QGamepad_MetaObjectDefault(ptr.Pointer()))
+		return tmpValue
 	}
 	return nil
 }
 
-func (ptr *QGamepad) AxisLeftX() float64 {
+func (ptr *QGamepad) __children_setList(i core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		return float64(C.QGamepad_AxisLeftX(ptr.Pointer()))
+		C.QGamepad___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
 	}
-	return 0
 }
 
-func (ptr *QGamepad) AxisLeftY() float64 {
-	if ptr.Pointer() != nil {
-		return float64(C.QGamepad_AxisLeftY(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QGamepad) AxisRightX() float64 {
-	if ptr.Pointer() != nil {
-		return float64(C.QGamepad_AxisRightX(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QGamepad) AxisRightY() float64 {
-	if ptr.Pointer() != nil {
-		return float64(C.QGamepad_AxisRightY(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QGamepad) ButtonL2() float64 {
-	if ptr.Pointer() != nil {
-		return float64(C.QGamepad_ButtonL2(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QGamepad) ButtonR2() float64 {
-	if ptr.Pointer() != nil {
-		return float64(C.QGamepad_ButtonR2(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QGamepad) DeviceId() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QGamepad_DeviceId(ptr.Pointer())))
-	}
-	return 0
+func (ptr *QGamepad) __children_newList() unsafe.Pointer {
+	return C.QGamepad___children_newList(ptr.Pointer())
 }
 
 func (ptr *QGamepad) __dynamicPropertyNames_atList(i int) *core.QByteArray {
@@ -1412,48 +1342,6 @@ func (ptr *QGamepad) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
 
 func (ptr *QGamepad) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QGamepad___dynamicPropertyNames_newList(ptr.Pointer())
-}
-
-func (ptr *QGamepad) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QGamepad___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QGamepad) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QGamepad___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QGamepad) __findChildren_newList2() unsafe.Pointer {
-	return C.QGamepad___findChildren_newList2(ptr.Pointer())
-}
-
-func (ptr *QGamepad) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QGamepad___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QGamepad) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QGamepad___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QGamepad) __findChildren_newList3() unsafe.Pointer {
-	return C.QGamepad___findChildren_newList3(ptr.Pointer())
 }
 
 func (ptr *QGamepad) __findChildren_atList(i int) *core.QObject {
@@ -1477,9 +1365,9 @@ func (ptr *QGamepad) __findChildren_newList() unsafe.Pointer {
 	return C.QGamepad___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QGamepad) __children_atList(i int) *core.QObject {
+func (ptr *QGamepad) __findChildren_atList3(i int) *core.QObject {
 	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QGamepad___children_atList(ptr.Pointer(), C.int(int32(i))))
+		tmpValue := core.NewQObjectFromPointer(C.QGamepad___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -1488,46 +1376,35 @@ func (ptr *QGamepad) __children_atList(i int) *core.QObject {
 	return nil
 }
 
-func (ptr *QGamepad) __children_setList(i core.QObject_ITF) {
+func (ptr *QGamepad) __findChildren_setList3(i core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGamepad___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+		C.QGamepad___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *QGamepad) __children_newList() unsafe.Pointer {
-	return C.QGamepad___children_newList(ptr.Pointer())
+func (ptr *QGamepad) __findChildren_newList3() unsafe.Pointer {
+	return C.QGamepad___findChildren_newList3(ptr.Pointer())
 }
 
-//export callbackQGamepad_Event
-func callbackQGamepad_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQGamepadFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
-}
-
-func (ptr *QGamepad) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QGamepad) __qFindChildren_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
-		return int8(C.QGamepad_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+		tmpValue := core.NewQObjectFromPointer(C.QGamepad___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return false
+	return nil
 }
 
-//export callbackQGamepad_EventFilter
-func callbackQGamepad_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQGamepadFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QGamepad) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+func (ptr *QGamepad) __qFindChildren_setList2(i core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		return int8(C.QGamepad_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+		C.QGamepad___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
 	}
-	return false
+}
+
+func (ptr *QGamepad) __qFindChildren_newList2() unsafe.Pointer {
+	return C.QGamepad___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQGamepad_ChildEvent
@@ -1614,6 +1491,38 @@ func (ptr *QGamepad) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 	}
 }
 
+//export callbackQGamepad_Event
+func callbackQGamepad_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQGamepadFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QGamepad) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QGamepad_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+	}
+	return false
+}
+
+//export callbackQGamepad_EventFilter
+func callbackQGamepad_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQGamepadFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QGamepad) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QGamepad_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+	}
+	return false
+}
+
 //export callbackQGamepad_ObjectNameChanged
 func callbackQGamepad_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtGamepad_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -1683,32 +1592,11 @@ func NewQGamepadKeyNavigation(parent core.QObject_ITF) *QGamepadKeyNavigation {
 	return tmpValue
 }
 
-func QGamepadKeyNavigation_Tr(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
+func (ptr *QGamepadKeyNavigation) Active() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QGamepadKeyNavigation_Active(ptr.Pointer())) != 0
 	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QGamepadKeyNavigation_QGamepadKeyNavigation_Tr(sC, cC, C.int(int32(n))))
-}
-
-func (ptr *QGamepadKeyNavigation) Tr(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QGamepadKeyNavigation_QGamepadKeyNavigation_Tr(sC, cC, C.int(int32(n))))
+	return false
 }
 
 //export callbackQGamepadKeyNavigation_ActiveChanged
@@ -1751,6 +1639,13 @@ func (ptr *QGamepadKeyNavigation) ActiveChanged(isActive bool) {
 	}
 }
 
+func (ptr *QGamepadKeyNavigation) ButtonAKey() core.Qt__Key {
+	if ptr.Pointer() != nil {
+		return core.Qt__Key(C.QGamepadKeyNavigation_ButtonAKey(ptr.Pointer()))
+	}
+	return 0
+}
+
 //export callbackQGamepadKeyNavigation_ButtonAKeyChanged
 func callbackQGamepadKeyNavigation_ButtonAKeyChanged(ptr unsafe.Pointer, key C.longlong) {
 	if signal := qt.GetSignal(ptr, "buttonAKeyChanged"); signal != nil {
@@ -1789,6 +1684,13 @@ func (ptr *QGamepadKeyNavigation) ButtonAKeyChanged(key core.Qt__Key) {
 	if ptr.Pointer() != nil {
 		C.QGamepadKeyNavigation_ButtonAKeyChanged(ptr.Pointer(), C.longlong(key))
 	}
+}
+
+func (ptr *QGamepadKeyNavigation) ButtonBKey() core.Qt__Key {
+	if ptr.Pointer() != nil {
+		return core.Qt__Key(C.QGamepadKeyNavigation_ButtonBKey(ptr.Pointer()))
+	}
+	return 0
 }
 
 //export callbackQGamepadKeyNavigation_ButtonBKeyChanged
@@ -1831,6 +1733,13 @@ func (ptr *QGamepadKeyNavigation) ButtonBKeyChanged(key core.Qt__Key) {
 	}
 }
 
+func (ptr *QGamepadKeyNavigation) ButtonGuideKey() core.Qt__Key {
+	if ptr.Pointer() != nil {
+		return core.Qt__Key(C.QGamepadKeyNavigation_ButtonGuideKey(ptr.Pointer()))
+	}
+	return 0
+}
+
 //export callbackQGamepadKeyNavigation_ButtonGuideKeyChanged
 func callbackQGamepadKeyNavigation_ButtonGuideKeyChanged(ptr unsafe.Pointer, key C.longlong) {
 	if signal := qt.GetSignal(ptr, "buttonGuideKeyChanged"); signal != nil {
@@ -1869,6 +1778,13 @@ func (ptr *QGamepadKeyNavigation) ButtonGuideKeyChanged(key core.Qt__Key) {
 	if ptr.Pointer() != nil {
 		C.QGamepadKeyNavigation_ButtonGuideKeyChanged(ptr.Pointer(), C.longlong(key))
 	}
+}
+
+func (ptr *QGamepadKeyNavigation) ButtonL1Key() core.Qt__Key {
+	if ptr.Pointer() != nil {
+		return core.Qt__Key(C.QGamepadKeyNavigation_ButtonL1Key(ptr.Pointer()))
+	}
+	return 0
 }
 
 //export callbackQGamepadKeyNavigation_ButtonL1KeyChanged
@@ -1911,6 +1827,13 @@ func (ptr *QGamepadKeyNavigation) ButtonL1KeyChanged(key core.Qt__Key) {
 	}
 }
 
+func (ptr *QGamepadKeyNavigation) ButtonL2Key() core.Qt__Key {
+	if ptr.Pointer() != nil {
+		return core.Qt__Key(C.QGamepadKeyNavigation_ButtonL2Key(ptr.Pointer()))
+	}
+	return 0
+}
+
 //export callbackQGamepadKeyNavigation_ButtonL2KeyChanged
 func callbackQGamepadKeyNavigation_ButtonL2KeyChanged(ptr unsafe.Pointer, key C.longlong) {
 	if signal := qt.GetSignal(ptr, "buttonL2KeyChanged"); signal != nil {
@@ -1949,6 +1872,13 @@ func (ptr *QGamepadKeyNavigation) ButtonL2KeyChanged(key core.Qt__Key) {
 	if ptr.Pointer() != nil {
 		C.QGamepadKeyNavigation_ButtonL2KeyChanged(ptr.Pointer(), C.longlong(key))
 	}
+}
+
+func (ptr *QGamepadKeyNavigation) ButtonL3Key() core.Qt__Key {
+	if ptr.Pointer() != nil {
+		return core.Qt__Key(C.QGamepadKeyNavigation_ButtonL3Key(ptr.Pointer()))
+	}
+	return 0
 }
 
 //export callbackQGamepadKeyNavigation_ButtonL3KeyChanged
@@ -1991,6 +1921,13 @@ func (ptr *QGamepadKeyNavigation) ButtonL3KeyChanged(key core.Qt__Key) {
 	}
 }
 
+func (ptr *QGamepadKeyNavigation) ButtonR1Key() core.Qt__Key {
+	if ptr.Pointer() != nil {
+		return core.Qt__Key(C.QGamepadKeyNavigation_ButtonR1Key(ptr.Pointer()))
+	}
+	return 0
+}
+
 //export callbackQGamepadKeyNavigation_ButtonR1KeyChanged
 func callbackQGamepadKeyNavigation_ButtonR1KeyChanged(ptr unsafe.Pointer, key C.longlong) {
 	if signal := qt.GetSignal(ptr, "buttonR1KeyChanged"); signal != nil {
@@ -2029,6 +1966,13 @@ func (ptr *QGamepadKeyNavigation) ButtonR1KeyChanged(key core.Qt__Key) {
 	if ptr.Pointer() != nil {
 		C.QGamepadKeyNavigation_ButtonR1KeyChanged(ptr.Pointer(), C.longlong(key))
 	}
+}
+
+func (ptr *QGamepadKeyNavigation) ButtonR2Key() core.Qt__Key {
+	if ptr.Pointer() != nil {
+		return core.Qt__Key(C.QGamepadKeyNavigation_ButtonR2Key(ptr.Pointer()))
+	}
+	return 0
 }
 
 //export callbackQGamepadKeyNavigation_ButtonR2KeyChanged
@@ -2071,6 +2015,13 @@ func (ptr *QGamepadKeyNavigation) ButtonR2KeyChanged(key core.Qt__Key) {
 	}
 }
 
+func (ptr *QGamepadKeyNavigation) ButtonR3Key() core.Qt__Key {
+	if ptr.Pointer() != nil {
+		return core.Qt__Key(C.QGamepadKeyNavigation_ButtonR3Key(ptr.Pointer()))
+	}
+	return 0
+}
+
 //export callbackQGamepadKeyNavigation_ButtonR3KeyChanged
 func callbackQGamepadKeyNavigation_ButtonR3KeyChanged(ptr unsafe.Pointer, key C.longlong) {
 	if signal := qt.GetSignal(ptr, "buttonR3KeyChanged"); signal != nil {
@@ -2109,6 +2060,13 @@ func (ptr *QGamepadKeyNavigation) ButtonR3KeyChanged(key core.Qt__Key) {
 	if ptr.Pointer() != nil {
 		C.QGamepadKeyNavigation_ButtonR3KeyChanged(ptr.Pointer(), C.longlong(key))
 	}
+}
+
+func (ptr *QGamepadKeyNavigation) ButtonSelectKey() core.Qt__Key {
+	if ptr.Pointer() != nil {
+		return core.Qt__Key(C.QGamepadKeyNavigation_ButtonSelectKey(ptr.Pointer()))
+	}
+	return 0
 }
 
 //export callbackQGamepadKeyNavigation_ButtonSelectKeyChanged
@@ -2151,6 +2109,13 @@ func (ptr *QGamepadKeyNavigation) ButtonSelectKeyChanged(key core.Qt__Key) {
 	}
 }
 
+func (ptr *QGamepadKeyNavigation) ButtonStartKey() core.Qt__Key {
+	if ptr.Pointer() != nil {
+		return core.Qt__Key(C.QGamepadKeyNavigation_ButtonStartKey(ptr.Pointer()))
+	}
+	return 0
+}
+
 //export callbackQGamepadKeyNavigation_ButtonStartKeyChanged
 func callbackQGamepadKeyNavigation_ButtonStartKeyChanged(ptr unsafe.Pointer, key C.longlong) {
 	if signal := qt.GetSignal(ptr, "buttonStartKeyChanged"); signal != nil {
@@ -2189,6 +2154,13 @@ func (ptr *QGamepadKeyNavigation) ButtonStartKeyChanged(key core.Qt__Key) {
 	if ptr.Pointer() != nil {
 		C.QGamepadKeyNavigation_ButtonStartKeyChanged(ptr.Pointer(), C.longlong(key))
 	}
+}
+
+func (ptr *QGamepadKeyNavigation) ButtonXKey() core.Qt__Key {
+	if ptr.Pointer() != nil {
+		return core.Qt__Key(C.QGamepadKeyNavigation_ButtonXKey(ptr.Pointer()))
+	}
+	return 0
 }
 
 //export callbackQGamepadKeyNavigation_ButtonXKeyChanged
@@ -2231,6 +2203,13 @@ func (ptr *QGamepadKeyNavigation) ButtonXKeyChanged(key core.Qt__Key) {
 	}
 }
 
+func (ptr *QGamepadKeyNavigation) ButtonYKey() core.Qt__Key {
+	if ptr.Pointer() != nil {
+		return core.Qt__Key(C.QGamepadKeyNavigation_ButtonYKey(ptr.Pointer()))
+	}
+	return 0
+}
+
 //export callbackQGamepadKeyNavigation_ButtonYKeyChanged
 func callbackQGamepadKeyNavigation_ButtonYKeyChanged(ptr unsafe.Pointer, key C.longlong) {
 	if signal := qt.GetSignal(ptr, "buttonYKeyChanged"); signal != nil {
@@ -2269,6 +2248,13 @@ func (ptr *QGamepadKeyNavigation) ButtonYKeyChanged(key core.Qt__Key) {
 	if ptr.Pointer() != nil {
 		C.QGamepadKeyNavigation_ButtonYKeyChanged(ptr.Pointer(), C.longlong(key))
 	}
+}
+
+func (ptr *QGamepadKeyNavigation) DownKey() core.Qt__Key {
+	if ptr.Pointer() != nil {
+		return core.Qt__Key(C.QGamepadKeyNavigation_DownKey(ptr.Pointer()))
+	}
+	return 0
 }
 
 //export callbackQGamepadKeyNavigation_DownKeyChanged
@@ -2311,6 +2297,17 @@ func (ptr *QGamepadKeyNavigation) DownKeyChanged(key core.Qt__Key) {
 	}
 }
 
+func (ptr *QGamepadKeyNavigation) Gamepad() *QGamepad {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQGamepadFromPointer(C.QGamepadKeyNavigation_Gamepad(ptr.Pointer()))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
 //export callbackQGamepadKeyNavigation_GamepadChanged
 func callbackQGamepadKeyNavigation_GamepadChanged(ptr unsafe.Pointer, gamepad unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "gamepadChanged"); signal != nil {
@@ -2351,6 +2348,13 @@ func (ptr *QGamepadKeyNavigation) GamepadChanged(gamepad QGamepad_ITF) {
 	}
 }
 
+func (ptr *QGamepadKeyNavigation) LeftKey() core.Qt__Key {
+	if ptr.Pointer() != nil {
+		return core.Qt__Key(C.QGamepadKeyNavigation_LeftKey(ptr.Pointer()))
+	}
+	return 0
+}
+
 //export callbackQGamepadKeyNavigation_LeftKeyChanged
 func callbackQGamepadKeyNavigation_LeftKeyChanged(ptr unsafe.Pointer, key C.longlong) {
 	if signal := qt.GetSignal(ptr, "leftKeyChanged"); signal != nil {
@@ -2389,6 +2393,13 @@ func (ptr *QGamepadKeyNavigation) LeftKeyChanged(key core.Qt__Key) {
 	if ptr.Pointer() != nil {
 		C.QGamepadKeyNavigation_LeftKeyChanged(ptr.Pointer(), C.longlong(key))
 	}
+}
+
+func (ptr *QGamepadKeyNavigation) RightKey() core.Qt__Key {
+	if ptr.Pointer() != nil {
+		return core.Qt__Key(C.QGamepadKeyNavigation_RightKey(ptr.Pointer()))
+	}
+	return 0
 }
 
 //export callbackQGamepadKeyNavigation_RightKeyChanged
@@ -3248,6 +3259,13 @@ func (ptr *QGamepadKeyNavigation) SetUpKeyDefault(key core.Qt__Key) {
 	}
 }
 
+func (ptr *QGamepadKeyNavigation) UpKey() core.Qt__Key {
+	if ptr.Pointer() != nil {
+		return core.Qt__Key(C.QGamepadKeyNavigation_UpKey(ptr.Pointer()))
+	}
+	return 0
+}
+
 //export callbackQGamepadKeyNavigation_UpKeyChanged
 func callbackQGamepadKeyNavigation_UpKeyChanged(ptr unsafe.Pointer, key C.longlong) {
 	if signal := qt.GetSignal(ptr, "upKeyChanged"); signal != nil {
@@ -3288,9 +3306,9 @@ func (ptr *QGamepadKeyNavigation) UpKeyChanged(key core.Qt__Key) {
 	}
 }
 
-func (ptr *QGamepadKeyNavigation) Gamepad() *QGamepad {
+func (ptr *QGamepadKeyNavigation) __children_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
-		tmpValue := NewQGamepadFromPointer(C.QGamepadKeyNavigation_Gamepad(ptr.Pointer()))
+		tmpValue := core.NewQObjectFromPointer(C.QGamepadKeyNavigation___children_atList(ptr.Pointer(), C.int(int32(i))))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -3299,146 +3317,14 @@ func (ptr *QGamepadKeyNavigation) Gamepad() *QGamepad {
 	return nil
 }
 
-func (ptr *QGamepadKeyNavigation) ButtonAKey() core.Qt__Key {
+func (ptr *QGamepadKeyNavigation) __children_setList(i core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		return core.Qt__Key(C.QGamepadKeyNavigation_ButtonAKey(ptr.Pointer()))
+		C.QGamepadKeyNavigation___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
 	}
-	return 0
 }
 
-func (ptr *QGamepadKeyNavigation) ButtonBKey() core.Qt__Key {
-	if ptr.Pointer() != nil {
-		return core.Qt__Key(C.QGamepadKeyNavigation_ButtonBKey(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QGamepadKeyNavigation) ButtonGuideKey() core.Qt__Key {
-	if ptr.Pointer() != nil {
-		return core.Qt__Key(C.QGamepadKeyNavigation_ButtonGuideKey(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QGamepadKeyNavigation) ButtonL1Key() core.Qt__Key {
-	if ptr.Pointer() != nil {
-		return core.Qt__Key(C.QGamepadKeyNavigation_ButtonL1Key(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QGamepadKeyNavigation) ButtonL2Key() core.Qt__Key {
-	if ptr.Pointer() != nil {
-		return core.Qt__Key(C.QGamepadKeyNavigation_ButtonL2Key(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QGamepadKeyNavigation) ButtonL3Key() core.Qt__Key {
-	if ptr.Pointer() != nil {
-		return core.Qt__Key(C.QGamepadKeyNavigation_ButtonL3Key(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QGamepadKeyNavigation) ButtonR1Key() core.Qt__Key {
-	if ptr.Pointer() != nil {
-		return core.Qt__Key(C.QGamepadKeyNavigation_ButtonR1Key(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QGamepadKeyNavigation) ButtonR2Key() core.Qt__Key {
-	if ptr.Pointer() != nil {
-		return core.Qt__Key(C.QGamepadKeyNavigation_ButtonR2Key(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QGamepadKeyNavigation) ButtonR3Key() core.Qt__Key {
-	if ptr.Pointer() != nil {
-		return core.Qt__Key(C.QGamepadKeyNavigation_ButtonR3Key(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QGamepadKeyNavigation) ButtonSelectKey() core.Qt__Key {
-	if ptr.Pointer() != nil {
-		return core.Qt__Key(C.QGamepadKeyNavigation_ButtonSelectKey(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QGamepadKeyNavigation) ButtonStartKey() core.Qt__Key {
-	if ptr.Pointer() != nil {
-		return core.Qt__Key(C.QGamepadKeyNavigation_ButtonStartKey(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QGamepadKeyNavigation) ButtonXKey() core.Qt__Key {
-	if ptr.Pointer() != nil {
-		return core.Qt__Key(C.QGamepadKeyNavigation_ButtonXKey(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QGamepadKeyNavigation) ButtonYKey() core.Qt__Key {
-	if ptr.Pointer() != nil {
-		return core.Qt__Key(C.QGamepadKeyNavigation_ButtonYKey(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QGamepadKeyNavigation) DownKey() core.Qt__Key {
-	if ptr.Pointer() != nil {
-		return core.Qt__Key(C.QGamepadKeyNavigation_DownKey(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QGamepadKeyNavigation) LeftKey() core.Qt__Key {
-	if ptr.Pointer() != nil {
-		return core.Qt__Key(C.QGamepadKeyNavigation_LeftKey(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QGamepadKeyNavigation) RightKey() core.Qt__Key {
-	if ptr.Pointer() != nil {
-		return core.Qt__Key(C.QGamepadKeyNavigation_RightKey(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QGamepadKeyNavigation) UpKey() core.Qt__Key {
-	if ptr.Pointer() != nil {
-		return core.Qt__Key(C.QGamepadKeyNavigation_UpKey(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QGamepadKeyNavigation) Active() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QGamepadKeyNavigation_Active(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-//export callbackQGamepadKeyNavigation_MetaObject
-func callbackQGamepadKeyNavigation_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQGamepadKeyNavigationFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QGamepadKeyNavigation) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QGamepadKeyNavigation_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
+func (ptr *QGamepadKeyNavigation) __children_newList() unsafe.Pointer {
+	return C.QGamepadKeyNavigation___children_newList(ptr.Pointer())
 }
 
 func (ptr *QGamepadKeyNavigation) __dynamicPropertyNames_atList(i int) *core.QByteArray {
@@ -3458,48 +3344,6 @@ func (ptr *QGamepadKeyNavigation) __dynamicPropertyNames_setList(i core.QByteArr
 
 func (ptr *QGamepadKeyNavigation) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QGamepadKeyNavigation___dynamicPropertyNames_newList(ptr.Pointer())
-}
-
-func (ptr *QGamepadKeyNavigation) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QGamepadKeyNavigation___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QGamepadKeyNavigation) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QGamepadKeyNavigation___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QGamepadKeyNavigation) __findChildren_newList2() unsafe.Pointer {
-	return C.QGamepadKeyNavigation___findChildren_newList2(ptr.Pointer())
-}
-
-func (ptr *QGamepadKeyNavigation) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QGamepadKeyNavigation___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QGamepadKeyNavigation) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QGamepadKeyNavigation___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QGamepadKeyNavigation) __findChildren_newList3() unsafe.Pointer {
-	return C.QGamepadKeyNavigation___findChildren_newList3(ptr.Pointer())
 }
 
 func (ptr *QGamepadKeyNavigation) __findChildren_atList(i int) *core.QObject {
@@ -3523,9 +3367,9 @@ func (ptr *QGamepadKeyNavigation) __findChildren_newList() unsafe.Pointer {
 	return C.QGamepadKeyNavigation___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QGamepadKeyNavigation) __children_atList(i int) *core.QObject {
+func (ptr *QGamepadKeyNavigation) __findChildren_atList3(i int) *core.QObject {
 	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QGamepadKeyNavigation___children_atList(ptr.Pointer(), C.int(int32(i))))
+		tmpValue := core.NewQObjectFromPointer(C.QGamepadKeyNavigation___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -3534,46 +3378,35 @@ func (ptr *QGamepadKeyNavigation) __children_atList(i int) *core.QObject {
 	return nil
 }
 
-func (ptr *QGamepadKeyNavigation) __children_setList(i core.QObject_ITF) {
+func (ptr *QGamepadKeyNavigation) __findChildren_setList3(i core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGamepadKeyNavigation___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+		C.QGamepadKeyNavigation___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *QGamepadKeyNavigation) __children_newList() unsafe.Pointer {
-	return C.QGamepadKeyNavigation___children_newList(ptr.Pointer())
+func (ptr *QGamepadKeyNavigation) __findChildren_newList3() unsafe.Pointer {
+	return C.QGamepadKeyNavigation___findChildren_newList3(ptr.Pointer())
 }
 
-//export callbackQGamepadKeyNavigation_Event
-func callbackQGamepadKeyNavigation_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQGamepadKeyNavigationFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
-}
-
-func (ptr *QGamepadKeyNavigation) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QGamepadKeyNavigation) __qFindChildren_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
-		return int8(C.QGamepadKeyNavigation_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+		tmpValue := core.NewQObjectFromPointer(C.QGamepadKeyNavigation___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return false
+	return nil
 }
 
-//export callbackQGamepadKeyNavigation_EventFilter
-func callbackQGamepadKeyNavigation_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQGamepadKeyNavigationFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QGamepadKeyNavigation) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+func (ptr *QGamepadKeyNavigation) __qFindChildren_setList2(i core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		return int8(C.QGamepadKeyNavigation_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+		C.QGamepadKeyNavigation___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
 	}
-	return false
+}
+
+func (ptr *QGamepadKeyNavigation) __qFindChildren_newList2() unsafe.Pointer {
+	return C.QGamepadKeyNavigation___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQGamepadKeyNavigation_ChildEvent
@@ -3660,6 +3493,38 @@ func (ptr *QGamepadKeyNavigation) DisconnectNotifyDefault(sign core.QMetaMethod_
 	}
 }
 
+//export callbackQGamepadKeyNavigation_Event
+func callbackQGamepadKeyNavigation_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQGamepadKeyNavigationFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QGamepadKeyNavigation) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QGamepadKeyNavigation_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+	}
+	return false
+}
+
+//export callbackQGamepadKeyNavigation_EventFilter
+func callbackQGamepadKeyNavigation_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQGamepadKeyNavigationFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QGamepadKeyNavigation) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QGamepadKeyNavigation_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+	}
+	return false
+}
+
 //export callbackQGamepadKeyNavigation_ObjectNameChanged
 func callbackQGamepadKeyNavigation_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtGamepad_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -3721,342 +3586,18 @@ func NewQGamepadManagerFromPointer(ptr unsafe.Pointer) (n *QGamepadManager) {
 	n.SetPointer(ptr)
 	return
 }
-
-//go:generate stringer -type=QGamepadManager__GamepadAxis
-//QGamepadManager::GamepadAxis
-type QGamepadManager__GamepadAxis int64
-
-const (
-	QGamepadManager__AxisInvalid QGamepadManager__GamepadAxis = QGamepadManager__GamepadAxis(-1)
-	QGamepadManager__AxisLeftX   QGamepadManager__GamepadAxis = QGamepadManager__GamepadAxis(0)
-	QGamepadManager__AxisLeftY   QGamepadManager__GamepadAxis = QGamepadManager__GamepadAxis(1)
-	QGamepadManager__AxisRightX  QGamepadManager__GamepadAxis = QGamepadManager__GamepadAxis(2)
-	QGamepadManager__AxisRightY  QGamepadManager__GamepadAxis = QGamepadManager__GamepadAxis(3)
-)
-
-//go:generate stringer -type=QGamepadManager__GamepadButton
-//QGamepadManager::GamepadButton
-type QGamepadManager__GamepadButton int64
-
-const (
-	QGamepadManager__ButtonInvalid QGamepadManager__GamepadButton = QGamepadManager__GamepadButton(-1)
-	QGamepadManager__ButtonA       QGamepadManager__GamepadButton = QGamepadManager__GamepadButton(0)
-	QGamepadManager__ButtonB       QGamepadManager__GamepadButton = QGamepadManager__GamepadButton(1)
-	QGamepadManager__ButtonX       QGamepadManager__GamepadButton = QGamepadManager__GamepadButton(2)
-	QGamepadManager__ButtonY       QGamepadManager__GamepadButton = QGamepadManager__GamepadButton(3)
-	QGamepadManager__ButtonL1      QGamepadManager__GamepadButton = QGamepadManager__GamepadButton(4)
-	QGamepadManager__ButtonR1      QGamepadManager__GamepadButton = QGamepadManager__GamepadButton(5)
-	QGamepadManager__ButtonL2      QGamepadManager__GamepadButton = QGamepadManager__GamepadButton(6)
-	QGamepadManager__ButtonR2      QGamepadManager__GamepadButton = QGamepadManager__GamepadButton(7)
-	QGamepadManager__ButtonSelect  QGamepadManager__GamepadButton = QGamepadManager__GamepadButton(8)
-	QGamepadManager__ButtonStart   QGamepadManager__GamepadButton = QGamepadManager__GamepadButton(9)
-	QGamepadManager__ButtonL3      QGamepadManager__GamepadButton = QGamepadManager__GamepadButton(10)
-	QGamepadManager__ButtonR3      QGamepadManager__GamepadButton = QGamepadManager__GamepadButton(11)
-	QGamepadManager__ButtonUp      QGamepadManager__GamepadButton = QGamepadManager__GamepadButton(12)
-	QGamepadManager__ButtonDown    QGamepadManager__GamepadButton = QGamepadManager__GamepadButton(13)
-	QGamepadManager__ButtonRight   QGamepadManager__GamepadButton = QGamepadManager__GamepadButton(14)
-	QGamepadManager__ButtonLeft    QGamepadManager__GamepadButton = QGamepadManager__GamepadButton(15)
-	QGamepadManager__ButtonCenter  QGamepadManager__GamepadButton = QGamepadManager__GamepadButton(16)
-	QGamepadManager__ButtonGuide   QGamepadManager__GamepadButton = QGamepadManager__GamepadButton(17)
-)
-
-func QGamepadManager_Instance() *QGamepadManager {
-	tmpValue := NewQGamepadManagerFromPointer(C.QGamepadManager_QGamepadManager_Instance())
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
-}
-
-func (ptr *QGamepadManager) Instance() *QGamepadManager {
-	tmpValue := NewQGamepadManagerFromPointer(C.QGamepadManager_QGamepadManager_Instance())
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
-}
-
-func QGamepadManager_Tr(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QGamepadManager_QGamepadManager_Tr(sC, cC, C.int(int32(n))))
-}
-
-func (ptr *QGamepadManager) Tr(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QGamepadManager_QGamepadManager_Tr(sC, cC, C.int(int32(n))))
-}
-
-//export callbackQGamepadManager_ConfigureAxis
-func callbackQGamepadManager_ConfigureAxis(ptr unsafe.Pointer, deviceId C.int, axis C.longlong) C.char {
-	if signal := qt.GetSignal(ptr, "configureAxis"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(int, QGamepadManager__GamepadAxis) bool)(signal))(int(int32(deviceId)), QGamepadManager__GamepadAxis(axis)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQGamepadManagerFromPointer(ptr).ConfigureAxisDefault(int(int32(deviceId)), QGamepadManager__GamepadAxis(axis)))))
-}
-
-func (ptr *QGamepadManager) ConnectConfigureAxis(f func(deviceId int, axis QGamepadManager__GamepadAxis) bool) {
+func (ptr *QGamepadManager) ConnectedGamepads() []int {
 	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "configureAxis"); signal != nil {
-			f := func(deviceId int, axis QGamepadManager__GamepadAxis) bool {
-				(*(*func(int, QGamepadManager__GamepadAxis) bool)(signal))(deviceId, axis)
-				return f(deviceId, axis)
+		return func(l C.struct_QtGamepad_PackedList) []int {
+			out := make([]int, int(l.len))
+			tmpList := NewQGamepadManagerFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__connectedGamepads_atList(i)
 			}
-			qt.ConnectSignal(ptr.Pointer(), "configureAxis", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "configureAxis", unsafe.Pointer(&f))
-		}
+			return out
+		}(C.QGamepadManager_ConnectedGamepads(ptr.Pointer()))
 	}
-}
-
-func (ptr *QGamepadManager) DisconnectConfigureAxis() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "configureAxis")
-	}
-}
-
-func (ptr *QGamepadManager) ConfigureAxis(deviceId int, axis QGamepadManager__GamepadAxis) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QGamepadManager_ConfigureAxis(ptr.Pointer(), C.int(int32(deviceId)), C.longlong(axis))) != 0
-	}
-	return false
-}
-
-func (ptr *QGamepadManager) ConfigureAxisDefault(deviceId int, axis QGamepadManager__GamepadAxis) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QGamepadManager_ConfigureAxisDefault(ptr.Pointer(), C.int(int32(deviceId)), C.longlong(axis))) != 0
-	}
-	return false
-}
-
-//export callbackQGamepadManager_ConfigureButton
-func callbackQGamepadManager_ConfigureButton(ptr unsafe.Pointer, deviceId C.int, button C.longlong) C.char {
-	if signal := qt.GetSignal(ptr, "configureButton"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(int, QGamepadManager__GamepadButton) bool)(signal))(int(int32(deviceId)), QGamepadManager__GamepadButton(button)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQGamepadManagerFromPointer(ptr).ConfigureButtonDefault(int(int32(deviceId)), QGamepadManager__GamepadButton(button)))))
-}
-
-func (ptr *QGamepadManager) ConnectConfigureButton(f func(deviceId int, button QGamepadManager__GamepadButton) bool) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "configureButton"); signal != nil {
-			f := func(deviceId int, button QGamepadManager__GamepadButton) bool {
-				(*(*func(int, QGamepadManager__GamepadButton) bool)(signal))(deviceId, button)
-				return f(deviceId, button)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "configureButton", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "configureButton", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QGamepadManager) DisconnectConfigureButton() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "configureButton")
-	}
-}
-
-func (ptr *QGamepadManager) ConfigureButton(deviceId int, button QGamepadManager__GamepadButton) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QGamepadManager_ConfigureButton(ptr.Pointer(), C.int(int32(deviceId)), C.longlong(button))) != 0
-	}
-	return false
-}
-
-func (ptr *QGamepadManager) ConfigureButtonDefault(deviceId int, button QGamepadManager__GamepadButton) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QGamepadManager_ConfigureButtonDefault(ptr.Pointer(), C.int(int32(deviceId)), C.longlong(button))) != 0
-	}
-	return false
-}
-
-//export callbackQGamepadManager_SetCancelConfigureButton
-func callbackQGamepadManager_SetCancelConfigureButton(ptr unsafe.Pointer, deviceId C.int, button C.longlong) C.char {
-	if signal := qt.GetSignal(ptr, "setCancelConfigureButton"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(int, QGamepadManager__GamepadButton) bool)(signal))(int(int32(deviceId)), QGamepadManager__GamepadButton(button)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQGamepadManagerFromPointer(ptr).SetCancelConfigureButtonDefault(int(int32(deviceId)), QGamepadManager__GamepadButton(button)))))
-}
-
-func (ptr *QGamepadManager) ConnectSetCancelConfigureButton(f func(deviceId int, button QGamepadManager__GamepadButton) bool) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "setCancelConfigureButton"); signal != nil {
-			f := func(deviceId int, button QGamepadManager__GamepadButton) bool {
-				(*(*func(int, QGamepadManager__GamepadButton) bool)(signal))(deviceId, button)
-				return f(deviceId, button)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "setCancelConfigureButton", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setCancelConfigureButton", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QGamepadManager) DisconnectSetCancelConfigureButton() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "setCancelConfigureButton")
-	}
-}
-
-func (ptr *QGamepadManager) SetCancelConfigureButton(deviceId int, button QGamepadManager__GamepadButton) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QGamepadManager_SetCancelConfigureButton(ptr.Pointer(), C.int(int32(deviceId)), C.longlong(button))) != 0
-	}
-	return false
-}
-
-func (ptr *QGamepadManager) SetCancelConfigureButtonDefault(deviceId int, button QGamepadManager__GamepadButton) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QGamepadManager_SetCancelConfigureButtonDefault(ptr.Pointer(), C.int(int32(deviceId)), C.longlong(button))) != 0
-	}
-	return false
-}
-
-//export callbackQGamepadManager_AxisConfigured
-func callbackQGamepadManager_AxisConfigured(ptr unsafe.Pointer, deviceId C.int, axis C.longlong) {
-	if signal := qt.GetSignal(ptr, "axisConfigured"); signal != nil {
-		(*(*func(int, QGamepadManager__GamepadAxis))(signal))(int(int32(deviceId)), QGamepadManager__GamepadAxis(axis))
-	}
-
-}
-
-func (ptr *QGamepadManager) ConnectAxisConfigured(f func(deviceId int, axis QGamepadManager__GamepadAxis)) {
-	if ptr.Pointer() != nil {
-
-		if !qt.ExistsSignal(ptr.Pointer(), "axisConfigured") {
-			C.QGamepadManager_ConnectAxisConfigured(ptr.Pointer())
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "axisConfigured"); signal != nil {
-			f := func(deviceId int, axis QGamepadManager__GamepadAxis) {
-				(*(*func(int, QGamepadManager__GamepadAxis))(signal))(deviceId, axis)
-				f(deviceId, axis)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "axisConfigured", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "axisConfigured", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QGamepadManager) DisconnectAxisConfigured() {
-	if ptr.Pointer() != nil {
-		C.QGamepadManager_DisconnectAxisConfigured(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "axisConfigured")
-	}
-}
-
-func (ptr *QGamepadManager) AxisConfigured(deviceId int, axis QGamepadManager__GamepadAxis) {
-	if ptr.Pointer() != nil {
-		C.QGamepadManager_AxisConfigured(ptr.Pointer(), C.int(int32(deviceId)), C.longlong(axis))
-	}
-}
-
-//export callbackQGamepadManager_ButtonConfigured
-func callbackQGamepadManager_ButtonConfigured(ptr unsafe.Pointer, deviceId C.int, button C.longlong) {
-	if signal := qt.GetSignal(ptr, "buttonConfigured"); signal != nil {
-		(*(*func(int, QGamepadManager__GamepadButton))(signal))(int(int32(deviceId)), QGamepadManager__GamepadButton(button))
-	}
-
-}
-
-func (ptr *QGamepadManager) ConnectButtonConfigured(f func(deviceId int, button QGamepadManager__GamepadButton)) {
-	if ptr.Pointer() != nil {
-
-		if !qt.ExistsSignal(ptr.Pointer(), "buttonConfigured") {
-			C.QGamepadManager_ConnectButtonConfigured(ptr.Pointer())
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "buttonConfigured"); signal != nil {
-			f := func(deviceId int, button QGamepadManager__GamepadButton) {
-				(*(*func(int, QGamepadManager__GamepadButton))(signal))(deviceId, button)
-				f(deviceId, button)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "buttonConfigured", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "buttonConfigured", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QGamepadManager) DisconnectButtonConfigured() {
-	if ptr.Pointer() != nil {
-		C.QGamepadManager_DisconnectButtonConfigured(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "buttonConfigured")
-	}
-}
-
-func (ptr *QGamepadManager) ButtonConfigured(deviceId int, button QGamepadManager__GamepadButton) {
-	if ptr.Pointer() != nil {
-		C.QGamepadManager_ButtonConfigured(ptr.Pointer(), C.int(int32(deviceId)), C.longlong(button))
-	}
-}
-
-//export callbackQGamepadManager_ConfigurationCanceled
-func callbackQGamepadManager_ConfigurationCanceled(ptr unsafe.Pointer, deviceId C.int) {
-	if signal := qt.GetSignal(ptr, "configurationCanceled"); signal != nil {
-		(*(*func(int))(signal))(int(int32(deviceId)))
-	}
-
-}
-
-func (ptr *QGamepadManager) ConnectConfigurationCanceled(f func(deviceId int)) {
-	if ptr.Pointer() != nil {
-
-		if !qt.ExistsSignal(ptr.Pointer(), "configurationCanceled") {
-			C.QGamepadManager_ConnectConfigurationCanceled(ptr.Pointer())
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "configurationCanceled"); signal != nil {
-			f := func(deviceId int) {
-				(*(*func(int))(signal))(deviceId)
-				f(deviceId)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "configurationCanceled", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "configurationCanceled", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QGamepadManager) DisconnectConfigurationCanceled() {
-	if ptr.Pointer() != nil {
-		C.QGamepadManager_DisconnectConfigurationCanceled(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "configurationCanceled")
-	}
-}
-
-func (ptr *QGamepadManager) ConfigurationCanceled(deviceId int) {
-	if ptr.Pointer() != nil {
-		C.QGamepadManager_ConfigurationCanceled(ptr.Pointer(), C.int(int32(deviceId)))
-	}
+	return make([]int, 0)
 }
 
 //export callbackQGamepadManager_ConnectedGamepadsChanged
@@ -4099,249 +3640,79 @@ func (ptr *QGamepadManager) ConnectedGamepadsChanged() {
 	}
 }
 
-//export callbackQGamepadManager_GamepadAxisEvent
-func callbackQGamepadManager_GamepadAxisEvent(ptr unsafe.Pointer, deviceId C.int, axis C.longlong, value C.double) {
-	if signal := qt.GetSignal(ptr, "gamepadAxisEvent"); signal != nil {
-		(*(*func(int, QGamepadManager__GamepadAxis, float64))(signal))(int(int32(deviceId)), QGamepadManager__GamepadAxis(axis), float64(value))
+func (ptr *QGamepadManager) GamepadName(deviceId int) string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QGamepadManager_GamepadName(ptr.Pointer(), C.int(int32(deviceId))))
 	}
-
+	return ""
 }
 
-func (ptr *QGamepadManager) ConnectGamepadAxisEvent(f func(deviceId int, axis QGamepadManager__GamepadAxis, value float64)) {
+func QGamepadManager_Instance() *QGamepadManager {
+	tmpValue := NewQGamepadManagerFromPointer(C.QGamepadManager_QGamepadManager_Instance())
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
+
+func (ptr *QGamepadManager) Instance() *QGamepadManager {
+	tmpValue := NewQGamepadManagerFromPointer(C.QGamepadManager_QGamepadManager_Instance())
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
+
+//export callbackQGamepadManager_IsConfigurationNeeded
+func callbackQGamepadManager_IsConfigurationNeeded(ptr unsafe.Pointer, deviceId C.int) C.char {
+	if signal := qt.GetSignal(ptr, "isConfigurationNeeded"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(int) bool)(signal))(int(int32(deviceId))))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQGamepadManagerFromPointer(ptr).IsConfigurationNeededDefault(int(int32(deviceId))))))
+}
+
+func (ptr *QGamepadManager) ConnectIsConfigurationNeeded(f func(deviceId int) bool) {
 	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "gamepadAxisEvent") {
-			C.QGamepadManager_ConnectGamepadAxisEvent(ptr.Pointer())
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "gamepadAxisEvent"); signal != nil {
-			f := func(deviceId int, axis QGamepadManager__GamepadAxis, value float64) {
-				(*(*func(int, QGamepadManager__GamepadAxis, float64))(signal))(deviceId, axis, value)
-				f(deviceId, axis, value)
+		if signal := qt.LendSignal(ptr.Pointer(), "isConfigurationNeeded"); signal != nil {
+			f := func(deviceId int) bool {
+				(*(*func(int) bool)(signal))(deviceId)
+				return f(deviceId)
 			}
-			qt.ConnectSignal(ptr.Pointer(), "gamepadAxisEvent", unsafe.Pointer(&f))
+			qt.ConnectSignal(ptr.Pointer(), "isConfigurationNeeded", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "gamepadAxisEvent", unsafe.Pointer(&f))
+			qt.ConnectSignal(ptr.Pointer(), "isConfigurationNeeded", unsafe.Pointer(&f))
 		}
 	}
 }
 
-func (ptr *QGamepadManager) DisconnectGamepadAxisEvent() {
-	if ptr.Pointer() != nil {
-		C.QGamepadManager_DisconnectGamepadAxisEvent(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "gamepadAxisEvent")
-	}
-}
-
-func (ptr *QGamepadManager) GamepadAxisEvent(deviceId int, axis QGamepadManager__GamepadAxis, value float64) {
-	if ptr.Pointer() != nil {
-		C.QGamepadManager_GamepadAxisEvent(ptr.Pointer(), C.int(int32(deviceId)), C.longlong(axis), C.double(value))
-	}
-}
-
-//export callbackQGamepadManager_GamepadButtonPressEvent
-func callbackQGamepadManager_GamepadButtonPressEvent(ptr unsafe.Pointer, deviceId C.int, button C.longlong, value C.double) {
-	if signal := qt.GetSignal(ptr, "gamepadButtonPressEvent"); signal != nil {
-		(*(*func(int, QGamepadManager__GamepadButton, float64))(signal))(int(int32(deviceId)), QGamepadManager__GamepadButton(button), float64(value))
-	}
-
-}
-
-func (ptr *QGamepadManager) ConnectGamepadButtonPressEvent(f func(deviceId int, button QGamepadManager__GamepadButton, value float64)) {
+func (ptr *QGamepadManager) DisconnectIsConfigurationNeeded() {
 	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "gamepadButtonPressEvent") {
-			C.QGamepadManager_ConnectGamepadButtonPressEvent(ptr.Pointer())
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "gamepadButtonPressEvent"); signal != nil {
-			f := func(deviceId int, button QGamepadManager__GamepadButton, value float64) {
-				(*(*func(int, QGamepadManager__GamepadButton, float64))(signal))(deviceId, button, value)
-				f(deviceId, button, value)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "gamepadButtonPressEvent", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "gamepadButtonPressEvent", unsafe.Pointer(&f))
-		}
+		qt.DisconnectSignal(ptr.Pointer(), "isConfigurationNeeded")
 	}
 }
 
-func (ptr *QGamepadManager) DisconnectGamepadButtonPressEvent() {
+func (ptr *QGamepadManager) IsConfigurationNeeded(deviceId int) bool {
 	if ptr.Pointer() != nil {
-		C.QGamepadManager_DisconnectGamepadButtonPressEvent(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "gamepadButtonPressEvent")
+		return int8(C.QGamepadManager_IsConfigurationNeeded(ptr.Pointer(), C.int(int32(deviceId)))) != 0
 	}
+	return false
 }
 
-func (ptr *QGamepadManager) GamepadButtonPressEvent(deviceId int, button QGamepadManager__GamepadButton, value float64) {
+func (ptr *QGamepadManager) IsConfigurationNeededDefault(deviceId int) bool {
 	if ptr.Pointer() != nil {
-		C.QGamepadManager_GamepadButtonPressEvent(ptr.Pointer(), C.int(int32(deviceId)), C.longlong(button), C.double(value))
+		return int8(C.QGamepadManager_IsConfigurationNeededDefault(ptr.Pointer(), C.int(int32(deviceId)))) != 0
 	}
+	return false
 }
 
-//export callbackQGamepadManager_GamepadButtonReleaseEvent
-func callbackQGamepadManager_GamepadButtonReleaseEvent(ptr unsafe.Pointer, deviceId C.int, button C.longlong) {
-	if signal := qt.GetSignal(ptr, "gamepadButtonReleaseEvent"); signal != nil {
-		(*(*func(int, QGamepadManager__GamepadButton))(signal))(int(int32(deviceId)), QGamepadManager__GamepadButton(button))
-	}
-
-}
-
-func (ptr *QGamepadManager) ConnectGamepadButtonReleaseEvent(f func(deviceId int, button QGamepadManager__GamepadButton)) {
+func (ptr *QGamepadManager) IsGamepadConnected(deviceId int) bool {
 	if ptr.Pointer() != nil {
-
-		if !qt.ExistsSignal(ptr.Pointer(), "gamepadButtonReleaseEvent") {
-			C.QGamepadManager_ConnectGamepadButtonReleaseEvent(ptr.Pointer())
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "gamepadButtonReleaseEvent"); signal != nil {
-			f := func(deviceId int, button QGamepadManager__GamepadButton) {
-				(*(*func(int, QGamepadManager__GamepadButton))(signal))(deviceId, button)
-				f(deviceId, button)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "gamepadButtonReleaseEvent", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "gamepadButtonReleaseEvent", unsafe.Pointer(&f))
-		}
+		return int8(C.QGamepadManager_IsGamepadConnected(ptr.Pointer(), C.int(int32(deviceId)))) != 0
 	}
-}
-
-func (ptr *QGamepadManager) DisconnectGamepadButtonReleaseEvent() {
-	if ptr.Pointer() != nil {
-		C.QGamepadManager_DisconnectGamepadButtonReleaseEvent(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "gamepadButtonReleaseEvent")
-	}
-}
-
-func (ptr *QGamepadManager) GamepadButtonReleaseEvent(deviceId int, button QGamepadManager__GamepadButton) {
-	if ptr.Pointer() != nil {
-		C.QGamepadManager_GamepadButtonReleaseEvent(ptr.Pointer(), C.int(int32(deviceId)), C.longlong(button))
-	}
-}
-
-//export callbackQGamepadManager_GamepadConnected
-func callbackQGamepadManager_GamepadConnected(ptr unsafe.Pointer, deviceId C.int) {
-	if signal := qt.GetSignal(ptr, "gamepadConnected"); signal != nil {
-		(*(*func(int))(signal))(int(int32(deviceId)))
-	}
-
-}
-
-func (ptr *QGamepadManager) ConnectGamepadConnected(f func(deviceId int)) {
-	if ptr.Pointer() != nil {
-
-		if !qt.ExistsSignal(ptr.Pointer(), "gamepadConnected") {
-			C.QGamepadManager_ConnectGamepadConnected(ptr.Pointer())
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "gamepadConnected"); signal != nil {
-			f := func(deviceId int) {
-				(*(*func(int))(signal))(deviceId)
-				f(deviceId)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "gamepadConnected", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "gamepadConnected", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QGamepadManager) DisconnectGamepadConnected() {
-	if ptr.Pointer() != nil {
-		C.QGamepadManager_DisconnectGamepadConnected(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "gamepadConnected")
-	}
-}
-
-func (ptr *QGamepadManager) GamepadConnected(deviceId int) {
-	if ptr.Pointer() != nil {
-		C.QGamepadManager_GamepadConnected(ptr.Pointer(), C.int(int32(deviceId)))
-	}
-}
-
-//export callbackQGamepadManager_GamepadDisconnected
-func callbackQGamepadManager_GamepadDisconnected(ptr unsafe.Pointer, deviceId C.int) {
-	if signal := qt.GetSignal(ptr, "gamepadDisconnected"); signal != nil {
-		(*(*func(int))(signal))(int(int32(deviceId)))
-	}
-
-}
-
-func (ptr *QGamepadManager) ConnectGamepadDisconnected(f func(deviceId int)) {
-	if ptr.Pointer() != nil {
-
-		if !qt.ExistsSignal(ptr.Pointer(), "gamepadDisconnected") {
-			C.QGamepadManager_ConnectGamepadDisconnected(ptr.Pointer())
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "gamepadDisconnected"); signal != nil {
-			f := func(deviceId int) {
-				(*(*func(int))(signal))(deviceId)
-				f(deviceId)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "gamepadDisconnected", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "gamepadDisconnected", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QGamepadManager) DisconnectGamepadDisconnected() {
-	if ptr.Pointer() != nil {
-		C.QGamepadManager_DisconnectGamepadDisconnected(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "gamepadDisconnected")
-	}
-}
-
-func (ptr *QGamepadManager) GamepadDisconnected(deviceId int) {
-	if ptr.Pointer() != nil {
-		C.QGamepadManager_GamepadDisconnected(ptr.Pointer(), C.int(int32(deviceId)))
-	}
-}
-
-//export callbackQGamepadManager_GamepadNameChanged
-func callbackQGamepadManager_GamepadNameChanged(ptr unsafe.Pointer, deviceId C.int, name C.struct_QtGamepad_PackedString) {
-	if signal := qt.GetSignal(ptr, "gamepadNameChanged"); signal != nil {
-		(*(*func(int, string))(signal))(int(int32(deviceId)), cGoUnpackString(name))
-	}
-
-}
-
-func (ptr *QGamepadManager) ConnectGamepadNameChanged(f func(deviceId int, name string)) {
-	if ptr.Pointer() != nil {
-
-		if !qt.ExistsSignal(ptr.Pointer(), "gamepadNameChanged") {
-			C.QGamepadManager_ConnectGamepadNameChanged(ptr.Pointer())
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "gamepadNameChanged"); signal != nil {
-			f := func(deviceId int, name string) {
-				(*(*func(int, string))(signal))(deviceId, name)
-				f(deviceId, name)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "gamepadNameChanged", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "gamepadNameChanged", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QGamepadManager) DisconnectGamepadNameChanged() {
-	if ptr.Pointer() != nil {
-		C.QGamepadManager_DisconnectGamepadNameChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "gamepadNameChanged")
-	}
-}
-
-func (ptr *QGamepadManager) GamepadNameChanged(deviceId int, name string) {
-	if ptr.Pointer() != nil {
-		var nameC *C.char
-		if name != "" {
-			nameC = C.CString(name)
-			defer C.free(unsafe.Pointer(nameC))
-		}
-		C.QGamepadManager_GamepadNameChanged(ptr.Pointer(), C.int(int32(deviceId)), C.struct_QtGamepad_PackedString{data: nameC, len: C.longlong(len(name))})
-	}
+	return false
 }
 
 //export callbackQGamepadManager_ResetConfiguration
@@ -4440,95 +3811,6 @@ func (ptr *QGamepadManager) SetSettingsFileDefault(file string) {
 	}
 }
 
-func (ptr *QGamepadManager) GamepadName(deviceId int) string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QGamepadManager_GamepadName(ptr.Pointer(), C.int(int32(deviceId))))
-	}
-	return ""
-}
-
-//export callbackQGamepadManager_IsConfigurationNeeded
-func callbackQGamepadManager_IsConfigurationNeeded(ptr unsafe.Pointer, deviceId C.int) C.char {
-	if signal := qt.GetSignal(ptr, "isConfigurationNeeded"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(int) bool)(signal))(int(int32(deviceId))))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQGamepadManagerFromPointer(ptr).IsConfigurationNeededDefault(int(int32(deviceId))))))
-}
-
-func (ptr *QGamepadManager) ConnectIsConfigurationNeeded(f func(deviceId int) bool) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "isConfigurationNeeded"); signal != nil {
-			f := func(deviceId int) bool {
-				(*(*func(int) bool)(signal))(deviceId)
-				return f(deviceId)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "isConfigurationNeeded", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "isConfigurationNeeded", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QGamepadManager) DisconnectIsConfigurationNeeded() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "isConfigurationNeeded")
-	}
-}
-
-func (ptr *QGamepadManager) IsConfigurationNeeded(deviceId int) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QGamepadManager_IsConfigurationNeeded(ptr.Pointer(), C.int(int32(deviceId)))) != 0
-	}
-	return false
-}
-
-func (ptr *QGamepadManager) IsConfigurationNeededDefault(deviceId int) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QGamepadManager_IsConfigurationNeededDefault(ptr.Pointer(), C.int(int32(deviceId)))) != 0
-	}
-	return false
-}
-
-func (ptr *QGamepadManager) IsGamepadConnected(deviceId int) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QGamepadManager_IsGamepadConnected(ptr.Pointer(), C.int(int32(deviceId)))) != 0
-	}
-	return false
-}
-
-func (ptr *QGamepadManager) ConnectedGamepads() []int {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtGamepad_PackedList) []int {
-			out := make([]int, int(l.len))
-			tmpList := NewQGamepadManagerFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__connectedGamepads_atList(i)
-			}
-			return out
-		}(C.QGamepadManager_ConnectedGamepads(ptr.Pointer()))
-	}
-	return make([]int, 0)
-}
-
-//export callbackQGamepadManager_MetaObject
-func callbackQGamepadManager_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQGamepadManagerFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QGamepadManager) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QGamepadManager_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
 func (ptr *QGamepadManager) __connectedGamepads_atList(i int) int {
 	if ptr.Pointer() != nil {
 		return int(int32(C.QGamepadManager___connectedGamepads_atList(ptr.Pointer(), C.int(int32(i)))))
@@ -4544,88 +3826,6 @@ func (ptr *QGamepadManager) __connectedGamepads_setList(i int) {
 
 func (ptr *QGamepadManager) __connectedGamepads_newList() unsafe.Pointer {
 	return C.QGamepadManager___connectedGamepads_newList(ptr.Pointer())
-}
-
-func (ptr *QGamepadManager) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QGamepadManager___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QGamepadManager) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QGamepadManager___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
-}
-
-func (ptr *QGamepadManager) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return C.QGamepadManager___dynamicPropertyNames_newList(ptr.Pointer())
-}
-
-func (ptr *QGamepadManager) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QGamepadManager___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QGamepadManager) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QGamepadManager___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QGamepadManager) __findChildren_newList2() unsafe.Pointer {
-	return C.QGamepadManager___findChildren_newList2(ptr.Pointer())
-}
-
-func (ptr *QGamepadManager) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QGamepadManager___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QGamepadManager) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QGamepadManager___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QGamepadManager) __findChildren_newList3() unsafe.Pointer {
-	return C.QGamepadManager___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QGamepadManager) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QGamepadManager___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QGamepadManager) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QGamepadManager___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QGamepadManager) __findChildren_newList() unsafe.Pointer {
-	return C.QGamepadManager___findChildren_newList(ptr.Pointer())
 }
 
 func (ptr *QGamepadManager) __children_atList(i int) *core.QObject {
@@ -4649,36 +3849,86 @@ func (ptr *QGamepadManager) __children_newList() unsafe.Pointer {
 	return C.QGamepadManager___children_newList(ptr.Pointer())
 }
 
-//export callbackQGamepadManager_Event
-func callbackQGamepadManager_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQGamepadManagerFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
-}
-
-func (ptr *QGamepadManager) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QGamepadManager) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
-		return int8(C.QGamepadManager_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+		tmpValue := core.NewQByteArrayFromPointer(C.QGamepadManager___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
 	}
-	return false
+	return nil
 }
 
-//export callbackQGamepadManager_EventFilter
-func callbackQGamepadManager_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQGamepadManagerFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QGamepadManager) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+func (ptr *QGamepadManager) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		return int8(C.QGamepadManager_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+		C.QGamepadManager___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
 	}
-	return false
+}
+
+func (ptr *QGamepadManager) __dynamicPropertyNames_newList() unsafe.Pointer {
+	return C.QGamepadManager___dynamicPropertyNames_newList(ptr.Pointer())
+}
+
+func (ptr *QGamepadManager) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGamepadManager___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGamepadManager) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGamepadManager___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QGamepadManager) __findChildren_newList() unsafe.Pointer {
+	return C.QGamepadManager___findChildren_newList(ptr.Pointer())
+}
+
+func (ptr *QGamepadManager) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGamepadManager___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGamepadManager) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGamepadManager___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QGamepadManager) __findChildren_newList3() unsafe.Pointer {
+	return C.QGamepadManager___findChildren_newList3(ptr.Pointer())
+}
+
+func (ptr *QGamepadManager) __qFindChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGamepadManager___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGamepadManager) __qFindChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGamepadManager___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QGamepadManager) __qFindChildren_newList2() unsafe.Pointer {
+	return C.QGamepadManager___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQGamepadManager_ChildEvent
@@ -4763,6 +4013,38 @@ func (ptr *QGamepadManager) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 	if ptr.Pointer() != nil {
 		C.QGamepadManager_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
+}
+
+//export callbackQGamepadManager_Event
+func callbackQGamepadManager_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQGamepadManagerFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QGamepadManager) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QGamepadManager_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+	}
+	return false
+}
+
+//export callbackQGamepadManager_EventFilter
+func callbackQGamepadManager_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQGamepadManagerFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QGamepadManager) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QGamepadManager_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+	}
+	return false
 }
 
 //export callbackQGamepadManager_ObjectNameChanged

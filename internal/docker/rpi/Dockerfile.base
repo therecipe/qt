@@ -5,7 +5,7 @@ ENV USER user
 ENV HOME /home/$USER
 ENV GOPATH $HOME/work
 ENV PATH /usr/local/go/bin:$PATH
-ENV QT_API=5.7.0
+ENV QT_API 5.7.0
 ENV QT_DOCKER true
 ENV QT_RPI true
 ENV QT_QMAKE_DIR /opt/qtrpi/raspi/qt5/bin

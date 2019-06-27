@@ -31,8 +31,10 @@ func (w *Widget) init() {
 	var axisY = charts.NewQValueAxis(nil)
 	axisY.SetRange(-1, 1)
 	axisY.SetTitleText("Audio level")
-	w.m_chart.SetAxisX(axisX, w.m_series)
-	w.m_chart.SetAxisY(axisY, w.m_series)
+	w.m_chart.AddAxis(axisX, core.Qt__AlignBottom)
+	w.m_series.AttachAxis(axisX)
+	w.m_chart.AddAxis(axisY, core.Qt__AlignLeft)
+	w.m_series.AttachAxis(axisY)
 	w.m_chart.Legend().Hide()
 	w.m_chart.SetTitle("Data from the microphone")
 

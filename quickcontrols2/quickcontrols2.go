@@ -79,38 +79,6 @@ func (ptr *QQuickStyle) DestroyQQuickStyle() {
 	}
 }
 
-func QQuickStyle_Name() string {
-	return cGoUnpackString(C.QQuickStyle_QQuickStyle_Name())
-}
-
-func (ptr *QQuickStyle) Name() string {
-	return cGoUnpackString(C.QQuickStyle_QQuickStyle_Name())
-}
-
-func QQuickStyle_Path() string {
-	return cGoUnpackString(C.QQuickStyle_QQuickStyle_Path())
-}
-
-func (ptr *QQuickStyle) Path() string {
-	return cGoUnpackString(C.QQuickStyle_QQuickStyle_Path())
-}
-
-func QQuickStyle_AvailableStyles() []string {
-	return unpackStringList(cGoUnpackString(C.QQuickStyle_QQuickStyle_AvailableStyles()))
-}
-
-func (ptr *QQuickStyle) AvailableStyles() []string {
-	return unpackStringList(cGoUnpackString(C.QQuickStyle_QQuickStyle_AvailableStyles()))
-}
-
-func QQuickStyle_StylePathList() []string {
-	return unpackStringList(cGoUnpackString(C.QQuickStyle_QQuickStyle_StylePathList()))
-}
-
-func (ptr *QQuickStyle) StylePathList() []string {
-	return unpackStringList(cGoUnpackString(C.QQuickStyle_QQuickStyle_StylePathList()))
-}
-
 func QQuickStyle_AddStylePath(path string) {
 	var pathC *C.char
 	if path != "" {
@@ -127,6 +95,30 @@ func (ptr *QQuickStyle) AddStylePath(path string) {
 		defer C.free(unsafe.Pointer(pathC))
 	}
 	C.QQuickStyle_QQuickStyle_AddStylePath(C.struct_QtQuickControls2_PackedString{data: pathC, len: C.longlong(len(path))})
+}
+
+func QQuickStyle_AvailableStyles() []string {
+	return unpackStringList(cGoUnpackString(C.QQuickStyle_QQuickStyle_AvailableStyles()))
+}
+
+func (ptr *QQuickStyle) AvailableStyles() []string {
+	return unpackStringList(cGoUnpackString(C.QQuickStyle_QQuickStyle_AvailableStyles()))
+}
+
+func QQuickStyle_Name() string {
+	return cGoUnpackString(C.QQuickStyle_QQuickStyle_Name())
+}
+
+func (ptr *QQuickStyle) Name() string {
+	return cGoUnpackString(C.QQuickStyle_QQuickStyle_Name())
+}
+
+func QQuickStyle_Path() string {
+	return cGoUnpackString(C.QQuickStyle_QQuickStyle_Path())
+}
+
+func (ptr *QQuickStyle) Path() string {
+	return cGoUnpackString(C.QQuickStyle_QQuickStyle_Path())
 }
 
 func QQuickStyle_SetFallbackStyle(style string) {
@@ -163,4 +155,12 @@ func (ptr *QQuickStyle) SetStyle(style string) {
 		defer C.free(unsafe.Pointer(styleC))
 	}
 	C.QQuickStyle_QQuickStyle_SetStyle(C.struct_QtQuickControls2_PackedString{data: styleC, len: C.longlong(len(style))})
+}
+
+func QQuickStyle_StylePathList() []string {
+	return unpackStringList(cGoUnpackString(C.QQuickStyle_QQuickStyle_StylePathList()))
+}
+
+func (ptr *QQuickStyle) StylePathList() []string {
+	return unpackStringList(cGoUnpackString(C.QQuickStyle_QQuickStyle_StylePathList()))
 }

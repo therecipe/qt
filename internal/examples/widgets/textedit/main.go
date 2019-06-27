@@ -26,7 +26,7 @@ func main() {
 
 	var mw = initTextEdit()
 
-	var availableGeometry = widgets.QApplication_Desktop().AvailableGeometry(mw)
+	var availableGeometry = widgets.QApplication_Desktop().AvailableGeometry2(mw)
 	//mw.Resize2(availableGeometry.Width()/2, (availableGeometry.Height()*2)/3)
 	mw.Resize2(600, 450)
 	mw.Move2((availableGeometry.Width()-mw.Width())/2,

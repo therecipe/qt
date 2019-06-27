@@ -35,6 +35,1649 @@ func unpackStringList(s string) []string {
 	return strings.Split(s, "¡¦!")
 }
 
+type QAbstractItemModelReplica struct {
+	core.QAbstractItemModel
+}
+
+type QAbstractItemModelReplica_ITF interface {
+	core.QAbstractItemModel_ITF
+	QAbstractItemModelReplica_PTR() *QAbstractItemModelReplica
+}
+
+func (ptr *QAbstractItemModelReplica) QAbstractItemModelReplica_PTR() *QAbstractItemModelReplica {
+	return ptr
+}
+
+func (ptr *QAbstractItemModelReplica) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractItemModel_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QAbstractItemModelReplica) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAbstractItemModel_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQAbstractItemModelReplica(ptr QAbstractItemModelReplica_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractItemModelReplica_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQAbstractItemModelReplicaFromPointer(ptr unsafe.Pointer) (n *QAbstractItemModelReplica) {
+	n = new(QAbstractItemModelReplica)
+	n.SetPointer(ptr)
+	return
+}
+func (ptr *QAbstractItemModelReplica) __QAbstractItemModelReplica_rolesHint_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QAbstractItemModelReplica___QAbstractItemModelReplica_rolesHint_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
+}
+
+func (ptr *QAbstractItemModelReplica) __QAbstractItemModelReplica_rolesHint_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModelReplica___QAbstractItemModelReplica_rolesHint_setList(ptr.Pointer(), C.int(int32(i)))
+	}
+}
+
+func (ptr *QAbstractItemModelReplica) __QAbstractItemModelReplica_rolesHint_newList() unsafe.Pointer {
+	return C.QAbstractItemModelReplica___QAbstractItemModelReplica_rolesHint_newList(ptr.Pointer())
+}
+
+func (ptr *QAbstractItemModelReplica) __availableRoles_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QAbstractItemModelReplica___availableRoles_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
+}
+
+func (ptr *QAbstractItemModelReplica) __availableRoles_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModelReplica___availableRoles_setList(ptr.Pointer(), C.int(int32(i)))
+	}
+}
+
+func (ptr *QAbstractItemModelReplica) __availableRoles_newList() unsafe.Pointer {
+	return C.QAbstractItemModelReplica___availableRoles_newList(ptr.Pointer())
+}
+
+func (ptr *QAbstractItemModelReplica) __roleNames_atList(v int, i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QAbstractItemModelReplica___roleNames_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractItemModelReplica) __roleNames_setList(key int, i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModelReplica___roleNames_setList(ptr.Pointer(), C.int(int32(key)), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QAbstractItemModelReplica) __roleNames_newList() unsafe.Pointer {
+	return C.QAbstractItemModelReplica___roleNames_newList(ptr.Pointer())
+}
+
+func (ptr *QAbstractItemModelReplica) __roleNames_keyList() []int {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtRemoteObjects_PackedList) []int {
+			out := make([]int, int(l.len))
+			tmpList := NewQAbstractItemModelReplicaFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.____roleNames_keyList_atList(i)
+			}
+			return out
+		}(C.QAbstractItemModelReplica___roleNames_keyList(ptr.Pointer()))
+	}
+	return make([]int, 0)
+}
+
+func (ptr *QAbstractItemModelReplica) ____roleNames_keyList_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QAbstractItemModelReplica_____roleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
+}
+
+func (ptr *QAbstractItemModelReplica) ____roleNames_keyList_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModelReplica_____roleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
+	}
+}
+
+func (ptr *QAbstractItemModelReplica) ____roleNames_keyList_newList() unsafe.Pointer {
+	return C.QAbstractItemModelReplica_____roleNames_keyList_newList(ptr.Pointer())
+}
+
+func (ptr *QAbstractItemModelReplica) __changePersistentIndexList_from_atList(i int) *core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQModelIndexFromPointer(C.QAbstractItemModelReplica___changePersistentIndexList_from_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractItemModelReplica) __changePersistentIndexList_from_setList(i core.QModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModelReplica___changePersistentIndexList_from_setList(ptr.Pointer(), core.PointerFromQModelIndex(i))
+	}
+}
+
+func (ptr *QAbstractItemModelReplica) __changePersistentIndexList_from_newList() unsafe.Pointer {
+	return C.QAbstractItemModelReplica___changePersistentIndexList_from_newList(ptr.Pointer())
+}
+
+func (ptr *QAbstractItemModelReplica) __changePersistentIndexList_to_atList(i int) *core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQModelIndexFromPointer(C.QAbstractItemModelReplica___changePersistentIndexList_to_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractItemModelReplica) __changePersistentIndexList_to_setList(i core.QModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModelReplica___changePersistentIndexList_to_setList(ptr.Pointer(), core.PointerFromQModelIndex(i))
+	}
+}
+
+func (ptr *QAbstractItemModelReplica) __changePersistentIndexList_to_newList() unsafe.Pointer {
+	return C.QAbstractItemModelReplica___changePersistentIndexList_to_newList(ptr.Pointer())
+}
+
+func (ptr *QAbstractItemModelReplica) __dataChanged_roles_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QAbstractItemModelReplica___dataChanged_roles_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
+}
+
+func (ptr *QAbstractItemModelReplica) __dataChanged_roles_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModelReplica___dataChanged_roles_setList(ptr.Pointer(), C.int(int32(i)))
+	}
+}
+
+func (ptr *QAbstractItemModelReplica) __dataChanged_roles_newList() unsafe.Pointer {
+	return C.QAbstractItemModelReplica___dataChanged_roles_newList(ptr.Pointer())
+}
+
+func (ptr *QAbstractItemModelReplica) __itemData_atList(v int, i int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QAbstractItemModelReplica___itemData_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractItemModelReplica) __itemData_setList(key int, i core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModelReplica___itemData_setList(ptr.Pointer(), C.int(int32(key)), core.PointerFromQVariant(i))
+	}
+}
+
+func (ptr *QAbstractItemModelReplica) __itemData_newList() unsafe.Pointer {
+	return C.QAbstractItemModelReplica___itemData_newList(ptr.Pointer())
+}
+
+func (ptr *QAbstractItemModelReplica) __itemData_keyList() []int {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtRemoteObjects_PackedList) []int {
+			out := make([]int, int(l.len))
+			tmpList := NewQAbstractItemModelReplicaFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.____itemData_keyList_atList(i)
+			}
+			return out
+		}(C.QAbstractItemModelReplica___itemData_keyList(ptr.Pointer()))
+	}
+	return make([]int, 0)
+}
+
+func (ptr *QAbstractItemModelReplica) __layoutAboutToBeChanged_parents_atList(i int) *core.QPersistentModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQPersistentModelIndexFromPointer(C.QAbstractItemModelReplica___layoutAboutToBeChanged_parents_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QPersistentModelIndex).DestroyQPersistentModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractItemModelReplica) __layoutAboutToBeChanged_parents_setList(i core.QPersistentModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModelReplica___layoutAboutToBeChanged_parents_setList(ptr.Pointer(), core.PointerFromQPersistentModelIndex(i))
+	}
+}
+
+func (ptr *QAbstractItemModelReplica) __layoutAboutToBeChanged_parents_newList() unsafe.Pointer {
+	return C.QAbstractItemModelReplica___layoutAboutToBeChanged_parents_newList(ptr.Pointer())
+}
+
+func (ptr *QAbstractItemModelReplica) __layoutChanged_parents_atList(i int) *core.QPersistentModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQPersistentModelIndexFromPointer(C.QAbstractItemModelReplica___layoutChanged_parents_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QPersistentModelIndex).DestroyQPersistentModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractItemModelReplica) __layoutChanged_parents_setList(i core.QPersistentModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModelReplica___layoutChanged_parents_setList(ptr.Pointer(), core.PointerFromQPersistentModelIndex(i))
+	}
+}
+
+func (ptr *QAbstractItemModelReplica) __layoutChanged_parents_newList() unsafe.Pointer {
+	return C.QAbstractItemModelReplica___layoutChanged_parents_newList(ptr.Pointer())
+}
+
+func (ptr *QAbstractItemModelReplica) __match_atList(i int) *core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQModelIndexFromPointer(C.QAbstractItemModelReplica___match_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractItemModelReplica) __match_setList(i core.QModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModelReplica___match_setList(ptr.Pointer(), core.PointerFromQModelIndex(i))
+	}
+}
+
+func (ptr *QAbstractItemModelReplica) __match_newList() unsafe.Pointer {
+	return C.QAbstractItemModelReplica___match_newList(ptr.Pointer())
+}
+
+func (ptr *QAbstractItemModelReplica) __mimeData_indexes_atList(i int) *core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQModelIndexFromPointer(C.QAbstractItemModelReplica___mimeData_indexes_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractItemModelReplica) __mimeData_indexes_setList(i core.QModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModelReplica___mimeData_indexes_setList(ptr.Pointer(), core.PointerFromQModelIndex(i))
+	}
+}
+
+func (ptr *QAbstractItemModelReplica) __mimeData_indexes_newList() unsafe.Pointer {
+	return C.QAbstractItemModelReplica___mimeData_indexes_newList(ptr.Pointer())
+}
+
+func (ptr *QAbstractItemModelReplica) __persistentIndexList_atList(i int) *core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQModelIndexFromPointer(C.QAbstractItemModelReplica___persistentIndexList_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractItemModelReplica) __persistentIndexList_setList(i core.QModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModelReplica___persistentIndexList_setList(ptr.Pointer(), core.PointerFromQModelIndex(i))
+	}
+}
+
+func (ptr *QAbstractItemModelReplica) __persistentIndexList_newList() unsafe.Pointer {
+	return C.QAbstractItemModelReplica___persistentIndexList_newList(ptr.Pointer())
+}
+
+func (ptr *QAbstractItemModelReplica) __setItemData_roles_atList(v int, i int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QAbstractItemModelReplica___setItemData_roles_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractItemModelReplica) __setItemData_roles_setList(key int, i core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModelReplica___setItemData_roles_setList(ptr.Pointer(), C.int(int32(key)), core.PointerFromQVariant(i))
+	}
+}
+
+func (ptr *QAbstractItemModelReplica) __setItemData_roles_newList() unsafe.Pointer {
+	return C.QAbstractItemModelReplica___setItemData_roles_newList(ptr.Pointer())
+}
+
+func (ptr *QAbstractItemModelReplica) __setItemData_roles_keyList() []int {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtRemoteObjects_PackedList) []int {
+			out := make([]int, int(l.len))
+			tmpList := NewQAbstractItemModelReplicaFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.____setItemData_roles_keyList_atList(i)
+			}
+			return out
+		}(C.QAbstractItemModelReplica___setItemData_roles_keyList(ptr.Pointer()))
+	}
+	return make([]int, 0)
+}
+
+func (ptr *QAbstractItemModelReplica) ____doSetRoleNames_roleNames_keyList_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QAbstractItemModelReplica_____doSetRoleNames_roleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
+}
+
+func (ptr *QAbstractItemModelReplica) ____doSetRoleNames_roleNames_keyList_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModelReplica_____doSetRoleNames_roleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
+	}
+}
+
+func (ptr *QAbstractItemModelReplica) ____doSetRoleNames_roleNames_keyList_newList() unsafe.Pointer {
+	return C.QAbstractItemModelReplica_____doSetRoleNames_roleNames_keyList_newList(ptr.Pointer())
+}
+
+func (ptr *QAbstractItemModelReplica) ____itemData_keyList_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QAbstractItemModelReplica_____itemData_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
+}
+
+func (ptr *QAbstractItemModelReplica) ____itemData_keyList_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModelReplica_____itemData_keyList_setList(ptr.Pointer(), C.int(int32(i)))
+	}
+}
+
+func (ptr *QAbstractItemModelReplica) ____itemData_keyList_newList() unsafe.Pointer {
+	return C.QAbstractItemModelReplica_____itemData_keyList_newList(ptr.Pointer())
+}
+
+func (ptr *QAbstractItemModelReplica) ____setItemData_roles_keyList_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QAbstractItemModelReplica_____setItemData_roles_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
+}
+
+func (ptr *QAbstractItemModelReplica) ____setItemData_roles_keyList_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModelReplica_____setItemData_roles_keyList_setList(ptr.Pointer(), C.int(int32(i)))
+	}
+}
+
+func (ptr *QAbstractItemModelReplica) ____setItemData_roles_keyList_newList() unsafe.Pointer {
+	return C.QAbstractItemModelReplica_____setItemData_roles_keyList_newList(ptr.Pointer())
+}
+
+func (ptr *QAbstractItemModelReplica) ____setRoleNames_roleNames_keyList_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QAbstractItemModelReplica_____setRoleNames_roleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
+}
+
+func (ptr *QAbstractItemModelReplica) ____setRoleNames_roleNames_keyList_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModelReplica_____setRoleNames_roleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
+	}
+}
+
+func (ptr *QAbstractItemModelReplica) ____setRoleNames_roleNames_keyList_newList() unsafe.Pointer {
+	return C.QAbstractItemModelReplica_____setRoleNames_roleNames_keyList_newList(ptr.Pointer())
+}
+
+func (ptr *QAbstractItemModelReplica) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAbstractItemModelReplica___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractItemModelReplica) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModelReplica___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QAbstractItemModelReplica) __children_newList() unsafe.Pointer {
+	return C.QAbstractItemModelReplica___children_newList(ptr.Pointer())
+}
+
+func (ptr *QAbstractItemModelReplica) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QAbstractItemModelReplica___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractItemModelReplica) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModelReplica___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QAbstractItemModelReplica) __dynamicPropertyNames_newList() unsafe.Pointer {
+	return C.QAbstractItemModelReplica___dynamicPropertyNames_newList(ptr.Pointer())
+}
+
+func (ptr *QAbstractItemModelReplica) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAbstractItemModelReplica___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractItemModelReplica) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModelReplica___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QAbstractItemModelReplica) __findChildren_newList() unsafe.Pointer {
+	return C.QAbstractItemModelReplica___findChildren_newList(ptr.Pointer())
+}
+
+func (ptr *QAbstractItemModelReplica) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAbstractItemModelReplica___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractItemModelReplica) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModelReplica___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QAbstractItemModelReplica) __findChildren_newList3() unsafe.Pointer {
+	return C.QAbstractItemModelReplica___findChildren_newList3(ptr.Pointer())
+}
+
+func (ptr *QAbstractItemModelReplica) __qFindChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAbstractItemModelReplica___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractItemModelReplica) __qFindChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModelReplica___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QAbstractItemModelReplica) __qFindChildren_newList2() unsafe.Pointer {
+	return C.QAbstractItemModelReplica___qFindChildren_newList2(ptr.Pointer())
+}
+
+//export callbackQAbstractItemModelReplica_Buddy
+func callbackQAbstractItemModelReplica_Buddy(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "buddy"); signal != nil {
+		return core.PointerFromQModelIndex((*(*func(*core.QModelIndex) *core.QModelIndex)(signal))(core.NewQModelIndexFromPointer(index)))
+	}
+
+	return core.PointerFromQModelIndex(NewQAbstractItemModelReplicaFromPointer(ptr).BuddyDefault(core.NewQModelIndexFromPointer(index)))
+}
+
+func (ptr *QAbstractItemModelReplica) BuddyDefault(index core.QModelIndex_ITF) *core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQModelIndexFromPointer(C.QAbstractItemModelReplica_BuddyDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQAbstractItemModelReplica_CanDropMimeData
+func callbackQAbstractItemModelReplica_CanDropMimeData(ptr unsafe.Pointer, data unsafe.Pointer, action C.longlong, row C.int, column C.int, parent unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "canDropMimeData"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QMimeData, core.Qt__DropAction, int, int, *core.QModelIndex) bool)(signal))(core.NewQMimeDataFromPointer(data), core.Qt__DropAction(action), int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAbstractItemModelReplicaFromPointer(ptr).CanDropMimeDataDefault(core.NewQMimeDataFromPointer(data), core.Qt__DropAction(action), int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *QAbstractItemModelReplica) CanDropMimeDataDefault(data core.QMimeData_ITF, action core.Qt__DropAction, row int, column int, parent core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QAbstractItemModelReplica_CanDropMimeDataDefault(ptr.Pointer(), core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent))) != 0
+	}
+	return false
+}
+
+//export callbackQAbstractItemModelReplica_CanFetchMore
+func callbackQAbstractItemModelReplica_CanFetchMore(ptr unsafe.Pointer, parent unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "canFetchMore"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QModelIndex) bool)(signal))(core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAbstractItemModelReplicaFromPointer(ptr).CanFetchMoreDefault(core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *QAbstractItemModelReplica) CanFetchMoreDefault(parent core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QAbstractItemModelReplica_CanFetchMoreDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))) != 0
+	}
+	return false
+}
+
+//export callbackQAbstractItemModelReplica_ColumnCount
+func callbackQAbstractItemModelReplica_ColumnCount(ptr unsafe.Pointer, parent unsafe.Pointer) C.int {
+	if signal := qt.GetSignal(ptr, "columnCount"); signal != nil {
+		return C.int(int32((*(*func(*core.QModelIndex) int)(signal))(core.NewQModelIndexFromPointer(parent))))
+	}
+
+	return C.int(int32(NewQAbstractItemModelReplicaFromPointer(ptr).ColumnCountDefault(core.NewQModelIndexFromPointer(parent))))
+}
+
+func (ptr *QAbstractItemModelReplica) ColumnCount(parent core.QModelIndex_ITF) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QAbstractItemModelReplica_ColumnCount(ptr.Pointer(), core.PointerFromQModelIndex(parent))))
+	}
+	return 0
+}
+
+func (ptr *QAbstractItemModelReplica) ColumnCountDefault(parent core.QModelIndex_ITF) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QAbstractItemModelReplica_ColumnCountDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))))
+	}
+	return 0
+}
+
+//export callbackQAbstractItemModelReplica_ColumnsAboutToBeInserted
+func callbackQAbstractItemModelReplica_ColumnsAboutToBeInserted(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
+	if signal := qt.GetSignal(ptr, "columnsAboutToBeInserted"); signal != nil {
+		(*(*func(*core.QModelIndex, int, int))(signal))(core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
+	}
+
+}
+
+//export callbackQAbstractItemModelReplica_ColumnsAboutToBeMoved
+func callbackQAbstractItemModelReplica_ColumnsAboutToBeMoved(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceStart C.int, sourceEnd C.int, destinationParent unsafe.Pointer, destinationColumn C.int) {
+	if signal := qt.GetSignal(ptr, "columnsAboutToBeMoved"); signal != nil {
+		(*(*func(*core.QModelIndex, int, int, *core.QModelIndex, int))(signal))(core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceStart)), int(int32(sourceEnd)), core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationColumn)))
+	}
+
+}
+
+//export callbackQAbstractItemModelReplica_ColumnsAboutToBeRemoved
+func callbackQAbstractItemModelReplica_ColumnsAboutToBeRemoved(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
+	if signal := qt.GetSignal(ptr, "columnsAboutToBeRemoved"); signal != nil {
+		(*(*func(*core.QModelIndex, int, int))(signal))(core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
+	}
+
+}
+
+//export callbackQAbstractItemModelReplica_ColumnsInserted
+func callbackQAbstractItemModelReplica_ColumnsInserted(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
+	if signal := qt.GetSignal(ptr, "columnsInserted"); signal != nil {
+		(*(*func(*core.QModelIndex, int, int))(signal))(core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
+	}
+
+}
+
+//export callbackQAbstractItemModelReplica_ColumnsMoved
+func callbackQAbstractItemModelReplica_ColumnsMoved(ptr unsafe.Pointer, parent unsafe.Pointer, start C.int, end C.int, destination unsafe.Pointer, column C.int) {
+	if signal := qt.GetSignal(ptr, "columnsMoved"); signal != nil {
+		(*(*func(*core.QModelIndex, int, int, *core.QModelIndex, int))(signal))(core.NewQModelIndexFromPointer(parent), int(int32(start)), int(int32(end)), core.NewQModelIndexFromPointer(destination), int(int32(column)))
+	}
+
+}
+
+//export callbackQAbstractItemModelReplica_ColumnsRemoved
+func callbackQAbstractItemModelReplica_ColumnsRemoved(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
+	if signal := qt.GetSignal(ptr, "columnsRemoved"); signal != nil {
+		(*(*func(*core.QModelIndex, int, int))(signal))(core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
+	}
+
+}
+
+//export callbackQAbstractItemModelReplica_Data
+func callbackQAbstractItemModelReplica_Data(ptr unsafe.Pointer, index unsafe.Pointer, role C.int) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "data"); signal != nil {
+		return core.PointerFromQVariant((*(*func(*core.QModelIndex, int) *core.QVariant)(signal))(core.NewQModelIndexFromPointer(index), int(int32(role))))
+	}
+
+	return core.PointerFromQVariant(NewQAbstractItemModelReplicaFromPointer(ptr).DataDefault(core.NewQModelIndexFromPointer(index), int(int32(role))))
+}
+
+func (ptr *QAbstractItemModelReplica) Data(index core.QModelIndex_ITF, role int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QAbstractItemModelReplica_Data(ptr.Pointer(), core.PointerFromQModelIndex(index), C.int(int32(role))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractItemModelReplica) DataDefault(index core.QModelIndex_ITF, role int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QAbstractItemModelReplica_DataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), C.int(int32(role))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQAbstractItemModelReplica_DataChanged
+func callbackQAbstractItemModelReplica_DataChanged(ptr unsafe.Pointer, topLeft unsafe.Pointer, bottomRight unsafe.Pointer, roles C.struct_QtRemoteObjects_PackedList) {
+	if signal := qt.GetSignal(ptr, "dataChanged"); signal != nil {
+		(*(*func(*core.QModelIndex, *core.QModelIndex, []int))(signal))(core.NewQModelIndexFromPointer(topLeft), core.NewQModelIndexFromPointer(bottomRight), func(l C.struct_QtRemoteObjects_PackedList) []int {
+			out := make([]int, int(l.len))
+			tmpList := NewQAbstractItemModelReplicaFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__dataChanged_roles_atList(i)
+			}
+			return out
+		}(roles))
+	}
+
+}
+
+//export callbackQAbstractItemModelReplica_DropMimeData
+func callbackQAbstractItemModelReplica_DropMimeData(ptr unsafe.Pointer, data unsafe.Pointer, action C.longlong, row C.int, column C.int, parent unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "dropMimeData"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QMimeData, core.Qt__DropAction, int, int, *core.QModelIndex) bool)(signal))(core.NewQMimeDataFromPointer(data), core.Qt__DropAction(action), int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAbstractItemModelReplicaFromPointer(ptr).DropMimeDataDefault(core.NewQMimeDataFromPointer(data), core.Qt__DropAction(action), int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *QAbstractItemModelReplica) DropMimeDataDefault(data core.QMimeData_ITF, action core.Qt__DropAction, row int, column int, parent core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QAbstractItemModelReplica_DropMimeDataDefault(ptr.Pointer(), core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent))) != 0
+	}
+	return false
+}
+
+//export callbackQAbstractItemModelReplica_FetchMore
+func callbackQAbstractItemModelReplica_FetchMore(ptr unsafe.Pointer, parent unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "fetchMore"); signal != nil {
+		(*(*func(*core.QModelIndex))(signal))(core.NewQModelIndexFromPointer(parent))
+	} else {
+		NewQAbstractItemModelReplicaFromPointer(ptr).FetchMoreDefault(core.NewQModelIndexFromPointer(parent))
+	}
+}
+
+func (ptr *QAbstractItemModelReplica) FetchMoreDefault(parent core.QModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModelReplica_FetchMoreDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))
+	}
+}
+
+//export callbackQAbstractItemModelReplica_Flags
+func callbackQAbstractItemModelReplica_Flags(ptr unsafe.Pointer, index unsafe.Pointer) C.longlong {
+	if signal := qt.GetSignal(ptr, "flags"); signal != nil {
+		return C.longlong((*(*func(*core.QModelIndex) core.Qt__ItemFlag)(signal))(core.NewQModelIndexFromPointer(index)))
+	}
+
+	return C.longlong(NewQAbstractItemModelReplicaFromPointer(ptr).FlagsDefault(core.NewQModelIndexFromPointer(index)))
+}
+
+func (ptr *QAbstractItemModelReplica) FlagsDefault(index core.QModelIndex_ITF) core.Qt__ItemFlag {
+	if ptr.Pointer() != nil {
+		return core.Qt__ItemFlag(C.QAbstractItemModelReplica_FlagsDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+	}
+	return 0
+}
+
+//export callbackQAbstractItemModelReplica_HasChildren
+func callbackQAbstractItemModelReplica_HasChildren(ptr unsafe.Pointer, parent unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "hasChildren"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QModelIndex) bool)(signal))(core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAbstractItemModelReplicaFromPointer(ptr).HasChildrenDefault(core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *QAbstractItemModelReplica) HasChildrenDefault(parent core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QAbstractItemModelReplica_HasChildrenDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))) != 0
+	}
+	return false
+}
+
+//export callbackQAbstractItemModelReplica_HeaderData
+func callbackQAbstractItemModelReplica_HeaderData(ptr unsafe.Pointer, section C.int, orientation C.longlong, role C.int) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "headerData"); signal != nil {
+		return core.PointerFromQVariant((*(*func(int, core.Qt__Orientation, int) *core.QVariant)(signal))(int(int32(section)), core.Qt__Orientation(orientation), int(int32(role))))
+	}
+
+	return core.PointerFromQVariant(NewQAbstractItemModelReplicaFromPointer(ptr).HeaderDataDefault(int(int32(section)), core.Qt__Orientation(orientation), int(int32(role))))
+}
+
+func (ptr *QAbstractItemModelReplica) HeaderDataDefault(section int, orientation core.Qt__Orientation, role int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QAbstractItemModelReplica_HeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), C.int(int32(role))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQAbstractItemModelReplica_HeaderDataChanged
+func callbackQAbstractItemModelReplica_HeaderDataChanged(ptr unsafe.Pointer, orientation C.longlong, first C.int, last C.int) {
+	if signal := qt.GetSignal(ptr, "headerDataChanged"); signal != nil {
+		(*(*func(core.Qt__Orientation, int, int))(signal))(core.Qt__Orientation(orientation), int(int32(first)), int(int32(last)))
+	}
+
+}
+
+//export callbackQAbstractItemModelReplica_Index
+func callbackQAbstractItemModelReplica_Index(ptr unsafe.Pointer, row C.int, column C.int, parent unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "index"); signal != nil {
+		return core.PointerFromQModelIndex((*(*func(int, int, *core.QModelIndex) *core.QModelIndex)(signal))(int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(parent)))
+	}
+
+	return core.PointerFromQModelIndex(NewQAbstractItemModelReplicaFromPointer(ptr).IndexDefault(int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(parent)))
+}
+
+func (ptr *QAbstractItemModelReplica) Index(row int, column int, parent core.QModelIndex_ITF) *core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQModelIndexFromPointer(C.QAbstractItemModelReplica_Index(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractItemModelReplica) IndexDefault(row int, column int, parent core.QModelIndex_ITF) *core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQModelIndexFromPointer(C.QAbstractItemModelReplica_IndexDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQAbstractItemModelReplica_InsertColumns
+func callbackQAbstractItemModelReplica_InsertColumns(ptr unsafe.Pointer, column C.int, count C.int, parent unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "insertColumns"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(int, int, *core.QModelIndex) bool)(signal))(int(int32(column)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAbstractItemModelReplicaFromPointer(ptr).InsertColumnsDefault(int(int32(column)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *QAbstractItemModelReplica) InsertColumnsDefault(column int, count int, parent core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QAbstractItemModelReplica_InsertColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), core.PointerFromQModelIndex(parent))) != 0
+	}
+	return false
+}
+
+//export callbackQAbstractItemModelReplica_InsertRows
+func callbackQAbstractItemModelReplica_InsertRows(ptr unsafe.Pointer, row C.int, count C.int, parent unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "insertRows"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(int, int, *core.QModelIndex) bool)(signal))(int(int32(row)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAbstractItemModelReplicaFromPointer(ptr).InsertRowsDefault(int(int32(row)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *QAbstractItemModelReplica) InsertRowsDefault(row int, count int, parent core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QAbstractItemModelReplica_InsertRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), core.PointerFromQModelIndex(parent))) != 0
+	}
+	return false
+}
+
+//export callbackQAbstractItemModelReplica_ItemData
+func callbackQAbstractItemModelReplica_ItemData(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "itemData"); signal != nil {
+		return func() unsafe.Pointer {
+			tmpList := NewQAbstractItemModelReplicaFromPointer(NewQAbstractItemModelReplicaFromPointer(nil).__itemData_newList())
+			for k, v := range (*(*func(*core.QModelIndex) map[int]*core.QVariant)(signal))(core.NewQModelIndexFromPointer(index)) {
+				tmpList.__itemData_setList(k, v)
+			}
+			return tmpList.Pointer()
+		}()
+	}
+
+	return func() unsafe.Pointer {
+		tmpList := NewQAbstractItemModelReplicaFromPointer(NewQAbstractItemModelReplicaFromPointer(nil).__itemData_newList())
+		for k, v := range NewQAbstractItemModelReplicaFromPointer(ptr).ItemDataDefault(core.NewQModelIndexFromPointer(index)) {
+			tmpList.__itemData_setList(k, v)
+		}
+		return tmpList.Pointer()
+	}()
+}
+
+func (ptr *QAbstractItemModelReplica) ItemDataDefault(index core.QModelIndex_ITF) map[int]*core.QVariant {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtRemoteObjects_PackedList) map[int]*core.QVariant {
+			out := make(map[int]*core.QVariant, int(l.len))
+			tmpList := NewQAbstractItemModelReplicaFromPointer(l.data)
+			for i, v := range tmpList.__itemData_keyList() {
+				out[v] = tmpList.__itemData_atList(v, i)
+			}
+			return out
+		}(C.QAbstractItemModelReplica_ItemDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+	}
+	return make(map[int]*core.QVariant, 0)
+}
+
+//export callbackQAbstractItemModelReplica_LayoutAboutToBeChanged
+func callbackQAbstractItemModelReplica_LayoutAboutToBeChanged(ptr unsafe.Pointer, parents C.struct_QtRemoteObjects_PackedList, hint C.longlong) {
+	if signal := qt.GetSignal(ptr, "layoutAboutToBeChanged"); signal != nil {
+		(*(*func([]*core.QPersistentModelIndex, core.QAbstractItemModel__LayoutChangeHint))(signal))(func(l C.struct_QtRemoteObjects_PackedList) []*core.QPersistentModelIndex {
+			out := make([]*core.QPersistentModelIndex, int(l.len))
+			tmpList := NewQAbstractItemModelReplicaFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__layoutAboutToBeChanged_parents_atList(i)
+			}
+			return out
+		}(parents), core.QAbstractItemModel__LayoutChangeHint(hint))
+	}
+
+}
+
+//export callbackQAbstractItemModelReplica_LayoutChanged
+func callbackQAbstractItemModelReplica_LayoutChanged(ptr unsafe.Pointer, parents C.struct_QtRemoteObjects_PackedList, hint C.longlong) {
+	if signal := qt.GetSignal(ptr, "layoutChanged"); signal != nil {
+		(*(*func([]*core.QPersistentModelIndex, core.QAbstractItemModel__LayoutChangeHint))(signal))(func(l C.struct_QtRemoteObjects_PackedList) []*core.QPersistentModelIndex {
+			out := make([]*core.QPersistentModelIndex, int(l.len))
+			tmpList := NewQAbstractItemModelReplicaFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__layoutChanged_parents_atList(i)
+			}
+			return out
+		}(parents), core.QAbstractItemModel__LayoutChangeHint(hint))
+	}
+
+}
+
+//export callbackQAbstractItemModelReplica_Match
+func callbackQAbstractItemModelReplica_Match(ptr unsafe.Pointer, start unsafe.Pointer, role C.int, value unsafe.Pointer, hits C.int, flags C.longlong) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "match"); signal != nil {
+		return func() unsafe.Pointer {
+			tmpList := NewQAbstractItemModelReplicaFromPointer(NewQAbstractItemModelReplicaFromPointer(nil).__match_newList())
+			for _, v := range (*(*func(*core.QModelIndex, int, *core.QVariant, int, core.Qt__MatchFlag) []*core.QModelIndex)(signal))(core.NewQModelIndexFromPointer(start), int(int32(role)), core.NewQVariantFromPointer(value), int(int32(hits)), core.Qt__MatchFlag(flags)) {
+				tmpList.__match_setList(v)
+			}
+			return tmpList.Pointer()
+		}()
+	}
+
+	return func() unsafe.Pointer {
+		tmpList := NewQAbstractItemModelReplicaFromPointer(NewQAbstractItemModelReplicaFromPointer(nil).__match_newList())
+		for _, v := range NewQAbstractItemModelReplicaFromPointer(ptr).MatchDefault(core.NewQModelIndexFromPointer(start), int(int32(role)), core.NewQVariantFromPointer(value), int(int32(hits)), core.Qt__MatchFlag(flags)) {
+			tmpList.__match_setList(v)
+		}
+		return tmpList.Pointer()
+	}()
+}
+
+func (ptr *QAbstractItemModelReplica) MatchDefault(start core.QModelIndex_ITF, role int, value core.QVariant_ITF, hits int, flags core.Qt__MatchFlag) []*core.QModelIndex {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtRemoteObjects_PackedList) []*core.QModelIndex {
+			out := make([]*core.QModelIndex, int(l.len))
+			tmpList := NewQAbstractItemModelReplicaFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__match_atList(i)
+			}
+			return out
+		}(C.QAbstractItemModelReplica_MatchDefault(ptr.Pointer(), core.PointerFromQModelIndex(start), C.int(int32(role)), core.PointerFromQVariant(value), C.int(int32(hits)), C.longlong(flags)))
+	}
+	return make([]*core.QModelIndex, 0)
+}
+
+//export callbackQAbstractItemModelReplica_MimeData
+func callbackQAbstractItemModelReplica_MimeData(ptr unsafe.Pointer, indexes C.struct_QtRemoteObjects_PackedList) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "mimeData"); signal != nil {
+		return core.PointerFromQMimeData((*(*func([]*core.QModelIndex) *core.QMimeData)(signal))(func(l C.struct_QtRemoteObjects_PackedList) []*core.QModelIndex {
+			out := make([]*core.QModelIndex, int(l.len))
+			tmpList := NewQAbstractItemModelReplicaFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__mimeData_indexes_atList(i)
+			}
+			return out
+		}(indexes)))
+	}
+
+	return core.PointerFromQMimeData(NewQAbstractItemModelReplicaFromPointer(ptr).MimeDataDefault(func(l C.struct_QtRemoteObjects_PackedList) []*core.QModelIndex {
+		out := make([]*core.QModelIndex, int(l.len))
+		tmpList := NewQAbstractItemModelReplicaFromPointer(l.data)
+		for i := 0; i < len(out); i++ {
+			out[i] = tmpList.__mimeData_indexes_atList(i)
+		}
+		return out
+	}(indexes)))
+}
+
+func (ptr *QAbstractItemModelReplica) MimeDataDefault(indexes []*core.QModelIndex) *core.QMimeData {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQMimeDataFromPointer(C.QAbstractItemModelReplica_MimeDataDefault(ptr.Pointer(), func() unsafe.Pointer {
+			tmpList := NewQAbstractItemModelReplicaFromPointer(NewQAbstractItemModelReplicaFromPointer(nil).__mimeData_indexes_newList())
+			for _, v := range indexes {
+				tmpList.__mimeData_indexes_setList(v)
+			}
+			return tmpList.Pointer()
+		}()))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQAbstractItemModelReplica_MimeTypes
+func callbackQAbstractItemModelReplica_MimeTypes(ptr unsafe.Pointer) C.struct_QtRemoteObjects_PackedString {
+	if signal := qt.GetSignal(ptr, "mimeTypes"); signal != nil {
+		tempVal := (*(*func() []string)(signal))()
+		return C.struct_QtRemoteObjects_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
+	}
+	tempVal := NewQAbstractItemModelReplicaFromPointer(ptr).MimeTypesDefault()
+	return C.struct_QtRemoteObjects_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
+}
+
+func (ptr *QAbstractItemModelReplica) MimeTypesDefault() []string {
+	if ptr.Pointer() != nil {
+		return unpackStringList(cGoUnpackString(C.QAbstractItemModelReplica_MimeTypesDefault(ptr.Pointer())))
+	}
+	return make([]string, 0)
+}
+
+//export callbackQAbstractItemModelReplica_ModelAboutToBeReset
+func callbackQAbstractItemModelReplica_ModelAboutToBeReset(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "modelAboutToBeReset"); signal != nil {
+		(*(*func())(signal))()
+	}
+
+}
+
+//export callbackQAbstractItemModelReplica_ModelReset
+func callbackQAbstractItemModelReplica_ModelReset(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "modelReset"); signal != nil {
+		(*(*func())(signal))()
+	}
+
+}
+
+//export callbackQAbstractItemModelReplica_MoveColumns
+func callbackQAbstractItemModelReplica_MoveColumns(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceColumn C.int, count C.int, destinationParent unsafe.Pointer, destinationChild C.int) C.char {
+	if signal := qt.GetSignal(ptr, "moveColumns"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QModelIndex, int, int, *core.QModelIndex, int) bool)(signal))(core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceColumn)), int(int32(count)), core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAbstractItemModelReplicaFromPointer(ptr).MoveColumnsDefault(core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceColumn)), int(int32(count)), core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
+}
+
+func (ptr *QAbstractItemModelReplica) MoveColumnsDefault(sourceParent core.QModelIndex_ITF, sourceColumn int, count int, destinationParent core.QModelIndex_ITF, destinationChild int) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QAbstractItemModelReplica_MoveColumnsDefault(ptr.Pointer(), core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceColumn)), C.int(int32(count)), core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild)))) != 0
+	}
+	return false
+}
+
+//export callbackQAbstractItemModelReplica_MoveRows
+func callbackQAbstractItemModelReplica_MoveRows(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceRow C.int, count C.int, destinationParent unsafe.Pointer, destinationChild C.int) C.char {
+	if signal := qt.GetSignal(ptr, "moveRows"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QModelIndex, int, int, *core.QModelIndex, int) bool)(signal))(core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceRow)), int(int32(count)), core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAbstractItemModelReplicaFromPointer(ptr).MoveRowsDefault(core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceRow)), int(int32(count)), core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
+}
+
+func (ptr *QAbstractItemModelReplica) MoveRowsDefault(sourceParent core.QModelIndex_ITF, sourceRow int, count int, destinationParent core.QModelIndex_ITF, destinationChild int) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QAbstractItemModelReplica_MoveRowsDefault(ptr.Pointer(), core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceRow)), C.int(int32(count)), core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild)))) != 0
+	}
+	return false
+}
+
+//export callbackQAbstractItemModelReplica_Parent
+func callbackQAbstractItemModelReplica_Parent(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "parent"); signal != nil {
+		return core.PointerFromQModelIndex((*(*func(*core.QModelIndex) *core.QModelIndex)(signal))(core.NewQModelIndexFromPointer(index)))
+	}
+
+	return core.PointerFromQModelIndex(NewQAbstractItemModelReplicaFromPointer(ptr).ParentDefault(core.NewQModelIndexFromPointer(index)))
+}
+
+func (ptr *QAbstractItemModelReplica) Parent(index core.QModelIndex_ITF) *core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQModelIndexFromPointer(C.QAbstractItemModelReplica_Parent(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractItemModelReplica) ParentDefault(index core.QModelIndex_ITF) *core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQModelIndexFromPointer(C.QAbstractItemModelReplica_ParentDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQAbstractItemModelReplica_RemoveColumns
+func callbackQAbstractItemModelReplica_RemoveColumns(ptr unsafe.Pointer, column C.int, count C.int, parent unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "removeColumns"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(int, int, *core.QModelIndex) bool)(signal))(int(int32(column)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAbstractItemModelReplicaFromPointer(ptr).RemoveColumnsDefault(int(int32(column)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *QAbstractItemModelReplica) RemoveColumnsDefault(column int, count int, parent core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QAbstractItemModelReplica_RemoveColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), core.PointerFromQModelIndex(parent))) != 0
+	}
+	return false
+}
+
+//export callbackQAbstractItemModelReplica_RemoveRows
+func callbackQAbstractItemModelReplica_RemoveRows(ptr unsafe.Pointer, row C.int, count C.int, parent unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "removeRows"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(int, int, *core.QModelIndex) bool)(signal))(int(int32(row)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAbstractItemModelReplicaFromPointer(ptr).RemoveRowsDefault(int(int32(row)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *QAbstractItemModelReplica) RemoveRowsDefault(row int, count int, parent core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QAbstractItemModelReplica_RemoveRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), core.PointerFromQModelIndex(parent))) != 0
+	}
+	return false
+}
+
+//export callbackQAbstractItemModelReplica_ResetInternalData
+func callbackQAbstractItemModelReplica_ResetInternalData(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "resetInternalData"); signal != nil {
+		(*(*func())(signal))()
+	} else {
+		NewQAbstractItemModelReplicaFromPointer(ptr).ResetInternalDataDefault()
+	}
+}
+
+func (ptr *QAbstractItemModelReplica) ResetInternalDataDefault() {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModelReplica_ResetInternalDataDefault(ptr.Pointer())
+	}
+}
+
+//export callbackQAbstractItemModelReplica_Revert
+func callbackQAbstractItemModelReplica_Revert(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "revert"); signal != nil {
+		(*(*func())(signal))()
+	} else {
+		NewQAbstractItemModelReplicaFromPointer(ptr).RevertDefault()
+	}
+}
+
+func (ptr *QAbstractItemModelReplica) RevertDefault() {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModelReplica_RevertDefault(ptr.Pointer())
+	}
+}
+
+//export callbackQAbstractItemModelReplica_RoleNames
+func callbackQAbstractItemModelReplica_RoleNames(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "roleNames"); signal != nil {
+		return func() unsafe.Pointer {
+			tmpList := NewQAbstractItemModelReplicaFromPointer(NewQAbstractItemModelReplicaFromPointer(nil).__roleNames_newList())
+			for k, v := range (*(*func() map[int]*core.QByteArray)(signal))() {
+				tmpList.__roleNames_setList(k, v)
+			}
+			return tmpList.Pointer()
+		}()
+	}
+
+	return func() unsafe.Pointer {
+		tmpList := NewQAbstractItemModelReplicaFromPointer(NewQAbstractItemModelReplicaFromPointer(nil).__roleNames_newList())
+		for k, v := range NewQAbstractItemModelReplicaFromPointer(ptr).RoleNamesDefault() {
+			tmpList.__roleNames_setList(k, v)
+		}
+		return tmpList.Pointer()
+	}()
+}
+
+func (ptr *QAbstractItemModelReplica) RoleNamesDefault() map[int]*core.QByteArray {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtRemoteObjects_PackedList) map[int]*core.QByteArray {
+			out := make(map[int]*core.QByteArray, int(l.len))
+			tmpList := NewQAbstractItemModelReplicaFromPointer(l.data)
+			for i, v := range tmpList.__roleNames_keyList() {
+				out[v] = tmpList.__roleNames_atList(v, i)
+			}
+			return out
+		}(C.QAbstractItemModelReplica_RoleNamesDefault(ptr.Pointer()))
+	}
+	return make(map[int]*core.QByteArray, 0)
+}
+
+//export callbackQAbstractItemModelReplica_RowCount
+func callbackQAbstractItemModelReplica_RowCount(ptr unsafe.Pointer, parent unsafe.Pointer) C.int {
+	if signal := qt.GetSignal(ptr, "rowCount"); signal != nil {
+		return C.int(int32((*(*func(*core.QModelIndex) int)(signal))(core.NewQModelIndexFromPointer(parent))))
+	}
+
+	return C.int(int32(NewQAbstractItemModelReplicaFromPointer(ptr).RowCountDefault(core.NewQModelIndexFromPointer(parent))))
+}
+
+func (ptr *QAbstractItemModelReplica) RowCount(parent core.QModelIndex_ITF) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QAbstractItemModelReplica_RowCount(ptr.Pointer(), core.PointerFromQModelIndex(parent))))
+	}
+	return 0
+}
+
+func (ptr *QAbstractItemModelReplica) RowCountDefault(parent core.QModelIndex_ITF) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QAbstractItemModelReplica_RowCountDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))))
+	}
+	return 0
+}
+
+//export callbackQAbstractItemModelReplica_RowsAboutToBeInserted
+func callbackQAbstractItemModelReplica_RowsAboutToBeInserted(ptr unsafe.Pointer, parent unsafe.Pointer, start C.int, end C.int) {
+	if signal := qt.GetSignal(ptr, "rowsAboutToBeInserted"); signal != nil {
+		(*(*func(*core.QModelIndex, int, int))(signal))(core.NewQModelIndexFromPointer(parent), int(int32(start)), int(int32(end)))
+	}
+
+}
+
+//export callbackQAbstractItemModelReplica_RowsAboutToBeMoved
+func callbackQAbstractItemModelReplica_RowsAboutToBeMoved(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceStart C.int, sourceEnd C.int, destinationParent unsafe.Pointer, destinationRow C.int) {
+	if signal := qt.GetSignal(ptr, "rowsAboutToBeMoved"); signal != nil {
+		(*(*func(*core.QModelIndex, int, int, *core.QModelIndex, int))(signal))(core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceStart)), int(int32(sourceEnd)), core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationRow)))
+	}
+
+}
+
+//export callbackQAbstractItemModelReplica_RowsAboutToBeRemoved
+func callbackQAbstractItemModelReplica_RowsAboutToBeRemoved(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
+	if signal := qt.GetSignal(ptr, "rowsAboutToBeRemoved"); signal != nil {
+		(*(*func(*core.QModelIndex, int, int))(signal))(core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
+	}
+
+}
+
+//export callbackQAbstractItemModelReplica_RowsInserted
+func callbackQAbstractItemModelReplica_RowsInserted(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
+	if signal := qt.GetSignal(ptr, "rowsInserted"); signal != nil {
+		(*(*func(*core.QModelIndex, int, int))(signal))(core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
+	}
+
+}
+
+//export callbackQAbstractItemModelReplica_RowsMoved
+func callbackQAbstractItemModelReplica_RowsMoved(ptr unsafe.Pointer, parent unsafe.Pointer, start C.int, end C.int, destination unsafe.Pointer, row C.int) {
+	if signal := qt.GetSignal(ptr, "rowsMoved"); signal != nil {
+		(*(*func(*core.QModelIndex, int, int, *core.QModelIndex, int))(signal))(core.NewQModelIndexFromPointer(parent), int(int32(start)), int(int32(end)), core.NewQModelIndexFromPointer(destination), int(int32(row)))
+	}
+
+}
+
+//export callbackQAbstractItemModelReplica_RowsRemoved
+func callbackQAbstractItemModelReplica_RowsRemoved(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
+	if signal := qt.GetSignal(ptr, "rowsRemoved"); signal != nil {
+		(*(*func(*core.QModelIndex, int, int))(signal))(core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
+	}
+
+}
+
+//export callbackQAbstractItemModelReplica_SetData
+func callbackQAbstractItemModelReplica_SetData(ptr unsafe.Pointer, index unsafe.Pointer, value unsafe.Pointer, role C.int) C.char {
+	if signal := qt.GetSignal(ptr, "setData"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QModelIndex, *core.QVariant, int) bool)(signal))(core.NewQModelIndexFromPointer(index), core.NewQVariantFromPointer(value), int(int32(role))))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAbstractItemModelReplicaFromPointer(ptr).SetDataDefault(core.NewQModelIndexFromPointer(index), core.NewQVariantFromPointer(value), int(int32(role))))))
+}
+
+func (ptr *QAbstractItemModelReplica) SetDataDefault(index core.QModelIndex_ITF, value core.QVariant_ITF, role int) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QAbstractItemModelReplica_SetDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), core.PointerFromQVariant(value), C.int(int32(role)))) != 0
+	}
+	return false
+}
+
+//export callbackQAbstractItemModelReplica_SetHeaderData
+func callbackQAbstractItemModelReplica_SetHeaderData(ptr unsafe.Pointer, section C.int, orientation C.longlong, value unsafe.Pointer, role C.int) C.char {
+	if signal := qt.GetSignal(ptr, "setHeaderData"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(int, core.Qt__Orientation, *core.QVariant, int) bool)(signal))(int(int32(section)), core.Qt__Orientation(orientation), core.NewQVariantFromPointer(value), int(int32(role))))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAbstractItemModelReplicaFromPointer(ptr).SetHeaderDataDefault(int(int32(section)), core.Qt__Orientation(orientation), core.NewQVariantFromPointer(value), int(int32(role))))))
+}
+
+func (ptr *QAbstractItemModelReplica) SetHeaderDataDefault(section int, orientation core.Qt__Orientation, value core.QVariant_ITF, role int) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QAbstractItemModelReplica_SetHeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), core.PointerFromQVariant(value), C.int(int32(role)))) != 0
+	}
+	return false
+}
+
+//export callbackQAbstractItemModelReplica_SetItemData
+func callbackQAbstractItemModelReplica_SetItemData(ptr unsafe.Pointer, index unsafe.Pointer, roles C.struct_QtRemoteObjects_PackedList) C.char {
+	if signal := qt.GetSignal(ptr, "setItemData"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QModelIndex, map[int]*core.QVariant) bool)(signal))(core.NewQModelIndexFromPointer(index), func(l C.struct_QtRemoteObjects_PackedList) map[int]*core.QVariant {
+			out := make(map[int]*core.QVariant, int(l.len))
+			tmpList := NewQAbstractItemModelReplicaFromPointer(l.data)
+			for i, v := range tmpList.__setItemData_roles_keyList() {
+				out[v] = tmpList.__setItemData_roles_atList(v, i)
+			}
+			return out
+		}(roles)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAbstractItemModelReplicaFromPointer(ptr).SetItemDataDefault(core.NewQModelIndexFromPointer(index), func(l C.struct_QtRemoteObjects_PackedList) map[int]*core.QVariant {
+		out := make(map[int]*core.QVariant, int(l.len))
+		tmpList := NewQAbstractItemModelReplicaFromPointer(l.data)
+		for i, v := range tmpList.__setItemData_roles_keyList() {
+			out[v] = tmpList.__setItemData_roles_atList(v, i)
+		}
+		return out
+	}(roles)))))
+}
+
+func (ptr *QAbstractItemModelReplica) SetItemDataDefault(index core.QModelIndex_ITF, roles map[int]*core.QVariant) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QAbstractItemModelReplica_SetItemDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), func() unsafe.Pointer {
+			tmpList := NewQAbstractItemModelReplicaFromPointer(NewQAbstractItemModelReplicaFromPointer(nil).__setItemData_roles_newList())
+			for k, v := range roles {
+				tmpList.__setItemData_roles_setList(k, v)
+			}
+			return tmpList.Pointer()
+		}())) != 0
+	}
+	return false
+}
+
+//export callbackQAbstractItemModelReplica_Sibling
+func callbackQAbstractItemModelReplica_Sibling(ptr unsafe.Pointer, row C.int, column C.int, index unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "sibling"); signal != nil {
+		return core.PointerFromQModelIndex((*(*func(int, int, *core.QModelIndex) *core.QModelIndex)(signal))(int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(index)))
+	}
+
+	return core.PointerFromQModelIndex(NewQAbstractItemModelReplicaFromPointer(ptr).SiblingDefault(int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(index)))
+}
+
+func (ptr *QAbstractItemModelReplica) SiblingDefault(row int, column int, index core.QModelIndex_ITF) *core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQModelIndexFromPointer(C.QAbstractItemModelReplica_SiblingDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQAbstractItemModelReplica_Sort
+func callbackQAbstractItemModelReplica_Sort(ptr unsafe.Pointer, column C.int, order C.longlong) {
+	if signal := qt.GetSignal(ptr, "sort"); signal != nil {
+		(*(*func(int, core.Qt__SortOrder))(signal))(int(int32(column)), core.Qt__SortOrder(order))
+	} else {
+		NewQAbstractItemModelReplicaFromPointer(ptr).SortDefault(int(int32(column)), core.Qt__SortOrder(order))
+	}
+}
+
+func (ptr *QAbstractItemModelReplica) SortDefault(column int, order core.Qt__SortOrder) {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModelReplica_SortDefault(ptr.Pointer(), C.int(int32(column)), C.longlong(order))
+	}
+}
+
+//export callbackQAbstractItemModelReplica_Span
+func callbackQAbstractItemModelReplica_Span(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "span"); signal != nil {
+		return core.PointerFromQSize((*(*func(*core.QModelIndex) *core.QSize)(signal))(core.NewQModelIndexFromPointer(index)))
+	}
+
+	return core.PointerFromQSize(NewQAbstractItemModelReplicaFromPointer(ptr).SpanDefault(core.NewQModelIndexFromPointer(index)))
+}
+
+func (ptr *QAbstractItemModelReplica) SpanDefault(index core.QModelIndex_ITF) *core.QSize {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQSizeFromPointer(C.QAbstractItemModelReplica_SpanDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQAbstractItemModelReplica_Submit
+func callbackQAbstractItemModelReplica_Submit(ptr unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "submit"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func() bool)(signal))())))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAbstractItemModelReplicaFromPointer(ptr).SubmitDefault())))
+}
+
+func (ptr *QAbstractItemModelReplica) SubmitDefault() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QAbstractItemModelReplica_SubmitDefault(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+//export callbackQAbstractItemModelReplica_SupportedDragActions
+func callbackQAbstractItemModelReplica_SupportedDragActions(ptr unsafe.Pointer) C.longlong {
+	if signal := qt.GetSignal(ptr, "supportedDragActions"); signal != nil {
+		return C.longlong((*(*func() core.Qt__DropAction)(signal))())
+	}
+
+	return C.longlong(NewQAbstractItemModelReplicaFromPointer(ptr).SupportedDragActionsDefault())
+}
+
+func (ptr *QAbstractItemModelReplica) SupportedDragActionsDefault() core.Qt__DropAction {
+	if ptr.Pointer() != nil {
+		return core.Qt__DropAction(C.QAbstractItemModelReplica_SupportedDragActionsDefault(ptr.Pointer()))
+	}
+	return 0
+}
+
+//export callbackQAbstractItemModelReplica_SupportedDropActions
+func callbackQAbstractItemModelReplica_SupportedDropActions(ptr unsafe.Pointer) C.longlong {
+	if signal := qt.GetSignal(ptr, "supportedDropActions"); signal != nil {
+		return C.longlong((*(*func() core.Qt__DropAction)(signal))())
+	}
+
+	return C.longlong(NewQAbstractItemModelReplicaFromPointer(ptr).SupportedDropActionsDefault())
+}
+
+func (ptr *QAbstractItemModelReplica) SupportedDropActionsDefault() core.Qt__DropAction {
+	if ptr.Pointer() != nil {
+		return core.Qt__DropAction(C.QAbstractItemModelReplica_SupportedDropActionsDefault(ptr.Pointer()))
+	}
+	return 0
+}
+
+//export callbackQAbstractItemModelReplica_ChildEvent
+func callbackQAbstractItemModelReplica_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
+		(*(*func(*core.QChildEvent))(signal))(core.NewQChildEventFromPointer(event))
+	} else {
+		NewQAbstractItemModelReplicaFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
+	}
+}
+
+func (ptr *QAbstractItemModelReplica) ChildEventDefault(event core.QChildEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModelReplica_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+//export callbackQAbstractItemModelReplica_ConnectNotify
+func callbackQAbstractItemModelReplica_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
+		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
+	} else {
+		NewQAbstractItemModelReplicaFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
+	}
+}
+
+func (ptr *QAbstractItemModelReplica) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModelReplica_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
+	}
+}
+
+//export callbackQAbstractItemModelReplica_CustomEvent
+func callbackQAbstractItemModelReplica_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
+		(*(*func(*core.QEvent))(signal))(core.NewQEventFromPointer(event))
+	} else {
+		NewQAbstractItemModelReplicaFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
+	}
+}
+
+func (ptr *QAbstractItemModelReplica) CustomEventDefault(event core.QEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModelReplica_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+//export callbackQAbstractItemModelReplica_DeleteLater
+func callbackQAbstractItemModelReplica_DeleteLater(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
+		(*(*func())(signal))()
+	} else {
+		NewQAbstractItemModelReplicaFromPointer(ptr).DeleteLaterDefault()
+	}
+}
+
+func (ptr *QAbstractItemModelReplica) DeleteLaterDefault() {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModelReplica_DeleteLaterDefault(ptr.Pointer())
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+//export callbackQAbstractItemModelReplica_Destroyed
+func callbackQAbstractItemModelReplica_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
+		(*(*func(*core.QObject))(signal))(core.NewQObjectFromPointer(obj))
+	}
+
+}
+
+//export callbackQAbstractItemModelReplica_DisconnectNotify
+func callbackQAbstractItemModelReplica_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
+		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
+	} else {
+		NewQAbstractItemModelReplicaFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
+	}
+}
+
+func (ptr *QAbstractItemModelReplica) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModelReplica_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
+	}
+}
+
+//export callbackQAbstractItemModelReplica_Event
+func callbackQAbstractItemModelReplica_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAbstractItemModelReplicaFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QAbstractItemModelReplica) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QAbstractItemModelReplica_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+	}
+	return false
+}
+
+//export callbackQAbstractItemModelReplica_EventFilter
+func callbackQAbstractItemModelReplica_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAbstractItemModelReplicaFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QAbstractItemModelReplica) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QAbstractItemModelReplica_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+	}
+	return false
+}
+
+//export callbackQAbstractItemModelReplica_ObjectNameChanged
+func callbackQAbstractItemModelReplica_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtRemoteObjects_PackedString) {
+	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
+		(*(*func(string))(signal))(cGoUnpackString(objectName))
+	}
+
+}
+
+//export callbackQAbstractItemModelReplica_TimerEvent
+func callbackQAbstractItemModelReplica_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
+		(*(*func(*core.QTimerEvent))(signal))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQAbstractItemModelReplicaFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+	}
+}
+
+func (ptr *QAbstractItemModelReplica) TimerEventDefault(event core.QTimerEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModelReplica_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+type QIOQnxSource struct {
+	core.QIODevice
+}
+
+type QIOQnxSource_ITF interface {
+	core.QIODevice_ITF
+	QIOQnxSource_PTR() *QIOQnxSource
+}
+
+func (ptr *QIOQnxSource) QIOQnxSource_PTR() *QIOQnxSource {
+	return ptr
+}
+
+func (ptr *QIOQnxSource) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QIODevice_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QIOQnxSource) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QIODevice_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQIOQnxSource(ptr QIOQnxSource_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QIOQnxSource_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQIOQnxSourceFromPointer(ptr unsafe.Pointer) (n *QIOQnxSource) {
+	n = new(QIOQnxSource)
+	n.SetPointer(ptr)
+	return
+}
+
+type QQnxNativeIo struct {
+	core.QIODevice
+}
+
+type QQnxNativeIo_ITF interface {
+	core.QIODevice_ITF
+	QQnxNativeIo_PTR() *QQnxNativeIo
+}
+
+func (ptr *QQnxNativeIo) QQnxNativeIo_PTR() *QQnxNativeIo {
+	return ptr
+}
+
+func (ptr *QQnxNativeIo) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QIODevice_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QQnxNativeIo) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QIODevice_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQQnxNativeIo(ptr QQnxNativeIo_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QQnxNativeIo_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQQnxNativeIoFromPointer(ptr unsafe.Pointer) (n *QQnxNativeIo) {
+	n = new(QQnxNativeIo)
+	n.SetPointer(ptr)
+	return
+}
+
+type QQnxNativeServer struct {
+	core.QObject
+}
+
+type QQnxNativeServer_ITF interface {
+	core.QObject_ITF
+	QQnxNativeServer_PTR() *QQnxNativeServer
+}
+
+func (ptr *QQnxNativeServer) QQnxNativeServer_PTR() *QQnxNativeServer {
+	return ptr
+}
+
+func (ptr *QQnxNativeServer) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QQnxNativeServer) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQQnxNativeServer(ptr QQnxNativeServer_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QQnxNativeServer_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQQnxNativeServerFromPointer(ptr unsafe.Pointer) (n *QQnxNativeServer) {
+	n = new(QQnxNativeServer)
+	n.SetPointer(ptr)
+	return
+}
+
 type QRemoteObjectAbstractPersistedStore struct {
 	core.QObject
 }
@@ -79,34 +1722,6 @@ func NewQRemoteObjectAbstractPersistedStore(parent core.QObject_ITF) *QRemoteObj
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
-}
-
-func QRemoteObjectAbstractPersistedStore_Tr(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QRemoteObjectAbstractPersistedStore_QRemoteObjectAbstractPersistedStore_Tr(sC, cC, C.int(int32(n))))
-}
-
-func (ptr *QRemoteObjectAbstractPersistedStore) Tr(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QRemoteObjectAbstractPersistedStore_QRemoteObjectAbstractPersistedStore_Tr(sC, cC, C.int(int32(n))))
 }
 
 //export callbackQRemoteObjectAbstractPersistedStore_RestoreProperties
@@ -225,69 +1840,6 @@ func (ptr *QRemoteObjectAbstractPersistedStore) SaveProperties(repName string, r
 	}
 }
 
-//export callbackQRemoteObjectAbstractPersistedStore_DestroyQRemoteObjectAbstractPersistedStore
-func callbackQRemoteObjectAbstractPersistedStore_DestroyQRemoteObjectAbstractPersistedStore(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QRemoteObjectAbstractPersistedStore"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQRemoteObjectAbstractPersistedStoreFromPointer(ptr).DestroyQRemoteObjectAbstractPersistedStoreDefault()
-	}
-}
-
-func (ptr *QRemoteObjectAbstractPersistedStore) ConnectDestroyQRemoteObjectAbstractPersistedStore(f func()) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "~QRemoteObjectAbstractPersistedStore"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QRemoteObjectAbstractPersistedStore", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QRemoteObjectAbstractPersistedStore", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QRemoteObjectAbstractPersistedStore) DisconnectDestroyQRemoteObjectAbstractPersistedStore() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "~QRemoteObjectAbstractPersistedStore")
-	}
-}
-
-func (ptr *QRemoteObjectAbstractPersistedStore) DestroyQRemoteObjectAbstractPersistedStore() {
-	if ptr.Pointer() != nil {
-		C.QRemoteObjectAbstractPersistedStore_DestroyQRemoteObjectAbstractPersistedStore(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
-}
-
-func (ptr *QRemoteObjectAbstractPersistedStore) DestroyQRemoteObjectAbstractPersistedStoreDefault() {
-	if ptr.Pointer() != nil {
-		C.QRemoteObjectAbstractPersistedStore_DestroyQRemoteObjectAbstractPersistedStoreDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
-}
-
-//export callbackQRemoteObjectAbstractPersistedStore_MetaObject
-func callbackQRemoteObjectAbstractPersistedStore_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQRemoteObjectAbstractPersistedStoreFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QRemoteObjectAbstractPersistedStore) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QRemoteObjectAbstractPersistedStore_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
 func (ptr *QRemoteObjectAbstractPersistedStore) __restoreProperties_atList(i int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QRemoteObjectAbstractPersistedStore___restoreProperties_atList(ptr.Pointer(), C.int(int32(i))))
@@ -326,6 +1878,27 @@ func (ptr *QRemoteObjectAbstractPersistedStore) __saveProperties_values_newList(
 	return C.QRemoteObjectAbstractPersistedStore___saveProperties_values_newList(ptr.Pointer())
 }
 
+func (ptr *QRemoteObjectAbstractPersistedStore) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QRemoteObjectAbstractPersistedStore___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QRemoteObjectAbstractPersistedStore) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectAbstractPersistedStore___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QRemoteObjectAbstractPersistedStore) __children_newList() unsafe.Pointer {
+	return C.QRemoteObjectAbstractPersistedStore___children_newList(ptr.Pointer())
+}
+
 func (ptr *QRemoteObjectAbstractPersistedStore) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QRemoteObjectAbstractPersistedStore___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
@@ -343,48 +1916,6 @@ func (ptr *QRemoteObjectAbstractPersistedStore) __dynamicPropertyNames_setList(i
 
 func (ptr *QRemoteObjectAbstractPersistedStore) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QRemoteObjectAbstractPersistedStore___dynamicPropertyNames_newList(ptr.Pointer())
-}
-
-func (ptr *QRemoteObjectAbstractPersistedStore) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QRemoteObjectAbstractPersistedStore___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QRemoteObjectAbstractPersistedStore) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QRemoteObjectAbstractPersistedStore___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QRemoteObjectAbstractPersistedStore) __findChildren_newList2() unsafe.Pointer {
-	return C.QRemoteObjectAbstractPersistedStore___findChildren_newList2(ptr.Pointer())
-}
-
-func (ptr *QRemoteObjectAbstractPersistedStore) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QRemoteObjectAbstractPersistedStore___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QRemoteObjectAbstractPersistedStore) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QRemoteObjectAbstractPersistedStore___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QRemoteObjectAbstractPersistedStore) __findChildren_newList3() unsafe.Pointer {
-	return C.QRemoteObjectAbstractPersistedStore___findChildren_newList3(ptr.Pointer())
 }
 
 func (ptr *QRemoteObjectAbstractPersistedStore) __findChildren_atList(i int) *core.QObject {
@@ -408,9 +1939,9 @@ func (ptr *QRemoteObjectAbstractPersistedStore) __findChildren_newList() unsafe.
 	return C.QRemoteObjectAbstractPersistedStore___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QRemoteObjectAbstractPersistedStore) __children_atList(i int) *core.QObject {
+func (ptr *QRemoteObjectAbstractPersistedStore) __findChildren_atList3(i int) *core.QObject {
 	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QRemoteObjectAbstractPersistedStore___children_atList(ptr.Pointer(), C.int(int32(i))))
+		tmpValue := core.NewQObjectFromPointer(C.QRemoteObjectAbstractPersistedStore___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -419,46 +1950,35 @@ func (ptr *QRemoteObjectAbstractPersistedStore) __children_atList(i int) *core.Q
 	return nil
 }
 
-func (ptr *QRemoteObjectAbstractPersistedStore) __children_setList(i core.QObject_ITF) {
+func (ptr *QRemoteObjectAbstractPersistedStore) __findChildren_setList3(i core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		C.QRemoteObjectAbstractPersistedStore___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+		C.QRemoteObjectAbstractPersistedStore___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *QRemoteObjectAbstractPersistedStore) __children_newList() unsafe.Pointer {
-	return C.QRemoteObjectAbstractPersistedStore___children_newList(ptr.Pointer())
+func (ptr *QRemoteObjectAbstractPersistedStore) __findChildren_newList3() unsafe.Pointer {
+	return C.QRemoteObjectAbstractPersistedStore___findChildren_newList3(ptr.Pointer())
 }
 
-//export callbackQRemoteObjectAbstractPersistedStore_Event
-func callbackQRemoteObjectAbstractPersistedStore_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQRemoteObjectAbstractPersistedStoreFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
-}
-
-func (ptr *QRemoteObjectAbstractPersistedStore) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QRemoteObjectAbstractPersistedStore) __qFindChildren_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
-		return int8(C.QRemoteObjectAbstractPersistedStore_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+		tmpValue := core.NewQObjectFromPointer(C.QRemoteObjectAbstractPersistedStore___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return false
+	return nil
 }
 
-//export callbackQRemoteObjectAbstractPersistedStore_EventFilter
-func callbackQRemoteObjectAbstractPersistedStore_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQRemoteObjectAbstractPersistedStoreFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QRemoteObjectAbstractPersistedStore) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+func (ptr *QRemoteObjectAbstractPersistedStore) __qFindChildren_setList2(i core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		return int8(C.QRemoteObjectAbstractPersistedStore_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+		C.QRemoteObjectAbstractPersistedStore___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
 	}
-	return false
+}
+
+func (ptr *QRemoteObjectAbstractPersistedStore) __qFindChildren_newList2() unsafe.Pointer {
+	return C.QRemoteObjectAbstractPersistedStore___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQRemoteObjectAbstractPersistedStore_ChildEvent
@@ -543,6 +2063,38 @@ func (ptr *QRemoteObjectAbstractPersistedStore) DisconnectNotifyDefault(sign cor
 	if ptr.Pointer() != nil {
 		C.QRemoteObjectAbstractPersistedStore_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
+}
+
+//export callbackQRemoteObjectAbstractPersistedStore_Event
+func callbackQRemoteObjectAbstractPersistedStore_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQRemoteObjectAbstractPersistedStoreFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QRemoteObjectAbstractPersistedStore) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QRemoteObjectAbstractPersistedStore_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+	}
+	return false
+}
+
+//export callbackQRemoteObjectAbstractPersistedStore_EventFilter
+func callbackQRemoteObjectAbstractPersistedStore_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQRemoteObjectAbstractPersistedStoreFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QRemoteObjectAbstractPersistedStore) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QRemoteObjectAbstractPersistedStore_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+	}
+	return false
 }
 
 //export callbackQRemoteObjectAbstractPersistedStore_ObjectNameChanged
@@ -700,14 +2252,6 @@ func NewQRemoteObjectHost(parent core.QObject_ITF) *QRemoteObjectHost {
 	return tmpValue
 }
 
-func NewQRemoteObjectHost3(address core.QUrl_ITF, parent core.QObject_ITF) *QRemoteObjectHost {
-	tmpValue := NewQRemoteObjectHostFromPointer(C.QRemoteObjectHost_NewQRemoteObjectHost3(core.PointerFromQUrl(address), core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
-}
-
 func NewQRemoteObjectHost2(address core.QUrl_ITF, registryAddress core.QUrl_ITF, allowedSchemas QRemoteObjectHostBase__AllowedSchemas, parent core.QObject_ITF) *QRemoteObjectHost {
 	tmpValue := NewQRemoteObjectHostFromPointer(C.QRemoteObjectHost_NewQRemoteObjectHost2(core.PointerFromQUrl(address), core.PointerFromQUrl(registryAddress), C.longlong(allowedSchemas), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
@@ -716,96 +2260,12 @@ func NewQRemoteObjectHost2(address core.QUrl_ITF, registryAddress core.QUrl_ITF,
 	return tmpValue
 }
 
-//export callbackQRemoteObjectHost_SetHostUrl
-func callbackQRemoteObjectHost_SetHostUrl(ptr unsafe.Pointer, hostAddress unsafe.Pointer, allowedSchemas C.longlong) C.char {
-	if signal := qt.GetSignal(ptr, "setHostUrl"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QUrl, QRemoteObjectHostBase__AllowedSchemas) bool)(signal))(core.NewQUrlFromPointer(hostAddress), QRemoteObjectHostBase__AllowedSchemas(allowedSchemas)))))
+func NewQRemoteObjectHost3(address core.QUrl_ITF, parent core.QObject_ITF) *QRemoteObjectHost {
+	tmpValue := NewQRemoteObjectHostFromPointer(C.QRemoteObjectHost_NewQRemoteObjectHost3(core.PointerFromQUrl(address), core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQRemoteObjectHostFromPointer(ptr).SetHostUrlDefault(core.NewQUrlFromPointer(hostAddress), QRemoteObjectHostBase__AllowedSchemas(allowedSchemas)))))
-}
-
-func (ptr *QRemoteObjectHost) ConnectSetHostUrl(f func(hostAddress *core.QUrl, allowedSchemas QRemoteObjectHostBase__AllowedSchemas) bool) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "setHostUrl"); signal != nil {
-			f := func(hostAddress *core.QUrl, allowedSchemas QRemoteObjectHostBase__AllowedSchemas) bool {
-				(*(*func(*core.QUrl, QRemoteObjectHostBase__AllowedSchemas) bool)(signal))(hostAddress, allowedSchemas)
-				return f(hostAddress, allowedSchemas)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "setHostUrl", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setHostUrl", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QRemoteObjectHost) DisconnectSetHostUrl() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "setHostUrl")
-	}
-}
-
-func (ptr *QRemoteObjectHost) SetHostUrl(hostAddress core.QUrl_ITF, allowedSchemas QRemoteObjectHostBase__AllowedSchemas) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QRemoteObjectHost_SetHostUrl(ptr.Pointer(), core.PointerFromQUrl(hostAddress), C.longlong(allowedSchemas))) != 0
-	}
-	return false
-}
-
-func (ptr *QRemoteObjectHost) SetHostUrlDefault(hostAddress core.QUrl_ITF, allowedSchemas QRemoteObjectHostBase__AllowedSchemas) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QRemoteObjectHost_SetHostUrlDefault(ptr.Pointer(), core.PointerFromQUrl(hostAddress), C.longlong(allowedSchemas))) != 0
-	}
-	return false
-}
-
-//export callbackQRemoteObjectHost_DestroyQRemoteObjectHost
-func callbackQRemoteObjectHost_DestroyQRemoteObjectHost(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QRemoteObjectHost"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQRemoteObjectHostFromPointer(ptr).DestroyQRemoteObjectHostDefault()
-	}
-}
-
-func (ptr *QRemoteObjectHost) ConnectDestroyQRemoteObjectHost(f func()) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "~QRemoteObjectHost"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QRemoteObjectHost", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QRemoteObjectHost", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QRemoteObjectHost) DisconnectDestroyQRemoteObjectHost() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "~QRemoteObjectHost")
-	}
-}
-
-func (ptr *QRemoteObjectHost) DestroyQRemoteObjectHost() {
-	if ptr.Pointer() != nil {
-		C.QRemoteObjectHost_DestroyQRemoteObjectHost(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
-}
-
-func (ptr *QRemoteObjectHost) DestroyQRemoteObjectHostDefault() {
-	if ptr.Pointer() != nil {
-		C.QRemoteObjectHost_DestroyQRemoteObjectHostDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
+	return tmpValue
 }
 
 //export callbackQRemoteObjectHost_HostUrl
@@ -857,6 +2317,51 @@ func (ptr *QRemoteObjectHost) HostUrlDefault() *core.QUrl {
 	return nil
 }
 
+//export callbackQRemoteObjectHost_SetHostUrl
+func callbackQRemoteObjectHost_SetHostUrl(ptr unsafe.Pointer, hostAddress unsafe.Pointer, allowedSchemas C.longlong) C.char {
+	if signal := qt.GetSignal(ptr, "setHostUrl"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QUrl, QRemoteObjectHostBase__AllowedSchemas) bool)(signal))(core.NewQUrlFromPointer(hostAddress), QRemoteObjectHostBase__AllowedSchemas(allowedSchemas)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQRemoteObjectHostFromPointer(ptr).SetHostUrlDefault(core.NewQUrlFromPointer(hostAddress), QRemoteObjectHostBase__AllowedSchemas(allowedSchemas)))))
+}
+
+func (ptr *QRemoteObjectHost) ConnectSetHostUrl(f func(hostAddress *core.QUrl, allowedSchemas QRemoteObjectHostBase__AllowedSchemas) bool) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "setHostUrl"); signal != nil {
+			f := func(hostAddress *core.QUrl, allowedSchemas QRemoteObjectHostBase__AllowedSchemas) bool {
+				(*(*func(*core.QUrl, QRemoteObjectHostBase__AllowedSchemas) bool)(signal))(hostAddress, allowedSchemas)
+				return f(hostAddress, allowedSchemas)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "setHostUrl", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "setHostUrl", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QRemoteObjectHost) DisconnectSetHostUrl() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "setHostUrl")
+	}
+}
+
+func (ptr *QRemoteObjectHost) SetHostUrl(hostAddress core.QUrl_ITF, allowedSchemas QRemoteObjectHostBase__AllowedSchemas) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QRemoteObjectHost_SetHostUrl(ptr.Pointer(), core.PointerFromQUrl(hostAddress), C.longlong(allowedSchemas))) != 0
+	}
+	return false
+}
+
+func (ptr *QRemoteObjectHost) SetHostUrlDefault(hostAddress core.QUrl_ITF, allowedSchemas QRemoteObjectHostBase__AllowedSchemas) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QRemoteObjectHost_SetHostUrlDefault(ptr.Pointer(), core.PointerFromQUrl(hostAddress), C.longlong(allowedSchemas))) != 0
+	}
+	return false
+}
+
 type QRemoteObjectHostBase struct {
 	QRemoteObjectNode
 }
@@ -905,9 +2410,27 @@ const (
 	QRemoteObjectHostBase__AllowExternalRegistration QRemoteObjectHostBase__AllowedSchemas = QRemoteObjectHostBase__AllowedSchemas(1)
 )
 
+func (ptr *QRemoteObjectHostBase) AddHostSideConnection(ioDevice core.QIODevice_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectHostBase_AddHostSideConnection(ptr.Pointer(), core.PointerFromQIODevice(ioDevice))
+	}
+}
+
 func (ptr *QRemoteObjectHostBase) DisableRemoting(remoteObject core.QObject_ITF) bool {
 	if ptr.Pointer() != nil {
 		return int8(C.QRemoteObjectHostBase_DisableRemoting(ptr.Pointer(), core.PointerFromQObject(remoteObject))) != 0
+	}
+	return false
+}
+
+func (ptr *QRemoteObjectHostBase) EnableRemoting2(object core.QObject_ITF, name string) bool {
+	if ptr.Pointer() != nil {
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
+		return int8(C.QRemoteObjectHostBase_EnableRemoting2(ptr.Pointer(), core.PointerFromQObject(object), C.struct_QtRemoteObjects_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 	}
 	return false
 }
@@ -928,71 +2451,6 @@ func (ptr *QRemoteObjectHostBase) EnableRemoting3(model core.QAbstractItemModel_
 		}(), core.PointerFromQItemSelectionModel(selectionModel))) != 0
 	}
 	return false
-}
-
-func (ptr *QRemoteObjectHostBase) EnableRemoting2(object core.QObject_ITF, name string) bool {
-	if ptr.Pointer() != nil {
-		var nameC *C.char
-		if name != "" {
-			nameC = C.CString(name)
-			defer C.free(unsafe.Pointer(nameC))
-		}
-		return int8(C.QRemoteObjectHostBase_EnableRemoting2(ptr.Pointer(), core.PointerFromQObject(object), C.struct_QtRemoteObjects_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
-	}
-	return false
-}
-
-func (ptr *QRemoteObjectHostBase) AddHostSideConnection(ioDevice core.QIODevice_ITF) {
-	if ptr.Pointer() != nil {
-		C.QRemoteObjectHostBase_AddHostSideConnection(ptr.Pointer(), core.PointerFromQIODevice(ioDevice))
-	}
-}
-
-//export callbackQRemoteObjectHostBase_DestroyQRemoteObjectHostBase
-func callbackQRemoteObjectHostBase_DestroyQRemoteObjectHostBase(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QRemoteObjectHostBase"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQRemoteObjectHostBaseFromPointer(ptr).DestroyQRemoteObjectHostBaseDefault()
-	}
-}
-
-func (ptr *QRemoteObjectHostBase) ConnectDestroyQRemoteObjectHostBase(f func()) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "~QRemoteObjectHostBase"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QRemoteObjectHostBase", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QRemoteObjectHostBase", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QRemoteObjectHostBase) DisconnectDestroyQRemoteObjectHostBase() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "~QRemoteObjectHostBase")
-	}
-}
-
-func (ptr *QRemoteObjectHostBase) DestroyQRemoteObjectHostBase() {
-	if ptr.Pointer() != nil {
-		C.QRemoteObjectHostBase_DestroyQRemoteObjectHostBase(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
-}
-
-func (ptr *QRemoteObjectHostBase) DestroyQRemoteObjectHostBaseDefault() {
-	if ptr.Pointer() != nil {
-		C.QRemoteObjectHostBase_DestroyQRemoteObjectHostBaseDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
 }
 
 func (ptr *QRemoteObjectHostBase) __enableRemoting_roles_atList3(i int) int {
@@ -1070,22 +2528,6 @@ const (
 	QRemoteObjectNode__ListenFailed                  QRemoteObjectNode__ErrorCode = QRemoteObjectNode__ErrorCode(11)
 )
 
-func (ptr *QRemoteObjectNode) AcquireDynamic(name string) *QRemoteObjectDynamicReplica {
-	if ptr.Pointer() != nil {
-		var nameC *C.char
-		if name != "" {
-			nameC = C.CString(name)
-			defer C.free(unsafe.Pointer(nameC))
-		}
-		tmpValue := NewQRemoteObjectDynamicReplicaFromPointer(C.QRemoteObjectNode_AcquireDynamic(ptr.Pointer(), C.struct_QtRemoteObjects_PackedString{data: nameC, len: C.longlong(len(name))}))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
 func NewQRemoteObjectNode(parent core.QObject_ITF) *QRemoteObjectNode {
 	tmpValue := NewQRemoteObjectNodeFromPointer(C.QRemoteObjectNode_NewQRemoteObjectNode(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
@@ -1102,32 +2544,26 @@ func NewQRemoteObjectNode2(registryAddress core.QUrl_ITF, parent core.QObject_IT
 	return tmpValue
 }
 
-func QRemoteObjectNode_Tr(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
+func (ptr *QRemoteObjectNode) AcquireDynamic(name string) *QRemoteObjectDynamicReplica {
+	if ptr.Pointer() != nil {
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
+		tmpValue := NewQRemoteObjectDynamicReplicaFromPointer(C.QRemoteObjectNode_AcquireDynamic(ptr.Pointer(), C.struct_QtRemoteObjects_PackedString{data: nameC, len: C.longlong(len(name))}))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QRemoteObjectNode_QRemoteObjectNode_Tr(sC, cC, C.int(int32(n))))
+	return nil
 }
 
-func (ptr *QRemoteObjectNode) Tr(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
+func (ptr *QRemoteObjectNode) AddClientSideConnection(ioDevice core.QIODevice_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectNode_AddClientSideConnection(ptr.Pointer(), core.PointerFromQIODevice(ioDevice))
 	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QRemoteObjectNode_QRemoteObjectNode_Tr(sC, cC, C.int(int32(n))))
 }
 
 func (ptr *QRemoteObjectNode) ConnectToNode(address core.QUrl_ITF) bool {
@@ -1137,102 +2573,11 @@ func (ptr *QRemoteObjectNode) ConnectToNode(address core.QUrl_ITF) bool {
 	return false
 }
 
-//export callbackQRemoteObjectNode_SetRegistryUrl
-func callbackQRemoteObjectNode_SetRegistryUrl(ptr unsafe.Pointer, registryAddress unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "setRegistryUrl"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QUrl) bool)(signal))(core.NewQUrlFromPointer(registryAddress)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQRemoteObjectNodeFromPointer(ptr).SetRegistryUrlDefault(core.NewQUrlFromPointer(registryAddress)))))
-}
-
-func (ptr *QRemoteObjectNode) ConnectSetRegistryUrl(f func(registryAddress *core.QUrl) bool) {
+func (ptr *QRemoteObjectNode) HeartbeatInterval() int {
 	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "setRegistryUrl"); signal != nil {
-			f := func(registryAddress *core.QUrl) bool {
-				(*(*func(*core.QUrl) bool)(signal))(registryAddress)
-				return f(registryAddress)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "setRegistryUrl", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setRegistryUrl", unsafe.Pointer(&f))
-		}
+		return int(int32(C.QRemoteObjectNode_HeartbeatInterval(ptr.Pointer())))
 	}
-}
-
-func (ptr *QRemoteObjectNode) DisconnectSetRegistryUrl() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "setRegistryUrl")
-	}
-}
-
-func (ptr *QRemoteObjectNode) SetRegistryUrl(registryAddress core.QUrl_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QRemoteObjectNode_SetRegistryUrl(ptr.Pointer(), core.PointerFromQUrl(registryAddress))) != 0
-	}
-	return false
-}
-
-func (ptr *QRemoteObjectNode) SetRegistryUrlDefault(registryAddress core.QUrl_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QRemoteObjectNode_SetRegistryUrlDefault(ptr.Pointer(), core.PointerFromQUrl(registryAddress))) != 0
-	}
-	return false
-}
-
-func (ptr *QRemoteObjectNode) WaitForRegistry(timeout int) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QRemoteObjectNode_WaitForRegistry(ptr.Pointer(), C.int(int32(timeout)))) != 0
-	}
-	return false
-}
-
-func (ptr *QRemoteObjectNode) AddClientSideConnection(ioDevice core.QIODevice_ITF) {
-	if ptr.Pointer() != nil {
-		C.QRemoteObjectNode_AddClientSideConnection(ptr.Pointer(), core.PointerFromQIODevice(ioDevice))
-	}
-}
-
-//export callbackQRemoteObjectNode_Error
-func callbackQRemoteObjectNode_Error(ptr unsafe.Pointer, errorCode C.longlong) {
-	if signal := qt.GetSignal(ptr, "error"); signal != nil {
-		(*(*func(QRemoteObjectNode__ErrorCode))(signal))(QRemoteObjectNode__ErrorCode(errorCode))
-	}
-
-}
-
-func (ptr *QRemoteObjectNode) ConnectError(f func(errorCode QRemoteObjectNode__ErrorCode)) {
-	if ptr.Pointer() != nil {
-
-		if !qt.ExistsSignal(ptr.Pointer(), "error") {
-			C.QRemoteObjectNode_ConnectError(ptr.Pointer())
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "error"); signal != nil {
-			f := func(errorCode QRemoteObjectNode__ErrorCode) {
-				(*(*func(QRemoteObjectNode__ErrorCode))(signal))(errorCode)
-				f(errorCode)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "error", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "error", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QRemoteObjectNode) DisconnectError() {
-	if ptr.Pointer() != nil {
-		C.QRemoteObjectNode_DisconnectError(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "error")
-	}
-}
-
-func (ptr *QRemoteObjectNode) Error(errorCode QRemoteObjectNode__ErrorCode) {
-	if ptr.Pointer() != nil {
-		C.QRemoteObjectNode_Error(ptr.Pointer(), C.longlong(errorCode))
-	}
+	return 0
 }
 
 //export callbackQRemoteObjectNode_HeartbeatIntervalChanged
@@ -1273,6 +2618,56 @@ func (ptr *QRemoteObjectNode) HeartbeatIntervalChanged(heartbeatInterval int) {
 	if ptr.Pointer() != nil {
 		C.QRemoteObjectNode_HeartbeatIntervalChanged(ptr.Pointer(), C.int(int32(heartbeatInterval)))
 	}
+}
+
+func (ptr *QRemoteObjectNode) Instances2(typeName string) []string {
+	if ptr.Pointer() != nil {
+		var typeNameC *C.char
+		if typeName != "" {
+			typeNameC = C.CString(typeName)
+			defer C.free(unsafe.Pointer(typeNameC))
+		}
+		return unpackStringList(cGoUnpackString(C.QRemoteObjectNode_Instances2(ptr.Pointer(), C.struct_QtRemoteObjects_PackedString{data: typeNameC, len: C.longlong(len(typeName))})))
+	}
+	return make([]string, 0)
+}
+
+func (ptr *QRemoteObjectNode) LastError() QRemoteObjectNode__ErrorCode {
+	if ptr.Pointer() != nil {
+		return QRemoteObjectNode__ErrorCode(C.QRemoteObjectNode_LastError(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QRemoteObjectNode) PersistedStore() *QRemoteObjectAbstractPersistedStore {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQRemoteObjectAbstractPersistedStoreFromPointer(C.QRemoteObjectNode_PersistedStore(ptr.Pointer()))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QRemoteObjectNode) Registry() *QRemoteObjectRegistry {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQRemoteObjectRegistryFromPointer(C.QRemoteObjectNode_Registry(ptr.Pointer()))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QRemoteObjectNode) RegistryUrl() *core.QUrl {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQUrlFromPointer(C.QRemoteObjectNode_RegistryUrl(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		return tmpValue
+	}
+	return nil
 }
 
 func (ptr *QRemoteObjectNode) SetHeartbeatInterval(interval int) {
@@ -1340,6 +2735,51 @@ func (ptr *QRemoteObjectNode) SetPersistedStore(persistedStore QRemoteObjectAbst
 	}
 }
 
+//export callbackQRemoteObjectNode_SetRegistryUrl
+func callbackQRemoteObjectNode_SetRegistryUrl(ptr unsafe.Pointer, registryAddress unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "setRegistryUrl"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QUrl) bool)(signal))(core.NewQUrlFromPointer(registryAddress)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQRemoteObjectNodeFromPointer(ptr).SetRegistryUrlDefault(core.NewQUrlFromPointer(registryAddress)))))
+}
+
+func (ptr *QRemoteObjectNode) ConnectSetRegistryUrl(f func(registryAddress *core.QUrl) bool) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "setRegistryUrl"); signal != nil {
+			f := func(registryAddress *core.QUrl) bool {
+				(*(*func(*core.QUrl) bool)(signal))(registryAddress)
+				return f(registryAddress)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "setRegistryUrl", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "setRegistryUrl", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QRemoteObjectNode) DisconnectSetRegistryUrl() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "setRegistryUrl")
+	}
+}
+
+func (ptr *QRemoteObjectNode) SetRegistryUrl(registryAddress core.QUrl_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QRemoteObjectNode_SetRegistryUrl(ptr.Pointer(), core.PointerFromQUrl(registryAddress))) != 0
+	}
+	return false
+}
+
+func (ptr *QRemoteObjectNode) SetRegistryUrlDefault(registryAddress core.QUrl_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QRemoteObjectNode_SetRegistryUrlDefault(ptr.Pointer(), core.PointerFromQUrl(registryAddress))) != 0
+	}
+	return false
+}
+
 //export callbackQRemoteObjectNode_TimerEvent
 func callbackQRemoteObjectNode_TimerEvent(ptr unsafe.Pointer, vqt unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
@@ -1355,124 +2795,11 @@ func (ptr *QRemoteObjectNode) TimerEventDefault(vqt core.QTimerEvent_ITF) {
 	}
 }
 
-//export callbackQRemoteObjectNode_DestroyQRemoteObjectNode
-func callbackQRemoteObjectNode_DestroyQRemoteObjectNode(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QRemoteObjectNode"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQRemoteObjectNodeFromPointer(ptr).DestroyQRemoteObjectNodeDefault()
-	}
-}
-
-func (ptr *QRemoteObjectNode) ConnectDestroyQRemoteObjectNode(f func()) {
+func (ptr *QRemoteObjectNode) WaitForRegistry(timeout int) bool {
 	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "~QRemoteObjectNode"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QRemoteObjectNode", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QRemoteObjectNode", unsafe.Pointer(&f))
-		}
+		return int8(C.QRemoteObjectNode_WaitForRegistry(ptr.Pointer(), C.int(int32(timeout)))) != 0
 	}
-}
-
-func (ptr *QRemoteObjectNode) DisconnectDestroyQRemoteObjectNode() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "~QRemoteObjectNode")
-	}
-}
-
-func (ptr *QRemoteObjectNode) DestroyQRemoteObjectNode() {
-	if ptr.Pointer() != nil {
-		C.QRemoteObjectNode_DestroyQRemoteObjectNode(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
-}
-
-func (ptr *QRemoteObjectNode) DestroyQRemoteObjectNodeDefault() {
-	if ptr.Pointer() != nil {
-		C.QRemoteObjectNode_DestroyQRemoteObjectNodeDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
-}
-
-func (ptr *QRemoteObjectNode) PersistedStore() *QRemoteObjectAbstractPersistedStore {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQRemoteObjectAbstractPersistedStoreFromPointer(C.QRemoteObjectNode_PersistedStore(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QRemoteObjectNode) LastError() QRemoteObjectNode__ErrorCode {
-	if ptr.Pointer() != nil {
-		return QRemoteObjectNode__ErrorCode(C.QRemoteObjectNode_LastError(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QRemoteObjectNode) Instances2(typeName string) []string {
-	if ptr.Pointer() != nil {
-		var typeNameC *C.char
-		if typeName != "" {
-			typeNameC = C.CString(typeName)
-			defer C.free(unsafe.Pointer(typeNameC))
-		}
-		return unpackStringList(cGoUnpackString(C.QRemoteObjectNode_Instances2(ptr.Pointer(), C.struct_QtRemoteObjects_PackedString{data: typeNameC, len: C.longlong(len(typeName))})))
-	}
-	return make([]string, 0)
-}
-
-func (ptr *QRemoteObjectNode) RegistryUrl() *core.QUrl {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQUrlFromPointer(C.QRemoteObjectNode_RegistryUrl(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
-		return tmpValue
-	}
-	return nil
-}
-
-//export callbackQRemoteObjectNode_MetaObject
-func callbackQRemoteObjectNode_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQRemoteObjectNodeFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QRemoteObjectNode) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QRemoteObjectNode_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
-func (ptr *QRemoteObjectNode) Registry() *QRemoteObjectRegistry {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQRemoteObjectRegistryFromPointer(C.QRemoteObjectNode_Registry(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QRemoteObjectNode) HeartbeatInterval() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QRemoteObjectNode_HeartbeatInterval(ptr.Pointer())))
-	}
-	return 0
+	return false
 }
 
 func (ptr *QRemoteObjectNode) __acquireModel_rolesHint_atList(i int) int {
@@ -1490,25 +2817,6 @@ func (ptr *QRemoteObjectNode) __acquireModel_rolesHint_setList(i int) {
 
 func (ptr *QRemoteObjectNode) __acquireModel_rolesHint_newList() unsafe.Pointer {
 	return C.QRemoteObjectNode___acquireModel_rolesHint_newList(ptr.Pointer())
-}
-
-func (ptr *QRemoteObjectNode) __retrieveProperties_atList(i int) *core.QVariant {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQVariantFromPointer(C.QRemoteObjectNode___retrieveProperties_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QRemoteObjectNode) __retrieveProperties_setList(i core.QVariant_ITF) {
-	if ptr.Pointer() != nil {
-		C.QRemoteObjectNode___retrieveProperties_setList(ptr.Pointer(), core.PointerFromQVariant(i))
-	}
-}
-
-func (ptr *QRemoteObjectNode) __retrieveProperties_newList() unsafe.Pointer {
-	return C.QRemoteObjectNode___retrieveProperties_newList(ptr.Pointer())
 }
 
 func (ptr *QRemoteObjectNode) __persistProperties_props_atList(i int) *core.QVariant {
@@ -1530,86 +2838,23 @@ func (ptr *QRemoteObjectNode) __persistProperties_props_newList() unsafe.Pointer
 	return C.QRemoteObjectNode___persistProperties_props_newList(ptr.Pointer())
 }
 
-func (ptr *QRemoteObjectNode) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+func (ptr *QRemoteObjectNode) __retrieveProperties_atList(i int) *core.QVariant {
 	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QRemoteObjectNode___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		tmpValue := core.NewQVariantFromPointer(C.QRemoteObjectNode___retrieveProperties_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
 }
 
-func (ptr *QRemoteObjectNode) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+func (ptr *QRemoteObjectNode) __retrieveProperties_setList(i core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		C.QRemoteObjectNode___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+		C.QRemoteObjectNode___retrieveProperties_setList(ptr.Pointer(), core.PointerFromQVariant(i))
 	}
 }
 
-func (ptr *QRemoteObjectNode) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return C.QRemoteObjectNode___dynamicPropertyNames_newList(ptr.Pointer())
-}
-
-func (ptr *QRemoteObjectNode) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QRemoteObjectNode___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QRemoteObjectNode) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QRemoteObjectNode___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QRemoteObjectNode) __findChildren_newList2() unsafe.Pointer {
-	return C.QRemoteObjectNode___findChildren_newList2(ptr.Pointer())
-}
-
-func (ptr *QRemoteObjectNode) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QRemoteObjectNode___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QRemoteObjectNode) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QRemoteObjectNode___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QRemoteObjectNode) __findChildren_newList3() unsafe.Pointer {
-	return C.QRemoteObjectNode___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QRemoteObjectNode) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QRemoteObjectNode___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QRemoteObjectNode) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QRemoteObjectNode___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QRemoteObjectNode) __findChildren_newList() unsafe.Pointer {
-	return C.QRemoteObjectNode___findChildren_newList(ptr.Pointer())
+func (ptr *QRemoteObjectNode) __retrieveProperties_newList() unsafe.Pointer {
+	return C.QRemoteObjectNode___retrieveProperties_newList(ptr.Pointer())
 }
 
 func (ptr *QRemoteObjectNode) __children_atList(i int) *core.QObject {
@@ -1633,36 +2878,86 @@ func (ptr *QRemoteObjectNode) __children_newList() unsafe.Pointer {
 	return C.QRemoteObjectNode___children_newList(ptr.Pointer())
 }
 
-//export callbackQRemoteObjectNode_Event
-func callbackQRemoteObjectNode_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQRemoteObjectNodeFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
-}
-
-func (ptr *QRemoteObjectNode) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QRemoteObjectNode) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
-		return int8(C.QRemoteObjectNode_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+		tmpValue := core.NewQByteArrayFromPointer(C.QRemoteObjectNode___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
 	}
-	return false
+	return nil
 }
 
-//export callbackQRemoteObjectNode_EventFilter
-func callbackQRemoteObjectNode_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQRemoteObjectNodeFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QRemoteObjectNode) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+func (ptr *QRemoteObjectNode) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		return int8(C.QRemoteObjectNode_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+		C.QRemoteObjectNode___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
 	}
-	return false
+}
+
+func (ptr *QRemoteObjectNode) __dynamicPropertyNames_newList() unsafe.Pointer {
+	return C.QRemoteObjectNode___dynamicPropertyNames_newList(ptr.Pointer())
+}
+
+func (ptr *QRemoteObjectNode) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QRemoteObjectNode___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QRemoteObjectNode) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectNode___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QRemoteObjectNode) __findChildren_newList() unsafe.Pointer {
+	return C.QRemoteObjectNode___findChildren_newList(ptr.Pointer())
+}
+
+func (ptr *QRemoteObjectNode) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QRemoteObjectNode___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QRemoteObjectNode) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectNode___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QRemoteObjectNode) __findChildren_newList3() unsafe.Pointer {
+	return C.QRemoteObjectNode___findChildren_newList3(ptr.Pointer())
+}
+
+func (ptr *QRemoteObjectNode) __qFindChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QRemoteObjectNode___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QRemoteObjectNode) __qFindChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectNode___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QRemoteObjectNode) __qFindChildren_newList2() unsafe.Pointer {
+	return C.QRemoteObjectNode___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQRemoteObjectNode_ChildEvent
@@ -1749,6 +3044,38 @@ func (ptr *QRemoteObjectNode) DisconnectNotifyDefault(sign core.QMetaMethod_ITF)
 	}
 }
 
+//export callbackQRemoteObjectNode_Event
+func callbackQRemoteObjectNode_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQRemoteObjectNodeFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QRemoteObjectNode) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QRemoteObjectNode_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+	}
+	return false
+}
+
+//export callbackQRemoteObjectNode_EventFilter
+func callbackQRemoteObjectNode_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQRemoteObjectNodeFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QRemoteObjectNode) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QRemoteObjectNode_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+	}
+	return false
+}
+
 //export callbackQRemoteObjectNode_ObjectNameChanged
 func callbackQRemoteObjectNode_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtRemoteObjects_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -1757,45 +3084,45 @@ func callbackQRemoteObjectNode_ObjectNameChanged(ptr unsafe.Pointer, objectName 
 
 }
 
-type QRemoteObjectPackets struct {
+type QRemoteObjectPendingCall struct {
 	ptr unsafe.Pointer
 }
 
-type QRemoteObjectPackets_ITF interface {
-	QRemoteObjectPackets_PTR() *QRemoteObjectPackets
+type QRemoteObjectPendingCall_ITF interface {
+	QRemoteObjectPendingCall_PTR() *QRemoteObjectPendingCall
 }
 
-func (ptr *QRemoteObjectPackets) QRemoteObjectPackets_PTR() *QRemoteObjectPackets {
+func (ptr *QRemoteObjectPendingCall) QRemoteObjectPendingCall_PTR() *QRemoteObjectPendingCall {
 	return ptr
 }
 
-func (ptr *QRemoteObjectPackets) Pointer() unsafe.Pointer {
+func (ptr *QRemoteObjectPendingCall) Pointer() unsafe.Pointer {
 	if ptr != nil {
 		return ptr.ptr
 	}
 	return nil
 }
 
-func (ptr *QRemoteObjectPackets) SetPointer(p unsafe.Pointer) {
+func (ptr *QRemoteObjectPendingCall) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
 		ptr.ptr = p
 	}
 }
 
-func PointerFromQRemoteObjectPackets(ptr QRemoteObjectPackets_ITF) unsafe.Pointer {
+func PointerFromQRemoteObjectPendingCall(ptr QRemoteObjectPendingCall_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QRemoteObjectPackets_PTR().Pointer()
+		return ptr.QRemoteObjectPendingCall_PTR().Pointer()
 	}
 	return nil
 }
 
-func NewQRemoteObjectPacketsFromPointer(ptr unsafe.Pointer) (n *QRemoteObjectPackets) {
-	n = new(QRemoteObjectPackets)
+func NewQRemoteObjectPendingCallFromPointer(ptr unsafe.Pointer) (n *QRemoteObjectPendingCall) {
+	n = new(QRemoteObjectPendingCall)
 	n.SetPointer(ptr)
 	return
 }
 
-func (ptr *QRemoteObjectPackets) DestroyQRemoteObjectPackets() {
+func (ptr *QRemoteObjectPendingCall) DestroyQRemoteObjectPendingCall() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
@@ -1803,14 +3130,386 @@ func (ptr *QRemoteObjectPackets) DestroyQRemoteObjectPackets() {
 	}
 }
 
-//go:generate stringer -type=QRemoteObjectPackets__ObjectType
-//QRemoteObjectPackets::ObjectType
-type QRemoteObjectPackets__ObjectType int64
+type QRemoteObjectPendingCallWatcher struct {
+	core.QObject
+	QRemoteObjectPendingCall
+}
 
-const (
-	QRemoteObjectPackets__CLASS QRemoteObjectPackets__ObjectType = QRemoteObjectPackets__ObjectType(0)
-	QRemoteObjectPackets__MODEL QRemoteObjectPackets__ObjectType = QRemoteObjectPackets__ObjectType(1)
-)
+type QRemoteObjectPendingCallWatcher_ITF interface {
+	core.QObject_ITF
+	QRemoteObjectPendingCall_ITF
+	QRemoteObjectPendingCallWatcher_PTR() *QRemoteObjectPendingCallWatcher
+}
+
+func (ptr *QRemoteObjectPendingCallWatcher) QRemoteObjectPendingCallWatcher_PTR() *QRemoteObjectPendingCallWatcher {
+	return ptr
+}
+
+func (ptr *QRemoteObjectPendingCallWatcher) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QRemoteObjectPendingCallWatcher) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
+		ptr.QRemoteObjectPendingCall_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQRemoteObjectPendingCallWatcher(ptr QRemoteObjectPendingCallWatcher_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QRemoteObjectPendingCallWatcher_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQRemoteObjectPendingCallWatcherFromPointer(ptr unsafe.Pointer) (n *QRemoteObjectPendingCallWatcher) {
+	n = new(QRemoteObjectPendingCallWatcher)
+	n.SetPointer(ptr)
+	return
+}
+func (ptr *QRemoteObjectPendingCallWatcher) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QRemoteObjectPendingCallWatcher___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QRemoteObjectPendingCallWatcher) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectPendingCallWatcher___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QRemoteObjectPendingCallWatcher) __children_newList() unsafe.Pointer {
+	return C.QRemoteObjectPendingCallWatcher___children_newList(ptr.Pointer())
+}
+
+func (ptr *QRemoteObjectPendingCallWatcher) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QRemoteObjectPendingCallWatcher___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QRemoteObjectPendingCallWatcher) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectPendingCallWatcher___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QRemoteObjectPendingCallWatcher) __dynamicPropertyNames_newList() unsafe.Pointer {
+	return C.QRemoteObjectPendingCallWatcher___dynamicPropertyNames_newList(ptr.Pointer())
+}
+
+func (ptr *QRemoteObjectPendingCallWatcher) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QRemoteObjectPendingCallWatcher___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QRemoteObjectPendingCallWatcher) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectPendingCallWatcher___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QRemoteObjectPendingCallWatcher) __findChildren_newList() unsafe.Pointer {
+	return C.QRemoteObjectPendingCallWatcher___findChildren_newList(ptr.Pointer())
+}
+
+func (ptr *QRemoteObjectPendingCallWatcher) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QRemoteObjectPendingCallWatcher___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QRemoteObjectPendingCallWatcher) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectPendingCallWatcher___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QRemoteObjectPendingCallWatcher) __findChildren_newList3() unsafe.Pointer {
+	return C.QRemoteObjectPendingCallWatcher___findChildren_newList3(ptr.Pointer())
+}
+
+func (ptr *QRemoteObjectPendingCallWatcher) __qFindChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QRemoteObjectPendingCallWatcher___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QRemoteObjectPendingCallWatcher) __qFindChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectPendingCallWatcher___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QRemoteObjectPendingCallWatcher) __qFindChildren_newList2() unsafe.Pointer {
+	return C.QRemoteObjectPendingCallWatcher___qFindChildren_newList2(ptr.Pointer())
+}
+
+//export callbackQRemoteObjectPendingCallWatcher_ChildEvent
+func callbackQRemoteObjectPendingCallWatcher_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
+		(*(*func(*core.QChildEvent))(signal))(core.NewQChildEventFromPointer(event))
+	} else {
+		NewQRemoteObjectPendingCallWatcherFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
+	}
+}
+
+func (ptr *QRemoteObjectPendingCallWatcher) ChildEvent(event core.QChildEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectPendingCallWatcher_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QRemoteObjectPendingCallWatcher) ChildEventDefault(event core.QChildEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectPendingCallWatcher_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+//export callbackQRemoteObjectPendingCallWatcher_ConnectNotify
+func callbackQRemoteObjectPendingCallWatcher_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
+		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
+	} else {
+		NewQRemoteObjectPendingCallWatcherFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
+	}
+}
+
+func (ptr *QRemoteObjectPendingCallWatcher) ConnectNotify(sign core.QMetaMethod_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectPendingCallWatcher_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
+	}
+}
+
+func (ptr *QRemoteObjectPendingCallWatcher) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectPendingCallWatcher_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
+	}
+}
+
+//export callbackQRemoteObjectPendingCallWatcher_CustomEvent
+func callbackQRemoteObjectPendingCallWatcher_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
+		(*(*func(*core.QEvent))(signal))(core.NewQEventFromPointer(event))
+	} else {
+		NewQRemoteObjectPendingCallWatcherFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
+	}
+}
+
+func (ptr *QRemoteObjectPendingCallWatcher) CustomEvent(event core.QEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectPendingCallWatcher_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QRemoteObjectPendingCallWatcher) CustomEventDefault(event core.QEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectPendingCallWatcher_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+//export callbackQRemoteObjectPendingCallWatcher_DeleteLater
+func callbackQRemoteObjectPendingCallWatcher_DeleteLater(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
+		(*(*func())(signal))()
+	} else {
+		NewQRemoteObjectPendingCallWatcherFromPointer(ptr).DeleteLaterDefault()
+	}
+}
+
+func (ptr *QRemoteObjectPendingCallWatcher) DeleteLater() {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectPendingCallWatcher_DeleteLater(ptr.Pointer())
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *QRemoteObjectPendingCallWatcher) DeleteLaterDefault() {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectPendingCallWatcher_DeleteLaterDefault(ptr.Pointer())
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+//export callbackQRemoteObjectPendingCallWatcher_Destroyed
+func callbackQRemoteObjectPendingCallWatcher_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
+		(*(*func(*core.QObject))(signal))(core.NewQObjectFromPointer(obj))
+	}
+
+}
+
+//export callbackQRemoteObjectPendingCallWatcher_DisconnectNotify
+func callbackQRemoteObjectPendingCallWatcher_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
+		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
+	} else {
+		NewQRemoteObjectPendingCallWatcherFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
+	}
+}
+
+func (ptr *QRemoteObjectPendingCallWatcher) DisconnectNotify(sign core.QMetaMethod_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectPendingCallWatcher_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
+	}
+}
+
+func (ptr *QRemoteObjectPendingCallWatcher) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectPendingCallWatcher_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
+	}
+}
+
+//export callbackQRemoteObjectPendingCallWatcher_Event
+func callbackQRemoteObjectPendingCallWatcher_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQRemoteObjectPendingCallWatcherFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QRemoteObjectPendingCallWatcher) Event(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QRemoteObjectPendingCallWatcher_Event(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+	}
+	return false
+}
+
+func (ptr *QRemoteObjectPendingCallWatcher) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QRemoteObjectPendingCallWatcher_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+	}
+	return false
+}
+
+//export callbackQRemoteObjectPendingCallWatcher_EventFilter
+func callbackQRemoteObjectPendingCallWatcher_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQRemoteObjectPendingCallWatcherFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QRemoteObjectPendingCallWatcher) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QRemoteObjectPendingCallWatcher_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+	}
+	return false
+}
+
+func (ptr *QRemoteObjectPendingCallWatcher) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QRemoteObjectPendingCallWatcher_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+	}
+	return false
+}
+
+//export callbackQRemoteObjectPendingCallWatcher_ObjectNameChanged
+func callbackQRemoteObjectPendingCallWatcher_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtRemoteObjects_PackedString) {
+	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
+		(*(*func(string))(signal))(cGoUnpackString(objectName))
+	}
+
+}
+
+//export callbackQRemoteObjectPendingCallWatcher_TimerEvent
+func callbackQRemoteObjectPendingCallWatcher_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
+		(*(*func(*core.QTimerEvent))(signal))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQRemoteObjectPendingCallWatcherFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+	}
+}
+
+func (ptr *QRemoteObjectPendingCallWatcher) TimerEvent(event core.QTimerEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectPendingCallWatcher_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QRemoteObjectPendingCallWatcher) TimerEventDefault(event core.QTimerEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectPendingCallWatcher_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+type QRemoteObjectPendingReply struct {
+	QRemoteObjectPendingCall
+}
+
+type QRemoteObjectPendingReply_ITF interface {
+	QRemoteObjectPendingCall_ITF
+	QRemoteObjectPendingReply_PTR() *QRemoteObjectPendingReply
+}
+
+func (ptr *QRemoteObjectPendingReply) QRemoteObjectPendingReply_PTR() *QRemoteObjectPendingReply {
+	return ptr
+}
+
+func (ptr *QRemoteObjectPendingReply) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QRemoteObjectPendingCall_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QRemoteObjectPendingReply) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QRemoteObjectPendingCall_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQRemoteObjectPendingReply(ptr QRemoteObjectPendingReply_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QRemoteObjectPendingReply_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQRemoteObjectPendingReplyFromPointer(ptr unsafe.Pointer) (n *QRemoteObjectPendingReply) {
+	n = new(QRemoteObjectPendingReply)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QRemoteObjectPendingReply) DestroyQRemoteObjectPendingReply() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
 
 type QRemoteObjectRegistry struct {
 	QRemoteObjectReplica
@@ -1849,13 +3548,6 @@ func NewQRemoteObjectRegistryFromPointer(ptr unsafe.Pointer) (n *QRemoteObjectRe
 	n = new(QRemoteObjectRegistry)
 	n.SetPointer(ptr)
 	return
-}
-func QRemoteObjectRegistry_RegisterMetatypes() {
-	C.QRemoteObjectRegistry_QRemoteObjectRegistry_RegisterMetatypes()
-}
-
-func (ptr *QRemoteObjectRegistry) RegisterMetatypes() {
-	C.QRemoteObjectRegistry_QRemoteObjectRegistry_RegisterMetatypes()
 }
 
 //export callbackQRemoteObjectRegistry_DestroyQRemoteObjectRegistry
@@ -1951,53 +3643,6 @@ func NewQRemoteObjectRegistryHost(registryAddress core.QUrl_ITF, parent core.QOb
 	return tmpValue
 }
 
-//export callbackQRemoteObjectRegistryHost_DestroyQRemoteObjectRegistryHost
-func callbackQRemoteObjectRegistryHost_DestroyQRemoteObjectRegistryHost(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QRemoteObjectRegistryHost"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQRemoteObjectRegistryHostFromPointer(ptr).DestroyQRemoteObjectRegistryHostDefault()
-	}
-}
-
-func (ptr *QRemoteObjectRegistryHost) ConnectDestroyQRemoteObjectRegistryHost(f func()) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "~QRemoteObjectRegistryHost"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QRemoteObjectRegistryHost", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QRemoteObjectRegistryHost", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QRemoteObjectRegistryHost) DisconnectDestroyQRemoteObjectRegistryHost() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "~QRemoteObjectRegistryHost")
-	}
-}
-
-func (ptr *QRemoteObjectRegistryHost) DestroyQRemoteObjectRegistryHost() {
-	if ptr.Pointer() != nil {
-		C.QRemoteObjectRegistryHost_DestroyQRemoteObjectRegistryHost(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
-}
-
-func (ptr *QRemoteObjectRegistryHost) DestroyQRemoteObjectRegistryHostDefault() {
-	if ptr.Pointer() != nil {
-		C.QRemoteObjectRegistryHost_DestroyQRemoteObjectRegistryHostDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
-}
-
 type QRemoteObjectReplica struct {
 	core.QObject
 }
@@ -2049,41 +3694,6 @@ const (
 	QRemoteObjectReplica__SignatureMismatch QRemoteObjectReplica__State = QRemoteObjectReplica__State(4)
 )
 
-func QRemoteObjectReplica_Tr(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QRemoteObjectReplica_QRemoteObjectReplica_Tr(sC, cC, C.int(int32(n))))
-}
-
-func (ptr *QRemoteObjectReplica) Tr(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QRemoteObjectReplica_QRemoteObjectReplica_Tr(sC, cC, C.int(int32(n))))
-}
-
-func (ptr *QRemoteObjectReplica) WaitForSource(timeout int) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QRemoteObjectReplica_WaitForSource(ptr.Pointer(), C.int(int32(timeout)))) != 0
-	}
-	return false
-}
-
 //export callbackQRemoteObjectReplica_Initialized
 func callbackQRemoteObjectReplica_Initialized(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "initialized"); signal != nil {
@@ -2122,6 +3732,31 @@ func (ptr *QRemoteObjectReplica) Initialized() {
 	if ptr.Pointer() != nil {
 		C.QRemoteObjectReplica_Initialized(ptr.Pointer())
 	}
+}
+
+func (ptr *QRemoteObjectReplica) IsInitialized() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QRemoteObjectReplica_IsInitialized(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QRemoteObjectReplica) IsReplicaValid() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QRemoteObjectReplica_IsReplicaValid(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QRemoteObjectReplica) Node() *QRemoteObjectNode {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQRemoteObjectNodeFromPointer(C.QRemoteObjectReplica_Node(ptr.Pointer()))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
 }
 
 //export callbackQRemoteObjectReplica_SetNode
@@ -2167,6 +3802,13 @@ func (ptr *QRemoteObjectReplica) SetNodeDefault(node QRemoteObjectNode_ITF) {
 	}
 }
 
+func (ptr *QRemoteObjectReplica) State() QRemoteObjectReplica__State {
+	if ptr.Pointer() != nil {
+		return QRemoteObjectReplica__State(C.QRemoteObjectReplica_State(ptr.Pointer()))
+	}
+	return 0
+}
+
 //export callbackQRemoteObjectReplica_StateChanged
 func callbackQRemoteObjectReplica_StateChanged(ptr unsafe.Pointer, state C.longlong, oldState C.longlong) {
 	if signal := qt.GetSignal(ptr, "stateChanged"); signal != nil {
@@ -2207,128 +3849,11 @@ func (ptr *QRemoteObjectReplica) StateChanged(state QRemoteObjectReplica__State,
 	}
 }
 
-func (ptr *QRemoteObjectReplica) Node() *QRemoteObjectNode {
+func (ptr *QRemoteObjectReplica) WaitForSource(timeout int) bool {
 	if ptr.Pointer() != nil {
-		tmpValue := NewQRemoteObjectNodeFromPointer(C.QRemoteObjectReplica_Node(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QRemoteObjectReplica) State() QRemoteObjectReplica__State {
-	if ptr.Pointer() != nil {
-		return QRemoteObjectReplica__State(C.QRemoteObjectReplica_State(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QRemoteObjectReplica) IsInitialized() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QRemoteObjectReplica_IsInitialized(ptr.Pointer())) != 0
+		return int8(C.QRemoteObjectReplica_WaitForSource(ptr.Pointer(), C.int(int32(timeout)))) != 0
 	}
 	return false
-}
-
-func (ptr *QRemoteObjectReplica) IsReplicaValid() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QRemoteObjectReplica_IsReplicaValid(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-//export callbackQRemoteObjectReplica_MetaObject
-func callbackQRemoteObjectReplica_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQRemoteObjectReplicaFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QRemoteObjectReplica) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QRemoteObjectReplica_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
-func (ptr *QRemoteObjectReplica) __sendWithReply_args_atList(i int) *core.QVariant {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQVariantFromPointer(C.QRemoteObjectReplica___sendWithReply_args_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QRemoteObjectReplica) __sendWithReply_args_setList(i core.QVariant_ITF) {
-	if ptr.Pointer() != nil {
-		C.QRemoteObjectReplica___sendWithReply_args_setList(ptr.Pointer(), core.PointerFromQVariant(i))
-	}
-}
-
-func (ptr *QRemoteObjectReplica) __sendWithReply_args_newList() unsafe.Pointer {
-	return C.QRemoteObjectReplica___sendWithReply_args_newList(ptr.Pointer())
-}
-
-func (ptr *QRemoteObjectReplica) __send_args_atList(i int) *core.QVariant {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQVariantFromPointer(C.QRemoteObjectReplica___send_args_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QRemoteObjectReplica) __send_args_setList(i core.QVariant_ITF) {
-	if ptr.Pointer() != nil {
-		C.QRemoteObjectReplica___send_args_setList(ptr.Pointer(), core.PointerFromQVariant(i))
-	}
-}
-
-func (ptr *QRemoteObjectReplica) __send_args_newList() unsafe.Pointer {
-	return C.QRemoteObjectReplica___send_args_newList(ptr.Pointer())
-}
-
-func (ptr *QRemoteObjectReplica) __setProperties_properties_atList(i int) *core.QVariant {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQVariantFromPointer(C.QRemoteObjectReplica___setProperties_properties_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QRemoteObjectReplica) __setProperties_properties_setList(i core.QVariant_ITF) {
-	if ptr.Pointer() != nil {
-		C.QRemoteObjectReplica___setProperties_properties_setList(ptr.Pointer(), core.PointerFromQVariant(i))
-	}
-}
-
-func (ptr *QRemoteObjectReplica) __setProperties_properties_newList() unsafe.Pointer {
-	return C.QRemoteObjectReplica___setProperties_properties_newList(ptr.Pointer())
-}
-
-func (ptr *QRemoteObjectReplica) __retrieveProperties_atList(i int) *core.QVariant {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQVariantFromPointer(C.QRemoteObjectReplica___retrieveProperties_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QRemoteObjectReplica) __retrieveProperties_setList(i core.QVariant_ITF) {
-	if ptr.Pointer() != nil {
-		C.QRemoteObjectReplica___retrieveProperties_setList(ptr.Pointer(), core.PointerFromQVariant(i))
-	}
-}
-
-func (ptr *QRemoteObjectReplica) __retrieveProperties_newList() unsafe.Pointer {
-	return C.QRemoteObjectReplica___retrieveProperties_newList(ptr.Pointer())
 }
 
 func (ptr *QRemoteObjectReplica) __persistProperties_props_atList(i int) *core.QVariant {
@@ -2350,86 +3875,80 @@ func (ptr *QRemoteObjectReplica) __persistProperties_props_newList() unsafe.Poin
 	return C.QRemoteObjectReplica___persistProperties_props_newList(ptr.Pointer())
 }
 
-func (ptr *QRemoteObjectReplica) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+func (ptr *QRemoteObjectReplica) __retrieveProperties_atList(i int) *core.QVariant {
 	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QRemoteObjectReplica___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		tmpValue := core.NewQVariantFromPointer(C.QRemoteObjectReplica___retrieveProperties_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
 }
 
-func (ptr *QRemoteObjectReplica) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+func (ptr *QRemoteObjectReplica) __retrieveProperties_setList(i core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		C.QRemoteObjectReplica___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+		C.QRemoteObjectReplica___retrieveProperties_setList(ptr.Pointer(), core.PointerFromQVariant(i))
 	}
 }
 
-func (ptr *QRemoteObjectReplica) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return C.QRemoteObjectReplica___dynamicPropertyNames_newList(ptr.Pointer())
+func (ptr *QRemoteObjectReplica) __retrieveProperties_newList() unsafe.Pointer {
+	return C.QRemoteObjectReplica___retrieveProperties_newList(ptr.Pointer())
 }
 
-func (ptr *QRemoteObjectReplica) __findChildren_atList2(i int) *core.QObject {
+func (ptr *QRemoteObjectReplica) __send_args_atList(i int) *core.QVariant {
 	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QRemoteObjectReplica___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
+		tmpValue := core.NewQVariantFromPointer(C.QRemoteObjectReplica___send_args_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
 }
 
-func (ptr *QRemoteObjectReplica) __findChildren_setList2(i core.QObject_ITF) {
+func (ptr *QRemoteObjectReplica) __send_args_setList(i core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		C.QRemoteObjectReplica___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+		C.QRemoteObjectReplica___send_args_setList(ptr.Pointer(), core.PointerFromQVariant(i))
 	}
 }
 
-func (ptr *QRemoteObjectReplica) __findChildren_newList2() unsafe.Pointer {
-	return C.QRemoteObjectReplica___findChildren_newList2(ptr.Pointer())
+func (ptr *QRemoteObjectReplica) __send_args_newList() unsafe.Pointer {
+	return C.QRemoteObjectReplica___send_args_newList(ptr.Pointer())
 }
 
-func (ptr *QRemoteObjectReplica) __findChildren_atList3(i int) *core.QObject {
+func (ptr *QRemoteObjectReplica) __sendWithReply_args_atList(i int) *core.QVariant {
 	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QRemoteObjectReplica___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
+		tmpValue := core.NewQVariantFromPointer(C.QRemoteObjectReplica___sendWithReply_args_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
 }
 
-func (ptr *QRemoteObjectReplica) __findChildren_setList3(i core.QObject_ITF) {
+func (ptr *QRemoteObjectReplica) __sendWithReply_args_setList(i core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		C.QRemoteObjectReplica___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+		C.QRemoteObjectReplica___sendWithReply_args_setList(ptr.Pointer(), core.PointerFromQVariant(i))
 	}
 }
 
-func (ptr *QRemoteObjectReplica) __findChildren_newList3() unsafe.Pointer {
-	return C.QRemoteObjectReplica___findChildren_newList3(ptr.Pointer())
+func (ptr *QRemoteObjectReplica) __sendWithReply_args_newList() unsafe.Pointer {
+	return C.QRemoteObjectReplica___sendWithReply_args_newList(ptr.Pointer())
 }
 
-func (ptr *QRemoteObjectReplica) __findChildren_atList(i int) *core.QObject {
+func (ptr *QRemoteObjectReplica) __setProperties_properties_atList(i int) *core.QVariant {
 	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QRemoteObjectReplica___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
+		tmpValue := core.NewQVariantFromPointer(C.QRemoteObjectReplica___setProperties_properties_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
 }
 
-func (ptr *QRemoteObjectReplica) __findChildren_setList(i core.QObject_ITF) {
+func (ptr *QRemoteObjectReplica) __setProperties_properties_setList(i core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		C.QRemoteObjectReplica___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+		C.QRemoteObjectReplica___setProperties_properties_setList(ptr.Pointer(), core.PointerFromQVariant(i))
 	}
 }
 
-func (ptr *QRemoteObjectReplica) __findChildren_newList() unsafe.Pointer {
-	return C.QRemoteObjectReplica___findChildren_newList(ptr.Pointer())
+func (ptr *QRemoteObjectReplica) __setProperties_properties_newList() unsafe.Pointer {
+	return C.QRemoteObjectReplica___setProperties_properties_newList(ptr.Pointer())
 }
 
 func (ptr *QRemoteObjectReplica) __children_atList(i int) *core.QObject {
@@ -2453,36 +3972,86 @@ func (ptr *QRemoteObjectReplica) __children_newList() unsafe.Pointer {
 	return C.QRemoteObjectReplica___children_newList(ptr.Pointer())
 }
 
-//export callbackQRemoteObjectReplica_Event
-func callbackQRemoteObjectReplica_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQRemoteObjectReplicaFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
-}
-
-func (ptr *QRemoteObjectReplica) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QRemoteObjectReplica) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
-		return int8(C.QRemoteObjectReplica_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+		tmpValue := core.NewQByteArrayFromPointer(C.QRemoteObjectReplica___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
 	}
-	return false
+	return nil
 }
 
-//export callbackQRemoteObjectReplica_EventFilter
-func callbackQRemoteObjectReplica_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQRemoteObjectReplicaFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QRemoteObjectReplica) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+func (ptr *QRemoteObjectReplica) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		return int8(C.QRemoteObjectReplica_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+		C.QRemoteObjectReplica___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
 	}
-	return false
+}
+
+func (ptr *QRemoteObjectReplica) __dynamicPropertyNames_newList() unsafe.Pointer {
+	return C.QRemoteObjectReplica___dynamicPropertyNames_newList(ptr.Pointer())
+}
+
+func (ptr *QRemoteObjectReplica) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QRemoteObjectReplica___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QRemoteObjectReplica) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectReplica___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QRemoteObjectReplica) __findChildren_newList() unsafe.Pointer {
+	return C.QRemoteObjectReplica___findChildren_newList(ptr.Pointer())
+}
+
+func (ptr *QRemoteObjectReplica) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QRemoteObjectReplica___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QRemoteObjectReplica) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectReplica___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QRemoteObjectReplica) __findChildren_newList3() unsafe.Pointer {
+	return C.QRemoteObjectReplica___findChildren_newList3(ptr.Pointer())
+}
+
+func (ptr *QRemoteObjectReplica) __qFindChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QRemoteObjectReplica___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QRemoteObjectReplica) __qFindChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectReplica___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QRemoteObjectReplica) __qFindChildren_newList2() unsafe.Pointer {
+	return C.QRemoteObjectReplica___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQRemoteObjectReplica_ChildEvent
@@ -2569,6 +4138,38 @@ func (ptr *QRemoteObjectReplica) DisconnectNotifyDefault(sign core.QMetaMethod_I
 	}
 }
 
+//export callbackQRemoteObjectReplica_Event
+func callbackQRemoteObjectReplica_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQRemoteObjectReplicaFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QRemoteObjectReplica) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QRemoteObjectReplica_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+	}
+	return false
+}
+
+//export callbackQRemoteObjectReplica_EventFilter
+func callbackQRemoteObjectReplica_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQRemoteObjectReplicaFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QRemoteObjectReplica) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QRemoteObjectReplica_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+	}
+	return false
+}
+
 //export callbackQRemoteObjectReplica_ObjectNameChanged
 func callbackQRemoteObjectReplica_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtRemoteObjects_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -2592,90 +4193,205 @@ func (ptr *QRemoteObjectReplica) TimerEventDefault(event core.QTimerEvent_ITF) {
 	}
 }
 
-type QRemoteObjectStringLiterals struct {
-	ptr unsafe.Pointer
+type QRemoteObjectSettingsStore struct {
+	QRemoteObjectAbstractPersistedStore
 }
 
-type QRemoteObjectStringLiterals_ITF interface {
-	QRemoteObjectStringLiterals_PTR() *QRemoteObjectStringLiterals
+type QRemoteObjectSettingsStore_ITF interface {
+	QRemoteObjectAbstractPersistedStore_ITF
+	QRemoteObjectSettingsStore_PTR() *QRemoteObjectSettingsStore
 }
 
-func (ptr *QRemoteObjectStringLiterals) QRemoteObjectStringLiterals_PTR() *QRemoteObjectStringLiterals {
+func (ptr *QRemoteObjectSettingsStore) QRemoteObjectSettingsStore_PTR() *QRemoteObjectSettingsStore {
 	return ptr
 }
 
-func (ptr *QRemoteObjectStringLiterals) Pointer() unsafe.Pointer {
+func (ptr *QRemoteObjectSettingsStore) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QRemoteObjectAbstractPersistedStore_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QRemoteObjectSettingsStore) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QRemoteObjectAbstractPersistedStore_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQRemoteObjectSettingsStore(ptr QRemoteObjectSettingsStore_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QRemoteObjectSettingsStore_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQRemoteObjectSettingsStoreFromPointer(ptr unsafe.Pointer) (n *QRemoteObjectSettingsStore) {
+	n = new(QRemoteObjectSettingsStore)
+	n.SetPointer(ptr)
+	return
+}
+
+//export callbackQRemoteObjectSettingsStore_RestoreProperties
+func callbackQRemoteObjectSettingsStore_RestoreProperties(ptr unsafe.Pointer, repName C.struct_QtRemoteObjects_PackedString, repSig unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "restoreProperties"); signal != nil {
+		return func() unsafe.Pointer {
+			tmpList := NewQRemoteObjectSettingsStoreFromPointer(NewQRemoteObjectSettingsStoreFromPointer(nil).__restoreProperties_newList())
+			for _, v := range (*(*func(string, *core.QByteArray) []*core.QVariant)(signal))(cGoUnpackString(repName), core.NewQByteArrayFromPointer(repSig)) {
+				tmpList.__restoreProperties_setList(v)
+			}
+			return tmpList.Pointer()
+		}()
+	}
+
+	return func() unsafe.Pointer {
+		tmpList := NewQRemoteObjectSettingsStoreFromPointer(NewQRemoteObjectSettingsStoreFromPointer(nil).__restoreProperties_newList())
+		for _, v := range NewQRemoteObjectSettingsStoreFromPointer(ptr).RestorePropertiesDefault(cGoUnpackString(repName), core.NewQByteArrayFromPointer(repSig)) {
+			tmpList.__restoreProperties_setList(v)
+		}
+		return tmpList.Pointer()
+	}()
+}
+
+func (ptr *QRemoteObjectSettingsStore) RestoreProperties(repName string, repSig core.QByteArray_ITF) []*core.QVariant {
+	if ptr.Pointer() != nil {
+		var repNameC *C.char
+		if repName != "" {
+			repNameC = C.CString(repName)
+			defer C.free(unsafe.Pointer(repNameC))
+		}
+		return func(l C.struct_QtRemoteObjects_PackedList) []*core.QVariant {
+			out := make([]*core.QVariant, int(l.len))
+			tmpList := NewQRemoteObjectSettingsStoreFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__restoreProperties_atList(i)
+			}
+			return out
+		}(C.QRemoteObjectSettingsStore_RestoreProperties(ptr.Pointer(), C.struct_QtRemoteObjects_PackedString{data: repNameC, len: C.longlong(len(repName))}, core.PointerFromQByteArray(repSig)))
+	}
+	return make([]*core.QVariant, 0)
+}
+
+func (ptr *QRemoteObjectSettingsStore) RestorePropertiesDefault(repName string, repSig core.QByteArray_ITF) []*core.QVariant {
+	if ptr.Pointer() != nil {
+		var repNameC *C.char
+		if repName != "" {
+			repNameC = C.CString(repName)
+			defer C.free(unsafe.Pointer(repNameC))
+		}
+		return func(l C.struct_QtRemoteObjects_PackedList) []*core.QVariant {
+			out := make([]*core.QVariant, int(l.len))
+			tmpList := NewQRemoteObjectSettingsStoreFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__restoreProperties_atList(i)
+			}
+			return out
+		}(C.QRemoteObjectSettingsStore_RestorePropertiesDefault(ptr.Pointer(), C.struct_QtRemoteObjects_PackedString{data: repNameC, len: C.longlong(len(repName))}, core.PointerFromQByteArray(repSig)))
+	}
+	return make([]*core.QVariant, 0)
+}
+
+//export callbackQRemoteObjectSettingsStore_SaveProperties
+func callbackQRemoteObjectSettingsStore_SaveProperties(ptr unsafe.Pointer, repName C.struct_QtRemoteObjects_PackedString, repSig unsafe.Pointer, values C.struct_QtRemoteObjects_PackedList) {
+	if signal := qt.GetSignal(ptr, "saveProperties"); signal != nil {
+		(*(*func(string, *core.QByteArray, []*core.QVariant))(signal))(cGoUnpackString(repName), core.NewQByteArrayFromPointer(repSig), func(l C.struct_QtRemoteObjects_PackedList) []*core.QVariant {
+			out := make([]*core.QVariant, int(l.len))
+			tmpList := NewQRemoteObjectSettingsStoreFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__saveProperties_values_atList(i)
+			}
+			return out
+		}(values))
+	} else {
+		NewQRemoteObjectSettingsStoreFromPointer(ptr).SavePropertiesDefault(cGoUnpackString(repName), core.NewQByteArrayFromPointer(repSig), func(l C.struct_QtRemoteObjects_PackedList) []*core.QVariant {
+			out := make([]*core.QVariant, int(l.len))
+			tmpList := NewQRemoteObjectSettingsStoreFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__saveProperties_values_atList(i)
+			}
+			return out
+		}(values))
+	}
+}
+
+func (ptr *QRemoteObjectSettingsStore) SaveProperties(repName string, repSig core.QByteArray_ITF, values []*core.QVariant) {
+	if ptr.Pointer() != nil {
+		var repNameC *C.char
+		if repName != "" {
+			repNameC = C.CString(repName)
+			defer C.free(unsafe.Pointer(repNameC))
+		}
+		C.QRemoteObjectSettingsStore_SaveProperties(ptr.Pointer(), C.struct_QtRemoteObjects_PackedString{data: repNameC, len: C.longlong(len(repName))}, core.PointerFromQByteArray(repSig), func() unsafe.Pointer {
+			tmpList := NewQRemoteObjectSettingsStoreFromPointer(NewQRemoteObjectSettingsStoreFromPointer(nil).__saveProperties_values_newList())
+			for _, v := range values {
+				tmpList.__saveProperties_values_setList(v)
+			}
+			return tmpList.Pointer()
+		}())
+	}
+}
+
+func (ptr *QRemoteObjectSettingsStore) SavePropertiesDefault(repName string, repSig core.QByteArray_ITF, values []*core.QVariant) {
+	if ptr.Pointer() != nil {
+		var repNameC *C.char
+		if repName != "" {
+			repNameC = C.CString(repName)
+			defer C.free(unsafe.Pointer(repNameC))
+		}
+		C.QRemoteObjectSettingsStore_SavePropertiesDefault(ptr.Pointer(), C.struct_QtRemoteObjects_PackedString{data: repNameC, len: C.longlong(len(repName))}, core.PointerFromQByteArray(repSig), func() unsafe.Pointer {
+			tmpList := NewQRemoteObjectSettingsStoreFromPointer(NewQRemoteObjectSettingsStoreFromPointer(nil).__saveProperties_values_newList())
+			for _, v := range values {
+				tmpList.__saveProperties_values_setList(v)
+			}
+			return tmpList.Pointer()
+		}())
+	}
+}
+
+type QTypeInfo struct {
+	ptr unsafe.Pointer
+}
+
+type QTypeInfo_ITF interface {
+	QTypeInfo_PTR() *QTypeInfo
+}
+
+func (ptr *QTypeInfo) QTypeInfo_PTR() *QTypeInfo {
+	return ptr
+}
+
+func (ptr *QTypeInfo) Pointer() unsafe.Pointer {
 	if ptr != nil {
 		return ptr.ptr
 	}
 	return nil
 }
 
-func (ptr *QRemoteObjectStringLiterals) SetPointer(p unsafe.Pointer) {
+func (ptr *QTypeInfo) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
 		ptr.ptr = p
 	}
 }
 
-func PointerFromQRemoteObjectStringLiterals(ptr QRemoteObjectStringLiterals_ITF) unsafe.Pointer {
+func PointerFromQTypeInfo(ptr QTypeInfo_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QRemoteObjectStringLiterals_PTR().Pointer()
+		return ptr.QTypeInfo_PTR().Pointer()
 	}
 	return nil
 }
 
-func NewQRemoteObjectStringLiteralsFromPointer(ptr unsafe.Pointer) (n *QRemoteObjectStringLiterals) {
-	n = new(QRemoteObjectStringLiterals)
+func NewQTypeInfoFromPointer(ptr unsafe.Pointer) (n *QTypeInfo) {
+	n = new(QTypeInfo)
 	n.SetPointer(ptr)
 	return
 }
 
-func (ptr *QRemoteObjectStringLiterals) DestroyQRemoteObjectStringLiterals() {
+func (ptr *QTypeInfo) DestroyQTypeInfo() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
-}
-
-func QRemoteObjectStringLiterals_CLASS() string {
-	return cGoUnpackString(C.QRemoteObjectStringLiterals_QRemoteObjectStringLiterals_CLASS())
-}
-
-func (ptr *QRemoteObjectStringLiterals) CLASS() string {
-	return cGoUnpackString(C.QRemoteObjectStringLiterals_QRemoteObjectStringLiterals_CLASS())
-}
-
-func QRemoteObjectStringLiterals_MODEL() string {
-	return cGoUnpackString(C.QRemoteObjectStringLiterals_QRemoteObjectStringLiterals_MODEL())
-}
-
-func (ptr *QRemoteObjectStringLiterals) MODEL() string {
-	return cGoUnpackString(C.QRemoteObjectStringLiterals_QRemoteObjectStringLiterals_MODEL())
-}
-
-func QRemoteObjectStringLiterals_QAIMADAPTER() string {
-	return cGoUnpackString(C.QRemoteObjectStringLiterals_QRemoteObjectStringLiterals_QAIMADAPTER())
-}
-
-func (ptr *QRemoteObjectStringLiterals) QAIMADAPTER() string {
-	return cGoUnpackString(C.QRemoteObjectStringLiterals_QRemoteObjectStringLiterals_QAIMADAPTER())
-}
-
-func QRemoteObjectStringLiterals_Local() string {
-	return cGoUnpackString(C.QRemoteObjectStringLiterals_QRemoteObjectStringLiterals_Local())
-}
-
-func (ptr *QRemoteObjectStringLiterals) Local() string {
-	return cGoUnpackString(C.QRemoteObjectStringLiterals_QRemoteObjectStringLiterals_Local())
-}
-
-func QRemoteObjectStringLiterals_Tcp() string {
-	return cGoUnpackString(C.QRemoteObjectStringLiterals_QRemoteObjectStringLiterals_Tcp())
-}
-
-func (ptr *QRemoteObjectStringLiterals) Tcp() string {
-	return cGoUnpackString(C.QRemoteObjectStringLiterals_QRemoteObjectStringLiterals_Tcp())
 }
 
 type QtROClientFactory struct {
@@ -2770,92 +4486,48 @@ func (ptr *QtROServerFactory) DestroyQtROServerFactory() {
 	}
 }
 
-type QtRemoteObjects struct {
+type SourceApiMap struct {
 	ptr unsafe.Pointer
 }
 
-type QtRemoteObjects_ITF interface {
-	QtRemoteObjects_PTR() *QtRemoteObjects
+type SourceApiMap_ITF interface {
+	SourceApiMap_PTR() *SourceApiMap
 }
 
-func (ptr *QtRemoteObjects) QtRemoteObjects_PTR() *QtRemoteObjects {
+func (ptr *SourceApiMap) SourceApiMap_PTR() *SourceApiMap {
 	return ptr
 }
 
-func (ptr *QtRemoteObjects) Pointer() unsafe.Pointer {
+func (ptr *SourceApiMap) Pointer() unsafe.Pointer {
 	if ptr != nil {
 		return ptr.ptr
 	}
 	return nil
 }
 
-func (ptr *QtRemoteObjects) SetPointer(p unsafe.Pointer) {
+func (ptr *SourceApiMap) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
 		ptr.ptr = p
 	}
 }
 
-func PointerFromQtRemoteObjects(ptr QtRemoteObjects_ITF) unsafe.Pointer {
+func PointerFromSourceApiMap(ptr SourceApiMap_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QtRemoteObjects_PTR().Pointer()
+		return ptr.SourceApiMap_PTR().Pointer()
 	}
 	return nil
 }
 
-func NewQtRemoteObjectsFromPointer(ptr unsafe.Pointer) (n *QtRemoteObjects) {
-	n = new(QtRemoteObjects)
+func NewSourceApiMapFromPointer(ptr unsafe.Pointer) (n *SourceApiMap) {
+	n = new(SourceApiMap)
 	n.SetPointer(ptr)
 	return
 }
 
-func (ptr *QtRemoteObjects) DestroyQtRemoteObjects() {
+func (ptr *SourceApiMap) DestroySourceApiMap() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
-}
-
-//go:generate stringer -type=QtRemoteObjects__InitialAction
-//QtRemoteObjects::InitialAction
-type QtRemoteObjects__InitialAction int64
-
-const (
-	QtRemoteObjects__FetchRootSize QtRemoteObjects__InitialAction = QtRemoteObjects__InitialAction(0)
-	QtRemoteObjects__PrefetchData  QtRemoteObjects__InitialAction = QtRemoteObjects__InitialAction(1)
-)
-
-//go:generate stringer -type=QtRemoteObjects__QRemoteObjectPacketTypeEnum
-//QtRemoteObjects::QRemoteObjectPacketTypeEnum
-type QtRemoteObjects__QRemoteObjectPacketTypeEnum int64
-
-const (
-	QtRemoteObjects__Invalid              QtRemoteObjects__QRemoteObjectPacketTypeEnum = QtRemoteObjects__QRemoteObjectPacketTypeEnum(0)
-	QtRemoteObjects__Handshake            QtRemoteObjects__QRemoteObjectPacketTypeEnum = QtRemoteObjects__QRemoteObjectPacketTypeEnum(1)
-	QtRemoteObjects__InitPacket           QtRemoteObjects__QRemoteObjectPacketTypeEnum = QtRemoteObjects__QRemoteObjectPacketTypeEnum(2)
-	QtRemoteObjects__InitDynamicPacket    QtRemoteObjects__QRemoteObjectPacketTypeEnum = QtRemoteObjects__QRemoteObjectPacketTypeEnum(3)
-	QtRemoteObjects__AddObject            QtRemoteObjects__QRemoteObjectPacketTypeEnum = QtRemoteObjects__QRemoteObjectPacketTypeEnum(4)
-	QtRemoteObjects__RemoveObject         QtRemoteObjects__QRemoteObjectPacketTypeEnum = QtRemoteObjects__QRemoteObjectPacketTypeEnum(5)
-	QtRemoteObjects__InvokePacket         QtRemoteObjects__QRemoteObjectPacketTypeEnum = QtRemoteObjects__QRemoteObjectPacketTypeEnum(6)
-	QtRemoteObjects__InvokeReplyPacket    QtRemoteObjects__QRemoteObjectPacketTypeEnum = QtRemoteObjects__QRemoteObjectPacketTypeEnum(7)
-	QtRemoteObjects__PropertyChangePacket QtRemoteObjects__QRemoteObjectPacketTypeEnum = QtRemoteObjects__QRemoteObjectPacketTypeEnum(8)
-	QtRemoteObjects__ObjectList           QtRemoteObjects__QRemoteObjectPacketTypeEnum = QtRemoteObjects__QRemoteObjectPacketTypeEnum(9)
-	QtRemoteObjects__Ping                 QtRemoteObjects__QRemoteObjectPacketTypeEnum = QtRemoteObjects__QRemoteObjectPacketTypeEnum(10)
-	QtRemoteObjects__Pong                 QtRemoteObjects__QRemoteObjectPacketTypeEnum = QtRemoteObjects__QRemoteObjectPacketTypeEnum(11)
-)
-
-func QtRemoteObjects_Qt_getEnumName(vqt QtRemoteObjects__InitialAction) string {
-	return cGoUnpackString(C.QtRemoteObjects_QtRemoteObjects_Qt_getEnumName(C.longlong(vqt)))
-}
-
-func (ptr *QtRemoteObjects) Qt_getEnumName(vqt QtRemoteObjects__InitialAction) string {
-	return cGoUnpackString(C.QtRemoteObjects_QtRemoteObjects_Qt_getEnumName(C.longlong(vqt)))
-}
-
-func QtRemoteObjects_CopyStoredProperties(mo core.QMetaObject_ITF, src core.QDataStream_ITF, dst unsafe.Pointer) {
-	C.QtRemoteObjects_QtRemoteObjects_CopyStoredProperties(core.PointerFromQMetaObject(mo), core.PointerFromQDataStream(src), dst)
-}
-
-func (ptr *QtRemoteObjects) CopyStoredProperties(mo core.QMetaObject_ITF, src core.QDataStream_ITF, dst unsafe.Pointer) {
-	C.QtRemoteObjects_QtRemoteObjects_CopyStoredProperties(core.PointerFromQMetaObject(mo), core.PointerFromQDataStream(src), dst)
 }

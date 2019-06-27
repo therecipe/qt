@@ -36,7 +36,7 @@ func QT_VERSION() string {
 	if QT_FELGO() {
 		return "5.11.1"
 	}
-	return "5.12.0"
+	return "5.13.0"
 }
 
 func QT_VERSION_NUM() int {
@@ -326,6 +326,13 @@ var (
 )
 
 func UseGOMOD(path string) (r bool) {
+	if strings.Contains(path, "src/"+PackageName) {
+		return
+	}
+	if wd, _ := os.Getwd(); path == "" && strings.Contains(wd, "src/"+PackageName) {
+		os.Setenv("GO111MODULE", "off")
+		return
+	}
 	useGOMODMutex.Lock()
 	if useGOMOD == 0 {
 		if gm := GOMOD(path); len(gm) != 0 {

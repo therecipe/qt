@@ -111,10 +111,10 @@ func android_config(target, path, depPath string) string {
 		switch target {
 		case "android":
 			if utils.GOARCH() != "arm64" {
-				jsonStruct.AndroidExtraLibs += "," + filepath.Join(os.Getenv("HOME"), "openssl-1.0.2r-arm", "libcrypto.so") + "," + filepath.Join(os.Getenv("HOME"), "openssl-1.0.2r-arm", "libssl.so")
+				jsonStruct.AndroidExtraLibs += "," + filepath.Join(os.Getenv("HOME"), "openssl-1.1.1a-arm", "libcrypto.so") + "," + filepath.Join(os.Getenv("HOME"), "openssl-1.1.1a-arm", "libssl.so")
 			}
 		case "android-emulator":
-			jsonStruct.AndroidExtraLibs += "," + filepath.Join(os.Getenv("HOME"), "openssl-1.0.2r-x86", "libcrypto.so") + "," + filepath.Join(os.Getenv("HOME"), "openssl-1.0.2r-x86", "libssl.so")
+			jsonStruct.AndroidExtraLibs += "," + filepath.Join(os.Getenv("HOME"), "openssl-1.1.1a-x86", "libcrypto.so") + "," + filepath.Join(os.Getenv("HOME"), "openssl-1.1.1a-x86", "libssl.so")
 		}
 	}
 

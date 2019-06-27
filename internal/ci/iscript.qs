@@ -50,7 +50,7 @@ Controller.prototype.ComponentSelectionPageCallback = function()
     refButton.click();
   }
 
-  var version = "qt5.5120";
+  var version = "qt5.5130";
   if (installer.value("VERSION") != "")
   {
     version = installer.value("VERSION");

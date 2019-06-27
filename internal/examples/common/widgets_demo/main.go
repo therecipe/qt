@@ -61,7 +61,7 @@ func addWidget(widget widgets.QWidget_ITF) {
 	wrappedWidgetLayout.AddWidget(widget, 0, core.Qt__AlignCenter)
 	wrappedWidget.SetFixedSize2(250, 250)
 
-	centralLayout.AddWidget(wrappedWidget, centralLayoutRow, centralLayoutColumn, core.Qt__AlignCenter)
+	centralLayout.AddWidget2(wrappedWidget, centralLayoutRow, centralLayoutColumn, core.Qt__AlignCenter)
 
 	centralLayoutColumn++
 }

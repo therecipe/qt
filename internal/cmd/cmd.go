@@ -385,6 +385,18 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 		args = append(args, []string{"-e", "GOARCH=arm64"}...)
 	}
 
+	if v, ok := os.LookupEnv("GO111MODULE"); ok {
+		args = append(args, []string{"-e", "GO111MODULE=" + v}...)
+	}
+
+	if v, ok := os.LookupEnv("GOPROXY"); ok {
+		args = append(args, []string{"-e", "GOPROXY=" + v}...)
+	}
+
+	if v, ok := os.LookupEnv("GOPRIVATE"); ok {
+		args = append(args, []string{"-e", "GOPRIVATE=" + v}...)
+	}
+
 	//TODO: flag for shared GOCACHE
 
 	if !utils.UseGOMOD(path) {
@@ -534,13 +546,13 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 			"CC":          filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "llvm", "prebuilt", runtime.GOOS+"-x86_64", "bin", "clang"),
 			"CXX":         filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "llvm", "prebuilt", runtime.GOOS+"-x86_64", "bin", "clang++"),
 
-			"CGO_CPPFLAGS": fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=16 -target armv7-none-linux-androideabi -gcc-toolchain %v --sysroot=%v -isystem %v",
+			"CGO_CPPFLAGS": fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=21 -target armv7-none-linux-androideabi -gcc-toolchain %v --sysroot=%v -isystem %v",
 				filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64"),
 				filepath.Join(utils.ANDROID_NDK_DIR(), "sysroot"),
 				filepath.Join(utils.ANDROID_NDK_DIR(), "sysroot", "usr", "include", "arm-linux-androideabi")),
-			"CGO_LDFLAGS": fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=16 -target armv7-none-linux-androideabi -gcc-toolchain %v --sysroot=%v",
+			"CGO_LDFLAGS": fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=21 -target armv7-none-linux-androideabi -gcc-toolchain %v --sysroot=%v",
 				filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64"),
-				filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-16", "arch-arm")),
+				filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-21", "arch-arm")),
 		}
 		if runtime.GOOS == "windows" {
 			env["TMP"] = os.Getenv("TMP")
@@ -575,13 +587,13 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 			"CC":          filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "llvm", "prebuilt", runtime.GOOS+"-x86_64", "bin", "clang"),
 			"CXX":         filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "llvm", "prebuilt", runtime.GOOS+"-x86_64", "bin", "clang++"),
 
-			"CGO_CPPFLAGS": fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=16 -target i686-none-linux-android -mstackrealign -gcc-toolchain %v --sysroot=%v -isystem %v",
+			"CGO_CPPFLAGS": fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=21 -target i686-none-linux-android -mstackrealign -gcc-toolchain %v --sysroot=%v -isystem %v",
 				filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "x86-4.9", "prebuilt", runtime.GOOS+"-x86_64"),
 				filepath.Join(utils.ANDROID_NDK_DIR(), "sysroot"),
 				filepath.Join(utils.ANDROID_NDK_DIR(), "sysroot", "usr", "include", "i686-linux-android")),
-			"CGO_LDFLAGS": fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=16 -target i686-none-linux-android -mstackrealign -gcc-toolchain %v --sysroot=%v",
+			"CGO_LDFLAGS": fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=21 -target i686-none-linux-android -mstackrealign -gcc-toolchain %v --sysroot=%v",
 				filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "x86-4.9", "prebuilt", runtime.GOOS+"-x86_64"),
-				filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-16", "arch-x86")),
+				filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-21", "arch-x86")),
 		}
 		if runtime.GOOS == "windows" {
 			env["TMP"] = os.Getenv("TMP")
@@ -889,6 +901,11 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 		if _, ok := env[es[0]]; !ok {
 			env[es[0]] = strings.Join(es[1:], "=")
 		}
+	}
+
+	//TODO: this can probably by removed, since it's explicitly set in UseGOMOD
+	if strings.Contains(strings.Replace(depPath, "\\", "/", -1), "src/"+utils.PackageName) && env["GO111MODULE"] != "on" {
+		env["GO111MODULE"] = "off"
 	}
 
 	return env, tags, ldFlags, out

@@ -73,6 +73,80 @@ func NewQVirtualKeyboardAbstractInputMethodFromPointer(ptr unsafe.Pointer) (n *Q
 	n.SetPointer(ptr)
 	return
 }
+func NewQVirtualKeyboardAbstractInputMethod(parent core.QObject_ITF) *QVirtualKeyboardAbstractInputMethod {
+	tmpValue := NewQVirtualKeyboardAbstractInputMethodFromPointer(C.QVirtualKeyboardAbstractInputMethod_NewQVirtualKeyboardAbstractInputMethod(core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
+
+//export callbackQVirtualKeyboardAbstractInputMethod_ClickPreeditText
+func callbackQVirtualKeyboardAbstractInputMethod_ClickPreeditText(ptr unsafe.Pointer, cursorPosition C.int) C.char {
+	if signal := qt.GetSignal(ptr, "clickPreeditText"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(int) bool)(signal))(int(int32(cursorPosition))))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQVirtualKeyboardAbstractInputMethodFromPointer(ptr).ClickPreeditTextDefault(int(int32(cursorPosition))))))
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) ConnectClickPreeditText(f func(cursorPosition int) bool) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "clickPreeditText"); signal != nil {
+			f := func(cursorPosition int) bool {
+				(*(*func(int) bool)(signal))(cursorPosition)
+				return f(cursorPosition)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "clickPreeditText", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "clickPreeditText", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) DisconnectClickPreeditText() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "clickPreeditText")
+	}
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) ClickPreeditText(cursorPosition int) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QVirtualKeyboardAbstractInputMethod_ClickPreeditText(ptr.Pointer(), C.int(int32(cursorPosition)))) != 0
+	}
+	return false
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) ClickPreeditTextDefault(cursorPosition int) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QVirtualKeyboardAbstractInputMethod_ClickPreeditTextDefault(ptr.Pointer(), C.int(int32(cursorPosition)))) != 0
+	}
+	return false
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) InputContext() *QVirtualKeyboardInputContext {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQVirtualKeyboardInputContextFromPointer(C.QVirtualKeyboardAbstractInputMethod_InputContext(ptr.Pointer()))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) InputEngine() *QVirtualKeyboardInputEngine {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQVirtualKeyboardInputEngineFromPointer(C.QVirtualKeyboardAbstractInputMethod_InputEngine(ptr.Pointer()))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
 
 //export callbackQVirtualKeyboardAbstractInputMethod_InputModes
 func callbackQVirtualKeyboardAbstractInputMethod_InputModes(ptr unsafe.Pointer, locale C.struct_QtVirtualKeyboard_PackedString) unsafe.Pointer {
@@ -136,312 +210,6 @@ func (ptr *QVirtualKeyboardAbstractInputMethod) InputModes(locale string) []QVir
 	return make([]QVirtualKeyboardInputEngine__InputMode, 0)
 }
 
-//export callbackQVirtualKeyboardAbstractInputMethod_SelectionLists
-func callbackQVirtualKeyboardAbstractInputMethod_SelectionLists(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "selectionLists"); signal != nil {
-		return func() unsafe.Pointer {
-			tmpList := NewQVirtualKeyboardAbstractInputMethodFromPointer(NewQVirtualKeyboardAbstractInputMethodFromPointer(nil).__selectionLists_newList())
-			for _, v := range (*(*func() []QVirtualKeyboardSelectionListModel__Type)(signal))() {
-				tmpList.__selectionLists_setList(v)
-			}
-			return tmpList.Pointer()
-		}()
-	}
-
-	return func() unsafe.Pointer {
-		tmpList := NewQVirtualKeyboardAbstractInputMethodFromPointer(NewQVirtualKeyboardAbstractInputMethodFromPointer(nil).__selectionLists_newList())
-		for _, v := range NewQVirtualKeyboardAbstractInputMethodFromPointer(ptr).SelectionListsDefault() {
-			tmpList.__selectionLists_setList(v)
-		}
-		return tmpList.Pointer()
-	}()
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) ConnectSelectionLists(f func() []QVirtualKeyboardSelectionListModel__Type) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "selectionLists"); signal != nil {
-			f := func() []QVirtualKeyboardSelectionListModel__Type {
-				(*(*func() []QVirtualKeyboardSelectionListModel__Type)(signal))()
-				return f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "selectionLists", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "selectionLists", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) DisconnectSelectionLists() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "selectionLists")
-	}
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) SelectionLists() []QVirtualKeyboardSelectionListModel__Type {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtVirtualKeyboard_PackedList) []QVirtualKeyboardSelectionListModel__Type {
-			out := make([]QVirtualKeyboardSelectionListModel__Type, int(l.len))
-			tmpList := NewQVirtualKeyboardAbstractInputMethodFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__selectionLists_atList(i)
-			}
-			return out
-		}(C.QVirtualKeyboardAbstractInputMethod_SelectionLists(ptr.Pointer()))
-	}
-	return make([]QVirtualKeyboardSelectionListModel__Type, 0)
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) SelectionListsDefault() []QVirtualKeyboardSelectionListModel__Type {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtVirtualKeyboard_PackedList) []QVirtualKeyboardSelectionListModel__Type {
-			out := make([]QVirtualKeyboardSelectionListModel__Type, int(l.len))
-			tmpList := NewQVirtualKeyboardAbstractInputMethodFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__selectionLists_atList(i)
-			}
-			return out
-		}(C.QVirtualKeyboardAbstractInputMethod_SelectionListsDefault(ptr.Pointer()))
-	}
-	return make([]QVirtualKeyboardSelectionListModel__Type, 0)
-}
-
-func QVirtualKeyboardAbstractInputMethod_Tr(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QVirtualKeyboardAbstractInputMethod_QVirtualKeyboardAbstractInputMethod_Tr(sC, cC, C.int(int32(n))))
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) Tr(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QVirtualKeyboardAbstractInputMethod_QVirtualKeyboardAbstractInputMethod_Tr(sC, cC, C.int(int32(n))))
-}
-
-//export callbackQVirtualKeyboardAbstractInputMethod_SelectionListData
-func callbackQVirtualKeyboardAbstractInputMethod_SelectionListData(ptr unsafe.Pointer, ty C.longlong, index C.int, role C.longlong) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "selectionListData"); signal != nil {
-		return core.PointerFromQVariant((*(*func(QVirtualKeyboardSelectionListModel__Type, int, QVirtualKeyboardSelectionListModel__Role) *core.QVariant)(signal))(QVirtualKeyboardSelectionListModel__Type(ty), int(int32(index)), QVirtualKeyboardSelectionListModel__Role(role)))
-	}
-
-	return core.PointerFromQVariant(NewQVirtualKeyboardAbstractInputMethodFromPointer(ptr).SelectionListDataDefault(QVirtualKeyboardSelectionListModel__Type(ty), int(int32(index)), QVirtualKeyboardSelectionListModel__Role(role)))
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) ConnectSelectionListData(f func(ty QVirtualKeyboardSelectionListModel__Type, index int, role QVirtualKeyboardSelectionListModel__Role) *core.QVariant) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "selectionListData"); signal != nil {
-			f := func(ty QVirtualKeyboardSelectionListModel__Type, index int, role QVirtualKeyboardSelectionListModel__Role) *core.QVariant {
-				(*(*func(QVirtualKeyboardSelectionListModel__Type, int, QVirtualKeyboardSelectionListModel__Role) *core.QVariant)(signal))(ty, index, role)
-				return f(ty, index, role)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "selectionListData", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "selectionListData", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) DisconnectSelectionListData() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "selectionListData")
-	}
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) SelectionListData(ty QVirtualKeyboardSelectionListModel__Type, index int, role QVirtualKeyboardSelectionListModel__Role) *core.QVariant {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQVariantFromPointer(C.QVirtualKeyboardAbstractInputMethod_SelectionListData(ptr.Pointer(), C.longlong(ty), C.int(int32(index)), C.longlong(role)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) SelectionListDataDefault(ty QVirtualKeyboardSelectionListModel__Type, index int, role QVirtualKeyboardSelectionListModel__Role) *core.QVariant {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQVariantFromPointer(C.QVirtualKeyboardAbstractInputMethod_SelectionListDataDefault(ptr.Pointer(), C.longlong(ty), C.int(int32(index)), C.longlong(role)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
-}
-
-func NewQVirtualKeyboardAbstractInputMethod(parent core.QObject_ITF) *QVirtualKeyboardAbstractInputMethod {
-	tmpValue := NewQVirtualKeyboardAbstractInputMethodFromPointer(C.QVirtualKeyboardAbstractInputMethod_NewQVirtualKeyboardAbstractInputMethod(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
-}
-
-//export callbackQVirtualKeyboardAbstractInputMethod_TraceBegin
-func callbackQVirtualKeyboardAbstractInputMethod_TraceBegin(ptr unsafe.Pointer, traceId C.int, patternRecognitionMode C.longlong, traceCaptureDeviceInfo C.struct_QtVirtualKeyboard_PackedList, traceScreenInfo C.struct_QtVirtualKeyboard_PackedList) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "traceBegin"); signal != nil {
-		return PointerFromQVirtualKeyboardTrace((*(*func(int, QVirtualKeyboardInputEngine__PatternRecognitionMode, map[string]*core.QVariant, map[string]*core.QVariant) *QVirtualKeyboardTrace)(signal))(int(int32(traceId)), QVirtualKeyboardInputEngine__PatternRecognitionMode(patternRecognitionMode), func(l C.struct_QtVirtualKeyboard_PackedList) map[string]*core.QVariant {
-			out := make(map[string]*core.QVariant, int(l.len))
-			tmpList := NewQVirtualKeyboardAbstractInputMethodFromPointer(l.data)
-			for i, v := range tmpList.__traceBegin_traceCaptureDeviceInfo_keyList() {
-				out[v] = tmpList.__traceBegin_traceCaptureDeviceInfo_atList(v, i)
-			}
-			return out
-		}(traceCaptureDeviceInfo), func(l C.struct_QtVirtualKeyboard_PackedList) map[string]*core.QVariant {
-			out := make(map[string]*core.QVariant, int(l.len))
-			tmpList := NewQVirtualKeyboardAbstractInputMethodFromPointer(l.data)
-			for i, v := range tmpList.__traceBegin_traceScreenInfo_keyList() {
-				out[v] = tmpList.__traceBegin_traceScreenInfo_atList(v, i)
-			}
-			return out
-		}(traceScreenInfo)))
-	}
-
-	return PointerFromQVirtualKeyboardTrace(NewQVirtualKeyboardAbstractInputMethodFromPointer(ptr).TraceBeginDefault(int(int32(traceId)), QVirtualKeyboardInputEngine__PatternRecognitionMode(patternRecognitionMode), func(l C.struct_QtVirtualKeyboard_PackedList) map[string]*core.QVariant {
-		out := make(map[string]*core.QVariant, int(l.len))
-		tmpList := NewQVirtualKeyboardAbstractInputMethodFromPointer(l.data)
-		for i, v := range tmpList.__traceBegin_traceCaptureDeviceInfo_keyList() {
-			out[v] = tmpList.__traceBegin_traceCaptureDeviceInfo_atList(v, i)
-		}
-		return out
-	}(traceCaptureDeviceInfo), func(l C.struct_QtVirtualKeyboard_PackedList) map[string]*core.QVariant {
-		out := make(map[string]*core.QVariant, int(l.len))
-		tmpList := NewQVirtualKeyboardAbstractInputMethodFromPointer(l.data)
-		for i, v := range tmpList.__traceBegin_traceScreenInfo_keyList() {
-			out[v] = tmpList.__traceBegin_traceScreenInfo_atList(v, i)
-		}
-		return out
-	}(traceScreenInfo)))
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) ConnectTraceBegin(f func(traceId int, patternRecognitionMode QVirtualKeyboardInputEngine__PatternRecognitionMode, traceCaptureDeviceInfo map[string]*core.QVariant, traceScreenInfo map[string]*core.QVariant) *QVirtualKeyboardTrace) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "traceBegin"); signal != nil {
-			f := func(traceId int, patternRecognitionMode QVirtualKeyboardInputEngine__PatternRecognitionMode, traceCaptureDeviceInfo map[string]*core.QVariant, traceScreenInfo map[string]*core.QVariant) *QVirtualKeyboardTrace {
-				(*(*func(int, QVirtualKeyboardInputEngine__PatternRecognitionMode, map[string]*core.QVariant, map[string]*core.QVariant) *QVirtualKeyboardTrace)(signal))(traceId, patternRecognitionMode, traceCaptureDeviceInfo, traceScreenInfo)
-				return f(traceId, patternRecognitionMode, traceCaptureDeviceInfo, traceScreenInfo)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "traceBegin", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "traceBegin", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) DisconnectTraceBegin() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "traceBegin")
-	}
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) TraceBegin(traceId int, patternRecognitionMode QVirtualKeyboardInputEngine__PatternRecognitionMode, traceCaptureDeviceInfo map[string]*core.QVariant, traceScreenInfo map[string]*core.QVariant) *QVirtualKeyboardTrace {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQVirtualKeyboardTraceFromPointer(C.QVirtualKeyboardAbstractInputMethod_TraceBegin(ptr.Pointer(), C.int(int32(traceId)), C.longlong(patternRecognitionMode), func() unsafe.Pointer {
-			tmpList := NewQVirtualKeyboardAbstractInputMethodFromPointer(NewQVirtualKeyboardAbstractInputMethodFromPointer(nil).__traceBegin_traceCaptureDeviceInfo_newList())
-			for k, v := range traceCaptureDeviceInfo {
-				tmpList.__traceBegin_traceCaptureDeviceInfo_setList(k, v)
-			}
-			return tmpList.Pointer()
-		}(), func() unsafe.Pointer {
-			tmpList := NewQVirtualKeyboardAbstractInputMethodFromPointer(NewQVirtualKeyboardAbstractInputMethodFromPointer(nil).__traceBegin_traceScreenInfo_newList())
-			for k, v := range traceScreenInfo {
-				tmpList.__traceBegin_traceScreenInfo_setList(k, v)
-			}
-			return tmpList.Pointer()
-		}()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) TraceBeginDefault(traceId int, patternRecognitionMode QVirtualKeyboardInputEngine__PatternRecognitionMode, traceCaptureDeviceInfo map[string]*core.QVariant, traceScreenInfo map[string]*core.QVariant) *QVirtualKeyboardTrace {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQVirtualKeyboardTraceFromPointer(C.QVirtualKeyboardAbstractInputMethod_TraceBeginDefault(ptr.Pointer(), C.int(int32(traceId)), C.longlong(patternRecognitionMode), func() unsafe.Pointer {
-			tmpList := NewQVirtualKeyboardAbstractInputMethodFromPointer(NewQVirtualKeyboardAbstractInputMethodFromPointer(nil).__traceBegin_traceCaptureDeviceInfo_newList())
-			for k, v := range traceCaptureDeviceInfo {
-				tmpList.__traceBegin_traceCaptureDeviceInfo_setList(k, v)
-			}
-			return tmpList.Pointer()
-		}(), func() unsafe.Pointer {
-			tmpList := NewQVirtualKeyboardAbstractInputMethodFromPointer(NewQVirtualKeyboardAbstractInputMethodFromPointer(nil).__traceBegin_traceScreenInfo_newList())
-			for k, v := range traceScreenInfo {
-				tmpList.__traceBegin_traceScreenInfo_setList(k, v)
-			}
-			return tmpList.Pointer()
-		}()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-//export callbackQVirtualKeyboardAbstractInputMethod_ClickPreeditText
-func callbackQVirtualKeyboardAbstractInputMethod_ClickPreeditText(ptr unsafe.Pointer, cursorPosition C.int) C.char {
-	if signal := qt.GetSignal(ptr, "clickPreeditText"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(int) bool)(signal))(int(int32(cursorPosition))))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQVirtualKeyboardAbstractInputMethodFromPointer(ptr).ClickPreeditTextDefault(int(int32(cursorPosition))))))
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) ConnectClickPreeditText(f func(cursorPosition int) bool) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "clickPreeditText"); signal != nil {
-			f := func(cursorPosition int) bool {
-				(*(*func(int) bool)(signal))(cursorPosition)
-				return f(cursorPosition)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "clickPreeditText", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "clickPreeditText", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) DisconnectClickPreeditText() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "clickPreeditText")
-	}
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) ClickPreeditText(cursorPosition int) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QVirtualKeyboardAbstractInputMethod_ClickPreeditText(ptr.Pointer(), C.int(int32(cursorPosition)))) != 0
-	}
-	return false
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) ClickPreeditTextDefault(cursorPosition int) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QVirtualKeyboardAbstractInputMethod_ClickPreeditTextDefault(ptr.Pointer(), C.int(int32(cursorPosition)))) != 0
-	}
-	return false
-}
-
 //export callbackQVirtualKeyboardAbstractInputMethod_KeyEvent
 func callbackQVirtualKeyboardAbstractInputMethod_KeyEvent(ptr unsafe.Pointer, key C.longlong, text C.struct_QtVirtualKeyboard_PackedString, modifiers C.longlong) C.char {
 	if signal := qt.GetSignal(ptr, "keyEvent"); signal != nil {
@@ -485,220 +253,120 @@ func (ptr *QVirtualKeyboardAbstractInputMethod) KeyEvent(key core.Qt__Key, text 
 	return false
 }
 
-//export callbackQVirtualKeyboardAbstractInputMethod_SelectionListRemoveItem
-func callbackQVirtualKeyboardAbstractInputMethod_SelectionListRemoveItem(ptr unsafe.Pointer, ty C.longlong, index C.int) C.char {
-	if signal := qt.GetSignal(ptr, "selectionListRemoveItem"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(QVirtualKeyboardSelectionListModel__Type, int) bool)(signal))(QVirtualKeyboardSelectionListModel__Type(ty), int(int32(index))))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQVirtualKeyboardAbstractInputMethodFromPointer(ptr).SelectionListRemoveItemDefault(QVirtualKeyboardSelectionListModel__Type(ty), int(int32(index))))))
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) ConnectSelectionListRemoveItem(f func(ty QVirtualKeyboardSelectionListModel__Type, index int) bool) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "selectionListRemoveItem"); signal != nil {
-			f := func(ty QVirtualKeyboardSelectionListModel__Type, index int) bool {
-				(*(*func(QVirtualKeyboardSelectionListModel__Type, int) bool)(signal))(ty, index)
-				return f(ty, index)
+//export callbackQVirtualKeyboardAbstractInputMethod_PatternRecognitionModes
+func callbackQVirtualKeyboardAbstractInputMethod_PatternRecognitionModes(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "patternRecognitionModes"); signal != nil {
+		return func() unsafe.Pointer {
+			tmpList := NewQVirtualKeyboardAbstractInputMethodFromPointer(NewQVirtualKeyboardAbstractInputMethodFromPointer(nil).__patternRecognitionModes_newList())
+			for _, v := range (*(*func() []QVirtualKeyboardInputEngine__PatternRecognitionMode)(signal))() {
+				tmpList.__patternRecognitionModes_setList(v)
 			}
-			qt.ConnectSignal(ptr.Pointer(), "selectionListRemoveItem", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "selectionListRemoveItem", unsafe.Pointer(&f))
+			return tmpList.Pointer()
+		}()
+	}
+
+	return func() unsafe.Pointer {
+		tmpList := NewQVirtualKeyboardAbstractInputMethodFromPointer(NewQVirtualKeyboardAbstractInputMethodFromPointer(nil).__patternRecognitionModes_newList())
+		for _, v := range NewQVirtualKeyboardAbstractInputMethodFromPointer(ptr).PatternRecognitionModesDefault() {
+			tmpList.__patternRecognitionModes_setList(v)
 		}
-	}
+		return tmpList.Pointer()
+	}()
 }
 
-func (ptr *QVirtualKeyboardAbstractInputMethod) DisconnectSelectionListRemoveItem() {
+func (ptr *QVirtualKeyboardAbstractInputMethod) ConnectPatternRecognitionModes(f func() []QVirtualKeyboardInputEngine__PatternRecognitionMode) {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "selectionListRemoveItem")
-	}
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) SelectionListRemoveItem(ty QVirtualKeyboardSelectionListModel__Type, index int) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QVirtualKeyboardAbstractInputMethod_SelectionListRemoveItem(ptr.Pointer(), C.longlong(ty), C.int(int32(index)))) != 0
-	}
-	return false
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) SelectionListRemoveItemDefault(ty QVirtualKeyboardSelectionListModel__Type, index int) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QVirtualKeyboardAbstractInputMethod_SelectionListRemoveItemDefault(ptr.Pointer(), C.longlong(ty), C.int(int32(index)))) != 0
-	}
-	return false
-}
-
-//export callbackQVirtualKeyboardAbstractInputMethod_SetInputMode
-func callbackQVirtualKeyboardAbstractInputMethod_SetInputMode(ptr unsafe.Pointer, locale C.struct_QtVirtualKeyboard_PackedString, inputMode C.longlong) C.char {
-	if signal := qt.GetSignal(ptr, "setInputMode"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(string, QVirtualKeyboardInputEngine__InputMode) bool)(signal))(cGoUnpackString(locale), QVirtualKeyboardInputEngine__InputMode(inputMode)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(false)))
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) ConnectSetInputMode(f func(locale string, inputMode QVirtualKeyboardInputEngine__InputMode) bool) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "setInputMode"); signal != nil {
-			f := func(locale string, inputMode QVirtualKeyboardInputEngine__InputMode) bool {
-				(*(*func(string, QVirtualKeyboardInputEngine__InputMode) bool)(signal))(locale, inputMode)
-				return f(locale, inputMode)
+		if signal := qt.LendSignal(ptr.Pointer(), "patternRecognitionModes"); signal != nil {
+			f := func() []QVirtualKeyboardInputEngine__PatternRecognitionMode {
+				(*(*func() []QVirtualKeyboardInputEngine__PatternRecognitionMode)(signal))()
+				return f()
 			}
-			qt.ConnectSignal(ptr.Pointer(), "setInputMode", unsafe.Pointer(&f))
+			qt.ConnectSignal(ptr.Pointer(), "patternRecognitionModes", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setInputMode", unsafe.Pointer(&f))
+			qt.ConnectSignal(ptr.Pointer(), "patternRecognitionModes", unsafe.Pointer(&f))
 		}
 	}
 }
 
-func (ptr *QVirtualKeyboardAbstractInputMethod) DisconnectSetInputMode() {
+func (ptr *QVirtualKeyboardAbstractInputMethod) DisconnectPatternRecognitionModes() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "setInputMode")
+		qt.DisconnectSignal(ptr.Pointer(), "patternRecognitionModes")
 	}
 }
 
-func (ptr *QVirtualKeyboardAbstractInputMethod) SetInputMode(locale string, inputMode QVirtualKeyboardInputEngine__InputMode) bool {
+func (ptr *QVirtualKeyboardAbstractInputMethod) PatternRecognitionModes() []QVirtualKeyboardInputEngine__PatternRecognitionMode {
 	if ptr.Pointer() != nil {
-		var localeC *C.char
-		if locale != "" {
-			localeC = C.CString(locale)
-			defer C.free(unsafe.Pointer(localeC))
-		}
-		return int8(C.QVirtualKeyboardAbstractInputMethod_SetInputMode(ptr.Pointer(), C.struct_QtVirtualKeyboard_PackedString{data: localeC, len: C.longlong(len(locale))}, C.longlong(inputMode))) != 0
-	}
-	return false
-}
-
-//export callbackQVirtualKeyboardAbstractInputMethod_SetTextCase
-func callbackQVirtualKeyboardAbstractInputMethod_SetTextCase(ptr unsafe.Pointer, textCase C.longlong) C.char {
-	if signal := qt.GetSignal(ptr, "setTextCase"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(QVirtualKeyboardInputEngine__TextCase) bool)(signal))(QVirtualKeyboardInputEngine__TextCase(textCase)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(false)))
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) ConnectSetTextCase(f func(textCase QVirtualKeyboardInputEngine__TextCase) bool) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "setTextCase"); signal != nil {
-			f := func(textCase QVirtualKeyboardInputEngine__TextCase) bool {
-				(*(*func(QVirtualKeyboardInputEngine__TextCase) bool)(signal))(textCase)
-				return f(textCase)
+		return func(l C.struct_QtVirtualKeyboard_PackedList) []QVirtualKeyboardInputEngine__PatternRecognitionMode {
+			out := make([]QVirtualKeyboardInputEngine__PatternRecognitionMode, int(l.len))
+			tmpList := NewQVirtualKeyboardAbstractInputMethodFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__patternRecognitionModes_atList(i)
 			}
-			qt.ConnectSignal(ptr.Pointer(), "setTextCase", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setTextCase", unsafe.Pointer(&f))
-		}
+			return out
+		}(C.QVirtualKeyboardAbstractInputMethod_PatternRecognitionModes(ptr.Pointer()))
 	}
+	return make([]QVirtualKeyboardInputEngine__PatternRecognitionMode, 0)
 }
 
-func (ptr *QVirtualKeyboardAbstractInputMethod) DisconnectSetTextCase() {
+func (ptr *QVirtualKeyboardAbstractInputMethod) PatternRecognitionModesDefault() []QVirtualKeyboardInputEngine__PatternRecognitionMode {
 	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "setTextCase")
-	}
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) SetTextCase(textCase QVirtualKeyboardInputEngine__TextCase) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QVirtualKeyboardAbstractInputMethod_SetTextCase(ptr.Pointer(), C.longlong(textCase))) != 0
-	}
-	return false
-}
-
-//export callbackQVirtualKeyboardAbstractInputMethod_TraceEnd
-func callbackQVirtualKeyboardAbstractInputMethod_TraceEnd(ptr unsafe.Pointer, trace unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "traceEnd"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*QVirtualKeyboardTrace) bool)(signal))(NewQVirtualKeyboardTraceFromPointer(trace)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQVirtualKeyboardAbstractInputMethodFromPointer(ptr).TraceEndDefault(NewQVirtualKeyboardTraceFromPointer(trace)))))
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) ConnectTraceEnd(f func(trace *QVirtualKeyboardTrace) bool) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "traceEnd"); signal != nil {
-			f := func(trace *QVirtualKeyboardTrace) bool {
-				(*(*func(*QVirtualKeyboardTrace) bool)(signal))(trace)
-				return f(trace)
+		return func(l C.struct_QtVirtualKeyboard_PackedList) []QVirtualKeyboardInputEngine__PatternRecognitionMode {
+			out := make([]QVirtualKeyboardInputEngine__PatternRecognitionMode, int(l.len))
+			tmpList := NewQVirtualKeyboardAbstractInputMethodFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__patternRecognitionModes_atList(i)
 			}
-			qt.ConnectSignal(ptr.Pointer(), "traceEnd", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "traceEnd", unsafe.Pointer(&f))
-		}
+			return out
+		}(C.QVirtualKeyboardAbstractInputMethod_PatternRecognitionModesDefault(ptr.Pointer()))
 	}
+	return make([]QVirtualKeyboardInputEngine__PatternRecognitionMode, 0)
 }
 
-func (ptr *QVirtualKeyboardAbstractInputMethod) DisconnectTraceEnd() {
+//export callbackQVirtualKeyboardAbstractInputMethod_Reselect
+func callbackQVirtualKeyboardAbstractInputMethod_Reselect(ptr unsafe.Pointer, cursorPosition C.int, reselectFlags C.longlong) C.char {
+	if signal := qt.GetSignal(ptr, "reselect"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(int, QVirtualKeyboardInputEngine__ReselectFlag) bool)(signal))(int(int32(cursorPosition)), QVirtualKeyboardInputEngine__ReselectFlag(reselectFlags)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQVirtualKeyboardAbstractInputMethodFromPointer(ptr).ReselectDefault(int(int32(cursorPosition)), QVirtualKeyboardInputEngine__ReselectFlag(reselectFlags)))))
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) ConnectReselect(f func(cursorPosition int, reselectFlags QVirtualKeyboardInputEngine__ReselectFlag) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "traceEnd")
-	}
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) TraceEnd(trace QVirtualKeyboardTrace_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QVirtualKeyboardAbstractInputMethod_TraceEnd(ptr.Pointer(), PointerFromQVirtualKeyboardTrace(trace))) != 0
-	}
-	return false
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) TraceEndDefault(trace QVirtualKeyboardTrace_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QVirtualKeyboardAbstractInputMethod_TraceEndDefault(ptr.Pointer(), PointerFromQVirtualKeyboardTrace(trace))) != 0
-	}
-	return false
-}
-
-//export callbackQVirtualKeyboardAbstractInputMethod_SelectionListItemCount
-func callbackQVirtualKeyboardAbstractInputMethod_SelectionListItemCount(ptr unsafe.Pointer, ty C.longlong) C.int {
-	if signal := qt.GetSignal(ptr, "selectionListItemCount"); signal != nil {
-		return C.int(int32((*(*func(QVirtualKeyboardSelectionListModel__Type) int)(signal))(QVirtualKeyboardSelectionListModel__Type(ty))))
-	}
-
-	return C.int(int32(NewQVirtualKeyboardAbstractInputMethodFromPointer(ptr).SelectionListItemCountDefault(QVirtualKeyboardSelectionListModel__Type(ty))))
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) ConnectSelectionListItemCount(f func(ty QVirtualKeyboardSelectionListModel__Type) int) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "selectionListItemCount"); signal != nil {
-			f := func(ty QVirtualKeyboardSelectionListModel__Type) int {
-				(*(*func(QVirtualKeyboardSelectionListModel__Type) int)(signal))(ty)
-				return f(ty)
+		if signal := qt.LendSignal(ptr.Pointer(), "reselect"); signal != nil {
+			f := func(cursorPosition int, reselectFlags QVirtualKeyboardInputEngine__ReselectFlag) bool {
+				(*(*func(int, QVirtualKeyboardInputEngine__ReselectFlag) bool)(signal))(cursorPosition, reselectFlags)
+				return f(cursorPosition, reselectFlags)
 			}
-			qt.ConnectSignal(ptr.Pointer(), "selectionListItemCount", unsafe.Pointer(&f))
+			qt.ConnectSignal(ptr.Pointer(), "reselect", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "selectionListItemCount", unsafe.Pointer(&f))
+			qt.ConnectSignal(ptr.Pointer(), "reselect", unsafe.Pointer(&f))
 		}
 	}
 }
 
-func (ptr *QVirtualKeyboardAbstractInputMethod) DisconnectSelectionListItemCount() {
+func (ptr *QVirtualKeyboardAbstractInputMethod) DisconnectReselect() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "selectionListItemCount")
+		qt.DisconnectSignal(ptr.Pointer(), "reselect")
 	}
 }
 
-func (ptr *QVirtualKeyboardAbstractInputMethod) SelectionListItemCount(ty QVirtualKeyboardSelectionListModel__Type) int {
+func (ptr *QVirtualKeyboardAbstractInputMethod) Reselect(cursorPosition int, reselectFlags QVirtualKeyboardInputEngine__ReselectFlag) bool {
 	if ptr.Pointer() != nil {
-		return int(int32(C.QVirtualKeyboardAbstractInputMethod_SelectionListItemCount(ptr.Pointer(), C.longlong(ty))))
+		return int8(C.QVirtualKeyboardAbstractInputMethod_Reselect(ptr.Pointer(), C.int(int32(cursorPosition)), C.longlong(reselectFlags))) != 0
 	}
-	return 0
+	return false
 }
 
-func (ptr *QVirtualKeyboardAbstractInputMethod) SelectionListItemCountDefault(ty QVirtualKeyboardSelectionListModel__Type) int {
+func (ptr *QVirtualKeyboardAbstractInputMethod) ReselectDefault(cursorPosition int, reselectFlags QVirtualKeyboardInputEngine__ReselectFlag) bool {
 	if ptr.Pointer() != nil {
-		return int(int32(C.QVirtualKeyboardAbstractInputMethod_SelectionListItemCountDefault(ptr.Pointer(), C.longlong(ty))))
+		return int8(C.QVirtualKeyboardAbstractInputMethod_ReselectDefault(ptr.Pointer(), C.int(int32(cursorPosition)), C.longlong(reselectFlags))) != 0
 	}
-	return 0
+	return false
 }
 
 //export callbackQVirtualKeyboardAbstractInputMethod_Reset
@@ -824,6 +492,100 @@ func (ptr *QVirtualKeyboardAbstractInputMethod) SelectionListChanged(ty QVirtual
 	}
 }
 
+//export callbackQVirtualKeyboardAbstractInputMethod_SelectionListData
+func callbackQVirtualKeyboardAbstractInputMethod_SelectionListData(ptr unsafe.Pointer, ty C.longlong, index C.int, role C.longlong) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "selectionListData"); signal != nil {
+		return core.PointerFromQVariant((*(*func(QVirtualKeyboardSelectionListModel__Type, int, QVirtualKeyboardSelectionListModel__Role) *core.QVariant)(signal))(QVirtualKeyboardSelectionListModel__Type(ty), int(int32(index)), QVirtualKeyboardSelectionListModel__Role(role)))
+	}
+
+	return core.PointerFromQVariant(NewQVirtualKeyboardAbstractInputMethodFromPointer(ptr).SelectionListDataDefault(QVirtualKeyboardSelectionListModel__Type(ty), int(int32(index)), QVirtualKeyboardSelectionListModel__Role(role)))
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) ConnectSelectionListData(f func(ty QVirtualKeyboardSelectionListModel__Type, index int, role QVirtualKeyboardSelectionListModel__Role) *core.QVariant) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "selectionListData"); signal != nil {
+			f := func(ty QVirtualKeyboardSelectionListModel__Type, index int, role QVirtualKeyboardSelectionListModel__Role) *core.QVariant {
+				(*(*func(QVirtualKeyboardSelectionListModel__Type, int, QVirtualKeyboardSelectionListModel__Role) *core.QVariant)(signal))(ty, index, role)
+				return f(ty, index, role)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "selectionListData", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "selectionListData", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) DisconnectSelectionListData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "selectionListData")
+	}
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) SelectionListData(ty QVirtualKeyboardSelectionListModel__Type, index int, role QVirtualKeyboardSelectionListModel__Role) *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QVirtualKeyboardAbstractInputMethod_SelectionListData(ptr.Pointer(), C.longlong(ty), C.int(int32(index)), C.longlong(role)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) SelectionListDataDefault(ty QVirtualKeyboardSelectionListModel__Type, index int, role QVirtualKeyboardSelectionListModel__Role) *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QVirtualKeyboardAbstractInputMethod_SelectionListDataDefault(ptr.Pointer(), C.longlong(ty), C.int(int32(index)), C.longlong(role)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQVirtualKeyboardAbstractInputMethod_SelectionListItemCount
+func callbackQVirtualKeyboardAbstractInputMethod_SelectionListItemCount(ptr unsafe.Pointer, ty C.longlong) C.int {
+	if signal := qt.GetSignal(ptr, "selectionListItemCount"); signal != nil {
+		return C.int(int32((*(*func(QVirtualKeyboardSelectionListModel__Type) int)(signal))(QVirtualKeyboardSelectionListModel__Type(ty))))
+	}
+
+	return C.int(int32(NewQVirtualKeyboardAbstractInputMethodFromPointer(ptr).SelectionListItemCountDefault(QVirtualKeyboardSelectionListModel__Type(ty))))
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) ConnectSelectionListItemCount(f func(ty QVirtualKeyboardSelectionListModel__Type) int) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "selectionListItemCount"); signal != nil {
+			f := func(ty QVirtualKeyboardSelectionListModel__Type) int {
+				(*(*func(QVirtualKeyboardSelectionListModel__Type) int)(signal))(ty)
+				return f(ty)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "selectionListItemCount", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "selectionListItemCount", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) DisconnectSelectionListItemCount() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "selectionListItemCount")
+	}
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) SelectionListItemCount(ty QVirtualKeyboardSelectionListModel__Type) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QVirtualKeyboardAbstractInputMethod_SelectionListItemCount(ptr.Pointer(), C.longlong(ty))))
+	}
+	return 0
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) SelectionListItemCountDefault(ty QVirtualKeyboardSelectionListModel__Type) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QVirtualKeyboardAbstractInputMethod_SelectionListItemCountDefault(ptr.Pointer(), C.longlong(ty))))
+	}
+	return 0
+}
+
 //export callbackQVirtualKeyboardAbstractInputMethod_SelectionListItemSelected
 func callbackQVirtualKeyboardAbstractInputMethod_SelectionListItemSelected(ptr unsafe.Pointer, ty C.longlong, index C.int) {
 	if signal := qt.GetSignal(ptr, "selectionListItemSelected"); signal != nil {
@@ -867,6 +629,122 @@ func (ptr *QVirtualKeyboardAbstractInputMethod) SelectionListItemSelectedDefault
 	}
 }
 
+//export callbackQVirtualKeyboardAbstractInputMethod_SelectionListRemoveItem
+func callbackQVirtualKeyboardAbstractInputMethod_SelectionListRemoveItem(ptr unsafe.Pointer, ty C.longlong, index C.int) C.char {
+	if signal := qt.GetSignal(ptr, "selectionListRemoveItem"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(QVirtualKeyboardSelectionListModel__Type, int) bool)(signal))(QVirtualKeyboardSelectionListModel__Type(ty), int(int32(index))))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQVirtualKeyboardAbstractInputMethodFromPointer(ptr).SelectionListRemoveItemDefault(QVirtualKeyboardSelectionListModel__Type(ty), int(int32(index))))))
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) ConnectSelectionListRemoveItem(f func(ty QVirtualKeyboardSelectionListModel__Type, index int) bool) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "selectionListRemoveItem"); signal != nil {
+			f := func(ty QVirtualKeyboardSelectionListModel__Type, index int) bool {
+				(*(*func(QVirtualKeyboardSelectionListModel__Type, int) bool)(signal))(ty, index)
+				return f(ty, index)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "selectionListRemoveItem", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "selectionListRemoveItem", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) DisconnectSelectionListRemoveItem() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "selectionListRemoveItem")
+	}
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) SelectionListRemoveItem(ty QVirtualKeyboardSelectionListModel__Type, index int) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QVirtualKeyboardAbstractInputMethod_SelectionListRemoveItem(ptr.Pointer(), C.longlong(ty), C.int(int32(index)))) != 0
+	}
+	return false
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) SelectionListRemoveItemDefault(ty QVirtualKeyboardSelectionListModel__Type, index int) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QVirtualKeyboardAbstractInputMethod_SelectionListRemoveItemDefault(ptr.Pointer(), C.longlong(ty), C.int(int32(index)))) != 0
+	}
+	return false
+}
+
+//export callbackQVirtualKeyboardAbstractInputMethod_SelectionLists
+func callbackQVirtualKeyboardAbstractInputMethod_SelectionLists(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "selectionLists"); signal != nil {
+		return func() unsafe.Pointer {
+			tmpList := NewQVirtualKeyboardAbstractInputMethodFromPointer(NewQVirtualKeyboardAbstractInputMethodFromPointer(nil).__selectionLists_newList())
+			for _, v := range (*(*func() []QVirtualKeyboardSelectionListModel__Type)(signal))() {
+				tmpList.__selectionLists_setList(v)
+			}
+			return tmpList.Pointer()
+		}()
+	}
+
+	return func() unsafe.Pointer {
+		tmpList := NewQVirtualKeyboardAbstractInputMethodFromPointer(NewQVirtualKeyboardAbstractInputMethodFromPointer(nil).__selectionLists_newList())
+		for _, v := range NewQVirtualKeyboardAbstractInputMethodFromPointer(ptr).SelectionListsDefault() {
+			tmpList.__selectionLists_setList(v)
+		}
+		return tmpList.Pointer()
+	}()
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) ConnectSelectionLists(f func() []QVirtualKeyboardSelectionListModel__Type) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "selectionLists"); signal != nil {
+			f := func() []QVirtualKeyboardSelectionListModel__Type {
+				(*(*func() []QVirtualKeyboardSelectionListModel__Type)(signal))()
+				return f()
+			}
+			qt.ConnectSignal(ptr.Pointer(), "selectionLists", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "selectionLists", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) DisconnectSelectionLists() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "selectionLists")
+	}
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) SelectionLists() []QVirtualKeyboardSelectionListModel__Type {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtVirtualKeyboard_PackedList) []QVirtualKeyboardSelectionListModel__Type {
+			out := make([]QVirtualKeyboardSelectionListModel__Type, int(l.len))
+			tmpList := NewQVirtualKeyboardAbstractInputMethodFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__selectionLists_atList(i)
+			}
+			return out
+		}(C.QVirtualKeyboardAbstractInputMethod_SelectionLists(ptr.Pointer()))
+	}
+	return make([]QVirtualKeyboardSelectionListModel__Type, 0)
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) SelectionListsDefault() []QVirtualKeyboardSelectionListModel__Type {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtVirtualKeyboard_PackedList) []QVirtualKeyboardSelectionListModel__Type {
+			out := make([]QVirtualKeyboardSelectionListModel__Type, int(l.len))
+			tmpList := NewQVirtualKeyboardAbstractInputMethodFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__selectionLists_atList(i)
+			}
+			return out
+		}(C.QVirtualKeyboardAbstractInputMethod_SelectionListsDefault(ptr.Pointer()))
+	}
+	return make([]QVirtualKeyboardSelectionListModel__Type, 0)
+}
+
 //export callbackQVirtualKeyboardAbstractInputMethod_SelectionListsChanged
 func callbackQVirtualKeyboardAbstractInputMethod_SelectionListsChanged(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "selectionListsChanged"); signal != nil {
@@ -905,6 +783,237 @@ func (ptr *QVirtualKeyboardAbstractInputMethod) SelectionListsChanged() {
 	if ptr.Pointer() != nil {
 		C.QVirtualKeyboardAbstractInputMethod_SelectionListsChanged(ptr.Pointer())
 	}
+}
+
+//export callbackQVirtualKeyboardAbstractInputMethod_SetInputMode
+func callbackQVirtualKeyboardAbstractInputMethod_SetInputMode(ptr unsafe.Pointer, locale C.struct_QtVirtualKeyboard_PackedString, inputMode C.longlong) C.char {
+	if signal := qt.GetSignal(ptr, "setInputMode"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(string, QVirtualKeyboardInputEngine__InputMode) bool)(signal))(cGoUnpackString(locale), QVirtualKeyboardInputEngine__InputMode(inputMode)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(false)))
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) ConnectSetInputMode(f func(locale string, inputMode QVirtualKeyboardInputEngine__InputMode) bool) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "setInputMode"); signal != nil {
+			f := func(locale string, inputMode QVirtualKeyboardInputEngine__InputMode) bool {
+				(*(*func(string, QVirtualKeyboardInputEngine__InputMode) bool)(signal))(locale, inputMode)
+				return f(locale, inputMode)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "setInputMode", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "setInputMode", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) DisconnectSetInputMode() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "setInputMode")
+	}
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) SetInputMode(locale string, inputMode QVirtualKeyboardInputEngine__InputMode) bool {
+	if ptr.Pointer() != nil {
+		var localeC *C.char
+		if locale != "" {
+			localeC = C.CString(locale)
+			defer C.free(unsafe.Pointer(localeC))
+		}
+		return int8(C.QVirtualKeyboardAbstractInputMethod_SetInputMode(ptr.Pointer(), C.struct_QtVirtualKeyboard_PackedString{data: localeC, len: C.longlong(len(locale))}, C.longlong(inputMode))) != 0
+	}
+	return false
+}
+
+//export callbackQVirtualKeyboardAbstractInputMethod_SetTextCase
+func callbackQVirtualKeyboardAbstractInputMethod_SetTextCase(ptr unsafe.Pointer, textCase C.longlong) C.char {
+	if signal := qt.GetSignal(ptr, "setTextCase"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(QVirtualKeyboardInputEngine__TextCase) bool)(signal))(QVirtualKeyboardInputEngine__TextCase(textCase)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(false)))
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) ConnectSetTextCase(f func(textCase QVirtualKeyboardInputEngine__TextCase) bool) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "setTextCase"); signal != nil {
+			f := func(textCase QVirtualKeyboardInputEngine__TextCase) bool {
+				(*(*func(QVirtualKeyboardInputEngine__TextCase) bool)(signal))(textCase)
+				return f(textCase)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "setTextCase", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "setTextCase", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) DisconnectSetTextCase() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "setTextCase")
+	}
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) SetTextCase(textCase QVirtualKeyboardInputEngine__TextCase) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QVirtualKeyboardAbstractInputMethod_SetTextCase(ptr.Pointer(), C.longlong(textCase))) != 0
+	}
+	return false
+}
+
+//export callbackQVirtualKeyboardAbstractInputMethod_TraceBegin
+func callbackQVirtualKeyboardAbstractInputMethod_TraceBegin(ptr unsafe.Pointer, traceId C.int, patternRecognitionMode C.longlong, traceCaptureDeviceInfo C.struct_QtVirtualKeyboard_PackedList, traceScreenInfo C.struct_QtVirtualKeyboard_PackedList) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "traceBegin"); signal != nil {
+		return PointerFromQVirtualKeyboardTrace((*(*func(int, QVirtualKeyboardInputEngine__PatternRecognitionMode, map[string]*core.QVariant, map[string]*core.QVariant) *QVirtualKeyboardTrace)(signal))(int(int32(traceId)), QVirtualKeyboardInputEngine__PatternRecognitionMode(patternRecognitionMode), func(l C.struct_QtVirtualKeyboard_PackedList) map[string]*core.QVariant {
+			out := make(map[string]*core.QVariant, int(l.len))
+			tmpList := NewQVirtualKeyboardAbstractInputMethodFromPointer(l.data)
+			for i, v := range tmpList.__traceBegin_traceCaptureDeviceInfo_keyList() {
+				out[v] = tmpList.__traceBegin_traceCaptureDeviceInfo_atList(v, i)
+			}
+			return out
+		}(traceCaptureDeviceInfo), func(l C.struct_QtVirtualKeyboard_PackedList) map[string]*core.QVariant {
+			out := make(map[string]*core.QVariant, int(l.len))
+			tmpList := NewQVirtualKeyboardAbstractInputMethodFromPointer(l.data)
+			for i, v := range tmpList.__traceBegin_traceScreenInfo_keyList() {
+				out[v] = tmpList.__traceBegin_traceScreenInfo_atList(v, i)
+			}
+			return out
+		}(traceScreenInfo)))
+	}
+
+	return PointerFromQVirtualKeyboardTrace(NewQVirtualKeyboardAbstractInputMethodFromPointer(ptr).TraceBeginDefault(int(int32(traceId)), QVirtualKeyboardInputEngine__PatternRecognitionMode(patternRecognitionMode), func(l C.struct_QtVirtualKeyboard_PackedList) map[string]*core.QVariant {
+		out := make(map[string]*core.QVariant, int(l.len))
+		tmpList := NewQVirtualKeyboardAbstractInputMethodFromPointer(l.data)
+		for i, v := range tmpList.__traceBegin_traceCaptureDeviceInfo_keyList() {
+			out[v] = tmpList.__traceBegin_traceCaptureDeviceInfo_atList(v, i)
+		}
+		return out
+	}(traceCaptureDeviceInfo), func(l C.struct_QtVirtualKeyboard_PackedList) map[string]*core.QVariant {
+		out := make(map[string]*core.QVariant, int(l.len))
+		tmpList := NewQVirtualKeyboardAbstractInputMethodFromPointer(l.data)
+		for i, v := range tmpList.__traceBegin_traceScreenInfo_keyList() {
+			out[v] = tmpList.__traceBegin_traceScreenInfo_atList(v, i)
+		}
+		return out
+	}(traceScreenInfo)))
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) ConnectTraceBegin(f func(traceId int, patternRecognitionMode QVirtualKeyboardInputEngine__PatternRecognitionMode, traceCaptureDeviceInfo map[string]*core.QVariant, traceScreenInfo map[string]*core.QVariant) *QVirtualKeyboardTrace) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "traceBegin"); signal != nil {
+			f := func(traceId int, patternRecognitionMode QVirtualKeyboardInputEngine__PatternRecognitionMode, traceCaptureDeviceInfo map[string]*core.QVariant, traceScreenInfo map[string]*core.QVariant) *QVirtualKeyboardTrace {
+				(*(*func(int, QVirtualKeyboardInputEngine__PatternRecognitionMode, map[string]*core.QVariant, map[string]*core.QVariant) *QVirtualKeyboardTrace)(signal))(traceId, patternRecognitionMode, traceCaptureDeviceInfo, traceScreenInfo)
+				return f(traceId, patternRecognitionMode, traceCaptureDeviceInfo, traceScreenInfo)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "traceBegin", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "traceBegin", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) DisconnectTraceBegin() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "traceBegin")
+	}
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) TraceBegin(traceId int, patternRecognitionMode QVirtualKeyboardInputEngine__PatternRecognitionMode, traceCaptureDeviceInfo map[string]*core.QVariant, traceScreenInfo map[string]*core.QVariant) *QVirtualKeyboardTrace {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQVirtualKeyboardTraceFromPointer(C.QVirtualKeyboardAbstractInputMethod_TraceBegin(ptr.Pointer(), C.int(int32(traceId)), C.longlong(patternRecognitionMode), func() unsafe.Pointer {
+			tmpList := NewQVirtualKeyboardAbstractInputMethodFromPointer(NewQVirtualKeyboardAbstractInputMethodFromPointer(nil).__traceBegin_traceCaptureDeviceInfo_newList())
+			for k, v := range traceCaptureDeviceInfo {
+				tmpList.__traceBegin_traceCaptureDeviceInfo_setList(k, v)
+			}
+			return tmpList.Pointer()
+		}(), func() unsafe.Pointer {
+			tmpList := NewQVirtualKeyboardAbstractInputMethodFromPointer(NewQVirtualKeyboardAbstractInputMethodFromPointer(nil).__traceBegin_traceScreenInfo_newList())
+			for k, v := range traceScreenInfo {
+				tmpList.__traceBegin_traceScreenInfo_setList(k, v)
+			}
+			return tmpList.Pointer()
+		}()))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) TraceBeginDefault(traceId int, patternRecognitionMode QVirtualKeyboardInputEngine__PatternRecognitionMode, traceCaptureDeviceInfo map[string]*core.QVariant, traceScreenInfo map[string]*core.QVariant) *QVirtualKeyboardTrace {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQVirtualKeyboardTraceFromPointer(C.QVirtualKeyboardAbstractInputMethod_TraceBeginDefault(ptr.Pointer(), C.int(int32(traceId)), C.longlong(patternRecognitionMode), func() unsafe.Pointer {
+			tmpList := NewQVirtualKeyboardAbstractInputMethodFromPointer(NewQVirtualKeyboardAbstractInputMethodFromPointer(nil).__traceBegin_traceCaptureDeviceInfo_newList())
+			for k, v := range traceCaptureDeviceInfo {
+				tmpList.__traceBegin_traceCaptureDeviceInfo_setList(k, v)
+			}
+			return tmpList.Pointer()
+		}(), func() unsafe.Pointer {
+			tmpList := NewQVirtualKeyboardAbstractInputMethodFromPointer(NewQVirtualKeyboardAbstractInputMethodFromPointer(nil).__traceBegin_traceScreenInfo_newList())
+			for k, v := range traceScreenInfo {
+				tmpList.__traceBegin_traceScreenInfo_setList(k, v)
+			}
+			return tmpList.Pointer()
+		}()))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQVirtualKeyboardAbstractInputMethod_TraceEnd
+func callbackQVirtualKeyboardAbstractInputMethod_TraceEnd(ptr unsafe.Pointer, trace unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "traceEnd"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*QVirtualKeyboardTrace) bool)(signal))(NewQVirtualKeyboardTraceFromPointer(trace)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQVirtualKeyboardAbstractInputMethodFromPointer(ptr).TraceEndDefault(NewQVirtualKeyboardTraceFromPointer(trace)))))
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) ConnectTraceEnd(f func(trace *QVirtualKeyboardTrace) bool) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "traceEnd"); signal != nil {
+			f := func(trace *QVirtualKeyboardTrace) bool {
+				(*(*func(*QVirtualKeyboardTrace) bool)(signal))(trace)
+				return f(trace)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "traceEnd", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "traceEnd", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) DisconnectTraceEnd() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "traceEnd")
+	}
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) TraceEnd(trace QVirtualKeyboardTrace_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QVirtualKeyboardAbstractInputMethod_TraceEnd(ptr.Pointer(), PointerFromQVirtualKeyboardTrace(trace))) != 0
+	}
+	return false
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) TraceEndDefault(trace QVirtualKeyboardTrace_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QVirtualKeyboardAbstractInputMethod_TraceEndDefault(ptr.Pointer(), PointerFromQVirtualKeyboardTrace(trace))) != 0
+	}
+	return false
 }
 
 //export callbackQVirtualKeyboardAbstractInputMethod_Update
@@ -997,115 +1106,6 @@ func (ptr *QVirtualKeyboardAbstractInputMethod) DestroyQVirtualKeyboardAbstractI
 	}
 }
 
-//export callbackQVirtualKeyboardAbstractInputMethod_PatternRecognitionModes
-func callbackQVirtualKeyboardAbstractInputMethod_PatternRecognitionModes(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "patternRecognitionModes"); signal != nil {
-		return func() unsafe.Pointer {
-			tmpList := NewQVirtualKeyboardAbstractInputMethodFromPointer(NewQVirtualKeyboardAbstractInputMethodFromPointer(nil).__patternRecognitionModes_newList())
-			for _, v := range (*(*func() []QVirtualKeyboardInputEngine__PatternRecognitionMode)(signal))() {
-				tmpList.__patternRecognitionModes_setList(v)
-			}
-			return tmpList.Pointer()
-		}()
-	}
-
-	return func() unsafe.Pointer {
-		tmpList := NewQVirtualKeyboardAbstractInputMethodFromPointer(NewQVirtualKeyboardAbstractInputMethodFromPointer(nil).__patternRecognitionModes_newList())
-		for _, v := range NewQVirtualKeyboardAbstractInputMethodFromPointer(ptr).PatternRecognitionModesDefault() {
-			tmpList.__patternRecognitionModes_setList(v)
-		}
-		return tmpList.Pointer()
-	}()
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) ConnectPatternRecognitionModes(f func() []QVirtualKeyboardInputEngine__PatternRecognitionMode) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "patternRecognitionModes"); signal != nil {
-			f := func() []QVirtualKeyboardInputEngine__PatternRecognitionMode {
-				(*(*func() []QVirtualKeyboardInputEngine__PatternRecognitionMode)(signal))()
-				return f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "patternRecognitionModes", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "patternRecognitionModes", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) DisconnectPatternRecognitionModes() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "patternRecognitionModes")
-	}
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) PatternRecognitionModes() []QVirtualKeyboardInputEngine__PatternRecognitionMode {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtVirtualKeyboard_PackedList) []QVirtualKeyboardInputEngine__PatternRecognitionMode {
-			out := make([]QVirtualKeyboardInputEngine__PatternRecognitionMode, int(l.len))
-			tmpList := NewQVirtualKeyboardAbstractInputMethodFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__patternRecognitionModes_atList(i)
-			}
-			return out
-		}(C.QVirtualKeyboardAbstractInputMethod_PatternRecognitionModes(ptr.Pointer()))
-	}
-	return make([]QVirtualKeyboardInputEngine__PatternRecognitionMode, 0)
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) PatternRecognitionModesDefault() []QVirtualKeyboardInputEngine__PatternRecognitionMode {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtVirtualKeyboard_PackedList) []QVirtualKeyboardInputEngine__PatternRecognitionMode {
-			out := make([]QVirtualKeyboardInputEngine__PatternRecognitionMode, int(l.len))
-			tmpList := NewQVirtualKeyboardAbstractInputMethodFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__patternRecognitionModes_atList(i)
-			}
-			return out
-		}(C.QVirtualKeyboardAbstractInputMethod_PatternRecognitionModesDefault(ptr.Pointer()))
-	}
-	return make([]QVirtualKeyboardInputEngine__PatternRecognitionMode, 0)
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) InputContext() *QVirtualKeyboardInputContext {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQVirtualKeyboardInputContextFromPointer(C.QVirtualKeyboardAbstractInputMethod_InputContext(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) InputEngine() *QVirtualKeyboardInputEngine {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQVirtualKeyboardInputEngineFromPointer(C.QVirtualKeyboardAbstractInputMethod_InputEngine(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-//export callbackQVirtualKeyboardAbstractInputMethod_MetaObject
-func callbackQVirtualKeyboardAbstractInputMethod_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQVirtualKeyboardAbstractInputMethodFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QVirtualKeyboardAbstractInputMethod_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
 func (ptr *QVirtualKeyboardAbstractInputMethod) __inputModes_atList(i int) QVirtualKeyboardInputEngine__InputMode {
 	if ptr.Pointer() != nil {
 		return QVirtualKeyboardInputEngine__InputMode(C.QVirtualKeyboardAbstractInputMethod___inputModes_atList(ptr.Pointer(), C.int(int32(i))))
@@ -1121,6 +1121,23 @@ func (ptr *QVirtualKeyboardAbstractInputMethod) __inputModes_setList(i QVirtualK
 
 func (ptr *QVirtualKeyboardAbstractInputMethod) __inputModes_newList() unsafe.Pointer {
 	return C.QVirtualKeyboardAbstractInputMethod___inputModes_newList(ptr.Pointer())
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) __patternRecognitionModes_atList(i int) QVirtualKeyboardInputEngine__PatternRecognitionMode {
+	if ptr.Pointer() != nil {
+		return QVirtualKeyboardInputEngine__PatternRecognitionMode(C.QVirtualKeyboardAbstractInputMethod___patternRecognitionModes_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return 0
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) __patternRecognitionModes_setList(i QVirtualKeyboardInputEngine__PatternRecognitionMode) {
+	if ptr.Pointer() != nil {
+		C.QVirtualKeyboardAbstractInputMethod___patternRecognitionModes_setList(ptr.Pointer(), C.longlong(i))
+	}
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) __patternRecognitionModes_newList() unsafe.Pointer {
+	return C.QVirtualKeyboardAbstractInputMethod___patternRecognitionModes_newList(ptr.Pointer())
 }
 
 func (ptr *QVirtualKeyboardAbstractInputMethod) __selectionLists_atList(i int) QVirtualKeyboardSelectionListModel__Type {
@@ -1226,23 +1243,6 @@ func (ptr *QVirtualKeyboardAbstractInputMethod) __traceBegin_traceScreenInfo_key
 	return make([]string, 0)
 }
 
-func (ptr *QVirtualKeyboardAbstractInputMethod) __patternRecognitionModes_atList(i int) QVirtualKeyboardInputEngine__PatternRecognitionMode {
-	if ptr.Pointer() != nil {
-		return QVirtualKeyboardInputEngine__PatternRecognitionMode(C.QVirtualKeyboardAbstractInputMethod___patternRecognitionModes_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return 0
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) __patternRecognitionModes_setList(i QVirtualKeyboardInputEngine__PatternRecognitionMode) {
-	if ptr.Pointer() != nil {
-		C.QVirtualKeyboardAbstractInputMethod___patternRecognitionModes_setList(ptr.Pointer(), C.longlong(i))
-	}
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) __patternRecognitionModes_newList() unsafe.Pointer {
-	return C.QVirtualKeyboardAbstractInputMethod___patternRecognitionModes_newList(ptr.Pointer())
-}
-
 func (ptr *QVirtualKeyboardAbstractInputMethod) ____traceBegin_traceCaptureDeviceInfo_keyList_atList(i int) string {
 	if ptr.Pointer() != nil {
 		return cGoUnpackString(C.QVirtualKeyboardAbstractInputMethod_____traceBegin_traceCaptureDeviceInfo_keyList_atList(ptr.Pointer(), C.int(int32(i))))
@@ -1287,6 +1287,27 @@ func (ptr *QVirtualKeyboardAbstractInputMethod) ____traceBegin_traceScreenInfo_k
 	return C.QVirtualKeyboardAbstractInputMethod_____traceBegin_traceScreenInfo_keyList_newList(ptr.Pointer())
 }
 
+func (ptr *QVirtualKeyboardAbstractInputMethod) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QVirtualKeyboardAbstractInputMethod___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QVirtualKeyboardAbstractInputMethod___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) __children_newList() unsafe.Pointer {
+	return C.QVirtualKeyboardAbstractInputMethod___children_newList(ptr.Pointer())
+}
+
 func (ptr *QVirtualKeyboardAbstractInputMethod) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QVirtualKeyboardAbstractInputMethod___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
@@ -1304,48 +1325,6 @@ func (ptr *QVirtualKeyboardAbstractInputMethod) __dynamicPropertyNames_setList(i
 
 func (ptr *QVirtualKeyboardAbstractInputMethod) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QVirtualKeyboardAbstractInputMethod___dynamicPropertyNames_newList(ptr.Pointer())
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QVirtualKeyboardAbstractInputMethod___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QVirtualKeyboardAbstractInputMethod___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) __findChildren_newList2() unsafe.Pointer {
-	return C.QVirtualKeyboardAbstractInputMethod___findChildren_newList2(ptr.Pointer())
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QVirtualKeyboardAbstractInputMethod___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QVirtualKeyboardAbstractInputMethod___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) __findChildren_newList3() unsafe.Pointer {
-	return C.QVirtualKeyboardAbstractInputMethod___findChildren_newList3(ptr.Pointer())
 }
 
 func (ptr *QVirtualKeyboardAbstractInputMethod) __findChildren_atList(i int) *core.QObject {
@@ -1369,9 +1348,9 @@ func (ptr *QVirtualKeyboardAbstractInputMethod) __findChildren_newList() unsafe.
 	return C.QVirtualKeyboardAbstractInputMethod___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QVirtualKeyboardAbstractInputMethod) __children_atList(i int) *core.QObject {
+func (ptr *QVirtualKeyboardAbstractInputMethod) __findChildren_atList3(i int) *core.QObject {
 	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QVirtualKeyboardAbstractInputMethod___children_atList(ptr.Pointer(), C.int(int32(i))))
+		tmpValue := core.NewQObjectFromPointer(C.QVirtualKeyboardAbstractInputMethod___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -1380,46 +1359,35 @@ func (ptr *QVirtualKeyboardAbstractInputMethod) __children_atList(i int) *core.Q
 	return nil
 }
 
-func (ptr *QVirtualKeyboardAbstractInputMethod) __children_setList(i core.QObject_ITF) {
+func (ptr *QVirtualKeyboardAbstractInputMethod) __findChildren_setList3(i core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		C.QVirtualKeyboardAbstractInputMethod___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+		C.QVirtualKeyboardAbstractInputMethod___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *QVirtualKeyboardAbstractInputMethod) __children_newList() unsafe.Pointer {
-	return C.QVirtualKeyboardAbstractInputMethod___children_newList(ptr.Pointer())
+func (ptr *QVirtualKeyboardAbstractInputMethod) __findChildren_newList3() unsafe.Pointer {
+	return C.QVirtualKeyboardAbstractInputMethod___findChildren_newList3(ptr.Pointer())
 }
 
-//export callbackQVirtualKeyboardAbstractInputMethod_Event
-func callbackQVirtualKeyboardAbstractInputMethod_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQVirtualKeyboardAbstractInputMethodFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QVirtualKeyboardAbstractInputMethod) __qFindChildren_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
-		return int8(C.QVirtualKeyboardAbstractInputMethod_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+		tmpValue := core.NewQObjectFromPointer(C.QVirtualKeyboardAbstractInputMethod___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return false
+	return nil
 }
 
-//export callbackQVirtualKeyboardAbstractInputMethod_EventFilter
-func callbackQVirtualKeyboardAbstractInputMethod_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQVirtualKeyboardAbstractInputMethodFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QVirtualKeyboardAbstractInputMethod) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+func (ptr *QVirtualKeyboardAbstractInputMethod) __qFindChildren_setList2(i core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		return int8(C.QVirtualKeyboardAbstractInputMethod_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+		C.QVirtualKeyboardAbstractInputMethod___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
 	}
-	return false
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) __qFindChildren_newList2() unsafe.Pointer {
+	return C.QVirtualKeyboardAbstractInputMethod___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQVirtualKeyboardAbstractInputMethod_ChildEvent
@@ -1506,6 +1474,38 @@ func (ptr *QVirtualKeyboardAbstractInputMethod) DisconnectNotifyDefault(sign cor
 	}
 }
 
+//export callbackQVirtualKeyboardAbstractInputMethod_Event
+func callbackQVirtualKeyboardAbstractInputMethod_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQVirtualKeyboardAbstractInputMethodFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QVirtualKeyboardAbstractInputMethod_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+	}
+	return false
+}
+
+//export callbackQVirtualKeyboardAbstractInputMethod_EventFilter
+func callbackQVirtualKeyboardAbstractInputMethod_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQVirtualKeyboardAbstractInputMethodFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QVirtualKeyboardAbstractInputMethod_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+	}
+	return false
+}
+
 //export callbackQVirtualKeyboardAbstractInputMethod_ObjectNameChanged
 func callbackQVirtualKeyboardAbstractInputMethod_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtVirtualKeyboard_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -1567,96 +1567,6 @@ func NewQVirtualKeyboardExtensionPluginFromPointer(ptr unsafe.Pointer) (n *QVirt
 	n.SetPointer(ptr)
 	return
 }
-func QVirtualKeyboardExtensionPlugin_Tr(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QVirtualKeyboardExtensionPlugin_QVirtualKeyboardExtensionPlugin_Tr(sC, cC, C.int(int32(n))))
-}
-
-func (ptr *QVirtualKeyboardExtensionPlugin) Tr(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QVirtualKeyboardExtensionPlugin_QVirtualKeyboardExtensionPlugin_Tr(sC, cC, C.int(int32(n))))
-}
-
-//export callbackQVirtualKeyboardExtensionPlugin_DestroyQVirtualKeyboardExtensionPlugin
-func callbackQVirtualKeyboardExtensionPlugin_DestroyQVirtualKeyboardExtensionPlugin(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QVirtualKeyboardExtensionPlugin"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQVirtualKeyboardExtensionPluginFromPointer(ptr).DestroyQVirtualKeyboardExtensionPluginDefault()
-	}
-}
-
-func (ptr *QVirtualKeyboardExtensionPlugin) ConnectDestroyQVirtualKeyboardExtensionPlugin(f func()) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "~QVirtualKeyboardExtensionPlugin"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QVirtualKeyboardExtensionPlugin", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QVirtualKeyboardExtensionPlugin", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QVirtualKeyboardExtensionPlugin) DisconnectDestroyQVirtualKeyboardExtensionPlugin() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "~QVirtualKeyboardExtensionPlugin")
-	}
-}
-
-func (ptr *QVirtualKeyboardExtensionPlugin) DestroyQVirtualKeyboardExtensionPlugin() {
-	if ptr.Pointer() != nil {
-		C.QVirtualKeyboardExtensionPlugin_DestroyQVirtualKeyboardExtensionPlugin(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
-}
-
-func (ptr *QVirtualKeyboardExtensionPlugin) DestroyQVirtualKeyboardExtensionPluginDefault() {
-	if ptr.Pointer() != nil {
-		C.QVirtualKeyboardExtensionPlugin_DestroyQVirtualKeyboardExtensionPluginDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
-}
-
-//export callbackQVirtualKeyboardExtensionPlugin_MetaObject
-func callbackQVirtualKeyboardExtensionPlugin_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQVirtualKeyboardExtensionPluginFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QVirtualKeyboardExtensionPlugin) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QVirtualKeyboardExtensionPlugin_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
 
 //export callbackQVirtualKeyboardExtensionPlugin_RegisterTypes
 func callbackQVirtualKeyboardExtensionPlugin_RegisterTypes(ptr unsafe.Pointer, uri C.struct_QtVirtualKeyboard_PackedString) {
@@ -1711,6 +1621,27 @@ func (ptr *QVirtualKeyboardExtensionPlugin) RegisterTypesDefault(uri string) {
 	}
 }
 
+func (ptr *QVirtualKeyboardExtensionPlugin) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QVirtualKeyboardExtensionPlugin___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QVirtualKeyboardExtensionPlugin) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QVirtualKeyboardExtensionPlugin___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QVirtualKeyboardExtensionPlugin) __children_newList() unsafe.Pointer {
+	return C.QVirtualKeyboardExtensionPlugin___children_newList(ptr.Pointer())
+}
+
 func (ptr *QVirtualKeyboardExtensionPlugin) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QVirtualKeyboardExtensionPlugin___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
@@ -1728,48 +1659,6 @@ func (ptr *QVirtualKeyboardExtensionPlugin) __dynamicPropertyNames_setList(i cor
 
 func (ptr *QVirtualKeyboardExtensionPlugin) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QVirtualKeyboardExtensionPlugin___dynamicPropertyNames_newList(ptr.Pointer())
-}
-
-func (ptr *QVirtualKeyboardExtensionPlugin) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QVirtualKeyboardExtensionPlugin___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QVirtualKeyboardExtensionPlugin) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QVirtualKeyboardExtensionPlugin___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QVirtualKeyboardExtensionPlugin) __findChildren_newList2() unsafe.Pointer {
-	return C.QVirtualKeyboardExtensionPlugin___findChildren_newList2(ptr.Pointer())
-}
-
-func (ptr *QVirtualKeyboardExtensionPlugin) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QVirtualKeyboardExtensionPlugin___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QVirtualKeyboardExtensionPlugin) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QVirtualKeyboardExtensionPlugin___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QVirtualKeyboardExtensionPlugin) __findChildren_newList3() unsafe.Pointer {
-	return C.QVirtualKeyboardExtensionPlugin___findChildren_newList3(ptr.Pointer())
 }
 
 func (ptr *QVirtualKeyboardExtensionPlugin) __findChildren_atList(i int) *core.QObject {
@@ -1793,9 +1682,9 @@ func (ptr *QVirtualKeyboardExtensionPlugin) __findChildren_newList() unsafe.Poin
 	return C.QVirtualKeyboardExtensionPlugin___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QVirtualKeyboardExtensionPlugin) __children_atList(i int) *core.QObject {
+func (ptr *QVirtualKeyboardExtensionPlugin) __findChildren_atList3(i int) *core.QObject {
 	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QVirtualKeyboardExtensionPlugin___children_atList(ptr.Pointer(), C.int(int32(i))))
+		tmpValue := core.NewQObjectFromPointer(C.QVirtualKeyboardExtensionPlugin___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -1804,46 +1693,35 @@ func (ptr *QVirtualKeyboardExtensionPlugin) __children_atList(i int) *core.QObje
 	return nil
 }
 
-func (ptr *QVirtualKeyboardExtensionPlugin) __children_setList(i core.QObject_ITF) {
+func (ptr *QVirtualKeyboardExtensionPlugin) __findChildren_setList3(i core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		C.QVirtualKeyboardExtensionPlugin___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+		C.QVirtualKeyboardExtensionPlugin___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *QVirtualKeyboardExtensionPlugin) __children_newList() unsafe.Pointer {
-	return C.QVirtualKeyboardExtensionPlugin___children_newList(ptr.Pointer())
+func (ptr *QVirtualKeyboardExtensionPlugin) __findChildren_newList3() unsafe.Pointer {
+	return C.QVirtualKeyboardExtensionPlugin___findChildren_newList3(ptr.Pointer())
 }
 
-//export callbackQVirtualKeyboardExtensionPlugin_Event
-func callbackQVirtualKeyboardExtensionPlugin_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQVirtualKeyboardExtensionPluginFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
-}
-
-func (ptr *QVirtualKeyboardExtensionPlugin) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QVirtualKeyboardExtensionPlugin) __qFindChildren_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
-		return int8(C.QVirtualKeyboardExtensionPlugin_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+		tmpValue := core.NewQObjectFromPointer(C.QVirtualKeyboardExtensionPlugin___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return false
+	return nil
 }
 
-//export callbackQVirtualKeyboardExtensionPlugin_EventFilter
-func callbackQVirtualKeyboardExtensionPlugin_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQVirtualKeyboardExtensionPluginFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QVirtualKeyboardExtensionPlugin) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+func (ptr *QVirtualKeyboardExtensionPlugin) __qFindChildren_setList2(i core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		return int8(C.QVirtualKeyboardExtensionPlugin_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+		C.QVirtualKeyboardExtensionPlugin___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
 	}
-	return false
+}
+
+func (ptr *QVirtualKeyboardExtensionPlugin) __qFindChildren_newList2() unsafe.Pointer {
+	return C.QVirtualKeyboardExtensionPlugin___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQVirtualKeyboardExtensionPlugin_ChildEvent
@@ -1930,6 +1808,38 @@ func (ptr *QVirtualKeyboardExtensionPlugin) DisconnectNotifyDefault(sign core.QM
 	}
 }
 
+//export callbackQVirtualKeyboardExtensionPlugin_Event
+func callbackQVirtualKeyboardExtensionPlugin_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQVirtualKeyboardExtensionPluginFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QVirtualKeyboardExtensionPlugin) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QVirtualKeyboardExtensionPlugin_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+	}
+	return false
+}
+
+//export callbackQVirtualKeyboardExtensionPlugin_EventFilter
+func callbackQVirtualKeyboardExtensionPlugin_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQVirtualKeyboardExtensionPluginFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QVirtualKeyboardExtensionPlugin) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QVirtualKeyboardExtensionPlugin_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+	}
+	return false
+}
+
 //export callbackQVirtualKeyboardExtensionPlugin_ObjectNameChanged
 func callbackQVirtualKeyboardExtensionPlugin_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtVirtualKeyboard_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -1991,32 +1901,11 @@ func NewQVirtualKeyboardInputContextFromPointer(ptr unsafe.Pointer) (n *QVirtual
 	n.SetPointer(ptr)
 	return
 }
-func QVirtualKeyboardInputContext_Tr(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
+func (ptr *QVirtualKeyboardInputContext) AnchorPosition() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QVirtualKeyboardInputContext_AnchorPosition(ptr.Pointer())))
 	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QVirtualKeyboardInputContext_QVirtualKeyboardInputContext_Tr(sC, cC, C.int(int32(n))))
-}
-
-func (ptr *QVirtualKeyboardInputContext) Tr(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QVirtualKeyboardInputContext_QVirtualKeyboardInputContext_Tr(sC, cC, C.int(int32(n))))
+	return 0
 }
 
 //export callbackQVirtualKeyboardInputContext_AnchorPositionChanged
@@ -2059,6 +1948,13 @@ func (ptr *QVirtualKeyboardInputContext) AnchorPositionChanged() {
 	}
 }
 
+func (ptr *QVirtualKeyboardInputContext) AnchorRectIntersectsClipRect() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QVirtualKeyboardInputContext_AnchorRectIntersectsClipRect(ptr.Pointer())) != 0
+	}
+	return false
+}
+
 //export callbackQVirtualKeyboardInputContext_AnchorRectIntersectsClipRectChanged
 func callbackQVirtualKeyboardInputContext_AnchorRectIntersectsClipRectChanged(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "anchorRectIntersectsClipRectChanged"); signal != nil {
@@ -2097,6 +1993,15 @@ func (ptr *QVirtualKeyboardInputContext) AnchorRectIntersectsClipRectChanged() {
 	if ptr.Pointer() != nil {
 		C.QVirtualKeyboardInputContext_AnchorRectIntersectsClipRectChanged(ptr.Pointer())
 	}
+}
+
+func (ptr *QVirtualKeyboardInputContext) AnchorRectangle() *core.QRectF {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQRectFFromPointer(C.QVirtualKeyboardInputContext_AnchorRectangle(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		return tmpValue
+	}
+	return nil
 }
 
 //export callbackQVirtualKeyboardInputContext_AnchorRectangleChanged
@@ -2242,6 +2147,13 @@ func (ptr *QVirtualKeyboardInputContext) Commit2(text string, replaceFrom int, r
 	}
 }
 
+func (ptr *QVirtualKeyboardInputContext) CursorPosition() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QVirtualKeyboardInputContext_CursorPosition(ptr.Pointer())))
+	}
+	return 0
+}
+
 //export callbackQVirtualKeyboardInputContext_CursorPositionChanged
 func callbackQVirtualKeyboardInputContext_CursorPositionChanged(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "cursorPositionChanged"); signal != nil {
@@ -2280,6 +2192,13 @@ func (ptr *QVirtualKeyboardInputContext) CursorPositionChanged() {
 	if ptr.Pointer() != nil {
 		C.QVirtualKeyboardInputContext_CursorPositionChanged(ptr.Pointer())
 	}
+}
+
+func (ptr *QVirtualKeyboardInputContext) CursorRectIntersectsClipRect() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QVirtualKeyboardInputContext_CursorRectIntersectsClipRect(ptr.Pointer())) != 0
+	}
+	return false
 }
 
 //export callbackQVirtualKeyboardInputContext_CursorRectIntersectsClipRectChanged
@@ -2322,6 +2241,15 @@ func (ptr *QVirtualKeyboardInputContext) CursorRectIntersectsClipRectChanged() {
 	}
 }
 
+func (ptr *QVirtualKeyboardInputContext) CursorRectangle() *core.QRectF {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQRectFFromPointer(C.QVirtualKeyboardInputContext_CursorRectangle(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		return tmpValue
+	}
+	return nil
+}
+
 //export callbackQVirtualKeyboardInputContext_CursorRectangleChanged
 func callbackQVirtualKeyboardInputContext_CursorRectangleChanged(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "cursorRectangleChanged"); signal != nil {
@@ -2360,6 +2288,75 @@ func (ptr *QVirtualKeyboardInputContext) CursorRectangleChanged() {
 	if ptr.Pointer() != nil {
 		C.QVirtualKeyboardInputContext_CursorRectangleChanged(ptr.Pointer())
 	}
+}
+
+func (ptr *QVirtualKeyboardInputContext) InputEngine() *QVirtualKeyboardInputEngine {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQVirtualKeyboardInputEngineFromPointer(C.QVirtualKeyboardInputContext_InputEngine(ptr.Pointer()))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QVirtualKeyboardInputContext) InputItem() *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QVirtualKeyboardInputContext_InputItem(ptr.Pointer()))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQVirtualKeyboardInputContext_InputItemChanged
+func callbackQVirtualKeyboardInputContext_InputItemChanged(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "inputItemChanged"); signal != nil {
+		(*(*func())(signal))()
+	}
+
+}
+
+func (ptr *QVirtualKeyboardInputContext) ConnectInputItemChanged(f func()) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "inputItemChanged") {
+			C.QVirtualKeyboardInputContext_ConnectInputItemChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "inputItemChanged"); signal != nil {
+			f := func() {
+				(*(*func())(signal))()
+				f()
+			}
+			qt.ConnectSignal(ptr.Pointer(), "inputItemChanged", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "inputItemChanged", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QVirtualKeyboardInputContext) DisconnectInputItemChanged() {
+	if ptr.Pointer() != nil {
+		C.QVirtualKeyboardInputContext_DisconnectInputItemChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "inputItemChanged")
+	}
+}
+
+func (ptr *QVirtualKeyboardInputContext) InputItemChanged() {
+	if ptr.Pointer() != nil {
+		C.QVirtualKeyboardInputContext_InputItemChanged(ptr.Pointer())
+	}
+}
+
+func (ptr *QVirtualKeyboardInputContext) InputMethodHints() core.Qt__InputMethodHint {
+	if ptr.Pointer() != nil {
+		return core.Qt__InputMethodHint(C.QVirtualKeyboardInputContext_InputMethodHints(ptr.Pointer()))
+	}
+	return 0
 }
 
 //export callbackQVirtualKeyboardInputContext_InputMethodHintsChanged
@@ -2402,6 +2399,48 @@ func (ptr *QVirtualKeyboardInputContext) InputMethodHintsChanged() {
 	}
 }
 
+func (ptr *QVirtualKeyboardInputContext) IsAnimating() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QVirtualKeyboardInputContext_IsAnimating(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QVirtualKeyboardInputContext) IsCapsLockActive() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QVirtualKeyboardInputContext_IsCapsLockActive(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QVirtualKeyboardInputContext) IsSelectionControlVisible() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QVirtualKeyboardInputContext_IsSelectionControlVisible(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QVirtualKeyboardInputContext) IsShiftActive() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QVirtualKeyboardInputContext_IsShiftActive(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QVirtualKeyboardInputContext) IsUppercase() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QVirtualKeyboardInputContext_IsUppercase(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QVirtualKeyboardInputContext) Locale() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QVirtualKeyboardInputContext_Locale(ptr.Pointer()))
+	}
+	return ""
+}
+
 //export callbackQVirtualKeyboardInputContext_LocaleChanged
 func callbackQVirtualKeyboardInputContext_LocaleChanged(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "localeChanged"); signal != nil {
@@ -2442,6 +2481,13 @@ func (ptr *QVirtualKeyboardInputContext) LocaleChanged() {
 	}
 }
 
+func (ptr *QVirtualKeyboardInputContext) PreeditText() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QVirtualKeyboardInputContext_PreeditText(ptr.Pointer()))
+	}
+	return ""
+}
+
 //export callbackQVirtualKeyboardInputContext_PreeditTextChanged
 func callbackQVirtualKeyboardInputContext_PreeditTextChanged(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "preeditTextChanged"); signal != nil {
@@ -2480,6 +2526,13 @@ func (ptr *QVirtualKeyboardInputContext) PreeditTextChanged() {
 	if ptr.Pointer() != nil {
 		C.QVirtualKeyboardInputContext_PreeditTextChanged(ptr.Pointer())
 	}
+}
+
+func (ptr *QVirtualKeyboardInputContext) SelectedText() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QVirtualKeyboardInputContext_SelectedText(ptr.Pointer()))
+	}
+	return ""
 }
 
 //export callbackQVirtualKeyboardInputContext_SelectedTextChanged
@@ -2619,6 +2672,13 @@ func (ptr *QVirtualKeyboardInputContext) ShiftActiveChanged() {
 	}
 }
 
+func (ptr *QVirtualKeyboardInputContext) SurroundingText() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QVirtualKeyboardInputContext_SurroundingText(ptr.Pointer()))
+	}
+	return ""
+}
+
 //export callbackQVirtualKeyboardInputContext_SurroundingTextChanged
 func callbackQVirtualKeyboardInputContext_SurroundingTextChanged(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "surroundingTextChanged"); signal != nil {
@@ -2699,237 +2759,12 @@ func (ptr *QVirtualKeyboardInputContext) UppercaseChanged() {
 	}
 }
 
-func (ptr *QVirtualKeyboardInputContext) AnchorRectangle() *core.QRectF {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQRectFFromPointer(C.QVirtualKeyboardInputContext_AnchorRectangle(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QVirtualKeyboardInputContext) CursorRectangle() *core.QRectF {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQRectFFromPointer(C.QVirtualKeyboardInputContext_CursorRectangle(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QVirtualKeyboardInputContext) Locale() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QVirtualKeyboardInputContext_Locale(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QVirtualKeyboardInputContext) PreeditText() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QVirtualKeyboardInputContext_PreeditText(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QVirtualKeyboardInputContext) SelectedText() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QVirtualKeyboardInputContext_SelectedText(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QVirtualKeyboardInputContext) SurroundingText() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QVirtualKeyboardInputContext_SurroundingText(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QVirtualKeyboardInputContext) InputEngine() *QVirtualKeyboardInputEngine {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQVirtualKeyboardInputEngineFromPointer(C.QVirtualKeyboardInputContext_InputEngine(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QVirtualKeyboardInputContext) InputMethodHints() core.Qt__InputMethodHint {
-	if ptr.Pointer() != nil {
-		return core.Qt__InputMethodHint(C.QVirtualKeyboardInputContext_InputMethodHints(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QVirtualKeyboardInputContext) AnchorRectIntersectsClipRect() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QVirtualKeyboardInputContext_AnchorRectIntersectsClipRect(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QVirtualKeyboardInputContext) CursorRectIntersectsClipRect() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QVirtualKeyboardInputContext_CursorRectIntersectsClipRect(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QVirtualKeyboardInputContext) IsAnimating() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QVirtualKeyboardInputContext_IsAnimating(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QVirtualKeyboardInputContext) IsCapsLockActive() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QVirtualKeyboardInputContext_IsCapsLockActive(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QVirtualKeyboardInputContext) IsSelectionControlVisible() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QVirtualKeyboardInputContext_IsSelectionControlVisible(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QVirtualKeyboardInputContext) IsShiftActive() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QVirtualKeyboardInputContext_IsShiftActive(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QVirtualKeyboardInputContext) IsUppercase() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QVirtualKeyboardInputContext_IsUppercase(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-//export callbackQVirtualKeyboardInputContext_MetaObject
-func callbackQVirtualKeyboardInputContext_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQVirtualKeyboardInputContextFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QVirtualKeyboardInputContext) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QVirtualKeyboardInputContext_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
-func (ptr *QVirtualKeyboardInputContext) AnchorPosition() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QVirtualKeyboardInputContext_AnchorPosition(ptr.Pointer())))
-	}
-	return 0
-}
-
-func (ptr *QVirtualKeyboardInputContext) CursorPosition() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QVirtualKeyboardInputContext_CursorPosition(ptr.Pointer())))
-	}
-	return 0
-}
-
-func (ptr *QVirtualKeyboardInputContext) __setPreeditText_attributes_newList() unsafe.Pointer {
-	return C.QVirtualKeyboardInputContext___setPreeditText_attributes_newList(ptr.Pointer())
-}
-
 func (ptr *QVirtualKeyboardInputContext) __preeditTextAttributes_newList() unsafe.Pointer {
 	return C.QVirtualKeyboardInputContext___preeditTextAttributes_newList(ptr.Pointer())
 }
 
-func (ptr *QVirtualKeyboardInputContext) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QVirtualKeyboardInputContext___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QVirtualKeyboardInputContext) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QVirtualKeyboardInputContext___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
-}
-
-func (ptr *QVirtualKeyboardInputContext) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return C.QVirtualKeyboardInputContext___dynamicPropertyNames_newList(ptr.Pointer())
-}
-
-func (ptr *QVirtualKeyboardInputContext) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QVirtualKeyboardInputContext___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QVirtualKeyboardInputContext) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QVirtualKeyboardInputContext___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QVirtualKeyboardInputContext) __findChildren_newList2() unsafe.Pointer {
-	return C.QVirtualKeyboardInputContext___findChildren_newList2(ptr.Pointer())
-}
-
-func (ptr *QVirtualKeyboardInputContext) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QVirtualKeyboardInputContext___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QVirtualKeyboardInputContext) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QVirtualKeyboardInputContext___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QVirtualKeyboardInputContext) __findChildren_newList3() unsafe.Pointer {
-	return C.QVirtualKeyboardInputContext___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QVirtualKeyboardInputContext) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QVirtualKeyboardInputContext___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QVirtualKeyboardInputContext) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QVirtualKeyboardInputContext___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QVirtualKeyboardInputContext) __findChildren_newList() unsafe.Pointer {
-	return C.QVirtualKeyboardInputContext___findChildren_newList(ptr.Pointer())
+func (ptr *QVirtualKeyboardInputContext) __setPreeditText_attributes_newList() unsafe.Pointer {
+	return C.QVirtualKeyboardInputContext___setPreeditText_attributes_newList(ptr.Pointer())
 }
 
 func (ptr *QVirtualKeyboardInputContext) __children_atList(i int) *core.QObject {
@@ -2953,36 +2788,86 @@ func (ptr *QVirtualKeyboardInputContext) __children_newList() unsafe.Pointer {
 	return C.QVirtualKeyboardInputContext___children_newList(ptr.Pointer())
 }
 
-//export callbackQVirtualKeyboardInputContext_Event
-func callbackQVirtualKeyboardInputContext_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQVirtualKeyboardInputContextFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
-}
-
-func (ptr *QVirtualKeyboardInputContext) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QVirtualKeyboardInputContext) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
-		return int8(C.QVirtualKeyboardInputContext_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+		tmpValue := core.NewQByteArrayFromPointer(C.QVirtualKeyboardInputContext___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
 	}
-	return false
+	return nil
 }
 
-//export callbackQVirtualKeyboardInputContext_EventFilter
-func callbackQVirtualKeyboardInputContext_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQVirtualKeyboardInputContextFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QVirtualKeyboardInputContext) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+func (ptr *QVirtualKeyboardInputContext) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		return int8(C.QVirtualKeyboardInputContext_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+		C.QVirtualKeyboardInputContext___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
 	}
-	return false
+}
+
+func (ptr *QVirtualKeyboardInputContext) __dynamicPropertyNames_newList() unsafe.Pointer {
+	return C.QVirtualKeyboardInputContext___dynamicPropertyNames_newList(ptr.Pointer())
+}
+
+func (ptr *QVirtualKeyboardInputContext) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QVirtualKeyboardInputContext___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QVirtualKeyboardInputContext) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QVirtualKeyboardInputContext___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QVirtualKeyboardInputContext) __findChildren_newList() unsafe.Pointer {
+	return C.QVirtualKeyboardInputContext___findChildren_newList(ptr.Pointer())
+}
+
+func (ptr *QVirtualKeyboardInputContext) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QVirtualKeyboardInputContext___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QVirtualKeyboardInputContext) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QVirtualKeyboardInputContext___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QVirtualKeyboardInputContext) __findChildren_newList3() unsafe.Pointer {
+	return C.QVirtualKeyboardInputContext___findChildren_newList3(ptr.Pointer())
+}
+
+func (ptr *QVirtualKeyboardInputContext) __qFindChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QVirtualKeyboardInputContext___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QVirtualKeyboardInputContext) __qFindChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QVirtualKeyboardInputContext___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QVirtualKeyboardInputContext) __qFindChildren_newList2() unsafe.Pointer {
+	return C.QVirtualKeyboardInputContext___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQVirtualKeyboardInputContext_ChildEvent
@@ -3069,6 +2954,38 @@ func (ptr *QVirtualKeyboardInputContext) DisconnectNotifyDefault(sign core.QMeta
 	}
 }
 
+//export callbackQVirtualKeyboardInputContext_Event
+func callbackQVirtualKeyboardInputContext_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQVirtualKeyboardInputContextFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QVirtualKeyboardInputContext) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QVirtualKeyboardInputContext_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+	}
+	return false
+}
+
+//export callbackQVirtualKeyboardInputContext_EventFilter
+func callbackQVirtualKeyboardInputContext_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQVirtualKeyboardInputContextFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QVirtualKeyboardInputContext) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QVirtualKeyboardInputContext_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+	}
+	return false
+}
+
 //export callbackQVirtualKeyboardInputContext_ObjectNameChanged
 func callbackQVirtualKeyboardInputContext_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtVirtualKeyboard_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -3131,6 +3048,15 @@ func NewQVirtualKeyboardInputEngineFromPointer(ptr unsafe.Pointer) (n *QVirtualK
 	return
 }
 
+//go:generate stringer -type=QVirtualKeyboardInputEngine__TextCase
+//QVirtualKeyboardInputEngine::TextCase
+type QVirtualKeyboardInputEngine__TextCase int64
+
+const (
+	QVirtualKeyboardInputEngine__Lower QVirtualKeyboardInputEngine__TextCase = QVirtualKeyboardInputEngine__TextCase(0)
+	QVirtualKeyboardInputEngine__Upper QVirtualKeyboardInputEngine__TextCase = QVirtualKeyboardInputEngine__TextCase(1)
+)
+
 //go:generate stringer -type=QVirtualKeyboardInputEngine__InputMode
 //QVirtualKeyboardInputEngine::InputMode
 type QVirtualKeyboardInputEngine__InputMode int64
@@ -3177,107 +3103,11 @@ const (
 	QVirtualKeyboardInputEngine__WordAtCursor     QVirtualKeyboardInputEngine__ReselectFlag = QVirtualKeyboardInputEngine__ReselectFlag(QVirtualKeyboardInputEngine__WordBeforeCursor | QVirtualKeyboardInputEngine__WordAfterCursor)
 )
 
-//go:generate stringer -type=QVirtualKeyboardInputEngine__TextCase
-//QVirtualKeyboardInputEngine::TextCase
-type QVirtualKeyboardInputEngine__TextCase int64
-
-const (
-	QVirtualKeyboardInputEngine__Lower QVirtualKeyboardInputEngine__TextCase = QVirtualKeyboardInputEngine__TextCase(0)
-	QVirtualKeyboardInputEngine__Upper QVirtualKeyboardInputEngine__TextCase = QVirtualKeyboardInputEngine__TextCase(1)
-)
-
-func QVirtualKeyboardInputEngine_Tr(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QVirtualKeyboardInputEngine_QVirtualKeyboardInputEngine_Tr(sC, cC, C.int(int32(n))))
-}
-
-func (ptr *QVirtualKeyboardInputEngine) Tr(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QVirtualKeyboardInputEngine_QVirtualKeyboardInputEngine_Tr(sC, cC, C.int(int32(n))))
-}
-
-func (ptr *QVirtualKeyboardInputEngine) TraceBegin(traceId int, patternRecognitionMode QVirtualKeyboardInputEngine__PatternRecognitionMode, traceCaptureDeviceInfo map[string]*core.QVariant, traceScreenInfo map[string]*core.QVariant) *QVirtualKeyboardTrace {
+func (ptr *QVirtualKeyboardInputEngine) ActiveKey() core.Qt__Key {
 	if ptr.Pointer() != nil {
-		tmpValue := NewQVirtualKeyboardTraceFromPointer(C.QVirtualKeyboardInputEngine_TraceBegin(ptr.Pointer(), C.int(int32(traceId)), C.longlong(patternRecognitionMode), func() unsafe.Pointer {
-			tmpList := NewQVirtualKeyboardInputEngineFromPointer(NewQVirtualKeyboardInputEngineFromPointer(nil).__traceBegin_traceCaptureDeviceInfo_newList())
-			for k, v := range traceCaptureDeviceInfo {
-				tmpList.__traceBegin_traceCaptureDeviceInfo_setList(k, v)
-			}
-			return tmpList.Pointer()
-		}(), func() unsafe.Pointer {
-			tmpList := NewQVirtualKeyboardInputEngineFromPointer(NewQVirtualKeyboardInputEngineFromPointer(nil).__traceBegin_traceScreenInfo_newList())
-			for k, v := range traceScreenInfo {
-				tmpList.__traceBegin_traceScreenInfo_setList(k, v)
-			}
-			return tmpList.Pointer()
-		}()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+		return core.Qt__Key(C.QVirtualKeyboardInputEngine_ActiveKey(ptr.Pointer()))
 	}
-	return nil
-}
-
-func (ptr *QVirtualKeyboardInputEngine) TraceEnd(trace QVirtualKeyboardTrace_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QVirtualKeyboardInputEngine_TraceEnd(ptr.Pointer(), PointerFromQVirtualKeyboardTrace(trace))) != 0
-	}
-	return false
-}
-
-func (ptr *QVirtualKeyboardInputEngine) VirtualKeyClick(key core.Qt__Key, text string, modifiers core.Qt__KeyboardModifier) bool {
-	if ptr.Pointer() != nil {
-		var textC *C.char
-		if text != "" {
-			textC = C.CString(text)
-			defer C.free(unsafe.Pointer(textC))
-		}
-		return int8(C.QVirtualKeyboardInputEngine_VirtualKeyClick(ptr.Pointer(), C.longlong(key), C.struct_QtVirtualKeyboard_PackedString{data: textC, len: C.longlong(len(text))}, C.longlong(modifiers))) != 0
-	}
-	return false
-}
-
-func (ptr *QVirtualKeyboardInputEngine) VirtualKeyPress(key core.Qt__Key, text string, modifiers core.Qt__KeyboardModifier, repeat bool) bool {
-	if ptr.Pointer() != nil {
-		var textC *C.char
-		if text != "" {
-			textC = C.CString(text)
-			defer C.free(unsafe.Pointer(textC))
-		}
-		return int8(C.QVirtualKeyboardInputEngine_VirtualKeyPress(ptr.Pointer(), C.longlong(key), C.struct_QtVirtualKeyboard_PackedString{data: textC, len: C.longlong(len(text))}, C.longlong(modifiers), C.char(int8(qt.GoBoolToInt(repeat))))) != 0
-	}
-	return false
-}
-
-func (ptr *QVirtualKeyboardInputEngine) VirtualKeyRelease(key core.Qt__Key, text string, modifiers core.Qt__KeyboardModifier) bool {
-	if ptr.Pointer() != nil {
-		var textC *C.char
-		if text != "" {
-			textC = C.CString(text)
-			defer C.free(unsafe.Pointer(textC))
-		}
-		return int8(C.QVirtualKeyboardInputEngine_VirtualKeyRelease(ptr.Pointer(), C.longlong(key), C.struct_QtVirtualKeyboard_PackedString{data: textC, len: C.longlong(len(text))}, C.longlong(modifiers))) != 0
-	}
-	return false
+	return 0
 }
 
 //export callbackQVirtualKeyboardInputEngine_ActiveKeyChanged
@@ -3318,6 +3148,28 @@ func (ptr *QVirtualKeyboardInputEngine) ActiveKeyChanged(key core.Qt__Key) {
 	if ptr.Pointer() != nil {
 		C.QVirtualKeyboardInputEngine_ActiveKeyChanged(ptr.Pointer(), C.longlong(key))
 	}
+}
+
+func (ptr *QVirtualKeyboardInputEngine) InputContext() *QVirtualKeyboardInputContext {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQVirtualKeyboardInputContextFromPointer(C.QVirtualKeyboardInputEngine_InputContext(ptr.Pointer()))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QVirtualKeyboardInputEngine) InputMethod() *QVirtualKeyboardAbstractInputMethod {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQVirtualKeyboardAbstractInputMethodFromPointer(C.QVirtualKeyboardInputEngine_InputMethod(ptr.Pointer()))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
 }
 
 //export callbackQVirtualKeyboardInputEngine_InputMethodChanged
@@ -3440,6 +3292,13 @@ func (ptr *QVirtualKeyboardInputEngine) InputMethodUpdate() {
 	}
 }
 
+func (ptr *QVirtualKeyboardInputEngine) InputMode() QVirtualKeyboardInputEngine__InputMode {
+	if ptr.Pointer() != nil {
+		return QVirtualKeyboardInputEngine__InputMode(C.QVirtualKeyboardInputEngine_InputMode(ptr.Pointer()))
+	}
+	return 0
+}
+
 //export callbackQVirtualKeyboardInputEngine_InputModeChanged
 func callbackQVirtualKeyboardInputEngine_InputModeChanged(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "inputModeChanged"); signal != nil {
@@ -3478,6 +3337,20 @@ func (ptr *QVirtualKeyboardInputEngine) InputModeChanged() {
 	if ptr.Pointer() != nil {
 		C.QVirtualKeyboardInputEngine_InputModeChanged(ptr.Pointer())
 	}
+}
+
+func (ptr *QVirtualKeyboardInputEngine) InputModes() []int {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtVirtualKeyboard_PackedList) []int {
+			out := make([]int, int(l.len))
+			tmpList := NewQVirtualKeyboardInputEngineFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__inputModes_atList(i)
+			}
+			return out
+		}(C.QVirtualKeyboardInputEngine_InputModes(ptr.Pointer()))
+	}
+	return make([]int, 0)
 }
 
 //export callbackQVirtualKeyboardInputEngine_InputModesChanged
@@ -3520,6 +3393,20 @@ func (ptr *QVirtualKeyboardInputEngine) InputModesChanged() {
 	}
 }
 
+func (ptr *QVirtualKeyboardInputEngine) PatternRecognitionModes() []int {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtVirtualKeyboard_PackedList) []int {
+			out := make([]int, int(l.len))
+			tmpList := NewQVirtualKeyboardInputEngineFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__patternRecognitionModes_atList(i)
+			}
+			return out
+		}(C.QVirtualKeyboardInputEngine_PatternRecognitionModes(ptr.Pointer()))
+	}
+	return make([]int, 0)
+}
+
 //export callbackQVirtualKeyboardInputEngine_PatternRecognitionModesChanged
 func callbackQVirtualKeyboardInputEngine_PatternRecognitionModesChanged(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "patternRecognitionModesChanged"); signal != nil {
@@ -3558,6 +3445,13 @@ func (ptr *QVirtualKeyboardInputEngine) PatternRecognitionModesChanged() {
 	if ptr.Pointer() != nil {
 		C.QVirtualKeyboardInputEngine_PatternRecognitionModesChanged(ptr.Pointer())
 	}
+}
+
+func (ptr *QVirtualKeyboardInputEngine) PreviousKey() core.Qt__Key {
+	if ptr.Pointer() != nil {
+		return core.Qt__Key(C.QVirtualKeyboardInputEngine_PreviousKey(ptr.Pointer()))
+	}
+	return 0
 }
 
 //export callbackQVirtualKeyboardInputEngine_PreviousKeyChanged
@@ -3600,6 +3494,13 @@ func (ptr *QVirtualKeyboardInputEngine) PreviousKeyChanged(key core.Qt__Key) {
 	}
 }
 
+func (ptr *QVirtualKeyboardInputEngine) Reselect(cursorPosition int, reselectFlags QVirtualKeyboardInputEngine__ReselectFlag) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QVirtualKeyboardInputEngine_Reselect(ptr.Pointer(), C.int(int32(cursorPosition)), C.longlong(reselectFlags))) != 0
+	}
+	return false
+}
+
 func (ptr *QVirtualKeyboardInputEngine) SetInputMethod(inputMethod QVirtualKeyboardAbstractInputMethod_ITF) {
 	if ptr.Pointer() != nil {
 		C.QVirtualKeyboardInputEngine_SetInputMethod(ptr.Pointer(), PointerFromQVirtualKeyboardAbstractInputMethod(inputMethod))
@@ -3612,10 +3513,52 @@ func (ptr *QVirtualKeyboardInputEngine) SetInputMode(inputMode QVirtualKeyboardI
 	}
 }
 
+func (ptr *QVirtualKeyboardInputEngine) TraceBegin(traceId int, patternRecognitionMode QVirtualKeyboardInputEngine__PatternRecognitionMode, traceCaptureDeviceInfo map[string]*core.QVariant, traceScreenInfo map[string]*core.QVariant) *QVirtualKeyboardTrace {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQVirtualKeyboardTraceFromPointer(C.QVirtualKeyboardInputEngine_TraceBegin(ptr.Pointer(), C.int(int32(traceId)), C.longlong(patternRecognitionMode), func() unsafe.Pointer {
+			tmpList := NewQVirtualKeyboardInputEngineFromPointer(NewQVirtualKeyboardInputEngineFromPointer(nil).__traceBegin_traceCaptureDeviceInfo_newList())
+			for k, v := range traceCaptureDeviceInfo {
+				tmpList.__traceBegin_traceCaptureDeviceInfo_setList(k, v)
+			}
+			return tmpList.Pointer()
+		}(), func() unsafe.Pointer {
+			tmpList := NewQVirtualKeyboardInputEngineFromPointer(NewQVirtualKeyboardInputEngineFromPointer(nil).__traceBegin_traceScreenInfo_newList())
+			for k, v := range traceScreenInfo {
+				tmpList.__traceBegin_traceScreenInfo_setList(k, v)
+			}
+			return tmpList.Pointer()
+		}()))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QVirtualKeyboardInputEngine) TraceEnd(trace QVirtualKeyboardTrace_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QVirtualKeyboardInputEngine_TraceEnd(ptr.Pointer(), PointerFromQVirtualKeyboardTrace(trace))) != 0
+	}
+	return false
+}
+
 func (ptr *QVirtualKeyboardInputEngine) VirtualKeyCancel() {
 	if ptr.Pointer() != nil {
 		C.QVirtualKeyboardInputEngine_VirtualKeyCancel(ptr.Pointer())
 	}
+}
+
+func (ptr *QVirtualKeyboardInputEngine) VirtualKeyClick(key core.Qt__Key, text string, modifiers core.Qt__KeyboardModifier) bool {
+	if ptr.Pointer() != nil {
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
+		return int8(C.QVirtualKeyboardInputEngine_VirtualKeyClick(ptr.Pointer(), C.longlong(key), C.struct_QtVirtualKeyboard_PackedString{data: textC, len: C.longlong(len(text))}, C.longlong(modifiers))) != 0
+	}
+	return false
 }
 
 //export callbackQVirtualKeyboardInputEngine_VirtualKeyClicked
@@ -3663,6 +3606,41 @@ func (ptr *QVirtualKeyboardInputEngine) VirtualKeyClicked(key core.Qt__Key, text
 	}
 }
 
+func (ptr *QVirtualKeyboardInputEngine) VirtualKeyPress(key core.Qt__Key, text string, modifiers core.Qt__KeyboardModifier, repeat bool) bool {
+	if ptr.Pointer() != nil {
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
+		return int8(C.QVirtualKeyboardInputEngine_VirtualKeyPress(ptr.Pointer(), C.longlong(key), C.struct_QtVirtualKeyboard_PackedString{data: textC, len: C.longlong(len(text))}, C.longlong(modifiers), C.char(int8(qt.GoBoolToInt(repeat))))) != 0
+	}
+	return false
+}
+
+func (ptr *QVirtualKeyboardInputEngine) VirtualKeyRelease(key core.Qt__Key, text string, modifiers core.Qt__KeyboardModifier) bool {
+	if ptr.Pointer() != nil {
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
+		return int8(C.QVirtualKeyboardInputEngine_VirtualKeyRelease(ptr.Pointer(), C.longlong(key), C.struct_QtVirtualKeyboard_PackedString{data: textC, len: C.longlong(len(text))}, C.longlong(modifiers))) != 0
+	}
+	return false
+}
+
+func (ptr *QVirtualKeyboardInputEngine) WordCandidateListModel() *QVirtualKeyboardSelectionListModel {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQVirtualKeyboardSelectionListModelFromPointer(C.QVirtualKeyboardInputEngine_WordCandidateListModel(ptr.Pointer()))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
 //export callbackQVirtualKeyboardInputEngine_WordCandidateListModelChanged
 func callbackQVirtualKeyboardInputEngine_WordCandidateListModelChanged(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "wordCandidateListModelChanged"); signal != nil {
@@ -3701,6 +3679,13 @@ func (ptr *QVirtualKeyboardInputEngine) WordCandidateListModelChanged() {
 	if ptr.Pointer() != nil {
 		C.QVirtualKeyboardInputEngine_WordCandidateListModelChanged(ptr.Pointer())
 	}
+}
+
+func (ptr *QVirtualKeyboardInputEngine) WordCandidateListVisibleHint() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QVirtualKeyboardInputEngine_WordCandidateListVisibleHint(ptr.Pointer())) != 0
+	}
+	return false
 }
 
 //export callbackQVirtualKeyboardInputEngine_WordCandidateListVisibleHintChanged
@@ -3743,109 +3728,38 @@ func (ptr *QVirtualKeyboardInputEngine) WordCandidateListVisibleHintChanged() {
 	}
 }
 
-func (ptr *QVirtualKeyboardInputEngine) InputModes() []int {
+func (ptr *QVirtualKeyboardInputEngine) __inputModes_atList(i int) int {
 	if ptr.Pointer() != nil {
-		return func(l C.struct_QtVirtualKeyboard_PackedList) []int {
-			out := make([]int, int(l.len))
-			tmpList := NewQVirtualKeyboardInputEngineFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__inputModes_atList(i)
-			}
-			return out
-		}(C.QVirtualKeyboardInputEngine_InputModes(ptr.Pointer()))
-	}
-	return make([]int, 0)
-}
-
-func (ptr *QVirtualKeyboardInputEngine) PatternRecognitionModes() []int {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtVirtualKeyboard_PackedList) []int {
-			out := make([]int, int(l.len))
-			tmpList := NewQVirtualKeyboardInputEngineFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__patternRecognitionModes_atList(i)
-			}
-			return out
-		}(C.QVirtualKeyboardInputEngine_PatternRecognitionModes(ptr.Pointer()))
-	}
-	return make([]int, 0)
-}
-
-func (ptr *QVirtualKeyboardInputEngine) InputMethod() *QVirtualKeyboardAbstractInputMethod {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQVirtualKeyboardAbstractInputMethodFromPointer(C.QVirtualKeyboardInputEngine_InputMethod(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QVirtualKeyboardInputEngine) InputContext() *QVirtualKeyboardInputContext {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQVirtualKeyboardInputContextFromPointer(C.QVirtualKeyboardInputEngine_InputContext(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QVirtualKeyboardInputEngine) InputMode() QVirtualKeyboardInputEngine__InputMode {
-	if ptr.Pointer() != nil {
-		return QVirtualKeyboardInputEngine__InputMode(C.QVirtualKeyboardInputEngine_InputMode(ptr.Pointer()))
+		return int(int32(C.QVirtualKeyboardInputEngine___inputModes_atList(ptr.Pointer(), C.int(int32(i)))))
 	}
 	return 0
 }
 
-func (ptr *QVirtualKeyboardInputEngine) WordCandidateListModel() *QVirtualKeyboardSelectionListModel {
+func (ptr *QVirtualKeyboardInputEngine) __inputModes_setList(i int) {
 	if ptr.Pointer() != nil {
-		tmpValue := NewQVirtualKeyboardSelectionListModelFromPointer(C.QVirtualKeyboardInputEngine_WordCandidateListModel(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+		C.QVirtualKeyboardInputEngine___inputModes_setList(ptr.Pointer(), C.int(int32(i)))
 	}
-	return nil
 }
 
-func (ptr *QVirtualKeyboardInputEngine) ActiveKey() core.Qt__Key {
+func (ptr *QVirtualKeyboardInputEngine) __inputModes_newList() unsafe.Pointer {
+	return C.QVirtualKeyboardInputEngine___inputModes_newList(ptr.Pointer())
+}
+
+func (ptr *QVirtualKeyboardInputEngine) __patternRecognitionModes_atList(i int) int {
 	if ptr.Pointer() != nil {
-		return core.Qt__Key(C.QVirtualKeyboardInputEngine_ActiveKey(ptr.Pointer()))
+		return int(int32(C.QVirtualKeyboardInputEngine___patternRecognitionModes_atList(ptr.Pointer(), C.int(int32(i)))))
 	}
 	return 0
 }
 
-func (ptr *QVirtualKeyboardInputEngine) PreviousKey() core.Qt__Key {
+func (ptr *QVirtualKeyboardInputEngine) __patternRecognitionModes_setList(i int) {
 	if ptr.Pointer() != nil {
-		return core.Qt__Key(C.QVirtualKeyboardInputEngine_PreviousKey(ptr.Pointer()))
+		C.QVirtualKeyboardInputEngine___patternRecognitionModes_setList(ptr.Pointer(), C.int(int32(i)))
 	}
-	return 0
 }
 
-func (ptr *QVirtualKeyboardInputEngine) WordCandidateListVisibleHint() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QVirtualKeyboardInputEngine_WordCandidateListVisibleHint(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-//export callbackQVirtualKeyboardInputEngine_MetaObject
-func callbackQVirtualKeyboardInputEngine_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQVirtualKeyboardInputEngineFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QVirtualKeyboardInputEngine) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QVirtualKeyboardInputEngine_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
+func (ptr *QVirtualKeyboardInputEngine) __patternRecognitionModes_newList() unsafe.Pointer {
+	return C.QVirtualKeyboardInputEngine___patternRecognitionModes_newList(ptr.Pointer())
 }
 
 func (ptr *QVirtualKeyboardInputEngine) __traceBegin_traceCaptureDeviceInfo_atList(v string, i int) *core.QVariant {
@@ -3934,40 +3848,6 @@ func (ptr *QVirtualKeyboardInputEngine) __traceBegin_traceScreenInfo_keyList() [
 	return make([]string, 0)
 }
 
-func (ptr *QVirtualKeyboardInputEngine) __inputModes_atList(i int) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QVirtualKeyboardInputEngine___inputModes_atList(ptr.Pointer(), C.int(int32(i)))))
-	}
-	return 0
-}
-
-func (ptr *QVirtualKeyboardInputEngine) __inputModes_setList(i int) {
-	if ptr.Pointer() != nil {
-		C.QVirtualKeyboardInputEngine___inputModes_setList(ptr.Pointer(), C.int(int32(i)))
-	}
-}
-
-func (ptr *QVirtualKeyboardInputEngine) __inputModes_newList() unsafe.Pointer {
-	return C.QVirtualKeyboardInputEngine___inputModes_newList(ptr.Pointer())
-}
-
-func (ptr *QVirtualKeyboardInputEngine) __patternRecognitionModes_atList(i int) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QVirtualKeyboardInputEngine___patternRecognitionModes_atList(ptr.Pointer(), C.int(int32(i)))))
-	}
-	return 0
-}
-
-func (ptr *QVirtualKeyboardInputEngine) __patternRecognitionModes_setList(i int) {
-	if ptr.Pointer() != nil {
-		C.QVirtualKeyboardInputEngine___patternRecognitionModes_setList(ptr.Pointer(), C.int(int32(i)))
-	}
-}
-
-func (ptr *QVirtualKeyboardInputEngine) __patternRecognitionModes_newList() unsafe.Pointer {
-	return C.QVirtualKeyboardInputEngine___patternRecognitionModes_newList(ptr.Pointer())
-}
-
 func (ptr *QVirtualKeyboardInputEngine) ____traceBegin_traceCaptureDeviceInfo_keyList_atList(i int) string {
 	if ptr.Pointer() != nil {
 		return cGoUnpackString(C.QVirtualKeyboardInputEngine_____traceBegin_traceCaptureDeviceInfo_keyList_atList(ptr.Pointer(), C.int(int32(i))))
@@ -4012,6 +3892,27 @@ func (ptr *QVirtualKeyboardInputEngine) ____traceBegin_traceScreenInfo_keyList_n
 	return C.QVirtualKeyboardInputEngine_____traceBegin_traceScreenInfo_keyList_newList(ptr.Pointer())
 }
 
+func (ptr *QVirtualKeyboardInputEngine) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QVirtualKeyboardInputEngine___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QVirtualKeyboardInputEngine) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QVirtualKeyboardInputEngine___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QVirtualKeyboardInputEngine) __children_newList() unsafe.Pointer {
+	return C.QVirtualKeyboardInputEngine___children_newList(ptr.Pointer())
+}
+
 func (ptr *QVirtualKeyboardInputEngine) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QVirtualKeyboardInputEngine___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
@@ -4029,48 +3930,6 @@ func (ptr *QVirtualKeyboardInputEngine) __dynamicPropertyNames_setList(i core.QB
 
 func (ptr *QVirtualKeyboardInputEngine) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QVirtualKeyboardInputEngine___dynamicPropertyNames_newList(ptr.Pointer())
-}
-
-func (ptr *QVirtualKeyboardInputEngine) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QVirtualKeyboardInputEngine___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QVirtualKeyboardInputEngine) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QVirtualKeyboardInputEngine___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QVirtualKeyboardInputEngine) __findChildren_newList2() unsafe.Pointer {
-	return C.QVirtualKeyboardInputEngine___findChildren_newList2(ptr.Pointer())
-}
-
-func (ptr *QVirtualKeyboardInputEngine) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QVirtualKeyboardInputEngine___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QVirtualKeyboardInputEngine) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QVirtualKeyboardInputEngine___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QVirtualKeyboardInputEngine) __findChildren_newList3() unsafe.Pointer {
-	return C.QVirtualKeyboardInputEngine___findChildren_newList3(ptr.Pointer())
 }
 
 func (ptr *QVirtualKeyboardInputEngine) __findChildren_atList(i int) *core.QObject {
@@ -4094,9 +3953,9 @@ func (ptr *QVirtualKeyboardInputEngine) __findChildren_newList() unsafe.Pointer 
 	return C.QVirtualKeyboardInputEngine___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QVirtualKeyboardInputEngine) __children_atList(i int) *core.QObject {
+func (ptr *QVirtualKeyboardInputEngine) __findChildren_atList3(i int) *core.QObject {
 	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QVirtualKeyboardInputEngine___children_atList(ptr.Pointer(), C.int(int32(i))))
+		tmpValue := core.NewQObjectFromPointer(C.QVirtualKeyboardInputEngine___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -4105,46 +3964,35 @@ func (ptr *QVirtualKeyboardInputEngine) __children_atList(i int) *core.QObject {
 	return nil
 }
 
-func (ptr *QVirtualKeyboardInputEngine) __children_setList(i core.QObject_ITF) {
+func (ptr *QVirtualKeyboardInputEngine) __findChildren_setList3(i core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		C.QVirtualKeyboardInputEngine___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+		C.QVirtualKeyboardInputEngine___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *QVirtualKeyboardInputEngine) __children_newList() unsafe.Pointer {
-	return C.QVirtualKeyboardInputEngine___children_newList(ptr.Pointer())
+func (ptr *QVirtualKeyboardInputEngine) __findChildren_newList3() unsafe.Pointer {
+	return C.QVirtualKeyboardInputEngine___findChildren_newList3(ptr.Pointer())
 }
 
-//export callbackQVirtualKeyboardInputEngine_Event
-func callbackQVirtualKeyboardInputEngine_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQVirtualKeyboardInputEngineFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
-}
-
-func (ptr *QVirtualKeyboardInputEngine) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QVirtualKeyboardInputEngine) __qFindChildren_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
-		return int8(C.QVirtualKeyboardInputEngine_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+		tmpValue := core.NewQObjectFromPointer(C.QVirtualKeyboardInputEngine___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return false
+	return nil
 }
 
-//export callbackQVirtualKeyboardInputEngine_EventFilter
-func callbackQVirtualKeyboardInputEngine_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQVirtualKeyboardInputEngineFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QVirtualKeyboardInputEngine) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+func (ptr *QVirtualKeyboardInputEngine) __qFindChildren_setList2(i core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		return int8(C.QVirtualKeyboardInputEngine_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+		C.QVirtualKeyboardInputEngine___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
 	}
-	return false
+}
+
+func (ptr *QVirtualKeyboardInputEngine) __qFindChildren_newList2() unsafe.Pointer {
+	return C.QVirtualKeyboardInputEngine___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQVirtualKeyboardInputEngine_ChildEvent
@@ -4231,6 +4079,38 @@ func (ptr *QVirtualKeyboardInputEngine) DisconnectNotifyDefault(sign core.QMetaM
 	}
 }
 
+//export callbackQVirtualKeyboardInputEngine_Event
+func callbackQVirtualKeyboardInputEngine_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQVirtualKeyboardInputEngineFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QVirtualKeyboardInputEngine) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QVirtualKeyboardInputEngine_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+	}
+	return false
+}
+
+//export callbackQVirtualKeyboardInputEngine_EventFilter
+func callbackQVirtualKeyboardInputEngine_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQVirtualKeyboardInputEngineFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QVirtualKeyboardInputEngine) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QVirtualKeyboardInputEngine_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+	}
+	return false
+}
+
 //export callbackQVirtualKeyboardInputEngine_ObjectNameChanged
 func callbackQVirtualKeyboardInputEngine_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtVirtualKeyboard_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -4293,13 +4173,12 @@ func NewQVirtualKeyboardSelectionListModelFromPointer(ptr unsafe.Pointer) (n *QV
 	return
 }
 
-//go:generate stringer -type=QVirtualKeyboardSelectionListModel__DictionaryType
-//QVirtualKeyboardSelectionListModel::DictionaryType
-type QVirtualKeyboardSelectionListModel__DictionaryType int64
+//go:generate stringer -type=QVirtualKeyboardSelectionListModel__Type
+//QVirtualKeyboardSelectionListModel::Type
+type QVirtualKeyboardSelectionListModel__Type int64
 
 const (
-	QVirtualKeyboardSelectionListModel__Default QVirtualKeyboardSelectionListModel__DictionaryType = QVirtualKeyboardSelectionListModel__DictionaryType(0)
-	QVirtualKeyboardSelectionListModel__User    QVirtualKeyboardSelectionListModel__DictionaryType = QVirtualKeyboardSelectionListModel__DictionaryType(1)
+	QVirtualKeyboardSelectionListModel__WordCandidateList QVirtualKeyboardSelectionListModel__Type = QVirtualKeyboardSelectionListModel__Type(0)
 )
 
 //go:generate stringer -type=QVirtualKeyboardSelectionListModel__Role
@@ -4313,41 +4192,14 @@ const (
 	QVirtualKeyboardSelectionListModel__CanRemoveSuggestion QVirtualKeyboardSelectionListModel__Role = QVirtualKeyboardSelectionListModel__Role(259)
 )
 
-//go:generate stringer -type=QVirtualKeyboardSelectionListModel__Type
-//QVirtualKeyboardSelectionListModel::Type
-type QVirtualKeyboardSelectionListModel__Type int64
+//go:generate stringer -type=QVirtualKeyboardSelectionListModel__DictionaryType
+//QVirtualKeyboardSelectionListModel::DictionaryType
+type QVirtualKeyboardSelectionListModel__DictionaryType int64
 
 const (
-	QVirtualKeyboardSelectionListModel__WordCandidateList QVirtualKeyboardSelectionListModel__Type = QVirtualKeyboardSelectionListModel__Type(0)
+	QVirtualKeyboardSelectionListModel__Default QVirtualKeyboardSelectionListModel__DictionaryType = QVirtualKeyboardSelectionListModel__DictionaryType(0)
+	QVirtualKeyboardSelectionListModel__User    QVirtualKeyboardSelectionListModel__DictionaryType = QVirtualKeyboardSelectionListModel__DictionaryType(1)
 )
-
-func QVirtualKeyboardSelectionListModel_Tr(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QVirtualKeyboardSelectionListModel_QVirtualKeyboardSelectionListModel_Tr(sC, cC, C.int(int32(n))))
-}
-
-func (ptr *QVirtualKeyboardSelectionListModel) Tr(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QVirtualKeyboardSelectionListModel_QVirtualKeyboardSelectionListModel_Tr(sC, cC, C.int(int32(n))))
-}
 
 //export callbackQVirtualKeyboardSelectionListModel_ActiveItemChanged
 func callbackQVirtualKeyboardSelectionListModel_ActiveItemChanged(ptr unsafe.Pointer, index C.int) {
@@ -4386,46 +4238,6 @@ func (ptr *QVirtualKeyboardSelectionListModel) DisconnectActiveItemChanged() {
 func (ptr *QVirtualKeyboardSelectionListModel) ActiveItemChanged(index int) {
 	if ptr.Pointer() != nil {
 		C.QVirtualKeyboardSelectionListModel_ActiveItemChanged(ptr.Pointer(), C.int(int32(index)))
-	}
-}
-
-//export callbackQVirtualKeyboardSelectionListModel_CountChanged
-func callbackQVirtualKeyboardSelectionListModel_CountChanged(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "countChanged"); signal != nil {
-		(*(*func())(signal))()
-	}
-
-}
-
-func (ptr *QVirtualKeyboardSelectionListModel) ConnectCountChanged(f func()) {
-	if ptr.Pointer() != nil {
-
-		if !qt.ExistsSignal(ptr.Pointer(), "countChanged") {
-			C.QVirtualKeyboardSelectionListModel_ConnectCountChanged(ptr.Pointer())
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "countChanged"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "countChanged", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "countChanged", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QVirtualKeyboardSelectionListModel) DisconnectCountChanged() {
-	if ptr.Pointer() != nil {
-		C.QVirtualKeyboardSelectionListModel_DisconnectCountChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "countChanged")
-	}
-}
-
-func (ptr *QVirtualKeyboardSelectionListModel) CountChanged() {
-	if ptr.Pointer() != nil {
-		C.QVirtualKeyboardSelectionListModel_CountChanged(ptr.Pointer())
 	}
 }
 
@@ -4481,22 +4293,6 @@ func (ptr *QVirtualKeyboardSelectionListModel) SelectItem(index int) {
 	}
 }
 
-//export callbackQVirtualKeyboardSelectionListModel_MetaObject
-func callbackQVirtualKeyboardSelectionListModel_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQVirtualKeyboardSelectionListModelFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QVirtualKeyboardSelectionListModel) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QVirtualKeyboardSelectionListModel_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
 func (ptr *QVirtualKeyboardSelectionListModel) __roleNames_atList(v int, i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QVirtualKeyboardSelectionListModel___roleNames_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
@@ -4547,23 +4343,6 @@ func (ptr *QVirtualKeyboardSelectionListModel) ____roleNames_keyList_newList() u
 	return C.QVirtualKeyboardSelectionListModel_____roleNames_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QVirtualKeyboardSelectionListModel) ____setItemData_roles_keyList_atList(i int) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QVirtualKeyboardSelectionListModel_____setItemData_roles_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
-	}
-	return 0
-}
-
-func (ptr *QVirtualKeyboardSelectionListModel) ____setItemData_roles_keyList_setList(i int) {
-	if ptr.Pointer() != nil {
-		C.QVirtualKeyboardSelectionListModel_____setItemData_roles_keyList_setList(ptr.Pointer(), C.int(int32(i)))
-	}
-}
-
-func (ptr *QVirtualKeyboardSelectionListModel) ____setItemData_roles_keyList_newList() unsafe.Pointer {
-	return C.QVirtualKeyboardSelectionListModel_____setItemData_roles_keyList_newList(ptr.Pointer())
-}
-
 func (ptr *QVirtualKeyboardSelectionListModel) ____itemData_keyList_atList(i int) int {
 	if ptr.Pointer() != nil {
 		return int(int32(C.QVirtualKeyboardSelectionListModel_____itemData_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
@@ -4581,37 +4360,21 @@ func (ptr *QVirtualKeyboardSelectionListModel) ____itemData_keyList_newList() un
 	return C.QVirtualKeyboardSelectionListModel_____itemData_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QVirtualKeyboardSelectionListModel) __setItemData_roles_atList(v int, i int) *core.QVariant {
+func (ptr *QVirtualKeyboardSelectionListModel) ____setItemData_roles_keyList_atList(i int) int {
 	if ptr.Pointer() != nil {
-		tmpValue := core.NewQVariantFromPointer(C.QVirtualKeyboardSelectionListModel___setItemData_roles_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
+		return int(int32(C.QVirtualKeyboardSelectionListModel_____setItemData_roles_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
 	}
-	return nil
+	return 0
 }
 
-func (ptr *QVirtualKeyboardSelectionListModel) __setItemData_roles_setList(key int, i core.QVariant_ITF) {
+func (ptr *QVirtualKeyboardSelectionListModel) ____setItemData_roles_keyList_setList(i int) {
 	if ptr.Pointer() != nil {
-		C.QVirtualKeyboardSelectionListModel___setItemData_roles_setList(ptr.Pointer(), C.int(int32(key)), core.PointerFromQVariant(i))
+		C.QVirtualKeyboardSelectionListModel_____setItemData_roles_keyList_setList(ptr.Pointer(), C.int(int32(i)))
 	}
 }
 
-func (ptr *QVirtualKeyboardSelectionListModel) __setItemData_roles_newList() unsafe.Pointer {
-	return C.QVirtualKeyboardSelectionListModel___setItemData_roles_newList(ptr.Pointer())
-}
-
-func (ptr *QVirtualKeyboardSelectionListModel) __setItemData_roles_keyList() []int {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtVirtualKeyboard_PackedList) []int {
-			out := make([]int, int(l.len))
-			tmpList := NewQVirtualKeyboardSelectionListModelFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____setItemData_roles_keyList_atList(i)
-			}
-			return out
-		}(C.QVirtualKeyboardSelectionListModel___setItemData_roles_keyList(ptr.Pointer()))
-	}
-	return make([]int, 0)
+func (ptr *QVirtualKeyboardSelectionListModel) ____setItemData_roles_keyList_newList() unsafe.Pointer {
+	return C.QVirtualKeyboardSelectionListModel_____setItemData_roles_keyList_newList(ptr.Pointer())
 }
 
 func (ptr *QVirtualKeyboardSelectionListModel) __changePersistentIndexList_from_atList(i int) *core.QModelIndex {
@@ -4669,6 +4432,39 @@ func (ptr *QVirtualKeyboardSelectionListModel) __dataChanged_roles_newList() uns
 	return C.QVirtualKeyboardSelectionListModel___dataChanged_roles_newList(ptr.Pointer())
 }
 
+func (ptr *QVirtualKeyboardSelectionListModel) __itemData_atList(v int, i int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QVirtualKeyboardSelectionListModel___itemData_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QVirtualKeyboardSelectionListModel) __itemData_setList(key int, i core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		C.QVirtualKeyboardSelectionListModel___itemData_setList(ptr.Pointer(), C.int(int32(key)), core.PointerFromQVariant(i))
+	}
+}
+
+func (ptr *QVirtualKeyboardSelectionListModel) __itemData_newList() unsafe.Pointer {
+	return C.QVirtualKeyboardSelectionListModel___itemData_newList(ptr.Pointer())
+}
+
+func (ptr *QVirtualKeyboardSelectionListModel) __itemData_keyList() []int {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtVirtualKeyboard_PackedList) []int {
+			out := make([]int, int(l.len))
+			tmpList := NewQVirtualKeyboardSelectionListModelFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.____itemData_keyList_atList(i)
+			}
+			return out
+		}(C.QVirtualKeyboardSelectionListModel___itemData_keyList(ptr.Pointer()))
+	}
+	return make([]int, 0)
+}
+
 func (ptr *QVirtualKeyboardSelectionListModel) __layoutAboutToBeChanged_parents_atList(i int) *core.QPersistentModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPersistentModelIndexFromPointer(C.QVirtualKeyboardSelectionListModel___layoutAboutToBeChanged_parents_atList(ptr.Pointer(), C.int(int32(i))))
@@ -4707,37 +4503,23 @@ func (ptr *QVirtualKeyboardSelectionListModel) __layoutChanged_parents_newList()
 	return C.QVirtualKeyboardSelectionListModel___layoutChanged_parents_newList(ptr.Pointer())
 }
 
-func (ptr *QVirtualKeyboardSelectionListModel) __itemData_atList(v int, i int) *core.QVariant {
+func (ptr *QVirtualKeyboardSelectionListModel) __match_atList(i int) *core.QModelIndex {
 	if ptr.Pointer() != nil {
-		tmpValue := core.NewQVariantFromPointer(C.QVirtualKeyboardSelectionListModel___itemData_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		tmpValue := core.NewQModelIndexFromPointer(C.QVirtualKeyboardSelectionListModel___match_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
 }
 
-func (ptr *QVirtualKeyboardSelectionListModel) __itemData_setList(key int, i core.QVariant_ITF) {
+func (ptr *QVirtualKeyboardSelectionListModel) __match_setList(i core.QModelIndex_ITF) {
 	if ptr.Pointer() != nil {
-		C.QVirtualKeyboardSelectionListModel___itemData_setList(ptr.Pointer(), C.int(int32(key)), core.PointerFromQVariant(i))
+		C.QVirtualKeyboardSelectionListModel___match_setList(ptr.Pointer(), core.PointerFromQModelIndex(i))
 	}
 }
 
-func (ptr *QVirtualKeyboardSelectionListModel) __itemData_newList() unsafe.Pointer {
-	return C.QVirtualKeyboardSelectionListModel___itemData_newList(ptr.Pointer())
-}
-
-func (ptr *QVirtualKeyboardSelectionListModel) __itemData_keyList() []int {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtVirtualKeyboard_PackedList) []int {
-			out := make([]int, int(l.len))
-			tmpList := NewQVirtualKeyboardSelectionListModelFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____itemData_keyList_atList(i)
-			}
-			return out
-		}(C.QVirtualKeyboardSelectionListModel___itemData_keyList(ptr.Pointer()))
-	}
-	return make([]int, 0)
+func (ptr *QVirtualKeyboardSelectionListModel) __match_newList() unsafe.Pointer {
+	return C.QVirtualKeyboardSelectionListModel___match_newList(ptr.Pointer())
 }
 
 func (ptr *QVirtualKeyboardSelectionListModel) __mimeData_indexes_atList(i int) *core.QModelIndex {
@@ -4759,25 +4541,6 @@ func (ptr *QVirtualKeyboardSelectionListModel) __mimeData_indexes_newList() unsa
 	return C.QVirtualKeyboardSelectionListModel___mimeData_indexes_newList(ptr.Pointer())
 }
 
-func (ptr *QVirtualKeyboardSelectionListModel) __match_atList(i int) *core.QModelIndex {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQModelIndexFromPointer(C.QVirtualKeyboardSelectionListModel___match_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QVirtualKeyboardSelectionListModel) __match_setList(i core.QModelIndex_ITF) {
-	if ptr.Pointer() != nil {
-		C.QVirtualKeyboardSelectionListModel___match_setList(ptr.Pointer(), core.PointerFromQModelIndex(i))
-	}
-}
-
-func (ptr *QVirtualKeyboardSelectionListModel) __match_newList() unsafe.Pointer {
-	return C.QVirtualKeyboardSelectionListModel___match_newList(ptr.Pointer())
-}
-
 func (ptr *QVirtualKeyboardSelectionListModel) __persistentIndexList_atList(i int) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QVirtualKeyboardSelectionListModel___persistentIndexList_atList(ptr.Pointer(), C.int(int32(i))))
@@ -4795,6 +4558,39 @@ func (ptr *QVirtualKeyboardSelectionListModel) __persistentIndexList_setList(i c
 
 func (ptr *QVirtualKeyboardSelectionListModel) __persistentIndexList_newList() unsafe.Pointer {
 	return C.QVirtualKeyboardSelectionListModel___persistentIndexList_newList(ptr.Pointer())
+}
+
+func (ptr *QVirtualKeyboardSelectionListModel) __setItemData_roles_atList(v int, i int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QVirtualKeyboardSelectionListModel___setItemData_roles_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QVirtualKeyboardSelectionListModel) __setItemData_roles_setList(key int, i core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		C.QVirtualKeyboardSelectionListModel___setItemData_roles_setList(ptr.Pointer(), C.int(int32(key)), core.PointerFromQVariant(i))
+	}
+}
+
+func (ptr *QVirtualKeyboardSelectionListModel) __setItemData_roles_newList() unsafe.Pointer {
+	return C.QVirtualKeyboardSelectionListModel___setItemData_roles_newList(ptr.Pointer())
+}
+
+func (ptr *QVirtualKeyboardSelectionListModel) __setItemData_roles_keyList() []int {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtVirtualKeyboard_PackedList) []int {
+			out := make([]int, int(l.len))
+			tmpList := NewQVirtualKeyboardSelectionListModelFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.____setItemData_roles_keyList_atList(i)
+			}
+			return out
+		}(C.QVirtualKeyboardSelectionListModel___setItemData_roles_keyList(ptr.Pointer()))
+	}
+	return make([]int, 0)
 }
 
 func (ptr *QVirtualKeyboardSelectionListModel) ____doSetRoleNames_roleNames_keyList_atList(i int) int {
@@ -4831,6 +4627,27 @@ func (ptr *QVirtualKeyboardSelectionListModel) ____setRoleNames_roleNames_keyLis
 	return C.QVirtualKeyboardSelectionListModel_____setRoleNames_roleNames_keyList_newList(ptr.Pointer())
 }
 
+func (ptr *QVirtualKeyboardSelectionListModel) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QVirtualKeyboardSelectionListModel___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QVirtualKeyboardSelectionListModel) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QVirtualKeyboardSelectionListModel___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QVirtualKeyboardSelectionListModel) __children_newList() unsafe.Pointer {
+	return C.QVirtualKeyboardSelectionListModel___children_newList(ptr.Pointer())
+}
+
 func (ptr *QVirtualKeyboardSelectionListModel) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QVirtualKeyboardSelectionListModel___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
@@ -4848,48 +4665,6 @@ func (ptr *QVirtualKeyboardSelectionListModel) __dynamicPropertyNames_setList(i 
 
 func (ptr *QVirtualKeyboardSelectionListModel) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QVirtualKeyboardSelectionListModel___dynamicPropertyNames_newList(ptr.Pointer())
-}
-
-func (ptr *QVirtualKeyboardSelectionListModel) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QVirtualKeyboardSelectionListModel___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QVirtualKeyboardSelectionListModel) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QVirtualKeyboardSelectionListModel___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QVirtualKeyboardSelectionListModel) __findChildren_newList2() unsafe.Pointer {
-	return C.QVirtualKeyboardSelectionListModel___findChildren_newList2(ptr.Pointer())
-}
-
-func (ptr *QVirtualKeyboardSelectionListModel) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QVirtualKeyboardSelectionListModel___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QVirtualKeyboardSelectionListModel) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QVirtualKeyboardSelectionListModel___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QVirtualKeyboardSelectionListModel) __findChildren_newList3() unsafe.Pointer {
-	return C.QVirtualKeyboardSelectionListModel___findChildren_newList3(ptr.Pointer())
 }
 
 func (ptr *QVirtualKeyboardSelectionListModel) __findChildren_atList(i int) *core.QObject {
@@ -4913,9 +4688,9 @@ func (ptr *QVirtualKeyboardSelectionListModel) __findChildren_newList() unsafe.P
 	return C.QVirtualKeyboardSelectionListModel___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QVirtualKeyboardSelectionListModel) __children_atList(i int) *core.QObject {
+func (ptr *QVirtualKeyboardSelectionListModel) __findChildren_atList3(i int) *core.QObject {
 	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QVirtualKeyboardSelectionListModel___children_atList(ptr.Pointer(), C.int(int32(i))))
+		tmpValue := core.NewQObjectFromPointer(C.QVirtualKeyboardSelectionListModel___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -4924,14 +4699,35 @@ func (ptr *QVirtualKeyboardSelectionListModel) __children_atList(i int) *core.QO
 	return nil
 }
 
-func (ptr *QVirtualKeyboardSelectionListModel) __children_setList(i core.QObject_ITF) {
+func (ptr *QVirtualKeyboardSelectionListModel) __findChildren_setList3(i core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		C.QVirtualKeyboardSelectionListModel___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+		C.QVirtualKeyboardSelectionListModel___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *QVirtualKeyboardSelectionListModel) __children_newList() unsafe.Pointer {
-	return C.QVirtualKeyboardSelectionListModel___children_newList(ptr.Pointer())
+func (ptr *QVirtualKeyboardSelectionListModel) __findChildren_newList3() unsafe.Pointer {
+	return C.QVirtualKeyboardSelectionListModel___findChildren_newList3(ptr.Pointer())
+}
+
+func (ptr *QVirtualKeyboardSelectionListModel) __qFindChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QVirtualKeyboardSelectionListModel___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QVirtualKeyboardSelectionListModel) __qFindChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QVirtualKeyboardSelectionListModel___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QVirtualKeyboardSelectionListModel) __qFindChildren_newList2() unsafe.Pointer {
+	return C.QVirtualKeyboardSelectionListModel___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQVirtualKeyboardSelectionListModel_DropMimeData
@@ -4948,6 +4744,22 @@ func (ptr *QVirtualKeyboardSelectionListModel) DropMimeDataDefault(data core.QMi
 		return int8(C.QVirtualKeyboardSelectionListModel_DropMimeDataDefault(ptr.Pointer(), core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
+}
+
+//export callbackQVirtualKeyboardSelectionListModel_Flags
+func callbackQVirtualKeyboardSelectionListModel_Flags(ptr unsafe.Pointer, index unsafe.Pointer) C.longlong {
+	if signal := qt.GetSignal(ptr, "flags"); signal != nil {
+		return C.longlong((*(*func(*core.QModelIndex) core.Qt__ItemFlag)(signal))(core.NewQModelIndexFromPointer(index)))
+	}
+
+	return C.longlong(NewQVirtualKeyboardSelectionListModelFromPointer(ptr).FlagsDefault(core.NewQModelIndexFromPointer(index)))
+}
+
+func (ptr *QVirtualKeyboardSelectionListModel) FlagsDefault(index core.QModelIndex_ITF) core.Qt__ItemFlag {
+	if ptr.Pointer() != nil {
+		return core.Qt__ItemFlag(C.QVirtualKeyboardSelectionListModel_FlagsDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+	}
+	return 0
 }
 
 //export callbackQVirtualKeyboardSelectionListModel_Index
@@ -4986,20 +4798,208 @@ func (ptr *QVirtualKeyboardSelectionListModel) SiblingDefault(row int, column in
 	return nil
 }
 
-//export callbackQVirtualKeyboardSelectionListModel_Flags
-func callbackQVirtualKeyboardSelectionListModel_Flags(ptr unsafe.Pointer, index unsafe.Pointer) C.longlong {
-	if signal := qt.GetSignal(ptr, "flags"); signal != nil {
-		return C.longlong((*(*func(*core.QModelIndex) core.Qt__ItemFlag)(signal))(core.NewQModelIndexFromPointer(index)))
+//export callbackQVirtualKeyboardSelectionListModel_Buddy
+func callbackQVirtualKeyboardSelectionListModel_Buddy(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "buddy"); signal != nil {
+		return core.PointerFromQModelIndex((*(*func(*core.QModelIndex) *core.QModelIndex)(signal))(core.NewQModelIndexFromPointer(index)))
 	}
 
-	return C.longlong(NewQVirtualKeyboardSelectionListModelFromPointer(ptr).FlagsDefault(core.NewQModelIndexFromPointer(index)))
+	return core.PointerFromQModelIndex(NewQVirtualKeyboardSelectionListModelFromPointer(ptr).BuddyDefault(core.NewQModelIndexFromPointer(index)))
 }
 
-func (ptr *QVirtualKeyboardSelectionListModel) FlagsDefault(index core.QModelIndex_ITF) core.Qt__ItemFlag {
+func (ptr *QVirtualKeyboardSelectionListModel) BuddyDefault(index core.QModelIndex_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
-		return core.Qt__ItemFlag(C.QVirtualKeyboardSelectionListModel_FlagsDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		tmpValue := core.NewQModelIndexFromPointer(C.QVirtualKeyboardSelectionListModel_BuddyDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQVirtualKeyboardSelectionListModel_CanDropMimeData
+func callbackQVirtualKeyboardSelectionListModel_CanDropMimeData(ptr unsafe.Pointer, data unsafe.Pointer, action C.longlong, row C.int, column C.int, parent unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "canDropMimeData"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QMimeData, core.Qt__DropAction, int, int, *core.QModelIndex) bool)(signal))(core.NewQMimeDataFromPointer(data), core.Qt__DropAction(action), int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQVirtualKeyboardSelectionListModelFromPointer(ptr).CanDropMimeDataDefault(core.NewQMimeDataFromPointer(data), core.Qt__DropAction(action), int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *QVirtualKeyboardSelectionListModel) CanDropMimeDataDefault(data core.QMimeData_ITF, action core.Qt__DropAction, row int, column int, parent core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QVirtualKeyboardSelectionListModel_CanDropMimeDataDefault(ptr.Pointer(), core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent))) != 0
+	}
+	return false
+}
+
+//export callbackQVirtualKeyboardSelectionListModel_CanFetchMore
+func callbackQVirtualKeyboardSelectionListModel_CanFetchMore(ptr unsafe.Pointer, parent unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "canFetchMore"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QModelIndex) bool)(signal))(core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQVirtualKeyboardSelectionListModelFromPointer(ptr).CanFetchMoreDefault(core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *QVirtualKeyboardSelectionListModel) CanFetchMoreDefault(parent core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QVirtualKeyboardSelectionListModel_CanFetchMoreDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))) != 0
+	}
+	return false
+}
+
+//export callbackQVirtualKeyboardSelectionListModel_ColumnCount
+func callbackQVirtualKeyboardSelectionListModel_ColumnCount(ptr unsafe.Pointer, parent unsafe.Pointer) C.int {
+	if signal := qt.GetSignal(ptr, "columnCount"); signal != nil {
+		return C.int(int32((*(*func(*core.QModelIndex) int)(signal))(core.NewQModelIndexFromPointer(parent))))
+	}
+
+	return C.int(int32(NewQVirtualKeyboardSelectionListModelFromPointer(ptr).ColumnCountDefault(core.NewQModelIndexFromPointer(parent))))
+}
+
+func (ptr *QVirtualKeyboardSelectionListModel) ColumnCountDefault(parent core.QModelIndex_ITF) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QVirtualKeyboardSelectionListModel_ColumnCountDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))))
 	}
 	return 0
+}
+
+//export callbackQVirtualKeyboardSelectionListModel_ColumnsAboutToBeInserted
+func callbackQVirtualKeyboardSelectionListModel_ColumnsAboutToBeInserted(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
+	if signal := qt.GetSignal(ptr, "columnsAboutToBeInserted"); signal != nil {
+		(*(*func(*core.QModelIndex, int, int))(signal))(core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
+	}
+
+}
+
+//export callbackQVirtualKeyboardSelectionListModel_ColumnsAboutToBeMoved
+func callbackQVirtualKeyboardSelectionListModel_ColumnsAboutToBeMoved(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceStart C.int, sourceEnd C.int, destinationParent unsafe.Pointer, destinationColumn C.int) {
+	if signal := qt.GetSignal(ptr, "columnsAboutToBeMoved"); signal != nil {
+		(*(*func(*core.QModelIndex, int, int, *core.QModelIndex, int))(signal))(core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceStart)), int(int32(sourceEnd)), core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationColumn)))
+	}
+
+}
+
+//export callbackQVirtualKeyboardSelectionListModel_ColumnsAboutToBeRemoved
+func callbackQVirtualKeyboardSelectionListModel_ColumnsAboutToBeRemoved(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
+	if signal := qt.GetSignal(ptr, "columnsAboutToBeRemoved"); signal != nil {
+		(*(*func(*core.QModelIndex, int, int))(signal))(core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
+	}
+
+}
+
+//export callbackQVirtualKeyboardSelectionListModel_ColumnsInserted
+func callbackQVirtualKeyboardSelectionListModel_ColumnsInserted(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
+	if signal := qt.GetSignal(ptr, "columnsInserted"); signal != nil {
+		(*(*func(*core.QModelIndex, int, int))(signal))(core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
+	}
+
+}
+
+//export callbackQVirtualKeyboardSelectionListModel_ColumnsMoved
+func callbackQVirtualKeyboardSelectionListModel_ColumnsMoved(ptr unsafe.Pointer, parent unsafe.Pointer, start C.int, end C.int, destination unsafe.Pointer, column C.int) {
+	if signal := qt.GetSignal(ptr, "columnsMoved"); signal != nil {
+		(*(*func(*core.QModelIndex, int, int, *core.QModelIndex, int))(signal))(core.NewQModelIndexFromPointer(parent), int(int32(start)), int(int32(end)), core.NewQModelIndexFromPointer(destination), int(int32(column)))
+	}
+
+}
+
+//export callbackQVirtualKeyboardSelectionListModel_ColumnsRemoved
+func callbackQVirtualKeyboardSelectionListModel_ColumnsRemoved(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
+	if signal := qt.GetSignal(ptr, "columnsRemoved"); signal != nil {
+		(*(*func(*core.QModelIndex, int, int))(signal))(core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
+	}
+
+}
+
+//export callbackQVirtualKeyboardSelectionListModel_Data
+func callbackQVirtualKeyboardSelectionListModel_Data(ptr unsafe.Pointer, index unsafe.Pointer, role C.int) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "data"); signal != nil {
+		return core.PointerFromQVariant((*(*func(*core.QModelIndex, int) *core.QVariant)(signal))(core.NewQModelIndexFromPointer(index), int(int32(role))))
+	}
+
+	return core.PointerFromQVariant(NewQVirtualKeyboardSelectionListModelFromPointer(ptr).DataDefault(core.NewQModelIndexFromPointer(index), int(int32(role))))
+}
+
+func (ptr *QVirtualKeyboardSelectionListModel) DataDefault(index core.QModelIndex_ITF, role int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QVirtualKeyboardSelectionListModel_DataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), C.int(int32(role))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQVirtualKeyboardSelectionListModel_DataChanged
+func callbackQVirtualKeyboardSelectionListModel_DataChanged(ptr unsafe.Pointer, topLeft unsafe.Pointer, bottomRight unsafe.Pointer, roles C.struct_QtVirtualKeyboard_PackedList) {
+	if signal := qt.GetSignal(ptr, "dataChanged"); signal != nil {
+		(*(*func(*core.QModelIndex, *core.QModelIndex, []int))(signal))(core.NewQModelIndexFromPointer(topLeft), core.NewQModelIndexFromPointer(bottomRight), func(l C.struct_QtVirtualKeyboard_PackedList) []int {
+			out := make([]int, int(l.len))
+			tmpList := NewQVirtualKeyboardSelectionListModelFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__dataChanged_roles_atList(i)
+			}
+			return out
+		}(roles))
+	}
+
+}
+
+//export callbackQVirtualKeyboardSelectionListModel_FetchMore
+func callbackQVirtualKeyboardSelectionListModel_FetchMore(ptr unsafe.Pointer, parent unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "fetchMore"); signal != nil {
+		(*(*func(*core.QModelIndex))(signal))(core.NewQModelIndexFromPointer(parent))
+	} else {
+		NewQVirtualKeyboardSelectionListModelFromPointer(ptr).FetchMoreDefault(core.NewQModelIndexFromPointer(parent))
+	}
+}
+
+func (ptr *QVirtualKeyboardSelectionListModel) FetchMoreDefault(parent core.QModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.QVirtualKeyboardSelectionListModel_FetchMoreDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))
+	}
+}
+
+//export callbackQVirtualKeyboardSelectionListModel_HasChildren
+func callbackQVirtualKeyboardSelectionListModel_HasChildren(ptr unsafe.Pointer, parent unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "hasChildren"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QModelIndex) bool)(signal))(core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQVirtualKeyboardSelectionListModelFromPointer(ptr).HasChildrenDefault(core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *QVirtualKeyboardSelectionListModel) HasChildrenDefault(parent core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QVirtualKeyboardSelectionListModel_HasChildrenDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))) != 0
+	}
+	return false
+}
+
+//export callbackQVirtualKeyboardSelectionListModel_HeaderData
+func callbackQVirtualKeyboardSelectionListModel_HeaderData(ptr unsafe.Pointer, section C.int, orientation C.longlong, role C.int) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "headerData"); signal != nil {
+		return core.PointerFromQVariant((*(*func(int, core.Qt__Orientation, int) *core.QVariant)(signal))(int(int32(section)), core.Qt__Orientation(orientation), int(int32(role))))
+	}
+
+	return core.PointerFromQVariant(NewQVirtualKeyboardSelectionListModelFromPointer(ptr).HeaderDataDefault(int(int32(section)), core.Qt__Orientation(orientation), int(int32(role))))
+}
+
+func (ptr *QVirtualKeyboardSelectionListModel) HeaderDataDefault(section int, orientation core.Qt__Orientation, role int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QVirtualKeyboardSelectionListModel_HeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), C.int(int32(role))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQVirtualKeyboardSelectionListModel_HeaderDataChanged
+func callbackQVirtualKeyboardSelectionListModel_HeaderDataChanged(ptr unsafe.Pointer, orientation C.longlong, first C.int, last C.int) {
+	if signal := qt.GetSignal(ptr, "headerDataChanged"); signal != nil {
+		(*(*func(core.Qt__Orientation, int, int))(signal))(core.Qt__Orientation(orientation), int(int32(first)), int(int32(last)))
+	}
+
 }
 
 //export callbackQVirtualKeyboardSelectionListModel_InsertColumns
@@ -5034,6 +5034,179 @@ func (ptr *QVirtualKeyboardSelectionListModel) InsertRowsDefault(row int, count 
 	return false
 }
 
+//export callbackQVirtualKeyboardSelectionListModel_ItemData
+func callbackQVirtualKeyboardSelectionListModel_ItemData(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "itemData"); signal != nil {
+		return func() unsafe.Pointer {
+			tmpList := NewQVirtualKeyboardSelectionListModelFromPointer(NewQVirtualKeyboardSelectionListModelFromPointer(nil).__itemData_newList())
+			for k, v := range (*(*func(*core.QModelIndex) map[int]*core.QVariant)(signal))(core.NewQModelIndexFromPointer(index)) {
+				tmpList.__itemData_setList(k, v)
+			}
+			return tmpList.Pointer()
+		}()
+	}
+
+	return func() unsafe.Pointer {
+		tmpList := NewQVirtualKeyboardSelectionListModelFromPointer(NewQVirtualKeyboardSelectionListModelFromPointer(nil).__itemData_newList())
+		for k, v := range NewQVirtualKeyboardSelectionListModelFromPointer(ptr).ItemDataDefault(core.NewQModelIndexFromPointer(index)) {
+			tmpList.__itemData_setList(k, v)
+		}
+		return tmpList.Pointer()
+	}()
+}
+
+func (ptr *QVirtualKeyboardSelectionListModel) ItemDataDefault(index core.QModelIndex_ITF) map[int]*core.QVariant {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtVirtualKeyboard_PackedList) map[int]*core.QVariant {
+			out := make(map[int]*core.QVariant, int(l.len))
+			tmpList := NewQVirtualKeyboardSelectionListModelFromPointer(l.data)
+			for i, v := range tmpList.__itemData_keyList() {
+				out[v] = tmpList.__itemData_atList(v, i)
+			}
+			return out
+		}(C.QVirtualKeyboardSelectionListModel_ItemDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+	}
+	return make(map[int]*core.QVariant, 0)
+}
+
+//export callbackQVirtualKeyboardSelectionListModel_LayoutAboutToBeChanged
+func callbackQVirtualKeyboardSelectionListModel_LayoutAboutToBeChanged(ptr unsafe.Pointer, parents C.struct_QtVirtualKeyboard_PackedList, hint C.longlong) {
+	if signal := qt.GetSignal(ptr, "layoutAboutToBeChanged"); signal != nil {
+		(*(*func([]*core.QPersistentModelIndex, core.QAbstractItemModel__LayoutChangeHint))(signal))(func(l C.struct_QtVirtualKeyboard_PackedList) []*core.QPersistentModelIndex {
+			out := make([]*core.QPersistentModelIndex, int(l.len))
+			tmpList := NewQVirtualKeyboardSelectionListModelFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__layoutAboutToBeChanged_parents_atList(i)
+			}
+			return out
+		}(parents), core.QAbstractItemModel__LayoutChangeHint(hint))
+	}
+
+}
+
+//export callbackQVirtualKeyboardSelectionListModel_LayoutChanged
+func callbackQVirtualKeyboardSelectionListModel_LayoutChanged(ptr unsafe.Pointer, parents C.struct_QtVirtualKeyboard_PackedList, hint C.longlong) {
+	if signal := qt.GetSignal(ptr, "layoutChanged"); signal != nil {
+		(*(*func([]*core.QPersistentModelIndex, core.QAbstractItemModel__LayoutChangeHint))(signal))(func(l C.struct_QtVirtualKeyboard_PackedList) []*core.QPersistentModelIndex {
+			out := make([]*core.QPersistentModelIndex, int(l.len))
+			tmpList := NewQVirtualKeyboardSelectionListModelFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__layoutChanged_parents_atList(i)
+			}
+			return out
+		}(parents), core.QAbstractItemModel__LayoutChangeHint(hint))
+	}
+
+}
+
+//export callbackQVirtualKeyboardSelectionListModel_Match
+func callbackQVirtualKeyboardSelectionListModel_Match(ptr unsafe.Pointer, start unsafe.Pointer, role C.int, value unsafe.Pointer, hits C.int, flags C.longlong) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "match"); signal != nil {
+		return func() unsafe.Pointer {
+			tmpList := NewQVirtualKeyboardSelectionListModelFromPointer(NewQVirtualKeyboardSelectionListModelFromPointer(nil).__match_newList())
+			for _, v := range (*(*func(*core.QModelIndex, int, *core.QVariant, int, core.Qt__MatchFlag) []*core.QModelIndex)(signal))(core.NewQModelIndexFromPointer(start), int(int32(role)), core.NewQVariantFromPointer(value), int(int32(hits)), core.Qt__MatchFlag(flags)) {
+				tmpList.__match_setList(v)
+			}
+			return tmpList.Pointer()
+		}()
+	}
+
+	return func() unsafe.Pointer {
+		tmpList := NewQVirtualKeyboardSelectionListModelFromPointer(NewQVirtualKeyboardSelectionListModelFromPointer(nil).__match_newList())
+		for _, v := range NewQVirtualKeyboardSelectionListModelFromPointer(ptr).MatchDefault(core.NewQModelIndexFromPointer(start), int(int32(role)), core.NewQVariantFromPointer(value), int(int32(hits)), core.Qt__MatchFlag(flags)) {
+			tmpList.__match_setList(v)
+		}
+		return tmpList.Pointer()
+	}()
+}
+
+func (ptr *QVirtualKeyboardSelectionListModel) MatchDefault(start core.QModelIndex_ITF, role int, value core.QVariant_ITF, hits int, flags core.Qt__MatchFlag) []*core.QModelIndex {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtVirtualKeyboard_PackedList) []*core.QModelIndex {
+			out := make([]*core.QModelIndex, int(l.len))
+			tmpList := NewQVirtualKeyboardSelectionListModelFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__match_atList(i)
+			}
+			return out
+		}(C.QVirtualKeyboardSelectionListModel_MatchDefault(ptr.Pointer(), core.PointerFromQModelIndex(start), C.int(int32(role)), core.PointerFromQVariant(value), C.int(int32(hits)), C.longlong(flags)))
+	}
+	return make([]*core.QModelIndex, 0)
+}
+
+//export callbackQVirtualKeyboardSelectionListModel_MimeData
+func callbackQVirtualKeyboardSelectionListModel_MimeData(ptr unsafe.Pointer, indexes C.struct_QtVirtualKeyboard_PackedList) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "mimeData"); signal != nil {
+		return core.PointerFromQMimeData((*(*func([]*core.QModelIndex) *core.QMimeData)(signal))(func(l C.struct_QtVirtualKeyboard_PackedList) []*core.QModelIndex {
+			out := make([]*core.QModelIndex, int(l.len))
+			tmpList := NewQVirtualKeyboardSelectionListModelFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__mimeData_indexes_atList(i)
+			}
+			return out
+		}(indexes)))
+	}
+
+	return core.PointerFromQMimeData(NewQVirtualKeyboardSelectionListModelFromPointer(ptr).MimeDataDefault(func(l C.struct_QtVirtualKeyboard_PackedList) []*core.QModelIndex {
+		out := make([]*core.QModelIndex, int(l.len))
+		tmpList := NewQVirtualKeyboardSelectionListModelFromPointer(l.data)
+		for i := 0; i < len(out); i++ {
+			out[i] = tmpList.__mimeData_indexes_atList(i)
+		}
+		return out
+	}(indexes)))
+}
+
+func (ptr *QVirtualKeyboardSelectionListModel) MimeDataDefault(indexes []*core.QModelIndex) *core.QMimeData {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQMimeDataFromPointer(C.QVirtualKeyboardSelectionListModel_MimeDataDefault(ptr.Pointer(), func() unsafe.Pointer {
+			tmpList := NewQVirtualKeyboardSelectionListModelFromPointer(NewQVirtualKeyboardSelectionListModelFromPointer(nil).__mimeData_indexes_newList())
+			for _, v := range indexes {
+				tmpList.__mimeData_indexes_setList(v)
+			}
+			return tmpList.Pointer()
+		}()))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQVirtualKeyboardSelectionListModel_MimeTypes
+func callbackQVirtualKeyboardSelectionListModel_MimeTypes(ptr unsafe.Pointer) C.struct_QtVirtualKeyboard_PackedString {
+	if signal := qt.GetSignal(ptr, "mimeTypes"); signal != nil {
+		tempVal := (*(*func() []string)(signal))()
+		return C.struct_QtVirtualKeyboard_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
+	}
+	tempVal := NewQVirtualKeyboardSelectionListModelFromPointer(ptr).MimeTypesDefault()
+	return C.struct_QtVirtualKeyboard_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
+}
+
+func (ptr *QVirtualKeyboardSelectionListModel) MimeTypesDefault() []string {
+	if ptr.Pointer() != nil {
+		return unpackStringList(cGoUnpackString(C.QVirtualKeyboardSelectionListModel_MimeTypesDefault(ptr.Pointer())))
+	}
+	return make([]string, 0)
+}
+
+//export callbackQVirtualKeyboardSelectionListModel_ModelAboutToBeReset
+func callbackQVirtualKeyboardSelectionListModel_ModelAboutToBeReset(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "modelAboutToBeReset"); signal != nil {
+		(*(*func())(signal))()
+	}
+
+}
+
+//export callbackQVirtualKeyboardSelectionListModel_ModelReset
+func callbackQVirtualKeyboardSelectionListModel_ModelReset(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "modelReset"); signal != nil {
+		(*(*func())(signal))()
+	}
+
+}
+
 //export callbackQVirtualKeyboardSelectionListModel_MoveColumns
 func callbackQVirtualKeyboardSelectionListModel_MoveColumns(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceColumn C.int, count C.int, destinationParent unsafe.Pointer, destinationChild C.int) C.char {
 	if signal := qt.GetSignal(ptr, "moveColumns"); signal != nil {
@@ -5066,6 +5239,24 @@ func (ptr *QVirtualKeyboardSelectionListModel) MoveRowsDefault(sourceParent core
 	return false
 }
 
+//export callbackQVirtualKeyboardSelectionListModel_Parent
+func callbackQVirtualKeyboardSelectionListModel_Parent(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "parent"); signal != nil {
+		return core.PointerFromQModelIndex((*(*func(*core.QModelIndex) *core.QModelIndex)(signal))(core.NewQModelIndexFromPointer(index)))
+	}
+
+	return core.PointerFromQModelIndex(NewQVirtualKeyboardSelectionListModelFromPointer(ptr).ParentDefault(core.NewQModelIndexFromPointer(index)))
+}
+
+func (ptr *QVirtualKeyboardSelectionListModel) ParentDefault(index core.QModelIndex_ITF) *core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQModelIndexFromPointer(C.QVirtualKeyboardSelectionListModel_ParentDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
 //export callbackQVirtualKeyboardSelectionListModel_RemoveColumns
 func callbackQVirtualKeyboardSelectionListModel_RemoveColumns(ptr unsafe.Pointer, column C.int, count C.int, parent unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "removeColumns"); signal != nil {
@@ -5096,6 +5287,135 @@ func (ptr *QVirtualKeyboardSelectionListModel) RemoveRowsDefault(row int, count 
 		return int8(C.QVirtualKeyboardSelectionListModel_RemoveRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
+}
+
+//export callbackQVirtualKeyboardSelectionListModel_ResetInternalData
+func callbackQVirtualKeyboardSelectionListModel_ResetInternalData(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "resetInternalData"); signal != nil {
+		(*(*func())(signal))()
+	} else {
+		NewQVirtualKeyboardSelectionListModelFromPointer(ptr).ResetInternalDataDefault()
+	}
+}
+
+func (ptr *QVirtualKeyboardSelectionListModel) ResetInternalDataDefault() {
+	if ptr.Pointer() != nil {
+		C.QVirtualKeyboardSelectionListModel_ResetInternalDataDefault(ptr.Pointer())
+	}
+}
+
+//export callbackQVirtualKeyboardSelectionListModel_Revert
+func callbackQVirtualKeyboardSelectionListModel_Revert(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "revert"); signal != nil {
+		(*(*func())(signal))()
+	} else {
+		NewQVirtualKeyboardSelectionListModelFromPointer(ptr).RevertDefault()
+	}
+}
+
+func (ptr *QVirtualKeyboardSelectionListModel) RevertDefault() {
+	if ptr.Pointer() != nil {
+		C.QVirtualKeyboardSelectionListModel_RevertDefault(ptr.Pointer())
+	}
+}
+
+//export callbackQVirtualKeyboardSelectionListModel_RoleNames
+func callbackQVirtualKeyboardSelectionListModel_RoleNames(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "roleNames"); signal != nil {
+		return func() unsafe.Pointer {
+			tmpList := NewQVirtualKeyboardSelectionListModelFromPointer(NewQVirtualKeyboardSelectionListModelFromPointer(nil).__roleNames_newList())
+			for k, v := range (*(*func() map[int]*core.QByteArray)(signal))() {
+				tmpList.__roleNames_setList(k, v)
+			}
+			return tmpList.Pointer()
+		}()
+	}
+
+	return func() unsafe.Pointer {
+		tmpList := NewQVirtualKeyboardSelectionListModelFromPointer(NewQVirtualKeyboardSelectionListModelFromPointer(nil).__roleNames_newList())
+		for k, v := range NewQVirtualKeyboardSelectionListModelFromPointer(ptr).RoleNamesDefault() {
+			tmpList.__roleNames_setList(k, v)
+		}
+		return tmpList.Pointer()
+	}()
+}
+
+func (ptr *QVirtualKeyboardSelectionListModel) RoleNamesDefault() map[int]*core.QByteArray {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtVirtualKeyboard_PackedList) map[int]*core.QByteArray {
+			out := make(map[int]*core.QByteArray, int(l.len))
+			tmpList := NewQVirtualKeyboardSelectionListModelFromPointer(l.data)
+			for i, v := range tmpList.__roleNames_keyList() {
+				out[v] = tmpList.__roleNames_atList(v, i)
+			}
+			return out
+		}(C.QVirtualKeyboardSelectionListModel_RoleNamesDefault(ptr.Pointer()))
+	}
+	return make(map[int]*core.QByteArray, 0)
+}
+
+//export callbackQVirtualKeyboardSelectionListModel_RowCount
+func callbackQVirtualKeyboardSelectionListModel_RowCount(ptr unsafe.Pointer, parent unsafe.Pointer) C.int {
+	if signal := qt.GetSignal(ptr, "rowCount"); signal != nil {
+		return C.int(int32((*(*func(*core.QModelIndex) int)(signal))(core.NewQModelIndexFromPointer(parent))))
+	}
+
+	return C.int(int32(NewQVirtualKeyboardSelectionListModelFromPointer(ptr).RowCountDefault(core.NewQModelIndexFromPointer(parent))))
+}
+
+func (ptr *QVirtualKeyboardSelectionListModel) RowCountDefault(parent core.QModelIndex_ITF) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QVirtualKeyboardSelectionListModel_RowCountDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))))
+	}
+	return 0
+}
+
+//export callbackQVirtualKeyboardSelectionListModel_RowsAboutToBeInserted
+func callbackQVirtualKeyboardSelectionListModel_RowsAboutToBeInserted(ptr unsafe.Pointer, parent unsafe.Pointer, start C.int, end C.int) {
+	if signal := qt.GetSignal(ptr, "rowsAboutToBeInserted"); signal != nil {
+		(*(*func(*core.QModelIndex, int, int))(signal))(core.NewQModelIndexFromPointer(parent), int(int32(start)), int(int32(end)))
+	}
+
+}
+
+//export callbackQVirtualKeyboardSelectionListModel_RowsAboutToBeMoved
+func callbackQVirtualKeyboardSelectionListModel_RowsAboutToBeMoved(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceStart C.int, sourceEnd C.int, destinationParent unsafe.Pointer, destinationRow C.int) {
+	if signal := qt.GetSignal(ptr, "rowsAboutToBeMoved"); signal != nil {
+		(*(*func(*core.QModelIndex, int, int, *core.QModelIndex, int))(signal))(core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceStart)), int(int32(sourceEnd)), core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationRow)))
+	}
+
+}
+
+//export callbackQVirtualKeyboardSelectionListModel_RowsAboutToBeRemoved
+func callbackQVirtualKeyboardSelectionListModel_RowsAboutToBeRemoved(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
+	if signal := qt.GetSignal(ptr, "rowsAboutToBeRemoved"); signal != nil {
+		(*(*func(*core.QModelIndex, int, int))(signal))(core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
+	}
+
+}
+
+//export callbackQVirtualKeyboardSelectionListModel_RowsInserted
+func callbackQVirtualKeyboardSelectionListModel_RowsInserted(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
+	if signal := qt.GetSignal(ptr, "rowsInserted"); signal != nil {
+		(*(*func(*core.QModelIndex, int, int))(signal))(core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
+	}
+
+}
+
+//export callbackQVirtualKeyboardSelectionListModel_RowsMoved
+func callbackQVirtualKeyboardSelectionListModel_RowsMoved(ptr unsafe.Pointer, parent unsafe.Pointer, start C.int, end C.int, destination unsafe.Pointer, row C.int) {
+	if signal := qt.GetSignal(ptr, "rowsMoved"); signal != nil {
+		(*(*func(*core.QModelIndex, int, int, *core.QModelIndex, int))(signal))(core.NewQModelIndexFromPointer(parent), int(int32(start)), int(int32(end)), core.NewQModelIndexFromPointer(destination), int(int32(row)))
+	}
+
+}
+
+//export callbackQVirtualKeyboardSelectionListModel_RowsRemoved
+func callbackQVirtualKeyboardSelectionListModel_RowsRemoved(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
+	if signal := qt.GetSignal(ptr, "rowsRemoved"); signal != nil {
+		(*(*func(*core.QModelIndex, int, int))(signal))(core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
+	}
+
 }
 
 //export callbackQVirtualKeyboardSelectionListModel_SetData
@@ -5166,232 +5486,6 @@ func (ptr *QVirtualKeyboardSelectionListModel) SetItemDataDefault(index core.QMo
 	return false
 }
 
-//export callbackQVirtualKeyboardSelectionListModel_Submit
-func callbackQVirtualKeyboardSelectionListModel_Submit(ptr unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "submit"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func() bool)(signal))())))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQVirtualKeyboardSelectionListModelFromPointer(ptr).SubmitDefault())))
-}
-
-func (ptr *QVirtualKeyboardSelectionListModel) SubmitDefault() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QVirtualKeyboardSelectionListModel_SubmitDefault(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-//export callbackQVirtualKeyboardSelectionListModel_ColumnsAboutToBeInserted
-func callbackQVirtualKeyboardSelectionListModel_ColumnsAboutToBeInserted(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
-	if signal := qt.GetSignal(ptr, "columnsAboutToBeInserted"); signal != nil {
-		(*(*func(*core.QModelIndex, int, int))(signal))(core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
-	}
-
-}
-
-//export callbackQVirtualKeyboardSelectionListModel_ColumnsAboutToBeMoved
-func callbackQVirtualKeyboardSelectionListModel_ColumnsAboutToBeMoved(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceStart C.int, sourceEnd C.int, destinationParent unsafe.Pointer, destinationColumn C.int) {
-	if signal := qt.GetSignal(ptr, "columnsAboutToBeMoved"); signal != nil {
-		(*(*func(*core.QModelIndex, int, int, *core.QModelIndex, int))(signal))(core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceStart)), int(int32(sourceEnd)), core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationColumn)))
-	}
-
-}
-
-//export callbackQVirtualKeyboardSelectionListModel_ColumnsAboutToBeRemoved
-func callbackQVirtualKeyboardSelectionListModel_ColumnsAboutToBeRemoved(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
-	if signal := qt.GetSignal(ptr, "columnsAboutToBeRemoved"); signal != nil {
-		(*(*func(*core.QModelIndex, int, int))(signal))(core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
-	}
-
-}
-
-//export callbackQVirtualKeyboardSelectionListModel_ColumnsInserted
-func callbackQVirtualKeyboardSelectionListModel_ColumnsInserted(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
-	if signal := qt.GetSignal(ptr, "columnsInserted"); signal != nil {
-		(*(*func(*core.QModelIndex, int, int))(signal))(core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
-	}
-
-}
-
-//export callbackQVirtualKeyboardSelectionListModel_ColumnsMoved
-func callbackQVirtualKeyboardSelectionListModel_ColumnsMoved(ptr unsafe.Pointer, parent unsafe.Pointer, start C.int, end C.int, destination unsafe.Pointer, column C.int) {
-	if signal := qt.GetSignal(ptr, "columnsMoved"); signal != nil {
-		(*(*func(*core.QModelIndex, int, int, *core.QModelIndex, int))(signal))(core.NewQModelIndexFromPointer(parent), int(int32(start)), int(int32(end)), core.NewQModelIndexFromPointer(destination), int(int32(column)))
-	}
-
-}
-
-//export callbackQVirtualKeyboardSelectionListModel_ColumnsRemoved
-func callbackQVirtualKeyboardSelectionListModel_ColumnsRemoved(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
-	if signal := qt.GetSignal(ptr, "columnsRemoved"); signal != nil {
-		(*(*func(*core.QModelIndex, int, int))(signal))(core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
-	}
-
-}
-
-//export callbackQVirtualKeyboardSelectionListModel_DataChanged
-func callbackQVirtualKeyboardSelectionListModel_DataChanged(ptr unsafe.Pointer, topLeft unsafe.Pointer, bottomRight unsafe.Pointer, roles C.struct_QtVirtualKeyboard_PackedList) {
-	if signal := qt.GetSignal(ptr, "dataChanged"); signal != nil {
-		(*(*func(*core.QModelIndex, *core.QModelIndex, []int))(signal))(core.NewQModelIndexFromPointer(topLeft), core.NewQModelIndexFromPointer(bottomRight), func(l C.struct_QtVirtualKeyboard_PackedList) []int {
-			out := make([]int, int(l.len))
-			tmpList := NewQVirtualKeyboardSelectionListModelFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__dataChanged_roles_atList(i)
-			}
-			return out
-		}(roles))
-	}
-
-}
-
-//export callbackQVirtualKeyboardSelectionListModel_FetchMore
-func callbackQVirtualKeyboardSelectionListModel_FetchMore(ptr unsafe.Pointer, parent unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "fetchMore"); signal != nil {
-		(*(*func(*core.QModelIndex))(signal))(core.NewQModelIndexFromPointer(parent))
-	} else {
-		NewQVirtualKeyboardSelectionListModelFromPointer(ptr).FetchMoreDefault(core.NewQModelIndexFromPointer(parent))
-	}
-}
-
-func (ptr *QVirtualKeyboardSelectionListModel) FetchMoreDefault(parent core.QModelIndex_ITF) {
-	if ptr.Pointer() != nil {
-		C.QVirtualKeyboardSelectionListModel_FetchMoreDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))
-	}
-}
-
-//export callbackQVirtualKeyboardSelectionListModel_HeaderDataChanged
-func callbackQVirtualKeyboardSelectionListModel_HeaderDataChanged(ptr unsafe.Pointer, orientation C.longlong, first C.int, last C.int) {
-	if signal := qt.GetSignal(ptr, "headerDataChanged"); signal != nil {
-		(*(*func(core.Qt__Orientation, int, int))(signal))(core.Qt__Orientation(orientation), int(int32(first)), int(int32(last)))
-	}
-
-}
-
-//export callbackQVirtualKeyboardSelectionListModel_LayoutAboutToBeChanged
-func callbackQVirtualKeyboardSelectionListModel_LayoutAboutToBeChanged(ptr unsafe.Pointer, parents C.struct_QtVirtualKeyboard_PackedList, hint C.longlong) {
-	if signal := qt.GetSignal(ptr, "layoutAboutToBeChanged"); signal != nil {
-		(*(*func([]*core.QPersistentModelIndex, core.QAbstractItemModel__LayoutChangeHint))(signal))(func(l C.struct_QtVirtualKeyboard_PackedList) []*core.QPersistentModelIndex {
-			out := make([]*core.QPersistentModelIndex, int(l.len))
-			tmpList := NewQVirtualKeyboardSelectionListModelFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__layoutAboutToBeChanged_parents_atList(i)
-			}
-			return out
-		}(parents), core.QAbstractItemModel__LayoutChangeHint(hint))
-	}
-
-}
-
-//export callbackQVirtualKeyboardSelectionListModel_LayoutChanged
-func callbackQVirtualKeyboardSelectionListModel_LayoutChanged(ptr unsafe.Pointer, parents C.struct_QtVirtualKeyboard_PackedList, hint C.longlong) {
-	if signal := qt.GetSignal(ptr, "layoutChanged"); signal != nil {
-		(*(*func([]*core.QPersistentModelIndex, core.QAbstractItemModel__LayoutChangeHint))(signal))(func(l C.struct_QtVirtualKeyboard_PackedList) []*core.QPersistentModelIndex {
-			out := make([]*core.QPersistentModelIndex, int(l.len))
-			tmpList := NewQVirtualKeyboardSelectionListModelFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__layoutChanged_parents_atList(i)
-			}
-			return out
-		}(parents), core.QAbstractItemModel__LayoutChangeHint(hint))
-	}
-
-}
-
-//export callbackQVirtualKeyboardSelectionListModel_ModelAboutToBeReset
-func callbackQVirtualKeyboardSelectionListModel_ModelAboutToBeReset(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "modelAboutToBeReset"); signal != nil {
-		(*(*func())(signal))()
-	}
-
-}
-
-//export callbackQVirtualKeyboardSelectionListModel_ModelReset
-func callbackQVirtualKeyboardSelectionListModel_ModelReset(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "modelReset"); signal != nil {
-		(*(*func())(signal))()
-	}
-
-}
-
-//export callbackQVirtualKeyboardSelectionListModel_ResetInternalData
-func callbackQVirtualKeyboardSelectionListModel_ResetInternalData(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "resetInternalData"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQVirtualKeyboardSelectionListModelFromPointer(ptr).ResetInternalDataDefault()
-	}
-}
-
-func (ptr *QVirtualKeyboardSelectionListModel) ResetInternalDataDefault() {
-	if ptr.Pointer() != nil {
-		C.QVirtualKeyboardSelectionListModel_ResetInternalDataDefault(ptr.Pointer())
-	}
-}
-
-//export callbackQVirtualKeyboardSelectionListModel_Revert
-func callbackQVirtualKeyboardSelectionListModel_Revert(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "revert"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQVirtualKeyboardSelectionListModelFromPointer(ptr).RevertDefault()
-	}
-}
-
-func (ptr *QVirtualKeyboardSelectionListModel) RevertDefault() {
-	if ptr.Pointer() != nil {
-		C.QVirtualKeyboardSelectionListModel_RevertDefault(ptr.Pointer())
-	}
-}
-
-//export callbackQVirtualKeyboardSelectionListModel_RowsAboutToBeInserted
-func callbackQVirtualKeyboardSelectionListModel_RowsAboutToBeInserted(ptr unsafe.Pointer, parent unsafe.Pointer, start C.int, end C.int) {
-	if signal := qt.GetSignal(ptr, "rowsAboutToBeInserted"); signal != nil {
-		(*(*func(*core.QModelIndex, int, int))(signal))(core.NewQModelIndexFromPointer(parent), int(int32(start)), int(int32(end)))
-	}
-
-}
-
-//export callbackQVirtualKeyboardSelectionListModel_RowsAboutToBeMoved
-func callbackQVirtualKeyboardSelectionListModel_RowsAboutToBeMoved(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceStart C.int, sourceEnd C.int, destinationParent unsafe.Pointer, destinationRow C.int) {
-	if signal := qt.GetSignal(ptr, "rowsAboutToBeMoved"); signal != nil {
-		(*(*func(*core.QModelIndex, int, int, *core.QModelIndex, int))(signal))(core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceStart)), int(int32(sourceEnd)), core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationRow)))
-	}
-
-}
-
-//export callbackQVirtualKeyboardSelectionListModel_RowsAboutToBeRemoved
-func callbackQVirtualKeyboardSelectionListModel_RowsAboutToBeRemoved(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
-	if signal := qt.GetSignal(ptr, "rowsAboutToBeRemoved"); signal != nil {
-		(*(*func(*core.QModelIndex, int, int))(signal))(core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
-	}
-
-}
-
-//export callbackQVirtualKeyboardSelectionListModel_RowsInserted
-func callbackQVirtualKeyboardSelectionListModel_RowsInserted(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
-	if signal := qt.GetSignal(ptr, "rowsInserted"); signal != nil {
-		(*(*func(*core.QModelIndex, int, int))(signal))(core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
-	}
-
-}
-
-//export callbackQVirtualKeyboardSelectionListModel_RowsMoved
-func callbackQVirtualKeyboardSelectionListModel_RowsMoved(ptr unsafe.Pointer, parent unsafe.Pointer, start C.int, end C.int, destination unsafe.Pointer, row C.int) {
-	if signal := qt.GetSignal(ptr, "rowsMoved"); signal != nil {
-		(*(*func(*core.QModelIndex, int, int, *core.QModelIndex, int))(signal))(core.NewQModelIndexFromPointer(parent), int(int32(start)), int(int32(end)), core.NewQModelIndexFromPointer(destination), int(int32(row)))
-	}
-
-}
-
-//export callbackQVirtualKeyboardSelectionListModel_RowsRemoved
-func callbackQVirtualKeyboardSelectionListModel_RowsRemoved(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
-	if signal := qt.GetSignal(ptr, "rowsRemoved"); signal != nil {
-		(*(*func(*core.QModelIndex, int, int))(signal))(core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
-	}
-
-}
-
 //export callbackQVirtualKeyboardSelectionListModel_Sort
 func callbackQVirtualKeyboardSelectionListModel_Sort(ptr unsafe.Pointer, column C.int, order C.longlong) {
 	if signal := qt.GetSignal(ptr, "sort"); signal != nil {
@@ -5405,187 +5499,6 @@ func (ptr *QVirtualKeyboardSelectionListModel) SortDefault(column int, order cor
 	if ptr.Pointer() != nil {
 		C.QVirtualKeyboardSelectionListModel_SortDefault(ptr.Pointer(), C.int(int32(column)), C.longlong(order))
 	}
-}
-
-//export callbackQVirtualKeyboardSelectionListModel_RoleNames
-func callbackQVirtualKeyboardSelectionListModel_RoleNames(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "roleNames"); signal != nil {
-		return func() unsafe.Pointer {
-			tmpList := NewQVirtualKeyboardSelectionListModelFromPointer(NewQVirtualKeyboardSelectionListModelFromPointer(nil).__roleNames_newList())
-			for k, v := range (*(*func() map[int]*core.QByteArray)(signal))() {
-				tmpList.__roleNames_setList(k, v)
-			}
-			return tmpList.Pointer()
-		}()
-	}
-
-	return func() unsafe.Pointer {
-		tmpList := NewQVirtualKeyboardSelectionListModelFromPointer(NewQVirtualKeyboardSelectionListModelFromPointer(nil).__roleNames_newList())
-		for k, v := range NewQVirtualKeyboardSelectionListModelFromPointer(ptr).RoleNamesDefault() {
-			tmpList.__roleNames_setList(k, v)
-		}
-		return tmpList.Pointer()
-	}()
-}
-
-func (ptr *QVirtualKeyboardSelectionListModel) RoleNamesDefault() map[int]*core.QByteArray {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtVirtualKeyboard_PackedList) map[int]*core.QByteArray {
-			out := make(map[int]*core.QByteArray, int(l.len))
-			tmpList := NewQVirtualKeyboardSelectionListModelFromPointer(l.data)
-			for i, v := range tmpList.__roleNames_keyList() {
-				out[v] = tmpList.__roleNames_atList(v, i)
-			}
-			return out
-		}(C.QVirtualKeyboardSelectionListModel_RoleNamesDefault(ptr.Pointer()))
-	}
-	return make(map[int]*core.QByteArray, 0)
-}
-
-//export callbackQVirtualKeyboardSelectionListModel_ItemData
-func callbackQVirtualKeyboardSelectionListModel_ItemData(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "itemData"); signal != nil {
-		return func() unsafe.Pointer {
-			tmpList := NewQVirtualKeyboardSelectionListModelFromPointer(NewQVirtualKeyboardSelectionListModelFromPointer(nil).__itemData_newList())
-			for k, v := range (*(*func(*core.QModelIndex) map[int]*core.QVariant)(signal))(core.NewQModelIndexFromPointer(index)) {
-				tmpList.__itemData_setList(k, v)
-			}
-			return tmpList.Pointer()
-		}()
-	}
-
-	return func() unsafe.Pointer {
-		tmpList := NewQVirtualKeyboardSelectionListModelFromPointer(NewQVirtualKeyboardSelectionListModelFromPointer(nil).__itemData_newList())
-		for k, v := range NewQVirtualKeyboardSelectionListModelFromPointer(ptr).ItemDataDefault(core.NewQModelIndexFromPointer(index)) {
-			tmpList.__itemData_setList(k, v)
-		}
-		return tmpList.Pointer()
-	}()
-}
-
-func (ptr *QVirtualKeyboardSelectionListModel) ItemDataDefault(index core.QModelIndex_ITF) map[int]*core.QVariant {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtVirtualKeyboard_PackedList) map[int]*core.QVariant {
-			out := make(map[int]*core.QVariant, int(l.len))
-			tmpList := NewQVirtualKeyboardSelectionListModelFromPointer(l.data)
-			for i, v := range tmpList.__itemData_keyList() {
-				out[v] = tmpList.__itemData_atList(v, i)
-			}
-			return out
-		}(C.QVirtualKeyboardSelectionListModel_ItemDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-	}
-	return make(map[int]*core.QVariant, 0)
-}
-
-//export callbackQVirtualKeyboardSelectionListModel_MimeData
-func callbackQVirtualKeyboardSelectionListModel_MimeData(ptr unsafe.Pointer, indexes C.struct_QtVirtualKeyboard_PackedList) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "mimeData"); signal != nil {
-		return core.PointerFromQMimeData((*(*func([]*core.QModelIndex) *core.QMimeData)(signal))(func(l C.struct_QtVirtualKeyboard_PackedList) []*core.QModelIndex {
-			out := make([]*core.QModelIndex, int(l.len))
-			tmpList := NewQVirtualKeyboardSelectionListModelFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__mimeData_indexes_atList(i)
-			}
-			return out
-		}(indexes)))
-	}
-
-	return core.PointerFromQMimeData(NewQVirtualKeyboardSelectionListModelFromPointer(ptr).MimeDataDefault(func(l C.struct_QtVirtualKeyboard_PackedList) []*core.QModelIndex {
-		out := make([]*core.QModelIndex, int(l.len))
-		tmpList := NewQVirtualKeyboardSelectionListModelFromPointer(l.data)
-		for i := 0; i < len(out); i++ {
-			out[i] = tmpList.__mimeData_indexes_atList(i)
-		}
-		return out
-	}(indexes)))
-}
-
-func (ptr *QVirtualKeyboardSelectionListModel) MimeDataDefault(indexes []*core.QModelIndex) *core.QMimeData {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQMimeDataFromPointer(C.QVirtualKeyboardSelectionListModel_MimeDataDefault(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewQVirtualKeyboardSelectionListModelFromPointer(NewQVirtualKeyboardSelectionListModelFromPointer(nil).__mimeData_indexes_newList())
-			for _, v := range indexes {
-				tmpList.__mimeData_indexes_setList(v)
-			}
-			return tmpList.Pointer()
-		}()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-//export callbackQVirtualKeyboardSelectionListModel_Buddy
-func callbackQVirtualKeyboardSelectionListModel_Buddy(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "buddy"); signal != nil {
-		return core.PointerFromQModelIndex((*(*func(*core.QModelIndex) *core.QModelIndex)(signal))(core.NewQModelIndexFromPointer(index)))
-	}
-
-	return core.PointerFromQModelIndex(NewQVirtualKeyboardSelectionListModelFromPointer(ptr).BuddyDefault(core.NewQModelIndexFromPointer(index)))
-}
-
-func (ptr *QVirtualKeyboardSelectionListModel) BuddyDefault(index core.QModelIndex_ITF) *core.QModelIndex {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQModelIndexFromPointer(C.QVirtualKeyboardSelectionListModel_BuddyDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-//export callbackQVirtualKeyboardSelectionListModel_Parent
-func callbackQVirtualKeyboardSelectionListModel_Parent(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "parent"); signal != nil {
-		return core.PointerFromQModelIndex((*(*func(*core.QModelIndex) *core.QModelIndex)(signal))(core.NewQModelIndexFromPointer(index)))
-	}
-
-	return core.PointerFromQModelIndex(NewQVirtualKeyboardSelectionListModelFromPointer(ptr).ParentDefault(core.NewQModelIndexFromPointer(index)))
-}
-
-func (ptr *QVirtualKeyboardSelectionListModel) ParentDefault(index core.QModelIndex_ITF) *core.QModelIndex {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQModelIndexFromPointer(C.QVirtualKeyboardSelectionListModel_ParentDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-//export callbackQVirtualKeyboardSelectionListModel_Match
-func callbackQVirtualKeyboardSelectionListModel_Match(ptr unsafe.Pointer, start unsafe.Pointer, role C.int, value unsafe.Pointer, hits C.int, flags C.longlong) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "match"); signal != nil {
-		return func() unsafe.Pointer {
-			tmpList := NewQVirtualKeyboardSelectionListModelFromPointer(NewQVirtualKeyboardSelectionListModelFromPointer(nil).__match_newList())
-			for _, v := range (*(*func(*core.QModelIndex, int, *core.QVariant, int, core.Qt__MatchFlag) []*core.QModelIndex)(signal))(core.NewQModelIndexFromPointer(start), int(int32(role)), core.NewQVariantFromPointer(value), int(int32(hits)), core.Qt__MatchFlag(flags)) {
-				tmpList.__match_setList(v)
-			}
-			return tmpList.Pointer()
-		}()
-	}
-
-	return func() unsafe.Pointer {
-		tmpList := NewQVirtualKeyboardSelectionListModelFromPointer(NewQVirtualKeyboardSelectionListModelFromPointer(nil).__match_newList())
-		for _, v := range NewQVirtualKeyboardSelectionListModelFromPointer(ptr).MatchDefault(core.NewQModelIndexFromPointer(start), int(int32(role)), core.NewQVariantFromPointer(value), int(int32(hits)), core.Qt__MatchFlag(flags)) {
-			tmpList.__match_setList(v)
-		}
-		return tmpList.Pointer()
-	}()
-}
-
-func (ptr *QVirtualKeyboardSelectionListModel) MatchDefault(start core.QModelIndex_ITF, role int, value core.QVariant_ITF, hits int, flags core.Qt__MatchFlag) []*core.QModelIndex {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtVirtualKeyboard_PackedList) []*core.QModelIndex {
-			out := make([]*core.QModelIndex, int(l.len))
-			tmpList := NewQVirtualKeyboardSelectionListModelFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__match_atList(i)
-			}
-			return out
-		}(C.QVirtualKeyboardSelectionListModel_MatchDefault(ptr.Pointer(), core.PointerFromQModelIndex(start), C.int(int32(role)), core.PointerFromQVariant(value), C.int(int32(hits)), C.longlong(flags)))
-	}
-	return make([]*core.QModelIndex, 0)
 }
 
 //export callbackQVirtualKeyboardSelectionListModel_Span
@@ -5606,57 +5519,20 @@ func (ptr *QVirtualKeyboardSelectionListModel) SpanDefault(index core.QModelInde
 	return nil
 }
 
-//export callbackQVirtualKeyboardSelectionListModel_MimeTypes
-func callbackQVirtualKeyboardSelectionListModel_MimeTypes(ptr unsafe.Pointer) C.struct_QtVirtualKeyboard_PackedString {
-	if signal := qt.GetSignal(ptr, "mimeTypes"); signal != nil {
-		tempVal := (*(*func() []string)(signal))()
-		return C.struct_QtVirtualKeyboard_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
+//export callbackQVirtualKeyboardSelectionListModel_Submit
+func callbackQVirtualKeyboardSelectionListModel_Submit(ptr unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "submit"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func() bool)(signal))())))
 	}
-	tempVal := NewQVirtualKeyboardSelectionListModelFromPointer(ptr).MimeTypesDefault()
-	return C.struct_QtVirtualKeyboard_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
+
+	return C.char(int8(qt.GoBoolToInt(NewQVirtualKeyboardSelectionListModelFromPointer(ptr).SubmitDefault())))
 }
 
-func (ptr *QVirtualKeyboardSelectionListModel) MimeTypesDefault() []string {
+func (ptr *QVirtualKeyboardSelectionListModel) SubmitDefault() bool {
 	if ptr.Pointer() != nil {
-		return unpackStringList(cGoUnpackString(C.QVirtualKeyboardSelectionListModel_MimeTypesDefault(ptr.Pointer())))
+		return int8(C.QVirtualKeyboardSelectionListModel_SubmitDefault(ptr.Pointer())) != 0
 	}
-	return make([]string, 0)
-}
-
-//export callbackQVirtualKeyboardSelectionListModel_Data
-func callbackQVirtualKeyboardSelectionListModel_Data(ptr unsafe.Pointer, index unsafe.Pointer, role C.int) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "data"); signal != nil {
-		return core.PointerFromQVariant((*(*func(*core.QModelIndex, int) *core.QVariant)(signal))(core.NewQModelIndexFromPointer(index), int(int32(role))))
-	}
-
-	return core.PointerFromQVariant(NewQVirtualKeyboardSelectionListModelFromPointer(ptr).DataDefault(core.NewQModelIndexFromPointer(index), int(int32(role))))
-}
-
-func (ptr *QVirtualKeyboardSelectionListModel) DataDefault(index core.QModelIndex_ITF, role int) *core.QVariant {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQVariantFromPointer(C.QVirtualKeyboardSelectionListModel_DataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
-}
-
-//export callbackQVirtualKeyboardSelectionListModel_HeaderData
-func callbackQVirtualKeyboardSelectionListModel_HeaderData(ptr unsafe.Pointer, section C.int, orientation C.longlong, role C.int) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "headerData"); signal != nil {
-		return core.PointerFromQVariant((*(*func(int, core.Qt__Orientation, int) *core.QVariant)(signal))(int(int32(section)), core.Qt__Orientation(orientation), int(int32(role))))
-	}
-
-	return core.PointerFromQVariant(NewQVirtualKeyboardSelectionListModelFromPointer(ptr).HeaderDataDefault(int(int32(section)), core.Qt__Orientation(orientation), int(int32(role))))
-}
-
-func (ptr *QVirtualKeyboardSelectionListModel) HeaderDataDefault(section int, orientation core.Qt__Orientation, role int) *core.QVariant {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQVariantFromPointer(C.QVirtualKeyboardSelectionListModel_HeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
+	return false
 }
 
 //export callbackQVirtualKeyboardSelectionListModel_SupportedDragActions
@@ -5689,118 +5565,6 @@ func (ptr *QVirtualKeyboardSelectionListModel) SupportedDropActionsDefault() cor
 		return core.Qt__DropAction(C.QVirtualKeyboardSelectionListModel_SupportedDropActionsDefault(ptr.Pointer()))
 	}
 	return 0
-}
-
-//export callbackQVirtualKeyboardSelectionListModel_CanDropMimeData
-func callbackQVirtualKeyboardSelectionListModel_CanDropMimeData(ptr unsafe.Pointer, data unsafe.Pointer, action C.longlong, row C.int, column C.int, parent unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "canDropMimeData"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QMimeData, core.Qt__DropAction, int, int, *core.QModelIndex) bool)(signal))(core.NewQMimeDataFromPointer(data), core.Qt__DropAction(action), int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(parent)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQVirtualKeyboardSelectionListModelFromPointer(ptr).CanDropMimeDataDefault(core.NewQMimeDataFromPointer(data), core.Qt__DropAction(action), int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(parent)))))
-}
-
-func (ptr *QVirtualKeyboardSelectionListModel) CanDropMimeDataDefault(data core.QMimeData_ITF, action core.Qt__DropAction, row int, column int, parent core.QModelIndex_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QVirtualKeyboardSelectionListModel_CanDropMimeDataDefault(ptr.Pointer(), core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent))) != 0
-	}
-	return false
-}
-
-//export callbackQVirtualKeyboardSelectionListModel_CanFetchMore
-func callbackQVirtualKeyboardSelectionListModel_CanFetchMore(ptr unsafe.Pointer, parent unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "canFetchMore"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QModelIndex) bool)(signal))(core.NewQModelIndexFromPointer(parent)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQVirtualKeyboardSelectionListModelFromPointer(ptr).CanFetchMoreDefault(core.NewQModelIndexFromPointer(parent)))))
-}
-
-func (ptr *QVirtualKeyboardSelectionListModel) CanFetchMoreDefault(parent core.QModelIndex_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QVirtualKeyboardSelectionListModel_CanFetchMoreDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))) != 0
-	}
-	return false
-}
-
-//export callbackQVirtualKeyboardSelectionListModel_HasChildren
-func callbackQVirtualKeyboardSelectionListModel_HasChildren(ptr unsafe.Pointer, parent unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "hasChildren"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QModelIndex) bool)(signal))(core.NewQModelIndexFromPointer(parent)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQVirtualKeyboardSelectionListModelFromPointer(ptr).HasChildrenDefault(core.NewQModelIndexFromPointer(parent)))))
-}
-
-func (ptr *QVirtualKeyboardSelectionListModel) HasChildrenDefault(parent core.QModelIndex_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QVirtualKeyboardSelectionListModel_HasChildrenDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))) != 0
-	}
-	return false
-}
-
-//export callbackQVirtualKeyboardSelectionListModel_ColumnCount
-func callbackQVirtualKeyboardSelectionListModel_ColumnCount(ptr unsafe.Pointer, parent unsafe.Pointer) C.int {
-	if signal := qt.GetSignal(ptr, "columnCount"); signal != nil {
-		return C.int(int32((*(*func(*core.QModelIndex) int)(signal))(core.NewQModelIndexFromPointer(parent))))
-	}
-
-	return C.int(int32(NewQVirtualKeyboardSelectionListModelFromPointer(ptr).ColumnCountDefault(core.NewQModelIndexFromPointer(parent))))
-}
-
-func (ptr *QVirtualKeyboardSelectionListModel) ColumnCountDefault(parent core.QModelIndex_ITF) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QVirtualKeyboardSelectionListModel_ColumnCountDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))))
-	}
-	return 0
-}
-
-//export callbackQVirtualKeyboardSelectionListModel_RowCount
-func callbackQVirtualKeyboardSelectionListModel_RowCount(ptr unsafe.Pointer, parent unsafe.Pointer) C.int {
-	if signal := qt.GetSignal(ptr, "rowCount"); signal != nil {
-		return C.int(int32((*(*func(*core.QModelIndex) int)(signal))(core.NewQModelIndexFromPointer(parent))))
-	}
-
-	return C.int(int32(NewQVirtualKeyboardSelectionListModelFromPointer(ptr).RowCountDefault(core.NewQModelIndexFromPointer(parent))))
-}
-
-func (ptr *QVirtualKeyboardSelectionListModel) RowCountDefault(parent core.QModelIndex_ITF) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QVirtualKeyboardSelectionListModel_RowCountDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))))
-	}
-	return 0
-}
-
-//export callbackQVirtualKeyboardSelectionListModel_Event
-func callbackQVirtualKeyboardSelectionListModel_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQVirtualKeyboardSelectionListModelFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
-}
-
-func (ptr *QVirtualKeyboardSelectionListModel) EventDefault(e core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QVirtualKeyboardSelectionListModel_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
-	}
-	return false
-}
-
-//export callbackQVirtualKeyboardSelectionListModel_EventFilter
-func callbackQVirtualKeyboardSelectionListModel_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQVirtualKeyboardSelectionListModelFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QVirtualKeyboardSelectionListModel) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QVirtualKeyboardSelectionListModel_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
-	}
-	return false
 }
 
 //export callbackQVirtualKeyboardSelectionListModel_ChildEvent
@@ -5887,6 +5651,38 @@ func (ptr *QVirtualKeyboardSelectionListModel) DisconnectNotifyDefault(sign core
 	}
 }
 
+//export callbackQVirtualKeyboardSelectionListModel_Event
+func callbackQVirtualKeyboardSelectionListModel_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQVirtualKeyboardSelectionListModelFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QVirtualKeyboardSelectionListModel) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QVirtualKeyboardSelectionListModel_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+	}
+	return false
+}
+
+//export callbackQVirtualKeyboardSelectionListModel_EventFilter
+func callbackQVirtualKeyboardSelectionListModel_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQVirtualKeyboardSelectionListModelFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QVirtualKeyboardSelectionListModel) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QVirtualKeyboardSelectionListModel_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+	}
+	return false
+}
+
 //export callbackQVirtualKeyboardSelectionListModel_ObjectNameChanged
 func callbackQVirtualKeyboardSelectionListModel_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtVirtualKeyboard_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -5948,34 +5744,6 @@ func NewQVirtualKeyboardTraceFromPointer(ptr unsafe.Pointer) (n *QVirtualKeyboar
 	n.SetPointer(ptr)
 	return
 }
-func QVirtualKeyboardTrace_Tr(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QVirtualKeyboardTrace_QVirtualKeyboardTrace_Tr(sC, cC, C.int(int32(n))))
-}
-
-func (ptr *QVirtualKeyboardTrace) Tr(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QVirtualKeyboardTrace_QVirtualKeyboardTrace_Tr(sC, cC, C.int(int32(n))))
-}
-
 func (ptr *QVirtualKeyboardTrace) AddPoint(point core.QPointF_ITF) int {
 	if ptr.Pointer() != nil {
 		return int(int32(C.QVirtualKeyboardTrace_AddPoint(ptr.Pointer(), core.PointerFromQPointF(point))))
@@ -6021,6 +5789,32 @@ func (ptr *QVirtualKeyboardTrace) CanceledChanged(isCanceled bool) {
 	if ptr.Pointer() != nil {
 		C.QVirtualKeyboardTrace_CanceledChanged(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(isCanceled))))
 	}
+}
+
+func (ptr *QVirtualKeyboardTrace) ChannelData(channel string, pos int, count int) []*core.QVariant {
+	if ptr.Pointer() != nil {
+		var channelC *C.char
+		if channel != "" {
+			channelC = C.CString(channel)
+			defer C.free(unsafe.Pointer(channelC))
+		}
+		return func(l C.struct_QtVirtualKeyboard_PackedList) []*core.QVariant {
+			out := make([]*core.QVariant, int(l.len))
+			tmpList := NewQVirtualKeyboardTraceFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__channelData_atList(i)
+			}
+			return out
+		}(C.QVirtualKeyboardTrace_ChannelData(ptr.Pointer(), C.struct_QtVirtualKeyboard_PackedString{data: channelC, len: C.longlong(len(channel))}, C.int(int32(pos)), C.int(int32(count))))
+	}
+	return make([]*core.QVariant, 0)
+}
+
+func (ptr *QVirtualKeyboardTrace) Channels() []string {
+	if ptr.Pointer() != nil {
+		return unpackStringList(cGoUnpackString(C.QVirtualKeyboardTrace_Channels(ptr.Pointer())))
+	}
+	return make([]string, 0)
 }
 
 //export callbackQVirtualKeyboardTrace_ChannelsChanged
@@ -6103,6 +5897,27 @@ func (ptr *QVirtualKeyboardTrace) FinalChanged(isFinal bool) {
 	}
 }
 
+func (ptr *QVirtualKeyboardTrace) IsCanceled() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QVirtualKeyboardTrace_IsCanceled(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QVirtualKeyboardTrace) IsFinal() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QVirtualKeyboardTrace_IsFinal(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QVirtualKeyboardTrace) Length() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QVirtualKeyboardTrace_Length(ptr.Pointer())))
+	}
+	return 0
+}
+
 //export callbackQVirtualKeyboardTrace_LengthChanged
 func callbackQVirtualKeyboardTrace_LengthChanged(ptr unsafe.Pointer, length C.int) {
 	if signal := qt.GetSignal(ptr, "lengthChanged"); signal != nil {
@@ -6143,6 +5958,13 @@ func (ptr *QVirtualKeyboardTrace) LengthChanged(length int) {
 	}
 }
 
+func (ptr *QVirtualKeyboardTrace) Opacity() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QVirtualKeyboardTrace_Opacity(ptr.Pointer()))
+	}
+	return 0
+}
+
 //export callbackQVirtualKeyboardTrace_OpacityChanged
 func callbackQVirtualKeyboardTrace_OpacityChanged(ptr unsafe.Pointer, opacity C.double) {
 	if signal := qt.GetSignal(ptr, "opacityChanged"); signal != nil {
@@ -6181,6 +6003,20 @@ func (ptr *QVirtualKeyboardTrace) OpacityChanged(opacity float64) {
 	if ptr.Pointer() != nil {
 		C.QVirtualKeyboardTrace_OpacityChanged(ptr.Pointer(), C.double(opacity))
 	}
+}
+
+func (ptr *QVirtualKeyboardTrace) Points(pos int, count int) []*core.QVariant {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtVirtualKeyboard_PackedList) []*core.QVariant {
+			out := make([]*core.QVariant, int(l.len))
+			tmpList := NewQVirtualKeyboardTraceFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__points_atList(i)
+			}
+			return out
+		}(C.QVirtualKeyboardTrace_Points(ptr.Pointer(), C.int(int32(pos)), C.int(int32(count))))
+	}
+	return make([]*core.QVariant, 0)
 }
 
 func (ptr *QVirtualKeyboardTrace) SetCanceled(canceled bool) {
@@ -6226,6 +6062,13 @@ func (ptr *QVirtualKeyboardTrace) SetTraceId(id int) {
 	}
 }
 
+func (ptr *QVirtualKeyboardTrace) TraceId() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QVirtualKeyboardTrace_TraceId(ptr.Pointer())))
+	}
+	return 0
+}
+
 //export callbackQVirtualKeyboardTrace_TraceIdChanged
 func callbackQVirtualKeyboardTrace_TraceIdChanged(ptr unsafe.Pointer, traceId C.int) {
 	if signal := qt.GetSignal(ptr, "traceIdChanged"); signal != nil {
@@ -6266,97 +6109,6 @@ func (ptr *QVirtualKeyboardTrace) TraceIdChanged(traceId int) {
 	}
 }
 
-func (ptr *QVirtualKeyboardTrace) Channels() []string {
-	if ptr.Pointer() != nil {
-		return unpackStringList(cGoUnpackString(C.QVirtualKeyboardTrace_Channels(ptr.Pointer())))
-	}
-	return make([]string, 0)
-}
-
-func (ptr *QVirtualKeyboardTrace) ChannelData(channel string, pos int, count int) []*core.QVariant {
-	if ptr.Pointer() != nil {
-		var channelC *C.char
-		if channel != "" {
-			channelC = C.CString(channel)
-			defer C.free(unsafe.Pointer(channelC))
-		}
-		return func(l C.struct_QtVirtualKeyboard_PackedList) []*core.QVariant {
-			out := make([]*core.QVariant, int(l.len))
-			tmpList := NewQVirtualKeyboardTraceFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__channelData_atList(i)
-			}
-			return out
-		}(C.QVirtualKeyboardTrace_ChannelData(ptr.Pointer(), C.struct_QtVirtualKeyboard_PackedString{data: channelC, len: C.longlong(len(channel))}, C.int(int32(pos)), C.int(int32(count))))
-	}
-	return make([]*core.QVariant, 0)
-}
-
-func (ptr *QVirtualKeyboardTrace) Points(pos int, count int) []*core.QVariant {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtVirtualKeyboard_PackedList) []*core.QVariant {
-			out := make([]*core.QVariant, int(l.len))
-			tmpList := NewQVirtualKeyboardTraceFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__points_atList(i)
-			}
-			return out
-		}(C.QVirtualKeyboardTrace_Points(ptr.Pointer(), C.int(int32(pos)), C.int(int32(count))))
-	}
-	return make([]*core.QVariant, 0)
-}
-
-func (ptr *QVirtualKeyboardTrace) IsCanceled() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QVirtualKeyboardTrace_IsCanceled(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QVirtualKeyboardTrace) IsFinal() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QVirtualKeyboardTrace_IsFinal(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-//export callbackQVirtualKeyboardTrace_MetaObject
-func callbackQVirtualKeyboardTrace_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQVirtualKeyboardTraceFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QVirtualKeyboardTrace) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QVirtualKeyboardTrace_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
-func (ptr *QVirtualKeyboardTrace) Length() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QVirtualKeyboardTrace_Length(ptr.Pointer())))
-	}
-	return 0
-}
-
-func (ptr *QVirtualKeyboardTrace) TraceId() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QVirtualKeyboardTrace_TraceId(ptr.Pointer())))
-	}
-	return 0
-}
-
-func (ptr *QVirtualKeyboardTrace) Opacity() float64 {
-	if ptr.Pointer() != nil {
-		return float64(C.QVirtualKeyboardTrace_Opacity(ptr.Pointer()))
-	}
-	return 0
-}
-
 func (ptr *QVirtualKeyboardTrace) __channelData_atList(i int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QVirtualKeyboardTrace___channelData_atList(ptr.Pointer(), C.int(int32(i))))
@@ -6395,6 +6147,27 @@ func (ptr *QVirtualKeyboardTrace) __points_newList() unsafe.Pointer {
 	return C.QVirtualKeyboardTrace___points_newList(ptr.Pointer())
 }
 
+func (ptr *QVirtualKeyboardTrace) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QVirtualKeyboardTrace___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QVirtualKeyboardTrace) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QVirtualKeyboardTrace___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QVirtualKeyboardTrace) __children_newList() unsafe.Pointer {
+	return C.QVirtualKeyboardTrace___children_newList(ptr.Pointer())
+}
+
 func (ptr *QVirtualKeyboardTrace) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QVirtualKeyboardTrace___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
@@ -6412,48 +6185,6 @@ func (ptr *QVirtualKeyboardTrace) __dynamicPropertyNames_setList(i core.QByteArr
 
 func (ptr *QVirtualKeyboardTrace) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QVirtualKeyboardTrace___dynamicPropertyNames_newList(ptr.Pointer())
-}
-
-func (ptr *QVirtualKeyboardTrace) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QVirtualKeyboardTrace___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QVirtualKeyboardTrace) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QVirtualKeyboardTrace___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QVirtualKeyboardTrace) __findChildren_newList2() unsafe.Pointer {
-	return C.QVirtualKeyboardTrace___findChildren_newList2(ptr.Pointer())
-}
-
-func (ptr *QVirtualKeyboardTrace) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QVirtualKeyboardTrace___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QVirtualKeyboardTrace) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QVirtualKeyboardTrace___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QVirtualKeyboardTrace) __findChildren_newList3() unsafe.Pointer {
-	return C.QVirtualKeyboardTrace___findChildren_newList3(ptr.Pointer())
 }
 
 func (ptr *QVirtualKeyboardTrace) __findChildren_atList(i int) *core.QObject {
@@ -6477,9 +6208,9 @@ func (ptr *QVirtualKeyboardTrace) __findChildren_newList() unsafe.Pointer {
 	return C.QVirtualKeyboardTrace___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QVirtualKeyboardTrace) __children_atList(i int) *core.QObject {
+func (ptr *QVirtualKeyboardTrace) __findChildren_atList3(i int) *core.QObject {
 	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QVirtualKeyboardTrace___children_atList(ptr.Pointer(), C.int(int32(i))))
+		tmpValue := core.NewQObjectFromPointer(C.QVirtualKeyboardTrace___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -6488,46 +6219,35 @@ func (ptr *QVirtualKeyboardTrace) __children_atList(i int) *core.QObject {
 	return nil
 }
 
-func (ptr *QVirtualKeyboardTrace) __children_setList(i core.QObject_ITF) {
+func (ptr *QVirtualKeyboardTrace) __findChildren_setList3(i core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		C.QVirtualKeyboardTrace___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+		C.QVirtualKeyboardTrace___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *QVirtualKeyboardTrace) __children_newList() unsafe.Pointer {
-	return C.QVirtualKeyboardTrace___children_newList(ptr.Pointer())
+func (ptr *QVirtualKeyboardTrace) __findChildren_newList3() unsafe.Pointer {
+	return C.QVirtualKeyboardTrace___findChildren_newList3(ptr.Pointer())
 }
 
-//export callbackQVirtualKeyboardTrace_Event
-func callbackQVirtualKeyboardTrace_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQVirtualKeyboardTraceFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
-}
-
-func (ptr *QVirtualKeyboardTrace) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QVirtualKeyboardTrace) __qFindChildren_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
-		return int8(C.QVirtualKeyboardTrace_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+		tmpValue := core.NewQObjectFromPointer(C.QVirtualKeyboardTrace___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return false
+	return nil
 }
 
-//export callbackQVirtualKeyboardTrace_EventFilter
-func callbackQVirtualKeyboardTrace_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQVirtualKeyboardTraceFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QVirtualKeyboardTrace) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+func (ptr *QVirtualKeyboardTrace) __qFindChildren_setList2(i core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		return int8(C.QVirtualKeyboardTrace_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+		C.QVirtualKeyboardTrace___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
 	}
-	return false
+}
+
+func (ptr *QVirtualKeyboardTrace) __qFindChildren_newList2() unsafe.Pointer {
+	return C.QVirtualKeyboardTrace___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQVirtualKeyboardTrace_ChildEvent
@@ -6612,6 +6332,38 @@ func (ptr *QVirtualKeyboardTrace) DisconnectNotifyDefault(sign core.QMetaMethod_
 	if ptr.Pointer() != nil {
 		C.QVirtualKeyboardTrace_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
+}
+
+//export callbackQVirtualKeyboardTrace_Event
+func callbackQVirtualKeyboardTrace_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQVirtualKeyboardTraceFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QVirtualKeyboardTrace) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QVirtualKeyboardTrace_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+	}
+	return false
+}
+
+//export callbackQVirtualKeyboardTrace_EventFilter
+func callbackQVirtualKeyboardTrace_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQVirtualKeyboardTraceFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QVirtualKeyboardTrace) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QVirtualKeyboardTrace_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+	}
+	return false
 }
 
 //export callbackQVirtualKeyboardTrace_ObjectNameChanged

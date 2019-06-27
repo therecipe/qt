@@ -1,12 +1,12 @@
 FROM therecipe/qt:wine_base as base
 
-RUN QT=qt-opensource-windows-x86-5.12.2.exe && curl -sL --retry 10 --retry-delay 60 -O https://download.qt.io/official_releases/qt/5.12/5.12.2/$QT \
-	&& QT_QPA_PLATFORM=minimal xvfb-run wine Z:\\$QT --no-force-installations --script=C:\\gopath\\src\\github.com\\therecipe\\qt\\internal\\ci\\iscript.qs WINDOWS=true VERSION=qt5.5122 ARCH=32 && rm -f $QT
-RUN rm -f $(find $HOME/.wine/drive_c/Qt/Qt5.12.2/5.12.2/mingw73_32 -name "*d.a" -exec grep -l "gnu_debug" {} \+)
-RUN rm -f $(find $HOME/.wine/drive_c/Qt/Qt5.12.2/5.12.2/mingw73_32 -name "*d.dll" -exec grep -l "gnu_debug" {} \+)
-RUN rm -f $(find $HOME/.wine/drive_c/Qt/Qt5.12.2/5.12.2/mingw73_32 -name "*d.dll.a" -exec grep -l "gnu_debug" {} \+)
-RUN find $HOME/.wine/drive_c/Qt/Qt5.12.2/5.12.2/mingw73_32 -name "*.exe" -size +7M -maxdepth 4 -delete
-RUN find $HOME/.wine/drive_c/Qt/Qt5.12.2/Docs -type f ! -name "*.index" -delete
+RUN QT=qt-opensource-windows-x86-5.13.0.exe && curl -sL --retry 10 --retry-delay 60 -O https://download.qt.io/official_releases/qt/5.13/5.13.0/$QT \
+	&& QT_QPA_PLATFORM=minimal xvfb-run wine Z:\\$QT --no-force-installations --script=C:\\gopath\\src\\github.com\\therecipe\\qt\\internal\\ci\\iscript.qs WINDOWS=true ARCH=32 && rm -f $QT
+RUN rm -f $(find $HOME/.wine/drive_c/Qt/Qt5.13.0/5.13.0/mingw73_32 -name "*d.a" -exec grep -l "gnu_debug" {} \+)
+RUN rm -f $(find $HOME/.wine/drive_c/Qt/Qt5.13.0/5.13.0/mingw73_32 -name "*d.dll" -exec grep -l "gnu_debug" {} \+)
+RUN rm -f $(find $HOME/.wine/drive_c/Qt/Qt5.13.0/5.13.0/mingw73_32 -name "*d.dll.a" -exec grep -l "gnu_debug" {} \+)
+RUN find $HOME/.wine/drive_c/Qt/Qt5.13.0/5.13.0/mingw73_32 -name "*.exe" -size +7M -maxdepth 4 -delete
+RUN find $HOME/.wine/drive_c/Qt/Qt5.13.0/Docs -type f ! -name "*.index" -delete
 
 
 FROM ubuntu:16.04
@@ -17,15 +17,15 @@ ENV HOME /home/$USER
 ENV GOARCH 386
 ENV GOPATH C:\\gopath
 ENV WINEDEBUG -all
-ENV WINEPATH C:\\Qt\\Qt5.12.2\\Tools\\mingw730_32\\bin;C:\\go\\bin
+ENV WINEPATH C:\\Qt\\Qt5.13.0\\Tools\\mingw730_32\\bin;C:\\go\\bin
 
 COPY --from=base $HOME/.wine/drive_c/go $HOME/.wine/drive_c/go
 COPY --from=base $HOME/.wine/drive_c/gopath/bin $HOME/.wine/drive_c/gopath/bin
 COPY --from=base $HOME/.wine/drive_c/gopath/src/github.com/therecipe/qt $HOME/.wine/drive_c/gopath/src/github.com/therecipe/qt
-COPY --from=base $HOME/.wine/drive_c/Qt/Qt5.12.2/5.12.2/mingw73_32 $HOME/.wine/drive_c/Qt/Qt5.12.2/5.12.2/mingw73_32
-COPY --from=base $HOME/.wine/drive_c/Qt/Qt5.12.2/Docs $HOME/.wine/drive_c/Qt/Qt5.12.2/Docs
-COPY --from=base $HOME/.wine/drive_c/Qt/Qt5.12.2/Licenses $HOME/.wine/drive_c/Qt/Qt5.12.2/Licenses
-COPY --from=base $HOME/.wine/drive_c/Qt/Qt5.12.2/Tools/mingw730_32 $HOME/.wine/drive_c/Qt/Qt5.12.2/Tools/mingw730_32
+COPY --from=base $HOME/.wine/drive_c/Qt/Qt5.13.0/5.13.0/mingw73_32 $HOME/.wine/drive_c/Qt/Qt5.13.0/5.13.0/mingw73_32
+COPY --from=base $HOME/.wine/drive_c/Qt/Qt5.13.0/Docs $HOME/.wine/drive_c/Qt/Qt5.13.0/Docs
+COPY --from=base $HOME/.wine/drive_c/Qt/Qt5.13.0/Licenses $HOME/.wine/drive_c/Qt/Qt5.13.0/Licenses
+COPY --from=base $HOME/.wine/drive_c/Qt/Qt5.13.0/Tools/mingw730_32 $HOME/.wine/drive_c/Qt/Qt5.13.0/Tools/mingw730_32
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates curl software-properties-common apt-transport-https && apt-get -qq clean
 RUN dpkg --add-architecture i386
@@ -37,8 +37,7 @@ RUN WINEDLLOVERRIDES="mscoree,mshtml=" wineboot && wineserver -w
 
 RUN echo 'REGEDIT4\n\n\
 [HKEY_CURRENT_USER\Environment]\n\
-"QT_DOCKER"="true"\n\
-"QT_VERSION"="5.12.2"' > env.reg && regedit Z:\\env.reg && wineserver -w && rm -f env.reg
+"QT_DOCKER"="true"' > env.reg && regedit Z:\\env.reg && wineserver -w && rm -f env.reg
 
 
 RUN wine $GOPATH\\bin\\qtsetup prep

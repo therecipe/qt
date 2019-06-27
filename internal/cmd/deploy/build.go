@@ -64,7 +64,9 @@ func build(mode, target, path, ldFlagsCustom, tagsCustom, name, depPath string, 
 
 	cmd := exec.Command("go", "build", "-p", strconv.Itoa(runtime.GOMAXPROCS(0)), "-v")
 	if len(ldFlags) > 0 {
-		cmd.Args = append(cmd.Args, fmt.Sprintf("-ldflags=%v%v", pattern, escapeFlags(ldFlags, ldFlagsCustom)))
+		if v := utils.GOVERSION(); !((strings.Contains(v, "1.13") || strings.Contains(v, "devel")) && utils.UseGOMOD(path)) {
+			cmd.Args = append(cmd.Args, fmt.Sprintf("-ldflags=%v%v", pattern, escapeFlags(ldFlags, ldFlagsCustom)))
+		}
 	}
 	cmd.Args = append(cmd.Args, "-o", out+ending)
 
@@ -97,6 +99,19 @@ func build(mode, target, path, ldFlagsCustom, tagsCustom, name, depPath string, 
 
 	for key, value := range env {
 		cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", key, value))
+	}
+
+	//TODO: seems to be an go module issue
+	if v := utils.GOVERSION(); strings.Contains(v, "1.13") || strings.Contains(v, "devel") {
+		if utils.UseGOMOD(path) {
+			if runtime.GOOS != "windows" {
+				cmd.Args = []string{"bash", "-c", cmd.String()}
+			} else {
+				//cmd.Args = []string{"cmd", "/C", cmd.String()}
+			}
+			cmd.Args = append(cmd.Args, fmt.Sprintf("-ldflags=%v%v", pattern, escapeFlags(ldFlags, ldFlagsCustom)))
+			cmd.Path, _ = exec.LookPath(cmd.Args[0])
+		}
 	}
 
 	utils.RunCmd(cmd, fmt.Sprintf("build for %v on %v", target, runtime.GOOS))

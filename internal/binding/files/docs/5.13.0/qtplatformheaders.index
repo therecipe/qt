@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE QDOCINDEX>
+<INDEX url="http://doc.qt.io/qt-5" title="Qt Platform Headers Reference Documentation" version="5.13.0" project="QtPlatformHeaders" indexTitle="Qt Platform Headers">
+    <namespace name="" status="active" access="public" documented="false" module="qtplatformheaders">
+        <page name="qtplatformheaders-index.html" href="qtplatformheaders-index.html" status="active" location="qtplatformheaders.qdoc" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/src/platformheaders/doc/src/qtplatformheaders.qdoc" lineno="38" subtype="page" title="Qt Platform Headers" fulltitle="Qt Platform Headers" subtitle="" module="QtPlatformHeaders" brief="Qt Platform Headers module offers header-only inline classes that encapsulate platform-specific information that is tied to a given runtime configuration of a platform plugin">
+            <contents name="getting-started" title="Getting Started" level="1"/>
+            <contents name="api-reference" title="API Reference" level="1"/>
+        </page>
+        <group name="modules" href="modules.html" status="internal" seen="false" title="" members="QtPlatformHeaders"/>
+        <module name="QtPlatformHeaders" href="qtplatformheaders-module.html" status="active" location="qtplatformheaders.qdoc" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/src/platformheaders/doc/src/qtplatformheaders.qdoc" lineno="28" seen="true" title="Qt Platform Headers C++ Classes" module="QtPlatformHeaders" groups="modules" brief="Qt Platform Headers module offers header-only inline classes that encapsulate platform-specific information that is tied to a given runtime configuration of a platform plugin"/>
+    </namespace>
+</INDEX>

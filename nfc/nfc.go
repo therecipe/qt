@@ -35,52 +35,6 @@ func unpackStringList(s string) []string {
 	return strings.Split(s, "¡¦!")
 }
 
-type AndroidNfc struct {
-	ptr unsafe.Pointer
-}
-
-type AndroidNfc_ITF interface {
-	AndroidNfc_PTR() *AndroidNfc
-}
-
-func (ptr *AndroidNfc) AndroidNfc_PTR() *AndroidNfc {
-	return ptr
-}
-
-func (ptr *AndroidNfc) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *AndroidNfc) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromAndroidNfc(ptr AndroidNfc_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.AndroidNfc_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewAndroidNfcFromPointer(ptr unsafe.Pointer) (n *AndroidNfc) {
-	n = new(AndroidNfc)
-	n.SetPointer(ptr)
-	return
-}
-
-func (ptr *AndroidNfc) DestroyAndroidNfc() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
-}
-
 type QNdefFilter struct {
 	ptr unsafe.Pointer
 }
@@ -142,20 +96,6 @@ func (ptr *QNdefFilter) Clear() {
 	}
 }
 
-func (ptr *QNdefFilter) SetOrderMatch(on bool) {
-	if ptr.Pointer() != nil {
-		C.QNdefFilter_SetOrderMatch(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(on))))
-	}
-}
-
-func (ptr *QNdefFilter) DestroyQNdefFilter() {
-	if ptr.Pointer() != nil {
-		C.QNdefFilter_DestroyQNdefFilter(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
-}
-
 func (ptr *QNdefFilter) OrderMatch() bool {
 	if ptr.Pointer() != nil {
 		return int8(C.QNdefFilter_OrderMatch(ptr.Pointer())) != 0
@@ -168,6 +108,20 @@ func (ptr *QNdefFilter) RecordCount() int {
 		return int(int32(C.QNdefFilter_RecordCount(ptr.Pointer())))
 	}
 	return 0
+}
+
+func (ptr *QNdefFilter) SetOrderMatch(on bool) {
+	if ptr.Pointer() != nil {
+		C.QNdefFilter_SetOrderMatch(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(on))))
+	}
+}
+
+func (ptr *QNdefFilter) DestroyQNdefFilter() {
+	if ptr.Pointer() != nil {
+		C.QNdefFilter_DestroyQNdefFilter(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
 }
 
 type QNdefMessage struct {
@@ -216,20 +170,20 @@ func (ptr *QNdefMessage) DestroyQNdefMessage() {
 	}
 }
 
-func QNdefMessage_FromByteArray(message core.QByteArray_ITF) *QNdefMessage {
-	tmpValue := NewQNdefMessageFromPointer(C.QNdefMessage_QNdefMessage_FromByteArray(core.PointerFromQByteArray(message)))
-	runtime.SetFinalizer(tmpValue, (*QNdefMessage).DestroyQNdefMessage)
-	return tmpValue
-}
-
-func (ptr *QNdefMessage) FromByteArray(message core.QByteArray_ITF) *QNdefMessage {
-	tmpValue := NewQNdefMessageFromPointer(C.QNdefMessage_QNdefMessage_FromByteArray(core.PointerFromQByteArray(message)))
-	runtime.SetFinalizer(tmpValue, (*QNdefMessage).DestroyQNdefMessage)
-	return tmpValue
-}
-
 func NewQNdefMessage() *QNdefMessage {
 	tmpValue := NewQNdefMessageFromPointer(C.QNdefMessage_NewQNdefMessage())
+	runtime.SetFinalizer(tmpValue, (*QNdefMessage).DestroyQNdefMessage)
+	return tmpValue
+}
+
+func NewQNdefMessage2(record QNdefRecord_ITF) *QNdefMessage {
+	tmpValue := NewQNdefMessageFromPointer(C.QNdefMessage_NewQNdefMessage2(PointerFromQNdefRecord(record)))
+	runtime.SetFinalizer(tmpValue, (*QNdefMessage).DestroyQNdefMessage)
+	return tmpValue
+}
+
+func NewQNdefMessage3(message QNdefMessage_ITF) *QNdefMessage {
+	tmpValue := NewQNdefMessageFromPointer(C.QNdefMessage_NewQNdefMessage3(PointerFromQNdefMessage(message)))
 	runtime.SetFinalizer(tmpValue, (*QNdefMessage).DestroyQNdefMessage)
 	return tmpValue
 }
@@ -246,14 +200,14 @@ func NewQNdefMessage4(records []*QNdefRecord) *QNdefMessage {
 	return tmpValue
 }
 
-func NewQNdefMessage3(message QNdefMessage_ITF) *QNdefMessage {
-	tmpValue := NewQNdefMessageFromPointer(C.QNdefMessage_NewQNdefMessage3(PointerFromQNdefMessage(message)))
+func QNdefMessage_FromByteArray(message core.QByteArray_ITF) *QNdefMessage {
+	tmpValue := NewQNdefMessageFromPointer(C.QNdefMessage_QNdefMessage_FromByteArray(core.PointerFromQByteArray(message)))
 	runtime.SetFinalizer(tmpValue, (*QNdefMessage).DestroyQNdefMessage)
 	return tmpValue
 }
 
-func NewQNdefMessage2(record QNdefRecord_ITF) *QNdefMessage {
-	tmpValue := NewQNdefMessageFromPointer(C.QNdefMessage_NewQNdefMessage2(PointerFromQNdefRecord(record)))
+func (ptr *QNdefMessage) FromByteArray(message core.QByteArray_ITF) *QNdefMessage {
+	tmpValue := NewQNdefMessageFromPointer(C.QNdefMessage_QNdefMessage_FromByteArray(core.PointerFromQByteArray(message)))
 	runtime.SetFinalizer(tmpValue, (*QNdefMessage).DestroyQNdefMessage)
 	return tmpValue
 }
@@ -284,6 +238,53 @@ func (ptr *QNdefMessage) __QNdefMessage_records_setList4(i QNdefRecord_ITF) {
 
 func (ptr *QNdefMessage) __QNdefMessage_records_newList4() unsafe.Pointer {
 	return C.QNdefMessage___QNdefMessage_records_newList4(ptr.Pointer())
+}
+
+type QNdefNfcIconRecord struct {
+	QNdefRecord
+}
+
+type QNdefNfcIconRecord_ITF interface {
+	QNdefRecord_ITF
+	QNdefNfcIconRecord_PTR() *QNdefNfcIconRecord
+}
+
+func (ptr *QNdefNfcIconRecord) QNdefNfcIconRecord_PTR() *QNdefNfcIconRecord {
+	return ptr
+}
+
+func (ptr *QNdefNfcIconRecord) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QNdefRecord_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QNdefNfcIconRecord) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QNdefRecord_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQNdefNfcIconRecord(ptr QNdefNfcIconRecord_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QNdefNfcIconRecord_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQNdefNfcIconRecordFromPointer(ptr unsafe.Pointer) (n *QNdefNfcIconRecord) {
+	n = new(QNdefNfcIconRecord)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QNdefNfcIconRecord) DestroyQNdefNfcIconRecord() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
 }
 
 type QNdefNfcSmartPosterRecord struct {
@@ -342,16 +343,35 @@ func NewQNdefNfcSmartPosterRecord() *QNdefNfcSmartPosterRecord {
 	return tmpValue
 }
 
+func NewQNdefNfcSmartPosterRecord2(other QNdefRecord_ITF) *QNdefNfcSmartPosterRecord {
+	tmpValue := NewQNdefNfcSmartPosterRecordFromPointer(C.QNdefNfcSmartPosterRecord_NewQNdefNfcSmartPosterRecord2(PointerFromQNdefRecord(other)))
+	runtime.SetFinalizer(tmpValue, (*QNdefNfcSmartPosterRecord).DestroyQNdefNfcSmartPosterRecord)
+	return tmpValue
+}
+
 func NewQNdefNfcSmartPosterRecord3(other QNdefNfcSmartPosterRecord_ITF) *QNdefNfcSmartPosterRecord {
 	tmpValue := NewQNdefNfcSmartPosterRecordFromPointer(C.QNdefNfcSmartPosterRecord_NewQNdefNfcSmartPosterRecord3(PointerFromQNdefNfcSmartPosterRecord(other)))
 	runtime.SetFinalizer(tmpValue, (*QNdefNfcSmartPosterRecord).DestroyQNdefNfcSmartPosterRecord)
 	return tmpValue
 }
 
-func NewQNdefNfcSmartPosterRecord2(other QNdefRecord_ITF) *QNdefNfcSmartPosterRecord {
-	tmpValue := NewQNdefNfcSmartPosterRecordFromPointer(C.QNdefNfcSmartPosterRecord_NewQNdefNfcSmartPosterRecord2(PointerFromQNdefRecord(other)))
-	runtime.SetFinalizer(tmpValue, (*QNdefNfcSmartPosterRecord).DestroyQNdefNfcSmartPosterRecord)
-	return tmpValue
+func (ptr *QNdefNfcSmartPosterRecord) Action() QNdefNfcSmartPosterRecord__Action {
+	if ptr.Pointer() != nil {
+		return QNdefNfcSmartPosterRecord__Action(C.QNdefNfcSmartPosterRecord_Action(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QNdefNfcSmartPosterRecord) AddIcon(icon QNdefNfcIconRecord_ITF) {
+	if ptr.Pointer() != nil {
+		C.QNdefNfcSmartPosterRecord_AddIcon(ptr.Pointer(), PointerFromQNdefNfcIconRecord(icon))
+	}
+}
+
+func (ptr *QNdefNfcSmartPosterRecord) AddIcon2(ty core.QByteArray_ITF, data core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QNdefNfcSmartPosterRecord_AddIcon2(ptr.Pointer(), core.PointerFromQByteArray(ty), core.PointerFromQByteArray(data))
+	}
 }
 
 func (ptr *QNdefNfcSmartPosterRecord) AddTitle(text QNdefNfcTextRecord_ITF) bool {
@@ -376,152 +396,6 @@ func (ptr *QNdefNfcSmartPosterRecord) AddTitle2(text string, locale string, enco
 		return int8(C.QNdefNfcSmartPosterRecord_AddTitle2(ptr.Pointer(), C.struct_QtNfc_PackedString{data: textC, len: C.longlong(len(text))}, C.struct_QtNfc_PackedString{data: localeC, len: C.longlong(len(locale))}, C.longlong(encoding))) != 0
 	}
 	return false
-}
-
-func (ptr *QNdefNfcSmartPosterRecord) RemoveIcon2(ty core.QByteArray_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNdefNfcSmartPosterRecord_RemoveIcon2(ptr.Pointer(), core.PointerFromQByteArray(ty))) != 0
-	}
-	return false
-}
-
-func (ptr *QNdefNfcSmartPosterRecord) RemoveTitle(text QNdefNfcTextRecord_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNdefNfcSmartPosterRecord_RemoveTitle(ptr.Pointer(), PointerFromQNdefNfcTextRecord(text))) != 0
-	}
-	return false
-}
-
-func (ptr *QNdefNfcSmartPosterRecord) RemoveTitle2(locale string) bool {
-	if ptr.Pointer() != nil {
-		var localeC *C.char
-		if locale != "" {
-			localeC = C.CString(locale)
-			defer C.free(unsafe.Pointer(localeC))
-		}
-		return int8(C.QNdefNfcSmartPosterRecord_RemoveTitle2(ptr.Pointer(), C.struct_QtNfc_PackedString{data: localeC, len: C.longlong(len(locale))})) != 0
-	}
-	return false
-}
-
-func (ptr *QNdefNfcSmartPosterRecord) AddIcon2(ty core.QByteArray_ITF, data core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNdefNfcSmartPosterRecord_AddIcon2(ptr.Pointer(), core.PointerFromQByteArray(ty), core.PointerFromQByteArray(data))
-	}
-}
-
-func (ptr *QNdefNfcSmartPosterRecord) SetAction(act QNdefNfcSmartPosterRecord__Action) {
-	if ptr.Pointer() != nil {
-		C.QNdefNfcSmartPosterRecord_SetAction(ptr.Pointer(), C.longlong(act))
-	}
-}
-
-func (ptr *QNdefNfcSmartPosterRecord) SetSize(size uint) {
-	if ptr.Pointer() != nil {
-		C.QNdefNfcSmartPosterRecord_SetSize(ptr.Pointer(), C.uint(uint32(size)))
-	}
-}
-
-func (ptr *QNdefNfcSmartPosterRecord) SetTitles(titles []*QNdefNfcTextRecord) {
-	if ptr.Pointer() != nil {
-		C.QNdefNfcSmartPosterRecord_SetTitles(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewQNdefNfcSmartPosterRecordFromPointer(NewQNdefNfcSmartPosterRecordFromPointer(nil).__setTitles_titles_newList())
-			for _, v := range titles {
-				tmpList.__setTitles_titles_setList(v)
-			}
-			return tmpList.Pointer()
-		}())
-	}
-}
-
-func (ptr *QNdefNfcSmartPosterRecord) SetTypeInfo(ty core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNdefNfcSmartPosterRecord_SetTypeInfo(ptr.Pointer(), core.PointerFromQByteArray(ty))
-	}
-}
-
-func (ptr *QNdefNfcSmartPosterRecord) SetUri(url QNdefNfcUriRecord_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNdefNfcSmartPosterRecord_SetUri(ptr.Pointer(), PointerFromQNdefNfcUriRecord(url))
-	}
-}
-
-func (ptr *QNdefNfcSmartPosterRecord) SetUri2(url core.QUrl_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNdefNfcSmartPosterRecord_SetUri2(ptr.Pointer(), core.PointerFromQUrl(url))
-	}
-}
-
-func (ptr *QNdefNfcSmartPosterRecord) DestroyQNdefNfcSmartPosterRecord() {
-	if ptr.Pointer() != nil {
-		C.QNdefNfcSmartPosterRecord_DestroyQNdefNfcSmartPosterRecord(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
-}
-
-func (ptr *QNdefNfcSmartPosterRecord) Icon(mimetype core.QByteArray_ITF) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QNdefNfcSmartPosterRecord_Icon(ptr.Pointer(), core.PointerFromQByteArray(mimetype)))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QNdefNfcSmartPosterRecord) TypeInfo() *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QNdefNfcSmartPosterRecord_TypeInfo(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QNdefNfcSmartPosterRecord) Action() QNdefNfcSmartPosterRecord__Action {
-	if ptr.Pointer() != nil {
-		return QNdefNfcSmartPosterRecord__Action(C.QNdefNfcSmartPosterRecord_Action(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QNdefNfcSmartPosterRecord) TitleRecord(index int) *QNdefNfcTextRecord {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNdefNfcTextRecordFromPointer(C.QNdefNfcSmartPosterRecord_TitleRecord(ptr.Pointer(), C.int(int32(index))))
-		runtime.SetFinalizer(tmpValue, (*QNdefNfcTextRecord).DestroyQNdefNfcTextRecord)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QNdefNfcSmartPosterRecord) UriRecord() *QNdefNfcUriRecord {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNdefNfcUriRecordFromPointer(C.QNdefNfcSmartPosterRecord_UriRecord(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QNdefNfcUriRecord).DestroyQNdefNfcUriRecord)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QNdefNfcSmartPosterRecord) Title(locale string) string {
-	if ptr.Pointer() != nil {
-		var localeC *C.char
-		if locale != "" {
-			localeC = C.CString(locale)
-			defer C.free(unsafe.Pointer(localeC))
-		}
-		return cGoUnpackString(C.QNdefNfcSmartPosterRecord_Title(ptr.Pointer(), C.struct_QtNfc_PackedString{data: localeC, len: C.longlong(len(locale))}))
-	}
-	return ""
-}
-
-func (ptr *QNdefNfcSmartPosterRecord) Uri() *core.QUrl {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQUrlFromPointer(C.QNdefNfcSmartPosterRecord_Uri(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
-		return tmpValue
-	}
-	return nil
 }
 
 func (ptr *QNdefNfcSmartPosterRecord) HasAction() bool {
@@ -564,11 +438,149 @@ func (ptr *QNdefNfcSmartPosterRecord) HasTypeInfo() bool {
 	return false
 }
 
+func (ptr *QNdefNfcSmartPosterRecord) Icon(mimetype core.QByteArray_ITF) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QNdefNfcSmartPosterRecord_Icon(ptr.Pointer(), core.PointerFromQByteArray(mimetype)))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QNdefNfcSmartPosterRecord) IconCount() int {
 	if ptr.Pointer() != nil {
 		return int(int32(C.QNdefNfcSmartPosterRecord_IconCount(ptr.Pointer())))
 	}
 	return 0
+}
+
+func (ptr *QNdefNfcSmartPosterRecord) IconRecord(index int) *QNdefNfcIconRecord {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQNdefNfcIconRecordFromPointer(C.QNdefNfcSmartPosterRecord_IconRecord(ptr.Pointer(), C.int(int32(index))))
+		runtime.SetFinalizer(tmpValue, (*QNdefNfcIconRecord).DestroyQNdefNfcIconRecord)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QNdefNfcSmartPosterRecord) IconRecords() []*QNdefNfcIconRecord {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtNfc_PackedList) []*QNdefNfcIconRecord {
+			out := make([]*QNdefNfcIconRecord, int(l.len))
+			tmpList := NewQNdefNfcSmartPosterRecordFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__iconRecords_atList(i)
+			}
+			return out
+		}(C.QNdefNfcSmartPosterRecord_IconRecords(ptr.Pointer()))
+	}
+	return make([]*QNdefNfcIconRecord, 0)
+}
+
+func (ptr *QNdefNfcSmartPosterRecord) RemoveIcon(icon QNdefNfcIconRecord_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QNdefNfcSmartPosterRecord_RemoveIcon(ptr.Pointer(), PointerFromQNdefNfcIconRecord(icon))) != 0
+	}
+	return false
+}
+
+func (ptr *QNdefNfcSmartPosterRecord) RemoveIcon2(ty core.QByteArray_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QNdefNfcSmartPosterRecord_RemoveIcon2(ptr.Pointer(), core.PointerFromQByteArray(ty))) != 0
+	}
+	return false
+}
+
+func (ptr *QNdefNfcSmartPosterRecord) RemoveTitle(text QNdefNfcTextRecord_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QNdefNfcSmartPosterRecord_RemoveTitle(ptr.Pointer(), PointerFromQNdefNfcTextRecord(text))) != 0
+	}
+	return false
+}
+
+func (ptr *QNdefNfcSmartPosterRecord) RemoveTitle2(locale string) bool {
+	if ptr.Pointer() != nil {
+		var localeC *C.char
+		if locale != "" {
+			localeC = C.CString(locale)
+			defer C.free(unsafe.Pointer(localeC))
+		}
+		return int8(C.QNdefNfcSmartPosterRecord_RemoveTitle2(ptr.Pointer(), C.struct_QtNfc_PackedString{data: localeC, len: C.longlong(len(locale))})) != 0
+	}
+	return false
+}
+
+func (ptr *QNdefNfcSmartPosterRecord) SetAction(act QNdefNfcSmartPosterRecord__Action) {
+	if ptr.Pointer() != nil {
+		C.QNdefNfcSmartPosterRecord_SetAction(ptr.Pointer(), C.longlong(act))
+	}
+}
+
+func (ptr *QNdefNfcSmartPosterRecord) SetIcons(icons []*QNdefNfcIconRecord) {
+	if ptr.Pointer() != nil {
+		C.QNdefNfcSmartPosterRecord_SetIcons(ptr.Pointer(), func() unsafe.Pointer {
+			tmpList := NewQNdefNfcSmartPosterRecordFromPointer(NewQNdefNfcSmartPosterRecordFromPointer(nil).__setIcons_icons_newList())
+			for _, v := range icons {
+				tmpList.__setIcons_icons_setList(v)
+			}
+			return tmpList.Pointer()
+		}())
+	}
+}
+
+func (ptr *QNdefNfcSmartPosterRecord) SetSize(size uint) {
+	if ptr.Pointer() != nil {
+		C.QNdefNfcSmartPosterRecord_SetSize(ptr.Pointer(), C.uint(uint32(size)))
+	}
+}
+
+func (ptr *QNdefNfcSmartPosterRecord) SetTitles(titles []*QNdefNfcTextRecord) {
+	if ptr.Pointer() != nil {
+		C.QNdefNfcSmartPosterRecord_SetTitles(ptr.Pointer(), func() unsafe.Pointer {
+			tmpList := NewQNdefNfcSmartPosterRecordFromPointer(NewQNdefNfcSmartPosterRecordFromPointer(nil).__setTitles_titles_newList())
+			for _, v := range titles {
+				tmpList.__setTitles_titles_setList(v)
+			}
+			return tmpList.Pointer()
+		}())
+	}
+}
+
+func (ptr *QNdefNfcSmartPosterRecord) SetTypeInfo(ty core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QNdefNfcSmartPosterRecord_SetTypeInfo(ptr.Pointer(), core.PointerFromQByteArray(ty))
+	}
+}
+
+func (ptr *QNdefNfcSmartPosterRecord) SetUri(url QNdefNfcUriRecord_ITF) {
+	if ptr.Pointer() != nil {
+		C.QNdefNfcSmartPosterRecord_SetUri(ptr.Pointer(), PointerFromQNdefNfcUriRecord(url))
+	}
+}
+
+func (ptr *QNdefNfcSmartPosterRecord) SetUri2(url core.QUrl_ITF) {
+	if ptr.Pointer() != nil {
+		C.QNdefNfcSmartPosterRecord_SetUri2(ptr.Pointer(), core.PointerFromQUrl(url))
+	}
+}
+
+func (ptr *QNdefNfcSmartPosterRecord) Size() uint {
+	if ptr.Pointer() != nil {
+		return uint(uint32(C.QNdefNfcSmartPosterRecord_Size(ptr.Pointer())))
+	}
+	return 0
+}
+
+func (ptr *QNdefNfcSmartPosterRecord) Title(locale string) string {
+	if ptr.Pointer() != nil {
+		var localeC *C.char
+		if locale != "" {
+			localeC = C.CString(locale)
+			defer C.free(unsafe.Pointer(localeC))
+		}
+		return cGoUnpackString(C.QNdefNfcSmartPosterRecord_Title(ptr.Pointer(), C.struct_QtNfc_PackedString{data: localeC, len: C.longlong(len(locale))}))
+	}
+	return ""
 }
 
 func (ptr *QNdefNfcSmartPosterRecord) TitleCount() int {
@@ -578,11 +590,82 @@ func (ptr *QNdefNfcSmartPosterRecord) TitleCount() int {
 	return 0
 }
 
-func (ptr *QNdefNfcSmartPosterRecord) Size() uint {
+func (ptr *QNdefNfcSmartPosterRecord) TitleRecord(index int) *QNdefNfcTextRecord {
 	if ptr.Pointer() != nil {
-		return uint(uint32(C.QNdefNfcSmartPosterRecord_Size(ptr.Pointer())))
+		tmpValue := NewQNdefNfcTextRecordFromPointer(C.QNdefNfcSmartPosterRecord_TitleRecord(ptr.Pointer(), C.int(int32(index))))
+		runtime.SetFinalizer(tmpValue, (*QNdefNfcTextRecord).DestroyQNdefNfcTextRecord)
+		return tmpValue
 	}
-	return 0
+	return nil
+}
+
+func (ptr *QNdefNfcSmartPosterRecord) TypeInfo() *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QNdefNfcSmartPosterRecord_TypeInfo(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QNdefNfcSmartPosterRecord) Uri() *core.QUrl {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQUrlFromPointer(C.QNdefNfcSmartPosterRecord_Uri(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QNdefNfcSmartPosterRecord) UriRecord() *QNdefNfcUriRecord {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQNdefNfcUriRecordFromPointer(C.QNdefNfcSmartPosterRecord_UriRecord(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QNdefNfcUriRecord).DestroyQNdefNfcUriRecord)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QNdefNfcSmartPosterRecord) DestroyQNdefNfcSmartPosterRecord() {
+	if ptr.Pointer() != nil {
+		C.QNdefNfcSmartPosterRecord_DestroyQNdefNfcSmartPosterRecord(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *QNdefNfcSmartPosterRecord) __iconRecords_atList(i int) *QNdefNfcIconRecord {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQNdefNfcIconRecordFromPointer(C.QNdefNfcSmartPosterRecord___iconRecords_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QNdefNfcIconRecord).DestroyQNdefNfcIconRecord)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QNdefNfcSmartPosterRecord) __iconRecords_setList(i QNdefNfcIconRecord_ITF) {
+	if ptr.Pointer() != nil {
+		C.QNdefNfcSmartPosterRecord___iconRecords_setList(ptr.Pointer(), PointerFromQNdefNfcIconRecord(i))
+	}
+}
+
+func (ptr *QNdefNfcSmartPosterRecord) __iconRecords_newList() unsafe.Pointer {
+	return C.QNdefNfcSmartPosterRecord___iconRecords_newList(ptr.Pointer())
+}
+
+func (ptr *QNdefNfcSmartPosterRecord) __setIcons_icons_atList(i int) *QNdefNfcIconRecord {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQNdefNfcIconRecordFromPointer(C.QNdefNfcSmartPosterRecord___setIcons_icons_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QNdefNfcIconRecord).DestroyQNdefNfcIconRecord)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QNdefNfcSmartPosterRecord) __setIcons_icons_setList(i QNdefNfcIconRecord_ITF) {
+	if ptr.Pointer() != nil {
+		C.QNdefNfcSmartPosterRecord___setIcons_icons_setList(ptr.Pointer(), PointerFromQNdefNfcIconRecord(i))
+	}
 }
 
 func (ptr *QNdefNfcSmartPosterRecord) __setIcons_icons_newList() unsafe.Pointer {
@@ -606,10 +689,6 @@ func (ptr *QNdefNfcSmartPosterRecord) __setTitles_titles_setList(i QNdefNfcTextR
 
 func (ptr *QNdefNfcSmartPosterRecord) __setTitles_titles_newList() unsafe.Pointer {
 	return C.QNdefNfcSmartPosterRecord___setTitles_titles_newList(ptr.Pointer())
-}
-
-func (ptr *QNdefNfcSmartPosterRecord) __iconRecords_newList() unsafe.Pointer {
-	return C.QNdefNfcSmartPosterRecord___iconRecords_newList(ptr.Pointer())
 }
 
 func (ptr *QNdefNfcSmartPosterRecord) __titleRecords_atList(i int) *QNdefNfcTextRecord {
@@ -699,6 +778,20 @@ func NewQNdefNfcTextRecord2(other QNdefRecord_ITF) *QNdefNfcTextRecord {
 	return tmpValue
 }
 
+func (ptr *QNdefNfcTextRecord) Encoding() QNdefNfcTextRecord__Encoding {
+	if ptr.Pointer() != nil {
+		return QNdefNfcTextRecord__Encoding(C.QNdefNfcTextRecord_Encoding(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QNdefNfcTextRecord) Locale() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QNdefNfcTextRecord_Locale(ptr.Pointer()))
+	}
+	return ""
+}
+
 func (ptr *QNdefNfcTextRecord) SetEncoding(encoding QNdefNfcTextRecord__Encoding) {
 	if ptr.Pointer() != nil {
 		C.QNdefNfcTextRecord_SetEncoding(ptr.Pointer(), C.longlong(encoding))
@@ -725,20 +818,6 @@ func (ptr *QNdefNfcTextRecord) SetText(text string) {
 		}
 		C.QNdefNfcTextRecord_SetText(ptr.Pointer(), C.struct_QtNfc_PackedString{data: textC, len: C.longlong(len(text))})
 	}
-}
-
-func (ptr *QNdefNfcTextRecord) Encoding() QNdefNfcTextRecord__Encoding {
-	if ptr.Pointer() != nil {
-		return QNdefNfcTextRecord__Encoding(C.QNdefNfcTextRecord_Encoding(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QNdefNfcTextRecord) Locale() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QNdefNfcTextRecord_Locale(ptr.Pointer()))
-	}
-	return ""
 }
 
 func (ptr *QNdefNfcTextRecord) Text() string {
@@ -885,6 +964,31 @@ func NewQNdefRecord2(other QNdefRecord_ITF) *QNdefRecord {
 	return tmpValue
 }
 
+func (ptr *QNdefRecord) Id() *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QNdefRecord_Id(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QNdefRecord) IsEmpty() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QNdefRecord_IsEmpty(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QNdefRecord) Payload() *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QNdefRecord_Payload(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QNdefRecord) SetId(id core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
 		C.QNdefRecord_SetId(ptr.Pointer(), core.PointerFromQByteArray(id))
@@ -909,32 +1013,6 @@ func (ptr *QNdefRecord) SetTypeNameFormat(typeNameFormat QNdefRecord__TypeNameFo
 	}
 }
 
-func (ptr *QNdefRecord) DestroyQNdefRecord() {
-	if ptr.Pointer() != nil {
-		C.QNdefRecord_DestroyQNdefRecord(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
-}
-
-func (ptr *QNdefRecord) Id() *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QNdefRecord_Id(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QNdefRecord) Payload() *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QNdefRecord_Payload(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
-}
-
 func (ptr *QNdefRecord) Type() *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QNdefRecord_Type(ptr.Pointer()))
@@ -951,11 +1029,12 @@ func (ptr *QNdefRecord) TypeNameFormat() QNdefRecord__TypeNameFormat {
 	return 0
 }
 
-func (ptr *QNdefRecord) IsEmpty() bool {
+func (ptr *QNdefRecord) DestroyQNdefRecord() {
 	if ptr.Pointer() != nil {
-		return int8(C.QNdefRecord_IsEmpty(ptr.Pointer())) != 0
+		C.QNdefRecord_DestroyQNdefRecord(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
-	return false
 }
 
 type QNearFieldManager struct {
@@ -1027,58 +1106,18 @@ func NewQNearFieldManager(parent core.QObject_ITF) *QNearFieldManager {
 	return tmpValue
 }
 
-func QNearFieldManager_Tr(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QNearFieldManager_QNearFieldManager_Tr(sC, cC, C.int(int32(n))))
-}
-
-func (ptr *QNearFieldManager) Tr(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QNearFieldManager_QNearFieldManager_Tr(sC, cC, C.int(int32(n))))
-}
-
-func (ptr *QNearFieldManager) StartTargetDetection() bool {
+func (ptr *QNearFieldManager) IsAvailable() bool {
 	if ptr.Pointer() != nil {
-		return int8(C.QNearFieldManager_StartTargetDetection(ptr.Pointer())) != 0
+		return int8(C.QNearFieldManager_IsAvailable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
-func (ptr *QNearFieldManager) UnregisterNdefMessageHandler(handlerId int) bool {
+func (ptr *QNearFieldManager) IsSupported() bool {
 	if ptr.Pointer() != nil {
-		return int8(C.QNearFieldManager_UnregisterNdefMessageHandler(ptr.Pointer(), C.int(int32(handlerId)))) != 0
+		return int8(C.QNearFieldManager_IsSupported(ptr.Pointer())) != 0
 	}
 	return false
-}
-
-func (ptr *QNearFieldManager) RegisterNdefMessageHandler2(typeNameFormat QNdefRecord__TypeNameFormat, ty core.QByteArray_ITF, object core.QObject_ITF, method string) int {
-	if ptr.Pointer() != nil {
-		var methodC *C.char
-		if method != "" {
-			methodC = C.CString(method)
-			defer C.free(unsafe.Pointer(methodC))
-		}
-		return int(int32(C.QNearFieldManager_RegisterNdefMessageHandler2(ptr.Pointer(), C.longlong(typeNameFormat), core.PointerFromQByteArray(ty), core.PointerFromQObject(object), methodC)))
-	}
-	return 0
 }
 
 func (ptr *QNearFieldManager) RegisterNdefMessageHandler(object core.QObject_ITF, method string) int {
@@ -1089,6 +1128,18 @@ func (ptr *QNearFieldManager) RegisterNdefMessageHandler(object core.QObject_ITF
 			defer C.free(unsafe.Pointer(methodC))
 		}
 		return int(int32(C.QNearFieldManager_RegisterNdefMessageHandler(ptr.Pointer(), core.PointerFromQObject(object), methodC)))
+	}
+	return 0
+}
+
+func (ptr *QNearFieldManager) RegisterNdefMessageHandler2(typeNameFormat QNdefRecord__TypeNameFormat, ty core.QByteArray_ITF, object core.QObject_ITF, method string) int {
+	if ptr.Pointer() != nil {
+		var methodC *C.char
+		if method != "" {
+			methodC = C.CString(method)
+			defer C.free(unsafe.Pointer(methodC))
+		}
+		return int(int32(C.QNearFieldManager_RegisterNdefMessageHandler2(ptr.Pointer(), C.longlong(typeNameFormat), core.PointerFromQByteArray(ty), core.PointerFromQObject(object), methodC)))
 	}
 	return 0
 }
@@ -1111,10 +1162,24 @@ func (ptr *QNearFieldManager) SetTargetAccessModes(accessModes QNearFieldManager
 	}
 }
 
+func (ptr *QNearFieldManager) StartTargetDetection() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QNearFieldManager_StartTargetDetection(ptr.Pointer())) != 0
+	}
+	return false
+}
+
 func (ptr *QNearFieldManager) StopTargetDetection() {
 	if ptr.Pointer() != nil {
 		C.QNearFieldManager_StopTargetDetection(ptr.Pointer())
 	}
+}
+
+func (ptr *QNearFieldManager) TargetAccessModes() QNearFieldManager__TargetAccessMode {
+	if ptr.Pointer() != nil {
+		return QNearFieldManager__TargetAccessMode(C.QNearFieldManager_TargetAccessModes(ptr.Pointer()))
+	}
+	return 0
 }
 
 //export callbackQNearFieldManager_TargetDetected
@@ -1197,6 +1262,13 @@ func (ptr *QNearFieldManager) TargetLost(target QNearFieldTarget_ITF) {
 	}
 }
 
+func (ptr *QNearFieldManager) UnregisterNdefMessageHandler(handlerId int) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QNearFieldManager_UnregisterNdefMessageHandler(ptr.Pointer(), C.int(int32(handlerId)))) != 0
+	}
+	return false
+}
+
 //export callbackQNearFieldManager_DestroyQNearFieldManager
 func callbackQNearFieldManager_DestroyQNearFieldManager(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "~QNearFieldManager"); signal != nil {
@@ -1244,41 +1316,25 @@ func (ptr *QNearFieldManager) DestroyQNearFieldManagerDefault() {
 	}
 }
 
-func (ptr *QNearFieldManager) TargetAccessModes() QNearFieldManager__TargetAccessMode {
+func (ptr *QNearFieldManager) __children_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
-		return QNearFieldManager__TargetAccessMode(C.QNearFieldManager_TargetAccessModes(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QNearFieldManager) IsAvailable() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNearFieldManager_IsAvailable(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QNearFieldManager) IsSupported() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNearFieldManager_IsSupported(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-//export callbackQNearFieldManager_MetaObject
-func callbackQNearFieldManager_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQNearFieldManagerFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QNearFieldManager) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QNearFieldManager_MetaObjectDefault(ptr.Pointer()))
+		tmpValue := core.NewQObjectFromPointer(C.QNearFieldManager___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
 	return nil
+}
+
+func (ptr *QNearFieldManager) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QNearFieldManager___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QNearFieldManager) __children_newList() unsafe.Pointer {
+	return C.QNearFieldManager___children_newList(ptr.Pointer())
 }
 
 func (ptr *QNearFieldManager) __dynamicPropertyNames_atList(i int) *core.QByteArray {
@@ -1298,48 +1354,6 @@ func (ptr *QNearFieldManager) __dynamicPropertyNames_setList(i core.QByteArray_I
 
 func (ptr *QNearFieldManager) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QNearFieldManager___dynamicPropertyNames_newList(ptr.Pointer())
-}
-
-func (ptr *QNearFieldManager) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QNearFieldManager___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QNearFieldManager) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNearFieldManager___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QNearFieldManager) __findChildren_newList2() unsafe.Pointer {
-	return C.QNearFieldManager___findChildren_newList2(ptr.Pointer())
-}
-
-func (ptr *QNearFieldManager) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QNearFieldManager___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QNearFieldManager) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNearFieldManager___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QNearFieldManager) __findChildren_newList3() unsafe.Pointer {
-	return C.QNearFieldManager___findChildren_newList3(ptr.Pointer())
 }
 
 func (ptr *QNearFieldManager) __findChildren_atList(i int) *core.QObject {
@@ -1363,9 +1377,9 @@ func (ptr *QNearFieldManager) __findChildren_newList() unsafe.Pointer {
 	return C.QNearFieldManager___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QNearFieldManager) __children_atList(i int) *core.QObject {
+func (ptr *QNearFieldManager) __findChildren_atList3(i int) *core.QObject {
 	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QNearFieldManager___children_atList(ptr.Pointer(), C.int(int32(i))))
+		tmpValue := core.NewQObjectFromPointer(C.QNearFieldManager___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -1374,46 +1388,35 @@ func (ptr *QNearFieldManager) __children_atList(i int) *core.QObject {
 	return nil
 }
 
-func (ptr *QNearFieldManager) __children_setList(i core.QObject_ITF) {
+func (ptr *QNearFieldManager) __findChildren_setList3(i core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		C.QNearFieldManager___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+		C.QNearFieldManager___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *QNearFieldManager) __children_newList() unsafe.Pointer {
-	return C.QNearFieldManager___children_newList(ptr.Pointer())
+func (ptr *QNearFieldManager) __findChildren_newList3() unsafe.Pointer {
+	return C.QNearFieldManager___findChildren_newList3(ptr.Pointer())
 }
 
-//export callbackQNearFieldManager_Event
-func callbackQNearFieldManager_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQNearFieldManagerFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
-}
-
-func (ptr *QNearFieldManager) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QNearFieldManager) __qFindChildren_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
-		return int8(C.QNearFieldManager_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+		tmpValue := core.NewQObjectFromPointer(C.QNearFieldManager___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return false
+	return nil
 }
 
-//export callbackQNearFieldManager_EventFilter
-func callbackQNearFieldManager_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQNearFieldManagerFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QNearFieldManager) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+func (ptr *QNearFieldManager) __qFindChildren_setList2(i core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		return int8(C.QNearFieldManager_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+		C.QNearFieldManager___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
 	}
-	return false
+}
+
+func (ptr *QNearFieldManager) __qFindChildren_newList2() unsafe.Pointer {
+	return C.QNearFieldManager___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQNearFieldManager_ChildEvent
@@ -1500,6 +1503,38 @@ func (ptr *QNearFieldManager) DisconnectNotifyDefault(sign core.QMetaMethod_ITF)
 	}
 }
 
+//export callbackQNearFieldManager_Event
+func callbackQNearFieldManager_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQNearFieldManagerFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QNearFieldManager) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QNearFieldManager_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+	}
+	return false
+}
+
+//export callbackQNearFieldManager_EventFilter
+func callbackQNearFieldManager_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQNearFieldManagerFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QNearFieldManager) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QNearFieldManager_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+	}
+	return false
+}
+
 //export callbackQNearFieldManager_ObjectNameChanged
 func callbackQNearFieldManager_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtNfc_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -1562,6 +1597,16 @@ func NewQNearFieldShareManagerFromPointer(ptr unsafe.Pointer) (n *QNearFieldShar
 	return
 }
 
+//go:generate stringer -type=QNearFieldShareManager__ShareMode
+//QNearFieldShareManager::ShareMode
+type QNearFieldShareManager__ShareMode int64
+
+const (
+	QNearFieldShareManager__NoShare   QNearFieldShareManager__ShareMode = QNearFieldShareManager__ShareMode(0x00)
+	QNearFieldShareManager__NdefShare QNearFieldShareManager__ShareMode = QNearFieldShareManager__ShareMode(0x01)
+	QNearFieldShareManager__FileShare QNearFieldShareManager__ShareMode = QNearFieldShareManager__ShareMode(0x02)
+)
+
 //go:generate stringer -type=QNearFieldShareManager__ShareError
 //QNearFieldShareManager::ShareError
 type QNearFieldShareManager__ShareError int64
@@ -1578,58 +1623,12 @@ const (
 	QNearFieldShareManager__SharePermissionDeniedError  QNearFieldShareManager__ShareError = QNearFieldShareManager__ShareError(8)
 )
 
-//go:generate stringer -type=QNearFieldShareManager__ShareMode
-//QNearFieldShareManager::ShareMode
-type QNearFieldShareManager__ShareMode int64
-
-const (
-	QNearFieldShareManager__NoShare   QNearFieldShareManager__ShareMode = QNearFieldShareManager__ShareMode(0x00)
-	QNearFieldShareManager__NdefShare QNearFieldShareManager__ShareMode = QNearFieldShareManager__ShareMode(0x01)
-	QNearFieldShareManager__FileShare QNearFieldShareManager__ShareMode = QNearFieldShareManager__ShareMode(0x02)
-)
-
 func NewQNearFieldShareManager(parent core.QObject_ITF) *QNearFieldShareManager {
 	tmpValue := NewQNearFieldShareManagerFromPointer(C.QNearFieldShareManager_NewQNearFieldShareManager(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
-}
-
-func QNearFieldShareManager_SupportedShareModes() QNearFieldShareManager__ShareMode {
-	return QNearFieldShareManager__ShareMode(C.QNearFieldShareManager_QNearFieldShareManager_SupportedShareModes())
-}
-
-func (ptr *QNearFieldShareManager) SupportedShareModes() QNearFieldShareManager__ShareMode {
-	return QNearFieldShareManager__ShareMode(C.QNearFieldShareManager_QNearFieldShareManager_SupportedShareModes())
-}
-
-func QNearFieldShareManager_Tr(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QNearFieldShareManager_QNearFieldShareManager_Tr(sC, cC, C.int(int32(n))))
-}
-
-func (ptr *QNearFieldShareManager) Tr(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QNearFieldShareManager_QNearFieldShareManager_Tr(sC, cC, C.int(int32(n))))
 }
 
 //export callbackQNearFieldShareManager_Error
@@ -1678,6 +1677,20 @@ func (ptr *QNearFieldShareManager) SetShareModes(mode QNearFieldShareManager__Sh
 	}
 }
 
+func (ptr *QNearFieldShareManager) ShareError() QNearFieldShareManager__ShareError {
+	if ptr.Pointer() != nil {
+		return QNearFieldShareManager__ShareError(C.QNearFieldShareManager_ShareError(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QNearFieldShareManager) ShareModes() QNearFieldShareManager__ShareMode {
+	if ptr.Pointer() != nil {
+		return QNearFieldShareManager__ShareMode(C.QNearFieldShareManager_ShareModes(ptr.Pointer()))
+	}
+	return 0
+}
+
 //export callbackQNearFieldShareManager_ShareModesChanged
 func callbackQNearFieldShareManager_ShareModesChanged(ptr unsafe.Pointer, modes C.longlong) {
 	if signal := qt.GetSignal(ptr, "shareModesChanged"); signal != nil {
@@ -1716,6 +1729,14 @@ func (ptr *QNearFieldShareManager) ShareModesChanged(modes QNearFieldShareManage
 	if ptr.Pointer() != nil {
 		C.QNearFieldShareManager_ShareModesChanged(ptr.Pointer(), C.longlong(modes))
 	}
+}
+
+func QNearFieldShareManager_SupportedShareModes() QNearFieldShareManager__ShareMode {
+	return QNearFieldShareManager__ShareMode(C.QNearFieldShareManager_QNearFieldShareManager_SupportedShareModes())
+}
+
+func (ptr *QNearFieldShareManager) SupportedShareModes() QNearFieldShareManager__ShareMode {
+	return QNearFieldShareManager__ShareMode(C.QNearFieldShareManager_QNearFieldShareManager_SupportedShareModes())
 }
 
 //export callbackQNearFieldShareManager_TargetDetected
@@ -1805,34 +1826,25 @@ func (ptr *QNearFieldShareManager) DestroyQNearFieldShareManagerDefault() {
 	}
 }
 
-func (ptr *QNearFieldShareManager) ShareError() QNearFieldShareManager__ShareError {
+func (ptr *QNearFieldShareManager) __children_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
-		return QNearFieldShareManager__ShareError(C.QNearFieldShareManager_ShareError(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QNearFieldShareManager) ShareModes() QNearFieldShareManager__ShareMode {
-	if ptr.Pointer() != nil {
-		return QNearFieldShareManager__ShareMode(C.QNearFieldShareManager_ShareModes(ptr.Pointer()))
-	}
-	return 0
-}
-
-//export callbackQNearFieldShareManager_MetaObject
-func callbackQNearFieldShareManager_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQNearFieldShareManagerFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QNearFieldShareManager) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QNearFieldShareManager_MetaObjectDefault(ptr.Pointer()))
+		tmpValue := core.NewQObjectFromPointer(C.QNearFieldShareManager___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
 	return nil
+}
+
+func (ptr *QNearFieldShareManager) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QNearFieldShareManager___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QNearFieldShareManager) __children_newList() unsafe.Pointer {
+	return C.QNearFieldShareManager___children_newList(ptr.Pointer())
 }
 
 func (ptr *QNearFieldShareManager) __dynamicPropertyNames_atList(i int) *core.QByteArray {
@@ -1852,48 +1864,6 @@ func (ptr *QNearFieldShareManager) __dynamicPropertyNames_setList(i core.QByteAr
 
 func (ptr *QNearFieldShareManager) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QNearFieldShareManager___dynamicPropertyNames_newList(ptr.Pointer())
-}
-
-func (ptr *QNearFieldShareManager) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QNearFieldShareManager___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QNearFieldShareManager) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNearFieldShareManager___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QNearFieldShareManager) __findChildren_newList2() unsafe.Pointer {
-	return C.QNearFieldShareManager___findChildren_newList2(ptr.Pointer())
-}
-
-func (ptr *QNearFieldShareManager) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QNearFieldShareManager___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QNearFieldShareManager) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNearFieldShareManager___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QNearFieldShareManager) __findChildren_newList3() unsafe.Pointer {
-	return C.QNearFieldShareManager___findChildren_newList3(ptr.Pointer())
 }
 
 func (ptr *QNearFieldShareManager) __findChildren_atList(i int) *core.QObject {
@@ -1917,9 +1887,9 @@ func (ptr *QNearFieldShareManager) __findChildren_newList() unsafe.Pointer {
 	return C.QNearFieldShareManager___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QNearFieldShareManager) __children_atList(i int) *core.QObject {
+func (ptr *QNearFieldShareManager) __findChildren_atList3(i int) *core.QObject {
 	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QNearFieldShareManager___children_atList(ptr.Pointer(), C.int(int32(i))))
+		tmpValue := core.NewQObjectFromPointer(C.QNearFieldShareManager___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -1928,46 +1898,35 @@ func (ptr *QNearFieldShareManager) __children_atList(i int) *core.QObject {
 	return nil
 }
 
-func (ptr *QNearFieldShareManager) __children_setList(i core.QObject_ITF) {
+func (ptr *QNearFieldShareManager) __findChildren_setList3(i core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		C.QNearFieldShareManager___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+		C.QNearFieldShareManager___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *QNearFieldShareManager) __children_newList() unsafe.Pointer {
-	return C.QNearFieldShareManager___children_newList(ptr.Pointer())
+func (ptr *QNearFieldShareManager) __findChildren_newList3() unsafe.Pointer {
+	return C.QNearFieldShareManager___findChildren_newList3(ptr.Pointer())
 }
 
-//export callbackQNearFieldShareManager_Event
-func callbackQNearFieldShareManager_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQNearFieldShareManagerFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
-}
-
-func (ptr *QNearFieldShareManager) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QNearFieldShareManager) __qFindChildren_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
-		return int8(C.QNearFieldShareManager_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+		tmpValue := core.NewQObjectFromPointer(C.QNearFieldShareManager___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return false
+	return nil
 }
 
-//export callbackQNearFieldShareManager_EventFilter
-func callbackQNearFieldShareManager_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQNearFieldShareManagerFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QNearFieldShareManager) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+func (ptr *QNearFieldShareManager) __qFindChildren_setList2(i core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		return int8(C.QNearFieldShareManager_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+		C.QNearFieldShareManager___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
 	}
-	return false
+}
+
+func (ptr *QNearFieldShareManager) __qFindChildren_newList2() unsafe.Pointer {
+	return C.QNearFieldShareManager___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQNearFieldShareManager_ChildEvent
@@ -2054,6 +2013,38 @@ func (ptr *QNearFieldShareManager) DisconnectNotifyDefault(sign core.QMetaMethod
 	}
 }
 
+//export callbackQNearFieldShareManager_Event
+func callbackQNearFieldShareManager_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQNearFieldShareManagerFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QNearFieldShareManager) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QNearFieldShareManager_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+	}
+	return false
+}
+
+//export callbackQNearFieldShareManager_EventFilter
+func callbackQNearFieldShareManager_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQNearFieldShareManagerFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QNearFieldShareManager) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QNearFieldShareManager_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+	}
+	return false
+}
+
 //export callbackQNearFieldShareManager_ObjectNameChanged
 func callbackQNearFieldShareManager_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtNfc_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -2115,54 +2106,6 @@ func NewQNearFieldShareTargetFromPointer(ptr unsafe.Pointer) (n *QNearFieldShare
 	n.SetPointer(ptr)
 	return
 }
-func QNearFieldShareTarget_Tr(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QNearFieldShareTarget_QNearFieldShareTarget_Tr(sC, cC, C.int(int32(n))))
-}
-
-func (ptr *QNearFieldShareTarget) Tr(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QNearFieldShareTarget_QNearFieldShareTarget_Tr(sC, cC, C.int(int32(n))))
-}
-
-func (ptr *QNearFieldShareTarget) Share2(files []*core.QFileInfo) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNearFieldShareTarget_Share2(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewQNearFieldShareTargetFromPointer(NewQNearFieldShareTargetFromPointer(nil).__share_files_newList2())
-			for _, v := range files {
-				tmpList.__share_files_setList2(v)
-			}
-			return tmpList.Pointer()
-		}())) != 0
-	}
-	return false
-}
-
-func (ptr *QNearFieldShareTarget) Share(message QNdefMessage_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNearFieldShareTarget_Share(ptr.Pointer(), PointerFromQNdefMessage(message))) != 0
-	}
-	return false
-}
-
 func (ptr *QNearFieldShareTarget) Cancel() {
 	if ptr.Pointer() != nil {
 		C.QNearFieldShareTarget_Cancel(ptr.Pointer())
@@ -2209,6 +2152,40 @@ func (ptr *QNearFieldShareTarget) Error(error QNearFieldShareManager__ShareError
 	}
 }
 
+func (ptr *QNearFieldShareTarget) IsShareInProgress() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QNearFieldShareTarget_IsShareInProgress(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QNearFieldShareTarget) Share(message QNdefMessage_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QNearFieldShareTarget_Share(ptr.Pointer(), PointerFromQNdefMessage(message))) != 0
+	}
+	return false
+}
+
+func (ptr *QNearFieldShareTarget) Share2(files []*core.QFileInfo) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QNearFieldShareTarget_Share2(ptr.Pointer(), func() unsafe.Pointer {
+			tmpList := NewQNearFieldShareTargetFromPointer(NewQNearFieldShareTargetFromPointer(nil).__share_files_newList2())
+			for _, v := range files {
+				tmpList.__share_files_setList2(v)
+			}
+			return tmpList.Pointer()
+		}())) != 0
+	}
+	return false
+}
+
+func (ptr *QNearFieldShareTarget) ShareError() QNearFieldShareManager__ShareError {
+	if ptr.Pointer() != nil {
+		return QNearFieldShareManager__ShareError(C.QNearFieldShareTarget_ShareError(ptr.Pointer()))
+	}
+	return 0
+}
+
 //export callbackQNearFieldShareTarget_ShareFinished
 func callbackQNearFieldShareTarget_ShareFinished(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "shareFinished"); signal != nil {
@@ -2247,6 +2224,13 @@ func (ptr *QNearFieldShareTarget) ShareFinished() {
 	if ptr.Pointer() != nil {
 		C.QNearFieldShareTarget_ShareFinished(ptr.Pointer())
 	}
+}
+
+func (ptr *QNearFieldShareTarget) ShareModes() QNearFieldShareManager__ShareMode {
+	if ptr.Pointer() != nil {
+		return QNearFieldShareManager__ShareMode(C.QNearFieldShareTarget_ShareModes(ptr.Pointer()))
+	}
+	return 0
 }
 
 //export callbackQNearFieldShareTarget_DestroyQNearFieldShareTarget
@@ -2296,43 +2280,6 @@ func (ptr *QNearFieldShareTarget) DestroyQNearFieldShareTargetDefault() {
 	}
 }
 
-func (ptr *QNearFieldShareTarget) ShareError() QNearFieldShareManager__ShareError {
-	if ptr.Pointer() != nil {
-		return QNearFieldShareManager__ShareError(C.QNearFieldShareTarget_ShareError(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QNearFieldShareTarget) ShareModes() QNearFieldShareManager__ShareMode {
-	if ptr.Pointer() != nil {
-		return QNearFieldShareManager__ShareMode(C.QNearFieldShareTarget_ShareModes(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QNearFieldShareTarget) IsShareInProgress() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNearFieldShareTarget_IsShareInProgress(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-//export callbackQNearFieldShareTarget_MetaObject
-func callbackQNearFieldShareTarget_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQNearFieldShareTargetFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QNearFieldShareTarget) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QNearFieldShareTarget_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
 func (ptr *QNearFieldShareTarget) __share_files_atList2(i int) *core.QFileInfo {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQFileInfoFromPointer(C.QNearFieldShareTarget___share_files_atList2(ptr.Pointer(), C.int(int32(i))))
@@ -2350,88 +2297,6 @@ func (ptr *QNearFieldShareTarget) __share_files_setList2(i core.QFileInfo_ITF) {
 
 func (ptr *QNearFieldShareTarget) __share_files_newList2() unsafe.Pointer {
 	return C.QNearFieldShareTarget___share_files_newList2(ptr.Pointer())
-}
-
-func (ptr *QNearFieldShareTarget) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QNearFieldShareTarget___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QNearFieldShareTarget) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNearFieldShareTarget___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
-}
-
-func (ptr *QNearFieldShareTarget) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return C.QNearFieldShareTarget___dynamicPropertyNames_newList(ptr.Pointer())
-}
-
-func (ptr *QNearFieldShareTarget) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QNearFieldShareTarget___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QNearFieldShareTarget) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNearFieldShareTarget___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QNearFieldShareTarget) __findChildren_newList2() unsafe.Pointer {
-	return C.QNearFieldShareTarget___findChildren_newList2(ptr.Pointer())
-}
-
-func (ptr *QNearFieldShareTarget) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QNearFieldShareTarget___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QNearFieldShareTarget) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNearFieldShareTarget___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QNearFieldShareTarget) __findChildren_newList3() unsafe.Pointer {
-	return C.QNearFieldShareTarget___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QNearFieldShareTarget) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QNearFieldShareTarget___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QNearFieldShareTarget) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNearFieldShareTarget___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QNearFieldShareTarget) __findChildren_newList() unsafe.Pointer {
-	return C.QNearFieldShareTarget___findChildren_newList(ptr.Pointer())
 }
 
 func (ptr *QNearFieldShareTarget) __children_atList(i int) *core.QObject {
@@ -2455,36 +2320,86 @@ func (ptr *QNearFieldShareTarget) __children_newList() unsafe.Pointer {
 	return C.QNearFieldShareTarget___children_newList(ptr.Pointer())
 }
 
-//export callbackQNearFieldShareTarget_Event
-func callbackQNearFieldShareTarget_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQNearFieldShareTargetFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
-}
-
-func (ptr *QNearFieldShareTarget) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QNearFieldShareTarget) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
-		return int8(C.QNearFieldShareTarget_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+		tmpValue := core.NewQByteArrayFromPointer(C.QNearFieldShareTarget___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
 	}
-	return false
+	return nil
 }
 
-//export callbackQNearFieldShareTarget_EventFilter
-func callbackQNearFieldShareTarget_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQNearFieldShareTargetFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QNearFieldShareTarget) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+func (ptr *QNearFieldShareTarget) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		return int8(C.QNearFieldShareTarget_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+		C.QNearFieldShareTarget___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
 	}
-	return false
+}
+
+func (ptr *QNearFieldShareTarget) __dynamicPropertyNames_newList() unsafe.Pointer {
+	return C.QNearFieldShareTarget___dynamicPropertyNames_newList(ptr.Pointer())
+}
+
+func (ptr *QNearFieldShareTarget) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QNearFieldShareTarget___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QNearFieldShareTarget) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QNearFieldShareTarget___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QNearFieldShareTarget) __findChildren_newList() unsafe.Pointer {
+	return C.QNearFieldShareTarget___findChildren_newList(ptr.Pointer())
+}
+
+func (ptr *QNearFieldShareTarget) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QNearFieldShareTarget___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QNearFieldShareTarget) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QNearFieldShareTarget___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QNearFieldShareTarget) __findChildren_newList3() unsafe.Pointer {
+	return C.QNearFieldShareTarget___findChildren_newList3(ptr.Pointer())
+}
+
+func (ptr *QNearFieldShareTarget) __qFindChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QNearFieldShareTarget___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QNearFieldShareTarget) __qFindChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QNearFieldShareTarget___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QNearFieldShareTarget) __qFindChildren_newList2() unsafe.Pointer {
+	return C.QNearFieldShareTarget___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQNearFieldShareTarget_ChildEvent
@@ -2571,6 +2486,38 @@ func (ptr *QNearFieldShareTarget) DisconnectNotifyDefault(sign core.QMetaMethod_
 	}
 }
 
+//export callbackQNearFieldShareTarget_Event
+func callbackQNearFieldShareTarget_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQNearFieldShareTargetFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QNearFieldShareTarget) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QNearFieldShareTarget_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+	}
+	return false
+}
+
+//export callbackQNearFieldShareTarget_EventFilter
+func callbackQNearFieldShareTarget_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQNearFieldShareTargetFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QNearFieldShareTarget) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QNearFieldShareTarget_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+	}
+	return false
+}
+
 //export callbackQNearFieldShareTarget_ObjectNameChanged
 func callbackQNearFieldShareTarget_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtNfc_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -2633,6 +2580,19 @@ func NewQNearFieldTargetFromPointer(ptr unsafe.Pointer) (n *QNearFieldTarget) {
 	return
 }
 
+//go:generate stringer -type=QNearFieldTarget__Type
+//QNearFieldTarget::Type
+type QNearFieldTarget__Type int64
+
+const (
+	QNearFieldTarget__ProprietaryTag QNearFieldTarget__Type = QNearFieldTarget__Type(0)
+	QNearFieldTarget__NfcTagType1    QNearFieldTarget__Type = QNearFieldTarget__Type(1)
+	QNearFieldTarget__NfcTagType2    QNearFieldTarget__Type = QNearFieldTarget__Type(2)
+	QNearFieldTarget__NfcTagType3    QNearFieldTarget__Type = QNearFieldTarget__Type(3)
+	QNearFieldTarget__NfcTagType4    QNearFieldTarget__Type = QNearFieldTarget__Type(4)
+	QNearFieldTarget__MifareTag      QNearFieldTarget__Type = QNearFieldTarget__Type(5)
+)
+
 //go:generate stringer -type=QNearFieldTarget__AccessMethod
 //QNearFieldTarget::AccessMethod
 type QNearFieldTarget__AccessMethod int64
@@ -2661,19 +2621,6 @@ const (
 	QNearFieldTarget__CommandError           QNearFieldTarget__Error = QNearFieldTarget__Error(9)
 )
 
-//go:generate stringer -type=QNearFieldTarget__Type
-//QNearFieldTarget::Type
-type QNearFieldTarget__Type int64
-
-const (
-	QNearFieldTarget__ProprietaryTag QNearFieldTarget__Type = QNearFieldTarget__Type(0)
-	QNearFieldTarget__NfcTagType1    QNearFieldTarget__Type = QNearFieldTarget__Type(1)
-	QNearFieldTarget__NfcTagType2    QNearFieldTarget__Type = QNearFieldTarget__Type(2)
-	QNearFieldTarget__NfcTagType3    QNearFieldTarget__Type = QNearFieldTarget__Type(3)
-	QNearFieldTarget__NfcTagType4    QNearFieldTarget__Type = QNearFieldTarget__Type(4)
-	QNearFieldTarget__MifareTag      QNearFieldTarget__Type = QNearFieldTarget__Type(5)
-)
-
 func NewQNearFieldTarget(parent core.QObject_ITF) *QNearFieldTarget {
 	tmpValue := NewQNearFieldTargetFromPointer(C.QNearFieldTarget_NewQNearFieldTarget(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
@@ -2682,32 +2629,42 @@ func NewQNearFieldTarget(parent core.QObject_ITF) *QNearFieldTarget {
 	return tmpValue
 }
 
-func QNearFieldTarget_Tr(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
+//export callbackQNearFieldTarget_AccessMethods
+func callbackQNearFieldTarget_AccessMethods(ptr unsafe.Pointer) C.longlong {
+	if signal := qt.GetSignal(ptr, "accessMethods"); signal != nil {
+		return C.longlong((*(*func() QNearFieldTarget__AccessMethod)(signal))())
 	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QNearFieldTarget_QNearFieldTarget_Tr(sC, cC, C.int(int32(n))))
+
+	return C.longlong(0)
 }
 
-func (ptr *QNearFieldTarget) Tr(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
+func (ptr *QNearFieldTarget) ConnectAccessMethods(f func() QNearFieldTarget__AccessMethod) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "accessMethods"); signal != nil {
+			f := func() QNearFieldTarget__AccessMethod {
+				(*(*func() QNearFieldTarget__AccessMethod)(signal))()
+				return f()
+			}
+			qt.ConnectSignal(ptr.Pointer(), "accessMethods", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "accessMethods", unsafe.Pointer(&f))
+		}
 	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
+}
+
+func (ptr *QNearFieldTarget) DisconnectAccessMethods() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "accessMethods")
 	}
-	return cGoUnpackString(C.QNearFieldTarget_QNearFieldTarget_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QNearFieldTarget) AccessMethods() QNearFieldTarget__AccessMethod {
+	if ptr.Pointer() != nil {
+		return QNearFieldTarget__AccessMethod(C.QNearFieldTarget_AccessMethods(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QNearFieldTarget) Disconnect() bool {
@@ -2715,6 +2672,46 @@ func (ptr *QNearFieldTarget) Disconnect() bool {
 		return int8(C.QNearFieldTarget_Disconnect(ptr.Pointer())) != 0
 	}
 	return false
+}
+
+//export callbackQNearFieldTarget_Disconnected
+func callbackQNearFieldTarget_Disconnected(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "disconnected"); signal != nil {
+		(*(*func())(signal))()
+	}
+
+}
+
+func (ptr *QNearFieldTarget) ConnectDisconnected(f func()) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "disconnected") {
+			C.QNearFieldTarget_ConnectDisconnected(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "disconnected"); signal != nil {
+			f := func() {
+				(*(*func())(signal))()
+				f()
+			}
+			qt.ConnectSignal(ptr.Pointer(), "disconnected", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "disconnected", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QNearFieldTarget) DisconnectDisconnected() {
+	if ptr.Pointer() != nil {
+		C.QNearFieldTarget_DisconnectDisconnected(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "disconnected")
+	}
+}
+
+func (ptr *QNearFieldTarget) Disconnected() {
+	if ptr.Pointer() != nil {
+		C.QNearFieldTarget_Disconnected(ptr.Pointer())
+	}
 }
 
 //export callbackQNearFieldTarget_HasNdefMessage
@@ -2762,51 +2759,25 @@ func (ptr *QNearFieldTarget) HasNdefMessageDefault() bool {
 	return false
 }
 
-func (ptr *QNearFieldTarget) SetKeepConnection(isPersistent bool) bool {
+func (ptr *QNearFieldTarget) IsProcessingCommand() bool {
 	if ptr.Pointer() != nil {
-		return int8(C.QNearFieldTarget_SetKeepConnection(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(isPersistent))))) != 0
+		return int8(C.QNearFieldTarget_IsProcessingCommand(ptr.Pointer())) != 0
 	}
 	return false
 }
 
-//export callbackQNearFieldTarget_Disconnected
-func callbackQNearFieldTarget_Disconnected(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "disconnected"); signal != nil {
-		(*(*func())(signal))()
+func (ptr *QNearFieldTarget) KeepConnection() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QNearFieldTarget_KeepConnection(ptr.Pointer())) != 0
 	}
-
+	return false
 }
 
-func (ptr *QNearFieldTarget) ConnectDisconnected(f func()) {
+func (ptr *QNearFieldTarget) MaxCommandLength() int {
 	if ptr.Pointer() != nil {
-
-		if !qt.ExistsSignal(ptr.Pointer(), "disconnected") {
-			C.QNearFieldTarget_ConnectDisconnected(ptr.Pointer())
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "disconnected"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "disconnected", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "disconnected", unsafe.Pointer(&f))
-		}
+		return int(int32(C.QNearFieldTarget_MaxCommandLength(ptr.Pointer())))
 	}
-}
-
-func (ptr *QNearFieldTarget) DisconnectDisconnected() {
-	if ptr.Pointer() != nil {
-		C.QNearFieldTarget_DisconnectDisconnected(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "disconnected")
-	}
-}
-
-func (ptr *QNearFieldTarget) Disconnected() {
-	if ptr.Pointer() != nil {
-		C.QNearFieldTarget_Disconnected(ptr.Pointer())
-	}
+	return 0
 }
 
 //export callbackQNearFieldTarget_NdefMessageRead
@@ -2889,51 +2860,49 @@ func (ptr *QNearFieldTarget) NdefMessagesWritten() {
 	}
 }
 
-//export callbackQNearFieldTarget_DestroyQNearFieldTarget
-func callbackQNearFieldTarget_DestroyQNearFieldTarget(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QNearFieldTarget"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQNearFieldTargetFromPointer(ptr).DestroyQNearFieldTargetDefault()
+func (ptr *QNearFieldTarget) SetKeepConnection(isPersistent bool) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QNearFieldTarget_SetKeepConnection(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(isPersistent))))) != 0
 	}
+	return false
 }
 
-func (ptr *QNearFieldTarget) ConnectDestroyQNearFieldTarget(f func()) {
+//export callbackQNearFieldTarget_Type
+func callbackQNearFieldTarget_Type(ptr unsafe.Pointer) C.longlong {
+	if signal := qt.GetSignal(ptr, "type"); signal != nil {
+		return C.longlong((*(*func() QNearFieldTarget__Type)(signal))())
+	}
+
+	return C.longlong(0)
+}
+
+func (ptr *QNearFieldTarget) ConnectType(f func() QNearFieldTarget__Type) {
 	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QNearFieldTarget"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
+		if signal := qt.LendSignal(ptr.Pointer(), "type"); signal != nil {
+			f := func() QNearFieldTarget__Type {
+				(*(*func() QNearFieldTarget__Type)(signal))()
+				return f()
 			}
-			qt.ConnectSignal(ptr.Pointer(), "~QNearFieldTarget", unsafe.Pointer(&f))
+			qt.ConnectSignal(ptr.Pointer(), "type", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QNearFieldTarget", unsafe.Pointer(&f))
+			qt.ConnectSignal(ptr.Pointer(), "type", unsafe.Pointer(&f))
 		}
 	}
 }
 
-func (ptr *QNearFieldTarget) DisconnectDestroyQNearFieldTarget() {
+func (ptr *QNearFieldTarget) DisconnectType() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QNearFieldTarget")
+		qt.DisconnectSignal(ptr.Pointer(), "type")
 	}
 }
 
-func (ptr *QNearFieldTarget) DestroyQNearFieldTarget() {
+func (ptr *QNearFieldTarget) Type() QNearFieldTarget__Type {
 	if ptr.Pointer() != nil {
-		C.QNearFieldTarget_DestroyQNearFieldTarget(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		return QNearFieldTarget__Type(C.QNearFieldTarget_Type(ptr.Pointer()))
 	}
-}
-
-func (ptr *QNearFieldTarget) DestroyQNearFieldTargetDefault() {
-	if ptr.Pointer() != nil {
-		C.QNearFieldTarget_DestroyQNearFieldTargetDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
+	return 0
 }
 
 //export callbackQNearFieldTarget_Uid
@@ -2974,82 +2943,6 @@ func (ptr *QNearFieldTarget) Uid() *core.QByteArray {
 		return tmpValue
 	}
 	return nil
-}
-
-//export callbackQNearFieldTarget_AccessMethods
-func callbackQNearFieldTarget_AccessMethods(ptr unsafe.Pointer) C.longlong {
-	if signal := qt.GetSignal(ptr, "accessMethods"); signal != nil {
-		return C.longlong((*(*func() QNearFieldTarget__AccessMethod)(signal))())
-	}
-
-	return C.longlong(0)
-}
-
-func (ptr *QNearFieldTarget) ConnectAccessMethods(f func() QNearFieldTarget__AccessMethod) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "accessMethods"); signal != nil {
-			f := func() QNearFieldTarget__AccessMethod {
-				(*(*func() QNearFieldTarget__AccessMethod)(signal))()
-				return f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "accessMethods", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "accessMethods", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QNearFieldTarget) DisconnectAccessMethods() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "accessMethods")
-	}
-}
-
-func (ptr *QNearFieldTarget) AccessMethods() QNearFieldTarget__AccessMethod {
-	if ptr.Pointer() != nil {
-		return QNearFieldTarget__AccessMethod(C.QNearFieldTarget_AccessMethods(ptr.Pointer()))
-	}
-	return 0
-}
-
-//export callbackQNearFieldTarget_Type
-func callbackQNearFieldTarget_Type(ptr unsafe.Pointer) C.longlong {
-	if signal := qt.GetSignal(ptr, "type"); signal != nil {
-		return C.longlong((*(*func() QNearFieldTarget__Type)(signal))())
-	}
-
-	return C.longlong(0)
-}
-
-func (ptr *QNearFieldTarget) ConnectType(f func() QNearFieldTarget__Type) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "type"); signal != nil {
-			f := func() QNearFieldTarget__Type {
-				(*(*func() QNearFieldTarget__Type)(signal))()
-				return f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "type", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "type", unsafe.Pointer(&f))
-		}
-	}
-}
-
-func (ptr *QNearFieldTarget) DisconnectType() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "type")
-	}
-}
-
-func (ptr *QNearFieldTarget) Type() QNearFieldTarget__Type {
-	if ptr.Pointer() != nil {
-		return QNearFieldTarget__Type(C.QNearFieldTarget_Type(ptr.Pointer()))
-	}
-	return 0
 }
 
 //export callbackQNearFieldTarget_Url
@@ -3101,41 +2994,51 @@ func (ptr *QNearFieldTarget) UrlDefault() *core.QUrl {
 	return nil
 }
 
-func (ptr *QNearFieldTarget) IsProcessingCommand() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNearFieldTarget_IsProcessingCommand(ptr.Pointer())) != 0
+//export callbackQNearFieldTarget_DestroyQNearFieldTarget
+func callbackQNearFieldTarget_DestroyQNearFieldTarget(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "~QNearFieldTarget"); signal != nil {
+		(*(*func())(signal))()
+	} else {
+		NewQNearFieldTargetFromPointer(ptr).DestroyQNearFieldTargetDefault()
 	}
-	return false
 }
 
-func (ptr *QNearFieldTarget) KeepConnection() bool {
+func (ptr *QNearFieldTarget) ConnectDestroyQNearFieldTarget(f func()) {
 	if ptr.Pointer() != nil {
-		return int8(C.QNearFieldTarget_KeepConnection(ptr.Pointer())) != 0
+
+		if signal := qt.LendSignal(ptr.Pointer(), "~QNearFieldTarget"); signal != nil {
+			f := func() {
+				(*(*func())(signal))()
+				f()
+			}
+			qt.ConnectSignal(ptr.Pointer(), "~QNearFieldTarget", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "~QNearFieldTarget", unsafe.Pointer(&f))
+		}
 	}
-	return false
 }
 
-//export callbackQNearFieldTarget_MetaObject
-func callbackQNearFieldTarget_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
+func (ptr *QNearFieldTarget) DisconnectDestroyQNearFieldTarget() {
+	if ptr.Pointer() != nil {
 
-	return core.PointerFromQMetaObject(NewQNearFieldTargetFromPointer(ptr).MetaObjectDefault())
+		qt.DisconnectSignal(ptr.Pointer(), "~QNearFieldTarget")
+	}
 }
 
-func (ptr *QNearFieldTarget) MetaObjectDefault() *core.QMetaObject {
+func (ptr *QNearFieldTarget) DestroyQNearFieldTarget() {
 	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QNearFieldTarget_MetaObjectDefault(ptr.Pointer()))
+		C.QNearFieldTarget_DestroyQNearFieldTarget(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
-	return nil
 }
 
-func (ptr *QNearFieldTarget) MaxCommandLength() int {
+func (ptr *QNearFieldTarget) DestroyQNearFieldTargetDefault() {
 	if ptr.Pointer() != nil {
-		return int(int32(C.QNearFieldTarget_MaxCommandLength(ptr.Pointer())))
+		C.QNearFieldTarget_DestroyQNearFieldTargetDefault(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
-	return 0
 }
 
 func (ptr *QNearFieldTarget) __sendCommands_commands_atList(i int) *core.QByteArray {
@@ -3176,6 +3079,27 @@ func (ptr *QNearFieldTarget) __writeNdefMessages_messages_newList() unsafe.Point
 	return C.QNearFieldTarget___writeNdefMessages_messages_newList(ptr.Pointer())
 }
 
+func (ptr *QNearFieldTarget) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QNearFieldTarget___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QNearFieldTarget) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QNearFieldTarget___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QNearFieldTarget) __children_newList() unsafe.Pointer {
+	return C.QNearFieldTarget___children_newList(ptr.Pointer())
+}
+
 func (ptr *QNearFieldTarget) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QNearFieldTarget___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
@@ -3193,48 +3117,6 @@ func (ptr *QNearFieldTarget) __dynamicPropertyNames_setList(i core.QByteArray_IT
 
 func (ptr *QNearFieldTarget) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QNearFieldTarget___dynamicPropertyNames_newList(ptr.Pointer())
-}
-
-func (ptr *QNearFieldTarget) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QNearFieldTarget___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QNearFieldTarget) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNearFieldTarget___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QNearFieldTarget) __findChildren_newList2() unsafe.Pointer {
-	return C.QNearFieldTarget___findChildren_newList2(ptr.Pointer())
-}
-
-func (ptr *QNearFieldTarget) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QNearFieldTarget___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QNearFieldTarget) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNearFieldTarget___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QNearFieldTarget) __findChildren_newList3() unsafe.Pointer {
-	return C.QNearFieldTarget___findChildren_newList3(ptr.Pointer())
 }
 
 func (ptr *QNearFieldTarget) __findChildren_atList(i int) *core.QObject {
@@ -3258,9 +3140,9 @@ func (ptr *QNearFieldTarget) __findChildren_newList() unsafe.Pointer {
 	return C.QNearFieldTarget___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QNearFieldTarget) __children_atList(i int) *core.QObject {
+func (ptr *QNearFieldTarget) __findChildren_atList3(i int) *core.QObject {
 	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QNearFieldTarget___children_atList(ptr.Pointer(), C.int(int32(i))))
+		tmpValue := core.NewQObjectFromPointer(C.QNearFieldTarget___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -3269,46 +3151,35 @@ func (ptr *QNearFieldTarget) __children_atList(i int) *core.QObject {
 	return nil
 }
 
-func (ptr *QNearFieldTarget) __children_setList(i core.QObject_ITF) {
+func (ptr *QNearFieldTarget) __findChildren_setList3(i core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		C.QNearFieldTarget___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+		C.QNearFieldTarget___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *QNearFieldTarget) __children_newList() unsafe.Pointer {
-	return C.QNearFieldTarget___children_newList(ptr.Pointer())
+func (ptr *QNearFieldTarget) __findChildren_newList3() unsafe.Pointer {
+	return C.QNearFieldTarget___findChildren_newList3(ptr.Pointer())
 }
 
-//export callbackQNearFieldTarget_Event
-func callbackQNearFieldTarget_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQNearFieldTargetFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
-}
-
-func (ptr *QNearFieldTarget) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QNearFieldTarget) __qFindChildren_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
-		return int8(C.QNearFieldTarget_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+		tmpValue := core.NewQObjectFromPointer(C.QNearFieldTarget___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return false
+	return nil
 }
 
-//export callbackQNearFieldTarget_EventFilter
-func callbackQNearFieldTarget_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQNearFieldTargetFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QNearFieldTarget) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+func (ptr *QNearFieldTarget) __qFindChildren_setList2(i core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		return int8(C.QNearFieldTarget_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+		C.QNearFieldTarget___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
 	}
-	return false
+}
+
+func (ptr *QNearFieldTarget) __qFindChildren_newList2() unsafe.Pointer {
+	return C.QNearFieldTarget___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQNearFieldTarget_ChildEvent
@@ -3393,6 +3264,38 @@ func (ptr *QNearFieldTarget) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) 
 	if ptr.Pointer() != nil {
 		C.QNearFieldTarget_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
+}
+
+//export callbackQNearFieldTarget_Event
+func callbackQNearFieldTarget_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQNearFieldTargetFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QNearFieldTarget) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QNearFieldTarget_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+	}
+	return false
+}
+
+//export callbackQNearFieldTarget_EventFilter
+func callbackQNearFieldTarget_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQNearFieldTargetFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QNearFieldTarget) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QNearFieldTarget_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+	}
+	return false
 }
 
 //export callbackQNearFieldTarget_ObjectNameChanged
@@ -3486,32 +3389,13 @@ func NewQQmlNdefRecord2(record QNdefRecord_ITF, parent core.QObject_ITF) *QQmlNd
 	return tmpValue
 }
 
-func QQmlNdefRecord_Tr(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
+func (ptr *QQmlNdefRecord) Record() *QNdefRecord {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQNdefRecordFromPointer(C.QQmlNdefRecord_Record(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QNdefRecord).DestroyQNdefRecord)
+		return tmpValue
 	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QQmlNdefRecord_QQmlNdefRecord_Tr(sC, cC, C.int(int32(n))))
-}
-
-func (ptr *QQmlNdefRecord) Tr(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QQmlNdefRecord_QQmlNdefRecord_Tr(sC, cC, C.int(int32(n))))
+	return nil
 }
 
 //export callbackQQmlNdefRecord_RecordChanged
@@ -3577,6 +3461,13 @@ func (ptr *QQmlNdefRecord) SetTypeNameFormat(newTypeNameFormat QQmlNdefRecord__T
 	}
 }
 
+func (ptr *QQmlNdefRecord) Type() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QQmlNdefRecord_Type(ptr.Pointer()))
+	}
+	return ""
+}
+
 //export callbackQQmlNdefRecord_TypeChanged
 func callbackQQmlNdefRecord_TypeChanged(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "typeChanged"); signal != nil {
@@ -3615,6 +3506,13 @@ func (ptr *QQmlNdefRecord) TypeChanged() {
 	if ptr.Pointer() != nil {
 		C.QQmlNdefRecord_TypeChanged(ptr.Pointer())
 	}
+}
+
+func (ptr *QQmlNdefRecord) TypeNameFormat() QQmlNdefRecord__TypeNameFormat {
+	if ptr.Pointer() != nil {
+		return QQmlNdefRecord__TypeNameFormat(C.QQmlNdefRecord_TypeNameFormat(ptr.Pointer()))
+	}
+	return 0
 }
 
 //export callbackQQmlNdefRecord_TypeNameFormatChanged
@@ -3704,43 +3602,25 @@ func (ptr *QQmlNdefRecord) DestroyQQmlNdefRecordDefault() {
 	}
 }
 
-func (ptr *QQmlNdefRecord) Record() *QNdefRecord {
+func (ptr *QQmlNdefRecord) __children_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
-		tmpValue := NewQNdefRecordFromPointer(C.QQmlNdefRecord_Record(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QNdefRecord).DestroyQNdefRecord)
+		tmpValue := core.NewQObjectFromPointer(C.QQmlNdefRecord___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
 		return tmpValue
 	}
 	return nil
 }
 
-func (ptr *QQmlNdefRecord) TypeNameFormat() QQmlNdefRecord__TypeNameFormat {
+func (ptr *QQmlNdefRecord) __children_setList(i core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		return QQmlNdefRecord__TypeNameFormat(C.QQmlNdefRecord_TypeNameFormat(ptr.Pointer()))
+		C.QQmlNdefRecord___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
 	}
-	return 0
 }
 
-func (ptr *QQmlNdefRecord) Type() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QQmlNdefRecord_Type(ptr.Pointer()))
-	}
-	return ""
-}
-
-//export callbackQQmlNdefRecord_MetaObject
-func callbackQQmlNdefRecord_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQQmlNdefRecordFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QQmlNdefRecord) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QQmlNdefRecord_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
+func (ptr *QQmlNdefRecord) __children_newList() unsafe.Pointer {
+	return C.QQmlNdefRecord___children_newList(ptr.Pointer())
 }
 
 func (ptr *QQmlNdefRecord) __dynamicPropertyNames_atList(i int) *core.QByteArray {
@@ -3760,48 +3640,6 @@ func (ptr *QQmlNdefRecord) __dynamicPropertyNames_setList(i core.QByteArray_ITF)
 
 func (ptr *QQmlNdefRecord) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QQmlNdefRecord___dynamicPropertyNames_newList(ptr.Pointer())
-}
-
-func (ptr *QQmlNdefRecord) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QQmlNdefRecord___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QQmlNdefRecord) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QQmlNdefRecord___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QQmlNdefRecord) __findChildren_newList2() unsafe.Pointer {
-	return C.QQmlNdefRecord___findChildren_newList2(ptr.Pointer())
-}
-
-func (ptr *QQmlNdefRecord) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QQmlNdefRecord___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QQmlNdefRecord) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QQmlNdefRecord___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QQmlNdefRecord) __findChildren_newList3() unsafe.Pointer {
-	return C.QQmlNdefRecord___findChildren_newList3(ptr.Pointer())
 }
 
 func (ptr *QQmlNdefRecord) __findChildren_atList(i int) *core.QObject {
@@ -3825,9 +3663,9 @@ func (ptr *QQmlNdefRecord) __findChildren_newList() unsafe.Pointer {
 	return C.QQmlNdefRecord___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QQmlNdefRecord) __children_atList(i int) *core.QObject {
+func (ptr *QQmlNdefRecord) __findChildren_atList3(i int) *core.QObject {
 	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QQmlNdefRecord___children_atList(ptr.Pointer(), C.int(int32(i))))
+		tmpValue := core.NewQObjectFromPointer(C.QQmlNdefRecord___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -3836,46 +3674,35 @@ func (ptr *QQmlNdefRecord) __children_atList(i int) *core.QObject {
 	return nil
 }
 
-func (ptr *QQmlNdefRecord) __children_setList(i core.QObject_ITF) {
+func (ptr *QQmlNdefRecord) __findChildren_setList3(i core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		C.QQmlNdefRecord___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+		C.QQmlNdefRecord___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *QQmlNdefRecord) __children_newList() unsafe.Pointer {
-	return C.QQmlNdefRecord___children_newList(ptr.Pointer())
+func (ptr *QQmlNdefRecord) __findChildren_newList3() unsafe.Pointer {
+	return C.QQmlNdefRecord___findChildren_newList3(ptr.Pointer())
 }
 
-//export callbackQQmlNdefRecord_Event
-func callbackQQmlNdefRecord_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQQmlNdefRecordFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
-}
-
-func (ptr *QQmlNdefRecord) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QQmlNdefRecord) __qFindChildren_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
-		return int8(C.QQmlNdefRecord_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+		tmpValue := core.NewQObjectFromPointer(C.QQmlNdefRecord___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return false
+	return nil
 }
 
-//export callbackQQmlNdefRecord_EventFilter
-func callbackQQmlNdefRecord_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQQmlNdefRecordFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QQmlNdefRecord) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+func (ptr *QQmlNdefRecord) __qFindChildren_setList2(i core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		return int8(C.QQmlNdefRecord_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+		C.QQmlNdefRecord___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
 	}
-	return false
+}
+
+func (ptr *QQmlNdefRecord) __qFindChildren_newList2() unsafe.Pointer {
+	return C.QQmlNdefRecord___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQQmlNdefRecord_ChildEvent
@@ -3960,6 +3787,38 @@ func (ptr *QQmlNdefRecord) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 	if ptr.Pointer() != nil {
 		C.QQmlNdefRecord_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
+}
+
+//export callbackQQmlNdefRecord_Event
+func callbackQQmlNdefRecord_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQQmlNdefRecordFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QQmlNdefRecord) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QQmlNdefRecord_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+	}
+	return false
+}
+
+//export callbackQQmlNdefRecord_EventFilter
+func callbackQQmlNdefRecord_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQQmlNdefRecordFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QQmlNdefRecord) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QQmlNdefRecord_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+	}
+	return false
 }
 
 //export callbackQQmlNdefRecord_ObjectNameChanged

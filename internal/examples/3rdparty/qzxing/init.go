@@ -49,22 +49,22 @@ func main() {
 		var qmake string
 		switch target {
 		case "darwin":
-			qmake = filepath.Join(os.Getenv("QT_DIR"), "5.12.0", "clang_64", "bin", "qmake")
+			qmake = filepath.Join(os.Getenv("QT_DIR"), "5.13.0", "clang_64", "bin", "qmake")
 
 		case "linux":
-			qmake = filepath.Join(os.Getenv("QT_DIR"), "5.12.0", "gcc_64", "bin", "qmake")
+			qmake = filepath.Join(os.Getenv("QT_DIR"), "5.13.0", "gcc_64", "bin", "qmake")
 
 		case "android":
-			qmake = filepath.Join(os.Getenv("QT_DIR"), "5.12.0", "android_armv7", "bin", "qmake")
+			qmake = filepath.Join(os.Getenv("QT_DIR"), "5.13.0", "android_armv7", "bin", "qmake")
 
 		case "android_emulator":
-			qmake = filepath.Join(os.Getenv("QT_DIR"), "5.12.0", "android_x86", "bin", "qmake")
+			qmake = filepath.Join(os.Getenv("QT_DIR"), "5.13.0", "android_x86", "bin", "qmake")
 
 		case "ios":
 			if runtime.GOOS != "darwin" {
 				return
 			}
-			qmake = filepath.Join(os.Getenv("QT_DIR"), "5.12.0", "ios", "bin", "qmake")
+			qmake = filepath.Join(os.Getenv("QT_DIR"), "5.13.0", "ios", "bin", "qmake")
 		}
 
 		ndkPATH, ndkOK := os.LookupEnv("ANDROID_NDK_DIR")

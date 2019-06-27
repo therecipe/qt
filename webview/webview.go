@@ -33,52 +33,6 @@ func unpackStringList(s string) []string {
 	return strings.Split(s, "¡¦!")
 }
 
-type QWebViewFactory struct {
-	ptr unsafe.Pointer
-}
-
-type QWebViewFactory_ITF interface {
-	QWebViewFactory_PTR() *QWebViewFactory
-}
-
-func (ptr *QWebViewFactory) QWebViewFactory_PTR() *QWebViewFactory {
-	return ptr
-}
-
-func (ptr *QWebViewFactory) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QWebViewFactory) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQWebViewFactory(ptr QWebViewFactory_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QWebViewFactory_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQWebViewFactoryFromPointer(ptr unsafe.Pointer) (n *QWebViewFactory) {
-	n = new(QWebViewFactory)
-	n.SetPointer(ptr)
-	return
-}
-
-func (ptr *QWebViewFactory) DestroyQWebViewFactory() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
-}
-
 type QtWebView struct {
 	ptr unsafe.Pointer
 }

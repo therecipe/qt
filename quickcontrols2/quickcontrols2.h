@@ -13,13 +13,13 @@ extern "C" {
 
 struct QtQuickControls2_PackedString { char* data; long long len; };
 struct QtQuickControls2_PackedList { void* data; long long len; };
+void QQuickStyle_QQuickStyle_AddStylePath(struct QtQuickControls2_PackedString path);
+struct QtQuickControls2_PackedString QQuickStyle_QQuickStyle_AvailableStyles();
 struct QtQuickControls2_PackedString QQuickStyle_QQuickStyle_Name();
 struct QtQuickControls2_PackedString QQuickStyle_QQuickStyle_Path();
-struct QtQuickControls2_PackedString QQuickStyle_QQuickStyle_AvailableStyles();
-struct QtQuickControls2_PackedString QQuickStyle_QQuickStyle_StylePathList();
-void QQuickStyle_QQuickStyle_AddStylePath(struct QtQuickControls2_PackedString path);
 void QQuickStyle_QQuickStyle_SetFallbackStyle(struct QtQuickControls2_PackedString style);
 void QQuickStyle_QQuickStyle_SetStyle(struct QtQuickControls2_PackedString style);
+struct QtQuickControls2_PackedString QQuickStyle_QQuickStyle_StylePathList();
 
 #ifdef __cplusplus
 }

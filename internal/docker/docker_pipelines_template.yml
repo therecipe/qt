@@ -10,23 +10,23 @@ jobs:
     parameters:
       file: darwin/Dockerfile
       tag: darwin
-#  -
-#    template: docker_job_template.yml
-#    parameters:
-#      file: js/Dockerfile.base
-#      tag: js_base
-#  -
-#    template: docker_job_template.yml
-#    parameters:
-#      file: js/Dockerfile.base_thread
-#      tag: js_base_thread
+  -
+    template: docker_job_template.yml
+    parameters:
+      file: js/Dockerfile.base
+      tag: js_base
+  -
+    template: docker_job_template.yml
+    parameters:
+      file: js/Dockerfile.base_thread
+      tag: js_base_thread
   -
     template: docker_job_template.yml
     parameters:
       file: js/Dockerfile.js
       tag: js
       dep:
-#        - js_base
+        - js_base
         - linux
   -
     template: docker_job_template.yml
@@ -34,7 +34,7 @@ jobs:
       file: js/Dockerfile.js_thread
       tag: js_thread
       dep:
-#        - js_base_thread
+        - js_base_thread
         - linux
   -
     template: docker_job_template.yml
@@ -42,7 +42,7 @@ jobs:
       file: js/Dockerfile.wasm
       tag: wasm
       dep:
-#        - js_base
+        - js_base
         - linux
   -
     template: docker_job_template.yml
@@ -50,7 +50,7 @@ jobs:
       file: js/Dockerfile.wasm_thread
       tag: wasm_thread
       dep:
-#        - js_base_thread
+        - js_base_thread
         - linux
   -
     template: docker_job_template.yml
@@ -70,20 +70,25 @@ jobs:
   -
     template: docker_job_template.yml
     parameters:
+      file: linux/Dockerfile.512
+      tag: linux_512
+  -
+    template: docker_job_template.yml
+    parameters:
       file: linux/Dockerfile.arch
       tag: linux_arch
-#  -
-#    template: docker_job_template.yml
-#    parameters:
-#      file: linux/Dockerfile.static_base
-#      tag: linux_static_base
+  -
+    template: docker_job_template.yml
+    parameters:
+      file: linux/Dockerfile.static_base
+      tag: linux_static_base
   -
     template: docker_job_template.yml
     parameters:
       file: linux/Dockerfile.static
       tag: linux_static
       dep:
-#        - linux_static_base
+        - linux_static_base
         - linux
   -
     template: docker_job_template.yml
@@ -164,52 +169,52 @@ jobs:
       file: windows_32_shared/Dockerfile
       tag: windows_32_shared
       dep:
-#        - windows_32_shared_base
+        - windows_32_shared_base
         - linux
-#  -
-#    template: docker_job_template.yml
-#    parameters:
-#      file: windows_32_shared/Dockerfile.base
-#      tag: windows_32_shared_base
+  -
+    template: docker_job_template.yml
+    parameters:
+      file: windows_32_shared/Dockerfile.base
+      tag: windows_32_shared_base
   -
     template: docker_job_template.yml
     parameters:
       file: windows_32_static/Dockerfile
       tag: windows_32_static
       dep:
-#        - windows_32_static_base
+        - windows_32_static_base
         - linux
-#  -
-#    template: docker_job_template.yml
-#    parameters:
-#      file: windows_32_static/Dockerfile.base
-#      tag: windows_32_static_base
+  -
+    template: docker_job_template.yml
+    parameters:
+      file: windows_32_static/Dockerfile.base
+      tag: windows_32_static_base
   -
     template: docker_job_template.yml
     parameters:
       file: windows_64_shared/Dockerfile
       tag: windows_64_shared
       dep:
-#        - windows_64_shared_base
+        - windows_64_shared_base
         - linux
-#  -
-#    template: docker_job_template.yml
-#    parameters:
-#      file: windows_64_shared/Dockerfile.base
-#      tag: windows_64_shared_base
+  -
+    template: docker_job_template.yml
+    parameters:
+      file: windows_64_shared/Dockerfile.base
+      tag: windows_64_shared_base
   -
     template: docker_job_template.yml
     parameters:
       file: windows_64_static/Dockerfile
       tag: windows_64_static
       dep:
-#        - windows_64_static_base
+        - windows_64_static_base
         - linux
-#  -
-#    template: docker_job_template.yml
-#    parameters:
-#      file: windows_64_static/Dockerfile.base
-#      tag: windows_64_static_base
+  -
+    template: docker_job_template.yml
+    parameters:
+      file: windows_64_static/Dockerfile.base
+      tag: windows_64_static_base
   -
     template: docker_job_template.yml
     parameters:
@@ -275,6 +280,12 @@ jobs:
     parameters:
       file: wine/Dockerfile.59
       tag: windows_32_shared_59
+      dep: wine_base
+  -
+    template: docker_job_template.yml
+    parameters:
+      file: wine/Dockerfile.512
+      tag: windows_64_shared_512
       dep: wine_base
   -
     template: docker_job_template.yml
