@@ -561,6 +561,7 @@ func (ptr *%[1]v) Destroy%[1]v() {
 		}
 
 		for _, c := range parser.SortedClassesForModule(module, true) {
+			implemented := make(map[string]struct{})
 			for _, f := range c.Functions {
 				if f.Meta != parser.CONSTRUCTOR && !f.Static {
 					continue
@@ -568,9 +569,12 @@ func (ptr *%[1]v) Destroy%[1]v() {
 				if strings.Contains(f.Name, "RegisterMetaType") || strings.Contains(f.Name, "RegisterType") { //TODO:
 					continue
 				}
-				if !f.IsSupported() {
+				var _, e = implemented[fmt.Sprint(f.Name, f.OverloadNumber)]
+				if e || !f.IsSupported() {
 					continue
 				}
+				implemented[fmt.Sprint(f.Name, f.OverloadNumber)] = struct{}{}
+
 				var ip string
 				oldsm := f.SignalMode
 				f.SignalMode = parser.CALLBACK

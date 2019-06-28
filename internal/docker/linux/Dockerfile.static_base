@@ -10,7 +10,7 @@ RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install libfont
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install libxcb-keysyms1-dev libxcb-image0-dev libxcb-shm0-dev libxcb-icccm4-dev libxcb-sync0-dev libxcb-xfixes0-dev libxcb-shape0-dev libxcb-randr0-dev libxcb-render-util0-dev libxkbcommon-dev
 
 RUN git clone -q --depth 1 -b 5.13 --recursive https://code.qt.io/qt/qt5.git /opt/qt5
-RUN cd /opt/qt5 && ./configure -prefix /opt/Qt/5.13.0/gcc_64 -confirm-license -opensource -static -qt-zlib -qt-libpng -qt-libjpeg -qt-xcb -sysconfdir /etc/xdg -dbus-runtime -openssl-runtime -opengl -optimize-size -skip qtwebengine -skip qtfeedback -nomake tests -nomake examples && make -j $(grep -c ^processor /proc/cpuinfo) && make install -j $(grep -c ^processor /proc/cpuinfo)
+RUN cd /opt/qt5 && ./configure -prefix /opt/Qt/5.13.0/gcc_64 -confirm-license -opensource -static -qt-zlib -qt-libpng -qt-libjpeg -qt-xcb -sysconfdir /etc/xdg -dbus-runtime -openssl-runtime -opengl -optimize-size -skip qtwebengine -skip qtfeedback -skip qtpim -skip qtdocgallery -nomake tests -nomake examples && make -j $(grep -c ^processor /proc/cpuinfo) && make install -j $(grep -c ^processor /proc/cpuinfo)
 
 
 FROM ubuntu:16.04

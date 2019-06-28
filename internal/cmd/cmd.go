@@ -876,12 +876,17 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 				env["LLVM_ROOT"] = strings.Split(l, "=")[1]
 			case strings.HasPrefix(l, "BINARYEN_ROOT"):
 				env["BINARYEN_ROOT"] = strings.Split(l, "=")[1]
+			case strings.HasPrefix(l, "EMSCRIPTEN_NATIVE_OPTIMIZER"):
+				env["EMSCRIPTEN_NATIVE_OPTIMIZER"] = strings.Split(l, "=")[1]
 			case strings.HasPrefix(l, "NODE_JS"):
 				env["NODE_JS"] = strings.TrimSuffix(strings.Split(l, "=")[1], "/node")
 			case strings.HasPrefix(l, "EMSCRIPTEN_ROOT"):
 				env["EMSCRIPTEN"] = strings.Split(l, "=")[1]
 				env["EMSDK"] = strings.Split(env["EMSCRIPTEN"], "/emscripten/1.")[0]
 			}
+		}
+		if _, ok := env["EMSCRIPTEN"]; !ok {
+			env["EMSCRIPTEN"] = filepath.Join(env["BINARYEN_ROOT"], "emscripten")
 		}
 		env["PATH"] = env["PATH"] + ":" + env["EMSDK"] + ":" + env["LLVM_ROOT"] + ":" + env["NODE_JS"] + ":" + env["EMSCRIPTEN"]
 	}
