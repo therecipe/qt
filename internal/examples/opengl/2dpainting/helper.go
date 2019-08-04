@@ -54,5 +54,5 @@ func (h *Helper) Paint(painter *gui.QPainter, event *gui.QPaintEvent, elapsed in
 
 	painter.SetPen(h.textPen)
 	painter.SetFont(h.textFont)
-	painter.DrawText6(core.NewQRect4(-50, -50, 100, 100), int(core.Qt__AlignCenter), "Qt", core.NewQRect())
+	painter.DrawText4(core.NewQRect4(-50, -50, 100, 100), int(core.Qt__AlignCenter), "Qt", core.NewQRect())
 }
