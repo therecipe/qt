@@ -316,7 +316,7 @@ func (c *Class) IsSupported() bool {
 		"QSvgIOHandler", "QSvgIconEngine", "QQuickProfilerAdapter",
 		"QWavefrontMesh", "QM3uPlaylistPlugin", "QOpenSLESAudioInput",
 		"QSGSimpleMaterialComparableMaterial", "QGStreamerAvailabilityControl",
-		"QGstreamerV4L2Input":
+		"QGstreamerV4L2Input", "QSignalMapper":
 		{
 			c.Access = "unsupported_isBlockedClass"
 			return false

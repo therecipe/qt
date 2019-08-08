@@ -12,6 +12,7 @@ import (
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
 	"github.com/therecipe/qt/network"
+	"github.com/therecipe/qt/webchannel"
 	"github.com/therecipe/qt/widgets"
 	"runtime"
 	"strings"
@@ -4007,6 +4008,28 @@ func (ptr *QWebEnginePage) RequestedUrl() *core.QUrl {
 	return nil
 }
 
+func (ptr *QWebEnginePage) RunJavaScript(scriptSource string) {
+	if ptr.Pointer() != nil {
+		var scriptSourceC *C.char
+		if scriptSource != "" {
+			scriptSourceC = C.CString(scriptSource)
+			defer C.free(unsafe.Pointer(scriptSourceC))
+		}
+		C.QWebEnginePage_RunJavaScript(ptr.Pointer(), C.struct_QtWebEngine_PackedString{data: scriptSourceC, len: C.longlong(len(scriptSource))})
+	}
+}
+
+func (ptr *QWebEnginePage) RunJavaScript2(scriptSource string, worldId uint) {
+	if ptr.Pointer() != nil {
+		var scriptSourceC *C.char
+		if scriptSource != "" {
+			scriptSourceC = C.CString(scriptSource)
+			defer C.free(unsafe.Pointer(scriptSourceC))
+		}
+		C.QWebEnginePage_RunJavaScript2(ptr.Pointer(), C.struct_QtWebEngine_PackedString{data: scriptSourceC, len: C.longlong(len(scriptSource))}, C.uint(uint32(worldId)))
+	}
+}
+
 func (ptr *QWebEnginePage) ScrollPosition() *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QWebEnginePage_ScrollPosition(ptr.Pointer()))
@@ -4075,9 +4098,32 @@ func (ptr *QWebEnginePage) SetBackgroundColor(color gui.QColor_ITF) {
 	}
 }
 
+func (ptr *QWebEnginePage) SetHtml(html string, baseUrl core.QUrl_ITF) {
+	if ptr.Pointer() != nil {
+		var htmlC *C.char
+		if html != "" {
+			htmlC = C.CString(html)
+			defer C.free(unsafe.Pointer(htmlC))
+		}
+		C.QWebEnginePage_SetHtml(ptr.Pointer(), C.struct_QtWebEngine_PackedString{data: htmlC, len: C.longlong(len(html))}, core.PointerFromQUrl(baseUrl))
+	}
+}
+
 func (ptr *QWebEnginePage) SetUrl(url core.QUrl_ITF) {
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_SetUrl(ptr.Pointer(), core.PointerFromQUrl(url))
+	}
+}
+
+func (ptr *QWebEnginePage) SetWebChannel(vqw webchannel.QWebChannel_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEnginePage_SetWebChannel(ptr.Pointer(), webchannel.PointerFromQWebChannel(vqw))
+	}
+}
+
+func (ptr *QWebEnginePage) SetWebChannel2(vqw webchannel.QWebChannel_ITF, worldId uint) {
+	if ptr.Pointer() != nil {
+		C.QWebEnginePage_SetWebChannel2(ptr.Pointer(), webchannel.PointerFromQWebChannel(vqw), C.uint(uint32(worldId)))
 	}
 }
 
@@ -6613,6 +6659,17 @@ func (ptr *QWebEngineView) SelectedText() string {
 		return cGoUnpackString(C.QWebEngineView_SelectedText(ptr.Pointer()))
 	}
 	return ""
+}
+
+func (ptr *QWebEngineView) SetHtml(html string, baseUrl core.QUrl_ITF) {
+	if ptr.Pointer() != nil {
+		var htmlC *C.char
+		if html != "" {
+			htmlC = C.CString(html)
+			defer C.free(unsafe.Pointer(htmlC))
+		}
+		C.QWebEngineView_SetHtml(ptr.Pointer(), C.struct_QtWebEngine_PackedString{data: htmlC, len: C.longlong(len(html))}, core.PointerFromQUrl(baseUrl))
+	}
 }
 
 func (ptr *QWebEngineView) SetUrl(url core.QUrl_ITF) {

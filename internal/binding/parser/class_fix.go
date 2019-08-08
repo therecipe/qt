@@ -174,6 +174,17 @@ func (c *Class) fixGeneral_Version() {
 				f.Status = "active"
 			}
 		}
+
+	case "QWebEnginePage", "QWebEngineView":
+		{
+			for _, f := range c.Functions {
+				switch f.Name {
+				case "setHtml", "setWebChannel", "runJavaScript":
+					f.Status = "active"
+					f.Access = "public"
+				}
+			}
+		}
 	}
 }
 

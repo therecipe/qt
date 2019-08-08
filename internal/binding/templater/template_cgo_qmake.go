@@ -643,6 +643,19 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 			} else {
 				tmp = strings.Replace(tmp, "subsystem,console", "subsystem,windows", -1)
 			}
+			if utils.QT_MXE() {
+				if li := fmt.Sprintf("-L %v", filepath.Join(utils.QT_MXE_DIR(), "usr", utils.QT_MXE_TRIPLET(), "qt5", "lib")); !strings.Contains(tmp, li) {
+					for _, s := range []string{",console -mthreads", ",windows -mthreads"} {
+						tmp = strings.Replace(tmp, s, s+li, -1)
+					}
+				}
+			} else if !utils.QT_MSYS2() {
+				if li := fmt.Sprintf("-L %v", strings.Replace(filepath.Join(utils.QT_INSTALL_PREFIX(target), "lib"), "\\", "/", -1)); !strings.Contains(tmp, li) {
+					for _, s := range []string{",console -mthreads", ",windows -mthreads"} {
+						tmp = strings.Replace(tmp, s, s+li, -1)
+					}
+				}
+			}
 		case "ios":
 			if strings.HasSuffix(file, "darwin_arm.go") {
 				tmp = strings.Replace(tmp, "arm64", "armv7", -1)

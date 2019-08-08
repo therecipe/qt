@@ -66,6 +66,7 @@
 #include <QUrl>
 #include <QVariant>
 #include <QVector>
+#include <QWebChannel>
 #include <QWebEngineCertificateError>
 #include <QWebEngineClientCertificateStore>
 #include <QWebEngineCookieStore>
@@ -1780,6 +1781,16 @@ void* QWebEnginePage_RequestedUrl(void* ptr)
 	return new QUrl(static_cast<QWebEnginePage*>(ptr)->requestedUrl());
 }
 
+void QWebEnginePage_RunJavaScript(void* ptr, struct QtWebEngine_PackedString scriptSource)
+{
+	static_cast<QWebEnginePage*>(ptr)->runJavaScript(QString::fromUtf8(scriptSource.data, scriptSource.len));
+}
+
+void QWebEnginePage_RunJavaScript2(void* ptr, struct QtWebEngine_PackedString scriptSource, unsigned int worldId)
+{
+	static_cast<QWebEnginePage*>(ptr)->runJavaScript(QString::fromUtf8(scriptSource.data, scriptSource.len), worldId);
+}
+
 void* QWebEnginePage_ScrollPosition(void* ptr)
 {
 	return ({ QPointF tmpValue = static_cast<QWebEnginePage*>(ptr)->scrollPosition(); new QPointF(tmpValue.x(), tmpValue.y()); });
@@ -1815,9 +1826,24 @@ void QWebEnginePage_SetBackgroundColor(void* ptr, void* color)
 	static_cast<QWebEnginePage*>(ptr)->setBackgroundColor(*static_cast<QColor*>(color));
 }
 
+void QWebEnginePage_SetHtml(void* ptr, struct QtWebEngine_PackedString html, void* baseUrl)
+{
+	static_cast<QWebEnginePage*>(ptr)->setHtml(QString::fromUtf8(html.data, html.len), *static_cast<QUrl*>(baseUrl));
+}
+
 void QWebEnginePage_SetUrl(void* ptr, void* url)
 {
 	static_cast<QWebEnginePage*>(ptr)->setUrl(*static_cast<QUrl*>(url));
+}
+
+void QWebEnginePage_SetWebChannel(void* ptr, void* vqw)
+{
+	static_cast<QWebEnginePage*>(ptr)->setWebChannel(static_cast<QWebChannel*>(vqw));
+}
+
+void QWebEnginePage_SetWebChannel2(void* ptr, void* vqw, unsigned int worldId)
+{
+	static_cast<QWebEnginePage*>(ptr)->setWebChannel(static_cast<QWebChannel*>(vqw), worldId);
 }
 
 void QWebEnginePage_SetZoomFactor(void* ptr, double factor)
@@ -2990,6 +3016,11 @@ void QWebEngineView_IconUrlChanged(void* ptr, void* vqu)
 struct QtWebEngine_PackedString QWebEngineView_SelectedText(void* ptr)
 {
 	return ({ QByteArray t0a8997 = static_cast<QWebEngineView*>(ptr)->selectedText().toUtf8(); QtWebEngine_PackedString { const_cast<char*>(t0a8997.prepend("WHITESPACE").constData()+10), t0a8997.size()-10 }; });
+}
+
+void QWebEngineView_SetHtml(void* ptr, struct QtWebEngine_PackedString html, void* baseUrl)
+{
+	static_cast<QWebEngineView*>(ptr)->setHtml(QString::fromUtf8(html.data, html.len), *static_cast<QUrl*>(baseUrl));
 }
 
 void QWebEngineView_SetUrl(void* ptr, void* url)

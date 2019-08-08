@@ -765,7 +765,7 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 
 		//patch default assets
 		index := utils.Load(filepath.Join(depPath, "index.html"))
-		index = strings.Replace(index, "APPNAME", "main", -1)
+		index = strings.Replace(index, "@APPNAME@", "main", -1)
 		utils.Save(filepath.Join(depPath, "index.html"), strings.Replace(index, "  </body>", "    <script type=\"text/javascript\" src=\"go.js\"></script>\n  </body>", -1))
 
 		if parser.UseWasm() {
