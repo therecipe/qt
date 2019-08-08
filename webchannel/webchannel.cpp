@@ -94,7 +94,7 @@ Q_DECLARE_METATYPE(MyQWebChannel*)
 
 int QWebChannel_QWebChannel_QRegisterMetaType(){qRegisterMetaType<QWebChannel*>(); return qRegisterMetaType<MyQWebChannel*>();}
 
-void* QWebChannel_NewQWebChannel2(void* parent)
+void* QWebChannel_NewQWebChannel(void* parent)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
 		return new MyQWebChannel(static_cast<QCameraImageCapture*>(parent));

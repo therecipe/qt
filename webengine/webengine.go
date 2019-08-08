@@ -3742,6 +3742,22 @@ const (
 	QWebEnginePage__DesktopAudioVideoCapture QWebEnginePage__Feature = QWebEnginePage__Feature(7)
 )
 
+func NewQWebEnginePage(parent core.QObject_ITF) *QWebEnginePage {
+	tmpValue := NewQWebEnginePageFromPointer(C.QWebEnginePage_NewQWebEnginePage(core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
+
+func NewQWebEnginePage2(profile QWebEngineProfile_ITF, parent core.QObject_ITF) *QWebEnginePage {
+	tmpValue := NewQWebEnginePageFromPointer(C.QWebEnginePage_NewQWebEnginePage2(PointerFromQWebEngineProfile(profile), core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
+
 //export callbackQWebEnginePage_AudioMutedChanged
 func callbackQWebEnginePage_AudioMutedChanged(ptr unsafe.Pointer, muted C.char) {
 	if signal := qt.GetSignal(ptr, "audioMutedChanged"); signal != nil {
@@ -6549,6 +6565,14 @@ func NewQWebEngineViewFromPointer(ptr unsafe.Pointer) (n *QWebEngineView) {
 	n.SetPointer(ptr)
 	return
 }
+func NewQWebEngineView(parent widgets.QWidget_ITF) *QWebEngineView {
+	tmpValue := NewQWebEngineViewFromPointer(C.QWebEngineView_NewQWebEngineView(widgets.PointerFromQWidget(parent)))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
+
 func (ptr *QWebEngineView) HasSelection() bool {
 	if ptr.Pointer() != nil {
 		return int8(C.QWebEngineView_HasSelection(ptr.Pointer())) != 0
@@ -6669,6 +6693,12 @@ func (ptr *QWebEngineView) SetHtml(html string, baseUrl core.QUrl_ITF) {
 			defer C.free(unsafe.Pointer(htmlC))
 		}
 		C.QWebEngineView_SetHtml(ptr.Pointer(), C.struct_QtWebEngine_PackedString{data: htmlC, len: C.longlong(len(html))}, core.PointerFromQUrl(baseUrl))
+	}
+}
+
+func (ptr *QWebEngineView) SetPage(page QWebEnginePage_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineView_SetPage(ptr.Pointer(), PointerFromQWebEnginePage(page))
 	}
 }
 

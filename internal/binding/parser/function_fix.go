@@ -147,6 +147,15 @@ func (f *Function) fixGeneral_Version() {
 		{
 			f.Parameters = append(f.Parameters[:len(f.Parameters)-1], f.Parameters[len(f.Parameters):]...)
 		}
+	case "QWebChannel::QWebChannel":
+		{
+			if utils.QT_VERSION_NUM() >= 5130 {
+				if f.OverloadNumber != "" {
+					f.OverloadNumber = ""
+					f.Href = ""
+				}
+			}
+		}
 	}
 }
 

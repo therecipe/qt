@@ -179,9 +179,12 @@ func (c *Class) fixGeneral_Version() {
 		{
 			for _, f := range c.Functions {
 				switch f.Name {
-				case "setHtml", "setWebChannel", "runJavaScript":
-					f.Status = "active"
-					f.Access = "public"
+				case "setHtml", "setWebChannel", "runJavaScript", "setPage", "QWebEnginePage", "QWebEngineView", "QWebChannel":
+					if !((f.Name == "QWebEnginePage" && f.OverloadNumber == "3") ||
+						(f.Name == "QWebEngineView" && f.OverloadNumber == "2")) {
+						f.Status = "active"
+						f.Access = "public"
+					}
 				}
 			}
 		}

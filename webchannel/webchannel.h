@@ -18,7 +18,7 @@ struct QtWebChannel_PackedString { char* data; long long len; };
 struct QtWebChannel_PackedList { void* data; long long len; };
 void* QQmlWebChannel___registerObjects_objects_atList(void* ptr, struct QtWebChannel_PackedString v, int i);
 void QQmlWebChannel___registerObjects_objects_setList(void* ptr, struct QtWebChannel_PackedString key, void* i);
-void* QWebChannel_NewQWebChannel2(void* parent);
+void* QWebChannel_NewQWebChannel(void* parent);
 char QWebChannel_BlockUpdates(void* ptr);
 void QWebChannel_ConnectBlockUpdatesChanged(void* ptr);
 void QWebChannel_DisconnectBlockUpdatesChanged(void* ptr);

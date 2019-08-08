@@ -136,8 +136,8 @@ func NewQWebChannelFromPointer(ptr unsafe.Pointer) (n *QWebChannel) {
 	n.SetPointer(ptr)
 	return
 }
-func NewQWebChannel2(parent core.QObject_ITF) *QWebChannel {
-	tmpValue := NewQWebChannelFromPointer(C.QWebChannel_NewQWebChannel2(core.PointerFromQObject(parent)))
+func NewQWebChannel(parent core.QObject_ITF) *QWebChannel {
+	tmpValue := NewQWebChannelFromPointer(C.QWebChannel_NewQWebChannel(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
