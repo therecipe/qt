@@ -27,4 +27,5 @@ RUN $GOPATH/bin/qtsetup check
 RUN $GOPATH/bin/qtsetup generate
 RUN cd $GOPATH/src/github.com/therecipe/qt/internal/examples/widgets/line_edits && $GOPATH/bin/qtdeploy build linux && rm -rf ./deploy
 
-RUN zypper -q ref && zypper -n -q install --no-recommends git pkg-config
+RUN zypper -q ref && zypper -n -q install --no-recommends git
+RUN zypper -q ref && zypper -n -q install --no-recommends pkg-config || true

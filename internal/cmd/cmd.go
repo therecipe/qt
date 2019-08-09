@@ -44,7 +44,8 @@ func ParseFlags() bool {
 		os.Setenv("QT_API", api)
 	}
 
-	if api := utils.QT_API(""); api != "" {
+	_, err := exec.LookPath("go")
+	if api := utils.QT_API(""); api != "" && err == nil {
 		if utils.GoListOptional("{{.Dir}}", "github.com/therecipe/qt/internal/binding/files/docs/"+api, "-find", "get doc dir") == "" {
 			utils.Log.Errorf("invalid api version provided: '%v'", api)
 			fmt.Println("valid api versions are:")
