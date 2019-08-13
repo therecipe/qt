@@ -118,7 +118,7 @@ func LoadModule(m string) *Module {
 		err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(strings.TrimSpace(utils.GoListOptional("{{.Dir}}", "github.com/therecipe/qt/internal/binding/files/docs/"+utils.QT_API("5.11.1"), "-find", "get doc dir")), fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
 
 	case utils.QT_MSYS2():
-		err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(strings.TrimSpace(utils.GoListOptional("{{.Dir}}", "github.com/therecipe/qt/internal/binding/files/docs/"+utils.QT_API("5.13.0"), "-find", "get doc dir")), fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
+		err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(strings.TrimSpace(utils.GoListOptional("{{.Dir}}", "github.com/therecipe/qt/internal/binding/files/docs/"+utils.QT_API("5.12.0"), "-find", "get doc dir")), fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
 
 	case utils.QT_UBPORTS_VERSION() == "xenial":
 		err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(strings.TrimSpace(utils.GoListOptional("{{.Dir}}", "github.com/therecipe/qt/internal/binding/files/docs/"+utils.QT_API("5.9.0"), "-find", "get doc dir")), fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)

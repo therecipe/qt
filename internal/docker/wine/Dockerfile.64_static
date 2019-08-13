@@ -9,59 +9,59 @@ RUN REPO=http://repo.msys2.org/mingw/x86_64 && curl -sL --retry 10 --retry-delay
 ENV REPO https://sourceforge.net/projects/msys2/files/REPOS/MINGW/x86_64
 
 RUN mkdir -p $HOME/.wine/drive_c/msys64
-RUN PKG=$(tac repo | grep 2018 | grep -m 1 -o -P 'mingw-w64-x86_64-qt5-s.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
-RUN PKG=$(tac repo | grep 2018 | grep -m 1 -o -P 'mingw-w64-x86_64-gcc-libs-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
-RUN PKG=$(tac repo | grep 2017 | grep -m 1 -o -P 'mingw-w64-x86_64-qtbinpatcher-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
-RUN PKG=$(tac repo | grep 2018 | grep -m 1 -o -P 'mingw-w64-x86_64-z3-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
+RUN PKG=$(tac repo | grep 2019 | grep -m 1 -o -P 'mingw-w64-x86_64-qt5-s.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
+RUN PKG=$(tac repo | grep 2019 | grep -m 1 -o -P 'mingw-w64-x86_64-gcc-libs-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
+RUN PKG=$(tac repo | grep 2019 | grep -m 1 -o -P 'mingw-w64-x86_64-qtbinpatcher-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
+RUN PKG=$(tac repo | grep 2019 | grep -m 1 -o -P 'mingw-w64-x86_64-z3-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
 
-RUN PKG=$(tac repo | grep 2018 | grep -m 1 -o -P 'mingw-w64-x86_64-assimp-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
-RUN PKG=$(tac repo | grep 2018 | grep -m 1 -o -P 'mingw-w64-x86_64-dbus-1.12.1.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
+RUN PKG=$(tac repo | grep 2019 | grep -m 1 -o -P 'mingw-w64-x86_64-assimp-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
+RUN PKG=$(tac repo | grep 2019 | grep -m 1 -o -P 'mingw-w64-x86_64-dbus-1.12.1.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
 RUN PKG=$(tac repo | grep 2018 | grep -m 1 -o -P 'mingw-w64-x86_64-fontconfig-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
-RUN PKG=$(tac repo | grep 2018 | grep -m 1 -o -P 'mingw-w64-x86_64-freetype-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
-RUN PKG=$(tac repo | grep 2018 | grep -m 1 -o -P 'mingw-w64-x86_64-harfbuzz-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
-RUN PKG=$(tac repo | grep 2017 | grep -m 1 -o -P 'mingw-w64-x86_64-jasper-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
-RUN PKG=$(tac repo | grep 2018 | grep -m 1 -o -P 'mingw-w64-x86_64-libjpeg-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
+RUN PKG=$(tac repo | grep 2019 | grep -m 1 -o -P 'mingw-w64-x86_64-freetype-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
+RUN PKG=$(tac repo | grep 2019 | grep -m 1 -o -P 'mingw-w64-x86_64-harfbuzz-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
+RUN PKG=$(tac repo | grep 2019 | grep -m 1 -o -P 'mingw-w64-x86_64-jasper-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
+RUN PKG=$(tac repo | grep 2019 | grep -m 1 -o -P 'mingw-w64-x86_64-libjpeg-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
 RUN PKG=$(tac repo | grep 2018 | grep -m 1 -o -P 'mingw-w64-x86_64-libmng-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
-RUN PKG=$(tac repo | grep 2018 | grep -m 1 -o -P 'mingw-w64-x86_64-libpng-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
+RUN PKG=$(tac repo | grep 2019 | grep -m 1 -o -P 'mingw-w64-x86_64-libpng-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
 RUN PKG=$(tac repo | grep 2018 | grep -m 1 -o -P 'mingw-w64-x86_64-libtiff-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
-RUN PKG=$(tac repo | grep 2018 | grep -m 1 -o -P 'mingw-w64-x86_64-libxml2-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
-RUN PKG=$(tac repo | grep 2017 | grep -m 1 -o -P 'mingw-w64-x86_64-libxslt-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
-RUN PKG=$(tac repo | grep 2018 | grep -m 1 -o -P 'mingw-w64-x86_64-libwebp-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
-RUN PKG=$(tac repo | grep 2018 | grep -m 1 -o -P 'mingw-w64-x86_64-openssl-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
+RUN PKG=$(tac repo | grep 2019 | grep -m 1 -o -P 'mingw-w64-x86_64-libxml2-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
+RUN PKG=$(tac repo | grep 2019 | grep -m 1 -o -P 'mingw-w64-x86_64-libxslt-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
+RUN PKG=$(tac repo | grep 2019 | grep -m 1 -o -P 'mingw-w64-x86_64-libwebp-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
+RUN PKG=$(tac repo | grep 2019 | grep -m 1 -o -P 'mingw-w64-x86_64-openssl-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
 RUN PKG=$(tac repo | grep 2018 | grep -m 1 -o -P 'mingw-w64-x86_64-openal-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
-RUN PKG=$(tac repo | grep 2018 | grep -m 1 -o -P 'mingw-w64-x86_64-pcre2-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
-RUN PKG=$(tac repo | grep 2018 | grep -m 1 -o -P 'mingw-w64-x86_64-sqlite3-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
-RUN PKG=$(tac repo | grep 2018 | grep -m 1 -o -P 'mingw-w64-x86_64-vulkan-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
+RUN PKG=$(tac repo | grep 2019 | grep -m 1 -o -P 'mingw-w64-x86_64-pcre2-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
+RUN PKG=$(tac repo | grep 2019 | grep -m 1 -o -P 'mingw-w64-x86_64-sqlite3-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
+RUN PKG=$(tac repo | grep 2019 | grep -m 1 -o -P 'mingw-w64-x86_64-vulkan-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
 RUN PKG=$(tac repo | grep 2018 | grep -m 1 -o -P 'mingw-w64-x86_64-xpm-nox-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
-RUN PKG=$(tac repo | grep 2018 | grep -m 1 -o -P 'mingw-w64-x86_64-zlib-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
-RUN PKG=$(tac repo | grep 2018 | grep -m 1 -o -P 'mingw-w64-x86_64-icu-6.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
+RUN PKG=$(tac repo | grep 2019 | grep -m 1 -o -P 'mingw-w64-x86_64-zlib-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
+RUN PKG=$(tac repo | grep 2019 | grep -m 1 -o -P 'mingw-w64-x86_64-icu-6.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
 RUN PKG=$(tac repo | grep 2018 | grep -m 1 -o -P 'mingw-w64-x86_64-libmariadbclient-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
-RUN PKG=$(tac repo | grep 2018 | grep -m 1 -o -P 'mingw-w64-x86_64-firebird2-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
-RUN PKG=$(tac repo | grep 2018 | grep -m 1 -o -P 'mingw-w64-x86_64-postgresql-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
+RUN PKG=$(tac repo | grep 2019 | grep -m 1 -o -P 'mingw-w64-x86_64-firebird2-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
+RUN PKG=$(tac repo | grep 2019 | grep -m 1 -o -P 'mingw-w64-x86_64-postgresql-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
 
-RUN PKG=$(tac repo | grep 2018 | grep -m 1 -o -P 'mingw-w64-x86_64-libiconv-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
-RUN PKG=$(tac repo | grep 2018 | grep -m 1 -o -P 'mingw-w64-x86_64-pcre-8.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
+RUN PKG=$(tac repo | grep 2019 | grep -m 1 -o -P 'mingw-w64-x86_64-libiconv-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
+RUN PKG=$(tac repo | grep 2019 | grep -m 1 -o -P 'mingw-w64-x86_64-pcre-8.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
 RUN PKG=$(tac repo | grep 2019 | grep -m 1 -o -P 'mingw-w64-x86_64-bzip2-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
-RUN PKG=$(tac repo | grep 2018 | grep -m 1 -o -P 'mingw-w64-x86_64-glib2-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
-RUN PKG=$(tac repo | grep 2018 | grep -m 1 -o -P 'mingw-w64-x86_64-gettext-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
+RUN PKG=$(tac repo | grep 2019 | grep -m 1 -o -P 'mingw-w64-x86_64-glib2-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
+RUN PKG=$(tac repo | grep 2019 | grep -m 1 -o -P 'mingw-w64-x86_64-gettext-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
 RUN PKG=$(tac repo | grep 2018 | grep -m 1 -o -P 'mingw-w64-x86_64-xz-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
 RUN PKG=$(tac repo | grep 2018 | grep -m 1 -o -P 'mingw-w64-x86_64-graphite2-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
-RUN PKG=$(tac repo | grep 2018 | grep -m 1 -o -P 'mingw-w64-x86_64-libwinpthread-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
+RUN PKG=$(tac repo | grep 2019 | grep -m 1 -o -P 'mingw-w64-x86_64-libwinpthread-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
 
-RUN PKG=$(tac repo | grep 2018 | grep -m 1 -o -P 'mingw-w64-x86_64-gcc-8.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
-RUN PKG=$(tac repo | grep 2017 | grep -m 1 -o -P 'mingw-w64-x86_64-gmp-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
-RUN PKG=$(tac repo | grep 2018 | grep -m 1 -o -P 'mingw-w64-x86_64-binutils-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
-RUN PKG=$(tac repo | grep 2018 | grep -m 1 -o -P 'mingw-w64-x86_64-crt-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
-RUN PKG=$(tac repo | grep 2018 | grep -m 1 -o -P 'mingw-w64-x86_64-headers-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
-RUN PKG=$(tac repo | grep 2018 | grep -m 1 -o -P 'mingw-w64-x86_64-isl-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
+RUN PKG=$(tac repo | grep 2019 | grep -m 1 -o -P 'mingw-w64-x86_64-gcc-9.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
+RUN PKG=$(tac repo | grep 2017 | grep -m 1 -o -P 'mingw-w64-x86_64-gmp-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O http://repo.msys2.org/mingw/x86_64/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
+RUN PKG=$(tac repo | grep 2019 | grep -m 1 -o -P 'mingw-w64-x86_64-binutils-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
+RUN PKG=$(tac repo | grep 2019 | grep -m 1 -o -P 'mingw-w64-x86_64-crt-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
+RUN PKG=$(tac repo | grep 2019 | grep -m 1 -o -P 'mingw-w64-x86_64-headers-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
+RUN PKG=$(tac repo | grep 2019 | grep -m 1 -o -P 'mingw-w64-x86_64-isl-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
 RUN PKG=$(tac repo | grep 2018 | grep -m 1 -o -P 'mingw-w64-x86_64-mpc-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
-RUN PKG=$(tac repo | grep 2017 | grep -m 1 -o -P 'mingw-w64-x86_64-windows-default-manifest-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
+RUN PKG=$(tac repo | grep 2017 | grep -m 1 -o -P 'mingw-w64-x86_64-windows-default-manifest-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O http://repo.msys2.org/mingw/x86_64/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
 RUN PKG=$(tac repo | grep 2018 | grep -m 1 -o -P 'mingw-w64-x86_64-winpthreads-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
 
-RUN ln -s $HOME/.wine/drive_c/msys64/mingw64/lib/libdbus-1.a $HOME/.wine/drive_c/msys64/mingw64/qt5-static/lib/libdbus-1.a
-RUN ln -s $HOME/.wine/drive_c/msys64/mingw64/lib/libcrypto.a $HOME/.wine/drive_c/msys64/mingw64/qt5-static/lib/libcrypto.a
-RUN ln -s $HOME/.wine/drive_c/msys64/mingw64/lib/libjasper.a $HOME/.wine/drive_c/msys64/mingw64/qt5-static/lib/libjasper.a 
-RUN ln -s $HOME/.wine/drive_c/msys64/mingw64/lib/libssl.a $HOME/.wine/drive_c/msys64/mingw64/qt5-static/lib/libssl.a 
+RUN ln -s $HOME/.wine/drive_c/msys64/mingw64/lib/libdbus-1.a $HOME/.wine/drive_c/msys64/mingw64/qt5-static/lib/
+RUN ln -s $HOME/.wine/drive_c/msys64/mingw64/lib/libcrypto.a $HOME/.wine/drive_c/msys64/mingw64/qt5-static/lib/
+RUN ln -s $HOME/.wine/drive_c/msys64/mingw64/lib/libjasper.a $HOME/.wine/drive_c/msys64/mingw64/qt5-static/lib/
+RUN ln -s $HOME/.wine/drive_c/msys64/mingw64/lib/libssl.a $HOME/.wine/drive_c/msys64/mingw64/qt5-static/lib/ 
 
 RUN cd $HOME/.wine/drive_c/msys64/mingw64/qt5-static/bin && wine ../../bin/qtbinpatcher.exe --nobackup
 

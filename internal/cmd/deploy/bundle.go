@@ -382,11 +382,16 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 			}
 
 			deploy := exec.Command(filepath.Join(utils.QT_MSYS2_DIR(), "bin", "windeployqt"))
-			deploy.Args = append(deploy.Args, "--verbose=2", "--force", fmt.Sprintf("--qmldir=%v", path), filepath.Join(depPath, name+".exe"))
+			deploy.Args = append(deploy.Args, "--verbose=2", "--force", fmt.Sprintf("--qmldir=%v", path))
+			if utils.QT_DOCKER() {
+				deploy.Args = append(deploy.Args, "--no-translations") //TODO:
+			}
+			deploy.Args = append(deploy.Args, filepath.Join(depPath, name+".exe"))
+
 			utils.RunCmd(deploy, fmt.Sprintf("depoy %v on %v", target, runtime.GOOS))
 
 			var libraryPath = filepath.Join(utils.QT_MSYS2_DIR(), "bin")
-			for _, d := range []string{"libbz2-1", "libfreetype-6", "libglib-2.0-0", "libharfbuzz-0", "libiconv-2", "libintl-8", "libpcre-1", "libpcre16-0", "libpng16-16", "libstdc++-6", "libwinpthread-1", "zlib1", "libgraphite2", "libeay32", "ssleay32", "libcrypto-1_1-x64", "libpcre2-16-0", "libssl-1_1-x64"} {
+			for _, d := range []string{"libbz2-1", "libfreetype-6", "libglib-2.0-0", "libharfbuzz-0", "libiconv-2", "libintl-8", "libpcre-1", "libpcre16-0", "libpng16-16", "libstdc++-6", "libwinpthread-1", "zlib1", "libgraphite2", "libeay32", "ssleay32", "libcrypto-1_1-x64", "libpcre2-16-0", "libssl-1_1-x64", "libdouble-conversion"} {
 				if utils.QT_MSYS2_ARCH() == "386" {
 					d = strings.TrimSuffix(d, "-x64")
 				}
