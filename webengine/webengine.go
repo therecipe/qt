@@ -6678,6 +6678,17 @@ func (ptr *QWebEngineView) IconUrlChanged(vqu core.QUrl_ITF) {
 	}
 }
 
+func (ptr *QWebEngineView) Page() *QWebEnginePage {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQWebEnginePageFromPointer(C.QWebEngineView_Page(ptr.Pointer()))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QWebEngineView) SelectedText() string {
 	if ptr.Pointer() != nil {
 		return cGoUnpackString(C.QWebEngineView_SelectedText(ptr.Pointer()))

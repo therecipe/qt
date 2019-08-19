@@ -75,6 +75,16 @@ jobs:
   -
     template: docker_job_template.yml
     parameters:
+      file: linux/Dockerfile.debian_9
+      tag: linux_debian_9
+  -
+    template: docker_job_template.yml
+    parameters:
+      file: linux/Dockerfile.debian_10
+      tag: linux_debian_10
+  -
+    template: docker_job_template.yml
+    parameters:
       file: linux/Dockerfile.arch
       tag: linux_arch
 #  -

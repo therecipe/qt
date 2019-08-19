@@ -82,7 +82,7 @@ func (w *AnalogClockQwdgt) renderFunc(p *gui.QPainter) {
 		core.NewQPoint2(0, -40),
 	})
 
-	var minuteHand = gui.NewQPolygon4([]*core.QPoint{
+	var minuteHand = gui.NewQPolygon3([]*core.QPoint{
 		core.NewQPoint2(7, 8),
 		core.NewQPoint2(-7, 8),
 		core.NewQPoint2(0, -70),
@@ -197,7 +197,7 @@ func (w *AnalogClockQwdgt) renderFunc(p *gui.QPainter) {
 
 func (w *AnalogClockQwdgt) QWdgtMouseMoveEvent(ev *gui.QMouseEvent) {
 	fmt.Printf("QWdgtMouseMoveEvent()...\n")
-	nMouseState := ev.MouseState()
+	nMouseState := ev.Buttons()
 	bLeftButtonPressed := bool(nMouseState == core.Qt__LeftButton)
 	if bLeftButtonPressed {
 		qptMoveHere := Point1MinusPoint2(ev.GlobalPos(), w.m_dragPosition)
@@ -208,7 +208,7 @@ func (w *AnalogClockQwdgt) QWdgtMouseMoveEvent(ev *gui.QMouseEvent) {
 
 func (w *AnalogClockQwdgt) QWdgtMousePressEvent(ev *gui.QMouseEvent) {
 	fmt.Printf("QWdgtMousePressEvent()...\n")
-	nMouseState := ev.MouseState()
+	nMouseState := ev.Buttons()
 	bLeftButtonPressed := bool(nMouseState == core.Qt__LeftButton)
 	if bLeftButtonPressed {
 		qptGlobalPos := ev.GlobalPos()

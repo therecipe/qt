@@ -3103,6 +3103,11 @@ void QWebEngineView_IconUrlChanged(void* ptr, void* vqu)
 	static_cast<QWebEngineView*>(ptr)->iconUrlChanged(*static_cast<QUrl*>(vqu));
 }
 
+void* QWebEngineView_Page(void* ptr)
+{
+	return static_cast<QWebEngineView*>(ptr)->page();
+}
+
 struct QtWebEngine_PackedString QWebEngineView_SelectedText(void* ptr)
 {
 	return ({ QByteArray t0a8997 = static_cast<QWebEngineView*>(ptr)->selectedText().toUtf8(); QtWebEngine_PackedString { const_cast<char*>(t0a8997.prepend("WHITESPACE").constData()+10), t0a8997.size()-10 }; });

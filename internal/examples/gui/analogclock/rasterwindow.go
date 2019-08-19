@@ -78,5 +78,5 @@ func (w *RasterWindow) renderNow() {
 }
 
 func (w *RasterWindow) renderFunc(painter *gui.QPainter) {
-	painter.DrawText5(core.NewQRectF4(0, 0, float64(w.Width()), float64(w.Height())), int(core.Qt__AlignCenter), "QWindow", core.NewQRectF())
+	painter.DrawText4(core.NewQRect4(0, 0, w.Width(), w.Height()), int(core.Qt__AlignCenter), "QWindow", core.NewQRect())
 }

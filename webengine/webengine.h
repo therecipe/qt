@@ -513,6 +513,7 @@ void* QWebEngineView_IconUrl(void* ptr);
 void QWebEngineView_ConnectIconUrlChanged(void* ptr);
 void QWebEngineView_DisconnectIconUrlChanged(void* ptr);
 void QWebEngineView_IconUrlChanged(void* ptr, void* vqu);
+void* QWebEngineView_Page(void* ptr);
 struct QtWebEngine_PackedString QWebEngineView_SelectedText(void* ptr);
 void QWebEngineView_SetHtml(void* ptr, struct QtWebEngine_PackedString html, void* baseUrl);
 void QWebEngineView_SetPage(void* ptr, void* page);

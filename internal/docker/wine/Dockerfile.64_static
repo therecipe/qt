@@ -128,4 +128,3 @@ RUN echo '#!/bin/bash\nsource qtpath\nwine qtminimal "$@"' > /usr/bin/qtminimal 
 RUN echo '#!/bin/bash\nsource qtpath\nwine qtmoc "$@"' > /usr/bin/qtmoc && chmod +x /usr/bin/qtmoc
 RUN echo '#!/bin/bash\nsource qtpath\nwine qtrcc "$@"' > /usr/bin/qtrcc && chmod +x /usr/bin/qtrcc
 RUN ln -s $HOME/.wine/drive_c/gopath $HOME/work
-

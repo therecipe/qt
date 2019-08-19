@@ -36,7 +36,7 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 		}
 
 		cmd := exec.Command("go", "test", "-v", "-tags=minimal", fmt.Sprintf("-ldflags=%v\"-s\"", pattern))
-		cmd.Env = append(os.Environ(), "GODEBUG=cgocheck=2")
+		cmd.Env = append(os.Environ(), []string{"GODEBUG=cgocheck=2", "GO111MODULE=off"}...)
 		cmd.Dir = path
 		utils.RunCmd(cmd, "run \"go test\"")
 
@@ -67,7 +67,7 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 
 			//"gui": []string{"analogclock", "openglwindow", "rasterwindow"},
 
-			//opengl: []string{"2dpainting"},
+			//"opengl": []string{"2dpainting"},
 
 			"qml": []string{"adding", "application",
 				"custom_scheme", "drawer_nav_x",
