@@ -564,6 +564,22 @@ func (ptr *QScriptEngineDebugger) EventFilterDefault(watched core.QObject_ITF, e
 	return false
 }
 
+//export callbackQScriptEngineDebugger_MetaObject
+func callbackQScriptEngineDebugger_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQScriptEngineDebuggerFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QScriptEngineDebugger) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QScriptEngineDebugger_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQScriptEngineDebugger_ObjectNameChanged
 func callbackQScriptEngineDebugger_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtScriptTools_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {

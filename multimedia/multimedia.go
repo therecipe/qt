@@ -311,6 +311,52 @@ func NewAVFCameraFocusControlFromPointer(ptr unsafe.Pointer) (n *AVFCameraFocusC
 	return
 }
 
+type AVFCameraInfo struct {
+	ptr unsafe.Pointer
+}
+
+type AVFCameraInfo_ITF interface {
+	AVFCameraInfo_PTR() *AVFCameraInfo
+}
+
+func (ptr *AVFCameraInfo) AVFCameraInfo_PTR() *AVFCameraInfo {
+	return ptr
+}
+
+func (ptr *AVFCameraInfo) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *AVFCameraInfo) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromAVFCameraInfo(ptr AVFCameraInfo_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.AVFCameraInfo_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewAVFCameraInfoFromPointer(ptr unsafe.Pointer) (n *AVFCameraInfo) {
+	n = new(AVFCameraInfo)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *AVFCameraInfo) DestroyAVFCameraInfo() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
 type AVFCameraInfoControl struct {
 	QCameraInfoControl
 }
@@ -943,11 +989,15 @@ func NewAVFMediaPlayerServiceFromPointer(ptr unsafe.Pointer) (n *AVFMediaPlayerS
 }
 
 type AVFMediaPlayerServicePlugin struct {
+	QMediaServiceFeaturesInterface
 	QMediaServiceProviderPlugin
+	QMediaServiceSupportedFormatsInterface
 }
 
 type AVFMediaPlayerServicePlugin_ITF interface {
+	QMediaServiceFeaturesInterface_ITF
 	QMediaServiceProviderPlugin_ITF
+	QMediaServiceSupportedFormatsInterface_ITF
 	AVFMediaPlayerServicePlugin_PTR() *AVFMediaPlayerServicePlugin
 }
 
@@ -957,14 +1007,16 @@ func (ptr *AVFMediaPlayerServicePlugin) AVFMediaPlayerServicePlugin_PTR() *AVFMe
 
 func (ptr *AVFMediaPlayerServicePlugin) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMediaServiceProviderPlugin_PTR().Pointer()
+		return ptr.QMediaServiceFeaturesInterface_PTR().Pointer()
 	}
 	return nil
 }
 
 func (ptr *AVFMediaPlayerServicePlugin) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
+		ptr.QMediaServiceFeaturesInterface_PTR().SetPointer(p)
 		ptr.QMediaServiceProviderPlugin_PTR().SetPointer(p)
+		ptr.QMediaServiceSupportedFormatsInterface_PTR().SetPointer(p)
 	}
 }
 
@@ -1137,6 +1189,52 @@ func NewAVFMediaVideoProbeControlFromPointer(ptr unsafe.Pointer) (n *AVFMediaVid
 	return
 }
 
+type AVFObjectDeleter struct {
+	ptr unsafe.Pointer
+}
+
+type AVFObjectDeleter_ITF interface {
+	AVFObjectDeleter_PTR() *AVFObjectDeleter
+}
+
+func (ptr *AVFObjectDeleter) AVFObjectDeleter_PTR() *AVFObjectDeleter {
+	return ptr
+}
+
+func (ptr *AVFObjectDeleter) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *AVFObjectDeleter) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromAVFObjectDeleter(ptr AVFObjectDeleter_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.AVFObjectDeleter_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewAVFObjectDeleterFromPointer(ptr unsafe.Pointer) (n *AVFObjectDeleter) {
+	n = new(AVFObjectDeleter)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *AVFObjectDeleter) DestroyAVFObjectDeleter() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
 type AVFScopedPointer struct {
 	ptr unsafe.Pointer
 }
@@ -1184,11 +1282,17 @@ func (ptr *AVFScopedPointer) DestroyAVFScopedPointer() {
 }
 
 type AVFServicePlugin struct {
+	QMediaServiceCameraInfoInterface
+	QMediaServiceDefaultDeviceInterface
 	QMediaServiceProviderPlugin
+	QMediaServiceSupportedDevicesInterface
 }
 
 type AVFServicePlugin_ITF interface {
+	QMediaServiceCameraInfoInterface_ITF
+	QMediaServiceDefaultDeviceInterface_ITF
 	QMediaServiceProviderPlugin_ITF
+	QMediaServiceSupportedDevicesInterface_ITF
 	AVFServicePlugin_PTR() *AVFServicePlugin
 }
 
@@ -1198,14 +1302,17 @@ func (ptr *AVFServicePlugin) AVFServicePlugin_PTR() *AVFServicePlugin {
 
 func (ptr *AVFServicePlugin) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMediaServiceProviderPlugin_PTR().Pointer()
+		return ptr.QMediaServiceCameraInfoInterface_PTR().Pointer()
 	}
 	return nil
 }
 
 func (ptr *AVFServicePlugin) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
+		ptr.QMediaServiceCameraInfoInterface_PTR().SetPointer(p)
+		ptr.QMediaServiceDefaultDeviceInterface_PTR().SetPointer(p)
 		ptr.QMediaServiceProviderPlugin_PTR().SetPointer(p)
+		ptr.QMediaServiceSupportedDevicesInterface_PTR().SetPointer(p)
 	}
 }
 
@@ -3878,11 +3985,19 @@ func NewCameraBinServiceFromPointer(ptr unsafe.Pointer) (n *CameraBinService) {
 }
 
 type CameraBinServicePlugin struct {
+	QMediaServiceCameraInfoInterface
+	QMediaServiceDefaultDeviceInterface
+	QMediaServiceFeaturesInterface
 	QMediaServiceProviderPlugin
+	QMediaServiceSupportedDevicesInterface
 }
 
 type CameraBinServicePlugin_ITF interface {
+	QMediaServiceCameraInfoInterface_ITF
+	QMediaServiceDefaultDeviceInterface_ITF
+	QMediaServiceFeaturesInterface_ITF
 	QMediaServiceProviderPlugin_ITF
+	QMediaServiceSupportedDevicesInterface_ITF
 	CameraBinServicePlugin_PTR() *CameraBinServicePlugin
 }
 
@@ -3892,14 +4007,18 @@ func (ptr *CameraBinServicePlugin) CameraBinServicePlugin_PTR() *CameraBinServic
 
 func (ptr *CameraBinServicePlugin) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMediaServiceProviderPlugin_PTR().Pointer()
+		return ptr.QMediaServiceCameraInfoInterface_PTR().Pointer()
 	}
 	return nil
 }
 
 func (ptr *CameraBinServicePlugin) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
+		ptr.QMediaServiceCameraInfoInterface_PTR().SetPointer(p)
+		ptr.QMediaServiceDefaultDeviceInterface_PTR().SetPointer(p)
+		ptr.QMediaServiceFeaturesInterface_PTR().SetPointer(p)
 		ptr.QMediaServiceProviderPlugin_PTR().SetPointer(p)
+		ptr.QMediaServiceSupportedDevicesInterface_PTR().SetPointer(p)
 	}
 }
 
@@ -5005,11 +5124,17 @@ func NewDSImageCaptureControlFromPointer(ptr unsafe.Pointer) (n *DSImageCaptureC
 }
 
 type DSServicePlugin struct {
+	QMediaServiceDefaultDeviceInterface
+	QMediaServiceFeaturesInterface
 	QMediaServiceProviderPlugin
+	QMediaServiceSupportedDevicesInterface
 }
 
 type DSServicePlugin_ITF interface {
+	QMediaServiceDefaultDeviceInterface_ITF
+	QMediaServiceFeaturesInterface_ITF
 	QMediaServiceProviderPlugin_ITF
+	QMediaServiceSupportedDevicesInterface_ITF
 	DSServicePlugin_PTR() *DSServicePlugin
 }
 
@@ -5019,14 +5144,17 @@ func (ptr *DSServicePlugin) DSServicePlugin_PTR() *DSServicePlugin {
 
 func (ptr *DSServicePlugin) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMediaServiceProviderPlugin_PTR().Pointer()
+		return ptr.QMediaServiceDefaultDeviceInterface_PTR().Pointer()
 	}
 	return nil
 }
 
 func (ptr *DSServicePlugin) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
+		ptr.QMediaServiceDefaultDeviceInterface_PTR().SetPointer(p)
+		ptr.QMediaServiceFeaturesInterface_PTR().SetPointer(p)
 		ptr.QMediaServiceProviderPlugin_PTR().SetPointer(p)
+		ptr.QMediaServiceSupportedDevicesInterface_PTR().SetPointer(p)
 	}
 }
 
@@ -7294,10 +7422,12 @@ func NewMmrEventThreadFromPointer(ptr unsafe.Pointer) (n *MmrEventThread) {
 }
 
 type NeutrinoServicePlugin struct {
+	QMediaServiceFeaturesInterface
 	QMediaServiceProviderPlugin
 }
 
 type NeutrinoServicePlugin_ITF interface {
+	QMediaServiceFeaturesInterface_ITF
 	QMediaServiceProviderPlugin_ITF
 	NeutrinoServicePlugin_PTR() *NeutrinoServicePlugin
 }
@@ -7308,13 +7438,14 @@ func (ptr *NeutrinoServicePlugin) NeutrinoServicePlugin_PTR() *NeutrinoServicePl
 
 func (ptr *NeutrinoServicePlugin) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMediaServiceProviderPlugin_PTR().Pointer()
+		return ptr.QMediaServiceFeaturesInterface_PTR().Pointer()
 	}
 	return nil
 }
 
 func (ptr *NeutrinoServicePlugin) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
+		ptr.QMediaServiceFeaturesInterface_PTR().SetPointer(p)
 		ptr.QMediaServiceProviderPlugin_PTR().SetPointer(p)
 	}
 }
@@ -8153,6 +8284,22 @@ func (ptr *QAbstractAudioDeviceInfo) EventFilterDefault(watched core.QObject_ITF
 		return int8(C.QAbstractAudioDeviceInfo_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQAbstractAudioDeviceInfo_MetaObject
+func callbackQAbstractAudioDeviceInfo_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQAbstractAudioDeviceInfoFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QAbstractAudioDeviceInfo) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QAbstractAudioDeviceInfo_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQAbstractAudioDeviceInfo_ObjectNameChanged
@@ -9228,6 +9375,22 @@ func (ptr *QAbstractAudioInput) EventFilterDefault(watched core.QObject_ITF, eve
 		return int8(C.QAbstractAudioInput_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQAbstractAudioInput_MetaObject
+func callbackQAbstractAudioInput_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQAbstractAudioInputFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QAbstractAudioInput) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QAbstractAudioInput_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQAbstractAudioInput_ObjectNameChanged
@@ -10393,6 +10556,22 @@ func (ptr *QAbstractAudioOutput) EventFilterDefault(watched core.QObject_ITF, ev
 	return false
 }
 
+//export callbackQAbstractAudioOutput_MetaObject
+func callbackQAbstractAudioOutput_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQAbstractAudioOutputFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QAbstractAudioOutput) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QAbstractAudioOutput_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQAbstractAudioOutput_ObjectNameChanged
 func callbackQAbstractAudioOutput_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtMultimedia_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -11248,6 +11427,22 @@ func (ptr *QAbstractVideoFilter) EventFilterDefault(watched core.QObject_ITF, ev
 	return false
 }
 
+//export callbackQAbstractVideoFilter_MetaObject
+func callbackQAbstractVideoFilter_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQAbstractVideoFilterFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QAbstractVideoFilter) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QAbstractVideoFilter_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQAbstractVideoFilter_ObjectNameChanged
 func callbackQAbstractVideoFilter_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtMultimedia_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -12092,6 +12287,22 @@ func (ptr *QAbstractVideoSurface) EventFilterDefault(watched core.QObject_ITF, e
 		return int8(C.QAbstractVideoSurface_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQAbstractVideoSurface_MetaObject
+func callbackQAbstractVideoSurface_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQAbstractVideoSurfaceFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QAbstractVideoSurface) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QAbstractVideoSurface_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQAbstractVideoSurface_ObjectNameChanged
@@ -13249,11 +13460,19 @@ func NewQAndroidMediaServiceFromPointer(ptr unsafe.Pointer) (n *QAndroidMediaSer
 }
 
 type QAndroidMediaServicePlugin struct {
+	QMediaServiceCameraInfoInterface
+	QMediaServiceDefaultDeviceInterface
+	QMediaServiceFeaturesInterface
 	QMediaServiceProviderPlugin
+	QMediaServiceSupportedDevicesInterface
 }
 
 type QAndroidMediaServicePlugin_ITF interface {
+	QMediaServiceCameraInfoInterface_ITF
+	QMediaServiceDefaultDeviceInterface_ITF
+	QMediaServiceFeaturesInterface_ITF
 	QMediaServiceProviderPlugin_ITF
+	QMediaServiceSupportedDevicesInterface_ITF
 	QAndroidMediaServicePlugin_PTR() *QAndroidMediaServicePlugin
 }
 
@@ -13263,14 +13482,18 @@ func (ptr *QAndroidMediaServicePlugin) QAndroidMediaServicePlugin_PTR() *QAndroi
 
 func (ptr *QAndroidMediaServicePlugin) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMediaServiceProviderPlugin_PTR().Pointer()
+		return ptr.QMediaServiceCameraInfoInterface_PTR().Pointer()
 	}
 	return nil
 }
 
 func (ptr *QAndroidMediaServicePlugin) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
+		ptr.QMediaServiceCameraInfoInterface_PTR().SetPointer(p)
+		ptr.QMediaServiceDefaultDeviceInterface_PTR().SetPointer(p)
+		ptr.QMediaServiceFeaturesInterface_PTR().SetPointer(p)
 		ptr.QMediaServiceProviderPlugin_PTR().SetPointer(p)
+		ptr.QMediaServiceSupportedDevicesInterface_PTR().SetPointer(p)
 	}
 }
 
@@ -17235,6 +17458,22 @@ func (ptr *QAudioInput) EventFilterDefault(watched core.QObject_ITF, event core.
 	return false
 }
 
+//export callbackQAudioInput_MetaObject
+func callbackQAudioInput_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQAudioInputFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QAudioInput) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QAudioInput_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQAudioInput_ObjectNameChanged
 func callbackQAudioInput_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtMultimedia_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -18123,6 +18362,22 @@ func (ptr *QAudioOutput) EventFilterDefault(watched core.QObject_ITF, event core
 	return false
 }
 
+//export callbackQAudioOutput_MetaObject
+func callbackQAudioOutput_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQAudioOutputFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QAudioOutput) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QAudioOutput_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQAudioOutput_ObjectNameChanged
 func callbackQAudioOutput_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtMultimedia_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -18915,6 +19170,22 @@ func (ptr *QAudioProbe) EventFilterDefault(watched core.QObject_ITF, event core.
 	return false
 }
 
+//export callbackQAudioProbe_MetaObject
+func callbackQAudioProbe_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQAudioProbeFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QAudioProbe) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QAudioProbe_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQAudioProbe_ObjectNameChanged
 func callbackQAudioProbe_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtMultimedia_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -19483,12 +19754,79 @@ func (ptr *QAudioRoleControl) __supportedAudioRoles_newList() unsafe.Pointer {
 	return C.QAudioRoleControl___supportedAudioRoles_newList(ptr.Pointer())
 }
 
+type QAudioSystemFactoryInterface struct {
+	ptr unsafe.Pointer
+}
+
+type QAudioSystemFactoryInterface_ITF interface {
+	QAudioSystemFactoryInterface_PTR() *QAudioSystemFactoryInterface
+}
+
+func (ptr *QAudioSystemFactoryInterface) QAudioSystemFactoryInterface_PTR() *QAudioSystemFactoryInterface {
+	return ptr
+}
+
+func (ptr *QAudioSystemFactoryInterface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QAudioSystemFactoryInterface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQAudioSystemFactoryInterface(ptr QAudioSystemFactoryInterface_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAudioSystemFactoryInterface_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQAudioSystemFactoryInterfaceFromPointer(ptr unsafe.Pointer) (n *QAudioSystemFactoryInterface) {
+	n = new(QAudioSystemFactoryInterface)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QAudioSystemFactoryInterface) DestroyQAudioSystemFactoryInterface() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *QAudioSystemFactoryInterface) __availableDevices_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QAudioSystemFactoryInterface___availableDevices_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAudioSystemFactoryInterface) __availableDevices_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAudioSystemFactoryInterface___availableDevices_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QAudioSystemFactoryInterface) __availableDevices_newList() unsafe.Pointer {
+	return C.QAudioSystemFactoryInterface___availableDevices_newList(ptr.Pointer())
+}
+
 type QAudioSystemPlugin struct {
 	core.QObject
+	QAudioSystemFactoryInterface
 }
 
 type QAudioSystemPlugin_ITF interface {
 	core.QObject_ITF
+	QAudioSystemFactoryInterface_ITF
 	QAudioSystemPlugin_PTR() *QAudioSystemPlugin
 }
 
@@ -19506,6 +19844,7 @@ func (ptr *QAudioSystemPlugin) Pointer() unsafe.Pointer {
 func (ptr *QAudioSystemPlugin) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
 		ptr.QObject_PTR().SetPointer(p)
+		ptr.QAudioSystemFactoryInterface_PTR().SetPointer(p)
 	}
 }
 
@@ -19759,25 +20098,6 @@ func (ptr *QAudioSystemPlugin) DestroyQAudioSystemPluginDefault() {
 	}
 }
 
-func (ptr *QAudioSystemPlugin) __availableDevices_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QAudioSystemPlugin___availableDevices_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QAudioSystemPlugin) __availableDevices_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAudioSystemPlugin___availableDevices_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
-}
-
-func (ptr *QAudioSystemPlugin) __availableDevices_newList() unsafe.Pointer {
-	return C.QAudioSystemPlugin___availableDevices_newList(ptr.Pointer())
-}
-
 func (ptr *QAudioSystemPlugin) __children_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQObjectFromPointer(C.QAudioSystemPlugin___children_atList(ptr.Pointer(), C.int(int32(i))))
@@ -19890,6 +20210,12 @@ func callbackQAudioSystemPlugin_ChildEvent(ptr unsafe.Pointer, event unsafe.Poin
 	}
 }
 
+func (ptr *QAudioSystemPlugin) ChildEvent(event core.QChildEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAudioSystemPlugin_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
 func (ptr *QAudioSystemPlugin) ChildEventDefault(event core.QChildEvent_ITF) {
 	if ptr.Pointer() != nil {
 		C.QAudioSystemPlugin_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
@@ -19902,6 +20228,12 @@ func callbackQAudioSystemPlugin_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Po
 		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQAudioSystemPluginFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
+	}
+}
+
+func (ptr *QAudioSystemPlugin) ConnectNotify(sign core.QMetaMethod_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAudioSystemPlugin_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
@@ -19920,6 +20252,12 @@ func callbackQAudioSystemPlugin_CustomEvent(ptr unsafe.Pointer, event unsafe.Poi
 	}
 }
 
+func (ptr *QAudioSystemPlugin) CustomEvent(event core.QEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAudioSystemPlugin_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
 func (ptr *QAudioSystemPlugin) CustomEventDefault(event core.QEvent_ITF) {
 	if ptr.Pointer() != nil {
 		C.QAudioSystemPlugin_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
@@ -19932,6 +20270,13 @@ func callbackQAudioSystemPlugin_DeleteLater(ptr unsafe.Pointer) {
 		(*(*func())(signal))()
 	} else {
 		NewQAudioSystemPluginFromPointer(ptr).DeleteLaterDefault()
+	}
+}
+
+func (ptr *QAudioSystemPlugin) DeleteLater() {
+	if ptr.Pointer() != nil {
+		C.QAudioSystemPlugin_DeleteLater(ptr.Pointer())
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -19959,6 +20304,12 @@ func callbackQAudioSystemPlugin_DisconnectNotify(ptr unsafe.Pointer, sign unsafe
 	}
 }
 
+func (ptr *QAudioSystemPlugin) DisconnectNotify(sign core.QMetaMethod_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAudioSystemPlugin_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
+	}
+}
+
 func (ptr *QAudioSystemPlugin) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 	if ptr.Pointer() != nil {
 		C.QAudioSystemPlugin_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
@@ -19972,6 +20323,13 @@ func callbackQAudioSystemPlugin_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.ch
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQAudioSystemPluginFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QAudioSystemPlugin) Event(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QAudioSystemPlugin_Event(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+	}
+	return false
 }
 
 func (ptr *QAudioSystemPlugin) EventDefault(e core.QEvent_ITF) bool {
@@ -19990,11 +20348,41 @@ func callbackQAudioSystemPlugin_EventFilter(ptr unsafe.Pointer, watched unsafe.P
 	return C.char(int8(qt.GoBoolToInt(NewQAudioSystemPluginFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 }
 
+func (ptr *QAudioSystemPlugin) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QAudioSystemPlugin_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+	}
+	return false
+}
+
 func (ptr *QAudioSystemPlugin) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
 		return int8(C.QAudioSystemPlugin_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQAudioSystemPlugin_MetaObject
+func callbackQAudioSystemPlugin_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQAudioSystemPluginFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QAudioSystemPlugin) MetaObject() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QAudioSystemPlugin_MetaObject(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QAudioSystemPlugin) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QAudioSystemPlugin_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQAudioSystemPlugin_ObjectNameChanged
@@ -20011,6 +20399,12 @@ func callbackQAudioSystemPlugin_TimerEvent(ptr unsafe.Pointer, event unsafe.Poin
 		(*(*func(*core.QTimerEvent))(signal))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQAudioSystemPluginFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+	}
+}
+
+func (ptr *QAudioSystemPlugin) TimerEvent(event core.QTimerEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAudioSystemPlugin_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
@@ -23493,6 +23887,22 @@ func (ptr *QCameraExposure) EventFilterDefault(watched core.QObject_ITF, event c
 	return false
 }
 
+//export callbackQCameraExposure_MetaObject
+func callbackQCameraExposure_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQCameraExposureFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QCameraExposure) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QCameraExposure_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQCameraExposure_ObjectNameChanged
 func callbackQCameraExposure_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtMultimedia_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -25151,6 +25561,22 @@ func (ptr *QCameraFocus) EventFilterDefault(watched core.QObject_ITF, event core
 		return int8(C.QCameraFocus_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQCameraFocus_MetaObject
+func callbackQCameraFocus_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQCameraFocusFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QCameraFocus) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QCameraFocus_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQCameraFocus_ObjectNameChanged
@@ -26941,6 +27367,29 @@ func (ptr *QCameraImageCapture) EventFilterDefault(watched core.QObject_ITF, eve
 	return false
 }
 
+//export callbackQCameraImageCapture_MetaObject
+func callbackQCameraImageCapture_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQCameraImageCaptureFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QCameraImageCapture) MetaObject() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QCameraImageCapture_MetaObject(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QCameraImageCapture) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QCameraImageCapture_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQCameraImageCapture_ObjectNameChanged
 func callbackQCameraImageCapture_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtMultimedia_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -27964,6 +28413,22 @@ func (ptr *QCameraImageProcessing) EventFilterDefault(watched core.QObject_ITF, 
 		return int8(C.QCameraImageProcessing_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQCameraImageProcessing_MetaObject
+func callbackQCameraImageProcessing_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQCameraImageProcessingFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QCameraImageProcessing) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QCameraImageProcessing_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQCameraImageProcessing_ObjectNameChanged
@@ -30457,10 +30922,12 @@ func NewQGstreamerAudioDecoderServiceFromPointer(ptr unsafe.Pointer) (n *QGstrea
 
 type QGstreamerAudioDecoderServicePlugin struct {
 	QMediaServiceProviderPlugin
+	QMediaServiceSupportedFormatsInterface
 }
 
 type QGstreamerAudioDecoderServicePlugin_ITF interface {
 	QMediaServiceProviderPlugin_ITF
+	QMediaServiceSupportedFormatsInterface_ITF
 	QGstreamerAudioDecoderServicePlugin_PTR() *QGstreamerAudioDecoderServicePlugin
 }
 
@@ -30478,6 +30945,7 @@ func (ptr *QGstreamerAudioDecoderServicePlugin) Pointer() unsafe.Pointer {
 func (ptr *QGstreamerAudioDecoderServicePlugin) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
 		ptr.QMediaServiceProviderPlugin_PTR().SetPointer(p)
+		ptr.QMediaServiceSupportedFormatsInterface_PTR().SetPointer(p)
 	}
 }
 
@@ -30691,10 +31159,12 @@ func NewQGstreamerCaptureServiceFromPointer(ptr unsafe.Pointer) (n *QGstreamerCa
 
 type QGstreamerCaptureServicePlugin struct {
 	QMediaServiceProviderPlugin
+	QMediaServiceSupportedFormatsInterface
 }
 
 type QGstreamerCaptureServicePlugin_ITF interface {
 	QMediaServiceProviderPlugin_ITF
+	QMediaServiceSupportedFormatsInterface_ITF
 	QGstreamerCaptureServicePlugin_PTR() *QGstreamerCaptureServicePlugin
 }
 
@@ -30712,6 +31182,7 @@ func (ptr *QGstreamerCaptureServicePlugin) Pointer() unsafe.Pointer {
 func (ptr *QGstreamerCaptureServicePlugin) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
 		ptr.QMediaServiceProviderPlugin_PTR().SetPointer(p)
+		ptr.QMediaServiceSupportedFormatsInterface_PTR().SetPointer(p)
 	}
 }
 
@@ -31009,11 +31480,15 @@ func NewQGstreamerPlayerServiceFromPointer(ptr unsafe.Pointer) (n *QGstreamerPla
 }
 
 type QGstreamerPlayerServicePlugin struct {
+	QMediaServiceFeaturesInterface
 	QMediaServiceProviderPlugin
+	QMediaServiceSupportedFormatsInterface
 }
 
 type QGstreamerPlayerServicePlugin_ITF interface {
+	QMediaServiceFeaturesInterface_ITF
 	QMediaServiceProviderPlugin_ITF
+	QMediaServiceSupportedFormatsInterface_ITF
 	QGstreamerPlayerServicePlugin_PTR() *QGstreamerPlayerServicePlugin
 }
 
@@ -31023,14 +31498,16 @@ func (ptr *QGstreamerPlayerServicePlugin) QGstreamerPlayerServicePlugin_PTR() *Q
 
 func (ptr *QGstreamerPlayerServicePlugin) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMediaServiceProviderPlugin_PTR().Pointer()
+		return ptr.QMediaServiceFeaturesInterface_PTR().Pointer()
 	}
 	return nil
 }
 
 func (ptr *QGstreamerPlayerServicePlugin) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
+		ptr.QMediaServiceFeaturesInterface_PTR().SetPointer(p)
 		ptr.QMediaServiceProviderPlugin_PTR().SetPointer(p)
+		ptr.QMediaServiceSupportedFormatsInterface_PTR().SetPointer(p)
 	}
 }
 
@@ -33148,6 +33625,22 @@ func (ptr *QMediaControl) EventFilterDefault(watched core.QObject_ITF, event cor
 	return false
 }
 
+//export callbackQMediaControl_MetaObject
+func callbackQMediaControl_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQMediaControlFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QMediaControl) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QMediaControl_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQMediaControl_ObjectNameChanged
 func callbackQMediaControl_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtMultimedia_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -34645,6 +35138,22 @@ func (ptr *QMediaObject) EventFilterDefault(watched core.QObject_ITF, event core
 		return int8(C.QMediaObject_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQMediaObject_MetaObject
+func callbackQMediaObject_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQMediaObjectFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QMediaObject) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QMediaObject_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQMediaObject_ObjectNameChanged
@@ -38963,6 +39472,29 @@ func (ptr *QMediaPlaylist) EventFilterDefault(watched core.QObject_ITF, event co
 	return false
 }
 
+//export callbackQMediaPlaylist_MetaObject
+func callbackQMediaPlaylist_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQMediaPlaylistFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QMediaPlaylist) MetaObject() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QMediaPlaylist_MetaObject(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QMediaPlaylist) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QMediaPlaylist_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQMediaPlaylist_ObjectNameChanged
 func callbackQMediaPlaylist_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtMultimedia_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -40565,6 +41097,29 @@ func (ptr *QMediaRecorder) EventFilterDefault(watched core.QObject_ITF, event co
 	return false
 }
 
+//export callbackQMediaRecorder_MetaObject
+func callbackQMediaRecorder_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQMediaRecorderFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QMediaRecorder) MetaObject() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QMediaRecorder_MetaObject(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QMediaRecorder) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QMediaRecorder_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQMediaRecorder_ObjectNameChanged
 func callbackQMediaRecorder_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtMultimedia_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -42164,6 +42719,22 @@ func (ptr *QMediaService) EventFilterDefault(watched core.QObject_ITF, event cor
 	return false
 }
 
+//export callbackQMediaService_MetaObject
+func callbackQMediaService_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQMediaServiceFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QMediaService) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QMediaService_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQMediaService_ObjectNameChanged
 func callbackQMediaService_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtMultimedia_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -42187,12 +42758,427 @@ func (ptr *QMediaService) TimerEventDefault(event core.QTimerEvent_ITF) {
 	}
 }
 
+type QMediaServiceCameraInfoInterface struct {
+	ptr unsafe.Pointer
+}
+
+type QMediaServiceCameraInfoInterface_ITF interface {
+	QMediaServiceCameraInfoInterface_PTR() *QMediaServiceCameraInfoInterface
+}
+
+func (ptr *QMediaServiceCameraInfoInterface) QMediaServiceCameraInfoInterface_PTR() *QMediaServiceCameraInfoInterface {
+	return ptr
+}
+
+func (ptr *QMediaServiceCameraInfoInterface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QMediaServiceCameraInfoInterface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQMediaServiceCameraInfoInterface(ptr QMediaServiceCameraInfoInterface_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaServiceCameraInfoInterface_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQMediaServiceCameraInfoInterfaceFromPointer(ptr unsafe.Pointer) (n *QMediaServiceCameraInfoInterface) {
+	n = new(QMediaServiceCameraInfoInterface)
+	n.SetPointer(ptr)
+	return
+}
+
+//export callbackQMediaServiceCameraInfoInterface_CameraOrientation
+func callbackQMediaServiceCameraInfoInterface_CameraOrientation(ptr unsafe.Pointer, device unsafe.Pointer) C.int {
+	if signal := qt.GetSignal(ptr, "cameraOrientation"); signal != nil {
+		return C.int(int32((*(*func(*core.QByteArray) int)(signal))(core.NewQByteArrayFromPointer(device))))
+	}
+
+	return C.int(int32(0))
+}
+
+func (ptr *QMediaServiceCameraInfoInterface) ConnectCameraOrientation(f func(device *core.QByteArray) int) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "cameraOrientation"); signal != nil {
+			f := func(device *core.QByteArray) int {
+				(*(*func(*core.QByteArray) int)(signal))(device)
+				return f(device)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "cameraOrientation", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "cameraOrientation", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QMediaServiceCameraInfoInterface) DisconnectCameraOrientation() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "cameraOrientation")
+	}
+}
+
+func (ptr *QMediaServiceCameraInfoInterface) CameraOrientation(device core.QByteArray_ITF) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QMediaServiceCameraInfoInterface_CameraOrientation(ptr.Pointer(), core.PointerFromQByteArray(device))))
+	}
+	return 0
+}
+
+//export callbackQMediaServiceCameraInfoInterface_CameraPosition
+func callbackQMediaServiceCameraInfoInterface_CameraPosition(ptr unsafe.Pointer, device unsafe.Pointer) C.longlong {
+	if signal := qt.GetSignal(ptr, "cameraPosition"); signal != nil {
+		return C.longlong((*(*func(*core.QByteArray) QCamera__Position)(signal))(core.NewQByteArrayFromPointer(device)))
+	}
+
+	return C.longlong(0)
+}
+
+func (ptr *QMediaServiceCameraInfoInterface) ConnectCameraPosition(f func(device *core.QByteArray) QCamera__Position) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "cameraPosition"); signal != nil {
+			f := func(device *core.QByteArray) QCamera__Position {
+				(*(*func(*core.QByteArray) QCamera__Position)(signal))(device)
+				return f(device)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "cameraPosition", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "cameraPosition", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QMediaServiceCameraInfoInterface) DisconnectCameraPosition() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "cameraPosition")
+	}
+}
+
+func (ptr *QMediaServiceCameraInfoInterface) CameraPosition(device core.QByteArray_ITF) QCamera__Position {
+	if ptr.Pointer() != nil {
+		return QCamera__Position(C.QMediaServiceCameraInfoInterface_CameraPosition(ptr.Pointer(), core.PointerFromQByteArray(device)))
+	}
+	return 0
+}
+
+//export callbackQMediaServiceCameraInfoInterface_DestroyQMediaServiceCameraInfoInterface
+func callbackQMediaServiceCameraInfoInterface_DestroyQMediaServiceCameraInfoInterface(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "~QMediaServiceCameraInfoInterface"); signal != nil {
+		(*(*func())(signal))()
+	} else {
+		NewQMediaServiceCameraInfoInterfaceFromPointer(ptr).DestroyQMediaServiceCameraInfoInterfaceDefault()
+	}
+}
+
+func (ptr *QMediaServiceCameraInfoInterface) ConnectDestroyQMediaServiceCameraInfoInterface(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "~QMediaServiceCameraInfoInterface"); signal != nil {
+			f := func() {
+				(*(*func())(signal))()
+				f()
+			}
+			qt.ConnectSignal(ptr.Pointer(), "~QMediaServiceCameraInfoInterface", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "~QMediaServiceCameraInfoInterface", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QMediaServiceCameraInfoInterface) DisconnectDestroyQMediaServiceCameraInfoInterface() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "~QMediaServiceCameraInfoInterface")
+	}
+}
+
+func (ptr *QMediaServiceCameraInfoInterface) DestroyQMediaServiceCameraInfoInterface() {
+	if ptr.Pointer() != nil {
+		C.QMediaServiceCameraInfoInterface_DestroyQMediaServiceCameraInfoInterface(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QMediaServiceCameraInfoInterface) DestroyQMediaServiceCameraInfoInterfaceDefault() {
+	if ptr.Pointer() != nil {
+		C.QMediaServiceCameraInfoInterface_DestroyQMediaServiceCameraInfoInterfaceDefault(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+type QMediaServiceDefaultDeviceInterface struct {
+	ptr unsafe.Pointer
+}
+
+type QMediaServiceDefaultDeviceInterface_ITF interface {
+	QMediaServiceDefaultDeviceInterface_PTR() *QMediaServiceDefaultDeviceInterface
+}
+
+func (ptr *QMediaServiceDefaultDeviceInterface) QMediaServiceDefaultDeviceInterface_PTR() *QMediaServiceDefaultDeviceInterface {
+	return ptr
+}
+
+func (ptr *QMediaServiceDefaultDeviceInterface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QMediaServiceDefaultDeviceInterface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQMediaServiceDefaultDeviceInterface(ptr QMediaServiceDefaultDeviceInterface_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaServiceDefaultDeviceInterface_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQMediaServiceDefaultDeviceInterfaceFromPointer(ptr unsafe.Pointer) (n *QMediaServiceDefaultDeviceInterface) {
+	n = new(QMediaServiceDefaultDeviceInterface)
+	n.SetPointer(ptr)
+	return
+}
+
+//export callbackQMediaServiceDefaultDeviceInterface_DefaultDevice
+func callbackQMediaServiceDefaultDeviceInterface_DefaultDevice(ptr unsafe.Pointer, service unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "defaultDevice"); signal != nil {
+		return core.PointerFromQByteArray((*(*func(*core.QByteArray) *core.QByteArray)(signal))(core.NewQByteArrayFromPointer(service)))
+	}
+
+	return core.PointerFromQByteArray(core.NewQByteArray())
+}
+
+func (ptr *QMediaServiceDefaultDeviceInterface) ConnectDefaultDevice(f func(service *core.QByteArray) *core.QByteArray) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "defaultDevice"); signal != nil {
+			f := func(service *core.QByteArray) *core.QByteArray {
+				(*(*func(*core.QByteArray) *core.QByteArray)(signal))(service)
+				return f(service)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "defaultDevice", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "defaultDevice", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QMediaServiceDefaultDeviceInterface) DisconnectDefaultDevice() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "defaultDevice")
+	}
+}
+
+func (ptr *QMediaServiceDefaultDeviceInterface) DefaultDevice(service core.QByteArray_ITF) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QMediaServiceDefaultDeviceInterface_DefaultDevice(ptr.Pointer(), core.PointerFromQByteArray(service)))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQMediaServiceDefaultDeviceInterface_DestroyQMediaServiceDefaultDeviceInterface
+func callbackQMediaServiceDefaultDeviceInterface_DestroyQMediaServiceDefaultDeviceInterface(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "~QMediaServiceDefaultDeviceInterface"); signal != nil {
+		(*(*func())(signal))()
+	} else {
+		NewQMediaServiceDefaultDeviceInterfaceFromPointer(ptr).DestroyQMediaServiceDefaultDeviceInterfaceDefault()
+	}
+}
+
+func (ptr *QMediaServiceDefaultDeviceInterface) ConnectDestroyQMediaServiceDefaultDeviceInterface(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "~QMediaServiceDefaultDeviceInterface"); signal != nil {
+			f := func() {
+				(*(*func())(signal))()
+				f()
+			}
+			qt.ConnectSignal(ptr.Pointer(), "~QMediaServiceDefaultDeviceInterface", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "~QMediaServiceDefaultDeviceInterface", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QMediaServiceDefaultDeviceInterface) DisconnectDestroyQMediaServiceDefaultDeviceInterface() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "~QMediaServiceDefaultDeviceInterface")
+	}
+}
+
+func (ptr *QMediaServiceDefaultDeviceInterface) DestroyQMediaServiceDefaultDeviceInterface() {
+	if ptr.Pointer() != nil {
+		C.QMediaServiceDefaultDeviceInterface_DestroyQMediaServiceDefaultDeviceInterface(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *QMediaServiceDefaultDeviceInterface) DestroyQMediaServiceDefaultDeviceInterfaceDefault() {
+	if ptr.Pointer() != nil {
+		C.QMediaServiceDefaultDeviceInterface_DestroyQMediaServiceDefaultDeviceInterfaceDefault(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+type QMediaServiceFeaturesInterface struct {
+	ptr unsafe.Pointer
+}
+
+type QMediaServiceFeaturesInterface_ITF interface {
+	QMediaServiceFeaturesInterface_PTR() *QMediaServiceFeaturesInterface
+}
+
+func (ptr *QMediaServiceFeaturesInterface) QMediaServiceFeaturesInterface_PTR() *QMediaServiceFeaturesInterface {
+	return ptr
+}
+
+func (ptr *QMediaServiceFeaturesInterface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QMediaServiceFeaturesInterface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQMediaServiceFeaturesInterface(ptr QMediaServiceFeaturesInterface_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaServiceFeaturesInterface_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQMediaServiceFeaturesInterfaceFromPointer(ptr unsafe.Pointer) (n *QMediaServiceFeaturesInterface) {
+	n = new(QMediaServiceFeaturesInterface)
+	n.SetPointer(ptr)
+	return
+}
+
+//export callbackQMediaServiceFeaturesInterface_DestroyQMediaServiceFeaturesInterface
+func callbackQMediaServiceFeaturesInterface_DestroyQMediaServiceFeaturesInterface(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "~QMediaServiceFeaturesInterface"); signal != nil {
+		(*(*func())(signal))()
+	} else {
+		NewQMediaServiceFeaturesInterfaceFromPointer(ptr).DestroyQMediaServiceFeaturesInterfaceDefault()
+	}
+}
+
+func (ptr *QMediaServiceFeaturesInterface) ConnectDestroyQMediaServiceFeaturesInterface(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "~QMediaServiceFeaturesInterface"); signal != nil {
+			f := func() {
+				(*(*func())(signal))()
+				f()
+			}
+			qt.ConnectSignal(ptr.Pointer(), "~QMediaServiceFeaturesInterface", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "~QMediaServiceFeaturesInterface", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QMediaServiceFeaturesInterface) DisconnectDestroyQMediaServiceFeaturesInterface() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "~QMediaServiceFeaturesInterface")
+	}
+}
+
+func (ptr *QMediaServiceFeaturesInterface) DestroyQMediaServiceFeaturesInterface() {
+	if ptr.Pointer() != nil {
+		C.QMediaServiceFeaturesInterface_DestroyQMediaServiceFeaturesInterface(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QMediaServiceFeaturesInterface) DestroyQMediaServiceFeaturesInterfaceDefault() {
+	if ptr.Pointer() != nil {
+		C.QMediaServiceFeaturesInterface_DestroyQMediaServiceFeaturesInterfaceDefault(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+type QMediaServiceProviderFactoryInterface struct {
+	ptr unsafe.Pointer
+}
+
+type QMediaServiceProviderFactoryInterface_ITF interface {
+	QMediaServiceProviderFactoryInterface_PTR() *QMediaServiceProviderFactoryInterface
+}
+
+func (ptr *QMediaServiceProviderFactoryInterface) QMediaServiceProviderFactoryInterface_PTR() *QMediaServiceProviderFactoryInterface {
+	return ptr
+}
+
+func (ptr *QMediaServiceProviderFactoryInterface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QMediaServiceProviderFactoryInterface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQMediaServiceProviderFactoryInterface(ptr QMediaServiceProviderFactoryInterface_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaServiceProviderFactoryInterface_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQMediaServiceProviderFactoryInterfaceFromPointer(ptr unsafe.Pointer) (n *QMediaServiceProviderFactoryInterface) {
+	n = new(QMediaServiceProviderFactoryInterface)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QMediaServiceProviderFactoryInterface) DestroyQMediaServiceProviderFactoryInterface() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
 type QMediaServiceProviderPlugin struct {
 	core.QObject
+	QMediaServiceProviderFactoryInterface
 }
 
 type QMediaServiceProviderPlugin_ITF interface {
 	core.QObject_ITF
+	QMediaServiceProviderFactoryInterface_ITF
 	QMediaServiceProviderPlugin_PTR() *QMediaServiceProviderPlugin
 }
 
@@ -42210,6 +43196,7 @@ func (ptr *QMediaServiceProviderPlugin) Pointer() unsafe.Pointer {
 func (ptr *QMediaServiceProviderPlugin) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
 		ptr.QObject_PTR().SetPointer(p)
+		ptr.QMediaServiceProviderFactoryInterface_PTR().SetPointer(p)
 	}
 }
 
@@ -42421,6 +43408,12 @@ func callbackQMediaServiceProviderPlugin_ChildEvent(ptr unsafe.Pointer, event un
 	}
 }
 
+func (ptr *QMediaServiceProviderPlugin) ChildEvent(event core.QChildEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaServiceProviderPlugin_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
 func (ptr *QMediaServiceProviderPlugin) ChildEventDefault(event core.QChildEvent_ITF) {
 	if ptr.Pointer() != nil {
 		C.QMediaServiceProviderPlugin_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
@@ -42433,6 +43426,12 @@ func callbackQMediaServiceProviderPlugin_ConnectNotify(ptr unsafe.Pointer, sign 
 		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQMediaServiceProviderPluginFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
+	}
+}
+
+func (ptr *QMediaServiceProviderPlugin) ConnectNotify(sign core.QMetaMethod_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaServiceProviderPlugin_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
@@ -42451,6 +43450,12 @@ func callbackQMediaServiceProviderPlugin_CustomEvent(ptr unsafe.Pointer, event u
 	}
 }
 
+func (ptr *QMediaServiceProviderPlugin) CustomEvent(event core.QEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaServiceProviderPlugin_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
 func (ptr *QMediaServiceProviderPlugin) CustomEventDefault(event core.QEvent_ITF) {
 	if ptr.Pointer() != nil {
 		C.QMediaServiceProviderPlugin_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
@@ -42463,6 +43468,13 @@ func callbackQMediaServiceProviderPlugin_DeleteLater(ptr unsafe.Pointer) {
 		(*(*func())(signal))()
 	} else {
 		NewQMediaServiceProviderPluginFromPointer(ptr).DeleteLaterDefault()
+	}
+}
+
+func (ptr *QMediaServiceProviderPlugin) DeleteLater() {
+	if ptr.Pointer() != nil {
+		C.QMediaServiceProviderPlugin_DeleteLater(ptr.Pointer())
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -42490,6 +43502,12 @@ func callbackQMediaServiceProviderPlugin_DisconnectNotify(ptr unsafe.Pointer, si
 	}
 }
 
+func (ptr *QMediaServiceProviderPlugin) DisconnectNotify(sign core.QMetaMethod_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaServiceProviderPlugin_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
+	}
+}
+
 func (ptr *QMediaServiceProviderPlugin) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 	if ptr.Pointer() != nil {
 		C.QMediaServiceProviderPlugin_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
@@ -42503,6 +43521,13 @@ func callbackQMediaServiceProviderPlugin_Event(ptr unsafe.Pointer, e unsafe.Poin
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQMediaServiceProviderPluginFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QMediaServiceProviderPlugin) Event(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QMediaServiceProviderPlugin_Event(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+	}
+	return false
 }
 
 func (ptr *QMediaServiceProviderPlugin) EventDefault(e core.QEvent_ITF) bool {
@@ -42521,11 +43546,41 @@ func callbackQMediaServiceProviderPlugin_EventFilter(ptr unsafe.Pointer, watched
 	return C.char(int8(qt.GoBoolToInt(NewQMediaServiceProviderPluginFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 }
 
+func (ptr *QMediaServiceProviderPlugin) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QMediaServiceProviderPlugin_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+	}
+	return false
+}
+
 func (ptr *QMediaServiceProviderPlugin) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
 		return int8(C.QMediaServiceProviderPlugin_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQMediaServiceProviderPlugin_MetaObject
+func callbackQMediaServiceProviderPlugin_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQMediaServiceProviderPluginFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QMediaServiceProviderPlugin) MetaObject() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QMediaServiceProviderPlugin_MetaObject(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QMediaServiceProviderPlugin) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QMediaServiceProviderPlugin_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQMediaServiceProviderPlugin_ObjectNameChanged
@@ -42545,9 +43600,382 @@ func callbackQMediaServiceProviderPlugin_TimerEvent(ptr unsafe.Pointer, event un
 	}
 }
 
+func (ptr *QMediaServiceProviderPlugin) TimerEvent(event core.QTimerEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaServiceProviderPlugin_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
 func (ptr *QMediaServiceProviderPlugin) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
 		C.QMediaServiceProviderPlugin_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+type QMediaServiceSupportedDevicesInterface struct {
+	ptr unsafe.Pointer
+}
+
+type QMediaServiceSupportedDevicesInterface_ITF interface {
+	QMediaServiceSupportedDevicesInterface_PTR() *QMediaServiceSupportedDevicesInterface
+}
+
+func (ptr *QMediaServiceSupportedDevicesInterface) QMediaServiceSupportedDevicesInterface_PTR() *QMediaServiceSupportedDevicesInterface {
+	return ptr
+}
+
+func (ptr *QMediaServiceSupportedDevicesInterface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QMediaServiceSupportedDevicesInterface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQMediaServiceSupportedDevicesInterface(ptr QMediaServiceSupportedDevicesInterface_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaServiceSupportedDevicesInterface_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQMediaServiceSupportedDevicesInterfaceFromPointer(ptr unsafe.Pointer) (n *QMediaServiceSupportedDevicesInterface) {
+	n = new(QMediaServiceSupportedDevicesInterface)
+	n.SetPointer(ptr)
+	return
+}
+
+//export callbackQMediaServiceSupportedDevicesInterface_DeviceDescription
+func callbackQMediaServiceSupportedDevicesInterface_DeviceDescription(ptr unsafe.Pointer, service unsafe.Pointer, device unsafe.Pointer) C.struct_QtMultimedia_PackedString {
+	if signal := qt.GetSignal(ptr, "deviceDescription"); signal != nil {
+		tempVal := (*(*func(*core.QByteArray, *core.QByteArray) string)(signal))(core.NewQByteArrayFromPointer(service), core.NewQByteArrayFromPointer(device))
+		return C.struct_QtMultimedia_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+	}
+	tempVal := ""
+	return C.struct_QtMultimedia_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+}
+
+func (ptr *QMediaServiceSupportedDevicesInterface) ConnectDeviceDescription(f func(service *core.QByteArray, device *core.QByteArray) string) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "deviceDescription"); signal != nil {
+			f := func(service *core.QByteArray, device *core.QByteArray) string {
+				(*(*func(*core.QByteArray, *core.QByteArray) string)(signal))(service, device)
+				return f(service, device)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "deviceDescription", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "deviceDescription", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QMediaServiceSupportedDevicesInterface) DisconnectDeviceDescription() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "deviceDescription")
+	}
+}
+
+func (ptr *QMediaServiceSupportedDevicesInterface) DeviceDescription(service core.QByteArray_ITF, device core.QByteArray_ITF) string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QMediaServiceSupportedDevicesInterface_DeviceDescription(ptr.Pointer(), core.PointerFromQByteArray(service), core.PointerFromQByteArray(device)))
+	}
+	return ""
+}
+
+//export callbackQMediaServiceSupportedDevicesInterface_Devices
+func callbackQMediaServiceSupportedDevicesInterface_Devices(ptr unsafe.Pointer, service unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "devices"); signal != nil {
+		return func() unsafe.Pointer {
+			tmpList := NewQMediaServiceSupportedDevicesInterfaceFromPointer(NewQMediaServiceSupportedDevicesInterfaceFromPointer(nil).__devices_newList())
+			for _, v := range (*(*func(*core.QByteArray) []*core.QByteArray)(signal))(core.NewQByteArrayFromPointer(service)) {
+				tmpList.__devices_setList(v)
+			}
+			return tmpList.Pointer()
+		}()
+	}
+
+	return func() unsafe.Pointer {
+		tmpList := NewQMediaServiceSupportedDevicesInterfaceFromPointer(NewQMediaServiceSupportedDevicesInterfaceFromPointer(nil).__devices_newList())
+		for _, v := range make([]*core.QByteArray, 0) {
+			tmpList.__devices_setList(v)
+		}
+		return tmpList.Pointer()
+	}()
+}
+
+func (ptr *QMediaServiceSupportedDevicesInterface) ConnectDevices(f func(service *core.QByteArray) []*core.QByteArray) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "devices"); signal != nil {
+			f := func(service *core.QByteArray) []*core.QByteArray {
+				(*(*func(*core.QByteArray) []*core.QByteArray)(signal))(service)
+				return f(service)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "devices", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "devices", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QMediaServiceSupportedDevicesInterface) DisconnectDevices() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "devices")
+	}
+}
+
+func (ptr *QMediaServiceSupportedDevicesInterface) Devices(service core.QByteArray_ITF) []*core.QByteArray {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtMultimedia_PackedList) []*core.QByteArray {
+			out := make([]*core.QByteArray, int(l.len))
+			tmpList := NewQMediaServiceSupportedDevicesInterfaceFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__devices_atList(i)
+			}
+			return out
+		}(C.QMediaServiceSupportedDevicesInterface_Devices(ptr.Pointer(), core.PointerFromQByteArray(service)))
+	}
+	return make([]*core.QByteArray, 0)
+}
+
+//export callbackQMediaServiceSupportedDevicesInterface_DestroyQMediaServiceSupportedDevicesInterface
+func callbackQMediaServiceSupportedDevicesInterface_DestroyQMediaServiceSupportedDevicesInterface(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "~QMediaServiceSupportedDevicesInterface"); signal != nil {
+		(*(*func())(signal))()
+	} else {
+		NewQMediaServiceSupportedDevicesInterfaceFromPointer(ptr).DestroyQMediaServiceSupportedDevicesInterfaceDefault()
+	}
+}
+
+func (ptr *QMediaServiceSupportedDevicesInterface) ConnectDestroyQMediaServiceSupportedDevicesInterface(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "~QMediaServiceSupportedDevicesInterface"); signal != nil {
+			f := func() {
+				(*(*func())(signal))()
+				f()
+			}
+			qt.ConnectSignal(ptr.Pointer(), "~QMediaServiceSupportedDevicesInterface", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "~QMediaServiceSupportedDevicesInterface", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QMediaServiceSupportedDevicesInterface) DisconnectDestroyQMediaServiceSupportedDevicesInterface() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "~QMediaServiceSupportedDevicesInterface")
+	}
+}
+
+func (ptr *QMediaServiceSupportedDevicesInterface) DestroyQMediaServiceSupportedDevicesInterface() {
+	if ptr.Pointer() != nil {
+		C.QMediaServiceSupportedDevicesInterface_DestroyQMediaServiceSupportedDevicesInterface(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *QMediaServiceSupportedDevicesInterface) DestroyQMediaServiceSupportedDevicesInterfaceDefault() {
+	if ptr.Pointer() != nil {
+		C.QMediaServiceSupportedDevicesInterface_DestroyQMediaServiceSupportedDevicesInterfaceDefault(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *QMediaServiceSupportedDevicesInterface) __devices_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QMediaServiceSupportedDevicesInterface___devices_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QMediaServiceSupportedDevicesInterface) __devices_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaServiceSupportedDevicesInterface___devices_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QMediaServiceSupportedDevicesInterface) __devices_newList() unsafe.Pointer {
+	return C.QMediaServiceSupportedDevicesInterface___devices_newList(ptr.Pointer())
+}
+
+type QMediaServiceSupportedFormatsInterface struct {
+	ptr unsafe.Pointer
+}
+
+type QMediaServiceSupportedFormatsInterface_ITF interface {
+	QMediaServiceSupportedFormatsInterface_PTR() *QMediaServiceSupportedFormatsInterface
+}
+
+func (ptr *QMediaServiceSupportedFormatsInterface) QMediaServiceSupportedFormatsInterface_PTR() *QMediaServiceSupportedFormatsInterface {
+	return ptr
+}
+
+func (ptr *QMediaServiceSupportedFormatsInterface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QMediaServiceSupportedFormatsInterface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQMediaServiceSupportedFormatsInterface(ptr QMediaServiceSupportedFormatsInterface_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaServiceSupportedFormatsInterface_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQMediaServiceSupportedFormatsInterfaceFromPointer(ptr unsafe.Pointer) (n *QMediaServiceSupportedFormatsInterface) {
+	n = new(QMediaServiceSupportedFormatsInterface)
+	n.SetPointer(ptr)
+	return
+}
+
+//export callbackQMediaServiceSupportedFormatsInterface_HasSupport
+func callbackQMediaServiceSupportedFormatsInterface_HasSupport(ptr unsafe.Pointer, mimeType C.struct_QtMultimedia_PackedString, codecs C.struct_QtMultimedia_PackedString) C.longlong {
+	if signal := qt.GetSignal(ptr, "hasSupport"); signal != nil {
+		return C.longlong((*(*func(string, []string) QMultimedia__SupportEstimate)(signal))(cGoUnpackString(mimeType), unpackStringList(cGoUnpackString(codecs))))
+	}
+
+	return C.longlong(0)
+}
+
+func (ptr *QMediaServiceSupportedFormatsInterface) ConnectHasSupport(f func(mimeType string, codecs []string) QMultimedia__SupportEstimate) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "hasSupport"); signal != nil {
+			f := func(mimeType string, codecs []string) QMultimedia__SupportEstimate {
+				(*(*func(string, []string) QMultimedia__SupportEstimate)(signal))(mimeType, codecs)
+				return f(mimeType, codecs)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "hasSupport", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "hasSupport", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QMediaServiceSupportedFormatsInterface) DisconnectHasSupport() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "hasSupport")
+	}
+}
+
+func (ptr *QMediaServiceSupportedFormatsInterface) HasSupport(mimeType string, codecs []string) QMultimedia__SupportEstimate {
+	if ptr.Pointer() != nil {
+		var mimeTypeC *C.char
+		if mimeType != "" {
+			mimeTypeC = C.CString(mimeType)
+			defer C.free(unsafe.Pointer(mimeTypeC))
+		}
+		codecsC := C.CString(strings.Join(codecs, "¡¦!"))
+		defer C.free(unsafe.Pointer(codecsC))
+		return QMultimedia__SupportEstimate(C.QMediaServiceSupportedFormatsInterface_HasSupport(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: mimeTypeC, len: C.longlong(len(mimeType))}, C.struct_QtMultimedia_PackedString{data: codecsC, len: C.longlong(len(strings.Join(codecs, "¡¦!")))}))
+	}
+	return 0
+}
+
+//export callbackQMediaServiceSupportedFormatsInterface_SupportedMimeTypes
+func callbackQMediaServiceSupportedFormatsInterface_SupportedMimeTypes(ptr unsafe.Pointer) C.struct_QtMultimedia_PackedString {
+	if signal := qt.GetSignal(ptr, "supportedMimeTypes"); signal != nil {
+		tempVal := (*(*func() []string)(signal))()
+		return C.struct_QtMultimedia_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
+	}
+	tempVal := make([]string, 0)
+	return C.struct_QtMultimedia_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
+}
+
+func (ptr *QMediaServiceSupportedFormatsInterface) ConnectSupportedMimeTypes(f func() []string) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "supportedMimeTypes"); signal != nil {
+			f := func() []string {
+				(*(*func() []string)(signal))()
+				return f()
+			}
+			qt.ConnectSignal(ptr.Pointer(), "supportedMimeTypes", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "supportedMimeTypes", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QMediaServiceSupportedFormatsInterface) DisconnectSupportedMimeTypes() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "supportedMimeTypes")
+	}
+}
+
+func (ptr *QMediaServiceSupportedFormatsInterface) SupportedMimeTypes() []string {
+	if ptr.Pointer() != nil {
+		return unpackStringList(cGoUnpackString(C.QMediaServiceSupportedFormatsInterface_SupportedMimeTypes(ptr.Pointer())))
+	}
+	return make([]string, 0)
+}
+
+//export callbackQMediaServiceSupportedFormatsInterface_DestroyQMediaServiceSupportedFormatsInterface
+func callbackQMediaServiceSupportedFormatsInterface_DestroyQMediaServiceSupportedFormatsInterface(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "~QMediaServiceSupportedFormatsInterface"); signal != nil {
+		(*(*func())(signal))()
+	} else {
+		NewQMediaServiceSupportedFormatsInterfaceFromPointer(ptr).DestroyQMediaServiceSupportedFormatsInterfaceDefault()
+	}
+}
+
+func (ptr *QMediaServiceSupportedFormatsInterface) ConnectDestroyQMediaServiceSupportedFormatsInterface(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "~QMediaServiceSupportedFormatsInterface"); signal != nil {
+			f := func() {
+				(*(*func())(signal))()
+				f()
+			}
+			qt.ConnectSignal(ptr.Pointer(), "~QMediaServiceSupportedFormatsInterface", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "~QMediaServiceSupportedFormatsInterface", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QMediaServiceSupportedFormatsInterface) DisconnectDestroyQMediaServiceSupportedFormatsInterface() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "~QMediaServiceSupportedFormatsInterface")
+	}
+}
+
+func (ptr *QMediaServiceSupportedFormatsInterface) DestroyQMediaServiceSupportedFormatsInterface() {
+	if ptr.Pointer() != nil {
+		C.QMediaServiceSupportedFormatsInterface_DestroyQMediaServiceSupportedFormatsInterface(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QMediaServiceSupportedFormatsInterface) DestroyQMediaServiceSupportedFormatsInterfaceDefault() {
+	if ptr.Pointer() != nil {
+		C.QMediaServiceSupportedFormatsInterface_DestroyQMediaServiceSupportedFormatsInterfaceDefault(ptr.Pointer())
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -45610,6 +47038,29 @@ func (ptr *QRadioData) EventFilterDefault(watched core.QObject_ITF, event core.Q
 		return int8(C.QRadioData_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQRadioData_MetaObject
+func callbackQRadioData_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQRadioDataFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QRadioData) MetaObject() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QRadioData_MetaObject(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QRadioData) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QRadioData_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQRadioData_ObjectNameChanged
@@ -49760,6 +51211,22 @@ func (ptr *QSound) EventFilterDefault(watched core.QObject_ITF, event core.QEven
 	return false
 }
 
+//export callbackQSound_MetaObject
+func callbackQSound_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQSoundFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QSound) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QSound_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQSound_ObjectNameChanged
 func callbackQSound_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtMultimedia_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -50675,6 +52142,22 @@ func (ptr *QSoundEffect) EventFilterDefault(watched core.QObject_ITF, event core
 		return int8(C.QSoundEffect_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQSoundEffect_MetaObject
+func callbackQSoundEffect_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQSoundEffectFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QSoundEffect) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QSoundEffect_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQSoundEffect_ObjectNameChanged
@@ -52849,6 +54332,22 @@ func (ptr *QVideoProbe) EventFilterDefault(watched core.QObject_ITF, event core.
 		return int8(C.QVideoProbe_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQVideoProbe_MetaObject
+func callbackQVideoProbe_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQVideoProbeFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QVideoProbe) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QVideoProbe_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQVideoProbe_ObjectNameChanged
@@ -55739,6 +57238,29 @@ func (ptr *QVideoWidget) EventFilterDefault(watched core.QObject_ITF, event core
 	return false
 }
 
+//export callbackQVideoWidget_MetaObject
+func callbackQVideoWidget_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQVideoWidgetFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QVideoWidget) MetaObject() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QVideoWidget_MetaObject(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QVideoWidget) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QVideoWidget_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQVideoWidget_ObjectNameChanged
 func callbackQVideoWidget_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtMultimedia_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -57536,11 +59058,19 @@ func NewQWinRTPlayerRendererControlFromPointer(ptr unsafe.Pointer) (n *QWinRTPla
 }
 
 type QWinRTServicePlugin struct {
+	QMediaServiceCameraInfoInterface
+	QMediaServiceDefaultDeviceInterface
+	QMediaServiceFeaturesInterface
 	QMediaServiceProviderPlugin
+	QMediaServiceSupportedDevicesInterface
 }
 
 type QWinRTServicePlugin_ITF interface {
+	QMediaServiceCameraInfoInterface_ITF
+	QMediaServiceDefaultDeviceInterface_ITF
+	QMediaServiceFeaturesInterface_ITF
 	QMediaServiceProviderPlugin_ITF
+	QMediaServiceSupportedDevicesInterface_ITF
 	QWinRTServicePlugin_PTR() *QWinRTServicePlugin
 }
 
@@ -57550,14 +59080,18 @@ func (ptr *QWinRTServicePlugin) QWinRTServicePlugin_PTR() *QWinRTServicePlugin {
 
 func (ptr *QWinRTServicePlugin) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMediaServiceProviderPlugin_PTR().Pointer()
+		return ptr.QMediaServiceCameraInfoInterface_PTR().Pointer()
 	}
 	return nil
 }
 
 func (ptr *QWinRTServicePlugin) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
+		ptr.QMediaServiceCameraInfoInterface_PTR().SetPointer(p)
+		ptr.QMediaServiceDefaultDeviceInterface_PTR().SetPointer(p)
+		ptr.QMediaServiceFeaturesInterface_PTR().SetPointer(p)
 		ptr.QMediaServiceProviderPlugin_PTR().SetPointer(p)
+		ptr.QMediaServiceSupportedDevicesInterface_PTR().SetPointer(p)
 	}
 }
 
@@ -58437,10 +59971,12 @@ func NewV4LRadioServiceFromPointer(ptr unsafe.Pointer) (n *V4LRadioService) {
 
 type V4LServicePlugin struct {
 	QMediaServiceProviderPlugin
+	QMediaServiceSupportedDevicesInterface
 }
 
 type V4LServicePlugin_ITF interface {
 	QMediaServiceProviderPlugin_ITF
+	QMediaServiceSupportedDevicesInterface_ITF
 	V4LServicePlugin_PTR() *V4LServicePlugin
 }
 
@@ -58458,6 +59994,7 @@ func (ptr *V4LServicePlugin) Pointer() unsafe.Pointer {
 func (ptr *V4LServicePlugin) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
 		ptr.QMediaServiceProviderPlugin_PTR().SetPointer(p)
+		ptr.QMediaServiceSupportedDevicesInterface_PTR().SetPointer(p)
 	}
 }
 
@@ -58553,11 +60090,17 @@ func NewVmr9VideoWindowControlFromPointer(ptr unsafe.Pointer) (n *Vmr9VideoWindo
 }
 
 type WMFServicePlugin struct {
+	QMediaServiceDefaultDeviceInterface
+	QMediaServiceFeaturesInterface
 	QMediaServiceProviderPlugin
+	QMediaServiceSupportedDevicesInterface
 }
 
 type WMFServicePlugin_ITF interface {
+	QMediaServiceDefaultDeviceInterface_ITF
+	QMediaServiceFeaturesInterface_ITF
 	QMediaServiceProviderPlugin_ITF
+	QMediaServiceSupportedDevicesInterface_ITF
 	WMFServicePlugin_PTR() *WMFServicePlugin
 }
 
@@ -58567,14 +60110,17 @@ func (ptr *WMFServicePlugin) WMFServicePlugin_PTR() *WMFServicePlugin {
 
 func (ptr *WMFServicePlugin) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMediaServiceProviderPlugin_PTR().Pointer()
+		return ptr.QMediaServiceDefaultDeviceInterface_PTR().Pointer()
 	}
 	return nil
 }
 
 func (ptr *WMFServicePlugin) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
+		ptr.QMediaServiceDefaultDeviceInterface_PTR().SetPointer(p)
+		ptr.QMediaServiceFeaturesInterface_PTR().SetPointer(p)
 		ptr.QMediaServiceProviderPlugin_PTR().SetPointer(p)
+		ptr.QMediaServiceSupportedDevicesInterface_PTR().SetPointer(p)
 	}
 }
 

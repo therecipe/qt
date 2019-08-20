@@ -1082,6 +1082,22 @@ func (ptr *QTextToSpeech) EventFilterDefault(watched core.QObject_ITF, event cor
 	return false
 }
 
+//export callbackQTextToSpeech_MetaObject
+func callbackQTextToSpeech_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQTextToSpeechFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QTextToSpeech) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QTextToSpeech_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQTextToSpeech_ObjectNameChanged
 func callbackQTextToSpeech_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtSpeech_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -2165,6 +2181,22 @@ func (ptr *QTextToSpeechEngine) EventFilterDefault(watched core.QObject_ITF, eve
 		return int8(C.QTextToSpeechEngine_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQTextToSpeechEngine_MetaObject
+func callbackQTextToSpeechEngine_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQTextToSpeechEngineFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QTextToSpeechEngine) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QTextToSpeechEngine_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQTextToSpeechEngine_ObjectNameChanged

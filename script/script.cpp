@@ -6,6 +6,7 @@
 #include "script.h"
 #include "_cgo_export.h"
 
+#include <QAudioSystemPlugin>
 #include <QByteArray>
 #include <QCameraImageCapture>
 #include <QChildEvent>
@@ -20,7 +21,9 @@
 #include <QLayout>
 #include <QMediaPlaylist>
 #include <QMediaRecorder>
+#include <QMediaServiceProviderPlugin>
 #include <QMetaMethod>
+#include <QMetaObject>
 #include <QObject>
 #include <QOffscreenSurface>
 #include <QPaintDeviceWindow>
@@ -349,6 +352,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQScriptEngine_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQScriptEngine_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQScriptEngine_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQScriptEngine_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtScript_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQScriptEngine_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQScriptEngine_TimerEvent(this, event); };
 };
@@ -364,7 +368,9 @@ void* QScriptEngine_NewQScriptEngine()
 
 void* QScriptEngine_NewQScriptEngine2(void* parent)
 {
-	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQScriptEngine(static_cast<QAudioSystemPlugin*>(parent));
+	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
 		return new MyQScriptEngine(static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQScriptEngine(static_cast<QDBusPendingCallWatcher*>(parent));
@@ -382,6 +388,8 @@ void* QScriptEngine_NewQScriptEngine2(void* parent)
 		return new MyQScriptEngine(static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
 		return new MyQScriptEngine(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQScriptEngine(static_cast<QMediaServiceProviderPlugin*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
 		return new MyQScriptEngine(static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
@@ -394,6 +402,8 @@ void* QScriptEngine_NewQScriptEngine2(void* parent)
 		return new MyQScriptEngine(static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQScriptEngine(static_cast<QRemoteObjectPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQScriptEngine(static_cast<QScriptExtensionPlugin*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQScriptEngine(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -503,14 +513,27 @@ void* QScriptEngine_NewObject2(void* ptr, void* scriptClass, void* data)
 	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->newObject(static_cast<QScriptClass*>(scriptClass), *static_cast<QScriptValue*>(data)));
 }
 
+void* QScriptEngine_NewQMetaObject(void* ptr, void* metaObject, void* ctor)
+{
+	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->newQMetaObject(static_cast<QMetaObject*>(metaObject), *static_cast<QScriptValue*>(ctor)));
+}
+
 void* QScriptEngine_NewQObject(void* ptr, void* object, long long ownership, long long options)
 {
-	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->newQObject(static_cast<QObject*>(object), static_cast<QScriptEngine::ValueOwnership>(ownership), static_cast<QScriptEngine::QObjectWrapOption>(options)));
+	if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(object))) {
+		return new QScriptValue(static_cast<QScriptEngine*>(ptr)->newQObject(static_cast<QScriptExtensionPlugin*>(object), static_cast<QScriptEngine::ValueOwnership>(ownership), static_cast<QScriptEngine::QObjectWrapOption>(options)));
+	} else {
+		return new QScriptValue(static_cast<QScriptEngine*>(ptr)->newQObject(static_cast<QObject*>(object), static_cast<QScriptEngine::ValueOwnership>(ownership), static_cast<QScriptEngine::QObjectWrapOption>(options)));
+	}
 }
 
 void* QScriptEngine_NewQObject2(void* ptr, void* scriptObject, void* qtObject, long long ownership, long long options)
 {
-	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->newQObject(*static_cast<QScriptValue*>(scriptObject), static_cast<QObject*>(qtObject), static_cast<QScriptEngine::ValueOwnership>(ownership), static_cast<QScriptEngine::QObjectWrapOption>(options)));
+	if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(qtObject))) {
+		return new QScriptValue(static_cast<QScriptEngine*>(ptr)->newQObject(*static_cast<QScriptValue*>(scriptObject), static_cast<QScriptExtensionPlugin*>(qtObject), static_cast<QScriptEngine::ValueOwnership>(ownership), static_cast<QScriptEngine::QObjectWrapOption>(options)));
+	} else {
+		return new QScriptValue(static_cast<QScriptEngine*>(ptr)->newQObject(*static_cast<QScriptValue*>(scriptObject), static_cast<QObject*>(qtObject), static_cast<QScriptEngine::ValueOwnership>(ownership), static_cast<QScriptEngine::QObjectWrapOption>(options)));
+	}
 }
 
 void* QScriptEngine_NewRegExp(void* ptr, void* regexp)
@@ -641,7 +664,11 @@ void* QScriptEngine___children_atList(void* ptr, int i)
 
 void QScriptEngine___children_setList(void* ptr, void* i)
 {
-	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+	if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QScriptExtensionPlugin*>(i));
+	} else {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+	}
 }
 
 void* QScriptEngine___children_newList(void* ptr)
@@ -673,7 +700,11 @@ void* QScriptEngine___findChildren_atList(void* ptr, int i)
 
 void QScriptEngine___findChildren_setList(void* ptr, void* i)
 {
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+	if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QScriptExtensionPlugin*>(i));
+	} else {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+	}
 }
 
 void* QScriptEngine___findChildren_newList(void* ptr)
@@ -689,7 +720,11 @@ void* QScriptEngine___findChildren_atList3(void* ptr, int i)
 
 void QScriptEngine___findChildren_setList3(void* ptr, void* i)
 {
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+	if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QScriptExtensionPlugin*>(i));
+	} else {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+	}
 }
 
 void* QScriptEngine___findChildren_newList3(void* ptr)
@@ -705,7 +740,11 @@ void* QScriptEngine___qFindChildren_atList2(void* ptr, int i)
 
 void QScriptEngine___qFindChildren_setList2(void* ptr, void* i)
 {
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+	if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QScriptExtensionPlugin*>(i));
+	} else {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+	}
 }
 
 void* QScriptEngine___qFindChildren_newList2(void* ptr)
@@ -746,7 +785,16 @@ char QScriptEngine_EventDefault(void* ptr, void* e)
 
 char QScriptEngine_EventFilterDefault(void* ptr, void* watched, void* event)
 {
+	if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(watched))) {
+		return static_cast<QScriptEngine*>(ptr)->QScriptEngine::eventFilter(static_cast<QScriptExtensionPlugin*>(watched), static_cast<QEvent*>(event));
+	} else {
 		return static_cast<QScriptEngine*>(ptr)->QScriptEngine::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
+}
+
+void* QScriptEngine_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QScriptEngine*>(ptr)->QScriptEngine::metaObject());
 }
 
 void QScriptEngine_TimerEventDefault(void* ptr, void* event)
@@ -918,6 +966,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQScriptExtensionPlugin_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQScriptExtensionPlugin_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQScriptExtensionPlugin_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQScriptExtensionPlugin_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtScript_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQScriptExtensionPlugin_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQScriptExtensionPlugin_TimerEvent(this, event); };
 };
@@ -928,58 +977,22 @@ int QScriptExtensionPlugin_QScriptExtensionPlugin_QRegisterMetaType(){qRegisterM
 
 void* QScriptExtensionPlugin_NewQScriptExtensionPlugin(void* parent)
 {
-	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
-		return new MyQScriptExtensionPlugin(static_cast<QCameraImageCapture*>(parent));
-	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
-		return new MyQScriptExtensionPlugin(static_cast<QDBusPendingCallWatcher*>(parent));
-	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
-		return new MyQScriptExtensionPlugin(static_cast<QExtensionFactory*>(parent));
-	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
-		return new MyQScriptExtensionPlugin(static_cast<QExtensionManager*>(parent));
-	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
-		return new MyQScriptExtensionPlugin(static_cast<QGraphicsObject*>(parent));
-	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQScriptExtensionPlugin(static_cast<QGraphicsWidget*>(parent));
-	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
-		return new MyQScriptExtensionPlugin(static_cast<QLayout*>(parent));
-	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
-		return new MyQScriptExtensionPlugin(static_cast<QMediaPlaylist*>(parent));
-	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
-		return new MyQScriptExtensionPlugin(static_cast<QMediaRecorder*>(parent));
-	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
-		return new MyQScriptExtensionPlugin(static_cast<QOffscreenSurface*>(parent));
-	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQScriptExtensionPlugin(static_cast<QPaintDeviceWindow*>(parent));
-	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
-		return new MyQScriptExtensionPlugin(static_cast<QPdfWriter*>(parent));
-	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
-		return new MyQScriptExtensionPlugin(static_cast<QQuickItem*>(parent));
-	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
-		return new MyQScriptExtensionPlugin(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(parent))) {
-		return new MyQScriptExtensionPlugin(static_cast<QRemoteObjectPendingCallWatcher*>(parent));
-	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQScriptExtensionPlugin(static_cast<QWidget*>(parent));
-	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQScriptExtensionPlugin(static_cast<QWindow*>(parent));
-	} else {
-		return new MyQScriptExtensionPlugin(static_cast<QObject*>(parent));
-	}
+	return new MyQScriptExtensionPlugin(static_cast<QObject*>(parent));
 }
 
 void QScriptExtensionPlugin_Initialize(void* ptr, struct QtScript_PackedString key, void* engine)
 {
-	static_cast<QScriptExtensionPlugin*>(ptr)->initialize(QString::fromUtf8(key.data, key.len), static_cast<QScriptEngine*>(engine));
+		static_cast<QScriptExtensionPlugin*>(ptr)->initialize(QString::fromUtf8(key.data, key.len), static_cast<QScriptEngine*>(engine));
 }
 
 struct QtScript_PackedString QScriptExtensionPlugin_Keys(void* ptr)
 {
-	return ({ QByteArray tcd9b88 = static_cast<QScriptExtensionPlugin*>(ptr)->keys().join("¡¦!").toUtf8(); QtScript_PackedString { const_cast<char*>(tcd9b88.prepend("WHITESPACE").constData()+10), tcd9b88.size()-10 }; });
+		return ({ QByteArray tcd9b88 = static_cast<QScriptExtensionPlugin*>(ptr)->keys().join("¡¦!").toUtf8(); QtScript_PackedString { const_cast<char*>(tcd9b88.prepend("WHITESPACE").constData()+10), tcd9b88.size()-10 }; });
 }
 
 void* QScriptExtensionPlugin_SetupPackage(void* ptr, struct QtScript_PackedString key, void* engine)
 {
-	return new QScriptValue(static_cast<QScriptExtensionPlugin*>(ptr)->setupPackage(QString::fromUtf8(key.data, key.len), static_cast<QScriptEngine*>(engine)));
+		return new QScriptValue(static_cast<QScriptExtensionPlugin*>(ptr)->setupPackage(QString::fromUtf8(key.data, key.len), static_cast<QScriptEngine*>(engine)));
 }
 
 void QScriptExtensionPlugin_DestroyQScriptExtensionPlugin(void* ptr)
@@ -995,82 +1008,103 @@ void QScriptExtensionPlugin_DestroyQScriptExtensionPluginDefault(void* ptr)
 
 void* QScriptExtensionPlugin___children_atList(void* ptr, int i)
 {
-	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
+		return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
 void QScriptExtensionPlugin___children_setList(void* ptr, void* i)
 {
-	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+	if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QScriptExtensionPlugin*>(i));
+	} else {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+	}
 }
 
 void* QScriptExtensionPlugin___children_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject *>();
+		return new QList<QObject *>();
 }
 
 void* QScriptExtensionPlugin___dynamicPropertyNames_atList(void* ptr, int i)
 {
-	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(ptr)->at(i); if (i == static_cast<QList<QByteArray>*>(ptr)->size()-1) { static_cast<QList<QByteArray>*>(ptr)->~QList(); free(ptr); }; tmp; }));
+		return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(ptr)->at(i); if (i == static_cast<QList<QByteArray>*>(ptr)->size()-1) { static_cast<QList<QByteArray>*>(ptr)->~QList(); free(ptr); }; tmp; }));
 }
 
 void QScriptExtensionPlugin___dynamicPropertyNames_setList(void* ptr, void* i)
 {
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+		static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QScriptExtensionPlugin___dynamicPropertyNames_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QByteArray>();
+		return new QList<QByteArray>();
 }
 
 void* QScriptExtensionPlugin___findChildren_atList(void* ptr, int i)
 {
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
+		return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
 void QScriptExtensionPlugin___findChildren_setList(void* ptr, void* i)
 {
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+	if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QScriptExtensionPlugin*>(i));
+	} else {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+	}
 }
 
 void* QScriptExtensionPlugin___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>();
+		return new QList<QObject*>();
 }
 
 void* QScriptExtensionPlugin___findChildren_atList3(void* ptr, int i)
 {
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
+		return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
 void QScriptExtensionPlugin___findChildren_setList3(void* ptr, void* i)
 {
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+	if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QScriptExtensionPlugin*>(i));
+	} else {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+	}
 }
 
 void* QScriptExtensionPlugin___findChildren_newList3(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>();
+		return new QList<QObject*>();
 }
 
 void* QScriptExtensionPlugin___qFindChildren_atList2(void* ptr, int i)
 {
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
+		return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
 void QScriptExtensionPlugin___qFindChildren_setList2(void* ptr, void* i)
 {
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+	if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QScriptExtensionPlugin*>(i));
+	} else {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+	}
 }
 
 void* QScriptExtensionPlugin___qFindChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>();
+		return new QList<QObject*>();
+}
+
+void QScriptExtensionPlugin_ChildEvent(void* ptr, void* event)
+{
+		static_cast<QScriptExtensionPlugin*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
 }
 
 void QScriptExtensionPlugin_ChildEventDefault(void* ptr, void* event)
@@ -1078,9 +1112,19 @@ void QScriptExtensionPlugin_ChildEventDefault(void* ptr, void* event)
 		static_cast<QScriptExtensionPlugin*>(ptr)->QScriptExtensionPlugin::childEvent(static_cast<QChildEvent*>(event));
 }
 
+void QScriptExtensionPlugin_ConnectNotify(void* ptr, void* sign)
+{
+		static_cast<QScriptExtensionPlugin*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
 void QScriptExtensionPlugin_ConnectNotifyDefault(void* ptr, void* sign)
 {
 		static_cast<QScriptExtensionPlugin*>(ptr)->QScriptExtensionPlugin::connectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+void QScriptExtensionPlugin_CustomEvent(void* ptr, void* event)
+{
+		static_cast<QScriptExtensionPlugin*>(ptr)->customEvent(static_cast<QEvent*>(event));
 }
 
 void QScriptExtensionPlugin_CustomEventDefault(void* ptr, void* event)
@@ -1088,9 +1132,19 @@ void QScriptExtensionPlugin_CustomEventDefault(void* ptr, void* event)
 		static_cast<QScriptExtensionPlugin*>(ptr)->QScriptExtensionPlugin::customEvent(static_cast<QEvent*>(event));
 }
 
+void QScriptExtensionPlugin_DeleteLater(void* ptr)
+{
+		QMetaObject::invokeMethod(static_cast<QScriptExtensionPlugin*>(ptr), "deleteLater");
+}
+
 void QScriptExtensionPlugin_DeleteLaterDefault(void* ptr)
 {
 		static_cast<QScriptExtensionPlugin*>(ptr)->QScriptExtensionPlugin::deleteLater();
+}
+
+void QScriptExtensionPlugin_DisconnectNotify(void* ptr, void* sign)
+{
+		static_cast<QScriptExtensionPlugin*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QScriptExtensionPlugin_DisconnectNotifyDefault(void* ptr, void* sign)
@@ -1098,14 +1152,47 @@ void QScriptExtensionPlugin_DisconnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QScriptExtensionPlugin*>(ptr)->QScriptExtensionPlugin::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
+char QScriptExtensionPlugin_Event(void* ptr, void* e)
+{
+		return static_cast<QScriptExtensionPlugin*>(ptr)->event(static_cast<QEvent*>(e));
+}
+
 char QScriptExtensionPlugin_EventDefault(void* ptr, void* e)
 {
 		return static_cast<QScriptExtensionPlugin*>(ptr)->QScriptExtensionPlugin::event(static_cast<QEvent*>(e));
 }
 
+char QScriptExtensionPlugin_EventFilter(void* ptr, void* watched, void* event)
+{
+	if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(watched))) {
+		return static_cast<QScriptExtensionPlugin*>(ptr)->eventFilter(static_cast<QScriptExtensionPlugin*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QScriptExtensionPlugin*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
+}
+
 char QScriptExtensionPlugin_EventFilterDefault(void* ptr, void* watched, void* event)
 {
+	if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(watched))) {
+		return static_cast<QScriptExtensionPlugin*>(ptr)->QScriptExtensionPlugin::eventFilter(static_cast<QScriptExtensionPlugin*>(watched), static_cast<QEvent*>(event));
+	} else {
 		return static_cast<QScriptExtensionPlugin*>(ptr)->QScriptExtensionPlugin::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
+}
+
+void* QScriptExtensionPlugin_MetaObject(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QScriptExtensionPlugin*>(ptr)->metaObject());
+}
+
+void* QScriptExtensionPlugin_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QScriptExtensionPlugin*>(ptr)->QScriptExtensionPlugin::metaObject());
+}
+
+void QScriptExtensionPlugin_TimerEvent(void* ptr, void* event)
+{
+		static_cast<QScriptExtensionPlugin*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void QScriptExtensionPlugin_TimerEventDefault(void* ptr, void* event)
@@ -1451,6 +1538,11 @@ void* QScriptValue_ToDateTime(void* ptr)
 int QScriptValue_ToInt32(void* ptr)
 {
 	return static_cast<QScriptValue*>(ptr)->toInt32();
+}
+
+void* QScriptValue_ToQMetaObject(void* ptr)
+{
+	return const_cast<QMetaObject*>(static_cast<QScriptValue*>(ptr)->toQMetaObject());
 }
 
 void* QScriptValue_ToQObject(void* ptr)

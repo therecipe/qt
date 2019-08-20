@@ -488,6 +488,22 @@ func (ptr *QSignalSpy) EventFilterDefault(watched core.QObject_ITF, event core.Q
 	return false
 }
 
+//export callbackQSignalSpy_MetaObject
+func callbackQSignalSpy_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQSignalSpyFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QSignalSpy) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QSignalSpy_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQSignalSpy_ObjectNameChanged
 func callbackQSignalSpy_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtTestLib_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {

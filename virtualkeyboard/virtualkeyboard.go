@@ -1506,6 +1506,22 @@ func (ptr *QVirtualKeyboardAbstractInputMethod) EventFilterDefault(watched core.
 	return false
 }
 
+//export callbackQVirtualKeyboardAbstractInputMethod_MetaObject
+func callbackQVirtualKeyboardAbstractInputMethod_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQVirtualKeyboardAbstractInputMethodFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QVirtualKeyboardAbstractInputMethod) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QVirtualKeyboardAbstractInputMethod_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQVirtualKeyboardAbstractInputMethod_ObjectNameChanged
 func callbackQVirtualKeyboardAbstractInputMethod_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtVirtualKeyboard_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -1838,6 +1854,22 @@ func (ptr *QVirtualKeyboardExtensionPlugin) EventFilterDefault(watched core.QObj
 		return int8(C.QVirtualKeyboardExtensionPlugin_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQVirtualKeyboardExtensionPlugin_MetaObject
+func callbackQVirtualKeyboardExtensionPlugin_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQVirtualKeyboardExtensionPluginFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QVirtualKeyboardExtensionPlugin) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QVirtualKeyboardExtensionPlugin_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQVirtualKeyboardExtensionPlugin_ObjectNameChanged
@@ -2986,6 +3018,22 @@ func (ptr *QVirtualKeyboardInputContext) EventFilterDefault(watched core.QObject
 	return false
 }
 
+//export callbackQVirtualKeyboardInputContext_MetaObject
+func callbackQVirtualKeyboardInputContext_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQVirtualKeyboardInputContextFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QVirtualKeyboardInputContext) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QVirtualKeyboardInputContext_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQVirtualKeyboardInputContext_ObjectNameChanged
 func callbackQVirtualKeyboardInputContext_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtVirtualKeyboard_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -4109,6 +4157,22 @@ func (ptr *QVirtualKeyboardInputEngine) EventFilterDefault(watched core.QObject_
 		return int8(C.QVirtualKeyboardInputEngine_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQVirtualKeyboardInputEngine_MetaObject
+func callbackQVirtualKeyboardInputEngine_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQVirtualKeyboardInputEngineFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QVirtualKeyboardInputEngine) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QVirtualKeyboardInputEngine_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQVirtualKeyboardInputEngine_ObjectNameChanged
@@ -5683,6 +5747,22 @@ func (ptr *QVirtualKeyboardSelectionListModel) EventFilterDefault(watched core.Q
 	return false
 }
 
+//export callbackQVirtualKeyboardSelectionListModel_MetaObject
+func callbackQVirtualKeyboardSelectionListModel_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQVirtualKeyboardSelectionListModelFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QVirtualKeyboardSelectionListModel) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QVirtualKeyboardSelectionListModel_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQVirtualKeyboardSelectionListModel_ObjectNameChanged
 func callbackQVirtualKeyboardSelectionListModel_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtVirtualKeyboard_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -6364,6 +6444,22 @@ func (ptr *QVirtualKeyboardTrace) EventFilterDefault(watched core.QObject_ITF, e
 		return int8(C.QVirtualKeyboardTrace_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQVirtualKeyboardTrace_MetaObject
+func callbackQVirtualKeyboardTrace_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQVirtualKeyboardTraceFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QVirtualKeyboardTrace) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QVirtualKeyboardTrace_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQVirtualKeyboardTrace_ObjectNameChanged

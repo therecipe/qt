@@ -977,6 +977,22 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) EventFilterDefault(watched core.QObje
 	return false
 }
 
+//export callbackQBluetoothDeviceDiscoveryAgent_MetaObject
+func callbackQBluetoothDeviceDiscoveryAgent_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQBluetoothDeviceDiscoveryAgentFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QBluetoothDeviceDiscoveryAgent) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QBluetoothDeviceDiscoveryAgent_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQBluetoothDeviceDiscoveryAgent_ObjectNameChanged
 func callbackQBluetoothDeviceDiscoveryAgent_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtBluetooth_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -2418,6 +2434,22 @@ func (ptr *QBluetoothLocalDevice) EventFilterDefault(watched core.QObject_ITF, e
 	return false
 }
 
+//export callbackQBluetoothLocalDevice_MetaObject
+func callbackQBluetoothLocalDevice_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQBluetoothLocalDeviceFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QBluetoothLocalDevice) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QBluetoothLocalDevice_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQBluetoothLocalDevice_ObjectNameChanged
 func callbackQBluetoothLocalDevice_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtBluetooth_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -2953,6 +2985,22 @@ func (ptr *QBluetoothServer) EventFilterDefault(watched core.QObject_ITF, event 
 		return int8(C.QBluetoothServer_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQBluetoothServer_MetaObject
+func callbackQBluetoothServer_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQBluetoothServerFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QBluetoothServer) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QBluetoothServer_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQBluetoothServer_ObjectNameChanged
@@ -3747,6 +3795,22 @@ func (ptr *QBluetoothServiceDiscoveryAgent) EventFilterDefault(watched core.QObj
 		return int8(C.QBluetoothServiceDiscoveryAgent_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQBluetoothServiceDiscoveryAgent_MetaObject
+func callbackQBluetoothServiceDiscoveryAgent_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQBluetoothServiceDiscoveryAgentFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QBluetoothServiceDiscoveryAgent) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QBluetoothServiceDiscoveryAgent_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQBluetoothServiceDiscoveryAgent_ObjectNameChanged
@@ -5136,6 +5200,22 @@ func (ptr *QBluetoothSocket) EventFilterDefault(watched core.QObject_ITF, event 
 	return false
 }
 
+//export callbackQBluetoothSocket_MetaObject
+func callbackQBluetoothSocket_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQBluetoothSocketFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QBluetoothSocket) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QBluetoothSocket_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQBluetoothSocket_ObjectNameChanged
 func callbackQBluetoothSocket_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtBluetooth_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -5520,6 +5600,22 @@ func (ptr *QBluetoothTransferManager) EventFilterDefault(watched core.QObject_IT
 		return int8(C.QBluetoothTransferManager_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQBluetoothTransferManager_MetaObject
+func callbackQBluetoothTransferManager_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQBluetoothTransferManagerFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QBluetoothTransferManager) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QBluetoothTransferManager_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQBluetoothTransferManager_ObjectNameChanged
@@ -6219,6 +6315,22 @@ func (ptr *QBluetoothTransferReply) EventFilterDefault(watched core.QObject_ITF,
 		return int8(C.QBluetoothTransferReply_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQBluetoothTransferReply_MetaObject
+func callbackQBluetoothTransferReply_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQBluetoothTransferReplyFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QBluetoothTransferReply) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QBluetoothTransferReply_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQBluetoothTransferReply_ObjectNameChanged
@@ -8473,6 +8585,22 @@ func (ptr *QLowEnergyController) EventFilterDefault(watched core.QObject_ITF, ev
 	return false
 }
 
+//export callbackQLowEnergyController_MetaObject
+func callbackQLowEnergyController_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQLowEnergyControllerFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QLowEnergyController) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QLowEnergyController_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQLowEnergyController_ObjectNameChanged
 func callbackQLowEnergyController_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtBluetooth_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -9522,6 +9650,22 @@ func (ptr *QLowEnergyService) EventFilterDefault(watched core.QObject_ITF, event
 		return int8(C.QLowEnergyService_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQLowEnergyService_MetaObject
+func callbackQLowEnergyService_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQLowEnergyServiceFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QLowEnergyService) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QLowEnergyService_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQLowEnergyService_ObjectNameChanged

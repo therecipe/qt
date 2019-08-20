@@ -1979,6 +1979,22 @@ func (ptr *QHelpContentModel) EventFilterDefault(watched core.QObject_ITF, event
 	return false
 }
 
+//export callbackQHelpContentModel_MetaObject
+func callbackQHelpContentModel_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQHelpContentModelFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QHelpContentModel) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QHelpContentModel_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQHelpContentModel_ObjectNameChanged
 func callbackQHelpContentModel_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtHelp_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -4291,6 +4307,22 @@ func (ptr *QHelpContentWidget) DisconnectNotifyDefault(sign core.QMetaMethod_ITF
 	}
 }
 
+//export callbackQHelpContentWidget_MetaObject
+func callbackQHelpContentWidget_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQHelpContentWidgetFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QHelpContentWidget) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QHelpContentWidget_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQHelpContentWidget_ObjectNameChanged
 func callbackQHelpContentWidget_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtHelp_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -5396,6 +5428,22 @@ func (ptr *QHelpEngineCore) EventFilterDefault(watched core.QObject_ITF, event c
 	return false
 }
 
+//export callbackQHelpEngineCore_MetaObject
+func callbackQHelpEngineCore_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQHelpEngineCoreFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QHelpEngineCore) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QHelpEngineCore_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQHelpEngineCore_ObjectNameChanged
 func callbackQHelpEngineCore_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtHelp_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -6105,6 +6153,22 @@ func (ptr *QHelpFilterEngine) EventFilterDefault(watched core.QObject_ITF, event
 		return int8(C.QHelpFilterEngine_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQHelpFilterEngine_MetaObject
+func callbackQHelpFilterEngine_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQHelpFilterEngineFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QHelpFilterEngine) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QHelpFilterEngine_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQHelpFilterEngine_ObjectNameChanged
@@ -7784,6 +7848,22 @@ func (ptr *QHelpIndexModel) EventFilterDefault(watched core.QObject_ITF, event c
 		return int8(C.QHelpIndexModel_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQHelpIndexModel_MetaObject
+func callbackQHelpIndexModel_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQHelpIndexModelFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QHelpIndexModel) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QHelpIndexModel_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQHelpIndexModel_ObjectNameChanged
@@ -10122,6 +10202,22 @@ func (ptr *QHelpIndexWidget) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) 
 	}
 }
 
+//export callbackQHelpIndexWidget_MetaObject
+func callbackQHelpIndexWidget_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQHelpIndexWidgetFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QHelpIndexWidget) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QHelpIndexWidget_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQHelpIndexWidget_ObjectNameChanged
 func callbackQHelpIndexWidget_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtHelp_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -10889,6 +10985,22 @@ func (ptr *QHelpSearchEngine) EventFilterDefault(watched core.QObject_ITF, event
 		return int8(C.QHelpSearchEngine_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQHelpSearchEngine_MetaObject
+func callbackQHelpSearchEngine_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQHelpSearchEngineFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QHelpSearchEngine) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QHelpSearchEngine_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQHelpSearchEngine_ObjectNameChanged
@@ -12349,6 +12461,22 @@ func (ptr *QHelpSearchQueryWidget) EventFilterDefault(watched core.QObject_ITF, 
 	return false
 }
 
+//export callbackQHelpSearchQueryWidget_MetaObject
+func callbackQHelpSearchQueryWidget_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQHelpSearchQueryWidgetFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QHelpSearchQueryWidget) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QHelpSearchQueryWidget_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQHelpSearchQueryWidget_ObjectNameChanged
 func callbackQHelpSearchQueryWidget_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtHelp_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -13782,6 +13910,22 @@ func (ptr *QHelpSearchResultWidget) EventFilterDefault(watched core.QObject_ITF,
 		return int8(C.QHelpSearchResultWidget_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQHelpSearchResultWidget_MetaObject
+func callbackQHelpSearchResultWidget_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQHelpSearchResultWidgetFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QHelpSearchResultWidget) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QHelpSearchResultWidget_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQHelpSearchResultWidget_ObjectNameChanged

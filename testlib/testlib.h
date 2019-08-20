@@ -49,6 +49,7 @@ void QSignalSpy_DeleteLaterDefault(void* ptr);
 void QSignalSpy_DisconnectNotifyDefault(void* ptr, void* sign);
 char QSignalSpy_EventDefault(void* ptr, void* e);
 char QSignalSpy_EventFilterDefault(void* ptr, void* watched, void* event);
+void* QSignalSpy_MetaObjectDefault(void* ptr);
 void QSignalSpy_TimerEventDefault(void* ptr, void* event);
 void* QTestEventList_NewQTestEventList();
 void* QTestEventList_NewQTestEventList2(void* other);

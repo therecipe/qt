@@ -2666,6 +2666,22 @@ func (ptr *QQuickImageResponse) EventFilterDefault(watched core.QObject_ITF, eve
 	return false
 }
 
+//export callbackQQuickImageResponse_MetaObject
+func callbackQQuickImageResponse_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQQuickImageResponseFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QQuickImageResponse) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QQuickImageResponse_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQQuickImageResponse_ObjectNameChanged
 func callbackQQuickImageResponse_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtQuick_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -6237,6 +6253,29 @@ func (ptr *QQuickItem) EventFilterDefault(watched core.QObject_ITF, event core.Q
 	return false
 }
 
+//export callbackQQuickItem_MetaObject
+func callbackQQuickItem_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQQuickItemFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QQuickItem) MetaObject() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QQuickItem_MetaObject(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QQuickItem) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QQuickItem_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQQuickItem_ObjectNameChanged
 func callbackQQuickItem_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtQuick_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -6591,6 +6630,22 @@ func (ptr *QQuickItemGrabResult) EventFilterDefault(watched core.QObject_ITF, ev
 		return int8(C.QQuickItemGrabResult_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQQuickItemGrabResult_MetaObject
+func callbackQQuickItemGrabResult_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQQuickItemGrabResultFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QQuickItemGrabResult) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QQuickItemGrabResult_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQQuickItemGrabResult_ObjectNameChanged
@@ -7685,6 +7740,22 @@ func (ptr *QQuickRenderControl) EventFilterDefault(watched core.QObject_ITF, eve
 	return false
 }
 
+//export callbackQQuickRenderControl_MetaObject
+func callbackQQuickRenderControl_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQQuickRenderControlFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QQuickRenderControl) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QQuickRenderControl_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQQuickRenderControl_ObjectNameChanged
 func callbackQQuickRenderControl_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtQuick_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -7982,6 +8053,22 @@ func (ptr *QQuickTextDocument) EventFilterDefault(watched core.QObject_ITF, even
 		return int8(C.QQuickTextDocument_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQQuickTextDocument_MetaObject
+func callbackQQuickTextDocument_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQQuickTextDocumentFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QQuickTextDocument) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QQuickTextDocument_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQQuickTextDocument_ObjectNameChanged
@@ -8504,6 +8591,22 @@ func (ptr *QQuickTextureFactory) EventFilterDefault(watched core.QObject_ITF, ev
 	return false
 }
 
+//export callbackQQuickTextureFactory_MetaObject
+func callbackQQuickTextureFactory_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQQuickTextureFactoryFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QQuickTextureFactory) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QQuickTextureFactory_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQQuickTextureFactory_ObjectNameChanged
 func callbackQQuickTextureFactory_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtQuick_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -8782,6 +8885,22 @@ func (ptr *QQuickTransform) EventFilterDefault(watched core.QObject_ITF, event c
 		return int8(C.QQuickTransform_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQQuickTransform_MetaObject
+func callbackQQuickTransform_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQQuickTransformFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QQuickTransform) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QQuickTransform_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQQuickTransform_ObjectNameChanged
@@ -10707,6 +10826,22 @@ func (ptr *QQuickWidget) EventFilterDefault(watched core.QObject_ITF, event core
 		return int8(C.QQuickWidget_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQQuickWidget_MetaObject
+func callbackQQuickWidget_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQQuickWidgetFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QQuickWidget) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QQuickWidget_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQQuickWidget_ObjectNameChanged
@@ -12886,6 +13021,22 @@ func (ptr *QQuickWindow) EventFilterDefault(watched core.QObject_ITF, event core
 	return false
 }
 
+//export callbackQQuickWindow_MetaObject
+func callbackQQuickWindow_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQQuickWindowFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QQuickWindow) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QQuickWindow_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQQuickWindow_ObjectNameChanged
 func callbackQQuickWindow_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtQuick_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -13342,6 +13493,22 @@ func (ptr *QSGAbstractRenderer) EventFilterDefault(watched core.QObject_ITF, eve
 		return int8(C.QSGAbstractRenderer_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQSGAbstractRenderer_MetaObject
+func callbackQSGAbstractRenderer_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQSGAbstractRendererFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QSGAbstractRenderer) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QSGAbstractRenderer_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQSGAbstractRenderer_ObjectNameChanged
@@ -14171,6 +14338,22 @@ func (ptr *QSGEngine) EventFilterDefault(watched core.QObject_ITF, event core.QE
 	return false
 }
 
+//export callbackQSGEngine_MetaObject
+func callbackQSGEngine_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQSGEngineFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QSGEngine) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QSGEngine_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQSGEngine_ObjectNameChanged
 func callbackQSGEngine_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtQuick_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -14278,6 +14461,29 @@ func (ptr *QSGFlatColorMaterial) CreateShader() *QSGMaterialShader {
 func (ptr *QSGFlatColorMaterial) CreateShaderDefault() *QSGMaterialShader {
 	if ptr.Pointer() != nil {
 		return NewQSGMaterialShaderFromPointer(C.QSGFlatColorMaterial_CreateShaderDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
+//export callbackQSGFlatColorMaterial_Type
+func callbackQSGFlatColorMaterial_Type(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "type"); signal != nil {
+		return PointerFromQSGMaterialType((*(*func() *QSGMaterialType)(signal))())
+	}
+
+	return PointerFromQSGMaterialType(NewQSGFlatColorMaterialFromPointer(ptr).TypeDefault())
+}
+
+func (ptr *QSGFlatColorMaterial) Type() *QSGMaterialType {
+	if ptr.Pointer() != nil {
+		return NewQSGMaterialTypeFromPointer(C.QSGFlatColorMaterial_Type(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSGFlatColorMaterial) TypeDefault() *QSGMaterialType {
+	if ptr.Pointer() != nil {
+		return NewQSGMaterialTypeFromPointer(C.QSGFlatColorMaterial_TypeDefault(ptr.Pointer()))
 	}
 	return nil
 }
@@ -15483,6 +15689,44 @@ func (ptr *QSGMaterial) SetFlag(flags QSGMaterial__Flag, on bool) {
 	}
 }
 
+//export callbackQSGMaterial_Type
+func callbackQSGMaterial_Type(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "type"); signal != nil {
+		return PointerFromQSGMaterialType((*(*func() *QSGMaterialType)(signal))())
+	}
+
+	return PointerFromQSGMaterialType(nil)
+}
+
+func (ptr *QSGMaterial) ConnectType(f func() *QSGMaterialType) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "type"); signal != nil {
+			f := func() *QSGMaterialType {
+				(*(*func() *QSGMaterialType)(signal))()
+				return f()
+			}
+			qt.ConnectSignal(ptr.Pointer(), "type", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "type", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QSGMaterial) DisconnectType() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "type")
+	}
+}
+
+func (ptr *QSGMaterial) Type() *QSGMaterialType {
+	if ptr.Pointer() != nil {
+		return NewQSGMaterialTypeFromPointer(C.QSGMaterial_Type(ptr.Pointer()))
+	}
+	return nil
+}
+
 type QSGMaterialShader struct {
 	ptr unsafe.Pointer
 }
@@ -15820,6 +16064,52 @@ func (ptr *QSGMaterialShader) VertexShaderDefault() string {
 		return cGoUnpackString(C.QSGMaterialShader_VertexShaderDefault(ptr.Pointer()))
 	}
 	return ""
+}
+
+type QSGMaterialType struct {
+	ptr unsafe.Pointer
+}
+
+type QSGMaterialType_ITF interface {
+	QSGMaterialType_PTR() *QSGMaterialType
+}
+
+func (ptr *QSGMaterialType) QSGMaterialType_PTR() *QSGMaterialType {
+	return ptr
+}
+
+func (ptr *QSGMaterialType) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QSGMaterialType) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQSGMaterialType(ptr QSGMaterialType_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSGMaterialType_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQSGMaterialTypeFromPointer(ptr unsafe.Pointer) (n *QSGMaterialType) {
+	n = new(QSGMaterialType)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QSGMaterialType) DestroyQSGMaterialType() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
 }
 
 type QSGNode struct {
@@ -16411,6 +16701,29 @@ func (ptr *QSGOpaqueTextureMaterial) CreateShader() *QSGMaterialShader {
 func (ptr *QSGOpaqueTextureMaterial) CreateShaderDefault() *QSGMaterialShader {
 	if ptr.Pointer() != nil {
 		return NewQSGMaterialShaderFromPointer(C.QSGOpaqueTextureMaterial_CreateShaderDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
+//export callbackQSGOpaqueTextureMaterial_Type
+func callbackQSGOpaqueTextureMaterial_Type(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "type"); signal != nil {
+		return PointerFromQSGMaterialType((*(*func() *QSGMaterialType)(signal))())
+	}
+
+	return PointerFromQSGMaterialType(NewQSGOpaqueTextureMaterialFromPointer(ptr).TypeDefault())
+}
+
+func (ptr *QSGOpaqueTextureMaterial) Type() *QSGMaterialType {
+	if ptr.Pointer() != nil {
+		return NewQSGMaterialTypeFromPointer(C.QSGOpaqueTextureMaterial_Type(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSGOpaqueTextureMaterial) TypeDefault() *QSGMaterialType {
+	if ptr.Pointer() != nil {
+		return NewQSGMaterialTypeFromPointer(C.QSGOpaqueTextureMaterial_TypeDefault(ptr.Pointer()))
 	}
 	return nil
 }
@@ -19092,6 +19405,22 @@ func (ptr *QSGTexture) EventFilterDefault(watched core.QObject_ITF, event core.Q
 	return false
 }
 
+//export callbackQSGTexture_MetaObject
+func callbackQSGTexture_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQSGTextureFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QSGTexture) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QSGTexture_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQSGTexture_ObjectNameChanged
 func callbackQSGTexture_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtQuick_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -19503,6 +19832,22 @@ func (ptr *QSGTextureProvider) EventFilterDefault(watched core.QObject_ITF, even
 	return false
 }
 
+//export callbackQSGTextureProvider_MetaObject
+func callbackQSGTextureProvider_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQSGTextureProviderFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QSGTextureProvider) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QSGTextureProvider_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQSGTextureProvider_ObjectNameChanged
 func callbackQSGTextureProvider_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtQuick_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -19697,6 +20042,29 @@ func (ptr *QSGVertexColorMaterial) CreateShader() *QSGMaterialShader {
 func (ptr *QSGVertexColorMaterial) CreateShaderDefault() *QSGMaterialShader {
 	if ptr.Pointer() != nil {
 		return NewQSGMaterialShaderFromPointer(C.QSGVertexColorMaterial_CreateShaderDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
+//export callbackQSGVertexColorMaterial_Type
+func callbackQSGVertexColorMaterial_Type(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "type"); signal != nil {
+		return PointerFromQSGMaterialType((*(*func() *QSGMaterialType)(signal))())
+	}
+
+	return PointerFromQSGMaterialType(NewQSGVertexColorMaterialFromPointer(ptr).TypeDefault())
+}
+
+func (ptr *QSGVertexColorMaterial) Type() *QSGMaterialType {
+	if ptr.Pointer() != nil {
+		return NewQSGMaterialTypeFromPointer(C.QSGVertexColorMaterial_Type(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSGVertexColorMaterial) TypeDefault() *QSGMaterialType {
+	if ptr.Pointer() != nil {
+		return NewQSGMaterialTypeFromPointer(C.QSGVertexColorMaterial_TypeDefault(ptr.Pointer()))
 	}
 	return nil
 }

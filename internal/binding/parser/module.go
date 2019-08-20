@@ -14,6 +14,7 @@ type Module struct {
 
 type Namespace struct {
 	Classes []*Class `xml:"class"`
+	Structs []*Class `xml:"struct"`
 	//Functions     []*Function     `xml:"function"` //TODO: uncomment
 	//Enums         []*Enum         `xml:"enum"`     //TODO: uncomment
 	SubNamespaces []*SubNamespace `xml:"namespace"`
@@ -33,6 +34,8 @@ func (m *Module) Prepare() error {
 	}
 
 	utils.Log.WithField("module", strings.TrimPrefix(m.Project, "Qt")).Debug("prepare")
+
+	m.Namespace.Classes = append(m.Namespace.Classes, m.Namespace.Structs...)
 
 	//register classes from namespace
 	for _, c := range m.Namespace.Classes {

@@ -8,6 +8,7 @@
 
 #include <QAction>
 #include <QActionEvent>
+#include <QAudioSystemPlugin>
 #include <QByteArray>
 #include <QCameraImageCapture>
 #include <QChildEvent>
@@ -35,7 +36,9 @@
 #include <QMap>
 #include <QMediaPlaylist>
 #include <QMediaRecorder>
+#include <QMediaServiceProviderPlugin>
 #include <QMetaMethod>
+#include <QMetaObject>
 #include <QMouseEvent>
 #include <QMoveEvent>
 #include <QNetworkCookie>
@@ -55,6 +58,7 @@
 #include <QRadioData>
 #include <QRemoteObjectPendingCallWatcher>
 #include <QResizeEvent>
+#include <QScriptExtensionPlugin>
 #include <QShowEvent>
 #include <QSize>
 #include <QSizeF>
@@ -113,6 +117,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQQuickWebEngineProfile_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQQuickWebEngineProfile_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQQuickWebEngineProfile_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQuickWebEngineProfile_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWebEngine_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQQuickWebEngineProfile_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQQuickWebEngineProfile_TimerEvent(this, event); };
 };
@@ -123,7 +128,9 @@ int QQuickWebEngineProfile_QQuickWebEngineProfile_QRegisterMetaType(){qRegisterM
 
 void* QQuickWebEngineProfile_NewQQuickWebEngineProfile(void* parent)
 {
-	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickWebEngineProfile(static_cast<QAudioSystemPlugin*>(parent));
+	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
 		return new MyQQuickWebEngineProfile(static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQQuickWebEngineProfile(static_cast<QDBusPendingCallWatcher*>(parent));
@@ -141,6 +148,8 @@ void* QQuickWebEngineProfile_NewQQuickWebEngineProfile(void* parent)
 		return new MyQQuickWebEngineProfile(static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
 		return new MyQQuickWebEngineProfile(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickWebEngineProfile(static_cast<QMediaServiceProviderPlugin*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
 		return new MyQQuickWebEngineProfile(static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
@@ -153,6 +162,8 @@ void* QQuickWebEngineProfile_NewQQuickWebEngineProfile(void* parent)
 		return new MyQQuickWebEngineProfile(static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQQuickWebEngineProfile(static_cast<QRemoteObjectPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickWebEngineProfile(static_cast<QScriptExtensionPlugin*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQQuickWebEngineProfile(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -667,6 +678,11 @@ char QQuickWebEngineProfile_EventFilterDefault(void* ptr, void* watched, void* e
 		return static_cast<QQuickWebEngineProfile*>(ptr)->QQuickWebEngineProfile::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
+void* QQuickWebEngineProfile_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QQuickWebEngineProfile*>(ptr)->QQuickWebEngineProfile::metaObject());
+}
+
 void QQuickWebEngineProfile_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QQuickWebEngineProfile*>(ptr)->QQuickWebEngineProfile::timerEvent(static_cast<QTimerEvent*>(event));
@@ -690,6 +706,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQQuickWebEngineScript_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQQuickWebEngineScript_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQQuickWebEngineScript_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQuickWebEngineScript_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWebEngine_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQQuickWebEngineScript_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQQuickWebEngineScript_TimerEvent(this, event); };
 };
@@ -700,7 +717,9 @@ int QQuickWebEngineScript_QQuickWebEngineScript_QRegisterMetaType(){qRegisterMet
 
 void* QQuickWebEngineScript_NewQQuickWebEngineScript(void* parent)
 {
-	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickWebEngineScript(static_cast<QAudioSystemPlugin*>(parent));
+	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
 		return new MyQQuickWebEngineScript(static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQQuickWebEngineScript(static_cast<QDBusPendingCallWatcher*>(parent));
@@ -718,6 +737,8 @@ void* QQuickWebEngineScript_NewQQuickWebEngineScript(void* parent)
 		return new MyQQuickWebEngineScript(static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
 		return new MyQQuickWebEngineScript(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickWebEngineScript(static_cast<QMediaServiceProviderPlugin*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
 		return new MyQQuickWebEngineScript(static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
@@ -730,6 +751,8 @@ void* QQuickWebEngineScript_NewQQuickWebEngineScript(void* parent)
 		return new MyQQuickWebEngineScript(static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQQuickWebEngineScript(static_cast<QRemoteObjectPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickWebEngineScript(static_cast<QScriptExtensionPlugin*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQQuickWebEngineScript(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -1011,6 +1034,11 @@ char QQuickWebEngineScript_EventFilterDefault(void* ptr, void* watched, void* ev
 		return static_cast<QQuickWebEngineScript*>(ptr)->QQuickWebEngineScript::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
+void* QQuickWebEngineScript_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QQuickWebEngineScript*>(ptr)->QQuickWebEngineScript::metaObject());
+}
+
 void QQuickWebEngineScript_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QQuickWebEngineScript*>(ptr)->QQuickWebEngineScript::timerEvent(static_cast<QTimerEvent*>(event));
@@ -1086,6 +1114,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQWebEngineCookieStore_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQWebEngineCookieStore_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQWebEngineCookieStore_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebEngineCookieStore_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWebEngine_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQWebEngineCookieStore_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQWebEngineCookieStore_TimerEvent(this, event); };
 };
@@ -1275,6 +1304,11 @@ char QWebEngineCookieStore_EventFilterDefault(void* ptr, void* watched, void* ev
 		return static_cast<QWebEngineCookieStore*>(ptr)->QWebEngineCookieStore::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
+void* QWebEngineCookieStore_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QWebEngineCookieStore*>(ptr)->QWebEngineCookieStore::metaObject());
+}
+
 void QWebEngineCookieStore_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QWebEngineCookieStore*>(ptr)->QWebEngineCookieStore::timerEvent(static_cast<QTimerEvent*>(event));
@@ -1428,6 +1462,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQWebEngineNotification_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQWebEngineNotification_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQWebEngineNotification_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebEngineNotification_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWebEngine_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQWebEngineNotification_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQWebEngineNotification_TimerEvent(this, event); };
 };
@@ -1636,6 +1671,11 @@ char QWebEngineNotification_EventFilterDefault(void* ptr, void* watched, void* e
 		return static_cast<QWebEngineNotification*>(ptr)->QWebEngineNotification::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
+void* QWebEngineNotification_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QWebEngineNotification*>(ptr)->QWebEngineNotification::metaObject());
+}
+
 void QWebEngineNotification_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QWebEngineNotification*>(ptr)->QWebEngineNotification::timerEvent(static_cast<QTimerEvent*>(event));
@@ -1660,6 +1700,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQWebEnginePage_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQWebEnginePage_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQWebEnginePage_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebEnginePage_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWebEngine_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQWebEnginePage_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQWebEnginePage_TimerEvent(this, event); };
 };
@@ -1670,7 +1711,9 @@ int QWebEnginePage_QWebEnginePage_QRegisterMetaType(){qRegisterMetaType<QWebEngi
 
 void* QWebEnginePage_NewQWebEnginePage(void* parent)
 {
-	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEnginePage(static_cast<QAudioSystemPlugin*>(parent));
+	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
 		return new MyQWebEnginePage(static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQWebEnginePage(static_cast<QDBusPendingCallWatcher*>(parent));
@@ -1688,6 +1731,8 @@ void* QWebEnginePage_NewQWebEnginePage(void* parent)
 		return new MyQWebEnginePage(static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
 		return new MyQWebEnginePage(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEnginePage(static_cast<QMediaServiceProviderPlugin*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
 		return new MyQWebEnginePage(static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
@@ -1700,6 +1745,8 @@ void* QWebEnginePage_NewQWebEnginePage(void* parent)
 		return new MyQWebEnginePage(static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQWebEnginePage(static_cast<QRemoteObjectPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEnginePage(static_cast<QScriptExtensionPlugin*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQWebEnginePage(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -1711,7 +1758,9 @@ void* QWebEnginePage_NewQWebEnginePage(void* parent)
 
 void* QWebEnginePage_NewQWebEnginePage2(void* profile, void* parent)
 {
-	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEnginePage(static_cast<QWebEngineProfile*>(profile), static_cast<QAudioSystemPlugin*>(parent));
+	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
 		return new MyQWebEnginePage(static_cast<QWebEngineProfile*>(profile), static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQWebEnginePage(static_cast<QWebEngineProfile*>(profile), static_cast<QDBusPendingCallWatcher*>(parent));
@@ -1729,6 +1778,8 @@ void* QWebEnginePage_NewQWebEnginePage2(void* profile, void* parent)
 		return new MyQWebEnginePage(static_cast<QWebEngineProfile*>(profile), static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
 		return new MyQWebEnginePage(static_cast<QWebEngineProfile*>(profile), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEnginePage(static_cast<QWebEngineProfile*>(profile), static_cast<QMediaServiceProviderPlugin*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
 		return new MyQWebEnginePage(static_cast<QWebEngineProfile*>(profile), static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
@@ -1741,6 +1792,8 @@ void* QWebEnginePage_NewQWebEnginePage2(void* profile, void* parent)
 		return new MyQWebEnginePage(static_cast<QWebEngineProfile*>(profile), static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQWebEnginePage(static_cast<QWebEngineProfile*>(profile), static_cast<QRemoteObjectPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEnginePage(static_cast<QWebEngineProfile*>(profile), static_cast<QScriptExtensionPlugin*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQWebEnginePage(static_cast<QWebEngineProfile*>(profile), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -2065,6 +2118,11 @@ char QWebEnginePage_EventFilterDefault(void* ptr, void* watched, void* event)
 		return static_cast<QWebEnginePage*>(ptr)->QWebEnginePage::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
+void* QWebEnginePage_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QWebEnginePage*>(ptr)->QWebEnginePage::metaObject());
+}
+
 void QWebEnginePage_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QWebEnginePage*>(ptr)->QWebEnginePage::timerEvent(static_cast<QTimerEvent*>(event));
@@ -2081,6 +2139,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQWebEngineProfile_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQWebEngineProfile_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQWebEngineProfile_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebEngineProfile_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWebEngine_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQWebEngineProfile_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQWebEngineProfile_TimerEvent(this, event); };
 };
@@ -2220,6 +2279,11 @@ char QWebEngineProfile_EventFilterDefault(void* ptr, void* watched, void* event)
 		return static_cast<QWebEngineProfile*>(ptr)->QWebEngineProfile::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
+void* QWebEngineProfile_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QWebEngineProfile*>(ptr)->QWebEngineProfile::metaObject());
+}
+
 void QWebEngineProfile_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QWebEngineProfile*>(ptr)->QWebEngineProfile::timerEvent(static_cast<QTimerEvent*>(event));
@@ -2318,6 +2382,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQWebEngineUrlRequestInterceptor_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQWebEngineUrlRequestInterceptor_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQWebEngineUrlRequestInterceptor_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebEngineUrlRequestInterceptor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWebEngine_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQWebEngineUrlRequestInterceptor_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQWebEngineUrlRequestInterceptor_TimerEvent(this, event); };
 };
@@ -2328,7 +2393,9 @@ int QWebEngineUrlRequestInterceptor_QWebEngineUrlRequestInterceptor_QRegisterMet
 
 void* QWebEngineUrlRequestInterceptor_NewQWebEngineUrlRequestInterceptor2(void* p)
 {
-	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(p))) {
+	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(p))) {
+		return new MyQWebEngineUrlRequestInterceptor(static_cast<QAudioSystemPlugin*>(p));
+	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(p))) {
 		return new MyQWebEngineUrlRequestInterceptor(static_cast<QCameraImageCapture*>(p));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(p))) {
 		return new MyQWebEngineUrlRequestInterceptor(static_cast<QDBusPendingCallWatcher*>(p));
@@ -2346,6 +2413,8 @@ void* QWebEngineUrlRequestInterceptor_NewQWebEngineUrlRequestInterceptor2(void* 
 		return new MyQWebEngineUrlRequestInterceptor(static_cast<QMediaPlaylist*>(p));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(p))) {
 		return new MyQWebEngineUrlRequestInterceptor(static_cast<QMediaRecorder*>(p));
+	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(p))) {
+		return new MyQWebEngineUrlRequestInterceptor(static_cast<QMediaServiceProviderPlugin*>(p));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(p))) {
 		return new MyQWebEngineUrlRequestInterceptor(static_cast<QOffscreenSurface*>(p));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(p))) {
@@ -2358,6 +2427,8 @@ void* QWebEngineUrlRequestInterceptor_NewQWebEngineUrlRequestInterceptor2(void* 
 		return new MyQWebEngineUrlRequestInterceptor(static_cast<QRadioData*>(p));
 	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(p))) {
 		return new MyQWebEngineUrlRequestInterceptor(static_cast<QRemoteObjectPendingCallWatcher*>(p));
+	} else if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(p))) {
+		return new MyQWebEngineUrlRequestInterceptor(static_cast<QScriptExtensionPlugin*>(p));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(p))) {
 		return new MyQWebEngineUrlRequestInterceptor(static_cast<QWidget*>(p));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(p))) {
@@ -2487,6 +2558,11 @@ char QWebEngineUrlRequestInterceptor_EventFilterDefault(void* ptr, void* watched
 		return static_cast<QWebEngineUrlRequestInterceptor*>(ptr)->QWebEngineUrlRequestInterceptor::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
+void* QWebEngineUrlRequestInterceptor_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QWebEngineUrlRequestInterceptor*>(ptr)->QWebEngineUrlRequestInterceptor::metaObject());
+}
+
 void QWebEngineUrlRequestInterceptor_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QWebEngineUrlRequestInterceptor*>(ptr)->QWebEngineUrlRequestInterceptor::timerEvent(static_cast<QTimerEvent*>(event));
@@ -2503,6 +2579,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQWebEngineUrlRequestJob_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQWebEngineUrlRequestJob_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQWebEngineUrlRequestJob_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebEngineUrlRequestJob_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWebEngine_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQWebEngineUrlRequestJob_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQWebEngineUrlRequestJob_TimerEvent(this, event); };
 };
@@ -2698,6 +2775,11 @@ char QWebEngineUrlRequestJob_EventFilterDefault(void* ptr, void* watched, void* 
 		return static_cast<QWebEngineUrlRequestJob*>(ptr)->QWebEngineUrlRequestJob::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
+void* QWebEngineUrlRequestJob_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QWebEngineUrlRequestJob*>(ptr)->QWebEngineUrlRequestJob::metaObject());
+}
+
 void QWebEngineUrlRequestJob_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QWebEngineUrlRequestJob*>(ptr)->QWebEngineUrlRequestJob::timerEvent(static_cast<QTimerEvent*>(event));
@@ -2787,6 +2869,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQWebEngineUrlSchemeHandler_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQWebEngineUrlSchemeHandler_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQWebEngineUrlSchemeHandler_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebEngineUrlSchemeHandler_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWebEngine_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQWebEngineUrlSchemeHandler_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQWebEngineUrlSchemeHandler_TimerEvent(this, event); };
 };
@@ -2797,7 +2880,9 @@ int QWebEngineUrlSchemeHandler_QWebEngineUrlSchemeHandler_QRegisterMetaType(){qR
 
 void* QWebEngineUrlSchemeHandler_NewQWebEngineUrlSchemeHandler(void* parent)
 {
-	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineUrlSchemeHandler(static_cast<QAudioSystemPlugin*>(parent));
+	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
 		return new MyQWebEngineUrlSchemeHandler(static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQWebEngineUrlSchemeHandler(static_cast<QDBusPendingCallWatcher*>(parent));
@@ -2815,6 +2900,8 @@ void* QWebEngineUrlSchemeHandler_NewQWebEngineUrlSchemeHandler(void* parent)
 		return new MyQWebEngineUrlSchemeHandler(static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
 		return new MyQWebEngineUrlSchemeHandler(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineUrlSchemeHandler(static_cast<QMediaServiceProviderPlugin*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
 		return new MyQWebEngineUrlSchemeHandler(static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
@@ -2827,6 +2914,8 @@ void* QWebEngineUrlSchemeHandler_NewQWebEngineUrlSchemeHandler(void* parent)
 		return new MyQWebEngineUrlSchemeHandler(static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQWebEngineUrlSchemeHandler(static_cast<QRemoteObjectPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineUrlSchemeHandler(static_cast<QScriptExtensionPlugin*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQWebEngineUrlSchemeHandler(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -2967,6 +3056,11 @@ char QWebEngineUrlSchemeHandler_EventFilterDefault(void* ptr, void* watched, voi
 		return static_cast<QWebEngineUrlSchemeHandler*>(ptr)->QWebEngineUrlSchemeHandler::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
+void* QWebEngineUrlSchemeHandler_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QWebEngineUrlSchemeHandler*>(ptr)->QWebEngineUrlSchemeHandler::metaObject());
+}
+
 void QWebEngineUrlSchemeHandler_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QWebEngineUrlSchemeHandler*>(ptr)->QWebEngineUrlSchemeHandler::timerEvent(static_cast<QTimerEvent*>(event));
@@ -3045,6 +3139,7 @@ public:
 	void Signal_Destroyed(QObject * obj) { callbackQWebEngineView_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQWebEngineView_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQWebEngineView_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebEngineView_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWebEngine_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQWebEngineView_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQWebEngineView_TimerEvent(this, event); };
 };
@@ -3589,6 +3684,11 @@ void QWebEngineView_DisconnectNotifyDefault(void* ptr, void* sign)
 char QWebEngineView_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 		return static_cast<QWebEngineView*>(ptr)->QWebEngineView::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
+void* QWebEngineView_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QWebEngineView*>(ptr)->QWebEngineView::metaObject());
 }
 
 void QWebEngineView_TimerEventDefault(void* ptr, void* event)

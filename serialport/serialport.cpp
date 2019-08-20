@@ -6,6 +6,7 @@
 #include "serialport.h"
 #include "_cgo_export.h"
 
+#include <QAudioSystemPlugin>
 #include <QByteArray>
 #include <QCameraImageCapture>
 #include <QChildEvent>
@@ -19,7 +20,9 @@
 #include <QLayout>
 #include <QMediaPlaylist>
 #include <QMediaRecorder>
+#include <QMediaServiceProviderPlugin>
 #include <QMetaMethod>
+#include <QMetaObject>
 #include <QObject>
 #include <QOffscreenSurface>
 #include <QPaintDeviceWindow>
@@ -27,6 +30,7 @@
 #include <QQuickItem>
 #include <QRadioData>
 #include <QRemoteObjectPendingCallWatcher>
+#include <QScriptExtensionPlugin>
 #include <QSerialPort>
 #include <QSerialPortInfo>
 #include <QString>
@@ -80,6 +84,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSerialPort_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQSerialPort_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSerialPort_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSerialPort_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSerialPort_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSerialPort_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSerialPort_TimerEvent(this, event); };
 };
@@ -90,7 +95,9 @@ int QSerialPort_QSerialPort_QRegisterMetaType(){qRegisterMetaType<QSerialPort*>(
 
 void* QSerialPort_NewQSerialPort(void* parent)
 {
-	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQSerialPort(static_cast<QAudioSystemPlugin*>(parent));
+	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
 		return new MyQSerialPort(static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQSerialPort(static_cast<QDBusPendingCallWatcher*>(parent));
@@ -108,6 +115,8 @@ void* QSerialPort_NewQSerialPort(void* parent)
 		return new MyQSerialPort(static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
 		return new MyQSerialPort(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQSerialPort(static_cast<QMediaServiceProviderPlugin*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
 		return new MyQSerialPort(static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
@@ -120,6 +129,8 @@ void* QSerialPort_NewQSerialPort(void* parent)
 		return new MyQSerialPort(static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQSerialPort(static_cast<QRemoteObjectPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQSerialPort(static_cast<QScriptExtensionPlugin*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQSerialPort(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -131,7 +142,9 @@ void* QSerialPort_NewQSerialPort(void* parent)
 
 void* QSerialPort_NewQSerialPort2(struct QtSerialPort_PackedString name, void* parent)
 {
-	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQSerialPort(QString::fromUtf8(name.data, name.len), static_cast<QAudioSystemPlugin*>(parent));
+	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
 		return new MyQSerialPort(QString::fromUtf8(name.data, name.len), static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQSerialPort(QString::fromUtf8(name.data, name.len), static_cast<QDBusPendingCallWatcher*>(parent));
@@ -149,6 +162,8 @@ void* QSerialPort_NewQSerialPort2(struct QtSerialPort_PackedString name, void* p
 		return new MyQSerialPort(QString::fromUtf8(name.data, name.len), static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
 		return new MyQSerialPort(QString::fromUtf8(name.data, name.len), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQSerialPort(QString::fromUtf8(name.data, name.len), static_cast<QMediaServiceProviderPlugin*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
 		return new MyQSerialPort(QString::fromUtf8(name.data, name.len), static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
@@ -161,6 +176,8 @@ void* QSerialPort_NewQSerialPort2(struct QtSerialPort_PackedString name, void* p
 		return new MyQSerialPort(QString::fromUtf8(name.data, name.len), static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQSerialPort(QString::fromUtf8(name.data, name.len), static_cast<QRemoteObjectPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQSerialPort(QString::fromUtf8(name.data, name.len), static_cast<QScriptExtensionPlugin*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQSerialPort(QString::fromUtf8(name.data, name.len), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -172,7 +189,9 @@ void* QSerialPort_NewQSerialPort2(struct QtSerialPort_PackedString name, void* p
 
 void* QSerialPort_NewQSerialPort3(void* serialPortInfo, void* parent)
 {
-	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQSerialPort(*static_cast<QSerialPortInfo*>(serialPortInfo), static_cast<QAudioSystemPlugin*>(parent));
+	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
 		return new MyQSerialPort(*static_cast<QSerialPortInfo*>(serialPortInfo), static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQSerialPort(*static_cast<QSerialPortInfo*>(serialPortInfo), static_cast<QDBusPendingCallWatcher*>(parent));
@@ -190,6 +209,8 @@ void* QSerialPort_NewQSerialPort3(void* serialPortInfo, void* parent)
 		return new MyQSerialPort(*static_cast<QSerialPortInfo*>(serialPortInfo), static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
 		return new MyQSerialPort(*static_cast<QSerialPortInfo*>(serialPortInfo), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQSerialPort(*static_cast<QSerialPortInfo*>(serialPortInfo), static_cast<QMediaServiceProviderPlugin*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
 		return new MyQSerialPort(*static_cast<QSerialPortInfo*>(serialPortInfo), static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
@@ -202,6 +223,8 @@ void* QSerialPort_NewQSerialPort3(void* serialPortInfo, void* parent)
 		return new MyQSerialPort(*static_cast<QSerialPortInfo*>(serialPortInfo), static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQSerialPort(*static_cast<QSerialPortInfo*>(serialPortInfo), static_cast<QRemoteObjectPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQSerialPort(*static_cast<QSerialPortInfo*>(serialPortInfo), static_cast<QScriptExtensionPlugin*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQSerialPort(*static_cast<QSerialPortInfo*>(serialPortInfo), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -710,6 +733,11 @@ char QSerialPort_EventDefault(void* ptr, void* e)
 char QSerialPort_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 		return static_cast<QSerialPort*>(ptr)->QSerialPort::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
+void* QSerialPort_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QSerialPort*>(ptr)->QSerialPort::metaObject());
 }
 
 void QSerialPort_TimerEventDefault(void* ptr, void* event)

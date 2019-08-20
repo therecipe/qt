@@ -12,6 +12,7 @@
 #include <QAction>
 #include <QActionEvent>
 #include <QActionGroup>
+#include <QAudioSystemPlugin>
 #include <QByteArray>
 #include <QCameraImageCapture>
 #include <QChildEvent>
@@ -54,7 +55,9 @@
 #include <QLayout>
 #include <QMediaPlaylist>
 #include <QMediaRecorder>
+#include <QMediaServiceProviderPlugin>
 #include <QMetaMethod>
+#include <QMetaObject>
 #include <QMouseEvent>
 #include <QMoveEvent>
 #include <QObject>
@@ -71,6 +74,7 @@
 #include <QRadioData>
 #include <QRemoteObjectPendingCallWatcher>
 #include <QResizeEvent>
+#include <QScriptExtensionPlugin>
 #include <QShowEvent>
 #include <QSize>
 #include <QString>
@@ -318,6 +322,7 @@ public:
 	void Signal_Destroyed(QObject * obj) { callbackQDesignerActionEditorInterface_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQDesignerActionEditorInterface_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDesignerActionEditorInterface_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDesignerActionEditorInterface_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtDesigner_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQDesignerActionEditorInterface_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQDesignerActionEditorInterface_TimerEvent(this, event); };
 };
@@ -840,6 +845,11 @@ char QDesignerActionEditorInterface_EventFilterDefault(void* ptr, void* watched,
 	}
 }
 
+void* QDesignerActionEditorInterface_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QDesignerActionEditorInterface*>(ptr)->QDesignerActionEditorInterface::metaObject());
+}
+
 void QDesignerActionEditorInterface_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QDesignerActionEditorInterface*>(ptr)->QDesignerActionEditorInterface::timerEvent(static_cast<QTimerEvent*>(event));
@@ -1134,6 +1144,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQDesignerFormEditorInterface_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQDesignerFormEditorInterface_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDesignerFormEditorInterface_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDesignerFormEditorInterface_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtDesigner_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQDesignerFormEditorInterface_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQDesignerFormEditorInterface_TimerEvent(this, event); };
 };
@@ -1144,7 +1155,9 @@ int QDesignerFormEditorInterface_QDesignerFormEditorInterface_QRegisterMetaType(
 
 void* QDesignerFormEditorInterface_NewQDesignerFormEditorInterface(void* parent)
 {
-	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQDesignerFormEditorInterface(static_cast<QAudioSystemPlugin*>(parent));
+	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
 		return new MyQDesignerFormEditorInterface(static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQDesignerFormEditorInterface(static_cast<QDBusPendingCallWatcher*>(parent));
@@ -1162,6 +1175,8 @@ void* QDesignerFormEditorInterface_NewQDesignerFormEditorInterface(void* parent)
 		return new MyQDesignerFormEditorInterface(static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
 		return new MyQDesignerFormEditorInterface(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQDesignerFormEditorInterface(static_cast<QMediaServiceProviderPlugin*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
 		return new MyQDesignerFormEditorInterface(static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
@@ -1174,6 +1189,8 @@ void* QDesignerFormEditorInterface_NewQDesignerFormEditorInterface(void* parent)
 		return new MyQDesignerFormEditorInterface(static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQDesignerFormEditorInterface(static_cast<QRemoteObjectPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQDesignerFormEditorInterface(static_cast<QScriptExtensionPlugin*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQDesignerFormEditorInterface(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -1428,6 +1445,11 @@ char QDesignerFormEditorInterface_EventFilterDefault(void* ptr, void* watched, v
 	}
 }
 
+void* QDesignerFormEditorInterface_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QDesignerFormEditorInterface*>(ptr)->QDesignerFormEditorInterface::metaObject());
+}
+
 void QDesignerFormEditorInterface_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QDesignerFormEditorInterface*>(ptr)->QDesignerFormEditorInterface::timerEvent(static_cast<QTimerEvent*>(event));
@@ -1661,6 +1683,7 @@ public:
 	void Signal_Destroyed(QObject * obj) { callbackQDesignerFormWindowInterface_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQDesignerFormWindowInterface_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDesignerFormWindowInterface_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDesignerFormWindowInterface_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtDesigner_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQDesignerFormWindowInterface_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQDesignerFormWindowInterface_TimerEvent(this, event); };
 };
@@ -2623,6 +2646,11 @@ char QDesignerFormWindowInterface_EventFilterDefault(void* ptr, void* watched, v
 	}
 }
 
+void* QDesignerFormWindowInterface_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QDesignerFormWindowInterface*>(ptr)->QDesignerFormWindowInterface::metaObject());
+}
+
 void QDesignerFormWindowInterface_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QDesignerFormWindowInterface*>(ptr)->QDesignerFormWindowInterface::timerEvent(static_cast<QTimerEvent*>(event));
@@ -2658,6 +2686,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQDesignerFormWindowManagerInterface_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQDesignerFormWindowManagerInterface_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDesignerFormWindowManagerInterface_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDesignerFormWindowManagerInterface_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtDesigner_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQDesignerFormWindowManagerInterface_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQDesignerFormWindowManagerInterface_TimerEvent(this, event); };
 };
@@ -2958,6 +2987,11 @@ char QDesignerFormWindowManagerInterface_EventFilterDefault(void* ptr, void* wat
 	}
 }
 
+void* QDesignerFormWindowManagerInterface_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QDesignerFormWindowManagerInterface*>(ptr)->QDesignerFormWindowManagerInterface::metaObject());
+}
+
 void QDesignerFormWindowManagerInterface_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QDesignerFormWindowManagerInterface*>(ptr)->QDesignerFormWindowManagerInterface::timerEvent(static_cast<QTimerEvent*>(event));
@@ -3170,6 +3204,7 @@ public:
 	void Signal_Destroyed(QObject * obj) { callbackQDesignerObjectInspectorInterface_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQDesignerObjectInspectorInterface_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDesignerObjectInspectorInterface_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDesignerObjectInspectorInterface_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtDesigner_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQDesignerObjectInspectorInterface_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQDesignerObjectInspectorInterface_TimerEvent(this, event); };
 };
@@ -3682,6 +3717,11 @@ char QDesignerObjectInspectorInterface_EventFilterDefault(void* ptr, void* watch
 	}
 }
 
+void* QDesignerObjectInspectorInterface_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QDesignerObjectInspectorInterface*>(ptr)->QDesignerObjectInspectorInterface::metaObject());
+}
+
 void QDesignerObjectInspectorInterface_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QDesignerObjectInspectorInterface*>(ptr)->QDesignerObjectInspectorInterface::timerEvent(static_cast<QTimerEvent*>(event));
@@ -3767,6 +3807,7 @@ public:
 	void Signal_Destroyed(QObject * obj) { callbackQDesignerPropertyEditorInterface_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQDesignerPropertyEditorInterface_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDesignerPropertyEditorInterface_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDesignerPropertyEditorInterface_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtDesigner_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQDesignerPropertyEditorInterface_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQDesignerPropertyEditorInterface_TimerEvent(this, event); };
 };
@@ -4319,6 +4360,11 @@ char QDesignerPropertyEditorInterface_EventFilterDefault(void* ptr, void* watche
 	}
 }
 
+void* QDesignerPropertyEditorInterface_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QDesignerPropertyEditorInterface*>(ptr)->QDesignerPropertyEditorInterface::metaObject());
+}
+
 void QDesignerPropertyEditorInterface_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QDesignerPropertyEditorInterface*>(ptr)->QDesignerPropertyEditorInterface::timerEvent(static_cast<QTimerEvent*>(event));
@@ -4512,6 +4558,7 @@ public:
 	void Signal_Destroyed(QObject * obj) { callbackQDesignerResourceBrowserInterface_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQDesignerResourceBrowserInterface_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDesignerResourceBrowserInterface_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDesignerResourceBrowserInterface_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtDesigner_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQDesignerResourceBrowserInterface_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQDesignerResourceBrowserInterface_TimerEvent(this, event); };
 };
@@ -4993,6 +5040,11 @@ char QDesignerResourceBrowserInterface_EventFilterDefault(void* ptr, void* watch
 	}
 }
 
+void* QDesignerResourceBrowserInterface_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QDesignerResourceBrowserInterface*>(ptr)->QDesignerResourceBrowserInterface::metaObject());
+}
+
 void QDesignerResourceBrowserInterface_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QDesignerResourceBrowserInterface*>(ptr)->QDesignerResourceBrowserInterface::timerEvent(static_cast<QTimerEvent*>(event));
@@ -5123,6 +5175,7 @@ public:
 	void Signal_Destroyed(QObject * obj) { callbackQDesignerWidgetBoxInterface_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQDesignerWidgetBoxInterface_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDesignerWidgetBoxInterface_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDesignerWidgetBoxInterface_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtDesigner_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQDesignerWidgetBoxInterface_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQDesignerWidgetBoxInterface_TimerEvent(this, event); };
 };
@@ -5641,6 +5694,11 @@ char QDesignerWidgetBoxInterface_EventFilterDefault(void* ptr, void* watched, vo
 	}
 }
 
+void* QDesignerWidgetBoxInterface_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QDesignerWidgetBoxInterface*>(ptr)->QDesignerWidgetBoxInterface::metaObject());
+}
+
 void QDesignerWidgetBoxInterface_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QDesignerWidgetBoxInterface*>(ptr)->QDesignerWidgetBoxInterface::timerEvent(static_cast<QTimerEvent*>(event));
@@ -5660,6 +5718,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQExtensionFactory_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQExtensionFactory_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQExtensionFactory_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQExtensionFactory_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtDesigner_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQExtensionFactory_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQExtensionFactory_TimerEvent(this, event); };
 };
@@ -5908,6 +5967,16 @@ char QExtensionFactory_EventFilterDefault(void* ptr, void* watched, void* event)
 	}
 }
 
+void* QExtensionFactory_MetaObject(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QExtensionFactory*>(ptr)->metaObject());
+}
+
+void* QExtensionFactory_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QExtensionFactory*>(ptr)->QExtensionFactory::metaObject());
+}
+
 void QExtensionFactory_TimerEvent(void* ptr, void* event)
 {
 		static_cast<QExtensionFactory*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -5934,6 +6003,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQExtensionManager_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQExtensionManager_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQExtensionManager_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQExtensionManager_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtDesigner_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQExtensionManager_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQExtensionManager_TimerEvent(this, event); };
 };
@@ -6200,6 +6270,16 @@ char QExtensionManager_EventFilterDefault(void* ptr, void* watched, void* event)
 	} else {
 		return static_cast<QExtensionManager*>(ptr)->QExtensionManager::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 	}
+}
+
+void* QExtensionManager_MetaObject(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QExtensionManager*>(ptr)->metaObject());
+}
+
+void* QExtensionManager_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QExtensionManager*>(ptr)->QExtensionManager::metaObject());
 }
 
 void QExtensionManager_TimerEvent(void* ptr, void* event)

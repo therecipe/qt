@@ -385,6 +385,22 @@ func (ptr *QCanBus) EventFilterDefault(watched core.QObject_ITF, event core.QEve
 	return false
 }
 
+//export callbackQCanBus_MetaObject
+func callbackQCanBus_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQCanBusFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QCanBus) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QCanBus_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQCanBus_ObjectNameChanged
 func callbackQCanBus_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtSerialBus_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -1311,6 +1327,22 @@ func (ptr *QCanBusDevice) EventFilterDefault(watched core.QObject_ITF, event cor
 		return int8(C.QCanBusDevice_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQCanBusDevice_MetaObject
+func callbackQCanBusDevice_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQCanBusDeviceFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QCanBusDevice) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QCanBusDevice_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQCanBusDevice_ObjectNameChanged
@@ -3053,6 +3085,22 @@ func (ptr *QModbusDevice) EventFilterDefault(watched core.QObject_ITF, event cor
 	return false
 }
 
+//export callbackQModbusDevice_MetaObject
+func callbackQModbusDevice_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQModbusDeviceFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QModbusDevice) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QModbusDevice_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQModbusDevice_ObjectNameChanged
 func callbackQModbusDevice_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtSerialBus_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -4106,6 +4154,22 @@ func (ptr *QModbusReply) EventFilterDefault(watched core.QObject_ITF, event core
 		return int8(C.QModbusReply_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQModbusReply_MetaObject
+func callbackQModbusReply_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQModbusReplyFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QModbusReply) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QModbusReply_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQModbusReply_ObjectNameChanged

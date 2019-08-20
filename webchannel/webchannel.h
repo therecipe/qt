@@ -70,6 +70,7 @@ void QWebChannel_DeleteLaterDefault(void* ptr);
 void QWebChannel_DisconnectNotifyDefault(void* ptr, void* sign);
 char QWebChannel_EventDefault(void* ptr, void* e);
 char QWebChannel_EventFilterDefault(void* ptr, void* watched, void* event);
+void* QWebChannel_MetaObjectDefault(void* ptr);
 void QWebChannel_TimerEventDefault(void* ptr, void* event);
 void* QWebChannelAbstractTransport_NewQWebChannelAbstractTransport(void* parent);
 void QWebChannelAbstractTransport_ConnectMessageReceived(void* ptr);
@@ -100,6 +101,7 @@ void QWebChannelAbstractTransport_DeleteLaterDefault(void* ptr);
 void QWebChannelAbstractTransport_DisconnectNotifyDefault(void* ptr, void* sign);
 char QWebChannelAbstractTransport_EventDefault(void* ptr, void* e);
 char QWebChannelAbstractTransport_EventFilterDefault(void* ptr, void* watched, void* event);
+void* QWebChannelAbstractTransport_MetaObjectDefault(void* ptr);
 void QWebChannelAbstractTransport_TimerEventDefault(void* ptr, void* event);
 
 #ifdef __cplusplus

@@ -373,6 +373,22 @@ func (ptr *QInAppProduct) EventFilterDefault(watched core.QObject_ITF, event cor
 	return false
 }
 
+//export callbackQInAppProduct_MetaObject
+func callbackQInAppProduct_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQInAppProductFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QInAppProduct) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QInAppProduct_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQInAppProduct_ObjectNameChanged
 func callbackQInAppProduct_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtPurchasing_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -880,6 +896,22 @@ func (ptr *QInAppStore) EventFilterDefault(watched core.QObject_ITF, event core.
 		return int8(C.QInAppStore_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQInAppStore_MetaObject
+func callbackQInAppStore_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQInAppStoreFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QInAppStore) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QInAppStore_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQInAppStore_ObjectNameChanged
@@ -1478,6 +1510,22 @@ func (ptr *QInAppTransaction) EventFilterDefault(watched core.QObject_ITF, event
 		return int8(C.QInAppTransaction_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQInAppTransaction_MetaObject
+func callbackQInAppTransaction_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQInAppTransactionFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QInAppTransaction) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QInAppTransaction_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQInAppTransaction_ObjectNameChanged

@@ -8,6 +8,7 @@
 
 #include <QAbstractItemModel>
 #include <QAbstractItemModelReplica>
+#include <QAudioSystemPlugin>
 #include <QByteArray>
 #include <QCameraImageCapture>
 #include <QChildEvent>
@@ -24,7 +25,9 @@
 #include <QMap>
 #include <QMediaPlaylist>
 #include <QMediaRecorder>
+#include <QMediaServiceProviderPlugin>
 #include <QMetaMethod>
+#include <QMetaObject>
 #include <QMimeData>
 #include <QModelIndex>
 #include <QObject>
@@ -44,6 +47,7 @@
 #include <QRemoteObjectRegistryHost>
 #include <QRemoteObjectReplica>
 #include <QRemoteObjectSettingsStore>
+#include <QScriptExtensionPlugin>
 #include <QSize>
 #include <QString>
 #include <QTimerEvent>
@@ -117,6 +121,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQAbstractItemModelReplica_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQAbstractItemModelReplica_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAbstractItemModelReplica_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractItemModelReplica_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtRemoteObjects_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQAbstractItemModelReplica_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractItemModelReplica_TimerEvent(this, event); };
 };
@@ -763,6 +768,11 @@ char QAbstractItemModelReplica_EventFilterDefault(void* ptr, void* watched, void
 	}
 }
 
+void* QAbstractItemModelReplica_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QAbstractItemModelReplica*>(ptr)->QAbstractItemModelReplica::metaObject());
+}
+
 void QAbstractItemModelReplica_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QAbstractItemModelReplica*>(ptr)->QAbstractItemModelReplica::timerEvent(static_cast<QTimerEvent*>(event));
@@ -782,6 +792,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQRemoteObjectAbstractPersistedStore_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQRemoteObjectAbstractPersistedStore_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQRemoteObjectAbstractPersistedStore_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQRemoteObjectAbstractPersistedStore_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtRemoteObjects_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQRemoteObjectAbstractPersistedStore_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQRemoteObjectAbstractPersistedStore_TimerEvent(this, event); };
 };
@@ -792,7 +803,9 @@ int QRemoteObjectAbstractPersistedStore_QRemoteObjectAbstractPersistedStore_QReg
 
 void* QRemoteObjectAbstractPersistedStore_NewQRemoteObjectAbstractPersistedStore(void* parent)
 {
-	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQRemoteObjectAbstractPersistedStore(static_cast<QAudioSystemPlugin*>(parent));
+	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
 		return new MyQRemoteObjectAbstractPersistedStore(static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQRemoteObjectAbstractPersistedStore(static_cast<QDBusPendingCallWatcher*>(parent));
@@ -810,6 +823,8 @@ void* QRemoteObjectAbstractPersistedStore_NewQRemoteObjectAbstractPersistedStore
 		return new MyQRemoteObjectAbstractPersistedStore(static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
 		return new MyQRemoteObjectAbstractPersistedStore(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQRemoteObjectAbstractPersistedStore(static_cast<QMediaServiceProviderPlugin*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
 		return new MyQRemoteObjectAbstractPersistedStore(static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
@@ -822,6 +837,8 @@ void* QRemoteObjectAbstractPersistedStore_NewQRemoteObjectAbstractPersistedStore
 		return new MyQRemoteObjectAbstractPersistedStore(static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQRemoteObjectAbstractPersistedStore(static_cast<QRemoteObjectPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQRemoteObjectAbstractPersistedStore(static_cast<QScriptExtensionPlugin*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQRemoteObjectAbstractPersistedStore(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -1040,6 +1057,15 @@ char QRemoteObjectAbstractPersistedStore_EventFilterDefault(void* ptr, void* wat
 	}
 }
 
+void* QRemoteObjectAbstractPersistedStore_MetaObjectDefault(void* ptr)
+{
+	if (dynamic_cast<QRemoteObjectSettingsStore*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QRemoteObjectSettingsStore*>(ptr)->QRemoteObjectSettingsStore::metaObject());
+	} else {
+		return const_cast<QMetaObject*>(static_cast<QRemoteObjectAbstractPersistedStore*>(ptr)->QRemoteObjectAbstractPersistedStore::metaObject());
+	}
+}
+
 void QRemoteObjectAbstractPersistedStore_TimerEventDefault(void* ptr, void* event)
 {
 	if (dynamic_cast<QRemoteObjectSettingsStore*>(static_cast<QObject*>(ptr))) {
@@ -1064,6 +1090,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQRemoteObjectReplica_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQRemoteObjectReplica_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQRemoteObjectReplica_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQRemoteObjectReplica_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtRemoteObjects_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQRemoteObjectReplica_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQRemoteObjectReplica_TimerEvent(this, event); };
 };
@@ -1103,6 +1130,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQRemoteObjectNode_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQRemoteObjectNode_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQRemoteObjectNode_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQRemoteObjectNode_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtRemoteObjects_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQRemoteObjectNode_ObjectNameChanged(this, objectNamePacked); };
 };
 
@@ -1112,7 +1140,9 @@ int QRemoteObjectHost_QRemoteObjectHost_QRegisterMetaType(){qRegisterMetaType<QR
 
 void* QRemoteObjectHost_NewQRemoteObjectHost(void* parent)
 {
-	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQRemoteObjectHost(static_cast<QAudioSystemPlugin*>(parent));
+	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
 		return new MyQRemoteObjectHost(static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQRemoteObjectHost(static_cast<QDBusPendingCallWatcher*>(parent));
@@ -1130,6 +1160,8 @@ void* QRemoteObjectHost_NewQRemoteObjectHost(void* parent)
 		return new MyQRemoteObjectHost(static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
 		return new MyQRemoteObjectHost(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQRemoteObjectHost(static_cast<QMediaServiceProviderPlugin*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
 		return new MyQRemoteObjectHost(static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
@@ -1142,6 +1174,8 @@ void* QRemoteObjectHost_NewQRemoteObjectHost(void* parent)
 		return new MyQRemoteObjectHost(static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQRemoteObjectHost(static_cast<QRemoteObjectPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQRemoteObjectHost(static_cast<QScriptExtensionPlugin*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQRemoteObjectHost(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -1153,7 +1187,9 @@ void* QRemoteObjectHost_NewQRemoteObjectHost(void* parent)
 
 void* QRemoteObjectHost_NewQRemoteObjectHost2(void* address, void* registryAddress, long long allowedSchemas, void* parent)
 {
-	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QRemoteObjectHostBase::AllowedSchemas>(allowedSchemas), static_cast<QAudioSystemPlugin*>(parent));
+	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
 		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QRemoteObjectHostBase::AllowedSchemas>(allowedSchemas), static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QRemoteObjectHostBase::AllowedSchemas>(allowedSchemas), static_cast<QDBusPendingCallWatcher*>(parent));
@@ -1171,6 +1207,8 @@ void* QRemoteObjectHost_NewQRemoteObjectHost2(void* address, void* registryAddre
 		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QRemoteObjectHostBase::AllowedSchemas>(allowedSchemas), static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
 		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QRemoteObjectHostBase::AllowedSchemas>(allowedSchemas), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QRemoteObjectHostBase::AllowedSchemas>(allowedSchemas), static_cast<QMediaServiceProviderPlugin*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
 		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QRemoteObjectHostBase::AllowedSchemas>(allowedSchemas), static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
@@ -1183,6 +1221,8 @@ void* QRemoteObjectHost_NewQRemoteObjectHost2(void* address, void* registryAddre
 		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QRemoteObjectHostBase::AllowedSchemas>(allowedSchemas), static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QRemoteObjectHostBase::AllowedSchemas>(allowedSchemas), static_cast<QRemoteObjectPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QRemoteObjectHostBase::AllowedSchemas>(allowedSchemas), static_cast<QScriptExtensionPlugin*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QRemoteObjectHostBase::AllowedSchemas>(allowedSchemas), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -1194,7 +1234,9 @@ void* QRemoteObjectHost_NewQRemoteObjectHost2(void* address, void* registryAddre
 
 void* QRemoteObjectHost_NewQRemoteObjectHost3(void* address, void* parent)
 {
-	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), static_cast<QAudioSystemPlugin*>(parent));
+	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
 		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), static_cast<QDBusPendingCallWatcher*>(parent));
@@ -1212,6 +1254,8 @@ void* QRemoteObjectHost_NewQRemoteObjectHost3(void* address, void* parent)
 		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
 		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), static_cast<QMediaServiceProviderPlugin*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
 		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
@@ -1224,6 +1268,8 @@ void* QRemoteObjectHost_NewQRemoteObjectHost3(void* address, void* parent)
 		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), static_cast<QRemoteObjectPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), static_cast<QScriptExtensionPlugin*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -1268,6 +1314,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQRemoteObjectNode_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQRemoteObjectNode_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQRemoteObjectNode_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQRemoteObjectNode_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtRemoteObjects_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQRemoteObjectNode_ObjectNameChanged(this, objectNamePacked); };
 };
 
@@ -1336,6 +1383,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQRemoteObjectNode_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQRemoteObjectNode_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQRemoteObjectNode_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQRemoteObjectNode_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtRemoteObjects_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQRemoteObjectNode_ObjectNameChanged(this, objectNamePacked); };
 };
 
@@ -1345,7 +1393,9 @@ int QRemoteObjectNode_QRemoteObjectNode_QRegisterMetaType(){qRegisterMetaType<QR
 
 void* QRemoteObjectNode_NewQRemoteObjectNode(void* parent)
 {
-	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQRemoteObjectNode(static_cast<QAudioSystemPlugin*>(parent));
+	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
 		return new MyQRemoteObjectNode(static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQRemoteObjectNode(static_cast<QDBusPendingCallWatcher*>(parent));
@@ -1363,6 +1413,8 @@ void* QRemoteObjectNode_NewQRemoteObjectNode(void* parent)
 		return new MyQRemoteObjectNode(static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
 		return new MyQRemoteObjectNode(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQRemoteObjectNode(static_cast<QMediaServiceProviderPlugin*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
 		return new MyQRemoteObjectNode(static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
@@ -1375,6 +1427,8 @@ void* QRemoteObjectNode_NewQRemoteObjectNode(void* parent)
 		return new MyQRemoteObjectNode(static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQRemoteObjectNode(static_cast<QRemoteObjectPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQRemoteObjectNode(static_cast<QScriptExtensionPlugin*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQRemoteObjectNode(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -1386,7 +1440,9 @@ void* QRemoteObjectNode_NewQRemoteObjectNode(void* parent)
 
 void* QRemoteObjectNode_NewQRemoteObjectNode2(void* registryAddress, void* parent)
 {
-	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQRemoteObjectNode(*static_cast<QUrl*>(registryAddress), static_cast<QAudioSystemPlugin*>(parent));
+	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
 		return new MyQRemoteObjectNode(*static_cast<QUrl*>(registryAddress), static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQRemoteObjectNode(*static_cast<QUrl*>(registryAddress), static_cast<QDBusPendingCallWatcher*>(parent));
@@ -1404,6 +1460,8 @@ void* QRemoteObjectNode_NewQRemoteObjectNode2(void* registryAddress, void* paren
 		return new MyQRemoteObjectNode(*static_cast<QUrl*>(registryAddress), static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
 		return new MyQRemoteObjectNode(*static_cast<QUrl*>(registryAddress), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQRemoteObjectNode(*static_cast<QUrl*>(registryAddress), static_cast<QMediaServiceProviderPlugin*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
 		return new MyQRemoteObjectNode(*static_cast<QUrl*>(registryAddress), static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
@@ -1416,6 +1474,8 @@ void* QRemoteObjectNode_NewQRemoteObjectNode2(void* registryAddress, void* paren
 		return new MyQRemoteObjectNode(*static_cast<QUrl*>(registryAddress), static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQRemoteObjectNode(*static_cast<QUrl*>(registryAddress), static_cast<QRemoteObjectPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQRemoteObjectNode(*static_cast<QUrl*>(registryAddress), static_cast<QScriptExtensionPlugin*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQRemoteObjectNode(*static_cast<QUrl*>(registryAddress), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -1800,6 +1860,19 @@ char QRemoteObjectNode_EventFilterDefault(void* ptr, void* watched, void* event)
 	}
 }
 
+void* QRemoteObjectNode_MetaObjectDefault(void* ptr)
+{
+	if (dynamic_cast<QRemoteObjectRegistryHost*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QRemoteObjectRegistryHost*>(ptr)->QRemoteObjectRegistryHost::metaObject());
+	} else if (dynamic_cast<QRemoteObjectHost*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QRemoteObjectHost*>(ptr)->QRemoteObjectHost::metaObject());
+	} else if (dynamic_cast<QRemoteObjectHostBase*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QRemoteObjectHostBase*>(ptr)->QRemoteObjectHostBase::metaObject());
+	} else {
+		return const_cast<QMetaObject*>(static_cast<QRemoteObjectNode*>(ptr)->QRemoteObjectNode::metaObject());
+	}
+}
+
 class MyQRemoteObjectPendingCallWatcher: public QRemoteObjectPendingCallWatcher
 {
 public:
@@ -1811,6 +1884,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQRemoteObjectPendingCallWatcher_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQRemoteObjectPendingCallWatcher_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQRemoteObjectPendingCallWatcher_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQRemoteObjectPendingCallWatcher_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtRemoteObjects_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQRemoteObjectPendingCallWatcher_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQRemoteObjectPendingCallWatcher_TimerEvent(this, event); };
 };
@@ -1993,6 +2067,16 @@ char QRemoteObjectPendingCallWatcher_EventFilterDefault(void* ptr, void* watched
 	}
 }
 
+void* QRemoteObjectPendingCallWatcher_MetaObject(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QRemoteObjectPendingCallWatcher*>(ptr)->metaObject());
+}
+
+void* QRemoteObjectPendingCallWatcher_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QRemoteObjectPendingCallWatcher*>(ptr)->QRemoteObjectPendingCallWatcher::metaObject());
+}
+
 void QRemoteObjectPendingCallWatcher_TimerEvent(void* ptr, void* event)
 {
 		static_cast<QRemoteObjectPendingCallWatcher*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -2018,6 +2102,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQRemoteObjectReplica_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQRemoteObjectReplica_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQRemoteObjectReplica_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQRemoteObjectReplica_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtRemoteObjects_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQRemoteObjectReplica_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQRemoteObjectReplica_TimerEvent(this, event); };
 };
@@ -2053,6 +2138,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQRemoteObjectNode_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQRemoteObjectNode_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQRemoteObjectNode_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQRemoteObjectNode_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtRemoteObjects_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQRemoteObjectNode_ObjectNameChanged(this, objectNamePacked); };
 };
 
@@ -2062,7 +2148,9 @@ int QRemoteObjectRegistryHost_QRemoteObjectRegistryHost_QRegisterMetaType(){qReg
 
 void* QRemoteObjectRegistryHost_NewQRemoteObjectRegistryHost(void* registryAddress, void* parent)
 {
-	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQRemoteObjectRegistryHost(*static_cast<QUrl*>(registryAddress), static_cast<QAudioSystemPlugin*>(parent));
+	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
 		return new MyQRemoteObjectRegistryHost(*static_cast<QUrl*>(registryAddress), static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQRemoteObjectRegistryHost(*static_cast<QUrl*>(registryAddress), static_cast<QDBusPendingCallWatcher*>(parent));
@@ -2080,6 +2168,8 @@ void* QRemoteObjectRegistryHost_NewQRemoteObjectRegistryHost(void* registryAddre
 		return new MyQRemoteObjectRegistryHost(*static_cast<QUrl*>(registryAddress), static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
 		return new MyQRemoteObjectRegistryHost(*static_cast<QUrl*>(registryAddress), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQRemoteObjectRegistryHost(*static_cast<QUrl*>(registryAddress), static_cast<QMediaServiceProviderPlugin*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
 		return new MyQRemoteObjectRegistryHost(*static_cast<QUrl*>(registryAddress), static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
@@ -2092,6 +2182,8 @@ void* QRemoteObjectRegistryHost_NewQRemoteObjectRegistryHost(void* registryAddre
 		return new MyQRemoteObjectRegistryHost(*static_cast<QUrl*>(registryAddress), static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQRemoteObjectRegistryHost(*static_cast<QUrl*>(registryAddress), static_cast<QRemoteObjectPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQRemoteObjectRegistryHost(*static_cast<QUrl*>(registryAddress), static_cast<QScriptExtensionPlugin*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQRemoteObjectRegistryHost(*static_cast<QUrl*>(registryAddress), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -2115,6 +2207,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQRemoteObjectReplica_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQRemoteObjectReplica_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQRemoteObjectReplica_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQRemoteObjectReplica_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtRemoteObjects_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQRemoteObjectReplica_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQRemoteObjectReplica_TimerEvent(this, event); };
 };
@@ -2461,6 +2554,17 @@ char QRemoteObjectReplica_EventFilterDefault(void* ptr, void* watched, void* eve
 	}
 }
 
+void* QRemoteObjectReplica_MetaObjectDefault(void* ptr)
+{
+	if (dynamic_cast<QRemoteObjectRegistry*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QRemoteObjectRegistry*>(ptr)->QRemoteObjectRegistry::metaObject());
+	} else if (dynamic_cast<QRemoteObjectDynamicReplica*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QRemoteObjectDynamicReplica*>(ptr)->QRemoteObjectDynamicReplica::metaObject());
+	} else {
+		return const_cast<QMetaObject*>(static_cast<QRemoteObjectReplica*>(ptr)->QRemoteObjectReplica::metaObject());
+	}
+}
+
 void QRemoteObjectReplica_TimerEventDefault(void* ptr, void* event)
 {
 	if (dynamic_cast<QRemoteObjectRegistry*>(static_cast<QObject*>(ptr))) {
@@ -2485,6 +2589,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQRemoteObjectAbstractPersistedStore_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQRemoteObjectAbstractPersistedStore_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQRemoteObjectAbstractPersistedStore_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQRemoteObjectAbstractPersistedStore_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtRemoteObjects_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQRemoteObjectAbstractPersistedStore_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQRemoteObjectAbstractPersistedStore_TimerEvent(this, event); };
 };

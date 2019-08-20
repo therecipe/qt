@@ -197,6 +197,7 @@ void QAndroidService_CustomEventDefault(void* ptr, void* event);
 void QAndroidService_DeleteLaterDefault(void* ptr);
 void QAndroidService_DisconnectNotifyDefault(void* ptr, void* sign);
 char QAndroidService_EventFilterDefault(void* ptr, void* watched, void* event);
+void* QAndroidService_MetaObjectDefault(void* ptr);
 void QAndroidService_TimerEventDefault(void* ptr, void* event);
 void* QAndroidServiceConnection_NewQAndroidServiceConnection();
 void* QAndroidServiceConnection_NewQAndroidServiceConnection2(void* serviceConnection);

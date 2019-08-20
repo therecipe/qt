@@ -1390,6 +1390,22 @@ func (ptr *QQuickWebEngineProfile) EventFilterDefault(watched core.QObject_ITF, 
 	return false
 }
 
+//export callbackQQuickWebEngineProfile_MetaObject
+func callbackQQuickWebEngineProfile_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQQuickWebEngineProfileFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QQuickWebEngineProfile) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QQuickWebEngineProfile_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQQuickWebEngineProfile_ObjectNameChanged
 func callbackQQuickWebEngineProfile_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtWebEngine_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -2044,6 +2060,22 @@ func (ptr *QQuickWebEngineScript) EventFilterDefault(watched core.QObject_ITF, e
 		return int8(C.QQuickWebEngineScript_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQQuickWebEngineScript_MetaObject
+func callbackQQuickWebEngineScript_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQQuickWebEngineScriptFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QQuickWebEngineScript) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QQuickWebEngineScript_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQQuickWebEngineScript_ObjectNameChanged
@@ -2769,6 +2801,22 @@ func (ptr *QWebEngineCookieStore) EventFilterDefault(watched core.QObject_ITF, e
 		return int8(C.QWebEngineCookieStore_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQWebEngineCookieStore_MetaObject
+func callbackQWebEngineCookieStore_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQWebEngineCookieStoreFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QWebEngineCookieStore) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QWebEngineCookieStore_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQWebEngineCookieStore_ObjectNameChanged
@@ -3548,6 +3596,22 @@ func (ptr *QWebEngineNotification) EventFilterDefault(watched core.QObject_ITF, 
 		return int8(C.QWebEngineNotification_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQWebEngineNotification_MetaObject
+func callbackQWebEngineNotification_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQWebEngineNotificationFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QWebEngineNotification) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QWebEngineNotification_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQWebEngineNotification_ObjectNameChanged
@@ -4391,6 +4455,22 @@ func (ptr *QWebEnginePage) EventFilterDefault(watched core.QObject_ITF, event co
 	return false
 }
 
+//export callbackQWebEnginePage_MetaObject
+func callbackQWebEnginePage_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQWebEnginePageFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QWebEnginePage) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QWebEnginePage_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQWebEnginePage_ObjectNameChanged
 func callbackQWebEnginePage_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtWebEngine_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -4709,6 +4789,22 @@ func (ptr *QWebEngineProfile) EventFilterDefault(watched core.QObject_ITF, event
 		return int8(C.QWebEngineProfile_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQWebEngineProfile_MetaObject
+func callbackQWebEngineProfile_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQWebEngineProfileFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QWebEngineProfile) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QWebEngineProfile_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQWebEngineProfile_ObjectNameChanged
@@ -5558,6 +5654,22 @@ func (ptr *QWebEngineUrlRequestInterceptor) EventFilterDefault(watched core.QObj
 	return false
 }
 
+//export callbackQWebEngineUrlRequestInterceptor_MetaObject
+func callbackQWebEngineUrlRequestInterceptor_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQWebEngineUrlRequestInterceptorFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QWebEngineUrlRequestInterceptor) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QWebEngineUrlRequestInterceptor_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQWebEngineUrlRequestInterceptor_ObjectNameChanged
 func callbackQWebEngineUrlRequestInterceptor_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtWebEngine_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -5961,6 +6073,22 @@ func (ptr *QWebEngineUrlRequestJob) EventFilterDefault(watched core.QObject_ITF,
 		return int8(C.QWebEngineUrlRequestJob_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQWebEngineUrlRequestJob_MetaObject
+func callbackQWebEngineUrlRequestJob_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQWebEngineUrlRequestJobFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QWebEngineUrlRequestJob) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QWebEngineUrlRequestJob_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQWebEngineUrlRequestJob_ObjectNameChanged
@@ -6502,6 +6630,22 @@ func (ptr *QWebEngineUrlSchemeHandler) EventFilterDefault(watched core.QObject_I
 		return int8(C.QWebEngineUrlSchemeHandler_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQWebEngineUrlSchemeHandler_MetaObject
+func callbackQWebEngineUrlSchemeHandler_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQWebEngineUrlSchemeHandlerFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QWebEngineUrlSchemeHandler) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QWebEngineUrlSchemeHandler_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQWebEngineUrlSchemeHandler_ObjectNameChanged
@@ -7930,6 +8074,22 @@ func (ptr *QWebEngineView) EventFilterDefault(watched core.QObject_ITF, event co
 	return false
 }
 
+//export callbackQWebEngineView_MetaObject
+func callbackQWebEngineView_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQWebEngineViewFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QWebEngineView) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QWebEngineView_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQWebEngineView_ObjectNameChanged
 func callbackQWebEngineView_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtWebEngine_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -8138,6 +8298,52 @@ func NewUserResourceControllerFromPointer(ptr unsafe.Pointer) (n *UserResourceCo
 }
 
 func (ptr *UserResourceController) DestroyUserResourceController() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+type UserScriptData struct {
+	ptr unsafe.Pointer
+}
+
+type UserScriptData_ITF interface {
+	UserScriptData_PTR() *UserScriptData
+}
+
+func (ptr *UserScriptData) UserScriptData_PTR() *UserScriptData {
+	return ptr
+}
+
+func (ptr *UserScriptData) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *UserScriptData) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromUserScriptData(ptr UserScriptData_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.UserScriptData_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewUserScriptDataFromPointer(ptr unsafe.Pointer) (n *UserScriptData) {
+	n = new(UserScriptData)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *UserScriptData) DestroyUserScriptData() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)

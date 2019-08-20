@@ -4137,6 +4137,22 @@ func (ptr *QAndroidService) EventFilterDefault(watched core.QObject_ITF, event c
 	return false
 }
 
+//export callbackQAndroidService_MetaObject
+func callbackQAndroidService_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQAndroidServiceFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QAndroidService) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QAndroidService_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQAndroidService_ObjectNameChanged
 func callbackQAndroidService_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtAndroidExtras_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {

@@ -44,6 +44,7 @@ void QInAppProduct_DeleteLaterDefault(void* ptr);
 void QInAppProduct_DisconnectNotifyDefault(void* ptr, void* sign);
 char QInAppProduct_EventDefault(void* ptr, void* e);
 char QInAppProduct_EventFilterDefault(void* ptr, void* watched, void* event);
+void* QInAppProduct_MetaObjectDefault(void* ptr);
 void QInAppProduct_TimerEventDefault(void* ptr, void* event);
 void* QInAppStore_NewQInAppStore(void* parent);
 void QInAppStore_ConnectProductRegistered(void* ptr);
@@ -83,6 +84,7 @@ void QInAppStore_DeleteLaterDefault(void* ptr);
 void QInAppStore_DisconnectNotifyDefault(void* ptr, void* sign);
 char QInAppStore_EventDefault(void* ptr, void* e);
 char QInAppStore_EventFilterDefault(void* ptr, void* watched, void* event);
+void* QInAppStore_MetaObjectDefault(void* ptr);
 void QInAppStore_TimerEventDefault(void* ptr, void* event);
 struct QtPurchasing_PackedString QInAppTransaction_ErrorString(void* ptr);
 struct QtPurchasing_PackedString QInAppTransaction_ErrorStringDefault(void* ptr);
@@ -119,6 +121,7 @@ void QInAppTransaction_DeleteLaterDefault(void* ptr);
 void QInAppTransaction_DisconnectNotifyDefault(void* ptr, void* sign);
 char QInAppTransaction_EventDefault(void* ptr, void* e);
 char QInAppTransaction_EventFilterDefault(void* ptr, void* watched, void* event);
+void* QInAppTransaction_MetaObjectDefault(void* ptr);
 void QInAppTransaction_TimerEventDefault(void* ptr, void* event);
 
 #ifdef __cplusplus

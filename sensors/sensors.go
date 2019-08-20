@@ -6772,6 +6772,22 @@ func (ptr *QSensor) EventFilterDefault(watched core.QObject_ITF, event core.QEve
 	return false
 }
 
+//export callbackQSensor_MetaObject
+func callbackQSensor_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQSensorFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QSensor) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QSensor_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQSensor_ObjectNameChanged
 func callbackQSensor_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtSensors_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -7242,6 +7258,22 @@ func (ptr *QSensorBackend) EventFilterDefault(watched core.QObject_ITF, event co
 		return int8(C.QSensorBackend_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQSensorBackend_MetaObject
+func callbackQSensorBackend_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQSensorBackendFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QSensorBackend) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QSensorBackend_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQSensorBackend_ObjectNameChanged
@@ -7959,6 +7991,22 @@ func (ptr *QSensorGesture) EventFilterDefault(watched core.QObject_ITF, event co
 	return false
 }
 
+//export callbackQSensorGesture_MetaObject
+func callbackQSensorGesture_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQSensorGestureFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QSensorGesture) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QSensorGesture_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQSensorGesture_ObjectNameChanged
 func callbackQSensorGesture_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtSensors_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -8384,6 +8432,22 @@ func (ptr *QSensorGestureManager) EventFilterDefault(watched core.QObject_ITF, e
 		return int8(C.QSensorGestureManager_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQSensorGestureManager_MetaObject
+func callbackQSensorGestureManager_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQSensorGestureManagerFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QSensorGestureManager) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QSensorGestureManager_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQSensorGestureManager_ObjectNameChanged
@@ -9222,6 +9286,22 @@ func (ptr *QSensorGestureRecognizer) EventFilterDefault(watched core.QObject_ITF
 	return false
 }
 
+//export callbackQSensorGestureRecognizer_MetaObject
+func callbackQSensorGestureRecognizer_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQSensorGestureRecognizerFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QSensorGestureRecognizer) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QSensorGestureRecognizer_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQSensorGestureRecognizer_ObjectNameChanged
 func callbackQSensorGestureRecognizer_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtSensors_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -9706,6 +9786,22 @@ func (ptr *QSensorReading) EventFilterDefault(watched core.QObject_ITF, event co
 		return int8(C.QSensorReading_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQSensorReading_MetaObject
+func callbackQSensorReading_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQSensorReadingFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QSensorReading) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QSensorReading_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQSensorReading_ObjectNameChanged

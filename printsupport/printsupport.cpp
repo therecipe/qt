@@ -24,6 +24,7 @@
 #include <QInputMethodEvent>
 #include <QKeyEvent>
 #include <QMetaMethod>
+#include <QMetaObject>
 #include <QMouseEvent>
 #include <QMoveEvent>
 #include <QObject>
@@ -132,6 +133,7 @@ public:
 	void deleteLater() { callbackQAbstractPrintDialog_DeleteLater(this); };
 	void Signal_Destroyed(QObject * obj) { callbackQAbstractPrintDialog_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQAbstractPrintDialog_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractPrintDialog_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtPrintSupport_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQAbstractPrintDialog_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractPrintDialog_TimerEvent(this, event); };
 };
@@ -947,6 +949,15 @@ void QAbstractPrintDialog_DisconnectNotifyDefault(void* ptr, void* sign)
 	}
 }
 
+void* QAbstractPrintDialog_MetaObjectDefault(void* ptr)
+{
+	if (dynamic_cast<QPrintDialog*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QPrintDialog*>(ptr)->QPrintDialog::metaObject());
+	} else {
+		return const_cast<QMetaObject*>(static_cast<QAbstractPrintDialog*>(ptr)->QAbstractPrintDialog::metaObject());
+	}
+}
+
 void QAbstractPrintDialog_TimerEventDefault(void* ptr, void* event)
 {
 	if (dynamic_cast<QPrintDialog*>(static_cast<QObject*>(ptr))) {
@@ -1036,6 +1047,7 @@ public:
 	void deleteLater() { callbackQPageSetupDialog_DeleteLater(this); };
 	void Signal_Destroyed(QObject * obj) { callbackQPageSetupDialog_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQPageSetupDialog_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQPageSetupDialog_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtPrintSupport_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQPageSetupDialog_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQPageSetupDialog_TimerEvent(this, event); };
 };
@@ -1545,6 +1557,11 @@ void QPageSetupDialog_DisconnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QPageSetupDialog*>(ptr)->QPageSetupDialog::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
+void* QPageSetupDialog_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QPageSetupDialog*>(ptr)->QPageSetupDialog::metaObject());
+}
+
 void QPageSetupDialog_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QPageSetupDialog*>(ptr)->QPageSetupDialog::timerEvent(static_cast<QTimerEvent*>(event));
@@ -1629,6 +1646,7 @@ public:
 	void deleteLater() { callbackQAbstractPrintDialog_DeleteLater(this); };
 	void Signal_Destroyed(QObject * obj) { callbackQAbstractPrintDialog_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQAbstractPrintDialog_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractPrintDialog_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtPrintSupport_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQAbstractPrintDialog_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractPrintDialog_TimerEvent(this, event); };
 };
@@ -1847,6 +1865,7 @@ public:
 	void deleteLater() { callbackQPrintPreviewDialog_DeleteLater(this); };
 	void Signal_Destroyed(QObject * obj) { callbackQPrintPreviewDialog_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQPrintPreviewDialog_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQPrintPreviewDialog_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtPrintSupport_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQPrintPreviewDialog_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQPrintPreviewDialog_TimerEvent(this, event); };
 };
@@ -2366,6 +2385,11 @@ void QPrintPreviewDialog_DisconnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QPrintPreviewDialog*>(ptr)->QPrintPreviewDialog::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
+void* QPrintPreviewDialog_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QPrintPreviewDialog*>(ptr)->QPrintPreviewDialog::metaObject());
+}
+
 void QPrintPreviewDialog_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QPrintPreviewDialog*>(ptr)->QPrintPreviewDialog::timerEvent(static_cast<QTimerEvent*>(event));
@@ -2462,6 +2486,7 @@ public:
 	void Signal_Destroyed(QObject * obj) { callbackQPrintPreviewWidget_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQPrintPreviewWidget_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQPrintPreviewWidget_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQPrintPreviewWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtPrintSupport_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQPrintPreviewWidget_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQPrintPreviewWidget_TimerEvent(this, event); };
 };
@@ -3157,6 +3182,11 @@ void QPrintPreviewWidget_DisconnectNotifyDefault(void* ptr, void* sign)
 char QPrintPreviewWidget_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 		return static_cast<QPrintPreviewWidget*>(ptr)->QPrintPreviewWidget::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
+void* QPrintPreviewWidget_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QPrintPreviewWidget*>(ptr)->QPrintPreviewWidget::metaObject());
 }
 
 void QPrintPreviewWidget_TimerEventDefault(void* ptr, void* event)

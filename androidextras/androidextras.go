@@ -1290,6 +1290,11 @@ func (ptr *QAndroidService) EventFilterDefault(watched core.QObject_ITF, event c
 	return false
 }
 
+func (ptr *QAndroidService) MetaObjectDefault() *core.QMetaObject {
+
+	return nil
+}
+
 func (ptr *QAndroidService) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 }

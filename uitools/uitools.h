@@ -58,6 +58,7 @@ void QUiLoader_DeleteLaterDefault(void* ptr);
 void QUiLoader_DisconnectNotifyDefault(void* ptr, void* sign);
 char QUiLoader_EventDefault(void* ptr, void* e);
 char QUiLoader_EventFilterDefault(void* ptr, void* watched, void* event);
+void* QUiLoader_MetaObjectDefault(void* ptr);
 void QUiLoader_TimerEventDefault(void* ptr, void* event);
 
 #ifdef __cplusplus

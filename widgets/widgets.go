@@ -1844,6 +1844,22 @@ func (ptr *QAbstractItemDelegate) EventFilterDefault(watched core.QObject_ITF, e
 	return false
 }
 
+//export callbackQAbstractItemDelegate_MetaObject
+func callbackQAbstractItemDelegate_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQAbstractItemDelegateFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QAbstractItemDelegate) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QAbstractItemDelegate_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQAbstractItemDelegate_ObjectNameChanged
 func callbackQAbstractItemDelegate_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtWidgets_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -8641,6 +8657,22 @@ func (ptr *QAction) EventFilterDefault(watched core.QObject_ITF, event core.QEve
 	return false
 }
 
+//export callbackQAction_MetaObject
+func callbackQAction_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQActionFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QAction) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QAction_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQAction_ObjectNameChanged
 func callbackQAction_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtWidgets_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -9342,6 +9374,22 @@ func (ptr *QActionGroup) EventFilterDefault(watched core.QObject_ITF, event core
 		return int8(C.QActionGroup_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQActionGroup_MetaObject
+func callbackQActionGroup_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQActionGroupFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QActionGroup) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QActionGroup_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQActionGroup_ObjectNameChanged
@@ -10751,6 +10799,22 @@ func (ptr *QApplication) EventFilterDefault(watched core.QObject_ITF, event core
 	return false
 }
 
+//export callbackQApplication_MetaObject
+func callbackQApplication_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQApplicationFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QApplication) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QApplication_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQApplication_ObjectNameChanged
 func callbackQApplication_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtWidgets_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -11952,6 +12016,22 @@ func (ptr *QButtonGroup) EventFilterDefault(watched core.QObject_ITF, event core
 		return int8(C.QButtonGroup_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQButtonGroup_MetaObject
+func callbackQButtonGroup_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQButtonGroupFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QButtonGroup) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QButtonGroup_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQButtonGroup_ObjectNameChanged
@@ -17592,6 +17672,22 @@ func (ptr *QCompleter) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 	}
 }
 
+//export callbackQCompleter_MetaObject
+func callbackQCompleter_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQCompleterFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QCompleter) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QCompleter_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQCompleter_ObjectNameChanged
 func callbackQCompleter_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtWidgets_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -18454,6 +18550,22 @@ func (ptr *QDataWidgetMapper) EventFilterDefault(watched core.QObject_ITF, event
 		return int8(C.QDataWidgetMapper_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQDataWidgetMapper_MetaObject
+func callbackQDataWidgetMapper_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQDataWidgetMapperFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QDataWidgetMapper) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QDataWidgetMapper_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQDataWidgetMapper_ObjectNameChanged
@@ -22774,6 +22886,22 @@ func (ptr *QDirModel) EventFilterDefault(watched core.QObject_ITF, event core.QE
 		return int8(C.QDirModel_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQDirModel_MetaObject
+func callbackQDirModel_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQDirModelFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QDirModel) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QDirModel_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQDirModel_ObjectNameChanged
@@ -27773,6 +27901,22 @@ func (ptr *QFileSystemModel) EventFilterDefault(watched core.QObject_ITF, event 
 	return false
 }
 
+//export callbackQFileSystemModel_MetaObject
+func callbackQFileSystemModel_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQFileSystemModelFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QFileSystemModel) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QFileSystemModel_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQFileSystemModel_ObjectNameChanged
 func callbackQFileSystemModel_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtWidgets_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -29558,6 +29702,22 @@ func (ptr *QGesture) EventFilterDefault(watched core.QObject_ITF, event core.QEv
 	return false
 }
 
+//export callbackQGesture_MetaObject
+func callbackQGesture_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQGestureFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QGesture) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QGesture_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQGesture_ObjectNameChanged
 func callbackQGesture_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtWidgets_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -30713,6 +30873,22 @@ func (ptr *QGraphicsAnchor) EventFilterDefault(watched core.QObject_ITF, event c
 		return int8(C.QGraphicsAnchor_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQGraphicsAnchor_MetaObject
+func callbackQGraphicsAnchor_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQGraphicsAnchorFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QGraphicsAnchor) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QGraphicsAnchor_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQGraphicsAnchor_ObjectNameChanged
@@ -32955,6 +33131,22 @@ func (ptr *QGraphicsEffect) EventFilterDefault(watched core.QObject_ITF, event c
 		return int8(C.QGraphicsEffect_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQGraphicsEffect_MetaObject
+func callbackQGraphicsEffect_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQGraphicsEffectFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QGraphicsEffect) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QGraphicsEffect_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQGraphicsEffect_ObjectNameChanged
@@ -37252,6 +37444,22 @@ func (ptr *QGraphicsItemAnimation) EventFilterDefault(watched core.QObject_ITF, 
 	return false
 }
 
+//export callbackQGraphicsItemAnimation_MetaObject
+func callbackQGraphicsItemAnimation_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQGraphicsItemAnimationFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QGraphicsItemAnimation) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QGraphicsItemAnimation_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQGraphicsItemAnimation_ObjectNameChanged
 func callbackQGraphicsItemAnimation_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtWidgets_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -39873,6 +40081,29 @@ func (ptr *QGraphicsObject) EventFilterDefault(watched core.QObject_ITF, event c
 		return int8(C.QGraphicsObject_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQGraphicsObject_MetaObject
+func callbackQGraphicsObject_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQGraphicsObjectFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QGraphicsObject) MetaObject() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QGraphicsObject_MetaObject(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QGraphicsObject) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QGraphicsObject_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQGraphicsObject_ObjectNameChanged
@@ -44471,6 +44702,22 @@ func (ptr *QGraphicsScene) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 	}
 }
 
+//export callbackQGraphicsScene_MetaObject
+func callbackQGraphicsScene_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQGraphicsSceneFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QGraphicsScene) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QGraphicsScene_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQGraphicsScene_ObjectNameChanged
 func callbackQGraphicsScene_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtWidgets_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -46788,6 +47035,22 @@ func (ptr *QGraphicsTransform) EventFilterDefault(watched core.QObject_ITF, even
 		return int8(C.QGraphicsTransform_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQGraphicsTransform_MetaObject
+func callbackQGraphicsTransform_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQGraphicsTransformFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QGraphicsTransform) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QGraphicsTransform_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQGraphicsTransform_ObjectNameChanged
@@ -54493,6 +54756,22 @@ func (ptr *QKeyEventTransition) EventFilterDefault(watched core.QObject_ITF, eve
 	return false
 }
 
+//export callbackQKeyEventTransition_MetaObject
+func callbackQKeyEventTransition_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQKeyEventTransitionFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QKeyEventTransition) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QKeyEventTransition_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQKeyEventTransition_ObjectNameChanged
 func callbackQKeyEventTransition_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtWidgets_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -57095,6 +57374,29 @@ func (ptr *QLayout) EventFilterDefault(watched core.QObject_ITF, event core.QEve
 		return int8(C.QLayout_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQLayout_MetaObject
+func callbackQLayout_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQLayoutFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QLayout) MetaObject() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QLayout_MetaObject(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QLayout) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QLayout_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQLayout_ObjectNameChanged
@@ -66093,6 +66395,22 @@ func (ptr *QMouseEventTransition) EventFilterDefault(watched core.QObject_ITF, e
 	return false
 }
 
+//export callbackQMouseEventTransition_MetaObject
+func callbackQMouseEventTransition_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQMouseEventTransitionFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QMouseEventTransition) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QMouseEventTransition_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQMouseEventTransition_ObjectNameChanged
 func callbackQMouseEventTransition_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtWidgets_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -67669,6 +67987,22 @@ func (ptr *QPlainTextDocumentLayout) EventFilterDefault(watched core.QObject_ITF
 		return int8(C.QPlainTextDocumentLayout_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQPlainTextDocumentLayout_MetaObject
+func callbackQPlainTextDocumentLayout_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQPlainTextDocumentLayoutFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QPlainTextDocumentLayout) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QPlainTextDocumentLayout_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQPlainTextDocumentLayout_ObjectNameChanged
@@ -72520,6 +72854,22 @@ func (ptr *QScroller) EventFilterDefault(watched core.QObject_ITF, event core.QE
 	return false
 }
 
+//export callbackQScroller_MetaObject
+func callbackQScroller_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQScrollerFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QScroller) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QScroller_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQScroller_ObjectNameChanged
 func callbackQScroller_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtWidgets_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -73218,6 +73568,22 @@ func (ptr *QShortcut) EventFilterDefault(watched core.QObject_ITF, event core.QE
 		return int8(C.QShortcut_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQShortcut_MetaObject
+func callbackQShortcut_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQShortcutFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QShortcut) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QShortcut_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQShortcut_ObjectNameChanged
@@ -78753,6 +79119,22 @@ func (ptr *QStyle) EventFilterDefault(watched core.QObject_ITF, event core.QEven
 	return false
 }
 
+//export callbackQStyle_MetaObject
+func callbackQStyle_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQStyleFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QStyle) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QStyle_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQStyle_ObjectNameChanged
 func callbackQStyle_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtWidgets_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -83727,6 +84109,22 @@ func (ptr *QStylePlugin) EventFilterDefault(watched core.QObject_ITF, event core
 	return false
 }
 
+//export callbackQStylePlugin_MetaObject
+func callbackQStylePlugin_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQStylePluginFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QStylePlugin) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QStylePlugin_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQStylePlugin_ObjectNameChanged
 func callbackQStylePlugin_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtWidgets_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -84921,6 +85319,22 @@ func (ptr *QSystemTrayIcon) EventFilterDefault(watched core.QObject_ITF, event c
 		return int8(C.QSystemTrayIcon_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQSystemTrayIcon_MetaObject
+func callbackQSystemTrayIcon_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQSystemTrayIconFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QSystemTrayIcon) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QSystemTrayIcon_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQSystemTrayIcon_ObjectNameChanged
@@ -93752,6 +94166,64 @@ func (ptr *QTextEdit) DestroyQTextEditDefault() {
 	}
 }
 
+type QTileRules struct {
+	ptr unsafe.Pointer
+}
+
+type QTileRules_ITF interface {
+	QTileRules_PTR() *QTileRules
+}
+
+func (ptr *QTileRules) QTileRules_PTR() *QTileRules {
+	return ptr
+}
+
+func (ptr *QTileRules) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QTileRules) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQTileRules(ptr QTileRules_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QTileRules_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQTileRulesFromPointer(ptr unsafe.Pointer) (n *QTileRules) {
+	n = new(QTileRules)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QTileRules) DestroyQTileRules() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func NewQTileRules(horizontalRule core.Qt__TileRule, verticalRule core.Qt__TileRule) *QTileRules {
+	tmpValue := NewQTileRulesFromPointer(C.QTileRules_NewQTileRules(C.longlong(horizontalRule), C.longlong(verticalRule)))
+	runtime.SetFinalizer(tmpValue, (*QTileRules).DestroyQTileRules)
+	return tmpValue
+}
+
+func NewQTileRules2(rule core.Qt__TileRule) *QTileRules {
+	tmpValue := NewQTileRulesFromPointer(C.QTileRules_NewQTileRules2(C.longlong(rule)))
+	runtime.SetFinalizer(tmpValue, (*QTileRules).DestroyQTileRules)
+	return tmpValue
+}
+
 type QTimeEdit struct {
 	QDateTimeEdit
 }
@@ -100995,6 +101467,22 @@ func (ptr *QUndoGroup) EventFilterDefault(watched core.QObject_ITF, event core.Q
 	return false
 }
 
+//export callbackQUndoGroup_MetaObject
+func callbackQUndoGroup_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQUndoGroupFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QUndoGroup) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QUndoGroup_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQUndoGroup_ObjectNameChanged
 func callbackQUndoGroup_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtWidgets_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -101987,6 +102475,22 @@ func (ptr *QUndoStack) EventFilterDefault(watched core.QObject_ITF, event core.Q
 		return int8(C.QUndoStack_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQUndoStack_MetaObject
+func callbackQUndoStack_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQUndoStackFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QUndoStack) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QUndoStack_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQUndoStack_ObjectNameChanged
@@ -107167,6 +107671,29 @@ func (ptr *QWidget) EventFilterDefault(watched core.QObject_ITF, event core.QEve
 		return int8(C.QWidget_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQWidget_MetaObject
+func callbackQWidget_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQWidgetFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QWidget) MetaObject() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QWidget_MetaObject(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWidget) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QWidget_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQWidget_ObjectNameChanged

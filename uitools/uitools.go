@@ -704,6 +704,22 @@ func (ptr *QUiLoader) EventFilterDefault(watched core.QObject_ITF, event core.QE
 	return false
 }
 
+//export callbackQUiLoader_MetaObject
+func callbackQUiLoader_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQUiLoaderFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QUiLoader) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QUiLoader_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQUiLoader_ObjectNameChanged
 func callbackQUiLoader_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtUiTools_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {

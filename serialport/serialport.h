@@ -115,6 +115,7 @@ void QSerialPort_DeleteLaterDefault(void* ptr);
 void QSerialPort_DisconnectNotifyDefault(void* ptr, void* sign);
 char QSerialPort_EventDefault(void* ptr, void* e);
 char QSerialPort_EventFilterDefault(void* ptr, void* watched, void* event);
+void* QSerialPort_MetaObjectDefault(void* ptr);
 void QSerialPort_TimerEventDefault(void* ptr, void* event);
 void* QSerialPortInfo_NewQSerialPortInfo();
 void* QSerialPortInfo_NewQSerialPortInfo2(void* port);

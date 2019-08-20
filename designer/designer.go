@@ -115,6 +115,52 @@ func NewAppFontWidgetFromPointer(ptr unsafe.Pointer) (n *AppFontWidget) {
 	return
 }
 
+type AppearanceOptions struct {
+	ptr unsafe.Pointer
+}
+
+type AppearanceOptions_ITF interface {
+	AppearanceOptions_PTR() *AppearanceOptions
+}
+
+func (ptr *AppearanceOptions) AppearanceOptions_PTR() *AppearanceOptions {
+	return ptr
+}
+
+func (ptr *AppearanceOptions) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *AppearanceOptions) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromAppearanceOptions(ptr AppearanceOptions_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.AppearanceOptions_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewAppearanceOptionsFromPointer(ptr unsafe.Pointer) (n *AppearanceOptions) {
+	n = new(AppearanceOptions)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *AppearanceOptions) DestroyAppearanceOptions() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
 type AssistantClient struct {
 	core.QObject
 }
@@ -2292,6 +2338,22 @@ func (ptr *QDesignerActionEditorInterface) EventFilterDefault(watched core.QObje
 	return false
 }
 
+//export callbackQDesignerActionEditorInterface_MetaObject
+func callbackQDesignerActionEditorInterface_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQDesignerActionEditorInterfaceFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QDesignerActionEditorInterface) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QDesignerActionEditorInterface_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQDesignerActionEditorInterface_ObjectNameChanged
 func callbackQDesignerActionEditorInterface_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtDesigner_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -4412,6 +4474,22 @@ func (ptr *QDesignerFormEditorInterface) EventFilterDefault(watched core.QObject
 		return int8(C.QDesignerFormEditorInterface_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQDesignerFormEditorInterface_MetaObject
+func callbackQDesignerFormEditorInterface_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQDesignerFormEditorInterfaceFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QDesignerFormEditorInterface) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QDesignerFormEditorInterface_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQDesignerFormEditorInterface_ObjectNameChanged
@@ -8728,6 +8806,22 @@ func (ptr *QDesignerFormWindowInterface) EventFilterDefault(watched core.QObject
 	return false
 }
 
+//export callbackQDesignerFormWindowInterface_MetaObject
+func callbackQDesignerFormWindowInterface_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQDesignerFormWindowInterfaceFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QDesignerFormWindowInterface) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QDesignerFormWindowInterface_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQDesignerFormWindowInterface_ObjectNameChanged
 func callbackQDesignerFormWindowInterface_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtDesigner_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -9799,6 +9893,22 @@ func (ptr *QDesignerFormWindowManagerInterface) EventFilterDefault(watched core.
 		return int8(C.QDesignerFormWindowManagerInterface_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQDesignerFormWindowManagerInterface_MetaObject
+func callbackQDesignerFormWindowManagerInterface_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQDesignerFormWindowManagerInterfaceFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QDesignerFormWindowManagerInterface) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QDesignerFormWindowManagerInterface_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQDesignerFormWindowManagerInterface_ObjectNameChanged
@@ -11937,6 +12047,22 @@ func (ptr *QDesignerObjectInspectorInterface) EventFilterDefault(watched core.QO
 	return false
 }
 
+//export callbackQDesignerObjectInspectorInterface_MetaObject
+func callbackQDesignerObjectInspectorInterface_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQDesignerObjectInspectorInterfaceFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QDesignerObjectInspectorInterface) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QDesignerObjectInspectorInterface_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQDesignerObjectInspectorInterface_ObjectNameChanged
 func callbackQDesignerObjectInspectorInterface_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtDesigner_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -13563,6 +13689,22 @@ func (ptr *QDesignerPropertyEditorInterface) EventFilterDefault(watched core.QOb
 		return int8(C.QDesignerPropertyEditorInterface_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQDesignerPropertyEditorInterface_MetaObject
+func callbackQDesignerPropertyEditorInterface_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQDesignerPropertyEditorInterfaceFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QDesignerPropertyEditorInterface) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QDesignerPropertyEditorInterface_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQDesignerPropertyEditorInterface_ObjectNameChanged
@@ -15512,6 +15654,22 @@ func (ptr *QDesignerResourceBrowserInterface) EventFilterDefault(watched core.QO
 	return false
 }
 
+//export callbackQDesignerResourceBrowserInterface_MetaObject
+func callbackQDesignerResourceBrowserInterface_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQDesignerResourceBrowserInterfaceFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QDesignerResourceBrowserInterface) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QDesignerResourceBrowserInterface_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQDesignerResourceBrowserInterface_ObjectNameChanged
 func callbackQDesignerResourceBrowserInterface_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtDesigner_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -17301,6 +17459,22 @@ func (ptr *QDesignerWidgetBoxInterface) EventFilterDefault(watched core.QObject_
 	return false
 }
 
+//export callbackQDesignerWidgetBoxInterface_MetaObject
+func callbackQDesignerWidgetBoxInterface_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQDesignerWidgetBoxInterfaceFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QDesignerWidgetBoxInterface) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QDesignerWidgetBoxInterface_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQDesignerWidgetBoxInterface_ObjectNameChanged
 func callbackQDesignerWidgetBoxInterface_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtDesigner_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -17811,6 +17985,29 @@ func (ptr *QExtensionFactory) EventFilterDefault(watched core.QObject_ITF, event
 		return int8(C.QExtensionFactory_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQExtensionFactory_MetaObject
+func callbackQExtensionFactory_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQExtensionFactoryFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QExtensionFactory) MetaObject() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QExtensionFactory_MetaObject(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QExtensionFactory) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QExtensionFactory_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQExtensionFactory_ObjectNameChanged
@@ -18371,6 +18568,29 @@ func (ptr *QExtensionManager) EventFilterDefault(watched core.QObject_ITF, event
 	return false
 }
 
+//export callbackQExtensionManager_MetaObject
+func callbackQExtensionManager_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQExtensionManagerFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QExtensionManager) MetaObject() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QExtensionManager_MetaObject(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QExtensionManager) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QExtensionManager_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQExtensionManager_ObjectNameChanged
 func callbackQExtensionManager_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtDesigner_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -18626,6 +18846,52 @@ func NewToolBarManagerFromPointer(ptr unsafe.Pointer) (n *ToolBarManager) {
 	n = new(ToolBarManager)
 	n.SetPointer(ptr)
 	return
+}
+
+type ToolWindowFontSettings struct {
+	ptr unsafe.Pointer
+}
+
+type ToolWindowFontSettings_ITF interface {
+	ToolWindowFontSettings_PTR() *ToolWindowFontSettings
+}
+
+func (ptr *ToolWindowFontSettings) ToolWindowFontSettings_PTR() *ToolWindowFontSettings {
+	return ptr
+}
+
+func (ptr *ToolWindowFontSettings) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *ToolWindowFontSettings) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromToolWindowFontSettings(ptr ToolWindowFontSettings_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ToolWindowFontSettings_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewToolWindowFontSettingsFromPointer(ptr unsafe.Pointer) (n *ToolWindowFontSettings) {
+	n = new(ToolWindowFontSettings)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *ToolWindowFontSettings) DestroyToolWindowFontSettings() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
 }
 
 type VersionDialog struct {

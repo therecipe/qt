@@ -64,6 +64,7 @@ void QGraphicsSvgItem_CustomEventDefault(void* ptr, void* event);
 void QGraphicsSvgItem_DeleteLaterDefault(void* ptr);
 void QGraphicsSvgItem_DisconnectNotifyDefault(void* ptr, void* sign);
 char QGraphicsSvgItem_EventFilterDefault(void* ptr, void* watched, void* event);
+void* QGraphicsSvgItem_MetaObjectDefault(void* ptr);
 void QGraphicsSvgItem_TimerEventDefault(void* ptr, void* event);
 void QGraphicsSvgItem_AdvanceDefault(void* ptr, int phase);
 char QGraphicsSvgItem_CollidesWithItemDefault(void* ptr, void* other, long long mode);
@@ -171,6 +172,7 @@ void QSvgRenderer_DeleteLaterDefault(void* ptr);
 void QSvgRenderer_DisconnectNotifyDefault(void* ptr, void* sign);
 char QSvgRenderer_EventDefault(void* ptr, void* e);
 char QSvgRenderer_EventFilterDefault(void* ptr, void* watched, void* event);
+void* QSvgRenderer_MetaObjectDefault(void* ptr);
 void QSvgRenderer_TimerEventDefault(void* ptr, void* event);
 void* QSvgWidget_NewQSvgWidget(void* parent);
 void* QSvgWidget_NewQSvgWidget2(struct QtSvg_PackedString file, void* parent);
@@ -268,6 +270,7 @@ void QSvgWidget_CustomEventDefault(void* ptr, void* event);
 void QSvgWidget_DeleteLaterDefault(void* ptr);
 void QSvgWidget_DisconnectNotifyDefault(void* ptr, void* sign);
 char QSvgWidget_EventFilterDefault(void* ptr, void* watched, void* event);
+void* QSvgWidget_MetaObjectDefault(void* ptr);
 void QSvgWidget_TimerEventDefault(void* ptr, void* event);
 
 #ifdef __cplusplus

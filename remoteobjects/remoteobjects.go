@@ -35,6 +35,144 @@ func unpackStringList(s string) []string {
 	return strings.Split(s, "¡¦!")
 }
 
+type DataEntries struct {
+	ptr unsafe.Pointer
+}
+
+type DataEntries_ITF interface {
+	DataEntries_PTR() *DataEntries
+}
+
+func (ptr *DataEntries) DataEntries_PTR() *DataEntries {
+	return ptr
+}
+
+func (ptr *DataEntries) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *DataEntries) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromDataEntries(ptr DataEntries_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.DataEntries_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewDataEntriesFromPointer(ptr unsafe.Pointer) (n *DataEntries) {
+	n = new(DataEntries)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *DataEntries) DestroyDataEntries() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+type IndexValuePair struct {
+	ptr unsafe.Pointer
+}
+
+type IndexValuePair_ITF interface {
+	IndexValuePair_PTR() *IndexValuePair
+}
+
+func (ptr *IndexValuePair) IndexValuePair_PTR() *IndexValuePair {
+	return ptr
+}
+
+func (ptr *IndexValuePair) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *IndexValuePair) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromIndexValuePair(ptr IndexValuePair_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.IndexValuePair_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewIndexValuePairFromPointer(ptr unsafe.Pointer) (n *IndexValuePair) {
+	n = new(IndexValuePair)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *IndexValuePair) DestroyIndexValuePair() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+type ModelIndex struct {
+	ptr unsafe.Pointer
+}
+
+type ModelIndex_ITF interface {
+	ModelIndex_PTR() *ModelIndex
+}
+
+func (ptr *ModelIndex) ModelIndex_PTR() *ModelIndex {
+	return ptr
+}
+
+func (ptr *ModelIndex) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *ModelIndex) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromModelIndex(ptr ModelIndex_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ModelIndex_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewModelIndexFromPointer(ptr unsafe.Pointer) (n *ModelIndex) {
+	n = new(ModelIndex)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *ModelIndex) DestroyModelIndex() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
 type QAbstractItemModelReplica struct {
 	core.QAbstractItemModel
 }
@@ -1538,6 +1676,22 @@ func (ptr *QAbstractItemModelReplica) EventFilterDefault(watched core.QObject_IT
 	return false
 }
 
+//export callbackQAbstractItemModelReplica_MetaObject
+func callbackQAbstractItemModelReplica_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQAbstractItemModelReplicaFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QAbstractItemModelReplica) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QAbstractItemModelReplica_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQAbstractItemModelReplica_ObjectNameChanged
 func callbackQAbstractItemModelReplica_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtRemoteObjects_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -1598,6 +1752,52 @@ func NewQIOQnxSourceFromPointer(ptr unsafe.Pointer) (n *QIOQnxSource) {
 	n = new(QIOQnxSource)
 	n.SetPointer(ptr)
 	return
+}
+
+type QMetaTypeId struct {
+	ptr unsafe.Pointer
+}
+
+type QMetaTypeId_ITF interface {
+	QMetaTypeId_PTR() *QMetaTypeId
+}
+
+func (ptr *QMetaTypeId) QMetaTypeId_PTR() *QMetaTypeId {
+	return ptr
+}
+
+func (ptr *QMetaTypeId) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QMetaTypeId) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQMetaTypeId(ptr QMetaTypeId_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMetaTypeId_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQMetaTypeIdFromPointer(ptr unsafe.Pointer) (n *QMetaTypeId) {
+	n = new(QMetaTypeId)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QMetaTypeId) DestroyQMetaTypeId() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
 }
 
 type QQnxNativeIo struct {
@@ -2095,6 +2295,22 @@ func (ptr *QRemoteObjectAbstractPersistedStore) EventFilterDefault(watched core.
 		return int8(C.QRemoteObjectAbstractPersistedStore_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQRemoteObjectAbstractPersistedStore_MetaObject
+func callbackQRemoteObjectAbstractPersistedStore_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQRemoteObjectAbstractPersistedStoreFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QRemoteObjectAbstractPersistedStore) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QRemoteObjectAbstractPersistedStore_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQRemoteObjectAbstractPersistedStore_ObjectNameChanged
@@ -3076,6 +3292,22 @@ func (ptr *QRemoteObjectNode) EventFilterDefault(watched core.QObject_ITF, event
 	return false
 }
 
+//export callbackQRemoteObjectNode_MetaObject
+func callbackQRemoteObjectNode_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQRemoteObjectNodeFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QRemoteObjectNode) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QRemoteObjectNode_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQRemoteObjectNode_ObjectNameChanged
 func callbackQRemoteObjectNode_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtRemoteObjects_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -3433,6 +3665,29 @@ func (ptr *QRemoteObjectPendingCallWatcher) EventFilterDefault(watched core.QObj
 		return int8(C.QRemoteObjectPendingCallWatcher_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQRemoteObjectPendingCallWatcher_MetaObject
+func callbackQRemoteObjectPendingCallWatcher_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQRemoteObjectPendingCallWatcherFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QRemoteObjectPendingCallWatcher) MetaObject() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QRemoteObjectPendingCallWatcher_MetaObject(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QRemoteObjectPendingCallWatcher) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QRemoteObjectPendingCallWatcher_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQRemoteObjectPendingCallWatcher_ObjectNameChanged
@@ -4170,6 +4425,22 @@ func (ptr *QRemoteObjectReplica) EventFilterDefault(watched core.QObject_ITF, ev
 	return false
 }
 
+//export callbackQRemoteObjectReplica_MetaObject
+func callbackQRemoteObjectReplica_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQRemoteObjectReplicaFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QRemoteObjectReplica) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QRemoteObjectReplica_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQRemoteObjectReplica_ObjectNameChanged
 func callbackQRemoteObjectReplica_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtRemoteObjects_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -4345,6 +4616,52 @@ func (ptr *QRemoteObjectSettingsStore) SavePropertiesDefault(repName string, rep
 			}
 			return tmpList.Pointer()
 		}())
+	}
+}
+
+type QRemoteObjectSourceLocationInfo struct {
+	ptr unsafe.Pointer
+}
+
+type QRemoteObjectSourceLocationInfo_ITF interface {
+	QRemoteObjectSourceLocationInfo_PTR() *QRemoteObjectSourceLocationInfo
+}
+
+func (ptr *QRemoteObjectSourceLocationInfo) QRemoteObjectSourceLocationInfo_PTR() *QRemoteObjectSourceLocationInfo {
+	return ptr
+}
+
+func (ptr *QRemoteObjectSourceLocationInfo) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QRemoteObjectSourceLocationInfo) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQRemoteObjectSourceLocationInfo(ptr QRemoteObjectSourceLocationInfo_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QRemoteObjectSourceLocationInfo_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQRemoteObjectSourceLocationInfoFromPointer(ptr unsafe.Pointer) (n *QRemoteObjectSourceLocationInfo) {
+	n = new(QRemoteObjectSourceLocationInfo)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QRemoteObjectSourceLocationInfo) DestroyQRemoteObjectSourceLocationInfo() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 

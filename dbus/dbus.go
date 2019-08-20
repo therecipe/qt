@@ -417,6 +417,22 @@ func (ptr *QDBusAbstractAdaptor) EventFilterDefault(watched core.QObject_ITF, ev
 	return false
 }
 
+//export callbackQDBusAbstractAdaptor_MetaObject
+func callbackQDBusAbstractAdaptor_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQDBusAbstractAdaptorFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QDBusAbstractAdaptor) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QDBusAbstractAdaptor_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQDBusAbstractAdaptor_ObjectNameChanged
 func callbackQDBusAbstractAdaptor_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtDBus_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -1022,6 +1038,22 @@ func (ptr *QDBusAbstractInterface) EventFilterDefault(watched core.QObject_ITF, 
 	return false
 }
 
+//export callbackQDBusAbstractInterface_MetaObject
+func callbackQDBusAbstractInterface_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQDBusAbstractInterfaceFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QDBusAbstractInterface) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QDBusAbstractInterface_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQDBusAbstractInterface_ObjectNameChanged
 func callbackQDBusAbstractInterface_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtDBus_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -1300,6 +1332,22 @@ func (ptr *QDBusAbstractInterfaceBase) EventFilterDefault(watched core.QObject_I
 		return int8(C.QDBusAbstractInterfaceBase_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQDBusAbstractInterfaceBase_MetaObject
+func callbackQDBusAbstractInterfaceBase_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQDBusAbstractInterfaceBaseFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QDBusAbstractInterfaceBase) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QDBusAbstractInterfaceBase_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQDBusAbstractInterfaceBase_ObjectNameChanged
@@ -3852,6 +3900,29 @@ func (ptr *QDBusPendingCallWatcher) EventFilterDefault(watched core.QObject_ITF,
 	return false
 }
 
+//export callbackQDBusPendingCallWatcher_MetaObject
+func callbackQDBusPendingCallWatcher_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQDBusPendingCallWatcherFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QDBusPendingCallWatcher) MetaObject() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QDBusPendingCallWatcher_MetaObject(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QDBusPendingCallWatcher) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QDBusPendingCallWatcher_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQDBusPendingCallWatcher_ObjectNameChanged
 func callbackQDBusPendingCallWatcher_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtDBus_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -4411,6 +4482,22 @@ func (ptr *QDBusServer) EventFilterDefault(watched core.QObject_ITF, event core.
 		return int8(C.QDBusServer_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQDBusServer_MetaObject
+func callbackQDBusServer_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQDBusServerFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QDBusServer) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QDBusServer_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQDBusServer_ObjectNameChanged
@@ -4981,6 +5068,22 @@ func (ptr *QDBusServiceWatcher) EventFilterDefault(watched core.QObject_ITF, eve
 		return int8(C.QDBusServiceWatcher_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQDBusServiceWatcher_MetaObject
+func callbackQDBusServiceWatcher_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQDBusServiceWatcherFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QDBusServiceWatcher) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QDBusServiceWatcher_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQDBusServiceWatcher_ObjectNameChanged
@@ -5680,6 +5783,22 @@ func (ptr *QDBusVirtualObject) EventFilterDefault(watched core.QObject_ITF, even
 	return false
 }
 
+//export callbackQDBusVirtualObject_MetaObject
+func callbackQDBusVirtualObject_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQDBusVirtualObjectFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QDBusVirtualObject) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QDBusVirtualObject_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQDBusVirtualObject_ObjectNameChanged
 func callbackQDBusVirtualObject_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtDBus_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -5700,5 +5819,51 @@ func callbackQDBusVirtualObject_TimerEvent(ptr unsafe.Pointer, event unsafe.Poin
 func (ptr *QDBusVirtualObject) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
 		C.QDBusVirtualObject_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+type QMetaTypeId2 struct {
+	ptr unsafe.Pointer
+}
+
+type QMetaTypeId2_ITF interface {
+	QMetaTypeId2_PTR() *QMetaTypeId2
+}
+
+func (ptr *QMetaTypeId2) QMetaTypeId2_PTR() *QMetaTypeId2 {
+	return ptr
+}
+
+func (ptr *QMetaTypeId2) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QMetaTypeId2) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQMetaTypeId2(ptr QMetaTypeId2_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMetaTypeId2_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQMetaTypeId2FromPointer(ptr unsafe.Pointer) (n *QMetaTypeId2) {
+	n = new(QMetaTypeId2)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QMetaTypeId2) DestroyQMetaTypeId2() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }

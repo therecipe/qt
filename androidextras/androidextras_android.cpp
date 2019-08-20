@@ -19,6 +19,7 @@
 #include <QChildEvent>
 #include <QEvent>
 #include <QMetaMethod>
+#include <QMetaObject>
 #include <QObject>
 #include <QString>
 #include <QTimerEvent>
@@ -842,6 +843,7 @@ public:
 	void Signal_Destroyed(QObject * obj) { callbackQAndroidService_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQAndroidService_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAndroidService_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAndroidService_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtAndroidExtras_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQAndroidService_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQAndroidService_TimerEvent(this, event); };
 };
@@ -990,6 +992,11 @@ void QAndroidService_DisconnectNotifyDefault(void* ptr, void* sign)
 char QAndroidService_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 		return static_cast<QAndroidService*>(ptr)->QAndroidService::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
+void* QAndroidService_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QAndroidService*>(ptr)->QAndroidService::metaObject());
 }
 
 void QAndroidService_TimerEventDefault(void* ptr, void* event)

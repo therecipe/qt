@@ -636,6 +636,22 @@ func (ptr *QGraphicsSvgItem) EventFilterDefault(watched core.QObject_ITF, event 
 	return false
 }
 
+//export callbackQGraphicsSvgItem_MetaObject
+func callbackQGraphicsSvgItem_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQGraphicsSvgItemFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QGraphicsSvgItem) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QGraphicsSvgItem_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQGraphicsSvgItem_ObjectNameChanged
 func callbackQGraphicsSvgItem_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtSvg_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -2242,6 +2258,22 @@ func (ptr *QSvgRenderer) EventFilterDefault(watched core.QObject_ITF, event core
 	return false
 }
 
+//export callbackQSvgRenderer_MetaObject
+func callbackQSvgRenderer_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQSvgRendererFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QSvgRenderer) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QSvgRenderer_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQSvgRenderer_ObjectNameChanged
 func callbackQSvgRenderer_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtSvg_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -3658,6 +3690,22 @@ func (ptr *QSvgWidget) EventFilterDefault(watched core.QObject_ITF, event core.Q
 		return int8(C.QSvgWidget_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQSvgWidget_MetaObject
+func callbackQSvgWidget_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQSvgWidgetFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QSvgWidget) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QSvgWidget_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQSvgWidget_ObjectNameChanged

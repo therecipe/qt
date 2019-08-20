@@ -767,6 +767,22 @@ func (ptr *QMacToolBar) EventFilterDefault(watched core.QObject_ITF, event core.
 	return false
 }
 
+//export callbackQMacToolBar_MetaObject
+func callbackQMacToolBar_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQMacToolBarFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QMacToolBar) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QMacToolBar_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQMacToolBar_ObjectNameChanged
 func callbackQMacToolBar_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtMacExtras_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -1210,6 +1226,22 @@ func (ptr *QMacToolBarItem) EventFilterDefault(watched core.QObject_ITF, event c
 		return int8(C.QMacToolBarItem_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQMacToolBarItem_MetaObject
+func callbackQMacToolBarItem_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQMacToolBarItemFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QMacToolBarItem) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QMacToolBarItem_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQMacToolBarItem_ObjectNameChanged

@@ -807,6 +807,52 @@ func (ptr *QAbstractAnimation) DestroyQAbstractAnimationDefault() {
 	}
 }
 
+type QAbstractConcatenable struct {
+	ptr unsafe.Pointer
+}
+
+type QAbstractConcatenable_ITF interface {
+	QAbstractConcatenable_PTR() *QAbstractConcatenable
+}
+
+func (ptr *QAbstractConcatenable) QAbstractConcatenable_PTR() *QAbstractConcatenable {
+	return ptr
+}
+
+func (ptr *QAbstractConcatenable) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QAbstractConcatenable) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQAbstractConcatenable(ptr QAbstractConcatenable_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractConcatenable_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQAbstractConcatenableFromPointer(ptr unsafe.Pointer) (n *QAbstractConcatenable) {
+	n = new(QAbstractConcatenable)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QAbstractConcatenable) DestroyQAbstractConcatenable() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
 type QAbstractEventDispatcher struct {
 	QObject
 }
@@ -6732,6 +6778,52 @@ func (ptr *QArgument) DestroyQArgument() {
 	}
 }
 
+type QArrayData struct {
+	ptr unsafe.Pointer
+}
+
+type QArrayData_ITF interface {
+	QArrayData_PTR() *QArrayData
+}
+
+func (ptr *QArrayData) QArrayData_PTR() *QArrayData {
+	return ptr
+}
+
+func (ptr *QArrayData) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QArrayData) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQArrayData(ptr QArrayData_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QArrayData_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQArrayDataFromPointer(ptr unsafe.Pointer) (n *QArrayData) {
+	n = new(QArrayData)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QArrayData) DestroyQArrayData() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
 type QArrayDataPointer struct {
 	ptr unsafe.Pointer
 }
@@ -9982,6 +10074,81 @@ func (ptr *QCborArray) __toVariantList_newList() unsafe.Pointer {
 	return C.QCborArray___toVariantList_newList(ptr.Pointer())
 }
 
+type QCborError struct {
+	ptr unsafe.Pointer
+}
+
+type QCborError_ITF interface {
+	QCborError_PTR() *QCborError
+}
+
+func (ptr *QCborError) QCborError_PTR() *QCborError {
+	return ptr
+}
+
+func (ptr *QCborError) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QCborError) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQCborError(ptr QCborError_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QCborError_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQCborErrorFromPointer(ptr unsafe.Pointer) (n *QCborError) {
+	n = new(QCborError)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QCborError) DestroyQCborError() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+//go:generate stringer -type=QCborError__Code
+//QCborError::Code
+type QCborError__Code int64
+
+const (
+	QCborError__UnknownError      QCborError__Code = QCborError__Code(1)
+	QCborError__AdvancePastEnd    QCborError__Code = QCborError__Code(3)
+	QCborError__InputOutputError  QCborError__Code = QCborError__Code(4)
+	QCborError__GarbageAtEnd      QCborError__Code = QCborError__Code(256)
+	QCborError__EndOfFile         QCborError__Code = QCborError__Code(257)
+	QCborError__UnexpectedBreak   QCborError__Code = QCborError__Code(258)
+	QCborError__UnknownType       QCborError__Code = QCborError__Code(259)
+	QCborError__IllegalType       QCborError__Code = QCborError__Code(260)
+	QCborError__IllegalNumber     QCborError__Code = QCborError__Code(261)
+	QCborError__IllegalSimpleType QCborError__Code = QCborError__Code(262)
+	QCborError__InvalidUtf8String QCborError__Code = QCborError__Code(516)
+	QCborError__DataTooLarge      QCborError__Code = QCborError__Code(1024)
+	QCborError__NestingTooDeep    QCborError__Code = QCborError__Code(1025)
+	QCborError__UnsupportedType   QCborError__Code = QCborError__Code(1026)
+	QCborError__NoError           QCborError__Code = QCborError__Code(0)
+)
+
+func (ptr *QCborError) ToString() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QCborError_ToString(ptr.Pointer()))
+	}
+	return ""
+}
+
 type QCborMap struct {
 	ptr unsafe.Pointer
 }
@@ -10526,6 +10693,78 @@ func (ptr *QCborMap) ____toVariantMap_keyList_setList(i string) {
 
 func (ptr *QCborMap) ____toVariantMap_keyList_newList() unsafe.Pointer {
 	return C.QCborMap_____toVariantMap_keyList_newList(ptr.Pointer())
+}
+
+type QCborParserError struct {
+	ptr unsafe.Pointer
+}
+
+type QCborParserError_ITF interface {
+	QCborParserError_PTR() *QCborParserError
+}
+
+func (ptr *QCborParserError) QCborParserError_PTR() *QCborParserError {
+	return ptr
+}
+
+func (ptr *QCborParserError) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QCborParserError) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQCborParserError(ptr QCborParserError_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QCborParserError_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQCborParserErrorFromPointer(ptr unsafe.Pointer) (n *QCborParserError) {
+	n = new(QCborParserError)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QCborParserError) DestroyQCborParserError() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *QCborParserError) ErrorString() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QCborParserError_ErrorString(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QCborParserError) Offset() int64 {
+	if ptr.Pointer() != nil {
+		return int64(C.QCborParserError_Offset(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QCborParserError) SetOffset(vqi int64) {
+	if ptr.Pointer() != nil {
+		C.QCborParserError_SetOffset(ptr.Pointer(), C.longlong(vqi))
+	}
+}
+
+func (ptr *QCborParserError) SetError(vqc QCborError_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCborParserError_SetError(ptr.Pointer(), PointerFromQCborError(vqc))
+	}
 }
 
 type QCborStreamReader struct {
@@ -11163,6 +11402,12 @@ func NewQChar6(code int) *QChar {
 
 func NewQChar7(ch QChar__SpecialCharacter) *QChar {
 	tmpValue := NewQCharFromPointer(C.QChar_NewQChar7(C.longlong(ch)))
+	runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+	return tmpValue
+}
+
+func NewQChar8(ch QLatin1Char_ITF) *QChar {
+	tmpValue := NewQCharFromPointer(C.QChar_NewQChar8(PointerFromQLatin1Char(ch)))
 	runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 	return tmpValue
 }
@@ -13003,6 +13248,52 @@ func NewQContiguousCacheFromPointer(ptr unsafe.Pointer) (n *QContiguousCache) {
 	n = new(QContiguousCache)
 	n.SetPointer(ptr)
 	return
+}
+
+type QContiguousCacheData struct {
+	ptr unsafe.Pointer
+}
+
+type QContiguousCacheData_ITF interface {
+	QContiguousCacheData_PTR() *QContiguousCacheData
+}
+
+func (ptr *QContiguousCacheData) QContiguousCacheData_PTR() *QContiguousCacheData {
+	return ptr
+}
+
+func (ptr *QContiguousCacheData) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QContiguousCacheData) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQContiguousCacheData(ptr QContiguousCacheData_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QContiguousCacheData_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQContiguousCacheDataFromPointer(ptr unsafe.Pointer) (n *QContiguousCacheData) {
+	n = new(QContiguousCacheData)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QContiguousCacheData) DestroyQContiguousCacheData() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
 }
 
 type QContiguousCacheTypedData struct {
@@ -17804,6 +18095,52 @@ func NewQExplicitlySharedDataPointerFromPointer(ptr unsafe.Pointer) (n *QExplici
 	return
 }
 
+type QFactoryInterface struct {
+	ptr unsafe.Pointer
+}
+
+type QFactoryInterface_ITF interface {
+	QFactoryInterface_PTR() *QFactoryInterface
+}
+
+func (ptr *QFactoryInterface) QFactoryInterface_PTR() *QFactoryInterface {
+	return ptr
+}
+
+func (ptr *QFactoryInterface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QFactoryInterface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQFactoryInterface(ptr QFactoryInterface_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QFactoryInterface_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQFactoryInterfaceFromPointer(ptr unsafe.Pointer) (n *QFactoryInterface) {
+	n = new(QFactoryInterface)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QFactoryInterface) DestroyQFactoryInterface() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
 type QFile struct {
 	QFileDevice
 }
@@ -20448,6 +20785,52 @@ func NewQHashFromPointer(ptr unsafe.Pointer) (n *QHash) {
 	n = new(QHash)
 	n.SetPointer(ptr)
 	return
+}
+
+type QHashData struct {
+	ptr unsafe.Pointer
+}
+
+type QHashData_ITF interface {
+	QHashData_PTR() *QHashData
+}
+
+func (ptr *QHashData) QHashData_PTR() *QHashData {
+	return ptr
+}
+
+func (ptr *QHashData) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QHashData) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQHashData(ptr QHashData_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QHashData_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQHashDataFromPointer(ptr unsafe.Pointer) (n *QHashData) {
+	n = new(QHashData)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QHashData) DestroyQHashData() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
 }
 
 type QHashIterator struct {
@@ -24283,6 +24666,18 @@ func (ptr *QJsonDocument) FromBinaryData(data QByteArray_ITF, validation QJsonDo
 	return tmpValue
 }
 
+func QJsonDocument_FromJson(json QByteArray_ITF, error QJsonParseError_ITF) *QJsonDocument {
+	tmpValue := NewQJsonDocumentFromPointer(C.QJsonDocument_QJsonDocument_FromJson(PointerFromQByteArray(json), PointerFromQJsonParseError(error)))
+	runtime.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
+	return tmpValue
+}
+
+func (ptr *QJsonDocument) FromJson(json QByteArray_ITF, error QJsonParseError_ITF) *QJsonDocument {
+	tmpValue := NewQJsonDocumentFromPointer(C.QJsonDocument_QJsonDocument_FromJson(PointerFromQByteArray(json), PointerFromQJsonParseError(error)))
+	runtime.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
+	return tmpValue
+}
+
 func QJsonDocument_FromRawData(data []byte, size int, validation QJsonDocument__DataValidation) *QJsonDocument {
 	var dataC *C.char
 	if len(data) != 0 {
@@ -24868,6 +25263,107 @@ func (ptr *QJsonObject) ____toVariantMap_keyList_newList() unsafe.Pointer {
 	return C.QJsonObject_____toVariantMap_keyList_newList(ptr.Pointer())
 }
 
+type QJsonParseError struct {
+	ptr unsafe.Pointer
+}
+
+type QJsonParseError_ITF interface {
+	QJsonParseError_PTR() *QJsonParseError
+}
+
+func (ptr *QJsonParseError) QJsonParseError_PTR() *QJsonParseError {
+	return ptr
+}
+
+func (ptr *QJsonParseError) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QJsonParseError) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQJsonParseError(ptr QJsonParseError_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QJsonParseError_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQJsonParseErrorFromPointer(ptr unsafe.Pointer) (n *QJsonParseError) {
+	n = new(QJsonParseError)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QJsonParseError) DestroyQJsonParseError() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+//go:generate stringer -type=QJsonParseError__ParseError
+//QJsonParseError::ParseError
+type QJsonParseError__ParseError int64
+
+const (
+	QJsonParseError__NoError               QJsonParseError__ParseError = QJsonParseError__ParseError(0)
+	QJsonParseError__UnterminatedObject    QJsonParseError__ParseError = QJsonParseError__ParseError(1)
+	QJsonParseError__MissingNameSeparator  QJsonParseError__ParseError = QJsonParseError__ParseError(2)
+	QJsonParseError__UnterminatedArray     QJsonParseError__ParseError = QJsonParseError__ParseError(3)
+	QJsonParseError__MissingValueSeparator QJsonParseError__ParseError = QJsonParseError__ParseError(4)
+	QJsonParseError__IllegalValue          QJsonParseError__ParseError = QJsonParseError__ParseError(5)
+	QJsonParseError__TerminationByNumber   QJsonParseError__ParseError = QJsonParseError__ParseError(6)
+	QJsonParseError__IllegalNumber         QJsonParseError__ParseError = QJsonParseError__ParseError(7)
+	QJsonParseError__IllegalEscapeSequence QJsonParseError__ParseError = QJsonParseError__ParseError(8)
+	QJsonParseError__IllegalUTF8String     QJsonParseError__ParseError = QJsonParseError__ParseError(9)
+	QJsonParseError__UnterminatedString    QJsonParseError__ParseError = QJsonParseError__ParseError(10)
+	QJsonParseError__MissingObject         QJsonParseError__ParseError = QJsonParseError__ParseError(11)
+	QJsonParseError__DeepNesting           QJsonParseError__ParseError = QJsonParseError__ParseError(12)
+	QJsonParseError__DocumentTooLarge      QJsonParseError__ParseError = QJsonParseError__ParseError(13)
+	QJsonParseError__GarbageAtEnd          QJsonParseError__ParseError = QJsonParseError__ParseError(14)
+)
+
+func (ptr *QJsonParseError) ErrorString() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QJsonParseError_ErrorString(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QJsonParseError) Offset() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QJsonParseError_Offset(ptr.Pointer())))
+	}
+	return 0
+}
+
+func (ptr *QJsonParseError) SetOffset(vin int) {
+	if ptr.Pointer() != nil {
+		C.QJsonParseError_SetOffset(ptr.Pointer(), C.int(int32(vin)))
+	}
+}
+
+func (ptr *QJsonParseError) Error() QJsonParseError__ParseError {
+	if ptr.Pointer() != nil {
+		return QJsonParseError__ParseError(C.QJsonParseError_Error(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QJsonParseError) SetError(vqj QJsonParseError__ParseError) {
+	if ptr.Pointer() != nil {
+		C.QJsonParseError_SetError(ptr.Pointer(), C.longlong(vqj))
+	}
+}
+
 type QJsonValue struct {
 	ptr unsafe.Pointer
 }
@@ -25351,6 +25847,77 @@ func (ptr *QLEInteger) DestroyQLEInteger() {
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
+}
+
+type QLatin1Char struct {
+	ptr unsafe.Pointer
+}
+
+type QLatin1Char_ITF interface {
+	QLatin1Char_PTR() *QLatin1Char
+}
+
+func (ptr *QLatin1Char) QLatin1Char_PTR() *QLatin1Char {
+	return ptr
+}
+
+func (ptr *QLatin1Char) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QLatin1Char) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQLatin1Char(ptr QLatin1Char_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QLatin1Char_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQLatin1CharFromPointer(ptr unsafe.Pointer) (n *QLatin1Char) {
+	n = new(QLatin1Char)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QLatin1Char) DestroyQLatin1Char() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func NewQLatin1Char(c string) *QLatin1Char {
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	tmpValue := NewQLatin1CharFromPointer(C.QLatin1Char_NewQLatin1Char(cC))
+	runtime.SetFinalizer(tmpValue, (*QLatin1Char).DestroyQLatin1Char)
+	return tmpValue
+}
+
+func (ptr *QLatin1Char) ToLatin1() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QLatin1Char_ToLatin1(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QLatin1Char) Unicode() uint16 {
+	if ptr.Pointer() != nil {
+		return uint16(C.QLatin1Char_Unicode(ptr.Pointer()))
+	}
+	return 0
 }
 
 type QLatin1String struct {
@@ -26571,6 +27138,52 @@ func NewQLinkedListNodeFromPointer(ptr unsafe.Pointer) (n *QLinkedListNode) {
 }
 
 func (ptr *QLinkedListNode) DestroyQLinkedListNode() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+type QListData struct {
+	ptr unsafe.Pointer
+}
+
+type QListData_ITF interface {
+	QListData_PTR() *QListData
+}
+
+func (ptr *QListData) QListData_PTR() *QListData {
+	return ptr
+}
+
+func (ptr *QListData) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QListData) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQListData(ptr QListData_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QListData_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQListDataFromPointer(ptr unsafe.Pointer) (n *QListData) {
+	n = new(QListData)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QListData) DestroyQListData() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
@@ -29232,6 +29845,52 @@ func (ptr *QMapData) DestroyQMapData() {
 	}
 }
 
+type QMapDataBase struct {
+	ptr unsafe.Pointer
+}
+
+type QMapDataBase_ITF interface {
+	QMapDataBase_PTR() *QMapDataBase
+}
+
+func (ptr *QMapDataBase) QMapDataBase_PTR() *QMapDataBase {
+	return ptr
+}
+
+func (ptr *QMapDataBase) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QMapDataBase) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQMapDataBase(ptr QMapDataBase_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMapDataBase_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQMapDataBaseFromPointer(ptr unsafe.Pointer) (n *QMapDataBase) {
+	n = new(QMapDataBase)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QMapDataBase) DestroyQMapDataBase() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
 type QMapIterator struct {
 	ptr unsafe.Pointer
 }
@@ -29317,6 +29976,52 @@ func NewQMapNodeFromPointer(ptr unsafe.Pointer) (n *QMapNode) {
 }
 
 func (ptr *QMapNode) DestroyQMapNode() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+type QMapNodeBase struct {
+	ptr unsafe.Pointer
+}
+
+type QMapNodeBase_ITF interface {
+	QMapNodeBase_PTR() *QMapNodeBase
+}
+
+func (ptr *QMapNodeBase) QMapNodeBase_PTR() *QMapNodeBase {
+	return ptr
+}
+
+func (ptr *QMapNodeBase) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QMapNodeBase) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQMapNodeBase(ptr QMapNodeBase_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMapNodeBase_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQMapNodeBaseFromPointer(ptr unsafe.Pointer) (n *QMapNodeBase) {
+	n = new(QMapNodeBase)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QMapNodeBase) DestroyQMapNodeBase() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
@@ -30369,6 +31074,409 @@ func (ptr *QMetaMethod) __parameterTypes_newList() unsafe.Pointer {
 	return C.QMetaMethod___parameterTypes_newList(ptr.Pointer())
 }
 
+type QMetaObject struct {
+	ptr unsafe.Pointer
+}
+
+type QMetaObject_ITF interface {
+	QMetaObject_PTR() *QMetaObject
+}
+
+func (ptr *QMetaObject) QMetaObject_PTR() *QMetaObject {
+	return ptr
+}
+
+func (ptr *QMetaObject) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QMetaObject) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQMetaObject(ptr QMetaObject_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMetaObject_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQMetaObjectFromPointer(ptr unsafe.Pointer) (n *QMetaObject) {
+	n = new(QMetaObject)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QMetaObject) DestroyQMetaObject() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func QMetaObject_CheckConnectArgs(sign string, method string) bool {
+	var signC *C.char
+	if sign != "" {
+		signC = C.CString(sign)
+		defer C.free(unsafe.Pointer(signC))
+	}
+	var methodC *C.char
+	if method != "" {
+		methodC = C.CString(method)
+		defer C.free(unsafe.Pointer(methodC))
+	}
+	return int8(C.QMetaObject_QMetaObject_CheckConnectArgs(signC, methodC)) != 0
+}
+
+func (ptr *QMetaObject) CheckConnectArgs(sign string, method string) bool {
+	var signC *C.char
+	if sign != "" {
+		signC = C.CString(sign)
+		defer C.free(unsafe.Pointer(signC))
+	}
+	var methodC *C.char
+	if method != "" {
+		methodC = C.CString(method)
+		defer C.free(unsafe.Pointer(methodC))
+	}
+	return int8(C.QMetaObject_QMetaObject_CheckConnectArgs(signC, methodC)) != 0
+}
+
+func QMetaObject_CheckConnectArgs2(sign QMetaMethod_ITF, method QMetaMethod_ITF) bool {
+	return int8(C.QMetaObject_QMetaObject_CheckConnectArgs2(PointerFromQMetaMethod(sign), PointerFromQMetaMethod(method))) != 0
+}
+
+func (ptr *QMetaObject) CheckConnectArgs2(sign QMetaMethod_ITF, method QMetaMethod_ITF) bool {
+	return int8(C.QMetaObject_QMetaObject_CheckConnectArgs2(PointerFromQMetaMethod(sign), PointerFromQMetaMethod(method))) != 0
+}
+
+func (ptr *QMetaObject) ClassInfoCount() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QMetaObject_ClassInfoCount(ptr.Pointer())))
+	}
+	return 0
+}
+
+func (ptr *QMetaObject) ClassInfoOffset() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QMetaObject_ClassInfoOffset(ptr.Pointer())))
+	}
+	return 0
+}
+
+func (ptr *QMetaObject) ClassName() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QMetaObject_ClassName(ptr.Pointer()))
+	}
+	return ""
+}
+
+func QMetaObject_ConnectSlotsByName(object QObject_ITF) {
+	C.QMetaObject_QMetaObject_ConnectSlotsByName(PointerFromQObject(object))
+}
+
+func (ptr *QMetaObject) ConnectSlotsByName(object QObject_ITF) {
+	C.QMetaObject_QMetaObject_ConnectSlotsByName(PointerFromQObject(object))
+}
+
+func (ptr *QMetaObject) Constructor(index int) *QMetaMethod {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQMetaMethodFromPointer(C.QMetaObject_Constructor(ptr.Pointer(), C.int(int32(index))))
+		runtime.SetFinalizer(tmpValue, (*QMetaMethod).DestroyQMetaMethod)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QMetaObject) ConstructorCount() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QMetaObject_ConstructorCount(ptr.Pointer())))
+	}
+	return 0
+}
+
+func (ptr *QMetaObject) EnumeratorCount() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QMetaObject_EnumeratorCount(ptr.Pointer())))
+	}
+	return 0
+}
+
+func (ptr *QMetaObject) EnumeratorOffset() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QMetaObject_EnumeratorOffset(ptr.Pointer())))
+	}
+	return 0
+}
+
+func (ptr *QMetaObject) IndexOfClassInfo(name string) int {
+	if ptr.Pointer() != nil {
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
+		return int(int32(C.QMetaObject_IndexOfClassInfo(ptr.Pointer(), nameC)))
+	}
+	return 0
+}
+
+func (ptr *QMetaObject) IndexOfConstructor(constructor string) int {
+	if ptr.Pointer() != nil {
+		var constructorC *C.char
+		if constructor != "" {
+			constructorC = C.CString(constructor)
+			defer C.free(unsafe.Pointer(constructorC))
+		}
+		return int(int32(C.QMetaObject_IndexOfConstructor(ptr.Pointer(), constructorC)))
+	}
+	return 0
+}
+
+func (ptr *QMetaObject) IndexOfEnumerator(name string) int {
+	if ptr.Pointer() != nil {
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
+		return int(int32(C.QMetaObject_IndexOfEnumerator(ptr.Pointer(), nameC)))
+	}
+	return 0
+}
+
+func (ptr *QMetaObject) IndexOfMethod(method string) int {
+	if ptr.Pointer() != nil {
+		var methodC *C.char
+		if method != "" {
+			methodC = C.CString(method)
+			defer C.free(unsafe.Pointer(methodC))
+		}
+		return int(int32(C.QMetaObject_IndexOfMethod(ptr.Pointer(), methodC)))
+	}
+	return 0
+}
+
+func (ptr *QMetaObject) IndexOfProperty(name string) int {
+	if ptr.Pointer() != nil {
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
+		return int(int32(C.QMetaObject_IndexOfProperty(ptr.Pointer(), nameC)))
+	}
+	return 0
+}
+
+func (ptr *QMetaObject) IndexOfSignal(sign string) int {
+	if ptr.Pointer() != nil {
+		var signC *C.char
+		if sign != "" {
+			signC = C.CString(sign)
+			defer C.free(unsafe.Pointer(signC))
+		}
+		return int(int32(C.QMetaObject_IndexOfSignal(ptr.Pointer(), signC)))
+	}
+	return 0
+}
+
+func (ptr *QMetaObject) IndexOfSlot(slot string) int {
+	if ptr.Pointer() != nil {
+		var slotC *C.char
+		if slot != "" {
+			slotC = C.CString(slot)
+			defer C.free(unsafe.Pointer(slotC))
+		}
+		return int(int32(C.QMetaObject_IndexOfSlot(ptr.Pointer(), slotC)))
+	}
+	return 0
+}
+
+func (ptr *QMetaObject) Inherits(metaObject QMetaObject_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QMetaObject_Inherits(ptr.Pointer(), PointerFromQMetaObject(metaObject))) != 0
+	}
+	return false
+}
+
+func QMetaObject_InvokeMethod(obj QObject_ITF, member string, ty Qt__ConnectionType, ret QGenericReturnArgument_ITF, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
+	var memberC *C.char
+	if member != "" {
+		memberC = C.CString(member)
+		defer C.free(unsafe.Pointer(memberC))
+	}
+	return int8(C.QMetaObject_QMetaObject_InvokeMethod(PointerFromQObject(obj), memberC, C.longlong(ty), PointerFromQGenericReturnArgument(ret), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9))) != 0
+}
+
+func (ptr *QMetaObject) InvokeMethod(obj QObject_ITF, member string, ty Qt__ConnectionType, ret QGenericReturnArgument_ITF, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
+	var memberC *C.char
+	if member != "" {
+		memberC = C.CString(member)
+		defer C.free(unsafe.Pointer(memberC))
+	}
+	return int8(C.QMetaObject_QMetaObject_InvokeMethod(PointerFromQObject(obj), memberC, C.longlong(ty), PointerFromQGenericReturnArgument(ret), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9))) != 0
+}
+
+func QMetaObject_InvokeMethod2(obj QObject_ITF, member string, ret QGenericReturnArgument_ITF, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
+	var memberC *C.char
+	if member != "" {
+		memberC = C.CString(member)
+		defer C.free(unsafe.Pointer(memberC))
+	}
+	return int8(C.QMetaObject_QMetaObject_InvokeMethod2(PointerFromQObject(obj), memberC, PointerFromQGenericReturnArgument(ret), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9))) != 0
+}
+
+func (ptr *QMetaObject) InvokeMethod2(obj QObject_ITF, member string, ret QGenericReturnArgument_ITF, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
+	var memberC *C.char
+	if member != "" {
+		memberC = C.CString(member)
+		defer C.free(unsafe.Pointer(memberC))
+	}
+	return int8(C.QMetaObject_QMetaObject_InvokeMethod2(PointerFromQObject(obj), memberC, PointerFromQGenericReturnArgument(ret), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9))) != 0
+}
+
+func QMetaObject_InvokeMethod3(obj QObject_ITF, member string, ty Qt__ConnectionType, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
+	var memberC *C.char
+	if member != "" {
+		memberC = C.CString(member)
+		defer C.free(unsafe.Pointer(memberC))
+	}
+	return int8(C.QMetaObject_QMetaObject_InvokeMethod3(PointerFromQObject(obj), memberC, C.longlong(ty), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9))) != 0
+}
+
+func (ptr *QMetaObject) InvokeMethod3(obj QObject_ITF, member string, ty Qt__ConnectionType, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
+	var memberC *C.char
+	if member != "" {
+		memberC = C.CString(member)
+		defer C.free(unsafe.Pointer(memberC))
+	}
+	return int8(C.QMetaObject_QMetaObject_InvokeMethod3(PointerFromQObject(obj), memberC, C.longlong(ty), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9))) != 0
+}
+
+func QMetaObject_InvokeMethod4(obj QObject_ITF, member string, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
+	var memberC *C.char
+	if member != "" {
+		memberC = C.CString(member)
+		defer C.free(unsafe.Pointer(memberC))
+	}
+	return int8(C.QMetaObject_QMetaObject_InvokeMethod4(PointerFromQObject(obj), memberC, PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9))) != 0
+}
+
+func (ptr *QMetaObject) InvokeMethod4(obj QObject_ITF, member string, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
+	var memberC *C.char
+	if member != "" {
+		memberC = C.CString(member)
+		defer C.free(unsafe.Pointer(memberC))
+	}
+	return int8(C.QMetaObject_QMetaObject_InvokeMethod4(PointerFromQObject(obj), memberC, PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9))) != 0
+}
+
+func (ptr *QMetaObject) Method(index int) *QMetaMethod {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQMetaMethodFromPointer(C.QMetaObject_Method(ptr.Pointer(), C.int(int32(index))))
+		runtime.SetFinalizer(tmpValue, (*QMetaMethod).DestroyQMetaMethod)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QMetaObject) MethodCount() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QMetaObject_MethodCount(ptr.Pointer())))
+	}
+	return 0
+}
+
+func (ptr *QMetaObject) MethodOffset() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QMetaObject_MethodOffset(ptr.Pointer())))
+	}
+	return 0
+}
+
+func (ptr *QMetaObject) NewInstance(val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) *QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQObjectFromPointer(C.QMetaObject_NewInstance(ptr.Pointer(), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func QMetaObject_NormalizedSignature(method string) *QByteArray {
+	var methodC *C.char
+	if method != "" {
+		methodC = C.CString(method)
+		defer C.free(unsafe.Pointer(methodC))
+	}
+	tmpValue := NewQByteArrayFromPointer(C.QMetaObject_QMetaObject_NormalizedSignature(methodC))
+	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	return tmpValue
+}
+
+func (ptr *QMetaObject) NormalizedSignature(method string) *QByteArray {
+	var methodC *C.char
+	if method != "" {
+		methodC = C.CString(method)
+		defer C.free(unsafe.Pointer(methodC))
+	}
+	tmpValue := NewQByteArrayFromPointer(C.QMetaObject_QMetaObject_NormalizedSignature(methodC))
+	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	return tmpValue
+}
+
+func QMetaObject_NormalizedType(ty string) *QByteArray {
+	var tyC *C.char
+	if ty != "" {
+		tyC = C.CString(ty)
+		defer C.free(unsafe.Pointer(tyC))
+	}
+	tmpValue := NewQByteArrayFromPointer(C.QMetaObject_QMetaObject_NormalizedType(tyC))
+	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	return tmpValue
+}
+
+func (ptr *QMetaObject) NormalizedType(ty string) *QByteArray {
+	var tyC *C.char
+	if ty != "" {
+		tyC = C.CString(ty)
+		defer C.free(unsafe.Pointer(tyC))
+	}
+	tmpValue := NewQByteArrayFromPointer(C.QMetaObject_QMetaObject_NormalizedType(tyC))
+	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	return tmpValue
+}
+
+func (ptr *QMetaObject) PropertyCount() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QMetaObject_PropertyCount(ptr.Pointer())))
+	}
+	return 0
+}
+
+func (ptr *QMetaObject) PropertyOffset() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QMetaObject_PropertyOffset(ptr.Pointer())))
+	}
+	return 0
+}
+
+func (ptr *QMetaObject) SuperClass() *QMetaObject {
+	if ptr.Pointer() != nil {
+		return NewQMetaObjectFromPointer(C.QMetaObject_SuperClass(ptr.Pointer()))
+	}
+	return nil
+}
+
 type QMetaProperty struct {
 	ptr unsafe.Pointer
 }
@@ -30896,6 +32004,21 @@ func (ptr *QMetaType) Load(stream QDataStream_ITF, ty int, data unsafe.Pointer) 
 	return int8(C.QMetaType_QMetaType_Load(PointerFromQDataStream(stream), C.int(int32(ty)), data)) != 0
 }
 
+func (ptr *QMetaType) MetaObject() *QMetaObject {
+	if ptr.Pointer() != nil {
+		return NewQMetaObjectFromPointer(C.QMetaType_MetaObject(ptr.Pointer()))
+	}
+	return nil
+}
+
+func QMetaType_MetaObjectForType(ty int) *QMetaObject {
+	return NewQMetaObjectFromPointer(C.QMetaType_QMetaType_MetaObjectForType(C.int(int32(ty))))
+}
+
+func (ptr *QMetaType) MetaObjectForType(ty int) *QMetaObject {
+	return NewQMetaObjectFromPointer(C.QMetaType_QMetaType_MetaObjectForType(C.int(int32(ty))))
+}
+
 func QMetaType_Save(stream QDataStream_ITF, ty int, data unsafe.Pointer) bool {
 	return int8(C.QMetaType_QMetaType_Save(PointerFromQDataStream(stream), C.int(int32(ty)), data)) != 0
 }
@@ -30964,52 +32087,6 @@ func (ptr *QMetaType) TypeName(typeId int) string {
 func (ptr *QMetaType) DestroyQMetaType() {
 	if ptr.Pointer() != nil {
 		C.QMetaType_DestroyQMetaType(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
-}
-
-type QMetaTypeId2 struct {
-	ptr unsafe.Pointer
-}
-
-type QMetaTypeId2_ITF interface {
-	QMetaTypeId2_PTR() *QMetaTypeId2
-}
-
-func (ptr *QMetaTypeId2) QMetaTypeId2_PTR() *QMetaTypeId2 {
-	return ptr
-}
-
-func (ptr *QMetaTypeId2) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QMetaTypeId2) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQMetaTypeId2(ptr QMetaTypeId2_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QMetaTypeId2_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQMetaTypeId2FromPointer(ptr unsafe.Pointer) (n *QMetaTypeId2) {
-	n = new(QMetaTypeId2)
-	n.SetPointer(ptr)
-	return
-}
-
-func (ptr *QMetaTypeId2) DestroyQMetaTypeId2() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -33201,6 +34278,51 @@ func (ptr *QObject) KillTimer(id int) {
 	}
 }
 
+//export callbackQObject_MetaObject
+func callbackQObject_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return PointerFromQMetaObject((*(*func() *QMetaObject)(signal))())
+	}
+
+	return PointerFromQMetaObject(NewQObjectFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QObject) ConnectMetaObject(f func() *QMetaObject) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "metaObject"); signal != nil {
+			f := func() *QMetaObject {
+				(*(*func() *QMetaObject)(signal))()
+				return f()
+			}
+			qt.ConnectSignal(ptr.Pointer(), "metaObject", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "metaObject", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QObject) DisconnectMetaObject() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "metaObject")
+	}
+}
+
+func (ptr *QObject) MetaObject() *QMetaObject {
+	if ptr.Pointer() != nil {
+		return NewQMetaObjectFromPointer(C.QObject_MetaObject(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QObject) MetaObjectDefault() *QMetaObject {
+	if ptr.Pointer() != nil {
+		return NewQMetaObjectFromPointer(C.QObject_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QObject) MoveToThread(targetThread QThread_ITF) {
 	if ptr.Pointer() != nil {
 		C.QObject_MoveToThread(ptr.Pointer(), PointerFromQThread(targetThread))
@@ -35104,6 +36226,12 @@ func (ptr *QPluginLoader) __staticInstances_setList(i QObject_ITF) {
 
 func (ptr *QPluginLoader) __staticInstances_newList() unsafe.Pointer {
 	return C.QPluginLoader___staticInstances_newList(ptr.Pointer())
+}
+
+func (ptr *QPluginLoader) __staticPlugins_setList(i QStaticPlugin_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPluginLoader___staticPlugins_setList(ptr.Pointer(), PointerFromQStaticPlugin(i))
+	}
 }
 
 func (ptr *QPluginLoader) __staticPlugins_newList() unsafe.Pointer {
@@ -38878,6 +40006,52 @@ func NewQScopedPointerObjectDeleteLaterFromPointer(ptr unsafe.Pointer) (n *QScop
 }
 
 func (ptr *QScopedPointerObjectDeleteLater) DestroyQScopedPointerObjectDeleteLater() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+type QScopedPointerPodDeleter struct {
+	ptr unsafe.Pointer
+}
+
+type QScopedPointerPodDeleter_ITF interface {
+	QScopedPointerPodDeleter_PTR() *QScopedPointerPodDeleter
+}
+
+func (ptr *QScopedPointerPodDeleter) QScopedPointerPodDeleter_PTR() *QScopedPointerPodDeleter {
+	return ptr
+}
+
+func (ptr *QScopedPointerPodDeleter) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QScopedPointerPodDeleter) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQScopedPointerPodDeleter(ptr QScopedPointerPodDeleter_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QScopedPointerPodDeleter_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQScopedPointerPodDeleterFromPointer(ptr unsafe.Pointer) (n *QScopedPointerPodDeleter) {
+	n = new(QScopedPointerPodDeleter)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QScopedPointerPodDeleter) DestroyQScopedPointerPodDeleter() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
@@ -43699,6 +44873,79 @@ func (ptr *QStaticByteArrayMatcher) DestroyQStaticByteArrayMatcher() {
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
+}
+
+type QStaticPlugin struct {
+	ptr unsafe.Pointer
+}
+
+type QStaticPlugin_ITF interface {
+	QStaticPlugin_PTR() *QStaticPlugin
+}
+
+func (ptr *QStaticPlugin) QStaticPlugin_PTR() *QStaticPlugin {
+	return ptr
+}
+
+func (ptr *QStaticPlugin) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QStaticPlugin) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQStaticPlugin(ptr QStaticPlugin_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QStaticPlugin_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQStaticPluginFromPointer(ptr unsafe.Pointer) (n *QStaticPlugin) {
+	n = new(QStaticPlugin)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QStaticPlugin) DestroyQStaticPlugin() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *QStaticPlugin) Instance() *QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQObjectFromPointer(C.QStaticPlugin_Instance(ptr.Pointer()))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QStaticPlugin) MetaData() *QJsonObject {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQJsonObjectFromPointer(C.QStaticPlugin_MetaData(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QJsonObject).DestroyQJsonObject)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QStaticPlugin) RawMetaData() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QStaticPlugin_RawMetaData(ptr.Pointer()))
+	}
+	return ""
 }
 
 type QStaticStringData struct {
@@ -50894,10 +52141,11 @@ func (ptr *QTransposeProxyModel) DestroyQTransposeProxyModelDefault() {
 }
 
 type QTypedArrayData struct {
-	ptr unsafe.Pointer
+	QArrayData
 }
 
 type QTypedArrayData_ITF interface {
+	QArrayData_ITF
 	QTypedArrayData_PTR() *QTypedArrayData
 }
 
@@ -50907,14 +52155,14 @@ func (ptr *QTypedArrayData) QTypedArrayData_PTR() *QTypedArrayData {
 
 func (ptr *QTypedArrayData) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return ptr.QArrayData_PTR().Pointer()
 	}
 	return nil
 }
 
 func (ptr *QTypedArrayData) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.QArrayData_PTR().SetPointer(p)
 	}
 }
 

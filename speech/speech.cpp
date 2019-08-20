@@ -6,6 +6,7 @@
 #include "speech.h"
 #include "_cgo_export.h"
 
+#include <QAudioSystemPlugin>
 #include <QByteArray>
 #include <QCameraImageCapture>
 #include <QChildEvent>
@@ -20,7 +21,9 @@
 #include <QMap>
 #include <QMediaPlaylist>
 #include <QMediaRecorder>
+#include <QMediaServiceProviderPlugin>
 #include <QMetaMethod>
+#include <QMetaObject>
 #include <QObject>
 #include <QOffscreenSurface>
 #include <QPaintDeviceWindow>
@@ -28,6 +31,7 @@
 #include <QQuickItem>
 #include <QRadioData>
 #include <QRemoteObjectPendingCallWatcher>
+#include <QScriptExtensionPlugin>
 #include <QString>
 #include <QTextToSpeech>
 #include <QTextToSpeechEngine>
@@ -67,6 +71,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQTextToSpeech_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQTextToSpeech_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQTextToSpeech_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQTextToSpeech_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSpeech_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQTextToSpeech_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQTextToSpeech_TimerEvent(this, event); };
 };
@@ -77,7 +82,9 @@ int QTextToSpeech_QTextToSpeech_QRegisterMetaType(){qRegisterMetaType<QTextToSpe
 
 void* QTextToSpeech_NewQTextToSpeech(void* parent)
 {
-	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQTextToSpeech(static_cast<QAudioSystemPlugin*>(parent));
+	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
 		return new MyQTextToSpeech(static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQTextToSpeech(static_cast<QDBusPendingCallWatcher*>(parent));
@@ -95,6 +102,8 @@ void* QTextToSpeech_NewQTextToSpeech(void* parent)
 		return new MyQTextToSpeech(static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
 		return new MyQTextToSpeech(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQTextToSpeech(static_cast<QMediaServiceProviderPlugin*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
 		return new MyQTextToSpeech(static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
@@ -107,6 +116,8 @@ void* QTextToSpeech_NewQTextToSpeech(void* parent)
 		return new MyQTextToSpeech(static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQTextToSpeech(static_cast<QRemoteObjectPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQTextToSpeech(static_cast<QScriptExtensionPlugin*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQTextToSpeech(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -118,7 +129,9 @@ void* QTextToSpeech_NewQTextToSpeech(void* parent)
 
 void* QTextToSpeech_NewQTextToSpeech2(struct QtSpeech_PackedString engine, void* parent)
 {
-	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQTextToSpeech(QString::fromUtf8(engine.data, engine.len), static_cast<QAudioSystemPlugin*>(parent));
+	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
 		return new MyQTextToSpeech(QString::fromUtf8(engine.data, engine.len), static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQTextToSpeech(QString::fromUtf8(engine.data, engine.len), static_cast<QDBusPendingCallWatcher*>(parent));
@@ -136,6 +149,8 @@ void* QTextToSpeech_NewQTextToSpeech2(struct QtSpeech_PackedString engine, void*
 		return new MyQTextToSpeech(QString::fromUtf8(engine.data, engine.len), static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
 		return new MyQTextToSpeech(QString::fromUtf8(engine.data, engine.len), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQTextToSpeech(QString::fromUtf8(engine.data, engine.len), static_cast<QMediaServiceProviderPlugin*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
 		return new MyQTextToSpeech(QString::fromUtf8(engine.data, engine.len), static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
@@ -148,6 +163,8 @@ void* QTextToSpeech_NewQTextToSpeech2(struct QtSpeech_PackedString engine, void*
 		return new MyQTextToSpeech(QString::fromUtf8(engine.data, engine.len), static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQTextToSpeech(QString::fromUtf8(engine.data, engine.len), static_cast<QRemoteObjectPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQTextToSpeech(QString::fromUtf8(engine.data, engine.len), static_cast<QScriptExtensionPlugin*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQTextToSpeech(QString::fromUtf8(engine.data, engine.len), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -530,6 +547,11 @@ char QTextToSpeech_EventFilterDefault(void* ptr, void* watched, void* event)
 		return static_cast<QTextToSpeech*>(ptr)->QTextToSpeech::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
+void* QTextToSpeech_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QTextToSpeech*>(ptr)->QTextToSpeech::metaObject());
+}
+
 void QTextToSpeech_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QTextToSpeech*>(ptr)->QTextToSpeech::timerEvent(static_cast<QTimerEvent*>(event));
@@ -565,6 +587,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQTextToSpeechEngine_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQTextToSpeechEngine_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQTextToSpeechEngine_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQTextToSpeechEngine_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSpeech_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQTextToSpeechEngine_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQTextToSpeechEngine_TimerEvent(this, event); };
 };
@@ -575,7 +598,9 @@ int QTextToSpeechEngine_QTextToSpeechEngine_QRegisterMetaType(){qRegisterMetaTyp
 
 void* QTextToSpeechEngine_NewQTextToSpeechEngine(void* parent)
 {
-	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQTextToSpeechEngine(static_cast<QAudioSystemPlugin*>(parent));
+	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
 		return new MyQTextToSpeechEngine(static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQTextToSpeechEngine(static_cast<QDBusPendingCallWatcher*>(parent));
@@ -593,6 +618,8 @@ void* QTextToSpeechEngine_NewQTextToSpeechEngine(void* parent)
 		return new MyQTextToSpeechEngine(static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
 		return new MyQTextToSpeechEngine(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQTextToSpeechEngine(static_cast<QMediaServiceProviderPlugin*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
 		return new MyQTextToSpeechEngine(static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
@@ -605,6 +632,8 @@ void* QTextToSpeechEngine_NewQTextToSpeechEngine(void* parent)
 		return new MyQTextToSpeechEngine(static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQTextToSpeechEngine(static_cast<QRemoteObjectPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQTextToSpeechEngine(static_cast<QScriptExtensionPlugin*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQTextToSpeechEngine(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -870,6 +899,11 @@ char QTextToSpeechEngine_EventDefault(void* ptr, void* e)
 char QTextToSpeechEngine_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 		return static_cast<QTextToSpeechEngine*>(ptr)->QTextToSpeechEngine::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
+void* QTextToSpeechEngine_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QTextToSpeechEngine*>(ptr)->QTextToSpeechEngine::metaObject());
 }
 
 void QTextToSpeechEngine_TimerEventDefault(void* ptr, void* event)

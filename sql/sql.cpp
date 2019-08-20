@@ -9,6 +9,7 @@
 #include <QAbstractItemDelegate>
 #include <QAbstractItemModel>
 #include <QAbstractItemView>
+#include <QAudioSystemPlugin>
 #include <QByteArray>
 #include <QCameraImageCapture>
 #include <QChildEvent>
@@ -24,7 +25,9 @@
 #include <QMap>
 #include <QMediaPlaylist>
 #include <QMediaRecorder>
+#include <QMediaServiceProviderPlugin>
 #include <QMetaMethod>
+#include <QMetaObject>
 #include <QMimeData>
 #include <QModelIndex>
 #include <QObject>
@@ -38,6 +41,7 @@
 #include <QRadioData>
 #include <QRect>
 #include <QRemoteObjectPendingCallWatcher>
+#include <QScriptExtensionPlugin>
 #include <QSize>
 #include <QSqlDatabase>
 #include <QSqlDriver>
@@ -335,6 +339,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSqlDriver_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQSqlDriver_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSqlDriver_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSqlDriver_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSql_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSqlDriver_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSqlDriver_TimerEvent(this, event); };
 };
@@ -345,7 +350,9 @@ int QSqlDriver_QSqlDriver_QRegisterMetaType(){qRegisterMetaType<QSqlDriver*>(); 
 
 void* QSqlDriver_NewQSqlDriver(void* parent)
 {
-	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQSqlDriver(static_cast<QAudioSystemPlugin*>(parent));
+	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlDriver(static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlDriver(static_cast<QDBusPendingCallWatcher*>(parent));
@@ -363,6 +370,8 @@ void* QSqlDriver_NewQSqlDriver(void* parent)
 		return new MyQSqlDriver(static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlDriver(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQSqlDriver(static_cast<QMediaServiceProviderPlugin*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlDriver(static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
@@ -375,6 +384,8 @@ void* QSqlDriver_NewQSqlDriver(void* parent)
 		return new MyQSqlDriver(static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlDriver(static_cast<QRemoteObjectPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQSqlDriver(static_cast<QScriptExtensionPlugin*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlDriver(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -770,6 +781,11 @@ char QSqlDriver_EventFilterDefault(void* ptr, void* watched, void* event)
 		return static_cast<QSqlDriver*>(ptr)->QSqlDriver::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
+void* QSqlDriver_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QSqlDriver*>(ptr)->QSqlDriver::metaObject());
+}
+
 void QSqlDriver_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QSqlDriver*>(ptr)->QSqlDriver::timerEvent(static_cast<QTimerEvent*>(event));
@@ -812,6 +828,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSqlDriverPlugin_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQSqlDriverPlugin_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSqlDriverPlugin_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSqlDriverPlugin_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSql_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSqlDriverPlugin_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSqlDriverPlugin_TimerEvent(this, event); };
 };
@@ -822,7 +839,9 @@ int QSqlDriverPlugin_QSqlDriverPlugin_QRegisterMetaType(){qRegisterMetaType<QSql
 
 void* QSqlDriverPlugin_NewQSqlDriverPlugin(void* parent)
 {
-	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQSqlDriverPlugin(static_cast<QAudioSystemPlugin*>(parent));
+	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlDriverPlugin(static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlDriverPlugin(static_cast<QDBusPendingCallWatcher*>(parent));
@@ -840,6 +859,8 @@ void* QSqlDriverPlugin_NewQSqlDriverPlugin(void* parent)
 		return new MyQSqlDriverPlugin(static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlDriverPlugin(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQSqlDriverPlugin(static_cast<QMediaServiceProviderPlugin*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlDriverPlugin(static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
@@ -852,6 +873,8 @@ void* QSqlDriverPlugin_NewQSqlDriverPlugin(void* parent)
 		return new MyQSqlDriverPlugin(static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlDriverPlugin(static_cast<QRemoteObjectPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQSqlDriverPlugin(static_cast<QScriptExtensionPlugin*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlDriverPlugin(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -990,6 +1013,11 @@ char QSqlDriverPlugin_EventDefault(void* ptr, void* e)
 char QSqlDriverPlugin_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 		return static_cast<QSqlDriverPlugin*>(ptr)->QSqlDriverPlugin::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
+void* QSqlDriverPlugin_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QSqlDriverPlugin*>(ptr)->QSqlDriverPlugin::metaObject());
 }
 
 void QSqlDriverPlugin_TimerEventDefault(void* ptr, void* event)
@@ -1610,6 +1638,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSqlQueryModel_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQSqlQueryModel_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSqlQueryModel_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSqlQueryModel_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSql_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSqlQueryModel_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSqlQueryModel_TimerEvent(this, event); };
 };
@@ -1620,7 +1649,9 @@ int QSqlQueryModel_QSqlQueryModel_QRegisterMetaType(){qRegisterMetaType<QSqlQuer
 
 void* QSqlQueryModel_NewQSqlQueryModel(void* parent)
 {
-	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQSqlQueryModel(static_cast<QAudioSystemPlugin*>(parent));
+	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlQueryModel(static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlQueryModel(static_cast<QDBusPendingCallWatcher*>(parent));
@@ -1638,6 +1669,8 @@ void* QSqlQueryModel_NewQSqlQueryModel(void* parent)
 		return new MyQSqlQueryModel(static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlQueryModel(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQSqlQueryModel(static_cast<QMediaServiceProviderPlugin*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlQueryModel(static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
@@ -1650,6 +1683,8 @@ void* QSqlQueryModel_NewQSqlQueryModel(void* parent)
 		return new MyQSqlQueryModel(static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlQueryModel(static_cast<QRemoteObjectPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQSqlQueryModel(static_cast<QScriptExtensionPlugin*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlQueryModel(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -2581,6 +2616,17 @@ char QSqlQueryModel_EventFilterDefault(void* ptr, void* watched, void* event)
 	}
 }
 
+void* QSqlQueryModel_MetaObjectDefault(void* ptr)
+{
+	if (dynamic_cast<QSqlRelationalTableModel*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::metaObject());
+	} else if (dynamic_cast<QSqlTableModel*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::metaObject());
+	} else {
+		return const_cast<QMetaObject*>(static_cast<QSqlQueryModel*>(ptr)->QSqlQueryModel::metaObject());
+	}
+}
+
 void QSqlQueryModel_TimerEventDefault(void* ptr, void* event)
 {
 	if (dynamic_cast<QSqlRelationalTableModel*>(static_cast<QObject*>(ptr))) {
@@ -2801,6 +2847,7 @@ public:
 	void Signal_Destroyed(QObject * obj) { callbackQSqlRelationalDelegate_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSqlRelationalDelegate_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQSqlRelationalDelegate_Event(this, e) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSqlRelationalDelegate_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSql_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSqlRelationalDelegate_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSqlRelationalDelegate_TimerEvent(this, event); };
 };
@@ -2811,7 +2858,9 @@ int QSqlRelationalDelegate_QSqlRelationalDelegate_QRegisterMetaType(){qRegisterM
 
 void* QSqlRelationalDelegate_NewQSqlRelationalDelegate(void* parent)
 {
-	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQSqlRelationalDelegate(static_cast<QAudioSystemPlugin*>(parent));
+	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlRelationalDelegate(static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlRelationalDelegate(static_cast<QDBusPendingCallWatcher*>(parent));
@@ -2829,6 +2878,8 @@ void* QSqlRelationalDelegate_NewQSqlRelationalDelegate(void* parent)
 		return new MyQSqlRelationalDelegate(static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlRelationalDelegate(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQSqlRelationalDelegate(static_cast<QMediaServiceProviderPlugin*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlRelationalDelegate(static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
@@ -2841,6 +2892,8 @@ void* QSqlRelationalDelegate_NewQSqlRelationalDelegate(void* parent)
 		return new MyQSqlRelationalDelegate(static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlRelationalDelegate(static_cast<QRemoteObjectPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQSqlRelationalDelegate(static_cast<QScriptExtensionPlugin*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlRelationalDelegate(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -3041,6 +3094,11 @@ char QSqlRelationalDelegate_EventDefault(void* ptr, void* e)
 		return static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::event(static_cast<QEvent*>(e));
 }
 
+void* QSqlRelationalDelegate_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::metaObject());
+}
+
 void QSqlRelationalDelegate_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::timerEvent(static_cast<QTimerEvent*>(event));
@@ -3135,6 +3193,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSqlQueryModel_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQSqlQueryModel_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSqlQueryModel_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSqlQueryModel_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSql_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSqlQueryModel_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSqlQueryModel_TimerEvent(this, event); };
 };
@@ -3145,7 +3204,9 @@ int QSqlRelationalTableModel_QSqlRelationalTableModel_QRegisterMetaType(){qRegis
 
 void* QSqlRelationalTableModel_NewQSqlRelationalTableModel(void* parent, void* db)
 {
-	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQSqlRelationalTableModel(static_cast<QAudioSystemPlugin*>(parent), *static_cast<QSqlDatabase*>(db));
+	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlRelationalTableModel(static_cast<QCameraImageCapture*>(parent), *static_cast<QSqlDatabase*>(db));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlRelationalTableModel(static_cast<QDBusPendingCallWatcher*>(parent), *static_cast<QSqlDatabase*>(db));
@@ -3163,6 +3224,8 @@ void* QSqlRelationalTableModel_NewQSqlRelationalTableModel(void* parent, void* d
 		return new MyQSqlRelationalTableModel(static_cast<QMediaPlaylist*>(parent), *static_cast<QSqlDatabase*>(db));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlRelationalTableModel(static_cast<QMediaRecorder*>(parent), *static_cast<QSqlDatabase*>(db));
+	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQSqlRelationalTableModel(static_cast<QMediaServiceProviderPlugin*>(parent), *static_cast<QSqlDatabase*>(db));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlRelationalTableModel(static_cast<QOffscreenSurface*>(parent), *static_cast<QSqlDatabase*>(db));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
@@ -3175,6 +3238,8 @@ void* QSqlRelationalTableModel_NewQSqlRelationalTableModel(void* parent, void* d
 		return new MyQSqlRelationalTableModel(static_cast<QRadioData*>(parent), *static_cast<QSqlDatabase*>(db));
 	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlRelationalTableModel(static_cast<QRemoteObjectPendingCallWatcher*>(parent), *static_cast<QSqlDatabase*>(db));
+	} else if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQSqlRelationalTableModel(static_cast<QScriptExtensionPlugin*>(parent), *static_cast<QSqlDatabase*>(db));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlRelationalTableModel(static_cast<QWidget*>(parent), *static_cast<QSqlDatabase*>(db));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -3700,6 +3765,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSqlQueryModel_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQSqlQueryModel_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSqlQueryModel_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSqlQueryModel_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSql_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSqlQueryModel_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSqlQueryModel_TimerEvent(this, event); };
 };
@@ -3710,7 +3776,9 @@ int QSqlTableModel_QSqlTableModel_QRegisterMetaType(){qRegisterMetaType<QSqlTabl
 
 void* QSqlTableModel_NewQSqlTableModel(void* parent, void* db)
 {
-	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQSqlTableModel(static_cast<QAudioSystemPlugin*>(parent), *static_cast<QSqlDatabase*>(db));
+	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlTableModel(static_cast<QCameraImageCapture*>(parent), *static_cast<QSqlDatabase*>(db));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlTableModel(static_cast<QDBusPendingCallWatcher*>(parent), *static_cast<QSqlDatabase*>(db));
@@ -3728,6 +3796,8 @@ void* QSqlTableModel_NewQSqlTableModel(void* parent, void* db)
 		return new MyQSqlTableModel(static_cast<QMediaPlaylist*>(parent), *static_cast<QSqlDatabase*>(db));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlTableModel(static_cast<QMediaRecorder*>(parent), *static_cast<QSqlDatabase*>(db));
+	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQSqlTableModel(static_cast<QMediaServiceProviderPlugin*>(parent), *static_cast<QSqlDatabase*>(db));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlTableModel(static_cast<QOffscreenSurface*>(parent), *static_cast<QSqlDatabase*>(db));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
@@ -3740,6 +3810,8 @@ void* QSqlTableModel_NewQSqlTableModel(void* parent, void* db)
 		return new MyQSqlTableModel(static_cast<QRadioData*>(parent), *static_cast<QSqlDatabase*>(db));
 	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlTableModel(static_cast<QRemoteObjectPendingCallWatcher*>(parent), *static_cast<QSqlDatabase*>(db));
+	} else if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQSqlTableModel(static_cast<QScriptExtensionPlugin*>(parent), *static_cast<QSqlDatabase*>(db));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlTableModel(static_cast<QWidget*>(parent), *static_cast<QSqlDatabase*>(db));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {

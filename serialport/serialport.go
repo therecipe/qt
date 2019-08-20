@@ -1439,6 +1439,22 @@ func (ptr *QSerialPort) EventFilterDefault(watched core.QObject_ITF, event core.
 	return false
 }
 
+//export callbackQSerialPort_MetaObject
+func callbackQSerialPort_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQSerialPortFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QSerialPort) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QSerialPort_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQSerialPort_ObjectNameChanged
 func callbackQSerialPort_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtSerialPort_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {

@@ -7,6 +7,7 @@
 #include "_cgo_export.h"
 
 #include <QAbstractItemModel>
+#include <QAudioSystemPlugin>
 #include <QByteArray>
 #include <QCameraImageCapture>
 #include <QChildEvent>
@@ -22,7 +23,9 @@
 #include <QMap>
 #include <QMediaPlaylist>
 #include <QMediaRecorder>
+#include <QMediaServiceProviderPlugin>
 #include <QMetaMethod>
+#include <QMetaObject>
 #include <QMimeData>
 #include <QModelIndex>
 #include <QObject>
@@ -35,6 +38,7 @@
 #include <QRadioData>
 #include <QRectF>
 #include <QRemoteObjectPendingCallWatcher>
+#include <QScriptExtensionPlugin>
 #include <QSize>
 #include <QString>
 #include <QTimerEvent>
@@ -81,6 +85,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQVirtualKeyboardAbstractInputMethod_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQVirtualKeyboardAbstractInputMethod_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQVirtualKeyboardAbstractInputMethod_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQVirtualKeyboardAbstractInputMethod_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtVirtualKeyboard_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQVirtualKeyboardAbstractInputMethod_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQVirtualKeyboardAbstractInputMethod_TimerEvent(this, event); };
 };
@@ -91,7 +96,9 @@ int QVirtualKeyboardAbstractInputMethod_QVirtualKeyboardAbstractInputMethod_QReg
 
 void* QVirtualKeyboardAbstractInputMethod_NewQVirtualKeyboardAbstractInputMethod(void* parent)
 {
-	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQVirtualKeyboardAbstractInputMethod(static_cast<QAudioSystemPlugin*>(parent));
+	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
 		return new MyQVirtualKeyboardAbstractInputMethod(static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQVirtualKeyboardAbstractInputMethod(static_cast<QDBusPendingCallWatcher*>(parent));
@@ -109,6 +116,8 @@ void* QVirtualKeyboardAbstractInputMethod_NewQVirtualKeyboardAbstractInputMethod
 		return new MyQVirtualKeyboardAbstractInputMethod(static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
 		return new MyQVirtualKeyboardAbstractInputMethod(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQVirtualKeyboardAbstractInputMethod(static_cast<QMediaServiceProviderPlugin*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
 		return new MyQVirtualKeyboardAbstractInputMethod(static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
@@ -121,6 +130,8 @@ void* QVirtualKeyboardAbstractInputMethod_NewQVirtualKeyboardAbstractInputMethod
 		return new MyQVirtualKeyboardAbstractInputMethod(static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new MyQVirtualKeyboardAbstractInputMethod(static_cast<QRemoteObjectPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQVirtualKeyboardAbstractInputMethod(static_cast<QScriptExtensionPlugin*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQVirtualKeyboardAbstractInputMethod(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -575,6 +586,11 @@ char QVirtualKeyboardAbstractInputMethod_EventFilterDefault(void* ptr, void* wat
 		return static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->QVirtualKeyboardAbstractInputMethod::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
+void* QVirtualKeyboardAbstractInputMethod_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->QVirtualKeyboardAbstractInputMethod::metaObject());
+}
+
 void QVirtualKeyboardAbstractInputMethod_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->QVirtualKeyboardAbstractInputMethod::timerEvent(static_cast<QTimerEvent*>(event));
@@ -592,6 +608,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQVirtualKeyboardExtensionPlugin_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQVirtualKeyboardExtensionPlugin_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQVirtualKeyboardExtensionPlugin_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQVirtualKeyboardExtensionPlugin_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtVirtualKeyboard_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQVirtualKeyboardExtensionPlugin_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQVirtualKeyboardExtensionPlugin_TimerEvent(this, event); };
 };
@@ -725,6 +742,11 @@ char QVirtualKeyboardExtensionPlugin_EventFilterDefault(void* ptr, void* watched
 		return static_cast<QVirtualKeyboardExtensionPlugin*>(ptr)->QVirtualKeyboardExtensionPlugin::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
+void* QVirtualKeyboardExtensionPlugin_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QVirtualKeyboardExtensionPlugin*>(ptr)->QVirtualKeyboardExtensionPlugin::metaObject());
+}
+
 void QVirtualKeyboardExtensionPlugin_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QVirtualKeyboardExtensionPlugin*>(ptr)->QVirtualKeyboardExtensionPlugin::timerEvent(static_cast<QTimerEvent*>(event));
@@ -758,6 +780,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQVirtualKeyboardInputContext_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQVirtualKeyboardInputContext_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQVirtualKeyboardInputContext_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQVirtualKeyboardInputContext_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtVirtualKeyboard_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQVirtualKeyboardInputContext_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQVirtualKeyboardInputContext_TimerEvent(this, event); };
 };
@@ -1263,6 +1286,11 @@ char QVirtualKeyboardInputContext_EventFilterDefault(void* ptr, void* watched, v
 		return static_cast<QVirtualKeyboardInputContext*>(ptr)->QVirtualKeyboardInputContext::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
+void* QVirtualKeyboardInputContext_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QVirtualKeyboardInputContext*>(ptr)->QVirtualKeyboardInputContext::metaObject());
+}
+
 void QVirtualKeyboardInputContext_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QVirtualKeyboardInputContext*>(ptr)->QVirtualKeyboardInputContext::timerEvent(static_cast<QTimerEvent*>(event));
@@ -1290,6 +1318,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQVirtualKeyboardInputEngine_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQVirtualKeyboardInputEngine_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQVirtualKeyboardInputEngine_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQVirtualKeyboardInputEngine_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtVirtualKeyboard_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQVirtualKeyboardInputEngine_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQVirtualKeyboardInputEngine_TimerEvent(this, event); };
 };
@@ -1778,6 +1807,11 @@ char QVirtualKeyboardInputEngine_EventFilterDefault(void* ptr, void* watched, vo
 		return static_cast<QVirtualKeyboardInputEngine*>(ptr)->QVirtualKeyboardInputEngine::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
+void* QVirtualKeyboardInputEngine_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QVirtualKeyboardInputEngine*>(ptr)->QVirtualKeyboardInputEngine::metaObject());
+}
+
 void QVirtualKeyboardInputEngine_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QVirtualKeyboardInputEngine*>(ptr)->QVirtualKeyboardInputEngine::timerEvent(static_cast<QTimerEvent*>(event));
@@ -1849,6 +1883,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQVirtualKeyboardSelectionListModel_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQVirtualKeyboardSelectionListModel_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQVirtualKeyboardSelectionListModel_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQVirtualKeyboardSelectionListModel_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtVirtualKeyboard_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQVirtualKeyboardSelectionListModel_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQVirtualKeyboardSelectionListModel_TimerEvent(this, event); };
 };
@@ -2458,6 +2493,11 @@ char QVirtualKeyboardSelectionListModel_EventFilterDefault(void* ptr, void* watc
 		return static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
+void* QVirtualKeyboardSelectionListModel_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::metaObject());
+}
+
 void QVirtualKeyboardSelectionListModel_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->QVirtualKeyboardSelectionListModel::timerEvent(static_cast<QTimerEvent*>(event));
@@ -2480,6 +2520,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQVirtualKeyboardTrace_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQVirtualKeyboardTrace_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQVirtualKeyboardTrace_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQVirtualKeyboardTrace_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtVirtualKeyboard_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQVirtualKeyboardTrace_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQVirtualKeyboardTrace_TimerEvent(this, event); };
 };
@@ -2798,6 +2839,11 @@ char QVirtualKeyboardTrace_EventDefault(void* ptr, void* e)
 char QVirtualKeyboardTrace_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 		return static_cast<QVirtualKeyboardTrace*>(ptr)->QVirtualKeyboardTrace::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
+void* QVirtualKeyboardTrace_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QVirtualKeyboardTrace*>(ptr)->QVirtualKeyboardTrace::metaObject());
 }
 
 void QVirtualKeyboardTrace_TimerEventDefault(void* ptr, void* event)

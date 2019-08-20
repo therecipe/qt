@@ -141,6 +141,7 @@ void QGamepad_DeleteLaterDefault(void* ptr);
 void QGamepad_DisconnectNotifyDefault(void* ptr, void* sign);
 char QGamepad_EventDefault(void* ptr, void* e);
 char QGamepad_EventFilterDefault(void* ptr, void* watched, void* event);
+void* QGamepad_MetaObjectDefault(void* ptr);
 void QGamepad_TimerEventDefault(void* ptr, void* event);
 void* QGamepadKeyNavigation_NewQGamepadKeyNavigation(void* parent);
 char QGamepadKeyNavigation_Active(void* ptr);
@@ -279,6 +280,7 @@ void QGamepadKeyNavigation_DeleteLaterDefault(void* ptr);
 void QGamepadKeyNavigation_DisconnectNotifyDefault(void* ptr, void* sign);
 char QGamepadKeyNavigation_EventDefault(void* ptr, void* e);
 char QGamepadKeyNavigation_EventFilterDefault(void* ptr, void* watched, void* event);
+void* QGamepadKeyNavigation_MetaObjectDefault(void* ptr);
 void QGamepadKeyNavigation_TimerEventDefault(void* ptr, void* event);
 struct QtGamepad_PackedList QGamepadManager_ConnectedGamepads(void* ptr);
 void QGamepadManager_ConnectConnectedGamepadsChanged(void* ptr);
@@ -318,6 +320,7 @@ void QGamepadManager_DeleteLaterDefault(void* ptr);
 void QGamepadManager_DisconnectNotifyDefault(void* ptr, void* sign);
 char QGamepadManager_EventDefault(void* ptr, void* e);
 char QGamepadManager_EventFilterDefault(void* ptr, void* watched, void* event);
+void* QGamepadManager_MetaObjectDefault(void* ptr);
 void QGamepadManager_TimerEventDefault(void* ptr, void* event);
 
 #ifdef __cplusplus

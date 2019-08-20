@@ -55,6 +55,7 @@ void QScriptEngineDebugger_DeleteLaterDefault(void* ptr);
 void QScriptEngineDebugger_DisconnectNotifyDefault(void* ptr, void* sign);
 char QScriptEngineDebugger_EventDefault(void* ptr, void* e);
 char QScriptEngineDebugger_EventFilterDefault(void* ptr, void* watched, void* event);
+void* QScriptEngineDebugger_MetaObjectDefault(void* ptr);
 void QScriptEngineDebugger_TimerEventDefault(void* ptr, void* event);
 
 #ifdef __cplusplus

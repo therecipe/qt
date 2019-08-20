@@ -1599,6 +1599,22 @@ func (ptr *QGeoAreaMonitorSource) EventFilterDefault(watched core.QObject_ITF, e
 	return false
 }
 
+//export callbackQGeoAreaMonitorSource_MetaObject
+func callbackQGeoAreaMonitorSource_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQGeoAreaMonitorSourceFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QGeoAreaMonitorSource) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QGeoAreaMonitorSource_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQGeoAreaMonitorSource_ObjectNameChanged
 func callbackQGeoAreaMonitorSource_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtPositioning_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -3705,6 +3721,22 @@ func (ptr *QGeoPositionInfoSource) EventFilterDefault(watched core.QObject_ITF, 
 	return false
 }
 
+//export callbackQGeoPositionInfoSource_MetaObject
+func callbackQGeoPositionInfoSource_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQGeoPositionInfoSourceFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QGeoPositionInfoSource) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QGeoPositionInfoSource_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQGeoPositionInfoSource_ObjectNameChanged
 func callbackQGeoPositionInfoSource_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtPositioning_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -5159,6 +5191,22 @@ func (ptr *QGeoSatelliteInfoSource) EventFilterDefault(watched core.QObject_ITF,
 		return int8(C.QGeoSatelliteInfoSource_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQGeoSatelliteInfoSource_MetaObject
+func callbackQGeoSatelliteInfoSource_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQGeoSatelliteInfoSourceFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QGeoSatelliteInfoSource) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QGeoSatelliteInfoSource_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQGeoSatelliteInfoSource_ObjectNameChanged

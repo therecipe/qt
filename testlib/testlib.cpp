@@ -8,6 +8,7 @@
 
 #include <QAbstractItemModel>
 #include <QAbstractItemModelTester>
+#include <QAudioSystemPlugin>
 #include <QByteArray>
 #include <QCameraImageCapture>
 #include <QChildEvent>
@@ -20,7 +21,9 @@
 #include <QLayout>
 #include <QMediaPlaylist>
 #include <QMediaRecorder>
+#include <QMediaServiceProviderPlugin>
 #include <QMetaMethod>
+#include <QMetaObject>
 #include <QObject>
 #include <QOffscreenSurface>
 #include <QPaintDeviceWindow>
@@ -29,6 +32,7 @@
 #include <QQuickItem>
 #include <QRadioData>
 #include <QRemoteObjectPendingCallWatcher>
+#include <QScriptExtensionPlugin>
 #include <QSignalSpy>
 #include <QString>
 #include <QTestEventList>
@@ -39,7 +43,9 @@
 
 void* QAbstractItemModelTester_NewQAbstractItemModelTester(void* model, void* parent)
 {
-	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(parent))) {
+		return new QAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QAudioSystemPlugin*>(parent));
+	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
 		return new QAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new QAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QDBusPendingCallWatcher*>(parent));
@@ -57,6 +63,8 @@ void* QAbstractItemModelTester_NewQAbstractItemModelTester(void* model, void* pa
 		return new QAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
 		return new QAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(parent))) {
+		return new QAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QMediaServiceProviderPlugin*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
 		return new QAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
@@ -69,6 +77,8 @@ void* QAbstractItemModelTester_NewQAbstractItemModelTester(void* model, void* pa
 		return new QAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new QAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QRemoteObjectPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(parent))) {
+		return new QAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QScriptExtensionPlugin*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new QAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -80,7 +90,9 @@ void* QAbstractItemModelTester_NewQAbstractItemModelTester(void* model, void* pa
 
 void* QAbstractItemModelTester_NewQAbstractItemModelTester2(void* model, long long mode, void* parent)
 {
-	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(parent))) {
+		return new QAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QAbstractItemModelTester::FailureReportingMode>(mode), static_cast<QAudioSystemPlugin*>(parent));
+	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
 		return new QAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QAbstractItemModelTester::FailureReportingMode>(mode), static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new QAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QAbstractItemModelTester::FailureReportingMode>(mode), static_cast<QDBusPendingCallWatcher*>(parent));
@@ -98,6 +110,8 @@ void* QAbstractItemModelTester_NewQAbstractItemModelTester2(void* model, long lo
 		return new QAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QAbstractItemModelTester::FailureReportingMode>(mode), static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
 		return new QAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QAbstractItemModelTester::FailureReportingMode>(mode), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(parent))) {
+		return new QAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QAbstractItemModelTester::FailureReportingMode>(mode), static_cast<QMediaServiceProviderPlugin*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
 		return new QAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QAbstractItemModelTester::FailureReportingMode>(mode), static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
@@ -110,6 +124,8 @@ void* QAbstractItemModelTester_NewQAbstractItemModelTester2(void* model, long lo
 		return new QAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QAbstractItemModelTester::FailureReportingMode>(mode), static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(parent))) {
 		return new QAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QAbstractItemModelTester::FailureReportingMode>(mode), static_cast<QRemoteObjectPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(parent))) {
+		return new QAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QAbstractItemModelTester::FailureReportingMode>(mode), static_cast<QScriptExtensionPlugin*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new QAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QAbstractItemModelTester::FailureReportingMode>(mode), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -136,6 +152,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSignalSpy_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQSignalSpy_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSignalSpy_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSignalSpy_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtTestLib_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSignalSpy_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSignalSpy_TimerEvent(this, event); };
 };
@@ -146,7 +163,9 @@ int QSignalSpy_QSignalSpy_QRegisterMetaType(){qRegisterMetaType<QSignalSpy*>(); 
 
 void* QSignalSpy_NewQSignalSpy(void* object, char* sign)
 {
-	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(object))) {
+	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(object))) {
+		return new MyQSignalSpy(static_cast<QAudioSystemPlugin*>(object), const_cast<const char*>(sign));
+	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(object))) {
 		return new MyQSignalSpy(static_cast<QCameraImageCapture*>(object), const_cast<const char*>(sign));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(object))) {
 		return new MyQSignalSpy(static_cast<QDBusPendingCallWatcher*>(object), const_cast<const char*>(sign));
@@ -164,6 +183,8 @@ void* QSignalSpy_NewQSignalSpy(void* object, char* sign)
 		return new MyQSignalSpy(static_cast<QMediaPlaylist*>(object), const_cast<const char*>(sign));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(object))) {
 		return new MyQSignalSpy(static_cast<QMediaRecorder*>(object), const_cast<const char*>(sign));
+	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(object))) {
+		return new MyQSignalSpy(static_cast<QMediaServiceProviderPlugin*>(object), const_cast<const char*>(sign));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(object))) {
 		return new MyQSignalSpy(static_cast<QOffscreenSurface*>(object), const_cast<const char*>(sign));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(object))) {
@@ -176,6 +197,8 @@ void* QSignalSpy_NewQSignalSpy(void* object, char* sign)
 		return new MyQSignalSpy(static_cast<QRadioData*>(object), const_cast<const char*>(sign));
 	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(object))) {
 		return new MyQSignalSpy(static_cast<QRemoteObjectPendingCallWatcher*>(object), const_cast<const char*>(sign));
+	} else if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(object))) {
+		return new MyQSignalSpy(static_cast<QScriptExtensionPlugin*>(object), const_cast<const char*>(sign));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(object))) {
 		return new MyQSignalSpy(static_cast<QWidget*>(object), const_cast<const char*>(sign));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(object))) {
@@ -345,6 +368,11 @@ char QSignalSpy_EventDefault(void* ptr, void* e)
 char QSignalSpy_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 		return static_cast<QSignalSpy*>(ptr)->QSignalSpy::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
+void* QSignalSpy_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QSignalSpy*>(ptr)->QSignalSpy::metaObject());
 }
 
 void QSignalSpy_TimerEventDefault(void* ptr, void* event)

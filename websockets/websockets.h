@@ -43,6 +43,7 @@ void QMaskGenerator_DeleteLaterDefault(void* ptr);
 void QMaskGenerator_DisconnectNotifyDefault(void* ptr, void* sign);
 char QMaskGenerator_EventDefault(void* ptr, void* e);
 char QMaskGenerator_EventFilterDefault(void* ptr, void* watched, void* event);
+void* QMaskGenerator_MetaObjectDefault(void* ptr);
 void QMaskGenerator_TimerEventDefault(void* ptr, void* event);
 void* QWebSocket_NewQWebSocket2(struct QtWebSockets_PackedString origin, long long version, void* parent);
 void QWebSocket_Abort(void* ptr);
@@ -163,6 +164,7 @@ void QWebSocket_DeleteLaterDefault(void* ptr);
 void QWebSocket_DisconnectNotifyDefault(void* ptr, void* sign);
 char QWebSocket_EventDefault(void* ptr, void* e);
 char QWebSocket_EventFilterDefault(void* ptr, void* watched, void* event);
+void* QWebSocket_MetaObjectDefault(void* ptr);
 void QWebSocket_TimerEventDefault(void* ptr, void* event);
 void* QWebSocketCorsAuthenticator_NewQWebSocketCorsAuthenticator(struct QtWebSockets_PackedString origin);
 void* QWebSocketCorsAuthenticator_NewQWebSocketCorsAuthenticator2(void* other);
@@ -251,6 +253,7 @@ void QWebSocketServer_DeleteLaterDefault(void* ptr);
 void QWebSocketServer_DisconnectNotifyDefault(void* ptr, void* sign);
 char QWebSocketServer_EventDefault(void* ptr, void* e);
 char QWebSocketServer_EventFilterDefault(void* ptr, void* watched, void* event);
+void* QWebSocketServer_MetaObjectDefault(void* ptr);
 void QWebSocketServer_TimerEventDefault(void* ptr, void* event);
 
 #ifdef __cplusplus

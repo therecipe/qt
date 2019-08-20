@@ -1523,6 +1523,22 @@ func (ptr *QGamepad) EventFilterDefault(watched core.QObject_ITF, event core.QEv
 	return false
 }
 
+//export callbackQGamepad_MetaObject
+func callbackQGamepad_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQGamepadFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QGamepad) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QGamepad_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQGamepad_ObjectNameChanged
 func callbackQGamepad_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtGamepad_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -3525,6 +3541,22 @@ func (ptr *QGamepadKeyNavigation) EventFilterDefault(watched core.QObject_ITF, e
 	return false
 }
 
+//export callbackQGamepadKeyNavigation_MetaObject
+func callbackQGamepadKeyNavigation_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQGamepadKeyNavigationFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QGamepadKeyNavigation) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QGamepadKeyNavigation_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQGamepadKeyNavigation_ObjectNameChanged
 func callbackQGamepadKeyNavigation_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtGamepad_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -4045,6 +4077,22 @@ func (ptr *QGamepadManager) EventFilterDefault(watched core.QObject_ITF, event c
 		return int8(C.QGamepadManager_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQGamepadManager_MetaObject
+func callbackQGamepadManager_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQGamepadManagerFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QGamepadManager) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QGamepadManager_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQGamepadManager_ObjectNameChanged

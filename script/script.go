@@ -1232,6 +1232,15 @@ func (ptr *QScriptEngine) NewObject2(scriptClass QScriptClass_ITF, data QScriptV
 	return nil
 }
 
+func (ptr *QScriptEngine) NewQMetaObject(metaObject core.QMetaObject_ITF, ctor QScriptValue_ITF) *QScriptValue {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQScriptValueFromPointer(C.QScriptEngine_NewQMetaObject(ptr.Pointer(), core.PointerFromQMetaObject(metaObject), PointerFromQScriptValue(ctor)))
+		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QScriptEngine) NewQObject(object core.QObject_ITF, ownership QScriptEngine__ValueOwnership, options QScriptEngine__QObjectWrapOption) *QScriptValue {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQScriptValueFromPointer(C.QScriptEngine_NewQObject(ptr.Pointer(), core.PointerFromQObject(object), C.longlong(ownership), C.longlong(options)))
@@ -1714,6 +1723,22 @@ func (ptr *QScriptEngine) EventFilterDefault(watched core.QObject_ITF, event cor
 		return int8(C.QScriptEngine_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQScriptEngine_MetaObject
+func callbackQScriptEngine_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQScriptEngineFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QScriptEngine) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QScriptEngine_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQScriptEngine_ObjectNameChanged
@@ -2348,12 +2373,60 @@ func (ptr *QScriptEngineAgent) DestroyQScriptEngineAgentDefault() {
 	}
 }
 
+type QScriptExtensionInterface struct {
+	ptr unsafe.Pointer
+}
+
+type QScriptExtensionInterface_ITF interface {
+	QScriptExtensionInterface_PTR() *QScriptExtensionInterface
+}
+
+func (ptr *QScriptExtensionInterface) QScriptExtensionInterface_PTR() *QScriptExtensionInterface {
+	return ptr
+}
+
+func (ptr *QScriptExtensionInterface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QScriptExtensionInterface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQScriptExtensionInterface(ptr QScriptExtensionInterface_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QScriptExtensionInterface_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQScriptExtensionInterfaceFromPointer(ptr unsafe.Pointer) (n *QScriptExtensionInterface) {
+	n = new(QScriptExtensionInterface)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QScriptExtensionInterface) DestroyQScriptExtensionInterface() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
 type QScriptExtensionPlugin struct {
 	core.QObject
+	QScriptExtensionInterface
 }
 
 type QScriptExtensionPlugin_ITF interface {
 	core.QObject_ITF
+	QScriptExtensionInterface_ITF
 	QScriptExtensionPlugin_PTR() *QScriptExtensionPlugin
 }
 
@@ -2371,6 +2444,7 @@ func (ptr *QScriptExtensionPlugin) Pointer() unsafe.Pointer {
 func (ptr *QScriptExtensionPlugin) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
 		ptr.QObject_PTR().SetPointer(p)
+		ptr.QScriptExtensionInterface_PTR().SetPointer(p)
 	}
 }
 
@@ -2647,6 +2721,12 @@ func callbackQScriptExtensionPlugin_ChildEvent(ptr unsafe.Pointer, event unsafe.
 	}
 }
 
+func (ptr *QScriptExtensionPlugin) ChildEvent(event core.QChildEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QScriptExtensionPlugin_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
 func (ptr *QScriptExtensionPlugin) ChildEventDefault(event core.QChildEvent_ITF) {
 	if ptr.Pointer() != nil {
 		C.QScriptExtensionPlugin_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
@@ -2659,6 +2739,12 @@ func callbackQScriptExtensionPlugin_ConnectNotify(ptr unsafe.Pointer, sign unsaf
 		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQScriptExtensionPluginFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
+	}
+}
+
+func (ptr *QScriptExtensionPlugin) ConnectNotify(sign core.QMetaMethod_ITF) {
+	if ptr.Pointer() != nil {
+		C.QScriptExtensionPlugin_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
@@ -2677,6 +2763,12 @@ func callbackQScriptExtensionPlugin_CustomEvent(ptr unsafe.Pointer, event unsafe
 	}
 }
 
+func (ptr *QScriptExtensionPlugin) CustomEvent(event core.QEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QScriptExtensionPlugin_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
 func (ptr *QScriptExtensionPlugin) CustomEventDefault(event core.QEvent_ITF) {
 	if ptr.Pointer() != nil {
 		C.QScriptExtensionPlugin_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
@@ -2689,6 +2781,13 @@ func callbackQScriptExtensionPlugin_DeleteLater(ptr unsafe.Pointer) {
 		(*(*func())(signal))()
 	} else {
 		NewQScriptExtensionPluginFromPointer(ptr).DeleteLaterDefault()
+	}
+}
+
+func (ptr *QScriptExtensionPlugin) DeleteLater() {
+	if ptr.Pointer() != nil {
+		C.QScriptExtensionPlugin_DeleteLater(ptr.Pointer())
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2716,6 +2815,12 @@ func callbackQScriptExtensionPlugin_DisconnectNotify(ptr unsafe.Pointer, sign un
 	}
 }
 
+func (ptr *QScriptExtensionPlugin) DisconnectNotify(sign core.QMetaMethod_ITF) {
+	if ptr.Pointer() != nil {
+		C.QScriptExtensionPlugin_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
+	}
+}
+
 func (ptr *QScriptExtensionPlugin) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 	if ptr.Pointer() != nil {
 		C.QScriptExtensionPlugin_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
@@ -2729,6 +2834,13 @@ func callbackQScriptExtensionPlugin_Event(ptr unsafe.Pointer, e unsafe.Pointer) 
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQScriptExtensionPluginFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QScriptExtensionPlugin) Event(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QScriptExtensionPlugin_Event(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+	}
+	return false
 }
 
 func (ptr *QScriptExtensionPlugin) EventDefault(e core.QEvent_ITF) bool {
@@ -2747,11 +2859,41 @@ func callbackQScriptExtensionPlugin_EventFilter(ptr unsafe.Pointer, watched unsa
 	return C.char(int8(qt.GoBoolToInt(NewQScriptExtensionPluginFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 }
 
+func (ptr *QScriptExtensionPlugin) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QScriptExtensionPlugin_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+	}
+	return false
+}
+
 func (ptr *QScriptExtensionPlugin) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
 		return int8(C.QScriptExtensionPlugin_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQScriptExtensionPlugin_MetaObject
+func callbackQScriptExtensionPlugin_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQScriptExtensionPluginFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QScriptExtensionPlugin) MetaObject() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QScriptExtensionPlugin_MetaObject(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QScriptExtensionPlugin) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QScriptExtensionPlugin_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQScriptExtensionPlugin_ObjectNameChanged
@@ -2768,6 +2910,12 @@ func callbackQScriptExtensionPlugin_TimerEvent(ptr unsafe.Pointer, event unsafe.
 		(*(*func(*core.QTimerEvent))(signal))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQScriptExtensionPluginFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+	}
+}
+
+func (ptr *QScriptExtensionPlugin) TimerEvent(event core.QTimerEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QScriptExtensionPlugin_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
@@ -3488,6 +3636,13 @@ func (ptr *QScriptValue) ToInt32() int {
 		return int(int32(C.QScriptValue_ToInt32(ptr.Pointer())))
 	}
 	return 0
+}
+
+func (ptr *QScriptValue) ToQMetaObject() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QScriptValue_ToQMetaObject(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QScriptValue) ToQObject() *core.QObject {

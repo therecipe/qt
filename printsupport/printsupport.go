@@ -1507,6 +1507,22 @@ func (ptr *QAbstractPrintDialog) DisconnectNotifyDefault(sign core.QMetaMethod_I
 	}
 }
 
+//export callbackQAbstractPrintDialog_MetaObject
+func callbackQAbstractPrintDialog_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQAbstractPrintDialogFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QAbstractPrintDialog) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QAbstractPrintDialog_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQAbstractPrintDialog_ObjectNameChanged
 func callbackQAbstractPrintDialog_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtPrintSupport_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -2960,6 +2976,22 @@ func (ptr *QPageSetupDialog) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) 
 	if ptr.Pointer() != nil {
 		C.QPageSetupDialog_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
+}
+
+//export callbackQPageSetupDialog_MetaObject
+func callbackQPageSetupDialog_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQPageSetupDialogFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QPageSetupDialog) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QPageSetupDialog_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQPageSetupDialog_ObjectNameChanged
@@ -5121,6 +5153,22 @@ func (ptr *QPrintPreviewDialog) DisconnectNotifyDefault(sign core.QMetaMethod_IT
 	if ptr.Pointer() != nil {
 		C.QPrintPreviewDialog_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
+}
+
+//export callbackQPrintPreviewDialog_MetaObject
+func callbackQPrintPreviewDialog_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQPrintPreviewDialogFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QPrintPreviewDialog) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QPrintPreviewDialog_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQPrintPreviewDialog_ObjectNameChanged
@@ -7286,6 +7334,22 @@ func (ptr *QPrintPreviewWidget) EventFilterDefault(watched core.QObject_ITF, eve
 		return int8(C.QPrintPreviewWidget_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQPrintPreviewWidget_MetaObject
+func callbackQPrintPreviewWidget_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQPrintPreviewWidgetFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QPrintPreviewWidget) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QPrintPreviewWidget_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQPrintPreviewWidget_ObjectNameChanged

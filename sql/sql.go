@@ -2295,6 +2295,22 @@ func (ptr *QSqlDriver) EventFilterDefault(watched core.QObject_ITF, event core.Q
 	return false
 }
 
+//export callbackQSqlDriver_MetaObject
+func callbackQSqlDriver_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQSqlDriverFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QSqlDriver) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QSqlDriver_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQSqlDriver_ObjectNameChanged
 func callbackQSqlDriver_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtSql_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -2848,6 +2864,22 @@ func (ptr *QSqlDriverPlugin) EventFilterDefault(watched core.QObject_ITF, event 
 		return int8(C.QSqlDriverPlugin_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
+}
+
+//export callbackQSqlDriverPlugin_MetaObject
+func callbackQSqlDriverPlugin_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQSqlDriverPluginFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QSqlDriverPlugin) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QSqlDriverPlugin_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQSqlDriverPlugin_ObjectNameChanged
@@ -5677,6 +5709,22 @@ func (ptr *QSqlQueryModel) EventFilterDefault(watched core.QObject_ITF, event co
 	return false
 }
 
+//export callbackQSqlQueryModel_MetaObject
+func callbackQSqlQueryModel_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQSqlQueryModelFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QSqlQueryModel) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QSqlQueryModel_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQSqlQueryModel_ObjectNameChanged
 func callbackQSqlQueryModel_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtSql_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -6633,6 +6681,22 @@ func (ptr *QSqlRelationalDelegate) EventDefault(e core.QEvent_ITF) bool {
 		return int8(C.QSqlRelationalDelegate_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
+}
+
+//export callbackQSqlRelationalDelegate_MetaObject
+func callbackQSqlRelationalDelegate_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQSqlRelationalDelegateFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QSqlRelationalDelegate) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QSqlRelationalDelegate_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQSqlRelationalDelegate_ObjectNameChanged

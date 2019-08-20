@@ -61,6 +61,7 @@ void QMacToolBar_DeleteLaterDefault(void* ptr);
 void QMacToolBar_DisconnectNotifyDefault(void* ptr, void* sign);
 char QMacToolBar_EventDefault(void* ptr, void* e);
 char QMacToolBar_EventFilterDefault(void* ptr, void* watched, void* event);
+void* QMacToolBar_MetaObjectDefault(void* ptr);
 void QMacToolBar_TimerEventDefault(void* ptr, void* event);
 void* QMacToolBarItem_NewQMacToolBarItem(void* parent);
 void QMacToolBarItem_ConnectActivated(void* ptr);
@@ -98,6 +99,7 @@ void QMacToolBarItem_DeleteLaterDefault(void* ptr);
 void QMacToolBarItem_DisconnectNotifyDefault(void* ptr, void* sign);
 char QMacToolBarItem_EventDefault(void* ptr, void* e);
 char QMacToolBarItem_EventFilterDefault(void* ptr, void* watched, void* event);
+void* QMacToolBarItem_MetaObjectDefault(void* ptr);
 void QMacToolBarItem_TimerEventDefault(void* ptr, void* event);
 
 #ifdef __cplusplus
