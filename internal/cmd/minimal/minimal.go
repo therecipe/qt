@@ -58,7 +58,7 @@ func Minimal(path, target, tags string) {
 
 	//TODO: cleanup state from moc for minimal first -->
 	for _, c := range parser.State.ClassMap {
-		if c.Module == parser.MOC || strings.HasPrefix(c.Module, "custom_") {
+		if c.Module == parser.MOC || strings.HasPrefix(c.Module, "custom_") || c.ToBeCleanedUp {
 			delete(parser.State.ClassMap, c.Name)
 		}
 	}
@@ -231,7 +231,7 @@ func Minimal(path, target, tags string) {
 		}
 	case "js", "wasm":
 		exportClass(parser.State.ClassMap["QSvgWidget"], files)
-	case "android", "android-emulator": //TODO: generate minimal androidextras instead?
+	default: //"android", "android-emulator": //TODO: generate minimal androidextras instead, otherwise using the androidextras module reports missing classes when building for targets other than android
 		exportClass(parser.State.ClassMap["QChildEvent"], files)
 		exportClass(parser.State.ClassMap["QTimerEvent"], files)
 		exportClass(parser.State.ClassMap["QMetaObject"], files)

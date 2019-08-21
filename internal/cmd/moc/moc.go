@@ -419,7 +419,7 @@ func moc(path, target, tags string, fast, slow, root bool, l int, dirty bool) {
 
 	//TODO: cleanup state -->
 	for _, c := range parser.State.ClassMap {
-		if c.Module == parser.MOC {
+		if c.Module == parser.MOC || strings.HasPrefix(c.Module, "custom_") || c.ToBeCleanedUp {
 			delete(parser.State.ClassMap, c.Name)
 		}
 	}
@@ -472,11 +472,12 @@ func parse(path string) ([]*parser.Class, string, error) {
 			}
 
 			class := &parser.Class{
-				Access: "public",
-				Module: parser.MOC,
-				Name:   typeSpec.Name.String(),
-				Status: "public",
-				Path:   filepath.Dir(path),
+				Access:        "public",
+				Module:        parser.MOC,
+				Name:          typeSpec.Name.String(),
+				Status:        "public",
+				Path:          filepath.Dir(path),
+				ToBeCleanedUp: true,
 			}
 
 			//collect possible base classes

@@ -38,6 +38,8 @@ type Class struct {
 	Constructors []string
 	Derivations  []string
 
+	ToBeCleanedUp bool
+
 	sync.Mutex
 }
 

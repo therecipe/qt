@@ -448,12 +448,12 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 							l = strings.Replace(l, ".SetTextAlignment(", ".SetTextAlignment(int(", -1)
 							l = strings.TrimSuffix(l, ")") + "))"
 						}
-						
+
 						if strings.Contains(l, ".SetAlignment(") {
 							l = strings.Replace(l, ".SetAlignment(", ".SetAlignment(int(", -1)
 							l = strings.TrimSuffix(l, ")") + "))"
 						}
-						
+
 						if strings.Contains(l, ".AddAction(") {
 							l = strings.Replace(l, ".AddAction(", ".AddActions([]*widgets.QAction{", -1)
 							l = strings.TrimSuffix(l, ")") + "})"
