@@ -71,8 +71,8 @@ func (w *MainWindow) initWith(artistTable string, albumTable string, albumDetail
 	w.model.ConnectRowsRemoved(w.updateHeader)
 
 	layout := widgets.NewQGridLayout2()
-	layout.AddWidget(artists, 0, 0, 0)
-	layout.AddWidget(albums, 1, 0, 0)
+	layout.AddWidget2(artists, 0, 0, 0)
+	layout.AddWidget2(albums, 1, 0, 0)
 	layout.AddWidget3(details, 0, 1, 2, 1, 0)
 	layout.SetColumnStretch(1, 1)
 	layout.SetColumnMinimumWidth(0, 500)
@@ -264,7 +264,7 @@ func (w *MainWindow) createArtistGroupBox() *widgets.QGroupBox {
 	box := widgets.NewQGroupBox2("Artist", nil)
 
 	layout := widgets.NewQGridLayout2()
-	layout.AddWidget(w.artistView, 0, 0, 0)
+	layout.AddWidget2(w.artistView, 0, 0, 0)
 	box.SetLayout(layout)
 
 	return box
@@ -311,19 +311,19 @@ func (w *MainWindow) createDetailsGroupBox() *widgets.QGroupBox {
 
 	w.iconLabel = widgets.NewQLabel(nil, 0)
 	w.iconLabel.SetAlignment(core.Qt__AlignBottom | core.Qt__AlignRight)
-	w.iconLabel.SetPixmap(gui.NewQPixmap5(":/images/icon.png", "", 0))
+	w.iconLabel.SetPixmap(gui.NewQPixmap3(":/images/icon.png", "", 0))
 
 	w.imageLabel = widgets.NewQLabel(nil, 0)
 	w.imageLabel.SetWordWrap(true)
 	w.imageLabel.SetAlignment(core.Qt__AlignCenter)
-	w.imageLabel.SetPixmap(gui.NewQPixmap5(":/images/image.png", "", 0))
+	w.imageLabel.SetPixmap(gui.NewQPixmap3(":/images/image.png", "", 0))
 
 	w.trackList = widgets.NewQListWidget(nil)
 
 	layout := widgets.NewQGridLayout2()
 	layout.AddWidget3(w.imageLabel, 0, 0, 3, 2, 0)
-	layout.AddWidget(w.profileLabel, 0, 0, 0)
-	layout.AddWidget(w.iconLabel, 0, 1, 0)
+	layout.AddWidget2(w.profileLabel, 0, 0, 0)
+	layout.AddWidget2(w.iconLabel, 0, 1, 0)
 	layout.AddWidget3(w.titleLabel, 1, 0, 1, 2, 0)
 	layout.AddWidget3(w.trackList, 2, 0, 1, 2, 0)
 	layout.SetRowStretch(2, 1)

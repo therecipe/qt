@@ -327,6 +327,7 @@ var (
 
 func UseGOMOD(path string) (r bool) {
 	if strings.Contains(strings.Replace(path, "\\", "/", -1), "src/"+PackageName) {
+		os.Setenv("GO111MODULE", "off")
 		return
 	}
 	if wd, _ := os.Getwd(); path == "" && strings.Contains(strings.Replace(wd, "\\", "/", -1), "src/"+PackageName) {

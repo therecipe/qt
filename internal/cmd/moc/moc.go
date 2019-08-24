@@ -419,7 +419,7 @@ func moc(path, target, tags string, fast, slow, root bool, l int, dirty bool) {
 
 	//TODO: cleanup state -->
 	for _, c := range parser.State.ClassMap {
-		if c.Module == parser.MOC || strings.HasPrefix(c.Module, "custom_") || c.ToBeCleanedUp {
+		if c.Module == parser.MOC {
 			delete(parser.State.ClassMap, c.Name)
 		}
 	}

@@ -14,7 +14,7 @@ import (
 func main() {
 	core.NewQCoreApplication(len(os.Args), os.Args)
 
-	server := websockets.NewQWebSocketServer("QWebChannel Standalone Example Server", websockets.QWebSocketServer__NonSecureMode, nil)
+	server := websockets.NewQWebSocketServer2("QWebChannel Standalone Example Server", websockets.QWebSocketServer__NonSecureMode, nil)
 	if !server.Listen(network.NewQHostAddress9(network.QHostAddress__LocalHost), 12345) {
 		panic("Failed to open web socket server")
 	}

@@ -30,8 +30,8 @@ func (v *viewController) init() {
 	ViewControllerInstance = v
 
 	layout := widgets.NewQGridLayout2()
-	layout.AddWidget(artist.NewArtistController2("Artist", nil), 0, 0, 0)
-	layout.AddWidget(album.NewAlbumController2("Album", nil), 1, 0, 0)
+	layout.AddWidget2(artist.NewArtistController2("Artist", nil), 0, 0, 0)
+	layout.AddWidget2(album.NewAlbumController2("Album", nil), 1, 0, 0)
 	layout.AddWidget3(detail.NewDetailController2("Detail", nil), 0, 1, 2, 1, 0)
 	layout.SetColumnStretch(1, 1)
 	layout.SetColumnMinimumWidth(0, 500)

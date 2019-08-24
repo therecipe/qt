@@ -63,7 +63,7 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 
 			"common": []string{"qml_demo", "widgets_demo"},
 
-			//"grpc": []string{"hello_world","hello_world2"},
+			//"grpc": []string{"hello_world","hello_world2"}, //TODO: re-gen protobuf go files
 
 			//"gui": []string{"analogclock", "openglwindow", "rasterwindow"},
 
@@ -97,7 +97,7 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 
 			"showcases": []string{"wallet"},
 
-			"sql": []string{"masterdetail", "masterdetail_qml", "querymodel"},
+			"sql": []string{"masterdetail", "masterdetail_qml", "querymodel"}, //TODO: fix masterdetail_qml in qml mode; (go 1.13 build tag issue)
 
 			"uitools": []string{"calculator", "calculator_manual"},
 
@@ -146,10 +146,10 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 			}
 
 			if (target == "js" || target == "wasm") &&
-				cat == "charts" || cat == "uitools" || cat == "sql" ||
-				cat == "androidextras" || cat == "qt3d" || cat == "webchannel" ||
-				(cat == "widgets" && strings.HasPrefix(example, "treeview")) ||
-				example == "video_player" || example == "custom_scheme" {
+				(cat == "charts" || cat == "uitools" || cat == "sql" ||
+					cat == "androidextras" || cat == "qt3d" || cat == "webchannel" ||
+					strings.HasPrefix(example, "treeview") ||
+					example == "video_player" || example == "custom_scheme") {
 				continue
 			}
 

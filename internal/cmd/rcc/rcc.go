@@ -450,8 +450,10 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 						}
 
 						if strings.Contains(l, ".SetAlignment(") {
-							l = strings.Replace(l, ".SetAlignment(", ".SetAlignment(int(", -1)
-							l = strings.TrimSuffix(l, ")") + "))"
+							if strings.Contains(typeForName(l), "QGroupBox") {
+								l = strings.Replace(l, ".SetAlignment(", ".SetAlignment(int(", -1)
+								l = strings.TrimSuffix(l, ")") + "))"
+							}
 						}
 
 						if strings.Contains(l, ".AddAction(") {

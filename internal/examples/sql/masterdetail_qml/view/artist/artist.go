@@ -28,7 +28,7 @@ func (a *artistController) init() {
 	a.artistView.SetModel(controller.Instance.ArtistModel())
 
 	layout := widgets.NewQGridLayout2()
-	layout.AddWidget(a.artistView, 0, 0, 0)
+	layout.AddWidget2(a.artistView, 0, 0, 0)
 	a.SetLayout(layout)
 
 	//

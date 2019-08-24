@@ -84,6 +84,12 @@ func build(mode, target, path, ldFlagsCustom, tagsCustom, name, depPath string, 
 		cmd.Args = append(cmd.Args, "-x")
 	}
 
+	//TODO: go bug in 1.13+ ..., fix -tags usage across all tools
+	if v := utils.GOVERSION(); strings.Contains(v, "1.13") || strings.Contains(v, "devel") {
+		if !fast {
+			tags = append(tags, "minimal")
+		}
+	}
 	cmd.Args = append(cmd.Args, fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))
 
 	if target != runtime.GOOS {
