@@ -524,7 +524,7 @@ func preambleCpp(module string, input []byte, mode int, target, tags string) []b
 
 #include "%v.h"
 %v%v
-
+%v
 `,
 		buildTags(module, false, mode, tags),
 
@@ -573,6 +573,19 @@ func preambleCpp(module string, input []byte, mode int, target, tags string) []b
 		func() string {
 			if utils.QT_DEBUG_CPP() {
 				return "\n#include <QDebug>\n"
+			}
+			return ""
+		}(),
+
+		func() string {
+			if module == "QtCore" {
+				return `
+#ifndef QT_CORE_LIB
+	#error ------------------------------------------------------------------
+	#error please run: '$(go env GOPATH)/bin/qtsetup'
+	#error more info here: https://github.com/therecipe/qt/wiki/Installation
+	#error ------------------------------------------------------------------
+#endif`
 			}
 			return ""
 		}(),
