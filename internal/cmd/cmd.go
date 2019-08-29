@@ -235,6 +235,7 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 	if system == "" {
 		system = "linux"
 	}
+	android_arm64 := target == "android_arm64"
 
 	var image string
 	switch target {
@@ -382,7 +383,7 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 		args = append(args, []string{"-e", "QT_NOT_CACHED=true"}...) //TODO: won't work with wine images atm
 	}
 
-	if target == "android" && utils.GOARCH() == "arm64" {
+	if (target == "android" && utils.GOARCH() == "arm64") || android_arm64 {
 		args = append(args, []string{"-e", "GOARCH=arm64"}...)
 	}
 

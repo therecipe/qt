@@ -12,7 +12,7 @@ jobs:
   -
     template: docker_cix_template.yml
     parameters:
-      image: linux
+      name: linux
       image: ubuntu-16.04
   -
     template: docker_job_template.yml
