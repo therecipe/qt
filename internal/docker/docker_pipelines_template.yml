@@ -1,5 +1,20 @@
 jobs:
   -
+    template: docker_ci_template.yml
+    parameters:
+      name: windows
+      image: windows-2019
+  -
+    template: docker_cix_template.yml
+    parameters:
+      name: macOS
+      image: macOS-10.14
+  -
+    template: docker_cix_template.yml
+    parameters:
+      image: linux
+      image: ubuntu-16.04
+  -
     template: docker_job_template.yml
     parameters:
       file: android/Dockerfile

@@ -144,12 +144,14 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 			if cat == "virtualkeyboard" && (strings.Contains(target, "ios") || strings.Contains(target, "android")) {
 				continue
 			}
-
 			if (target == "js" || target == "wasm") &&
 				(cat == "charts" || cat == "uitools" || cat == "sql" ||
 					cat == "androidextras" || cat == "qt3d" || cat == "webchannel" ||
 					strings.HasPrefix(example, "treeview") ||
 					example == "video_player" || example == "custom_scheme") {
+				continue
+			}
+			if example == "wallet" && target == runtime.GOOS && runtime.GOOS == "windows" {
 				continue
 			}
 

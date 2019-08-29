@@ -7,7 +7,7 @@ jobs:
     dependsOn: '${{ parameters.dep }}'
     steps:
       -
-        script: 'brew cask install docker'
+        script: 'curl -sL --retry 10 --retry-delay 60 -O https://download.docker.com/mac/stable/31259/Docker.dmg && open -W Docker.dmg && cp -r /Volumes/Docker/Docker.app /Applications'
       -
         script: 'sudo /Applications/Docker.app/Contents/MacOS/Docker --quit-after-install --unattended'
       -
