@@ -6,6 +6,7 @@ jobs:
       vmImage: '${{ parameters.image }}'
     variables:
       CI: true
+      GO111MODULE: off
     steps:
       -
         script: 'go get -u -v github.com/therecipe/qt/cmd/... && C:\Users\VssAdministrator\go\bin\qtsetup'
