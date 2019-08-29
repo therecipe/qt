@@ -1,0 +1,14 @@
+jobs:
+  -
+    job: '${{ parameters.name }}'
+    timeoutInMinutes: 0
+    pool:
+      vmImage: '${{ parameters.image }}'
+    variables:
+      CI: true
+      GO111MODULE: off
+    steps:
+      -
+        script: sudo apt-get -qq update && sudo apt-get --no-install-recommends -qq -y install build-essential libglib2.0-dev libglu1-mesa-dev libpulse-dev fcitx-frontend-qt5
+      -
+        script: 'go get -u -v github.com/therecipe/qt/cmd/... && $(go env GOPATH)/bin/qtsetup'
