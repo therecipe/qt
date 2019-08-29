@@ -2,17 +2,17 @@ jobs:
   -
     template: docker_ci_template.yml
     parameters:
-      name: windows
+      name: windows_ft
       image: windows-2019
   -
     template: docker_cix_template.yml
     parameters:
-      name: macOS
+      name: macOS_ft
       image: macOS-10.14
   -
     template: docker_cix_template.yml
     parameters:
-      name: linux
+      name: linux_ft
       image: ubuntu-16.04
   -
     template: docker_job_template.yml
