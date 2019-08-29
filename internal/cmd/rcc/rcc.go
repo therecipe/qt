@@ -85,7 +85,10 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 	}
 
 	if hasUIFiles {
-		if uic := utils.ToolPath("uic", target); utils.ExistsFile(uic) {
+		uic := utils.ToolPath("uic", target)
+		if (target == "windows" && utils.ExistsFile(uic+".exe")) ||
+			utils.ExistsFile(uic) {
+
 			path := filepath.Join(path, "ui")
 
 			files, err = ioutil.ReadDir(filepath.Join(path))
@@ -237,8 +240,10 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 						}
 						l = strings.Join(ls, ".")
 
-						if strings.Contains(l, "if (") && strings.Contains(l, ")\n") {
+						if strings.Contains(l, "if (") &&
+							(strings.Contains(l, ")\n") || strings.Contains(l, ")\r\n")) {
 							l = strings.Replace(l, ")\n", "){\n", -1)
+							l = strings.Replace(l, ")\r\n", "){\r\n", -1)
 							if !strings.Contains(l, "QIcon") {
 								l += "\n}\n"
 							}
@@ -307,6 +312,9 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 
 						l = strings.Replace(l, "QIcon::hasThemeIcon", "gui.QIcon_HasThemeIcon", -1)
 						l = strings.Replace(l, "QIcon::fromTheme", "gui.QIcon_FromTheme", -1)
+
+						l = strings.Replace(l, "QTabWidget::North", "widgets.QTabWidget__North", -1)
+						l = strings.Replace(l, "QTabWidget::Rounded", "widgets.QTabWidget__Rounded", -1)
 
 						for _, n := range []string{"QPalette", "QFont", "QIcon"} {
 							l = strings.Replace(l, n+"::", "gui."+n+"__", -1)
