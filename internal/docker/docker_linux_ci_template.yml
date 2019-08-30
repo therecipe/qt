@@ -7,6 +7,7 @@ jobs:
     variables:
       CI: true
       GO111MODULE: off
+      QT_QPA_PLATFORM: offscreen
     steps:
       -
         script: sudo apt-get -qq update && sudo apt-get --no-install-recommends -qq -y install build-essential libglib2.0-dev libglu1-mesa-dev libpulse-dev fcitx-frontend-qt5

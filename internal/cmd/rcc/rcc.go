@@ -107,7 +107,7 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 			for _, filePath := range fileList {
 
 				utils.RunCmd(exec.Command(uic, "-o", filepath.Join(path, "uic_tmp.cpp"), filePath), fmt.Sprintf("execute uic for %v on %v", target, runtime.GOOS))
-				file := utils.Load(filepath.Join(path, "uic_tmp.cpp"))
+				file := strings.Replace(utils.Load(filepath.Join(path, "uic_tmp.cpp")), "\r\n", "\n", -1)
 				defer utils.RemoveAll(filepath.Join(path, "uic_tmp.cpp"))
 
 				name := strings.TrimSpace(strings.Split(strings.Split(file, "class Ui_")[1], "{")[0])
@@ -240,10 +240,8 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 						}
 						l = strings.Join(ls, ".")
 
-						if strings.Contains(l, "if (") &&
-							(strings.Contains(l, ")\n") || strings.Contains(l, ")\r\n")) {
+						if strings.Contains(l, "if (") && strings.Contains(l, ")\n") {
 							l = strings.Replace(l, ")\n", "){\n", -1)
-							l = strings.Replace(l, ")\r\n", "){\r\n", -1)
 							if !strings.Contains(l, "QIcon") {
 								l += "\n}\n"
 							}
@@ -438,7 +436,7 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 
 						if strings.Contains(l, ".AddItem(") {
 							if strings.Contains(l, "QString()") {
-								l = strings.TrimSuffix(l, ")") + ", core.NewQVariant7(0))"
+								l = strings.TrimSuffix(l, ")") + ", core.NewQVariant1(0))"
 							} else if !strings.Contains(l, "(w.") || strings.Count(l, ",") >= 4 {
 								l = strings.TrimSuffix(l, ")") + ", 0)"
 							}
@@ -492,11 +490,7 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 						}
 
 						if strings.Contains(l, "QVariant(") {
-							if strings.Contains(l, "QUrl") {
-								l = strings.Replace(l, "QVariant(", "core.NewQVariant38(", -1)
-							} else {
-								l = strings.Replace(l, "QVariant(", "core.NewQVariant11(", -1)
-							}
+							l = strings.Replace(l, "QVariant(", "core.NewQVariant1(", -1)
 						}
 
 						if strings.Contains(l, "QDateTime(QDate(") {
@@ -541,7 +535,11 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 						l = strings.Replace(l, ".IsEmpty()", "== \"\"", -1)
 
 						if strings.Contains(l, "QPixmap(") {
-							l = strings.Replace(l, "QPixmap(", "gui.NewQPixmap5(", -1)
+							if utils.QT_API_NUM(utils.QT_VERSION()) >= 5130 {
+								l = strings.Replace(l, "QPixmap(", "gui.NewQPixmap3(", -1)
+							} else {
+								l = strings.Replace(l, "QPixmap(", "gui.NewQPixmap5(", -1)
+							}
 							ls := strings.Split(l, ")")
 							ls[0] += ", \"\", 0"
 							l = strings.Join(ls, ")")
