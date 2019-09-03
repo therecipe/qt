@@ -681,19 +681,25 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 }
 
 func cgoFileNames(module, path, target string, mode int) []string {
+	return cgoFileNamesRecursive(module, path, target, mode, true)
+}
+
+func cgoFileNamesRecursive(module, path, target string, mode int, recursive bool) []string {
 	var pFix string
 	switch mode {
 	case RCC:
-		if utils.QT_STATIC() && target == "linux" { //TODO: fix wrong order issue in LDFLAGS instead
-			pFix = "moc_"
-		} else {
-			pFix = "rcc_"
+		pFix = "rcc_"
+		if utils.QT_STATIC() && target == "linux" && recursive { //TODO: fix wrong order issue in LDFLAGS instead
+			if mocName := filepath.Join(path, cgoFileNamesRecursive(module, path, target, MOC, false)[0]); utils.ExistsFile(mocName) {
+				pFix = "omit"
+			}
 		}
 	case MOC:
-		if utils.QT_STATIC() && target == "linux" { //TODO: fix wrong order issue in LDFLAGS instead
-			pFix = "rcc_"
-		} else {
-			pFix = "moc_"
+		pFix = "moc_"
+		if utils.QT_STATIC() && target == "linux" && recursive { //TODO: fix wrong order issue in LDFLAGS instead
+			if rccName := filepath.Join(path, cgoFileNamesRecursive(module, path, target, RCC, false)[0]); utils.ExistsFile(rccName) {
+				utils.RemoveAll(rccName)
+			}
 		}
 	case MINIMAL:
 		pFix = "minimal_"
@@ -748,6 +754,9 @@ func cgoFileNames(module, path, target string, mode int) []string {
 
 	var o []string
 	for _, sFix := range sFixes {
+		if pFix == "omit" {
+			continue
+		}
 		o = append(o, fmt.Sprintf("%vcgo_%v_%v.go", pFix, strings.Replace(target, "-", "_", -1), sFix))
 	}
 	return o

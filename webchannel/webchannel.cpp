@@ -212,7 +212,7 @@ void QWebChannel_RegisterObjects(void* ptr, void* objects)
 
 struct QtWebChannel_PackedList QWebChannel_RegisteredObjects(void* ptr)
 {
-	return ({ QHash<QString, QObject *>* tmpValue = new QHash<QString, QObject *>(static_cast<QWebChannel*>(ptr)->registeredObjects()); QtWebChannel_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QHash<QString, QObject *>* tmpValue84aaaf = new QHash<QString, QObject *>(static_cast<QWebChannel*>(ptr)->registeredObjects()); QtWebChannel_PackedList { tmpValue84aaaf, tmpValue84aaaf->size() }; });
 }
 
 void QWebChannel_SetBlockUpdates(void* ptr, char block)
@@ -249,7 +249,7 @@ void* QWebChannel___registerObjects_objects_newList(void* ptr)
 
 struct QtWebChannel_PackedList QWebChannel___registerObjects_objects_keyList(void* ptr)
 {
-	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QHash<QString, QObject *>*>(ptr)->keys()); QtWebChannel_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QString>* tmpValue6b7fc8 = new QList<QString>(static_cast<QHash<QString, QObject *>*>(ptr)->keys()); QtWebChannel_PackedList { tmpValue6b7fc8, tmpValue6b7fc8->size() }; });
 }
 
 void* QWebChannel___registeredObjects_atList(void* ptr, struct QtWebChannel_PackedString v, int i)
@@ -270,7 +270,7 @@ void* QWebChannel___registeredObjects_newList(void* ptr)
 
 struct QtWebChannel_PackedList QWebChannel___registeredObjects_keyList(void* ptr)
 {
-	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QHash<QString, QObject *>*>(ptr)->keys()); QtWebChannel_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QString>* tmpValue6b7fc8 = new QList<QString>(static_cast<QHash<QString, QObject *>*>(ptr)->keys()); QtWebChannel_PackedList { tmpValue6b7fc8, tmpValue6b7fc8->size() }; });
 }
 
 struct QtWebChannel_PackedString QWebChannel_____registerObjects_objects_keyList_atList(void* ptr, int i)

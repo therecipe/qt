@@ -217,7 +217,7 @@ void* QNdefNfcSmartPosterRecord_IconRecord(void* ptr, int index)
 
 struct QtNfc_PackedList QNdefNfcSmartPosterRecord_IconRecords(void* ptr)
 {
-	return ({ QList<QNdefNfcIconRecord>* tmpValue = new QList<QNdefNfcIconRecord>(static_cast<QNdefNfcSmartPosterRecord*>(ptr)->iconRecords()); QtNfc_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QNdefNfcIconRecord>* tmpValue89be65 = new QList<QNdefNfcIconRecord>(static_cast<QNdefNfcSmartPosterRecord*>(ptr)->iconRecords()); QtNfc_PackedList { tmpValue89be65, tmpValue89be65->size() }; });
 }
 
 char QNdefNfcSmartPosterRecord_RemoveIcon(void* ptr, void* icon)

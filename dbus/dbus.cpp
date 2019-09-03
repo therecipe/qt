@@ -1403,7 +1403,7 @@ void* QDBusMessage_NewQDBusMessage2(void* other)
 
 struct QtDBus_PackedList QDBusMessage_Arguments(void* ptr)
 {
-	return ({ QList<QVariant>* tmpValue = new QList<QVariant>(static_cast<QDBusMessage*>(ptr)->arguments()); QtDBus_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QVariant>* tmpValuee73770 = new QList<QVariant>(static_cast<QDBusMessage*>(ptr)->arguments()); QtDBus_PackedList { tmpValuee73770, tmpValuee73770->size() }; });
 }
 
 char QDBusMessage_AutoStartService(void* ptr)

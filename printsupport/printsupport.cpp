@@ -3464,7 +3464,7 @@ void QPrinter_SetResolution(void* ptr, int dpi)
 
 struct QtPrintSupport_PackedList QPrinter_SupportedResolutions(void* ptr)
 {
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QPrinter*>(ptr)->supportedResolutions()); QtPrintSupport_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<int>* tmpValue4845e4 = new QList<int>(static_cast<QPrinter*>(ptr)->supportedResolutions()); QtPrintSupport_PackedList { tmpValue4845e4, tmpValue4845e4->size() }; });
 }
 
 char QPrinter_SupportsMultipleCopies(void* ptr)
@@ -3541,7 +3541,7 @@ struct QtPrintSupport_PackedString QPrinterInfo_QPrinterInfo_AvailablePrinterNam
 
 struct QtPrintSupport_PackedList QPrinterInfo_QPrinterInfo_AvailablePrinters()
 {
-	return ({ QList<QPrinterInfo>* tmpValue = new QList<QPrinterInfo>(QPrinterInfo::availablePrinters()); QtPrintSupport_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QPrinterInfo>* tmpValue7ffd58 = new QList<QPrinterInfo>(QPrinterInfo::availablePrinters()); QtPrintSupport_PackedList { tmpValue7ffd58, tmpValue7ffd58->size() }; });
 }
 
 long long QPrinterInfo_DefaultColorMode(void* ptr)
@@ -3626,22 +3626,22 @@ long long QPrinterInfo_State(void* ptr)
 
 struct QtPrintSupport_PackedList QPrinterInfo_SupportedColorModes(void* ptr)
 {
-	return ({ QList<QPrinter::ColorMode>* tmpValue = new QList<QPrinter::ColorMode>(static_cast<QPrinterInfo*>(ptr)->supportedColorModes()); QtPrintSupport_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QPrinter::ColorMode>* tmpValueaad961 = new QList<QPrinter::ColorMode>(static_cast<QPrinterInfo*>(ptr)->supportedColorModes()); QtPrintSupport_PackedList { tmpValueaad961, tmpValueaad961->size() }; });
 }
 
 struct QtPrintSupport_PackedList QPrinterInfo_SupportedDuplexModes(void* ptr)
 {
-	return ({ QList<QPrinter::DuplexMode>* tmpValue = new QList<QPrinter::DuplexMode>(static_cast<QPrinterInfo*>(ptr)->supportedDuplexModes()); QtPrintSupport_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QPrinter::DuplexMode>* tmpValuecdb69c = new QList<QPrinter::DuplexMode>(static_cast<QPrinterInfo*>(ptr)->supportedDuplexModes()); QtPrintSupport_PackedList { tmpValuecdb69c, tmpValuecdb69c->size() }; });
 }
 
 struct QtPrintSupport_PackedList QPrinterInfo_SupportedPageSizes(void* ptr)
 {
-	return ({ QList<QPageSize>* tmpValue = new QList<QPageSize>(static_cast<QPrinterInfo*>(ptr)->supportedPageSizes()); QtPrintSupport_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QPageSize>* tmpValue899a6c = new QList<QPageSize>(static_cast<QPrinterInfo*>(ptr)->supportedPageSizes()); QtPrintSupport_PackedList { tmpValue899a6c, tmpValue899a6c->size() }; });
 }
 
 struct QtPrintSupport_PackedList QPrinterInfo_SupportedResolutions(void* ptr)
 {
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QPrinterInfo*>(ptr)->supportedResolutions()); QtPrintSupport_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<int>* tmpValuec7adac = new QList<int>(static_cast<QPrinterInfo*>(ptr)->supportedResolutions()); QtPrintSupport_PackedList { tmpValuec7adac, tmpValuec7adac->size() }; });
 }
 
 char QPrinterInfo_SupportsCustomPageSizes(void* ptr)

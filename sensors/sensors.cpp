@@ -3015,7 +3015,7 @@ int QSensor_Error(void* ptr)
 
 struct QtSensors_PackedList QSensor_Filters(void* ptr)
 {
-	return ({ QList<QSensorFilter *>* tmpValue = new QList<QSensorFilter *>(static_cast<QSensor*>(ptr)->filters()); QtSensors_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QSensorFilter *>* tmpValuea7ee7b = new QList<QSensorFilter *>(static_cast<QSensor*>(ptr)->filters()); QtSensors_PackedList { tmpValuea7ee7b, tmpValuea7ee7b->size() }; });
 }
 
 void* QSensor_Identifier(void* ptr)
@@ -3115,12 +3115,12 @@ void QSensor_SensorError(void* ptr, int error)
 
 struct QtSensors_PackedList QSensor_QSensor_SensorTypes()
 {
-	return ({ QList<QByteArray>* tmpValue = new QList<QByteArray>(QSensor::sensorTypes()); QtSensors_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QByteArray>* tmpValue6a4e95 = new QList<QByteArray>(QSensor::sensorTypes()); QtSensors_PackedList { tmpValue6a4e95, tmpValue6a4e95->size() }; });
 }
 
 struct QtSensors_PackedList QSensor_QSensor_SensorsForType(void* ty)
 {
-	return ({ QList<QByteArray>* tmpValue = new QList<QByteArray>(QSensor::sensorsForType(*static_cast<QByteArray*>(ty))); QtSensors_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QByteArray>* tmpValue54e55f = new QList<QByteArray>(QSensor::sensorsForType(*static_cast<QByteArray*>(ty))); QtSensors_PackedList { tmpValue54e55f, tmpValue54e55f->size() }; });
 }
 
 void QSensor_SetActive(void* ptr, char active)
@@ -4654,7 +4654,7 @@ void* QSensorGesturePluginInterface_NewQSensorGesturePluginInterface()
 
 struct QtSensors_PackedList QSensorGesturePluginInterface_CreateRecognizers(void* ptr)
 {
-	return ({ QList<QSensorGestureRecognizer *>* tmpValue = new QList<QSensorGestureRecognizer *>(static_cast<QSensorGesturePluginInterface*>(ptr)->createRecognizers()); QtSensors_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QSensorGestureRecognizer *>* tmpValuee0bf5f = new QList<QSensorGestureRecognizer *>(static_cast<QSensorGesturePluginInterface*>(ptr)->createRecognizers()); QtSensors_PackedList { tmpValuee0bf5f, tmpValuee0bf5f->size() }; });
 }
 
 struct QtSensors_PackedString QSensorGesturePluginInterface_Name(void* ptr)

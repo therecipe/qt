@@ -556,6 +556,14 @@ func cppFunctionBodyInternal(function *parser.Function) string {
 			}
 
 			if function.Fullname == "QObject::invokeMethod" {
+				if UseJs() {
+					return `	QVariant returnArg;
+	if (arg)
+		QMetaObject::invokeMethod(static_cast<QObject*>(ptr), QByteArray::fromStdString(name["data"].as<std::string>()).constData(), Q_RETURN_ARG(QVariant, returnArg), Q_ARG(QVariant, *static_cast<QVariant*>(arg)));
+	else
+		QMetaObject::invokeMethod(static_cast<QObject*>(ptr), QByteArray::fromStdString(name["data"].as<std::string>()).constData(), Q_RETURN_ARG(QVariant, returnArg));
+	return reinterpret_cast<uintptr_t>(new QVariant(returnArg));`
+				}
 				return `	QVariant returnArg;
 	if (arg)
 		QMetaObject::invokeMethod(static_cast<QObject*>(ptr), const_cast<const char*>(name), Q_RETURN_ARG(QVariant, returnArg), Q_ARG(QVariant, *static_cast<QVariant*>(arg)));

@@ -767,7 +767,7 @@ void* QSerialPortInfo_NewQSerialPortInfo4(void* other)
 
 struct QtSerialPort_PackedList QSerialPortInfo_QSerialPortInfo_AvailablePorts()
 {
-	return ({ QList<QSerialPortInfo>* tmpValue = new QList<QSerialPortInfo>(QSerialPortInfo::availablePorts()); QtSerialPort_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QSerialPortInfo>* tmpValue9efc0e = new QList<QSerialPortInfo>(QSerialPortInfo::availablePorts()); QtSerialPort_PackedList { tmpValue9efc0e, tmpValue9efc0e->size() }; });
 }
 
 struct QtSerialPort_PackedString QSerialPortInfo_Description(void* ptr)
@@ -817,7 +817,7 @@ struct QtSerialPort_PackedString QSerialPortInfo_SerialNumber(void* ptr)
 
 struct QtSerialPort_PackedList QSerialPortInfo_QSerialPortInfo_StandardBaudRates()
 {
-	return ({ QList<qint32>* tmpValue = new QList<qint32>(QSerialPortInfo::standardBaudRates()); QtSerialPort_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<qint32>* tmpValue059d90 = new QList<qint32>(QSerialPortInfo::standardBaudRates()); QtSerialPort_PackedList { tmpValue059d90, tmpValue059d90->size() }; });
 }
 
 void QSerialPortInfo_Swap(void* ptr, void* other)

@@ -1174,8 +1174,8 @@ void QAbstractAxis_TimerEventDefault(void* ptr, void* event)
 class MyQAbstractBarSeries: public QAbstractBarSeries
 {
 public:
-	void Signal_BarsetsAdded(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsAdded(this, ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
-	void Signal_BarsetsRemoved(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsRemoved(this, ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_BarsetsAdded(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsAdded(this, ({ QList<QBarSet *>* tmpValued6c822 = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValued6c822, tmpValued6c822->size() }; })); };
+	void Signal_BarsetsRemoved(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsRemoved(this, ({ QList<QBarSet *>* tmpValued6c822 = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValued6c822, tmpValued6c822->size() }; })); };
 	void Signal_Clicked(int index, QBarSet * barset) { callbackQAbstractBarSeries_Clicked(this, index, barset); };
 	void Signal_CountChanged() { callbackQAbstractBarSeries_CountChanged(this); };
 	void Signal_DoubleClicked(int index, QBarSet * barset) { callbackQAbstractBarSeries_DoubleClicked(this, index, barset); };
@@ -1222,7 +1222,7 @@ char QAbstractBarSeries_Append2(void* ptr, void* sets)
 
 struct QtCharts_PackedList QAbstractBarSeries_BarSets(void* ptr)
 {
-	return ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(static_cast<QAbstractBarSeries*>(ptr)->barSets()); QtCharts_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QBarSet *>* tmpValue34826c = new QList<QBarSet *>(static_cast<QAbstractBarSeries*>(ptr)->barSets()); QtCharts_PackedList { tmpValue34826c, tmpValue34826c->size() }; });
 }
 
 double QAbstractBarSeries_BarWidth(void* ptr)
@@ -1637,7 +1637,7 @@ char QAbstractSeries_AttachAxis(void* ptr, void* axis)
 
 struct QtCharts_PackedList QAbstractSeries_AttachedAxes(void* ptr)
 {
-	return ({ QList<QAbstractAxis *>* tmpValue = new QList<QAbstractAxis *>(static_cast<QAbstractSeries*>(ptr)->attachedAxes()); QtCharts_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QAbstractAxis *>* tmpValue169ebd = new QList<QAbstractAxis *>(static_cast<QAbstractSeries*>(ptr)->attachedAxes()); QtCharts_PackedList { tmpValue169ebd, tmpValue169ebd->size() }; });
 }
 
 void* QAbstractSeries_Chart(void* ptr)
@@ -3027,8 +3027,8 @@ public:
 	MyQBarSeries(QObject *parent = Q_NULLPTR) : QBarSeries(parent) {QBarSeries_QBarSeries_QRegisterMetaType();};
 	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQBarSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 	 ~MyQBarSeries() { callbackQBarSeries_DestroyQBarSeries(this); };
-	void Signal_BarsetsAdded(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsAdded(this, ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
-	void Signal_BarsetsRemoved(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsRemoved(this, ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_BarsetsAdded(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsAdded(this, ({ QList<QBarSet *>* tmpValued6c822 = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValued6c822, tmpValued6c822->size() }; })); };
+	void Signal_BarsetsRemoved(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsRemoved(this, ({ QList<QBarSet *>* tmpValued6c822 = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValued6c822, tmpValued6c822->size() }; })); };
 	void Signal_Clicked(int index, QBarSet * barset) { callbackQAbstractBarSeries_Clicked(this, index, barset); };
 	void Signal_CountChanged() { callbackQAbstractBarSeries_CountChanged(this); };
 	void Signal_DoubleClicked(int index, QBarSet * barset) { callbackQAbstractBarSeries_DoubleClicked(this, index, barset); };
@@ -3795,8 +3795,8 @@ public:
 	MyQBoxPlotSeries(QObject *parent = Q_NULLPTR) : QBoxPlotSeries(parent) {QBoxPlotSeries_QBoxPlotSeries_QRegisterMetaType();};
 	void Signal_BoxOutlineVisibilityChanged() { callbackQBoxPlotSeries_BoxOutlineVisibilityChanged(this); };
 	void Signal_BoxWidthChanged() { callbackQBoxPlotSeries_BoxWidthChanged(this); };
-	void Signal_BoxsetsAdded(QList<QBoxSet *> sets) { callbackQBoxPlotSeries_BoxsetsAdded(this, ({ QList<QBoxSet *>* tmpValue = new QList<QBoxSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
-	void Signal_BoxsetsRemoved(QList<QBoxSet *> sets) { callbackQBoxPlotSeries_BoxsetsRemoved(this, ({ QList<QBoxSet *>* tmpValue = new QList<QBoxSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_BoxsetsAdded(QList<QBoxSet *> sets) { callbackQBoxPlotSeries_BoxsetsAdded(this, ({ QList<QBoxSet *>* tmpValued6c822 = new QList<QBoxSet *>(sets); QtCharts_PackedList { tmpValued6c822, tmpValued6c822->size() }; })); };
+	void Signal_BoxsetsRemoved(QList<QBoxSet *> sets) { callbackQBoxPlotSeries_BoxsetsRemoved(this, ({ QList<QBoxSet *>* tmpValued6c822 = new QList<QBoxSet *>(sets); QtCharts_PackedList { tmpValued6c822, tmpValued6c822->size() }; })); };
 	void Signal_BrushChanged() { callbackQBoxPlotSeries_BrushChanged(this); };
 	void Signal_Clicked(QBoxSet * boxset) { callbackQBoxPlotSeries_Clicked(this, boxset); };
 	void Signal_CountChanged() { callbackQBoxPlotSeries_CountChanged(this); };
@@ -3907,7 +3907,7 @@ char QBoxPlotSeries_BoxOutlineVisible(void* ptr)
 
 struct QtCharts_PackedList QBoxPlotSeries_BoxSets(void* ptr)
 {
-	return ({ QList<QBoxSet *>* tmpValue = new QList<QBoxSet *>(static_cast<QBoxPlotSeries*>(ptr)->boxSets()); QtCharts_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QBoxSet *>* tmpValueebb44b = new QList<QBoxSet *>(static_cast<QBoxPlotSeries*>(ptr)->boxSets()); QtCharts_PackedList { tmpValueebb44b, tmpValueebb44b->size() }; });
 }
 
 double QBoxPlotSeries_BoxWidth(void* ptr)
@@ -5142,8 +5142,8 @@ public:
 	void Signal_BodyOutlineVisibilityChanged() { callbackQCandlestickSeries_BodyOutlineVisibilityChanged(this); };
 	void Signal_BodyWidthChanged() { callbackQCandlestickSeries_BodyWidthChanged(this); };
 	void Signal_BrushChanged() { callbackQCandlestickSeries_BrushChanged(this); };
-	void Signal_CandlestickSetsAdded(const QList<QCandlestickSet *> & sets) { callbackQCandlestickSeries_CandlestickSetsAdded(this, ({ QList<QCandlestickSet *>* tmpValue = new QList<QCandlestickSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
-	void Signal_CandlestickSetsRemoved(const QList<QCandlestickSet *> & sets) { callbackQCandlestickSeries_CandlestickSetsRemoved(this, ({ QList<QCandlestickSet *>* tmpValue = new QList<QCandlestickSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_CandlestickSetsAdded(const QList<QCandlestickSet *> & sets) { callbackQCandlestickSeries_CandlestickSetsAdded(this, ({ QList<QCandlestickSet *>* tmpValued6c822 = new QList<QCandlestickSet *>(sets); QtCharts_PackedList { tmpValued6c822, tmpValued6c822->size() }; })); };
+	void Signal_CandlestickSetsRemoved(const QList<QCandlestickSet *> & sets) { callbackQCandlestickSeries_CandlestickSetsRemoved(this, ({ QList<QCandlestickSet *>* tmpValued6c822 = new QList<QCandlestickSet *>(sets); QtCharts_PackedList { tmpValued6c822, tmpValued6c822->size() }; })); };
 	void Signal_CapsVisibilityChanged() { callbackQCandlestickSeries_CapsVisibilityChanged(this); };
 	void Signal_CapsWidthChanged() { callbackQCandlestickSeries_CapsWidthChanged(this); };
 	void Signal_Clicked(QCandlestickSet * set) { callbackQCandlestickSeries_Clicked(this, set); };
@@ -5634,7 +5634,7 @@ void QCandlestickSeries_SetPen(void* ptr, void* pen)
 
 struct QtCharts_PackedList QCandlestickSeries_Sets(void* ptr)
 {
-	return ({ QList<QCandlestickSet *>* tmpValue = new QList<QCandlestickSet *>(static_cast<QCandlestickSeries*>(ptr)->sets()); QtCharts_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QCandlestickSet *>* tmpValuea950c0 = new QList<QCandlestickSet *>(static_cast<QCandlestickSeries*>(ptr)->sets()); QtCharts_PackedList { tmpValuea950c0, tmpValuea950c0->size() }; });
 }
 
 char QCandlestickSeries_Take(void* ptr, void* set)
@@ -6583,7 +6583,7 @@ long long QChart_AnimationOptions(void* ptr)
 
 struct QtCharts_PackedList QChart_Axes(void* ptr, long long orientation, void* series)
 {
-	return ({ QList<QAbstractAxis *>* tmpValue = new QList<QAbstractAxis *>(static_cast<QChart*>(ptr)->axes(static_cast<Qt::Orientation>(orientation), static_cast<QAbstractSeries*>(series))); QtCharts_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QAbstractAxis *>* tmpValue717af8 = new QList<QAbstractAxis *>(static_cast<QChart*>(ptr)->axes(static_cast<Qt::Orientation>(orientation), static_cast<QAbstractSeries*>(series))); QtCharts_PackedList { tmpValue717af8, tmpValue717af8->size() }; });
 }
 
 void* QChart_BackgroundBrush(void* ptr)
@@ -6713,7 +6713,7 @@ void QChart_Scroll(void* ptr, double dx, double dy)
 
 struct QtCharts_PackedList QChart_Series(void* ptr)
 {
-	return ({ QList<QAbstractSeries *>* tmpValue = new QList<QAbstractSeries *>(static_cast<QChart*>(ptr)->series()); QtCharts_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QAbstractSeries *>* tmpValued508ac = new QList<QAbstractSeries *>(static_cast<QChart*>(ptr)->series()); QtCharts_PackedList { tmpValued508ac, tmpValued508ac->size() }; });
 }
 
 void QChart_SetAnimationDuration(void* ptr, int msecs)
@@ -7691,7 +7691,7 @@ public:
 	void setupViewport(QWidget * widget) { callbackQChartView_SetupViewport(this, widget); };
 	void showEvent(QShowEvent * event) { callbackQChartView_ShowEvent(this, event); };
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQChartView_SizeHint(const_cast<void*>(static_cast<const void*>(this)))); };
-	void updateScene(const QList<QRectF> & rects) { callbackQChartView_UpdateScene(this, ({ QList<QRectF>* tmpValue = new QList<QRectF>(rects); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
+	void updateScene(const QList<QRectF> & rects) { callbackQChartView_UpdateScene(this, ({ QList<QRectF>* tmpValueb7a09e = new QList<QRectF>(rects); QtCharts_PackedList { tmpValueb7a09e, tmpValueb7a09e->size() }; })); };
 	void updateSceneRect(const QRectF & rect) { callbackQChartView_UpdateSceneRect(this, const_cast<QRectF*>(&rect)); };
 	bool viewportEvent(QEvent * event) { return callbackQChartView_ViewportEvent(this, event) != 0; };
 	void wheelEvent(QWheelEvent * event) { callbackQChartView_WheelEvent(this, event); };
@@ -10090,8 +10090,8 @@ public:
 	MyQHorizontalBarSeries(QObject *parent = Q_NULLPTR) : QHorizontalBarSeries(parent) {QHorizontalBarSeries_QHorizontalBarSeries_QRegisterMetaType();};
 	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQHorizontalBarSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 	 ~MyQHorizontalBarSeries() { callbackQHorizontalBarSeries_DestroyQHorizontalBarSeries(this); };
-	void Signal_BarsetsAdded(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsAdded(this, ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
-	void Signal_BarsetsRemoved(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsRemoved(this, ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_BarsetsAdded(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsAdded(this, ({ QList<QBarSet *>* tmpValued6c822 = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValued6c822, tmpValued6c822->size() }; })); };
+	void Signal_BarsetsRemoved(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsRemoved(this, ({ QList<QBarSet *>* tmpValued6c822 = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValued6c822, tmpValued6c822->size() }; })); };
 	void Signal_Clicked(int index, QBarSet * barset) { callbackQAbstractBarSeries_Clicked(this, index, barset); };
 	void Signal_CountChanged() { callbackQAbstractBarSeries_CountChanged(this); };
 	void Signal_DoubleClicked(int index, QBarSet * barset) { callbackQAbstractBarSeries_DoubleClicked(this, index, barset); };
@@ -10198,8 +10198,8 @@ public:
 	MyQHorizontalPercentBarSeries(QObject *parent = Q_NULLPTR) : QHorizontalPercentBarSeries(parent) {QHorizontalPercentBarSeries_QHorizontalPercentBarSeries_QRegisterMetaType();};
 	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQHorizontalPercentBarSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 	 ~MyQHorizontalPercentBarSeries() { callbackQHorizontalPercentBarSeries_DestroyQHorizontalPercentBarSeries(this); };
-	void Signal_BarsetsAdded(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsAdded(this, ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
-	void Signal_BarsetsRemoved(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsRemoved(this, ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_BarsetsAdded(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsAdded(this, ({ QList<QBarSet *>* tmpValued6c822 = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValued6c822, tmpValued6c822->size() }; })); };
+	void Signal_BarsetsRemoved(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsRemoved(this, ({ QList<QBarSet *>* tmpValued6c822 = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValued6c822, tmpValued6c822->size() }; })); };
 	void Signal_Clicked(int index, QBarSet * barset) { callbackQAbstractBarSeries_Clicked(this, index, barset); };
 	void Signal_CountChanged() { callbackQAbstractBarSeries_CountChanged(this); };
 	void Signal_DoubleClicked(int index, QBarSet * barset) { callbackQAbstractBarSeries_DoubleClicked(this, index, barset); };
@@ -10306,8 +10306,8 @@ public:
 	MyQHorizontalStackedBarSeries(QObject *parent = Q_NULLPTR) : QHorizontalStackedBarSeries(parent) {QHorizontalStackedBarSeries_QHorizontalStackedBarSeries_QRegisterMetaType();};
 	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQHorizontalStackedBarSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 	 ~MyQHorizontalStackedBarSeries() { callbackQHorizontalStackedBarSeries_DestroyQHorizontalStackedBarSeries(this); };
-	void Signal_BarsetsAdded(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsAdded(this, ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
-	void Signal_BarsetsRemoved(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsRemoved(this, ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_BarsetsAdded(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsAdded(this, ({ QList<QBarSet *>* tmpValued6c822 = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValued6c822, tmpValued6c822->size() }; })); };
+	void Signal_BarsetsRemoved(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsRemoved(this, ({ QList<QBarSet *>* tmpValued6c822 = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValued6c822, tmpValued6c822->size() }; })); };
 	void Signal_Clicked(int index, QBarSet * barset) { callbackQAbstractBarSeries_Clicked(this, index, barset); };
 	void Signal_CountChanged() { callbackQAbstractBarSeries_CountChanged(this); };
 	void Signal_DoubleClicked(int index, QBarSet * barset) { callbackQAbstractBarSeries_DoubleClicked(this, index, barset); };
@@ -10649,7 +10649,7 @@ void QLegend_MarkerShapeChanged(void* ptr, long long shape)
 
 struct QtCharts_PackedList QLegend_Markers(void* ptr, void* series)
 {
-	return ({ QList<QLegendMarker *>* tmpValue = new QList<QLegendMarker *>(static_cast<QLegend*>(ptr)->markers(static_cast<QAbstractSeries*>(series))); QtCharts_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QLegendMarker *>* tmpValue6c1e10 = new QList<QLegendMarker *>(static_cast<QLegend*>(ptr)->markers(static_cast<QAbstractSeries*>(series))); QtCharts_PackedList { tmpValue6c1e10, tmpValue6c1e10->size() }; });
 }
 
 void* QLegend_Pen(void* ptr)
@@ -12210,8 +12210,8 @@ public:
 	MyQPercentBarSeries(QObject *parent = Q_NULLPTR) : QPercentBarSeries(parent) {QPercentBarSeries_QPercentBarSeries_QRegisterMetaType();};
 	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQPercentBarSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 	 ~MyQPercentBarSeries() { callbackQPercentBarSeries_DestroyQPercentBarSeries(this); };
-	void Signal_BarsetsAdded(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsAdded(this, ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
-	void Signal_BarsetsRemoved(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsRemoved(this, ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_BarsetsAdded(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsAdded(this, ({ QList<QBarSet *>* tmpValued6c822 = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValued6c822, tmpValued6c822->size() }; })); };
+	void Signal_BarsetsRemoved(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsRemoved(this, ({ QList<QBarSet *>* tmpValued6c822 = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValued6c822, tmpValued6c822->size() }; })); };
 	void Signal_Clicked(int index, QBarSet * barset) { callbackQAbstractBarSeries_Clicked(this, index, barset); };
 	void Signal_CountChanged() { callbackQAbstractBarSeries_CountChanged(this); };
 	void Signal_DoubleClicked(int index, QBarSet * barset) { callbackQAbstractBarSeries_DoubleClicked(this, index, barset); };
@@ -12633,14 +12633,14 @@ class MyQPieSeries: public QPieSeries
 {
 public:
 	MyQPieSeries(QObject *parent = Q_NULLPTR) : QPieSeries(parent) {QPieSeries_QPieSeries_QRegisterMetaType();};
-	void Signal_Added(QList<QPieSlice *> slices) { callbackQPieSeries_Added(this, ({ QList<QPieSlice *>* tmpValue = new QList<QPieSlice *>(slices); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_Added(QList<QPieSlice *> slices) { callbackQPieSeries_Added(this, ({ QList<QPieSlice *>* tmpValuefd7c91 = new QList<QPieSlice *>(slices); QtCharts_PackedList { tmpValuefd7c91, tmpValuefd7c91->size() }; })); };
 	void Signal_Clicked(QPieSlice * slice) { callbackQPieSeries_Clicked(this, slice); };
 	void Signal_CountChanged() { callbackQPieSeries_CountChanged(this); };
 	void Signal_DoubleClicked(QPieSlice * slice) { callbackQPieSeries_DoubleClicked(this, slice); };
 	void Signal_Hovered(QPieSlice * slice, bool state) { callbackQPieSeries_Hovered(this, slice, state); };
 	void Signal_Pressed(QPieSlice * slice) { callbackQPieSeries_Pressed(this, slice); };
 	void Signal_Released(QPieSlice * slice) { callbackQPieSeries_Released(this, slice); };
-	void Signal_Removed(QList<QPieSlice *> slices) { callbackQPieSeries_Removed(this, ({ QList<QPieSlice *>* tmpValue = new QList<QPieSlice *>(slices); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_Removed(QList<QPieSlice *> slices) { callbackQPieSeries_Removed(this, ({ QList<QPieSlice *>* tmpValuefd7c91 = new QList<QPieSlice *>(slices); QtCharts_PackedList { tmpValuefd7c91, tmpValuefd7c91->size() }; })); };
 	void Signal_SumChanged() { callbackQPieSeries_SumChanged(this); };
 	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQPieSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 	 ~MyQPieSeries() { callbackQPieSeries_DestroyQPieSeries(this); };
@@ -12939,7 +12939,7 @@ void QPieSeries_SetVerticalPosition(void* ptr, double relativePosition)
 
 struct QtCharts_PackedList QPieSeries_Slices(void* ptr)
 {
-	return ({ QList<QPieSlice *>* tmpValue = new QList<QPieSlice *>(static_cast<QPieSeries*>(ptr)->slices()); QtCharts_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QPieSlice *>* tmpValuedfd5d1 = new QList<QPieSlice *>(static_cast<QPieSeries*>(ptr)->slices()); QtCharts_PackedList { tmpValuedfd5d1, tmpValuedfd5d1->size() }; });
 }
 
 double QPieSeries_Sum(void* ptr)
@@ -13890,7 +13890,7 @@ void QPolarChart_AddAxis(void* ptr, void* axis, long long polarOrientation)
 
 struct QtCharts_PackedList QPolarChart_Axes(void* ptr, long long polarOrientation, void* series)
 {
-	return ({ QList<QAbstractAxis *>* tmpValue = new QList<QAbstractAxis *>(static_cast<QPolarChart*>(ptr)->axes(static_cast<QPolarChart::PolarOrientation>(polarOrientation), static_cast<QAbstractSeries*>(series))); QtCharts_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QAbstractAxis *>* tmpValuee67b53 = new QList<QAbstractAxis *>(static_cast<QPolarChart*>(ptr)->axes(static_cast<QPolarChart::PolarOrientation>(polarOrientation), static_cast<QAbstractSeries*>(series))); QtCharts_PackedList { tmpValuee67b53, tmpValuee67b53->size() }; });
 }
 
 long long QPolarChart_QPolarChart_AxisPolarOrientation(void* axis)
@@ -14215,8 +14215,8 @@ public:
 	MyQStackedBarSeries(QObject *parent = Q_NULLPTR) : QStackedBarSeries(parent) {QStackedBarSeries_QStackedBarSeries_QRegisterMetaType();};
 	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQStackedBarSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 	 ~MyQStackedBarSeries() { callbackQStackedBarSeries_DestroyQStackedBarSeries(this); };
-	void Signal_BarsetsAdded(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsAdded(this, ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
-	void Signal_BarsetsRemoved(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsRemoved(this, ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_BarsetsAdded(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsAdded(this, ({ QList<QBarSet *>* tmpValued6c822 = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValued6c822, tmpValued6c822->size() }; })); };
+	void Signal_BarsetsRemoved(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsRemoved(this, ({ QList<QBarSet *>* tmpValued6c822 = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValued6c822, tmpValued6c822->size() }; })); };
 	void Signal_Clicked(int index, QBarSet * barset) { callbackQAbstractBarSeries_Clicked(this, index, barset); };
 	void Signal_CountChanged() { callbackQAbstractBarSeries_CountChanged(this); };
 	void Signal_DoubleClicked(int index, QBarSet * barset) { callbackQAbstractBarSeries_DoubleClicked(this, index, barset); };
@@ -16763,7 +16763,7 @@ void QXYSeries_PointReplaced(void* ptr, int index)
 
 struct QtCharts_PackedList QXYSeries_Points(void* ptr)
 {
-	return ({ QList<QPointF>* tmpValue = new QList<QPointF>(static_cast<QXYSeries*>(ptr)->points()); QtCharts_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QPointF>* tmpValue342e4d = new QList<QPointF>(static_cast<QXYSeries*>(ptr)->points()); QtCharts_PackedList { tmpValue342e4d, tmpValue342e4d->size() }; });
 }
 
 void QXYSeries_ConnectPointsRemoved(void* ptr)
@@ -16798,7 +16798,7 @@ void QXYSeries_PointsReplaced(void* ptr)
 
 struct QtCharts_PackedList QXYSeries_PointsVector(void* ptr)
 {
-	return ({ QVector<QPointF>* tmpValue = new QVector<QPointF>(static_cast<QXYSeries*>(ptr)->pointsVector()); QtCharts_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QVector<QPointF>* tmpValue513058 = new QVector<QPointF>(static_cast<QXYSeries*>(ptr)->pointsVector()); QtCharts_PackedList { tmpValue513058, tmpValue513058->size() }; });
 }
 
 char QXYSeries_PointsVisible(void* ptr)

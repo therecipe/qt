@@ -1439,7 +1439,7 @@ public:
 	void closeEditor(QWidget * editor, QAbstractItemDelegate::EndEditHint hint) { callbackQAbstractItemView_CloseEditor(this, editor, hint); };
 	void commitData(QWidget * editor) { callbackQAbstractItemView_CommitData(this, editor); };
 	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQAbstractItemView_CurrentChanged(this, const_cast<QModelIndex*>(&current), const_cast<QModelIndex*>(&previous)); };
-	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQAbstractItemView_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = new QVector<int>(roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
+	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQAbstractItemView_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue037c88 = new QVector<int>(roles); QtWidgets_PackedList { tmpValue037c88, tmpValue037c88->size() }; })); };
 	void Signal_DoubleClicked(const QModelIndex & index) { callbackQAbstractItemView_DoubleClicked(this, const_cast<QModelIndex*>(&index)); };
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQWidget_DragEnterEvent(this, event); };
 	void dragLeaveEvent(QDragLeaveEvent * event) { callbackQWidget_DragLeaveEvent(this, event); };
@@ -2369,31 +2369,31 @@ void QAbstractItemView_SelectAllDefault(void* ptr)
 
 struct QtWidgets_PackedList QAbstractItemView_SelectedIndexes(void* ptr)
 {
-	return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QAbstractItemView*>(ptr)->selectedIndexes()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QModelIndex>* tmpValue765a4d = new QList<QModelIndex>(static_cast<QAbstractItemView*>(ptr)->selectedIndexes()); QtWidgets_PackedList { tmpValue765a4d, tmpValue765a4d->size() }; });
 }
 
 struct QtWidgets_PackedList QAbstractItemView_SelectedIndexesDefault(void* ptr)
 {
 	if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
-		return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QTreeWidget*>(ptr)->QTreeWidget::selectedIndexes()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QList<QModelIndex>* tmpValuec60d90 = new QList<QModelIndex>(static_cast<QTreeWidget*>(ptr)->QTreeWidget::selectedIndexes()); QtWidgets_PackedList { tmpValuec60d90, tmpValuec60d90->size() }; });
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
-		return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QTreeView*>(ptr)->QTreeView::selectedIndexes()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QList<QModelIndex>* tmpValuec60d90 = new QList<QModelIndex>(static_cast<QTreeView*>(ptr)->QTreeView::selectedIndexes()); QtWidgets_PackedList { tmpValuec60d90, tmpValuec60d90->size() }; });
 	} else if (dynamic_cast<QTableWidget*>(static_cast<QObject*>(ptr))) {
-		return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QTableWidget*>(ptr)->QTableWidget::selectedIndexes()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QList<QModelIndex>* tmpValuec60d90 = new QList<QModelIndex>(static_cast<QTableWidget*>(ptr)->QTableWidget::selectedIndexes()); QtWidgets_PackedList { tmpValuec60d90, tmpValuec60d90->size() }; });
 	} else if (dynamic_cast<QTableView*>(static_cast<QObject*>(ptr))) {
-		return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QTableView*>(ptr)->QTableView::selectedIndexes()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QList<QModelIndex>* tmpValuec60d90 = new QList<QModelIndex>(static_cast<QTableView*>(ptr)->QTableView::selectedIndexes()); QtWidgets_PackedList { tmpValuec60d90, tmpValuec60d90->size() }; });
 	} else if (dynamic_cast<QUndoView*>(static_cast<QObject*>(ptr))) {
-		return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QUndoView*>(ptr)->QUndoView::selectedIndexes()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QList<QModelIndex>* tmpValuec60d90 = new QList<QModelIndex>(static_cast<QUndoView*>(ptr)->QUndoView::selectedIndexes()); QtWidgets_PackedList { tmpValuec60d90, tmpValuec60d90->size() }; });
 	} else if (dynamic_cast<QListWidget*>(static_cast<QObject*>(ptr))) {
-		return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QListWidget*>(ptr)->QListWidget::selectedIndexes()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QList<QModelIndex>* tmpValuec60d90 = new QList<QModelIndex>(static_cast<QListWidget*>(ptr)->QListWidget::selectedIndexes()); QtWidgets_PackedList { tmpValuec60d90, tmpValuec60d90->size() }; });
 	} else if (dynamic_cast<QListView*>(static_cast<QObject*>(ptr))) {
-		return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QListView*>(ptr)->QListView::selectedIndexes()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QList<QModelIndex>* tmpValuec60d90 = new QList<QModelIndex>(static_cast<QListView*>(ptr)->QListView::selectedIndexes()); QtWidgets_PackedList { tmpValuec60d90, tmpValuec60d90->size() }; });
 	} else if (dynamic_cast<QHeaderView*>(static_cast<QObject*>(ptr))) {
-		return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QHeaderView*>(ptr)->QHeaderView::selectedIndexes()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QList<QModelIndex>* tmpValuec60d90 = new QList<QModelIndex>(static_cast<QHeaderView*>(ptr)->QHeaderView::selectedIndexes()); QtWidgets_PackedList { tmpValuec60d90, tmpValuec60d90->size() }; });
 	} else if (dynamic_cast<QColumnView*>(static_cast<QObject*>(ptr))) {
-		return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QColumnView*>(ptr)->QColumnView::selectedIndexes()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QList<QModelIndex>* tmpValuec60d90 = new QList<QModelIndex>(static_cast<QColumnView*>(ptr)->QColumnView::selectedIndexes()); QtWidgets_PackedList { tmpValuec60d90, tmpValuec60d90->size() }; });
 	} else {
-		return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::selectedIndexes()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QList<QModelIndex>* tmpValuec60d90 = new QList<QModelIndex>(static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::selectedIndexes()); QtWidgets_PackedList { tmpValuec60d90, tmpValuec60d90->size() }; });
 	}
 }
 
@@ -3107,7 +3107,7 @@ void* QAbstractScrollArea_MaximumViewportSize(void* ptr)
 
 struct QtWidgets_PackedList QAbstractScrollArea_ScrollBarWidgets(void* ptr, long long alignment)
 {
-	return ({ QList<QWidget *>* tmpValue = new QList<QWidget *>(static_cast<QAbstractScrollArea*>(ptr)->scrollBarWidgets(static_cast<Qt::AlignmentFlag>(alignment))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QWidget *>* tmpValue2f39ff = new QList<QWidget *>(static_cast<QAbstractScrollArea*>(ptr)->scrollBarWidgets(static_cast<Qt::AlignmentFlag>(alignment))); QtWidgets_PackedList { tmpValue2f39ff, tmpValue2f39ff->size() }; });
 }
 
 void QAbstractScrollArea_ScrollContentsBy(void* ptr, int dx, int dy)
@@ -4654,12 +4654,12 @@ void QAction_Activate(void* ptr, long long event)
 
 struct QtWidgets_PackedList QAction_AssociatedGraphicsWidgets(void* ptr)
 {
-	return ({ QList<QGraphicsWidget *>* tmpValue = new QList<QGraphicsWidget *>(static_cast<QAction*>(ptr)->associatedGraphicsWidgets()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QGraphicsWidget *>* tmpValue7c7d2b = new QList<QGraphicsWidget *>(static_cast<QAction*>(ptr)->associatedGraphicsWidgets()); QtWidgets_PackedList { tmpValue7c7d2b, tmpValue7c7d2b->size() }; });
 }
 
 struct QtWidgets_PackedList QAction_AssociatedWidgets(void* ptr)
 {
-	return ({ QList<QWidget *>* tmpValue = new QList<QWidget *>(static_cast<QAction*>(ptr)->associatedWidgets()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QWidget *>* tmpValue85cee4 = new QList<QWidget *>(static_cast<QAction*>(ptr)->associatedWidgets()); QtWidgets_PackedList { tmpValue85cee4, tmpValue85cee4->size() }; });
 }
 
 char QAction_AutoRepeat(void* ptr)
@@ -4968,7 +4968,7 @@ long long QAction_ShortcutContext(void* ptr)
 
 struct QtWidgets_PackedList QAction_Shortcuts(void* ptr)
 {
-	return ({ QList<QKeySequence>* tmpValue = new QList<QKeySequence>(static_cast<QAction*>(ptr)->shortcuts()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QKeySequence>* tmpValue30197e = new QList<QKeySequence>(static_cast<QAction*>(ptr)->shortcuts()); QtWidgets_PackedList { tmpValue30197e, tmpValue30197e->size() }; });
 }
 
 char QAction_ShowStatusText(void* ptr, void* widget)
@@ -5418,7 +5418,7 @@ void* QActionGroup_NewQActionGroup(void* parent)
 
 struct QtWidgets_PackedList QActionGroup_Actions(void* ptr)
 {
-	return ({ QList<QAction *>* tmpValue = new QList<QAction *>(static_cast<QActionGroup*>(ptr)->actions()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QAction *>* tmpValue766e2b = new QList<QAction *>(static_cast<QActionGroup*>(ptr)->actions()); QtWidgets_PackedList { tmpValue766e2b, tmpValue766e2b->size() }; });
 }
 
 void* QActionGroup_AddAction(void* ptr, void* action)
@@ -5825,7 +5825,7 @@ void QApplication_QApplication_Alert(void* widget, int msec)
 
 struct QtWidgets_PackedList QApplication_QApplication_AllWidgets()
 {
-	return ({ QList<QWidget *>* tmpValue = new QList<QWidget *>(QApplication::allWidgets()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QWidget *>* tmpValue15db35 = new QList<QWidget *>(QApplication::allWidgets()); QtWidgets_PackedList { tmpValue15db35, tmpValue15db35->size() }; });
 }
 
 char QApplication_AutoSipEnabled(void* ptr)
@@ -6083,7 +6083,7 @@ void* QApplication_QApplication_TopLevelAt2(int x, int y)
 
 struct QtWidgets_PackedList QApplication_QApplication_TopLevelWidgets()
 {
-	return ({ QList<QWidget *>* tmpValue = new QList<QWidget *>(QApplication::topLevelWidgets()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QWidget *>* tmpValue8ff1e1 = new QList<QWidget *>(QApplication::topLevelWidgets()); QtWidgets_PackedList { tmpValue8ff1e1, tmpValue8ff1e1->size() }; });
 }
 
 int QApplication_QApplication_WheelScrollLines()
@@ -6797,7 +6797,7 @@ void QButtonGroup_ButtonToggled2(void* ptr, int id, char checked)
 
 struct QtWidgets_PackedList QButtonGroup_Buttons(void* ptr)
 {
-	return ({ QList<QAbstractButton *>* tmpValue = new QList<QAbstractButton *>(static_cast<QButtonGroup*>(ptr)->buttons()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QAbstractButton *>* tmpValuea4306e = new QList<QAbstractButton *>(static_cast<QButtonGroup*>(ptr)->buttons()); QtWidgets_PackedList { tmpValuea4306e, tmpValuea4306e->size() }; });
 }
 
 void* QButtonGroup_CheckedButton(void* ptr)
@@ -7191,7 +7191,7 @@ int QCalendarWidget_DateEditAcceptDelay(void* ptr)
 
 struct QtWidgets_PackedList QCalendarWidget_DateTextFormat(void* ptr)
 {
-	return ({ QMap<QDate, QTextCharFormat>* tmpValue = new QMap<QDate, QTextCharFormat>(static_cast<QCalendarWidget*>(ptr)->dateTextFormat()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QMap<QDate, QTextCharFormat>* tmpValue83ea0b = new QMap<QDate, QTextCharFormat>(static_cast<QCalendarWidget*>(ptr)->dateTextFormat()); QtWidgets_PackedList { tmpValue83ea0b, tmpValue83ea0b->size() }; });
 }
 
 void* QCalendarWidget_DateTextFormat2(void* ptr, void* date)
@@ -7498,7 +7498,7 @@ void* QCalendarWidget___dateTextFormat_newList(void* ptr)
 
 struct QtWidgets_PackedList QCalendarWidget___dateTextFormat_keyList(void* ptr)
 {
-	return ({ QList<QDate>* tmpValue = new QList<QDate>(static_cast<QMap<QDate, QTextCharFormat>*>(ptr)->keys()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QDate>* tmpValueb38b32 = new QList<QDate>(static_cast<QMap<QDate, QTextCharFormat>*>(ptr)->keys()); QtWidgets_PackedList { tmpValueb38b32, tmpValueb38b32->size() }; });
 }
 
 void* QCalendarWidget_____dateTextFormat_keyList_atList(void* ptr, int i)
@@ -7927,7 +7927,7 @@ void* QColormap_ColorAt(void* ptr, unsigned int pixel)
 
 struct QtWidgets_PackedList QColormap_Colormap(void* ptr)
 {
-	return ({ QVector<QColor>* tmpValue = new QVector<QColor>(static_cast<QColormap*>(ptr)->colormap()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QVector<QColor>* tmpValue60e802 = new QVector<QColor>(static_cast<QColormap*>(ptr)->colormap()); QtWidgets_PackedList { tmpValue60e802, tmpValue60e802->size() }; });
 }
 
 int QColormap_Depth(void* ptr)
@@ -8006,7 +8006,7 @@ public:
 	void Signal_Clicked(const QModelIndex & index) { callbackQAbstractItemView_Clicked(this, const_cast<QModelIndex*>(&index)); };
 	void closeEditor(QWidget * editor, QAbstractItemDelegate::EndEditHint hint) { callbackQAbstractItemView_CloseEditor(this, editor, hint); };
 	void commitData(QWidget * editor) { callbackQAbstractItemView_CommitData(this, editor); };
-	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQAbstractItemView_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = new QVector<int>(roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
+	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQAbstractItemView_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue037c88 = new QVector<int>(roles); QtWidgets_PackedList { tmpValue037c88, tmpValue037c88->size() }; })); };
 	void Signal_DoubleClicked(const QModelIndex & index) { callbackQAbstractItemView_DoubleClicked(this, const_cast<QModelIndex*>(&index)); };
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQWidget_DragEnterEvent(this, event); };
 	void dragLeaveEvent(QDragLeaveEvent * event) { callbackQWidget_DragLeaveEvent(this, event); };
@@ -8113,7 +8113,7 @@ void* QColumnView_NewQColumnView(void* parent)
 
 struct QtWidgets_PackedList QColumnView_ColumnWidths(void* ptr)
 {
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QColumnView*>(ptr)->columnWidths()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<int>* tmpValuef750bc = new QList<int>(static_cast<QColumnView*>(ptr)->columnWidths()); QtWidgets_PackedList { tmpValuef750bc, tmpValuef750bc->size() }; });
 }
 
 void* QColumnView_CreateColumn(void* ptr, void* index)
@@ -11824,7 +11824,7 @@ long long QDialogButtonBox_ButtonRole(void* ptr, void* button)
 
 struct QtWidgets_PackedList QDialogButtonBox_Buttons(void* ptr)
 {
-	return ({ QList<QAbstractButton *>* tmpValue = new QList<QAbstractButton *>(static_cast<QDialogButtonBox*>(ptr)->buttons()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QAbstractButton *>* tmpValuea9cc79 = new QList<QAbstractButton *>(static_cast<QDialogButtonBox*>(ptr)->buttons()); QtWidgets_PackedList { tmpValuea9cc79, tmpValuea9cc79->size() }; });
 }
 
 char QDialogButtonBox_CenterButtons(void* ptr)
@@ -11956,7 +11956,7 @@ public:
 	bool hasChildren(const QModelIndex & parent) const { return callbackQDirModel_HasChildren(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&parent)) != 0; };
 	QVariant headerData(int section, Qt::Orientation orientation, int role) const { return *static_cast<QVariant*>(callbackQDirModel_HeaderData(const_cast<void*>(static_cast<const void*>(this)), section, orientation, role)); };
 	QModelIndex index(int row, int column, const QModelIndex & parent) const { return *static_cast<QModelIndex*>(callbackQDirModel_Index(const_cast<void*>(static_cast<const void*>(this)), row, column, const_cast<QModelIndex*>(&parent))); };
-	QMimeData * mimeData(const QModelIndexList & indexes) const { return static_cast<QMimeData*>(callbackQDirModel_MimeData(const_cast<void*>(static_cast<const void*>(this)), ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(indexes); QtWidgets_PackedList { tmpValue, tmpValue->size() }; }))); };
+	QMimeData * mimeData(const QModelIndexList & indexes) const { return static_cast<QMimeData*>(callbackQDirModel_MimeData(const_cast<void*>(static_cast<const void*>(this)), ({ QList<QModelIndex>* tmpValuee0adf2 = new QList<QModelIndex>(indexes); QtWidgets_PackedList { tmpValuee0adf2, tmpValuee0adf2->size() }; }))); };
 	QStringList mimeTypes() const { return ({ QtWidgets_PackedString tempVal = callbackQDirModel_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	QModelIndex parent(const QModelIndex & child) const { return *static_cast<QModelIndex*>(callbackQDirModel_Parent(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&child))); };
 	void refresh(const QModelIndex & parent) { callbackQDirModel_Refresh(this, const_cast<QModelIndex*>(&parent)); };
@@ -11974,14 +11974,14 @@ public:
 	void Signal_ColumnsInserted(const QModelIndex & parent, int first, int last) { callbackQDirModel_ColumnsInserted(this, const_cast<QModelIndex*>(&parent), first, last); };
 	void Signal_ColumnsMoved(const QModelIndex & parent, int start, int end, const QModelIndex & destination, int column) { callbackQDirModel_ColumnsMoved(this, const_cast<QModelIndex*>(&parent), start, end, const_cast<QModelIndex*>(&destination), column); };
 	void Signal_ColumnsRemoved(const QModelIndex & parent, int first, int last) { callbackQDirModel_ColumnsRemoved(this, const_cast<QModelIndex*>(&parent), first, last); };
-	void Signal_DataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQDirModel_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = new QVector<int>(roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_DataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQDirModel_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue037c88 = new QVector<int>(roles); QtWidgets_PackedList { tmpValue037c88, tmpValue037c88->size() }; })); };
 	void fetchMore(const QModelIndex & parent) { callbackQDirModel_FetchMore(this, const_cast<QModelIndex*>(&parent)); };
 	void Signal_HeaderDataChanged(Qt::Orientation orientation, int first, int last) { callbackQDirModel_HeaderDataChanged(this, orientation, first, last); };
 	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQDirModel_InsertColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQDirModel_InsertRows(this, row, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	QMap<int, QVariant> itemData(const QModelIndex & index) const { return ({ QMap<int, QVariant>* tmpP = static_cast<QMap<int, QVariant>*>(callbackQDirModel_ItemData(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); QMap<int, QVariant> tmpV = *tmpP; tmpP->~QMap(); free(tmpP); tmpV; }); };
-	void Signal_LayoutAboutToBeChanged(const QList<QPersistentModelIndex> & parents, QAbstractItemModel::LayoutChangeHint hint) { callbackQDirModel_LayoutAboutToBeChanged(this, ({ QList<QPersistentModelIndex>* tmpValue = new QList<QPersistentModelIndex>(parents); QtWidgets_PackedList { tmpValue, tmpValue->size() }; }), hint); };
-	void Signal_LayoutChanged(const QList<QPersistentModelIndex> & parents, QAbstractItemModel::LayoutChangeHint hint) { callbackQDirModel_LayoutChanged(this, ({ QList<QPersistentModelIndex>* tmpValue = new QList<QPersistentModelIndex>(parents); QtWidgets_PackedList { tmpValue, tmpValue->size() }; }), hint); };
+	void Signal_LayoutAboutToBeChanged(const QList<QPersistentModelIndex> & parents, QAbstractItemModel::LayoutChangeHint hint) { callbackQDirModel_LayoutAboutToBeChanged(this, ({ QList<QPersistentModelIndex>* tmpValuea664f1 = new QList<QPersistentModelIndex>(parents); QtWidgets_PackedList { tmpValuea664f1, tmpValuea664f1->size() }; }), hint); };
+	void Signal_LayoutChanged(const QList<QPersistentModelIndex> & parents, QAbstractItemModel::LayoutChangeHint hint) { callbackQDirModel_LayoutChanged(this, ({ QList<QPersistentModelIndex>* tmpValuea664f1 = new QList<QPersistentModelIndex>(parents); QtWidgets_PackedList { tmpValuea664f1, tmpValuea664f1->size() }; }), hint); };
 	QList<QModelIndex> match(const QModelIndex & start, int role, const QVariant & value, int hits, Qt::MatchFlags flags) const { return ({ QList<QModelIndex>* tmpP = static_cast<QList<QModelIndex>*>(callbackQDirModel_Match(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&start), role, const_cast<QVariant*>(&value), hits, flags)); QList<QModelIndex> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
 	void Signal_ModelAboutToBeReset() { callbackQDirModel_ModelAboutToBeReset(this); };
 	void Signal_ModelReset() { callbackQDirModel_ModelReset(this); };
@@ -11999,7 +11999,7 @@ public:
 	void Signal_RowsMoved(const QModelIndex & parent, int start, int end, const QModelIndex & destination, int row) { callbackQDirModel_RowsMoved(this, const_cast<QModelIndex*>(&parent), start, end, const_cast<QModelIndex*>(&destination), row); };
 	void Signal_RowsRemoved(const QModelIndex & parent, int first, int last) { callbackQDirModel_RowsRemoved(this, const_cast<QModelIndex*>(&parent), first, last); };
 	bool setHeaderData(int section, Qt::Orientation orientation, const QVariant & value, int role) { return callbackQDirModel_SetHeaderData(this, section, orientation, const_cast<QVariant*>(&value), role) != 0; };
-	bool setItemData(const QModelIndex & index, const QMap<int, QVariant> & roles) { return callbackQDirModel_SetItemData(this, const_cast<QModelIndex*>(&index), ({ QMap<int, QVariant>* tmpValue = new QMap<int, QVariant>(roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })) != 0; };
+	bool setItemData(const QModelIndex & index, const QMap<int, QVariant> & roles) { return callbackQDirModel_SetItemData(this, const_cast<QModelIndex*>(&index), ({ QMap<int, QVariant>* tmpValue037c88 = new QMap<int, QVariant>(roles); QtWidgets_PackedList { tmpValue037c88, tmpValue037c88->size() }; })) != 0; };
 	QModelIndex sibling(int row, int column, const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQDirModel_Sibling(const_cast<void*>(static_cast<const void*>(this)), row, column, const_cast<QModelIndex*>(&index))); };
 	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQDirModel_Span(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
 	bool submit() { return callbackQDirModel_Submit(this) != 0; };
@@ -12433,7 +12433,7 @@ void* QDirModel___itemData_newList(void* ptr)
 
 struct QtWidgets_PackedList QDirModel___itemData_keyList(void* ptr)
 {
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<int>* tmpValue249128 = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtWidgets_PackedList { tmpValue249128, tmpValue249128->size() }; });
 }
 
 void* QDirModel___layoutAboutToBeChanged_parents_atList(void* ptr, int i)
@@ -12518,7 +12518,7 @@ void* QDirModel___roleNames_newList(void* ptr)
 
 struct QtWidgets_PackedList QDirModel___roleNames_keyList(void* ptr)
 {
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QHash<int, QByteArray>*>(ptr)->keys()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<int>* tmpValue7fc3bb = new QList<int>(static_cast<QHash<int, QByteArray>*>(ptr)->keys()); QtWidgets_PackedList { tmpValue7fc3bb, tmpValue7fc3bb->size() }; });
 }
 
 void* QDirModel___setItemData_roles_atList(void* ptr, int v, int i)
@@ -12539,7 +12539,7 @@ void* QDirModel___setItemData_roles_newList(void* ptr)
 
 struct QtWidgets_PackedList QDirModel___setItemData_roles_keyList(void* ptr)
 {
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<int>* tmpValue249128 = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtWidgets_PackedList { tmpValue249128, tmpValue249128->size() }; });
 }
 
 int QDirModel_____doSetRoleNames_roleNames_keyList_atList(void* ptr, int i)
@@ -12774,12 +12774,12 @@ char QDirModel_InsertRowsDefault(void* ptr, int row, int count, void* parent)
 
 struct QtWidgets_PackedList QDirModel_ItemDataDefault(void* ptr, void* index)
 {
-		return ({ QMap<int, QVariant>* tmpValue = new QMap<int, QVariant>(static_cast<QDirModel*>(ptr)->QDirModel::itemData(*static_cast<QModelIndex*>(index))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QMap<int, QVariant>* tmpValue0139f1 = new QMap<int, QVariant>(static_cast<QDirModel*>(ptr)->QDirModel::itemData(*static_cast<QModelIndex*>(index))); QtWidgets_PackedList { tmpValue0139f1, tmpValue0139f1->size() }; });
 }
 
 struct QtWidgets_PackedList QDirModel_MatchDefault(void* ptr, void* start, int role, void* value, int hits, long long flags)
 {
-		return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QDirModel*>(ptr)->QDirModel::match(*static_cast<QModelIndex*>(start), role, *static_cast<QVariant*>(value), hits, static_cast<Qt::MatchFlag>(flags))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QList<QModelIndex>* tmpValue725331 = new QList<QModelIndex>(static_cast<QDirModel*>(ptr)->QDirModel::match(*static_cast<QModelIndex*>(start), role, *static_cast<QVariant*>(value), hits, static_cast<Qt::MatchFlag>(flags))); QtWidgets_PackedList { tmpValue725331, tmpValue725331->size() }; });
 }
 
 char QDirModel_MoveColumnsDefault(void* ptr, void* sourceParent, int sourceColumn, int count, void* destinationParent, int destinationChild)
@@ -12814,7 +12814,7 @@ void QDirModel_RevertDefault(void* ptr)
 
 struct QtWidgets_PackedList QDirModel_RoleNamesDefault(void* ptr)
 {
-		return ({ QHash<int, QByteArray>* tmpValue = new QHash<int, QByteArray>(static_cast<QDirModel*>(ptr)->QDirModel::roleNames()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QHash<int, QByteArray>* tmpValue4528f2 = new QHash<int, QByteArray>(static_cast<QDirModel*>(ptr)->QDirModel::roleNames()); QtWidgets_PackedList { tmpValue4528f2, tmpValue4528f2->size() }; });
 }
 
 char QDirModel_SetHeaderDataDefault(void* ptr, int section, long long orientation, void* value, int role)
@@ -13567,7 +13567,7 @@ public:
 	void Signal_FilterSelected(const QString & filter) { QByteArray t4bb4ca = filter.toUtf8(); QtWidgets_PackedString filterPacked = { const_cast<char*>(t4bb4ca.prepend("WHITESPACE").constData()+10), t4bb4ca.size()-10 };callbackQFileDialog_FilterSelected(this, filterPacked); };
 	void setVisible(bool visible) { callbackQDialog_SetVisible(this, visible); };
 	void Signal_UrlSelected(const QUrl & url) { callbackQFileDialog_UrlSelected(this, const_cast<QUrl*>(&url)); };
-	void Signal_UrlsSelected(const QList<QUrl> & urls) { callbackQFileDialog_UrlsSelected(this, ({ QList<QUrl>* tmpValue = new QList<QUrl>(urls); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_UrlsSelected(const QList<QUrl> & urls) { callbackQFileDialog_UrlsSelected(this, ({ QList<QUrl>* tmpValuec9856c = new QList<QUrl>(urls); QtWidgets_PackedList { tmpValuec9856c, tmpValuec9856c->size() }; })); };
 	 ~MyQFileDialog() { callbackQFileDialog_DestroyQFileDialog(this); };
 	void Signal_Accepted() { callbackQDialog_Accepted(this); };
 	void closeEvent(QCloseEvent * e) { callbackQWidget_CloseEvent(this, e); };
@@ -13845,7 +13845,7 @@ void* QFileDialog_QFileDialog_GetOpenFileUrl(void* parent, struct QtWidgets_Pack
 
 struct QtWidgets_PackedList QFileDialog_QFileDialog_GetOpenFileUrls(void* parent, struct QtWidgets_PackedString caption, void* dir, struct QtWidgets_PackedString filter, struct QtWidgets_PackedString selectedFilter, long long options, struct QtWidgets_PackedString supportedSchemes)
 {
-		return ({ QList<QUrl>* tmpValue = new QList<QUrl>(QFileDialog::getOpenFileUrls(static_cast<QWidget*>(parent), QString::fromUtf8(caption.data, caption.len), *static_cast<QUrl*>(dir), QString::fromUtf8(filter.data, filter.len), new QString(QString::fromUtf8(selectedFilter.data, selectedFilter.len)), static_cast<QFileDialog::Option>(options), QString::fromUtf8(supportedSchemes.data, supportedSchemes.len).split("¡¦!", QString::SkipEmptyParts))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QList<QUrl>* tmpValue688015 = new QList<QUrl>(QFileDialog::getOpenFileUrls(static_cast<QWidget*>(parent), QString::fromUtf8(caption.data, caption.len), *static_cast<QUrl*>(dir), QString::fromUtf8(filter.data, filter.len), new QString(QString::fromUtf8(selectedFilter.data, selectedFilter.len)), static_cast<QFileDialog::Option>(options), QString::fromUtf8(supportedSchemes.data, supportedSchemes.len).split("¡¦!", QString::SkipEmptyParts))); QtWidgets_PackedList { tmpValue688015, tmpValue688015->size() }; });
 }
 
 struct QtWidgets_PackedString QFileDialog_QFileDialog_GetSaveFileName(void* parent, struct QtWidgets_PackedString caption, struct QtWidgets_PackedString dir, struct QtWidgets_PackedString filter, struct QtWidgets_PackedString selectedFilter, long long options)
@@ -13975,7 +13975,7 @@ struct QtWidgets_PackedString QFileDialog_SelectedNameFilter(void* ptr)
 
 struct QtWidgets_PackedList QFileDialog_SelectedUrls(void* ptr)
 {
-	return ({ QList<QUrl>* tmpValue = new QList<QUrl>(static_cast<QFileDialog*>(ptr)->selectedUrls()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QUrl>* tmpValue9c396d = new QList<QUrl>(static_cast<QFileDialog*>(ptr)->selectedUrls()); QtWidgets_PackedList { tmpValue9c396d, tmpValue9c396d->size() }; });
 }
 
 void QFileDialog_SetAcceptMode(void* ptr, long long mode)
@@ -14100,7 +14100,7 @@ void QFileDialog_SetViewMode(void* ptr, long long mode)
 
 struct QtWidgets_PackedList QFileDialog_SidebarUrls(void* ptr)
 {
-	return ({ QList<QUrl>* tmpValue = new QList<QUrl>(static_cast<QFileDialog*>(ptr)->sidebarUrls()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QUrl>* tmpValue8706b9 = new QList<QUrl>(static_cast<QFileDialog*>(ptr)->sidebarUrls()); QtWidgets_PackedList { tmpValue8706b9, tmpValue8706b9->size() }; });
 }
 
 struct QtWidgets_PackedString QFileDialog_SupportedSchemes(void* ptr)
@@ -14321,7 +14321,7 @@ public:
 	bool hasChildren(const QModelIndex & parent) const { return callbackQFileSystemModel_HasChildren(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&parent)) != 0; };
 	QVariant headerData(int section, Qt::Orientation orientation, int role) const { return *static_cast<QVariant*>(callbackQFileSystemModel_HeaderData(const_cast<void*>(static_cast<const void*>(this)), section, orientation, role)); };
 	QModelIndex index(int row, int column, const QModelIndex & parent) const { return *static_cast<QModelIndex*>(callbackQFileSystemModel_Index(const_cast<void*>(static_cast<const void*>(this)), row, column, const_cast<QModelIndex*>(&parent))); };
-	QMimeData * mimeData(const QModelIndexList & indexes) const { return static_cast<QMimeData*>(callbackQFileSystemModel_MimeData(const_cast<void*>(static_cast<const void*>(this)), ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(indexes); QtWidgets_PackedList { tmpValue, tmpValue->size() }; }))); };
+	QMimeData * mimeData(const QModelIndexList & indexes) const { return static_cast<QMimeData*>(callbackQFileSystemModel_MimeData(const_cast<void*>(static_cast<const void*>(this)), ({ QList<QModelIndex>* tmpValuee0adf2 = new QList<QModelIndex>(indexes); QtWidgets_PackedList { tmpValuee0adf2, tmpValuee0adf2->size() }; }))); };
 	QStringList mimeTypes() const { return ({ QtWidgets_PackedString tempVal = callbackQFileSystemModel_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	QModelIndex parent(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQFileSystemModel_Parent(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
 	void Signal_RootPathChanged(const QString & newPath) { QByteArray t1ced92 = newPath.toUtf8(); QtWidgets_PackedString newPathPacked = { const_cast<char*>(t1ced92.prepend("WHITESPACE").constData()+10), t1ced92.size()-10 };callbackQFileSystemModel_RootPathChanged(this, newPathPacked); };
@@ -14340,13 +14340,13 @@ public:
 	void Signal_ColumnsInserted(const QModelIndex & parent, int first, int last) { callbackQFileSystemModel_ColumnsInserted(this, const_cast<QModelIndex*>(&parent), first, last); };
 	void Signal_ColumnsMoved(const QModelIndex & parent, int start, int end, const QModelIndex & destination, int column) { callbackQFileSystemModel_ColumnsMoved(this, const_cast<QModelIndex*>(&parent), start, end, const_cast<QModelIndex*>(&destination), column); };
 	void Signal_ColumnsRemoved(const QModelIndex & parent, int first, int last) { callbackQFileSystemModel_ColumnsRemoved(this, const_cast<QModelIndex*>(&parent), first, last); };
-	void Signal_DataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQFileSystemModel_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = new QVector<int>(roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_DataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQFileSystemModel_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue037c88 = new QVector<int>(roles); QtWidgets_PackedList { tmpValue037c88, tmpValue037c88->size() }; })); };
 	void Signal_HeaderDataChanged(Qt::Orientation orientation, int first, int last) { callbackQFileSystemModel_HeaderDataChanged(this, orientation, first, last); };
 	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQFileSystemModel_InsertColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQFileSystemModel_InsertRows(this, row, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	QMap<int, QVariant> itemData(const QModelIndex & index) const { return ({ QMap<int, QVariant>* tmpP = static_cast<QMap<int, QVariant>*>(callbackQFileSystemModel_ItemData(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); QMap<int, QVariant> tmpV = *tmpP; tmpP->~QMap(); free(tmpP); tmpV; }); };
-	void Signal_LayoutAboutToBeChanged(const QList<QPersistentModelIndex> & parents, QAbstractItemModel::LayoutChangeHint hint) { callbackQFileSystemModel_LayoutAboutToBeChanged(this, ({ QList<QPersistentModelIndex>* tmpValue = new QList<QPersistentModelIndex>(parents); QtWidgets_PackedList { tmpValue, tmpValue->size() }; }), hint); };
-	void Signal_LayoutChanged(const QList<QPersistentModelIndex> & parents, QAbstractItemModel::LayoutChangeHint hint) { callbackQFileSystemModel_LayoutChanged(this, ({ QList<QPersistentModelIndex>* tmpValue = new QList<QPersistentModelIndex>(parents); QtWidgets_PackedList { tmpValue, tmpValue->size() }; }), hint); };
+	void Signal_LayoutAboutToBeChanged(const QList<QPersistentModelIndex> & parents, QAbstractItemModel::LayoutChangeHint hint) { callbackQFileSystemModel_LayoutAboutToBeChanged(this, ({ QList<QPersistentModelIndex>* tmpValuea664f1 = new QList<QPersistentModelIndex>(parents); QtWidgets_PackedList { tmpValuea664f1, tmpValuea664f1->size() }; }), hint); };
+	void Signal_LayoutChanged(const QList<QPersistentModelIndex> & parents, QAbstractItemModel::LayoutChangeHint hint) { callbackQFileSystemModel_LayoutChanged(this, ({ QList<QPersistentModelIndex>* tmpValuea664f1 = new QList<QPersistentModelIndex>(parents); QtWidgets_PackedList { tmpValuea664f1, tmpValuea664f1->size() }; }), hint); };
 	QList<QModelIndex> match(const QModelIndex & start, int role, const QVariant & value, int hits, Qt::MatchFlags flags) const { return ({ QList<QModelIndex>* tmpP = static_cast<QList<QModelIndex>*>(callbackQFileSystemModel_Match(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&start), role, const_cast<QVariant*>(&value), hits, flags)); QList<QModelIndex> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
 	void Signal_ModelAboutToBeReset() { callbackQFileSystemModel_ModelAboutToBeReset(this); };
 	void Signal_ModelReset() { callbackQFileSystemModel_ModelReset(this); };
@@ -14364,7 +14364,7 @@ public:
 	void Signal_RowsMoved(const QModelIndex & parent, int start, int end, const QModelIndex & destination, int row) { callbackQFileSystemModel_RowsMoved(this, const_cast<QModelIndex*>(&parent), start, end, const_cast<QModelIndex*>(&destination), row); };
 	void Signal_RowsRemoved(const QModelIndex & parent, int first, int last) { callbackQFileSystemModel_RowsRemoved(this, const_cast<QModelIndex*>(&parent), first, last); };
 	bool setHeaderData(int section, Qt::Orientation orientation, const QVariant & value, int role) { return callbackQFileSystemModel_SetHeaderData(this, section, orientation, const_cast<QVariant*>(&value), role) != 0; };
-	bool setItemData(const QModelIndex & index, const QMap<int, QVariant> & roles) { return callbackQFileSystemModel_SetItemData(this, const_cast<QModelIndex*>(&index), ({ QMap<int, QVariant>* tmpValue = new QMap<int, QVariant>(roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })) != 0; };
+	bool setItemData(const QModelIndex & index, const QMap<int, QVariant> & roles) { return callbackQFileSystemModel_SetItemData(this, const_cast<QModelIndex*>(&index), ({ QMap<int, QVariant>* tmpValue037c88 = new QMap<int, QVariant>(roles); QtWidgets_PackedList { tmpValue037c88, tmpValue037c88->size() }; })) != 0; };
 	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQFileSystemModel_Span(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
 	bool submit() { return callbackQFileSystemModel_Submit(this) != 0; };
 	Qt::DropActions supportedDragActions() const { return static_cast<Qt::DropAction>(callbackQFileSystemModel_SupportedDragActions(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -14843,7 +14843,7 @@ void* QFileSystemModel___itemData_newList(void* ptr)
 
 struct QtWidgets_PackedList QFileSystemModel___itemData_keyList(void* ptr)
 {
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<int>* tmpValue249128 = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtWidgets_PackedList { tmpValue249128, tmpValue249128->size() }; });
 }
 
 void* QFileSystemModel___layoutAboutToBeChanged_parents_atList(void* ptr, int i)
@@ -14928,7 +14928,7 @@ void* QFileSystemModel___roleNames_newList(void* ptr)
 
 struct QtWidgets_PackedList QFileSystemModel___roleNames_keyList(void* ptr)
 {
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QHash<int, QByteArray>*>(ptr)->keys()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<int>* tmpValue7fc3bb = new QList<int>(static_cast<QHash<int, QByteArray>*>(ptr)->keys()); QtWidgets_PackedList { tmpValue7fc3bb, tmpValue7fc3bb->size() }; });
 }
 
 void* QFileSystemModel___setItemData_roles_atList(void* ptr, int v, int i)
@@ -14949,7 +14949,7 @@ void* QFileSystemModel___setItemData_roles_newList(void* ptr)
 
 struct QtWidgets_PackedList QFileSystemModel___setItemData_roles_keyList(void* ptr)
 {
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<int>* tmpValue249128 = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtWidgets_PackedList { tmpValue249128, tmpValue249128->size() }; });
 }
 
 int QFileSystemModel_____doSetRoleNames_roleNames_keyList_atList(void* ptr, int i)
@@ -15174,12 +15174,12 @@ char QFileSystemModel_InsertRowsDefault(void* ptr, int row, int count, void* par
 
 struct QtWidgets_PackedList QFileSystemModel_ItemDataDefault(void* ptr, void* index)
 {
-		return ({ QMap<int, QVariant>* tmpValue = new QMap<int, QVariant>(static_cast<QFileSystemModel*>(ptr)->QFileSystemModel::itemData(*static_cast<QModelIndex*>(index))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QMap<int, QVariant>* tmpValued0d48b = new QMap<int, QVariant>(static_cast<QFileSystemModel*>(ptr)->QFileSystemModel::itemData(*static_cast<QModelIndex*>(index))); QtWidgets_PackedList { tmpValued0d48b, tmpValued0d48b->size() }; });
 }
 
 struct QtWidgets_PackedList QFileSystemModel_MatchDefault(void* ptr, void* start, int role, void* value, int hits, long long flags)
 {
-		return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QFileSystemModel*>(ptr)->QFileSystemModel::match(*static_cast<QModelIndex*>(start), role, *static_cast<QVariant*>(value), hits, static_cast<Qt::MatchFlag>(flags))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QList<QModelIndex>* tmpValue7e8d26 = new QList<QModelIndex>(static_cast<QFileSystemModel*>(ptr)->QFileSystemModel::match(*static_cast<QModelIndex*>(start), role, *static_cast<QVariant*>(value), hits, static_cast<Qt::MatchFlag>(flags))); QtWidgets_PackedList { tmpValue7e8d26, tmpValue7e8d26->size() }; });
 }
 
 char QFileSystemModel_MoveColumnsDefault(void* ptr, void* sourceParent, int sourceColumn, int count, void* destinationParent, int destinationChild)
@@ -15214,7 +15214,7 @@ void QFileSystemModel_RevertDefault(void* ptr)
 
 struct QtWidgets_PackedList QFileSystemModel_RoleNamesDefault(void* ptr)
 {
-		return ({ QHash<int, QByteArray>* tmpValue = new QHash<int, QByteArray>(static_cast<QFileSystemModel*>(ptr)->QFileSystemModel::roleNames()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QHash<int, QByteArray>* tmpValue50afa5 = new QHash<int, QByteArray>(static_cast<QFileSystemModel*>(ptr)->QFileSystemModel::roleNames()); QtWidgets_PackedList { tmpValue50afa5, tmpValue50afa5->size() }; });
 }
 
 char QFileSystemModel_SetHeaderDataDefault(void* ptr, int section, long long orientation, void* value, int role)
@@ -16679,12 +16679,12 @@ void QGestureEvent_Accept2(void* ptr, long long gestureType)
 
 struct QtWidgets_PackedList QGestureEvent_ActiveGestures(void* ptr)
 {
-	return ({ QList<QGesture *>* tmpValue = new QList<QGesture *>(static_cast<QGestureEvent*>(ptr)->activeGestures()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QGesture *>* tmpValuef47832 = new QList<QGesture *>(static_cast<QGestureEvent*>(ptr)->activeGestures()); QtWidgets_PackedList { tmpValuef47832, tmpValuef47832->size() }; });
 }
 
 struct QtWidgets_PackedList QGestureEvent_CanceledGestures(void* ptr)
 {
-	return ({ QList<QGesture *>* tmpValue = new QList<QGesture *>(static_cast<QGestureEvent*>(ptr)->canceledGestures()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QGesture *>* tmpValue4c99df = new QList<QGesture *>(static_cast<QGestureEvent*>(ptr)->canceledGestures()); QtWidgets_PackedList { tmpValue4c99df, tmpValue4c99df->size() }; });
 }
 
 void* QGestureEvent_Gesture(void* ptr, long long ty)
@@ -16694,7 +16694,7 @@ void* QGestureEvent_Gesture(void* ptr, long long ty)
 
 struct QtWidgets_PackedList QGestureEvent_Gestures(void* ptr)
 {
-	return ({ QList<QGesture *>* tmpValue = new QList<QGesture *>(static_cast<QGestureEvent*>(ptr)->gestures()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QGesture *>* tmpValue9ee128 = new QList<QGesture *>(static_cast<QGestureEvent*>(ptr)->gestures()); QtWidgets_PackedList { tmpValue9ee128, tmpValue9ee128->size() }; });
 }
 
 void QGestureEvent_Ignore(void* ptr, void* gesture)
@@ -16862,7 +16862,7 @@ void* QGestureEvent___m_accepted_newList(void* ptr)
 
 struct QtWidgets_PackedList QGestureEvent___m_accepted_keyList(void* ptr)
 {
-	return ({ QList<Qt::GestureType>* tmpValue = new QList<Qt::GestureType>(static_cast<QMap<Qt::GestureType, bool>*>(ptr)->keys()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<Qt::GestureType>* tmpValue749853 = new QList<Qt::GestureType>(static_cast<QMap<Qt::GestureType, bool>*>(ptr)->keys()); QtWidgets_PackedList { tmpValue749853, tmpValue749853->size() }; });
 }
 
 char QGestureEvent___setM_accepted__atList(void* ptr, long long v, int i)
@@ -16883,7 +16883,7 @@ void* QGestureEvent___setM_accepted__newList(void* ptr)
 
 struct QtWidgets_PackedList QGestureEvent___setM_accepted__keyList(void* ptr)
 {
-	return ({ QList<Qt::GestureType>* tmpValue = new QList<Qt::GestureType>(static_cast<QMap<Qt::GestureType, bool>*>(ptr)->keys()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<Qt::GestureType>* tmpValue749853 = new QList<Qt::GestureType>(static_cast<QMap<Qt::GestureType, bool>*>(ptr)->keys()); QtWidgets_PackedList { tmpValue749853, tmpValue749853->size() }; });
 }
 
 void* QGestureEvent___m_targetWidgets_atList(void* ptr, long long v, int i)
@@ -16904,7 +16904,7 @@ void* QGestureEvent___m_targetWidgets_newList(void* ptr)
 
 struct QtWidgets_PackedList QGestureEvent___m_targetWidgets_keyList(void* ptr)
 {
-	return ({ QList<Qt::GestureType>* tmpValue = new QList<Qt::GestureType>(static_cast<QMap<Qt::GestureType, QWidget *>*>(ptr)->keys()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<Qt::GestureType>* tmpValued4ffd2 = new QList<Qt::GestureType>(static_cast<QMap<Qt::GestureType, QWidget *>*>(ptr)->keys()); QtWidgets_PackedList { tmpValued4ffd2, tmpValued4ffd2->size() }; });
 }
 
 void* QGestureEvent___setM_targetWidgets__atList(void* ptr, long long v, int i)
@@ -16925,7 +16925,7 @@ void* QGestureEvent___setM_targetWidgets__newList(void* ptr)
 
 struct QtWidgets_PackedList QGestureEvent___setM_targetWidgets__keyList(void* ptr)
 {
-	return ({ QList<Qt::GestureType>* tmpValue = new QList<Qt::GestureType>(static_cast<QMap<Qt::GestureType, QWidget *>*>(ptr)->keys()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<Qt::GestureType>* tmpValued4ffd2 = new QList<Qt::GestureType>(static_cast<QMap<Qt::GestureType, QWidget *>*>(ptr)->keys()); QtWidgets_PackedList { tmpValued4ffd2, tmpValued4ffd2->size() }; });
 }
 
 long long QGestureEvent_____m_accepted_keyList_atList(void* ptr, int i)
@@ -19142,11 +19142,11 @@ long long QGraphicsItem_CacheMode(void* ptr)
 struct QtWidgets_PackedList QGraphicsItem_ChildItems(void* ptr)
 {
 	if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(ptr))) {
-		return ({ QList<QGraphicsItem *>* tmpValue = new QList<QGraphicsItem *>(static_cast<QGraphicsObject*>(ptr)->childItems()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QList<QGraphicsItem *>* tmpValue479dfb = new QList<QGraphicsItem *>(static_cast<QGraphicsObject*>(ptr)->childItems()); QtWidgets_PackedList { tmpValue479dfb, tmpValue479dfb->size() }; });
 	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(ptr))) {
-		return ({ QList<QGraphicsItem *>* tmpValue = new QList<QGraphicsItem *>(static_cast<QGraphicsWidget*>(ptr)->childItems()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QList<QGraphicsItem *>* tmpValue479dfb = new QList<QGraphicsItem *>(static_cast<QGraphicsWidget*>(ptr)->childItems()); QtWidgets_PackedList { tmpValue479dfb, tmpValue479dfb->size() }; });
 	} else {
-		return ({ QList<QGraphicsItem *>* tmpValue = new QList<QGraphicsItem *>(static_cast<QGraphicsItem*>(ptr)->childItems()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QList<QGraphicsItem *>* tmpValue479dfb = new QList<QGraphicsItem *>(static_cast<QGraphicsItem*>(ptr)->childItems()); QtWidgets_PackedList { tmpValue479dfb, tmpValue479dfb->size() }; });
 	}
 }
 
@@ -19376,11 +19376,11 @@ char QGraphicsItem_CollidesWithPathDefault(void* ptr, void* path, long long mode
 struct QtWidgets_PackedList QGraphicsItem_CollidingItems(void* ptr, long long mode)
 {
 	if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(ptr))) {
-		return ({ QList<QGraphicsItem *>* tmpValue = new QList<QGraphicsItem *>(static_cast<QGraphicsObject*>(ptr)->collidingItems(static_cast<Qt::ItemSelectionMode>(mode))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QList<QGraphicsItem *>* tmpValue8b585f = new QList<QGraphicsItem *>(static_cast<QGraphicsObject*>(ptr)->collidingItems(static_cast<Qt::ItemSelectionMode>(mode))); QtWidgets_PackedList { tmpValue8b585f, tmpValue8b585f->size() }; });
 	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(ptr))) {
-		return ({ QList<QGraphicsItem *>* tmpValue = new QList<QGraphicsItem *>(static_cast<QGraphicsWidget*>(ptr)->collidingItems(static_cast<Qt::ItemSelectionMode>(mode))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QList<QGraphicsItem *>* tmpValue8b585f = new QList<QGraphicsItem *>(static_cast<QGraphicsWidget*>(ptr)->collidingItems(static_cast<Qt::ItemSelectionMode>(mode))); QtWidgets_PackedList { tmpValue8b585f, tmpValue8b585f->size() }; });
 	} else {
-		return ({ QList<QGraphicsItem *>* tmpValue = new QList<QGraphicsItem *>(static_cast<QGraphicsItem*>(ptr)->collidingItems(static_cast<Qt::ItemSelectionMode>(mode))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QList<QGraphicsItem *>* tmpValue8b585f = new QList<QGraphicsItem *>(static_cast<QGraphicsItem*>(ptr)->collidingItems(static_cast<Qt::ItemSelectionMode>(mode))); QtWidgets_PackedList { tmpValue8b585f, tmpValue8b585f->size() }; });
 	}
 }
 
@@ -22736,11 +22736,11 @@ void* QGraphicsItem_TransformOriginPoint(void* ptr)
 struct QtWidgets_PackedList QGraphicsItem_Transformations(void* ptr)
 {
 	if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(ptr))) {
-		return ({ QList<QGraphicsTransform *>* tmpValue = new QList<QGraphicsTransform *>(static_cast<QGraphicsObject*>(ptr)->transformations()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QList<QGraphicsTransform *>* tmpValueda467b = new QList<QGraphicsTransform *>(static_cast<QGraphicsObject*>(ptr)->transformations()); QtWidgets_PackedList { tmpValueda467b, tmpValueda467b->size() }; });
 	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(ptr))) {
-		return ({ QList<QGraphicsTransform *>* tmpValue = new QList<QGraphicsTransform *>(static_cast<QGraphicsWidget*>(ptr)->transformations()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QList<QGraphicsTransform *>* tmpValueda467b = new QList<QGraphicsTransform *>(static_cast<QGraphicsWidget*>(ptr)->transformations()); QtWidgets_PackedList { tmpValueda467b, tmpValueda467b->size() }; });
 	} else {
-		return ({ QList<QGraphicsTransform *>* tmpValue = new QList<QGraphicsTransform *>(static_cast<QGraphicsItem*>(ptr)->transformations()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QList<QGraphicsTransform *>* tmpValueda467b = new QList<QGraphicsTransform *>(static_cast<QGraphicsItem*>(ptr)->transformations()); QtWidgets_PackedList { tmpValueda467b, tmpValueda467b->size() }; });
 	}
 }
 
@@ -26749,7 +26749,7 @@ public:
 	MyQGraphicsScene(const QRectF &sceneRect, QObject *parent = Q_NULLPTR) : QGraphicsScene(sceneRect, parent) {QGraphicsScene_QGraphicsScene_QRegisterMetaType();};
 	MyQGraphicsScene(qreal x, qreal y, qreal width, qreal height, QObject *parent = Q_NULLPTR) : QGraphicsScene(x, y, width, height, parent) {QGraphicsScene_QGraphicsScene_QRegisterMetaType();};
 	void advance() { callbackQGraphicsScene_Advance(this); };
-	void Signal_Changed(const QList<QRectF> & region) { callbackQGraphicsScene_Changed(this, ({ QList<QRectF>* tmpValue = new QList<QRectF>(region); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_Changed(const QList<QRectF> & region) { callbackQGraphicsScene_Changed(this, ({ QList<QRectF>* tmpValuea94a58 = new QList<QRectF>(region); QtWidgets_PackedList { tmpValuea94a58, tmpValuea94a58->size() }; })); };
 	void clear() { callbackQGraphicsScene_Clear(this); };
 	void clearSelection() { callbackQGraphicsScene_ClearSelection(this); };
 	void contextMenuEvent(QGraphicsSceneContextMenuEvent * contextMenuEvent) { callbackQGraphicsScene_ContextMenuEvent(this, contextMenuEvent); };
@@ -27080,11 +27080,11 @@ void QGraphicsScene_ClearSelectionDefault(void* ptr)
 struct QtWidgets_PackedList QGraphicsScene_CollidingItems(void* ptr, void* item, long long mode)
 {
 	if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(item))) {
-		return ({ QList<QGraphicsItem *>* tmpValue = new QList<QGraphicsItem *>(static_cast<QGraphicsScene*>(ptr)->collidingItems(static_cast<QGraphicsObject*>(item), static_cast<Qt::ItemSelectionMode>(mode))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QList<QGraphicsItem *>* tmpValue394039 = new QList<QGraphicsItem *>(static_cast<QGraphicsScene*>(ptr)->collidingItems(static_cast<QGraphicsObject*>(item), static_cast<Qt::ItemSelectionMode>(mode))); QtWidgets_PackedList { tmpValue394039, tmpValue394039->size() }; });
 	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(item))) {
-		return ({ QList<QGraphicsItem *>* tmpValue = new QList<QGraphicsItem *>(static_cast<QGraphicsScene*>(ptr)->collidingItems(static_cast<QGraphicsWidget*>(item), static_cast<Qt::ItemSelectionMode>(mode))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QList<QGraphicsItem *>* tmpValue394039 = new QList<QGraphicsItem *>(static_cast<QGraphicsScene*>(ptr)->collidingItems(static_cast<QGraphicsWidget*>(item), static_cast<Qt::ItemSelectionMode>(mode))); QtWidgets_PackedList { tmpValue394039, tmpValue394039->size() }; });
 	} else {
-		return ({ QList<QGraphicsItem *>* tmpValue = new QList<QGraphicsItem *>(static_cast<QGraphicsScene*>(ptr)->collidingItems(static_cast<QGraphicsItem*>(item), static_cast<Qt::ItemSelectionMode>(mode))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QList<QGraphicsItem *>* tmpValue394039 = new QList<QGraphicsItem *>(static_cast<QGraphicsScene*>(ptr)->collidingItems(static_cast<QGraphicsItem*>(item), static_cast<Qt::ItemSelectionMode>(mode))); QtWidgets_PackedList { tmpValue394039, tmpValue394039->size() }; });
 	}
 }
 
@@ -27344,32 +27344,32 @@ long long QGraphicsScene_ItemIndexMethod(void* ptr)
 
 struct QtWidgets_PackedList QGraphicsScene_Items(void* ptr, long long order)
 {
-	return ({ QList<QGraphicsItem *>* tmpValue = new QList<QGraphicsItem *>(static_cast<QGraphicsScene*>(ptr)->items(static_cast<Qt::SortOrder>(order))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QGraphicsItem *>* tmpValuea79113 = new QList<QGraphicsItem *>(static_cast<QGraphicsScene*>(ptr)->items(static_cast<Qt::SortOrder>(order))); QtWidgets_PackedList { tmpValuea79113, tmpValuea79113->size() }; });
 }
 
 struct QtWidgets_PackedList QGraphicsScene_Items2(void* ptr, void* pos, long long mode, long long order, void* deviceTransform)
 {
-	return ({ QList<QGraphicsItem *>* tmpValue = new QList<QGraphicsItem *>(static_cast<QGraphicsScene*>(ptr)->items(*static_cast<QPointF*>(pos), static_cast<Qt::ItemSelectionMode>(mode), static_cast<Qt::SortOrder>(order), *static_cast<QTransform*>(deviceTransform))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QGraphicsItem *>* tmpValue68679d = new QList<QGraphicsItem *>(static_cast<QGraphicsScene*>(ptr)->items(*static_cast<QPointF*>(pos), static_cast<Qt::ItemSelectionMode>(mode), static_cast<Qt::SortOrder>(order), *static_cast<QTransform*>(deviceTransform))); QtWidgets_PackedList { tmpValue68679d, tmpValue68679d->size() }; });
 }
 
 struct QtWidgets_PackedList QGraphicsScene_Items3(void* ptr, void* rect, long long mode, long long order, void* deviceTransform)
 {
-	return ({ QList<QGraphicsItem *>* tmpValue = new QList<QGraphicsItem *>(static_cast<QGraphicsScene*>(ptr)->items(*static_cast<QRectF*>(rect), static_cast<Qt::ItemSelectionMode>(mode), static_cast<Qt::SortOrder>(order), *static_cast<QTransform*>(deviceTransform))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QGraphicsItem *>* tmpValuec23b67 = new QList<QGraphicsItem *>(static_cast<QGraphicsScene*>(ptr)->items(*static_cast<QRectF*>(rect), static_cast<Qt::ItemSelectionMode>(mode), static_cast<Qt::SortOrder>(order), *static_cast<QTransform*>(deviceTransform))); QtWidgets_PackedList { tmpValuec23b67, tmpValuec23b67->size() }; });
 }
 
 struct QtWidgets_PackedList QGraphicsScene_Items4(void* ptr, void* polygon, long long mode, long long order, void* deviceTransform)
 {
-	return ({ QList<QGraphicsItem *>* tmpValue = new QList<QGraphicsItem *>(static_cast<QGraphicsScene*>(ptr)->items(*static_cast<QPolygonF*>(polygon), static_cast<Qt::ItemSelectionMode>(mode), static_cast<Qt::SortOrder>(order), *static_cast<QTransform*>(deviceTransform))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QGraphicsItem *>* tmpValue73aac6 = new QList<QGraphicsItem *>(static_cast<QGraphicsScene*>(ptr)->items(*static_cast<QPolygonF*>(polygon), static_cast<Qt::ItemSelectionMode>(mode), static_cast<Qt::SortOrder>(order), *static_cast<QTransform*>(deviceTransform))); QtWidgets_PackedList { tmpValue73aac6, tmpValue73aac6->size() }; });
 }
 
 struct QtWidgets_PackedList QGraphicsScene_Items5(void* ptr, void* path, long long mode, long long order, void* deviceTransform)
 {
-	return ({ QList<QGraphicsItem *>* tmpValue = new QList<QGraphicsItem *>(static_cast<QGraphicsScene*>(ptr)->items(*static_cast<QPainterPath*>(path), static_cast<Qt::ItemSelectionMode>(mode), static_cast<Qt::SortOrder>(order), *static_cast<QTransform*>(deviceTransform))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QGraphicsItem *>* tmpValue0a280c = new QList<QGraphicsItem *>(static_cast<QGraphicsScene*>(ptr)->items(*static_cast<QPainterPath*>(path), static_cast<Qt::ItemSelectionMode>(mode), static_cast<Qt::SortOrder>(order), *static_cast<QTransform*>(deviceTransform))); QtWidgets_PackedList { tmpValue0a280c, tmpValue0a280c->size() }; });
 }
 
 struct QtWidgets_PackedList QGraphicsScene_Items7(void* ptr, double x, double y, double w, double h, long long mode, long long order, void* deviceTransform)
 {
-	return ({ QList<QGraphicsItem *>* tmpValue = new QList<QGraphicsItem *>(static_cast<QGraphicsScene*>(ptr)->items(x, y, w, h, static_cast<Qt::ItemSelectionMode>(mode), static_cast<Qt::SortOrder>(order), *static_cast<QTransform*>(deviceTransform))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QGraphicsItem *>* tmpValuee3277d = new QList<QGraphicsItem *>(static_cast<QGraphicsScene*>(ptr)->items(x, y, w, h, static_cast<Qt::ItemSelectionMode>(mode), static_cast<Qt::SortOrder>(order), *static_cast<QTransform*>(deviceTransform))); QtWidgets_PackedList { tmpValuee3277d, tmpValuee3277d->size() }; });
 }
 
 void* QGraphicsScene_ItemsBoundingRect(void* ptr)
@@ -27490,7 +27490,7 @@ void QGraphicsScene_SceneRectChanged(void* ptr, void* rect)
 
 struct QtWidgets_PackedList QGraphicsScene_SelectedItems(void* ptr)
 {
-	return ({ QList<QGraphicsItem *>* tmpValue = new QList<QGraphicsItem *>(static_cast<QGraphicsScene*>(ptr)->selectedItems()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QGraphicsItem *>* tmpValue591fec = new QList<QGraphicsItem *>(static_cast<QGraphicsScene*>(ptr)->selectedItems()); QtWidgets_PackedList { tmpValue591fec, tmpValue591fec->size() }; });
 }
 
 void* QGraphicsScene_SelectionArea(void* ptr)
@@ -27663,7 +27663,7 @@ void QGraphicsScene_Update2(void* ptr, double x, double y, double w, double h)
 
 struct QtWidgets_PackedList QGraphicsScene_Views(void* ptr)
 {
-	return ({ QList<QGraphicsView *>* tmpValue = new QList<QGraphicsView *>(static_cast<QGraphicsScene*>(ptr)->views()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QGraphicsView *>* tmpValuec79e3c = new QList<QGraphicsView *>(static_cast<QGraphicsScene*>(ptr)->views()); QtWidgets_PackedList { tmpValuec79e3c, tmpValuec79e3c->size() }; });
 }
 
 void QGraphicsScene_WheelEvent(void* ptr, void* wheelEvent)
@@ -29254,7 +29254,7 @@ public:
 	void setupViewport(QWidget * widget) { callbackQGraphicsView_SetupViewport(this, widget); };
 	void showEvent(QShowEvent * event) { callbackQWidget_ShowEvent(this, event); };
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQWidget_SizeHint(const_cast<void*>(static_cast<const void*>(this)))); };
-	void updateScene(const QList<QRectF> & rects) { callbackQGraphicsView_UpdateScene(this, ({ QList<QRectF>* tmpValue = new QList<QRectF>(rects); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
+	void updateScene(const QList<QRectF> & rects) { callbackQGraphicsView_UpdateScene(this, ({ QList<QRectF>* tmpValueb7a09e = new QList<QRectF>(rects); QtWidgets_PackedList { tmpValueb7a09e, tmpValueb7a09e->size() }; })); };
 	void updateSceneRect(const QRectF & rect) { callbackQGraphicsView_UpdateSceneRect(this, const_cast<QRectF*>(&rect)); };
 	bool viewportEvent(QEvent * event) { return callbackQAbstractScrollArea_ViewportEvent(this, event) != 0; };
 	void wheelEvent(QWheelEvent * event) { callbackQWidget_WheelEvent(this, event); };
@@ -29464,37 +29464,37 @@ void* QGraphicsView_ItemAt2(void* ptr, int x, int y)
 
 struct QtWidgets_PackedList QGraphicsView_Items(void* ptr)
 {
-	return ({ QList<QGraphicsItem *>* tmpValue = new QList<QGraphicsItem *>(static_cast<QGraphicsView*>(ptr)->items()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QGraphicsItem *>* tmpValued1f47c = new QList<QGraphicsItem *>(static_cast<QGraphicsView*>(ptr)->items()); QtWidgets_PackedList { tmpValued1f47c, tmpValued1f47c->size() }; });
 }
 
 struct QtWidgets_PackedList QGraphicsView_Items2(void* ptr, void* pos)
 {
-	return ({ QList<QGraphicsItem *>* tmpValue = new QList<QGraphicsItem *>(static_cast<QGraphicsView*>(ptr)->items(*static_cast<QPoint*>(pos))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QGraphicsItem *>* tmpValuea914ba = new QList<QGraphicsItem *>(static_cast<QGraphicsView*>(ptr)->items(*static_cast<QPoint*>(pos))); QtWidgets_PackedList { tmpValuea914ba, tmpValuea914ba->size() }; });
 }
 
 struct QtWidgets_PackedList QGraphicsView_Items3(void* ptr, int x, int y)
 {
-	return ({ QList<QGraphicsItem *>* tmpValue = new QList<QGraphicsItem *>(static_cast<QGraphicsView*>(ptr)->items(x, y)); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QGraphicsItem *>* tmpValue429885 = new QList<QGraphicsItem *>(static_cast<QGraphicsView*>(ptr)->items(x, y)); QtWidgets_PackedList { tmpValue429885, tmpValue429885->size() }; });
 }
 
 struct QtWidgets_PackedList QGraphicsView_Items4(void* ptr, void* rect, long long mode)
 {
-	return ({ QList<QGraphicsItem *>* tmpValue = new QList<QGraphicsItem *>(static_cast<QGraphicsView*>(ptr)->items(*static_cast<QRect*>(rect), static_cast<Qt::ItemSelectionMode>(mode))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QGraphicsItem *>* tmpValue4b93fb = new QList<QGraphicsItem *>(static_cast<QGraphicsView*>(ptr)->items(*static_cast<QRect*>(rect), static_cast<Qt::ItemSelectionMode>(mode))); QtWidgets_PackedList { tmpValue4b93fb, tmpValue4b93fb->size() }; });
 }
 
 struct QtWidgets_PackedList QGraphicsView_Items5(void* ptr, int x, int y, int w, int h, long long mode)
 {
-	return ({ QList<QGraphicsItem *>* tmpValue = new QList<QGraphicsItem *>(static_cast<QGraphicsView*>(ptr)->items(x, y, w, h, static_cast<Qt::ItemSelectionMode>(mode))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QGraphicsItem *>* tmpValue02e509 = new QList<QGraphicsItem *>(static_cast<QGraphicsView*>(ptr)->items(x, y, w, h, static_cast<Qt::ItemSelectionMode>(mode))); QtWidgets_PackedList { tmpValue02e509, tmpValue02e509->size() }; });
 }
 
 struct QtWidgets_PackedList QGraphicsView_Items6(void* ptr, void* polygon, long long mode)
 {
-	return ({ QList<QGraphicsItem *>* tmpValue = new QList<QGraphicsItem *>(static_cast<QGraphicsView*>(ptr)->items(*static_cast<QPolygon*>(polygon), static_cast<Qt::ItemSelectionMode>(mode))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QGraphicsItem *>* tmpValuec2e68e = new QList<QGraphicsItem *>(static_cast<QGraphicsView*>(ptr)->items(*static_cast<QPolygon*>(polygon), static_cast<Qt::ItemSelectionMode>(mode))); QtWidgets_PackedList { tmpValuec2e68e, tmpValuec2e68e->size() }; });
 }
 
 struct QtWidgets_PackedList QGraphicsView_Items7(void* ptr, void* path, long long mode)
 {
-	return ({ QList<QGraphicsItem *>* tmpValue = new QList<QGraphicsItem *>(static_cast<QGraphicsView*>(ptr)->items(*static_cast<QPainterPath*>(path), static_cast<Qt::ItemSelectionMode>(mode))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QGraphicsItem *>* tmpValuef9fae0 = new QList<QGraphicsItem *>(static_cast<QGraphicsView*>(ptr)->items(*static_cast<QPainterPath*>(path), static_cast<Qt::ItemSelectionMode>(mode))); QtWidgets_PackedList { tmpValuef9fae0, tmpValuef9fae0->size() }; });
 }
 
 void* QGraphicsView_MapFromScene(void* ptr, void* point)
@@ -30072,7 +30072,7 @@ void* QGraphicsWidget_NewQGraphicsWidget(void* parent, long long wFlags)
 
 struct QtWidgets_PackedList QGraphicsWidget_Actions(void* ptr)
 {
-		return ({ QList<QAction *>* tmpValue = new QList<QAction *>(static_cast<QGraphicsWidget*>(ptr)->actions()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QList<QAction *>* tmpValuec4928c = new QList<QAction *>(static_cast<QGraphicsWidget*>(ptr)->actions()); QtWidgets_PackedList { tmpValuec4928c, tmpValuec4928c->size() }; });
 }
 
 void QGraphicsWidget_AddAction(void* ptr, void* action)
@@ -31271,7 +31271,7 @@ public:
 	void Signal_Clicked(const QModelIndex & index) { callbackQAbstractItemView_Clicked(this, const_cast<QModelIndex*>(&index)); };
 	void closeEditor(QWidget * editor, QAbstractItemDelegate::EndEditHint hint) { callbackQAbstractItemView_CloseEditor(this, editor, hint); };
 	void commitData(QWidget * editor) { callbackQAbstractItemView_CommitData(this, editor); };
-	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQAbstractItemView_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = new QVector<int>(roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
+	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQAbstractItemView_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue037c88 = new QVector<int>(roles); QtWidgets_PackedList { tmpValue037c88, tmpValue037c88->size() }; })); };
 	void Signal_DoubleClicked(const QModelIndex & index) { callbackQAbstractItemView_DoubleClicked(this, const_cast<QModelIndex*>(&index)); };
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQWidget_DragEnterEvent(this, event); };
 	void dragLeaveEvent(QDragLeaveEvent * event) { callbackQWidget_DragLeaveEvent(this, event); };
@@ -32795,7 +32795,7 @@ void* QItemEditorFactory___creatorMap_newList(void* ptr)
 
 struct QtWidgets_PackedList QItemEditorFactory___creatorMap_keyList(void* ptr)
 {
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QHash<int, QItemEditorCreatorBase *>*>(ptr)->keys()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<int>* tmpValuee608b2 = new QList<int>(static_cast<QHash<int, QItemEditorCreatorBase *>*>(ptr)->keys()); QtWidgets_PackedList { tmpValuee608b2, tmpValuee608b2->size() }; });
 }
 
 void* QItemEditorFactory___setCreatorMap__atList(void* ptr, int v, int i)
@@ -32816,7 +32816,7 @@ void* QItemEditorFactory___setCreatorMap__newList(void* ptr)
 
 struct QtWidgets_PackedList QItemEditorFactory___setCreatorMap__keyList(void* ptr)
 {
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QHash<int, QItemEditorCreatorBase *>*>(ptr)->keys()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<int>* tmpValuee608b2 = new QList<int>(static_cast<QHash<int, QItemEditorCreatorBase *>*>(ptr)->keys()); QtWidgets_PackedList { tmpValuee608b2, tmpValuee608b2->size() }; });
 }
 
 int QItemEditorFactory_____creatorMap_keyList_atList(void* ptr, int i)
@@ -35783,7 +35783,7 @@ class MyQListView: public QListView
 public:
 	MyQListView(QWidget *parent = Q_NULLPTR) : QListView(parent) {QListView_QListView_QRegisterMetaType();};
 	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQListView_CurrentChanged(this, const_cast<QModelIndex*>(&current), const_cast<QModelIndex*>(&previous)); };
-	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQListView_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = new QVector<int>(roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
+	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQListView_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue037c88 = new QVector<int>(roles); QtWidgets_PackedList { tmpValue037c88, tmpValue037c88->size() }; })); };
 	void dragLeaveEvent(QDragLeaveEvent * e) { callbackQWidget_DragLeaveEvent(this, e); };
 	void dragMoveEvent(QDragMoveEvent * e) { callbackQWidget_DragMoveEvent(this, e); };
 	void dropEvent(QDropEvent * e) { callbackQWidget_DropEvent(this, e); };
@@ -36361,14 +36361,14 @@ public:
 	void Signal_ItemEntered(QListWidgetItem * item) { callbackQListWidget_ItemEntered(this, item); };
 	void Signal_ItemPressed(QListWidgetItem * item) { callbackQListWidget_ItemPressed(this, item); };
 	void Signal_ItemSelectionChanged() { callbackQListWidget_ItemSelectionChanged(this); };
-	QMimeData * mimeData(const QList<QListWidgetItem *> items) const { return static_cast<QMimeData*>(callbackQListWidget_MimeData(const_cast<void*>(static_cast<const void*>(this)), ({ QList<QListWidgetItem *>* tmpValue = new QList<QListWidgetItem *>(items); QtWidgets_PackedList { tmpValue, tmpValue->size() }; }))); };
+	QMimeData * mimeData(const QList<QListWidgetItem *> items) const { return static_cast<QMimeData*>(callbackQListWidget_MimeData(const_cast<void*>(static_cast<const void*>(this)), ({ QList<QListWidgetItem *>* tmpValue7316c8 = new QList<QListWidgetItem *>(items); QtWidgets_PackedList { tmpValue7316c8, tmpValue7316c8->size() }; }))); };
 	QStringList mimeTypes() const { return ({ QtWidgets_PackedString tempVal = callbackQListWidget_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	void scrollToItem(const QListWidgetItem * item, QAbstractItemView::ScrollHint hint) { callbackQListWidget_ScrollToItem(this, const_cast<QListWidgetItem*>(item), hint); };
 	void setSelectionModel(QItemSelectionModel * selectionModel) { callbackQAbstractItemView_SetSelectionModel(this, selectionModel); };
 	Qt::DropActions supportedDropActions() const { return static_cast<Qt::DropAction>(callbackQListWidget_SupportedDropActions(const_cast<void*>(static_cast<const void*>(this)))); };
 	 ~MyQListWidget() { callbackQListWidget_DestroyQListWidget(this); };
 	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQListView_CurrentChanged(this, const_cast<QModelIndex*>(&current), const_cast<QModelIndex*>(&previous)); };
-	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQListView_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = new QVector<int>(roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
+	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQListView_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue037c88 = new QVector<int>(roles); QtWidgets_PackedList { tmpValue037c88, tmpValue037c88->size() }; })); };
 	void dragLeaveEvent(QDragLeaveEvent * e) { callbackQWidget_DragLeaveEvent(this, e); };
 	void dragMoveEvent(QDragMoveEvent * e) { callbackQWidget_DragMoveEvent(this, e); };
 	int horizontalOffset() const { return callbackQListView_HorizontalOffset(const_cast<void*>(static_cast<const void*>(this))); };
@@ -36599,7 +36599,7 @@ void QListWidget_EditItem(void* ptr, void* item)
 
 struct QtWidgets_PackedList QListWidget_FindItems(void* ptr, struct QtWidgets_PackedString text, long long flags)
 {
-	return ({ QList<QListWidgetItem *>* tmpValue = new QList<QListWidgetItem *>(static_cast<QListWidget*>(ptr)->findItems(QString::fromUtf8(text.data, text.len), static_cast<Qt::MatchFlag>(flags))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QListWidgetItem *>* tmpValued07d9e = new QList<QListWidgetItem *>(static_cast<QListWidget*>(ptr)->findItems(QString::fromUtf8(text.data, text.len), static_cast<Qt::MatchFlag>(flags))); QtWidgets_PackedList { tmpValued07d9e, tmpValued07d9e->size() }; });
 }
 
 void* QListWidget_IndexFromItem(void* ptr, void* item)
@@ -36764,7 +36764,7 @@ void* QListWidget_ItemWidget(void* ptr, void* item)
 
 struct QtWidgets_PackedList QListWidget_Items(void* ptr, void* data)
 {
-	return ({ QList<QListWidgetItem *>* tmpValue = new QList<QListWidgetItem *>(static_cast<QListWidget*>(ptr)->items(static_cast<QMimeData*>(data))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QListWidgetItem *>* tmpValueb42ece = new QList<QListWidgetItem *>(static_cast<QListWidget*>(ptr)->items(static_cast<QMimeData*>(data))); QtWidgets_PackedList { tmpValueb42ece, tmpValueb42ece->size() }; });
 }
 
 void* QListWidget_MimeData(void* ptr, void* items)
@@ -36815,7 +36815,7 @@ void QListWidget_ScrollToItemDefault(void* ptr, void* item, long long hint)
 
 struct QtWidgets_PackedList QListWidget_SelectedItems(void* ptr)
 {
-	return ({ QList<QListWidgetItem *>* tmpValue = new QList<QListWidgetItem *>(static_cast<QListWidget*>(ptr)->selectedItems()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QListWidgetItem *>* tmpValue43d795 = new QList<QListWidgetItem *>(static_cast<QListWidget*>(ptr)->selectedItems()); QtWidgets_PackedList { tmpValue43d795, tmpValue43d795->size() }; });
 }
 
 void QListWidget_SetCurrentItem(void* ptr, void* item)
@@ -37591,7 +37591,7 @@ void QMainWindow_TabifiedDockWidgetActivated(void* ptr, void* dockWidget)
 
 struct QtWidgets_PackedList QMainWindow_TabifiedDockWidgets(void* ptr, void* dockwidget)
 {
-	return ({ QList<QDockWidget *>* tmpValue = new QList<QDockWidget *>(static_cast<QMainWindow*>(ptr)->tabifiedDockWidgets(static_cast<QDockWidget*>(dockwidget))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QDockWidget *>* tmpValueb01abb = new QList<QDockWidget *>(static_cast<QMainWindow*>(ptr)->tabifiedDockWidgets(static_cast<QDockWidget*>(dockwidget))); QtWidgets_PackedList { tmpValueb01abb, tmpValueb01abb->size() }; });
 }
 
 void QMainWindow_TabifyDockWidget(void* ptr, void* first, void* second)
@@ -37964,7 +37964,7 @@ void QMdiArea_SubWindowActivated(void* ptr, void* window)
 
 struct QtWidgets_PackedList QMdiArea_SubWindowList(void* ptr, long long order)
 {
-	return ({ QList<QMdiSubWindow *>* tmpValue = new QList<QMdiSubWindow *>(static_cast<QMdiArea*>(ptr)->subWindowList(static_cast<QMdiArea::WindowOrder>(order))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QMdiSubWindow *>* tmpValuecf1844 = new QList<QMdiSubWindow *>(static_cast<QMdiArea*>(ptr)->subWindowList(static_cast<QMdiArea::WindowOrder>(order))); QtWidgets_PackedList { tmpValuecf1844, tmpValuecf1844->size() }; });
 }
 
 long long QMdiArea_TabPosition(void* ptr)
@@ -39067,7 +39067,7 @@ long long QMessageBox_ButtonRole(void* ptr, void* button)
 
 struct QtWidgets_PackedList QMessageBox_Buttons(void* ptr)
 {
-	return ({ QList<QAbstractButton *>* tmpValue = new QList<QAbstractButton *>(static_cast<QMessageBox*>(ptr)->buttons()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QAbstractButton *>* tmpValuef25e9a = new QList<QAbstractButton *>(static_cast<QMessageBox*>(ptr)->buttons()); QtWidgets_PackedList { tmpValuef25e9a, tmpValuef25e9a->size() }; });
 }
 
 void* QMessageBox_CheckBox(void* ptr)
@@ -42538,7 +42538,7 @@ int QScroller_QScroller_QRegisterMetaType(){qRegisterMetaType<QScroller*>(); ret
 
 struct QtWidgets_PackedList QScroller_QScroller_ActiveScrollers()
 {
-	return ({ QList<QScroller *>* tmpValue = new QList<QScroller *>(QScroller::activeScrollers()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QScroller *>* tmpValue3b5996 = new QList<QScroller *>(QScroller::activeScrollers()); QtWidgets_PackedList { tmpValue3b5996, tmpValue3b5996->size() }; });
 }
 
 void QScroller_EnsureVisible(void* ptr, void* rect, double xmargin, double ymargin)
@@ -44496,7 +44496,7 @@ void QSplitter_SetStretchFactor(void* ptr, int index, int stretch)
 
 struct QtWidgets_PackedList QSplitter_Sizes(void* ptr)
 {
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QSplitter*>(ptr)->sizes()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<int>* tmpValue8bae9b = new QList<int>(static_cast<QSplitter*>(ptr)->sizes()); QtWidgets_PackedList { tmpValue8bae9b, tmpValue8bae9b->size() }; });
 }
 
 void QSplitter_ConnectSplitterMoved(void* ptr)
@@ -49616,7 +49616,7 @@ public:
 	void Signal_Clicked(const QModelIndex & index) { callbackQAbstractItemView_Clicked(this, const_cast<QModelIndex*>(&index)); };
 	void closeEditor(QWidget * editor, QAbstractItemDelegate::EndEditHint hint) { callbackQAbstractItemView_CloseEditor(this, editor, hint); };
 	void commitData(QWidget * editor) { callbackQAbstractItemView_CommitData(this, editor); };
-	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQAbstractItemView_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = new QVector<int>(roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
+	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQAbstractItemView_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue037c88 = new QVector<int>(roles); QtWidgets_PackedList { tmpValue037c88, tmpValue037c88->size() }; })); };
 	void Signal_DoubleClicked(const QModelIndex & index) { callbackQAbstractItemView_DoubleClicked(this, const_cast<QModelIndex*>(&index)); };
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQWidget_DragEnterEvent(this, event); };
 	void dragLeaveEvent(QDragLeaveEvent * event) { callbackQWidget_DragLeaveEvent(this, event); };
@@ -50338,7 +50338,7 @@ public:
 	void Signal_ItemEntered(QTableWidgetItem * item) { callbackQTableWidget_ItemEntered(this, item); };
 	void Signal_ItemPressed(QTableWidgetItem * item) { callbackQTableWidget_ItemPressed(this, item); };
 	void Signal_ItemSelectionChanged() { callbackQTableWidget_ItemSelectionChanged(this); };
-	QMimeData * mimeData(const QList<QTableWidgetItem *> items) const { return static_cast<QMimeData*>(callbackQTableWidget_MimeData(const_cast<void*>(static_cast<const void*>(this)), ({ QList<QTableWidgetItem *>* tmpValue = new QList<QTableWidgetItem *>(items); QtWidgets_PackedList { tmpValue, tmpValue->size() }; }))); };
+	QMimeData * mimeData(const QList<QTableWidgetItem *> items) const { return static_cast<QMimeData*>(callbackQTableWidget_MimeData(const_cast<void*>(static_cast<const void*>(this)), ({ QList<QTableWidgetItem *>* tmpValue7316c8 = new QList<QTableWidgetItem *>(items); QtWidgets_PackedList { tmpValue7316c8, tmpValue7316c8->size() }; }))); };
 	QStringList mimeTypes() const { return ({ QtWidgets_PackedString tempVal = callbackQTableWidget_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	void removeColumn(int column) { callbackQTableWidget_RemoveColumn(this, column); };
 	void removeRow(int row) { callbackQTableWidget_RemoveRow(this, row); };
@@ -50387,7 +50387,7 @@ public:
 	void Signal_Clicked(const QModelIndex & index) { callbackQAbstractItemView_Clicked(this, const_cast<QModelIndex*>(&index)); };
 	void closeEditor(QWidget * editor, QAbstractItemDelegate::EndEditHint hint) { callbackQAbstractItemView_CloseEditor(this, editor, hint); };
 	void commitData(QWidget * editor) { callbackQAbstractItemView_CommitData(this, editor); };
-	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQAbstractItemView_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = new QVector<int>(roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
+	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQAbstractItemView_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue037c88 = new QVector<int>(roles); QtWidgets_PackedList { tmpValue037c88, tmpValue037c88->size() }; })); };
 	void Signal_DoubleClicked(const QModelIndex & index) { callbackQAbstractItemView_DoubleClicked(this, const_cast<QModelIndex*>(&index)); };
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQWidget_DragEnterEvent(this, event); };
 	void dragLeaveEvent(QDragLeaveEvent * event) { callbackQWidget_DragLeaveEvent(this, event); };
@@ -50686,7 +50686,7 @@ void QTableWidget_EditItem(void* ptr, void* item)
 
 struct QtWidgets_PackedList QTableWidget_FindItems(void* ptr, struct QtWidgets_PackedString text, long long flags)
 {
-	return ({ QList<QTableWidgetItem *>* tmpValue = new QList<QTableWidgetItem *>(static_cast<QTableWidget*>(ptr)->findItems(QString::fromUtf8(text.data, text.len), static_cast<Qt::MatchFlag>(flags))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QTableWidgetItem *>* tmpValue51a284 = new QList<QTableWidgetItem *>(static_cast<QTableWidget*>(ptr)->findItems(QString::fromUtf8(text.data, text.len), static_cast<Qt::MatchFlag>(flags))); QtWidgets_PackedList { tmpValue51a284, tmpValue51a284->size() }; });
 }
 
 void* QTableWidget_HorizontalHeaderItem(void* ptr, int column)
@@ -50856,7 +50856,7 @@ void QTableWidget_ItemSelectionChanged(void* ptr)
 
 struct QtWidgets_PackedList QTableWidget_Items(void* ptr, void* data)
 {
-	return ({ QList<QTableWidgetItem *>* tmpValue = new QList<QTableWidgetItem *>(static_cast<QTableWidget*>(ptr)->items(static_cast<QMimeData*>(data))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QTableWidgetItem *>* tmpValueeca21d = new QList<QTableWidgetItem *>(static_cast<QTableWidget*>(ptr)->items(static_cast<QMimeData*>(data))); QtWidgets_PackedList { tmpValueeca21d, tmpValueeca21d->size() }; });
 }
 
 void* QTableWidget_MimeData(void* ptr, void* items)
@@ -50932,12 +50932,12 @@ void QTableWidget_ScrollToItemDefault(void* ptr, void* item, long long hint)
 
 struct QtWidgets_PackedList QTableWidget_SelectedItems(void* ptr)
 {
-	return ({ QList<QTableWidgetItem *>* tmpValue = new QList<QTableWidgetItem *>(static_cast<QTableWidget*>(ptr)->selectedItems()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QTableWidgetItem *>* tmpValue1524d7 = new QList<QTableWidgetItem *>(static_cast<QTableWidget*>(ptr)->selectedItems()); QtWidgets_PackedList { tmpValue1524d7, tmpValue1524d7->size() }; });
 }
 
 struct QtWidgets_PackedList QTableWidget_SelectedRanges(void* ptr)
 {
-	return ({ QList<QTableWidgetSelectionRange>* tmpValue = new QList<QTableWidgetSelectionRange>(static_cast<QTableWidget*>(ptr)->selectedRanges()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QTableWidgetSelectionRange>* tmpValue3fc18a = new QList<QTableWidgetSelectionRange>(static_cast<QTableWidget*>(ptr)->selectedRanges()); QtWidgets_PackedList { tmpValue3fc18a, tmpValue3fc18a->size() }; });
 }
 
 void QTableWidget_SetCellWidget(void* ptr, int row, int column, void* widget)
@@ -53961,7 +53961,7 @@ public:
 	void columnMoved() { callbackQTreeView_ColumnMoved(this); };
 	void columnResized(int column, int oldSize, int newSize) { callbackQTreeView_ColumnResized(this, column, oldSize, newSize); };
 	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQTreeView_CurrentChanged(this, const_cast<QModelIndex*>(&current), const_cast<QModelIndex*>(&previous)); };
-	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQTreeView_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = new QVector<int>(roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
+	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQTreeView_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue037c88 = new QVector<int>(roles); QtWidgets_PackedList { tmpValue037c88, tmpValue037c88->size() }; })); };
 	void dragMoveEvent(QDragMoveEvent * event) { callbackQWidget_DragMoveEvent(this, event); };
 	void drawBranches(QPainter * painter, const QRect & rect, const QModelIndex & index) const { callbackQTreeView_DrawBranches(const_cast<void*>(static_cast<const void*>(this)), painter, const_cast<QRect*>(&rect), const_cast<QModelIndex*>(&index)); };
 	void drawRow(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const { callbackQTreeView_DrawRow(const_cast<void*>(static_cast<const void*>(this)), painter, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index)); };
@@ -54859,7 +54859,7 @@ public:
 	void Signal_ItemExpanded(QTreeWidgetItem * item) { callbackQTreeWidget_ItemExpanded(this, item); };
 	void Signal_ItemPressed(QTreeWidgetItem * item, int column) { callbackQTreeWidget_ItemPressed(this, item, column); };
 	void Signal_ItemSelectionChanged() { callbackQTreeWidget_ItemSelectionChanged(this); };
-	QMimeData * mimeData(const QList<QTreeWidgetItem *> items) const { return static_cast<QMimeData*>(callbackQTreeWidget_MimeData(const_cast<void*>(static_cast<const void*>(this)), ({ QList<QTreeWidgetItem *>* tmpValue = new QList<QTreeWidgetItem *>(items); QtWidgets_PackedList { tmpValue, tmpValue->size() }; }))); };
+	QMimeData * mimeData(const QList<QTreeWidgetItem *> items) const { return static_cast<QMimeData*>(callbackQTreeWidget_MimeData(const_cast<void*>(static_cast<const void*>(this)), ({ QList<QTreeWidgetItem *>* tmpValue7316c8 = new QList<QTreeWidgetItem *>(items); QtWidgets_PackedList { tmpValue7316c8, tmpValue7316c8->size() }; }))); };
 	QStringList mimeTypes() const { return ({ QtWidgets_PackedString tempVal = callbackQTreeWidget_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	void scrollToItem(const QTreeWidgetItem * item, QAbstractItemView::ScrollHint hint) { callbackQTreeWidget_ScrollToItem(this, const_cast<QTreeWidgetItem*>(item), hint); };
 	void setSelectionModel(QItemSelectionModel * selectionModel) { callbackQAbstractItemView_SetSelectionModel(this, selectionModel); };
@@ -54872,7 +54872,7 @@ public:
 	void columnMoved() { callbackQTreeView_ColumnMoved(this); };
 	void columnResized(int column, int oldSize, int newSize) { callbackQTreeView_ColumnResized(this, column, oldSize, newSize); };
 	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQTreeView_CurrentChanged(this, const_cast<QModelIndex*>(&current), const_cast<QModelIndex*>(&previous)); };
-	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQTreeView_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = new QVector<int>(roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
+	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQTreeView_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue037c88 = new QVector<int>(roles); QtWidgets_PackedList { tmpValue037c88, tmpValue037c88->size() }; })); };
 	void dragMoveEvent(QDragMoveEvent * event) { callbackQWidget_DragMoveEvent(this, event); };
 	void drawBranches(QPainter * painter, const QRect & rect, const QModelIndex & index) const { callbackQTreeView_DrawBranches(const_cast<void*>(static_cast<const void*>(this)), painter, const_cast<QRect*>(&rect), const_cast<QModelIndex*>(&index)); };
 	void drawRow(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const { callbackQTreeView_DrawRow(const_cast<void*>(static_cast<const void*>(this)), painter, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index)); };
@@ -55100,7 +55100,7 @@ void QTreeWidget_ExpandItemDefault(void* ptr, void* item)
 
 struct QtWidgets_PackedList QTreeWidget_FindItems(void* ptr, struct QtWidgets_PackedString text, long long flags, int column)
 {
-	return ({ QList<QTreeWidgetItem *>* tmpValue = new QList<QTreeWidgetItem *>(static_cast<QTreeWidget*>(ptr)->findItems(QString::fromUtf8(text.data, text.len), static_cast<Qt::MatchFlag>(flags), column)); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QTreeWidgetItem *>* tmpValue92012a = new QList<QTreeWidgetItem *>(static_cast<QTreeWidget*>(ptr)->findItems(QString::fromUtf8(text.data, text.len), static_cast<Qt::MatchFlag>(flags), column)); QtWidgets_PackedList { tmpValue92012a, tmpValue92012a->size() }; });
 }
 
 void* QTreeWidget_HeaderItem(void* ptr)
@@ -55346,7 +55346,7 @@ void QTreeWidget_ScrollToItemDefault(void* ptr, void* item, long long hint)
 
 struct QtWidgets_PackedList QTreeWidget_SelectedItems(void* ptr)
 {
-	return ({ QList<QTreeWidgetItem *>* tmpValue = new QList<QTreeWidgetItem *>(static_cast<QTreeWidget*>(ptr)->selectedItems()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QTreeWidgetItem *>* tmpValueb64487 = new QList<QTreeWidgetItem *>(static_cast<QTreeWidget*>(ptr)->selectedItems()); QtWidgets_PackedList { tmpValueb64487, tmpValueb64487->size() }; });
 }
 
 void QTreeWidget_SetColumnCount(void* ptr, int columns)
@@ -55868,7 +55868,7 @@ void* QTreeWidgetItem_TakeChild(void* ptr, int index)
 
 struct QtWidgets_PackedList QTreeWidgetItem_TakeChildren(void* ptr)
 {
-	return ({ QList<QTreeWidgetItem *>* tmpValue = new QList<QTreeWidgetItem *>(static_cast<QTreeWidgetItem*>(ptr)->takeChildren()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QTreeWidgetItem *>* tmpValue517109 = new QList<QTreeWidgetItem *>(static_cast<QTreeWidgetItem*>(ptr)->takeChildren()); QtWidgets_PackedList { tmpValue517109, tmpValue517109->size() }; });
 }
 
 struct QtWidgets_PackedString QTreeWidgetItem_Text(void* ptr, int column)
@@ -56366,7 +56366,7 @@ void QUndoGroup_SetActiveStackDefault(void* ptr, void* stack)
 
 struct QtWidgets_PackedList QUndoGroup_Stacks(void* ptr)
 {
-	return ({ QList<QUndoStack *>* tmpValue = new QList<QUndoStack *>(static_cast<QUndoGroup*>(ptr)->stacks()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QUndoStack *>* tmpValueeb3ecf = new QList<QUndoStack *>(static_cast<QUndoGroup*>(ptr)->stacks()); QtWidgets_PackedList { tmpValueeb3ecf, tmpValueeb3ecf->size() }; });
 }
 
 void QUndoGroup_Undo(void* ptr)
@@ -57143,7 +57143,7 @@ public:
 	void setStack(QUndoStack * stack) { callbackQUndoView_SetStack(this, stack); };
 	 ~MyQUndoView() { callbackQUndoView_DestroyQUndoView(this); };
 	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQListView_CurrentChanged(this, const_cast<QModelIndex*>(&current), const_cast<QModelIndex*>(&previous)); };
-	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQListView_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = new QVector<int>(roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
+	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQListView_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue037c88 = new QVector<int>(roles); QtWidgets_PackedList { tmpValue037c88, tmpValue037c88->size() }; })); };
 	void dragLeaveEvent(QDragLeaveEvent * e) { callbackQWidget_DragLeaveEvent(this, e); };
 	void dragMoveEvent(QDragMoveEvent * e) { callbackQWidget_DragMoveEvent(this, e); };
 	void dropEvent(QDropEvent * e) { callbackQWidget_DropEvent(this, e); };
@@ -57706,7 +57706,7 @@ void QWidget_ActionEventDefault(void* ptr, void* event)
 
 struct QtWidgets_PackedList QWidget_Actions(void* ptr)
 {
-		return ({ QList<QAction *>* tmpValue = new QList<QAction *>(static_cast<QWidget*>(ptr)->actions()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QList<QAction *>* tmpValue268e58 = new QList<QAction *>(static_cast<QWidget*>(ptr)->actions()); QtWidgets_PackedList { tmpValue268e58, tmpValue268e58->size() }; });
 }
 
 void QWidget_ActivateWindow(void* ptr)
@@ -69976,7 +69976,7 @@ void* QWidgetAction_CreateWidgetDefault(void* ptr, void* parent)
 
 struct QtWidgets_PackedList QWidgetAction_CreatedWidgets(void* ptr)
 {
-	return ({ QList<QWidget *>* tmpValue = new QList<QWidget *>(static_cast<QWidgetAction*>(ptr)->createdWidgets()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QWidget *>* tmpValued33f9e = new QList<QWidget *>(static_cast<QWidgetAction*>(ptr)->createdWidgets()); QtWidgets_PackedList { tmpValued33f9e, tmpValued33f9e->size() }; });
 }
 
 void* QWidgetAction_DefaultWidget(void* ptr)
@@ -70417,7 +70417,7 @@ void QWizard_PageAdded(void* ptr, int id)
 
 struct QtWidgets_PackedList QWizard_PageIds(void* ptr)
 {
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QWizard*>(ptr)->pageIds()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<int>* tmpValuec08e79 = new QList<int>(static_cast<QWizard*>(ptr)->pageIds()); QtWidgets_PackedList { tmpValuec08e79, tmpValuec08e79->size() }; });
 }
 
 void QWizard_ConnectPageRemoved(void* ptr)
@@ -70557,7 +70557,7 @@ char QWizard_ValidateCurrentPageDefault(void* ptr)
 
 struct QtWidgets_PackedList QWizard_VisitedPages(void* ptr)
 {
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QWizard*>(ptr)->visitedPages()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<int>* tmpValue0f21c6 = new QList<int>(static_cast<QWizard*>(ptr)->visitedPages()); QtWidgets_PackedList { tmpValue0f21c6, tmpValue0f21c6->size() }; });
 }
 
 long long QWizard_WizardStyle(void* ptr)

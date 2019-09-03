@@ -48,7 +48,7 @@ func ParseFlags() bool {
 	if api := utils.QT_API(""); api != "" && err == nil {
 		if utils.GoListOptional("{{.Dir}}", "github.com/therecipe/qt/internal/binding/files/docs/"+api, "-find", "get doc dir") == "" {
 			utils.Log.Errorf("invalid api version provided: '%v'", api)
-			fmt.Println("valid api versions are:")
+			fmt.Println("valid api versions are:") //TODO: if only one api version is available, use it
 			if !utils.UseGOMOD("") {
 				if o := utils.GoListOptional("{{join .Imports \"|\"}}", "github.com/therecipe/qt/internal/binding/files/docs", "get doc dir"); o != "" {
 					for _, v := range strings.Split(o, "|") {

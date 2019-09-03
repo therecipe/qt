@@ -945,7 +945,7 @@ public:
 
 struct QtDesigner_PackedList QDesignerCustomWidgetCollectionInterface_CustomWidgets(void* ptr)
 {
-	return ({ QList<QDesignerCustomWidgetInterface *>* tmpValue = new QList<QDesignerCustomWidgetInterface *>(static_cast<QDesignerCustomWidgetCollectionInterface*>(ptr)->customWidgets()); QtDesigner_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QDesignerCustomWidgetInterface *>* tmpValue2adca0 = new QList<QDesignerCustomWidgetInterface *>(static_cast<QDesignerCustomWidgetCollectionInterface*>(ptr)->customWidgets()); QtDesigner_PackedList { tmpValue2adca0, tmpValue2adca0->size() }; });
 }
 
 void QDesignerCustomWidgetCollectionInterface_DestroyQDesignerCustomWidgetCollectionInterface(void* ptr)
@@ -3064,12 +3064,12 @@ struct QtDesigner_PackedString QDesignerMemberSheetExtension_MemberName(void* pt
 
 struct QtDesigner_PackedList QDesignerMemberSheetExtension_ParameterNames(void* ptr, int index)
 {
-	return ({ QList<QByteArray>* tmpValue = new QList<QByteArray>(static_cast<QDesignerMemberSheetExtension*>(ptr)->parameterNames(index)); QtDesigner_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QByteArray>* tmpValue1f521e = new QList<QByteArray>(static_cast<QDesignerMemberSheetExtension*>(ptr)->parameterNames(index)); QtDesigner_PackedList { tmpValue1f521e, tmpValue1f521e->size() }; });
 }
 
 struct QtDesigner_PackedList QDesignerMemberSheetExtension_ParameterTypes(void* ptr, int index)
 {
-	return ({ QList<QByteArray>* tmpValue = new QList<QByteArray>(static_cast<QDesignerMemberSheetExtension*>(ptr)->parameterTypes(index)); QtDesigner_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QByteArray>* tmpValue766dc7 = new QList<QByteArray>(static_cast<QDesignerMemberSheetExtension*>(ptr)->parameterTypes(index)); QtDesigner_PackedList { tmpValue766dc7, tmpValue766dc7->size() }; });
 }
 
 void QDesignerMemberSheetExtension_SetMemberGroup(void* ptr, int index, struct QtDesigner_PackedString group)
@@ -5070,7 +5070,7 @@ void* QDesignerTaskMenuExtension_PreferredEditActionDefault(void* ptr)
 
 struct QtDesigner_PackedList QDesignerTaskMenuExtension_TaskActions(void* ptr)
 {
-	return ({ QList<QAction *>* tmpValue = new QList<QAction *>(static_cast<QDesignerTaskMenuExtension*>(ptr)->taskActions()); QtDesigner_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QAction *>* tmpValuee3e958 = new QList<QAction *>(static_cast<QDesignerTaskMenuExtension*>(ptr)->taskActions()); QtDesigner_PackedList { tmpValuee3e958, tmpValuee3e958->size() }; });
 }
 
 void QDesignerTaskMenuExtension_DestroyQDesignerTaskMenuExtension(void* ptr)
@@ -6318,7 +6318,7 @@ void QFormBuilder_ClearPluginPaths(void* ptr)
 
 struct QtDesigner_PackedList QFormBuilder_CustomWidgets(void* ptr)
 {
-	return ({ QList<QDesignerCustomWidgetInterface *>* tmpValue = new QList<QDesignerCustomWidgetInterface *>(static_cast<QFormBuilder*>(ptr)->customWidgets()); QtDesigner_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QDesignerCustomWidgetInterface *>* tmpValue65cbeb = new QList<QDesignerCustomWidgetInterface *>(static_cast<QFormBuilder*>(ptr)->customWidgets()); QtDesigner_PackedList { tmpValue65cbeb, tmpValue65cbeb->size() }; });
 }
 
 struct QtDesigner_PackedString QFormBuilder_PluginPaths(void* ptr)

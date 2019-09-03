@@ -774,7 +774,7 @@ void* QQuickItem_ChildAt(void* ptr, double x, double y)
 
 struct QtQuick_PackedList QQuickItem_ChildItems(void* ptr)
 {
-		return ({ QList<QQuickItem *>* tmpValue = new QList<QQuickItem *>(static_cast<QQuickItem*>(ptr)->childItems()); QtQuick_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QList<QQuickItem *>* tmpValue890fa7 = new QList<QQuickItem *>(static_cast<QQuickItem*>(ptr)->childItems()); QtQuick_PackedList { tmpValue890fa7, tmpValue890fa7->size() }; });
 }
 
 char QQuickItem_ChildMouseEventFilter(void* ptr, void* item, void* event)
@@ -3822,7 +3822,7 @@ void* QQuickView_Engine(void* ptr)
 
 struct QtQuick_PackedList QQuickView_Errors(void* ptr)
 {
-	return ({ QList<QQmlError>* tmpValue = new QList<QQmlError>(static_cast<QQuickView*>(ptr)->errors()); QtQuick_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QQmlError>* tmpValue33c655 = new QList<QQmlError>(static_cast<QQuickView*>(ptr)->errors()); QtQuick_PackedList { tmpValue33c655, tmpValue33c655->size() }; });
 }
 
 void* QQuickView_InitialSize(void* ptr)
@@ -4041,7 +4041,7 @@ void* QQuickWidget_Engine(void* ptr)
 
 struct QtQuick_PackedList QQuickWidget_Errors(void* ptr)
 {
-	return ({ QList<QQmlError>* tmpValue = new QList<QQmlError>(static_cast<QQuickWidget*>(ptr)->errors()); QtQuick_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QQmlError>* tmpValueeba523 = new QList<QQmlError>(static_cast<QQuickWidget*>(ptr)->errors()); QtQuick_PackedList { tmpValueeba523, tmpValueeba523->size() }; });
 }
 
 char QQuickWidget_EventDefault(void* ptr, void* e)

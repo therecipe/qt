@@ -1628,7 +1628,7 @@ int QGamepadManager_QGamepadManager_QRegisterMetaType(){qRegisterMetaType<QGamep
 
 struct QtGamepad_PackedList QGamepadManager_ConnectedGamepads(void* ptr)
 {
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QGamepadManager*>(ptr)->connectedGamepads()); QtGamepad_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<int>* tmpValue3d1c40 = new QList<int>(static_cast<QGamepadManager*>(ptr)->connectedGamepads()); QtGamepad_PackedList { tmpValue3d1c40, tmpValue3d1c40->size() }; });
 }
 
 void QGamepadManager_ConnectConnectedGamepadsChanged(void* ptr)

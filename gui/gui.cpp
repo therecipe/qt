@@ -1598,7 +1598,7 @@ int QAccessibleTableCellInterface_ColumnExtent(void* ptr)
 
 struct QtGui_PackedList QAccessibleTableCellInterface_ColumnHeaderCells(void* ptr)
 {
-	return ({ QList<QAccessibleInterface *>* tmpValue = new QList<QAccessibleInterface *>(static_cast<QAccessibleTableCellInterface*>(ptr)->columnHeaderCells()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QAccessibleInterface *>* tmpValue68eb1f = new QList<QAccessibleInterface *>(static_cast<QAccessibleTableCellInterface*>(ptr)->columnHeaderCells()); QtGui_PackedList { tmpValue68eb1f, tmpValue68eb1f->size() }; });
 }
 
 int QAccessibleTableCellInterface_ColumnIndex(void* ptr)
@@ -1618,7 +1618,7 @@ int QAccessibleTableCellInterface_RowExtent(void* ptr)
 
 struct QtGui_PackedList QAccessibleTableCellInterface_RowHeaderCells(void* ptr)
 {
-	return ({ QList<QAccessibleInterface *>* tmpValue = new QList<QAccessibleInterface *>(static_cast<QAccessibleTableCellInterface*>(ptr)->rowHeaderCells()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QAccessibleInterface *>* tmpValueab8f05 = new QList<QAccessibleInterface *>(static_cast<QAccessibleTableCellInterface*>(ptr)->rowHeaderCells()); QtGui_PackedList { tmpValueab8f05, tmpValueab8f05->size() }; });
 }
 
 int QAccessibleTableCellInterface_RowIndex(void* ptr)
@@ -1762,7 +1762,7 @@ int QAccessibleTableInterface_SelectedCellCount(void* ptr)
 
 struct QtGui_PackedList QAccessibleTableInterface_SelectedCells(void* ptr)
 {
-	return ({ QList<QAccessibleInterface *>* tmpValue = new QList<QAccessibleInterface *>(static_cast<QAccessibleTableInterface*>(ptr)->selectedCells()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QAccessibleInterface *>* tmpValuebc7554 = new QList<QAccessibleInterface *>(static_cast<QAccessibleTableInterface*>(ptr)->selectedCells()); QtGui_PackedList { tmpValuebc7554, tmpValuebc7554->size() }; });
 }
 
 int QAccessibleTableInterface_SelectedColumnCount(void* ptr)
@@ -1772,7 +1772,7 @@ int QAccessibleTableInterface_SelectedColumnCount(void* ptr)
 
 struct QtGui_PackedList QAccessibleTableInterface_SelectedColumns(void* ptr)
 {
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QAccessibleTableInterface*>(ptr)->selectedColumns()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<int>* tmpValue8dbd0b = new QList<int>(static_cast<QAccessibleTableInterface*>(ptr)->selectedColumns()); QtGui_PackedList { tmpValue8dbd0b, tmpValue8dbd0b->size() }; });
 }
 
 int QAccessibleTableInterface_SelectedRowCount(void* ptr)
@@ -1782,7 +1782,7 @@ int QAccessibleTableInterface_SelectedRowCount(void* ptr)
 
 struct QtGui_PackedList QAccessibleTableInterface_SelectedRows(void* ptr)
 {
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QAccessibleTableInterface*>(ptr)->selectedRows()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<int>* tmpValue094a24 = new QList<int>(static_cast<QAccessibleTableInterface*>(ptr)->selectedRows()); QtGui_PackedList { tmpValue094a24, tmpValue094a24->size() }; });
 }
 
 void* QAccessibleTableInterface_Summary(void* ptr)
@@ -5267,7 +5267,7 @@ char QFontDatabase_Italic(void* ptr, struct QtGui_PackedString family, struct Qt
 
 struct QtGui_PackedList QFontDatabase_PointSizes(void* ptr, struct QtGui_PackedString family, struct QtGui_PackedString styleName)
 {
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QFontDatabase*>(ptr)->pointSizes(QString::fromUtf8(family.data, family.len), QString::fromUtf8(styleName.data, styleName.len))); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<int>* tmpValue27d093 = new QList<int>(static_cast<QFontDatabase*>(ptr)->pointSizes(QString::fromUtf8(family.data, family.len), QString::fromUtf8(styleName.data, styleName.len))); QtGui_PackedList { tmpValue27d093, tmpValue27d093->size() }; });
 }
 
 char QFontDatabase_QFontDatabase_RemoveAllApplicationFonts()
@@ -5282,12 +5282,12 @@ char QFontDatabase_QFontDatabase_RemoveApplicationFont(int id)
 
 struct QtGui_PackedList QFontDatabase_SmoothSizes(void* ptr, struct QtGui_PackedString family, struct QtGui_PackedString styleName)
 {
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QFontDatabase*>(ptr)->smoothSizes(QString::fromUtf8(family.data, family.len), QString::fromUtf8(styleName.data, styleName.len))); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<int>* tmpValueab12a8 = new QList<int>(static_cast<QFontDatabase*>(ptr)->smoothSizes(QString::fromUtf8(family.data, family.len), QString::fromUtf8(styleName.data, styleName.len))); QtGui_PackedList { tmpValueab12a8, tmpValueab12a8->size() }; });
 }
 
 struct QtGui_PackedList QFontDatabase_QFontDatabase_StandardSizes()
 {
-	return ({ QList<int>* tmpValue = new QList<int>(QFontDatabase::standardSizes()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<int>* tmpValue70838a = new QList<int>(QFontDatabase::standardSizes()); QtGui_PackedList { tmpValue70838a, tmpValue70838a->size() }; });
 }
 
 struct QtGui_PackedString QFontDatabase_StyleString(void* ptr, void* font)
@@ -6087,7 +6087,7 @@ long long QGlyphRun_Flags(void* ptr)
 
 struct QtGui_PackedList QGlyphRun_GlyphIndexes(void* ptr)
 {
-	return ({ QVector<quint32>* tmpValue = new QVector<quint32>(static_cast<QGlyphRun*>(ptr)->glyphIndexes()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QVector<quint32>* tmpValuec798fb = new QVector<quint32>(static_cast<QGlyphRun*>(ptr)->glyphIndexes()); QtGui_PackedList { tmpValuec798fb, tmpValuec798fb->size() }; });
 }
 
 char QGlyphRun_IsEmpty(void* ptr)
@@ -6107,7 +6107,7 @@ char QGlyphRun_Overline(void* ptr)
 
 struct QtGui_PackedList QGlyphRun_Positions(void* ptr)
 {
-	return ({ QVector<QPointF>* tmpValue = new QVector<QPointF>(static_cast<QGlyphRun*>(ptr)->positions()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QVector<QPointF>* tmpValuefabb88 = new QVector<QPointF>(static_cast<QGlyphRun*>(ptr)->positions()); QtGui_PackedList { tmpValuefabb88, tmpValuefabb88->size() }; });
 }
 
 void* QGlyphRun_RawFont(void* ptr)
@@ -6721,7 +6721,7 @@ void QGuiApplication_ScreenRemoved(void* ptr, void* screen)
 
 struct QtGui_PackedList QGuiApplication_QGuiApplication_Screens()
 {
-	return ({ QList<QScreen *>* tmpValue = new QList<QScreen *>(QGuiApplication::screens()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QScreen *>* tmpValuea63f6f = new QList<QScreen *>(QGuiApplication::screens()); QtGui_PackedList { tmpValuea63f6f, tmpValuea63f6f->size() }; });
 }
 
 struct QtGui_PackedString QGuiApplication_SessionId(void* ptr)
@@ -7145,7 +7145,7 @@ void QIcon_AddPixmap(void* ptr, void* pixmap, long long mode, long long state)
 
 struct QtGui_PackedList QIcon_AvailableSizes(void* ptr, long long mode, long long state)
 {
-	return ({ QList<QSize>* tmpValue = new QList<QSize>(static_cast<QIcon*>(ptr)->availableSizes(static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state))); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QSize>* tmpValue9573b1 = new QList<QSize>(static_cast<QIcon*>(ptr)->availableSizes(static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state))); QtGui_PackedList { tmpValue9573b1, tmpValue9573b1->size() }; });
 }
 
 long long QIcon_CacheKey(void* ptr)
@@ -7360,12 +7360,12 @@ void QIconEngine_AddPixmapDefault(void* ptr, void* pixmap, long long mode, long 
 
 struct QtGui_PackedList QIconEngine_AvailableSizes(void* ptr, long long mode, long long state)
 {
-	return ({ QList<QSize>* tmpValue = new QList<QSize>(static_cast<QIconEngine*>(ptr)->availableSizes(static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state))); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QSize>* tmpValueeb1d9a = new QList<QSize>(static_cast<QIconEngine*>(ptr)->availableSizes(static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state))); QtGui_PackedList { tmpValueeb1d9a, tmpValueeb1d9a->size() }; });
 }
 
 struct QtGui_PackedList QIconEngine_AvailableSizesDefault(void* ptr, long long mode, long long state)
 {
-		return ({ QList<QSize>* tmpValue = new QList<QSize>(static_cast<QIconEngine*>(ptr)->QIconEngine::availableSizes(static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state))); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QList<QSize>* tmpValue16303c = new QList<QSize>(static_cast<QIconEngine*>(ptr)->QIconEngine::availableSizes(static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state))); QtGui_PackedList { tmpValue16303c, tmpValue16303c->size() }; });
 }
 
 void* QIconEngine_Clone(void* ptr)
@@ -7841,7 +7841,7 @@ unsigned int QImage_Color(void* ptr, int i)
 
 struct QtGui_PackedList QImage_ColorTable(void* ptr)
 {
-	return ({ QVector<QRgb>* tmpValue = new QVector<QRgb>(static_cast<QImage*>(ptr)->colorTable()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QVector<QRgb>* tmpValue37f65e = new QVector<QRgb>(static_cast<QImage*>(ptr)->colorTable()); QtGui_PackedList { tmpValue37f65e, tmpValue37f65e->size() }; });
 }
 
 struct QtGui_PackedString QImage_ConstBits(void* ptr)
@@ -8848,7 +8848,7 @@ void* QImageReader_QImageReader_ImageFormat3(void* device)
 
 struct QtGui_PackedList QImageReader_QImageReader_ImageFormatsForMimeType(void* mimeType)
 {
-	return ({ QList<QByteArray>* tmpValue = new QList<QByteArray>(QImageReader::imageFormatsForMimeType(*static_cast<QByteArray*>(mimeType))); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QByteArray>* tmpValuea96946 = new QList<QByteArray>(QImageReader::imageFormatsForMimeType(*static_cast<QByteArray*>(mimeType))); QtGui_PackedList { tmpValuea96946, tmpValuea96946->size() }; });
 }
 
 char QImageReader_JumpToImage(void* ptr, int imageNumber)
@@ -8968,17 +8968,17 @@ void* QImageReader_SubType(void* ptr)
 
 struct QtGui_PackedList QImageReader_QImageReader_SupportedImageFormats()
 {
-	return ({ QList<QByteArray>* tmpValue = new QList<QByteArray>(QImageReader::supportedImageFormats()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QByteArray>* tmpValue0ee4ca = new QList<QByteArray>(QImageReader::supportedImageFormats()); QtGui_PackedList { tmpValue0ee4ca, tmpValue0ee4ca->size() }; });
 }
 
 struct QtGui_PackedList QImageReader_QImageReader_SupportedMimeTypes()
 {
-	return ({ QList<QByteArray>* tmpValue = new QList<QByteArray>(QImageReader::supportedMimeTypes()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QByteArray>* tmpValueaf60c6 = new QList<QByteArray>(QImageReader::supportedMimeTypes()); QtGui_PackedList { tmpValueaf60c6, tmpValueaf60c6->size() }; });
 }
 
 struct QtGui_PackedList QImageReader_SupportedSubTypes(void* ptr)
 {
-	return ({ QList<QByteArray>* tmpValue = new QList<QByteArray>(static_cast<QImageReader*>(ptr)->supportedSubTypes()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QByteArray>* tmpValuead2d7a = new QList<QByteArray>(static_cast<QImageReader*>(ptr)->supportedSubTypes()); QtGui_PackedList { tmpValuead2d7a, tmpValuead2d7a->size() }; });
 }
 
 char QImageReader_SupportsAnimation(void* ptr)
@@ -9132,7 +9132,7 @@ float QImageWriter_Gamma(void* ptr)
 
 struct QtGui_PackedList QImageWriter_QImageWriter_ImageFormatsForMimeType(void* mimeType)
 {
-	return ({ QList<QByteArray>* tmpValue = new QList<QByteArray>(QImageWriter::imageFormatsForMimeType(*static_cast<QByteArray*>(mimeType))); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QByteArray>* tmpValue84c90f = new QList<QByteArray>(QImageWriter::imageFormatsForMimeType(*static_cast<QByteArray*>(mimeType))); QtGui_PackedList { tmpValue84c90f, tmpValue84c90f->size() }; });
 }
 
 char QImageWriter_OptimizedWrite(void* ptr)
@@ -9212,17 +9212,17 @@ void* QImageWriter_SubType(void* ptr)
 
 struct QtGui_PackedList QImageWriter_QImageWriter_SupportedImageFormats()
 {
-	return ({ QList<QByteArray>* tmpValue = new QList<QByteArray>(QImageWriter::supportedImageFormats()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QByteArray>* tmpValue0d09bb = new QList<QByteArray>(QImageWriter::supportedImageFormats()); QtGui_PackedList { tmpValue0d09bb, tmpValue0d09bb->size() }; });
 }
 
 struct QtGui_PackedList QImageWriter_QImageWriter_SupportedMimeTypes()
 {
-	return ({ QList<QByteArray>* tmpValue = new QList<QByteArray>(QImageWriter::supportedMimeTypes()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QByteArray>* tmpValue58bbbe = new QList<QByteArray>(QImageWriter::supportedMimeTypes()); QtGui_PackedList { tmpValue58bbbe, tmpValue58bbbe->size() }; });
 }
 
 struct QtGui_PackedList QImageWriter_SupportedSubTypes(void* ptr)
 {
-	return ({ QList<QByteArray>* tmpValue = new QList<QByteArray>(static_cast<QImageWriter*>(ptr)->supportedSubTypes()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QByteArray>* tmpValue401023 = new QList<QByteArray>(static_cast<QImageWriter*>(ptr)->supportedSubTypes()); QtGui_PackedList { tmpValue401023, tmpValue401023->size() }; });
 }
 
 char QImageWriter_SupportsOption(void* ptr, long long option)
@@ -10181,12 +10181,12 @@ char QKeySequence_IsEmpty(void* ptr)
 
 struct QtGui_PackedList QKeySequence_QKeySequence_KeyBindings(long long key)
 {
-	return ({ QList<QKeySequence>* tmpValue = new QList<QKeySequence>(QKeySequence::keyBindings(static_cast<QKeySequence::StandardKey>(key))); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QKeySequence>* tmpValue0650c1 = new QList<QKeySequence>(QKeySequence::keyBindings(static_cast<QKeySequence::StandardKey>(key))); QtGui_PackedList { tmpValue0650c1, tmpValue0650c1->size() }; });
 }
 
 struct QtGui_PackedList QKeySequence_QKeySequence_ListFromString(struct QtGui_PackedString str, long long format)
 {
-	return ({ QList<QKeySequence>* tmpValue = new QList<QKeySequence>(QKeySequence::listFromString(QString::fromUtf8(str.data, str.len), static_cast<QKeySequence::SequenceFormat>(format))); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QKeySequence>* tmpValuedec9d9 = new QList<QKeySequence>(QKeySequence::listFromString(QString::fromUtf8(str.data, str.len), static_cast<QKeySequence::SequenceFormat>(format))); QtGui_PackedList { tmpValuedec9d9, tmpValuedec9d9->size() }; });
 }
 
 struct QtGui_PackedString QKeySequence_QKeySequence_ListToString(void* list, long long format)
@@ -11274,7 +11274,7 @@ void QMovie_StopDefault(void* ptr)
 
 struct QtGui_PackedList QMovie_QMovie_SupportedFormats()
 {
-	return ({ QList<QByteArray>* tmpValue = new QList<QByteArray>(QMovie::supportedFormats()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QByteArray>* tmpValue6b4223 = new QList<QByteArray>(QMovie::supportedFormats()); QtGui_PackedList { tmpValue6b4223, tmpValue6b4223->size() }; });
 }
 
 void QMovie_ConnectUpdated(void* ptr)
@@ -12472,7 +12472,7 @@ void* QOpenGLContextGroup_QOpenGLContextGroup_CurrentContextGroup()
 
 struct QtGui_PackedList QOpenGLContextGroup_Shares(void* ptr)
 {
-	return ({ QList<QOpenGLContext *>* tmpValue = new QList<QOpenGLContext *>(static_cast<QOpenGLContextGroup*>(ptr)->shares()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QOpenGLContext *>* tmpValuec31b07 = new QList<QOpenGLContext *>(static_cast<QOpenGLContextGroup*>(ptr)->shares()); QtGui_PackedList { tmpValuec31b07, tmpValuec31b07->size() }; });
 }
 
 void* QOpenGLContextGroup___shares_atList(void* ptr, int i)
@@ -12781,7 +12781,7 @@ void QOpenGLDebugLogger_LogMessageDefault(void* ptr, void* debugMessage)
 
 struct QtGui_PackedList QOpenGLDebugLogger_LoggedMessages(void* ptr)
 {
-	return ({ QList<QOpenGLDebugMessage>* tmpValue = new QList<QOpenGLDebugMessage>(static_cast<QOpenGLDebugLogger*>(ptr)->loggedMessages()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QOpenGLDebugMessage>* tmpValuefdab42 = new QList<QOpenGLDebugMessage>(static_cast<QOpenGLDebugLogger*>(ptr)->loggedMessages()); QtGui_PackedList { tmpValuefdab42, tmpValuefdab42->size() }; });
 }
 
 long long QOpenGLDebugLogger_LoggingMode(void* ptr)
@@ -14183,7 +14183,7 @@ void* QOpenGLFramebufferObject_Size(void* ptr)
 
 struct QtGui_PackedList QOpenGLFramebufferObject_Sizes(void* ptr)
 {
-	return ({ QVector<QSize>* tmpValue = new QVector<QSize>(static_cast<QOpenGLFramebufferObject*>(ptr)->sizes()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QVector<QSize>* tmpValued3b21f = new QVector<QSize>(static_cast<QOpenGLFramebufferObject*>(ptr)->sizes()); QtGui_PackedList { tmpValued3b21f, tmpValued3b21f->size() }; });
 }
 
 unsigned int QOpenGLFramebufferObject_TakeTexture(void* ptr)
@@ -14203,7 +14203,7 @@ unsigned int QOpenGLFramebufferObject_Texture(void* ptr)
 
 struct QtGui_PackedList QOpenGLFramebufferObject_Textures(void* ptr)
 {
-	return ({ QVector<GLuint>* tmpValue = new QVector<GLuint>(static_cast<QOpenGLFramebufferObject*>(ptr)->textures()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QVector<GLuint>* tmpValue0c5676 = new QVector<GLuint>(static_cast<QOpenGLFramebufferObject*>(ptr)->textures()); QtGui_PackedList { tmpValue0c5676, tmpValue0c5676->size() }; });
 }
 
 void* QOpenGLFramebufferObject_ToImage(void* ptr, char flipped)
@@ -15719,12 +15719,12 @@ char QOpenGLShaderProgram_Create(void* ptr)
 
 struct QtGui_PackedList QOpenGLShaderProgram_DefaultInnerTessellationLevels(void* ptr)
 {
-	return ({ QVector<float>* tmpValue = new QVector<float>(static_cast<QOpenGLShaderProgram*>(ptr)->defaultInnerTessellationLevels()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QVector<float>* tmpValued1ea02 = new QVector<float>(static_cast<QOpenGLShaderProgram*>(ptr)->defaultInnerTessellationLevels()); QtGui_PackedList { tmpValued1ea02, tmpValued1ea02->size() }; });
 }
 
 struct QtGui_PackedList QOpenGLShaderProgram_DefaultOuterTessellationLevels(void* ptr)
 {
-	return ({ QVector<float>* tmpValue = new QVector<float>(static_cast<QOpenGLShaderProgram*>(ptr)->defaultOuterTessellationLevels()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QVector<float>* tmpValue63d866 = new QVector<float>(static_cast<QOpenGLShaderProgram*>(ptr)->defaultOuterTessellationLevels()); QtGui_PackedList { tmpValue63d866, tmpValue63d866->size() }; });
 }
 
 void QOpenGLShaderProgram_DisableAttributeArray(void* ptr, int location)
@@ -16199,7 +16199,7 @@ void QOpenGLShaderProgram_SetUniformValueArray30(void* ptr, char* name, void* va
 
 struct QtGui_PackedList QOpenGLShaderProgram_Shaders(void* ptr)
 {
-	return ({ QList<QOpenGLShader *>* tmpValue = new QList<QOpenGLShader *>(static_cast<QOpenGLShaderProgram*>(ptr)->shaders()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QOpenGLShader *>* tmpValuee656ce = new QList<QOpenGLShader *>(static_cast<QOpenGLShaderProgram*>(ptr)->shaders()); QtGui_PackedList { tmpValuee656ce, tmpValuee656ce->size() }; });
 }
 
 int QOpenGLShaderProgram_UniformLocation(void* ptr, char* name)
@@ -17089,7 +17089,7 @@ char QOpenGLTimeMonitor_IsResultAvailable(void* ptr)
 
 struct QtGui_PackedList QOpenGLTimeMonitor_ObjectIds(void* ptr)
 {
-	return ({ QVector<GLuint>* tmpValue = new QVector<GLuint>(static_cast<QOpenGLTimeMonitor*>(ptr)->objectIds()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QVector<GLuint>* tmpValueef0adc = new QVector<GLuint>(static_cast<QOpenGLTimeMonitor*>(ptr)->objectIds()); QtGui_PackedList { tmpValueef0adc, tmpValueef0adc->size() }; });
 }
 
 int QOpenGLTimeMonitor_RecordSample(void* ptr)
@@ -20742,12 +20742,12 @@ void* QPainterPath_ToFillPolygon2(void* ptr, void* matrix)
 
 struct QtGui_PackedList QPainterPath_ToFillPolygons(void* ptr, void* matrix)
 {
-	return ({ QList<QPolygonF>* tmpValue = new QList<QPolygonF>(static_cast<QPainterPath*>(ptr)->toFillPolygons(*static_cast<QTransform*>(matrix))); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QPolygonF>* tmpValueba9cbe = new QList<QPolygonF>(static_cast<QPainterPath*>(ptr)->toFillPolygons(*static_cast<QTransform*>(matrix))); QtGui_PackedList { tmpValueba9cbe, tmpValueba9cbe->size() }; });
 }
 
 struct QtGui_PackedList QPainterPath_ToFillPolygons2(void* ptr, void* matrix)
 {
-	return ({ QList<QPolygonF>* tmpValue = new QList<QPolygonF>(static_cast<QPainterPath*>(ptr)->toFillPolygons(*static_cast<QMatrix*>(matrix))); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QPolygonF>* tmpValueec0ac3 = new QList<QPolygonF>(static_cast<QPainterPath*>(ptr)->toFillPolygons(*static_cast<QMatrix*>(matrix))); QtGui_PackedList { tmpValueec0ac3, tmpValueec0ac3->size() }; });
 }
 
 void* QPainterPath_ToReversed(void* ptr)
@@ -20757,12 +20757,12 @@ void* QPainterPath_ToReversed(void* ptr)
 
 struct QtGui_PackedList QPainterPath_ToSubpathPolygons(void* ptr, void* matrix)
 {
-	return ({ QList<QPolygonF>* tmpValue = new QList<QPolygonF>(static_cast<QPainterPath*>(ptr)->toSubpathPolygons(*static_cast<QTransform*>(matrix))); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QPolygonF>* tmpValue6b8e75 = new QList<QPolygonF>(static_cast<QPainterPath*>(ptr)->toSubpathPolygons(*static_cast<QTransform*>(matrix))); QtGui_PackedList { tmpValue6b8e75, tmpValue6b8e75->size() }; });
 }
 
 struct QtGui_PackedList QPainterPath_ToSubpathPolygons2(void* ptr, void* matrix)
 {
-	return ({ QList<QPolygonF>* tmpValue = new QList<QPolygonF>(static_cast<QPainterPath*>(ptr)->toSubpathPolygons(*static_cast<QMatrix*>(matrix))); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QPolygonF>* tmpValue1c94c6 = new QList<QPolygonF>(static_cast<QPainterPath*>(ptr)->toSubpathPolygons(*static_cast<QMatrix*>(matrix))); QtGui_PackedList { tmpValue1c94c6, tmpValue1c94c6->size() }; });
 }
 
 void QPainterPath_Translate(void* ptr, double dx, double dy)
@@ -20891,7 +20891,7 @@ double QPainterPathStroker_DashOffset(void* ptr)
 
 struct QtGui_PackedList QPainterPathStroker_DashPattern(void* ptr)
 {
-	return ({ QVector<qreal>* tmpValue = new QVector<qreal>(static_cast<QPainterPathStroker*>(ptr)->dashPattern()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QVector<qreal>* tmpValueffbacb = new QVector<qreal>(static_cast<QPainterPathStroker*>(ptr)->dashPattern()); QtGui_PackedList { tmpValueffbacb, tmpValueffbacb->size() }; });
 }
 
 long long QPainterPathStroker_JoinStyle(void* ptr)
@@ -21607,7 +21607,7 @@ double QPen_DashOffset(void* ptr)
 
 struct QtGui_PackedList QPen_DashPattern(void* ptr)
 {
-	return ({ QVector<qreal>* tmpValue = new QVector<qreal>(static_cast<QPen*>(ptr)->dashPattern()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QVector<qreal>* tmpValuec446ec = new QVector<qreal>(static_cast<QPen*>(ptr)->dashPattern()); QtGui_PackedList { tmpValuec446ec, tmpValuec446ec->size() }; });
 }
 
 char QPen_IsCosmetic(void* ptr)
@@ -22201,7 +22201,7 @@ float QPictureIO_Gamma(void* ptr)
 
 struct QtGui_PackedList QPictureIO_QPictureIO_InputFormats()
 {
-	return ({ QList<QByteArray>* tmpValue = new QList<QByteArray>(QPictureIO::inputFormats()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QByteArray>* tmpValue5b9754 = new QList<QByteArray>(QPictureIO::inputFormats()); QtGui_PackedList { tmpValue5b9754, tmpValue5b9754->size() }; });
 }
 
 void* QPictureIO_IoDevice(void* ptr)
@@ -22211,7 +22211,7 @@ void* QPictureIO_IoDevice(void* ptr)
 
 struct QtGui_PackedList QPictureIO_QPictureIO_OutputFormats()
 {
-	return ({ QList<QByteArray>* tmpValue = new QList<QByteArray>(QPictureIO::outputFormats()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QByteArray>* tmpValue7d3873 = new QList<QByteArray>(QPictureIO::outputFormats()); QtGui_PackedList { tmpValue7d3873, tmpValue7d3873->size() }; });
 }
 
 struct QtGui_PackedString QPictureIO_Parameters(void* ptr)
@@ -23978,12 +23978,12 @@ void* QRawFont_NewQRawFont4(void* other)
 
 struct QtGui_PackedList QRawFont_AdvancesForGlyphIndexes(void* ptr, void* glyphIndexes, long long layoutFlags)
 {
-	return ({ QVector<QPointF>* tmpValue = new QVector<QPointF>(static_cast<QRawFont*>(ptr)->advancesForGlyphIndexes(*static_cast<QVector<quint32>*>(glyphIndexes), static_cast<QRawFont::LayoutFlag>(layoutFlags))); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QVector<QPointF>* tmpValue120c50 = new QVector<QPointF>(static_cast<QRawFont*>(ptr)->advancesForGlyphIndexes(*static_cast<QVector<quint32>*>(glyphIndexes), static_cast<QRawFont::LayoutFlag>(layoutFlags))); QtGui_PackedList { tmpValue120c50, tmpValue120c50->size() }; });
 }
 
 struct QtGui_PackedList QRawFont_AdvancesForGlyphIndexes2(void* ptr, void* glyphIndexes)
 {
-	return ({ QVector<QPointF>* tmpValue = new QVector<QPointF>(static_cast<QRawFont*>(ptr)->advancesForGlyphIndexes(*static_cast<QVector<quint32>*>(glyphIndexes))); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QVector<QPointF>* tmpValuea4108b = new QVector<QPointF>(static_cast<QRawFont*>(ptr)->advancesForGlyphIndexes(*static_cast<QVector<quint32>*>(glyphIndexes))); QtGui_PackedList { tmpValuea4108b, tmpValuea4108b->size() }; });
 }
 
 char QRawFont_AdvancesForGlyphIndexes3(void* ptr, unsigned int glyphIndexes, void* advances, int numGlyphs)
@@ -24048,7 +24048,7 @@ char QRawFont_GlyphIndexesForChars(void* ptr, void* chars, int numChars, unsigne
 
 struct QtGui_PackedList QRawFont_GlyphIndexesForString(void* ptr, struct QtGui_PackedString text)
 {
-	return ({ QVector<quint32>* tmpValue = new QVector<quint32>(static_cast<QRawFont*>(ptr)->glyphIndexesForString(QString::fromUtf8(text.data, text.len))); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QVector<quint32>* tmpValuefd5581 = new QVector<quint32>(static_cast<QRawFont*>(ptr)->glyphIndexesForString(QString::fromUtf8(text.data, text.len))); QtGui_PackedList { tmpValuefd5581, tmpValuefd5581->size() }; });
 }
 
 long long QRawFont_HintingPreference(void* ptr)
@@ -24113,7 +24113,7 @@ struct QtGui_PackedString QRawFont_StyleName(void* ptr)
 
 struct QtGui_PackedList QRawFont_SupportedWritingSystems(void* ptr)
 {
-	return ({ QList<QFontDatabase::WritingSystem>* tmpValue = new QList<QFontDatabase::WritingSystem>(static_cast<QRawFont*>(ptr)->supportedWritingSystems()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QFontDatabase::WritingSystem>* tmpValue90f470 = new QList<QFontDatabase::WritingSystem>(static_cast<QRawFont*>(ptr)->supportedWritingSystems()); QtGui_PackedList { tmpValue90f470, tmpValue90f470->size() }; });
 }
 
 char QRawFont_SupportsCharacter(void* ptr, void* character)
@@ -25175,7 +25175,7 @@ void QScreen_VirtualGeometryChanged(void* ptr, void* rect)
 
 struct QtGui_PackedList QScreen_VirtualSiblings(void* ptr)
 {
-	return ({ QList<QScreen *>* tmpValue = new QList<QScreen *>(static_cast<QScreen*>(ptr)->virtualSiblings()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QScreen *>* tmpValue1258f7 = new QList<QScreen *>(static_cast<QScreen*>(ptr)->virtualSiblings()); QtGui_PackedList { tmpValue1258f7, tmpValue1258f7->size() }; });
 }
 
 void* QScreen_VirtualSize(void* ptr)
@@ -26277,12 +26277,12 @@ void* QStandardItem_TakeChild(void* ptr, int row, int column)
 
 struct QtGui_PackedList QStandardItem_TakeColumn(void* ptr, int column)
 {
-	return ({ QList<QStandardItem *>* tmpValue = new QList<QStandardItem *>(static_cast<QStandardItem*>(ptr)->takeColumn(column)); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QStandardItem *>* tmpValue1c492f = new QList<QStandardItem *>(static_cast<QStandardItem*>(ptr)->takeColumn(column)); QtGui_PackedList { tmpValue1c492f, tmpValue1c492f->size() }; });
 }
 
 struct QtGui_PackedList QStandardItem_TakeRow(void* ptr, int row)
 {
-	return ({ QList<QStandardItem *>* tmpValue = new QList<QStandardItem *>(static_cast<QStandardItem*>(ptr)->takeRow(row)); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QStandardItem *>* tmpValue58484c = new QList<QStandardItem *>(static_cast<QStandardItem*>(ptr)->takeRow(row)); QtGui_PackedList { tmpValue58484c, tmpValue58484c->size() }; });
 }
 
 struct QtGui_PackedString QStandardItem_Text(void* ptr)
@@ -26480,7 +26480,7 @@ public:
 	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQStandardItemModel_InsertRows(this, row, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	void Signal_ItemChanged(QStandardItem * item) { callbackQStandardItemModel_ItemChanged(this, item); };
 	QMap<int, QVariant> itemData(const QModelIndex & index) const { return ({ QMap<int, QVariant>* tmpP = static_cast<QMap<int, QVariant>*>(callbackQStandardItemModel_ItemData(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); QMap<int, QVariant> tmpV = *tmpP; tmpP->~QMap(); free(tmpP); tmpV; }); };
-	QMimeData * mimeData(const QModelIndexList & indexes) const { return static_cast<QMimeData*>(callbackQStandardItemModel_MimeData(const_cast<void*>(static_cast<const void*>(this)), ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(indexes); QtGui_PackedList { tmpValue, tmpValue->size() }; }))); };
+	QMimeData * mimeData(const QModelIndexList & indexes) const { return static_cast<QMimeData*>(callbackQStandardItemModel_MimeData(const_cast<void*>(static_cast<const void*>(this)), ({ QList<QModelIndex>* tmpValuee0adf2 = new QList<QModelIndex>(indexes); QtGui_PackedList { tmpValuee0adf2, tmpValuee0adf2->size() }; }))); };
 	QStringList mimeTypes() const { return ({ QtGui_PackedString tempVal = callbackQStandardItemModel_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	QModelIndex parent(const QModelIndex & child) const { return *static_cast<QModelIndex*>(callbackQStandardItemModel_Parent(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&child))); };
 	bool removeColumns(int column, int count, const QModelIndex & parent) { return callbackQStandardItemModel_RemoveColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };
@@ -26488,7 +26488,7 @@ public:
 	int rowCount(const QModelIndex & parent) const { return callbackQStandardItemModel_RowCount(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&parent)); };
 	bool setData(const QModelIndex & index, const QVariant & value, int role) { return callbackQStandardItemModel_SetData(this, const_cast<QModelIndex*>(&index), const_cast<QVariant*>(&value), role) != 0; };
 	bool setHeaderData(int section, Qt::Orientation orientation, const QVariant & value, int role) { return callbackQStandardItemModel_SetHeaderData(this, section, orientation, const_cast<QVariant*>(&value), role) != 0; };
-	bool setItemData(const QModelIndex & index, const QMap<int, QVariant> & roles) { return callbackQStandardItemModel_SetItemData(this, const_cast<QModelIndex*>(&index), ({ QMap<int, QVariant>* tmpValue = new QMap<int, QVariant>(roles); QtGui_PackedList { tmpValue, tmpValue->size() }; })) != 0; };
+	bool setItemData(const QModelIndex & index, const QMap<int, QVariant> & roles) { return callbackQStandardItemModel_SetItemData(this, const_cast<QModelIndex*>(&index), ({ QMap<int, QVariant>* tmpValue037c88 = new QMap<int, QVariant>(roles); QtGui_PackedList { tmpValue037c88, tmpValue037c88->size() }; })) != 0; };
 	QModelIndex sibling(int row, int column, const QModelIndex & idx) const { return *static_cast<QModelIndex*>(callbackQStandardItemModel_Sibling(const_cast<void*>(static_cast<const void*>(this)), row, column, const_cast<QModelIndex*>(&idx))); };
 	void sort(int column, Qt::SortOrder order) { callbackQStandardItemModel_Sort(this, column, order); };
 	Qt::DropActions supportedDropActions() const { return static_cast<Qt::DropAction>(callbackQStandardItemModel_SupportedDropActions(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -26502,11 +26502,11 @@ public:
 	void Signal_ColumnsInserted(const QModelIndex & parent, int first, int last) { callbackQStandardItemModel_ColumnsInserted(this, const_cast<QModelIndex*>(&parent), first, last); };
 	void Signal_ColumnsMoved(const QModelIndex & parent, int start, int end, const QModelIndex & destination, int column) { callbackQStandardItemModel_ColumnsMoved(this, const_cast<QModelIndex*>(&parent), start, end, const_cast<QModelIndex*>(&destination), column); };
 	void Signal_ColumnsRemoved(const QModelIndex & parent, int first, int last) { callbackQStandardItemModel_ColumnsRemoved(this, const_cast<QModelIndex*>(&parent), first, last); };
-	void Signal_DataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQStandardItemModel_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = new QVector<int>(roles); QtGui_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_DataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQStandardItemModel_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue037c88 = new QVector<int>(roles); QtGui_PackedList { tmpValue037c88, tmpValue037c88->size() }; })); };
 	void fetchMore(const QModelIndex & parent) { callbackQStandardItemModel_FetchMore(this, const_cast<QModelIndex*>(&parent)); };
 	void Signal_HeaderDataChanged(Qt::Orientation orientation, int first, int last) { callbackQStandardItemModel_HeaderDataChanged(this, orientation, first, last); };
-	void Signal_LayoutAboutToBeChanged(const QList<QPersistentModelIndex> & parents, QAbstractItemModel::LayoutChangeHint hint) { callbackQStandardItemModel_LayoutAboutToBeChanged(this, ({ QList<QPersistentModelIndex>* tmpValue = new QList<QPersistentModelIndex>(parents); QtGui_PackedList { tmpValue, tmpValue->size() }; }), hint); };
-	void Signal_LayoutChanged(const QList<QPersistentModelIndex> & parents, QAbstractItemModel::LayoutChangeHint hint) { callbackQStandardItemModel_LayoutChanged(this, ({ QList<QPersistentModelIndex>* tmpValue = new QList<QPersistentModelIndex>(parents); QtGui_PackedList { tmpValue, tmpValue->size() }; }), hint); };
+	void Signal_LayoutAboutToBeChanged(const QList<QPersistentModelIndex> & parents, QAbstractItemModel::LayoutChangeHint hint) { callbackQStandardItemModel_LayoutAboutToBeChanged(this, ({ QList<QPersistentModelIndex>* tmpValuea664f1 = new QList<QPersistentModelIndex>(parents); QtGui_PackedList { tmpValuea664f1, tmpValuea664f1->size() }; }), hint); };
+	void Signal_LayoutChanged(const QList<QPersistentModelIndex> & parents, QAbstractItemModel::LayoutChangeHint hint) { callbackQStandardItemModel_LayoutChanged(this, ({ QList<QPersistentModelIndex>* tmpValuea664f1 = new QList<QPersistentModelIndex>(parents); QtGui_PackedList { tmpValuea664f1, tmpValuea664f1->size() }; }), hint); };
 	QList<QModelIndex> match(const QModelIndex & start, int role, const QVariant & value, int hits, Qt::MatchFlags flags) const { return ({ QList<QModelIndex>* tmpP = static_cast<QList<QModelIndex>*>(callbackQStandardItemModel_Match(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&start), role, const_cast<QVariant*>(&value), hits, flags)); QList<QModelIndex> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
 	void Signal_ModelAboutToBeReset() { callbackQStandardItemModel_ModelAboutToBeReset(this); };
 	void Signal_ModelReset() { callbackQStandardItemModel_ModelReset(this); };
@@ -26687,7 +26687,7 @@ char QStandardItemModel_DropMimeDataDefault(void* ptr, void* data, long long act
 
 struct QtGui_PackedList QStandardItemModel_FindItems(void* ptr, struct QtGui_PackedString text, long long flags, int column)
 {
-	return ({ QList<QStandardItem *>* tmpValue = new QList<QStandardItem *>(static_cast<QStandardItemModel*>(ptr)->findItems(QString::fromUtf8(text.data, text.len), static_cast<Qt::MatchFlag>(flags), column)); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QStandardItem *>* tmpValue345f6e = new QList<QStandardItem *>(static_cast<QStandardItemModel*>(ptr)->findItems(QString::fromUtf8(text.data, text.len), static_cast<Qt::MatchFlag>(flags), column)); QtGui_PackedList { tmpValue345f6e, tmpValue345f6e->size() }; });
 }
 
 long long QStandardItemModel_FlagsDefault(void* ptr, void* index)
@@ -26777,7 +26777,7 @@ void QStandardItemModel_ItemChanged(void* ptr, void* item)
 
 struct QtGui_PackedList QStandardItemModel_ItemDataDefault(void* ptr, void* index)
 {
-		return ({ QMap<int, QVariant>* tmpValue = new QMap<int, QVariant>(static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::itemData(*static_cast<QModelIndex*>(index))); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QMap<int, QVariant>* tmpValuea1d4ef = new QMap<int, QVariant>(static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::itemData(*static_cast<QModelIndex*>(index))); QtGui_PackedList { tmpValuea1d4ef, tmpValuea1d4ef->size() }; });
 }
 
 void* QStandardItemModel_ItemFromIndex(void* ptr, void* index)
@@ -26922,7 +26922,7 @@ long long QStandardItemModel_SupportedDropActionsDefault(void* ptr)
 
 struct QtGui_PackedList QStandardItemModel_TakeColumn(void* ptr, int column)
 {
-	return ({ QList<QStandardItem *>* tmpValue = new QList<QStandardItem *>(static_cast<QStandardItemModel*>(ptr)->takeColumn(column)); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QStandardItem *>* tmpValuecf2c85 = new QList<QStandardItem *>(static_cast<QStandardItemModel*>(ptr)->takeColumn(column)); QtGui_PackedList { tmpValuecf2c85, tmpValuecf2c85->size() }; });
 }
 
 void* QStandardItemModel_TakeHorizontalHeaderItem(void* ptr, int column)
@@ -26937,7 +26937,7 @@ void* QStandardItemModel_TakeItem(void* ptr, int row, int column)
 
 struct QtGui_PackedList QStandardItemModel_TakeRow(void* ptr, int row)
 {
-	return ({ QList<QStandardItem *>* tmpValue = new QList<QStandardItem *>(static_cast<QStandardItemModel*>(ptr)->takeRow(row)); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QStandardItem *>* tmpValue064593 = new QList<QStandardItem *>(static_cast<QStandardItemModel*>(ptr)->takeRow(row)); QtGui_PackedList { tmpValue064593, tmpValue064593->size() }; });
 }
 
 void* QStandardItemModel_TakeVerticalHeaderItem(void* ptr, int row)
@@ -27059,7 +27059,7 @@ void* QStandardItemModel___itemData_newList(void* ptr)
 
 struct QtGui_PackedList QStandardItemModel___itemData_keyList(void* ptr)
 {
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<int>* tmpValue249128 = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtGui_PackedList { tmpValue249128, tmpValue249128->size() }; });
 }
 
 void* QStandardItemModel___mimeData_indexes_atList(void* ptr, int i)
@@ -27096,7 +27096,7 @@ void* QStandardItemModel___setItemData_roles_newList(void* ptr)
 
 struct QtGui_PackedList QStandardItemModel___setItemData_roles_keyList(void* ptr)
 {
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<int>* tmpValue249128 = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtGui_PackedList { tmpValue249128, tmpValue249128->size() }; });
 }
 
 void* QStandardItemModel___setItemRoleNames_roleNames_atList(void* ptr, int v, int i)
@@ -27117,7 +27117,7 @@ void* QStandardItemModel___setItemRoleNames_roleNames_newList(void* ptr)
 
 struct QtGui_PackedList QStandardItemModel___setItemRoleNames_roleNames_keyList(void* ptr)
 {
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QHash<int, QByteArray>*>(ptr)->keys()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<int>* tmpValue7fc3bb = new QList<int>(static_cast<QHash<int, QByteArray>*>(ptr)->keys()); QtGui_PackedList { tmpValue7fc3bb, tmpValue7fc3bb->size() }; });
 }
 
 void* QStandardItemModel___takeColumn_atList(void* ptr, int i)
@@ -27330,7 +27330,7 @@ void* QStandardItemModel___roleNames_newList(void* ptr)
 
 struct QtGui_PackedList QStandardItemModel___roleNames_keyList(void* ptr)
 {
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QHash<int, QByteArray>*>(ptr)->keys()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<int>* tmpValue7fc3bb = new QList<int>(static_cast<QHash<int, QByteArray>*>(ptr)->keys()); QtGui_PackedList { tmpValue7fc3bb, tmpValue7fc3bb->size() }; });
 }
 
 int QStandardItemModel_____doSetRoleNames_roleNames_keyList_atList(void* ptr, int i)
@@ -27523,7 +27523,7 @@ void QStandardItemModel_FetchMoreDefault(void* ptr, void* parent)
 
 struct QtGui_PackedList QStandardItemModel_MatchDefault(void* ptr, void* start, int role, void* value, int hits, long long flags)
 {
-		return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::match(*static_cast<QModelIndex*>(start), role, *static_cast<QVariant*>(value), hits, static_cast<Qt::MatchFlag>(flags))); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QList<QModelIndex>* tmpValue0c2bda = new QList<QModelIndex>(static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::match(*static_cast<QModelIndex*>(start), role, *static_cast<QVariant*>(value), hits, static_cast<Qt::MatchFlag>(flags))); QtGui_PackedList { tmpValue0c2bda, tmpValue0c2bda->size() }; });
 }
 
 char QStandardItemModel_MoveColumnsDefault(void* ptr, void* sourceParent, int sourceColumn, int count, void* destinationParent, int destinationChild)
@@ -27548,7 +27548,7 @@ void QStandardItemModel_RevertDefault(void* ptr)
 
 struct QtGui_PackedList QStandardItemModel_RoleNamesDefault(void* ptr)
 {
-		return ({ QHash<int, QByteArray>* tmpValue = new QHash<int, QByteArray>(static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::roleNames()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QHash<int, QByteArray>* tmpValuece7c38 = new QHash<int, QByteArray>(static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::roleNames()); QtGui_PackedList { tmpValuece7c38, tmpValuece7c38->size() }; });
 }
 
 void* QStandardItemModel_SpanDefault(void* ptr, void* index)
@@ -29312,7 +29312,7 @@ void QTextBlockGroup_BlockInsertedDefault(void* ptr, void* block)
 
 struct QtGui_PackedList QTextBlockGroup_BlockList(void* ptr)
 {
-	return ({ QList<QTextBlock>* tmpValue = new QList<QTextBlock>(static_cast<QTextBlockGroup*>(ptr)->blockList()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QTextBlock>* tmpValue9018b9 = new QList<QTextBlock>(static_cast<QTextBlockGroup*>(ptr)->blockList()); QtGui_PackedList { tmpValue9018b9, tmpValue9018b9->size() }; });
 }
 
 void QTextBlockGroup_BlockRemoved(void* ptr, void* block)
@@ -30173,7 +30173,7 @@ void QTextDocument_AdjustSize(void* ptr)
 
 struct QtGui_PackedList QTextDocument_AllFormats(void* ptr)
 {
-	return ({ QVector<QTextFormat>* tmpValue = new QVector<QTextFormat>(static_cast<QTextDocument*>(ptr)->allFormats()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QVector<QTextFormat>* tmpValued4e73f = new QVector<QTextFormat>(static_cast<QTextDocument*>(ptr)->allFormats()); QtGui_PackedList { tmpValued4e73f, tmpValued4e73f->size() }; });
 }
 
 int QTextDocument_AvailableRedoSteps(void* ptr)
@@ -31071,7 +31071,7 @@ void QTextDocumentWriter_SetFormat(void* ptr, void* format)
 
 struct QtGui_PackedList QTextDocumentWriter_QTextDocumentWriter_SupportedDocumentFormats()
 {
-	return ({ QList<QByteArray>* tmpValue = new QList<QByteArray>(QTextDocumentWriter::supportedDocumentFormats()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QByteArray>* tmpValue35469a = new QList<QByteArray>(QTextDocumentWriter::supportedDocumentFormats()); QtGui_PackedList { tmpValue35469a, tmpValue35469a->size() }; });
 }
 
 char QTextDocumentWriter_Write(void* ptr, void* document)
@@ -31252,7 +31252,7 @@ void* QTextFormat_PenProperty(void* ptr, int propertyId)
 
 struct QtGui_PackedList QTextFormat_Properties(void* ptr)
 {
-	return ({ QMap<int, QVariant>* tmpValue = new QMap<int, QVariant>(static_cast<QTextFormat*>(ptr)->properties()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QMap<int, QVariant>* tmpValue43f710 = new QMap<int, QVariant>(static_cast<QTextFormat*>(ptr)->properties()); QtGui_PackedList { tmpValue43f710, tmpValue43f710->size() }; });
 }
 
 void* QTextFormat_Property(void* ptr, int propertyId)
@@ -31389,7 +31389,7 @@ void* QTextFormat___properties_newList(void* ptr)
 
 struct QtGui_PackedList QTextFormat___properties_keyList(void* ptr)
 {
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<int>* tmpValue249128 = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtGui_PackedList { tmpValue249128, tmpValue249128->size() }; });
 }
 
 void* QTextFormat___setProperty_value_atList2(void* ptr, int i)
@@ -31451,7 +31451,7 @@ char QTextFragment_Contains(void* ptr, int position)
 
 struct QtGui_PackedList QTextFragment_GlyphRuns(void* ptr, int pos, int l)
 {
-	return ({ QList<QGlyphRun>* tmpValue = new QList<QGlyphRun>(static_cast<QTextFragment*>(ptr)->glyphRuns(pos, l)); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QGlyphRun>* tmpValue2a9765 = new QList<QGlyphRun>(static_cast<QTextFragment*>(ptr)->glyphRuns(pos, l)); QtGui_PackedList { tmpValue2a9765, tmpValue2a9765->size() }; });
 }
 
 char QTextFragment_IsValid(void* ptr)
@@ -31519,7 +31519,7 @@ void* QTextFrame_NewQTextFrame(void* document)
 
 struct QtGui_PackedList QTextFrame_ChildFrames(void* ptr)
 {
-	return ({ QList<QTextFrame *>* tmpValue = new QList<QTextFrame *>(static_cast<QTextFrame*>(ptr)->childFrames()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QTextFrame *>* tmpValue45166f = new QList<QTextFrame *>(static_cast<QTextFrame*>(ptr)->childFrames()); QtGui_PackedList { tmpValue45166f, tmpValue45166f->size() }; });
 }
 
 void* QTextFrame_FirstCursorPosition(void* ptr)
@@ -31949,7 +31949,7 @@ void* QTextLayout_Font(void* ptr)
 
 struct QtGui_PackedList QTextLayout_GlyphRuns(void* ptr, int from, int length)
 {
-	return ({ QList<QGlyphRun>* tmpValue = new QList<QGlyphRun>(static_cast<QTextLayout*>(ptr)->glyphRuns(from, length)); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QGlyphRun>* tmpValueac7edb = new QList<QGlyphRun>(static_cast<QTextLayout*>(ptr)->glyphRuns(from, length)); QtGui_PackedList { tmpValueac7edb, tmpValueac7edb->size() }; });
 }
 
 char QTextLayout_IsValidCursorPosition(void* ptr, int pos)
@@ -32141,7 +32141,7 @@ double QTextLine_Descent(void* ptr)
 
 struct QtGui_PackedList QTextLine_GlyphRuns(void* ptr, int from, int length)
 {
-	return ({ QList<QGlyphRun>* tmpValue = new QList<QGlyphRun>(static_cast<QTextLine*>(ptr)->glyphRuns(from, length)); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QGlyphRun>* tmpValue88c652 = new QList<QGlyphRun>(static_cast<QTextLine*>(ptr)->glyphRuns(from, length)); QtGui_PackedList { tmpValue88c652, tmpValue88c652->size() }; });
 }
 
 double QTextLine_Height(void* ptr)
@@ -32837,7 +32837,7 @@ void QTextOption_SetWrapMode(void* ptr, long long mode)
 
 struct QtGui_PackedList QTextOption_TabArray(void* ptr)
 {
-	return ({ QList<qreal>* tmpValue = new QList<qreal>(static_cast<QTextOption*>(ptr)->tabArray()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<qreal>* tmpValue64baae = new QList<qreal>(static_cast<QTextOption*>(ptr)->tabArray()); QtGui_PackedList { tmpValue64baae, tmpValue64baae->size() }; });
 }
 
 double QTextOption_TabStopDistance(void* ptr)
@@ -33231,7 +33231,7 @@ long long QTouchDevice_Capabilities(void* ptr)
 
 struct QtGui_PackedList QTouchDevice_QTouchDevice_Devices()
 {
-	return ({ QList<const QTouchDevice *>* tmpValue = new QList<const QTouchDevice *>(QTouchDevice::devices()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<const QTouchDevice *>* tmpValueaad5dc = new QList<const QTouchDevice *>(QTouchDevice::devices()); QtGui_PackedList { tmpValueaad5dc, tmpValueaad5dc->size() }; });
 }
 
 int QTouchDevice_MaximumTouchPoints(void* ptr)

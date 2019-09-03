@@ -156,7 +156,7 @@ void Q3DBars_AddSeries(void* ptr, void* series)
 
 struct QtDataVisualization_PackedList Q3DBars_Axes(void* ptr)
 {
-	return ({ QList<QAbstract3DAxis *>* tmpValue = new QList<QAbstract3DAxis *>(static_cast<Q3DBars*>(ptr)->axes()); QtDataVisualization_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QAbstract3DAxis *>* tmpValue6bbfd0 = new QList<QAbstract3DAxis *>(static_cast<Q3DBars*>(ptr)->axes()); QtDataVisualization_PackedList { tmpValue6bbfd0, tmpValue6bbfd0->size() }; });
 }
 
 void* Q3DBars_BarSpacing(void* ptr)
@@ -356,7 +356,7 @@ void Q3DBars_SelectedSeriesChanged(void* ptr, void* series)
 
 struct QtDataVisualization_PackedList Q3DBars_SeriesList(void* ptr)
 {
-	return ({ QList<QBar3DSeries *>* tmpValue = new QList<QBar3DSeries *>(static_cast<Q3DBars*>(ptr)->seriesList()); QtDataVisualization_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QBar3DSeries *>* tmpValue8b4822 = new QList<QBar3DSeries *>(static_cast<Q3DBars*>(ptr)->seriesList()); QtDataVisualization_PackedList { tmpValue8b4822, tmpValue8b4822->size() }; });
 }
 
 void Q3DBars_SetBarSpacing(void* ptr, void* spacing)
@@ -1235,7 +1235,7 @@ void Q3DScatter_AddSeries(void* ptr, void* series)
 
 struct QtDataVisualization_PackedList Q3DScatter_Axes(void* ptr)
 {
-	return ({ QList<QValue3DAxis *>* tmpValue = new QList<QValue3DAxis *>(static_cast<Q3DScatter*>(ptr)->axes()); QtDataVisualization_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QValue3DAxis *>* tmpValue87e3ee = new QList<QValue3DAxis *>(static_cast<Q3DScatter*>(ptr)->axes()); QtDataVisualization_PackedList { tmpValue87e3ee, tmpValue87e3ee->size() }; });
 }
 
 void* Q3DScatter_AxisX(void* ptr)
@@ -1330,7 +1330,7 @@ void Q3DScatter_SelectedSeriesChanged(void* ptr, void* series)
 
 struct QtDataVisualization_PackedList Q3DScatter_SeriesList(void* ptr)
 {
-	return ({ QList<QScatter3DSeries *>* tmpValue = new QList<QScatter3DSeries *>(static_cast<Q3DScatter*>(ptr)->seriesList()); QtDataVisualization_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QScatter3DSeries *>* tmpValue659de6 = new QList<QScatter3DSeries *>(static_cast<Q3DScatter*>(ptr)->seriesList()); QtDataVisualization_PackedList { tmpValue659de6, tmpValue659de6->size() }; });
 }
 
 void Q3DScatter_SetAxisX(void* ptr, void* axis)
@@ -1759,7 +1759,7 @@ void Q3DSurface_AddSeries(void* ptr, void* series)
 
 struct QtDataVisualization_PackedList Q3DSurface_Axes(void* ptr)
 {
-	return ({ QList<QValue3DAxis *>* tmpValue = new QList<QValue3DAxis *>(static_cast<Q3DSurface*>(ptr)->axes()); QtDataVisualization_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QValue3DAxis *>* tmpValuecdc883 = new QList<QValue3DAxis *>(static_cast<Q3DSurface*>(ptr)->axes()); QtDataVisualization_PackedList { tmpValuecdc883, tmpValuecdc883->size() }; });
 }
 
 void* Q3DSurface_AxisX(void* ptr)
@@ -1874,7 +1874,7 @@ void Q3DSurface_SelectedSeriesChanged(void* ptr, void* series)
 
 struct QtDataVisualization_PackedList Q3DSurface_SeriesList(void* ptr)
 {
-	return ({ QList<QSurface3DSeries *>* tmpValue = new QList<QSurface3DSeries *>(static_cast<Q3DSurface*>(ptr)->seriesList()); QtDataVisualization_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QSurface3DSeries *>* tmpValuec41738 = new QList<QSurface3DSeries *>(static_cast<Q3DSurface*>(ptr)->seriesList()); QtDataVisualization_PackedList { tmpValuec41738, tmpValuec41738->size() }; });
 }
 
 void Q3DSurface_SetAxisX(void* ptr, void* axis)
@@ -1948,8 +1948,8 @@ public:
 	void Signal_AmbientLightStrengthChanged(float strength) { callbackQ3DTheme_AmbientLightStrengthChanged(this, strength); };
 	void Signal_BackgroundColorChanged(const QColor & color) { callbackQ3DTheme_BackgroundColorChanged(this, const_cast<QColor*>(&color)); };
 	void Signal_BackgroundEnabledChanged(bool enabled) { callbackQ3DTheme_BackgroundEnabledChanged(this, enabled); };
-	void Signal_BaseColorsChanged(const QList<QColor> & colors) { callbackQ3DTheme_BaseColorsChanged(this, ({ QList<QColor>* tmpValue = new QList<QColor>(colors); QtDataVisualization_PackedList { tmpValue, tmpValue->size() }; })); };
-	void Signal_BaseGradientsChanged(const QList<QLinearGradient> & gradients) { callbackQ3DTheme_BaseGradientsChanged(this, ({ QList<QLinearGradient>* tmpValue = new QList<QLinearGradient>(gradients); QtDataVisualization_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_BaseColorsChanged(const QList<QColor> & colors) { callbackQ3DTheme_BaseColorsChanged(this, ({ QList<QColor>* tmpValuef8bd69 = new QList<QColor>(colors); QtDataVisualization_PackedList { tmpValuef8bd69, tmpValuef8bd69->size() }; })); };
+	void Signal_BaseGradientsChanged(const QList<QLinearGradient> & gradients) { callbackQ3DTheme_BaseGradientsChanged(this, ({ QList<QLinearGradient>* tmpValue3d63c6 = new QList<QLinearGradient>(gradients); QtDataVisualization_PackedList { tmpValue3d63c6, tmpValue3d63c6->size() }; })); };
 	void Signal_ColorStyleChanged(Q3DTheme::ColorStyle style) { callbackQ3DTheme_ColorStyleChanged(this, style); };
 	void Signal_FontChanged(const QFont & font) { callbackQ3DTheme_FontChanged(this, const_cast<QFont*>(&font)); };
 	void Signal_GridEnabledChanged(bool enabled) { callbackQ3DTheme_GridEnabledChanged(this, enabled); };
@@ -2121,7 +2121,7 @@ void Q3DTheme_BackgroundEnabledChanged(void* ptr, char enabled)
 
 struct QtDataVisualization_PackedList Q3DTheme_BaseColors(void* ptr)
 {
-	return ({ QList<QColor>* tmpValue = new QList<QColor>(static_cast<Q3DTheme*>(ptr)->baseColors()); QtDataVisualization_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QColor>* tmpValue352da1 = new QList<QColor>(static_cast<Q3DTheme*>(ptr)->baseColors()); QtDataVisualization_PackedList { tmpValue352da1, tmpValue352da1->size() }; });
 }
 
 void Q3DTheme_ConnectBaseColorsChanged(void* ptr)
@@ -2141,7 +2141,7 @@ void Q3DTheme_BaseColorsChanged(void* ptr, void* colors)
 
 struct QtDataVisualization_PackedList Q3DTheme_BaseGradients(void* ptr)
 {
-	return ({ QList<QLinearGradient>* tmpValue = new QList<QLinearGradient>(static_cast<Q3DTheme*>(ptr)->baseGradients()); QtDataVisualization_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QLinearGradient>* tmpValue2e4052 = new QList<QLinearGradient>(static_cast<Q3DTheme*>(ptr)->baseGradients()); QtDataVisualization_PackedList { tmpValue2e4052, tmpValue2e4052->size() }; });
 }
 
 void Q3DTheme_ConnectBaseGradientsChanged(void* ptr)
@@ -5044,7 +5044,7 @@ void QCustom3DVolume_AlphaMultiplierChanged(void* ptr, float mult)
 
 struct QtDataVisualization_PackedList QCustom3DVolume_ColorTable(void* ptr)
 {
-	return ({ QVector<QRgb>* tmpValue = new QVector<QRgb>(static_cast<QCustom3DVolume*>(ptr)->colorTable()); QtDataVisualization_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QVector<QRgb>* tmpValue49812c = new QVector<QRgb>(static_cast<QCustom3DVolume*>(ptr)->colorTable()); QtDataVisualization_PackedList { tmpValue49812c, tmpValue49812c->size() }; });
 }
 
 void QCustom3DVolume_ConnectColorTableChanged(void* ptr)
@@ -9795,12 +9795,12 @@ void* QValue3DAxisFormatter_CreateNewInstanceDefault(void* ptr)
 
 struct QtDataVisualization_PackedList QValue3DAxisFormatter_GridPositions(void* ptr)
 {
-	return ({ QVector<float>* tmpValue = new QVector<float>(static_cast<QValue3DAxisFormatter*>(ptr)->gridPositions()); QtDataVisualization_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QVector<float>* tmpValuec2e291 = new QVector<float>(static_cast<QValue3DAxisFormatter*>(ptr)->gridPositions()); QtDataVisualization_PackedList { tmpValuec2e291, tmpValuec2e291->size() }; });
 }
 
 struct QtDataVisualization_PackedList QValue3DAxisFormatter_LabelPositions(void* ptr)
 {
-	return ({ QVector<float>* tmpValue = new QVector<float>(static_cast<QValue3DAxisFormatter*>(ptr)->labelPositions()); QtDataVisualization_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QVector<float>* tmpValuef83475 = new QVector<float>(static_cast<QValue3DAxisFormatter*>(ptr)->labelPositions()); QtDataVisualization_PackedList { tmpValuef83475, tmpValuef83475->size() }; });
 }
 
 struct QtDataVisualization_PackedString QValue3DAxisFormatter_LabelStrings(void* ptr)
@@ -9875,7 +9875,7 @@ struct QtDataVisualization_PackedString QValue3DAxisFormatter_StringForValueDefa
 
 struct QtDataVisualization_PackedList QValue3DAxisFormatter_SubGridPositions(void* ptr)
 {
-	return ({ QVector<float>* tmpValue = new QVector<float>(static_cast<QValue3DAxisFormatter*>(ptr)->subGridPositions()); QtDataVisualization_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QVector<float>* tmpValuef11fc1 = new QVector<float>(static_cast<QValue3DAxisFormatter*>(ptr)->subGridPositions()); QtDataVisualization_PackedList { tmpValuef11fc1, tmpValuef11fc1->size() }; });
 }
 
 float QValue3DAxisFormatter_ValueAt(void* ptr, float position)

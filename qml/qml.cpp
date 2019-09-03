@@ -727,7 +727,7 @@ public:
 	void Signal_Exit(int retCode) { callbackQQmlEngine_Exit(this, retCode); };
 	void Signal_Quit() { callbackQQmlEngine_Quit(this); };
 	void retranslate() { callbackQQmlEngine_Retranslate(this); };
-	void Signal_Warnings(const QList<QQmlError> & warnings) { callbackQQmlEngine_Warnings(this, ({ QList<QQmlError>* tmpValue = new QList<QQmlError>(warnings); QtQml_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_Warnings(const QList<QQmlError> & warnings) { callbackQQmlEngine_Warnings(this, ({ QList<QQmlError>* tmpValuebd207f = new QList<QQmlError>(warnings); QtQml_PackedList { tmpValuebd207f, tmpValuebd207f->size() }; })); };
 	void childEvent(QChildEvent * event) { callbackQJSEngine_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQJSEngine_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQJSEngine_CustomEvent(this, event); };
@@ -932,7 +932,7 @@ void QQmlApplicationEngine_ObjectCreated(void* ptr, void* object, void* url)
 
 struct QtQml_PackedList QQmlApplicationEngine_RootObjects(void* ptr)
 {
-	return ({ QList<QObject *>* tmpValue = new QList<QObject *>(static_cast<QQmlApplicationEngine*>(ptr)->rootObjects()); QtQml_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QObject *>* tmpValue21875f = new QList<QObject *>(static_cast<QQmlApplicationEngine*>(ptr)->rootObjects()); QtQml_PackedList { tmpValue21875f, tmpValue21875f->size() }; });
 }
 
 void QQmlApplicationEngine_DestroyQQmlApplicationEngine(void* ptr)
@@ -1278,7 +1278,7 @@ void* QQmlComponent_Engine(void* ptr)
 
 struct QtQml_PackedList QQmlComponent_Errors(void* ptr)
 {
-	return ({ QList<QQmlError>* tmpValue = new QList<QQmlError>(static_cast<QQmlComponent*>(ptr)->errors()); QtQml_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QQmlError>* tmpValue422633 = new QList<QQmlError>(static_cast<QQmlComponent*>(ptr)->errors()); QtQml_PackedList { tmpValue422633, tmpValue422633->size() }; });
 }
 
 char QQmlComponent_IsError(void* ptr)
@@ -1907,7 +1907,7 @@ void* QQmlDebuggingEnabler___startDebugConnector_configuration_newList(void* ptr
 
 struct QtQml_PackedList QQmlDebuggingEnabler___startDebugConnector_configuration_keyList(void* ptr)
 {
-	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QHash<QString, QVariant>*>(ptr)->keys()); QtQml_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QString>* tmpValuef43bc5 = new QList<QString>(static_cast<QHash<QString, QVariant>*>(ptr)->keys()); QtQml_PackedList { tmpValuef43bc5, tmpValuef43bc5->size() }; });
 }
 
 struct QtQml_PackedString QQmlDebuggingEnabler_____startDebugConnector_configuration_keyList_atList(void* ptr, int i)
@@ -1934,7 +1934,7 @@ public:
 	void Signal_Exit(int retCode) { callbackQQmlEngine_Exit(this, retCode); };
 	void Signal_Quit() { callbackQQmlEngine_Quit(this); };
 	void retranslate() { callbackQQmlEngine_Retranslate(this); };
-	void Signal_Warnings(const QList<QQmlError> & warnings) { callbackQQmlEngine_Warnings(this, ({ QList<QQmlError>* tmpValue = new QList<QQmlError>(warnings); QtQml_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_Warnings(const QList<QQmlError> & warnings) { callbackQQmlEngine_Warnings(this, ({ QList<QQmlError>* tmpValuebd207f = new QList<QQmlError>(warnings); QtQml_PackedList { tmpValuebd207f, tmpValuebd207f->size() }; })); };
 	 ~MyQQmlEngine() { callbackQQmlEngine_DestroyQQmlEngine(this); };
 	void childEvent(QChildEvent * event) { callbackQJSEngine_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQJSEngine_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -3243,7 +3243,7 @@ void QQmlIncubator_Clear(void* ptr)
 
 struct QtQml_PackedList QQmlIncubator_Errors(void* ptr)
 {
-	return ({ QList<QQmlError>* tmpValue = new QList<QQmlError>(static_cast<QQmlIncubator*>(ptr)->errors()); QtQml_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QQmlError>* tmpValuea88c54 = new QList<QQmlError>(static_cast<QQmlIncubator*>(ptr)->errors()); QtQml_PackedList { tmpValuea88c54, tmpValuea88c54->size() }; });
 }
 
 void QQmlIncubator_ForceCompletion(void* ptr)

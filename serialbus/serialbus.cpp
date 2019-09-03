@@ -82,7 +82,7 @@ int QCanBus_QCanBus_QRegisterMetaType(){qRegisterMetaType<QCanBus*>(); return qR
 
 struct QtSerialBus_PackedList QCanBus_AvailableDevices(void* ptr, struct QtSerialBus_PackedString plugin, struct QtSerialBus_PackedString errorMessage)
 {
-	return ({ QList<QCanBusDeviceInfo>* tmpValue = new QList<QCanBusDeviceInfo>(static_cast<QCanBus*>(ptr)->availableDevices(QString::fromUtf8(plugin.data, plugin.len), new QString(QString::fromUtf8(errorMessage.data, errorMessage.len)))); QtSerialBus_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QCanBusDeviceInfo>* tmpValue899674 = new QList<QCanBusDeviceInfo>(static_cast<QCanBus*>(ptr)->availableDevices(QString::fromUtf8(plugin.data, plugin.len), new QString(QString::fromUtf8(errorMessage.data, errorMessage.len)))); QtSerialBus_PackedList { tmpValue899674, tmpValue899674->size() }; });
 }
 
 void* QCanBus_CreateDevice(void* ptr, struct QtSerialBus_PackedString plugin, struct QtSerialBus_PackedString interfaceName, struct QtSerialBus_PackedString errorMessage)
@@ -332,7 +332,7 @@ void QCanBusDevice_Close(void* ptr)
 
 struct QtSerialBus_PackedList QCanBusDevice_ConfigurationKeys(void* ptr)
 {
-	return ({ QVector<int>* tmpValue = new QVector<int>(static_cast<QCanBusDevice*>(ptr)->configurationKeys()); QtSerialBus_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QVector<int>* tmpValue49545d = new QVector<int>(static_cast<QCanBusDevice*>(ptr)->configurationKeys()); QtSerialBus_PackedList { tmpValue49545d, tmpValue49545d->size() }; });
 }
 
 void* QCanBusDevice_ConfigurationParameter(void* ptr, int key)
@@ -719,7 +719,7 @@ public:
 
 struct QtSerialBus_PackedList QCanBusFactoryV2_AvailableDevices(void* ptr, struct QtSerialBus_PackedString errorMessage)
 {
-	return ({ QList<QCanBusDeviceInfo>* tmpValue = new QList<QCanBusDeviceInfo>(static_cast<QCanBusFactoryV2*>(ptr)->availableDevices(new QString(QString::fromUtf8(errorMessage.data, errorMessage.len)))); QtSerialBus_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QCanBusDeviceInfo>* tmpValue4723b9 = new QList<QCanBusDeviceInfo>(static_cast<QCanBusFactoryV2*>(ptr)->availableDevices(new QString(QString::fromUtf8(errorMessage.data, errorMessage.len)))); QtSerialBus_PackedList { tmpValue4723b9, tmpValue4723b9->size() }; });
 }
 
 void* QCanBusFactoryV2_CreateDevice(void* ptr, struct QtSerialBus_PackedString interfaceName, struct QtSerialBus_PackedString errorMessage)
@@ -1174,7 +1174,7 @@ unsigned int QModbusDataUnit_ValueCount(void* ptr)
 
 struct QtSerialBus_PackedList QModbusDataUnit_Values(void* ptr)
 {
-	return ({ QVector<quint16>* tmpValue = new QVector<quint16>(static_cast<QModbusDataUnit*>(ptr)->values()); QtSerialBus_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QVector<quint16>* tmpValue31b435 = new QVector<quint16>(static_cast<QModbusDataUnit*>(ptr)->values()); QtSerialBus_PackedList { tmpValue31b435, tmpValue31b435->size() }; });
 }
 
 unsigned short QModbusDataUnit___QModbusDataUnit_data_atList4(void* ptr, int i)
@@ -1711,7 +1711,7 @@ char QModbusDeviceIdentification_IsValid(void* ptr)
 
 struct QtSerialBus_PackedList QModbusDeviceIdentification_ObjectIds(void* ptr)
 {
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QModbusDeviceIdentification*>(ptr)->objectIds()); QtSerialBus_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<int>* tmpValue17b29a = new QList<int>(static_cast<QModbusDeviceIdentification*>(ptr)->objectIds()); QtSerialBus_PackedList { tmpValue17b29a, tmpValue17b29a->size() }; });
 }
 
 void QModbusDeviceIdentification_Remove(void* ptr, unsigned int objectId)
@@ -1763,7 +1763,7 @@ void* QModbusDeviceIdentification___m_objects_newList(void* ptr)
 
 struct QtSerialBus_PackedList QModbusDeviceIdentification___m_objects_keyList(void* ptr)
 {
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QByteArray>*>(ptr)->keys()); QtSerialBus_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<int>* tmpValue7f22a8 = new QList<int>(static_cast<QMap<int, QByteArray>*>(ptr)->keys()); QtSerialBus_PackedList { tmpValue7f22a8, tmpValue7f22a8->size() }; });
 }
 
 void* QModbusDeviceIdentification___setM_objects__atList(void* ptr, int v, int i)
@@ -1784,7 +1784,7 @@ void* QModbusDeviceIdentification___setM_objects__newList(void* ptr)
 
 struct QtSerialBus_PackedList QModbusDeviceIdentification___setM_objects__keyList(void* ptr)
 {
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QByteArray>*>(ptr)->keys()); QtSerialBus_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<int>* tmpValue7f22a8 = new QList<int>(static_cast<QMap<int, QByteArray>*>(ptr)->keys()); QtSerialBus_PackedList { tmpValue7f22a8, tmpValue7f22a8->size() }; });
 }
 
 int QModbusDeviceIdentification_____m_objects_keyList_atList(void* ptr, int i)
