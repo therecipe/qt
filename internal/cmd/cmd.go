@@ -395,6 +395,18 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 		args = append(args, []string{"-e", "GOPROXY=" + v}...)
 	}
 
+	if v, ok := os.LookupEnv("GONOPROXY"); ok {
+		args = append(args, []string{"-e", "GONOPROXY=" + v}...)
+	}
+
+	if v, ok := os.LookupEnv("GOSUMDB"); ok {
+		args = append(args, []string{"-e", "GOSUMDB=" + v}...)
+	}
+
+	if v, ok := os.LookupEnv("GONOSUMBDB"); ok {
+		args = append(args, []string{"-e", "GONOSUMBDB=" + v}...)
+	}
+
 	if v, ok := os.LookupEnv("GOPRIVATE"); ok {
 		args = append(args, []string{"-e", "GOPRIVATE=" + v}...)
 	}
@@ -893,7 +905,7 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 		env["PATH"] = env["PATH"] + ":" + env["EMSDK"] + ":" + env["LLVM_ROOT"] + ":" + env["NODE_JS"] + ":" + env["EMSCRIPTEN"]
 	}
 
-	if runtime.GOOS != target || strings.Contains(utils.GOVERSION(), "1.10") {
+	if runtime.GOOS != target || utils.GOVERSION_NUM() == 110 {
 		env["CGO_CFLAGS_ALLOW"] = utils.CGO_CFLAGS_ALLOW()
 		env["CGO_CXXFLAGS_ALLOW"] = utils.CGO_CXXFLAGS_ALLOW()
 		env["CGO_LDFLAGS_ALLOW"] = utils.CGO_LDFLAGS_ALLOW()
@@ -908,11 +920,6 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 		if _, ok := env[es[0]]; !ok {
 			env[es[0]] = strings.Join(es[1:], "=")
 		}
-	}
-
-	//TODO: this can probably by removed, since it's explicitly set in UseGOMOD
-	if strings.Contains(strings.Replace(depPath, "\\", "/", -1), "src/"+utils.PackageName) && env["GO111MODULE"] != "on" {
-		env["GO111MODULE"] = "off"
 	}
 
 	return env, tags, ldFlags, out

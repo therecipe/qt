@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"fmt"
 	"io/ioutil"
 	"os"
 	"os/exec"
@@ -150,4 +151,14 @@ func runCmdHelper(cmd *exec.Cmd) (out []byte, err error) {
 		return
 	}
 	return cmd.CombinedOutput()
+}
+
+func BuildTags(tags []string) string {
+	if len(tags) > 1 {
+		if GOVERSION_NUM() >= 113 {
+			return fmt.Sprintf("-tags=%v", strings.Join(tags, ","))
+		}
+		return fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \""))
+	}
+	return fmt.Sprintf("-tags=%v", strings.Join(tags, ""))
 }

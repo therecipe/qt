@@ -38,7 +38,7 @@ func Minimal(path, target, tags string) {
 		if tags != "" {
 			tagsEnv = append(tagsEnv, strings.Split(tags, " ")...)
 		}
-		scmd.Args = append(scmd.Args, fmt.Sprintf("-tags=\"%v\"", strings.Join(tagsEnv, "\" \"")))
+		scmd.Args = append(scmd.Args, utils.BuildTags(tagsEnv))
 
 		if target != runtime.GOOS {
 			scmd.Args = append(scmd.Args, []string{"-pkgdir", filepath.Join(utils.MustGoPath(), "pkg", fmt.Sprintf("%v_%v_%v", strings.Replace(target, "-", "_", -1), env["GOOS"], env["GOARCH"]))}...)

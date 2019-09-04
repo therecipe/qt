@@ -31,7 +31,7 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 		minimal.Minimal(path, target, "")
 
 		var pattern string
-		if v := utils.GOVERSION(); strings.Contains(v, "1.1") || strings.Contains(v, "devel") {
+		if utils.GOVERSION_NUM() >= 110 {
 			pattern = "all="
 		}
 
@@ -100,7 +100,7 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 
 			"showcases": []string{"wallet"},
 
-			"sql": []string{"masterdetail", "masterdetail_qml", "querymodel"}, //TODO: fix masterdetail_qml in qml mode; (go 1.13 build tag issue)
+			"sql": []string{"masterdetail", "masterdetail_qml", "querymodel"},
 
 			"uitools": []string{"calculator", "calculator_manual"},
 

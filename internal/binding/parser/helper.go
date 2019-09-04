@@ -479,7 +479,7 @@ func GetCustomLibs(target string, env map[string]string, tags []string) map[stri
 	}
 
 	if len(modules) > 0 {
-		cmd := utils.GoList(append([]string{"{{.ImportPath}}", "-find", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \""))}, pkgs...)...)
+		cmd := utils.GoList(append([]string{"{{.ImportPath}}", "-find", utils.BuildTags(tags)}, pkgs...)...)
 		for k, v := range env {
 			cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", k, v))
 		}

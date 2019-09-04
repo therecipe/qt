@@ -357,8 +357,7 @@ func QT_GEN_OPENGL() bool {
 func GoList(args ...string) *exec.Cmd {
 	cmd := exec.Command("go", "list")
 	if UseGOMOD("") {
-		if /*strings.Contains(strings.Join(args, "|"), "github.com/therecipe/env_"+runtime.GOOS+"_amd64") ||*/ strings.Contains(strings.Join(args, "|"), "github.com/therecipe/qt/internal") {
-			//TODO: make env readonly if it can't be found inside ./vendor ...
+		if strings.Contains(strings.Join(args, "|"), "github.com/therecipe/qt/internal") {
 			cmd.Args = append(cmd.Args, "-mod=readonly")
 		} else {
 			cmd.Args = append(cmd.Args, GOFLAGS())
@@ -366,19 +365,11 @@ func GoList(args ...string) *exec.Cmd {
 		cmd.Dir = filepath.Dir(GOMOD(""))
 	}
 
-	var skip bool
-	for i := 5; i <= 10; i++ {
-		if v := GOVERSION(); strings.Contains(v, fmt.Sprintf("go1.%v.", i)) || strings.HasSuffix(v, fmt.Sprintf("go1.%v", i)) {
-			skip = true
-			break
-		}
-	}
-
 	for i := len(args) - 1; i >= 0; i-- {
 		a := args[i]
 		if strings.HasPrefix(a, "-") {
 			args = append(args[:i], args[i+1:]...)
-			if !skip {
+			if GOVERSION_NUM() > 110 {
 				cmd.Args = append(cmd.Args, a)
 			}
 		}
@@ -426,4 +417,14 @@ func GOVERSION() (r string) {
 	r = goVersionCache
 	goVersionCacheMutex.Unlock()
 	return r
+}
+
+func GOVERSION_NUM() int {
+	version := strings.TrimPrefix(GOVERSION(), "go")
+	vmaj, _ := strconv.Atoi(string(version[0]))
+	vmin, _ := strconv.Atoi(strings.Replace(version[1:], ".", "", -1))
+	if strings.Count(version, ".") == 2 {
+		vmin, _ = strconv.Atoi(strings.Split(version[1:], ".")[1])
+	}
+	return vmaj*1e2 + vmin
 }

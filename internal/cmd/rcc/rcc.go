@@ -727,7 +727,7 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 		tags = append(tags, strings.Split(tagsCustom, " ")...)
 	}
 
-	pkgCmd := utils.GoList("{{.Name}}", "-find", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))
+	pkgCmd := utils.GoList("{{.Name}}", "-find", utils.BuildTags(tags))
 	pkgCmd.Dir = path
 	for k, v := range env {
 		pkgCmd.Env = append(pkgCmd.Env, fmt.Sprintf("%v=%v", k, v))
@@ -778,7 +778,7 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 		}
 	}
 
-	nameCmd := utils.GoList("{{.ImportPath}}", "-find", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))
+	nameCmd := utils.GoList("{{.ImportPath}}", "-find", utils.BuildTags(tags))
 	nameCmd.Dir = path
 	for k, v := range env {
 		nameCmd.Env = append(nameCmd.Env, fmt.Sprintf("%v=%v", k, v))

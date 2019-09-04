@@ -100,7 +100,7 @@ func Install(target string, docker, vagrant, failfast bool) {
 
 		cmd := exec.Command("go", "install", "-p", strconv.Itoa(runtime.GOMAXPROCS(0)), "-v")
 		if len(tags) > 0 {
-			cmd.Args = append(cmd.Args, fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))
+			cmd.Args = append(cmd.Args, utils.BuildTags(tags))
 		}
 		if target != runtime.GOOS {
 			cmd.Args = append(cmd.Args, []string{"-pkgdir", filepath.Join(utils.MustGoPath(), "pkg", fmt.Sprintf("%v_%v_%v", strings.Replace(target, "-", "_", -1), env["GOOS"], env["GOARCH"]))}...)
@@ -117,6 +117,9 @@ func Install(target string, docker, vagrant, failfast bool) {
 		} else {
 			if target == "linux" {
 				env["CGO_LDFLAGS"] = strings.Replace(env["CGO_LDFLAGS"], "-Wl,-rpath,$ORIGIN/lib -Wl,--disable-new-dtags", "", -1)
+			}
+			if !utils.UseGOMOD(utils.GoQtPkgPath("core")) {
+				env["GO111MODULE"] = "off"
 			}
 			for key, value := range env {
 				cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", key, value))
