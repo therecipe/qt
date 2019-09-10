@@ -9,6 +9,7 @@ import (
 	"strings"
 
 	"github.com/therecipe/qt/internal/binding/parser"
+	"github.com/therecipe/qt/internal/utils"
 )
 
 func GoOutput(name, value string, f *parser.Function, p string) string {
@@ -587,7 +588,7 @@ func cppOutputPack(name, value string, f *parser.Function) string {
 			out = strings.Replace(out, "ret.", fmt.Sprintf("%vPacked.", parser.CleanName(name, value)), -1)
 			return out
 		}
-	} else {
+	} else if !utils.QT_MSVC() {
 		if strings.Contains(out, "_PackedString") {
 			out = strings.Replace(out, "({ ", "", -1)
 			out = strings.Replace(out, " })", "", -1)
@@ -611,7 +612,7 @@ func cppOutputPacked(name, value string, f *parser.Function) string {
 			}
 			return "reinterpret_cast<uintptr_t>(" + out + ")"
 		}
-	} else {
+	} else if !utils.QT_MSVC() {
 		if strings.Contains(out, "_PackedString") {
 			return fmt.Sprintf("%vPacked", parser.CleanName(name, value))
 		}
@@ -637,6 +638,10 @@ func cppOutputPackingListForJs(hash string) string {
 }
 
 func cppOutput(name, value string, f *parser.Function) string {
+	return lambda(_cppOutput(lambda(name), value, f))
+}
+
+func _cppOutput(name, value string, f *parser.Function) string {
 	var vOld = value
 
 	var tHash = sha1.New()

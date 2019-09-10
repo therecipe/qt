@@ -424,7 +424,7 @@ func GetLibs() []string {
 
 	for i := len(libs) - 1; i >= 0; i-- {
 		switch {
-		case !(runtime.GOOS == "darwin" || runtime.GOOS == "linux" || runtime.GOOS == "freebsd") && (libs[i] == "WebEngine" || libs[i] == "WebView"),
+		case !(runtime.GOOS == "darwin" || runtime.GOOS == "linux" || runtime.GOOS == "freebsd" || (runtime.GOOS == "windows" && utils.QT_MSVC())) && (libs[i] == "WebEngine" || libs[i] == "WebView"),
 			runtime.GOOS != "windows" && libs[i] == "WinExtras",
 			runtime.GOOS != "darwin" && libs[i] == "MacExtras",
 			!(runtime.GOOS == "linux" || runtime.GOOS == "freebsd") && libs[i] == "X11Extras":

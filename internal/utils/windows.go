@@ -71,6 +71,12 @@ func windowsSystemDrive() string {
 }
 
 func MINGWDIR() string {
+	if QT_MSVC() {
+		if GOARCH() == "386" {
+			return "msvc2017_32"
+		}
+		return "msvc2017_64"
+	}
 	if QT_VERSION_NUM() >= 5122 {
 		if GOARCH() == "386" {
 			return "mingw73_32"
@@ -86,4 +92,19 @@ func MINGWTOOLSDIR() string {
 		}
 	}
 	return "mingw730_64"
+}
+
+func QT_MSVC() bool {
+	return os.Getenv("QT_MSVC") == "true"
+}
+
+func GOVSVARSPATH() string {
+	if p, ok := os.LookupEnv("GOVSVARSPATH"); ok {
+		return p
+	}
+	bits := "64"
+	if GOARCH() == "386" {
+		bits = "32"
+	}
+	return fmt.Sprintf(`%v\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvars%v.bat`, windowsSystemDrive(), bits)
 }

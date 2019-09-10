@@ -103,6 +103,11 @@ func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast b
 				if fn := filepath.Join(depPath, name+".app", "Contents", "Info.plist"); !utils.ExistsFile(fn) {
 					utils.Save(fn, darwin_plist(name))
 				}
+			case "windows":
+				if utils.QT_MSVC() {
+					_, _, _, out := cmd.BuildEnv(target, name, depPath)
+					cmd.PatchBinary(out + ".exe")
+				}
 			}
 		}
 	}

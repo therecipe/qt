@@ -117,7 +117,7 @@ func goFunctionBody(function *parser.Function) string {
 
 		var body string
 		if UseJs() {
-			body = converter.GoJSOutputParametersFromC(function, fmt.Sprintf("qt.WASM.Call(\"_%v\", %v)", converter.CppHeaderName(function), converter.GoInputParametersForJS(function)))
+			body = converter.GoJSOutputParametersFromC(function, fmt.Sprintf("qt.Module.Call(\"_%v\", %v)", converter.CppHeaderName(function), converter.GoInputParametersForJS(function)))
 		} else {
 			body = converter.GoOutputParametersFromC(function, fmt.Sprintf("C.%v(%v)", converter.CppHeaderName(function), converter.GoInputParametersForC(function)))
 		}
@@ -328,9 +328,9 @@ func goFunctionBody(function *parser.Function) string {
 				if pType := converter.GoType(function, p.Value, p.PureGoType); pType == "*bool" || pType == "*int" {
 					if UseJs() {
 						if pType == "*int" {
-							fmt.Fprintf(bb, "var %[1]vR int\nif %[1]v != 0 {\n%[1]vR = int(int32(qt.WASM.Call(\"getValue\", %[1]v, \"i32\").Int()))\ndefer func(){qt.WASM.Call(\"setValue\", %[1]v, %[1]vR, \"i32\")}()\n}\n", parser.CleanName(p.Name, p.Value))
+							fmt.Fprintf(bb, "var %[1]vR int\nif %[1]v != 0 {\n%[1]vR = int(int32(qt.Module.Call(\"getValue\", %[1]v, \"i32\").Int()))\ndefer func(){qt.Module.Call(\"setValue\", %[1]v, %[1]vR, \"i32\")}()\n}\n", parser.CleanName(p.Name, p.Value))
 						} else { //TODO: make empty *bool callbacks safe?
-							fmt.Fprintf(bb, "%[1]vR := int8(qt.WASM.Call(\"getValue\", %[1]v, \"i8\").Int()) != 0\ndefer func(){qt.WASM.Call(\"setValue\", %[1]v, qt.GoBoolToInt(%[1]vR), \"i8\")}()\n", parser.CleanName(p.Name, p.Value))
+							fmt.Fprintf(bb, "%[1]vR := int8(qt.Module.Call(\"getValue\", %[1]v, \"i8\").Int()) != 0\ndefer func(){qt.Module.Call(\"setValue\", %[1]v, qt.GoBoolToInt(%[1]vR), \"i8\")}()\n", parser.CleanName(p.Name, p.Value))
 						}
 					} else {
 						if pType == "*int" {

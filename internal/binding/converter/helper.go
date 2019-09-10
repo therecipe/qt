@@ -323,3 +323,14 @@ func variantWrapper(f *parser.Function, value string, p string) (string, string,
 
 	return p, "", fmt.Sprintf(".ToInterface().(%v)", strings.TrimSpace(vs[1]))
 }
+
+func lambda(i string) string {
+	if !utils.QT_MSVC() || !strings.HasPrefix(i, "({") {
+		return i
+	}
+	i = strings.TrimSuffix(strings.TrimPrefix(i, "("), ")")
+	i = "[&]" + i + "()"
+	is := strings.Split(i, ";")
+	is[len(is)-2] = "return " + is[len(is)-2]
+	return strings.Join(is, ";")
+}

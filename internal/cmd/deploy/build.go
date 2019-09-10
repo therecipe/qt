@@ -68,6 +68,9 @@ func build(mode, target, path, ldFlagsCustom, tagsCustom, name, depPath string, 
 			cmd.Args = append(cmd.Args, fmt.Sprintf("-ldflags=%v%v", pattern, escapeFlags(ldFlags, ldFlagsCustom)))
 		}
 	}
+	if utils.GOVERSION_NUM() >= 113 {
+		cmd.Args = append(cmd.Args, "-trimpath")
+	}
 	cmd.Args = append(cmd.Args, "-o", out+ending)
 
 	cmd.Dir = path

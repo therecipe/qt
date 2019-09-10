@@ -321,7 +321,7 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 			}
 
 			var libraryPath = filepath.Join(utils.QT_MXE_DIR(), "usr", utils.QT_MXE_TRIPLET(), "bin")
-			for _, d := range []string{"libbz2", "libfreetype-6", "libglib-2.0-0", "libharfbuzz-0", "libiconv-2", "libintl-8", "libpcre-1", "libpcre16-0", "libpng16-16", "libstdc++-6", "libwinpthread-1", "zlib1", "libgraphite2", "libeay32", "ssleay32", "libcrypto-1_1-x64", "libpcre2-16-0", "libssl-1_1-x64"} {
+			for _, d := range []string{"libbz2", "libfreetype-6", "libglib-2.0-0", "libharfbuzz-0", "libiconv-2", "libintl-8", "libpcre-1", "libpcre16-0", "libpng16-16", "libstdc++-6", "libwinpthread-1", "zlib1", "libgraphite2", "libeay32", "ssleay32", "libcrypto-1_1-x64", "libpcre2-16-0", "libssl-1_1-x64", "libzstd"} {
 				if utils.QT_MXE_ARCH() == "386" {
 					d = strings.TrimSuffix(d, "-x64")
 				}
@@ -451,13 +451,12 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 				}
 			}
 
-			var walkFn = func(path string, info os.FileInfo, err error) error {
+			filepath.Walk(depPath, func(path string, info os.FileInfo, err error) error {
 				if strings.HasSuffix(info.Name(), "d.dll") {
 					utils.RemoveAll(path)
 				}
 				return nil
-			}
-			filepath.Walk(depPath, walkFn)
+			})
 
 		default:
 
@@ -494,6 +493,10 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 			dep := exec.Command(utils.ToolPath("windeployqt", target))
 			dep.Args = append(dep.Args, "--verbose=2", "--force", fmt.Sprintf("--qmldir=%v", path), filepath.Join(depPath, name+".exe"))
 			utils.RunCmd(dep, fmt.Sprintf("deploy for %v on %v", target, runtime.GOOS))
+
+			if utils.QT_MSVC() {
+				cmd.PatchBinary(filepath.Join(depPath, name+".exe"))
+			}
 		}
 		//<--
 
@@ -774,7 +777,13 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 		utils.Save(filepath.Join(depPath, "index.html"), strings.Replace(index, "  </body>", "    <script type=\"text/javascript\" src=\"go.js\"></script>\n  </body>", -1))
 
 		if parser.UseWasm() {
-			utils.Save(filepath.Join(depPath, "go.js"), strings.Replace(utils.Load(filepath.Join(depPath, "go.js")), "})();", wasm_js(), -1))
+			gojs := utils.Load(filepath.Join(depPath, "go.js"))
+			if utils.GOVERSION_NUM() >= 113 {
+				gojs = strings.Replace(gojs, "\"syscall/js.valueCall\": (sp) => {", "\"syscall/js.valueCall\": (sp) => {\n\t\t\t\t\t\t\tconst s = loadString(sp + 16); if (s.search(\"_Exec\") != -1) { const v = loadValue(sp + 8); Reflect.apply(Reflect.get(v, s), v, loadSliceOfValues(sp + 32)); }", -1)
+				gojs = strings.Replace(gojs, "v, loadString(sp + 16));", "v, s);", -1)
+			}
+			gojs = strings.Replace(gojs, "})();", wasm_js(), -1)
+			utils.Save(filepath.Join(depPath, "go.js"), gojs)
 		} else {
 			gojs := utils.Load(filepath.Join(depPath, "go.js"))
 			gojs = strings.Replace(gojs, "(function() {", "Module._goMain = function() {", -1)

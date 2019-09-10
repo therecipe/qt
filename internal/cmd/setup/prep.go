@@ -6,6 +6,7 @@ import (
 	"path/filepath"
 	"runtime"
 
+	"github.com/therecipe/qt/internal/cmd"
 	"github.com/therecipe/qt/internal/utils"
 )
 
@@ -68,5 +69,9 @@ func Prep(target string) {
 		if f := filepath.Join(sysQtDir, file); utils.ExistsFile(f) {
 			utils.Save(filepath.Join(utils.QT_INSTALL_PREFIX(target), file), utils.Load(f))
 		}
+	}
+
+	if runtime.GOOS == "windows" && target == runtime.GOOS && utils.QT_MSVC() {
+		cmd.PatchLibs()
 	}
 }

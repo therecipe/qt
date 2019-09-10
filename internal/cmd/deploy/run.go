@@ -80,7 +80,7 @@ func run(target, name, depPath, device string) {
 
 	case "js", "wasm": //TODO: REVIEW and use emscripten wrapper instead
 		if runtime.GOOS == "darwin" {
-			exec.Command("/Applications/Firefox Nightly.app/Contents/MacOS/firefox", filepath.Join(depPath, "index.html")).Start()
+			exec.Command("/Applications/Firefox.app/Contents/MacOS/firefox", filepath.Join(depPath, "index.html")).Start()
 		}
 	}
 }

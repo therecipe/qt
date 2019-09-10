@@ -254,6 +254,8 @@ func ToolPath(tool, target string) string {
 		//TODO:
 	case "rp1", "rpi2", "rpi3":
 		return filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), target, "bin", tool)
+	case "wasm", "js":
+		return filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), "wasm_32", "bin", tool)
 	}
 	return ""
 }
@@ -279,6 +281,27 @@ func CGO_CXXFLAGS_ALLOW() string {
 
 func CGO_LDFLAGS_ALLOW() string {
 	if allowed, ok := os.LookupEnv("CGO_LDFLAGS_ALLOW"); ok {
+		return allowed
+	}
+	return ".*"
+}
+
+func CGO_MSCFLAGS_ALLOW() string {
+	if allowed, ok := os.LookupEnv("CGO_MSCFLAGS_ALLOW"); ok {
+		return allowed
+	}
+	return ".*"
+}
+
+func CGO_MSCXXFLAGS_ALLOW() string {
+	if allowed, ok := os.LookupEnv("CGO_MSCXXFLAGS_ALLOW"); ok {
+		return allowed
+	}
+	return ".*"
+}
+
+func CGO_MSLDFLAGS_ALLOW() string {
+	if allowed, ok := os.LookupEnv("CGO_MSLDFLAGS_ALLOW"); ok {
 		return allowed
 	}
 	return ".*"
@@ -410,6 +433,12 @@ var (
 )
 
 func GOVERSION() (r string) {
+	if v, ok := os.LookupEnv("GOVERSION"); ok {
+		return v
+	}
+	if QT_MSVC() {
+		return "go1.10"
+	}
 	goVersionCacheMutex.Lock()
 	if goVersionCache == "" {
 		goVersionCache = strings.Split(RunCmd(exec.Command("go", "version"), "get go version"), " ")[2]

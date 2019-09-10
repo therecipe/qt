@@ -115,6 +115,17 @@ func Check(target string, docker, vagrant bool) {
 				}...)
 			}
 
+			if utils.QT_MSVC() {
+				vars = append(vars, [][]string{
+					{"QT_MSVC", fmt.Sprint(utils.QT_MSVC())},
+					{"GOVSVARSPATH", utils.GOVSVARSPATH()},
+				}...)
+
+				if _, err := exec.LookPath("cl"); err != nil {
+					utils.Log.WithError(err).Panic("failed to find cl, did you start the MSVC shell?")
+				}
+			}
+
 			if _, err := exec.LookPath("g++"); err != nil && !utils.QT_MSYS2() {
 				utils.Log.WithError(err).Panic("failed to find g++, did you start the MinGW shell?")
 			}

@@ -13,9 +13,9 @@ var (
 		BYTES_PER_ELEMENT := 4 //Float32Array.BYTES_PER_ELEMENT
 		data := []float32{1, 0, 0, 0, 1, 0, 0, 0, 1}
 
-		alloc := qt.WASM.Call("_malloc", len(data)*BYTES_PER_ELEMENT, "float")
+		alloc := qt.Module.Call("_malloc", len(data)*BYTES_PER_ELEMENT, "float")
 		for i, v := range data {
-			qt.WASM.Call("setValue", alloc.Int()+(i*BYTES_PER_ELEMENT), v, "float")
+			qt.Module.Call("setValue", alloc.Int()+(i*BYTES_PER_ELEMENT), v, "float")
 		}
 		return unsafe.Pointer(uintptr(alloc.Int()))
 	}()
@@ -24,9 +24,9 @@ var (
 		BYTES_PER_ELEMENT := 4 //Float32Array.BYTES_PER_ELEMENT
 		data := []float32{0, 0.707, -0.5, -0.5, 0.5, -0.5}
 
-		alloc := qt.WASM.Call("_malloc", len(data)*BYTES_PER_ELEMENT, "float")
+		alloc := qt.Module.Call("_malloc", len(data)*BYTES_PER_ELEMENT, "float")
 		for i, v := range data {
-			qt.WASM.Call("setValue", alloc.Int()+(i*BYTES_PER_ELEMENT), v, "float")
+			qt.Module.Call("setValue", alloc.Int()+(i*BYTES_PER_ELEMENT), v, "float")
 		}
 		return unsafe.Pointer(uintptr(alloc.Int()))
 	}()

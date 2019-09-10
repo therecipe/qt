@@ -541,9 +541,9 @@ func (ptr *%[1]v) Destroy%[1]v() {
 		for _, l := range strings.Split(bb.String(), "\n") {
 			if strings.HasPrefix(l, "//export") {
 				if parser.UseWasm() {
-					fmt.Fprintf(bb, "qt.WASM.Set(\"_%[1]v\", js.FuncOf(%[1]v))\n", strings.TrimPrefix(l, "//export "))
+					fmt.Fprintf(bb, "qt.Module.Set(\"_%[1]v\", js.FuncOf(%[1]v))\n", strings.TrimPrefix(l, "//export "))
 				} else {
-					fmt.Fprintf(bb, "qt.WASM.Set(\"_%[1]v\", %[1]v)\n", strings.TrimPrefix(l, "//export "))
+					fmt.Fprintf(bb, "qt.Module.Set(\"_%[1]v\", %[1]v)\n", strings.TrimPrefix(l, "//export "))
 				}
 			}
 		}

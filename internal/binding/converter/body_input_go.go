@@ -84,7 +84,7 @@ func GoInputParametersForJS(function *parser.Function) string {
 				}
 			} else {
 				alloc := GoInputJS(parameter.Name, parameter.Value, function, parameter.PureGoType)
-				if gType := GoType(function, parameter.Value, parameter.PureGoType); (parser.UseWasm() && strings.Contains(alloc, "js.TypedArrayOf(")) || gType == "*bool" || gType == "*int" {
+				if gType := GoType(function, parameter.Value, parameter.PureGoType); (parser.UseWasm() && strings.Contains(alloc, ".TypedArrayOf(")) || gType == "*bool" || gType == "*int" {
 					input = append(input, fmt.Sprintf("%vC", parser.CleanName(parameter.Name, parameter.Value)))
 				} else {
 					input = append(input, alloc)
@@ -113,7 +113,7 @@ func GoInputParametersForJSAlloc(function *parser.Function) []string {
 						continue
 					}
 					//TODO: make it possible to pass nil strings; fix this on C side instead
-					input = append(input, fmt.Sprintf("var %v js.Value\nif %v != \"\" || true {\n%v = %v\ndefer (*js.TypedArray)(unsafe.Pointer(uintptr(%v.Get(\"data_ptr\").Int()))).Release()\n}\n", name, parser.CleanName(parameter.Name, parameter.Value), name, alloc, name))
+					input = append(input, fmt.Sprintf("var %v js.Value\nif %v != \"\" || true {\n%v = %v\ndefer qt.ReleaseTypedArray(unsafe.Pointer(uintptr(%v.Get(\"data_ptr\").Int())))\n}\n", name, parser.CleanName(parameter.Name, parameter.Value), name, alloc, name))
 				}
 
 			case "[]byte":
@@ -122,7 +122,7 @@ func GoInputParametersForJSAlloc(function *parser.Function) []string {
 						continue
 					}
 					//TODO: make it possible to pass nil []bytes; fix this on C side instead
-					input = append(input, fmt.Sprintf("var %v js.Value\nif len(%v) != 0 || true {\n%v = %v\ndefer (*js.TypedArray)(unsafe.Pointer(uintptr(%v.Get(\"data_ptr\").Int()))).Release()\n}\n", name, parser.CleanName(parameter.Name, parameter.Value), name, alloc, name))
+					input = append(input, fmt.Sprintf("var %v js.Value\nif len(%v) != 0 || true {\n%v = %v\ndefer qt.ReleaseTypedArray(unsafe.Pointer(uintptr(%v.Get(\"data_ptr\").Int())))\n}\n", name, parser.CleanName(parameter.Name, parameter.Value), name, alloc, name))
 				}
 
 			case "*string", "[]string", "error":
@@ -130,12 +130,12 @@ func GoInputParametersForJSAlloc(function *parser.Function) []string {
 					if !parser.UseWasm() {
 						continue
 					}
-					input = append(input, fmt.Sprintf("%v := %v\ndefer (*js.TypedArray)(unsafe.Pointer(uintptr(%v.Get(\"data_ptr\").Int()))).Release()\n", name, alloc, name))
+					input = append(input, fmt.Sprintf("%v := %v\ndefer qt.ReleaseTypedArray(unsafe.Pointer(uintptr(%v.Get(\"data_ptr\").Int())))\n", name, alloc, name))
 				}
 
 			case "*bool":
 				{
-					input = append(input, fmt.Sprintf("var %v %v\nif %v != nil {\n%v = qt.WASM.Call(\"_malloc\", 1)\nqt.WASM.Call(\"setValue\", %v, qt.GoBoolToInt(*%v), \"i8\")\ndefer func(){*%v = int8(qt.WASM.Call(\"getValue\", %v, \"i8\").Int()) != 0\nqt.WASM.Call(\"_free\", %v)\n}()\n}\n", name, func() string {
+					input = append(input, fmt.Sprintf("var %v %v\nif %v != nil {\n%v = qt.Module.Call(\"_malloc\", 1)\nqt.Module.Call(\"setValue\", %v, qt.GoBoolToInt(*%v), \"i8\")\ndefer func(){*%v = int8(qt.Module.Call(\"getValue\", %v, \"i8\").Int()) != 0\nqt.Module.Call(\"_free\", %v)\n}()\n}\n", name, func() string {
 						if parser.UseWasm() {
 							return "js.Value"
 						}
@@ -145,7 +145,7 @@ func GoInputParametersForJSAlloc(function *parser.Function) []string {
 
 			case "*int":
 				{
-					input = append(input, fmt.Sprintf("var %v %v\nif %v != nil {\n%v = qt.WASM.Call(\"_malloc\", 4)\nqt.WASM.Call(\"setValue\", %v, *%v, \"i32\")\ndefer func(){*%v = int(int32(qt.WASM.Call(\"getValue\", %v, \"i32\").Int()))\nqt.WASM.Call(\"_free\", %v)\n}()\n}\n", name,
+					input = append(input, fmt.Sprintf("var %v %v\nif %v != nil {\n%v = qt.Module.Call(\"_malloc\", 4)\nqt.Module.Call(\"setValue\", %v, *%v, \"i32\")\ndefer func(){*%v = int(int32(qt.Module.Call(\"getValue\", %v, \"i32\").Int()))\nqt.Module.Call(\"_free\", %v)\n}()\n}\n", name,
 						func() string {
 							if parser.UseWasm() {
 								return "js.Value"

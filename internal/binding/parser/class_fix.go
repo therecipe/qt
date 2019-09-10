@@ -175,7 +175,7 @@ func (c *Class) fixGeneral_Version() {
 			}
 		}
 
-	case "QWebEnginePage", "QWebEngineView":
+	case "QWebEnginePage", "QWebEngineView", "QWebEngineClientCertificateSelection":
 		{
 			for _, f := range c.Functions {
 				if !((f.Name == "QWebEnginePage" && f.OverloadNumber == "3") ||

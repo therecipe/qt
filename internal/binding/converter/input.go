@@ -246,7 +246,7 @@ func CppInput(name, value string, f *parser.Function) string {
 			}
 			return fmt.Sprintf("({ emscripten::val tempVal = %v; %v ret = %v; ret; })", name, parser.CleanValue(value), cppInput("tempVal", value, f))
 		}
-		return fmt.Sprintf("({ %v_PackedString tempVal = %v; %v ret = %v; free(tempVal.data); ret; })", strings.Title(parser.State.ClassMap[f.ClassName()].Module), name, parser.CleanValue(value), cppInput("tempVal", value, f))
+		return lambda(fmt.Sprintf("({ %v_PackedString tempVal = %v; %v ret = %v; free(tempVal.data); ret; })", strings.Title(parser.State.ClassMap[f.ClassName()].Module), name, parser.CleanValue(value), cppInput("tempVal", value, f)))
 	}
 
 	out := cppInput(name, value, f)
@@ -506,7 +506,7 @@ func cppInput(name, value string, f *parser.Function) string {
 				return fmt.Sprintf("*static_cast<%v*>(%v)", value, name)
 			}
 
-			return fmt.Sprintf("({ %v* tmpP = static_cast<%v*>(%v); %v tmpV = *tmpP; tmpP->~%v(); free(tmpP); tmpV; })", parser.CleanValue(value), value, name, parser.CleanValue(value), strings.Split(parser.CleanValue(value), "<")[0])
+			return lambda(fmt.Sprintf("({ %v* tmpP = static_cast<%v*>(%v); %v tmpV = *tmpP; tmpP->~%v(); free(tmpP); tmpV; })", parser.CleanValue(value), value, name, parser.CleanValue(value), strings.Split(parser.CleanValue(value), "<")[0]))
 		}
 	}
 
@@ -529,7 +529,7 @@ func GoInputJS(name, value string, f *parser.Function, p string) string {
 
 			if strings.Contains(vOld, "**") {
 				if parser.UseWasm() {
-					return fmt.Sprintf("func() js.Value {\ntmp := js.TypedArrayOf([]byte(strings.Join(%v, \"|\")))\nreturn js.ValueOf(map[string]interface{}{\"data\": tmp, \"data_ptr\": unsafe.Pointer(&tmp)})\n}()", name)
+					return fmt.Sprintf("func() js.Value {\ntmp := qt.TypedArrayOf([]byte(strings.Join(%v, \"|\")))\nreturn js.ValueOf(map[string]interface{}{\"data\": tmp, \"data_ptr\": unsafe.Pointer(&tmp)})\n}()", name)
 				}
 				if f.SignalMode != parser.CALLBACK {
 					return fmt.Sprintf("func() *js.Object {\ntmp := new(js.Object)\nif js.InternalObject(%v).Get(\"$val\") == js.Undefined {\ntmp.Set(\"data\", []byte(js.InternalObject(%v).Call(\"join\", \"|\").String()))\n} else {\ntmp.Set(\"data\", []byte(strings.Join(%v, \"|\")))\n}\nreturn tmp\n}()", name, name, name) //needed for indirect exported pure js call -> can be ommited if build without js support
@@ -540,7 +540,7 @@ func GoInputJS(name, value string, f *parser.Function, p string) string {
 			/* TODO: if value == "char" && strings.Count(vOld, "*") == 1 && f.Name == "readData" {} */
 
 			if parser.UseWasm() {
-				return fmt.Sprintf("func() js.Value {\ntmp := js.TypedArrayOf([]byte(%v))\nreturn js.ValueOf(map[string]interface{}{\"data\": tmp, \"data_ptr\": unsafe.Pointer(&tmp)})\n}()", name)
+				return fmt.Sprintf("func() js.Value {\ntmp := qt.TypedArrayOf([]byte(%v))\nreturn js.ValueOf(map[string]interface{}{\"data\": tmp, \"data_ptr\": unsafe.Pointer(&tmp)})\n}()", name)
 			}
 			return fmt.Sprintf("func() *js.Object {\ntmp := new(js.Object)\ntmp.Set(\"data\", []byte(%v))\nreturn tmp\n}()", name)
 		}
@@ -548,7 +548,7 @@ func GoInputJS(name, value string, f *parser.Function, p string) string {
 	case "QStringList":
 		{
 			if parser.UseWasm() {
-				return fmt.Sprintf("func() js.Value {\ntmp := js.TypedArrayOf([]byte(strings.Join(%v, \"¡¦!\")))\nreturn js.ValueOf(map[string]interface{}{\"data\": tmp, \"data_ptr\": unsafe.Pointer(&tmp)})\n}()", name)
+				return fmt.Sprintf("func() js.Value {\ntmp := qt.TypedArrayOf([]byte(strings.Join(%v, \"¡¦!\")))\nreturn js.ValueOf(map[string]interface{}{\"data\": tmp, \"data_ptr\": unsafe.Pointer(&tmp)})\n}()", name)
 			}
 			if f.SignalMode != parser.CALLBACK {
 				return fmt.Sprintf("func() *js.Object {\ntmp := new(js.Object)\nif js.InternalObject(%v).Get(\"$val\") == js.Undefined {\ntmp.Set(\"data\", []byte(js.InternalObject(%v).Call(\"join\", \"¡¦!\").String()))\n} else {\ntmp.Set(\"data\", []byte(strings.Join(%v, \"¡¦!\")))\n}\nreturn tmp\n}()", name, name, name) //needed for indirect exported pure js call -> can be ommited if build without js support
