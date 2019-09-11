@@ -723,7 +723,7 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 			if utils.QT_MSYS2() {
 				env["GOARCH"] = utils.QT_MSYS2_ARCH()
 				// use gcc shipped with msys2
-				env["PATH"] = filepath.Join(utils.QT_MSYS2_DIR(), "bin")
+				env["PATH"] = filepath.Join(utils.QT_MSYS2_DIR(), "bin") + ";" + env["PATH"]
 			} else {
 				// use gcc shipped with qt installation
 				path := filepath.Join(utils.QT_DIR(), "Tools", utils.MINGWTOOLSDIR(), "bin")
@@ -733,7 +733,7 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 				if !utils.ExistsDir(path) {
 					path = strings.Replace(path, "mingw530_32", "mingw492_32", -1)
 				}
-				env["PATH"] = path
+				env["PATH"] = path + ";" + env["PATH"]
 			}
 
 			if utils.QT_MSVC() {
@@ -930,7 +930,7 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 		if _, ok := env["EMSCRIPTEN"]; !ok {
 			env["EMSCRIPTEN"] = filepath.Join(env["BINARYEN_ROOT"], "emscripten")
 		}
-		env["PATH"] = env["EMSDK"] + ":" + env["LLVM_ROOT"] + ":" + env["NODE_JS"] + ":" + env["EMSCRIPTEN"]
+		env["PATH"] = env["EMSDK"] + ":" + env["LLVM_ROOT"] + ":" + env["NODE_JS"] + ":" + env["EMSCRIPTEN"] + ":" + env["PATH"]
 	}
 
 	if runtime.GOOS != target || utils.GOVERSION_NUM() == 110 {
@@ -951,12 +951,8 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 
 	for _, e := range os.Environ() {
 		es := strings.Split(e, "=")
-		if _, ok := env[es[0]]; !ok || es[0] == "PATH" {
-			if es[0] == "PATH" {
-				env[es[0]] += string(filepath.ListSeparator) + strings.Join(es[1:], "=")
-			} else {
-				env[es[0]] = strings.Join(es[1:], "=")
-			}
+		if _, ok := env[es[0]]; !ok {
+			env[es[0]] = strings.Join(es[1:], "=")
 		}
 	}
 

@@ -38,7 +38,7 @@ func libs() (libs []string) {
 			return err
 		}
 
-		if filepath.Ext(info.Name()) == ".lib" && strings.HasPrefix(info.Name(), "Qt5") && !strings.HasSuffix(info.Name(), "lib.orig") &&
+		if filepath.Ext(info.Name()) == ".lib" && strings.HasPrefix(info.Name(), "Qt5") && !strings.HasSuffix(info.Name(), ".lib.orig") &&
 			(!strings.HasSuffix(info.Name(), "d.lib") || strings.HasSuffix(info.Name(), "board.lib")) {
 			libs = append(libs, path)
 		}
@@ -57,9 +57,9 @@ func PatchLibs() {
 func patchLib(l string) {
 	utils.Log.WithField("lib", l).Debugln("patching lib")
 
-	if utils.ExistsFile(strings.Replace(l, ".lib", "lib.orig", -1)) {
+	if utils.ExistsFile(strings.Replace(l, ".lib", ".lib.orig", -1)) {
 		utils.RemoveAll(l)
-		os.Rename(strings.Replace(l, ".lib", "lib.orig", -1), l)
+		os.Rename(strings.Replace(l, ".lib", ".lib.orig", -1), l)
 	}
 	data, _ := ioutil.ReadFile(l)
 
@@ -86,7 +86,7 @@ func PatchBinary(fn string) {
 	}
 
 	for _, l := range libs() {
-		sb := symbolsSliceFor(strings.Replace(l, ".lib", "lib.orig", -1), true, false)
+		sb := symbolsSliceFor(strings.Replace(l, ".lib", ".lib.orig", -1), true, false)
 		for i, s := range symbolsSliceFor(l, true, false) {
 			if bytes.Equal(s, sb[i]) {
 				continue
@@ -109,7 +109,7 @@ func symbolsSliceFor(fn string, skipDll bool, backup bool) (symbols [][]byte) {
 		return nil
 	}
 	if backup {
-		utils.SaveBytes(strings.Replace(fn, ".lib", "lib.orig", -1), data)
+		utils.SaveBytes(strings.Replace(fn, ".lib", ".lib.orig", -1), data)
 	}
 
 	for _, s := range bytes.Split(data, []byte("?")) {
@@ -139,7 +139,7 @@ func test(fn string) {
 	PatchBinary(fn)
 
 	var j int
-	sb := symbolsSliceFor(strings.Replace(fn, ".lib", "lib.orig", -1), skipDll, false)
+	sb := symbolsSliceFor(strings.Replace(fn, ".lib", ".lib.orig", -1), skipDll, false)
 	for i, s := range symbolsSliceFor(fn, skipDll, false) {
 		if bytes.Equal(s, sb[i]) {
 			continue
@@ -155,7 +155,7 @@ func test(fn string) {
 	a.Write(c)
 	ch := hex.EncodeToString(a.Sum(nil))
 
-	c, _ = ioutil.ReadFile(strings.Replace(fn, ".lib", "lib.orig", -1))
+	c, _ = ioutil.ReadFile(strings.Replace(fn, ".lib", ".lib.orig", -1))
 	a = sha256.New()
 	a.Write(c)
 	bh := hex.EncodeToString(a.Sum(nil))
