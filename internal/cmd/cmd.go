@@ -248,6 +248,11 @@ func Vagrant(arg []string, target, path string, writeCacheToHost bool, system st
 }
 
 func virtual(arg []string, target, path string, writeCacheToHost bool, docker bool, system string) {
+	dUser := "therecipe/qt"
+	if strings.Contains(target, ":") {
+		dUser = strings.Split(target, ":")[0]
+		target = strings.Split(target, ":")[1]
+	}
 	arg = append(arg, target)
 	if system == "" {
 		system = "linux"
@@ -440,7 +445,7 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 	}
 
 	if docker {
-		args = append(args, []string{"-i", fmt.Sprintf("therecipe/qt:%v", image)}...)
+		args = append(args, []string{"-i", fmt.Sprintf("%v:%v", dUser, image)}...)
 	} else {
 		for i, a := range args {
 			if a == "-e" {
@@ -718,7 +723,7 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 			if utils.QT_MSYS2() {
 				env["GOARCH"] = utils.QT_MSYS2_ARCH()
 				// use gcc shipped with msys2
-				env["PATH"] = filepath.Join(utils.QT_MSYS2_DIR(), "bin") + ";" + env["PATH"]
+				env["PATH"] = filepath.Join(utils.QT_MSYS2_DIR(), "bin")
 			} else {
 				// use gcc shipped with qt installation
 				path := filepath.Join(utils.QT_DIR(), "Tools", utils.MINGWTOOLSDIR(), "bin")
@@ -728,7 +733,7 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 				if !utils.ExistsDir(path) {
 					path = strings.Replace(path, "mingw530_32", "mingw492_32", -1)
 				}
-				env["PATH"] = path + ";" + env["PATH"]
+				env["PATH"] = path
 			}
 
 			if utils.QT_MSVC() {
@@ -925,7 +930,7 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 		if _, ok := env["EMSCRIPTEN"]; !ok {
 			env["EMSCRIPTEN"] = filepath.Join(env["BINARYEN_ROOT"], "emscripten")
 		}
-		env["PATH"] = env["PATH"] + ":" + env["EMSDK"] + ":" + env["LLVM_ROOT"] + ":" + env["NODE_JS"] + ":" + env["EMSCRIPTEN"]
+		env["PATH"] = env["EMSDK"] + ":" + env["LLVM_ROOT"] + ":" + env["NODE_JS"] + ":" + env["EMSCRIPTEN"]
 	}
 
 	if runtime.GOOS != target || utils.GOVERSION_NUM() == 110 {
@@ -947,7 +952,11 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 	for _, e := range os.Environ() {
 		es := strings.Split(e, "=")
 		if _, ok := env[es[0]]; !ok || es[0] == "PATH" {
-			env[es[0]] = strings.Join(es[1:], "=")
+			if es[0] == "PATH" {
+				env[es[0]] += string(filepath.ListSeparator) + strings.Join(es[1:], "=")
+			} else {
+				env[es[0]] = strings.Join(es[1:], "=")
+			}
 		}
 	}
 

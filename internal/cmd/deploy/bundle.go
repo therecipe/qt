@@ -452,7 +452,7 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 			}
 
 			filepath.Walk(depPath, func(path string, info os.FileInfo, err error) error {
-				if strings.HasSuffix(info.Name(), "d.dll") {
+				if strings.HasSuffix(info.Name(), "d.dll") && !strings.HasSuffix(info.Name(), "board.dll") {
 					utils.RemoveAll(path)
 				}
 				return nil

@@ -38,8 +38,8 @@ func libs() (libs []string) {
 			return err
 		}
 
-		if filepath.Ext(info.Name()) == ".lib" && strings.HasPrefix(info.Name(), "Qt5") && !strings.Contains(info.Name(), "lib.orig") &&
-			(!strings.Contains(info.Name(), "d.lib") || strings.HasSuffix(info.Name(), "board.lib")) {
+		if filepath.Ext(info.Name()) == ".lib" && strings.HasPrefix(info.Name(), "Qt5") && !strings.HasSuffix(info.Name(), "lib.orig") &&
+			(!strings.HasSuffix(info.Name(), "d.lib") || strings.HasSuffix(info.Name(), "board.lib")) {
 			libs = append(libs, path)
 		}
 		return nil
