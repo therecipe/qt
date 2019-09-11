@@ -45,7 +45,7 @@ func ParseFlags() bool {
 	}
 
 	_, err := exec.LookPath("go")
-	if api := utils.QT_API(""); api != "" && err == nil {
+	if api := utils.QT_API(""); api != "" && err == nil && !utils.QT_DOCKER() {
 		if utils.GoListOptional("{{.Dir}}", "github.com/therecipe/qt/internal/binding/files/docs/"+api, "-find", "get doc dir") == "" {
 			utils.Log.Errorf("invalid api version provided: '%v'", api)
 			fmt.Println("valid api versions are:") //TODO: if only one api version is available, use it
@@ -191,7 +191,7 @@ func InitEnv(target string) {
 				_, err = utils.RunCmdOptionalError(exec.Command("cmd", "/C", "mklink", "/J", link, strings.TrimSpace(utils.RunCmd(utils.GoList("{{.Dir}}", "github.com/therecipe/env_"+runtime.GOOS+"_amd64_"+strconv.Itoa(utils.QT_VERSION_NUM())[:3]+"/Tools", "-find"), "get env dir"))), "create symlink for env")
 			}
 		}
-		if err != nil {
+		if err != nil && target == runtime.GOOS {
 			if !(utils.ExistsFile(link) || utils.ExistsDir(link)) {
 				utils.Log.WithError(err).Warn("failed to create env symlink; fallback to patching binaries instead (this won't work for go modules)\r\nplease open an issue")
 				cmd := exec.Command("go", "run", "patch.go", qt_dir)

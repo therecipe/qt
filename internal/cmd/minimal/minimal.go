@@ -26,6 +26,11 @@ func Minimal(path, target, tags string) {
 			cmd.Dir = path
 			utils.RunCmd(cmd, "go mod vendor")
 		}
+		if utils.QT_DOCKER() {
+			cmd := exec.Command("go", "get", "-v", "-d", "github.com/therecipe/qt/internal/binding/files/docs/"+utils.QT_API(utils.QT_VERSION()))
+			cmd.Dir = path
+			utils.RunCmdOptional(cmd, "go get docs")
+		}
 	}
 
 	if !(target == "js" || target == "wasm" || utils.QT_NOT_CACHED()) { //TODO: remove for module support + resolve dependencies

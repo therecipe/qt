@@ -57,6 +57,11 @@ func Moc(path, target, tags string, fast, slow, deploying bool) {
 			cmd.Dir = path
 			utils.RunCmd(cmd, "go mod vendor")
 		}
+		if utils.QT_DOCKER() {
+			cmd := exec.Command("go", "get", "-v", "-d", "github.com/therecipe/qt/internal/binding/files/docs/"+utils.QT_API(utils.QT_VERSION()))
+			cmd.Dir = path
+			utils.RunCmdOptional(cmd, "go get docs")
+		}
 	}
 
 	moc(path, target, tags, fast, slow, true, -1, false)
