@@ -443,6 +443,14 @@ func GOVERSION() (r string) {
 	if goVersionCache == "" {
 		goVersionCache = strings.Split(RunCmd(exec.Command("go", "version"), "get go version"), " ")[2]
 	}
+	if strings.Contains(goVersionCache, "devel") {
+		if strings.Contains(goVersionCache, "+6741b7009d") { //go build that supports the msvc
+			goVersionCache = "go1.10"
+		} else {
+			goVersionCache = "go1.13"
+		}
+		Log.Warnln("go dev build detected; setting GOVERSION to:", goVersionCache)
+	}
 	r = goVersionCache
 	goVersionCacheMutex.Unlock()
 	return r

@@ -91,8 +91,7 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 
 	if hasUIFiles {
 		uic := utils.ToolPath("uic", target)
-		if (target == "windows" && utils.ExistsFile(uic+".exe")) ||
-			utils.ExistsFile(uic) {
+		if (target == "windows" && utils.ExistsFile(uic+".exe")) || utils.ExistsFile(uic) {
 
 			path := filepath.Join(path, "ui")
 
@@ -794,7 +793,8 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 		name = strings.Replace(name, s, "_", -1)
 	}
 
-	if cachgen := utils.ToolPath("qmlcachegen", target); utils.ExistsFile(cachgen) && quickcompiler {
+	cachgen := utils.ToolPath("qmlcachegen", target)
+	if ((target == "windows" && utils.ExistsFile(cachgen+".exe")) || utils.ExistsFile(cachgen)) && quickcompiler {
 		utils.RemoveAll(rccCpp)
 
 		var filteredFiles []string

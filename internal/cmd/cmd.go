@@ -113,18 +113,6 @@ func InitEnv(target string) {
 		}
 
 		defer func() {
-			if utils.QT_MSVC() {
-				utils.SaveExec(filepath.Join(utils.GOBIN(), "qtenvexc.bat"), fmt.Sprintf("call \"%v\"\r\nset", utils.GOVSVARSPATH()))
-				for _, s := range strings.Split(utils.RunCmdOptional(exec.Command(".\\qtenvexc.bat"), fmt.Sprintf("run qtenvexc for %v on %v", target, runtime.GOOS)), "\r\n") {
-					if !strings.Contains(s, "=") {
-						continue
-					}
-					es := strings.Split(s, "=")
-					os.Setenv(es[0], strings.Join(es[1:], "="))
-				}
-				utils.RemoveAll(filepath.Join(utils.GOBIN(), "qtenvexc.bat"))
-			}
-
 			QT_MSVC := utils.QT_MSVC()
 			os.Unsetenv("QT_MSVC")
 			qtenvPath := filepath.Join(filepath.Dir(utils.ToolPath("qmake", target)), "qtenv2.bat")
@@ -136,6 +124,16 @@ func InitEnv(target string) {
 			}
 			if QT_MSVC {
 				os.Setenv("QT_MSVC", "true")
+
+				utils.SaveExec(filepath.Join(utils.GOBIN(), "qtenvexc.bat"), fmt.Sprintf("call \"%v\"\r\nset", utils.GOVSVARSPATH()))
+				for _, s := range strings.Split(utils.RunCmdOptional(exec.Command(filepath.Join(utils.GOBIN(), "qtenvexc.bat")), fmt.Sprintf("run qtenvexc for %v on %v", target, runtime.GOOS)), "\r\n") {
+					if !strings.Contains(s, "=") {
+						continue
+					}
+					es := strings.Split(s, "=")
+					os.Setenv(es[0], strings.Join(es[1:], "="))
+				}
+				utils.RemoveAll(filepath.Join(utils.GOBIN(), "qtenvexc.bat"))
 			}
 
 			for i, dPath := range []string{filepath.Join(runtime.GOROOT(), "bin", "qtenv.bat"), filepath.Join(utils.GOBIN(), "qtenv.bat")} {

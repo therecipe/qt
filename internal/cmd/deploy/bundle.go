@@ -491,6 +491,15 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 			}
 
 			dep := exec.Command(utils.ToolPath("windeployqt", target))
+			if utils.QT_MSVC() {
+				env, _, _, _ := cmd.BuildEnv(target, "", "")
+				for k, v := range env {
+					if strings.Contains(v, "mingw") {
+						v = strings.Replace(v, "mingw", "_break_", -1)
+					}
+					dep.Env = append(dep.Env, fmt.Sprintf("%v=%v", k, v))
+				}
+			}
 			dep.Args = append(dep.Args, "--verbose=2", "--force", fmt.Sprintf("--qmldir=%v", path), filepath.Join(depPath, name+".exe"))
 			utils.RunCmd(dep, fmt.Sprintf("deploy for %v on %v", target, runtime.GOOS))
 
