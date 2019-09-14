@@ -29,7 +29,7 @@ func Minimal(path, target, tags string) {
 		if utils.QT_DOCKER() {
 			cmd := exec.Command("go", "get", "-v", "-d", "github.com/therecipe/qt/internal/binding/files/docs/"+utils.QT_API(utils.QT_VERSION())) //TODO: needs to pull 5.8.0 if QT_WEBKIT
 			cmd.Dir = path
-			utils.RunCmd(cmd, "go get docs")
+			utils.RunCmdOptional(cmd, "go get docs") //TODO: this can fail if QT_PKG_CONFIG
 
 			if strings.HasPrefix(target, "sailfish") || strings.HasPrefix(target, "android") { //TODO: generate android and sailfish minimal instead
 				cmd := exec.Command(filepath.Join(utils.GOBIN(), "qtsetup"), "generate", target)
