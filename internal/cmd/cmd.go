@@ -40,12 +40,17 @@ func ParseFlags() bool {
 
 	runtime.GOMAXPROCS(*p)
 
+	var forDocker bool
+	if d := flag.Lookup("docker"); d != nil {
+		forDocker = d.Value.String() == "true"
+	}
+
 	if api := *qt_api; api != "" {
 		os.Setenv("QT_API", api)
 	}
 
 	_, err := exec.LookPath("go")
-	if api := utils.QT_API(""); api != "" && err == nil && !utils.QT_DOCKER() {
+	if api := utils.QT_API(""); api != "" && err == nil && !utils.QT_DOCKER() && !forDocker {
 		if utils.GoListOptional("{{.Dir}}", "github.com/therecipe/qt/internal/binding/files/docs/"+api, "-find", "get doc dir") == "" {
 			utils.Log.Errorf("invalid api version provided: '%v'", api)
 			fmt.Println("valid api versions are:") //TODO: if only one api version is available, use it

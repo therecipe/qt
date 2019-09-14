@@ -19553,6 +19553,14 @@ func NewQDesktopWidgetFromPointer(ptr unsafe.Pointer) (n *QDesktopWidget) {
 	n.SetPointer(ptr)
 	return
 }
+func NewQDesktopWidget() *QDesktopWidget {
+	tmpValue := NewQDesktopWidgetFromPointer(C.QDesktopWidget_NewQDesktopWidget())
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
+
 func (ptr *QDesktopWidget) AvailableGeometry(screen int) *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QDesktopWidget_AvailableGeometry(ptr.Pointer(), C.int(int32(screen))))
@@ -19799,6 +19807,53 @@ func (ptr *QDesktopWidget) DisconnectWorkAreaResized() {
 func (ptr *QDesktopWidget) WorkAreaResized(screen int) {
 	if ptr.Pointer() != nil {
 		C.QDesktopWidget_WorkAreaResized(ptr.Pointer(), C.int(int32(screen)))
+	}
+}
+
+//export callbackQDesktopWidget_DestroyQDesktopWidget
+func callbackQDesktopWidget_DestroyQDesktopWidget(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "~QDesktopWidget"); signal != nil {
+		(*(*func())(signal))()
+	} else {
+		NewQDesktopWidgetFromPointer(ptr).DestroyQDesktopWidgetDefault()
+	}
+}
+
+func (ptr *QDesktopWidget) ConnectDestroyQDesktopWidget(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "~QDesktopWidget"); signal != nil {
+			f := func() {
+				(*(*func())(signal))()
+				f()
+			}
+			qt.ConnectSignal(ptr.Pointer(), "~QDesktopWidget", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "~QDesktopWidget", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QDesktopWidget) DisconnectDestroyQDesktopWidget() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "~QDesktopWidget")
+	}
+}
+
+func (ptr *QDesktopWidget) DestroyQDesktopWidget() {
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_DestroyQDesktopWidget(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *QDesktopWidget) DestroyQDesktopWidgetDefault() {
+	if ptr.Pointer() != nil {
+		C.QDesktopWidget_DestroyQDesktopWidgetDefault(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 

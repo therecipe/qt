@@ -30,7 +30,10 @@ extern "C" {
 
 struct QtQuick_PackedString { char* data; long long len; };
 struct QtQuick_PackedList { void* data; long long len; };
+void* QQuickAsyncImageProvider_NewQQuickAsyncImageProvider();
 void* QQuickAsyncImageProvider_RequestImageResponse(void* ptr, struct QtQuick_PackedString id, void* requestedSize);
+void QQuickAsyncImageProvider_DestroyQQuickAsyncImageProvider(void* ptr);
+void QQuickAsyncImageProvider_DestroyQQuickAsyncImageProviderDefault(void* ptr);
 char QQuickFramebufferObject_MirrorVertically(void* ptr);
 void QQuickFramebufferObject_ConnectMirrorVerticallyChanged(void* ptr);
 void QQuickFramebufferObject_DisconnectMirrorVerticallyChanged(void* ptr);

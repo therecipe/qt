@@ -86,6 +86,7 @@
 #include <QWebEngineProfile>
 #include <QWebEngineQuotaRequest>
 #include <QWebEngineRegisterProtocolHandlerRequest>
+#include <QWebEngineSettings>
 #include <QWebEngineUrlRequestInfo>
 #include <QWebEngineUrlRequestInterceptor>
 #include <QWebEngineUrlRequestJob>
@@ -2851,6 +2852,96 @@ void QWebEngineRegisterProtocolHandlerRequest_Reject(void* ptr)
 struct QtWebEngine_PackedString QWebEngineRegisterProtocolHandlerRequest_Scheme(void* ptr)
 {
 	return ({ QByteArray t21b2e9 = static_cast<QWebEngineRegisterProtocolHandlerRequest*>(ptr)->scheme().toUtf8(); QtWebEngine_PackedString { const_cast<char*>(t21b2e9.prepend("WHITESPACE").constData()+10), t21b2e9.size()-10 }; });
+}
+
+void* QWebEngineSettings_NewQWebEngineSettings2(void* parentSettings)
+{
+	return new QWebEngineSettings(static_cast<QWebEngineSettings*>(parentSettings));
+}
+
+void* QWebEngineSettings_QWebEngineSettings_DefaultSettings()
+{
+	return QWebEngineSettings::defaultSettings();
+}
+
+struct QtWebEngine_PackedString QWebEngineSettings_DefaultTextEncoding(void* ptr)
+{
+	return ({ QByteArray t01cf63 = static_cast<QWebEngineSettings*>(ptr)->defaultTextEncoding().toUtf8(); QtWebEngine_PackedString { const_cast<char*>(t01cf63.prepend("WHITESPACE").constData()+10), t01cf63.size()-10 }; });
+}
+
+struct QtWebEngine_PackedString QWebEngineSettings_FontFamily(void* ptr, long long which)
+{
+	return ({ QByteArray t118959 = static_cast<QWebEngineSettings*>(ptr)->fontFamily(static_cast<QWebEngineSettings::FontFamily>(which)).toUtf8(); QtWebEngine_PackedString { const_cast<char*>(t118959.prepend("WHITESPACE").constData()+10), t118959.size()-10 }; });
+}
+
+int QWebEngineSettings_FontSize(void* ptr, long long ty)
+{
+	return static_cast<QWebEngineSettings*>(ptr)->fontSize(static_cast<QWebEngineSettings::FontSize>(ty));
+}
+
+void* QWebEngineSettings_QWebEngineSettings_GlobalSettings()
+{
+	return QWebEngineSettings::globalSettings();
+}
+
+void QWebEngineSettings_ResetAttribute(void* ptr, long long attr)
+{
+	static_cast<QWebEngineSettings*>(ptr)->resetAttribute(static_cast<QWebEngineSettings::WebAttribute>(attr));
+}
+
+void QWebEngineSettings_ResetFontFamily(void* ptr, long long which)
+{
+	static_cast<QWebEngineSettings*>(ptr)->resetFontFamily(static_cast<QWebEngineSettings::FontFamily>(which));
+}
+
+void QWebEngineSettings_ResetFontSize(void* ptr, long long ty)
+{
+	static_cast<QWebEngineSettings*>(ptr)->resetFontSize(static_cast<QWebEngineSettings::FontSize>(ty));
+}
+
+void QWebEngineSettings_ResetUnknownUrlSchemePolicy(void* ptr)
+{
+	static_cast<QWebEngineSettings*>(ptr)->resetUnknownUrlSchemePolicy();
+}
+
+void QWebEngineSettings_SetAttribute(void* ptr, long long attr, char on)
+{
+	static_cast<QWebEngineSettings*>(ptr)->setAttribute(static_cast<QWebEngineSettings::WebAttribute>(attr), on != 0);
+}
+
+void QWebEngineSettings_SetDefaultTextEncoding(void* ptr, struct QtWebEngine_PackedString encoding)
+{
+	static_cast<QWebEngineSettings*>(ptr)->setDefaultTextEncoding(QString::fromUtf8(encoding.data, encoding.len));
+}
+
+void QWebEngineSettings_SetFontFamily(void* ptr, long long which, struct QtWebEngine_PackedString family)
+{
+	static_cast<QWebEngineSettings*>(ptr)->setFontFamily(static_cast<QWebEngineSettings::FontFamily>(which), QString::fromUtf8(family.data, family.len));
+}
+
+void QWebEngineSettings_SetFontSize(void* ptr, long long ty, int size)
+{
+	static_cast<QWebEngineSettings*>(ptr)->setFontSize(static_cast<QWebEngineSettings::FontSize>(ty), size);
+}
+
+void QWebEngineSettings_SetUnknownUrlSchemePolicy(void* ptr, long long policy)
+{
+	static_cast<QWebEngineSettings*>(ptr)->setUnknownUrlSchemePolicy(static_cast<QWebEngineSettings::UnknownUrlSchemePolicy>(policy));
+}
+
+char QWebEngineSettings_TestAttribute(void* ptr, long long attr)
+{
+	return static_cast<QWebEngineSettings*>(ptr)->testAttribute(static_cast<QWebEngineSettings::WebAttribute>(attr));
+}
+
+long long QWebEngineSettings_UnknownUrlSchemePolicy(void* ptr)
+{
+	return static_cast<QWebEngineSettings*>(ptr)->unknownUrlSchemePolicy();
+}
+
+void QWebEngineSettings_DestroyQWebEngineSettings(void* ptr)
+{
+	static_cast<QWebEngineSettings*>(ptr)->~QWebEngineSettings();
 }
 
 void QWebEngineUrlRequestInfo_Block(void* ptr, char shouldBlock)

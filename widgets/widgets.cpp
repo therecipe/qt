@@ -10970,10 +10970,14 @@ void QDateTimeEdit_DestroyQDateTimeEditDefault(void* ptr)
 class MyQDesktopWidget: public QDesktopWidget
 {
 public:
+	MyQDesktopWidget() : QDesktopWidget() {QDesktopWidget_QDesktopWidget_QRegisterMetaType();};
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_PrimaryScreenChanged() { callbackQDesktopWidget_PrimaryScreenChanged(this); };
+	void resizeEvent(QResizeEvent * e) { callbackQWidget_ResizeEvent(this, e); };
 	void Signal_Resized(int screen) { callbackQDesktopWidget_Resized(this, screen); };
 	void Signal_ScreenCountChanged(int newCount) { callbackQDesktopWidget_ScreenCountChanged(this, newCount); };
 	void Signal_WorkAreaResized(int screen) { callbackQDesktopWidget_WorkAreaResized(this, screen); };
+	 ~MyQDesktopWidget() { callbackQDesktopWidget_DestroyQDesktopWidget(this); };
 	void actionEvent(QActionEvent * event) { callbackQWidget_ActionEvent(this, event); };
 	void changeEvent(QEvent * event) { callbackQWidget_ChangeEvent(this, event); };
 	bool close() { return callbackQWidget_Close(this) != 0; };
@@ -11012,7 +11016,6 @@ public:
 	void paintEvent(QPaintEvent * event) { callbackQWidget_PaintEvent(this, event); };
 	void raise() { callbackQWidget_Raise(this); };
 	void repaint() { callbackQWidget_Repaint(this); };
-	void resizeEvent(QResizeEvent * event) { callbackQWidget_ResizeEvent(this, event); };
 	void setDisabled(bool disable) { callbackQWidget_SetDisabled(this, disable); };
 	void setEnabled(bool vbo) { callbackQWidget_SetEnabled(this, vbo); };
 	void setFocus() { callbackQWidget_SetFocus2(this); };
@@ -11041,7 +11044,6 @@ public:
 	void Signal_Destroyed(QObject * obj) { callbackQWidget_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQWidget_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQWidget_EventFilter(this, watched, event) != 0; };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWidgets_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQWidget_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQWidget_TimerEvent(this, event); };
 };
@@ -11049,6 +11051,11 @@ public:
 Q_DECLARE_METATYPE(MyQDesktopWidget*)
 
 int QDesktopWidget_QDesktopWidget_QRegisterMetaType(){qRegisterMetaType<QDesktopWidget*>(); return qRegisterMetaType<MyQDesktopWidget*>();}
+
+void* QDesktopWidget_NewQDesktopWidget()
+{
+	return new MyQDesktopWidget();
+}
 
 void* QDesktopWidget_AvailableGeometry(void* ptr, int screen)
 {
@@ -11163,6 +11170,17 @@ void QDesktopWidget_DisconnectWorkAreaResized(void* ptr)
 void QDesktopWidget_WorkAreaResized(void* ptr, int screen)
 {
 	static_cast<QDesktopWidget*>(ptr)->workAreaResized(screen);
+}
+
+void QDesktopWidget_DestroyQDesktopWidget(void* ptr)
+{
+	static_cast<QDesktopWidget*>(ptr)->~QDesktopWidget();
+}
+
+void QDesktopWidget_DestroyQDesktopWidgetDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
 }
 
 class MyQDial: public QDial

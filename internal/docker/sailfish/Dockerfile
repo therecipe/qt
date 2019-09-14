@@ -73,6 +73,8 @@ RUN ln -s $SF_SDK_TOOLING_DIR/usr/lib/libglib-2.0.so.0 /usr/lib/
 RUN ln -s $SF_SDK_TOOLING_DIR/usr/lib/libpcre.so.1 /usr/lib/
 RUN ln -s $SF_SDK_TOOLING_DIR/usr/lib/libdw.so.1 /usr/lib/
 
+RUN ln -s $SF_SDK_TOOLING_DIR/lib/libcrypto.so.10 /usr/lib/
+
 RUN $GOPATH/bin/qtsetup prep
 
 RUN $GOPATH/bin/qtsetup generate sailfish

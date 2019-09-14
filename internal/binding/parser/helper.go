@@ -2,6 +2,7 @@ package parser
 
 import (
 	"bytes"
+	"encoding/json"
 	"fmt"
 	"runtime"
 	"sort"
@@ -500,6 +501,9 @@ func Dump() {
 		var bb = new(bytes.Buffer)
 		defer bb.Reset()
 
+		fmt.Fprint(bb, "class\n\n")
+		fmt.Fprintln(bb, c)
+
 		fmt.Fprint(bb, "funcs\n\n")
 		for _, f := range c.Functions {
 			fmt.Fprintln(bb, f)
@@ -509,6 +513,10 @@ func Dump() {
 		for _, e := range c.Enums {
 			fmt.Fprintln(bb, e)
 		}
+
+		fmt.Fprint(bb, "json\n\n")
+		jb, _ := json.Marshal(c)
+		bb.Write(jb)
 
 		utils.MkdirAll(utils.GoQtPkgPath("internal", "binding", "dump", c.Module))
 		utils.SaveBytes(utils.GoQtPkgPath("internal", "binding", "dump", c.Module, fmt.Sprintf("%v.txt", c.Name)), bb.Bytes())

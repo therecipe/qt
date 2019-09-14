@@ -168,18 +168,16 @@ func (c *Class) fixGeneral_Version() {
 				})
 			}
 		}
-	case "QDesktopWidget":
-		{
-			for _, f := range c.Functions {
-				f.Status = "active"
-			}
-		}
 
-	case "QWebEnginePage", "QWebEngineView", "QWebEngineClientCertificateSelection":
+	case "QWebEnginePage", "QWebEngineView", "QWebEngineClientCertificateSelection", "QWebEngineSettings",
+		"QDesktopWidget", "QQuickAsyncImageProvider":
 		{
 			for _, f := range c.Functions {
 				if !((f.Name == "QWebEnginePage" && f.OverloadNumber == "3") ||
-					(f.Name == "QWebEngineView" && f.OverloadNumber == "2")) {
+					(f.Name == "QWebEngineView" && f.OverloadNumber == "2") ||
+					f.Name == "QWebEngineSettings" && !f.Overload ||
+					f.Name == "QDesktopWidget" && f.Overload) {
+
 					f.Status = "active"
 					f.Access = "public"
 				}

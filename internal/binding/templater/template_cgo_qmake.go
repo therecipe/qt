@@ -33,6 +33,10 @@ func CgoTemplateSafe(module, path, target string, mode int, ipkg, tags string, l
 func cgoTemplate(module, path, target string, mode int, ipkg, tags string, libs []string) (o string) {
 	utils.Log.WithField("module", module).WithField("path", path).WithField("target", target).WithField("mode", mode).WithField("pkg", ipkg).Debug("running cgoTemplate")
 
+	if utils.UseGOMOD(utils.GoQtPkgPath("core")) {
+		utils.MkdirAll(utils.GoQtPkgPath(strings.ToLower(module)))
+	}
+
 	switch module {
 	case "AndroidExtras":
 		if !(target == "android" || target == "android-emulator") {

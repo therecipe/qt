@@ -11,6 +11,10 @@ import (
 )
 
 func GenModule(m, target string, mode int) {
+	if os.Getenv("QT_DUMP") == "true" {
+		defer parser.Dump()
+	}
+
 	if !parser.ShouldBuildForTarget(m, target) {
 		utils.Log.WithField("module", m).Debug("skip generation")
 		return

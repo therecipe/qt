@@ -1580,14 +1580,8 @@ func NewQQuickAsyncImageProviderFromPointer(ptr unsafe.Pointer) (n *QQuickAsyncI
 	n.SetPointer(ptr)
 	return
 }
-
-func (ptr *QQuickAsyncImageProvider) DestroyQQuickAsyncImageProvider() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(ptr.Pointer(), "")
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
+func NewQQuickAsyncImageProvider() *QQuickAsyncImageProvider {
+	return NewQQuickAsyncImageProviderFromPointer(C.QQuickAsyncImageProvider_NewQQuickAsyncImageProvider())
 }
 
 //export callbackQQuickAsyncImageProvider_RequestImageResponse
@@ -1635,6 +1629,51 @@ func (ptr *QQuickAsyncImageProvider) RequestImageResponse(id string, requestedSi
 		return tmpValue
 	}
 	return nil
+}
+
+//export callbackQQuickAsyncImageProvider_DestroyQQuickAsyncImageProvider
+func callbackQQuickAsyncImageProvider_DestroyQQuickAsyncImageProvider(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "~QQuickAsyncImageProvider"); signal != nil {
+		(*(*func())(signal))()
+	} else {
+		NewQQuickAsyncImageProviderFromPointer(ptr).DestroyQQuickAsyncImageProviderDefault()
+	}
+}
+
+func (ptr *QQuickAsyncImageProvider) ConnectDestroyQQuickAsyncImageProvider(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "~QQuickAsyncImageProvider"); signal != nil {
+			f := func() {
+				(*(*func())(signal))()
+				f()
+			}
+			qt.ConnectSignal(ptr.Pointer(), "~QQuickAsyncImageProvider", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "~QQuickAsyncImageProvider", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QQuickAsyncImageProvider) DisconnectDestroyQQuickAsyncImageProvider() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "~QQuickAsyncImageProvider")
+	}
+}
+
+func (ptr *QQuickAsyncImageProvider) DestroyQQuickAsyncImageProvider() {
+	if ptr.Pointer() != nil {
+		C.QQuickAsyncImageProvider_DestroyQQuickAsyncImageProvider(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QQuickAsyncImageProvider) DestroyQQuickAsyncImageProviderDefault() {
+	if ptr.Pointer() != nil {
+		C.QQuickAsyncImageProvider_DestroyQQuickAsyncImageProviderDefault(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 type QQuickFolderListModel struct {

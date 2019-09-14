@@ -51,9 +51,15 @@ func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast b
 				utils.RunCmd(cmd, "go mod vendor")
 			}
 			if utils.QT_DOCKER() {
-				cmd := exec.Command("go", "get", "-v", "-d", "github.com/therecipe/qt/internal/binding/files/docs/"+utils.QT_API(utils.QT_VERSION()))
+				cmd := exec.Command("go", "get", "-v", "-d", "github.com/therecipe/qt/internal/binding/files/docs/"+utils.QT_API(utils.QT_VERSION())) //TODO: needs to pull 5.8.0 if QT_WEBKIT
 				cmd.Dir = path
-				utils.RunCmdOptional(cmd, "go get docs")
+				utils.RunCmd(cmd, "go get docs")
+
+				if strings.HasPrefix(target, "sailfish") || strings.HasPrefix(target, "android") { //TODO: generate android and sailfish minimal instead
+					cmd := exec.Command(filepath.Join(utils.GOBIN(), "qtsetup"), "generate", target)
+					cmd.Dir = path
+					utils.RunCmd(cmd, "run setup")
+				}
 			}
 		}
 

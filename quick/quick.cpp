@@ -128,7 +128,9 @@
 class MyQQuickAsyncImageProvider: public QQuickAsyncImageProvider
 {
 public:
+	MyQQuickAsyncImageProvider() : QQuickAsyncImageProvider() {};
 	QQuickImageResponse * requestImageResponse(const QString & id, const QSize & requestedSize) { QByteArray t87ea5d = id.toUtf8(); QtQuick_PackedString idPacked = { const_cast<char*>(t87ea5d.prepend("WHITESPACE").constData()+10), t87ea5d.size()-10 };return static_cast<QQuickImageResponse*>(callbackQQuickAsyncImageProvider_RequestImageResponse(this, idPacked, const_cast<QSize*>(&requestedSize))); };
+	 ~MyQQuickAsyncImageProvider() { callbackQQuickAsyncImageProvider_DestroyQQuickAsyncImageProvider(this); };
 	QQmlImageProviderBase::Flags flags() const { return static_cast<QQmlImageProviderBase::Flag>(callbackQQuickImageProvider_Flags(const_cast<void*>(static_cast<const void*>(this)))); };
 	QQmlImageProviderBase::ImageType imageType() const { return static_cast<QQmlImageProviderBase::ImageType>(callbackQQuickImageProvider_ImageType(const_cast<void*>(static_cast<const void*>(this)))); };
 	QImage requestImage(const QString & id, QSize * size, const QSize & requestedSize) { QByteArray t87ea5d = id.toUtf8(); QtQuick_PackedString idPacked = { const_cast<char*>(t87ea5d.prepend("WHITESPACE").constData()+10), t87ea5d.size()-10 };return *static_cast<QImage*>(callbackQQuickImageProvider_RequestImage(this, idPacked, size, const_cast<QSize*>(&requestedSize))); };
@@ -136,9 +138,25 @@ public:
 	QQuickTextureFactory * requestTexture(const QString & id, QSize * size, const QSize & requestedSize) { QByteArray t87ea5d = id.toUtf8(); QtQuick_PackedString idPacked = { const_cast<char*>(t87ea5d.prepend("WHITESPACE").constData()+10), t87ea5d.size()-10 };return static_cast<QQuickTextureFactory*>(callbackQQuickImageProvider_RequestTexture(this, idPacked, size, const_cast<QSize*>(&requestedSize))); };
 };
 
+void* QQuickAsyncImageProvider_NewQQuickAsyncImageProvider()
+{
+	return new MyQQuickAsyncImageProvider();
+}
+
 void* QQuickAsyncImageProvider_RequestImageResponse(void* ptr, struct QtQuick_PackedString id, void* requestedSize)
 {
 	return static_cast<QQuickAsyncImageProvider*>(ptr)->requestImageResponse(QString::fromUtf8(id.data, id.len), *static_cast<QSize*>(requestedSize));
+}
+
+void QQuickAsyncImageProvider_DestroyQQuickAsyncImageProvider(void* ptr)
+{
+	static_cast<QQuickAsyncImageProvider*>(ptr)->~QQuickAsyncImageProvider();
+}
+
+void QQuickAsyncImageProvider_DestroyQQuickAsyncImageProviderDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
 }
 
 class MyQQuickFramebufferObject: public QQuickFramebufferObject

@@ -6639,14 +6639,6 @@ func NewQWebEngineSettingsFromPointer(ptr unsafe.Pointer) (n *QWebEngineSettings
 	return
 }
 
-func (ptr *QWebEngineSettings) DestroyQWebEngineSettings() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
-}
-
 //go:generate stringer -type=QWebEngineSettings__FontFamily
 //QWebEngineSettings::FontFamily
 type QWebEngineSettings__FontFamily int64
@@ -6719,6 +6711,135 @@ const (
 	QWebEngineSettings__AllowUnknownUrlSchemesFromUserInteraction QWebEngineSettings__UnknownUrlSchemePolicy = QWebEngineSettings__UnknownUrlSchemePolicy(2)
 	QWebEngineSettings__AllowAllUnknownUrlSchemes                 QWebEngineSettings__UnknownUrlSchemePolicy = QWebEngineSettings__UnknownUrlSchemePolicy(3)
 )
+
+func NewQWebEngineSettings2(parentSettings QWebEngineSettings_ITF) *QWebEngineSettings {
+	tmpValue := NewQWebEngineSettingsFromPointer(C.QWebEngineSettings_NewQWebEngineSettings2(PointerFromQWebEngineSettings(parentSettings)))
+	runtime.SetFinalizer(tmpValue, (*QWebEngineSettings).DestroyQWebEngineSettings)
+	return tmpValue
+}
+
+func QWebEngineSettings_DefaultSettings() *QWebEngineSettings {
+	return NewQWebEngineSettingsFromPointer(C.QWebEngineSettings_QWebEngineSettings_DefaultSettings())
+}
+
+func (ptr *QWebEngineSettings) DefaultSettings() *QWebEngineSettings {
+	return NewQWebEngineSettingsFromPointer(C.QWebEngineSettings_QWebEngineSettings_DefaultSettings())
+}
+
+func (ptr *QWebEngineSettings) DefaultTextEncoding() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QWebEngineSettings_DefaultTextEncoding(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QWebEngineSettings) FontFamily(which QWebEngineSettings__FontFamily) string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QWebEngineSettings_FontFamily(ptr.Pointer(), C.longlong(which)))
+	}
+	return ""
+}
+
+func (ptr *QWebEngineSettings) FontSize(ty QWebEngineSettings__FontSize) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QWebEngineSettings_FontSize(ptr.Pointer(), C.longlong(ty))))
+	}
+	return 0
+}
+
+func QWebEngineSettings_GlobalSettings() *QWebEngineSettings {
+	return NewQWebEngineSettingsFromPointer(C.QWebEngineSettings_QWebEngineSettings_GlobalSettings())
+}
+
+func (ptr *QWebEngineSettings) GlobalSettings() *QWebEngineSettings {
+	return NewQWebEngineSettingsFromPointer(C.QWebEngineSettings_QWebEngineSettings_GlobalSettings())
+}
+
+func (ptr *QWebEngineSettings) ResetAttribute(attr QWebEngineSettings__WebAttribute) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineSettings_ResetAttribute(ptr.Pointer(), C.longlong(attr))
+	}
+}
+
+func (ptr *QWebEngineSettings) ResetFontFamily(which QWebEngineSettings__FontFamily) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineSettings_ResetFontFamily(ptr.Pointer(), C.longlong(which))
+	}
+}
+
+func (ptr *QWebEngineSettings) ResetFontSize(ty QWebEngineSettings__FontSize) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineSettings_ResetFontSize(ptr.Pointer(), C.longlong(ty))
+	}
+}
+
+func (ptr *QWebEngineSettings) ResetUnknownUrlSchemePolicy() {
+	if ptr.Pointer() != nil {
+		C.QWebEngineSettings_ResetUnknownUrlSchemePolicy(ptr.Pointer())
+	}
+}
+
+func (ptr *QWebEngineSettings) SetAttribute(attr QWebEngineSettings__WebAttribute, on bool) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineSettings_SetAttribute(ptr.Pointer(), C.longlong(attr), C.char(int8(qt.GoBoolToInt(on))))
+	}
+}
+
+func (ptr *QWebEngineSettings) SetDefaultTextEncoding(encoding string) {
+	if ptr.Pointer() != nil {
+		var encodingC *C.char
+		if encoding != "" {
+			encodingC = C.CString(encoding)
+			defer C.free(unsafe.Pointer(encodingC))
+		}
+		C.QWebEngineSettings_SetDefaultTextEncoding(ptr.Pointer(), C.struct_QtWebEngine_PackedString{data: encodingC, len: C.longlong(len(encoding))})
+	}
+}
+
+func (ptr *QWebEngineSettings) SetFontFamily(which QWebEngineSettings__FontFamily, family string) {
+	if ptr.Pointer() != nil {
+		var familyC *C.char
+		if family != "" {
+			familyC = C.CString(family)
+			defer C.free(unsafe.Pointer(familyC))
+		}
+		C.QWebEngineSettings_SetFontFamily(ptr.Pointer(), C.longlong(which), C.struct_QtWebEngine_PackedString{data: familyC, len: C.longlong(len(family))})
+	}
+}
+
+func (ptr *QWebEngineSettings) SetFontSize(ty QWebEngineSettings__FontSize, size int) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineSettings_SetFontSize(ptr.Pointer(), C.longlong(ty), C.int(int32(size)))
+	}
+}
+
+func (ptr *QWebEngineSettings) SetUnknownUrlSchemePolicy(policy QWebEngineSettings__UnknownUrlSchemePolicy) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineSettings_SetUnknownUrlSchemePolicy(ptr.Pointer(), C.longlong(policy))
+	}
+}
+
+func (ptr *QWebEngineSettings) TestAttribute(attr QWebEngineSettings__WebAttribute) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QWebEngineSettings_TestAttribute(ptr.Pointer(), C.longlong(attr))) != 0
+	}
+	return false
+}
+
+func (ptr *QWebEngineSettings) UnknownUrlSchemePolicy() QWebEngineSettings__UnknownUrlSchemePolicy {
+	if ptr.Pointer() != nil {
+		return QWebEngineSettings__UnknownUrlSchemePolicy(C.QWebEngineSettings_UnknownUrlSchemePolicy(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QWebEngineSettings) DestroyQWebEngineSettings() {
+	if ptr.Pointer() != nil {
+		C.QWebEngineSettings_DestroyQWebEngineSettings(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
 
 type QWebEngineUrlRequestInfo struct {
 	ptr unsafe.Pointer

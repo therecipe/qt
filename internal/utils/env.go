@@ -20,7 +20,30 @@ func QT_VERSION() string {
 	if version, ok := os.LookupEnv("QT_VERSION"); ok {
 		return version
 	}
-	if QT_PKG_CONFIG() {
+
+	switch {
+	case QT_MXE():
+		return "5.13.0"
+
+	case os.Getenv("QT_HOMEBREW") == "true":
+		return "5.13.0"
+
+	case QT_MACPORTS(), QT_NIX(), QT_FELGO():
+		return "5.11.1"
+
+	case QT_MSYS2():
+		return "5.12.0"
+
+	case QT_UBPORTS_VERSION() == "xenial":
+		return "5.9.0"
+
+	case QT_SAILFISH():
+		return "5.6.3"
+
+	case QT_RPI():
+		return "5.7.0"
+
+	case QT_PKG_CONFIG():
 		var r string
 		qtVersionCacheMutex.Lock()
 		if qtVersionCache == "" {
@@ -29,14 +52,10 @@ func QT_VERSION() string {
 		r = qtVersionCache
 		qtVersionCacheMutex.Unlock()
 		return r
-	}
 
-	//TODO: proper def version for macports, mxe, msys, homebrew, ...
-
-	if QT_FELGO() {
-		return "5.11.1"
+	default:
+		return "5.13.0"
 	}
-	return "5.13.0"
 }
 
 func QT_VERSION_NUM() int {
@@ -440,11 +459,13 @@ func GOVERSION() (r string) {
 		return "go1.10"
 	}
 	goVersionCacheMutex.Lock()
+	var version string
 	if goVersionCache == "" {
-		goVersionCache = strings.Split(RunCmd(exec.Command("go", "version"), "get go version"), " ")[2]
+		version = RunCmd(exec.Command("go", "version"), "get go version")
+		goVersionCache = strings.Split(version, " ")[2]
 	}
-	if strings.Contains(goVersionCache, "devel") {
-		if strings.Contains(goVersionCache, "+6741b7009d") { //go build that supports the msvc
+	if strings.Contains(version, "devel") {
+		if strings.Contains(version, "+6741b7009d") { //go build that supports the msvc
 			goVersionCache = "go1.10"
 		} else {
 			goVersionCache = "go1.13"
