@@ -16,7 +16,7 @@ ENV USER user
 ENV HOME /home/$USER
 ENV GOPATH C:\\gopath
 ENV WINEDEBUG -all
-ENV WINEPATH C:\\Qt\\Qt5.12.4\\Tools\\mingw730_64\\bin;C:\\go\\bin
+ENV WINEPATH C:\\go\\bin
 
 COPY --from=base $HOME/.wine/drive_c/go $HOME/.wine/drive_c/go
 COPY --from=base $HOME/.wine/drive_c/gopath/bin $HOME/.wine/drive_c/gopath/bin

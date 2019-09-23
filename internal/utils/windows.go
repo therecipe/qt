@@ -5,6 +5,7 @@ import (
 	"os"
 	"path/filepath"
 	"runtime"
+	"strings"
 )
 
 func QT_MSYS2() bool {
@@ -73,7 +74,7 @@ func windowsSystemDrive() string {
 func MINGWDIR() string {
 	if QT_MSVC() {
 		if GOARCH() == "386" {
-			return "msvc2017_32"
+			return "msvc2017"
 		}
 		return "msvc2017_64"
 	}
@@ -86,12 +87,20 @@ func MINGWDIR() string {
 }
 
 func MINGWTOOLSDIR() string {
+	version := "mingw730_64"
 	if QT_VERSION_NUM() >= 5122 {
 		if GOARCH() == "386" {
-			return "mingw730_32"
+			version = "mingw730_32"
 		}
 	}
-	return "mingw730_64"
+	path := filepath.Join(QT_DIR(), "Tools", version, "bin")
+	if !ExistsDir(path) {
+		path = strings.Replace(path, version, "mingw530_32", -1)
+	}
+	if !ExistsDir(path) {
+		path = strings.Replace(path, "mingw530_32", "mingw492_32", -1)
+	}
+	return path
 }
 
 func QT_MSVC() bool {

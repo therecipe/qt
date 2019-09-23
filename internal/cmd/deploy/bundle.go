@@ -370,23 +370,21 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 				break
 			}
 
-			paths := make([]string, 0)
-			// make windeployqt run correctly
-			paths = append(paths, filepath.Join(utils.QT_MSYS2_DIR(), "bin"))
-			paths = append(paths, os.Getenv("PATH"))
-			os.Setenv("PATH", strings.Join(paths, ";"))
-
 			copyCmd := "xcopy"
 			if utils.MSYSTEM() != "" {
 				copyCmd = "cp"
 			}
 
-			deploy := exec.Command(filepath.Join(utils.QT_MSYS2_DIR(), "bin", "windeployqt"))
+			deploy := exec.Command(utils.ToolPath("windeployqt", target))
 			deploy.Args = append(deploy.Args, "--verbose=2", "--force", fmt.Sprintf("--qmldir=%v", path))
 			if utils.QT_DOCKER() {
 				deploy.Args = append(deploy.Args, "--no-translations") //TODO:
 			}
 			deploy.Args = append(deploy.Args, filepath.Join(depPath, name+".exe"))
+			env, _, _, _ := cmd.BuildEnv(target, "", "")
+			for key, value := range env {
+				deploy.Env = append(deploy.Env, fmt.Sprintf("%v=%v", key, value))
+			}
 
 			utils.RunCmd(deploy, fmt.Sprintf("depoy %v on %v", target, runtime.GOOS))
 
@@ -424,7 +422,7 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 			}
 
 			libraryPath = filepath.Join(utils.QT_MSYS2_DIR(), "bin")
-			var output = utils.RunCmd(exec.Command(filepath.Join(utils.QT_MSYS2_DIR(), "bin", "objdump"), "-x", filepath.Join(depPath, name+".exe")), fmt.Sprintf("objdump binary for %v on %v", target, runtime.GOOS))
+			var output = utils.RunCmd(exec.Command(utils.ToolPath("objdump", target), "-x", filepath.Join(depPath, name+".exe")), fmt.Sprintf("objdump binary for %v on %v", target, runtime.GOOS))
 			for lib, deps := range parser.LibDeps {
 				if strings.Contains(output, lib) && lib != parser.MOC {
 					for _, lib := range append(deps, lib) {

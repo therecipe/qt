@@ -235,6 +235,7 @@ func createProject(module, path, target string, mode int, libs []string) {
 	}
 
 	if utils.UseGOMOD(path) && (mode == NONE || mode == MINIMAL) {
+		//TODO: use project root for MINIMAL regardless of go module usage?
 		proPath = filepath.Join(filepath.Dir(utils.GOMOD(path)), fmt.Sprintf("%v.pro", filepath.Base(path)))
 	}
 
@@ -276,6 +277,7 @@ func createMakefile(module, path, target string, mode int) {
 	}
 
 	if utils.UseGOMOD(path) && (mode == NONE || mode == MINIMAL) {
+		//TODO: use project root for MINIMAL regardless of go module usage?
 		proPath = filepath.Join(filepath.Dir(utils.GOMOD(path)), fmt.Sprintf("%v.pro", filepath.Base(path)))
 	}
 
@@ -356,6 +358,9 @@ func createMakefile(module, path, target string, mode int) {
 	} else {
 		cmd.Args = append(cmd.Args, "CONFIG+=release")
 	}
+
+	//needed for QMAKE_MSC_VER bug: https://bugreports.qt.io/browse/QTBUG-59718
+	utils.RemoveAll(filepath.Join(cmd.Dir, ".qmake.stash"))
 
 	if (target == "android" || target == "android-emulator") && runtime.GOOS == "windows" {
 		//TODO: use os.Setenv instead? -->

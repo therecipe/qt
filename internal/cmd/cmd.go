@@ -97,7 +97,7 @@ func ParseFlags() bool {
 }
 
 func InitEnv(target string) {
-	if target != runtime.GOOS || runtime.GOARCH != "amd64" || utils.GOARCH() != "amd64" {
+	if target != runtime.GOOS || runtime.GOARCH != "amd64" || (utils.GOARCH() != "amd64" && !utils.QT_MSVC()) {
 		return
 	}
 
@@ -118,19 +118,30 @@ func InitEnv(target string) {
 		}
 
 		defer func() {
-			QT_MSVC := utils.QT_MSVC()
-			os.Unsetenv("QT_MSVC")
-			qtenvPath := filepath.Join(filepath.Dir(utils.ToolPath("qmake", target)), "qtenv2.bat")
-			for _, s := range strings.Split(utils.Load(qtenvPath), "\r\n") {
-				if strings.HasPrefix(s, "set PATH") {
-					os.Setenv("PATH", strings.TrimPrefix(strings.Replace(s, "%PATH%", os.Getenv("PATH"), -1), "set PATH="))
-					break
+			if utils.QT_MSVC() {
+				var data string
+				if utils.QT_DOCKER() {
+					msvc_version := "14.16.27023"
+					msvc_path := fmt.Sprintf("C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\BuildTools\\VC\\Tools\\MSVC\\%v", msvc_version)
+					mswk_version := "10.0.17763.0"
+					mswk_path := func(m string) string {
+						return fmt.Sprintf("C:\\Program Files (x86)\\Windows Kits\\10\\%v\\%v", m, mswk_version)
+					}
+					msvc_arch := "x64"
+					if utils.GOARCH() == "386" {
+						msvc_arch = "x86"
+					}
+					data = fmt.Sprintf("@echo INCLUDE=%[1]v\\include;%[2]v\\ucrt;%[2]v\\shared;%[2]v\\um\r\n", msvc_path, mswk_path("include"))
+					data += fmt.Sprintf("@echo LIB=%[1]v\\lib\\%[2]v;%[3]v\\ucrt\\%[2]v;%[3]v\\um\\%[2]v\r\n", msvc_path, msvc_arch, mswk_path("lib"))
+					if utils.GOARCH() == "386" {
+						data += fmt.Sprintf("@echo PATH=%[1]v\\bin\\HostX64\\%[2]v;%[1]v\\bin\\HostX64\\x64;%[3]v;%%PATH%%\r\n", msvc_path, msvc_arch, utils.MINGWTOOLSDIR())
+					} else {
+						data += fmt.Sprintf("@echo PATH=%[1]v\\bin\\HostX64\\%[2]v;%[3]v;%%PATH%%\r\n", msvc_path, msvc_arch, utils.MINGWTOOLSDIR())
+					}
+				} else {
+					data = fmt.Sprintf("set PATH=%v;%%PATH%%\r\ncall \"%v\"\r\nset", utils.MINGWTOOLSDIR(), utils.GOVSVARSPATH())
 				}
-			}
-			if QT_MSVC {
-				os.Setenv("QT_MSVC", "true")
-
-				utils.SaveExec(filepath.Join(utils.GOBIN(), "qtenvexc.bat"), fmt.Sprintf("call \"%v\"\r\nset", utils.GOVSVARSPATH()))
+				utils.Save(filepath.Join(utils.GOBIN(), "qtenvexc.bat"), data)
 				for _, s := range strings.Split(utils.RunCmdOptional(exec.Command(filepath.Join(utils.GOBIN(), "qtenvexc.bat")), fmt.Sprintf("run qtenvexc for %v on %v", target, runtime.GOOS)), "\r\n") {
 					if !strings.Contains(s, "=") {
 						continue
@@ -139,24 +150,31 @@ func InitEnv(target string) {
 					os.Setenv(es[0], strings.Join(es[1:], "="))
 				}
 				utils.RemoveAll(filepath.Join(utils.GOBIN(), "qtenvexc.bat"))
-			}
-
-			for i, dPath := range []string{filepath.Join(runtime.GOROOT(), "bin", "qtenv.bat"), filepath.Join(utils.GOBIN(), "qtenv.bat")} {
-				sPath := qtenvPath
-				existed := utils.ExistsFile(dPath)
-				if existed {
-					utils.RemoveAll(dPath)
-				}
-				err := os.Link(sPath, dPath)
-				if i != 0 {
-					continue
-				}
-				if err == nil {
-					if !existed {
-						utils.Log.Infof("successfully created %v symlink in your PATH (%v)", filepath.Base(dPath), dPath)
+			} else {
+				qtenvPath := filepath.Join(filepath.Dir(utils.ToolPath("qmake", target)), "qtenv2.bat")
+				for _, s := range strings.Split(utils.Load(qtenvPath), "\r\n") {
+					if strings.HasPrefix(s, "set PATH") {
+						os.Setenv("PATH", strings.TrimPrefix(strings.Replace(s, "%PATH%", os.Getenv("PATH"), -1), "set PATH="))
+						break
 					}
-				} else {
-					utils.Log.Warnf("failed to create %v symlink in your PATH (%v); please use %v instead", filepath.Base(dPath), dPath, sPath)
+				}
+				for i, dPath := range []string{filepath.Join(runtime.GOROOT(), "bin", "qtenv.bat"), filepath.Join(utils.GOBIN(), "qtenv.bat")} {
+					sPath := qtenvPath
+					existed := utils.ExistsFile(dPath)
+					if existed {
+						utils.RemoveAll(dPath)
+					}
+					err := os.Link(sPath, dPath)
+					if i != 0 {
+						continue
+					}
+					if err == nil {
+						if !existed {
+							utils.Log.Infof("successfully created %v symlink in your PATH (%v)", filepath.Base(dPath), dPath)
+						}
+					} else {
+						utils.Log.Warnf("failed to create %v symlink in your PATH (%v); please use %v instead", filepath.Base(dPath), dPath, sPath)
+					}
 				}
 			}
 		}()
@@ -320,7 +338,7 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 		if err != nil {
 			utils.Log.WithError(err).Error("failed to lookup current user")
 		} else {
-			args = append(args, "-e", fmt.Sprintf("IDUG=%v:%v", u.Uid, u.Gid))
+			args = append(args, "-u", fmt.Sprintf("%v:%v", u.Uid, u.Gid), "-e", fmt.Sprintf("IDUG=%v:%v", u.Uid, u.Gid))
 		}
 	}
 
@@ -725,25 +743,15 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 
 			if utils.QT_MSYS2() {
 				env["GOARCH"] = utils.QT_MSYS2_ARCH()
-				// use gcc shipped with msys2
 				env["PATH"] = filepath.Join(utils.QT_MSYS2_DIR(), "bin") + ";" + env["PATH"]
 			} else {
-				// use gcc shipped with qt installation
-				path := filepath.Join(utils.QT_DIR(), "Tools", utils.MINGWTOOLSDIR(), "bin")
-				if !utils.ExistsDir(path) {
-					path = strings.Replace(path, utils.MINGWTOOLSDIR(), "mingw530_32", -1)
-				}
-				if !utils.ExistsDir(path) {
-					path = strings.Replace(path, "mingw530_32", "mingw492_32", -1)
-				}
-				env["PATH"] = path + ";" + env["PATH"]
+				env["PATH"] = utils.MINGWTOOLSDIR() + ";" + env["PATH"]
 			}
 
 			if utils.QT_MSVC() {
 				env["CC_FOR_CGO"] = "gcc"
 				env["CC"] = "cl"
 			}
-
 		} else {
 			delete(env, "TMP")
 			delete(env, "TEMP")
