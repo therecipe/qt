@@ -1,4 +1,4 @@
-//source: http://doc.qt.io/qt-5/qtqml-referenceexamples-adding-example.html
+//source: https://doc.qt.io/qt-5/qtqml-referenceexamples-adding-example.html
 
 package main
 

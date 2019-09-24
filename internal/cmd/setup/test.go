@@ -62,7 +62,7 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 				filepath.Join("threejs", "planets"),
 			},
 
-			"charts": []string{"audio", "dynamicspline"},
+			"charts": []string{"audio", "dynamicspline", "modeldata"},
 
 			"common": []string{"qml_demo", "widgets_demo"},
 

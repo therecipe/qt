@@ -1,4 +1,4 @@
-//source: http://doc.qt.io/qt-5/qtcanvas3d-jsonmodels-example.html
+//source: https://doc.qt.io/qt-5.11/qtcanvas3d-jsonmodels-example.html
 
 package main
 

@@ -1,4 +1,4 @@
-//source: http://doc.qt.io/qt-5/qtsensors-accelbubble-example.html
+//source: https://doc.qt.io/qt-5/qtsensors-accelbubble-example.html
 
 package main
 

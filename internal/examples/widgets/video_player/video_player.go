@@ -1,4 +1,4 @@
-//source: http://doc.qt.io/qt-5/qtmultimediawidgets-videowidget-example.html
+//source: https://doc.qt.io/qt-5/qtmultimedia-multimediawidgets-videowidget-example.html
 
 package main
 

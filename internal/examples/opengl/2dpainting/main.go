@@ -1,4 +1,4 @@
-//source: http://doc.qt.io/qt-5/qtopengl-2dpainting-example.html
+//source: https://doc.qt.io/qt-5/qtopengl-2dpainting-example.html
 
 package main
 

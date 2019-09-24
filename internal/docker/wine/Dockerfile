@@ -38,11 +38,10 @@ RUN echo 'REGEDIT4\n\n\
 [HKEY_CURRENT_USER\Environment]\n\
 "QT_DOCKER"="true"' > env.reg && regedit Z:\\env.reg && wineserver -w && rm -f env.reg
 
-
 RUN wine $GOPATH\\bin\\qtsetup prep
 RUN wine $GOPATH\\bin\\qtsetup check
 RUN wine $GOPATH\\bin\\qtsetup generate
-RUN cd $HOME/.wine/drive_c/gopath/src/github.com/therecipe/qt/internal/examples/widgets/line_edits && wine qtdeploy build windows && rm -rf ./deploy
+RUN cd $HOME/.wine/drive_c/gopath/src/github.com/therecipe/qt/internal/examples/widgets/line_edits && wine qtdeploy build && rm -rf ./deploy
 
 RUN echo "#!/bin/bash\nexport GOPATH=\$(winepath -0 -w \$(echo \$GOPATH | sed -e 's/:/ /g') | sed -e 's/Z:/;Z:/2g')" > /usr/bin/qtpath && chmod +x /usr/bin/qtpath
 RUN echo '#!/bin/bash\nsource qtpath\nwine qtdeploy "$@"' > /usr/bin/qtdeploy && chmod +x /usr/bin/qtdeploy

@@ -1,4 +1,4 @@
-//source: http://doc.qt.io/qt-5/qtandroidextras-notification-example.html
+//source: https://doc.qt.io/qt-5/qtandroidextras-notification-example.html
 
 package main
 

@@ -97,7 +97,7 @@ func ParseFlags() bool {
 }
 
 func InitEnv(target string) {
-	if target != runtime.GOOS || runtime.GOARCH != "amd64" || (utils.GOARCH() != "amd64" && !utils.QT_MSVC()) {
+	if target != runtime.GOOS || ((runtime.GOARCH != "amd64" || utils.GOARCH() != "amd64") && runtime.GOOS != "windows") {
 		return
 	}
 

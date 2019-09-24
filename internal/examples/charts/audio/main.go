@@ -1,4 +1,4 @@
-//source: http://doc.qt.io/qt-5/qtcharts-audio-example.html
+//source: https://doc.qt.io/qt-5/qtcharts-audio-example.html
 
 package main
 
