@@ -338,7 +338,7 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 		if err != nil {
 			utils.Log.WithError(err).Error("failed to lookup current user")
 		} else {
-			args = append(args, "-u", fmt.Sprintf("%v:%v", u.Uid, u.Gid), "-e", fmt.Sprintf("IDUG=%v:%v", u.Uid, u.Gid))
+			args = append(args, "-e", fmt.Sprintf("IDUG=%v:%v", u.Uid, u.Gid))
 		}
 	}
 

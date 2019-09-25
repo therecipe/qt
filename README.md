@@ -16,8 +16,6 @@ Status
 
 Almost all Qt functions and classes are accessible from Go and you should be able to find everything you need to build fully featured applications.
 
-(A special exception are the WebEngine/WebView packages, these aren't available for Windows yet.)
-
 Installation
 ------------
 

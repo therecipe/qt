@@ -175,7 +175,7 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 				vagrantsystem,
 				false,
 				true,
-				!strings.HasPrefix(target, "sailfish"),
+				false, //TODO: re-enable once quickcompiler files can be properly cleaned up automatically !strings.HasPrefix(target, "sailfish"),
 			)
 			templater.CleanupDepsForCI()
 			templater.CleanupDepsForCI = func() {}
