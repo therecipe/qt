@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <!-- the FileProvider allows other apps to access files of this app
+
+    this maps a file URI to a content URI:
+    file://<path>/<file>
+    mapped to:
+    content://<package-name>.fileprovider/<path-name>/<file>
+    only the content: URI can be used by external apps like the camera (when targetSdkVersion >= 24)
+
+    there are different types of paths that can be mapped:
+
+    - nativeUtils.displayCameraPicker() stores the taken picture to the external Pictures directory
+        - for this, the first entry is necessary.
+
+    - add the paths you want to use with nativeUtils.openUrl() below:
+        - <files-path ...> for FileUtils.DesktopLocation and others
+        - <cache-path ...> for FileUtils.CacheLocation and others
+        - <external-path ...> for most other FileUtils locations
+        - the others are only necessary when using a custom URL
+        -->
+
+    <!-- the path for nativeUtils.displayCameraPicker() -->
+    <external-files-path name="images" path="Pictures"/>
+
+    <!-- app internal cache used with nativeUtils.storeContacts() and FileUtils.CacheLocation: /data/data/<package-name>/cache/<file> -->
+    <cache-path name="cache" path="."/>
+
+    <!-- app internal files, used with FileUtils.DesktopLocation and others: /data/data/<package-name>/files/<file> -->
+    <!--<files-path name="files" path="."/>-->
+
+    <!-- external files belonging to the app, used with most FileUtils locations: /sdcard/Android/data/<package-name>/files/<file> -->
+    <!--<external-files-path name="external-files" path="."/>-->
+
+    <!-- external cache files belonging to the app: sdcard/Android/data/<package-name>/cache/<file> -->
+    <!--<external-cache-path name="external-cache" path="."/>-->
+
+    <!-- global external files: /sdcard/Android/<file> -->
+    <!--<external-path name="external" path="."/>-->
+
+</paths>

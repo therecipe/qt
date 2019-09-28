@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>assets</file>
+        <file>assets/fonts</file>
+    </qresource>
+</RCC>

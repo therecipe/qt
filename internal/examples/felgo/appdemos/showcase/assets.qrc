@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>assets</file>
+        <file>assets/multimedia</file>
+        <file>assets/qmlvideofx</file>
+    </qresource>
+</RCC>

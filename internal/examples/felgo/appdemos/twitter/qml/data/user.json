@@ -1,0 +1,61 @@
+{
+   "follow_request_sent": false,
+   "entities": {
+    "url": {
+     "urls": [
+      {
+       "url": "http://t.co/Zvwbx11Vyz",
+       "expanded_url": "https://felgo.com",
+       "display_url": "felgo.com",
+       "indices": [
+        0,
+        22
+       ]
+      }
+     ]
+    },
+    "description": {
+     "urls": []
+    }
+   },
+   "id": 594617511,
+   "verified": false,
+   "is_translation_enabled": false,
+   "url": "http://t.co/Zvwbx11Vyz",
+   "id_str": "594617511",
+   "time_zone": "Vienna",
+   "contributors_enabled": false,
+   "profile_background_image_url_https": "https://pbs.twimg.com/profile_background_images/581247812/xdacxmhkzm0ls2bvjogi.jpeg",
+   "has_extended_profile": false,
+   "name": "Felgo",
+   "utc_offset": 3600,
+   "favourites_count": 128,
+   "description": "Felgo allows you to create cross-platform 2D games & business apps for iOS, Android, Windows Phone and Desktop (Windows, Mac and Linux) within days!",
+   "following": true,
+   "screen_name": "felgo",
+   "profile_image_url": "https://pbs.twimg.com/profile_images/1096089618498420736/L1lv9kd__400x400.png",
+   "default_profile_image": false,
+   "profile_background_color": "FFFFFF",
+   "location": "Vienna, Austria",
+   "protected": false,
+   "followers_count": 2259,
+   "friends_count": 1084,
+   "statuses_count": 1716,
+   "listed_count": 79,
+   "created_at": "Wed May 30 11:53:06 +0000 2012",
+   "geo_enabled": true,
+   "lang": "en",
+   "is_translator": false,
+   "profile_use_background_image": true,
+   "profile_background_image_url": "http://pbs.twimg.com/profile_background_images/581247812/xdacxmhkzm0ls2bvjogi.jpeg",
+   "profile_background_tile": false,
+   "profile_sidebar_border_color": "FFFFFF",
+   "profile_image_url_https": "https://pbs.twimg.com/profile_images/2314538316/p4v33ch1v5lahpe215na_normal.png",
+   "profile_banner_url": "https://pbs.twimg.com/profile_banners/594617511/1551699021/1500x500",
+   "profile_link_color": "01A9E2",
+   "profile_sidebar_fill_color": "DDEEF6",
+   "profile_text_color": "333333",
+   "default_profile": false,
+   "notifications": false
+  }
+

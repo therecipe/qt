@@ -1,6 +1,7 @@
 package parser
 
 import (
+	"fmt"
 	"strings"
 
 	"github.com/therecipe/qt/internal/utils"
@@ -52,6 +53,9 @@ func (m *Module) Prepare() error {
 		if f.Name == "qEnvironmentVariable" && len(f.Parameters) == 2 {
 			f.Overload = true
 			f.OverloadNumber = "2"
+		}
+		if !strings.HasPrefix(f.Fullname, "QtGlobal") {
+			f.Fullname = fmt.Sprintf("%v::%v", "QtGlobal", f.Name)
 		}
 		f.register(m.Project)
 	}

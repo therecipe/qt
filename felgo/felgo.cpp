@@ -8,11 +8,13 @@
 
 #include <FelgoApplication>
 #include <FelgoLiveClient>
-#include <QAudioSystemPlugin>
 #include <QByteArray>
 #include <QCameraImageCapture>
 #include <QChildEvent>
+#include <QDBusPendingCallWatcher>
 #include <QEvent>
+#include <QExtensionFactory>
+#include <QExtensionManager>
 #include <QFileSelector>
 #include <QGraphicsObject>
 #include <QGraphicsWidget>
@@ -20,7 +22,6 @@
 #include <QMap>
 #include <QMediaPlaylist>
 #include <QMediaRecorder>
-#include <QMediaServiceProviderPlugin>
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QObject>
@@ -30,7 +31,6 @@
 #include <QQmlEngine>
 #include <QQuickItem>
 #include <QRadioData>
-#include <QRemoteObjectPendingCallWatcher>
 #include <QString>
 #include <QTimerEvent>
 #include <QUrl>
@@ -43,17 +43,17 @@ class MyFelgoApplication: public FelgoApplication
 public:
 	MyFelgoApplication(QObject *parent = Q_NULLPTR) : FelgoApplication(parent) {FelgoApplication_FelgoApplication_QRegisterMetaType();};
 	void objectCreatedHandler(QObject * object, const QUrl & url) { callbackFelgoApplication_ObjectCreatedHandler(this, object, const_cast<QUrl*>(&url)); };
+	bool event(QEvent * e) { return callbackFelgoApplication_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackFelgoApplication_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackFelgoApplication_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackFelgoApplication_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackFelgoApplication_CustomEvent(this, event); };
 	void deleteLater() { callbackFelgoApplication_DeleteLater(this); };
 	void Signal_Destroyed(QObject * obj) { callbackFelgoApplication_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackFelgoApplication_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackFelgoApplication_Event(this, e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackFelgoApplication_EventFilter(this, watched, event) != 0; };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackFelgoApplication_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtFelgo_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackFelgoApplication_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackFelgoApplication_TimerEvent(this, event); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackFelgoApplication_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyFelgoApplication*)
@@ -72,10 +72,14 @@ void FelgoApplication_ObjectCreatedHandlerDefault(void* ptr, void* object, void*
 
 void* FelgoApplication_NewFelgoApplication(void* parent)
 {
-	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(parent))) {
-		return new MyFelgoApplication(static_cast<QAudioSystemPlugin*>(parent));
-	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
 		return new MyFelgoApplication(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyFelgoApplication(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyFelgoApplication(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyFelgoApplication(static_cast<QExtensionManager*>(parent));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
 		return new MyFelgoApplication(static_cast<QGraphicsObject*>(parent));
 	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
@@ -86,8 +90,6 @@ void* FelgoApplication_NewFelgoApplication(void* parent)
 		return new MyFelgoApplication(static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
 		return new MyFelgoApplication(static_cast<QMediaRecorder*>(parent));
-	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(parent))) {
-		return new MyFelgoApplication(static_cast<QMediaServiceProviderPlugin*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
 		return new MyFelgoApplication(static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
@@ -98,8 +100,6 @@ void* FelgoApplication_NewFelgoApplication(void* parent)
 		return new MyFelgoApplication(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyFelgoApplication(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(parent))) {
-		return new MyFelgoApplication(static_cast<QRemoteObjectPendingCallWatcher*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyFelgoApplication(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -293,22 +293,6 @@ void* FelgoApplication_____setContentScaleThresholds_contentScaleThresholds_keyL
 	return new QList<QString>();
 }
 
-void* FelgoApplication___children_atList(void* ptr, int i)
-{
-	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void FelgoApplication___children_setList(void* ptr, void* i)
-{
-	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* FelgoApplication___children_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject *>();
-}
-
 void* FelgoApplication___dynamicPropertyNames_atList(void* ptr, int i)
 {
 	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(ptr)->at(i); if (i == static_cast<QList<QByteArray>*>(ptr)->size()-1) { static_cast<QList<QByteArray>*>(ptr)->~QList(); free(ptr); }; tmp; }));
@@ -325,17 +309,17 @@ void* FelgoApplication___dynamicPropertyNames_newList(void* ptr)
 	return new QList<QByteArray>();
 }
 
-void* FelgoApplication___findChildren_atList(void* ptr, int i)
+void* FelgoApplication___findChildren_atList2(void* ptr, int i)
 {
 	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void FelgoApplication___findChildren_setList(void* ptr, void* i)
+void FelgoApplication___findChildren_setList2(void* ptr, void* i)
 {
 	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
-void* FelgoApplication___findChildren_newList(void* ptr)
+void* FelgoApplication___findChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();
@@ -357,20 +341,46 @@ void* FelgoApplication___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* FelgoApplication___qFindChildren_atList2(void* ptr, int i)
+void* FelgoApplication___findChildren_atList(void* ptr, int i)
 {
 	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void FelgoApplication___qFindChildren_setList2(void* ptr, void* i)
+void FelgoApplication___findChildren_setList(void* ptr, void* i)
 {
 	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
-void* FelgoApplication___qFindChildren_newList2(void* ptr)
+void* FelgoApplication___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();
+}
+
+void* FelgoApplication___children_atList(void* ptr, int i)
+{
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void FelgoApplication___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* FelgoApplication___children_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject *>();
+}
+
+char FelgoApplication_EventDefault(void* ptr, void* e)
+{
+		return static_cast<FelgoApplication*>(ptr)->FelgoApplication::event(static_cast<QEvent*>(e));
+}
+
+char FelgoApplication_EventFilterDefault(void* ptr, void* watched, void* event)
+{
+		return static_cast<FelgoApplication*>(ptr)->FelgoApplication::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
 void FelgoApplication_ChildEventDefault(void* ptr, void* event)
@@ -398,24 +408,14 @@ void FelgoApplication_DisconnectNotifyDefault(void* ptr, void* sign)
 		static_cast<FelgoApplication*>(ptr)->FelgoApplication::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-char FelgoApplication_EventDefault(void* ptr, void* e)
+void FelgoApplication_TimerEventDefault(void* ptr, void* event)
 {
-		return static_cast<FelgoApplication*>(ptr)->FelgoApplication::event(static_cast<QEvent*>(e));
-}
-
-char FelgoApplication_EventFilterDefault(void* ptr, void* watched, void* event)
-{
-		return static_cast<FelgoApplication*>(ptr)->FelgoApplication::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+		static_cast<FelgoApplication*>(ptr)->FelgoApplication::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void* FelgoApplication_MetaObjectDefault(void* ptr)
 {
 		return const_cast<QMetaObject*>(static_cast<FelgoApplication*>(ptr)->FelgoApplication::metaObject());
-}
-
-void FelgoApplication_TimerEventDefault(void* ptr, void* event)
-{
-		static_cast<FelgoApplication*>(ptr)->FelgoApplication::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 class MyFelgoLiveClient: public FelgoLiveClient
@@ -437,17 +437,17 @@ public:
 	void Signal_ReceivedMatchId(const QString & matchId) { QByteArray t0b9296 = matchId.toUtf8(); QtFelgo_PackedString matchIdPacked = { const_cast<char*>(t0b9296.prepend("WHITESPACE").constData()+10), t0b9296.size()-10 };callbackFelgoLiveClient_ReceivedMatchId(this, matchIdPacked); };
 	void shakeDetected() { callbackFelgoLiveClient_ShakeDetected(this); };
 	void Signal_WebReceiverConnected() { callbackFelgoLiveClient_WebReceiverConnected(this); };
+	bool event(QEvent * e) { return callbackFelgoLiveClient_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackFelgoLiveClient_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackFelgoLiveClient_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackFelgoLiveClient_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackFelgoLiveClient_CustomEvent(this, event); };
 	void deleteLater() { callbackFelgoLiveClient_DeleteLater(this); };
 	void Signal_Destroyed(QObject * obj) { callbackFelgoLiveClient_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackFelgoLiveClient_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackFelgoLiveClient_Event(this, e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackFelgoLiveClient_EventFilter(this, watched, event) != 0; };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackFelgoLiveClient_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtFelgo_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackFelgoLiveClient_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackFelgoLiveClient_TimerEvent(this, event); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackFelgoLiveClient_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyFelgoLiveClient*)
@@ -456,10 +456,14 @@ int FelgoLiveClient_FelgoLiveClient_QRegisterMetaType(){qRegisterMetaType<FelgoL
 
 void* FelgoLiveClient_NewFelgoLiveClient(void* engine, void* parent)
 {
-	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(parent))) {
-		return new MyFelgoLiveClient(static_cast<QQmlEngine*>(engine), static_cast<QAudioSystemPlugin*>(parent));
-	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
 		return new MyFelgoLiveClient(static_cast<QQmlEngine*>(engine), static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyFelgoLiveClient(static_cast<QQmlEngine*>(engine), static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyFelgoLiveClient(static_cast<QQmlEngine*>(engine), static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyFelgoLiveClient(static_cast<QQmlEngine*>(engine), static_cast<QExtensionManager*>(parent));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
 		return new MyFelgoLiveClient(static_cast<QQmlEngine*>(engine), static_cast<QGraphicsObject*>(parent));
 	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
@@ -470,8 +474,6 @@ void* FelgoLiveClient_NewFelgoLiveClient(void* engine, void* parent)
 		return new MyFelgoLiveClient(static_cast<QQmlEngine*>(engine), static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
 		return new MyFelgoLiveClient(static_cast<QQmlEngine*>(engine), static_cast<QMediaRecorder*>(parent));
-	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(parent))) {
-		return new MyFelgoLiveClient(static_cast<QQmlEngine*>(engine), static_cast<QMediaServiceProviderPlugin*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
 		return new MyFelgoLiveClient(static_cast<QQmlEngine*>(engine), static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
@@ -482,8 +484,6 @@ void* FelgoLiveClient_NewFelgoLiveClient(void* engine, void* parent)
 		return new MyFelgoLiveClient(static_cast<QQmlEngine*>(engine), static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyFelgoLiveClient(static_cast<QQmlEngine*>(engine), static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(parent))) {
-		return new MyFelgoLiveClient(static_cast<QQmlEngine*>(engine), static_cast<QRemoteObjectPendingCallWatcher*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyFelgoLiveClient(static_cast<QQmlEngine*>(engine), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -708,22 +708,6 @@ void FelgoLiveClient_WebReceiverConnected(void* ptr)
 	static_cast<FelgoLiveClient*>(ptr)->webReceiverConnected();
 }
 
-void* FelgoLiveClient___children_atList(void* ptr, int i)
-{
-	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void FelgoLiveClient___children_setList(void* ptr, void* i)
-{
-	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* FelgoLiveClient___children_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject *>();
-}
-
 void* FelgoLiveClient___dynamicPropertyNames_atList(void* ptr, int i)
 {
 	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(ptr)->at(i); if (i == static_cast<QList<QByteArray>*>(ptr)->size()-1) { static_cast<QList<QByteArray>*>(ptr)->~QList(); free(ptr); }; tmp; }));
@@ -740,17 +724,17 @@ void* FelgoLiveClient___dynamicPropertyNames_newList(void* ptr)
 	return new QList<QByteArray>();
 }
 
-void* FelgoLiveClient___findChildren_atList(void* ptr, int i)
+void* FelgoLiveClient___findChildren_atList2(void* ptr, int i)
 {
 	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void FelgoLiveClient___findChildren_setList(void* ptr, void* i)
+void FelgoLiveClient___findChildren_setList2(void* ptr, void* i)
 {
 	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
-void* FelgoLiveClient___findChildren_newList(void* ptr)
+void* FelgoLiveClient___findChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();
@@ -772,20 +756,46 @@ void* FelgoLiveClient___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* FelgoLiveClient___qFindChildren_atList2(void* ptr, int i)
+void* FelgoLiveClient___findChildren_atList(void* ptr, int i)
 {
 	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void FelgoLiveClient___qFindChildren_setList2(void* ptr, void* i)
+void FelgoLiveClient___findChildren_setList(void* ptr, void* i)
 {
 	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
-void* FelgoLiveClient___qFindChildren_newList2(void* ptr)
+void* FelgoLiveClient___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();
+}
+
+void* FelgoLiveClient___children_atList(void* ptr, int i)
+{
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void FelgoLiveClient___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* FelgoLiveClient___children_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject *>();
+}
+
+char FelgoLiveClient_EventDefault(void* ptr, void* e)
+{
+		return static_cast<FelgoLiveClient*>(ptr)->FelgoLiveClient::event(static_cast<QEvent*>(e));
+}
+
+char FelgoLiveClient_EventFilterDefault(void* ptr, void* watched, void* event)
+{
+		return static_cast<FelgoLiveClient*>(ptr)->FelgoLiveClient::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
 void FelgoLiveClient_ChildEventDefault(void* ptr, void* event)
@@ -813,23 +823,13 @@ void FelgoLiveClient_DisconnectNotifyDefault(void* ptr, void* sign)
 		static_cast<FelgoLiveClient*>(ptr)->FelgoLiveClient::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-char FelgoLiveClient_EventDefault(void* ptr, void* e)
+void FelgoLiveClient_TimerEventDefault(void* ptr, void* event)
 {
-		return static_cast<FelgoLiveClient*>(ptr)->FelgoLiveClient::event(static_cast<QEvent*>(e));
-}
-
-char FelgoLiveClient_EventFilterDefault(void* ptr, void* watched, void* event)
-{
-		return static_cast<FelgoLiveClient*>(ptr)->FelgoLiveClient::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+		static_cast<FelgoLiveClient*>(ptr)->FelgoLiveClient::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void* FelgoLiveClient_MetaObjectDefault(void* ptr)
 {
 		return const_cast<QMetaObject*>(static_cast<FelgoLiveClient*>(ptr)->FelgoLiveClient::metaObject());
-}
-
-void FelgoLiveClient_TimerEventDefault(void* ptr, void* event)
-{
-		static_cast<FelgoLiveClient*>(ptr)->FelgoLiveClient::timerEvent(static_cast<QTimerEvent*>(event));
 }
 

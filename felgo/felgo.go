@@ -451,27 +451,6 @@ func (ptr *FelgoApplication) ____setContentScaleThresholds_contentScaleThreshold
 	return C.FelgoApplication_____setContentScaleThresholds_contentScaleThresholds_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *FelgoApplication) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.FelgoApplication___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *FelgoApplication) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.FelgoApplication___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *FelgoApplication) __children_newList() unsafe.Pointer {
-	return C.FelgoApplication___children_newList(ptr.Pointer())
-}
-
 func (ptr *FelgoApplication) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.FelgoApplication___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
@@ -491,9 +470,9 @@ func (ptr *FelgoApplication) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.FelgoApplication___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *FelgoApplication) __findChildren_atList(i int) *core.QObject {
+func (ptr *FelgoApplication) __findChildren_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.FelgoApplication___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		tmpValue := core.NewQObjectFromPointer(C.FelgoApplication___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -502,14 +481,14 @@ func (ptr *FelgoApplication) __findChildren_atList(i int) *core.QObject {
 	return nil
 }
 
-func (ptr *FelgoApplication) __findChildren_setList(i core.QObject_ITF) {
+func (ptr *FelgoApplication) __findChildren_setList2(i core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		C.FelgoApplication___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+		C.FelgoApplication___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *FelgoApplication) __findChildren_newList() unsafe.Pointer {
-	return C.FelgoApplication___findChildren_newList(ptr.Pointer())
+func (ptr *FelgoApplication) __findChildren_newList2() unsafe.Pointer {
+	return C.FelgoApplication___findChildren_newList2(ptr.Pointer())
 }
 
 func (ptr *FelgoApplication) __findChildren_atList3(i int) *core.QObject {
@@ -533,9 +512,9 @@ func (ptr *FelgoApplication) __findChildren_newList3() unsafe.Pointer {
 	return C.FelgoApplication___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *FelgoApplication) __qFindChildren_atList2(i int) *core.QObject {
+func (ptr *FelgoApplication) __findChildren_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.FelgoApplication___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		tmpValue := core.NewQObjectFromPointer(C.FelgoApplication___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -544,14 +523,67 @@ func (ptr *FelgoApplication) __qFindChildren_atList2(i int) *core.QObject {
 	return nil
 }
 
-func (ptr *FelgoApplication) __qFindChildren_setList2(i core.QObject_ITF) {
+func (ptr *FelgoApplication) __findChildren_setList(i core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		C.FelgoApplication___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+		C.FelgoApplication___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *FelgoApplication) __qFindChildren_newList2() unsafe.Pointer {
-	return C.FelgoApplication___qFindChildren_newList2(ptr.Pointer())
+func (ptr *FelgoApplication) __findChildren_newList() unsafe.Pointer {
+	return C.FelgoApplication___findChildren_newList(ptr.Pointer())
+}
+
+func (ptr *FelgoApplication) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.FelgoApplication___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *FelgoApplication) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.FelgoApplication___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *FelgoApplication) __children_newList() unsafe.Pointer {
+	return C.FelgoApplication___children_newList(ptr.Pointer())
+}
+
+//export callbackFelgoApplication_Event
+func callbackFelgoApplication_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewFelgoApplicationFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *FelgoApplication) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.FelgoApplication_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+	}
+	return false
+}
+
+//export callbackFelgoApplication_EventFilter
+func callbackFelgoApplication_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewFelgoApplicationFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *FelgoApplication) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.FelgoApplication_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+	}
+	return false
 }
 
 //export callbackFelgoApplication_ChildEvent
@@ -638,54 +670,6 @@ func (ptr *FelgoApplication) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) 
 	}
 }
 
-//export callbackFelgoApplication_Event
-func callbackFelgoApplication_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewFelgoApplicationFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
-}
-
-func (ptr *FelgoApplication) EventDefault(e core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.FelgoApplication_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
-	}
-	return false
-}
-
-//export callbackFelgoApplication_EventFilter
-func callbackFelgoApplication_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewFelgoApplicationFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *FelgoApplication) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.FelgoApplication_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
-	}
-	return false
-}
-
-//export callbackFelgoApplication_MetaObject
-func callbackFelgoApplication_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewFelgoApplicationFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *FelgoApplication) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.FelgoApplication_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
 //export callbackFelgoApplication_ObjectNameChanged
 func callbackFelgoApplication_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtFelgo_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -707,6 +691,22 @@ func (ptr *FelgoApplication) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
 		C.FelgoApplication_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
+}
+
+//export callbackFelgoApplication_MetaObject
+func callbackFelgoApplication_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewFelgoApplicationFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *FelgoApplication) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.FelgoApplication_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 type FelgoLiveClient struct {
@@ -1579,27 +1579,6 @@ func (ptr *FelgoLiveClient) WebReceiverConnected() {
 	}
 }
 
-func (ptr *FelgoLiveClient) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.FelgoLiveClient___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *FelgoLiveClient) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.FelgoLiveClient___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *FelgoLiveClient) __children_newList() unsafe.Pointer {
-	return C.FelgoLiveClient___children_newList(ptr.Pointer())
-}
-
 func (ptr *FelgoLiveClient) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.FelgoLiveClient___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
@@ -1619,9 +1598,9 @@ func (ptr *FelgoLiveClient) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.FelgoLiveClient___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *FelgoLiveClient) __findChildren_atList(i int) *core.QObject {
+func (ptr *FelgoLiveClient) __findChildren_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.FelgoLiveClient___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		tmpValue := core.NewQObjectFromPointer(C.FelgoLiveClient___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -1630,14 +1609,14 @@ func (ptr *FelgoLiveClient) __findChildren_atList(i int) *core.QObject {
 	return nil
 }
 
-func (ptr *FelgoLiveClient) __findChildren_setList(i core.QObject_ITF) {
+func (ptr *FelgoLiveClient) __findChildren_setList2(i core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		C.FelgoLiveClient___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+		C.FelgoLiveClient___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *FelgoLiveClient) __findChildren_newList() unsafe.Pointer {
-	return C.FelgoLiveClient___findChildren_newList(ptr.Pointer())
+func (ptr *FelgoLiveClient) __findChildren_newList2() unsafe.Pointer {
+	return C.FelgoLiveClient___findChildren_newList2(ptr.Pointer())
 }
 
 func (ptr *FelgoLiveClient) __findChildren_atList3(i int) *core.QObject {
@@ -1661,9 +1640,9 @@ func (ptr *FelgoLiveClient) __findChildren_newList3() unsafe.Pointer {
 	return C.FelgoLiveClient___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *FelgoLiveClient) __qFindChildren_atList2(i int) *core.QObject {
+func (ptr *FelgoLiveClient) __findChildren_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.FelgoLiveClient___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		tmpValue := core.NewQObjectFromPointer(C.FelgoLiveClient___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -1672,14 +1651,67 @@ func (ptr *FelgoLiveClient) __qFindChildren_atList2(i int) *core.QObject {
 	return nil
 }
 
-func (ptr *FelgoLiveClient) __qFindChildren_setList2(i core.QObject_ITF) {
+func (ptr *FelgoLiveClient) __findChildren_setList(i core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		C.FelgoLiveClient___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+		C.FelgoLiveClient___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *FelgoLiveClient) __qFindChildren_newList2() unsafe.Pointer {
-	return C.FelgoLiveClient___qFindChildren_newList2(ptr.Pointer())
+func (ptr *FelgoLiveClient) __findChildren_newList() unsafe.Pointer {
+	return C.FelgoLiveClient___findChildren_newList(ptr.Pointer())
+}
+
+func (ptr *FelgoLiveClient) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.FelgoLiveClient___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *FelgoLiveClient) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.FelgoLiveClient___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *FelgoLiveClient) __children_newList() unsafe.Pointer {
+	return C.FelgoLiveClient___children_newList(ptr.Pointer())
+}
+
+//export callbackFelgoLiveClient_Event
+func callbackFelgoLiveClient_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewFelgoLiveClientFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *FelgoLiveClient) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.FelgoLiveClient_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
+	}
+	return false
+}
+
+//export callbackFelgoLiveClient_EventFilter
+func callbackFelgoLiveClient_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewFelgoLiveClientFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *FelgoLiveClient) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.FelgoLiveClient_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
+	}
+	return false
 }
 
 //export callbackFelgoLiveClient_ChildEvent
@@ -1766,54 +1798,6 @@ func (ptr *FelgoLiveClient) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 	}
 }
 
-//export callbackFelgoLiveClient_Event
-func callbackFelgoLiveClient_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewFelgoLiveClientFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
-}
-
-func (ptr *FelgoLiveClient) EventDefault(e core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.FelgoLiveClient_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
-	}
-	return false
-}
-
-//export callbackFelgoLiveClient_EventFilter
-func callbackFelgoLiveClient_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewFelgoLiveClientFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *FelgoLiveClient) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.FelgoLiveClient_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
-	}
-	return false
-}
-
-//export callbackFelgoLiveClient_MetaObject
-func callbackFelgoLiveClient_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewFelgoLiveClientFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *FelgoLiveClient) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.FelgoLiveClient_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
 //export callbackFelgoLiveClient_ObjectNameChanged
 func callbackFelgoLiveClient_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtFelgo_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
@@ -1835,4 +1819,20 @@ func (ptr *FelgoLiveClient) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
 		C.FelgoLiveClient_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
+}
+
+//export callbackFelgoLiveClient_MetaObject
+func callbackFelgoLiveClient_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewFelgoLiveClientFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *FelgoLiveClient) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.FelgoLiveClient_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
