@@ -838,7 +838,7 @@ func _cppOutput(name, value string, f *parser.Function) string {
 				if strings.Contains(vOld, "const") {
 					return fmt.Sprintf("const_cast<%v*>(&%v)", value, name)
 				}
-				if f.SignalMode == parser.CALLBACK {
+				if f.SignalMode == parser.CALLBACK || value == "QFileSelector" { //TODO: it this necessary at all?
 					return fmt.Sprintf("static_cast<%v*>(&%v)", value, name)
 				}
 			}
@@ -907,9 +907,7 @@ func _cppOutput(name, value string, f *parser.Function) string {
 					switch len(f.Parameters) {
 					case 0:
 						{
-							if value == "QDataStream" {
-
-							} else {
+							if value != "QDataStream" {
 								return fmt.Sprintf("new %v(%v)", value, name)
 							}
 						}

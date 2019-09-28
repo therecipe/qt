@@ -237,6 +237,8 @@ var LibDeps = map[string][]string{
 
 	MOC:            make([]string, 0),
 	"build_static": {"Qml"}, //TODO: REVIEW "Core", "Gui"},
+
+	"Felgo": {"Qml", "Quick", "Widgets", "Network", "Multimedia", "Sql", "WebSockets"},
 }
 
 func ShouldBuildForTarget(module, target string) bool {
@@ -421,6 +423,8 @@ func GetLibs() []string {
 		"RemoteObjects",
 
 		"WebKit",
+
+		"Felgo",
 	}
 
 	for i := len(libs) - 1; i >= 0; i-- {
@@ -441,6 +445,9 @@ func GetLibs() []string {
 			libs = append(libs[:i], libs[i+1:]...)
 
 		case (utils.QT_MSYS2() || utils.QT_PKG_CONFIG()) && libs[i] == "Purchasing":
+			libs = append(libs[:i], libs[i+1:]...)
+
+		case !utils.QT_FELGO() && libs[i] == "Felgo":
 			libs = append(libs[:i], libs[i+1:]...)
 
 		case utils.QT_FELGO() && strings.HasPrefix(libs[i], "Script"):

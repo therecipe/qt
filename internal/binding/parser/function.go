@@ -291,7 +291,7 @@ func (f *Function) IsSupported() bool {
 		}
 	}
 
-	if f.Related == "true" {
+	if f.Related == "true" && !strings.Contains(f.Fullname, "QtGlobal") {
 		f.Access = "unsupported_isBlockedFunction"
 		return false
 	}
@@ -422,6 +422,8 @@ func (f *Function) IsSupported() bool {
 		f.Fullname == "QVirtualKeyboardSelectionListModel::setCount",
 		f.Fullname == "QtVirtualKeyboard::qlcVirtualKeyboard",
 		f.Name == "trUtf8",
+
+		f.Fullname == "FelgoLiveClient::Q_PROPERTY",
 
 		strings.Contains(f.Access, "unsupported"):
 		{

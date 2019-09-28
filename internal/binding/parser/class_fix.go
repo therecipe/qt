@@ -183,6 +183,14 @@ func (c *Class) fixGeneral_Version() {
 				}
 			}
 		}
+
+	case "FelgoApplication", "FelgoLiveClient":
+		{
+			for _, f := range c.Functions {
+				f.Status = "active"
+				f.Access = "public"
+			}
+		}
 	}
 }
 

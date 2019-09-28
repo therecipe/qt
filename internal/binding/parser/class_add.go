@@ -192,6 +192,10 @@ func (c *Class) addGeneralFuncs() {
 }
 
 func (c *Class) addVarAndPropFuncs() {
+	if c.Name == "FelgoApplication" || c.Name == "FelgoLiveClient" {
+		return
+	}
+
 	for _, v := range c.Variables {
 		c.Functions = append(c.Functions, v.varToFunc()...)
 	}

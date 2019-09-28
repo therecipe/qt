@@ -91,6 +91,10 @@ func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast b
 			break
 		}
 
+		if (utils.QT_FELGO() && fast) || utils.QT_FELGO_LIVE() {
+			utils.Save(filepath.Join(path, "live.pro"), "")
+		}
+
 		if utils.ExistsDir(depPath + "_obj") {
 			utils.RemoveAll(depPath + "_obj")
 		}
@@ -106,9 +110,9 @@ func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast b
 
 		build(mode, target, path, ldFlags, tags, name, depPath, fast, comply)
 
-		if !(fast || (utils.QT_DEBUG_QML() && target == runtime.GOOS)) || (target == "js" || target == "wasm") {
+		if !(fast || ((utils.QT_DEBUG_QML() || utils.QT_FELGO_LIVE()) && target == runtime.GOOS)) || (target == "js" || target == "wasm") {
 			bundle(mode, target, path, name, depPath, tags, fast)
-		} else if fast {
+		} else if fast || (utils.QT_DEBUG_QML() || utils.QT_FELGO_LIVE()) {
 			switch target {
 			case "darwin":
 				if fn := filepath.Join(depPath, name+".app", "Contents", "Info.plist"); !utils.ExistsFile(fn) {

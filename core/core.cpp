@@ -216,6 +216,7 @@
 #include <QXmlStreamNotationDeclaration>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
+#include <QtGlobal>
 #include <QTextDocument>
 
 class MyQAbstractAnimation: public QAbstractAnimation
@@ -26914,5 +26915,50 @@ struct QtCore_PackedString Qt_Qt_ConvertFromPlainText(struct QtCore_PackedString
 char Qt_Qt_MightBeRichText(struct QtCore_PackedString text)
 {
 	return Qt::mightBeRichText(QString::fromUtf8(text.data, text.len));
+}
+
+struct QtCore_PackedString QtGlobal_QtGlobal_qEnvironmentVariable(char* varName)
+{
+	return ({ QByteArray t239d80 = qEnvironmentVariable(const_cast<const char*>(varName)).toUtf8(); QtCore_PackedString { const_cast<char*>(t239d80.prepend("WHITESPACE").constData()+10), t239d80.size()-10 }; });
+}
+
+struct QtCore_PackedString QtGlobal_QtGlobal_qEnvironmentVariable2(char* varName, struct QtCore_PackedString defaultValue)
+{
+	return ({ QByteArray t422112 = qEnvironmentVariable(const_cast<const char*>(varName), QString::fromUtf8(defaultValue.data, defaultValue.len)).toUtf8(); QtCore_PackedString { const_cast<char*>(t422112.prepend("WHITESPACE").constData()+10), t422112.size()-10 }; });
+}
+
+int QtGlobal_QtGlobal_qEnvironmentVariableIntValue(char* varName, char* ok)
+{
+	return qEnvironmentVariableIntValue(const_cast<const char*>(varName), reinterpret_cast<bool*>(ok));
+}
+
+char QtGlobal_QtGlobal_qEnvironmentVariableIsEmpty(char* varName)
+{
+	return qEnvironmentVariableIsEmpty(const_cast<const char*>(varName));
+}
+
+char QtGlobal_QtGlobal_qEnvironmentVariableIsSet(char* varName)
+{
+	return qEnvironmentVariableIsSet(const_cast<const char*>(varName));
+}
+
+struct QtCore_PackedString QtGlobal_QtGlobal_qVersion()
+{
+	return QtCore_PackedString { const_cast<char*>(qVersion()), -1 };
+}
+
+void* QtGlobal_QtGlobal_qgetenv(char* varName)
+{
+	return new QByteArray(qgetenv(const_cast<const char*>(varName)));
+}
+
+char QtGlobal_QtGlobal_qputenv(char* varName, void* value)
+{
+	return qputenv(const_cast<const char*>(varName), *static_cast<QByteArray*>(value));
+}
+
+char QtGlobal_QtGlobal_qunsetenv(char* varName)
+{
+	return qunsetenv(const_cast<const char*>(varName));
 }
 

@@ -614,7 +614,7 @@ func preambleCpp(module string, input []byte, mode int, target, tags string) []b
 			var c, _ = parser.State.ClassMap[class]
 			if strings.HasPrefix(c.Module, "custom_") ||
 				strings.ToLower(c.Module) == c.Module ||
-				!strings.HasPrefix(class, "Q") {
+				!strings.HasPrefix(class, "Q") && !(class == "FelgoApplication" || class == "FelgoLiveClient") {
 				continue
 			}
 			switch c.Name {

@@ -56,6 +56,9 @@ func GoHeaderName(f *parser.Function) string {
 						strings.HasSuffix(f.Name, "_newList") || strings.HasSuffix(f.Name, "_keyList") {
 						return f.Name
 					}
+					if strings.Contains(f.Fullname, "QtGlobal") {
+						return f.Name
+					}
 					return strings.Title(f.Name)
 				}(),
 

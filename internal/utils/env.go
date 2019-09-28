@@ -28,10 +28,10 @@ func QT_VERSION() string {
 	case os.Getenv("QT_HOMEBREW") == "true":
 		return "5.13.0"
 
-	case QT_MACPORTS(), QT_NIX(), QT_FELGO():
+	case QT_MACPORTS(), QT_NIX():
 		return "5.11.1"
 
-	case QT_MSYS2():
+	case QT_MSYS2(), QT_FELGO():
 		return "5.12.0"
 
 	case QT_UBPORTS_VERSION() == "xenial":
@@ -66,6 +66,9 @@ func QT_VERSION_NUM() int {
 }
 
 func QT_VERSION_MAJOR() string {
+	if QT_FELGO() {
+		return "Felgo"
+	}
 	if version, ok := os.LookupEnv("QT_VERSION_MAJOR"); ok {
 		return version
 	}
@@ -179,7 +182,7 @@ func CheckBuildTarget(buildTarget string, docker bool) {
 		switch {
 		case QT_MSYS2():
 			Log.Fatalf("%v is not supported as a deploy target on %v with MSYS2 -> install the official Qt version instead and try again", buildTarget, runtime.GOOS)
-		case QT_HOMEBREW(), QT_MACPORTS(), QT_NIX(), QT_FELGO():
+		case QT_HOMEBREW(), QT_MACPORTS(), QT_NIX():
 			Log.Fatalf("%v is not supported as a deploy target on %v with HomeBrew/MacPorts/Nix -> install the official Qt version instead and try again", buildTarget, runtime.GOOS)
 		case QT_PKG_CONFIG() && !QT_UBPORTS():
 			Log.Fatalf("%v is not supported as a deploy target on %v with PkgConfig -> install the official Qt version instead and try again", buildTarget, runtime.GOOS)
@@ -485,4 +488,8 @@ func GOVERSION_NUM() int {
 		vmin, _ = strconv.Atoi(strings.Split(version[1:], ".")[1])
 	}
 	return vmaj*1e2 + vmin
+}
+
+func QT_RESOURCES_BIG() bool {
+	return os.Getenv("QT_RESOURCES_BIG") == "true"
 }

@@ -359,6 +359,17 @@ func createMakefile(module, path, target string, mode int) {
 		cmd.Args = append(cmd.Args, "CONFIG+=release")
 	}
 
+	if utils.QT_FELGO() && (module == "Felgo" || module == "build_static" || mode == MOC) {
+		cmd.Args = append(cmd.Args, []string{"CONFIG+=felgo"}...)
+		if utils.QT_FELGO_LIVE() || mode == NONE {
+			cmd.Args = append(cmd.Args, []string{"CONFIG+=felgo-live"}...)
+		}
+	}
+
+	if utils.QT_RESOURCES_BIG() && mode == RCC {
+		cmd.Args = append(cmd.Args, "CONFIG+=resources_big")
+	}
+
 	//needed for QMAKE_MSC_VER bug: https://bugreports.qt.io/browse/QTBUG-59718
 	utils.RemoveAll(filepath.Join(cmd.Dir, ".qmake.stash"))
 
@@ -484,6 +495,8 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 		guards += target
 	case "js", "wasm":
 		guards += "ignore"
+	case "linux":
+		guards += "!ubports"
 	}
 	//TODO: move "minimal" build tag in separate line -->
 	switch mode {

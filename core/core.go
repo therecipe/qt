@@ -59557,6 +59557,228 @@ func (ptr *Qt) MightBeRichText(text string) bool {
 	return int8(C.Qt_Qt_MightBeRichText(C.struct_QtCore_PackedString{data: textC, len: C.longlong(len(text))})) != 0
 }
 
+type QtGlobal struct {
+	ptr unsafe.Pointer
+}
+
+type QtGlobal_ITF interface {
+	QtGlobal_PTR() *QtGlobal
+}
+
+func (ptr *QtGlobal) QtGlobal_PTR() *QtGlobal {
+	return ptr
+}
+
+func (ptr *QtGlobal) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QtGlobal) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQtGlobal(ptr QtGlobal_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QtGlobal_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQtGlobalFromPointer(ptr unsafe.Pointer) (n *QtGlobal) {
+	n = new(QtGlobal)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QtGlobal) DestroyQtGlobal() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func QtGlobal_qEnvironmentVariable(varName string) string {
+	var varNameC *C.char
+	if varName != "" {
+		varNameC = C.CString(varName)
+		defer C.free(unsafe.Pointer(varNameC))
+	}
+	return cGoUnpackString(C.QtGlobal_QtGlobal_qEnvironmentVariable(varNameC))
+}
+
+func (ptr *QtGlobal) qEnvironmentVariable(varName string) string {
+	var varNameC *C.char
+	if varName != "" {
+		varNameC = C.CString(varName)
+		defer C.free(unsafe.Pointer(varNameC))
+	}
+	return cGoUnpackString(C.QtGlobal_QtGlobal_qEnvironmentVariable(varNameC))
+}
+
+func QtGlobal_qEnvironmentVariable2(varName string, defaultValue string) string {
+	var varNameC *C.char
+	if varName != "" {
+		varNameC = C.CString(varName)
+		defer C.free(unsafe.Pointer(varNameC))
+	}
+	var defaultValueC *C.char
+	if defaultValue != "" {
+		defaultValueC = C.CString(defaultValue)
+		defer C.free(unsafe.Pointer(defaultValueC))
+	}
+	return cGoUnpackString(C.QtGlobal_QtGlobal_qEnvironmentVariable2(varNameC, C.struct_QtCore_PackedString{data: defaultValueC, len: C.longlong(len(defaultValue))}))
+}
+
+func (ptr *QtGlobal) qEnvironmentVariable2(varName string, defaultValue string) string {
+	var varNameC *C.char
+	if varName != "" {
+		varNameC = C.CString(varName)
+		defer C.free(unsafe.Pointer(varNameC))
+	}
+	var defaultValueC *C.char
+	if defaultValue != "" {
+		defaultValueC = C.CString(defaultValue)
+		defer C.free(unsafe.Pointer(defaultValueC))
+	}
+	return cGoUnpackString(C.QtGlobal_QtGlobal_qEnvironmentVariable2(varNameC, C.struct_QtCore_PackedString{data: defaultValueC, len: C.longlong(len(defaultValue))}))
+}
+
+func QtGlobal_qEnvironmentVariableIntValue(varName string, ok *bool) int {
+	var varNameC *C.char
+	if varName != "" {
+		varNameC = C.CString(varName)
+		defer C.free(unsafe.Pointer(varNameC))
+	}
+	var okC C.char
+	if ok != nil {
+		okC = C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+	}
+	return int(int32(C.QtGlobal_QtGlobal_qEnvironmentVariableIntValue(varNameC, &okC)))
+}
+
+func (ptr *QtGlobal) qEnvironmentVariableIntValue(varName string, ok *bool) int {
+	var varNameC *C.char
+	if varName != "" {
+		varNameC = C.CString(varName)
+		defer C.free(unsafe.Pointer(varNameC))
+	}
+	var okC C.char
+	if ok != nil {
+		okC = C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+	}
+	return int(int32(C.QtGlobal_QtGlobal_qEnvironmentVariableIntValue(varNameC, &okC)))
+}
+
+func QtGlobal_qEnvironmentVariableIsEmpty(varName string) bool {
+	var varNameC *C.char
+	if varName != "" {
+		varNameC = C.CString(varName)
+		defer C.free(unsafe.Pointer(varNameC))
+	}
+	return int8(C.QtGlobal_QtGlobal_qEnvironmentVariableIsEmpty(varNameC)) != 0
+}
+
+func (ptr *QtGlobal) qEnvironmentVariableIsEmpty(varName string) bool {
+	var varNameC *C.char
+	if varName != "" {
+		varNameC = C.CString(varName)
+		defer C.free(unsafe.Pointer(varNameC))
+	}
+	return int8(C.QtGlobal_QtGlobal_qEnvironmentVariableIsEmpty(varNameC)) != 0
+}
+
+func QtGlobal_qEnvironmentVariableIsSet(varName string) bool {
+	var varNameC *C.char
+	if varName != "" {
+		varNameC = C.CString(varName)
+		defer C.free(unsafe.Pointer(varNameC))
+	}
+	return int8(C.QtGlobal_QtGlobal_qEnvironmentVariableIsSet(varNameC)) != 0
+}
+
+func (ptr *QtGlobal) qEnvironmentVariableIsSet(varName string) bool {
+	var varNameC *C.char
+	if varName != "" {
+		varNameC = C.CString(varName)
+		defer C.free(unsafe.Pointer(varNameC))
+	}
+	return int8(C.QtGlobal_QtGlobal_qEnvironmentVariableIsSet(varNameC)) != 0
+}
+
+func QtGlobal_qVersion() string {
+	return cGoUnpackString(C.QtGlobal_QtGlobal_qVersion())
+}
+
+func (ptr *QtGlobal) qVersion() string {
+	return cGoUnpackString(C.QtGlobal_QtGlobal_qVersion())
+}
+
+func QtGlobal_qgetenv(varName string) *QByteArray {
+	var varNameC *C.char
+	if varName != "" {
+		varNameC = C.CString(varName)
+		defer C.free(unsafe.Pointer(varNameC))
+	}
+	tmpValue := NewQByteArrayFromPointer(C.QtGlobal_QtGlobal_qgetenv(varNameC))
+	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	return tmpValue
+}
+
+func (ptr *QtGlobal) qgetenv(varName string) *QByteArray {
+	var varNameC *C.char
+	if varName != "" {
+		varNameC = C.CString(varName)
+		defer C.free(unsafe.Pointer(varNameC))
+	}
+	tmpValue := NewQByteArrayFromPointer(C.QtGlobal_QtGlobal_qgetenv(varNameC))
+	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	return tmpValue
+}
+
+func QtGlobal_qputenv(varName string, value QByteArray_ITF) bool {
+	var varNameC *C.char
+	if varName != "" {
+		varNameC = C.CString(varName)
+		defer C.free(unsafe.Pointer(varNameC))
+	}
+	return int8(C.QtGlobal_QtGlobal_qputenv(varNameC, PointerFromQByteArray(value))) != 0
+}
+
+func (ptr *QtGlobal) qputenv(varName string, value QByteArray_ITF) bool {
+	var varNameC *C.char
+	if varName != "" {
+		varNameC = C.CString(varName)
+		defer C.free(unsafe.Pointer(varNameC))
+	}
+	return int8(C.QtGlobal_QtGlobal_qputenv(varNameC, PointerFromQByteArray(value))) != 0
+}
+
+func QtGlobal_qunsetenv(varName string) bool {
+	var varNameC *C.char
+	if varName != "" {
+		varNameC = C.CString(varName)
+		defer C.free(unsafe.Pointer(varNameC))
+	}
+	return int8(C.QtGlobal_QtGlobal_qunsetenv(varNameC)) != 0
+}
+
+func (ptr *QtGlobal) qunsetenv(varName string) bool {
+	var varNameC *C.char
+	if varName != "" {
+		varNameC = C.CString(varName)
+		defer C.free(unsafe.Pointer(varNameC))
+	}
+	return int8(C.QtGlobal_QtGlobal_qunsetenv(varNameC)) != 0
+}
+
 type qfloat16 struct {
 	ptr unsafe.Pointer
 }

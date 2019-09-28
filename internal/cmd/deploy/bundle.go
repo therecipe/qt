@@ -565,7 +565,7 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 
 		dep := exec.Command(filepath.Join(utils.QT_INSTALL_PREFIX(target), "bin", "androiddeployqt"))
 		dep.Dir = filepath.Join(utils.QT_INSTALL_PREFIX(target), "bin")
-		dep.Env = append(dep.Env, "JAVA_HOME="+utils.JDK_DIR())
+		dep.Env = append(dep.Env, "JAVA_HOME="+utils.JDK_DIR(), "ANDROID_NDK_HOME="+utils.ANDROID_NDK_DIR())
 		dep.Args = append(dep.Args,
 			"--input", filepath.Join(depPath, "android-libgo.so-deployment-settings.json"),
 			"--output", filepath.Join(depPath, "build"),

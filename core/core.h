@@ -4068,6 +4068,15 @@ void QXmlStreamWriter_DestroyQXmlStreamWriter(void* ptr);
 int Qt_LastGestureType_Type();
 struct QtCore_PackedString Qt_Qt_ConvertFromPlainText(struct QtCore_PackedString plain, long long mode);
 char Qt_Qt_MightBeRichText(struct QtCore_PackedString text);
+struct QtCore_PackedString QtGlobal_QtGlobal_qEnvironmentVariable(char* varName);
+struct QtCore_PackedString QtGlobal_QtGlobal_qEnvironmentVariable2(char* varName, struct QtCore_PackedString defaultValue);
+int QtGlobal_QtGlobal_qEnvironmentVariableIntValue(char* varName, char* ok);
+char QtGlobal_QtGlobal_qEnvironmentVariableIsEmpty(char* varName);
+char QtGlobal_QtGlobal_qEnvironmentVariableIsSet(char* varName);
+struct QtCore_PackedString QtGlobal_QtGlobal_qVersion();
+void* QtGlobal_QtGlobal_qgetenv(char* varName);
+char QtGlobal_QtGlobal_qputenv(char* varName, void* value);
+char QtGlobal_QtGlobal_qunsetenv(char* varName);
 
 #ifdef __cplusplus
 }

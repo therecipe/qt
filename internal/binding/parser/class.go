@@ -342,7 +342,7 @@ func (c *Class) IsSupported() bool {
 
 		strings.HasPrefix(c.Name, "QVulkan"),
 
-		!strings.HasPrefix(c.Name, "Q") && strings.HasPrefix(c.Module, "Qt") && c.Module != "QtSailfish" && c.Name != "PaintContext",
+		!strings.HasPrefix(c.Name, "Q") && strings.HasPrefix(c.Module, "Qt") && c.Module != "QtSailfish" && c.Module != "QtFelgo" && c.Name != "PaintContext",
 		strings.HasPrefix(c.Name, "Qml") && c.Module == "QtSensors",
 		strings.HasPrefix(c.Name, "QQml") && (c.Module == "QtQuick" || c.Module == "QtWebSockets"),
 		strings.HasPrefix(c.Name, "QAndroid") && strings.HasPrefix(c.Module, "QtMultimedia"),

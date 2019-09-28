@@ -328,6 +328,9 @@ func exportClass(c *parser.Class, files []string) {
 	if c == nil {
 		return
 	}
+	if c.Name == "FelgoLiveClient" && !utils.QT_FELGO_LIVE() {
+		return
+	}
 	c.Lock()
 	exp := c.Export
 	c.Unlock()

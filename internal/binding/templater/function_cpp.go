@@ -593,6 +593,9 @@ func cppFunctionBodyInternal(function *parser.Function) string {
 							return ""
 						}
 						if function.Static {
+							if strings.Contains(function.Fullname, "QtGlobal") {
+								return ""
+							}
 							return fmt.Sprintf("%v::", function.ClassName())
 						}
 						return fmt.Sprintf("static_cast<%v*>(ptr)->",

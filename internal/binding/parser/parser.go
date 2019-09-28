@@ -108,6 +108,9 @@ func LoadModule(m string) *Module {
 	case utils.QT_WEBKIT() && m == "WebKit":
 		err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(strings.TrimSpace(utils.GoListOptional("{{.Dir}}", "github.com/therecipe/qt/internal/binding/files/docs/5.8.0", "-find", "get doc dir")), fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
 
+	case utils.QT_FELGO() && m == "Felgo":
+		err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(strings.TrimSpace(utils.GoListOptional("{{.Dir}}", "github.com/therecipe/qt/internal/binding/files/docs/5.12.0", "-find", "get doc dir")), fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
+
 	case utils.QT_MXE(),
 		utils.QT_HOMEBREW(),
 		utils.QT_MACPORTS(), utils.QT_NIX(), utils.QT_FELGO(),

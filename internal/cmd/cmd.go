@@ -105,7 +105,7 @@ func InitEnv(target string) {
 	case "freebsd":
 		return
 	case "linux":
-		if utils.QT_PKG_CONFIG() || utils.QT_MXE() || utils.QT_STATIC() {
+		if utils.QT_PKG_CONFIG() || utils.QT_MXE() || utils.QT_FELGO() || utils.QT_STATIC() {
 			return
 		}
 	case "darwin":
@@ -585,6 +585,11 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 	var out string
 	var env map[string]string
 
+	androidAPI := "21"
+	if utils.QT_FELGO() {
+		androidAPI = "16"
+	}
+
 	switch target {
 	case "android":
 		tags = []string{target}
@@ -603,11 +608,13 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 			"CC":          filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "llvm", "prebuilt", runtime.GOOS+"-x86_64", "bin", "clang"),
 			"CXX":         filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "llvm", "prebuilt", runtime.GOOS+"-x86_64", "bin", "clang++"),
 
-			"CGO_CPPFLAGS": fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=21 -target armv7-none-linux-androideabi -gcc-toolchain %v --sysroot=%v -isystem %v",
+			"CGO_CPPFLAGS": fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=%v -target armv7-none-linux-androideabi -gcc-toolchain %v --sysroot=%v -isystem %v",
+				androidAPI,
 				filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64"),
 				filepath.Join(utils.ANDROID_NDK_DIR(), "sysroot"),
 				filepath.Join(utils.ANDROID_NDK_DIR(), "sysroot", "usr", "include", "arm-linux-androideabi")),
-			"CGO_LDFLAGS": fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=21 -target armv7-none-linux-androideabi -gcc-toolchain %v --sysroot=%v",
+			"CGO_LDFLAGS": fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=%v -target armv7-none-linux-androideabi -gcc-toolchain %v --sysroot=%v",
+				androidAPI,
 				filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64"),
 				filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-21", "arch-arm")),
 		}
@@ -619,11 +626,13 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 		if utils.GOARCH() == "arm64" {
 			env["GOARCH"] = "arm64"
 
-			env["CGO_CPPFLAGS"] = fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=21 -target aarch64-none-linux-android -gcc-toolchain %v --sysroot=%v -isystem %v",
+			env["CGO_CPPFLAGS"] = fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=%v -target aarch64-none-linux-android -gcc-toolchain %v --sysroot=%v -isystem %v",
+				androidAPI,
 				filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "aarch64-linux-android-4.9", "prebuilt", runtime.GOOS+"-x86_64"),
 				filepath.Join(utils.ANDROID_NDK_DIR(), "sysroot"),
 				filepath.Join(utils.ANDROID_NDK_DIR(), "sysroot", "usr", "include", "aarch64-linux-android"))
-			env["CGO_LDFLAGS"] = fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=21 -target aarch64-none-linux-android -gcc-toolchain %v --sysroot=%v",
+			env["CGO_LDFLAGS"] = fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=%v -target aarch64-none-linux-android -gcc-toolchain %v --sysroot=%v",
+				androidAPI,
 				filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "aarch64-linux-android-4.9", "prebuilt", runtime.GOOS+"-x86_64"),
 				filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-21", "arch-arm64"))
 		}
@@ -644,11 +653,13 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 			"CC":          filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "llvm", "prebuilt", runtime.GOOS+"-x86_64", "bin", "clang"),
 			"CXX":         filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "llvm", "prebuilt", runtime.GOOS+"-x86_64", "bin", "clang++"),
 
-			"CGO_CPPFLAGS": fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=21 -target i686-none-linux-android -mstackrealign -gcc-toolchain %v --sysroot=%v -isystem %v",
+			"CGO_CPPFLAGS": fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=%v -target i686-none-linux-android -mstackrealign -gcc-toolchain %v --sysroot=%v -isystem %v",
+				androidAPI,
 				filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "x86-4.9", "prebuilt", runtime.GOOS+"-x86_64"),
 				filepath.Join(utils.ANDROID_NDK_DIR(), "sysroot"),
 				filepath.Join(utils.ANDROID_NDK_DIR(), "sysroot", "usr", "include", "i686-linux-android")),
-			"CGO_LDFLAGS": fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=21 -target i686-none-linux-android -mstackrealign -gcc-toolchain %v --sysroot=%v",
+			"CGO_LDFLAGS": fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=%v -target i686-none-linux-android -mstackrealign -gcc-toolchain %v --sysroot=%v",
+				androidAPI,
 				filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "x86-4.9", "prebuilt", runtime.GOOS+"-x86_64"),
 				filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-21", "arch-x86")),
 		}
@@ -656,6 +667,8 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 			env["TMP"] = os.Getenv("TMP")
 			env["TEMP"] = os.Getenv("TEMP")
 		}
+
+		//TODO: x86_64
 
 	case "ios", "ios-simulator":
 		tags = []string{"ios"}
