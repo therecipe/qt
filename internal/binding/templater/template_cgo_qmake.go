@@ -390,6 +390,12 @@ func createMakefile(module, path, target string, mode int) {
 		utils.RemoveAll(mPath)
 	}
 
+	if utils.QT_FELGO() {
+		utils.RemoveAll(filepath.Join(filepath.Dir(proPath), "FelgoLive"))
+		utils.RemoveAll(filepath.Join(path, "android-build"))
+		utils.RemoveAll(filepath.Join(path, "gradle.properties"))
+	}
+
 	utils.RemoveAll(proPath)
 	utils.RemoveAll(filepath.Join(path, ".qmake.stash"))
 	switch target {
