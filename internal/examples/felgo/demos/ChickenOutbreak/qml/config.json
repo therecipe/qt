@@ -1,0 +1,17 @@
+{
+  "title": "ChickenOutbreak Dev",
+  "identifier": "net.vplay.demos.ChickenOutbreakDev",
+  "orientation": "portrait",
+  "versioncode": 10,
+  "versionname": "1.0",
+  "author": "Felgo",
+  "stage": "test",
+
+  "plugins": [ "flurry", "facebook" ],
+
+  "ios": {
+    "prerendered_icon": true,
+    "filesharing_enabled": false,
+    "url_schemes": [ "fb624554907601397" ]
+  }
+}

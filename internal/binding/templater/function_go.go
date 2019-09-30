@@ -70,6 +70,17 @@ func goFunctionBody(function *parser.Function) string {
 			converter.GoHeaderInput(function),
 			converter.GoHeaderOutput(function),
 		)
+	if utils.QT_FELGO() && class.IsSubClassOf("QCoreApplication") && function.Name == "exec" {
+		fmt.Fprintf(bb, "defer New%[1]vFromPointer(%[2]vQCoreApplication_Instance().Pointer()).Destroy%[1]v()\n",
+			class.Name,
+			func() string {
+				if class.Module == parser.MOC {
+					return "std_core."
+				} else if class.Module != "QtCore" {
+					return "core."
+				}
+				return ""
+			}())
 	}
 
 	if !(function.Static || function.Meta == parser.CONSTRUCTOR || function.SignalMode == parser.CALLBACK || strings.Contains(function.Name, "_newList")) {

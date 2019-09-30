@@ -255,6 +255,10 @@ func Minimal(path, target, tags string) {
 	if utils.QT_STATIC() {
 		exportClass(parser.State.ClassMap["QSvgWidget"], files)
 	}
+	if utils.QT_FELGO() {
+		exportClass(parser.State.ClassMap["QCoreApplication"], files)
+		exportFunction(parser.State.ClassMap["QCoreApplication"].GetFunction("instance"), files)
+	}
 
 	wg.Add(len(files))
 	for _, f := range files {

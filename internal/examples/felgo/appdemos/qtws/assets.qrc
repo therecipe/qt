@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>assets</file>
+        <file>assets/data</file>
+        <file>assets/rooms</file>
+    </qresource>
+</RCC>

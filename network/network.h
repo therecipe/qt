@@ -668,14 +668,22 @@ void* QNetworkCacheMetaData_NewQNetworkCacheMetaData2(void* other);
 void* QNetworkCacheMetaData_ExpirationDate(void* ptr);
 char QNetworkCacheMetaData_IsValid(void* ptr);
 void* QNetworkCacheMetaData_LastModified(void* ptr);
+struct QtNetwork_PackedList QNetworkCacheMetaData_RawHeaders(void* ptr);
 char QNetworkCacheMetaData_SaveToDisk(void* ptr);
 void QNetworkCacheMetaData_SetExpirationDate(void* ptr, void* dateTime);
 void QNetworkCacheMetaData_SetLastModified(void* ptr, void* dateTime);
+void QNetworkCacheMetaData_SetRawHeaders(void* ptr, void* list);
 void QNetworkCacheMetaData_SetSaveToDisk(void* ptr, char allow);
 void QNetworkCacheMetaData_SetUrl(void* ptr, void* url);
 void QNetworkCacheMetaData_Swap(void* ptr, void* other);
 void* QNetworkCacheMetaData_Url(void* ptr);
 void QNetworkCacheMetaData_DestroyQNetworkCacheMetaData(void* ptr);
+void* QNetworkCacheMetaData___rawHeaders_atList(void* ptr, int i);
+void QNetworkCacheMetaData___rawHeaders_setList(void* ptr, void* i);
+void* QNetworkCacheMetaData___rawHeaders_newList(void* ptr);
+void* QNetworkCacheMetaData___setRawHeaders_list_atList(void* ptr, int i);
+void QNetworkCacheMetaData___setRawHeaders_list_setList(void* ptr, void* i);
+void* QNetworkCacheMetaData___setRawHeaders_list_newList(void* ptr);
 void* QNetworkConfiguration_NewQNetworkConfiguration();
 void* QNetworkConfiguration_NewQNetworkConfiguration2(void* other);
 long long QNetworkConfiguration_BearerType(void* ptr);
@@ -1645,6 +1653,12 @@ long long QUdpSocket_WriteDatagram2(void* ptr, void* datagram);
 long long QUdpSocket_WriteDatagram3(void* ptr, void* datagram, void* host, unsigned short port);
 void QUdpSocket_DestroyQUdpSocket(void* ptr);
 void QUdpSocket_DestroyQUdpSocketDefault(void* ptr);
+void* RawHeader_NewRawHeader();
+void* RawHeader_NewRawHeader2(void* first, void* second);
+void* RawHeader_First(void* ptr);
+void RawHeader_SetFirst(void* ptr, void* vqb);
+void* RawHeader_Second(void* ptr);
+void RawHeader_SetSecond(void* ptr, void* vqb);
 
 #ifdef __cplusplus
 }

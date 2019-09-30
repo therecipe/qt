@@ -4,6 +4,59 @@ import "fmt"
 
 func (m *Module) add() {
 	switch m.Project {
+	case "QtNetwork":
+		if _, ok := State.ClassMap["RawHeader"]; !ok {
+			c := &Class{
+				Name:     "RawHeader",
+				Fullname: "QNetworkCacheMetaData::RawHeader",
+				Status:   "active",
+				Module:   m.Project,
+				Access:   "public",
+				Variables: []*Variable{
+					{
+						Name:     "first",
+						Fullname: fmt.Sprintf("%v::%v", "RawHeader", "first"),
+						Access:   "public",
+						Output:   "QByteArray",
+					},
+					{
+						Name:     "second",
+						Fullname: fmt.Sprintf("%v::%v", "RawHeader", "second"),
+						Access:   "public",
+						Output:   "QByteArray",
+					},
+				},
+				Functions: []*Function{
+					{
+						Name:       "RawHeader",
+						Fullname:   fmt.Sprintf("%v::%v", "QNetworkCacheMetaData", "RawHeader"),
+						Access:     "public",
+						Virtual:    "non",
+						Meta:       CONSTRUCTOR,
+						Output:     "",
+						Parameters: []*Parameter{},
+						Signature:  "QNetworkCacheMetaData::RawHeader QNetworkCacheMetaData::RawHeader()",
+					},
+					{
+						Name:           "RawHeader",
+						Fullname:       fmt.Sprintf("%v::%v", "QNetworkCacheMetaData", "RawHeader"),
+						Access:         "public",
+						Virtual:        "non",
+						Meta:           CONSTRUCTOR,
+						Output:         "",
+						Overload:       true,
+						OverloadNumber: "2",
+						Parameters: []*Parameter{
+							{Name: "first", Value: "const QByteArray &"},
+							{Name: "second", Value: "const QByteArray &"},
+						},
+						Signature: "QNetworkCacheMetaData::RawHeader QNetworkCacheMetaData::RawHeader(const QByteArray & first, const QByteArray & second)",
+					},
+				},
+			}
+			c.register(m)
+		}
+
 	case "QtWebEngine":
 		if _, ok := State.ClassMap["QWebEngineCertificateError"]; !ok {
 			c := &Class{

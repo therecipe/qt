@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleDisplayName</key>
+    <string>QtWS 2017</string>
+    <key>CFBundleExecutable</key>
+    <string>${EXECUTABLE_NAME}</string>
+    <key>CFBundleIconFile</key>
+    <string>Icon.png</string>
+    <key>CFBundleIconFiles</key>
+    <array>
+        <string>Icon-60.png</string>
+        <string>Icon-60@2x.png</string>
+        <string>Icon-60@3x.png</string>
+        <string>Icon-72.png</string>
+        <string>Icon-72@2x.png</string>
+        <string>Icon-76.png</string>
+        <string>Icon-76@2x.png</string>
+        <string>Icon-Small-40.png</string>
+        <string>Icon-Small-40@2x.png</string>
+        <string>Icon-Small-50.png</string>
+        <string>Icon-Small-50@2x.png</string>
+        <string>Icon.png</string>
+        <string>Icon@2x.png</string>
+    </array>
+    <key>CFBundleIdentifier</key>
+    <string>net.vplay.demos.qtws2017</string>
+    <key>CFBundleName</key>
+    <string>${PRODUCT_NAME}</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.3</string>
+    <key>CFBundleSignature</key>
+    <string>????</string>
+    <key>CFBundleVersion</key>
+    <string>26</string>
+    <key>UIStatusBarHidden</key>
+    <true/>
+    <key>LSRequiresIPhoneOS</key>
+    <true/>
+    <key>UIViewControllerBasedStatusBarAppearance</key>
+    <false/>
+    <key>UIRequiresFullScreen</key>
+    <true/>
+    <key>UISupportedInterfaceOrientations</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+        <string>UIInterfaceOrientationLandscapeLeft</string>
+        <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
+    <key>UISupportedInterfaceOrientations~ipad</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+        <string>UIInterfaceOrientationPortraitUpsideDown</string>
+        <string>UIInterfaceOrientationLandscapeLeft</string>
+        <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
+    <key>UILaunchImageFile</key>
+    <string>Def.png</string>
+    <key>UILaunchImages</key>
+    <array>
+    <dict>
+        <key>UILaunchImageMinimumOSVersion</key>
+        <string>7.0</string>
+        <key>UILaunchImageName</key>
+        <string>Def</string>
+        <key>UILaunchImageOrientation</key>
+        <string>Portrait</string>
+        <key>UILaunchImageSize</key>
+        <string>{320, 480}</string>
+    </dict>
+    <dict>
+        <key>UILaunchImageMinimumOSVersion</key>
+        <string>7.0</string>
+        <key>UILaunchImageName</key>
+        <string>Def-568h</string>
+        <key>UILaunchImageOrientation</key>
+        <string>Portrait</string>
+        <key>UILaunchImageSize</key>
+        <string>{320, 568}</string>
+    </dict>
+    <dict>
+        <key>UILaunchImageMinimumOSVersion</key>
+        <string>8.0</string>
+        <key>UILaunchImageName</key>
+        <string>Def-667h</string>
+        <key>UILaunchImageOrientation</key>
+        <string>Portrait</string>
+        <key>UILaunchImageSize</key>
+        <string>{375, 667}</string>
+    </dict>
+    <dict>
+        <key>UILaunchImageMinimumOSVersion</key>
+        <string>8.0</string>
+        <key>UILaunchImageName</key>
+        <string>Def-Portrait-736h</string>
+        <key>UILaunchImageOrientation</key>
+        <string>Portrait</string>
+        <key>UILaunchImageSize</key>
+        <string>{414, 736}</string>
+    </dict>
+    <dict>
+        <key>UILaunchImageMinimumOSVersion</key>
+        <string>7.0</string>
+        <key>UILaunchImageName</key>
+        <string>Def-Portrait</string>
+        <key>UILaunchImageOrientation</key>
+        <string>Portrait</string>
+        <key>UILaunchImageSize</key>
+        <string>{768, 1024}</string>
+    </dict>
+    <dict>
+        <key>UILaunchImageMinimumOSVersion</key>
+        <string>8.0</string>
+        <key>UILaunchImageName</key>
+        <string>Def-Landscape-736h</string>
+        <key>UILaunchImageOrientation</key>
+        <string>Landscape</string>
+        <key>UILaunchImageSize</key>
+        <string>{414, 736}</string>
+    </dict>
+    <dict>
+        <key>UILaunchImageMinimumOSVersion</key>
+        <string>7.0</string>
+        <key>UILaunchImageName</key>
+        <string>Def-Landscape</string>
+        <key>UILaunchImageOrientation</key>
+        <string>Landscape</string>
+        <key>UILaunchImageSize</key>
+        <string>{768, 1024}</string>
+    </dict>
+    </array>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>App would like to save images taken with camera.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>App would like to access the library.</string>
+    <key>NSCameraUsageDescription</key>
+    <string>App would like to access the camera.</string>
+    <key>NSContactsUsageDescription</key>
+    <string>App would like to store contacts to the Addressbook.</string>
+    <key>UIBackgroundModes</key>
+    <array>
+      <string>remote-notification</string>
+    </array>
+    <key>CFBundleURLTypes</key>
+    <array>
+      <dict>
+        <key>CFBundleURLSchemes</key>
+        <array>
+          <string>fb266162920557926</string>
+        </array>
+      </dict>
+    </array>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+      <string>fbapi</string>
+      <string>fb-messenger-api</string>
+      <string>fbauth2</string>
+      <string>fbshareextension</string>
+    </array>
+</dict>
+</plist>

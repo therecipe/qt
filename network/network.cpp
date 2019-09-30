@@ -4325,6 +4325,11 @@ void* QNetworkCacheMetaData_LastModified(void* ptr)
 	return new QDateTime(static_cast<QNetworkCacheMetaData*>(ptr)->lastModified());
 }
 
+struct QtNetwork_PackedList QNetworkCacheMetaData_RawHeaders(void* ptr)
+{
+	return ({ QList<QNetworkCacheMetaData::RawHeader>* tmpValued5ffb1 = new QList<QNetworkCacheMetaData::RawHeader>(static_cast<QNetworkCacheMetaData*>(ptr)->rawHeaders()); QtNetwork_PackedList { tmpValued5ffb1, tmpValued5ffb1->size() }; });
+}
+
 char QNetworkCacheMetaData_SaveToDisk(void* ptr)
 {
 	return static_cast<QNetworkCacheMetaData*>(ptr)->saveToDisk();
@@ -4338,6 +4343,11 @@ void QNetworkCacheMetaData_SetExpirationDate(void* ptr, void* dateTime)
 void QNetworkCacheMetaData_SetLastModified(void* ptr, void* dateTime)
 {
 	static_cast<QNetworkCacheMetaData*>(ptr)->setLastModified(*static_cast<QDateTime*>(dateTime));
+}
+
+void QNetworkCacheMetaData_SetRawHeaders(void* ptr, void* list)
+{
+	static_cast<QNetworkCacheMetaData*>(ptr)->setRawHeaders(({ QList<QNetworkCacheMetaData::RawHeader>* tmpP = static_cast<QList<QNetworkCacheMetaData::RawHeader>*>(list); QList<QNetworkCacheMetaData::RawHeader> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }));
 }
 
 void QNetworkCacheMetaData_SetSaveToDisk(void* ptr, char allow)
@@ -4363,6 +4373,38 @@ void* QNetworkCacheMetaData_Url(void* ptr)
 void QNetworkCacheMetaData_DestroyQNetworkCacheMetaData(void* ptr)
 {
 	static_cast<QNetworkCacheMetaData*>(ptr)->~QNetworkCacheMetaData();
+}
+
+void* QNetworkCacheMetaData___rawHeaders_atList(void* ptr, int i)
+{
+	return ({ QNetworkCacheMetaData::RawHeader tmpValue = ({QNetworkCacheMetaData::RawHeader tmp = static_cast<QList<QNetworkCacheMetaData::RawHeader>*>(ptr)->at(i); if (i == static_cast<QList<QNetworkCacheMetaData::RawHeader>*>(ptr)->size()-1) { static_cast<QList<QNetworkCacheMetaData::RawHeader>*>(ptr)->~QList(); free(ptr); }; tmp; }); new QNetworkCacheMetaData::RawHeader(tmpValue.first, tmpValue.second); });
+}
+
+void QNetworkCacheMetaData___rawHeaders_setList(void* ptr, void* i)
+{
+	static_cast<QList<QNetworkCacheMetaData::RawHeader>*>(ptr)->append(*static_cast<QNetworkCacheMetaData::RawHeader*>(i));
+}
+
+void* QNetworkCacheMetaData___rawHeaders_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QNetworkCacheMetaData::RawHeader>();
+}
+
+void* QNetworkCacheMetaData___setRawHeaders_list_atList(void* ptr, int i)
+{
+	return ({ QNetworkCacheMetaData::RawHeader tmpValue = ({QNetworkCacheMetaData::RawHeader tmp = static_cast<QList<QNetworkCacheMetaData::RawHeader>*>(ptr)->at(i); if (i == static_cast<QList<QNetworkCacheMetaData::RawHeader>*>(ptr)->size()-1) { static_cast<QList<QNetworkCacheMetaData::RawHeader>*>(ptr)->~QList(); free(ptr); }; tmp; }); new QNetworkCacheMetaData::RawHeader(tmpValue.first, tmpValue.second); });
+}
+
+void QNetworkCacheMetaData___setRawHeaders_list_setList(void* ptr, void* i)
+{
+	static_cast<QList<QNetworkCacheMetaData::RawHeader>*>(ptr)->append(*static_cast<QNetworkCacheMetaData::RawHeader*>(i));
+}
+
+void* QNetworkCacheMetaData___setRawHeaders_list_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QNetworkCacheMetaData::RawHeader>();
 }
 
 void* QNetworkConfiguration_NewQNetworkConfiguration()
@@ -10099,5 +10141,35 @@ void QUdpSocket_DestroyQUdpSocketDefault(void* ptr)
 {
 	Q_UNUSED(ptr);
 
+}
+
+void* RawHeader_NewRawHeader()
+{
+	return new QNetworkCacheMetaData::RawHeader();
+}
+
+void* RawHeader_NewRawHeader2(void* first, void* second)
+{
+	return new QNetworkCacheMetaData::RawHeader(*static_cast<QByteArray*>(first), *static_cast<QByteArray*>(second));
+}
+
+void* RawHeader_First(void* ptr)
+{
+	return new QByteArray(static_cast<QNetworkCacheMetaData::RawHeader*>(ptr)->first);
+}
+
+void RawHeader_SetFirst(void* ptr, void* vqb)
+{
+	static_cast<QNetworkCacheMetaData::RawHeader*>(ptr)->first = *static_cast<QByteArray*>(vqb);
+}
+
+void* RawHeader_Second(void* ptr)
+{
+	return new QByteArray(static_cast<QNetworkCacheMetaData::RawHeader*>(ptr)->second);
+}
+
+void RawHeader_SetSecond(void* ptr, void* vqb)
+{
+	static_cast<QNetworkCacheMetaData::RawHeader*>(ptr)->second = *static_cast<QByteArray*>(vqb);
 }
 

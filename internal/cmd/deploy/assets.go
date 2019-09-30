@@ -170,8 +170,7 @@ func darwin_pkginfo() string {
 func darwin_nix_script(name string) string {
 	return fmt.Sprintf(`#!/bin/bash
 export PATH=$HOME/.nix-profile/bin:$PATH
-cd "${0%%/*}"
-./%v_bin
+${0%%/*}/%v_bin
 `, name)
 }
 

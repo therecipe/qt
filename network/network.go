@@ -8517,6 +8517,20 @@ func (ptr *QNetworkCacheMetaData) LastModified() *core.QDateTime {
 	return nil
 }
 
+func (ptr *QNetworkCacheMetaData) RawHeaders() []*QNetworkCacheMetaData_RawHeader {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtNetwork_PackedList) []*QNetworkCacheMetaData_RawHeader {
+			out := make([]*QNetworkCacheMetaData_RawHeader, int(l.len))
+			tmpList := NewQNetworkCacheMetaDataFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__rawHeaders_atList(i)
+			}
+			return out
+		}(C.QNetworkCacheMetaData_RawHeaders(ptr.Pointer()))
+	}
+	return make([]*QNetworkCacheMetaData_RawHeader, 0)
+}
+
 func (ptr *QNetworkCacheMetaData) SaveToDisk() bool {
 	if ptr.Pointer() != nil {
 		return int8(C.QNetworkCacheMetaData_SaveToDisk(ptr.Pointer())) != 0
@@ -8533,6 +8547,18 @@ func (ptr *QNetworkCacheMetaData) SetExpirationDate(dateTime core.QDateTime_ITF)
 func (ptr *QNetworkCacheMetaData) SetLastModified(dateTime core.QDateTime_ITF) {
 	if ptr.Pointer() != nil {
 		C.QNetworkCacheMetaData_SetLastModified(ptr.Pointer(), core.PointerFromQDateTime(dateTime))
+	}
+}
+
+func (ptr *QNetworkCacheMetaData) SetRawHeaders(list []*QNetworkCacheMetaData_RawHeader) {
+	if ptr.Pointer() != nil {
+		C.QNetworkCacheMetaData_SetRawHeaders(ptr.Pointer(), func() unsafe.Pointer {
+			tmpList := NewQNetworkCacheMetaDataFromPointer(NewQNetworkCacheMetaDataFromPointer(nil).__setRawHeaders_list_newList())
+			for _, v := range list {
+				tmpList.__setRawHeaders_list_setList(v)
+			}
+			return tmpList.Pointer()
+		}())
 	}
 }
 
@@ -8569,6 +8595,44 @@ func (ptr *QNetworkCacheMetaData) DestroyQNetworkCacheMetaData() {
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
+}
+
+func (ptr *QNetworkCacheMetaData) __rawHeaders_atList(i int) *QNetworkCacheMetaData_RawHeader {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQNetworkCacheMetaData_RawHeaderFromPointer(C.QNetworkCacheMetaData___rawHeaders_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QNetworkCacheMetaData_RawHeader).DestroyQNetworkCacheMetaData_RawHeader)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QNetworkCacheMetaData) __rawHeaders_setList(i QNetworkCacheMetaData_RawHeader_ITF) {
+	if ptr.Pointer() != nil {
+		C.QNetworkCacheMetaData___rawHeaders_setList(ptr.Pointer(), PointerFromQNetworkCacheMetaData_RawHeader(i))
+	}
+}
+
+func (ptr *QNetworkCacheMetaData) __rawHeaders_newList() unsafe.Pointer {
+	return C.QNetworkCacheMetaData___rawHeaders_newList(ptr.Pointer())
+}
+
+func (ptr *QNetworkCacheMetaData) __setRawHeaders_list_atList(i int) *QNetworkCacheMetaData_RawHeader {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQNetworkCacheMetaData_RawHeaderFromPointer(C.QNetworkCacheMetaData___setRawHeaders_list_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QNetworkCacheMetaData_RawHeader).DestroyQNetworkCacheMetaData_RawHeader)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QNetworkCacheMetaData) __setRawHeaders_list_setList(i QNetworkCacheMetaData_RawHeader_ITF) {
+	if ptr.Pointer() != nil {
+		C.QNetworkCacheMetaData___setRawHeaders_list_setList(ptr.Pointer(), PointerFromQNetworkCacheMetaData_RawHeader(i))
+	}
+}
+
+func (ptr *QNetworkCacheMetaData) __setRawHeaders_list_newList() unsafe.Pointer {
+	return C.QNetworkCacheMetaData___setRawHeaders_list_newList(ptr.Pointer())
 }
 
 type QNetworkConfiguration struct {
@@ -11757,7 +11821,7 @@ func (ptr *QNetworkProxy) Port() uint16 {
 	return 0
 }
 
-func (ptr *QNetworkProxy) RawHeader(headerName core.QByteArray_ITF) *core.QByteArray {
+func (ptr *QNetworkProxy) QNetworkCacheMetaData_RawHeader(headerName core.QByteArray_ITF) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QNetworkProxy_RawHeader(ptr.Pointer(), core.PointerFromQByteArray(headerName)))
 		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
@@ -12935,7 +12999,7 @@ func (ptr *QNetworkReply) PreSharedKeyAuthenticationRequired(authenticator QSslP
 	}
 }
 
-func (ptr *QNetworkReply) RawHeader(headerName core.QByteArray_ITF) *core.QByteArray {
+func (ptr *QNetworkReply) QNetworkCacheMetaData_RawHeader(headerName core.QByteArray_ITF) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QNetworkReply_RawHeader(ptr.Pointer(), core.PointerFromQByteArray(headerName)))
 		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
@@ -14274,7 +14338,7 @@ func (ptr *QNetworkRequest) Priority() QNetworkRequest__Priority {
 	return 0
 }
 
-func (ptr *QNetworkRequest) RawHeader(headerName core.QByteArray_ITF) *core.QByteArray {
+func (ptr *QNetworkRequest) QNetworkCacheMetaData_RawHeader(headerName core.QByteArray_ITF) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QNetworkRequest_RawHeader(ptr.Pointer(), core.PointerFromQByteArray(headerName)))
 		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
@@ -20455,5 +20519,93 @@ func (ptr *QUdpSocket) DestroyQUdpSocketDefault() {
 		C.QUdpSocket_DestroyQUdpSocketDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+type QNetworkCacheMetaData_RawHeader struct {
+	ptr unsafe.Pointer
+}
+
+type QNetworkCacheMetaData_RawHeader_ITF interface {
+	QNetworkCacheMetaData_RawHeader_PTR() *QNetworkCacheMetaData_RawHeader
+}
+
+func (ptr *QNetworkCacheMetaData_RawHeader) QNetworkCacheMetaData_RawHeader_PTR() *QNetworkCacheMetaData_RawHeader {
+	return ptr
+}
+
+func (ptr *QNetworkCacheMetaData_RawHeader) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QNetworkCacheMetaData_RawHeader) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQNetworkCacheMetaData_RawHeader(ptr QNetworkCacheMetaData_RawHeader_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QNetworkCacheMetaData_RawHeader_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQNetworkCacheMetaData_RawHeaderFromPointer(ptr unsafe.Pointer) (n *QNetworkCacheMetaData_RawHeader) {
+	n = new(QNetworkCacheMetaData_RawHeader)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QNetworkCacheMetaData_RawHeader) DestroyQNetworkCacheMetaData_RawHeader() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func NewQNetworkCacheMetaData_RawHeader() *QNetworkCacheMetaData_RawHeader {
+	tmpValue := NewQNetworkCacheMetaData_RawHeaderFromPointer(C.RawHeader_NewRawHeader())
+	runtime.SetFinalizer(tmpValue, (*QNetworkCacheMetaData_RawHeader).DestroyQNetworkCacheMetaData_RawHeader)
+	return tmpValue
+}
+
+func NewQNetworkCacheMetaData_RawHeader2(first core.QByteArray_ITF, second core.QByteArray_ITF) *QNetworkCacheMetaData_RawHeader {
+	tmpValue := NewQNetworkCacheMetaData_RawHeaderFromPointer(C.RawHeader_NewRawHeader2(core.PointerFromQByteArray(first), core.PointerFromQByteArray(second)))
+	runtime.SetFinalizer(tmpValue, (*QNetworkCacheMetaData_RawHeader).DestroyQNetworkCacheMetaData_RawHeader)
+	return tmpValue
+}
+
+func (ptr *QNetworkCacheMetaData_RawHeader) First() *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.RawHeader_First(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QNetworkCacheMetaData_RawHeader) SetFirst(vqb core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.RawHeader_SetFirst(ptr.Pointer(), core.PointerFromQByteArray(vqb))
+	}
+}
+
+func (ptr *QNetworkCacheMetaData_RawHeader) Second() *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.RawHeader_Second(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QNetworkCacheMetaData_RawHeader) SetSecond(vqb core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.RawHeader_SetSecond(ptr.Pointer(), core.PointerFromQByteArray(vqb))
 	}
 }

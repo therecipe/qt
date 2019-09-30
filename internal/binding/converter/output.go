@@ -880,6 +880,12 @@ func _cppOutput(name, value string, f *parser.Function) string {
 				{
 					return fmt.Sprintf("({ %v tmpValue = %v; new %v(tmpValue.left(), tmpValue.top(), tmpValue.right(), tmpValue.bottom()); })", value, name, value)
 				}
+
+			case "RawHeader":
+				{
+					class := parser.State.ClassMap[value]
+					return fmt.Sprintf("({ %v tmpValue = %v; new %v(tmpValue.first, tmpValue.second); })", class.Fullname, name, class.Fullname)
+				}
 			}
 
 			switch f.Fullname {

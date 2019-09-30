@@ -295,6 +295,11 @@ func (f *Function) fixGenericOutput() {
 				}
 			}
 		}
+
+	case "QNetworkCacheMetaData::RawHeaderList":
+		{
+			f.Output = "QList<QNetworkCacheMetaData::RawHeader>"
+		}
 	}
 }
 
@@ -404,6 +409,11 @@ func (f *Function) fixGenericInput() {
 						p.Value = fmt.Sprintf("%v*", className)
 					}
 				}
+			}
+
+		case "QNetworkCacheMetaData::RawHeaderList":
+			{
+				p.Value = "QList<QNetworkCacheMetaData::RawHeader>"
 			}
 		}
 	}

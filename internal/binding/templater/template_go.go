@@ -861,7 +861,7 @@ import "C"
 func renameSubClasses(in []byte) []byte {
 	for _, c := range parser.State.ClassMap {
 		if c.Fullname != "" {
-			sep := []string{"\n", ".", "\"", " ", "*", "(", ")", "{", "C.", "_ITF", "_PTR", " New", ".New", "(New", "\"New", "From", "Destroy"}
+			sep := []string{"\n", ".", "\"", " ", "*", "(", ")", "{", "C.", "_ITF", "_PTR", " New", ".New", "(New", "\"New", "From", "Destroy", ",", "2"}
 			for _, p := range sep {
 				for _, s := range sep {
 					in = bytes.Replace(in, []byte(p+c.Name+s), []byte(p+strings.Replace(c.Fullname, "::", "_", -1)+s), -1)
