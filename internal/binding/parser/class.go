@@ -296,8 +296,6 @@ func (c *Class) IsSupported() bool {
 		"QPlatformGraphicsBuffer", "QPlatformSystemTrayIcon", "QRasterPaintEngine", "QSupportedWritingSystems", "QGeoLocation", //file not found or QPA API
 		"QAbstractOpenGLFunctions",
 
-		"QProcess", "QProcessEnvironment", //TODO: iOS
-
 		"QRemoteObjectPackets",
 
 		"QStaticByteArrayMatcher", "QtDummyFutex", "QtLinuxFutex",
@@ -323,6 +321,11 @@ func (c *Class) IsSupported() bool {
 			c.Access = "unsupported_isBlockedClass"
 			return false
 		}
+	}
+
+	if strings.HasPrefix(c.Name, "QProcess") && strings.HasPrefix(State.Target, "ios") {
+		c.Access = "unsupported_isBlockedClass"
+		return false
 	}
 
 	for _, cn := range []string{"QTextToSpeechPlugin", "QTextToSpeechEngine"} {

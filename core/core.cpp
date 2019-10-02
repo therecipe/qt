@@ -137,6 +137,8 @@
 #include <QPluginLoader>
 #include <QPoint>
 #include <QPointF>
+#include <QProcess>
+#include <QProcessEnvironment>
 #include <QPropertyAnimation>
 #include <QQuickItem>
 #include <QRadioData>
@@ -9765,7 +9767,9 @@ char QIODevice_AtEnd(void* ptr)
 
 char QIODevice_AtEndDefault(void* ptr)
 {
-	if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QProcess*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QProcess*>(ptr)->QProcess::atEnd();
+	} else if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSaveFile*>(ptr)->QSaveFile::atEnd();
 	} else if (dynamic_cast<QTemporaryFile*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QTemporaryFile*>(ptr)->QTemporaryFile::atEnd();
@@ -9787,7 +9791,9 @@ long long QIODevice_BytesAvailable(void* ptr)
 
 long long QIODevice_BytesAvailableDefault(void* ptr)
 {
-	if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QProcess*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QProcess*>(ptr)->QProcess::bytesAvailable();
+	} else if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSaveFile*>(ptr)->QSaveFile::bytesAvailable();
 	} else if (dynamic_cast<QTemporaryFile*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QTemporaryFile*>(ptr)->QTemporaryFile::bytesAvailable();
@@ -9809,7 +9815,9 @@ long long QIODevice_BytesToWrite(void* ptr)
 
 long long QIODevice_BytesToWriteDefault(void* ptr)
 {
-	if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QProcess*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QProcess*>(ptr)->QProcess::bytesToWrite();
+	} else if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSaveFile*>(ptr)->QSaveFile::bytesToWrite();
 	} else if (dynamic_cast<QTemporaryFile*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QTemporaryFile*>(ptr)->QTemporaryFile::bytesToWrite();
@@ -9846,7 +9854,9 @@ char QIODevice_CanReadLine(void* ptr)
 
 char QIODevice_CanReadLineDefault(void* ptr)
 {
-	if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QProcess*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QProcess*>(ptr)->QProcess::canReadLine();
+	} else if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSaveFile*>(ptr)->QSaveFile::canReadLine();
 	} else if (dynamic_cast<QTemporaryFile*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QTemporaryFile*>(ptr)->QTemporaryFile::canReadLine();
@@ -9898,7 +9908,9 @@ void QIODevice_Close(void* ptr)
 
 void QIODevice_CloseDefault(void* ptr)
 {
-	if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QProcess*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProcess*>(ptr)->QProcess::close();
+	} else if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSaveFile*>(ptr)->QSaveFile::close();
 	} else if (dynamic_cast<QTemporaryFile*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTemporaryFile*>(ptr)->QTemporaryFile::close();
@@ -9955,7 +9967,9 @@ char QIODevice_IsSequential(void* ptr)
 
 char QIODevice_IsSequentialDefault(void* ptr)
 {
-	if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QProcess*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QProcess*>(ptr)->QProcess::isSequential();
+	} else if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSaveFile*>(ptr)->QSaveFile::isSequential();
 	} else if (dynamic_cast<QTemporaryFile*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QTemporaryFile*>(ptr)->QTemporaryFile::isSequential();
@@ -9992,7 +10006,9 @@ char QIODevice_Open(void* ptr, long long mode)
 
 char QIODevice_OpenDefault(void* ptr, long long mode)
 {
-	if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QProcess*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QProcess*>(ptr)->QProcess::open(static_cast<QIODevice::OpenModeFlag>(mode));
+	} else if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSaveFile*>(ptr)->QSaveFile::open(static_cast<QIODevice::OpenModeFlag>(mode));
 	} else if (dynamic_cast<QTemporaryFile*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QTemporaryFile*>(ptr)->QTemporaryFile::open(static_cast<QIODevice::OpenModeFlag>(mode));
@@ -10029,7 +10045,9 @@ long long QIODevice_Pos(void* ptr)
 
 long long QIODevice_PosDefault(void* ptr)
 {
-	if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QProcess*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QProcess*>(ptr)->QProcess::pos();
+	} else if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSaveFile*>(ptr)->QSaveFile::pos();
 	} else if (dynamic_cast<QTemporaryFile*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QTemporaryFile*>(ptr)->QTemporaryFile::pos();
@@ -10106,7 +10124,9 @@ long long QIODevice_ReadLineData(void* ptr, char* data, long long maxSize)
 
 long long QIODevice_ReadLineDataDefault(void* ptr, char* data, long long maxSize)
 {
-	if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QProcess*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QProcess*>(ptr)->QProcess::readLineData(data, maxSize);
+	} else if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSaveFile*>(ptr)->QSaveFile::readLineData(data, maxSize);
 	} else if (dynamic_cast<QTemporaryFile*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QTemporaryFile*>(ptr)->QTemporaryFile::readLineData(data, maxSize);
@@ -10143,7 +10163,9 @@ char QIODevice_Reset(void* ptr)
 
 char QIODevice_ResetDefault(void* ptr)
 {
-	if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QProcess*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QProcess*>(ptr)->QProcess::reset();
+	} else if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSaveFile*>(ptr)->QSaveFile::reset();
 	} else if (dynamic_cast<QTemporaryFile*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QTemporaryFile*>(ptr)->QTemporaryFile::reset();
@@ -10170,7 +10192,9 @@ char QIODevice_Seek(void* ptr, long long pos)
 
 char QIODevice_SeekDefault(void* ptr, long long pos)
 {
-	if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QProcess*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QProcess*>(ptr)->QProcess::seek(pos);
+	} else if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSaveFile*>(ptr)->QSaveFile::seek(pos);
 	} else if (dynamic_cast<QTemporaryFile*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QTemporaryFile*>(ptr)->QTemporaryFile::seek(pos);
@@ -10217,7 +10241,9 @@ long long QIODevice_Size(void* ptr)
 
 long long QIODevice_SizeDefault(void* ptr)
 {
-	if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QProcess*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QProcess*>(ptr)->QProcess::size();
+	} else if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSaveFile*>(ptr)->QSaveFile::size();
 	} else if (dynamic_cast<QTemporaryFile*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QTemporaryFile*>(ptr)->QTemporaryFile::size();
@@ -10254,7 +10280,9 @@ char QIODevice_WaitForBytesWritten(void* ptr, int msecs)
 
 char QIODevice_WaitForBytesWrittenDefault(void* ptr, int msecs)
 {
-	if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QProcess*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QProcess*>(ptr)->QProcess::waitForBytesWritten(msecs);
+	} else if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSaveFile*>(ptr)->QSaveFile::waitForBytesWritten(msecs);
 	} else if (dynamic_cast<QTemporaryFile*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QTemporaryFile*>(ptr)->QTemporaryFile::waitForBytesWritten(msecs);
@@ -10276,7 +10304,9 @@ char QIODevice_WaitForReadyRead(void* ptr, int msecs)
 
 char QIODevice_WaitForReadyReadDefault(void* ptr, int msecs)
 {
-	if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QProcess*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QProcess*>(ptr)->QProcess::waitForReadyRead(msecs);
+	} else if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSaveFile*>(ptr)->QSaveFile::waitForReadyRead(msecs);
 	} else if (dynamic_cast<QTemporaryFile*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QTemporaryFile*>(ptr)->QTemporaryFile::waitForReadyRead(msecs);
@@ -14642,6 +14672,8 @@ void QObject_ChildEventDefault(void* ptr, void* event)
 		static_cast<QFileSelector*>(ptr)->QFileSelector::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QCoreApplication*>(static_cast<QObject*>(ptr))) {
 		static_cast<QCoreApplication*>(ptr)->QCoreApplication::childEvent(static_cast<QChildEvent*>(event));
+	} else if (dynamic_cast<QProcess*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProcess*>(ptr)->QProcess::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSaveFile*>(ptr)->QSaveFile::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QTemporaryFile*>(static_cast<QObject*>(ptr))) {
@@ -14757,6 +14789,8 @@ void QObject_ConnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QFileSelector*>(ptr)->QFileSelector::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QCoreApplication*>(static_cast<QObject*>(ptr))) {
 		static_cast<QCoreApplication*>(ptr)->QCoreApplication::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QProcess*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProcess*>(ptr)->QProcess::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSaveFile*>(ptr)->QSaveFile::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QTemporaryFile*>(static_cast<QObject*>(ptr))) {
@@ -14867,6 +14901,8 @@ void QObject_CustomEventDefault(void* ptr, void* event)
 		static_cast<QFileSelector*>(ptr)->QFileSelector::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QCoreApplication*>(static_cast<QObject*>(ptr))) {
 		static_cast<QCoreApplication*>(ptr)->QCoreApplication::customEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QProcess*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProcess*>(ptr)->QProcess::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSaveFile*>(ptr)->QSaveFile::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QTemporaryFile*>(static_cast<QObject*>(ptr))) {
@@ -14977,6 +15013,8 @@ void QObject_DeleteLaterDefault(void* ptr)
 		static_cast<QFileSelector*>(ptr)->QFileSelector::deleteLater();
 	} else if (dynamic_cast<QCoreApplication*>(static_cast<QObject*>(ptr))) {
 		static_cast<QCoreApplication*>(ptr)->QCoreApplication::deleteLater();
+	} else if (dynamic_cast<QProcess*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProcess*>(ptr)->QProcess::deleteLater();
 	} else if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSaveFile*>(ptr)->QSaveFile::deleteLater();
 	} else if (dynamic_cast<QTemporaryFile*>(static_cast<QObject*>(ptr))) {
@@ -15122,6 +15160,8 @@ void QObject_DisconnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QFileSelector*>(ptr)->QFileSelector::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QCoreApplication*>(static_cast<QObject*>(ptr))) {
 		static_cast<QCoreApplication*>(ptr)->QCoreApplication::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QProcess*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProcess*>(ptr)->QProcess::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSaveFile*>(ptr)->QSaveFile::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QTemporaryFile*>(static_cast<QObject*>(ptr))) {
@@ -15247,6 +15287,8 @@ char QObject_EventDefault(void* ptr, void* e)
 		return static_cast<QFileSelector*>(ptr)->QFileSelector::event(static_cast<QEvent*>(e));
 	} else if (dynamic_cast<QCoreApplication*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QCoreApplication*>(ptr)->QCoreApplication::event(static_cast<QEvent*>(e));
+	} else if (dynamic_cast<QProcess*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QProcess*>(ptr)->QProcess::event(static_cast<QEvent*>(e));
 	} else if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSaveFile*>(ptr)->QSaveFile::event(static_cast<QEvent*>(e));
 	} else if (dynamic_cast<QTemporaryFile*>(static_cast<QObject*>(ptr))) {
@@ -15357,6 +15399,8 @@ char QObject_EventFilterDefault(void* ptr, void* watched, void* event)
 		return static_cast<QFileSelector*>(ptr)->QFileSelector::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QCoreApplication*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QCoreApplication*>(ptr)->QCoreApplication::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QProcess*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QProcess*>(ptr)->QProcess::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSaveFile*>(ptr)->QSaveFile::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QTemporaryFile*>(static_cast<QObject*>(ptr))) {
@@ -15512,6 +15556,8 @@ void* QObject_MetaObjectDefault(void* ptr)
 		return const_cast<QMetaObject*>(static_cast<QFileSelector*>(ptr)->QFileSelector::metaObject());
 	} else if (dynamic_cast<QCoreApplication*>(static_cast<QObject*>(ptr))) {
 		return const_cast<QMetaObject*>(static_cast<QCoreApplication*>(ptr)->QCoreApplication::metaObject());
+	} else if (dynamic_cast<QProcess*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QProcess*>(ptr)->QProcess::metaObject());
 	} else if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
 		return const_cast<QMetaObject*>(static_cast<QSaveFile*>(ptr)->QSaveFile::metaObject());
 	} else if (dynamic_cast<QTemporaryFile*>(static_cast<QObject*>(ptr))) {
@@ -15702,6 +15748,8 @@ void QObject_TimerEventDefault(void* ptr, void* event)
 		static_cast<QFileSelector*>(ptr)->QFileSelector::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QCoreApplication*>(static_cast<QObject*>(ptr))) {
 		static_cast<QCoreApplication*>(ptr)->QCoreApplication::timerEvent(static_cast<QTimerEvent*>(event));
+	} else if (dynamic_cast<QProcess*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProcess*>(ptr)->QProcess::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSaveFile*>(ptr)->QSaveFile::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QTemporaryFile*>(static_cast<QObject*>(ptr))) {
@@ -16855,6 +16903,526 @@ double QPointF_X(void* ptr)
 double QPointF_Y(void* ptr)
 {
 	return static_cast<QPointF*>(ptr)->y();
+}
+
+class MyQProcess: public QProcess
+{
+public:
+	MyQProcess(QObject *parent = Q_NULLPTR) : QProcess(parent) {QProcess_QProcess_QRegisterMetaType();};
+	bool atEnd() const { return callbackQIODevice_AtEnd(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+	qint64 bytesAvailable() const { return callbackQIODevice_BytesAvailable(const_cast<void*>(static_cast<const void*>(this))); };
+	qint64 bytesToWrite() const { return callbackQIODevice_BytesToWrite(const_cast<void*>(static_cast<const void*>(this))); };
+	bool canReadLine() const { return callbackQIODevice_CanReadLine(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+	void close() { callbackQIODevice_Close(this); };
+	void Signal_ErrorOccurred(QProcess::ProcessError error) { callbackQProcess_ErrorOccurred(this, error); };
+	void Signal_Finished(int exitCode, QProcess::ExitStatus exitStatus) { callbackQProcess_Finished(this, exitCode, exitStatus); };
+	bool isSequential() const { return callbackQIODevice_IsSequential(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+	void kill() { callbackQProcess_Kill(this); };
+	bool open(QIODevice::OpenMode mode) { return callbackQIODevice_Open(this, mode) != 0; };
+	qint64 readData(char * data, qint64 maxlen) { QtCore_PackedString dataPacked = { data, maxlen };return callbackQProcess_ReadData(this, dataPacked, maxlen); };
+	void Signal_ReadyReadStandardError() { callbackQProcess_ReadyReadStandardError(this); };
+	void Signal_ReadyReadStandardOutput() { callbackQProcess_ReadyReadStandardOutput(this); };
+	void setupChildProcess() { callbackQProcess_SetupChildProcess(this); };
+	void Signal_Started() { callbackQProcess_Started(this); };
+	void Signal_StateChanged(QProcess::ProcessState newState) { callbackQProcess_StateChanged(this, newState); };
+	void terminate() { callbackQProcess_Terminate(this); };
+	bool waitForBytesWritten(int msecs) { return callbackQIODevice_WaitForBytesWritten(this, msecs) != 0; };
+	bool waitForReadyRead(int msecs) { return callbackQIODevice_WaitForReadyRead(this, msecs) != 0; };
+	qint64 writeData(const char * data, qint64 l) { QtCore_PackedString dataPacked = { const_cast<char*>(data), l };return callbackQProcess_WriteData(this, dataPacked, l); };
+	 ~MyQProcess() { callbackQProcess_DestroyQProcess(this); };
+	void Signal_AboutToClose() { callbackQIODevice_AboutToClose(this); };
+	void Signal_BytesWritten(qint64 bytes) { callbackQIODevice_BytesWritten(this, bytes); };
+	void Signal_ChannelBytesWritten(int channel, qint64 bytes) { callbackQIODevice_ChannelBytesWritten(this, channel, bytes); };
+	void Signal_ChannelReadyRead(int channel) { callbackQIODevice_ChannelReadyRead(this, channel); };
+	qint64 pos() const { return callbackQIODevice_Pos(const_cast<void*>(static_cast<const void*>(this))); };
+	void Signal_ReadChannelFinished() { callbackQIODevice_ReadChannelFinished(this); };
+	qint64 readLineData(char * data, qint64 maxSize) { QtCore_PackedString dataPacked = { data, maxSize };return callbackQIODevice_ReadLineData(this, dataPacked, maxSize); };
+	void Signal_ReadyRead() { callbackQIODevice_ReadyRead(this); };
+	bool reset() { return callbackQIODevice_Reset(this) != 0; };
+	bool seek(qint64 pos) { return callbackQIODevice_Seek(this, pos) != 0; };
+	qint64 size() const { return callbackQIODevice_Size(const_cast<void*>(static_cast<const void*>(this))); };
+	void childEvent(QChildEvent * event) { callbackQObject_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQObject_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQObject_CustomEvent(this, event); };
+	void deleteLater() { callbackQObject_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQObject_Destroyed(this, obj); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQObject_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQObject_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQObject_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQObject_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtCore_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQObject_ObjectNameChanged(this, objectNamePacked); };
+	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
+};
+
+Q_DECLARE_METATYPE(MyQProcess*)
+
+int QProcess_QProcess_QRegisterMetaType(){qRegisterMetaType<QProcess*>(); return qRegisterMetaType<MyQProcess*>();}
+
+void* QProcess_NewQProcess(void* parent)
+{
+	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQProcess(static_cast<QAudioSystemPlugin*>(parent));
+	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQProcess(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQProcess(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQProcess(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQProcess(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQProcess(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQProcess(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQProcess(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQProcess(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQProcess(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQProcess(static_cast<QMediaServiceProviderPlugin*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQProcess(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQProcess(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQProcess(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQProcess(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQProcess(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQProcess(static_cast<QRemoteObjectPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQProcess(static_cast<QScriptExtensionPlugin*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQProcess(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQProcess(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQProcess(static_cast<QObject*>(parent));
+	}
+}
+
+struct QtCore_PackedString QProcess_Arguments(void* ptr)
+{
+	return ({ QByteArray tab219c = static_cast<QProcess*>(ptr)->arguments().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(tab219c.prepend("WHITESPACE").constData()+10), tab219c.size()-10 }; });
+}
+
+void QProcess_CloseReadChannel(void* ptr, long long channel)
+{
+	static_cast<QProcess*>(ptr)->closeReadChannel(static_cast<QProcess::ProcessChannel>(channel));
+}
+
+void QProcess_CloseWriteChannel(void* ptr)
+{
+	static_cast<QProcess*>(ptr)->closeWriteChannel();
+}
+
+long long QProcess_Error(void* ptr)
+{
+	return static_cast<QProcess*>(ptr)->error();
+}
+
+void QProcess_ConnectErrorOccurred(void* ptr)
+{
+	qRegisterMetaType<QProcess::ProcessError>();
+	QObject::connect(static_cast<QProcess*>(ptr), static_cast<void (QProcess::*)(QProcess::ProcessError)>(&QProcess::errorOccurred), static_cast<MyQProcess*>(ptr), static_cast<void (MyQProcess::*)(QProcess::ProcessError)>(&MyQProcess::Signal_ErrorOccurred));
+}
+
+void QProcess_DisconnectErrorOccurred(void* ptr)
+{
+	QObject::disconnect(static_cast<QProcess*>(ptr), static_cast<void (QProcess::*)(QProcess::ProcessError)>(&QProcess::errorOccurred), static_cast<MyQProcess*>(ptr), static_cast<void (MyQProcess::*)(QProcess::ProcessError)>(&MyQProcess::Signal_ErrorOccurred));
+}
+
+void QProcess_ErrorOccurred(void* ptr, long long error)
+{
+	static_cast<QProcess*>(ptr)->errorOccurred(static_cast<QProcess::ProcessError>(error));
+}
+
+int QProcess_QProcess_Execute(struct QtCore_PackedString program, struct QtCore_PackedString arguments)
+{
+	return QProcess::execute(QString::fromUtf8(program.data, program.len), QString::fromUtf8(arguments.data, arguments.len).split("¡¦!", QString::SkipEmptyParts));
+}
+
+int QProcess_QProcess_Execute2(struct QtCore_PackedString command)
+{
+	return QProcess::execute(QString::fromUtf8(command.data, command.len));
+}
+
+int QProcess_ExitCode(void* ptr)
+{
+	return static_cast<QProcess*>(ptr)->exitCode();
+}
+
+long long QProcess_ExitStatus(void* ptr)
+{
+	return static_cast<QProcess*>(ptr)->exitStatus();
+}
+
+void QProcess_ConnectFinished(void* ptr)
+{
+	qRegisterMetaType<QProcess::ExitStatus>();
+	QObject::connect(static_cast<QProcess*>(ptr), static_cast<void (QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished), static_cast<MyQProcess*>(ptr), static_cast<void (MyQProcess::*)(int, QProcess::ExitStatus)>(&MyQProcess::Signal_Finished));
+}
+
+void QProcess_DisconnectFinished(void* ptr)
+{
+	QObject::disconnect(static_cast<QProcess*>(ptr), static_cast<void (QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished), static_cast<MyQProcess*>(ptr), static_cast<void (MyQProcess::*)(int, QProcess::ExitStatus)>(&MyQProcess::Signal_Finished));
+}
+
+void QProcess_Finished(void* ptr, int exitCode, long long exitStatus)
+{
+	static_cast<QProcess*>(ptr)->finished(exitCode, static_cast<QProcess::ExitStatus>(exitStatus));
+}
+
+long long QProcess_InputChannelMode(void* ptr)
+{
+	return static_cast<QProcess*>(ptr)->inputChannelMode();
+}
+
+void QProcess_Kill(void* ptr)
+{
+	QMetaObject::invokeMethod(static_cast<QProcess*>(ptr), "kill");
+}
+
+void QProcess_KillDefault(void* ptr)
+{
+		static_cast<QProcess*>(ptr)->QProcess::kill();
+}
+
+struct QtCore_PackedString QProcess_NativeArguments(void* ptr)
+{
+#ifdef Q_OS_WIN
+	return ({ QByteArray t56488a = static_cast<QProcess*>(ptr)->nativeArguments().toUtf8(); QtCore_PackedString { const_cast<char*>(t56488a.prepend("WHITESPACE").constData()+10), t56488a.size()-10 }; });
+#else
+	return QtCore_PackedString {};
+#endif
+}
+
+struct QtCore_PackedString QProcess_QProcess_NullDevice()
+{
+	return ({ QByteArray td290b2 = QProcess::nullDevice().toUtf8(); QtCore_PackedString { const_cast<char*>(td290b2.prepend("WHITESPACE").constData()+10), td290b2.size()-10 }; });
+}
+
+long long QProcess_ProcessChannelMode(void* ptr)
+{
+	return static_cast<QProcess*>(ptr)->processChannelMode();
+}
+
+void* QProcess_ProcessEnvironment(void* ptr)
+{
+	return new QProcessEnvironment(static_cast<QProcess*>(ptr)->processEnvironment());
+}
+
+long long QProcess_ProcessId(void* ptr)
+{
+	return static_cast<QProcess*>(ptr)->processId();
+}
+
+struct QtCore_PackedString QProcess_Program(void* ptr)
+{
+	return ({ QByteArray t5d7bda = static_cast<QProcess*>(ptr)->program().toUtf8(); QtCore_PackedString { const_cast<char*>(t5d7bda.prepend("WHITESPACE").constData()+10), t5d7bda.size()-10 }; });
+}
+
+void* QProcess_ReadAllStandardError(void* ptr)
+{
+	return new QByteArray(static_cast<QProcess*>(ptr)->readAllStandardError());
+}
+
+void* QProcess_ReadAllStandardOutput(void* ptr)
+{
+	return new QByteArray(static_cast<QProcess*>(ptr)->readAllStandardOutput());
+}
+
+long long QProcess_ReadChannel(void* ptr)
+{
+	return static_cast<QProcess*>(ptr)->readChannel();
+}
+
+long long QProcess_ReadData(void* ptr, char* data, long long maxlen)
+{
+	return static_cast<QProcess*>(ptr)->readData(data, maxlen);
+}
+
+long long QProcess_ReadDataDefault(void* ptr, char* data, long long maxlen)
+{
+		return static_cast<QProcess*>(ptr)->QProcess::readData(data, maxlen);
+}
+
+void QProcess_ConnectReadyReadStandardError(void* ptr)
+{
+	QObject::connect(static_cast<QProcess*>(ptr), &QProcess::readyReadStandardError, static_cast<MyQProcess*>(ptr), static_cast<void (MyQProcess::*)()>(&MyQProcess::Signal_ReadyReadStandardError));
+}
+
+void QProcess_DisconnectReadyReadStandardError(void* ptr)
+{
+	QObject::disconnect(static_cast<QProcess*>(ptr), &QProcess::readyReadStandardError, static_cast<MyQProcess*>(ptr), static_cast<void (MyQProcess::*)()>(&MyQProcess::Signal_ReadyReadStandardError));
+}
+
+void QProcess_ConnectReadyReadStandardOutput(void* ptr)
+{
+	QObject::connect(static_cast<QProcess*>(ptr), &QProcess::readyReadStandardOutput, static_cast<MyQProcess*>(ptr), static_cast<void (MyQProcess::*)()>(&MyQProcess::Signal_ReadyReadStandardOutput));
+}
+
+void QProcess_DisconnectReadyReadStandardOutput(void* ptr)
+{
+	QObject::disconnect(static_cast<QProcess*>(ptr), &QProcess::readyReadStandardOutput, static_cast<MyQProcess*>(ptr), static_cast<void (MyQProcess::*)()>(&MyQProcess::Signal_ReadyReadStandardOutput));
+}
+
+void QProcess_SetArguments(void* ptr, struct QtCore_PackedString arguments)
+{
+	static_cast<QProcess*>(ptr)->setArguments(QString::fromUtf8(arguments.data, arguments.len).split("¡¦!", QString::SkipEmptyParts));
+}
+
+void QProcess_SetInputChannelMode(void* ptr, long long mode)
+{
+	static_cast<QProcess*>(ptr)->setInputChannelMode(static_cast<QProcess::InputChannelMode>(mode));
+}
+
+void QProcess_SetNativeArguments(void* ptr, struct QtCore_PackedString arguments)
+{
+#ifdef Q_OS_WIN
+	static_cast<QProcess*>(ptr)->setNativeArguments(QString::fromUtf8(arguments.data, arguments.len));
+#endif
+}
+
+void QProcess_SetProcessChannelMode(void* ptr, long long mode)
+{
+	static_cast<QProcess*>(ptr)->setProcessChannelMode(static_cast<QProcess::ProcessChannelMode>(mode));
+}
+
+void QProcess_SetProcessEnvironment(void* ptr, void* environment)
+{
+	static_cast<QProcess*>(ptr)->setProcessEnvironment(*static_cast<QProcessEnvironment*>(environment));
+}
+
+void QProcess_SetProcessState(void* ptr, long long state)
+{
+	static_cast<QProcess*>(ptr)->setProcessState(static_cast<QProcess::ProcessState>(state));
+}
+
+void QProcess_SetProgram(void* ptr, struct QtCore_PackedString program)
+{
+	static_cast<QProcess*>(ptr)->setProgram(QString::fromUtf8(program.data, program.len));
+}
+
+void QProcess_SetReadChannel(void* ptr, long long channel)
+{
+	static_cast<QProcess*>(ptr)->setReadChannel(static_cast<QProcess::ProcessChannel>(channel));
+}
+
+void QProcess_SetStandardErrorFile(void* ptr, struct QtCore_PackedString fileName, long long mode)
+{
+	static_cast<QProcess*>(ptr)->setStandardErrorFile(QString::fromUtf8(fileName.data, fileName.len), static_cast<QIODevice::OpenModeFlag>(mode));
+}
+
+void QProcess_SetStandardInputFile(void* ptr, struct QtCore_PackedString fileName)
+{
+	static_cast<QProcess*>(ptr)->setStandardInputFile(QString::fromUtf8(fileName.data, fileName.len));
+}
+
+void QProcess_SetStandardOutputFile(void* ptr, struct QtCore_PackedString fileName, long long mode)
+{
+	static_cast<QProcess*>(ptr)->setStandardOutputFile(QString::fromUtf8(fileName.data, fileName.len), static_cast<QIODevice::OpenModeFlag>(mode));
+}
+
+void QProcess_SetStandardOutputProcess(void* ptr, void* destination)
+{
+	static_cast<QProcess*>(ptr)->setStandardOutputProcess(static_cast<QProcess*>(destination));
+}
+
+void QProcess_SetWorkingDirectory(void* ptr, struct QtCore_PackedString dir)
+{
+	static_cast<QProcess*>(ptr)->setWorkingDirectory(QString::fromUtf8(dir.data, dir.len));
+}
+
+void QProcess_SetupChildProcess(void* ptr)
+{
+	static_cast<QProcess*>(ptr)->setupChildProcess();
+}
+
+void QProcess_SetupChildProcessDefault(void* ptr)
+{
+		static_cast<QProcess*>(ptr)->QProcess::setupChildProcess();
+}
+
+void QProcess_Start(void* ptr, struct QtCore_PackedString program, struct QtCore_PackedString arguments, long long mode)
+{
+	static_cast<QProcess*>(ptr)->start(QString::fromUtf8(program.data, program.len), QString::fromUtf8(arguments.data, arguments.len).split("¡¦!", QString::SkipEmptyParts), static_cast<QIODevice::OpenModeFlag>(mode));
+}
+
+void QProcess_Start2(void* ptr, struct QtCore_PackedString command, long long mode)
+{
+	static_cast<QProcess*>(ptr)->start(QString::fromUtf8(command.data, command.len), static_cast<QIODevice::OpenModeFlag>(mode));
+}
+
+void QProcess_Start3(void* ptr, long long mode)
+{
+	static_cast<QProcess*>(ptr)->start(static_cast<QIODevice::OpenModeFlag>(mode));
+}
+
+char QProcess_StartDetached(void* ptr, long long pid)
+{
+	return static_cast<QProcess*>(ptr)->startDetached(&pid);
+}
+
+char QProcess_QProcess_StartDetached2(struct QtCore_PackedString program, struct QtCore_PackedString arguments, struct QtCore_PackedString workingDirectory, long long pid)
+{
+	return QProcess::startDetached(QString::fromUtf8(program.data, program.len), QString::fromUtf8(arguments.data, arguments.len).split("¡¦!", QString::SkipEmptyParts), QString::fromUtf8(workingDirectory.data, workingDirectory.len), &pid);
+}
+
+char QProcess_QProcess_StartDetached3(struct QtCore_PackedString command)
+{
+	return QProcess::startDetached(QString::fromUtf8(command.data, command.len));
+}
+
+void QProcess_ConnectStarted(void* ptr)
+{
+	QObject::connect(static_cast<QProcess*>(ptr), &QProcess::started, static_cast<MyQProcess*>(ptr), static_cast<void (MyQProcess::*)()>(&MyQProcess::Signal_Started));
+}
+
+void QProcess_DisconnectStarted(void* ptr)
+{
+	QObject::disconnect(static_cast<QProcess*>(ptr), &QProcess::started, static_cast<MyQProcess*>(ptr), static_cast<void (MyQProcess::*)()>(&MyQProcess::Signal_Started));
+}
+
+long long QProcess_State(void* ptr)
+{
+	return static_cast<QProcess*>(ptr)->state();
+}
+
+void QProcess_ConnectStateChanged(void* ptr)
+{
+	qRegisterMetaType<QProcess::ProcessState>();
+	QObject::connect(static_cast<QProcess*>(ptr), &QProcess::stateChanged, static_cast<MyQProcess*>(ptr), static_cast<void (MyQProcess::*)(QProcess::ProcessState)>(&MyQProcess::Signal_StateChanged));
+}
+
+void QProcess_DisconnectStateChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QProcess*>(ptr), &QProcess::stateChanged, static_cast<MyQProcess*>(ptr), static_cast<void (MyQProcess::*)(QProcess::ProcessState)>(&MyQProcess::Signal_StateChanged));
+}
+
+struct QtCore_PackedString QProcess_QProcess_SystemEnvironment()
+{
+	return ({ QByteArray td5ad45 = QProcess::systemEnvironment().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(td5ad45.prepend("WHITESPACE").constData()+10), td5ad45.size()-10 }; });
+}
+
+void QProcess_Terminate(void* ptr)
+{
+	QMetaObject::invokeMethod(static_cast<QProcess*>(ptr), "terminate");
+}
+
+void QProcess_TerminateDefault(void* ptr)
+{
+		static_cast<QProcess*>(ptr)->QProcess::terminate();
+}
+
+char QProcess_WaitForFinished(void* ptr, int msecs)
+{
+	return static_cast<QProcess*>(ptr)->waitForFinished(msecs);
+}
+
+char QProcess_WaitForStarted(void* ptr, int msecs)
+{
+	return static_cast<QProcess*>(ptr)->waitForStarted(msecs);
+}
+
+struct QtCore_PackedString QProcess_WorkingDirectory(void* ptr)
+{
+	return ({ QByteArray t55a1e5 = static_cast<QProcess*>(ptr)->workingDirectory().toUtf8(); QtCore_PackedString { const_cast<char*>(t55a1e5.prepend("WHITESPACE").constData()+10), t55a1e5.size()-10 }; });
+}
+
+long long QProcess_WriteData(void* ptr, char* data, long long l)
+{
+	return static_cast<QProcess*>(ptr)->writeData(const_cast<const char*>(data), l);
+}
+
+long long QProcess_WriteDataDefault(void* ptr, char* data, long long l)
+{
+		return static_cast<QProcess*>(ptr)->QProcess::writeData(const_cast<const char*>(data), l);
+}
+
+void QProcess_DestroyQProcess(void* ptr)
+{
+	static_cast<QProcess*>(ptr)->~QProcess();
+}
+
+void QProcess_DestroyQProcessDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
+void* QProcessEnvironment_NewQProcessEnvironment()
+{
+	return new QProcessEnvironment();
+}
+
+void* QProcessEnvironment_NewQProcessEnvironment2(void* other)
+{
+	return new QProcessEnvironment(*static_cast<QProcessEnvironment*>(other));
+}
+
+void QProcessEnvironment_Clear(void* ptr)
+{
+	static_cast<QProcessEnvironment*>(ptr)->clear();
+}
+
+char QProcessEnvironment_Contains(void* ptr, struct QtCore_PackedString name)
+{
+	return static_cast<QProcessEnvironment*>(ptr)->contains(QString::fromUtf8(name.data, name.len));
+}
+
+void QProcessEnvironment_Insert(void* ptr, struct QtCore_PackedString name, struct QtCore_PackedString value)
+{
+	static_cast<QProcessEnvironment*>(ptr)->insert(QString::fromUtf8(name.data, name.len), QString::fromUtf8(value.data, value.len));
+}
+
+void QProcessEnvironment_Insert2(void* ptr, void* e)
+{
+	static_cast<QProcessEnvironment*>(ptr)->insert(*static_cast<QProcessEnvironment*>(e));
+}
+
+char QProcessEnvironment_IsEmpty(void* ptr)
+{
+	return static_cast<QProcessEnvironment*>(ptr)->isEmpty();
+}
+
+struct QtCore_PackedString QProcessEnvironment_Keys(void* ptr)
+{
+	return ({ QByteArray tf1d987 = static_cast<QProcessEnvironment*>(ptr)->keys().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(tf1d987.prepend("WHITESPACE").constData()+10), tf1d987.size()-10 }; });
+}
+
+void QProcessEnvironment_Remove(void* ptr, struct QtCore_PackedString name)
+{
+	static_cast<QProcessEnvironment*>(ptr)->remove(QString::fromUtf8(name.data, name.len));
+}
+
+void QProcessEnvironment_Swap(void* ptr, void* other)
+{
+	static_cast<QProcessEnvironment*>(ptr)->swap(*static_cast<QProcessEnvironment*>(other));
+}
+
+void* QProcessEnvironment_QProcessEnvironment_SystemEnvironment()
+{
+	return new QProcessEnvironment(QProcessEnvironment::systemEnvironment());
+}
+
+struct QtCore_PackedString QProcessEnvironment_ToStringList(void* ptr)
+{
+	return ({ QByteArray tf595c1 = static_cast<QProcessEnvironment*>(ptr)->toStringList().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(tf595c1.prepend("WHITESPACE").constData()+10), tf595c1.size()-10 }; });
+}
+
+struct QtCore_PackedString QProcessEnvironment_Value(void* ptr, struct QtCore_PackedString name, struct QtCore_PackedString defaultValue)
+{
+	return ({ QByteArray t6b2311 = static_cast<QProcessEnvironment*>(ptr)->value(QString::fromUtf8(name.data, name.len), QString::fromUtf8(defaultValue.data, defaultValue.len)).toUtf8(); QtCore_PackedString { const_cast<char*>(t6b2311.prepend("WHITESPACE").constData()+10), t6b2311.size()-10 }; });
+}
+
+void QProcessEnvironment_DestroyQProcessEnvironment(void* ptr)
+{
+	static_cast<QProcessEnvironment*>(ptr)->~QProcessEnvironment();
 }
 
 class MyQPropertyAnimation: public QPropertyAnimation

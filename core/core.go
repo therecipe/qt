@@ -36632,6 +36632,915 @@ const (
 	QProcess__CrashExit  QProcess__ExitStatus = QProcess__ExitStatus(1)
 )
 
+func NewQProcess(parent QObject_ITF) *QProcess {
+	tmpValue := NewQProcessFromPointer(C.QProcess_NewQProcess(PointerFromQObject(parent)))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
+
+func (ptr *QProcess) Arguments() []string {
+	if ptr.Pointer() != nil {
+		return unpackStringList(cGoUnpackString(C.QProcess_Arguments(ptr.Pointer())))
+	}
+	return make([]string, 0)
+}
+
+func (ptr *QProcess) CloseReadChannel(channel QProcess__ProcessChannel) {
+	if ptr.Pointer() != nil {
+		C.QProcess_CloseReadChannel(ptr.Pointer(), C.longlong(channel))
+	}
+}
+
+func (ptr *QProcess) CloseWriteChannel() {
+	if ptr.Pointer() != nil {
+		C.QProcess_CloseWriteChannel(ptr.Pointer())
+	}
+}
+
+func (ptr *QProcess) Error() QProcess__ProcessError {
+	if ptr.Pointer() != nil {
+		return QProcess__ProcessError(C.QProcess_Error(ptr.Pointer()))
+	}
+	return 0
+}
+
+//export callbackQProcess_ErrorOccurred
+func callbackQProcess_ErrorOccurred(ptr unsafe.Pointer, error C.longlong) {
+	if signal := qt.GetSignal(ptr, "errorOccurred"); signal != nil {
+		(*(*func(QProcess__ProcessError))(signal))(QProcess__ProcessError(error))
+	}
+
+}
+
+func (ptr *QProcess) ConnectErrorOccurred(f func(error QProcess__ProcessError)) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "errorOccurred") {
+			C.QProcess_ConnectErrorOccurred(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "errorOccurred"); signal != nil {
+			f := func(error QProcess__ProcessError) {
+				(*(*func(QProcess__ProcessError))(signal))(error)
+				f(error)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "errorOccurred", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "errorOccurred", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QProcess) DisconnectErrorOccurred() {
+	if ptr.Pointer() != nil {
+		C.QProcess_DisconnectErrorOccurred(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "errorOccurred")
+	}
+}
+
+func (ptr *QProcess) ErrorOccurred(error QProcess__ProcessError) {
+	if ptr.Pointer() != nil {
+		C.QProcess_ErrorOccurred(ptr.Pointer(), C.longlong(error))
+	}
+}
+
+func QProcess_Execute(program string, arguments []string) int {
+	var programC *C.char
+	if program != "" {
+		programC = C.CString(program)
+		defer C.free(unsafe.Pointer(programC))
+	}
+	argumentsC := C.CString(strings.Join(arguments, "¡¦!"))
+	defer C.free(unsafe.Pointer(argumentsC))
+	return int(int32(C.QProcess_QProcess_Execute(C.struct_QtCore_PackedString{data: programC, len: C.longlong(len(program))}, C.struct_QtCore_PackedString{data: argumentsC, len: C.longlong(len(strings.Join(arguments, "¡¦!")))})))
+}
+
+func (ptr *QProcess) Execute(program string, arguments []string) int {
+	var programC *C.char
+	if program != "" {
+		programC = C.CString(program)
+		defer C.free(unsafe.Pointer(programC))
+	}
+	argumentsC := C.CString(strings.Join(arguments, "¡¦!"))
+	defer C.free(unsafe.Pointer(argumentsC))
+	return int(int32(C.QProcess_QProcess_Execute(C.struct_QtCore_PackedString{data: programC, len: C.longlong(len(program))}, C.struct_QtCore_PackedString{data: argumentsC, len: C.longlong(len(strings.Join(arguments, "¡¦!")))})))
+}
+
+func QProcess_Execute2(command string) int {
+	var commandC *C.char
+	if command != "" {
+		commandC = C.CString(command)
+		defer C.free(unsafe.Pointer(commandC))
+	}
+	return int(int32(C.QProcess_QProcess_Execute2(C.struct_QtCore_PackedString{data: commandC, len: C.longlong(len(command))})))
+}
+
+func (ptr *QProcess) Execute2(command string) int {
+	var commandC *C.char
+	if command != "" {
+		commandC = C.CString(command)
+		defer C.free(unsafe.Pointer(commandC))
+	}
+	return int(int32(C.QProcess_QProcess_Execute2(C.struct_QtCore_PackedString{data: commandC, len: C.longlong(len(command))})))
+}
+
+func (ptr *QProcess) ExitCode() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QProcess_ExitCode(ptr.Pointer())))
+	}
+	return 0
+}
+
+func (ptr *QProcess) ExitStatus() QProcess__ExitStatus {
+	if ptr.Pointer() != nil {
+		return QProcess__ExitStatus(C.QProcess_ExitStatus(ptr.Pointer()))
+	}
+	return 0
+}
+
+//export callbackQProcess_Finished
+func callbackQProcess_Finished(ptr unsafe.Pointer, exitCode C.int, exitStatus C.longlong) {
+	if signal := qt.GetSignal(ptr, "finished"); signal != nil {
+		(*(*func(int, QProcess__ExitStatus))(signal))(int(int32(exitCode)), QProcess__ExitStatus(exitStatus))
+	}
+
+}
+
+func (ptr *QProcess) ConnectFinished(f func(exitCode int, exitStatus QProcess__ExitStatus)) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "finished") {
+			C.QProcess_ConnectFinished(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "finished"); signal != nil {
+			f := func(exitCode int, exitStatus QProcess__ExitStatus) {
+				(*(*func(int, QProcess__ExitStatus))(signal))(exitCode, exitStatus)
+				f(exitCode, exitStatus)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "finished", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "finished", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QProcess) DisconnectFinished() {
+	if ptr.Pointer() != nil {
+		C.QProcess_DisconnectFinished(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "finished")
+	}
+}
+
+func (ptr *QProcess) Finished(exitCode int, exitStatus QProcess__ExitStatus) {
+	if ptr.Pointer() != nil {
+		C.QProcess_Finished(ptr.Pointer(), C.int(int32(exitCode)), C.longlong(exitStatus))
+	}
+}
+
+func (ptr *QProcess) InputChannelMode() QProcess__InputChannelMode {
+	if ptr.Pointer() != nil {
+		return QProcess__InputChannelMode(C.QProcess_InputChannelMode(ptr.Pointer()))
+	}
+	return 0
+}
+
+//export callbackQProcess_Kill
+func callbackQProcess_Kill(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "kill"); signal != nil {
+		(*(*func())(signal))()
+	} else {
+		NewQProcessFromPointer(ptr).KillDefault()
+	}
+}
+
+func (ptr *QProcess) ConnectKill(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "kill"); signal != nil {
+			f := func() {
+				(*(*func())(signal))()
+				f()
+			}
+			qt.ConnectSignal(ptr.Pointer(), "kill", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "kill", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QProcess) DisconnectKill() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "kill")
+	}
+}
+
+func (ptr *QProcess) Kill() {
+	if ptr.Pointer() != nil {
+		C.QProcess_Kill(ptr.Pointer())
+	}
+}
+
+func (ptr *QProcess) KillDefault() {
+	if ptr.Pointer() != nil {
+		C.QProcess_KillDefault(ptr.Pointer())
+	}
+}
+
+func (ptr *QProcess) NativeArguments() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QProcess_NativeArguments(ptr.Pointer()))
+	}
+	return ""
+}
+
+func QProcess_NullDevice() string {
+	return cGoUnpackString(C.QProcess_QProcess_NullDevice())
+}
+
+func (ptr *QProcess) NullDevice() string {
+	return cGoUnpackString(C.QProcess_QProcess_NullDevice())
+}
+
+func (ptr *QProcess) ProcessChannelMode() QProcess__ProcessChannelMode {
+	if ptr.Pointer() != nil {
+		return QProcess__ProcessChannelMode(C.QProcess_ProcessChannelMode(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QProcess) ProcessEnvironment() *QProcessEnvironment {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQProcessEnvironmentFromPointer(C.QProcess_ProcessEnvironment(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QProcessEnvironment).DestroyQProcessEnvironment)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QProcess) ProcessId() int64 {
+	if ptr.Pointer() != nil {
+		return int64(C.QProcess_ProcessId(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QProcess) Program() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QProcess_Program(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QProcess) ReadAllStandardError() *QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQByteArrayFromPointer(C.QProcess_ReadAllStandardError(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QProcess) ReadAllStandardOutput() *QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQByteArrayFromPointer(C.QProcess_ReadAllStandardOutput(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QProcess) ReadChannel() QProcess__ProcessChannel {
+	if ptr.Pointer() != nil {
+		return QProcess__ProcessChannel(C.QProcess_ReadChannel(ptr.Pointer()))
+	}
+	return 0
+}
+
+//export callbackQProcess_ReadData
+func callbackQProcess_ReadData(ptr unsafe.Pointer, data C.struct_QtCore_PackedString, maxlen C.longlong) C.longlong {
+	if signal := qt.GetSignal(ptr, "readData"); signal != nil {
+		retS := cGoUnpackString(data)
+		ret := C.longlong((*(*func(*string, int64) int64)(signal))(&retS, int64(maxlen)))
+		if ret > 0 {
+			C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer((*reflect.StringHeader)(unsafe.Pointer(&retS)).Data), C.size_t(ret))
+		}
+		return ret
+	}
+	retS := cGoUnpackString(data)
+	ret := C.longlong(NewQProcessFromPointer(ptr).ReadDataDefault(&retS, int64(maxlen)))
+	if ret > 0 {
+		C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer((*reflect.StringHeader)(unsafe.Pointer(&retS)).Data), C.size_t(ret))
+	}
+	return ret
+}
+
+func (ptr *QProcess) ConnectReadData(f func(data *string, maxlen int64) int64) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "readData"); signal != nil {
+			f := func(data *string, maxlen int64) int64 {
+				(*(*func(*string, int64) int64)(signal))(data, maxlen)
+				return f(data, maxlen)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "readData", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "readData", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QProcess) DisconnectReadData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "readData")
+	}
+}
+
+func (ptr *QProcess) ReadData(data *string, maxlen int64) int64 {
+	if ptr.Pointer() != nil {
+		dataC := C.CString(strings.Repeat("0", int(maxlen)))
+		defer C.free(unsafe.Pointer(dataC))
+		ret := int64(C.QProcess_ReadData(ptr.Pointer(), dataC, C.longlong(maxlen)))
+		if ret > 0 {
+			*data = C.GoStringN(dataC, C.int(ret))
+		}
+		return ret
+	}
+	return 0
+}
+
+func (ptr *QProcess) ReadDataDefault(data *string, maxlen int64) int64 {
+	if ptr.Pointer() != nil {
+		dataC := C.CString(strings.Repeat("0", int(maxlen)))
+		defer C.free(unsafe.Pointer(dataC))
+		ret := int64(C.QProcess_ReadDataDefault(ptr.Pointer(), dataC, C.longlong(maxlen)))
+		if ret > 0 {
+			*data = C.GoStringN(dataC, C.int(ret))
+		}
+		return ret
+	}
+	return 0
+}
+
+//export callbackQProcess_ReadyReadStandardError
+func callbackQProcess_ReadyReadStandardError(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "readyReadStandardError"); signal != nil {
+		(*(*func())(signal))()
+	}
+
+}
+
+func (ptr *QProcess) ConnectReadyReadStandardError(f func()) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "readyReadStandardError") {
+			C.QProcess_ConnectReadyReadStandardError(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "readyReadStandardError"); signal != nil {
+			f := func() {
+				(*(*func())(signal))()
+				f()
+			}
+			qt.ConnectSignal(ptr.Pointer(), "readyReadStandardError", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "readyReadStandardError", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QProcess) DisconnectReadyReadStandardError() {
+	if ptr.Pointer() != nil {
+		C.QProcess_DisconnectReadyReadStandardError(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "readyReadStandardError")
+	}
+}
+
+//export callbackQProcess_ReadyReadStandardOutput
+func callbackQProcess_ReadyReadStandardOutput(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "readyReadStandardOutput"); signal != nil {
+		(*(*func())(signal))()
+	}
+
+}
+
+func (ptr *QProcess) ConnectReadyReadStandardOutput(f func()) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "readyReadStandardOutput") {
+			C.QProcess_ConnectReadyReadStandardOutput(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "readyReadStandardOutput"); signal != nil {
+			f := func() {
+				(*(*func())(signal))()
+				f()
+			}
+			qt.ConnectSignal(ptr.Pointer(), "readyReadStandardOutput", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "readyReadStandardOutput", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QProcess) DisconnectReadyReadStandardOutput() {
+	if ptr.Pointer() != nil {
+		C.QProcess_DisconnectReadyReadStandardOutput(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "readyReadStandardOutput")
+	}
+}
+
+func (ptr *QProcess) SetArguments(arguments []string) {
+	if ptr.Pointer() != nil {
+		argumentsC := C.CString(strings.Join(arguments, "¡¦!"))
+		defer C.free(unsafe.Pointer(argumentsC))
+		C.QProcess_SetArguments(ptr.Pointer(), C.struct_QtCore_PackedString{data: argumentsC, len: C.longlong(len(strings.Join(arguments, "¡¦!")))})
+	}
+}
+
+func (ptr *QProcess) SetInputChannelMode(mode QProcess__InputChannelMode) {
+	if ptr.Pointer() != nil {
+		C.QProcess_SetInputChannelMode(ptr.Pointer(), C.longlong(mode))
+	}
+}
+
+func (ptr *QProcess) SetNativeArguments(arguments string) {
+	if ptr.Pointer() != nil {
+		var argumentsC *C.char
+		if arguments != "" {
+			argumentsC = C.CString(arguments)
+			defer C.free(unsafe.Pointer(argumentsC))
+		}
+		C.QProcess_SetNativeArguments(ptr.Pointer(), C.struct_QtCore_PackedString{data: argumentsC, len: C.longlong(len(arguments))})
+	}
+}
+
+func (ptr *QProcess) SetProcessChannelMode(mode QProcess__ProcessChannelMode) {
+	if ptr.Pointer() != nil {
+		C.QProcess_SetProcessChannelMode(ptr.Pointer(), C.longlong(mode))
+	}
+}
+
+func (ptr *QProcess) SetProcessEnvironment(environment QProcessEnvironment_ITF) {
+	if ptr.Pointer() != nil {
+		C.QProcess_SetProcessEnvironment(ptr.Pointer(), PointerFromQProcessEnvironment(environment))
+	}
+}
+
+func (ptr *QProcess) SetProcessState(state QProcess__ProcessState) {
+	if ptr.Pointer() != nil {
+		C.QProcess_SetProcessState(ptr.Pointer(), C.longlong(state))
+	}
+}
+
+func (ptr *QProcess) SetProgram(program string) {
+	if ptr.Pointer() != nil {
+		var programC *C.char
+		if program != "" {
+			programC = C.CString(program)
+			defer C.free(unsafe.Pointer(programC))
+		}
+		C.QProcess_SetProgram(ptr.Pointer(), C.struct_QtCore_PackedString{data: programC, len: C.longlong(len(program))})
+	}
+}
+
+func (ptr *QProcess) SetReadChannel(channel QProcess__ProcessChannel) {
+	if ptr.Pointer() != nil {
+		C.QProcess_SetReadChannel(ptr.Pointer(), C.longlong(channel))
+	}
+}
+
+func (ptr *QProcess) SetStandardErrorFile(fileName string, mode QIODevice__OpenModeFlag) {
+	if ptr.Pointer() != nil {
+		var fileNameC *C.char
+		if fileName != "" {
+			fileNameC = C.CString(fileName)
+			defer C.free(unsafe.Pointer(fileNameC))
+		}
+		C.QProcess_SetStandardErrorFile(ptr.Pointer(), C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, C.longlong(mode))
+	}
+}
+
+func (ptr *QProcess) SetStandardInputFile(fileName string) {
+	if ptr.Pointer() != nil {
+		var fileNameC *C.char
+		if fileName != "" {
+			fileNameC = C.CString(fileName)
+			defer C.free(unsafe.Pointer(fileNameC))
+		}
+		C.QProcess_SetStandardInputFile(ptr.Pointer(), C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))})
+	}
+}
+
+func (ptr *QProcess) SetStandardOutputFile(fileName string, mode QIODevice__OpenModeFlag) {
+	if ptr.Pointer() != nil {
+		var fileNameC *C.char
+		if fileName != "" {
+			fileNameC = C.CString(fileName)
+			defer C.free(unsafe.Pointer(fileNameC))
+		}
+		C.QProcess_SetStandardOutputFile(ptr.Pointer(), C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, C.longlong(mode))
+	}
+}
+
+func (ptr *QProcess) SetStandardOutputProcess(destination QProcess_ITF) {
+	if ptr.Pointer() != nil {
+		C.QProcess_SetStandardOutputProcess(ptr.Pointer(), PointerFromQProcess(destination))
+	}
+}
+
+func (ptr *QProcess) SetWorkingDirectory(dir string) {
+	if ptr.Pointer() != nil {
+		var dirC *C.char
+		if dir != "" {
+			dirC = C.CString(dir)
+			defer C.free(unsafe.Pointer(dirC))
+		}
+		C.QProcess_SetWorkingDirectory(ptr.Pointer(), C.struct_QtCore_PackedString{data: dirC, len: C.longlong(len(dir))})
+	}
+}
+
+//export callbackQProcess_SetupChildProcess
+func callbackQProcess_SetupChildProcess(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "setupChildProcess"); signal != nil {
+		(*(*func())(signal))()
+	} else {
+		NewQProcessFromPointer(ptr).SetupChildProcessDefault()
+	}
+}
+
+func (ptr *QProcess) ConnectSetupChildProcess(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "setupChildProcess"); signal != nil {
+			f := func() {
+				(*(*func())(signal))()
+				f()
+			}
+			qt.ConnectSignal(ptr.Pointer(), "setupChildProcess", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "setupChildProcess", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QProcess) DisconnectSetupChildProcess() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "setupChildProcess")
+	}
+}
+
+func (ptr *QProcess) SetupChildProcess() {
+	if ptr.Pointer() != nil {
+		C.QProcess_SetupChildProcess(ptr.Pointer())
+	}
+}
+
+func (ptr *QProcess) SetupChildProcessDefault() {
+	if ptr.Pointer() != nil {
+		C.QProcess_SetupChildProcessDefault(ptr.Pointer())
+	}
+}
+
+func (ptr *QProcess) Start(program string, arguments []string, mode QIODevice__OpenModeFlag) {
+	if ptr.Pointer() != nil {
+		var programC *C.char
+		if program != "" {
+			programC = C.CString(program)
+			defer C.free(unsafe.Pointer(programC))
+		}
+		argumentsC := C.CString(strings.Join(arguments, "¡¦!"))
+		defer C.free(unsafe.Pointer(argumentsC))
+		C.QProcess_Start(ptr.Pointer(), C.struct_QtCore_PackedString{data: programC, len: C.longlong(len(program))}, C.struct_QtCore_PackedString{data: argumentsC, len: C.longlong(len(strings.Join(arguments, "¡¦!")))}, C.longlong(mode))
+	}
+}
+
+func (ptr *QProcess) Start2(command string, mode QIODevice__OpenModeFlag) {
+	if ptr.Pointer() != nil {
+		var commandC *C.char
+		if command != "" {
+			commandC = C.CString(command)
+			defer C.free(unsafe.Pointer(commandC))
+		}
+		C.QProcess_Start2(ptr.Pointer(), C.struct_QtCore_PackedString{data: commandC, len: C.longlong(len(command))}, C.longlong(mode))
+	}
+}
+
+func (ptr *QProcess) Start3(mode QIODevice__OpenModeFlag) {
+	if ptr.Pointer() != nil {
+		C.QProcess_Start3(ptr.Pointer(), C.longlong(mode))
+	}
+}
+
+func (ptr *QProcess) StartDetached(pid int64) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QProcess_StartDetached(ptr.Pointer(), C.longlong(pid))) != 0
+	}
+	return false
+}
+
+func QProcess_StartDetached2(program string, arguments []string, workingDirectory string, pid int64) bool {
+	var programC *C.char
+	if program != "" {
+		programC = C.CString(program)
+		defer C.free(unsafe.Pointer(programC))
+	}
+	argumentsC := C.CString(strings.Join(arguments, "¡¦!"))
+	defer C.free(unsafe.Pointer(argumentsC))
+	var workingDirectoryC *C.char
+	if workingDirectory != "" {
+		workingDirectoryC = C.CString(workingDirectory)
+		defer C.free(unsafe.Pointer(workingDirectoryC))
+	}
+	return int8(C.QProcess_QProcess_StartDetached2(C.struct_QtCore_PackedString{data: programC, len: C.longlong(len(program))}, C.struct_QtCore_PackedString{data: argumentsC, len: C.longlong(len(strings.Join(arguments, "¡¦!")))}, C.struct_QtCore_PackedString{data: workingDirectoryC, len: C.longlong(len(workingDirectory))}, C.longlong(pid))) != 0
+}
+
+func (ptr *QProcess) StartDetached2(program string, arguments []string, workingDirectory string, pid int64) bool {
+	var programC *C.char
+	if program != "" {
+		programC = C.CString(program)
+		defer C.free(unsafe.Pointer(programC))
+	}
+	argumentsC := C.CString(strings.Join(arguments, "¡¦!"))
+	defer C.free(unsafe.Pointer(argumentsC))
+	var workingDirectoryC *C.char
+	if workingDirectory != "" {
+		workingDirectoryC = C.CString(workingDirectory)
+		defer C.free(unsafe.Pointer(workingDirectoryC))
+	}
+	return int8(C.QProcess_QProcess_StartDetached2(C.struct_QtCore_PackedString{data: programC, len: C.longlong(len(program))}, C.struct_QtCore_PackedString{data: argumentsC, len: C.longlong(len(strings.Join(arguments, "¡¦!")))}, C.struct_QtCore_PackedString{data: workingDirectoryC, len: C.longlong(len(workingDirectory))}, C.longlong(pid))) != 0
+}
+
+func QProcess_StartDetached3(command string) bool {
+	var commandC *C.char
+	if command != "" {
+		commandC = C.CString(command)
+		defer C.free(unsafe.Pointer(commandC))
+	}
+	return int8(C.QProcess_QProcess_StartDetached3(C.struct_QtCore_PackedString{data: commandC, len: C.longlong(len(command))})) != 0
+}
+
+func (ptr *QProcess) StartDetached3(command string) bool {
+	var commandC *C.char
+	if command != "" {
+		commandC = C.CString(command)
+		defer C.free(unsafe.Pointer(commandC))
+	}
+	return int8(C.QProcess_QProcess_StartDetached3(C.struct_QtCore_PackedString{data: commandC, len: C.longlong(len(command))})) != 0
+}
+
+//export callbackQProcess_Started
+func callbackQProcess_Started(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "started"); signal != nil {
+		(*(*func())(signal))()
+	}
+
+}
+
+func (ptr *QProcess) ConnectStarted(f func()) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "started") {
+			C.QProcess_ConnectStarted(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "started"); signal != nil {
+			f := func() {
+				(*(*func())(signal))()
+				f()
+			}
+			qt.ConnectSignal(ptr.Pointer(), "started", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "started", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QProcess) DisconnectStarted() {
+	if ptr.Pointer() != nil {
+		C.QProcess_DisconnectStarted(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "started")
+	}
+}
+
+func (ptr *QProcess) State() QProcess__ProcessState {
+	if ptr.Pointer() != nil {
+		return QProcess__ProcessState(C.QProcess_State(ptr.Pointer()))
+	}
+	return 0
+}
+
+//export callbackQProcess_StateChanged
+func callbackQProcess_StateChanged(ptr unsafe.Pointer, newState C.longlong) {
+	if signal := qt.GetSignal(ptr, "stateChanged"); signal != nil {
+		(*(*func(QProcess__ProcessState))(signal))(QProcess__ProcessState(newState))
+	}
+
+}
+
+func (ptr *QProcess) ConnectStateChanged(f func(newState QProcess__ProcessState)) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "stateChanged") {
+			C.QProcess_ConnectStateChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
+			f := func(newState QProcess__ProcessState) {
+				(*(*func(QProcess__ProcessState))(signal))(newState)
+				f(newState)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "stateChanged", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "stateChanged", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QProcess) DisconnectStateChanged() {
+	if ptr.Pointer() != nil {
+		C.QProcess_DisconnectStateChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "stateChanged")
+	}
+}
+
+func QProcess_SystemEnvironment() []string {
+	return unpackStringList(cGoUnpackString(C.QProcess_QProcess_SystemEnvironment()))
+}
+
+func (ptr *QProcess) SystemEnvironment() []string {
+	return unpackStringList(cGoUnpackString(C.QProcess_QProcess_SystemEnvironment()))
+}
+
+//export callbackQProcess_Terminate
+func callbackQProcess_Terminate(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "terminate"); signal != nil {
+		(*(*func())(signal))()
+	} else {
+		NewQProcessFromPointer(ptr).TerminateDefault()
+	}
+}
+
+func (ptr *QProcess) ConnectTerminate(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "terminate"); signal != nil {
+			f := func() {
+				(*(*func())(signal))()
+				f()
+			}
+			qt.ConnectSignal(ptr.Pointer(), "terminate", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "terminate", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QProcess) DisconnectTerminate() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "terminate")
+	}
+}
+
+func (ptr *QProcess) Terminate() {
+	if ptr.Pointer() != nil {
+		C.QProcess_Terminate(ptr.Pointer())
+	}
+}
+
+func (ptr *QProcess) TerminateDefault() {
+	if ptr.Pointer() != nil {
+		C.QProcess_TerminateDefault(ptr.Pointer())
+	}
+}
+
+func (ptr *QProcess) WaitForFinished(msecs int) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QProcess_WaitForFinished(ptr.Pointer(), C.int(int32(msecs)))) != 0
+	}
+	return false
+}
+
+func (ptr *QProcess) WaitForStarted(msecs int) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QProcess_WaitForStarted(ptr.Pointer(), C.int(int32(msecs)))) != 0
+	}
+	return false
+}
+
+func (ptr *QProcess) WorkingDirectory() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QProcess_WorkingDirectory(ptr.Pointer()))
+	}
+	return ""
+}
+
+//export callbackQProcess_WriteData
+func callbackQProcess_WriteData(ptr unsafe.Pointer, data C.struct_QtCore_PackedString, l C.longlong) C.longlong {
+	if signal := qt.GetSignal(ptr, "writeData"); signal != nil {
+		return C.longlong((*(*func([]byte, int64) int64)(signal))(cGoUnpackBytes(data), int64(l)))
+	}
+
+	return C.longlong(NewQProcessFromPointer(ptr).WriteDataDefault(cGoUnpackBytes(data), int64(l)))
+}
+
+func (ptr *QProcess) ConnectWriteData(f func(data []byte, l int64) int64) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "writeData"); signal != nil {
+			f := func(data []byte, l int64) int64 {
+				(*(*func([]byte, int64) int64)(signal))(data, l)
+				return f(data, l)
+			}
+			qt.ConnectSignal(ptr.Pointer(), "writeData", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "writeData", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QProcess) DisconnectWriteData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "writeData")
+	}
+}
+
+func (ptr *QProcess) WriteData(data []byte, l int64) int64 {
+	if ptr.Pointer() != nil {
+		var dataC *C.char
+		if len(data) != 0 {
+			dataC = (*C.char)(unsafe.Pointer(&data[0]))
+		}
+		return int64(C.QProcess_WriteData(ptr.Pointer(), dataC, C.longlong(l)))
+	}
+	return 0
+}
+
+func (ptr *QProcess) WriteDataDefault(data []byte, l int64) int64 {
+	if ptr.Pointer() != nil {
+		var dataC *C.char
+		if len(data) != 0 {
+			dataC = (*C.char)(unsafe.Pointer(&data[0]))
+		}
+		return int64(C.QProcess_WriteDataDefault(ptr.Pointer(), dataC, C.longlong(l)))
+	}
+	return 0
+}
+
+//export callbackQProcess_DestroyQProcess
+func callbackQProcess_DestroyQProcess(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "~QProcess"); signal != nil {
+		(*(*func())(signal))()
+	} else {
+		NewQProcessFromPointer(ptr).DestroyQProcessDefault()
+	}
+}
+
+func (ptr *QProcess) ConnectDestroyQProcess(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "~QProcess"); signal != nil {
+			f := func() {
+				(*(*func())(signal))()
+				f()
+			}
+			qt.ConnectSignal(ptr.Pointer(), "~QProcess", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "~QProcess", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QProcess) DisconnectDestroyQProcess() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "~QProcess")
+	}
+}
+
+func (ptr *QProcess) DestroyQProcess() {
+	if ptr.Pointer() != nil {
+		C.QProcess_DestroyQProcess(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *QProcess) DestroyQProcessDefault() {
+	if ptr.Pointer() != nil {
+		C.QProcess_DestroyQProcessDefault(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
 type QProcessEnvironment struct {
 	ptr unsafe.Pointer
 }
@@ -36668,6 +37577,132 @@ func NewQProcessEnvironmentFromPointer(ptr unsafe.Pointer) (n *QProcessEnvironme
 	n = new(QProcessEnvironment)
 	n.SetPointer(ptr)
 	return
+}
+func NewQProcessEnvironment() *QProcessEnvironment {
+	tmpValue := NewQProcessEnvironmentFromPointer(C.QProcessEnvironment_NewQProcessEnvironment())
+	runtime.SetFinalizer(tmpValue, (*QProcessEnvironment).DestroyQProcessEnvironment)
+	return tmpValue
+}
+
+func NewQProcessEnvironment2(other QProcessEnvironment_ITF) *QProcessEnvironment {
+	tmpValue := NewQProcessEnvironmentFromPointer(C.QProcessEnvironment_NewQProcessEnvironment2(PointerFromQProcessEnvironment(other)))
+	runtime.SetFinalizer(tmpValue, (*QProcessEnvironment).DestroyQProcessEnvironment)
+	return tmpValue
+}
+
+func (ptr *QProcessEnvironment) Clear() {
+	if ptr.Pointer() != nil {
+		C.QProcessEnvironment_Clear(ptr.Pointer())
+	}
+}
+
+func (ptr *QProcessEnvironment) Contains(name string) bool {
+	if ptr.Pointer() != nil {
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
+		return int8(C.QProcessEnvironment_Contains(ptr.Pointer(), C.struct_QtCore_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
+	}
+	return false
+}
+
+func (ptr *QProcessEnvironment) Insert(name string, value string) {
+	if ptr.Pointer() != nil {
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
+		var valueC *C.char
+		if value != "" {
+			valueC = C.CString(value)
+			defer C.free(unsafe.Pointer(valueC))
+		}
+		C.QProcessEnvironment_Insert(ptr.Pointer(), C.struct_QtCore_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtCore_PackedString{data: valueC, len: C.longlong(len(value))})
+	}
+}
+
+func (ptr *QProcessEnvironment) Insert2(e QProcessEnvironment_ITF) {
+	if ptr.Pointer() != nil {
+		C.QProcessEnvironment_Insert2(ptr.Pointer(), PointerFromQProcessEnvironment(e))
+	}
+}
+
+func (ptr *QProcessEnvironment) IsEmpty() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QProcessEnvironment_IsEmpty(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QProcessEnvironment) Keys() []string {
+	if ptr.Pointer() != nil {
+		return unpackStringList(cGoUnpackString(C.QProcessEnvironment_Keys(ptr.Pointer())))
+	}
+	return make([]string, 0)
+}
+
+func (ptr *QProcessEnvironment) Remove(name string) {
+	if ptr.Pointer() != nil {
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
+		C.QProcessEnvironment_Remove(ptr.Pointer(), C.struct_QtCore_PackedString{data: nameC, len: C.longlong(len(name))})
+	}
+}
+
+func (ptr *QProcessEnvironment) Swap(other QProcessEnvironment_ITF) {
+	if ptr.Pointer() != nil {
+		C.QProcessEnvironment_Swap(ptr.Pointer(), PointerFromQProcessEnvironment(other))
+	}
+}
+
+func QProcessEnvironment_SystemEnvironment() *QProcessEnvironment {
+	tmpValue := NewQProcessEnvironmentFromPointer(C.QProcessEnvironment_QProcessEnvironment_SystemEnvironment())
+	runtime.SetFinalizer(tmpValue, (*QProcessEnvironment).DestroyQProcessEnvironment)
+	return tmpValue
+}
+
+func (ptr *QProcessEnvironment) SystemEnvironment() *QProcessEnvironment {
+	tmpValue := NewQProcessEnvironmentFromPointer(C.QProcessEnvironment_QProcessEnvironment_SystemEnvironment())
+	runtime.SetFinalizer(tmpValue, (*QProcessEnvironment).DestroyQProcessEnvironment)
+	return tmpValue
+}
+
+func (ptr *QProcessEnvironment) ToStringList() []string {
+	if ptr.Pointer() != nil {
+		return unpackStringList(cGoUnpackString(C.QProcessEnvironment_ToStringList(ptr.Pointer())))
+	}
+	return make([]string, 0)
+}
+
+func (ptr *QProcessEnvironment) Value(name string, defaultValue string) string {
+	if ptr.Pointer() != nil {
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
+		var defaultValueC *C.char
+		if defaultValue != "" {
+			defaultValueC = C.CString(defaultValue)
+			defer C.free(unsafe.Pointer(defaultValueC))
+		}
+		return cGoUnpackString(C.QProcessEnvironment_Value(ptr.Pointer(), C.struct_QtCore_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtCore_PackedString{data: defaultValueC, len: C.longlong(len(defaultValue))}))
+	}
+	return ""
+}
+
+func (ptr *QProcessEnvironment) DestroyQProcessEnvironment() {
+	if ptr.Pointer() != nil {
+		C.QProcessEnvironment_DestroyQProcessEnvironment(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
 }
 
 type QPropertyAnimation struct {

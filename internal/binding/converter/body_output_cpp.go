@@ -18,6 +18,10 @@ func CppOutputParametersFailed(function *parser.Function) string {
 	if output == "nil" {
 		output = "NULL"
 	}
+	if output == "\"\"" {
+		c, _ := function.Class()
+		output = fmt.Sprintf("%v_PackedString {}", c.Module)
+	}
 	return output
 }
 
