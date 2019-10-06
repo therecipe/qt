@@ -7,7 +7,7 @@ RUN [ "cross-build-start" ]
 
 RUN /usr/local/go/bin/go get -tags=no_env github.com/therecipe/qt/cmd/...
 
-FROM balenalib/generic-aarch64-debian-golang:1.12.9-buster
+FROM balenalib/generic-aarch64-debian:buster
 LABEL maintainer therecipe
 
 ENV USER user

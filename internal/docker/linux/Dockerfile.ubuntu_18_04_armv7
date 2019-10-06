@@ -7,7 +7,7 @@ RUN [ "cross-build-start" ]
 
 RUN /usr/local/go/bin/go get -tags=no_env github.com/therecipe/qt/cmd/...
 
-FROM balenalib/generic-armv7ahf-ubuntu-golang:1.12.9-bionic
+FROM balenalib/generic-armv7ahf-ubuntu:bionic
 LABEL maintainer therecipe
 
 ENV USER user

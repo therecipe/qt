@@ -7,7 +7,7 @@ RUN [ "cross-build-start" ]
 
 RUN /usr/local/go/bin/go get -tags=no_env github.com/therecipe/qt/cmd/...
 
-FROM balenalib/generic-aarch64-fedora-golang:1.12.9
+FROM balenalib/generic-aarch64-fedora:latest
 LABEL maintainer therecipe
 
 ENV USER user

@@ -1,4 +1,4 @@
-FROM balenalib/generic-aarch64-ubuntu-golang:1.12.9-bionic as base
+FROM balenalib/generic-aarch64-ubuntu-golang:1.12.9-xenial as base
 
 ENV USER user
 ENV HOME /home/$USER
@@ -7,7 +7,7 @@ RUN [ "cross-build-start" ]
 
 RUN /usr/local/go/bin/go get -tags=no_env github.com/therecipe/qt/cmd/...
 
-FROM balenalib/generic-aarch64-ubuntu-golang:1.12.9-bionic
+FROM balenalib/generic-aarch64-ubuntu:xenial
 LABEL maintainer therecipe
 
 ENV USER user
@@ -28,7 +28,7 @@ RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install libqt*5
 RUN $GOPATH/bin/qtsetup prep
 RUN $GOPATH/bin/qtsetup check
 RUN $GOPATH/bin/qtsetup generate
-RUN cd $GOPATH/src/github.com/therecipe/qt/internal/examples/widgets/line_edits && sed -i -e 's/AddWidget2/AddWidget/g' line_edits.go && $GOPATH/bin/qtdeploy build linux && rm -rf ./deploy
+RUN cd $GOPATH/src/github.com/therecipe/qt/internal/examples/widgets/bridge2 && $GOPATH/bin/qtdeploy build linux && rm -rf ./deploy
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates git pkg-config
 
