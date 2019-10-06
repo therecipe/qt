@@ -268,9 +268,9 @@ void* QHelpContentModel_ContentItemAt(void* ptr, void* index)
 	return static_cast<QHelpContentModel*>(ptr)->contentItemAt(*static_cast<QModelIndex*>(index));
 }
 
-void QHelpContentModel_ConnectContentsCreated(void* ptr)
+void QHelpContentModel_ConnectContentsCreated(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QHelpContentModel*>(ptr), static_cast<void (QHelpContentModel::*)()>(&QHelpContentModel::contentsCreated), static_cast<MyQHelpContentModel*>(ptr), static_cast<void (MyQHelpContentModel::*)()>(&MyQHelpContentModel::Signal_ContentsCreated));
+	QObject::connect(static_cast<QHelpContentModel*>(ptr), static_cast<void (QHelpContentModel::*)()>(&QHelpContentModel::contentsCreated), static_cast<MyQHelpContentModel*>(ptr), static_cast<void (MyQHelpContentModel::*)()>(&MyQHelpContentModel::Signal_ContentsCreated), static_cast<Qt::ConnectionType>(t));
 }
 
 void QHelpContentModel_DisconnectContentsCreated(void* ptr)
@@ -283,9 +283,9 @@ void QHelpContentModel_ContentsCreated(void* ptr)
 	static_cast<QHelpContentModel*>(ptr)->contentsCreated();
 }
 
-void QHelpContentModel_ConnectContentsCreationStarted(void* ptr)
+void QHelpContentModel_ConnectContentsCreationStarted(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QHelpContentModel*>(ptr), static_cast<void (QHelpContentModel::*)()>(&QHelpContentModel::contentsCreationStarted), static_cast<MyQHelpContentModel*>(ptr), static_cast<void (MyQHelpContentModel::*)()>(&MyQHelpContentModel::Signal_ContentsCreationStarted));
+	QObject::connect(static_cast<QHelpContentModel*>(ptr), static_cast<void (QHelpContentModel::*)()>(&QHelpContentModel::contentsCreationStarted), static_cast<MyQHelpContentModel*>(ptr), static_cast<void (MyQHelpContentModel::*)()>(&MyQHelpContentModel::Signal_ContentsCreationStarted), static_cast<Qt::ConnectionType>(t));
 }
 
 void QHelpContentModel_DisconnectContentsCreationStarted(void* ptr)
@@ -1054,9 +1054,9 @@ void* QHelpContentWidget_IndexOf(void* ptr, void* link)
 	return new QModelIndex(static_cast<QHelpContentWidget*>(ptr)->indexOf(*static_cast<QUrl*>(link)));
 }
 
-void QHelpContentWidget_ConnectLinkActivated(void* ptr)
+void QHelpContentWidget_ConnectLinkActivated(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QHelpContentWidget*>(ptr), static_cast<void (QHelpContentWidget::*)(const QUrl &)>(&QHelpContentWidget::linkActivated), static_cast<MyQHelpContentWidget*>(ptr), static_cast<void (MyQHelpContentWidget::*)(const QUrl &)>(&MyQHelpContentWidget::Signal_LinkActivated));
+	QObject::connect(static_cast<QHelpContentWidget*>(ptr), static_cast<void (QHelpContentWidget::*)(const QUrl &)>(&QHelpContentWidget::linkActivated), static_cast<MyQHelpContentWidget*>(ptr), static_cast<void (MyQHelpContentWidget::*)(const QUrl &)>(&MyQHelpContentWidget::Signal_LinkActivated), static_cast<Qt::ConnectionType>(t));
 }
 
 void QHelpContentWidget_DisconnectLinkActivated(void* ptr)
@@ -2147,9 +2147,9 @@ char QHelpEngineCore_SetupData(void* ptr)
 	return static_cast<QHelpEngineCore*>(ptr)->setupData();
 }
 
-void QHelpEngineCore_ConnectSetupFinished(void* ptr)
+void QHelpEngineCore_ConnectSetupFinished(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QHelpEngineCore*>(ptr), static_cast<void (QHelpEngineCore::*)()>(&QHelpEngineCore::setupFinished), static_cast<MyQHelpEngineCore*>(ptr), static_cast<void (MyQHelpEngineCore::*)()>(&MyQHelpEngineCore::Signal_SetupFinished));
+	QObject::connect(static_cast<QHelpEngineCore*>(ptr), static_cast<void (QHelpEngineCore::*)()>(&QHelpEngineCore::setupFinished), static_cast<MyQHelpEngineCore*>(ptr), static_cast<void (MyQHelpEngineCore::*)()>(&MyQHelpEngineCore::Signal_SetupFinished), static_cast<Qt::ConnectionType>(t));
 }
 
 void QHelpEngineCore_DisconnectSetupFinished(void* ptr)
@@ -2162,9 +2162,9 @@ void QHelpEngineCore_SetupFinished(void* ptr)
 	static_cast<QHelpEngineCore*>(ptr)->setupFinished();
 }
 
-void QHelpEngineCore_ConnectSetupStarted(void* ptr)
+void QHelpEngineCore_ConnectSetupStarted(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QHelpEngineCore*>(ptr), static_cast<void (QHelpEngineCore::*)()>(&QHelpEngineCore::setupStarted), static_cast<MyQHelpEngineCore*>(ptr), static_cast<void (MyQHelpEngineCore::*)()>(&MyQHelpEngineCore::Signal_SetupStarted));
+	QObject::connect(static_cast<QHelpEngineCore*>(ptr), static_cast<void (QHelpEngineCore::*)()>(&QHelpEngineCore::setupStarted), static_cast<MyQHelpEngineCore*>(ptr), static_cast<void (MyQHelpEngineCore::*)()>(&MyQHelpEngineCore::Signal_SetupStarted), static_cast<Qt::ConnectionType>(t));
 }
 
 void QHelpEngineCore_DisconnectSetupStarted(void* ptr)
@@ -2187,9 +2187,9 @@ char QHelpEngineCore_UsesFilterEngine(void* ptr)
 	return static_cast<QHelpEngineCore*>(ptr)->usesFilterEngine();
 }
 
-void QHelpEngineCore_ConnectWarning(void* ptr)
+void QHelpEngineCore_ConnectWarning(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QHelpEngineCore*>(ptr), static_cast<void (QHelpEngineCore::*)(const QString &)>(&QHelpEngineCore::warning), static_cast<MyQHelpEngineCore*>(ptr), static_cast<void (MyQHelpEngineCore::*)(const QString &)>(&MyQHelpEngineCore::Signal_Warning));
+	QObject::connect(static_cast<QHelpEngineCore*>(ptr), static_cast<void (QHelpEngineCore::*)(const QString &)>(&QHelpEngineCore::warning), static_cast<MyQHelpEngineCore*>(ptr), static_cast<void (MyQHelpEngineCore::*)(const QString &)>(&MyQHelpEngineCore::Signal_Warning), static_cast<Qt::ConnectionType>(t));
 }
 
 void QHelpEngineCore_DisconnectWarning(void* ptr)
@@ -2599,9 +2599,9 @@ struct QtHelp_PackedString QHelpFilterEngine_AvailableComponents(void* ptr)
 	return ({ QByteArray te1b10d = static_cast<QHelpFilterEngine*>(ptr)->availableComponents().join("¡¦!").toUtf8(); QtHelp_PackedString { const_cast<char*>(te1b10d.prepend("WHITESPACE").constData()+10), te1b10d.size()-10 }; });
 }
 
-void QHelpFilterEngine_ConnectFilterActivated(void* ptr)
+void QHelpFilterEngine_ConnectFilterActivated(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QHelpFilterEngine*>(ptr), static_cast<void (QHelpFilterEngine::*)(const QString &)>(&QHelpFilterEngine::filterActivated), static_cast<MyQHelpFilterEngine*>(ptr), static_cast<void (MyQHelpFilterEngine::*)(const QString &)>(&MyQHelpFilterEngine::Signal_FilterActivated));
+	QObject::connect(static_cast<QHelpFilterEngine*>(ptr), static_cast<void (QHelpFilterEngine::*)(const QString &)>(&QHelpFilterEngine::filterActivated), static_cast<MyQHelpFilterEngine*>(ptr), static_cast<void (MyQHelpFilterEngine::*)(const QString &)>(&MyQHelpFilterEngine::Signal_FilterActivated), static_cast<Qt::ConnectionType>(t));
 }
 
 void QHelpFilterEngine_DisconnectFilterActivated(void* ptr)
@@ -2938,9 +2938,9 @@ void* QHelpIndexModel_Filter(void* ptr, struct QtHelp_PackedString filter, struc
 	return new QModelIndex(static_cast<QHelpIndexModel*>(ptr)->filter(QString::fromUtf8(filter.data, filter.len), QString::fromUtf8(wildcard.data, wildcard.len)));
 }
 
-void QHelpIndexModel_ConnectIndexCreated(void* ptr)
+void QHelpIndexModel_ConnectIndexCreated(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QHelpIndexModel*>(ptr), static_cast<void (QHelpIndexModel::*)()>(&QHelpIndexModel::indexCreated), static_cast<MyQHelpIndexModel*>(ptr), static_cast<void (MyQHelpIndexModel::*)()>(&MyQHelpIndexModel::Signal_IndexCreated));
+	QObject::connect(static_cast<QHelpIndexModel*>(ptr), static_cast<void (QHelpIndexModel::*)()>(&QHelpIndexModel::indexCreated), static_cast<MyQHelpIndexModel*>(ptr), static_cast<void (MyQHelpIndexModel::*)()>(&MyQHelpIndexModel::Signal_IndexCreated), static_cast<Qt::ConnectionType>(t));
 }
 
 void QHelpIndexModel_DisconnectIndexCreated(void* ptr)
@@ -2953,9 +2953,9 @@ void QHelpIndexModel_IndexCreated(void* ptr)
 	static_cast<QHelpIndexModel*>(ptr)->indexCreated();
 }
 
-void QHelpIndexModel_ConnectIndexCreationStarted(void* ptr)
+void QHelpIndexModel_ConnectIndexCreationStarted(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QHelpIndexModel*>(ptr), static_cast<void (QHelpIndexModel::*)()>(&QHelpIndexModel::indexCreationStarted), static_cast<MyQHelpIndexModel*>(ptr), static_cast<void (MyQHelpIndexModel::*)()>(&MyQHelpIndexModel::Signal_IndexCreationStarted));
+	QObject::connect(static_cast<QHelpIndexModel*>(ptr), static_cast<void (QHelpIndexModel::*)()>(&QHelpIndexModel::indexCreationStarted), static_cast<MyQHelpIndexModel*>(ptr), static_cast<void (MyQHelpIndexModel::*)()>(&MyQHelpIndexModel::Signal_IndexCreationStarted), static_cast<Qt::ConnectionType>(t));
 }
 
 void QHelpIndexModel_DisconnectIndexCreationStarted(void* ptr)
@@ -3731,9 +3731,9 @@ void QHelpIndexWidget_FilterIndicesDefault(void* ptr, struct QtHelp_PackedString
 		static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::filterIndices(QString::fromUtf8(filter.data, filter.len), QString::fromUtf8(wildcard.data, wildcard.len));
 }
 
-void QHelpIndexWidget_ConnectLinkActivated(void* ptr)
+void QHelpIndexWidget_ConnectLinkActivated(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QHelpIndexWidget*>(ptr), static_cast<void (QHelpIndexWidget::*)(const QUrl &, const QString &)>(&QHelpIndexWidget::linkActivated), static_cast<MyQHelpIndexWidget*>(ptr), static_cast<void (MyQHelpIndexWidget::*)(const QUrl &, const QString &)>(&MyQHelpIndexWidget::Signal_LinkActivated));
+	QObject::connect(static_cast<QHelpIndexWidget*>(ptr), static_cast<void (QHelpIndexWidget::*)(const QUrl &, const QString &)>(&QHelpIndexWidget::linkActivated), static_cast<MyQHelpIndexWidget*>(ptr), static_cast<void (MyQHelpIndexWidget::*)(const QUrl &, const QString &)>(&MyQHelpIndexWidget::Signal_LinkActivated), static_cast<Qt::ConnectionType>(t));
 }
 
 void QHelpIndexWidget_DisconnectLinkActivated(void* ptr)
@@ -3746,9 +3746,9 @@ void QHelpIndexWidget_LinkActivated(void* ptr, void* link, struct QtHelp_PackedS
 	static_cast<QHelpIndexWidget*>(ptr)->linkActivated(*static_cast<QUrl*>(link), QString::fromUtf8(keyword.data, keyword.len));
 }
 
-void QHelpIndexWidget_ConnectLinksActivated(void* ptr)
+void QHelpIndexWidget_ConnectLinksActivated(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QHelpIndexWidget*>(ptr), static_cast<void (QHelpIndexWidget::*)(const QMap<QString, QUrl> &, const QString &)>(&QHelpIndexWidget::linksActivated), static_cast<MyQHelpIndexWidget*>(ptr), static_cast<void (MyQHelpIndexWidget::*)(const QMap<QString, QUrl> &, const QString &)>(&MyQHelpIndexWidget::Signal_LinksActivated));
+	QObject::connect(static_cast<QHelpIndexWidget*>(ptr), static_cast<void (QHelpIndexWidget::*)(const QMap<QString, QUrl> &, const QString &)>(&QHelpIndexWidget::linksActivated), static_cast<MyQHelpIndexWidget*>(ptr), static_cast<void (MyQHelpIndexWidget::*)(const QMap<QString, QUrl> &, const QString &)>(&MyQHelpIndexWidget::Signal_LinksActivated), static_cast<Qt::ConnectionType>(t));
 }
 
 void QHelpIndexWidget_DisconnectLinksActivated(void* ptr)
@@ -4612,9 +4612,9 @@ void QHelpSearchEngine_CancelSearchingDefault(void* ptr)
 		static_cast<QHelpSearchEngine*>(ptr)->QHelpSearchEngine::cancelSearching();
 }
 
-void QHelpSearchEngine_ConnectIndexingFinished(void* ptr)
+void QHelpSearchEngine_ConnectIndexingFinished(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QHelpSearchEngine*>(ptr), static_cast<void (QHelpSearchEngine::*)()>(&QHelpSearchEngine::indexingFinished), static_cast<MyQHelpSearchEngine*>(ptr), static_cast<void (MyQHelpSearchEngine::*)()>(&MyQHelpSearchEngine::Signal_IndexingFinished));
+	QObject::connect(static_cast<QHelpSearchEngine*>(ptr), static_cast<void (QHelpSearchEngine::*)()>(&QHelpSearchEngine::indexingFinished), static_cast<MyQHelpSearchEngine*>(ptr), static_cast<void (MyQHelpSearchEngine::*)()>(&MyQHelpSearchEngine::Signal_IndexingFinished), static_cast<Qt::ConnectionType>(t));
 }
 
 void QHelpSearchEngine_DisconnectIndexingFinished(void* ptr)
@@ -4627,9 +4627,9 @@ void QHelpSearchEngine_IndexingFinished(void* ptr)
 	static_cast<QHelpSearchEngine*>(ptr)->indexingFinished();
 }
 
-void QHelpSearchEngine_ConnectIndexingStarted(void* ptr)
+void QHelpSearchEngine_ConnectIndexingStarted(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QHelpSearchEngine*>(ptr), static_cast<void (QHelpSearchEngine::*)()>(&QHelpSearchEngine::indexingStarted), static_cast<MyQHelpSearchEngine*>(ptr), static_cast<void (MyQHelpSearchEngine::*)()>(&MyQHelpSearchEngine::Signal_IndexingStarted));
+	QObject::connect(static_cast<QHelpSearchEngine*>(ptr), static_cast<void (QHelpSearchEngine::*)()>(&QHelpSearchEngine::indexingStarted), static_cast<MyQHelpSearchEngine*>(ptr), static_cast<void (MyQHelpSearchEngine::*)()>(&MyQHelpSearchEngine::Signal_IndexingStarted), static_cast<Qt::ConnectionType>(t));
 }
 
 void QHelpSearchEngine_DisconnectIndexingStarted(void* ptr)
@@ -4687,9 +4687,9 @@ struct QtHelp_PackedList QHelpSearchEngine_SearchResults(void* ptr, int start, i
 	return ({ QVector<QHelpSearchResult>* tmpValue4cf1bd = new QVector<QHelpSearchResult>(static_cast<QHelpSearchEngine*>(ptr)->searchResults(start, end)); QtHelp_PackedList { tmpValue4cf1bd, tmpValue4cf1bd->size() }; });
 }
 
-void QHelpSearchEngine_ConnectSearchingFinished(void* ptr)
+void QHelpSearchEngine_ConnectSearchingFinished(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QHelpSearchEngine*>(ptr), static_cast<void (QHelpSearchEngine::*)(int)>(&QHelpSearchEngine::searchingFinished), static_cast<MyQHelpSearchEngine*>(ptr), static_cast<void (MyQHelpSearchEngine::*)(int)>(&MyQHelpSearchEngine::Signal_SearchingFinished));
+	QObject::connect(static_cast<QHelpSearchEngine*>(ptr), static_cast<void (QHelpSearchEngine::*)(int)>(&QHelpSearchEngine::searchingFinished), static_cast<MyQHelpSearchEngine*>(ptr), static_cast<void (MyQHelpSearchEngine::*)(int)>(&MyQHelpSearchEngine::Signal_SearchingFinished), static_cast<Qt::ConnectionType>(t));
 }
 
 void QHelpSearchEngine_DisconnectSearchingFinished(void* ptr)
@@ -4702,9 +4702,9 @@ void QHelpSearchEngine_SearchingFinished(void* ptr, int searchResultCount)
 	static_cast<QHelpSearchEngine*>(ptr)->searchingFinished(searchResultCount);
 }
 
-void QHelpSearchEngine_ConnectSearchingStarted(void* ptr)
+void QHelpSearchEngine_ConnectSearchingStarted(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QHelpSearchEngine*>(ptr), static_cast<void (QHelpSearchEngine::*)()>(&QHelpSearchEngine::searchingStarted), static_cast<MyQHelpSearchEngine*>(ptr), static_cast<void (MyQHelpSearchEngine::*)()>(&MyQHelpSearchEngine::Signal_SearchingStarted));
+	QObject::connect(static_cast<QHelpSearchEngine*>(ptr), static_cast<void (QHelpSearchEngine::*)()>(&QHelpSearchEngine::searchingStarted), static_cast<MyQHelpSearchEngine*>(ptr), static_cast<void (MyQHelpSearchEngine::*)()>(&MyQHelpSearchEngine::Signal_SearchingStarted), static_cast<Qt::ConnectionType>(t));
 }
 
 void QHelpSearchEngine_DisconnectSearchingStarted(void* ptr)
@@ -5003,9 +5003,9 @@ void QHelpSearchQueryWidget_ExpandExtendedSearch(void* ptr)
 	static_cast<QHelpSearchQueryWidget*>(ptr)->expandExtendedSearch();
 }
 
-void QHelpSearchQueryWidget_ConnectSearch(void* ptr)
+void QHelpSearchQueryWidget_ConnectSearch(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QHelpSearchQueryWidget*>(ptr), static_cast<void (QHelpSearchQueryWidget::*)()>(&QHelpSearchQueryWidget::search), static_cast<MyQHelpSearchQueryWidget*>(ptr), static_cast<void (MyQHelpSearchQueryWidget::*)()>(&MyQHelpSearchQueryWidget::Signal_Search));
+	QObject::connect(static_cast<QHelpSearchQueryWidget*>(ptr), static_cast<void (QHelpSearchQueryWidget::*)()>(&QHelpSearchQueryWidget::search), static_cast<MyQHelpSearchQueryWidget*>(ptr), static_cast<void (MyQHelpSearchQueryWidget::*)()>(&MyQHelpSearchQueryWidget::Signal_Search), static_cast<Qt::ConnectionType>(t));
 }
 
 void QHelpSearchQueryWidget_DisconnectSearch(void* ptr)
@@ -5645,9 +5645,9 @@ void* QHelpSearchResultWidget_LinkAt(void* ptr, void* point)
 	return new QUrl(static_cast<QHelpSearchResultWidget*>(ptr)->linkAt(*static_cast<QPoint*>(point)));
 }
 
-void QHelpSearchResultWidget_ConnectRequestShowLink(void* ptr)
+void QHelpSearchResultWidget_ConnectRequestShowLink(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QHelpSearchResultWidget*>(ptr), static_cast<void (QHelpSearchResultWidget::*)(const QUrl &)>(&QHelpSearchResultWidget::requestShowLink), static_cast<MyQHelpSearchResultWidget*>(ptr), static_cast<void (MyQHelpSearchResultWidget::*)(const QUrl &)>(&MyQHelpSearchResultWidget::Signal_RequestShowLink));
+	QObject::connect(static_cast<QHelpSearchResultWidget*>(ptr), static_cast<void (QHelpSearchResultWidget::*)(const QUrl &)>(&QHelpSearchResultWidget::requestShowLink), static_cast<MyQHelpSearchResultWidget*>(ptr), static_cast<void (MyQHelpSearchResultWidget::*)(const QUrl &)>(&MyQHelpSearchResultWidget::Signal_RequestShowLink), static_cast<Qt::ConnectionType>(t));
 }
 
 void QHelpSearchResultWidget_DisconnectRequestShowLink(void* ptr)

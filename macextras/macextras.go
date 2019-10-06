@@ -875,7 +875,7 @@ func (ptr *QMacToolBarItem) ConnectActivated(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "activated") {
-			C.QMacToolBarItem_ConnectActivated(ptr.Pointer())
+			C.QMacToolBarItem_ConnectActivated(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "activated")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "activated"); signal != nil {

@@ -709,15 +709,19 @@ func cppFunctionBodyInternal(function *parser.Function) string {
 			if c.Module != parser.MOC {
 				my = "My"
 			}
+			var typ string
+			if function.SignalMode == parser.CONNECT {
+				typ = ", static_cast<Qt::ConnectionType>(t)"
+			}
 			if converter.IsPrivateSignal(function) {
-				fmt.Fprintf(bb, "\tQObject::%v(static_cast<%v*>(ptr), &%v::%v, static_cast<%v%v*>(ptr), static_cast<%v (%v%v::*)(%v)>(&%v%v::Signal_%v%v));", strings.ToLower(function.SignalMode), function.ClassName(), function.ClassName(), function.Name, my, function.ClassName(), function.Output, my, function.ClassName(), converter.CppInputParametersForSignalConnect(function), my, function.ClassName(), strings.Title(function.Name), function.OverloadNumber)
+				fmt.Fprintf(bb, "\tQObject::%v(static_cast<%v*>(ptr), &%v::%v, static_cast<%v%v*>(ptr), static_cast<%v (%v%v::*)(%v)>(&%v%v::Signal_%v%v)%v);", strings.ToLower(function.SignalMode), function.ClassName(), function.ClassName(), function.Name, my, function.ClassName(), function.Output, my, function.ClassName(), converter.CppInputParametersForSignalConnect(function), my, function.ClassName(), strings.Title(function.Name), function.OverloadNumber, typ)
 			} else {
-				fmt.Fprintf(bb, "\tQObject::%v(static_cast<%v*>(ptr), static_cast<%v (%v::*)(%v)>(&%v::%v), static_cast<%v%v*>(ptr), static_cast<%v (%v%v::*)(%v)>(&%v%v::Signal_%v%v));",
+				fmt.Fprintf(bb, "\tQObject::%v(static_cast<%v*>(ptr), static_cast<%v (%v::*)(%v)>(&%v::%v), static_cast<%v%v*>(ptr), static_cast<%v (%v%v::*)(%v)>(&%v%v::Signal_%v%v)%v);",
 					strings.ToLower(function.SignalMode),
 
 					function.ClassName(), function.Output, function.ClassName(), converter.CppInputParametersForSignalConnect(function), function.ClassName(), function.Name,
 
-					my, function.ClassName(), function.Output, my, function.ClassName(), converter.CppInputParametersForSignalConnect(function), my, function.ClassName(), strings.Title(function.Name), function.OverloadNumber)
+					my, function.ClassName(), function.Output, my, function.ClassName(), converter.CppInputParametersForSignalConnect(function), my, function.ClassName(), strings.Title(function.Name), function.OverloadNumber, typ)
 			}
 			return bb.String()
 		}

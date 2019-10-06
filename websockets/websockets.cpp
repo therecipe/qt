@@ -360,9 +360,9 @@ void QWebSocket_Abort(void* ptr)
 	static_cast<QWebSocket*>(ptr)->abort();
 }
 
-void QWebSocket_ConnectAboutToClose(void* ptr)
+void QWebSocket_ConnectAboutToClose(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)()>(&QWebSocket::aboutToClose), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)()>(&MyQWebSocket::Signal_AboutToClose));
+	QObject::connect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)()>(&QWebSocket::aboutToClose), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)()>(&MyQWebSocket::Signal_AboutToClose), static_cast<Qt::ConnectionType>(t));
 }
 
 void QWebSocket_DisconnectAboutToClose(void* ptr)
@@ -375,9 +375,9 @@ void QWebSocket_AboutToClose(void* ptr)
 	static_cast<QWebSocket*>(ptr)->aboutToClose();
 }
 
-void QWebSocket_ConnectBinaryFrameReceived(void* ptr)
+void QWebSocket_ConnectBinaryFrameReceived(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)(const QByteArray &, bool)>(&QWebSocket::binaryFrameReceived), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)(const QByteArray &, bool)>(&MyQWebSocket::Signal_BinaryFrameReceived));
+	QObject::connect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)(const QByteArray &, bool)>(&QWebSocket::binaryFrameReceived), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)(const QByteArray &, bool)>(&MyQWebSocket::Signal_BinaryFrameReceived), static_cast<Qt::ConnectionType>(t));
 }
 
 void QWebSocket_DisconnectBinaryFrameReceived(void* ptr)
@@ -390,9 +390,9 @@ void QWebSocket_BinaryFrameReceived(void* ptr, void* frame, char isLastFrame)
 	static_cast<QWebSocket*>(ptr)->binaryFrameReceived(*static_cast<QByteArray*>(frame), isLastFrame != 0);
 }
 
-void QWebSocket_ConnectBinaryMessageReceived(void* ptr)
+void QWebSocket_ConnectBinaryMessageReceived(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)(const QByteArray &)>(&QWebSocket::binaryMessageReceived), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)(const QByteArray &)>(&MyQWebSocket::Signal_BinaryMessageReceived));
+	QObject::connect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)(const QByteArray &)>(&QWebSocket::binaryMessageReceived), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)(const QByteArray &)>(&MyQWebSocket::Signal_BinaryMessageReceived), static_cast<Qt::ConnectionType>(t));
 }
 
 void QWebSocket_DisconnectBinaryMessageReceived(void* ptr)
@@ -410,9 +410,9 @@ long long QWebSocket_BytesToWrite(void* ptr)
 	return static_cast<QWebSocket*>(ptr)->bytesToWrite();
 }
 
-void QWebSocket_ConnectBytesWritten(void* ptr)
+void QWebSocket_ConnectBytesWritten(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)(qint64)>(&QWebSocket::bytesWritten), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)(qint64)>(&MyQWebSocket::Signal_BytesWritten));
+	QObject::connect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)(qint64)>(&QWebSocket::bytesWritten), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)(qint64)>(&MyQWebSocket::Signal_BytesWritten), static_cast<Qt::ConnectionType>(t));
 }
 
 void QWebSocket_DisconnectBytesWritten(void* ptr)
@@ -445,9 +445,9 @@ struct QtWebSockets_PackedString QWebSocket_CloseReason(void* ptr)
 	return ({ QByteArray t003333 = static_cast<QWebSocket*>(ptr)->closeReason().toUtf8(); QtWebSockets_PackedString { const_cast<char*>(t003333.prepend("WHITESPACE").constData()+10), t003333.size()-10 }; });
 }
 
-void QWebSocket_ConnectConnected(void* ptr)
+void QWebSocket_ConnectConnected(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)()>(&QWebSocket::connected), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)()>(&MyQWebSocket::Signal_Connected));
+	QObject::connect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)()>(&QWebSocket::connected), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)()>(&MyQWebSocket::Signal_Connected), static_cast<Qt::ConnectionType>(t));
 }
 
 void QWebSocket_DisconnectConnected(void* ptr)
@@ -460,9 +460,9 @@ void QWebSocket_Connected(void* ptr)
 	static_cast<QWebSocket*>(ptr)->connected();
 }
 
-void QWebSocket_ConnectDisconnected(void* ptr)
+void QWebSocket_ConnectDisconnected(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)()>(&QWebSocket::disconnected), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)()>(&MyQWebSocket::Signal_Disconnected));
+	QObject::connect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)()>(&QWebSocket::disconnected), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)()>(&MyQWebSocket::Signal_Disconnected), static_cast<Qt::ConnectionType>(t));
 }
 
 void QWebSocket_DisconnectDisconnected(void* ptr)
@@ -480,10 +480,10 @@ long long QWebSocket_Error(void* ptr)
 	return static_cast<QWebSocket*>(ptr)->error();
 }
 
-void QWebSocket_ConnectError2(void* ptr)
+void QWebSocket_ConnectError2(void* ptr, long long t)
 {
 	qRegisterMetaType<QAbstractSocket::SocketError>();
-	QObject::connect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)(QAbstractSocket::SocketError)>(&QWebSocket::error), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)(QAbstractSocket::SocketError)>(&MyQWebSocket::Signal_Error2));
+	QObject::connect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)(QAbstractSocket::SocketError)>(&QWebSocket::error), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)(QAbstractSocket::SocketError)>(&MyQWebSocket::Signal_Error2), static_cast<Qt::ConnectionType>(t));
 }
 
 void QWebSocket_DisconnectError2(void* ptr)
@@ -596,9 +596,9 @@ void QWebSocket_PingDefault(void* ptr, void* payload)
 		static_cast<QWebSocket*>(ptr)->QWebSocket::ping(*static_cast<QByteArray*>(payload));
 }
 
-void QWebSocket_ConnectPong(void* ptr)
+void QWebSocket_ConnectPong(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)(quint64, const QByteArray &)>(&QWebSocket::pong), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)(quint64, const QByteArray &)>(&MyQWebSocket::Signal_Pong));
+	QObject::connect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)(quint64, const QByteArray &)>(&QWebSocket::pong), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)(quint64, const QByteArray &)>(&MyQWebSocket::Signal_Pong), static_cast<Qt::ConnectionType>(t));
 }
 
 void QWebSocket_DisconnectPong(void* ptr)
@@ -611,9 +611,9 @@ void QWebSocket_Pong(void* ptr, unsigned long long elapsedTime, void* payload)
 	static_cast<QWebSocket*>(ptr)->pong(elapsedTime, *static_cast<QByteArray*>(payload));
 }
 
-void QWebSocket_ConnectPreSharedKeyAuthenticationRequired(void* ptr)
+void QWebSocket_ConnectPreSharedKeyAuthenticationRequired(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)(QSslPreSharedKeyAuthenticator *)>(&QWebSocket::preSharedKeyAuthenticationRequired), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)(QSslPreSharedKeyAuthenticator *)>(&MyQWebSocket::Signal_PreSharedKeyAuthenticationRequired));
+	QObject::connect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)(QSslPreSharedKeyAuthenticator *)>(&QWebSocket::preSharedKeyAuthenticationRequired), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)(QSslPreSharedKeyAuthenticator *)>(&MyQWebSocket::Signal_PreSharedKeyAuthenticationRequired), static_cast<Qt::ConnectionType>(t));
 }
 
 void QWebSocket_DisconnectPreSharedKeyAuthenticationRequired(void* ptr)
@@ -631,9 +631,9 @@ void* QWebSocket_Proxy(void* ptr)
 	return new QNetworkProxy(static_cast<QWebSocket*>(ptr)->proxy());
 }
 
-void QWebSocket_ConnectProxyAuthenticationRequired(void* ptr)
+void QWebSocket_ConnectProxyAuthenticationRequired(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)(const QNetworkProxy &, QAuthenticator *)>(&QWebSocket::proxyAuthenticationRequired), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)(const QNetworkProxy &, QAuthenticator *)>(&MyQWebSocket::Signal_ProxyAuthenticationRequired));
+	QObject::connect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)(const QNetworkProxy &, QAuthenticator *)>(&QWebSocket::proxyAuthenticationRequired), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)(const QNetworkProxy &, QAuthenticator *)>(&MyQWebSocket::Signal_ProxyAuthenticationRequired), static_cast<Qt::ConnectionType>(t));
 }
 
 void QWebSocket_DisconnectProxyAuthenticationRequired(void* ptr)
@@ -651,9 +651,9 @@ long long QWebSocket_ReadBufferSize(void* ptr)
 	return static_cast<QWebSocket*>(ptr)->readBufferSize();
 }
 
-void QWebSocket_ConnectReadChannelFinished(void* ptr)
+void QWebSocket_ConnectReadChannelFinished(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)()>(&QWebSocket::readChannelFinished), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)()>(&MyQWebSocket::Signal_ReadChannelFinished));
+	QObject::connect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)()>(&QWebSocket::readChannelFinished), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)()>(&MyQWebSocket::Signal_ReadChannelFinished), static_cast<Qt::ConnectionType>(t));
 }
 
 void QWebSocket_DisconnectReadChannelFinished(void* ptr)
@@ -726,9 +726,9 @@ void* QWebSocket_SslConfiguration(void* ptr)
 	return new QSslConfiguration(static_cast<QWebSocket*>(ptr)->sslConfiguration());
 }
 
-void QWebSocket_ConnectSslErrors(void* ptr)
+void QWebSocket_ConnectSslErrors(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)(const QList<QSslError> &)>(&QWebSocket::sslErrors), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)(const QList<QSslError> &)>(&MyQWebSocket::Signal_SslErrors));
+	QObject::connect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)(const QList<QSslError> &)>(&QWebSocket::sslErrors), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)(const QList<QSslError> &)>(&MyQWebSocket::Signal_SslErrors), static_cast<Qt::ConnectionType>(t));
 }
 
 void QWebSocket_DisconnectSslErrors(void* ptr)
@@ -746,10 +746,10 @@ long long QWebSocket_State(void* ptr)
 	return static_cast<QWebSocket*>(ptr)->state();
 }
 
-void QWebSocket_ConnectStateChanged(void* ptr)
+void QWebSocket_ConnectStateChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<QAbstractSocket::SocketState>();
-	QObject::connect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)(QAbstractSocket::SocketState)>(&QWebSocket::stateChanged), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)(QAbstractSocket::SocketState)>(&MyQWebSocket::Signal_StateChanged));
+	QObject::connect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)(QAbstractSocket::SocketState)>(&QWebSocket::stateChanged), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)(QAbstractSocket::SocketState)>(&MyQWebSocket::Signal_StateChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QWebSocket_DisconnectStateChanged(void* ptr)
@@ -762,9 +762,9 @@ void QWebSocket_StateChanged(void* ptr, long long state)
 	static_cast<QWebSocket*>(ptr)->stateChanged(static_cast<QAbstractSocket::SocketState>(state));
 }
 
-void QWebSocket_ConnectTextFrameReceived(void* ptr)
+void QWebSocket_ConnectTextFrameReceived(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)(const QString &, bool)>(&QWebSocket::textFrameReceived), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)(const QString &, bool)>(&MyQWebSocket::Signal_TextFrameReceived));
+	QObject::connect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)(const QString &, bool)>(&QWebSocket::textFrameReceived), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)(const QString &, bool)>(&MyQWebSocket::Signal_TextFrameReceived), static_cast<Qt::ConnectionType>(t));
 }
 
 void QWebSocket_DisconnectTextFrameReceived(void* ptr)
@@ -777,9 +777,9 @@ void QWebSocket_TextFrameReceived(void* ptr, struct QtWebSockets_PackedString fr
 	static_cast<QWebSocket*>(ptr)->textFrameReceived(QString::fromUtf8(frame.data, frame.len), isLastFrame != 0);
 }
 
-void QWebSocket_ConnectTextMessageReceived(void* ptr)
+void QWebSocket_ConnectTextMessageReceived(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)(const QString &)>(&QWebSocket::textMessageReceived), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)(const QString &)>(&MyQWebSocket::Signal_TextMessageReceived));
+	QObject::connect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)(const QString &)>(&QWebSocket::textMessageReceived), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)(const QString &)>(&MyQWebSocket::Signal_TextMessageReceived), static_cast<Qt::ConnectionType>(t));
 }
 
 void QWebSocket_DisconnectTextMessageReceived(void* ptr)
@@ -1083,10 +1083,10 @@ void* QWebSocketServer_NewQWebSocketServer2(struct QtWebSockets_PackedString ser
 	}
 }
 
-void QWebSocketServer_ConnectAcceptError(void* ptr)
+void QWebSocketServer_ConnectAcceptError(void* ptr, long long t)
 {
 	qRegisterMetaType<QAbstractSocket::SocketError>();
-	QObject::connect(static_cast<QWebSocketServer*>(ptr), static_cast<void (QWebSocketServer::*)(QAbstractSocket::SocketError)>(&QWebSocketServer::acceptError), static_cast<MyQWebSocketServer*>(ptr), static_cast<void (MyQWebSocketServer::*)(QAbstractSocket::SocketError)>(&MyQWebSocketServer::Signal_AcceptError));
+	QObject::connect(static_cast<QWebSocketServer*>(ptr), static_cast<void (QWebSocketServer::*)(QAbstractSocket::SocketError)>(&QWebSocketServer::acceptError), static_cast<MyQWebSocketServer*>(ptr), static_cast<void (MyQWebSocketServer::*)(QAbstractSocket::SocketError)>(&MyQWebSocketServer::Signal_AcceptError), static_cast<Qt::ConnectionType>(t));
 }
 
 void QWebSocketServer_DisconnectAcceptError(void* ptr)
@@ -1104,9 +1104,9 @@ void QWebSocketServer_Close(void* ptr)
 	static_cast<QWebSocketServer*>(ptr)->close();
 }
 
-void QWebSocketServer_ConnectClosed(void* ptr)
+void QWebSocketServer_ConnectClosed(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QWebSocketServer*>(ptr), static_cast<void (QWebSocketServer::*)()>(&QWebSocketServer::closed), static_cast<MyQWebSocketServer*>(ptr), static_cast<void (MyQWebSocketServer::*)()>(&MyQWebSocketServer::Signal_Closed));
+	QObject::connect(static_cast<QWebSocketServer*>(ptr), static_cast<void (QWebSocketServer::*)()>(&QWebSocketServer::closed), static_cast<MyQWebSocketServer*>(ptr), static_cast<void (MyQWebSocketServer::*)()>(&MyQWebSocketServer::Signal_Closed), static_cast<Qt::ConnectionType>(t));
 }
 
 void QWebSocketServer_DisconnectClosed(void* ptr)
@@ -1154,9 +1154,9 @@ int QWebSocketServer_MaxPendingConnections(void* ptr)
 	return static_cast<QWebSocketServer*>(ptr)->maxPendingConnections();
 }
 
-void QWebSocketServer_ConnectNewConnection(void* ptr)
+void QWebSocketServer_ConnectNewConnection(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QWebSocketServer*>(ptr), static_cast<void (QWebSocketServer::*)()>(&QWebSocketServer::newConnection), static_cast<MyQWebSocketServer*>(ptr), static_cast<void (MyQWebSocketServer::*)()>(&MyQWebSocketServer::Signal_NewConnection));
+	QObject::connect(static_cast<QWebSocketServer*>(ptr), static_cast<void (QWebSocketServer::*)()>(&QWebSocketServer::newConnection), static_cast<MyQWebSocketServer*>(ptr), static_cast<void (MyQWebSocketServer::*)()>(&MyQWebSocketServer::Signal_NewConnection), static_cast<Qt::ConnectionType>(t));
 }
 
 void QWebSocketServer_DisconnectNewConnection(void* ptr)
@@ -1179,9 +1179,9 @@ void* QWebSocketServer_NextPendingConnectionDefault(void* ptr)
 		return static_cast<QWebSocketServer*>(ptr)->QWebSocketServer::nextPendingConnection();
 }
 
-void QWebSocketServer_ConnectOriginAuthenticationRequired(void* ptr)
+void QWebSocketServer_ConnectOriginAuthenticationRequired(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QWebSocketServer*>(ptr), static_cast<void (QWebSocketServer::*)(QWebSocketCorsAuthenticator *)>(&QWebSocketServer::originAuthenticationRequired), static_cast<MyQWebSocketServer*>(ptr), static_cast<void (MyQWebSocketServer::*)(QWebSocketCorsAuthenticator *)>(&MyQWebSocketServer::Signal_OriginAuthenticationRequired));
+	QObject::connect(static_cast<QWebSocketServer*>(ptr), static_cast<void (QWebSocketServer::*)(QWebSocketCorsAuthenticator *)>(&QWebSocketServer::originAuthenticationRequired), static_cast<MyQWebSocketServer*>(ptr), static_cast<void (MyQWebSocketServer::*)(QWebSocketCorsAuthenticator *)>(&MyQWebSocketServer::Signal_OriginAuthenticationRequired), static_cast<Qt::ConnectionType>(t));
 }
 
 void QWebSocketServer_DisconnectOriginAuthenticationRequired(void* ptr)
@@ -1199,9 +1199,9 @@ void QWebSocketServer_PauseAccepting(void* ptr)
 	static_cast<QWebSocketServer*>(ptr)->pauseAccepting();
 }
 
-void QWebSocketServer_ConnectPeerVerifyError(void* ptr)
+void QWebSocketServer_ConnectPeerVerifyError(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QWebSocketServer*>(ptr), static_cast<void (QWebSocketServer::*)(const QSslError &)>(&QWebSocketServer::peerVerifyError), static_cast<MyQWebSocketServer*>(ptr), static_cast<void (MyQWebSocketServer::*)(const QSslError &)>(&MyQWebSocketServer::Signal_PeerVerifyError));
+	QObject::connect(static_cast<QWebSocketServer*>(ptr), static_cast<void (QWebSocketServer::*)(const QSslError &)>(&QWebSocketServer::peerVerifyError), static_cast<MyQWebSocketServer*>(ptr), static_cast<void (MyQWebSocketServer::*)(const QSslError &)>(&MyQWebSocketServer::Signal_PeerVerifyError), static_cast<Qt::ConnectionType>(t));
 }
 
 void QWebSocketServer_DisconnectPeerVerifyError(void* ptr)
@@ -1214,9 +1214,9 @@ void QWebSocketServer_PeerVerifyError(void* ptr, void* error)
 	static_cast<QWebSocketServer*>(ptr)->peerVerifyError(*static_cast<QSslError*>(error));
 }
 
-void QWebSocketServer_ConnectPreSharedKeyAuthenticationRequired(void* ptr)
+void QWebSocketServer_ConnectPreSharedKeyAuthenticationRequired(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QWebSocketServer*>(ptr), static_cast<void (QWebSocketServer::*)(QSslPreSharedKeyAuthenticator *)>(&QWebSocketServer::preSharedKeyAuthenticationRequired), static_cast<MyQWebSocketServer*>(ptr), static_cast<void (MyQWebSocketServer::*)(QSslPreSharedKeyAuthenticator *)>(&MyQWebSocketServer::Signal_PreSharedKeyAuthenticationRequired));
+	QObject::connect(static_cast<QWebSocketServer*>(ptr), static_cast<void (QWebSocketServer::*)(QSslPreSharedKeyAuthenticator *)>(&QWebSocketServer::preSharedKeyAuthenticationRequired), static_cast<MyQWebSocketServer*>(ptr), static_cast<void (MyQWebSocketServer::*)(QSslPreSharedKeyAuthenticator *)>(&MyQWebSocketServer::Signal_PreSharedKeyAuthenticationRequired), static_cast<Qt::ConnectionType>(t));
 }
 
 void QWebSocketServer_DisconnectPreSharedKeyAuthenticationRequired(void* ptr)
@@ -1249,9 +1249,9 @@ void* QWebSocketServer_ServerAddress(void* ptr)
 	return new QHostAddress(static_cast<QWebSocketServer*>(ptr)->serverAddress());
 }
 
-void QWebSocketServer_ConnectServerError(void* ptr)
+void QWebSocketServer_ConnectServerError(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QWebSocketServer*>(ptr), static_cast<void (QWebSocketServer::*)(QWebSocketProtocol::CloseCode)>(&QWebSocketServer::serverError), static_cast<MyQWebSocketServer*>(ptr), static_cast<void (MyQWebSocketServer::*)(QWebSocketProtocol::CloseCode)>(&MyQWebSocketServer::Signal_ServerError));
+	QObject::connect(static_cast<QWebSocketServer*>(ptr), static_cast<void (QWebSocketServer::*)(QWebSocketProtocol::CloseCode)>(&QWebSocketServer::serverError), static_cast<MyQWebSocketServer*>(ptr), static_cast<void (MyQWebSocketServer::*)(QWebSocketProtocol::CloseCode)>(&MyQWebSocketServer::Signal_ServerError), static_cast<Qt::ConnectionType>(t));
 }
 
 void QWebSocketServer_DisconnectServerError(void* ptr)
@@ -1304,9 +1304,9 @@ void* QWebSocketServer_SslConfiguration(void* ptr)
 	return new QSslConfiguration(static_cast<QWebSocketServer*>(ptr)->sslConfiguration());
 }
 
-void QWebSocketServer_ConnectSslErrors(void* ptr)
+void QWebSocketServer_ConnectSslErrors(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QWebSocketServer*>(ptr), static_cast<void (QWebSocketServer::*)(const QList<QSslError> &)>(&QWebSocketServer::sslErrors), static_cast<MyQWebSocketServer*>(ptr), static_cast<void (MyQWebSocketServer::*)(const QList<QSslError> &)>(&MyQWebSocketServer::Signal_SslErrors));
+	QObject::connect(static_cast<QWebSocketServer*>(ptr), static_cast<void (QWebSocketServer::*)(const QList<QSslError> &)>(&QWebSocketServer::sslErrors), static_cast<MyQWebSocketServer*>(ptr), static_cast<void (MyQWebSocketServer::*)(const QList<QSslError> &)>(&MyQWebSocketServer::Signal_SslErrors), static_cast<Qt::ConnectionType>(t));
 }
 
 void QWebSocketServer_DisconnectSslErrors(void* ptr)

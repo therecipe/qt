@@ -1191,9 +1191,9 @@ Q_DECLARE_METATYPE(MyQDBusConnectionInterface*)
 
 int QDBusConnectionInterface_QDBusConnectionInterface_QRegisterMetaType(){qRegisterMetaType<QDBusConnectionInterface*>(); return qRegisterMetaType<MyQDBusConnectionInterface*>();}
 
-void QDBusConnectionInterface_ConnectCallWithCallbackFailed(void* ptr)
+void QDBusConnectionInterface_ConnectCallWithCallbackFailed(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QDBusConnectionInterface*>(ptr), static_cast<void (QDBusConnectionInterface::*)(const QDBusError &, const QDBusMessage &)>(&QDBusConnectionInterface::callWithCallbackFailed), static_cast<MyQDBusConnectionInterface*>(ptr), static_cast<void (MyQDBusConnectionInterface::*)(const QDBusError &, const QDBusMessage &)>(&MyQDBusConnectionInterface::Signal_CallWithCallbackFailed));
+	QObject::connect(static_cast<QDBusConnectionInterface*>(ptr), static_cast<void (QDBusConnectionInterface::*)(const QDBusError &, const QDBusMessage &)>(&QDBusConnectionInterface::callWithCallbackFailed), static_cast<MyQDBusConnectionInterface*>(ptr), static_cast<void (MyQDBusConnectionInterface::*)(const QDBusError &, const QDBusMessage &)>(&MyQDBusConnectionInterface::Signal_CallWithCallbackFailed), static_cast<Qt::ConnectionType>(t));
 }
 
 void QDBusConnectionInterface_DisconnectCallWithCallbackFailed(void* ptr)
@@ -1206,9 +1206,9 @@ void QDBusConnectionInterface_CallWithCallbackFailed(void* ptr, void* error, voi
 	static_cast<QDBusConnectionInterface*>(ptr)->callWithCallbackFailed(*static_cast<QDBusError*>(error), *static_cast<QDBusMessage*>(call));
 }
 
-void QDBusConnectionInterface_ConnectServiceRegistered(void* ptr)
+void QDBusConnectionInterface_ConnectServiceRegistered(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QDBusConnectionInterface*>(ptr), static_cast<void (QDBusConnectionInterface::*)(const QString &)>(&QDBusConnectionInterface::serviceRegistered), static_cast<MyQDBusConnectionInterface*>(ptr), static_cast<void (MyQDBusConnectionInterface::*)(const QString &)>(&MyQDBusConnectionInterface::Signal_ServiceRegistered));
+	QObject::connect(static_cast<QDBusConnectionInterface*>(ptr), static_cast<void (QDBusConnectionInterface::*)(const QString &)>(&QDBusConnectionInterface::serviceRegistered), static_cast<MyQDBusConnectionInterface*>(ptr), static_cast<void (MyQDBusConnectionInterface::*)(const QString &)>(&MyQDBusConnectionInterface::Signal_ServiceRegistered), static_cast<Qt::ConnectionType>(t));
 }
 
 void QDBusConnectionInterface_DisconnectServiceRegistered(void* ptr)
@@ -1221,9 +1221,9 @@ void QDBusConnectionInterface_ServiceRegistered(void* ptr, struct QtDBus_PackedS
 	static_cast<QDBusConnectionInterface*>(ptr)->serviceRegistered(QString::fromUtf8(service.data, service.len));
 }
 
-void QDBusConnectionInterface_ConnectServiceUnregistered(void* ptr)
+void QDBusConnectionInterface_ConnectServiceUnregistered(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QDBusConnectionInterface*>(ptr), static_cast<void (QDBusConnectionInterface::*)(const QString &)>(&QDBusConnectionInterface::serviceUnregistered), static_cast<MyQDBusConnectionInterface*>(ptr), static_cast<void (MyQDBusConnectionInterface::*)(const QString &)>(&MyQDBusConnectionInterface::Signal_ServiceUnregistered));
+	QObject::connect(static_cast<QDBusConnectionInterface*>(ptr), static_cast<void (QDBusConnectionInterface::*)(const QString &)>(&QDBusConnectionInterface::serviceUnregistered), static_cast<MyQDBusConnectionInterface*>(ptr), static_cast<void (MyQDBusConnectionInterface::*)(const QString &)>(&MyQDBusConnectionInterface::Signal_ServiceUnregistered), static_cast<Qt::ConnectionType>(t));
 }
 
 void QDBusConnectionInterface_DisconnectServiceUnregistered(void* ptr)
@@ -1699,9 +1699,9 @@ void* QDBusPendingCallWatcher_NewQDBusPendingCallWatcher(void* call, void* paren
 	return new MyQDBusPendingCallWatcher(*static_cast<QDBusPendingCall*>(call), static_cast<QObject*>(parent));
 }
 
-void QDBusPendingCallWatcher_ConnectFinished(void* ptr)
+void QDBusPendingCallWatcher_ConnectFinished(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QDBusPendingCallWatcher*>(ptr), static_cast<void (QDBusPendingCallWatcher::*)(QDBusPendingCallWatcher *)>(&QDBusPendingCallWatcher::finished), static_cast<MyQDBusPendingCallWatcher*>(ptr), static_cast<void (MyQDBusPendingCallWatcher::*)(QDBusPendingCallWatcher *)>(&MyQDBusPendingCallWatcher::Signal_Finished));
+	QObject::connect(static_cast<QDBusPendingCallWatcher*>(ptr), static_cast<void (QDBusPendingCallWatcher::*)(QDBusPendingCallWatcher *)>(&QDBusPendingCallWatcher::finished), static_cast<MyQDBusPendingCallWatcher*>(ptr), static_cast<void (MyQDBusPendingCallWatcher::*)(QDBusPendingCallWatcher *)>(&MyQDBusPendingCallWatcher::Signal_Finished), static_cast<Qt::ConnectionType>(t));
 }
 
 void QDBusPendingCallWatcher_DisconnectFinished(void* ptr)
@@ -2062,9 +2062,9 @@ char QDBusServer_IsConnected(void* ptr)
 	return static_cast<QDBusServer*>(ptr)->isConnected();
 }
 
-void QDBusServer_ConnectNewConnection(void* ptr)
+void QDBusServer_ConnectNewConnection(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QDBusServer*>(ptr), static_cast<void (QDBusServer::*)(const QDBusConnection &)>(&QDBusServer::newConnection), static_cast<MyQDBusServer*>(ptr), static_cast<void (MyQDBusServer::*)(const QDBusConnection &)>(&MyQDBusServer::Signal_NewConnection));
+	QObject::connect(static_cast<QDBusServer*>(ptr), static_cast<void (QDBusServer::*)(const QDBusConnection &)>(&QDBusServer::newConnection), static_cast<MyQDBusServer*>(ptr), static_cast<void (MyQDBusServer::*)(const QDBusConnection &)>(&MyQDBusServer::Signal_NewConnection), static_cast<Qt::ConnectionType>(t));
 }
 
 void QDBusServer_DisconnectNewConnection(void* ptr)
@@ -2373,9 +2373,9 @@ char QDBusServiceWatcher_RemoveWatchedService(void* ptr, struct QtDBus_PackedStr
 	return static_cast<QDBusServiceWatcher*>(ptr)->removeWatchedService(QString::fromUtf8(service.data, service.len));
 }
 
-void QDBusServiceWatcher_ConnectServiceOwnerChanged(void* ptr)
+void QDBusServiceWatcher_ConnectServiceOwnerChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QDBusServiceWatcher*>(ptr), static_cast<void (QDBusServiceWatcher::*)(const QString &, const QString &, const QString &)>(&QDBusServiceWatcher::serviceOwnerChanged), static_cast<MyQDBusServiceWatcher*>(ptr), static_cast<void (MyQDBusServiceWatcher::*)(const QString &, const QString &, const QString &)>(&MyQDBusServiceWatcher::Signal_ServiceOwnerChanged));
+	QObject::connect(static_cast<QDBusServiceWatcher*>(ptr), static_cast<void (QDBusServiceWatcher::*)(const QString &, const QString &, const QString &)>(&QDBusServiceWatcher::serviceOwnerChanged), static_cast<MyQDBusServiceWatcher*>(ptr), static_cast<void (MyQDBusServiceWatcher::*)(const QString &, const QString &, const QString &)>(&MyQDBusServiceWatcher::Signal_ServiceOwnerChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QDBusServiceWatcher_DisconnectServiceOwnerChanged(void* ptr)
@@ -2388,9 +2388,9 @@ void QDBusServiceWatcher_ServiceOwnerChanged(void* ptr, struct QtDBus_PackedStri
 	static_cast<QDBusServiceWatcher*>(ptr)->serviceOwnerChanged(QString::fromUtf8(serviceName.data, serviceName.len), QString::fromUtf8(oldOwner.data, oldOwner.len), QString::fromUtf8(newOwner.data, newOwner.len));
 }
 
-void QDBusServiceWatcher_ConnectServiceRegistered(void* ptr)
+void QDBusServiceWatcher_ConnectServiceRegistered(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QDBusServiceWatcher*>(ptr), static_cast<void (QDBusServiceWatcher::*)(const QString &)>(&QDBusServiceWatcher::serviceRegistered), static_cast<MyQDBusServiceWatcher*>(ptr), static_cast<void (MyQDBusServiceWatcher::*)(const QString &)>(&MyQDBusServiceWatcher::Signal_ServiceRegistered));
+	QObject::connect(static_cast<QDBusServiceWatcher*>(ptr), static_cast<void (QDBusServiceWatcher::*)(const QString &)>(&QDBusServiceWatcher::serviceRegistered), static_cast<MyQDBusServiceWatcher*>(ptr), static_cast<void (MyQDBusServiceWatcher::*)(const QString &)>(&MyQDBusServiceWatcher::Signal_ServiceRegistered), static_cast<Qt::ConnectionType>(t));
 }
 
 void QDBusServiceWatcher_DisconnectServiceRegistered(void* ptr)
@@ -2403,9 +2403,9 @@ void QDBusServiceWatcher_ServiceRegistered(void* ptr, struct QtDBus_PackedString
 	static_cast<QDBusServiceWatcher*>(ptr)->serviceRegistered(QString::fromUtf8(serviceName.data, serviceName.len));
 }
 
-void QDBusServiceWatcher_ConnectServiceUnregistered(void* ptr)
+void QDBusServiceWatcher_ConnectServiceUnregistered(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QDBusServiceWatcher*>(ptr), static_cast<void (QDBusServiceWatcher::*)(const QString &)>(&QDBusServiceWatcher::serviceUnregistered), static_cast<MyQDBusServiceWatcher*>(ptr), static_cast<void (MyQDBusServiceWatcher::*)(const QString &)>(&MyQDBusServiceWatcher::Signal_ServiceUnregistered));
+	QObject::connect(static_cast<QDBusServiceWatcher*>(ptr), static_cast<void (QDBusServiceWatcher::*)(const QString &)>(&QDBusServiceWatcher::serviceUnregistered), static_cast<MyQDBusServiceWatcher*>(ptr), static_cast<void (MyQDBusServiceWatcher::*)(const QString &)>(&MyQDBusServiceWatcher::Signal_ServiceUnregistered), static_cast<Qt::ConnectionType>(t));
 }
 
 void QDBusServiceWatcher_DisconnectServiceUnregistered(void* ptr)

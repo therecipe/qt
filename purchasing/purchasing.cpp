@@ -287,9 +287,9 @@ void* QInAppStore_NewQInAppStore(void* parent)
 	}
 }
 
-void QInAppStore_ConnectProductRegistered(void* ptr)
+void QInAppStore_ConnectProductRegistered(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QInAppStore*>(ptr), static_cast<void (QInAppStore::*)(QInAppProduct *)>(&QInAppStore::productRegistered), static_cast<MyQInAppStore*>(ptr), static_cast<void (MyQInAppStore::*)(QInAppProduct *)>(&MyQInAppStore::Signal_ProductRegistered));
+	QObject::connect(static_cast<QInAppStore*>(ptr), static_cast<void (QInAppStore::*)(QInAppProduct *)>(&QInAppStore::productRegistered), static_cast<MyQInAppStore*>(ptr), static_cast<void (MyQInAppStore::*)(QInAppProduct *)>(&MyQInAppStore::Signal_ProductRegistered), static_cast<Qt::ConnectionType>(t));
 }
 
 void QInAppStore_DisconnectProductRegistered(void* ptr)
@@ -302,9 +302,9 @@ void QInAppStore_ProductRegistered(void* ptr, void* product)
 	static_cast<QInAppStore*>(ptr)->productRegistered(static_cast<QInAppProduct*>(product));
 }
 
-void QInAppStore_ConnectProductUnknown(void* ptr)
+void QInAppStore_ConnectProductUnknown(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QInAppStore*>(ptr), static_cast<void (QInAppStore::*)(QInAppProduct::ProductType, const QString &)>(&QInAppStore::productUnknown), static_cast<MyQInAppStore*>(ptr), static_cast<void (MyQInAppStore::*)(QInAppProduct::ProductType, const QString &)>(&MyQInAppStore::Signal_ProductUnknown));
+	QObject::connect(static_cast<QInAppStore*>(ptr), static_cast<void (QInAppStore::*)(QInAppProduct::ProductType, const QString &)>(&QInAppStore::productUnknown), static_cast<MyQInAppStore*>(ptr), static_cast<void (MyQInAppStore::*)(QInAppProduct::ProductType, const QString &)>(&MyQInAppStore::Signal_ProductUnknown), static_cast<Qt::ConnectionType>(t));
 }
 
 void QInAppStore_DisconnectProductUnknown(void* ptr)
@@ -337,9 +337,9 @@ void QInAppStore_SetPlatformProperty(void* ptr, struct QtPurchasing_PackedString
 	static_cast<QInAppStore*>(ptr)->setPlatformProperty(QString::fromUtf8(propertyName.data, propertyName.len), QString::fromUtf8(value.data, value.len));
 }
 
-void QInAppStore_ConnectTransactionReady(void* ptr)
+void QInAppStore_ConnectTransactionReady(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QInAppStore*>(ptr), static_cast<void (QInAppStore::*)(QInAppTransaction *)>(&QInAppStore::transactionReady), static_cast<MyQInAppStore*>(ptr), static_cast<void (MyQInAppStore::*)(QInAppTransaction *)>(&MyQInAppStore::Signal_TransactionReady));
+	QObject::connect(static_cast<QInAppStore*>(ptr), static_cast<void (QInAppStore::*)(QInAppTransaction *)>(&QInAppStore::transactionReady), static_cast<MyQInAppStore*>(ptr), static_cast<void (MyQInAppStore::*)(QInAppTransaction *)>(&MyQInAppStore::Signal_TransactionReady), static_cast<Qt::ConnectionType>(t));
 }
 
 void QInAppStore_DisconnectTransactionReady(void* ptr)

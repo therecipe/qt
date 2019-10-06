@@ -2300,7 +2300,7 @@ func (ptr *QDBusConnectionInterface) ConnectCallWithCallbackFailed(f func(error 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "callWithCallbackFailed") {
-			C.QDBusConnectionInterface_ConnectCallWithCallbackFailed(ptr.Pointer())
+			C.QDBusConnectionInterface_ConnectCallWithCallbackFailed(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "callWithCallbackFailed")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "callWithCallbackFailed"); signal != nil {
@@ -2340,7 +2340,7 @@ func (ptr *QDBusConnectionInterface) ConnectServiceRegistered(f func(service str
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "serviceRegistered") {
-			C.QDBusConnectionInterface_ConnectServiceRegistered(ptr.Pointer())
+			C.QDBusConnectionInterface_ConnectServiceRegistered(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "serviceRegistered")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "serviceRegistered"); signal != nil {
@@ -2385,7 +2385,7 @@ func (ptr *QDBusConnectionInterface) ConnectServiceUnregistered(f func(service s
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "serviceUnregistered") {
-			C.QDBusConnectionInterface_ConnectServiceUnregistered(ptr.Pointer())
+			C.QDBusConnectionInterface_ConnectServiceUnregistered(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "serviceUnregistered")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "serviceUnregistered"); signal != nil {
@@ -3548,7 +3548,7 @@ func (ptr *QDBusPendingCallWatcher) ConnectFinished(f func(self *QDBusPendingCal
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "finished") {
-			C.QDBusPendingCallWatcher_ConnectFinished(ptr.Pointer())
+			C.QDBusPendingCallWatcher_ConnectFinished(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "finished")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "finished"); signal != nil {
@@ -4184,7 +4184,7 @@ func (ptr *QDBusServer) ConnectNewConnection(f func(connection *QDBusConnection)
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "newConnection") {
-			C.QDBusServer_ConnectNewConnection(ptr.Pointer())
+			C.QDBusServer_ConnectNewConnection(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "newConnection")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "newConnection"); signal != nil {
@@ -4637,7 +4637,7 @@ func (ptr *QDBusServiceWatcher) ConnectServiceOwnerChanged(f func(serviceName st
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "serviceOwnerChanged") {
-			C.QDBusServiceWatcher_ConnectServiceOwnerChanged(ptr.Pointer())
+			C.QDBusServiceWatcher_ConnectServiceOwnerChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "serviceOwnerChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "serviceOwnerChanged"); signal != nil {
@@ -4692,7 +4692,7 @@ func (ptr *QDBusServiceWatcher) ConnectServiceRegistered(f func(serviceName stri
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "serviceRegistered") {
-			C.QDBusServiceWatcher_ConnectServiceRegistered(ptr.Pointer())
+			C.QDBusServiceWatcher_ConnectServiceRegistered(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "serviceRegistered")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "serviceRegistered"); signal != nil {
@@ -4737,7 +4737,7 @@ func (ptr *QDBusServiceWatcher) ConnectServiceUnregistered(f func(serviceName st
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "serviceUnregistered") {
-			C.QDBusServiceWatcher_ConnectServiceUnregistered(ptr.Pointer())
+			C.QDBusServiceWatcher_ConnectServiceUnregistered(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "serviceUnregistered")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "serviceUnregistered"); signal != nil {

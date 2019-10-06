@@ -138,9 +138,9 @@ void QScriptEngineDebugger_Detach(void* ptr)
 	static_cast<QScriptEngineDebugger*>(ptr)->detach();
 }
 
-void QScriptEngineDebugger_ConnectEvaluationResumed(void* ptr)
+void QScriptEngineDebugger_ConnectEvaluationResumed(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QScriptEngineDebugger*>(ptr), static_cast<void (QScriptEngineDebugger::*)()>(&QScriptEngineDebugger::evaluationResumed), static_cast<MyQScriptEngineDebugger*>(ptr), static_cast<void (MyQScriptEngineDebugger::*)()>(&MyQScriptEngineDebugger::Signal_EvaluationResumed));
+	QObject::connect(static_cast<QScriptEngineDebugger*>(ptr), static_cast<void (QScriptEngineDebugger::*)()>(&QScriptEngineDebugger::evaluationResumed), static_cast<MyQScriptEngineDebugger*>(ptr), static_cast<void (MyQScriptEngineDebugger::*)()>(&MyQScriptEngineDebugger::Signal_EvaluationResumed), static_cast<Qt::ConnectionType>(t));
 }
 
 void QScriptEngineDebugger_DisconnectEvaluationResumed(void* ptr)
@@ -153,9 +153,9 @@ void QScriptEngineDebugger_EvaluationResumed(void* ptr)
 	static_cast<QScriptEngineDebugger*>(ptr)->evaluationResumed();
 }
 
-void QScriptEngineDebugger_ConnectEvaluationSuspended(void* ptr)
+void QScriptEngineDebugger_ConnectEvaluationSuspended(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QScriptEngineDebugger*>(ptr), static_cast<void (QScriptEngineDebugger::*)()>(&QScriptEngineDebugger::evaluationSuspended), static_cast<MyQScriptEngineDebugger*>(ptr), static_cast<void (MyQScriptEngineDebugger::*)()>(&MyQScriptEngineDebugger::Signal_EvaluationSuspended));
+	QObject::connect(static_cast<QScriptEngineDebugger*>(ptr), static_cast<void (QScriptEngineDebugger::*)()>(&QScriptEngineDebugger::evaluationSuspended), static_cast<MyQScriptEngineDebugger*>(ptr), static_cast<void (MyQScriptEngineDebugger::*)()>(&MyQScriptEngineDebugger::Signal_EvaluationSuspended), static_cast<Qt::ConnectionType>(t));
 }
 
 void QScriptEngineDebugger_DisconnectEvaluationSuspended(void* ptr)

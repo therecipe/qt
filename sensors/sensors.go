@@ -998,7 +998,7 @@ func (ptr *QAccelerometer) ConnectAccelerationModeChanged(f func(accelerationMod
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "accelerationModeChanged") {
-			C.QAccelerometer_ConnectAccelerationModeChanged(ptr.Pointer())
+			C.QAccelerometer_ConnectAccelerationModeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "accelerationModeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "accelerationModeChanged"); signal != nil {
@@ -3944,7 +3944,7 @@ func (ptr *QLightSensor) ConnectFieldOfViewChanged(f func(fieldOfView float64)) 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "fieldOfViewChanged") {
-			C.QLightSensor_ConnectFieldOfViewChanged(ptr.Pointer())
+			C.QLightSensor_ConnectFieldOfViewChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "fieldOfViewChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "fieldOfViewChanged"); signal != nil {
@@ -4112,7 +4112,7 @@ func (ptr *QMagnetometer) ConnectReturnGeoValuesChanged(f func(returnGeoValues b
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "returnGeoValuesChanged") {
-			C.QMagnetometer_ConnectReturnGeoValuesChanged(ptr.Pointer())
+			C.QMagnetometer_ConnectReturnGeoValuesChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "returnGeoValuesChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "returnGeoValuesChanged"); signal != nil {
@@ -5336,7 +5336,7 @@ func (ptr *QRotationSensor) ConnectHasZChanged(f func(hasZ bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "hasZChanged") {
-			C.QRotationSensor_ConnectHasZChanged(ptr.Pointer())
+			C.QRotationSensor_ConnectHasZChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "hasZChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "hasZChanged"); signal != nil {
@@ -5513,7 +5513,7 @@ func (ptr *QSensor) ConnectActiveChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "activeChanged") {
-			C.QSensor_ConnectActiveChanged(ptr.Pointer())
+			C.QSensor_ConnectActiveChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "activeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "activeChanged"); signal != nil {
@@ -5559,7 +5559,7 @@ func (ptr *QSensor) ConnectAlwaysOnChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "alwaysOnChanged") {
-			C.QSensor_ConnectAlwaysOnChanged(ptr.Pointer())
+			C.QSensor_ConnectAlwaysOnChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "alwaysOnChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "alwaysOnChanged"); signal != nil {
@@ -5599,7 +5599,7 @@ func (ptr *QSensor) ConnectAvailableSensorsChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "availableSensorsChanged") {
-			C.QSensor_ConnectAvailableSensorsChanged(ptr.Pointer())
+			C.QSensor_ConnectAvailableSensorsChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "availableSensorsChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "availableSensorsChanged"); signal != nil {
@@ -5646,7 +5646,7 @@ func (ptr *QSensor) ConnectAxesOrientationModeChanged(f func(axesOrientationMode
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "axesOrientationModeChanged") {
-			C.QSensor_ConnectAxesOrientationModeChanged(ptr.Pointer())
+			C.QSensor_ConnectAxesOrientationModeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "axesOrientationModeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "axesOrientationModeChanged"); signal != nil {
@@ -5693,7 +5693,7 @@ func (ptr *QSensor) ConnectBufferSizeChanged(f func(bufferSize int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "bufferSizeChanged") {
-			C.QSensor_ConnectBufferSizeChanged(ptr.Pointer())
+			C.QSensor_ConnectBufferSizeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "bufferSizeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "bufferSizeChanged"); signal != nil {
@@ -5733,7 +5733,7 @@ func (ptr *QSensor) ConnectBusyChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "busyChanged") {
-			C.QSensor_ConnectBusyChanged(ptr.Pointer())
+			C.QSensor_ConnectBusyChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "busyChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "busyChanged"); signal != nil {
@@ -5787,7 +5787,7 @@ func (ptr *QSensor) ConnectCurrentOrientationChanged(f func(currentOrientation i
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "currentOrientationChanged") {
-			C.QSensor_ConnectCurrentOrientationChanged(ptr.Pointer())
+			C.QSensor_ConnectCurrentOrientationChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "currentOrientationChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "currentOrientationChanged"); signal != nil {
@@ -5834,7 +5834,7 @@ func (ptr *QSensor) ConnectDataRateChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "dataRateChanged") {
-			C.QSensor_ConnectDataRateChanged(ptr.Pointer())
+			C.QSensor_ConnectDataRateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "dataRateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "dataRateChanged"); signal != nil {
@@ -5900,7 +5900,7 @@ func (ptr *QSensor) ConnectEfficientBufferSizeChanged(f func(efficientBufferSize
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "efficientBufferSizeChanged") {
-			C.QSensor_ConnectEfficientBufferSizeChanged(ptr.Pointer())
+			C.QSensor_ConnectEfficientBufferSizeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "efficientBufferSizeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "efficientBufferSizeChanged"); signal != nil {
@@ -6012,7 +6012,7 @@ func (ptr *QSensor) ConnectMaxBufferSizeChanged(f func(maxBufferSize int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "maxBufferSizeChanged") {
-			C.QSensor_ConnectMaxBufferSizeChanged(ptr.Pointer())
+			C.QSensor_ConnectMaxBufferSizeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "maxBufferSizeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "maxBufferSizeChanged"); signal != nil {
@@ -6070,7 +6070,7 @@ func (ptr *QSensor) ConnectReadingChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "readingChanged") {
-			C.QSensor_ConnectReadingChanged(ptr.Pointer())
+			C.QSensor_ConnectReadingChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "readingChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "readingChanged"); signal != nil {
@@ -6116,7 +6116,7 @@ func (ptr *QSensor) ConnectSensorError(f func(error int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "sensorError") {
-			C.QSensor_ConnectSensorError(ptr.Pointer())
+			C.QSensor_ConnectSensorError(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "sensorError")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "sensorError"); signal != nil {
@@ -6279,7 +6279,7 @@ func (ptr *QSensor) ConnectSkipDuplicatesChanged(f func(skipDuplicates bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "skipDuplicatesChanged") {
-			C.QSensor_ConnectSkipDuplicatesChanged(ptr.Pointer())
+			C.QSensor_ConnectSkipDuplicatesChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "skipDuplicatesChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "skipDuplicatesChanged"); signal != nil {
@@ -6423,7 +6423,7 @@ func (ptr *QSensor) ConnectUserOrientationChanged(f func(userOrientation int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "userOrientationChanged") {
-			C.QSensor_ConnectUserOrientationChanged(ptr.Pointer())
+			C.QSensor_ConnectUserOrientationChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "userOrientationChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "userOrientationChanged"); signal != nil {
@@ -7652,7 +7652,7 @@ func (ptr *QSensorGesture) ConnectDetected(f func(vqs string)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "detected") {
-			C.QSensorGesture_ConnectDetected(ptr.Pointer())
+			C.QSensorGesture_ConnectDetected(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "detected")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "detected"); signal != nil {
@@ -8095,7 +8095,7 @@ func (ptr *QSensorGestureManager) ConnectNewSensorGestureAvailable(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "newSensorGestureAvailable") {
-			C.QSensorGestureManager_ConnectNewSensorGestureAvailable(ptr.Pointer())
+			C.QSensorGestureManager_ConnectNewSensorGestureAvailable(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "newSensorGestureAvailable")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "newSensorGestureAvailable"); signal != nil {
@@ -8815,7 +8815,7 @@ func (ptr *QSensorGestureRecognizer) ConnectDetected(f func(vqs string)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "detected") {
-			C.QSensorGestureRecognizer_ConnectDetected(ptr.Pointer())
+			C.QSensorGestureRecognizer_ConnectDetected(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "detected")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "detected"); signal != nil {
@@ -10074,7 +10074,7 @@ func (ptr *QTapSensor) ConnectReturnDoubleTapEventsChanged(f func(returnDoubleTa
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "returnDoubleTapEventsChanged") {
-			C.QTapSensor_ConnectReturnDoubleTapEventsChanged(ptr.Pointer())
+			C.QTapSensor_ConnectReturnDoubleTapEventsChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "returnDoubleTapEventsChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "returnDoubleTapEventsChanged"); signal != nil {

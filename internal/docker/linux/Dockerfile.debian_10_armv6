@@ -1,0 +1,36 @@
+FROM balenalib/raspberry-pi-debian-golang:1.12.9-buster as base
+
+ENV USER user
+ENV HOME /home/$USER
+ENV GOPATH $HOME/work
+RUN [ "cross-build-start" ]
+
+RUN /usr/local/go/bin/go get -tags=no_env github.com/therecipe/qt/cmd/...
+
+FROM balenalib/raspberry-pi-debian-golang:1.12.9-buster
+LABEL maintainer therecipe
+
+ENV USER user
+ENV HOME /home/$USER
+ENV GOPATH $HOME/work
+ENV PATH /usr/local/go/bin:$PATH
+ENV QT_API 5.11.1
+ENV QT_DOCKER true
+ENV QT_PKG_CONFIG true
+RUN [ "cross-build-start" ]
+
+COPY --from=base /usr/local/go /usr/local/go
+COPY --from=base $GOPATH/bin $GOPATH/bin
+COPY --from=base $GOPATH/src/github.com/therecipe/qt $GOPATH/src/github.com/therecipe/qt
+
+RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install build-essential libglib2.0-dev libglu1-mesa-dev libpulse-dev && apt-get -qq clean
+RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install libqt*5-dev qt*5-dev qt*5-doc-html && apt-get -qq clean
+
+RUN $GOPATH/bin/qtsetup prep
+RUN $GOPATH/bin/qtsetup check
+RUN $GOPATH/bin/qtsetup generate
+RUN cd $GOPATH/src/github.com/therecipe/qt/internal/examples/widgets/line_edits && sed -i -e 's/AddWidget2/AddWidget/g' line_edits.go && $GOPATH/bin/qtdeploy build linux && rm -rf ./deploy
+
+RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates git pkg-config
+
+CMD ["bash"]

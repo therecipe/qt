@@ -601,9 +601,9 @@ void QScriptEngine_SetProcessEventsInterval(void* ptr, int interval)
 	static_cast<QScriptEngine*>(ptr)->setProcessEventsInterval(interval);
 }
 
-void QScriptEngine_ConnectSignalHandlerException(void* ptr)
+void QScriptEngine_ConnectSignalHandlerException(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QScriptEngine*>(ptr), static_cast<void (QScriptEngine::*)(const QScriptValue &)>(&QScriptEngine::signalHandlerException), static_cast<MyQScriptEngine*>(ptr), static_cast<void (MyQScriptEngine::*)(const QScriptValue &)>(&MyQScriptEngine::Signal_SignalHandlerException));
+	QObject::connect(static_cast<QScriptEngine*>(ptr), static_cast<void (QScriptEngine::*)(const QScriptValue &)>(&QScriptEngine::signalHandlerException), static_cast<MyQScriptEngine*>(ptr), static_cast<void (MyQScriptEngine::*)(const QScriptValue &)>(&MyQScriptEngine::Signal_SignalHandlerException), static_cast<Qt::ConnectionType>(t));
 }
 
 void QScriptEngine_DisconnectSignalHandlerException(void* ptr)

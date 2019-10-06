@@ -102,6 +102,11 @@ jobs:
     parameters:
       file: linux/Dockerfile.arch
       tag: linux_arch
+  -
+    template: docker_job_template.yml
+    parameters:
+      file: linux/Dockerfile.fedora
+      tag: linux_fedora
 #  -
 #    template: docker_job_template.yml
 #    parameters:
@@ -340,3 +345,63 @@ jobs:
     parameters:
       file: wine/Dockerfile.base_xp
       tag: wine_base_xp
+  -
+    template: docker_job_template.yml
+    parameters:
+      file: linux/Dockerfile.debian_9_armv6
+      tag: linux_debian_9_armv6
+  -
+    template: docker_job_template.yml
+    parameters:
+      file: linux/Dockerfile.debian_9_armv7
+      tag: linux_debian_9_armv7
+  -
+    template: docker_job_template.yml
+    parameters:
+      file: linux/Dockerfile.debian_9_arm64
+      tag: linux_debian_9_arm64
+  -
+    template: docker_job_template.yml
+    parameters:
+      file: linux/Dockerfile.debian_10_armv6
+      tag: linux_debian_10_armv6
+  -
+    template: docker_job_template.yml
+    parameters:
+      file: linux/Dockerfile.debian_10_armv7
+      tag: linux_debian_10_armv7
+  -
+    template: docker_job_template.yml
+    parameters:
+      file: linux/Dockerfile.debian_10_arm64
+      tag: linux_debian_10_arm64
+  -
+    template: docker_job_template.yml
+    parameters:
+      file: linux/Dockerfile.fedora_armv7
+      tag: linux_fedora_armv7
+  -
+    template: docker_job_template.yml
+    parameters:
+      file: linux/Dockerfile.fedora_arm64
+      tag: linux_fedora_arm64
+  -
+    template: docker_job_template.yml
+    parameters:
+      file: linux/Dockerfile.ubuntu_16_04_armv7
+      tag: linux_ubuntu_16_04_armv7
+  -
+    template: docker_job_template.yml
+    parameters:
+      file: linux/Dockerfile.ubuntu_16_04_arm64
+      tag: linux_ubuntu_16_04_arm64
+  -
+    template: docker_job_template.yml
+    parameters:
+      file: linux/Dockerfile.ubuntu_18_04_armv7
+      tag: linux_ubuntu_18_04_armv7
+  -
+    template: docker_job_template.yml
+    parameters:
+      file: linux/Dockerfile.ubuntu_18_04_arm64
+      tag: linux_ubuntu_18_04_arm64

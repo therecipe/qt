@@ -163,7 +163,7 @@ func (ptr *QWebChannel) ConnectBlockUpdatesChanged(f func(block bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "blockUpdatesChanged") {
-			C.QWebChannel_ConnectBlockUpdatesChanged(ptr.Pointer())
+			C.QWebChannel_ConnectBlockUpdatesChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "blockUpdatesChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "blockUpdatesChanged"); signal != nil {
@@ -823,7 +823,7 @@ func (ptr *QWebChannelAbstractTransport) ConnectMessageReceived(f func(message *
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "messageReceived") {
-			C.QWebChannelAbstractTransport_ConnectMessageReceived(ptr.Pointer())
+			C.QWebChannelAbstractTransport_ConnectMessageReceived(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "messageReceived")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "messageReceived"); signal != nil {

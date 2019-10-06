@@ -196,9 +196,9 @@ long long QAccelerometer_AccelerationMode(void* ptr)
 	return static_cast<QAccelerometer*>(ptr)->accelerationMode();
 }
 
-void QAccelerometer_ConnectAccelerationModeChanged(void* ptr)
+void QAccelerometer_ConnectAccelerationModeChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QAccelerometer*>(ptr), static_cast<void (QAccelerometer::*)(QAccelerometer::AccelerationMode)>(&QAccelerometer::accelerationModeChanged), static_cast<MyQAccelerometer*>(ptr), static_cast<void (MyQAccelerometer::*)(QAccelerometer::AccelerationMode)>(&MyQAccelerometer::Signal_AccelerationModeChanged));
+	QObject::connect(static_cast<QAccelerometer*>(ptr), static_cast<void (QAccelerometer::*)(QAccelerometer::AccelerationMode)>(&QAccelerometer::accelerationModeChanged), static_cast<MyQAccelerometer*>(ptr), static_cast<void (MyQAccelerometer::*)(QAccelerometer::AccelerationMode)>(&MyQAccelerometer::Signal_AccelerationModeChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QAccelerometer_DisconnectAccelerationModeChanged(void* ptr)
@@ -1895,9 +1895,9 @@ double QLightSensor_FieldOfView(void* ptr)
 	return static_cast<QLightSensor*>(ptr)->fieldOfView();
 }
 
-void QLightSensor_ConnectFieldOfViewChanged(void* ptr)
+void QLightSensor_ConnectFieldOfViewChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QLightSensor*>(ptr), static_cast<void (QLightSensor::*)(qreal)>(&QLightSensor::fieldOfViewChanged), static_cast<MyQLightSensor*>(ptr), static_cast<void (MyQLightSensor::*)(qreal)>(&MyQLightSensor::Signal_FieldOfViewChanged));
+	QObject::connect(static_cast<QLightSensor*>(ptr), static_cast<void (QLightSensor::*)(qreal)>(&QLightSensor::fieldOfViewChanged), static_cast<MyQLightSensor*>(ptr), static_cast<void (MyQLightSensor::*)(qreal)>(&MyQLightSensor::Signal_FieldOfViewChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QLightSensor_DisconnectFieldOfViewChanged(void* ptr)
@@ -2027,9 +2027,9 @@ char QMagnetometer_ReturnGeoValues(void* ptr)
 	return static_cast<QMagnetometer*>(ptr)->returnGeoValues();
 }
 
-void QMagnetometer_ConnectReturnGeoValuesChanged(void* ptr)
+void QMagnetometer_ConnectReturnGeoValuesChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QMagnetometer*>(ptr), static_cast<void (QMagnetometer::*)(bool)>(&QMagnetometer::returnGeoValuesChanged), static_cast<MyQMagnetometer*>(ptr), static_cast<void (MyQMagnetometer::*)(bool)>(&MyQMagnetometer::Signal_ReturnGeoValuesChanged));
+	QObject::connect(static_cast<QMagnetometer*>(ptr), static_cast<void (QMagnetometer::*)(bool)>(&QMagnetometer::returnGeoValuesChanged), static_cast<MyQMagnetometer*>(ptr), static_cast<void (MyQMagnetometer::*)(bool)>(&MyQMagnetometer::Signal_ReturnGeoValuesChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QMagnetometer_DisconnectReturnGeoValuesChanged(void* ptr)
@@ -2707,9 +2707,9 @@ char QRotationSensor_HasZ(void* ptr)
 	return static_cast<QRotationSensor*>(ptr)->hasZ();
 }
 
-void QRotationSensor_ConnectHasZChanged(void* ptr)
+void QRotationSensor_ConnectHasZChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QRotationSensor*>(ptr), static_cast<void (QRotationSensor::*)(bool)>(&QRotationSensor::hasZChanged), static_cast<MyQRotationSensor*>(ptr), static_cast<void (MyQRotationSensor::*)(bool)>(&MyQRotationSensor::Signal_HasZChanged));
+	QObject::connect(static_cast<QRotationSensor*>(ptr), static_cast<void (QRotationSensor::*)(bool)>(&QRotationSensor::hasZChanged), static_cast<MyQRotationSensor*>(ptr), static_cast<void (MyQRotationSensor::*)(bool)>(&MyQRotationSensor::Signal_HasZChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QRotationSensor_DisconnectHasZChanged(void* ptr)
@@ -2828,9 +2828,9 @@ void* QSensor_NewQSensor(void* ty, void* parent)
 	}
 }
 
-void QSensor_ConnectActiveChanged(void* ptr)
+void QSensor_ConnectActiveChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSensor*>(ptr), static_cast<void (QSensor::*)()>(&QSensor::activeChanged), static_cast<MyQSensor*>(ptr), static_cast<void (MyQSensor::*)()>(&MyQSensor::Signal_ActiveChanged));
+	QObject::connect(static_cast<QSensor*>(ptr), static_cast<void (QSensor::*)()>(&QSensor::activeChanged), static_cast<MyQSensor*>(ptr), static_cast<void (MyQSensor::*)()>(&MyQSensor::Signal_ActiveChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSensor_DisconnectActiveChanged(void* ptr)
@@ -2848,9 +2848,9 @@ void QSensor_AddFilter(void* ptr, void* filter)
 	static_cast<QSensor*>(ptr)->addFilter(static_cast<QSensorFilter*>(filter));
 }
 
-void QSensor_ConnectAlwaysOnChanged(void* ptr)
+void QSensor_ConnectAlwaysOnChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSensor*>(ptr), static_cast<void (QSensor::*)()>(&QSensor::alwaysOnChanged), static_cast<MyQSensor*>(ptr), static_cast<void (MyQSensor::*)()>(&MyQSensor::Signal_AlwaysOnChanged));
+	QObject::connect(static_cast<QSensor*>(ptr), static_cast<void (QSensor::*)()>(&QSensor::alwaysOnChanged), static_cast<MyQSensor*>(ptr), static_cast<void (MyQSensor::*)()>(&MyQSensor::Signal_AlwaysOnChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSensor_DisconnectAlwaysOnChanged(void* ptr)
@@ -2863,9 +2863,9 @@ void QSensor_AlwaysOnChanged(void* ptr)
 	static_cast<QSensor*>(ptr)->alwaysOnChanged();
 }
 
-void QSensor_ConnectAvailableSensorsChanged(void* ptr)
+void QSensor_ConnectAvailableSensorsChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSensor*>(ptr), static_cast<void (QSensor::*)()>(&QSensor::availableSensorsChanged), static_cast<MyQSensor*>(ptr), static_cast<void (MyQSensor::*)()>(&MyQSensor::Signal_AvailableSensorsChanged));
+	QObject::connect(static_cast<QSensor*>(ptr), static_cast<void (QSensor::*)()>(&QSensor::availableSensorsChanged), static_cast<MyQSensor*>(ptr), static_cast<void (MyQSensor::*)()>(&MyQSensor::Signal_AvailableSensorsChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSensor_DisconnectAvailableSensorsChanged(void* ptr)
@@ -2883,9 +2883,9 @@ long long QSensor_AxesOrientationMode(void* ptr)
 	return static_cast<QSensor*>(ptr)->axesOrientationMode();
 }
 
-void QSensor_ConnectAxesOrientationModeChanged(void* ptr)
+void QSensor_ConnectAxesOrientationModeChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSensor*>(ptr), static_cast<void (QSensor::*)(QSensor::AxesOrientationMode)>(&QSensor::axesOrientationModeChanged), static_cast<MyQSensor*>(ptr), static_cast<void (MyQSensor::*)(QSensor::AxesOrientationMode)>(&MyQSensor::Signal_AxesOrientationModeChanged));
+	QObject::connect(static_cast<QSensor*>(ptr), static_cast<void (QSensor::*)(QSensor::AxesOrientationMode)>(&QSensor::axesOrientationModeChanged), static_cast<MyQSensor*>(ptr), static_cast<void (MyQSensor::*)(QSensor::AxesOrientationMode)>(&MyQSensor::Signal_AxesOrientationModeChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSensor_DisconnectAxesOrientationModeChanged(void* ptr)
@@ -2903,9 +2903,9 @@ int QSensor_BufferSize(void* ptr)
 	return static_cast<QSensor*>(ptr)->bufferSize();
 }
 
-void QSensor_ConnectBufferSizeChanged(void* ptr)
+void QSensor_ConnectBufferSizeChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSensor*>(ptr), static_cast<void (QSensor::*)(int)>(&QSensor::bufferSizeChanged), static_cast<MyQSensor*>(ptr), static_cast<void (MyQSensor::*)(int)>(&MyQSensor::Signal_BufferSizeChanged));
+	QObject::connect(static_cast<QSensor*>(ptr), static_cast<void (QSensor::*)(int)>(&QSensor::bufferSizeChanged), static_cast<MyQSensor*>(ptr), static_cast<void (MyQSensor::*)(int)>(&MyQSensor::Signal_BufferSizeChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSensor_DisconnectBufferSizeChanged(void* ptr)
@@ -2918,9 +2918,9 @@ void QSensor_BufferSizeChanged(void* ptr, int bufferSize)
 	static_cast<QSensor*>(ptr)->bufferSizeChanged(bufferSize);
 }
 
-void QSensor_ConnectBusyChanged(void* ptr)
+void QSensor_ConnectBusyChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSensor*>(ptr), static_cast<void (QSensor::*)()>(&QSensor::busyChanged), static_cast<MyQSensor*>(ptr), static_cast<void (MyQSensor::*)()>(&MyQSensor::Signal_BusyChanged));
+	QObject::connect(static_cast<QSensor*>(ptr), static_cast<void (QSensor::*)()>(&QSensor::busyChanged), static_cast<MyQSensor*>(ptr), static_cast<void (MyQSensor::*)()>(&MyQSensor::Signal_BusyChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSensor_DisconnectBusyChanged(void* ptr)
@@ -2943,9 +2943,9 @@ int QSensor_CurrentOrientation(void* ptr)
 	return static_cast<QSensor*>(ptr)->currentOrientation();
 }
 
-void QSensor_ConnectCurrentOrientationChanged(void* ptr)
+void QSensor_ConnectCurrentOrientationChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSensor*>(ptr), static_cast<void (QSensor::*)(int)>(&QSensor::currentOrientationChanged), static_cast<MyQSensor*>(ptr), static_cast<void (MyQSensor::*)(int)>(&MyQSensor::Signal_CurrentOrientationChanged));
+	QObject::connect(static_cast<QSensor*>(ptr), static_cast<void (QSensor::*)(int)>(&QSensor::currentOrientationChanged), static_cast<MyQSensor*>(ptr), static_cast<void (MyQSensor::*)(int)>(&MyQSensor::Signal_CurrentOrientationChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSensor_DisconnectCurrentOrientationChanged(void* ptr)
@@ -2963,9 +2963,9 @@ int QSensor_DataRate(void* ptr)
 	return static_cast<QSensor*>(ptr)->dataRate();
 }
 
-void QSensor_ConnectDataRateChanged(void* ptr)
+void QSensor_ConnectDataRateChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSensor*>(ptr), static_cast<void (QSensor::*)()>(&QSensor::dataRateChanged), static_cast<MyQSensor*>(ptr), static_cast<void (MyQSensor::*)()>(&MyQSensor::Signal_DataRateChanged));
+	QObject::connect(static_cast<QSensor*>(ptr), static_cast<void (QSensor::*)()>(&QSensor::dataRateChanged), static_cast<MyQSensor*>(ptr), static_cast<void (MyQSensor::*)()>(&MyQSensor::Signal_DataRateChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSensor_DisconnectDataRateChanged(void* ptr)
@@ -2993,9 +2993,9 @@ int QSensor_EfficientBufferSize(void* ptr)
 	return static_cast<QSensor*>(ptr)->efficientBufferSize();
 }
 
-void QSensor_ConnectEfficientBufferSizeChanged(void* ptr)
+void QSensor_ConnectEfficientBufferSizeChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSensor*>(ptr), static_cast<void (QSensor::*)(int)>(&QSensor::efficientBufferSizeChanged), static_cast<MyQSensor*>(ptr), static_cast<void (MyQSensor::*)(int)>(&MyQSensor::Signal_EfficientBufferSizeChanged));
+	QObject::connect(static_cast<QSensor*>(ptr), static_cast<void (QSensor::*)(int)>(&QSensor::efficientBufferSizeChanged), static_cast<MyQSensor*>(ptr), static_cast<void (MyQSensor::*)(int)>(&MyQSensor::Signal_EfficientBufferSizeChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSensor_DisconnectEfficientBufferSizeChanged(void* ptr)
@@ -3053,9 +3053,9 @@ int QSensor_MaxBufferSize(void* ptr)
 	return static_cast<QSensor*>(ptr)->maxBufferSize();
 }
 
-void QSensor_ConnectMaxBufferSizeChanged(void* ptr)
+void QSensor_ConnectMaxBufferSizeChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSensor*>(ptr), static_cast<void (QSensor::*)(int)>(&QSensor::maxBufferSizeChanged), static_cast<MyQSensor*>(ptr), static_cast<void (MyQSensor::*)(int)>(&MyQSensor::Signal_MaxBufferSizeChanged));
+	QObject::connect(static_cast<QSensor*>(ptr), static_cast<void (QSensor::*)(int)>(&QSensor::maxBufferSizeChanged), static_cast<MyQSensor*>(ptr), static_cast<void (MyQSensor::*)(int)>(&MyQSensor::Signal_MaxBufferSizeChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSensor_DisconnectMaxBufferSizeChanged(void* ptr)
@@ -3078,9 +3078,9 @@ void* QSensor_Reading(void* ptr)
 	return static_cast<QSensor*>(ptr)->reading();
 }
 
-void QSensor_ConnectReadingChanged(void* ptr)
+void QSensor_ConnectReadingChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSensor*>(ptr), static_cast<void (QSensor::*)()>(&QSensor::readingChanged), static_cast<MyQSensor*>(ptr), static_cast<void (MyQSensor::*)()>(&MyQSensor::Signal_ReadingChanged));
+	QObject::connect(static_cast<QSensor*>(ptr), static_cast<void (QSensor::*)()>(&QSensor::readingChanged), static_cast<MyQSensor*>(ptr), static_cast<void (MyQSensor::*)()>(&MyQSensor::Signal_ReadingChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSensor_DisconnectReadingChanged(void* ptr)
@@ -3098,9 +3098,9 @@ void QSensor_RemoveFilter(void* ptr, void* filter)
 	static_cast<QSensor*>(ptr)->removeFilter(static_cast<QSensorFilter*>(filter));
 }
 
-void QSensor_ConnectSensorError(void* ptr)
+void QSensor_ConnectSensorError(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSensor*>(ptr), static_cast<void (QSensor::*)(int)>(&QSensor::sensorError), static_cast<MyQSensor*>(ptr), static_cast<void (MyQSensor::*)(int)>(&MyQSensor::Signal_SensorError));
+	QObject::connect(static_cast<QSensor*>(ptr), static_cast<void (QSensor::*)(int)>(&QSensor::sensorError), static_cast<MyQSensor*>(ptr), static_cast<void (MyQSensor::*)(int)>(&MyQSensor::Signal_SensorError), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSensor_DisconnectSensorError(void* ptr)
@@ -3188,9 +3188,9 @@ char QSensor_SkipDuplicates(void* ptr)
 	return static_cast<QSensor*>(ptr)->skipDuplicates();
 }
 
-void QSensor_ConnectSkipDuplicatesChanged(void* ptr)
+void QSensor_ConnectSkipDuplicatesChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSensor*>(ptr), static_cast<void (QSensor::*)(bool)>(&QSensor::skipDuplicatesChanged), static_cast<MyQSensor*>(ptr), static_cast<void (MyQSensor::*)(bool)>(&MyQSensor::Signal_SkipDuplicatesChanged));
+	QObject::connect(static_cast<QSensor*>(ptr), static_cast<void (QSensor::*)(bool)>(&QSensor::skipDuplicatesChanged), static_cast<MyQSensor*>(ptr), static_cast<void (MyQSensor::*)(bool)>(&MyQSensor::Signal_SkipDuplicatesChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSensor_DisconnectSkipDuplicatesChanged(void* ptr)
@@ -3315,9 +3315,9 @@ int QSensor_UserOrientation(void* ptr)
 	return static_cast<QSensor*>(ptr)->userOrientation();
 }
 
-void QSensor_ConnectUserOrientationChanged(void* ptr)
+void QSensor_ConnectUserOrientationChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSensor*>(ptr), static_cast<void (QSensor::*)(int)>(&QSensor::userOrientationChanged), static_cast<MyQSensor*>(ptr), static_cast<void (MyQSensor::*)(int)>(&MyQSensor::Signal_UserOrientationChanged));
+	QObject::connect(static_cast<QSensor*>(ptr), static_cast<void (QSensor::*)(int)>(&QSensor::userOrientationChanged), static_cast<MyQSensor*>(ptr), static_cast<void (MyQSensor::*)(int)>(&MyQSensor::Signal_UserOrientationChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSensor_DisconnectUserOrientationChanged(void* ptr)
@@ -4209,10 +4209,10 @@ void* QSensorGesture_NewQSensorGesture(struct QtSensors_PackedString ids, void* 
 	}
 }
 
-void QSensorGesture_ConnectDetected(void* ptr)
+void QSensorGesture_ConnectDetected(void* ptr, long long t)
 {
 #ifdef Q_QDOC
-	QObject::connect(static_cast<QSensorGesture*>(ptr), static_cast<void (QSensorGesture::*)(QString)>(&QSensorGesture::detected), static_cast<MyQSensorGesture*>(ptr), static_cast<void (MyQSensorGesture::*)(QString)>(&MyQSensorGesture::Signal_Detected));
+	QObject::connect(static_cast<QSensorGesture*>(ptr), static_cast<void (QSensorGesture::*)(QString)>(&QSensorGesture::detected), static_cast<MyQSensorGesture*>(ptr), static_cast<void (MyQSensorGesture::*)(QString)>(&MyQSensorGesture::Signal_Detected), static_cast<Qt::ConnectionType>(t));
 #endif
 }
 
@@ -4471,9 +4471,9 @@ struct QtSensors_PackedString QSensorGestureManager_GestureIds(void* ptr)
 	return ({ QByteArray t5f71c3 = static_cast<QSensorGestureManager*>(ptr)->gestureIds().join("¡¦!").toUtf8(); QtSensors_PackedString { const_cast<char*>(t5f71c3.prepend("WHITESPACE").constData()+10), t5f71c3.size()-10 }; });
 }
 
-void QSensorGestureManager_ConnectNewSensorGestureAvailable(void* ptr)
+void QSensorGestureManager_ConnectNewSensorGestureAvailable(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSensorGestureManager*>(ptr), static_cast<void (QSensorGestureManager::*)()>(&QSensorGestureManager::newSensorGestureAvailable), static_cast<MyQSensorGestureManager*>(ptr), static_cast<void (MyQSensorGestureManager::*)()>(&MyQSensorGestureManager::Signal_NewSensorGestureAvailable));
+	QObject::connect(static_cast<QSensorGestureManager*>(ptr), static_cast<void (QSensorGestureManager::*)()>(&QSensorGestureManager::newSensorGestureAvailable), static_cast<MyQSensorGestureManager*>(ptr), static_cast<void (MyQSensorGestureManager::*)()>(&MyQSensorGestureManager::Signal_NewSensorGestureAvailable), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSensorGestureManager_DisconnectNewSensorGestureAvailable(void* ptr)
@@ -4779,9 +4779,9 @@ void QSensorGestureRecognizer_CreateBackend(void* ptr)
 	static_cast<QSensorGestureRecognizer*>(ptr)->createBackend();
 }
 
-void QSensorGestureRecognizer_ConnectDetected(void* ptr)
+void QSensorGestureRecognizer_ConnectDetected(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSensorGestureRecognizer*>(ptr), static_cast<void (QSensorGestureRecognizer::*)(const QString &)>(&QSensorGestureRecognizer::detected), static_cast<MyQSensorGestureRecognizer*>(ptr), static_cast<void (MyQSensorGestureRecognizer::*)(const QString &)>(&MyQSensorGestureRecognizer::Signal_Detected));
+	QObject::connect(static_cast<QSensorGestureRecognizer*>(ptr), static_cast<void (QSensorGestureRecognizer::*)(const QString &)>(&QSensorGestureRecognizer::detected), static_cast<MyQSensorGestureRecognizer*>(ptr), static_cast<void (MyQSensorGestureRecognizer::*)(const QString &)>(&MyQSensorGestureRecognizer::Signal_Detected), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSensorGestureRecognizer_DisconnectDetected(void* ptr)
@@ -5673,9 +5673,9 @@ char QTapSensor_ReturnDoubleTapEvents(void* ptr)
 	return static_cast<QTapSensor*>(ptr)->returnDoubleTapEvents();
 }
 
-void QTapSensor_ConnectReturnDoubleTapEventsChanged(void* ptr)
+void QTapSensor_ConnectReturnDoubleTapEventsChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QTapSensor*>(ptr), static_cast<void (QTapSensor::*)(bool)>(&QTapSensor::returnDoubleTapEventsChanged), static_cast<MyQTapSensor*>(ptr), static_cast<void (MyQTapSensor::*)(bool)>(&MyQTapSensor::Signal_ReturnDoubleTapEventsChanged));
+	QObject::connect(static_cast<QTapSensor*>(ptr), static_cast<void (QTapSensor::*)(bool)>(&QTapSensor::returnDoubleTapEventsChanged), static_cast<MyQTapSensor*>(ptr), static_cast<void (MyQTapSensor::*)(bool)>(&MyQTapSensor::Signal_ReturnDoubleTapEventsChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QTapSensor_DisconnectReturnDoubleTapEventsChanged(void* ptr)

@@ -1692,9 +1692,9 @@ Q_DECLARE_METATYPE(MyQDesignerFormWindowInterface*)
 
 int QDesignerFormWindowInterface_QDesignerFormWindowInterface_QRegisterMetaType(){qRegisterMetaType<QDesignerFormWindowInterface*>(); return qRegisterMetaType<MyQDesignerFormWindowInterface*>();}
 
-void QDesignerFormWindowInterface_ConnectAboutToUnmanageWidget(void* ptr)
+void QDesignerFormWindowInterface_ConnectAboutToUnmanageWidget(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QDesignerFormWindowInterface*>(ptr), static_cast<void (QDesignerFormWindowInterface::*)(QWidget *)>(&QDesignerFormWindowInterface::aboutToUnmanageWidget), static_cast<MyQDesignerFormWindowInterface*>(ptr), static_cast<void (MyQDesignerFormWindowInterface::*)(QWidget *)>(&MyQDesignerFormWindowInterface::Signal_AboutToUnmanageWidget));
+	QObject::connect(static_cast<QDesignerFormWindowInterface*>(ptr), static_cast<void (QDesignerFormWindowInterface::*)(QWidget *)>(&QDesignerFormWindowInterface::aboutToUnmanageWidget), static_cast<MyQDesignerFormWindowInterface*>(ptr), static_cast<void (MyQDesignerFormWindowInterface::*)(QWidget *)>(&MyQDesignerFormWindowInterface::Signal_AboutToUnmanageWidget), static_cast<Qt::ConnectionType>(t));
 }
 
 void QDesignerFormWindowInterface_DisconnectAboutToUnmanageWidget(void* ptr)
@@ -1722,9 +1722,9 @@ void QDesignerFormWindowInterface_ActivateResourceFilePathsDefault(void* ptr, st
 		static_cast<QDesignerFormWindowInterface*>(ptr)->QDesignerFormWindowInterface::activateResourceFilePaths(QString::fromUtf8(paths.data, paths.len).split("¡¦!", QString::SkipEmptyParts), &errorCount, new QString(QString::fromUtf8(errorMessages.data, errorMessages.len)));
 }
 
-void QDesignerFormWindowInterface_ConnectActivated(void* ptr)
+void QDesignerFormWindowInterface_ConnectActivated(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QDesignerFormWindowInterface*>(ptr), static_cast<void (QDesignerFormWindowInterface::*)(QWidget *)>(&QDesignerFormWindowInterface::activated), static_cast<MyQDesignerFormWindowInterface*>(ptr), static_cast<void (MyQDesignerFormWindowInterface::*)(QWidget *)>(&MyQDesignerFormWindowInterface::Signal_Activated));
+	QObject::connect(static_cast<QDesignerFormWindowInterface*>(ptr), static_cast<void (QDesignerFormWindowInterface::*)(QWidget *)>(&QDesignerFormWindowInterface::activated), static_cast<MyQDesignerFormWindowInterface*>(ptr), static_cast<void (MyQDesignerFormWindowInterface::*)(QWidget *)>(&MyQDesignerFormWindowInterface::Signal_Activated), static_cast<Qt::ConnectionType>(t));
 }
 
 void QDesignerFormWindowInterface_DisconnectActivated(void* ptr)
@@ -1752,9 +1752,9 @@ struct QtDesigner_PackedString QDesignerFormWindowInterface_Author(void* ptr)
 	return ({ QByteArray tbc2d85 = static_cast<QDesignerFormWindowInterface*>(ptr)->author().toUtf8(); QtDesigner_PackedString { const_cast<char*>(tbc2d85.prepend("WHITESPACE").constData()+10), tbc2d85.size()-10 }; });
 }
 
-void QDesignerFormWindowInterface_ConnectChanged(void* ptr)
+void QDesignerFormWindowInterface_ConnectChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QDesignerFormWindowInterface*>(ptr), static_cast<void (QDesignerFormWindowInterface::*)()>(&QDesignerFormWindowInterface::changed), static_cast<MyQDesignerFormWindowInterface*>(ptr), static_cast<void (MyQDesignerFormWindowInterface::*)()>(&MyQDesignerFormWindowInterface::Signal_Changed));
+	QObject::connect(static_cast<QDesignerFormWindowInterface*>(ptr), static_cast<void (QDesignerFormWindowInterface::*)()>(&QDesignerFormWindowInterface::changed), static_cast<MyQDesignerFormWindowInterface*>(ptr), static_cast<void (MyQDesignerFormWindowInterface::*)()>(&MyQDesignerFormWindowInterface::Signal_Changed), static_cast<Qt::ConnectionType>(t));
 }
 
 void QDesignerFormWindowInterface_DisconnectChanged(void* ptr)
@@ -1812,9 +1812,9 @@ struct QtDesigner_PackedString QDesignerFormWindowInterface_ExportMacro(void* pt
 	return ({ QByteArray t94104e = static_cast<QDesignerFormWindowInterface*>(ptr)->exportMacro().toUtf8(); QtDesigner_PackedString { const_cast<char*>(t94104e.prepend("WHITESPACE").constData()+10), t94104e.size()-10 }; });
 }
 
-void QDesignerFormWindowInterface_ConnectFeatureChanged(void* ptr)
+void QDesignerFormWindowInterface_ConnectFeatureChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QDesignerFormWindowInterface*>(ptr), static_cast<void (QDesignerFormWindowInterface::*)(QDesignerFormWindowInterface::Feature)>(&QDesignerFormWindowInterface::featureChanged), static_cast<MyQDesignerFormWindowInterface*>(ptr), static_cast<void (MyQDesignerFormWindowInterface::*)(QDesignerFormWindowInterface::Feature)>(&MyQDesignerFormWindowInterface::Signal_FeatureChanged));
+	QObject::connect(static_cast<QDesignerFormWindowInterface*>(ptr), static_cast<void (QDesignerFormWindowInterface::*)(QDesignerFormWindowInterface::Feature)>(&QDesignerFormWindowInterface::featureChanged), static_cast<MyQDesignerFormWindowInterface*>(ptr), static_cast<void (MyQDesignerFormWindowInterface::*)(QDesignerFormWindowInterface::Feature)>(&MyQDesignerFormWindowInterface::Signal_FeatureChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QDesignerFormWindowInterface_DisconnectFeatureChanged(void* ptr)
@@ -1837,9 +1837,9 @@ struct QtDesigner_PackedString QDesignerFormWindowInterface_FileName(void* ptr)
 	return ({ QByteArray tf7a1cc = static_cast<QDesignerFormWindowInterface*>(ptr)->fileName().toUtf8(); QtDesigner_PackedString { const_cast<char*>(tf7a1cc.prepend("WHITESPACE").constData()+10), tf7a1cc.size()-10 }; });
 }
 
-void QDesignerFormWindowInterface_ConnectFileNameChanged(void* ptr)
+void QDesignerFormWindowInterface_ConnectFileNameChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QDesignerFormWindowInterface*>(ptr), static_cast<void (QDesignerFormWindowInterface::*)(const QString &)>(&QDesignerFormWindowInterface::fileNameChanged), static_cast<MyQDesignerFormWindowInterface*>(ptr), static_cast<void (MyQDesignerFormWindowInterface::*)(const QString &)>(&MyQDesignerFormWindowInterface::Signal_FileNameChanged));
+	QObject::connect(static_cast<QDesignerFormWindowInterface*>(ptr), static_cast<void (QDesignerFormWindowInterface::*)(const QString &)>(&QDesignerFormWindowInterface::fileNameChanged), static_cast<MyQDesignerFormWindowInterface*>(ptr), static_cast<void (MyQDesignerFormWindowInterface::*)(const QString &)>(&MyQDesignerFormWindowInterface::Signal_FileNameChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QDesignerFormWindowInterface_DisconnectFileNameChanged(void* ptr)
@@ -1873,9 +1873,9 @@ void* QDesignerFormWindowInterface_FormContainer(void* ptr)
 	return static_cast<QDesignerFormWindowInterface*>(ptr)->formContainer();
 }
 
-void QDesignerFormWindowInterface_ConnectGeometryChanged(void* ptr)
+void QDesignerFormWindowInterface_ConnectGeometryChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QDesignerFormWindowInterface*>(ptr), static_cast<void (QDesignerFormWindowInterface::*)()>(&QDesignerFormWindowInterface::geometryChanged), static_cast<MyQDesignerFormWindowInterface*>(ptr), static_cast<void (MyQDesignerFormWindowInterface::*)()>(&MyQDesignerFormWindowInterface::Signal_GeometryChanged));
+	QObject::connect(static_cast<QDesignerFormWindowInterface*>(ptr), static_cast<void (QDesignerFormWindowInterface::*)()>(&QDesignerFormWindowInterface::geometryChanged), static_cast<MyQDesignerFormWindowInterface*>(ptr), static_cast<void (MyQDesignerFormWindowInterface::*)()>(&MyQDesignerFormWindowInterface::Signal_GeometryChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QDesignerFormWindowInterface_DisconnectGeometryChanged(void* ptr)
@@ -1923,9 +1923,9 @@ void QDesignerFormWindowInterface_LayoutFunction(void* ptr, struct QtDesigner_Pa
 	static_cast<QDesignerFormWindowInterface*>(ptr)->layoutFunction(new QString(QString::fromUtf8(margin.data, margin.len)), new QString(QString::fromUtf8(spacing.data, spacing.len)));
 }
 
-void QDesignerFormWindowInterface_ConnectMainContainerChanged(void* ptr)
+void QDesignerFormWindowInterface_ConnectMainContainerChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QDesignerFormWindowInterface*>(ptr), static_cast<void (QDesignerFormWindowInterface::*)(QWidget *)>(&QDesignerFormWindowInterface::mainContainerChanged), static_cast<MyQDesignerFormWindowInterface*>(ptr), static_cast<void (MyQDesignerFormWindowInterface::*)(QWidget *)>(&MyQDesignerFormWindowInterface::Signal_MainContainerChanged));
+	QObject::connect(static_cast<QDesignerFormWindowInterface*>(ptr), static_cast<void (QDesignerFormWindowInterface::*)(QWidget *)>(&QDesignerFormWindowInterface::mainContainerChanged), static_cast<MyQDesignerFormWindowInterface*>(ptr), static_cast<void (MyQDesignerFormWindowInterface::*)(QWidget *)>(&MyQDesignerFormWindowInterface::Signal_MainContainerChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QDesignerFormWindowInterface_DisconnectMainContainerChanged(void* ptr)
@@ -1943,9 +1943,9 @@ void QDesignerFormWindowInterface_ManageWidget(void* ptr, void* widget)
 	QMetaObject::invokeMethod(static_cast<QDesignerFormWindowInterface*>(ptr), "manageWidget", Q_ARG(QWidget*, static_cast<QWidget*>(widget)));
 }
 
-void QDesignerFormWindowInterface_ConnectObjectRemoved(void* ptr)
+void QDesignerFormWindowInterface_ConnectObjectRemoved(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QDesignerFormWindowInterface*>(ptr), static_cast<void (QDesignerFormWindowInterface::*)(QObject *)>(&QDesignerFormWindowInterface::objectRemoved), static_cast<MyQDesignerFormWindowInterface*>(ptr), static_cast<void (MyQDesignerFormWindowInterface::*)(QObject *)>(&MyQDesignerFormWindowInterface::Signal_ObjectRemoved));
+	QObject::connect(static_cast<QDesignerFormWindowInterface*>(ptr), static_cast<void (QDesignerFormWindowInterface::*)(QObject *)>(&QDesignerFormWindowInterface::objectRemoved), static_cast<MyQDesignerFormWindowInterface*>(ptr), static_cast<void (MyQDesignerFormWindowInterface::*)(QObject *)>(&MyQDesignerFormWindowInterface::Signal_ObjectRemoved), static_cast<Qt::ConnectionType>(t));
 }
 
 void QDesignerFormWindowInterface_DisconnectObjectRemoved(void* ptr)
@@ -1984,9 +1984,9 @@ struct QtDesigner_PackedString QDesignerFormWindowInterface_ResourceFiles(void* 
 	return ({ QByteArray t55124a = static_cast<QDesignerFormWindowInterface*>(ptr)->resourceFiles().join("¡¦!").toUtf8(); QtDesigner_PackedString { const_cast<char*>(t55124a.prepend("WHITESPACE").constData()+10), t55124a.size()-10 }; });
 }
 
-void QDesignerFormWindowInterface_ConnectResourceFilesChanged(void* ptr)
+void QDesignerFormWindowInterface_ConnectResourceFilesChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QDesignerFormWindowInterface*>(ptr), static_cast<void (QDesignerFormWindowInterface::*)()>(&QDesignerFormWindowInterface::resourceFilesChanged), static_cast<MyQDesignerFormWindowInterface*>(ptr), static_cast<void (MyQDesignerFormWindowInterface::*)()>(&MyQDesignerFormWindowInterface::Signal_ResourceFilesChanged));
+	QObject::connect(static_cast<QDesignerFormWindowInterface*>(ptr), static_cast<void (QDesignerFormWindowInterface::*)()>(&QDesignerFormWindowInterface::resourceFilesChanged), static_cast<MyQDesignerFormWindowInterface*>(ptr), static_cast<void (MyQDesignerFormWindowInterface::*)()>(&MyQDesignerFormWindowInterface::Signal_ResourceFilesChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QDesignerFormWindowInterface_DisconnectResourceFilesChanged(void* ptr)
@@ -2004,9 +2004,9 @@ void QDesignerFormWindowInterface_SelectWidget(void* ptr, void* widget, char sel
 	QMetaObject::invokeMethod(static_cast<QDesignerFormWindowInterface*>(ptr), "selectWidget", Q_ARG(QWidget*, static_cast<QWidget*>(widget)), Q_ARG(bool, sele != 0));
 }
 
-void QDesignerFormWindowInterface_ConnectSelectionChanged(void* ptr)
+void QDesignerFormWindowInterface_ConnectSelectionChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QDesignerFormWindowInterface*>(ptr), static_cast<void (QDesignerFormWindowInterface::*)()>(&QDesignerFormWindowInterface::selectionChanged), static_cast<MyQDesignerFormWindowInterface*>(ptr), static_cast<void (MyQDesignerFormWindowInterface::*)()>(&MyQDesignerFormWindowInterface::Signal_SelectionChanged));
+	QObject::connect(static_cast<QDesignerFormWindowInterface*>(ptr), static_cast<void (QDesignerFormWindowInterface::*)()>(&QDesignerFormWindowInterface::selectionChanged), static_cast<MyQDesignerFormWindowInterface*>(ptr), static_cast<void (MyQDesignerFormWindowInterface::*)()>(&MyQDesignerFormWindowInterface::Signal_SelectionChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QDesignerFormWindowInterface_DisconnectSelectionChanged(void* ptr)
@@ -2101,9 +2101,9 @@ void QDesignerFormWindowInterface_UnmanageWidget(void* ptr, void* widget)
 	QMetaObject::invokeMethod(static_cast<QDesignerFormWindowInterface*>(ptr), "unmanageWidget", Q_ARG(QWidget*, static_cast<QWidget*>(widget)));
 }
 
-void QDesignerFormWindowInterface_ConnectWidgetManaged(void* ptr)
+void QDesignerFormWindowInterface_ConnectWidgetManaged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QDesignerFormWindowInterface*>(ptr), static_cast<void (QDesignerFormWindowInterface::*)(QWidget *)>(&QDesignerFormWindowInterface::widgetManaged), static_cast<MyQDesignerFormWindowInterface*>(ptr), static_cast<void (MyQDesignerFormWindowInterface::*)(QWidget *)>(&MyQDesignerFormWindowInterface::Signal_WidgetManaged));
+	QObject::connect(static_cast<QDesignerFormWindowInterface*>(ptr), static_cast<void (QDesignerFormWindowInterface::*)(QWidget *)>(&QDesignerFormWindowInterface::widgetManaged), static_cast<MyQDesignerFormWindowInterface*>(ptr), static_cast<void (MyQDesignerFormWindowInterface::*)(QWidget *)>(&MyQDesignerFormWindowInterface::Signal_WidgetManaged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QDesignerFormWindowInterface_DisconnectWidgetManaged(void* ptr)
@@ -2116,9 +2116,9 @@ void QDesignerFormWindowInterface_WidgetManaged(void* ptr, void* widget)
 	static_cast<QDesignerFormWindowInterface*>(ptr)->widgetManaged(static_cast<QWidget*>(widget));
 }
 
-void QDesignerFormWindowInterface_ConnectWidgetRemoved(void* ptr)
+void QDesignerFormWindowInterface_ConnectWidgetRemoved(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QDesignerFormWindowInterface*>(ptr), static_cast<void (QDesignerFormWindowInterface::*)(QWidget *)>(&QDesignerFormWindowInterface::widgetRemoved), static_cast<MyQDesignerFormWindowInterface*>(ptr), static_cast<void (MyQDesignerFormWindowInterface::*)(QWidget *)>(&MyQDesignerFormWindowInterface::Signal_WidgetRemoved));
+	QObject::connect(static_cast<QDesignerFormWindowInterface*>(ptr), static_cast<void (QDesignerFormWindowInterface::*)(QWidget *)>(&QDesignerFormWindowInterface::widgetRemoved), static_cast<MyQDesignerFormWindowInterface*>(ptr), static_cast<void (MyQDesignerFormWindowInterface::*)(QWidget *)>(&MyQDesignerFormWindowInterface::Signal_WidgetRemoved), static_cast<Qt::ConnectionType>(t));
 }
 
 void QDesignerFormWindowInterface_DisconnectWidgetRemoved(void* ptr)
@@ -2131,9 +2131,9 @@ void QDesignerFormWindowInterface_WidgetRemoved(void* ptr, void* widget)
 	static_cast<QDesignerFormWindowInterface*>(ptr)->widgetRemoved(static_cast<QWidget*>(widget));
 }
 
-void QDesignerFormWindowInterface_ConnectWidgetUnmanaged(void* ptr)
+void QDesignerFormWindowInterface_ConnectWidgetUnmanaged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QDesignerFormWindowInterface*>(ptr), static_cast<void (QDesignerFormWindowInterface::*)(QWidget *)>(&QDesignerFormWindowInterface::widgetUnmanaged), static_cast<MyQDesignerFormWindowInterface*>(ptr), static_cast<void (MyQDesignerFormWindowInterface::*)(QWidget *)>(&MyQDesignerFormWindowInterface::Signal_WidgetUnmanaged));
+	QObject::connect(static_cast<QDesignerFormWindowInterface*>(ptr), static_cast<void (QDesignerFormWindowInterface::*)(QWidget *)>(&QDesignerFormWindowInterface::widgetUnmanaged), static_cast<MyQDesignerFormWindowInterface*>(ptr), static_cast<void (MyQDesignerFormWindowInterface::*)(QWidget *)>(&MyQDesignerFormWindowInterface::Signal_WidgetUnmanaged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QDesignerFormWindowInterface_DisconnectWidgetUnmanaged(void* ptr)
@@ -2710,9 +2710,9 @@ void* QDesignerFormWindowManagerInterface_ActiveFormWindow(void* ptr)
 	return static_cast<QDesignerFormWindowManagerInterface*>(ptr)->activeFormWindow();
 }
 
-void QDesignerFormWindowManagerInterface_ConnectActiveFormWindowChanged(void* ptr)
+void QDesignerFormWindowManagerInterface_ConnectActiveFormWindowChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QDesignerFormWindowManagerInterface*>(ptr), static_cast<void (QDesignerFormWindowManagerInterface::*)(QDesignerFormWindowInterface *)>(&QDesignerFormWindowManagerInterface::activeFormWindowChanged), static_cast<MyQDesignerFormWindowManagerInterface*>(ptr), static_cast<void (MyQDesignerFormWindowManagerInterface::*)(QDesignerFormWindowInterface *)>(&MyQDesignerFormWindowManagerInterface::Signal_ActiveFormWindowChanged));
+	QObject::connect(static_cast<QDesignerFormWindowManagerInterface*>(ptr), static_cast<void (QDesignerFormWindowManagerInterface::*)(QDesignerFormWindowInterface *)>(&QDesignerFormWindowManagerInterface::activeFormWindowChanged), static_cast<MyQDesignerFormWindowManagerInterface*>(ptr), static_cast<void (MyQDesignerFormWindowManagerInterface::*)(QDesignerFormWindowInterface *)>(&MyQDesignerFormWindowManagerInterface::Signal_ActiveFormWindowChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QDesignerFormWindowManagerInterface_DisconnectActiveFormWindowChanged(void* ptr)
@@ -2755,9 +2755,9 @@ void* QDesignerFormWindowManagerInterface_FormWindow(void* ptr, int index)
 	return static_cast<QDesignerFormWindowManagerInterface*>(ptr)->formWindow(index);
 }
 
-void QDesignerFormWindowManagerInterface_ConnectFormWindowAdded(void* ptr)
+void QDesignerFormWindowManagerInterface_ConnectFormWindowAdded(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QDesignerFormWindowManagerInterface*>(ptr), static_cast<void (QDesignerFormWindowManagerInterface::*)(QDesignerFormWindowInterface *)>(&QDesignerFormWindowManagerInterface::formWindowAdded), static_cast<MyQDesignerFormWindowManagerInterface*>(ptr), static_cast<void (MyQDesignerFormWindowManagerInterface::*)(QDesignerFormWindowInterface *)>(&MyQDesignerFormWindowManagerInterface::Signal_FormWindowAdded));
+	QObject::connect(static_cast<QDesignerFormWindowManagerInterface*>(ptr), static_cast<void (QDesignerFormWindowManagerInterface::*)(QDesignerFormWindowInterface *)>(&QDesignerFormWindowManagerInterface::formWindowAdded), static_cast<MyQDesignerFormWindowManagerInterface*>(ptr), static_cast<void (MyQDesignerFormWindowManagerInterface::*)(QDesignerFormWindowInterface *)>(&MyQDesignerFormWindowManagerInterface::Signal_FormWindowAdded), static_cast<Qt::ConnectionType>(t));
 }
 
 void QDesignerFormWindowManagerInterface_DisconnectFormWindowAdded(void* ptr)
@@ -2775,9 +2775,9 @@ int QDesignerFormWindowManagerInterface_FormWindowCount(void* ptr)
 	return static_cast<QDesignerFormWindowManagerInterface*>(ptr)->formWindowCount();
 }
 
-void QDesignerFormWindowManagerInterface_ConnectFormWindowRemoved(void* ptr)
+void QDesignerFormWindowManagerInterface_ConnectFormWindowRemoved(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QDesignerFormWindowManagerInterface*>(ptr), static_cast<void (QDesignerFormWindowManagerInterface::*)(QDesignerFormWindowInterface *)>(&QDesignerFormWindowManagerInterface::formWindowRemoved), static_cast<MyQDesignerFormWindowManagerInterface*>(ptr), static_cast<void (MyQDesignerFormWindowManagerInterface::*)(QDesignerFormWindowInterface *)>(&MyQDesignerFormWindowManagerInterface::Signal_FormWindowRemoved));
+	QObject::connect(static_cast<QDesignerFormWindowManagerInterface*>(ptr), static_cast<void (QDesignerFormWindowManagerInterface::*)(QDesignerFormWindowInterface *)>(&QDesignerFormWindowManagerInterface::formWindowRemoved), static_cast<MyQDesignerFormWindowManagerInterface*>(ptr), static_cast<void (MyQDesignerFormWindowManagerInterface::*)(QDesignerFormWindowInterface *)>(&MyQDesignerFormWindowManagerInterface::Signal_FormWindowRemoved), static_cast<Qt::ConnectionType>(t));
 }
 
 void QDesignerFormWindowManagerInterface_DisconnectFormWindowRemoved(void* ptr)
@@ -2790,9 +2790,9 @@ void QDesignerFormWindowManagerInterface_FormWindowRemoved(void* ptr, void* form
 	static_cast<QDesignerFormWindowManagerInterface*>(ptr)->formWindowRemoved(static_cast<QDesignerFormWindowInterface*>(formWindow));
 }
 
-void QDesignerFormWindowManagerInterface_ConnectFormWindowSettingsChanged(void* ptr)
+void QDesignerFormWindowManagerInterface_ConnectFormWindowSettingsChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QDesignerFormWindowManagerInterface*>(ptr), static_cast<void (QDesignerFormWindowManagerInterface::*)(QDesignerFormWindowInterface *)>(&QDesignerFormWindowManagerInterface::formWindowSettingsChanged), static_cast<MyQDesignerFormWindowManagerInterface*>(ptr), static_cast<void (MyQDesignerFormWindowManagerInterface::*)(QDesignerFormWindowInterface *)>(&MyQDesignerFormWindowManagerInterface::Signal_FormWindowSettingsChanged));
+	QObject::connect(static_cast<QDesignerFormWindowManagerInterface*>(ptr), static_cast<void (QDesignerFormWindowManagerInterface::*)(QDesignerFormWindowInterface *)>(&QDesignerFormWindowManagerInterface::formWindowSettingsChanged), static_cast<MyQDesignerFormWindowManagerInterface*>(ptr), static_cast<void (MyQDesignerFormWindowManagerInterface::*)(QDesignerFormWindowInterface *)>(&MyQDesignerFormWindowManagerInterface::Signal_FormWindowSettingsChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QDesignerFormWindowManagerInterface_DisconnectFormWindowSettingsChanged(void* ptr)
@@ -3846,9 +3846,9 @@ void* QDesignerPropertyEditorInterface_Object(void* ptr)
 	return static_cast<QDesignerPropertyEditorInterface*>(ptr)->object();
 }
 
-void QDesignerPropertyEditorInterface_ConnectPropertyChanged(void* ptr)
+void QDesignerPropertyEditorInterface_ConnectPropertyChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QDesignerPropertyEditorInterface*>(ptr), static_cast<void (QDesignerPropertyEditorInterface::*)(const QString &, const QVariant &)>(&QDesignerPropertyEditorInterface::propertyChanged), static_cast<MyQDesignerPropertyEditorInterface*>(ptr), static_cast<void (MyQDesignerPropertyEditorInterface::*)(const QString &, const QVariant &)>(&MyQDesignerPropertyEditorInterface::Signal_PropertyChanged));
+	QObject::connect(static_cast<QDesignerPropertyEditorInterface*>(ptr), static_cast<void (QDesignerPropertyEditorInterface::*)(const QString &, const QVariant &)>(&QDesignerPropertyEditorInterface::propertyChanged), static_cast<MyQDesignerPropertyEditorInterface*>(ptr), static_cast<void (MyQDesignerPropertyEditorInterface::*)(const QString &, const QVariant &)>(&MyQDesignerPropertyEditorInterface::Signal_PropertyChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QDesignerPropertyEditorInterface_DisconnectPropertyChanged(void* ptr)

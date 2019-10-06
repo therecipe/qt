@@ -349,7 +349,7 @@ func (ptr *QQuickWebEngineProfile) ConnectCachePathChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "cachePathChanged") {
-			C.QQuickWebEngineProfile_ConnectCachePathChanged(ptr.Pointer())
+			C.QQuickWebEngineProfile_ConnectCachePathChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "cachePathChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "cachePathChanged"); signal != nil {
@@ -436,7 +436,7 @@ func (ptr *QQuickWebEngineProfile) ConnectDownloadPathChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "downloadPathChanged") {
-			C.QQuickWebEngineProfile_ConnectDownloadPathChanged(ptr.Pointer())
+			C.QQuickWebEngineProfile_ConnectDownloadPathChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "downloadPathChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "downloadPathChanged"); signal != nil {
@@ -483,7 +483,7 @@ func (ptr *QQuickWebEngineProfile) ConnectHttpAcceptLanguageChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "httpAcceptLanguageChanged") {
-			C.QQuickWebEngineProfile_ConnectHttpAcceptLanguageChanged(ptr.Pointer())
+			C.QQuickWebEngineProfile_ConnectHttpAcceptLanguageChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "httpAcceptLanguageChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "httpAcceptLanguageChanged"); signal != nil {
@@ -530,7 +530,7 @@ func (ptr *QQuickWebEngineProfile) ConnectHttpCacheMaximumSizeChanged(f func()) 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "httpCacheMaximumSizeChanged") {
-			C.QQuickWebEngineProfile_ConnectHttpCacheMaximumSizeChanged(ptr.Pointer())
+			C.QQuickWebEngineProfile_ConnectHttpCacheMaximumSizeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "httpCacheMaximumSizeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "httpCacheMaximumSizeChanged"); signal != nil {
@@ -577,7 +577,7 @@ func (ptr *QQuickWebEngineProfile) ConnectHttpCacheTypeChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "httpCacheTypeChanged") {
-			C.QQuickWebEngineProfile_ConnectHttpCacheTypeChanged(ptr.Pointer())
+			C.QQuickWebEngineProfile_ConnectHttpCacheTypeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "httpCacheTypeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "httpCacheTypeChanged"); signal != nil {
@@ -624,7 +624,7 @@ func (ptr *QQuickWebEngineProfile) ConnectHttpUserAgentChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "httpUserAgentChanged") {
-			C.QQuickWebEngineProfile_ConnectHttpUserAgentChanged(ptr.Pointer())
+			C.QQuickWebEngineProfile_ConnectHttpUserAgentChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "httpUserAgentChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "httpUserAgentChanged"); signal != nil {
@@ -691,7 +691,7 @@ func (ptr *QQuickWebEngineProfile) ConnectOffTheRecordChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "offTheRecordChanged") {
-			C.QQuickWebEngineProfile_ConnectOffTheRecordChanged(ptr.Pointer())
+			C.QQuickWebEngineProfile_ConnectOffTheRecordChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "offTheRecordChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "offTheRecordChanged"); signal != nil {
@@ -738,7 +738,7 @@ func (ptr *QQuickWebEngineProfile) ConnectPersistentCookiesPolicyChanged(f func(
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "persistentCookiesPolicyChanged") {
-			C.QQuickWebEngineProfile_ConnectPersistentCookiesPolicyChanged(ptr.Pointer())
+			C.QQuickWebEngineProfile_ConnectPersistentCookiesPolicyChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "persistentCookiesPolicyChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "persistentCookiesPolicyChanged"); signal != nil {
@@ -785,7 +785,7 @@ func (ptr *QQuickWebEngineProfile) ConnectPersistentStoragePathChanged(f func())
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "persistentStoragePathChanged") {
-			C.QQuickWebEngineProfile_ConnectPersistentStoragePathChanged(ptr.Pointer())
+			C.QQuickWebEngineProfile_ConnectPersistentStoragePathChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "persistentStoragePathChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "persistentStoragePathChanged"); signal != nil {
@@ -825,7 +825,7 @@ func (ptr *QQuickWebEngineProfile) ConnectPresentNotification(f func(notificatio
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "presentNotification") {
-			C.QQuickWebEngineProfile_ConnectPresentNotification(ptr.Pointer())
+			C.QQuickWebEngineProfile_ConnectPresentNotification(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "presentNotification")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "presentNotification"); signal != nil {
@@ -999,7 +999,7 @@ func (ptr *QQuickWebEngineProfile) ConnectSpellCheckEnabledChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "spellCheckEnabledChanged") {
-			C.QQuickWebEngineProfile_ConnectSpellCheckEnabledChanged(ptr.Pointer())
+			C.QQuickWebEngineProfile_ConnectSpellCheckEnabledChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "spellCheckEnabledChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "spellCheckEnabledChanged"); signal != nil {
@@ -1046,7 +1046,7 @@ func (ptr *QQuickWebEngineProfile) ConnectSpellCheckLanguagesChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "spellCheckLanguagesChanged") {
-			C.QQuickWebEngineProfile_ConnectSpellCheckLanguagesChanged(ptr.Pointer())
+			C.QQuickWebEngineProfile_ConnectSpellCheckLanguagesChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "spellCheckLanguagesChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "spellCheckLanguagesChanged"); signal != nil {
@@ -1093,7 +1093,7 @@ func (ptr *QQuickWebEngineProfile) ConnectStorageNameChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "storageNameChanged") {
-			C.QQuickWebEngineProfile_ConnectStorageNameChanged(ptr.Pointer())
+			C.QQuickWebEngineProfile_ConnectStorageNameChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "storageNameChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "storageNameChanged"); signal != nil {
@@ -1144,7 +1144,7 @@ func (ptr *QQuickWebEngineProfile) ConnectUseForGlobalCertificateVerificationCha
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "useForGlobalCertificateVerificationChanged") {
-			C.QQuickWebEngineProfile_ConnectUseForGlobalCertificateVerificationChanged(ptr.Pointer())
+			C.QQuickWebEngineProfile_ConnectUseForGlobalCertificateVerificationChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "useForGlobalCertificateVerificationChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "useForGlobalCertificateVerificationChanged"); signal != nil {
@@ -1516,7 +1516,7 @@ func (ptr *QQuickWebEngineScript) ConnectInjectionPointChanged(f func(injectionP
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "injectionPointChanged") {
-			C.QQuickWebEngineScript_ConnectInjectionPointChanged(ptr.Pointer())
+			C.QQuickWebEngineScript_ConnectInjectionPointChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "injectionPointChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "injectionPointChanged"); signal != nil {
@@ -1563,7 +1563,7 @@ func (ptr *QQuickWebEngineScript) ConnectNameChanged(f func(name string)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "nameChanged") {
-			C.QQuickWebEngineScript_ConnectNameChanged(ptr.Pointer())
+			C.QQuickWebEngineScript_ConnectNameChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "nameChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "nameChanged"); signal != nil {
@@ -1615,7 +1615,7 @@ func (ptr *QQuickWebEngineScript) ConnectRunOnSubframesChanged(f func(on bool)) 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "runOnSubframesChanged") {
-			C.QQuickWebEngineScript_ConnectRunOnSubframesChanged(ptr.Pointer())
+			C.QQuickWebEngineScript_ConnectRunOnSubframesChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "runOnSubframesChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "runOnSubframesChanged"); signal != nil {
@@ -1708,7 +1708,7 @@ func (ptr *QQuickWebEngineScript) ConnectSourceCodeChanged(f func(code string)) 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "sourceCodeChanged") {
-			C.QQuickWebEngineScript_ConnectSourceCodeChanged(ptr.Pointer())
+			C.QQuickWebEngineScript_ConnectSourceCodeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "sourceCodeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "sourceCodeChanged"); signal != nil {
@@ -1762,7 +1762,7 @@ func (ptr *QQuickWebEngineScript) ConnectSourceUrlChanged(f func(url *core.QUrl)
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "sourceUrlChanged") {
-			C.QQuickWebEngineScript_ConnectSourceUrlChanged(ptr.Pointer())
+			C.QQuickWebEngineScript_ConnectSourceUrlChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "sourceUrlChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "sourceUrlChanged"); signal != nil {
@@ -1816,7 +1816,7 @@ func (ptr *QQuickWebEngineScript) ConnectWorldIdChanged(f func(scriptWorldId QQu
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "worldIdChanged") {
-			C.QQuickWebEngineScript_ConnectWorldIdChanged(ptr.Pointer())
+			C.QQuickWebEngineScript_ConnectWorldIdChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "worldIdChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "worldIdChanged"); signal != nil {
@@ -2546,7 +2546,7 @@ func (ptr *QWebEngineCookieStore) ConnectCookieAdded(f func(cookie *network.QNet
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "cookieAdded") {
-			C.QWebEngineCookieStore_ConnectCookieAdded(ptr.Pointer())
+			C.QWebEngineCookieStore_ConnectCookieAdded(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "cookieAdded")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "cookieAdded"); signal != nil {
@@ -2586,7 +2586,7 @@ func (ptr *QWebEngineCookieStore) ConnectCookieRemoved(f func(cookie *network.QN
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "cookieRemoved") {
-			C.QWebEngineCookieStore_ConnectCookieRemoved(ptr.Pointer())
+			C.QWebEngineCookieStore_ConnectCookieRemoved(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "cookieRemoved")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "cookieRemoved"); signal != nil {
@@ -3355,7 +3355,7 @@ func (ptr *QWebEngineNotification) ConnectClosed(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "closed") {
-			C.QWebEngineNotification_ConnectClosed(ptr.Pointer())
+			C.QWebEngineNotification_ConnectClosed(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "closed")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "closed"); signal != nil {
@@ -3997,7 +3997,7 @@ func (ptr *QWebEnginePage) ConnectAudioMutedChanged(f func(muted bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "audioMutedChanged") {
-			C.QWebEnginePage_ConnectAudioMutedChanged(ptr.Pointer())
+			C.QWebEnginePage_ConnectAudioMutedChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "audioMutedChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "audioMutedChanged"); signal != nil {
@@ -4037,7 +4037,7 @@ func (ptr *QWebEnginePage) ConnectAuthenticationRequired(f func(requestUrl *core
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "authenticationRequired") {
-			C.QWebEnginePage_ConnectAuthenticationRequired(ptr.Pointer())
+			C.QWebEnginePage_ConnectAuthenticationRequired(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "authenticationRequired")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "authenticationRequired"); signal != nil {
@@ -4194,7 +4194,7 @@ func (ptr *QWebEnginePage) ConnectContentsSizeChanged(f func(size *core.QSizeF))
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "contentsSizeChanged") {
-			C.QWebEnginePage_ConnectContentsSizeChanged(ptr.Pointer())
+			C.QWebEnginePage_ConnectContentsSizeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "contentsSizeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "contentsSizeChanged"); signal != nil {
@@ -4343,7 +4343,7 @@ func (ptr *QWebEnginePage) ConnectFeaturePermissionRequestCanceled(f func(securi
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "featurePermissionRequestCanceled") {
-			C.QWebEnginePage_ConnectFeaturePermissionRequestCanceled(ptr.Pointer())
+			C.QWebEnginePage_ConnectFeaturePermissionRequestCanceled(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "featurePermissionRequestCanceled")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "featurePermissionRequestCanceled"); signal != nil {
@@ -4383,7 +4383,7 @@ func (ptr *QWebEnginePage) ConnectFeaturePermissionRequested(f func(securityOrig
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "featurePermissionRequested") {
-			C.QWebEnginePage_ConnectFeaturePermissionRequested(ptr.Pointer())
+			C.QWebEnginePage_ConnectFeaturePermissionRequested(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "featurePermissionRequested")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "featurePermissionRequested"); signal != nil {
@@ -4423,7 +4423,7 @@ func (ptr *QWebEnginePage) ConnectGeometryChangeRequested(f func(geom *core.QRec
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "geometryChangeRequested") {
-			C.QWebEnginePage_ConnectGeometryChangeRequested(ptr.Pointer())
+			C.QWebEnginePage_ConnectGeometryChangeRequested(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "geometryChangeRequested")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "geometryChangeRequested"); signal != nil {
@@ -4479,7 +4479,7 @@ func (ptr *QWebEnginePage) ConnectIconChanged(f func(icon *gui.QIcon)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "iconChanged") {
-			C.QWebEnginePage_ConnectIconChanged(ptr.Pointer())
+			C.QWebEnginePage_ConnectIconChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "iconChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "iconChanged"); signal != nil {
@@ -4528,7 +4528,7 @@ func (ptr *QWebEnginePage) ConnectIconUrlChanged(f func(url *core.QUrl)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "iconUrlChanged") {
-			C.QWebEnginePage_ConnectIconUrlChanged(ptr.Pointer())
+			C.QWebEnginePage_ConnectIconUrlChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "iconUrlChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "iconUrlChanged"); signal != nil {
@@ -4832,7 +4832,7 @@ func (ptr *QWebEnginePage) ConnectLinkHovered(f func(url string)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "linkHovered") {
-			C.QWebEnginePage_ConnectLinkHovered(ptr.Pointer())
+			C.QWebEnginePage_ConnectLinkHovered(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "linkHovered")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "linkHovered"); signal != nil {
@@ -4889,7 +4889,7 @@ func (ptr *QWebEnginePage) ConnectLoadFinished(f func(ok bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "loadFinished") {
-			C.QWebEnginePage_ConnectLoadFinished(ptr.Pointer())
+			C.QWebEnginePage_ConnectLoadFinished(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "loadFinished")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "loadFinished"); signal != nil {
@@ -4929,7 +4929,7 @@ func (ptr *QWebEnginePage) ConnectLoadProgress(f func(progress int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "loadProgress") {
-			C.QWebEnginePage_ConnectLoadProgress(ptr.Pointer())
+			C.QWebEnginePage_ConnectLoadProgress(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "loadProgress")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "loadProgress"); signal != nil {
@@ -4969,7 +4969,7 @@ func (ptr *QWebEnginePage) ConnectLoadStarted(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "loadStarted") {
-			C.QWebEnginePage_ConnectLoadStarted(ptr.Pointer())
+			C.QWebEnginePage_ConnectLoadStarted(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "loadStarted")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "loadStarted"); signal != nil {
@@ -5025,7 +5025,7 @@ func (ptr *QWebEnginePage) ConnectPdfPrintingFinished(f func(filePath string, su
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "pdfPrintingFinished") {
-			C.QWebEnginePage_ConnectPdfPrintingFinished(ptr.Pointer())
+			C.QWebEnginePage_ConnectPdfPrintingFinished(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "pdfPrintingFinished")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "pdfPrintingFinished"); signal != nil {
@@ -5076,7 +5076,7 @@ func (ptr *QWebEnginePage) ConnectPrintRequested(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "printRequested") {
-			C.QWebEnginePage_ConnectPrintRequested(ptr.Pointer())
+			C.QWebEnginePage_ConnectPrintRequested(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "printRequested")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "printRequested"); signal != nil {
@@ -5138,7 +5138,7 @@ func (ptr *QWebEnginePage) ConnectProxyAuthenticationRequired(f func(requestUrl 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "proxyAuthenticationRequired") {
-			C.QWebEnginePage_ConnectProxyAuthenticationRequired(ptr.Pointer())
+			C.QWebEnginePage_ConnectProxyAuthenticationRequired(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "proxyAuthenticationRequired")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "proxyAuthenticationRequired"); signal != nil {
@@ -5190,7 +5190,7 @@ func (ptr *QWebEnginePage) ConnectRecentlyAudibleChanged(f func(recentlyAudible 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "recentlyAudibleChanged") {
-			C.QWebEnginePage_ConnectRecentlyAudibleChanged(ptr.Pointer())
+			C.QWebEnginePage_ConnectRecentlyAudibleChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "recentlyAudibleChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "recentlyAudibleChanged"); signal != nil {
@@ -5281,7 +5281,7 @@ func (ptr *QWebEnginePage) ConnectScrollPositionChanged(f func(position *core.QP
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "scrollPositionChanged") {
-			C.QWebEnginePage_ConnectScrollPositionChanged(ptr.Pointer())
+			C.QWebEnginePage_ConnectScrollPositionChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "scrollPositionChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "scrollPositionChanged"); signal != nil {
@@ -5321,7 +5321,7 @@ func (ptr *QWebEnginePage) ConnectSelectClientCertificate(f func(clientCertSelec
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "selectClientCertificate") {
-			C.QWebEnginePage_ConnectSelectClientCertificate(ptr.Pointer())
+			C.QWebEnginePage_ConnectSelectClientCertificate(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "selectClientCertificate")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "selectClientCertificate"); signal != nil {
@@ -5368,7 +5368,7 @@ func (ptr *QWebEnginePage) ConnectSelectionChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "selectionChanged") {
-			C.QWebEnginePage_ConnectSelectionChanged(ptr.Pointer())
+			C.QWebEnginePage_ConnectSelectionChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "selectionChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "selectionChanged"); signal != nil {
@@ -5510,7 +5510,7 @@ func (ptr *QWebEnginePage) ConnectTitleChanged(f func(title string)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "titleChanged") {
-			C.QWebEnginePage_ConnectTitleChanged(ptr.Pointer())
+			C.QWebEnginePage_ConnectTitleChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "titleChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "titleChanged"); signal != nil {
@@ -5635,7 +5635,7 @@ func (ptr *QWebEnginePage) ConnectUrlChanged(f func(url *core.QUrl)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "urlChanged") {
-			C.QWebEnginePage_ConnectUrlChanged(ptr.Pointer())
+			C.QWebEnginePage_ConnectUrlChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "urlChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "urlChanged"); signal != nil {
@@ -5697,7 +5697,7 @@ func (ptr *QWebEnginePage) ConnectWindowCloseRequested(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "windowCloseRequested") {
-			C.QWebEnginePage_ConnectWindowCloseRequested(ptr.Pointer())
+			C.QWebEnginePage_ConnectWindowCloseRequested(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "windowCloseRequested")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "windowCloseRequested"); signal != nil {
@@ -8569,7 +8569,7 @@ func (ptr *QWebEngineView) ConnectIconChanged(f func(vqi *gui.QIcon)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "iconChanged") {
-			C.QWebEngineView_ConnectIconChanged(ptr.Pointer())
+			C.QWebEngineView_ConnectIconChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "iconChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "iconChanged"); signal != nil {
@@ -8618,7 +8618,7 @@ func (ptr *QWebEngineView) ConnectIconUrlChanged(f func(vqu *core.QUrl)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "iconUrlChanged") {
-			C.QWebEngineView_ConnectIconUrlChanged(ptr.Pointer())
+			C.QWebEngineView_ConnectIconUrlChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "iconUrlChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "iconUrlChanged"); signal != nil {
@@ -8670,7 +8670,7 @@ func (ptr *QWebEngineView) ConnectLoadFinished(f func(vbo bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "loadFinished") {
-			C.QWebEngineView_ConnectLoadFinished(ptr.Pointer())
+			C.QWebEngineView_ConnectLoadFinished(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "loadFinished")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "loadFinished"); signal != nil {
@@ -8710,7 +8710,7 @@ func (ptr *QWebEngineView) ConnectLoadProgress(f func(progress int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "loadProgress") {
-			C.QWebEngineView_ConnectLoadProgress(ptr.Pointer())
+			C.QWebEngineView_ConnectLoadProgress(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "loadProgress")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "loadProgress"); signal != nil {
@@ -8750,7 +8750,7 @@ func (ptr *QWebEngineView) ConnectLoadStarted(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "loadStarted") {
-			C.QWebEngineView_ConnectLoadStarted(ptr.Pointer())
+			C.QWebEngineView_ConnectLoadStarted(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "loadStarted")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "loadStarted"); signal != nil {
@@ -8867,7 +8867,7 @@ func (ptr *QWebEngineView) ConnectSelectionChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "selectionChanged") {
-			C.QWebEngineView_ConnectSelectionChanged(ptr.Pointer())
+			C.QWebEngineView_ConnectSelectionChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "selectionChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "selectionChanged"); signal != nil {
@@ -9037,7 +9037,7 @@ func (ptr *QWebEngineView) ConnectTitleChanged(f func(title string)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "titleChanged") {
-			C.QWebEngineView_ConnectTitleChanged(ptr.Pointer())
+			C.QWebEngineView_ConnectTitleChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "titleChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "titleChanged"); signal != nil {
@@ -9119,7 +9119,7 @@ func (ptr *QWebEngineView) ConnectUrlChanged(f func(vqu *core.QUrl)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "urlChanged") {
-			C.QWebEngineView_ConnectUrlChanged(ptr.Pointer())
+			C.QWebEngineView_ConnectUrlChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "urlChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "urlChanged"); signal != nil {

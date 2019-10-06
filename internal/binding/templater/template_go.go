@@ -531,6 +531,12 @@ func (ptr *%[1]v) Destroy%[1]v() {
 					}
 				}
 				fmt.Fprint(bb, "\n}\nreturn v\n}\n")
+			} else if class.Name == "QObject" {
+				fmt.Fprintln(bb, "\nfunc (o *QObject) ConnectSignal(f, a interface{}, t Qt__ConnectionType) {")
+				fmt.Fprintln(bb, "\tfn := strings.TrimSuffix(strings.Split(runtime.FuncForPC(reflect.ValueOf(f).Pointer()).Name(), \".Connect\")[1], \"-fm\")")
+				fmt.Fprintln(bb, "\tqt.RegisterConnectionType(o.Pointer(), strings.ToLower(fn[:1])+fn[1:], int64(t))")
+				fmt.Fprintln(bb, "\treflect.ValueOf(f).Call([]reflect.Value{reflect.ValueOf(a)})")
+				fmt.Fprintln(bb, "}\n")
 			}
 		}
 		cTemplate(bb, class, goEnum, goFunction, "\n\n", true)

@@ -152,9 +152,9 @@ char QWebChannel_BlockUpdates(void* ptr)
 	return static_cast<QWebChannel*>(ptr)->blockUpdates();
 }
 
-void QWebChannel_ConnectBlockUpdatesChanged(void* ptr)
+void QWebChannel_ConnectBlockUpdatesChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QWebChannel*>(ptr), static_cast<void (QWebChannel::*)(bool)>(&QWebChannel::blockUpdatesChanged), static_cast<MyQWebChannel*>(ptr), static_cast<void (MyQWebChannel::*)(bool)>(&MyQWebChannel::Signal_BlockUpdatesChanged));
+	QObject::connect(static_cast<QWebChannel*>(ptr), static_cast<void (QWebChannel::*)(bool)>(&QWebChannel::blockUpdatesChanged), static_cast<MyQWebChannel*>(ptr), static_cast<void (MyQWebChannel::*)(bool)>(&MyQWebChannel::Signal_BlockUpdatesChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QWebChannel_DisconnectBlockUpdatesChanged(void* ptr)
@@ -537,9 +537,9 @@ void* QWebChannelAbstractTransport_NewQWebChannelAbstractTransport(void* parent)
 	}
 }
 
-void QWebChannelAbstractTransport_ConnectMessageReceived(void* ptr)
+void QWebChannelAbstractTransport_ConnectMessageReceived(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QWebChannelAbstractTransport*>(ptr), static_cast<void (QWebChannelAbstractTransport::*)(const QJsonObject &, QWebChannelAbstractTransport *)>(&QWebChannelAbstractTransport::messageReceived), static_cast<MyQWebChannelAbstractTransport*>(ptr), static_cast<void (MyQWebChannelAbstractTransport::*)(const QJsonObject &, QWebChannelAbstractTransport *)>(&MyQWebChannelAbstractTransport::Signal_MessageReceived));
+	QObject::connect(static_cast<QWebChannelAbstractTransport*>(ptr), static_cast<void (QWebChannelAbstractTransport::*)(const QJsonObject &, QWebChannelAbstractTransport *)>(&QWebChannelAbstractTransport::messageReceived), static_cast<MyQWebChannelAbstractTransport*>(ptr), static_cast<void (MyQWebChannelAbstractTransport::*)(const QJsonObject &, QWebChannelAbstractTransport *)>(&MyQWebChannelAbstractTransport::Signal_MessageReceived), static_cast<Qt::ConnectionType>(t));
 }
 
 void QWebChannelAbstractTransport_DisconnectMessageReceived(void* ptr)

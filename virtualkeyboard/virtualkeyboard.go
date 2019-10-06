@@ -424,7 +424,7 @@ func (ptr *QVirtualKeyboardAbstractInputMethod) ConnectSelectionListActiveItemCh
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "selectionListActiveItemChanged") {
-			C.QVirtualKeyboardAbstractInputMethod_ConnectSelectionListActiveItemChanged(ptr.Pointer())
+			C.QVirtualKeyboardAbstractInputMethod_ConnectSelectionListActiveItemChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "selectionListActiveItemChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "selectionListActiveItemChanged"); signal != nil {
@@ -464,7 +464,7 @@ func (ptr *QVirtualKeyboardAbstractInputMethod) ConnectSelectionListChanged(f fu
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "selectionListChanged") {
-			C.QVirtualKeyboardAbstractInputMethod_ConnectSelectionListChanged(ptr.Pointer())
+			C.QVirtualKeyboardAbstractInputMethod_ConnectSelectionListChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "selectionListChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "selectionListChanged"); signal != nil {
@@ -757,7 +757,7 @@ func (ptr *QVirtualKeyboardAbstractInputMethod) ConnectSelectionListsChanged(f f
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "selectionListsChanged") {
-			C.QVirtualKeyboardAbstractInputMethod_ConnectSelectionListsChanged(ptr.Pointer())
+			C.QVirtualKeyboardAbstractInputMethod_ConnectSelectionListsChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "selectionListsChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "selectionListsChanged"); signal != nil {
@@ -1952,7 +1952,7 @@ func (ptr *QVirtualKeyboardInputContext) ConnectAnchorPositionChanged(f func()) 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "anchorPositionChanged") {
-			C.QVirtualKeyboardInputContext_ConnectAnchorPositionChanged(ptr.Pointer())
+			C.QVirtualKeyboardInputContext_ConnectAnchorPositionChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "anchorPositionChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "anchorPositionChanged"); signal != nil {
@@ -1999,7 +1999,7 @@ func (ptr *QVirtualKeyboardInputContext) ConnectAnchorRectIntersectsClipRectChan
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "anchorRectIntersectsClipRectChanged") {
-			C.QVirtualKeyboardInputContext_ConnectAnchorRectIntersectsClipRectChanged(ptr.Pointer())
+			C.QVirtualKeyboardInputContext_ConnectAnchorRectIntersectsClipRectChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "anchorRectIntersectsClipRectChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "anchorRectIntersectsClipRectChanged"); signal != nil {
@@ -2048,7 +2048,7 @@ func (ptr *QVirtualKeyboardInputContext) ConnectAnchorRectangleChanged(f func())
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "anchorRectangleChanged") {
-			C.QVirtualKeyboardInputContext_ConnectAnchorRectangleChanged(ptr.Pointer())
+			C.QVirtualKeyboardInputContext_ConnectAnchorRectangleChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "anchorRectangleChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "anchorRectangleChanged"); signal != nil {
@@ -2088,7 +2088,7 @@ func (ptr *QVirtualKeyboardInputContext) ConnectAnimatingChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "animatingChanged") {
-			C.QVirtualKeyboardInputContext_ConnectAnimatingChanged(ptr.Pointer())
+			C.QVirtualKeyboardInputContext_ConnectAnimatingChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "animatingChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "animatingChanged"); signal != nil {
@@ -2128,7 +2128,7 @@ func (ptr *QVirtualKeyboardInputContext) ConnectCapsLockActiveChanged(f func()) 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "capsLockActiveChanged") {
-			C.QVirtualKeyboardInputContext_ConnectCapsLockActiveChanged(ptr.Pointer())
+			C.QVirtualKeyboardInputContext_ConnectCapsLockActiveChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "capsLockActiveChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "capsLockActiveChanged"); signal != nil {
@@ -2198,7 +2198,7 @@ func (ptr *QVirtualKeyboardInputContext) ConnectCursorPositionChanged(f func()) 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "cursorPositionChanged") {
-			C.QVirtualKeyboardInputContext_ConnectCursorPositionChanged(ptr.Pointer())
+			C.QVirtualKeyboardInputContext_ConnectCursorPositionChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "cursorPositionChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "cursorPositionChanged"); signal != nil {
@@ -2245,7 +2245,7 @@ func (ptr *QVirtualKeyboardInputContext) ConnectCursorRectIntersectsClipRectChan
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "cursorRectIntersectsClipRectChanged") {
-			C.QVirtualKeyboardInputContext_ConnectCursorRectIntersectsClipRectChanged(ptr.Pointer())
+			C.QVirtualKeyboardInputContext_ConnectCursorRectIntersectsClipRectChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "cursorRectIntersectsClipRectChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "cursorRectIntersectsClipRectChanged"); signal != nil {
@@ -2294,7 +2294,7 @@ func (ptr *QVirtualKeyboardInputContext) ConnectCursorRectangleChanged(f func())
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "cursorRectangleChanged") {
-			C.QVirtualKeyboardInputContext_ConnectCursorRectangleChanged(ptr.Pointer())
+			C.QVirtualKeyboardInputContext_ConnectCursorRectangleChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "cursorRectangleChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "cursorRectangleChanged"); signal != nil {
@@ -2356,7 +2356,7 @@ func (ptr *QVirtualKeyboardInputContext) ConnectInputItemChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "inputItemChanged") {
-			C.QVirtualKeyboardInputContext_ConnectInputItemChanged(ptr.Pointer())
+			C.QVirtualKeyboardInputContext_ConnectInputItemChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "inputItemChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "inputItemChanged"); signal != nil {
@@ -2403,7 +2403,7 @@ func (ptr *QVirtualKeyboardInputContext) ConnectInputMethodHintsChanged(f func()
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "inputMethodHintsChanged") {
-			C.QVirtualKeyboardInputContext_ConnectInputMethodHintsChanged(ptr.Pointer())
+			C.QVirtualKeyboardInputContext_ConnectInputMethodHintsChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "inputMethodHintsChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "inputMethodHintsChanged"); signal != nil {
@@ -2485,7 +2485,7 @@ func (ptr *QVirtualKeyboardInputContext) ConnectLocaleChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "localeChanged") {
-			C.QVirtualKeyboardInputContext_ConnectLocaleChanged(ptr.Pointer())
+			C.QVirtualKeyboardInputContext_ConnectLocaleChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "localeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "localeChanged"); signal != nil {
@@ -2532,7 +2532,7 @@ func (ptr *QVirtualKeyboardInputContext) ConnectPreeditTextChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "preeditTextChanged") {
-			C.QVirtualKeyboardInputContext_ConnectPreeditTextChanged(ptr.Pointer())
+			C.QVirtualKeyboardInputContext_ConnectPreeditTextChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "preeditTextChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "preeditTextChanged"); signal != nil {
@@ -2579,7 +2579,7 @@ func (ptr *QVirtualKeyboardInputContext) ConnectSelectedTextChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "selectedTextChanged") {
-			C.QVirtualKeyboardInputContext_ConnectSelectedTextChanged(ptr.Pointer())
+			C.QVirtualKeyboardInputContext_ConnectSelectedTextChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "selectedTextChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "selectedTextChanged"); signal != nil {
@@ -2619,7 +2619,7 @@ func (ptr *QVirtualKeyboardInputContext) ConnectSelectionControlVisibleChanged(f
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "selectionControlVisibleChanged") {
-			C.QVirtualKeyboardInputContext_ConnectSelectionControlVisibleChanged(ptr.Pointer())
+			C.QVirtualKeyboardInputContext_ConnectSelectionControlVisibleChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "selectionControlVisibleChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "selectionControlVisibleChanged"); signal != nil {
@@ -2676,7 +2676,7 @@ func (ptr *QVirtualKeyboardInputContext) ConnectShiftActiveChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "shiftActiveChanged") {
-			C.QVirtualKeyboardInputContext_ConnectShiftActiveChanged(ptr.Pointer())
+			C.QVirtualKeyboardInputContext_ConnectShiftActiveChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "shiftActiveChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "shiftActiveChanged"); signal != nil {
@@ -2723,7 +2723,7 @@ func (ptr *QVirtualKeyboardInputContext) ConnectSurroundingTextChanged(f func())
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "surroundingTextChanged") {
-			C.QVirtualKeyboardInputContext_ConnectSurroundingTextChanged(ptr.Pointer())
+			C.QVirtualKeyboardInputContext_ConnectSurroundingTextChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "surroundingTextChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "surroundingTextChanged"); signal != nil {
@@ -2763,7 +2763,7 @@ func (ptr *QVirtualKeyboardInputContext) ConnectUppercaseChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "uppercaseChanged") {
-			C.QVirtualKeyboardInputContext_ConnectUppercaseChanged(ptr.Pointer())
+			C.QVirtualKeyboardInputContext_ConnectUppercaseChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "uppercaseChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "uppercaseChanged"); signal != nil {
@@ -3170,7 +3170,7 @@ func (ptr *QVirtualKeyboardInputEngine) ConnectActiveKeyChanged(f func(key core.
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "activeKeyChanged") {
-			C.QVirtualKeyboardInputEngine_ConnectActiveKeyChanged(ptr.Pointer())
+			C.QVirtualKeyboardInputEngine_ConnectActiveKeyChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "activeKeyChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "activeKeyChanged"); signal != nil {
@@ -3232,7 +3232,7 @@ func (ptr *QVirtualKeyboardInputEngine) ConnectInputMethodChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "inputMethodChanged") {
-			C.QVirtualKeyboardInputEngine_ConnectInputMethodChanged(ptr.Pointer())
+			C.QVirtualKeyboardInputEngine_ConnectInputMethodChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "inputMethodChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "inputMethodChanged"); signal != nil {
@@ -3272,7 +3272,7 @@ func (ptr *QVirtualKeyboardInputEngine) ConnectInputMethodReset(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "inputMethodReset") {
-			C.QVirtualKeyboardInputEngine_ConnectInputMethodReset(ptr.Pointer())
+			C.QVirtualKeyboardInputEngine_ConnectInputMethodReset(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "inputMethodReset")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "inputMethodReset"); signal != nil {
@@ -3312,7 +3312,7 @@ func (ptr *QVirtualKeyboardInputEngine) ConnectInputMethodUpdate(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "inputMethodUpdate") {
-			C.QVirtualKeyboardInputEngine_ConnectInputMethodUpdate(ptr.Pointer())
+			C.QVirtualKeyboardInputEngine_ConnectInputMethodUpdate(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "inputMethodUpdate")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "inputMethodUpdate"); signal != nil {
@@ -3359,7 +3359,7 @@ func (ptr *QVirtualKeyboardInputEngine) ConnectInputModeChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "inputModeChanged") {
-			C.QVirtualKeyboardInputEngine_ConnectInputModeChanged(ptr.Pointer())
+			C.QVirtualKeyboardInputEngine_ConnectInputModeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "inputModeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "inputModeChanged"); signal != nil {
@@ -3413,7 +3413,7 @@ func (ptr *QVirtualKeyboardInputEngine) ConnectInputModesChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "inputModesChanged") {
-			C.QVirtualKeyboardInputEngine_ConnectInputModesChanged(ptr.Pointer())
+			C.QVirtualKeyboardInputEngine_ConnectInputModesChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "inputModesChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "inputModesChanged"); signal != nil {
@@ -3467,7 +3467,7 @@ func (ptr *QVirtualKeyboardInputEngine) ConnectPatternRecognitionModesChanged(f 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "patternRecognitionModesChanged") {
-			C.QVirtualKeyboardInputEngine_ConnectPatternRecognitionModesChanged(ptr.Pointer())
+			C.QVirtualKeyboardInputEngine_ConnectPatternRecognitionModesChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "patternRecognitionModesChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "patternRecognitionModesChanged"); signal != nil {
@@ -3514,7 +3514,7 @@ func (ptr *QVirtualKeyboardInputEngine) ConnectPreviousKeyChanged(f func(key cor
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "previousKeyChanged") {
-			C.QVirtualKeyboardInputEngine_ConnectPreviousKeyChanged(ptr.Pointer())
+			C.QVirtualKeyboardInputEngine_ConnectPreviousKeyChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "previousKeyChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "previousKeyChanged"); signal != nil {
@@ -3621,7 +3621,7 @@ func (ptr *QVirtualKeyboardInputEngine) ConnectVirtualKeyClicked(f func(key core
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "virtualKeyClicked") {
-			C.QVirtualKeyboardInputEngine_ConnectVirtualKeyClicked(ptr.Pointer())
+			C.QVirtualKeyboardInputEngine_ConnectVirtualKeyClicked(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "virtualKeyClicked")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "virtualKeyClicked"); signal != nil {
@@ -3701,7 +3701,7 @@ func (ptr *QVirtualKeyboardInputEngine) ConnectWordCandidateListModelChanged(f f
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "wordCandidateListModelChanged") {
-			C.QVirtualKeyboardInputEngine_ConnectWordCandidateListModelChanged(ptr.Pointer())
+			C.QVirtualKeyboardInputEngine_ConnectWordCandidateListModelChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "wordCandidateListModelChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "wordCandidateListModelChanged"); signal != nil {
@@ -3748,7 +3748,7 @@ func (ptr *QVirtualKeyboardInputEngine) ConnectWordCandidateListVisibleHintChang
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "wordCandidateListVisibleHintChanged") {
-			C.QVirtualKeyboardInputEngine_ConnectWordCandidateListVisibleHintChanged(ptr.Pointer())
+			C.QVirtualKeyboardInputEngine_ConnectWordCandidateListVisibleHintChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "wordCandidateListVisibleHintChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "wordCandidateListVisibleHintChanged"); signal != nil {
@@ -4277,7 +4277,7 @@ func (ptr *QVirtualKeyboardSelectionListModel) ConnectActiveItemChanged(f func(i
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "activeItemChanged") {
-			C.QVirtualKeyboardSelectionListModel_ConnectActiveItemChanged(ptr.Pointer())
+			C.QVirtualKeyboardSelectionListModel_ConnectActiveItemChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "activeItemChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "activeItemChanged"); signal != nil {
@@ -4317,7 +4317,7 @@ func (ptr *QVirtualKeyboardSelectionListModel) ConnectItemSelected(f func(index 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "itemSelected") {
-			C.QVirtualKeyboardSelectionListModel_ConnectItemSelected(ptr.Pointer())
+			C.QVirtualKeyboardSelectionListModel_ConnectItemSelected(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "itemSelected")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "itemSelected"); signal != nil {
@@ -5843,7 +5843,7 @@ func (ptr *QVirtualKeyboardTrace) ConnectCanceledChanged(f func(isCanceled bool)
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "canceledChanged") {
-			C.QVirtualKeyboardTrace_ConnectCanceledChanged(ptr.Pointer())
+			C.QVirtualKeyboardTrace_ConnectCanceledChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "canceledChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "canceledChanged"); signal != nil {
@@ -5909,7 +5909,7 @@ func (ptr *QVirtualKeyboardTrace) ConnectChannelsChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "channelsChanged") {
-			C.QVirtualKeyboardTrace_ConnectChannelsChanged(ptr.Pointer())
+			C.QVirtualKeyboardTrace_ConnectChannelsChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "channelsChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "channelsChanged"); signal != nil {
@@ -5949,7 +5949,7 @@ func (ptr *QVirtualKeyboardTrace) ConnectFinalChanged(f func(isFinal bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "finalChanged") {
-			C.QVirtualKeyboardTrace_ConnectFinalChanged(ptr.Pointer())
+			C.QVirtualKeyboardTrace_ConnectFinalChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "finalChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "finalChanged"); signal != nil {
@@ -6010,7 +6010,7 @@ func (ptr *QVirtualKeyboardTrace) ConnectLengthChanged(f func(length int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "lengthChanged") {
-			C.QVirtualKeyboardTrace_ConnectLengthChanged(ptr.Pointer())
+			C.QVirtualKeyboardTrace_ConnectLengthChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "lengthChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "lengthChanged"); signal != nil {
@@ -6057,7 +6057,7 @@ func (ptr *QVirtualKeyboardTrace) ConnectOpacityChanged(f func(opacity float64))
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "opacityChanged") {
-			C.QVirtualKeyboardTrace_ConnectOpacityChanged(ptr.Pointer())
+			C.QVirtualKeyboardTrace_ConnectOpacityChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "opacityChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "opacityChanged"); signal != nil {
@@ -6161,7 +6161,7 @@ func (ptr *QVirtualKeyboardTrace) ConnectTraceIdChanged(f func(traceId int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "traceIdChanged") {
-			C.QVirtualKeyboardTrace_ConnectTraceIdChanged(ptr.Pointer())
+			C.QVirtualKeyboardTrace_ConnectTraceIdChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "traceIdChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "traceIdChanged"); signal != nil {

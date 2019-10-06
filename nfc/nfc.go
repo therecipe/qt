@@ -1194,7 +1194,7 @@ func (ptr *QNearFieldManager) ConnectTargetDetected(f func(target *QNearFieldTar
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "targetDetected") {
-			C.QNearFieldManager_ConnectTargetDetected(ptr.Pointer())
+			C.QNearFieldManager_ConnectTargetDetected(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "targetDetected")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "targetDetected"); signal != nil {
@@ -1234,7 +1234,7 @@ func (ptr *QNearFieldManager) ConnectTargetLost(f func(target *QNearFieldTarget)
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "targetLost") {
-			C.QNearFieldManager_ConnectTargetLost(ptr.Pointer())
+			C.QNearFieldManager_ConnectTargetLost(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "targetLost")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "targetLost"); signal != nil {
@@ -1659,7 +1659,7 @@ func (ptr *QNearFieldShareManager) ConnectError(f func(error QNearFieldShareMana
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "error") {
-			C.QNearFieldShareManager_ConnectError(ptr.Pointer())
+			C.QNearFieldShareManager_ConnectError(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error"); signal != nil {
@@ -1719,7 +1719,7 @@ func (ptr *QNearFieldShareManager) ConnectShareModesChanged(f func(modes QNearFi
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "shareModesChanged") {
-			C.QNearFieldShareManager_ConnectShareModesChanged(ptr.Pointer())
+			C.QNearFieldShareManager_ConnectShareModesChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "shareModesChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "shareModesChanged"); signal != nil {
@@ -1767,7 +1767,7 @@ func (ptr *QNearFieldShareManager) ConnectTargetDetected(f func(shareTarget *QNe
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "targetDetected") {
-			C.QNearFieldShareManager_ConnectTargetDetected(ptr.Pointer())
+			C.QNearFieldShareManager_ConnectTargetDetected(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "targetDetected")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "targetDetected"); signal != nil {
@@ -2156,7 +2156,7 @@ func (ptr *QNearFieldShareTarget) ConnectError(f func(error QNearFieldShareManag
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "error") {
-			C.QNearFieldShareTarget_ConnectError(ptr.Pointer())
+			C.QNearFieldShareTarget_ConnectError(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error"); signal != nil {
@@ -2230,7 +2230,7 @@ func (ptr *QNearFieldShareTarget) ConnectShareFinished(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "shareFinished") {
-			C.QNearFieldShareTarget_ConnectShareFinished(ptr.Pointer())
+			C.QNearFieldShareTarget_ConnectShareFinished(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "shareFinished")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "shareFinished"); signal != nil {
@@ -2734,7 +2734,7 @@ func (ptr *QNearFieldTarget) ConnectDisconnected(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "disconnected") {
-			C.QNearFieldTarget_ConnectDisconnected(ptr.Pointer())
+			C.QNearFieldTarget_ConnectDisconnected(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "disconnected")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "disconnected"); signal != nil {
@@ -2840,7 +2840,7 @@ func (ptr *QNearFieldTarget) ConnectNdefMessageRead(f func(message *QNdefMessage
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "ndefMessageRead") {
-			C.QNearFieldTarget_ConnectNdefMessageRead(ptr.Pointer())
+			C.QNearFieldTarget_ConnectNdefMessageRead(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "ndefMessageRead")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "ndefMessageRead"); signal != nil {
@@ -2880,7 +2880,7 @@ func (ptr *QNearFieldTarget) ConnectNdefMessagesWritten(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "ndefMessagesWritten") {
-			C.QNearFieldTarget_ConnectNdefMessagesWritten(ptr.Pointer())
+			C.QNearFieldTarget_ConnectNdefMessagesWritten(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "ndefMessagesWritten")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "ndefMessagesWritten"); signal != nil {
@@ -3474,7 +3474,7 @@ func (ptr *QQmlNdefRecord) ConnectRecordChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "recordChanged") {
-			C.QQmlNdefRecord_ConnectRecordChanged(ptr.Pointer())
+			C.QQmlNdefRecord_ConnectRecordChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "recordChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "recordChanged"); signal != nil {
@@ -3544,7 +3544,7 @@ func (ptr *QQmlNdefRecord) ConnectTypeChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "typeChanged") {
-			C.QQmlNdefRecord_ConnectTypeChanged(ptr.Pointer())
+			C.QQmlNdefRecord_ConnectTypeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "typeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "typeChanged"); signal != nil {
@@ -3591,7 +3591,7 @@ func (ptr *QQmlNdefRecord) ConnectTypeNameFormatChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "typeNameFormatChanged") {
-			C.QQmlNdefRecord_ConnectTypeNameFormatChanged(ptr.Pointer())
+			C.QQmlNdefRecord_ConnectTypeNameFormatChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "typeNameFormatChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "typeNameFormatChanged"); signal != nil {

@@ -2808,7 +2808,7 @@ func (ptr *QRemoteObjectNode) ConnectHeartbeatIntervalChanged(f func(heartbeatIn
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "heartbeatIntervalChanged") {
-			C.QRemoteObjectNode_ConnectHeartbeatIntervalChanged(ptr.Pointer())
+			C.QRemoteObjectNode_ConnectHeartbeatIntervalChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "heartbeatIntervalChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "heartbeatIntervalChanged"); signal != nil {
@@ -3961,7 +3961,7 @@ func (ptr *QRemoteObjectReplica) ConnectInitialized(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "initialized") {
-			C.QRemoteObjectReplica_ConnectInitialized(ptr.Pointer())
+			C.QRemoteObjectReplica_ConnectInitialized(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "initialized")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "initialized"); signal != nil {
@@ -4076,7 +4076,7 @@ func (ptr *QRemoteObjectReplica) ConnectStateChanged(f func(state QRemoteObjectR
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stateChanged") {
-			C.QRemoteObjectReplica_ConnectStateChanged(ptr.Pointer())
+			C.QRemoteObjectReplica_ConnectStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {

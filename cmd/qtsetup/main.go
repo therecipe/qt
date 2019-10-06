@@ -105,7 +105,7 @@ func main() {
 	case "install":
 		setup.Install(target, docker, vagrant, failfast)
 	case "test":
-		if !test {
+		if !test || utils.UseGOMOD(utils.GoQtPkgPath("core")) {
 			return
 		}
 		setup.Test(target, docker, vagrant, vagrant_system)
@@ -114,7 +114,7 @@ func main() {
 		setup.Check(target, docker, vagrant)
 		setup.Generate(target, docker, vagrant)
 		setup.Install(target, docker, vagrant, failfast)
-		if !test {
+		if !test || utils.UseGOMOD(utils.GoQtPkgPath("core")) {
 			return
 		}
 		setup.Test(target, docker, vagrant, vagrant_system)

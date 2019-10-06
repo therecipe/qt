@@ -1376,7 +1376,7 @@ func (ptr *QScriptEngine) ConnectSignalHandlerException(f func(exception *QScrip
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "signalHandlerException") {
-			C.QScriptEngine_ConnectSignalHandlerException(ptr.Pointer())
+			C.QScriptEngine_ConnectSignalHandlerException(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "signalHandlerException")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "signalHandlerException"); signal != nil {

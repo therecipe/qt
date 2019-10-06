@@ -1269,7 +1269,7 @@ func (ptr *QSqlDriver) ConnectNotification(f func(name string)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "notification") {
-			C.QSqlDriver_ConnectNotification(ptr.Pointer())
+			C.QSqlDriver_ConnectNotification(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "notification")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "notification"); signal != nil {
@@ -1314,7 +1314,7 @@ func (ptr *QSqlDriver) ConnectNotification2(f func(name string, source QSqlDrive
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "notification2") {
-			C.QSqlDriver_ConnectNotification2(ptr.Pointer())
+			C.QSqlDriver_ConnectNotification2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "notification")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "notification2"); signal != nil {
@@ -8448,7 +8448,7 @@ func (ptr *QSqlTableModel) ConnectBeforeDelete(f func(row int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "beforeDelete") {
-			C.QSqlTableModel_ConnectBeforeDelete(ptr.Pointer())
+			C.QSqlTableModel_ConnectBeforeDelete(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "beforeDelete")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "beforeDelete"); signal != nil {
@@ -8488,7 +8488,7 @@ func (ptr *QSqlTableModel) ConnectBeforeInsert(f func(record *QSqlRecord)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "beforeInsert") {
-			C.QSqlTableModel_ConnectBeforeInsert(ptr.Pointer())
+			C.QSqlTableModel_ConnectBeforeInsert(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "beforeInsert")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "beforeInsert"); signal != nil {
@@ -8528,7 +8528,7 @@ func (ptr *QSqlTableModel) ConnectBeforeUpdate(f func(row int, record *QSqlRecor
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "beforeUpdate") {
-			C.QSqlTableModel_ConnectBeforeUpdate(ptr.Pointer())
+			C.QSqlTableModel_ConnectBeforeUpdate(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "beforeUpdate")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "beforeUpdate"); signal != nil {
@@ -8778,7 +8778,7 @@ func (ptr *QSqlTableModel) ConnectPrimeInsert(f func(row int, record *QSqlRecord
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "primeInsert") {
-			C.QSqlTableModel_ConnectPrimeInsert(ptr.Pointer())
+			C.QSqlTableModel_ConnectPrimeInsert(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "primeInsert")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "primeInsert"); signal != nil {

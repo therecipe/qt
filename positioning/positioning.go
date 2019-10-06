@@ -799,7 +799,7 @@ func (ptr *QGeoAreaMonitorSource) ConnectAreaEntered(f func(monitor *QGeoAreaMon
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "areaEntered") {
-			C.QGeoAreaMonitorSource_ConnectAreaEntered(ptr.Pointer())
+			C.QGeoAreaMonitorSource_ConnectAreaEntered(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "areaEntered")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "areaEntered"); signal != nil {
@@ -839,7 +839,7 @@ func (ptr *QGeoAreaMonitorSource) ConnectAreaExited(f func(monitor *QGeoAreaMoni
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "areaExited") {
-			C.QGeoAreaMonitorSource_ConnectAreaExited(ptr.Pointer())
+			C.QGeoAreaMonitorSource_ConnectAreaExited(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "areaExited")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "areaExited"); signal != nil {
@@ -967,7 +967,7 @@ func (ptr *QGeoAreaMonitorSource) ConnectError2(f func(areaMonitoringError QGeoA
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "error2") {
-			C.QGeoAreaMonitorSource_ConnectError2(ptr.Pointer())
+			C.QGeoAreaMonitorSource_ConnectError2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error2"); signal != nil {
@@ -1007,7 +1007,7 @@ func (ptr *QGeoAreaMonitorSource) ConnectMonitorExpired(f func(monitor *QGeoArea
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "monitorExpired") {
-			C.QGeoAreaMonitorSource_ConnectMonitorExpired(ptr.Pointer())
+			C.QGeoAreaMonitorSource_ConnectMonitorExpired(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "monitorExpired")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "monitorExpired"); signal != nil {
@@ -2976,7 +2976,7 @@ func (ptr *QGeoPositionInfoSource) ConnectError2(f func(positioningError QGeoPos
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "error2") {
-			C.QGeoPositionInfoSource_ConnectError2(ptr.Pointer())
+			C.QGeoPositionInfoSource_ConnectError2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error2"); signal != nil {
@@ -3094,7 +3094,7 @@ func (ptr *QGeoPositionInfoSource) ConnectPositionUpdated(f func(update *QGeoPos
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "positionUpdated") {
-			C.QGeoPositionInfoSource_ConnectPositionUpdated(ptr.Pointer())
+			C.QGeoPositionInfoSource_ConnectPositionUpdated(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "positionUpdated")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "positionUpdated"); signal != nil {
@@ -3380,7 +3380,7 @@ func (ptr *QGeoPositionInfoSource) ConnectSupportedPositioningMethodsChanged(f f
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "supportedPositioningMethodsChanged") {
-			C.QGeoPositionInfoSource_ConnectSupportedPositioningMethodsChanged(ptr.Pointer())
+			C.QGeoPositionInfoSource_ConnectSupportedPositioningMethodsChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "supportedPositioningMethodsChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "supportedPositioningMethodsChanged"); signal != nil {
@@ -3427,7 +3427,7 @@ func (ptr *QGeoPositionInfoSource) ConnectUpdateTimeout(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "updateTimeout") {
-			C.QGeoPositionInfoSource_ConnectUpdateTimeout(ptr.Pointer())
+			C.QGeoPositionInfoSource_ConnectUpdateTimeout(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "updateTimeout")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "updateTimeout"); signal != nil {
@@ -4512,7 +4512,7 @@ func (ptr *QGeoSatelliteInfoSource) ConnectError2(f func(satelliteError QGeoSate
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "error2") {
-			C.QGeoSatelliteInfoSource_ConnectError2(ptr.Pointer())
+			C.QGeoSatelliteInfoSource_ConnectError2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error2"); signal != nil {
@@ -4590,7 +4590,7 @@ func (ptr *QGeoSatelliteInfoSource) ConnectRequestTimeout(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "requestTimeout") {
-			C.QGeoSatelliteInfoSource_ConnectRequestTimeout(ptr.Pointer())
+			C.QGeoSatelliteInfoSource_ConnectRequestTimeout(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "requestTimeout")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "requestTimeout"); signal != nil {
@@ -4673,7 +4673,7 @@ func (ptr *QGeoSatelliteInfoSource) ConnectSatellitesInUseUpdated(f func(satelli
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "satellitesInUseUpdated") {
-			C.QGeoSatelliteInfoSource_ConnectSatellitesInUseUpdated(ptr.Pointer())
+			C.QGeoSatelliteInfoSource_ConnectSatellitesInUseUpdated(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "satellitesInUseUpdated")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "satellitesInUseUpdated"); signal != nil {
@@ -4726,7 +4726,7 @@ func (ptr *QGeoSatelliteInfoSource) ConnectSatellitesInViewUpdated(f func(satell
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "satellitesInViewUpdated") {
-			C.QGeoSatelliteInfoSource_ConnectSatellitesInViewUpdated(ptr.Pointer())
+			C.QGeoSatelliteInfoSource_ConnectSatellitesInViewUpdated(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "satellitesInViewUpdated")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "satellitesInViewUpdated"); signal != nil {

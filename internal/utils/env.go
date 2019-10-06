@@ -336,6 +336,16 @@ func GOARCH() string {
 	return runtime.GOARCH
 }
 
+func GOARM() (string, bool) {
+	if arm, ok := os.LookupEnv("GOARM"); ok {
+		return arm, true
+	}
+	if arm := strings.TrimSpace(RunCmd(exec.Command("go", "env", "GOARM"), "get GOARM")); arm != "" {
+		return arm, true
+	}
+	return "", false
+}
+
 func QT_DYNAMIC_SETUP() bool {
 	return os.Getenv("QT_DYNAMIC_SETUP") == "true"
 }
@@ -434,7 +444,7 @@ var (
 func GoListOptional(args ...string) (r string) {
 	goListCacheMutex.Lock()
 	if _, ok := goListCache[strings.Join(args, "|")]; !ok {
-		goListCache[strings.Join(args, "|")] = RunCmdOptional(GoList(args[:len(args)-1]...), args[len(args)-1])
+		goListCache[strings.Join(args, "|")] = strings.TrimSpace(RunCmdOptional(GoList(args[:len(args)-1]...), args[len(args)-1]))
 	}
 	r = goListCache[strings.Join(args, "|")]
 	goListCacheMutex.Unlock()
@@ -464,7 +474,7 @@ func GOVERSION() (r string) {
 	goVersionCacheMutex.Lock()
 	var version string
 	if goVersionCache == "" {
-		version = RunCmd(exec.Command("go", "version"), "get go version")
+		version = strings.TrimSpace(RunCmd(exec.Command("go", "version"), "get go version"))
 		goVersionCache = strings.Split(version, " ")[2]
 	}
 	if strings.Contains(version, "devel") {

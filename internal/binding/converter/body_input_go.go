@@ -53,6 +53,10 @@ func GoInputParametersForC(function *parser.Function) string {
 		}
 	}
 
+	if function.SignalMode == parser.CONNECT && function.Meta == parser.SIGNAL {
+		input = append(input, fmt.Sprintf("C.longlong(qt.ConnectionType(ptr.Pointer(), \"%v\"))", function.Name))
+	}
+
 	return strings.Join(input, ", ")
 }
 
@@ -91,6 +95,10 @@ func GoInputParametersForJS(function *parser.Function) string {
 				}
 			}
 		}
+	}
+
+	if function.SignalMode == parser.CONNECT && function.Meta == parser.SIGNAL {
+		input = append(input, fmt.Sprintf("int64(qt.ConnectionType(ptr.Pointer(), \"%v\"))", function.Name))
 	}
 
 	return strings.Join(input, ", ")

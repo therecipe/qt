@@ -1197,7 +1197,7 @@ func (ptr *QGeoRouteReply) ConnectAborted(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "aborted") {
-			C.QGeoRouteReply_ConnectAborted(ptr.Pointer())
+			C.QGeoRouteReply_ConnectAborted(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "aborted")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "aborted"); signal != nil {
@@ -1256,7 +1256,7 @@ func (ptr *QGeoRouteReply) ConnectError2(f func(error QGeoRouteReply__Error, err
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "error2") {
-			C.QGeoRouteReply_ConnectError2(ptr.Pointer())
+			C.QGeoRouteReply_ConnectError2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error2"); signal != nil {
@@ -1308,7 +1308,7 @@ func (ptr *QGeoRouteReply) ConnectFinished(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "finished") {
-			C.QGeoRouteReply_ConnectFinished(ptr.Pointer())
+			C.QGeoRouteReply_ConnectFinished(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "finished")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "finished"); signal != nil {
@@ -2865,7 +2865,7 @@ func (ptr *QGeoRoutingManager) ConnectError(f func(reply *QGeoRouteReply, error 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "error") {
-			C.QGeoRoutingManager_ConnectError(ptr.Pointer())
+			C.QGeoRoutingManager_ConnectError(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error"); signal != nil {
@@ -2910,7 +2910,7 @@ func (ptr *QGeoRoutingManager) ConnectFinished(f func(reply *QGeoRouteReply)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "finished") {
-			C.QGeoRoutingManager_ConnectFinished(ptr.Pointer())
+			C.QGeoRoutingManager_ConnectFinished(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "finished")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "finished"); signal != nil {
@@ -3444,7 +3444,7 @@ func (ptr *QGeoRoutingManagerEngine) ConnectError(f func(reply *QGeoRouteReply, 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "error") {
-			C.QGeoRoutingManagerEngine_ConnectError(ptr.Pointer())
+			C.QGeoRoutingManagerEngine_ConnectError(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error"); signal != nil {
@@ -3489,7 +3489,7 @@ func (ptr *QGeoRoutingManagerEngine) ConnectFinished(f func(reply *QGeoRouteRepl
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "finished") {
-			C.QGeoRoutingManagerEngine_ConnectFinished(ptr.Pointer())
+			C.QGeoRoutingManagerEngine_ConnectFinished(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "finished")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "finished"); signal != nil {

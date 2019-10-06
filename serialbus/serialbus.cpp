@@ -365,10 +365,10 @@ long long QCanBusDevice_Error(void* ptr)
 	return static_cast<QCanBusDevice*>(ptr)->error();
 }
 
-void QCanBusDevice_ConnectErrorOccurred(void* ptr)
+void QCanBusDevice_ConnectErrorOccurred(void* ptr, long long t)
 {
 	qRegisterMetaType<QCanBusDevice::CanBusError>();
-	QObject::connect(static_cast<QCanBusDevice*>(ptr), static_cast<void (QCanBusDevice::*)(QCanBusDevice::CanBusError)>(&QCanBusDevice::errorOccurred), static_cast<MyQCanBusDevice*>(ptr), static_cast<void (MyQCanBusDevice::*)(QCanBusDevice::CanBusError)>(&MyQCanBusDevice::Signal_ErrorOccurred));
+	QObject::connect(static_cast<QCanBusDevice*>(ptr), static_cast<void (QCanBusDevice::*)(QCanBusDevice::CanBusError)>(&QCanBusDevice::errorOccurred), static_cast<MyQCanBusDevice*>(ptr), static_cast<void (MyQCanBusDevice::*)(QCanBusDevice::CanBusError)>(&MyQCanBusDevice::Signal_ErrorOccurred), static_cast<Qt::ConnectionType>(t));
 }
 
 void QCanBusDevice_DisconnectErrorOccurred(void* ptr)
@@ -391,9 +391,9 @@ long long QCanBusDevice_FramesAvailable(void* ptr)
 	return static_cast<QCanBusDevice*>(ptr)->framesAvailable();
 }
 
-void QCanBusDevice_ConnectFramesReceived(void* ptr)
+void QCanBusDevice_ConnectFramesReceived(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QCanBusDevice*>(ptr), static_cast<void (QCanBusDevice::*)()>(&QCanBusDevice::framesReceived), static_cast<MyQCanBusDevice*>(ptr), static_cast<void (MyQCanBusDevice::*)()>(&MyQCanBusDevice::Signal_FramesReceived));
+	QObject::connect(static_cast<QCanBusDevice*>(ptr), static_cast<void (QCanBusDevice::*)()>(&QCanBusDevice::framesReceived), static_cast<MyQCanBusDevice*>(ptr), static_cast<void (MyQCanBusDevice::*)()>(&MyQCanBusDevice::Signal_FramesReceived), static_cast<Qt::ConnectionType>(t));
 }
 
 void QCanBusDevice_DisconnectFramesReceived(void* ptr)
@@ -411,9 +411,9 @@ long long QCanBusDevice_FramesToWrite(void* ptr)
 	return static_cast<QCanBusDevice*>(ptr)->framesToWrite();
 }
 
-void QCanBusDevice_ConnectFramesWritten(void* ptr)
+void QCanBusDevice_ConnectFramesWritten(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QCanBusDevice*>(ptr), static_cast<void (QCanBusDevice::*)(qint64)>(&QCanBusDevice::framesWritten), static_cast<MyQCanBusDevice*>(ptr), static_cast<void (MyQCanBusDevice::*)(qint64)>(&MyQCanBusDevice::Signal_FramesWritten));
+	QObject::connect(static_cast<QCanBusDevice*>(ptr), static_cast<void (QCanBusDevice::*)(qint64)>(&QCanBusDevice::framesWritten), static_cast<MyQCanBusDevice*>(ptr), static_cast<void (MyQCanBusDevice::*)(qint64)>(&MyQCanBusDevice::Signal_FramesWritten), static_cast<Qt::ConnectionType>(t));
 }
 
 void QCanBusDevice_DisconnectFramesWritten(void* ptr)
@@ -466,10 +466,10 @@ long long QCanBusDevice_State(void* ptr)
 	return static_cast<QCanBusDevice*>(ptr)->state();
 }
 
-void QCanBusDevice_ConnectStateChanged(void* ptr)
+void QCanBusDevice_ConnectStateChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<QCanBusDevice::CanBusDeviceState>();
-	QObject::connect(static_cast<QCanBusDevice*>(ptr), static_cast<void (QCanBusDevice::*)(QCanBusDevice::CanBusDeviceState)>(&QCanBusDevice::stateChanged), static_cast<MyQCanBusDevice*>(ptr), static_cast<void (MyQCanBusDevice::*)(QCanBusDevice::CanBusDeviceState)>(&MyQCanBusDevice::Signal_StateChanged));
+	QObject::connect(static_cast<QCanBusDevice*>(ptr), static_cast<void (QCanBusDevice::*)(QCanBusDevice::CanBusDeviceState)>(&QCanBusDevice::stateChanged), static_cast<MyQCanBusDevice*>(ptr), static_cast<void (MyQCanBusDevice::*)(QCanBusDevice::CanBusDeviceState)>(&MyQCanBusDevice::Signal_StateChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QCanBusDevice_DisconnectStateChanged(void* ptr)
@@ -1055,9 +1055,9 @@ int QModbusClient_Timeout(void* ptr)
 	return static_cast<QModbusClient*>(ptr)->timeout();
 }
 
-void QModbusClient_ConnectTimeoutChanged(void* ptr)
+void QModbusClient_ConnectTimeoutChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QModbusClient*>(ptr), static_cast<void (QModbusClient::*)(int)>(&QModbusClient::timeoutChanged), static_cast<MyQModbusClient*>(ptr), static_cast<void (MyQModbusClient::*)(int)>(&MyQModbusClient::Signal_TimeoutChanged));
+	QObject::connect(static_cast<QModbusClient*>(ptr), static_cast<void (QModbusClient::*)(int)>(&QModbusClient::timeoutChanged), static_cast<MyQModbusClient*>(ptr), static_cast<void (MyQModbusClient::*)(int)>(&MyQModbusClient::Signal_TimeoutChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QModbusClient_DisconnectTimeoutChanged(void* ptr)
@@ -1355,10 +1355,10 @@ long long QModbusDevice_Error(void* ptr)
 	return static_cast<QModbusDevice*>(ptr)->error();
 }
 
-void QModbusDevice_ConnectErrorOccurred(void* ptr)
+void QModbusDevice_ConnectErrorOccurred(void* ptr, long long t)
 {
 	qRegisterMetaType<QModbusDevice::Error>();
-	QObject::connect(static_cast<QModbusDevice*>(ptr), static_cast<void (QModbusDevice::*)(QModbusDevice::Error)>(&QModbusDevice::errorOccurred), static_cast<MyQModbusDevice*>(ptr), static_cast<void (MyQModbusDevice::*)(QModbusDevice::Error)>(&MyQModbusDevice::Signal_ErrorOccurred));
+	QObject::connect(static_cast<QModbusDevice*>(ptr), static_cast<void (QModbusDevice::*)(QModbusDevice::Error)>(&QModbusDevice::errorOccurred), static_cast<MyQModbusDevice*>(ptr), static_cast<void (MyQModbusDevice::*)(QModbusDevice::Error)>(&MyQModbusDevice::Signal_ErrorOccurred), static_cast<Qt::ConnectionType>(t));
 }
 
 void QModbusDevice_DisconnectErrorOccurred(void* ptr)
@@ -1401,10 +1401,10 @@ long long QModbusDevice_State(void* ptr)
 	return static_cast<QModbusDevice*>(ptr)->state();
 }
 
-void QModbusDevice_ConnectStateChanged(void* ptr)
+void QModbusDevice_ConnectStateChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<QModbusDevice::State>();
-	QObject::connect(static_cast<QModbusDevice*>(ptr), static_cast<void (QModbusDevice::*)(QModbusDevice::State)>(&QModbusDevice::stateChanged), static_cast<MyQModbusDevice*>(ptr), static_cast<void (MyQModbusDevice::*)(QModbusDevice::State)>(&MyQModbusDevice::Signal_StateChanged));
+	QObject::connect(static_cast<QModbusDevice*>(ptr), static_cast<void (QModbusDevice::*)(QModbusDevice::State)>(&QModbusDevice::stateChanged), static_cast<MyQModbusDevice*>(ptr), static_cast<void (MyQModbusDevice::*)(QModbusDevice::State)>(&MyQModbusDevice::Signal_StateChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QModbusDevice_DisconnectStateChanged(void* ptr)
@@ -2038,10 +2038,10 @@ long long QModbusReply_Error(void* ptr)
 	return static_cast<QModbusReply*>(ptr)->error();
 }
 
-void QModbusReply_ConnectErrorOccurred(void* ptr)
+void QModbusReply_ConnectErrorOccurred(void* ptr, long long t)
 {
 	qRegisterMetaType<QModbusDevice::Error>();
-	QObject::connect(static_cast<QModbusReply*>(ptr), static_cast<void (QModbusReply::*)(QModbusDevice::Error)>(&QModbusReply::errorOccurred), static_cast<MyQModbusReply*>(ptr), static_cast<void (MyQModbusReply::*)(QModbusDevice::Error)>(&MyQModbusReply::Signal_ErrorOccurred));
+	QObject::connect(static_cast<QModbusReply*>(ptr), static_cast<void (QModbusReply::*)(QModbusDevice::Error)>(&QModbusReply::errorOccurred), static_cast<MyQModbusReply*>(ptr), static_cast<void (MyQModbusReply::*)(QModbusDevice::Error)>(&MyQModbusReply::Signal_ErrorOccurred), static_cast<Qt::ConnectionType>(t));
 }
 
 void QModbusReply_DisconnectErrorOccurred(void* ptr)
@@ -2059,9 +2059,9 @@ struct QtSerialBus_PackedString QModbusReply_ErrorString(void* ptr)
 	return ({ QByteArray teb6a0e = static_cast<QModbusReply*>(ptr)->errorString().toUtf8(); QtSerialBus_PackedString { const_cast<char*>(teb6a0e.prepend("WHITESPACE").constData()+10), teb6a0e.size()-10 }; });
 }
 
-void QModbusReply_ConnectFinished(void* ptr)
+void QModbusReply_ConnectFinished(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QModbusReply*>(ptr), static_cast<void (QModbusReply::*)()>(&QModbusReply::finished), static_cast<MyQModbusReply*>(ptr), static_cast<void (MyQModbusReply::*)()>(&MyQModbusReply::Signal_Finished));
+	QObject::connect(static_cast<QModbusReply*>(ptr), static_cast<void (QModbusReply::*)()>(&QModbusReply::finished), static_cast<MyQModbusReply*>(ptr), static_cast<void (MyQModbusReply::*)()>(&MyQModbusReply::Signal_Finished), static_cast<Qt::ConnectionType>(t));
 }
 
 void QModbusReply_DisconnectFinished(void* ptr)
@@ -2609,10 +2609,10 @@ char QModbusServer_Data2(void* ptr, long long table, unsigned short address, uns
 	return static_cast<QModbusServer*>(ptr)->data(static_cast<QModbusDataUnit::RegisterType>(table), address, &data);
 }
 
-void QModbusServer_ConnectDataWritten(void* ptr)
+void QModbusServer_ConnectDataWritten(void* ptr, long long t)
 {
 	qRegisterMetaType<QModbusDataUnit::RegisterType>();
-	QObject::connect(static_cast<QModbusServer*>(ptr), static_cast<void (QModbusServer::*)(QModbusDataUnit::RegisterType, int, int)>(&QModbusServer::dataWritten), static_cast<MyQModbusServer*>(ptr), static_cast<void (MyQModbusServer::*)(QModbusDataUnit::RegisterType, int, int)>(&MyQModbusServer::Signal_DataWritten));
+	QObject::connect(static_cast<QModbusServer*>(ptr), static_cast<void (QModbusServer::*)(QModbusDataUnit::RegisterType, int, int)>(&QModbusServer::dataWritten), static_cast<MyQModbusServer*>(ptr), static_cast<void (MyQModbusServer::*)(QModbusDataUnit::RegisterType, int, int)>(&MyQModbusServer::Signal_DataWritten), static_cast<Qt::ConnectionType>(t));
 }
 
 void QModbusServer_DisconnectDataWritten(void* ptr)
@@ -3004,9 +3004,9 @@ void QModbusTcpServer_InstallConnectionObserver(void* ptr, void* observer)
 	static_cast<QModbusTcpServer*>(ptr)->installConnectionObserver(static_cast<QModbusTcpConnectionObserver*>(observer));
 }
 
-void QModbusTcpServer_ConnectModbusClientDisconnected(void* ptr)
+void QModbusTcpServer_ConnectModbusClientDisconnected(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QModbusTcpServer*>(ptr), static_cast<void (QModbusTcpServer::*)(QTcpSocket *)>(&QModbusTcpServer::modbusClientDisconnected), static_cast<MyQModbusTcpServer*>(ptr), static_cast<void (MyQModbusTcpServer::*)(QTcpSocket *)>(&MyQModbusTcpServer::Signal_ModbusClientDisconnected));
+	QObject::connect(static_cast<QModbusTcpServer*>(ptr), static_cast<void (QModbusTcpServer::*)(QTcpSocket *)>(&QModbusTcpServer::modbusClientDisconnected), static_cast<MyQModbusTcpServer*>(ptr), static_cast<void (MyQModbusTcpServer::*)(QTcpSocket *)>(&MyQModbusTcpServer::Signal_ModbusClientDisconnected), static_cast<Qt::ConnectionType>(t));
 }
 
 void QModbusTcpServer_DisconnectModbusClientDisconnected(void* ptr)

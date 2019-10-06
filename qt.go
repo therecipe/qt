@@ -21,6 +21,9 @@ var (
 
 	objectsTemp      = make(map[unsafe.Pointer]unsafe.Pointer)
 	objectsTempMutex = new(sync.Mutex)
+
+	connectionTypes      = make(map[unsafe.Pointer]map[string]int64)
+	connectionTypesMutex = new(sync.Mutex)
 )
 
 func init() { runtime.LockOSThread() }
@@ -84,6 +87,9 @@ func DisconnectSignal(cPtr interface{}, signal string) {
 	if dcPtr, ok := cPtr.(unsafe.Pointer); ok {
 		signalsMutex.Lock()
 		delete(signals[dcPtr], signal)
+		if len(signals[dcPtr]) == 0 {
+			delete(signals, dcPtr)
+		}
 		signalsMutex.Unlock()
 	} else {
 		disconnectSignalJNI(cPtr.(string), signal)
@@ -93,6 +99,9 @@ func DisconnectSignal(cPtr interface{}, signal string) {
 func disconnectSignalJNI(cPtr, signal string) {
 	signalsMutex.Lock()
 	delete(signalsJNI[cPtr], signal)
+	if len(signalsJNI[cPtr]) == 0 {
+		delete(signalsJNI, cPtr)
+	}
 	signalsMutex.Unlock()
 }
 
@@ -134,6 +143,16 @@ func DumpTempObjects() {
 	}
 	objectsTempMutex.Unlock()
 	Debug("##############################\tTMP_OBJECTS_TABLE_END\t##############################")
+}
+
+func DumpConnectionTypes() {
+	Debug("##############################\tCON_MODES_TABLE_START\t##############################")
+	connectionTypesMutex.Lock()
+	for cPtr, entry := range connectionTypes {
+		Debug(cPtr, entry)
+	}
+	connectionTypesMutex.Unlock()
+	Debug("##############################\tCON_MODES_TABLE_END\t##############################")
 }
 
 func CountSignals() (c int) {
@@ -204,4 +223,29 @@ func UnregisterTemp(cPtr unsafe.Pointer) {
 	objectsTempMutex.Lock()
 	delete(objectsTemp, cPtr)
 	objectsTempMutex.Unlock()
+}
+
+func RegisterConnectionType(cPtr unsafe.Pointer, signal string, mode int64) {
+	connectionTypesMutex.Lock()
+	if s, exists := connectionTypes[cPtr]; !exists {
+		connectionTypes[cPtr] = map[string]int64{signal: mode}
+	} else {
+		s[signal] = mode
+	}
+	connectionTypesMutex.Unlock()
+}
+
+func ConnectionType(cPtr unsafe.Pointer, signal string) (m int64) {
+	connectionTypesMutex.Lock()
+	if s, exists := connectionTypes[cPtr]; exists {
+		if lm, ok := s[signal]; ok {
+			delete(s, signal)
+			if len(s) == 0 {
+				delete(connectionTypes, cPtr)
+			}
+			m = lm
+		}
+	}
+	connectionTypesMutex.Unlock()
+	return
 }

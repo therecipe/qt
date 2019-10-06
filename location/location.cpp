@@ -634,9 +634,9 @@ void QGeoRouteReply_AbortDefault(void* ptr)
 		static_cast<QGeoRouteReply*>(ptr)->QGeoRouteReply::abort();
 }
 
-void QGeoRouteReply_ConnectAborted(void* ptr)
+void QGeoRouteReply_ConnectAborted(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGeoRouteReply*>(ptr), static_cast<void (QGeoRouteReply::*)()>(&QGeoRouteReply::aborted), static_cast<MyQGeoRouteReply*>(ptr), static_cast<void (MyQGeoRouteReply::*)()>(&MyQGeoRouteReply::Signal_Aborted));
+	QObject::connect(static_cast<QGeoRouteReply*>(ptr), static_cast<void (QGeoRouteReply::*)()>(&QGeoRouteReply::aborted), static_cast<MyQGeoRouteReply*>(ptr), static_cast<void (MyQGeoRouteReply::*)()>(&MyQGeoRouteReply::Signal_Aborted), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGeoRouteReply_DisconnectAborted(void* ptr)
@@ -659,9 +659,9 @@ long long QGeoRouteReply_Error(void* ptr)
 	return static_cast<QGeoRouteReply*>(ptr)->error();
 }
 
-void QGeoRouteReply_ConnectError2(void* ptr)
+void QGeoRouteReply_ConnectError2(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGeoRouteReply*>(ptr), static_cast<void (QGeoRouteReply::*)(QGeoRouteReply::Error, const QString &)>(&QGeoRouteReply::error), static_cast<MyQGeoRouteReply*>(ptr), static_cast<void (MyQGeoRouteReply::*)(QGeoRouteReply::Error, const QString &)>(&MyQGeoRouteReply::Signal_Error2));
+	QObject::connect(static_cast<QGeoRouteReply*>(ptr), static_cast<void (QGeoRouteReply::*)(QGeoRouteReply::Error, const QString &)>(&QGeoRouteReply::error), static_cast<MyQGeoRouteReply*>(ptr), static_cast<void (MyQGeoRouteReply::*)(QGeoRouteReply::Error, const QString &)>(&MyQGeoRouteReply::Signal_Error2), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGeoRouteReply_DisconnectError2(void* ptr)
@@ -679,9 +679,9 @@ struct QtLocation_PackedString QGeoRouteReply_ErrorString(void* ptr)
 	return ({ QByteArray t834aee = static_cast<QGeoRouteReply*>(ptr)->errorString().toUtf8(); QtLocation_PackedString { const_cast<char*>(t834aee.prepend("WHITESPACE").constData()+10), t834aee.size()-10 }; });
 }
 
-void QGeoRouteReply_ConnectFinished(void* ptr)
+void QGeoRouteReply_ConnectFinished(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGeoRouteReply*>(ptr), static_cast<void (QGeoRouteReply::*)()>(&QGeoRouteReply::finished), static_cast<MyQGeoRouteReply*>(ptr), static_cast<void (MyQGeoRouteReply::*)()>(&MyQGeoRouteReply::Signal_Finished));
+	QObject::connect(static_cast<QGeoRouteReply*>(ptr), static_cast<void (QGeoRouteReply::*)()>(&QGeoRouteReply::finished), static_cast<MyQGeoRouteReply*>(ptr), static_cast<void (MyQGeoRouteReply::*)()>(&MyQGeoRouteReply::Signal_Finished), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGeoRouteReply_DisconnectFinished(void* ptr)
@@ -1497,9 +1497,9 @@ void* QGeoRoutingManager_CalculateRoute(void* ptr, void* request)
 	return static_cast<QGeoRoutingManager*>(ptr)->calculateRoute(*static_cast<QGeoRouteRequest*>(request));
 }
 
-void QGeoRoutingManager_ConnectError(void* ptr)
+void QGeoRoutingManager_ConnectError(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGeoRoutingManager*>(ptr), static_cast<void (QGeoRoutingManager::*)(QGeoRouteReply *, QGeoRouteReply::Error, QString)>(&QGeoRoutingManager::error), static_cast<MyQGeoRoutingManager*>(ptr), static_cast<void (MyQGeoRoutingManager::*)(QGeoRouteReply *, QGeoRouteReply::Error, QString)>(&MyQGeoRoutingManager::Signal_Error));
+	QObject::connect(static_cast<QGeoRoutingManager*>(ptr), static_cast<void (QGeoRoutingManager::*)(QGeoRouteReply *, QGeoRouteReply::Error, QString)>(&QGeoRoutingManager::error), static_cast<MyQGeoRoutingManager*>(ptr), static_cast<void (MyQGeoRoutingManager::*)(QGeoRouteReply *, QGeoRouteReply::Error, QString)>(&MyQGeoRoutingManager::Signal_Error), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGeoRoutingManager_DisconnectError(void* ptr)
@@ -1512,9 +1512,9 @@ void QGeoRoutingManager_Error(void* ptr, void* reply, long long error, struct Qt
 	static_cast<QGeoRoutingManager*>(ptr)->error(static_cast<QGeoRouteReply*>(reply), static_cast<QGeoRouteReply::Error>(error), QString::fromUtf8(errorString.data, errorString.len));
 }
 
-void QGeoRoutingManager_ConnectFinished(void* ptr)
+void QGeoRoutingManager_ConnectFinished(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGeoRoutingManager*>(ptr), static_cast<void (QGeoRoutingManager::*)(QGeoRouteReply *)>(&QGeoRoutingManager::finished), static_cast<MyQGeoRoutingManager*>(ptr), static_cast<void (MyQGeoRoutingManager::*)(QGeoRouteReply *)>(&MyQGeoRoutingManager::Signal_Finished));
+	QObject::connect(static_cast<QGeoRoutingManager*>(ptr), static_cast<void (QGeoRoutingManager::*)(QGeoRouteReply *)>(&QGeoRoutingManager::finished), static_cast<MyQGeoRoutingManager*>(ptr), static_cast<void (MyQGeoRoutingManager::*)(QGeoRouteReply *)>(&MyQGeoRoutingManager::Signal_Finished), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGeoRoutingManager_DisconnectFinished(void* ptr)
@@ -1806,9 +1806,9 @@ void* QGeoRoutingManagerEngine_CalculateRoute(void* ptr, void* request)
 	return static_cast<QGeoRoutingManagerEngine*>(ptr)->calculateRoute(*static_cast<QGeoRouteRequest*>(request));
 }
 
-void QGeoRoutingManagerEngine_ConnectError(void* ptr)
+void QGeoRoutingManagerEngine_ConnectError(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGeoRoutingManagerEngine*>(ptr), static_cast<void (QGeoRoutingManagerEngine::*)(QGeoRouteReply *, QGeoRouteReply::Error, QString)>(&QGeoRoutingManagerEngine::error), static_cast<MyQGeoRoutingManagerEngine*>(ptr), static_cast<void (MyQGeoRoutingManagerEngine::*)(QGeoRouteReply *, QGeoRouteReply::Error, QString)>(&MyQGeoRoutingManagerEngine::Signal_Error));
+	QObject::connect(static_cast<QGeoRoutingManagerEngine*>(ptr), static_cast<void (QGeoRoutingManagerEngine::*)(QGeoRouteReply *, QGeoRouteReply::Error, QString)>(&QGeoRoutingManagerEngine::error), static_cast<MyQGeoRoutingManagerEngine*>(ptr), static_cast<void (MyQGeoRoutingManagerEngine::*)(QGeoRouteReply *, QGeoRouteReply::Error, QString)>(&MyQGeoRoutingManagerEngine::Signal_Error), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGeoRoutingManagerEngine_DisconnectError(void* ptr)
@@ -1821,9 +1821,9 @@ void QGeoRoutingManagerEngine_Error(void* ptr, void* reply, long long error, str
 	static_cast<QGeoRoutingManagerEngine*>(ptr)->error(static_cast<QGeoRouteReply*>(reply), static_cast<QGeoRouteReply::Error>(error), QString::fromUtf8(errorString.data, errorString.len));
 }
 
-void QGeoRoutingManagerEngine_ConnectFinished(void* ptr)
+void QGeoRoutingManagerEngine_ConnectFinished(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGeoRoutingManagerEngine*>(ptr), static_cast<void (QGeoRoutingManagerEngine::*)(QGeoRouteReply *)>(&QGeoRoutingManagerEngine::finished), static_cast<MyQGeoRoutingManagerEngine*>(ptr), static_cast<void (MyQGeoRoutingManagerEngine::*)(QGeoRouteReply *)>(&MyQGeoRoutingManagerEngine::Signal_Finished));
+	QObject::connect(static_cast<QGeoRoutingManagerEngine*>(ptr), static_cast<void (QGeoRoutingManagerEngine::*)(QGeoRouteReply *)>(&QGeoRoutingManagerEngine::finished), static_cast<MyQGeoRoutingManagerEngine*>(ptr), static_cast<void (MyQGeoRoutingManagerEngine::*)(QGeoRouteReply *)>(&MyQGeoRoutingManagerEngine::Signal_Finished), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGeoRoutingManagerEngine_DisconnectFinished(void* ptr)

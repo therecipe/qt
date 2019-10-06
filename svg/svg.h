@@ -140,7 +140,7 @@ void QSvgRenderer_Render2(void* ptr, void* painter, void* bounds);
 void QSvgRenderer_Render2Default(void* ptr, void* painter, void* bounds);
 void QSvgRenderer_Render3(void* ptr, void* painter, struct QtSvg_PackedString elementId, void* bounds);
 void QSvgRenderer_Render3Default(void* ptr, void* painter, struct QtSvg_PackedString elementId, void* bounds);
-void QSvgRenderer_ConnectRepaintNeeded(void* ptr);
+void QSvgRenderer_ConnectRepaintNeeded(void* ptr, long long t);
 void QSvgRenderer_DisconnectRepaintNeeded(void* ptr);
 void QSvgRenderer_RepaintNeeded(void* ptr);
 void QSvgRenderer_SetFramesPerSecond(void* ptr, int num);

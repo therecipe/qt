@@ -415,9 +415,9 @@ struct QtPositioning_PackedList QGeoAreaMonitorSource_ActiveMonitors2(void* ptr,
 	return ({ QList<QGeoAreaMonitorInfo>* tmpValuecdc19c = new QList<QGeoAreaMonitorInfo>(static_cast<QGeoAreaMonitorSource*>(ptr)->activeMonitors(*static_cast<QGeoShape*>(lookupArea))); QtPositioning_PackedList { tmpValuecdc19c, tmpValuecdc19c->size() }; });
 }
 
-void QGeoAreaMonitorSource_ConnectAreaEntered(void* ptr)
+void QGeoAreaMonitorSource_ConnectAreaEntered(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGeoAreaMonitorSource*>(ptr), static_cast<void (QGeoAreaMonitorSource::*)(const QGeoAreaMonitorInfo &, const QGeoPositionInfo &)>(&QGeoAreaMonitorSource::areaEntered), static_cast<MyQGeoAreaMonitorSource*>(ptr), static_cast<void (MyQGeoAreaMonitorSource::*)(const QGeoAreaMonitorInfo &, const QGeoPositionInfo &)>(&MyQGeoAreaMonitorSource::Signal_AreaEntered));
+	QObject::connect(static_cast<QGeoAreaMonitorSource*>(ptr), static_cast<void (QGeoAreaMonitorSource::*)(const QGeoAreaMonitorInfo &, const QGeoPositionInfo &)>(&QGeoAreaMonitorSource::areaEntered), static_cast<MyQGeoAreaMonitorSource*>(ptr), static_cast<void (MyQGeoAreaMonitorSource::*)(const QGeoAreaMonitorInfo &, const QGeoPositionInfo &)>(&MyQGeoAreaMonitorSource::Signal_AreaEntered), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGeoAreaMonitorSource_DisconnectAreaEntered(void* ptr)
@@ -430,9 +430,9 @@ void QGeoAreaMonitorSource_AreaEntered(void* ptr, void* monitor, void* update)
 	static_cast<QGeoAreaMonitorSource*>(ptr)->areaEntered(*static_cast<QGeoAreaMonitorInfo*>(monitor), *static_cast<QGeoPositionInfo*>(update));
 }
 
-void QGeoAreaMonitorSource_ConnectAreaExited(void* ptr)
+void QGeoAreaMonitorSource_ConnectAreaExited(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGeoAreaMonitorSource*>(ptr), static_cast<void (QGeoAreaMonitorSource::*)(const QGeoAreaMonitorInfo &, const QGeoPositionInfo &)>(&QGeoAreaMonitorSource::areaExited), static_cast<MyQGeoAreaMonitorSource*>(ptr), static_cast<void (MyQGeoAreaMonitorSource::*)(const QGeoAreaMonitorInfo &, const QGeoPositionInfo &)>(&MyQGeoAreaMonitorSource::Signal_AreaExited));
+	QObject::connect(static_cast<QGeoAreaMonitorSource*>(ptr), static_cast<void (QGeoAreaMonitorSource::*)(const QGeoAreaMonitorInfo &, const QGeoPositionInfo &)>(&QGeoAreaMonitorSource::areaExited), static_cast<MyQGeoAreaMonitorSource*>(ptr), static_cast<void (MyQGeoAreaMonitorSource::*)(const QGeoAreaMonitorInfo &, const QGeoPositionInfo &)>(&MyQGeoAreaMonitorSource::Signal_AreaExited), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGeoAreaMonitorSource_DisconnectAreaExited(void* ptr)
@@ -465,9 +465,9 @@ long long QGeoAreaMonitorSource_Error(void* ptr)
 	return static_cast<QGeoAreaMonitorSource*>(ptr)->error();
 }
 
-void QGeoAreaMonitorSource_ConnectError2(void* ptr)
+void QGeoAreaMonitorSource_ConnectError2(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGeoAreaMonitorSource*>(ptr), static_cast<void (QGeoAreaMonitorSource::*)(QGeoAreaMonitorSource::Error)>(&QGeoAreaMonitorSource::error), static_cast<MyQGeoAreaMonitorSource*>(ptr), static_cast<void (MyQGeoAreaMonitorSource::*)(QGeoAreaMonitorSource::Error)>(&MyQGeoAreaMonitorSource::Signal_Error2));
+	QObject::connect(static_cast<QGeoAreaMonitorSource*>(ptr), static_cast<void (QGeoAreaMonitorSource::*)(QGeoAreaMonitorSource::Error)>(&QGeoAreaMonitorSource::error), static_cast<MyQGeoAreaMonitorSource*>(ptr), static_cast<void (MyQGeoAreaMonitorSource::*)(QGeoAreaMonitorSource::Error)>(&MyQGeoAreaMonitorSource::Signal_Error2), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGeoAreaMonitorSource_DisconnectError2(void* ptr)
@@ -480,9 +480,9 @@ void QGeoAreaMonitorSource_Error2(void* ptr, long long areaMonitoringError)
 	static_cast<QGeoAreaMonitorSource*>(ptr)->error(static_cast<QGeoAreaMonitorSource::Error>(areaMonitoringError));
 }
 
-void QGeoAreaMonitorSource_ConnectMonitorExpired(void* ptr)
+void QGeoAreaMonitorSource_ConnectMonitorExpired(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGeoAreaMonitorSource*>(ptr), static_cast<void (QGeoAreaMonitorSource::*)(const QGeoAreaMonitorInfo &)>(&QGeoAreaMonitorSource::monitorExpired), static_cast<MyQGeoAreaMonitorSource*>(ptr), static_cast<void (MyQGeoAreaMonitorSource::*)(const QGeoAreaMonitorInfo &)>(&MyQGeoAreaMonitorSource::Signal_MonitorExpired));
+	QObject::connect(static_cast<QGeoAreaMonitorSource*>(ptr), static_cast<void (QGeoAreaMonitorSource::*)(const QGeoAreaMonitorInfo &)>(&QGeoAreaMonitorSource::monitorExpired), static_cast<MyQGeoAreaMonitorSource*>(ptr), static_cast<void (MyQGeoAreaMonitorSource::*)(const QGeoAreaMonitorInfo &)>(&MyQGeoAreaMonitorSource::Signal_MonitorExpired), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGeoAreaMonitorSource_DisconnectMonitorExpired(void* ptr)
@@ -1458,9 +1458,9 @@ long long QGeoPositionInfoSource_Error(void* ptr)
 	return static_cast<QGeoPositionInfoSource*>(ptr)->error();
 }
 
-void QGeoPositionInfoSource_ConnectError2(void* ptr)
+void QGeoPositionInfoSource_ConnectError2(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGeoPositionInfoSource*>(ptr), static_cast<void (QGeoPositionInfoSource::*)(QGeoPositionInfoSource::Error)>(&QGeoPositionInfoSource::error), static_cast<MyQGeoPositionInfoSource*>(ptr), static_cast<void (MyQGeoPositionInfoSource::*)(QGeoPositionInfoSource::Error)>(&MyQGeoPositionInfoSource::Signal_Error2));
+	QObject::connect(static_cast<QGeoPositionInfoSource*>(ptr), static_cast<void (QGeoPositionInfoSource::*)(QGeoPositionInfoSource::Error)>(&QGeoPositionInfoSource::error), static_cast<MyQGeoPositionInfoSource*>(ptr), static_cast<void (MyQGeoPositionInfoSource::*)(QGeoPositionInfoSource::Error)>(&MyQGeoPositionInfoSource::Signal_Error2), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGeoPositionInfoSource_DisconnectError2(void* ptr)
@@ -1483,9 +1483,9 @@ int QGeoPositionInfoSource_MinimumUpdateInterval(void* ptr)
 	return static_cast<QGeoPositionInfoSource*>(ptr)->minimumUpdateInterval();
 }
 
-void QGeoPositionInfoSource_ConnectPositionUpdated(void* ptr)
+void QGeoPositionInfoSource_ConnectPositionUpdated(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGeoPositionInfoSource*>(ptr), static_cast<void (QGeoPositionInfoSource::*)(const QGeoPositionInfo &)>(&QGeoPositionInfoSource::positionUpdated), static_cast<MyQGeoPositionInfoSource*>(ptr), static_cast<void (MyQGeoPositionInfoSource::*)(const QGeoPositionInfo &)>(&MyQGeoPositionInfoSource::Signal_PositionUpdated));
+	QObject::connect(static_cast<QGeoPositionInfoSource*>(ptr), static_cast<void (QGeoPositionInfoSource::*)(const QGeoPositionInfo &)>(&QGeoPositionInfoSource::positionUpdated), static_cast<MyQGeoPositionInfoSource*>(ptr), static_cast<void (MyQGeoPositionInfoSource::*)(const QGeoPositionInfo &)>(&MyQGeoPositionInfoSource::Signal_PositionUpdated), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGeoPositionInfoSource_DisconnectPositionUpdated(void* ptr)
@@ -1556,9 +1556,9 @@ long long QGeoPositionInfoSource_SupportedPositioningMethods(void* ptr)
 	return static_cast<QGeoPositionInfoSource*>(ptr)->supportedPositioningMethods();
 }
 
-void QGeoPositionInfoSource_ConnectSupportedPositioningMethodsChanged(void* ptr)
+void QGeoPositionInfoSource_ConnectSupportedPositioningMethodsChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGeoPositionInfoSource*>(ptr), static_cast<void (QGeoPositionInfoSource::*)()>(&QGeoPositionInfoSource::supportedPositioningMethodsChanged), static_cast<MyQGeoPositionInfoSource*>(ptr), static_cast<void (MyQGeoPositionInfoSource::*)()>(&MyQGeoPositionInfoSource::Signal_SupportedPositioningMethodsChanged));
+	QObject::connect(static_cast<QGeoPositionInfoSource*>(ptr), static_cast<void (QGeoPositionInfoSource::*)()>(&QGeoPositionInfoSource::supportedPositioningMethodsChanged), static_cast<MyQGeoPositionInfoSource*>(ptr), static_cast<void (MyQGeoPositionInfoSource::*)()>(&MyQGeoPositionInfoSource::Signal_SupportedPositioningMethodsChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGeoPositionInfoSource_DisconnectSupportedPositioningMethodsChanged(void* ptr)
@@ -1576,9 +1576,9 @@ int QGeoPositionInfoSource_UpdateInterval(void* ptr)
 	return static_cast<QGeoPositionInfoSource*>(ptr)->updateInterval();
 }
 
-void QGeoPositionInfoSource_ConnectUpdateTimeout(void* ptr)
+void QGeoPositionInfoSource_ConnectUpdateTimeout(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGeoPositionInfoSource*>(ptr), static_cast<void (QGeoPositionInfoSource::*)()>(&QGeoPositionInfoSource::updateTimeout), static_cast<MyQGeoPositionInfoSource*>(ptr), static_cast<void (MyQGeoPositionInfoSource::*)()>(&MyQGeoPositionInfoSource::Signal_UpdateTimeout));
+	QObject::connect(static_cast<QGeoPositionInfoSource*>(ptr), static_cast<void (QGeoPositionInfoSource::*)()>(&QGeoPositionInfoSource::updateTimeout), static_cast<MyQGeoPositionInfoSource*>(ptr), static_cast<void (MyQGeoPositionInfoSource::*)()>(&MyQGeoPositionInfoSource::Signal_UpdateTimeout), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGeoPositionInfoSource_DisconnectUpdateTimeout(void* ptr)
@@ -2108,9 +2108,9 @@ long long QGeoSatelliteInfoSource_Error(void* ptr)
 	return static_cast<QGeoSatelliteInfoSource*>(ptr)->error();
 }
 
-void QGeoSatelliteInfoSource_ConnectError2(void* ptr)
+void QGeoSatelliteInfoSource_ConnectError2(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGeoSatelliteInfoSource*>(ptr), static_cast<void (QGeoSatelliteInfoSource::*)(QGeoSatelliteInfoSource::Error)>(&QGeoSatelliteInfoSource::error), static_cast<MyQGeoSatelliteInfoSource*>(ptr), static_cast<void (MyQGeoSatelliteInfoSource::*)(QGeoSatelliteInfoSource::Error)>(&MyQGeoSatelliteInfoSource::Signal_Error2));
+	QObject::connect(static_cast<QGeoSatelliteInfoSource*>(ptr), static_cast<void (QGeoSatelliteInfoSource::*)(QGeoSatelliteInfoSource::Error)>(&QGeoSatelliteInfoSource::error), static_cast<MyQGeoSatelliteInfoSource*>(ptr), static_cast<void (MyQGeoSatelliteInfoSource::*)(QGeoSatelliteInfoSource::Error)>(&MyQGeoSatelliteInfoSource::Signal_Error2), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGeoSatelliteInfoSource_DisconnectError2(void* ptr)
@@ -2128,9 +2128,9 @@ int QGeoSatelliteInfoSource_MinimumUpdateInterval(void* ptr)
 	return static_cast<QGeoSatelliteInfoSource*>(ptr)->minimumUpdateInterval();
 }
 
-void QGeoSatelliteInfoSource_ConnectRequestTimeout(void* ptr)
+void QGeoSatelliteInfoSource_ConnectRequestTimeout(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGeoSatelliteInfoSource*>(ptr), static_cast<void (QGeoSatelliteInfoSource::*)()>(&QGeoSatelliteInfoSource::requestTimeout), static_cast<MyQGeoSatelliteInfoSource*>(ptr), static_cast<void (MyQGeoSatelliteInfoSource::*)()>(&MyQGeoSatelliteInfoSource::Signal_RequestTimeout));
+	QObject::connect(static_cast<QGeoSatelliteInfoSource*>(ptr), static_cast<void (QGeoSatelliteInfoSource::*)()>(&QGeoSatelliteInfoSource::requestTimeout), static_cast<MyQGeoSatelliteInfoSource*>(ptr), static_cast<void (MyQGeoSatelliteInfoSource::*)()>(&MyQGeoSatelliteInfoSource::Signal_RequestTimeout), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGeoSatelliteInfoSource_DisconnectRequestTimeout(void* ptr)
@@ -2148,9 +2148,9 @@ void QGeoSatelliteInfoSource_RequestUpdate(void* ptr, int timeout)
 	QMetaObject::invokeMethod(static_cast<QGeoSatelliteInfoSource*>(ptr), "requestUpdate", Q_ARG(int, timeout));
 }
 
-void QGeoSatelliteInfoSource_ConnectSatellitesInUseUpdated(void* ptr)
+void QGeoSatelliteInfoSource_ConnectSatellitesInUseUpdated(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGeoSatelliteInfoSource*>(ptr), static_cast<void (QGeoSatelliteInfoSource::*)(const QList<QGeoSatelliteInfo> &)>(&QGeoSatelliteInfoSource::satellitesInUseUpdated), static_cast<MyQGeoSatelliteInfoSource*>(ptr), static_cast<void (MyQGeoSatelliteInfoSource::*)(const QList<QGeoSatelliteInfo> &)>(&MyQGeoSatelliteInfoSource::Signal_SatellitesInUseUpdated));
+	QObject::connect(static_cast<QGeoSatelliteInfoSource*>(ptr), static_cast<void (QGeoSatelliteInfoSource::*)(const QList<QGeoSatelliteInfo> &)>(&QGeoSatelliteInfoSource::satellitesInUseUpdated), static_cast<MyQGeoSatelliteInfoSource*>(ptr), static_cast<void (MyQGeoSatelliteInfoSource::*)(const QList<QGeoSatelliteInfo> &)>(&MyQGeoSatelliteInfoSource::Signal_SatellitesInUseUpdated), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGeoSatelliteInfoSource_DisconnectSatellitesInUseUpdated(void* ptr)
@@ -2163,9 +2163,9 @@ void QGeoSatelliteInfoSource_SatellitesInUseUpdated(void* ptr, void* satellites)
 	static_cast<QGeoSatelliteInfoSource*>(ptr)->satellitesInUseUpdated(*static_cast<QList<QGeoSatelliteInfo>*>(satellites));
 }
 
-void QGeoSatelliteInfoSource_ConnectSatellitesInViewUpdated(void* ptr)
+void QGeoSatelliteInfoSource_ConnectSatellitesInViewUpdated(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGeoSatelliteInfoSource*>(ptr), static_cast<void (QGeoSatelliteInfoSource::*)(const QList<QGeoSatelliteInfo> &)>(&QGeoSatelliteInfoSource::satellitesInViewUpdated), static_cast<MyQGeoSatelliteInfoSource*>(ptr), static_cast<void (MyQGeoSatelliteInfoSource::*)(const QList<QGeoSatelliteInfo> &)>(&MyQGeoSatelliteInfoSource::Signal_SatellitesInViewUpdated));
+	QObject::connect(static_cast<QGeoSatelliteInfoSource*>(ptr), static_cast<void (QGeoSatelliteInfoSource::*)(const QList<QGeoSatelliteInfo> &)>(&QGeoSatelliteInfoSource::satellitesInViewUpdated), static_cast<MyQGeoSatelliteInfoSource*>(ptr), static_cast<void (MyQGeoSatelliteInfoSource::*)(const QList<QGeoSatelliteInfo> &)>(&MyQGeoSatelliteInfoSource::Signal_SatellitesInViewUpdated), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGeoSatelliteInfoSource_DisconnectSatellitesInViewUpdated(void* ptr)

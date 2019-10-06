@@ -313,10 +313,8 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 		switch system {
 		case "darwin":
 		case "linux":
-			if (strings.HasPrefix(target, "windows") || strings.HasPrefix(target, "ubports") || strings.HasPrefix(target, "linux") || strings.HasPrefix(target, "js") || strings.HasPrefix(target, "wasm")) && strings.Contains(target, "_") {
+			if strings.Contains(target, "_") {
 				image = target
-			} else if docker && strings.Contains(target, "_") {
-				utils.Log.Fatalf("%v is currently not supported", target)
 			}
 		case "windows":
 		}
@@ -519,23 +517,11 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 
 	if docker {
 		for i := range args {
-			if strings.HasPrefix(args[i], "windows_") {
-				args[i] = "windows"
-			}
-			if strings.HasPrefix(args[i], "ubports_") {
-				args[i] = "ubports"
-			}
-			if strings.HasPrefix(args[i], "linux_") {
-				args[i] = "linux"
-			}
-			if strings.HasPrefix(args[i], "js_") {
-				args[i] = "js"
-			}
-			if strings.HasPrefix(args[i], "wasm_") {
-				args[i] = "wasm"
-			}
-			if strings.HasPrefix(args[i], "android_") {
-				args[i] = "android"
+			for _, t := range []string{"windows", "ubports", "linux", "js", "wasm", "android"} {
+				if strings.HasPrefix(args[i], t+"_") {
+					args[i] = t
+					break
+				}
 			}
 		}
 
@@ -792,10 +778,18 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 			env["CGO_CXXFLAGS"] = "-std=c++11"
 		}
 
-		if arm, ok := os.LookupEnv("GOARM"); ok {
-			env["GOARM"] = arm
-			env["CC"] = os.Getenv("CC")
-			env["CXX"] = os.Getenv("CXX")
+		if strings.HasPrefix(env["GOARCH"], "arm") {
+			if env["GOARCH"] == "arm" {
+				if arm, ok := utils.GOARM(); ok {
+					env["GOARM"] = arm
+				}
+			}
+			if cc, ok := os.LookupEnv("CC"); ok {
+				env["CC"] = cc
+			}
+			if cxx, ok := os.LookupEnv("CXX"); ok {
+				env["CXX"] = cxx
+			}
 		}
 
 		if utils.QT_UBPORTS() || target == "ubports" {
@@ -833,10 +827,18 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 			"CGO_ENABLED": "1",
 		}
 
-		if arm, ok := os.LookupEnv("GOARM"); ok {
-			env["GOARM"] = arm
-			env["CC"] = os.Getenv("CC")
-			env["CXX"] = os.Getenv("CXX")
+		if strings.HasPrefix(env["GOARCH"], "arm") {
+			if env["GOARCH"] == "arm" {
+				if arm, ok := utils.GOARM(); ok {
+					env["GOARM"] = arm
+				}
+			}
+			if cc, ok := os.LookupEnv("CC"); ok {
+				env["CC"] = cc
+			}
+			if cxx, ok := os.LookupEnv("CXX"); ok {
+				env["CXX"] = cxx
+			}
 		}
 
 	case "rpi1", "rpi2", "rpi3":

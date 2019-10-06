@@ -350,7 +350,7 @@ func (ptr *QHelpContentModel) ConnectContentsCreated(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "contentsCreated") {
-			C.QHelpContentModel_ConnectContentsCreated(ptr.Pointer())
+			C.QHelpContentModel_ConnectContentsCreated(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "contentsCreated")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "contentsCreated"); signal != nil {
@@ -390,7 +390,7 @@ func (ptr *QHelpContentModel) ConnectContentsCreationStarted(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "contentsCreationStarted") {
-			C.QHelpContentModel_ConnectContentsCreationStarted(ptr.Pointer())
+			C.QHelpContentModel_ConnectContentsCreationStarted(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "contentsCreationStarted")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "contentsCreationStarted"); signal != nil {
@@ -2077,7 +2077,7 @@ func (ptr *QHelpContentWidget) ConnectLinkActivated(f func(link *core.QUrl)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "linkActivated") {
-			C.QHelpContentWidget_ConnectLinkActivated(ptr.Pointer())
+			C.QHelpContentWidget_ConnectLinkActivated(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "linkActivated")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "linkActivated"); signal != nil {
@@ -4843,7 +4843,7 @@ func (ptr *QHelpEngineCore) ConnectSetupFinished(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "setupFinished") {
-			C.QHelpEngineCore_ConnectSetupFinished(ptr.Pointer())
+			C.QHelpEngineCore_ConnectSetupFinished(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "setupFinished")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "setupFinished"); signal != nil {
@@ -4883,7 +4883,7 @@ func (ptr *QHelpEngineCore) ConnectSetupStarted(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "setupStarted") {
-			C.QHelpEngineCore_ConnectSetupStarted(ptr.Pointer())
+			C.QHelpEngineCore_ConnectSetupStarted(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "setupStarted")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "setupStarted"); signal != nil {
@@ -4942,7 +4942,7 @@ func (ptr *QHelpEngineCore) ConnectWarning(f func(msg string)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "warning") {
-			C.QHelpEngineCore_ConnectWarning(ptr.Pointer())
+			C.QHelpEngineCore_ConnectWarning(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "warning")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "warning"); signal != nil {
@@ -5673,7 +5673,7 @@ func (ptr *QHelpFilterEngine) ConnectFilterActivated(f func(newFilter string)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "filterActivated") {
-			C.QHelpFilterEngine_ConnectFilterActivated(ptr.Pointer())
+			C.QHelpFilterEngine_ConnectFilterActivated(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "filterActivated")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "filterActivated"); signal != nil {
@@ -6320,7 +6320,7 @@ func (ptr *QHelpIndexModel) ConnectIndexCreated(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "indexCreated") {
-			C.QHelpIndexModel_ConnectIndexCreated(ptr.Pointer())
+			C.QHelpIndexModel_ConnectIndexCreated(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "indexCreated")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "indexCreated"); signal != nil {
@@ -6360,7 +6360,7 @@ func (ptr *QHelpIndexModel) ConnectIndexCreationStarted(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "indexCreationStarted") {
-			C.QHelpIndexModel_ConnectIndexCreationStarted(ptr.Pointer())
+			C.QHelpIndexModel_ConnectIndexCreationStarted(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "indexCreationStarted")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "indexCreationStarted"); signal != nil {
@@ -8046,7 +8046,7 @@ func (ptr *QHelpIndexWidget) ConnectLinkActivated(f func(link *core.QUrl, keywor
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "linkActivated") {
-			C.QHelpIndexWidget_ConnectLinkActivated(ptr.Pointer())
+			C.QHelpIndexWidget_ConnectLinkActivated(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "linkActivated")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "linkActivated"); signal != nil {
@@ -8098,7 +8098,7 @@ func (ptr *QHelpIndexWidget) ConnectLinksActivated(f func(links map[string]*core
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "linksActivated") {
-			C.QHelpIndexWidget_ConnectLinksActivated(ptr.Pointer())
+			C.QHelpIndexWidget_ConnectLinksActivated(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "linksActivated")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "linksActivated"); signal != nil {
@@ -10370,7 +10370,7 @@ func (ptr *QHelpSearchEngine) ConnectIndexingFinished(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "indexingFinished") {
-			C.QHelpSearchEngine_ConnectIndexingFinished(ptr.Pointer())
+			C.QHelpSearchEngine_ConnectIndexingFinished(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "indexingFinished")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "indexingFinished"); signal != nil {
@@ -10410,7 +10410,7 @@ func (ptr *QHelpSearchEngine) ConnectIndexingStarted(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "indexingStarted") {
-			C.QHelpSearchEngine_ConnectIndexingStarted(ptr.Pointer())
+			C.QHelpSearchEngine_ConnectIndexingStarted(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "indexingStarted")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "indexingStarted"); signal != nil {
@@ -10596,7 +10596,7 @@ func (ptr *QHelpSearchEngine) ConnectSearchingFinished(f func(searchResultCount 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "searchingFinished") {
-			C.QHelpSearchEngine_ConnectSearchingFinished(ptr.Pointer())
+			C.QHelpSearchEngine_ConnectSearchingFinished(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "searchingFinished")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "searchingFinished"); signal != nil {
@@ -10636,7 +10636,7 @@ func (ptr *QHelpSearchEngine) ConnectSearchingStarted(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "searchingStarted") {
-			C.QHelpSearchEngine_ConnectSearchingStarted(ptr.Pointer())
+			C.QHelpSearchEngine_ConnectSearchingStarted(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "searchingStarted")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "searchingStarted"); signal != nil {
@@ -11148,7 +11148,7 @@ func (ptr *QHelpSearchQueryWidget) ConnectSearch(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "search") {
-			C.QHelpSearchQueryWidget_ConnectSearch(ptr.Pointer())
+			C.QHelpSearchQueryWidget_ConnectSearch(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "search")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "search"); signal != nil {
@@ -12655,7 +12655,7 @@ func (ptr *QHelpSearchResultWidget) ConnectRequestShowLink(f func(link *core.QUr
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "requestShowLink") {
-			C.QHelpSearchResultWidget_ConnectRequestShowLink(ptr.Pointer())
+			C.QHelpSearchResultWidget_ConnectRequestShowLink(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "requestShowLink")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "requestShowLink"); signal != nil {

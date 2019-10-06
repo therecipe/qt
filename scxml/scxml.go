@@ -717,7 +717,7 @@ func (ptr *QScxmlDataModel) ConnectStateMachineChanged(f func(stateMachine *QScx
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stateMachineChanged") {
-			C.QScxmlDataModel_ConnectStateMachineChanged(ptr.Pointer())
+			C.QScxmlDataModel_ConnectStateMachineChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stateMachineChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stateMachineChanged"); signal != nil {
@@ -3139,7 +3139,7 @@ func (ptr *QScxmlStateMachine) ConnectDataModelChanged(f func(model *QScxmlDataM
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "dataModelChanged") {
-			C.QScxmlStateMachine_ConnectDataModelChanged(ptr.Pointer())
+			C.QScxmlStateMachine_ConnectDataModelChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "dataModelChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "dataModelChanged"); signal != nil {
@@ -3179,7 +3179,7 @@ func (ptr *QScxmlStateMachine) ConnectFinished(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "finished") {
-			C.QScxmlStateMachine_ConnectFinished(ptr.Pointer())
+			C.QScxmlStateMachine_ConnectFinished(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "finished")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "finished"); signal != nil {
@@ -3330,7 +3330,7 @@ func (ptr *QScxmlStateMachine) ConnectInitializedChanged(f func(initialized bool
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "initializedChanged") {
-			C.QScxmlStateMachine_ConnectInitializedChanged(ptr.Pointer())
+			C.QScxmlStateMachine_ConnectInitializedChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "initializedChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "initializedChanged"); signal != nil {
@@ -3391,7 +3391,7 @@ func (ptr *QScxmlStateMachine) ConnectInvokedServicesChanged(f func(invokedServi
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "invokedServicesChanged") {
-			C.QScxmlStateMachine_ConnectInvokedServicesChanged(ptr.Pointer())
+			C.QScxmlStateMachine_ConnectInvokedServicesChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "invokedServicesChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "invokedServicesChanged"); signal != nil {
@@ -3489,7 +3489,7 @@ func (ptr *QScxmlStateMachine) ConnectLog(f func(label string, msg string)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "log") {
-			C.QScxmlStateMachine_ConnectLog(ptr.Pointer())
+			C.QScxmlStateMachine_ConnectLog(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "log")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "log"); signal != nil {
@@ -3560,7 +3560,7 @@ func (ptr *QScxmlStateMachine) ConnectReachedStableState(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "reachedStableState") {
-			C.QScxmlStateMachine_ConnectReachedStableState(ptr.Pointer())
+			C.QScxmlStateMachine_ConnectReachedStableState(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "reachedStableState")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "reachedStableState"); signal != nil {
@@ -3600,7 +3600,7 @@ func (ptr *QScxmlStateMachine) ConnectRunningChanged(f func(running bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "runningChanged") {
-			C.QScxmlStateMachine_ConnectRunningChanged(ptr.Pointer())
+			C.QScxmlStateMachine_ConnectRunningChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "runningChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "runningChanged"); signal != nil {
@@ -3805,7 +3805,7 @@ func (ptr *QScxmlStateMachine) ConnectTableDataChanged(f func(tableData *QScxmlT
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "tableDataChanged") {
-			C.QScxmlStateMachine_ConnectTableDataChanged(ptr.Pointer())
+			C.QScxmlStateMachine_ConnectTableDataChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "tableDataChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "tableDataChanged"); signal != nil {

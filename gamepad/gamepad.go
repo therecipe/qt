@@ -100,7 +100,7 @@ func (ptr *QGamepad) ConnectAxisLeftXChanged(f func(value float64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "axisLeftXChanged") {
-			C.QGamepad_ConnectAxisLeftXChanged(ptr.Pointer())
+			C.QGamepad_ConnectAxisLeftXChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "axisLeftXChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "axisLeftXChanged"); signal != nil {
@@ -147,7 +147,7 @@ func (ptr *QGamepad) ConnectAxisLeftYChanged(f func(value float64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "axisLeftYChanged") {
-			C.QGamepad_ConnectAxisLeftYChanged(ptr.Pointer())
+			C.QGamepad_ConnectAxisLeftYChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "axisLeftYChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "axisLeftYChanged"); signal != nil {
@@ -194,7 +194,7 @@ func (ptr *QGamepad) ConnectAxisRightXChanged(f func(value float64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "axisRightXChanged") {
-			C.QGamepad_ConnectAxisRightXChanged(ptr.Pointer())
+			C.QGamepad_ConnectAxisRightXChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "axisRightXChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "axisRightXChanged"); signal != nil {
@@ -241,7 +241,7 @@ func (ptr *QGamepad) ConnectAxisRightYChanged(f func(value float64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "axisRightYChanged") {
-			C.QGamepad_ConnectAxisRightYChanged(ptr.Pointer())
+			C.QGamepad_ConnectAxisRightYChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "axisRightYChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "axisRightYChanged"); signal != nil {
@@ -288,7 +288,7 @@ func (ptr *QGamepad) ConnectButtonAChanged(f func(value bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "buttonAChanged") {
-			C.QGamepad_ConnectButtonAChanged(ptr.Pointer())
+			C.QGamepad_ConnectButtonAChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "buttonAChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "buttonAChanged"); signal != nil {
@@ -335,7 +335,7 @@ func (ptr *QGamepad) ConnectButtonBChanged(f func(value bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "buttonBChanged") {
-			C.QGamepad_ConnectButtonBChanged(ptr.Pointer())
+			C.QGamepad_ConnectButtonBChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "buttonBChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "buttonBChanged"); signal != nil {
@@ -382,7 +382,7 @@ func (ptr *QGamepad) ConnectButtonCenterChanged(f func(value bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "buttonCenterChanged") {
-			C.QGamepad_ConnectButtonCenterChanged(ptr.Pointer())
+			C.QGamepad_ConnectButtonCenterChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "buttonCenterChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "buttonCenterChanged"); signal != nil {
@@ -429,7 +429,7 @@ func (ptr *QGamepad) ConnectButtonDownChanged(f func(value bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "buttonDownChanged") {
-			C.QGamepad_ConnectButtonDownChanged(ptr.Pointer())
+			C.QGamepad_ConnectButtonDownChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "buttonDownChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "buttonDownChanged"); signal != nil {
@@ -476,7 +476,7 @@ func (ptr *QGamepad) ConnectButtonGuideChanged(f func(value bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "buttonGuideChanged") {
-			C.QGamepad_ConnectButtonGuideChanged(ptr.Pointer())
+			C.QGamepad_ConnectButtonGuideChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "buttonGuideChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "buttonGuideChanged"); signal != nil {
@@ -523,7 +523,7 @@ func (ptr *QGamepad) ConnectButtonL1Changed(f func(value bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "buttonL1Changed") {
-			C.QGamepad_ConnectButtonL1Changed(ptr.Pointer())
+			C.QGamepad_ConnectButtonL1Changed(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "buttonL1Changed")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "buttonL1Changed"); signal != nil {
@@ -570,7 +570,7 @@ func (ptr *QGamepad) ConnectButtonL2Changed(f func(value float64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "buttonL2Changed") {
-			C.QGamepad_ConnectButtonL2Changed(ptr.Pointer())
+			C.QGamepad_ConnectButtonL2Changed(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "buttonL2Changed")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "buttonL2Changed"); signal != nil {
@@ -617,7 +617,7 @@ func (ptr *QGamepad) ConnectButtonL3Changed(f func(value bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "buttonL3Changed") {
-			C.QGamepad_ConnectButtonL3Changed(ptr.Pointer())
+			C.QGamepad_ConnectButtonL3Changed(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "buttonL3Changed")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "buttonL3Changed"); signal != nil {
@@ -664,7 +664,7 @@ func (ptr *QGamepad) ConnectButtonLeftChanged(f func(value bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "buttonLeftChanged") {
-			C.QGamepad_ConnectButtonLeftChanged(ptr.Pointer())
+			C.QGamepad_ConnectButtonLeftChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "buttonLeftChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "buttonLeftChanged"); signal != nil {
@@ -711,7 +711,7 @@ func (ptr *QGamepad) ConnectButtonR1Changed(f func(value bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "buttonR1Changed") {
-			C.QGamepad_ConnectButtonR1Changed(ptr.Pointer())
+			C.QGamepad_ConnectButtonR1Changed(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "buttonR1Changed")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "buttonR1Changed"); signal != nil {
@@ -758,7 +758,7 @@ func (ptr *QGamepad) ConnectButtonR2Changed(f func(value float64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "buttonR2Changed") {
-			C.QGamepad_ConnectButtonR2Changed(ptr.Pointer())
+			C.QGamepad_ConnectButtonR2Changed(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "buttonR2Changed")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "buttonR2Changed"); signal != nil {
@@ -805,7 +805,7 @@ func (ptr *QGamepad) ConnectButtonR3Changed(f func(value bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "buttonR3Changed") {
-			C.QGamepad_ConnectButtonR3Changed(ptr.Pointer())
+			C.QGamepad_ConnectButtonR3Changed(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "buttonR3Changed")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "buttonR3Changed"); signal != nil {
@@ -852,7 +852,7 @@ func (ptr *QGamepad) ConnectButtonRightChanged(f func(value bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "buttonRightChanged") {
-			C.QGamepad_ConnectButtonRightChanged(ptr.Pointer())
+			C.QGamepad_ConnectButtonRightChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "buttonRightChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "buttonRightChanged"); signal != nil {
@@ -899,7 +899,7 @@ func (ptr *QGamepad) ConnectButtonSelectChanged(f func(value bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "buttonSelectChanged") {
-			C.QGamepad_ConnectButtonSelectChanged(ptr.Pointer())
+			C.QGamepad_ConnectButtonSelectChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "buttonSelectChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "buttonSelectChanged"); signal != nil {
@@ -946,7 +946,7 @@ func (ptr *QGamepad) ConnectButtonStartChanged(f func(value bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "buttonStartChanged") {
-			C.QGamepad_ConnectButtonStartChanged(ptr.Pointer())
+			C.QGamepad_ConnectButtonStartChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "buttonStartChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "buttonStartChanged"); signal != nil {
@@ -993,7 +993,7 @@ func (ptr *QGamepad) ConnectButtonUpChanged(f func(value bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "buttonUpChanged") {
-			C.QGamepad_ConnectButtonUpChanged(ptr.Pointer())
+			C.QGamepad_ConnectButtonUpChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "buttonUpChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "buttonUpChanged"); signal != nil {
@@ -1040,7 +1040,7 @@ func (ptr *QGamepad) ConnectButtonXChanged(f func(value bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "buttonXChanged") {
-			C.QGamepad_ConnectButtonXChanged(ptr.Pointer())
+			C.QGamepad_ConnectButtonXChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "buttonXChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "buttonXChanged"); signal != nil {
@@ -1087,7 +1087,7 @@ func (ptr *QGamepad) ConnectButtonYChanged(f func(value bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "buttonYChanged") {
-			C.QGamepad_ConnectButtonYChanged(ptr.Pointer())
+			C.QGamepad_ConnectButtonYChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "buttonYChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "buttonYChanged"); signal != nil {
@@ -1127,7 +1127,7 @@ func (ptr *QGamepad) ConnectConnectedChanged(f func(value bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "connectedChanged") {
-			C.QGamepad_ConnectConnectedChanged(ptr.Pointer())
+			C.QGamepad_ConnectConnectedChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "connectedChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "connectedChanged"); signal != nil {
@@ -1174,7 +1174,7 @@ func (ptr *QGamepad) ConnectDeviceIdChanged(f func(value int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "deviceIdChanged") {
-			C.QGamepad_ConnectDeviceIdChanged(ptr.Pointer())
+			C.QGamepad_ConnectDeviceIdChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "deviceIdChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "deviceIdChanged"); signal != nil {
@@ -1228,7 +1228,7 @@ func (ptr *QGamepad) ConnectNameChanged(f func(value string)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "nameChanged") {
-			C.QGamepad_ConnectNameChanged(ptr.Pointer())
+			C.QGamepad_ConnectNameChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "nameChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "nameChanged"); signal != nil {
@@ -1627,7 +1627,7 @@ func (ptr *QGamepadKeyNavigation) ConnectActiveChanged(f func(isActive bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "activeChanged") {
-			C.QGamepadKeyNavigation_ConnectActiveChanged(ptr.Pointer())
+			C.QGamepadKeyNavigation_ConnectActiveChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "activeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "activeChanged"); signal != nil {
@@ -1674,7 +1674,7 @@ func (ptr *QGamepadKeyNavigation) ConnectButtonAKeyChanged(f func(key core.Qt__K
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "buttonAKeyChanged") {
-			C.QGamepadKeyNavigation_ConnectButtonAKeyChanged(ptr.Pointer())
+			C.QGamepadKeyNavigation_ConnectButtonAKeyChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "buttonAKeyChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "buttonAKeyChanged"); signal != nil {
@@ -1721,7 +1721,7 @@ func (ptr *QGamepadKeyNavigation) ConnectButtonBKeyChanged(f func(key core.Qt__K
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "buttonBKeyChanged") {
-			C.QGamepadKeyNavigation_ConnectButtonBKeyChanged(ptr.Pointer())
+			C.QGamepadKeyNavigation_ConnectButtonBKeyChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "buttonBKeyChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "buttonBKeyChanged"); signal != nil {
@@ -1768,7 +1768,7 @@ func (ptr *QGamepadKeyNavigation) ConnectButtonGuideKeyChanged(f func(key core.Q
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "buttonGuideKeyChanged") {
-			C.QGamepadKeyNavigation_ConnectButtonGuideKeyChanged(ptr.Pointer())
+			C.QGamepadKeyNavigation_ConnectButtonGuideKeyChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "buttonGuideKeyChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "buttonGuideKeyChanged"); signal != nil {
@@ -1815,7 +1815,7 @@ func (ptr *QGamepadKeyNavigation) ConnectButtonL1KeyChanged(f func(key core.Qt__
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "buttonL1KeyChanged") {
-			C.QGamepadKeyNavigation_ConnectButtonL1KeyChanged(ptr.Pointer())
+			C.QGamepadKeyNavigation_ConnectButtonL1KeyChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "buttonL1KeyChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "buttonL1KeyChanged"); signal != nil {
@@ -1862,7 +1862,7 @@ func (ptr *QGamepadKeyNavigation) ConnectButtonL2KeyChanged(f func(key core.Qt__
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "buttonL2KeyChanged") {
-			C.QGamepadKeyNavigation_ConnectButtonL2KeyChanged(ptr.Pointer())
+			C.QGamepadKeyNavigation_ConnectButtonL2KeyChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "buttonL2KeyChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "buttonL2KeyChanged"); signal != nil {
@@ -1909,7 +1909,7 @@ func (ptr *QGamepadKeyNavigation) ConnectButtonL3KeyChanged(f func(key core.Qt__
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "buttonL3KeyChanged") {
-			C.QGamepadKeyNavigation_ConnectButtonL3KeyChanged(ptr.Pointer())
+			C.QGamepadKeyNavigation_ConnectButtonL3KeyChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "buttonL3KeyChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "buttonL3KeyChanged"); signal != nil {
@@ -1956,7 +1956,7 @@ func (ptr *QGamepadKeyNavigation) ConnectButtonR1KeyChanged(f func(key core.Qt__
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "buttonR1KeyChanged") {
-			C.QGamepadKeyNavigation_ConnectButtonR1KeyChanged(ptr.Pointer())
+			C.QGamepadKeyNavigation_ConnectButtonR1KeyChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "buttonR1KeyChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "buttonR1KeyChanged"); signal != nil {
@@ -2003,7 +2003,7 @@ func (ptr *QGamepadKeyNavigation) ConnectButtonR2KeyChanged(f func(key core.Qt__
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "buttonR2KeyChanged") {
-			C.QGamepadKeyNavigation_ConnectButtonR2KeyChanged(ptr.Pointer())
+			C.QGamepadKeyNavigation_ConnectButtonR2KeyChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "buttonR2KeyChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "buttonR2KeyChanged"); signal != nil {
@@ -2050,7 +2050,7 @@ func (ptr *QGamepadKeyNavigation) ConnectButtonR3KeyChanged(f func(key core.Qt__
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "buttonR3KeyChanged") {
-			C.QGamepadKeyNavigation_ConnectButtonR3KeyChanged(ptr.Pointer())
+			C.QGamepadKeyNavigation_ConnectButtonR3KeyChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "buttonR3KeyChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "buttonR3KeyChanged"); signal != nil {
@@ -2097,7 +2097,7 @@ func (ptr *QGamepadKeyNavigation) ConnectButtonSelectKeyChanged(f func(key core.
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "buttonSelectKeyChanged") {
-			C.QGamepadKeyNavigation_ConnectButtonSelectKeyChanged(ptr.Pointer())
+			C.QGamepadKeyNavigation_ConnectButtonSelectKeyChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "buttonSelectKeyChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "buttonSelectKeyChanged"); signal != nil {
@@ -2144,7 +2144,7 @@ func (ptr *QGamepadKeyNavigation) ConnectButtonStartKeyChanged(f func(key core.Q
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "buttonStartKeyChanged") {
-			C.QGamepadKeyNavigation_ConnectButtonStartKeyChanged(ptr.Pointer())
+			C.QGamepadKeyNavigation_ConnectButtonStartKeyChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "buttonStartKeyChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "buttonStartKeyChanged"); signal != nil {
@@ -2191,7 +2191,7 @@ func (ptr *QGamepadKeyNavigation) ConnectButtonXKeyChanged(f func(key core.Qt__K
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "buttonXKeyChanged") {
-			C.QGamepadKeyNavigation_ConnectButtonXKeyChanged(ptr.Pointer())
+			C.QGamepadKeyNavigation_ConnectButtonXKeyChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "buttonXKeyChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "buttonXKeyChanged"); signal != nil {
@@ -2238,7 +2238,7 @@ func (ptr *QGamepadKeyNavigation) ConnectButtonYKeyChanged(f func(key core.Qt__K
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "buttonYKeyChanged") {
-			C.QGamepadKeyNavigation_ConnectButtonYKeyChanged(ptr.Pointer())
+			C.QGamepadKeyNavigation_ConnectButtonYKeyChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "buttonYKeyChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "buttonYKeyChanged"); signal != nil {
@@ -2285,7 +2285,7 @@ func (ptr *QGamepadKeyNavigation) ConnectDownKeyChanged(f func(key core.Qt__Key)
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "downKeyChanged") {
-			C.QGamepadKeyNavigation_ConnectDownKeyChanged(ptr.Pointer())
+			C.QGamepadKeyNavigation_ConnectDownKeyChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "downKeyChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "downKeyChanged"); signal != nil {
@@ -2336,7 +2336,7 @@ func (ptr *QGamepadKeyNavigation) ConnectGamepadChanged(f func(gamepad *QGamepad
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "gamepadChanged") {
-			C.QGamepadKeyNavigation_ConnectGamepadChanged(ptr.Pointer())
+			C.QGamepadKeyNavigation_ConnectGamepadChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "gamepadChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "gamepadChanged"); signal != nil {
@@ -2383,7 +2383,7 @@ func (ptr *QGamepadKeyNavigation) ConnectLeftKeyChanged(f func(key core.Qt__Key)
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "leftKeyChanged") {
-			C.QGamepadKeyNavigation_ConnectLeftKeyChanged(ptr.Pointer())
+			C.QGamepadKeyNavigation_ConnectLeftKeyChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "leftKeyChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "leftKeyChanged"); signal != nil {
@@ -2430,7 +2430,7 @@ func (ptr *QGamepadKeyNavigation) ConnectRightKeyChanged(f func(key core.Qt__Key
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "rightKeyChanged") {
-			C.QGamepadKeyNavigation_ConnectRightKeyChanged(ptr.Pointer())
+			C.QGamepadKeyNavigation_ConnectRightKeyChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "rightKeyChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "rightKeyChanged"); signal != nil {
@@ -3294,7 +3294,7 @@ func (ptr *QGamepadKeyNavigation) ConnectUpKeyChanged(f func(key core.Qt__Key)) 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "upKeyChanged") {
-			C.QGamepadKeyNavigation_ConnectUpKeyChanged(ptr.Pointer())
+			C.QGamepadKeyNavigation_ConnectUpKeyChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "upKeyChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "upKeyChanged"); signal != nil {
@@ -3644,7 +3644,7 @@ func (ptr *QGamepadManager) ConnectConnectedGamepadsChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "connectedGamepadsChanged") {
-			C.QGamepadManager_ConnectConnectedGamepadsChanged(ptr.Pointer())
+			C.QGamepadManager_ConnectConnectedGamepadsChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "connectedGamepadsChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "connectedGamepadsChanged"); signal != nil {

@@ -5258,7 +5258,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectAboutToUnmanageWidget(f func(wid
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "aboutToUnmanageWidget") {
-			C.QDesignerFormWindowInterface_ConnectAboutToUnmanageWidget(ptr.Pointer())
+			C.QDesignerFormWindowInterface_ConnectAboutToUnmanageWidget(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "aboutToUnmanageWidget")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "aboutToUnmanageWidget"); signal != nil {
@@ -5395,7 +5395,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectActivated(f func(widget *widgets
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "activated") {
-			C.QDesignerFormWindowInterface_ConnectActivated(ptr.Pointer())
+			C.QDesignerFormWindowInterface_ConnectActivated(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "activated")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "activated"); signal != nil {
@@ -5522,7 +5522,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "changed") {
-			C.QDesignerFormWindowInterface_ConnectChanged(ptr.Pointer())
+			C.QDesignerFormWindowInterface_ConnectChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "changed")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "changed"); signal != nil {
@@ -5881,7 +5881,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectFeatureChanged(f func(feature QD
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "featureChanged") {
-			C.QDesignerFormWindowInterface_ConnectFeatureChanged(ptr.Pointer())
+			C.QDesignerFormWindowInterface_ConnectFeatureChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "featureChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "featureChanged"); signal != nil {
@@ -5998,7 +5998,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectFileNameChanged(f func(fileName 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "fileNameChanged") {
-			C.QDesignerFormWindowInterface_ConnectFileNameChanged(ptr.Pointer())
+			C.QDesignerFormWindowInterface_ConnectFileNameChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "fileNameChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "fileNameChanged"); signal != nil {
@@ -6117,7 +6117,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectGeometryChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "geometryChanged") {
-			C.QDesignerFormWindowInterface_ConnectGeometryChanged(ptr.Pointer())
+			C.QDesignerFormWindowInterface_ConnectGeometryChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "geometryChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "geometryChanged"); signal != nil {
@@ -6432,7 +6432,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectMainContainerChanged(f func(main
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "mainContainerChanged") {
-			C.QDesignerFormWindowInterface_ConnectMainContainerChanged(ptr.Pointer())
+			C.QDesignerFormWindowInterface_ConnectMainContainerChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "mainContainerChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "mainContainerChanged"); signal != nil {
@@ -6508,7 +6508,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectObjectRemoved(f func(object *cor
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "objectRemoved") {
-			C.QDesignerFormWindowInterface_ConnectObjectRemoved(ptr.Pointer())
+			C.QDesignerFormWindowInterface_ConnectObjectRemoved(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "objectRemoved")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "objectRemoved"); signal != nil {
@@ -6705,7 +6705,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectResourceFilesChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "resourceFilesChanged") {
-			C.QDesignerFormWindowInterface_ConnectResourceFilesChanged(ptr.Pointer())
+			C.QDesignerFormWindowInterface_ConnectResourceFilesChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "resourceFilesChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "resourceFilesChanged"); signal != nil {
@@ -6781,7 +6781,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectSelectionChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "selectionChanged") {
-			C.QDesignerFormWindowInterface_ConnectSelectionChanged(ptr.Pointer())
+			C.QDesignerFormWindowInterface_ConnectSelectionChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "selectionChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "selectionChanged"); signal != nil {
@@ -7448,7 +7448,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectWidgetManaged(f func(widget *wid
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "widgetManaged") {
-			C.QDesignerFormWindowInterface_ConnectWidgetManaged(ptr.Pointer())
+			C.QDesignerFormWindowInterface_ConnectWidgetManaged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "widgetManaged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "widgetManaged"); signal != nil {
@@ -7488,7 +7488,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectWidgetRemoved(f func(widget *wid
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "widgetRemoved") {
-			C.QDesignerFormWindowInterface_ConnectWidgetRemoved(ptr.Pointer())
+			C.QDesignerFormWindowInterface_ConnectWidgetRemoved(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "widgetRemoved")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "widgetRemoved"); signal != nil {
@@ -7528,7 +7528,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectWidgetUnmanaged(f func(widget *w
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "widgetUnmanaged") {
-			C.QDesignerFormWindowInterface_ConnectWidgetUnmanaged(ptr.Pointer())
+			C.QDesignerFormWindowInterface_ConnectWidgetUnmanaged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "widgetUnmanaged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "widgetUnmanaged"); signal != nil {
@@ -9057,7 +9057,7 @@ func (ptr *QDesignerFormWindowManagerInterface) ConnectActiveFormWindowChanged(f
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "activeFormWindowChanged") {
-			C.QDesignerFormWindowManagerInterface_ConnectActiveFormWindowChanged(ptr.Pointer())
+			C.QDesignerFormWindowManagerInterface_ConnectActiveFormWindowChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "activeFormWindowChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "activeFormWindowChanged"); signal != nil {
@@ -9335,7 +9335,7 @@ func (ptr *QDesignerFormWindowManagerInterface) ConnectFormWindowAdded(f func(fo
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "formWindowAdded") {
-			C.QDesignerFormWindowManagerInterface_ConnectFormWindowAdded(ptr.Pointer())
+			C.QDesignerFormWindowManagerInterface_ConnectFormWindowAdded(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "formWindowAdded")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "formWindowAdded"); signal != nil {
@@ -9413,7 +9413,7 @@ func (ptr *QDesignerFormWindowManagerInterface) ConnectFormWindowRemoved(f func(
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "formWindowRemoved") {
-			C.QDesignerFormWindowManagerInterface_ConnectFormWindowRemoved(ptr.Pointer())
+			C.QDesignerFormWindowManagerInterface_ConnectFormWindowRemoved(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "formWindowRemoved")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "formWindowRemoved"); signal != nil {
@@ -9453,7 +9453,7 @@ func (ptr *QDesignerFormWindowManagerInterface) ConnectFormWindowSettingsChanged
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "formWindowSettingsChanged") {
-			C.QDesignerFormWindowManagerInterface_ConnectFormWindowSettingsChanged(ptr.Pointer())
+			C.QDesignerFormWindowManagerInterface_ConnectFormWindowSettingsChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "formWindowSettingsChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "formWindowSettingsChanged"); signal != nil {
@@ -12316,7 +12316,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectPropertyChanged(f func(name 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "propertyChanged") {
-			C.QDesignerPropertyEditorInterface_ConnectPropertyChanged(ptr.Pointer())
+			C.QDesignerPropertyEditorInterface_ConnectPropertyChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "propertyChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "propertyChanged"); signal != nil {

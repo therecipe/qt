@@ -1928,7 +1928,7 @@ func (ptr *QSvgRenderer) ConnectRepaintNeeded(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "repaintNeeded") {
-			C.QSvgRenderer_ConnectRepaintNeeded(ptr.Pointer())
+			C.QSvgRenderer_ConnectRepaintNeeded(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "repaintNeeded")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "repaintNeeded"); signal != nil {

@@ -490,9 +490,9 @@ void* QSqlDriver_LastError(void* ptr)
 	return new QSqlError(static_cast<QSqlDriver*>(ptr)->lastError());
 }
 
-void QSqlDriver_ConnectNotification(void* ptr)
+void QSqlDriver_ConnectNotification(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSqlDriver*>(ptr), static_cast<void (QSqlDriver::*)(const QString &)>(&QSqlDriver::notification), static_cast<MyQSqlDriver*>(ptr), static_cast<void (MyQSqlDriver::*)(const QString &)>(&MyQSqlDriver::Signal_Notification));
+	QObject::connect(static_cast<QSqlDriver*>(ptr), static_cast<void (QSqlDriver::*)(const QString &)>(&QSqlDriver::notification), static_cast<MyQSqlDriver*>(ptr), static_cast<void (MyQSqlDriver::*)(const QString &)>(&MyQSqlDriver::Signal_Notification), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSqlDriver_DisconnectNotification(void* ptr)
@@ -505,9 +505,9 @@ void QSqlDriver_Notification(void* ptr, struct QtSql_PackedString name)
 	static_cast<QSqlDriver*>(ptr)->notification(QString::fromUtf8(name.data, name.len));
 }
 
-void QSqlDriver_ConnectNotification2(void* ptr)
+void QSqlDriver_ConnectNotification2(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSqlDriver*>(ptr), static_cast<void (QSqlDriver::*)(const QString &, QSqlDriver::NotificationSource, const QVariant &)>(&QSqlDriver::notification), static_cast<MyQSqlDriver*>(ptr), static_cast<void (MyQSqlDriver::*)(const QString &, QSqlDriver::NotificationSource, const QVariant &)>(&MyQSqlDriver::Signal_Notification2));
+	QObject::connect(static_cast<QSqlDriver*>(ptr), static_cast<void (QSqlDriver::*)(const QString &, QSqlDriver::NotificationSource, const QVariant &)>(&QSqlDriver::notification), static_cast<MyQSqlDriver*>(ptr), static_cast<void (MyQSqlDriver::*)(const QString &, QSqlDriver::NotificationSource, const QVariant &)>(&MyQSqlDriver::Signal_Notification2), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSqlDriver_DisconnectNotification2(void* ptr)
@@ -3821,9 +3821,9 @@ void* QSqlTableModel_NewQSqlTableModel(void* parent, void* db)
 	}
 }
 
-void QSqlTableModel_ConnectBeforeDelete(void* ptr)
+void QSqlTableModel_ConnectBeforeDelete(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSqlTableModel*>(ptr), static_cast<void (QSqlTableModel::*)(int)>(&QSqlTableModel::beforeDelete), static_cast<MyQSqlTableModel*>(ptr), static_cast<void (MyQSqlTableModel::*)(int)>(&MyQSqlTableModel::Signal_BeforeDelete));
+	QObject::connect(static_cast<QSqlTableModel*>(ptr), static_cast<void (QSqlTableModel::*)(int)>(&QSqlTableModel::beforeDelete), static_cast<MyQSqlTableModel*>(ptr), static_cast<void (MyQSqlTableModel::*)(int)>(&MyQSqlTableModel::Signal_BeforeDelete), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSqlTableModel_DisconnectBeforeDelete(void* ptr)
@@ -3836,9 +3836,9 @@ void QSqlTableModel_BeforeDelete(void* ptr, int row)
 	static_cast<QSqlTableModel*>(ptr)->beforeDelete(row);
 }
 
-void QSqlTableModel_ConnectBeforeInsert(void* ptr)
+void QSqlTableModel_ConnectBeforeInsert(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSqlTableModel*>(ptr), static_cast<void (QSqlTableModel::*)(QSqlRecord &)>(&QSqlTableModel::beforeInsert), static_cast<MyQSqlTableModel*>(ptr), static_cast<void (MyQSqlTableModel::*)(QSqlRecord &)>(&MyQSqlTableModel::Signal_BeforeInsert));
+	QObject::connect(static_cast<QSqlTableModel*>(ptr), static_cast<void (QSqlTableModel::*)(QSqlRecord &)>(&QSqlTableModel::beforeInsert), static_cast<MyQSqlTableModel*>(ptr), static_cast<void (MyQSqlTableModel::*)(QSqlRecord &)>(&MyQSqlTableModel::Signal_BeforeInsert), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSqlTableModel_DisconnectBeforeInsert(void* ptr)
@@ -3851,9 +3851,9 @@ void QSqlTableModel_BeforeInsert(void* ptr, void* record)
 	static_cast<QSqlTableModel*>(ptr)->beforeInsert(*static_cast<QSqlRecord*>(record));
 }
 
-void QSqlTableModel_ConnectBeforeUpdate(void* ptr)
+void QSqlTableModel_ConnectBeforeUpdate(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSqlTableModel*>(ptr), static_cast<void (QSqlTableModel::*)(int, QSqlRecord &)>(&QSqlTableModel::beforeUpdate), static_cast<MyQSqlTableModel*>(ptr), static_cast<void (MyQSqlTableModel::*)(int, QSqlRecord &)>(&MyQSqlTableModel::Signal_BeforeUpdate));
+	QObject::connect(static_cast<QSqlTableModel*>(ptr), static_cast<void (QSqlTableModel::*)(int, QSqlRecord &)>(&QSqlTableModel::beforeUpdate), static_cast<MyQSqlTableModel*>(ptr), static_cast<void (MyQSqlTableModel::*)(int, QSqlRecord &)>(&MyQSqlTableModel::Signal_BeforeUpdate), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSqlTableModel_DisconnectBeforeUpdate(void* ptr)
@@ -3953,9 +3953,9 @@ void* QSqlTableModel_PrimaryValues(void* ptr, int row)
 	return new QSqlRecord(static_cast<QSqlTableModel*>(ptr)->primaryValues(row));
 }
 
-void QSqlTableModel_ConnectPrimeInsert(void* ptr)
+void QSqlTableModel_ConnectPrimeInsert(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSqlTableModel*>(ptr), static_cast<void (QSqlTableModel::*)(int, QSqlRecord &)>(&QSqlTableModel::primeInsert), static_cast<MyQSqlTableModel*>(ptr), static_cast<void (MyQSqlTableModel::*)(int, QSqlRecord &)>(&MyQSqlTableModel::Signal_PrimeInsert));
+	QObject::connect(static_cast<QSqlTableModel*>(ptr), static_cast<void (QSqlTableModel::*)(int, QSqlRecord &)>(&QSqlTableModel::primeInsert), static_cast<MyQSqlTableModel*>(ptr), static_cast<void (MyQSqlTableModel::*)(int, QSqlRecord &)>(&MyQSqlTableModel::Signal_PrimeInsert), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSqlTableModel_DisconnectPrimeInsert(void* ptr)

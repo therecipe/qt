@@ -392,9 +392,9 @@ void* QMacToolBarItem_NewQMacToolBarItem(void* parent)
 	}
 }
 
-void QMacToolBarItem_ConnectActivated(void* ptr)
+void QMacToolBarItem_ConnectActivated(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QMacToolBarItem*>(ptr), static_cast<void (QMacToolBarItem::*)()>(&QMacToolBarItem::activated), static_cast<MyQMacToolBarItem*>(ptr), static_cast<void (MyQMacToolBarItem::*)()>(&MyQMacToolBarItem::Signal_Activated));
+	QObject::connect(static_cast<QMacToolBarItem*>(ptr), static_cast<void (QMacToolBarItem::*)()>(&QMacToolBarItem::activated), static_cast<MyQMacToolBarItem*>(ptr), static_cast<void (MyQMacToolBarItem::*)()>(&MyQMacToolBarItem::Signal_Activated), static_cast<Qt::ConnectionType>(t));
 }
 
 void QMacToolBarItem_DisconnectActivated(void* ptr)

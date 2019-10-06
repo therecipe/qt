@@ -234,9 +234,9 @@ void* QScxmlDataModel_StateMachine(void* ptr)
 	return static_cast<QScxmlDataModel*>(ptr)->stateMachine();
 }
 
-void QScxmlDataModel_ConnectStateMachineChanged(void* ptr)
+void QScxmlDataModel_ConnectStateMachineChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QScxmlDataModel*>(ptr), static_cast<void (QScxmlDataModel::*)(QScxmlStateMachine *)>(&QScxmlDataModel::stateMachineChanged), static_cast<MyQScxmlDataModel*>(ptr), static_cast<void (MyQScxmlDataModel::*)(QScxmlStateMachine *)>(&MyQScxmlDataModel::Signal_StateMachineChanged));
+	QObject::connect(static_cast<QScxmlDataModel*>(ptr), static_cast<void (QScxmlDataModel::*)(QScxmlStateMachine *)>(&QScxmlDataModel::stateMachineChanged), static_cast<MyQScxmlDataModel*>(ptr), static_cast<void (MyQScxmlDataModel::*)(QScxmlStateMachine *)>(&MyQScxmlDataModel::Signal_StateMachineChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QScxmlDataModel_DisconnectStateMachineChanged(void* ptr)
@@ -1405,9 +1405,9 @@ void* QScxmlStateMachine_DataModel(void* ptr)
 	return static_cast<QScxmlStateMachine*>(ptr)->dataModel();
 }
 
-void QScxmlStateMachine_ConnectDataModelChanged(void* ptr)
+void QScxmlStateMachine_ConnectDataModelChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QScxmlStateMachine*>(ptr), static_cast<void (QScxmlStateMachine::*)(QScxmlDataModel *)>(&QScxmlStateMachine::dataModelChanged), static_cast<MyQScxmlStateMachine*>(ptr), static_cast<void (MyQScxmlStateMachine::*)(QScxmlDataModel *)>(&MyQScxmlStateMachine::Signal_DataModelChanged));
+	QObject::connect(static_cast<QScxmlStateMachine*>(ptr), static_cast<void (QScxmlStateMachine::*)(QScxmlDataModel *)>(&QScxmlStateMachine::dataModelChanged), static_cast<MyQScxmlStateMachine*>(ptr), static_cast<void (MyQScxmlStateMachine::*)(QScxmlDataModel *)>(&MyQScxmlStateMachine::Signal_DataModelChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QScxmlStateMachine_DisconnectDataModelChanged(void* ptr)
@@ -1420,9 +1420,9 @@ void QScxmlStateMachine_DataModelChanged(void* ptr, void* model)
 	static_cast<QScxmlStateMachine*>(ptr)->dataModelChanged(static_cast<QScxmlDataModel*>(model));
 }
 
-void QScxmlStateMachine_ConnectFinished(void* ptr)
+void QScxmlStateMachine_ConnectFinished(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QScxmlStateMachine*>(ptr), static_cast<void (QScxmlStateMachine::*)()>(&QScxmlStateMachine::finished), static_cast<MyQScxmlStateMachine*>(ptr), static_cast<void (MyQScxmlStateMachine::*)()>(&MyQScxmlStateMachine::Signal_Finished));
+	QObject::connect(static_cast<QScxmlStateMachine*>(ptr), static_cast<void (QScxmlStateMachine::*)()>(&QScxmlStateMachine::finished), static_cast<MyQScxmlStateMachine*>(ptr), static_cast<void (MyQScxmlStateMachine::*)()>(&MyQScxmlStateMachine::Signal_Finished), static_cast<Qt::ConnectionType>(t));
 }
 
 void QScxmlStateMachine_DisconnectFinished(void* ptr)
@@ -1462,9 +1462,9 @@ struct QtScxml_PackedList QScxmlStateMachine_InitialValues(void* ptr)
 	return ({ QMap<QString, QVariant>* tmpValue6f248c = new QMap<QString, QVariant>(static_cast<QScxmlStateMachine*>(ptr)->initialValues()); QtScxml_PackedList { tmpValue6f248c, tmpValue6f248c->size() }; });
 }
 
-void QScxmlStateMachine_ConnectInitializedChanged(void* ptr)
+void QScxmlStateMachine_ConnectInitializedChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QScxmlStateMachine*>(ptr), static_cast<void (QScxmlStateMachine::*)(bool)>(&QScxmlStateMachine::initializedChanged), static_cast<MyQScxmlStateMachine*>(ptr), static_cast<void (MyQScxmlStateMachine::*)(bool)>(&MyQScxmlStateMachine::Signal_InitializedChanged));
+	QObject::connect(static_cast<QScxmlStateMachine*>(ptr), static_cast<void (QScxmlStateMachine::*)(bool)>(&QScxmlStateMachine::initializedChanged), static_cast<MyQScxmlStateMachine*>(ptr), static_cast<void (MyQScxmlStateMachine::*)(bool)>(&MyQScxmlStateMachine::Signal_InitializedChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QScxmlStateMachine_DisconnectInitializedChanged(void* ptr)
@@ -1482,9 +1482,9 @@ struct QtScxml_PackedList QScxmlStateMachine_InvokedServices(void* ptr)
 	return ({ QVector<QScxmlInvokableService *>* tmpValue304b06 = new QVector<QScxmlInvokableService *>(static_cast<QScxmlStateMachine*>(ptr)->invokedServices()); QtScxml_PackedList { tmpValue304b06, tmpValue304b06->size() }; });
 }
 
-void QScxmlStateMachine_ConnectInvokedServicesChanged(void* ptr)
+void QScxmlStateMachine_ConnectInvokedServicesChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QScxmlStateMachine*>(ptr), static_cast<void (QScxmlStateMachine::*)(const QVector<QScxmlInvokableService *> &)>(&QScxmlStateMachine::invokedServicesChanged), static_cast<MyQScxmlStateMachine*>(ptr), static_cast<void (MyQScxmlStateMachine::*)(const QVector<QScxmlInvokableService *> &)>(&MyQScxmlStateMachine::Signal_InvokedServicesChanged));
+	QObject::connect(static_cast<QScxmlStateMachine*>(ptr), static_cast<void (QScxmlStateMachine::*)(const QVector<QScxmlInvokableService *> &)>(&QScxmlStateMachine::invokedServicesChanged), static_cast<MyQScxmlStateMachine*>(ptr), static_cast<void (MyQScxmlStateMachine::*)(const QVector<QScxmlInvokableService *> &)>(&MyQScxmlStateMachine::Signal_InvokedServicesChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QScxmlStateMachine_DisconnectInvokedServicesChanged(void* ptr)
@@ -1527,9 +1527,9 @@ char QScxmlStateMachine_IsRunning(void* ptr)
 	return static_cast<QScxmlStateMachine*>(ptr)->isRunning();
 }
 
-void QScxmlStateMachine_ConnectLog(void* ptr)
+void QScxmlStateMachine_ConnectLog(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QScxmlStateMachine*>(ptr), static_cast<void (QScxmlStateMachine::*)(const QString &, const QString &)>(&QScxmlStateMachine::log), static_cast<MyQScxmlStateMachine*>(ptr), static_cast<void (MyQScxmlStateMachine::*)(const QString &, const QString &)>(&MyQScxmlStateMachine::Signal_Log));
+	QObject::connect(static_cast<QScxmlStateMachine*>(ptr), static_cast<void (QScxmlStateMachine::*)(const QString &, const QString &)>(&QScxmlStateMachine::log), static_cast<MyQScxmlStateMachine*>(ptr), static_cast<void (MyQScxmlStateMachine::*)(const QString &, const QString &)>(&MyQScxmlStateMachine::Signal_Log), static_cast<Qt::ConnectionType>(t));
 }
 
 void QScxmlStateMachine_DisconnectLog(void* ptr)
@@ -1552,9 +1552,9 @@ struct QtScxml_PackedList QScxmlStateMachine_ParseErrors(void* ptr)
 	return ({ QVector<QScxmlError>* tmpValue4343e5 = new QVector<QScxmlError>(static_cast<QScxmlStateMachine*>(ptr)->parseErrors()); QtScxml_PackedList { tmpValue4343e5, tmpValue4343e5->size() }; });
 }
 
-void QScxmlStateMachine_ConnectReachedStableState(void* ptr)
+void QScxmlStateMachine_ConnectReachedStableState(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QScxmlStateMachine*>(ptr), static_cast<void (QScxmlStateMachine::*)()>(&QScxmlStateMachine::reachedStableState), static_cast<MyQScxmlStateMachine*>(ptr), static_cast<void (MyQScxmlStateMachine::*)()>(&MyQScxmlStateMachine::Signal_ReachedStableState));
+	QObject::connect(static_cast<QScxmlStateMachine*>(ptr), static_cast<void (QScxmlStateMachine::*)()>(&QScxmlStateMachine::reachedStableState), static_cast<MyQScxmlStateMachine*>(ptr), static_cast<void (MyQScxmlStateMachine::*)()>(&MyQScxmlStateMachine::Signal_ReachedStableState), static_cast<Qt::ConnectionType>(t));
 }
 
 void QScxmlStateMachine_DisconnectReachedStableState(void* ptr)
@@ -1567,9 +1567,9 @@ void QScxmlStateMachine_ReachedStableState(void* ptr)
 	static_cast<QScxmlStateMachine*>(ptr)->reachedStableState();
 }
 
-void QScxmlStateMachine_ConnectRunningChanged(void* ptr)
+void QScxmlStateMachine_ConnectRunningChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QScxmlStateMachine*>(ptr), static_cast<void (QScxmlStateMachine::*)(bool)>(&QScxmlStateMachine::runningChanged), static_cast<MyQScxmlStateMachine*>(ptr), static_cast<void (MyQScxmlStateMachine::*)(bool)>(&MyQScxmlStateMachine::Signal_RunningChanged));
+	QObject::connect(static_cast<QScxmlStateMachine*>(ptr), static_cast<void (QScxmlStateMachine::*)(bool)>(&QScxmlStateMachine::runningChanged), static_cast<MyQScxmlStateMachine*>(ptr), static_cast<void (MyQScxmlStateMachine::*)(bool)>(&MyQScxmlStateMachine::Signal_RunningChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QScxmlStateMachine_DisconnectRunningChanged(void* ptr)
@@ -1652,9 +1652,9 @@ void* QScxmlStateMachine_TableData(void* ptr)
 	return static_cast<QScxmlStateMachine*>(ptr)->tableData();
 }
 
-void QScxmlStateMachine_ConnectTableDataChanged(void* ptr)
+void QScxmlStateMachine_ConnectTableDataChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QScxmlStateMachine*>(ptr), static_cast<void (QScxmlStateMachine::*)(QScxmlTableData *)>(&QScxmlStateMachine::tableDataChanged), static_cast<MyQScxmlStateMachine*>(ptr), static_cast<void (MyQScxmlStateMachine::*)(QScxmlTableData *)>(&MyQScxmlStateMachine::Signal_TableDataChanged));
+	QObject::connect(static_cast<QScxmlStateMachine*>(ptr), static_cast<void (QScxmlStateMachine::*)(QScxmlTableData *)>(&QScxmlStateMachine::tableDataChanged), static_cast<MyQScxmlStateMachine*>(ptr), static_cast<void (MyQScxmlStateMachine::*)(QScxmlTableData *)>(&MyQScxmlStateMachine::Signal_TableDataChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QScxmlStateMachine_DisconnectTableDataChanged(void* ptr)

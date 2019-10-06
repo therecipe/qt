@@ -195,7 +195,7 @@ func (ptr *QScriptEngineDebugger) ConnectEvaluationResumed(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "evaluationResumed") {
-			C.QScriptEngineDebugger_ConnectEvaluationResumed(ptr.Pointer())
+			C.QScriptEngineDebugger_ConnectEvaluationResumed(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "evaluationResumed")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "evaluationResumed"); signal != nil {
@@ -235,7 +235,7 @@ func (ptr *QScriptEngineDebugger) ConnectEvaluationSuspended(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "evaluationSuspended") {
-			C.QScriptEngineDebugger_ConnectEvaluationSuspended(ptr.Pointer())
+			C.QScriptEngineDebugger_ConnectEvaluationSuspended(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "evaluationSuspended")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "evaluationSuspended"); signal != nil {

@@ -1660,9 +1660,9 @@ void* QPrintDialog_NewQPrintDialog(void* printer, void* parent)
 		return new MyQPrintDialog(static_cast<QPrinter*>(printer), static_cast<QWidget*>(parent));
 }
 
-void QPrintDialog_ConnectAccepted(void* ptr)
+void QPrintDialog_ConnectAccepted(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QPrintDialog*>(ptr), static_cast<void (QPrintDialog::*)(QPrinter *)>(&QPrintDialog::accepted), static_cast<MyQPrintDialog*>(ptr), static_cast<void (MyQPrintDialog::*)(QPrinter *)>(&MyQPrintDialog::Signal_Accepted));
+	QObject::connect(static_cast<QPrintDialog*>(ptr), static_cast<void (QPrintDialog::*)(QPrinter *)>(&QPrintDialog::accepted), static_cast<MyQPrintDialog*>(ptr), static_cast<void (MyQPrintDialog::*)(QPrinter *)>(&MyQPrintDialog::Signal_Accepted), static_cast<Qt::ConnectionType>(t));
 }
 
 void QPrintDialog_DisconnectAccepted(void* ptr)
@@ -1894,9 +1894,9 @@ void QPrintPreviewDialog_DoneDefault(void* ptr, int result)
 		static_cast<QPrintPreviewDialog*>(ptr)->QPrintPreviewDialog::done(result);
 }
 
-void QPrintPreviewDialog_ConnectPaintRequested(void* ptr)
+void QPrintPreviewDialog_ConnectPaintRequested(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QPrintPreviewDialog*>(ptr), static_cast<void (QPrintPreviewDialog::*)(QPrinter *)>(&QPrintPreviewDialog::paintRequested), static_cast<MyQPrintPreviewDialog*>(ptr), static_cast<void (MyQPrintPreviewDialog::*)(QPrinter *)>(&MyQPrintPreviewDialog::Signal_PaintRequested));
+	QObject::connect(static_cast<QPrintPreviewDialog*>(ptr), static_cast<void (QPrintPreviewDialog::*)(QPrinter *)>(&QPrintPreviewDialog::paintRequested), static_cast<MyQPrintPreviewDialog*>(ptr), static_cast<void (MyQPrintPreviewDialog::*)(QPrinter *)>(&MyQPrintPreviewDialog::Signal_PaintRequested), static_cast<Qt::ConnectionType>(t));
 }
 
 void QPrintPreviewDialog_DisconnectPaintRequested(void* ptr)
@@ -2540,9 +2540,9 @@ int QPrintPreviewWidget_PageCount(void* ptr)
 	return static_cast<QPrintPreviewWidget*>(ptr)->pageCount();
 }
 
-void QPrintPreviewWidget_ConnectPaintRequested(void* ptr)
+void QPrintPreviewWidget_ConnectPaintRequested(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QPrintPreviewWidget*>(ptr), static_cast<void (QPrintPreviewWidget::*)(QPrinter *)>(&QPrintPreviewWidget::paintRequested), static_cast<MyQPrintPreviewWidget*>(ptr), static_cast<void (MyQPrintPreviewWidget::*)(QPrinter *)>(&MyQPrintPreviewWidget::Signal_PaintRequested));
+	QObject::connect(static_cast<QPrintPreviewWidget*>(ptr), static_cast<void (QPrintPreviewWidget::*)(QPrinter *)>(&QPrintPreviewWidget::paintRequested), static_cast<MyQPrintPreviewWidget*>(ptr), static_cast<void (MyQPrintPreviewWidget::*)(QPrinter *)>(&MyQPrintPreviewWidget::Signal_PaintRequested), static_cast<Qt::ConnectionType>(t));
 }
 
 void QPrintPreviewWidget_DisconnectPaintRequested(void* ptr)
@@ -2555,9 +2555,9 @@ void QPrintPreviewWidget_PaintRequested(void* ptr, void* printer)
 	static_cast<QPrintPreviewWidget*>(ptr)->paintRequested(static_cast<QPrinter*>(printer));
 }
 
-void QPrintPreviewWidget_ConnectPreviewChanged(void* ptr)
+void QPrintPreviewWidget_ConnectPreviewChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QPrintPreviewWidget*>(ptr), static_cast<void (QPrintPreviewWidget::*)()>(&QPrintPreviewWidget::previewChanged), static_cast<MyQPrintPreviewWidget*>(ptr), static_cast<void (MyQPrintPreviewWidget::*)()>(&MyQPrintPreviewWidget::Signal_PreviewChanged));
+	QObject::connect(static_cast<QPrintPreviewWidget*>(ptr), static_cast<void (QPrintPreviewWidget::*)()>(&QPrintPreviewWidget::previewChanged), static_cast<MyQPrintPreviewWidget*>(ptr), static_cast<void (MyQPrintPreviewWidget::*)()>(&MyQPrintPreviewWidget::Signal_PreviewChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QPrintPreviewWidget_DisconnectPreviewChanged(void* ptr)

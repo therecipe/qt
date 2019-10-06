@@ -163,7 +163,7 @@ func (ptr *QTextToSpeech) ConnectLocaleChanged(f func(locale *core.QLocale)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "localeChanged") {
-			C.QTextToSpeech_ConnectLocaleChanged(ptr.Pointer())
+			C.QTextToSpeech_ConnectLocaleChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "localeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "localeChanged"); signal != nil {
@@ -253,7 +253,7 @@ func (ptr *QTextToSpeech) ConnectPitchChanged(f func(pitch float64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "pitchChanged") {
-			C.QTextToSpeech_ConnectPitchChanged(ptr.Pointer())
+			C.QTextToSpeech_ConnectPitchChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "pitchChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "pitchChanged"); signal != nil {
@@ -300,7 +300,7 @@ func (ptr *QTextToSpeech) ConnectRateChanged(f func(rate float64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "rateChanged") {
-			C.QTextToSpeech_ConnectRateChanged(ptr.Pointer())
+			C.QTextToSpeech_ConnectRateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "rateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "rateChanged"); signal != nil {
@@ -658,7 +658,7 @@ func (ptr *QTextToSpeech) ConnectStateChanged(f func(state QTextToSpeech__State)
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stateChanged") {
-			C.QTextToSpeech_ConnectStateChanged(ptr.Pointer())
+			C.QTextToSpeech_ConnectStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
@@ -757,7 +757,7 @@ func (ptr *QTextToSpeech) ConnectVolumeChanged(f func(volume int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "volumeChanged") {
-			C.QTextToSpeech_ConnectVolumeChanged(ptr.Pointer())
+			C.QTextToSpeech_ConnectVolumeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "volumeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "volumeChanged"); signal != nil {
@@ -797,7 +797,7 @@ func (ptr *QTextToSpeech) ConnectVolumeChanged2(f func(volume float64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "volumeChanged2") {
-			C.QTextToSpeech_ConnectVolumeChanged2(ptr.Pointer())
+			C.QTextToSpeech_ConnectVolumeChanged2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "volumeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "volumeChanged2"); signal != nil {
@@ -1772,7 +1772,7 @@ func (ptr *QTextToSpeechEngine) ConnectStateChanged(f func(state QTextToSpeech__
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stateChanged") {
-			C.QTextToSpeechEngine_ConnectStateChanged(ptr.Pointer())
+			C.QTextToSpeechEngine_ConnectStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {

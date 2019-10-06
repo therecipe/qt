@@ -194,9 +194,9 @@ void* QTextToSpeech_Locale(void* ptr)
 	return new QLocale(static_cast<QTextToSpeech*>(ptr)->locale());
 }
 
-void QTextToSpeech_ConnectLocaleChanged(void* ptr)
+void QTextToSpeech_ConnectLocaleChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QTextToSpeech*>(ptr), static_cast<void (QTextToSpeech::*)(const QLocale &)>(&QTextToSpeech::localeChanged), static_cast<MyQTextToSpeech*>(ptr), static_cast<void (MyQTextToSpeech::*)(const QLocale &)>(&MyQTextToSpeech::Signal_LocaleChanged));
+	QObject::connect(static_cast<QTextToSpeech*>(ptr), static_cast<void (QTextToSpeech::*)(const QLocale &)>(&QTextToSpeech::localeChanged), static_cast<MyQTextToSpeech*>(ptr), static_cast<void (MyQTextToSpeech::*)(const QLocale &)>(&MyQTextToSpeech::Signal_LocaleChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QTextToSpeech_DisconnectLocaleChanged(void* ptr)
@@ -224,9 +224,9 @@ double QTextToSpeech_Pitch(void* ptr)
 	return static_cast<QTextToSpeech*>(ptr)->pitch();
 }
 
-void QTextToSpeech_ConnectPitchChanged(void* ptr)
+void QTextToSpeech_ConnectPitchChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QTextToSpeech*>(ptr), static_cast<void (QTextToSpeech::*)(double)>(&QTextToSpeech::pitchChanged), static_cast<MyQTextToSpeech*>(ptr), static_cast<void (MyQTextToSpeech::*)(double)>(&MyQTextToSpeech::Signal_PitchChanged));
+	QObject::connect(static_cast<QTextToSpeech*>(ptr), static_cast<void (QTextToSpeech::*)(double)>(&QTextToSpeech::pitchChanged), static_cast<MyQTextToSpeech*>(ptr), static_cast<void (MyQTextToSpeech::*)(double)>(&MyQTextToSpeech::Signal_PitchChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QTextToSpeech_DisconnectPitchChanged(void* ptr)
@@ -244,9 +244,9 @@ double QTextToSpeech_Rate(void* ptr)
 	return static_cast<QTextToSpeech*>(ptr)->rate();
 }
 
-void QTextToSpeech_ConnectRateChanged(void* ptr)
+void QTextToSpeech_ConnectRateChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QTextToSpeech*>(ptr), static_cast<void (QTextToSpeech::*)(double)>(&QTextToSpeech::rateChanged), static_cast<MyQTextToSpeech*>(ptr), static_cast<void (MyQTextToSpeech::*)(double)>(&MyQTextToSpeech::Signal_RateChanged));
+	QObject::connect(static_cast<QTextToSpeech*>(ptr), static_cast<void (QTextToSpeech::*)(double)>(&QTextToSpeech::rateChanged), static_cast<MyQTextToSpeech*>(ptr), static_cast<void (MyQTextToSpeech::*)(double)>(&MyQTextToSpeech::Signal_RateChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QTextToSpeech_DisconnectRateChanged(void* ptr)
@@ -334,10 +334,10 @@ long long QTextToSpeech_State(void* ptr)
 	return static_cast<QTextToSpeech*>(ptr)->state();
 }
 
-void QTextToSpeech_ConnectStateChanged(void* ptr)
+void QTextToSpeech_ConnectStateChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<QTextToSpeech::State>();
-	QObject::connect(static_cast<QTextToSpeech*>(ptr), static_cast<void (QTextToSpeech::*)(QTextToSpeech::State)>(&QTextToSpeech::stateChanged), static_cast<MyQTextToSpeech*>(ptr), static_cast<void (MyQTextToSpeech::*)(QTextToSpeech::State)>(&MyQTextToSpeech::Signal_StateChanged));
+	QObject::connect(static_cast<QTextToSpeech*>(ptr), static_cast<void (QTextToSpeech::*)(QTextToSpeech::State)>(&QTextToSpeech::stateChanged), static_cast<MyQTextToSpeech*>(ptr), static_cast<void (MyQTextToSpeech::*)(QTextToSpeech::State)>(&MyQTextToSpeech::Signal_StateChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QTextToSpeech_DisconnectStateChanged(void* ptr)
@@ -370,9 +370,9 @@ double QTextToSpeech_Volume(void* ptr)
 	return static_cast<QTextToSpeech*>(ptr)->volume();
 }
 
-void QTextToSpeech_ConnectVolumeChanged(void* ptr)
+void QTextToSpeech_ConnectVolumeChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QTextToSpeech*>(ptr), static_cast<void (QTextToSpeech::*)(int)>(&QTextToSpeech::volumeChanged), static_cast<MyQTextToSpeech*>(ptr), static_cast<void (MyQTextToSpeech::*)(int)>(&MyQTextToSpeech::Signal_VolumeChanged));
+	QObject::connect(static_cast<QTextToSpeech*>(ptr), static_cast<void (QTextToSpeech::*)(int)>(&QTextToSpeech::volumeChanged), static_cast<MyQTextToSpeech*>(ptr), static_cast<void (MyQTextToSpeech::*)(int)>(&MyQTextToSpeech::Signal_VolumeChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QTextToSpeech_DisconnectVolumeChanged(void* ptr)
@@ -385,9 +385,9 @@ void QTextToSpeech_VolumeChanged(void* ptr, int volume)
 	static_cast<QTextToSpeech*>(ptr)->volumeChanged(volume);
 }
 
-void QTextToSpeech_ConnectVolumeChanged2(void* ptr)
+void QTextToSpeech_ConnectVolumeChanged2(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QTextToSpeech*>(ptr), static_cast<void (QTextToSpeech::*)(double)>(&QTextToSpeech::volumeChanged), static_cast<MyQTextToSpeech*>(ptr), static_cast<void (MyQTextToSpeech::*)(double)>(&MyQTextToSpeech::Signal_VolumeChanged2));
+	QObject::connect(static_cast<QTextToSpeech*>(ptr), static_cast<void (QTextToSpeech::*)(double)>(&QTextToSpeech::volumeChanged), static_cast<MyQTextToSpeech*>(ptr), static_cast<void (MyQTextToSpeech::*)(double)>(&MyQTextToSpeech::Signal_VolumeChanged2), static_cast<Qt::ConnectionType>(t));
 }
 
 void QTextToSpeech_DisconnectVolumeChanged2(void* ptr)
@@ -718,10 +718,10 @@ long long QTextToSpeechEngine_State(void* ptr)
 	return static_cast<QTextToSpeechEngine*>(ptr)->state();
 }
 
-void QTextToSpeechEngine_ConnectStateChanged(void* ptr)
+void QTextToSpeechEngine_ConnectStateChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<QTextToSpeech::State>();
-	QObject::connect(static_cast<QTextToSpeechEngine*>(ptr), static_cast<void (QTextToSpeechEngine::*)(QTextToSpeech::State)>(&QTextToSpeechEngine::stateChanged), static_cast<MyQTextToSpeechEngine*>(ptr), static_cast<void (MyQTextToSpeechEngine::*)(QTextToSpeech::State)>(&MyQTextToSpeechEngine::Signal_StateChanged));
+	QObject::connect(static_cast<QTextToSpeechEngine*>(ptr), static_cast<void (QTextToSpeechEngine::*)(QTextToSpeech::State)>(&QTextToSpeechEngine::stateChanged), static_cast<MyQTextToSpeechEngine*>(ptr), static_cast<void (MyQTextToSpeechEngine::*)(QTextToSpeech::State)>(&MyQTextToSpeechEngine::Signal_StateChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QTextToSpeechEngine_DisconnectStateChanged(void* ptr)

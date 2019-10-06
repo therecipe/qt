@@ -1505,9 +1505,9 @@ int QRemoteObjectNode_HeartbeatInterval(void* ptr)
 	return static_cast<QRemoteObjectNode*>(ptr)->heartbeatInterval();
 }
 
-void QRemoteObjectNode_ConnectHeartbeatIntervalChanged(void* ptr)
+void QRemoteObjectNode_ConnectHeartbeatIntervalChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QRemoteObjectNode*>(ptr), static_cast<void (QRemoteObjectNode::*)(int)>(&QRemoteObjectNode::heartbeatIntervalChanged), static_cast<MyQRemoteObjectNode*>(ptr), static_cast<void (MyQRemoteObjectNode::*)(int)>(&MyQRemoteObjectNode::Signal_HeartbeatIntervalChanged));
+	QObject::connect(static_cast<QRemoteObjectNode*>(ptr), static_cast<void (QRemoteObjectNode::*)(int)>(&QRemoteObjectNode::heartbeatIntervalChanged), static_cast<MyQRemoteObjectNode*>(ptr), static_cast<void (MyQRemoteObjectNode::*)(int)>(&MyQRemoteObjectNode::Signal_HeartbeatIntervalChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QRemoteObjectNode_DisconnectHeartbeatIntervalChanged(void* ptr)
@@ -2216,9 +2216,9 @@ Q_DECLARE_METATYPE(MyQRemoteObjectReplica*)
 
 int QRemoteObjectReplica_QRemoteObjectReplica_QRegisterMetaType(){qRegisterMetaType<QRemoteObjectReplica*>(); return qRegisterMetaType<MyQRemoteObjectReplica*>();}
 
-void QRemoteObjectReplica_ConnectInitialized(void* ptr)
+void QRemoteObjectReplica_ConnectInitialized(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QRemoteObjectReplica*>(ptr), static_cast<void (QRemoteObjectReplica::*)()>(&QRemoteObjectReplica::initialized), static_cast<MyQRemoteObjectReplica*>(ptr), static_cast<void (MyQRemoteObjectReplica::*)()>(&MyQRemoteObjectReplica::Signal_Initialized));
+	QObject::connect(static_cast<QRemoteObjectReplica*>(ptr), static_cast<void (QRemoteObjectReplica::*)()>(&QRemoteObjectReplica::initialized), static_cast<MyQRemoteObjectReplica*>(ptr), static_cast<void (MyQRemoteObjectReplica::*)()>(&MyQRemoteObjectReplica::Signal_Initialized), static_cast<Qt::ConnectionType>(t));
 }
 
 void QRemoteObjectReplica_DisconnectInitialized(void* ptr)
@@ -2267,11 +2267,11 @@ long long QRemoteObjectReplica_State(void* ptr)
 	return static_cast<QRemoteObjectReplica*>(ptr)->state();
 }
 
-void QRemoteObjectReplica_ConnectStateChanged(void* ptr)
+void QRemoteObjectReplica_ConnectStateChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<QRemoteObjectReplica::State>();
 	qRegisterMetaType<QRemoteObjectReplica::State>();
-	QObject::connect(static_cast<QRemoteObjectReplica*>(ptr), static_cast<void (QRemoteObjectReplica::*)(QRemoteObjectReplica::State, QRemoteObjectReplica::State)>(&QRemoteObjectReplica::stateChanged), static_cast<MyQRemoteObjectReplica*>(ptr), static_cast<void (MyQRemoteObjectReplica::*)(QRemoteObjectReplica::State, QRemoteObjectReplica::State)>(&MyQRemoteObjectReplica::Signal_StateChanged));
+	QObject::connect(static_cast<QRemoteObjectReplica*>(ptr), static_cast<void (QRemoteObjectReplica::*)(QRemoteObjectReplica::State, QRemoteObjectReplica::State)>(&QRemoteObjectReplica::stateChanged), static_cast<MyQRemoteObjectReplica*>(ptr), static_cast<void (MyQRemoteObjectReplica::*)(QRemoteObjectReplica::State, QRemoteObjectReplica::State)>(&MyQRemoteObjectReplica::Signal_StateChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QRemoteObjectReplica_DisconnectStateChanged(void* ptr)

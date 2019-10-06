@@ -1051,7 +1051,7 @@ func (ptr *QAbstractSocket) ConnectConnected(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "connected") {
-			C.QAbstractSocket_ConnectConnected(ptr.Pointer())
+			C.QAbstractSocket_ConnectConnected(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "connected")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "connected"); signal != nil {
@@ -1134,7 +1134,7 @@ func (ptr *QAbstractSocket) ConnectDisconnected(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "disconnected") {
-			C.QAbstractSocket_ConnectDisconnected(ptr.Pointer())
+			C.QAbstractSocket_ConnectDisconnected(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "disconnected")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "disconnected"); signal != nil {
@@ -1181,7 +1181,7 @@ func (ptr *QAbstractSocket) ConnectError2(f func(socketError QAbstractSocket__So
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "error2") {
-			C.QAbstractSocket_ConnectError2(ptr.Pointer())
+			C.QAbstractSocket_ConnectError2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error2"); signal != nil {
@@ -1228,7 +1228,7 @@ func (ptr *QAbstractSocket) ConnectHostFound(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "hostFound") {
-			C.QAbstractSocket_ConnectHostFound(ptr.Pointer())
+			C.QAbstractSocket_ConnectHostFound(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "hostFound")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "hostFound"); signal != nil {
@@ -1353,7 +1353,7 @@ func (ptr *QAbstractSocket) ConnectProxyAuthenticationRequired(f func(proxy *QNe
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "proxyAuthenticationRequired") {
-			C.QAbstractSocket_ConnectProxyAuthenticationRequired(ptr.Pointer())
+			C.QAbstractSocket_ConnectProxyAuthenticationRequired(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "proxyAuthenticationRequired")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "proxyAuthenticationRequired"); signal != nil {
@@ -1748,7 +1748,7 @@ func (ptr *QAbstractSocket) ConnectStateChanged(f func(socketState QAbstractSock
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stateChanged") {
-			C.QAbstractSocket_ConnectStateChanged(ptr.Pointer())
+			C.QAbstractSocket_ConnectStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
@@ -2952,7 +2952,7 @@ func (ptr *QDnsLookup) ConnectFinished(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "finished") {
-			C.QDnsLookup_ConnectFinished(ptr.Pointer())
+			C.QDnsLookup_ConnectFinished(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "finished")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "finished"); signal != nil {
@@ -3077,7 +3077,7 @@ func (ptr *QDnsLookup) ConnectNameChanged(f func(name string)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "nameChanged") {
-			C.QDnsLookup_ConnectNameChanged(ptr.Pointer())
+			C.QDnsLookup_ConnectNameChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "nameChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "nameChanged"); signal != nil {
@@ -3145,7 +3145,7 @@ func (ptr *QDnsLookup) ConnectNameserverChanged(f func(nameserver *QHostAddress)
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "nameserverChanged") {
-			C.QDnsLookup_ConnectNameserverChanged(ptr.Pointer())
+			C.QDnsLookup_ConnectNameserverChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "nameserverChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "nameserverChanged"); signal != nil {
@@ -3257,7 +3257,7 @@ func (ptr *QDnsLookup) ConnectTypeChanged(f func(ty QDnsLookup__Type)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "typeChanged") {
-			C.QDnsLookup_ConnectTypeChanged(ptr.Pointer())
+			C.QDnsLookup_ConnectTypeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "typeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "typeChanged"); signal != nil {
@@ -5589,7 +5589,7 @@ func (ptr *QLocalServer) ConnectNewConnection(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "newConnection") {
-			C.QLocalServer_ConnectNewConnection(ptr.Pointer())
+			C.QLocalServer_ConnectNewConnection(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "newConnection")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "newConnection"); signal != nil {
@@ -6212,7 +6212,7 @@ func (ptr *QLocalSocket) ConnectConnected(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "connected") {
-			C.QLocalSocket_ConnectConnected(ptr.Pointer())
+			C.QLocalSocket_ConnectConnected(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "connected")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "connected"); signal != nil {
@@ -6258,7 +6258,7 @@ func (ptr *QLocalSocket) ConnectDisconnected(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "disconnected") {
-			C.QLocalSocket_ConnectDisconnected(ptr.Pointer())
+			C.QLocalSocket_ConnectDisconnected(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "disconnected")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "disconnected"); signal != nil {
@@ -6305,7 +6305,7 @@ func (ptr *QLocalSocket) ConnectError2(f func(socketError QLocalSocket__LocalSoc
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "error2") {
-			C.QLocalSocket_ConnectError2(ptr.Pointer())
+			C.QLocalSocket_ConnectError2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error2"); signal != nil {
@@ -6502,7 +6502,7 @@ func (ptr *QLocalSocket) ConnectStateChanged(f func(socketState QLocalSocket__Lo
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stateChanged") {
-			C.QLocalSocket_ConnectStateChanged(ptr.Pointer())
+			C.QLocalSocket_ConnectStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
@@ -7186,7 +7186,7 @@ func (ptr *QNetworkAccessManager) ConnectAuthenticationRequired(f func(reply *QN
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "authenticationRequired") {
-			C.QNetworkAccessManager_ConnectAuthenticationRequired(ptr.Pointer())
+			C.QNetworkAccessManager_ConnectAuthenticationRequired(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "authenticationRequired")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "authenticationRequired"); signal != nil {
@@ -7382,7 +7382,7 @@ func (ptr *QNetworkAccessManager) ConnectEncrypted(f func(reply *QNetworkReply))
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "encrypted") {
-			C.QNetworkAccessManager_ConnectEncrypted(ptr.Pointer())
+			C.QNetworkAccessManager_ConnectEncrypted(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "encrypted")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "encrypted"); signal != nil {
@@ -7422,7 +7422,7 @@ func (ptr *QNetworkAccessManager) ConnectFinished(f func(reply *QNetworkReply)) 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "finished") {
-			C.QNetworkAccessManager_ConnectFinished(ptr.Pointer())
+			C.QNetworkAccessManager_ConnectFinished(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "finished")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "finished"); signal != nil {
@@ -7505,7 +7505,7 @@ func (ptr *QNetworkAccessManager) ConnectNetworkAccessibleChanged(f func(accessi
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "networkAccessibleChanged") {
-			C.QNetworkAccessManager_ConnectNetworkAccessibleChanged(ptr.Pointer())
+			C.QNetworkAccessManager_ConnectNetworkAccessibleChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "networkAccessibleChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "networkAccessibleChanged"); signal != nil {
@@ -7578,7 +7578,7 @@ func (ptr *QNetworkAccessManager) ConnectPreSharedKeyAuthenticationRequired(f fu
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "preSharedKeyAuthenticationRequired") {
-			C.QNetworkAccessManager_ConnectPreSharedKeyAuthenticationRequired(ptr.Pointer())
+			C.QNetworkAccessManager_ConnectPreSharedKeyAuthenticationRequired(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "preSharedKeyAuthenticationRequired")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "preSharedKeyAuthenticationRequired"); signal != nil {
@@ -7627,7 +7627,7 @@ func (ptr *QNetworkAccessManager) ConnectProxyAuthenticationRequired(f func(prox
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "proxyAuthenticationRequired") {
-			C.QNetworkAccessManager_ConnectProxyAuthenticationRequired(ptr.Pointer())
+			C.QNetworkAccessManager_ConnectProxyAuthenticationRequired(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "proxyAuthenticationRequired")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "proxyAuthenticationRequired"); signal != nil {
@@ -7802,7 +7802,7 @@ func (ptr *QNetworkAccessManager) ConnectSslErrors(f func(reply *QNetworkReply, 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "sslErrors") {
-			C.QNetworkAccessManager_ConnectSslErrors(ptr.Pointer())
+			C.QNetworkAccessManager_ConnectSslErrors(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "sslErrors")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "sslErrors"); signal != nil {
@@ -8963,7 +8963,7 @@ func (ptr *QNetworkConfigurationManager) ConnectConfigurationAdded(f func(config
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "configurationAdded") {
-			C.QNetworkConfigurationManager_ConnectConfigurationAdded(ptr.Pointer())
+			C.QNetworkConfigurationManager_ConnectConfigurationAdded(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "configurationAdded")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "configurationAdded"); signal != nil {
@@ -9003,7 +9003,7 @@ func (ptr *QNetworkConfigurationManager) ConnectConfigurationChanged(f func(conf
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "configurationChanged") {
-			C.QNetworkConfigurationManager_ConnectConfigurationChanged(ptr.Pointer())
+			C.QNetworkConfigurationManager_ConnectConfigurationChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "configurationChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "configurationChanged"); signal != nil {
@@ -9057,7 +9057,7 @@ func (ptr *QNetworkConfigurationManager) ConnectConfigurationRemoved(f func(conf
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "configurationRemoved") {
-			C.QNetworkConfigurationManager_ConnectConfigurationRemoved(ptr.Pointer())
+			C.QNetworkConfigurationManager_ConnectConfigurationRemoved(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "configurationRemoved")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "configurationRemoved"); signal != nil {
@@ -9113,7 +9113,7 @@ func (ptr *QNetworkConfigurationManager) ConnectOnlineStateChanged(f func(isOnli
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "onlineStateChanged") {
-			C.QNetworkConfigurationManager_ConnectOnlineStateChanged(ptr.Pointer())
+			C.QNetworkConfigurationManager_ConnectOnlineStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "onlineStateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "onlineStateChanged"); signal != nil {
@@ -9153,7 +9153,7 @@ func (ptr *QNetworkConfigurationManager) ConnectUpdateCompleted(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "updateCompleted") {
-			C.QNetworkConfigurationManager_ConnectUpdateCompleted(ptr.Pointer())
+			C.QNetworkConfigurationManager_ConnectUpdateCompleted(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "updateCompleted")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "updateCompleted"); signal != nil {
@@ -12592,7 +12592,7 @@ func (ptr *QNetworkReply) ConnectDownloadProgress(f func(bytesReceived int64, by
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "downloadProgress") {
-			C.QNetworkReply_ConnectDownloadProgress(ptr.Pointer())
+			C.QNetworkReply_ConnectDownloadProgress(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "downloadProgress")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "downloadProgress"); signal != nil {
@@ -12632,7 +12632,7 @@ func (ptr *QNetworkReply) ConnectEncrypted(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "encrypted") {
-			C.QNetworkReply_ConnectEncrypted(ptr.Pointer())
+			C.QNetworkReply_ConnectEncrypted(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "encrypted")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "encrypted"); signal != nil {
@@ -12679,7 +12679,7 @@ func (ptr *QNetworkReply) ConnectError2(f func(code QNetworkReply__NetworkError)
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "error2") {
-			C.QNetworkReply_ConnectError2(ptr.Pointer())
+			C.QNetworkReply_ConnectError2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error2"); signal != nil {
@@ -12719,7 +12719,7 @@ func (ptr *QNetworkReply) ConnectFinished(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "finished") {
-			C.QNetworkReply_ConnectFinished(ptr.Pointer())
+			C.QNetworkReply_ConnectFinished(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "finished")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "finished"); signal != nil {
@@ -12924,7 +12924,7 @@ func (ptr *QNetworkReply) ConnectMetaDataChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "metaDataChanged") {
-			C.QNetworkReply_ConnectMetaDataChanged(ptr.Pointer())
+			C.QNetworkReply_ConnectMetaDataChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "metaDataChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "metaDataChanged"); signal != nil {
@@ -12971,7 +12971,7 @@ func (ptr *QNetworkReply) ConnectPreSharedKeyAuthenticationRequired(f func(authe
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "preSharedKeyAuthenticationRequired") {
-			C.QNetworkReply_ConnectPreSharedKeyAuthenticationRequired(ptr.Pointer())
+			C.QNetworkReply_ConnectPreSharedKeyAuthenticationRequired(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "preSharedKeyAuthenticationRequired")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "preSharedKeyAuthenticationRequired"); signal != nil {
@@ -13041,7 +13041,7 @@ func (ptr *QNetworkReply) ConnectRedirectAllowed(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "redirectAllowed") {
-			C.QNetworkReply_ConnectRedirectAllowed(ptr.Pointer())
+			C.QNetworkReply_ConnectRedirectAllowed(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "redirectAllowed")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "redirectAllowed"); signal != nil {
@@ -13081,7 +13081,7 @@ func (ptr *QNetworkReply) ConnectRedirected(f func(url *core.QUrl)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "redirected") {
-			C.QNetworkReply_ConnectRedirected(ptr.Pointer())
+			C.QNetworkReply_ConnectRedirected(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "redirected")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "redirected"); signal != nil {
@@ -13334,7 +13334,7 @@ func (ptr *QNetworkReply) ConnectSslErrors(f func(errors []*QSslError)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "sslErrors") {
-			C.QNetworkReply_ConnectSslErrors(ptr.Pointer())
+			C.QNetworkReply_ConnectSslErrors(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "sslErrors")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "sslErrors"); signal != nil {
@@ -13380,7 +13380,7 @@ func (ptr *QNetworkReply) ConnectUploadProgress(f func(bytesSent int64, bytesTot
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "uploadProgress") {
-			C.QNetworkReply_ConnectUploadProgress(ptr.Pointer())
+			C.QNetworkReply_ConnectUploadProgress(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "uploadProgress")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "uploadProgress"); signal != nil {
@@ -14672,7 +14672,7 @@ func (ptr *QNetworkSession) ConnectClosed(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "closed") {
-			C.QNetworkSession_ConnectClosed(ptr.Pointer())
+			C.QNetworkSession_ConnectClosed(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "closed")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "closed"); signal != nil {
@@ -14728,7 +14728,7 @@ func (ptr *QNetworkSession) ConnectError2(f func(error QNetworkSession__SessionE
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "error2") {
-			C.QNetworkSession_ConnectError2(ptr.Pointer())
+			C.QNetworkSession_ConnectError2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error2"); signal != nil {
@@ -14877,7 +14877,7 @@ func (ptr *QNetworkSession) ConnectNewConfigurationActivated(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "newConfigurationActivated") {
-			C.QNetworkSession_ConnectNewConfigurationActivated(ptr.Pointer())
+			C.QNetworkSession_ConnectNewConfigurationActivated(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "newConfigurationActivated")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "newConfigurationActivated"); signal != nil {
@@ -14960,7 +14960,7 @@ func (ptr *QNetworkSession) ConnectOpened(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "opened") {
-			C.QNetworkSession_ConnectOpened(ptr.Pointer())
+			C.QNetworkSession_ConnectOpened(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "opened")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "opened"); signal != nil {
@@ -15000,7 +15000,7 @@ func (ptr *QNetworkSession) ConnectPreferredConfigurationChanged(f func(config *
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "preferredConfigurationChanged") {
-			C.QNetworkSession_ConnectPreferredConfigurationChanged(ptr.Pointer())
+			C.QNetworkSession_ConnectPreferredConfigurationChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "preferredConfigurationChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "preferredConfigurationChanged"); signal != nil {
@@ -15115,7 +15115,7 @@ func (ptr *QNetworkSession) ConnectStateChanged(f func(state QNetworkSession__St
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stateChanged") {
-			C.QNetworkSession_ConnectStateChanged(ptr.Pointer())
+			C.QNetworkSession_ConnectStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
@@ -15205,7 +15205,7 @@ func (ptr *QNetworkSession) ConnectUsagePoliciesChanged(f func(usagePolicies QNe
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "usagePoliciesChanged") {
-			C.QNetworkSession_ConnectUsagePoliciesChanged(ptr.Pointer())
+			C.QNetworkSession_ConnectUsagePoliciesChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "usagePoliciesChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "usagePoliciesChanged"); signal != nil {
@@ -18515,7 +18515,7 @@ func (ptr *QSslSocket) ConnectEncrypted(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "encrypted") {
-			C.QSslSocket_ConnectEncrypted(ptr.Pointer())
+			C.QSslSocket_ConnectEncrypted(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "encrypted")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "encrypted"); signal != nil {
@@ -18569,7 +18569,7 @@ func (ptr *QSslSocket) ConnectEncryptedBytesWritten(f func(written int64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "encryptedBytesWritten") {
-			C.QSslSocket_ConnectEncryptedBytesWritten(ptr.Pointer())
+			C.QSslSocket_ConnectEncryptedBytesWritten(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "encryptedBytesWritten")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "encryptedBytesWritten"); signal != nil {
@@ -18701,7 +18701,7 @@ func (ptr *QSslSocket) ConnectModeChanged(f func(mode QSslSocket__SslMode)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "modeChanged") {
-			C.QSslSocket_ConnectModeChanged(ptr.Pointer())
+			C.QSslSocket_ConnectModeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "modeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "modeChanged"); signal != nil {
@@ -18785,7 +18785,7 @@ func (ptr *QSslSocket) ConnectPeerVerifyError(f func(error *QSslError)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "peerVerifyError") {
-			C.QSslSocket_ConnectPeerVerifyError(ptr.Pointer())
+			C.QSslSocket_ConnectPeerVerifyError(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "peerVerifyError")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "peerVerifyError"); signal != nil {
@@ -18839,7 +18839,7 @@ func (ptr *QSslSocket) ConnectPreSharedKeyAuthenticationRequired(f func(authenti
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "preSharedKeyAuthenticationRequired") {
-			C.QSslSocket_ConnectPreSharedKeyAuthenticationRequired(ptr.Pointer())
+			C.QSslSocket_ConnectPreSharedKeyAuthenticationRequired(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "preSharedKeyAuthenticationRequired")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "preSharedKeyAuthenticationRequired"); signal != nil {
@@ -19022,7 +19022,7 @@ func (ptr *QSslSocket) ConnectSslErrors2(f func(errors []*QSslError)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "sslErrors2") {
-			C.QSslSocket_ConnectSslErrors2(ptr.Pointer())
+			C.QSslSocket_ConnectSslErrors2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "sslErrors")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "sslErrors2"); signal != nil {
@@ -19655,7 +19655,7 @@ func (ptr *QTcpServer) ConnectAcceptError(f func(socketError QAbstractSocket__So
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "acceptError") {
-			C.QTcpServer_ConnectAcceptError(ptr.Pointer())
+			C.QTcpServer_ConnectAcceptError(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "acceptError")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "acceptError"); signal != nil {
@@ -19780,7 +19780,7 @@ func (ptr *QTcpServer) ConnectNewConnection(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "newConnection") {
-			C.QTcpServer_ConnectNewConnection(ptr.Pointer())
+			C.QTcpServer_ConnectNewConnection(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "newConnection")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "newConnection"); signal != nil {

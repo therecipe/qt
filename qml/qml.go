@@ -1452,7 +1452,7 @@ func (ptr *QQmlApplicationEngine) ConnectObjectCreated(f func(object *core.QObje
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "objectCreated") {
-			C.QQmlApplicationEngine_ConnectObjectCreated(ptr.Pointer())
+			C.QQmlApplicationEngine_ConnectObjectCreated(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "objectCreated")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "objectCreated"); signal != nil {
@@ -1995,7 +1995,7 @@ func (ptr *QQmlComponent) ConnectProgressChanged(f func(progress float64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "progressChanged") {
-			C.QQmlComponent_ConnectProgressChanged(ptr.Pointer())
+			C.QQmlComponent_ConnectProgressChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "progressChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "progressChanged"); signal != nil {
@@ -2085,7 +2085,7 @@ func (ptr *QQmlComponent) ConnectStatusChanged(f func(status QQmlComponent__Stat
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "statusChanged") {
-			C.QQmlComponent_ConnectStatusChanged(ptr.Pointer())
+			C.QQmlComponent_ConnectStatusChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "statusChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "statusChanged"); signal != nil {
@@ -3284,7 +3284,7 @@ func (ptr *QQmlEngine) ConnectExit(f func(retCode int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "exit") {
-			C.QQmlEngine_ConnectExit(ptr.Pointer())
+			C.QQmlEngine_ConnectExit(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "exit")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "exit"); signal != nil {
@@ -3432,7 +3432,7 @@ func (ptr *QQmlEngine) ConnectQuit(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "quit") {
-			C.QQmlEngine_ConnectQuit(ptr.Pointer())
+			C.QQmlEngine_ConnectQuit(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "quit")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "quit"); signal != nil {
@@ -3617,7 +3617,7 @@ func (ptr *QQmlEngine) ConnectWarnings(f func(warnings []*QQmlError)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "warnings") {
-			C.QQmlEngine_ConnectWarnings(ptr.Pointer())
+			C.QQmlEngine_ConnectWarnings(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "warnings")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "warnings"); signal != nil {
@@ -4208,7 +4208,7 @@ func (ptr *QQmlExpression) ConnectValueChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "valueChanged") {
-			C.QQmlExpression_ConnectValueChanged(ptr.Pointer())
+			C.QQmlExpression_ConnectValueChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "valueChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "valueChanged"); signal != nil {
@@ -6971,7 +6971,7 @@ func (ptr *QQmlPropertyMap) ConnectValueChanged(f func(key string, value *core.Q
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "valueChanged") {
-			C.QQmlPropertyMap_ConnectValueChanged(ptr.Pointer())
+			C.QQmlPropertyMap_ConnectValueChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "valueChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "valueChanged"); signal != nil {

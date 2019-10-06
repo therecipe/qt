@@ -603,9 +603,9 @@ void QAbstractSocket_ConnectToHost2Default(void* ptr, void* address, unsigned sh
 	}
 }
 
-void QAbstractSocket_ConnectConnected(void* ptr)
+void QAbstractSocket_ConnectConnected(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QAbstractSocket*>(ptr), static_cast<void (QAbstractSocket::*)()>(&QAbstractSocket::connected), static_cast<MyQAbstractSocket*>(ptr), static_cast<void (MyQAbstractSocket::*)()>(&MyQAbstractSocket::Signal_Connected));
+	QObject::connect(static_cast<QAbstractSocket*>(ptr), static_cast<void (QAbstractSocket::*)()>(&QAbstractSocket::connected), static_cast<MyQAbstractSocket*>(ptr), static_cast<void (MyQAbstractSocket::*)()>(&MyQAbstractSocket::Signal_Connected), static_cast<Qt::ConnectionType>(t));
 }
 
 void QAbstractSocket_DisconnectConnected(void* ptr)
@@ -636,9 +636,9 @@ void QAbstractSocket_DisconnectFromHostDefault(void* ptr)
 	}
 }
 
-void QAbstractSocket_ConnectDisconnected(void* ptr)
+void QAbstractSocket_ConnectDisconnected(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QAbstractSocket*>(ptr), static_cast<void (QAbstractSocket::*)()>(&QAbstractSocket::disconnected), static_cast<MyQAbstractSocket*>(ptr), static_cast<void (MyQAbstractSocket::*)()>(&MyQAbstractSocket::Signal_Disconnected));
+	QObject::connect(static_cast<QAbstractSocket*>(ptr), static_cast<void (QAbstractSocket::*)()>(&QAbstractSocket::disconnected), static_cast<MyQAbstractSocket*>(ptr), static_cast<void (MyQAbstractSocket::*)()>(&MyQAbstractSocket::Signal_Disconnected), static_cast<Qt::ConnectionType>(t));
 }
 
 void QAbstractSocket_DisconnectDisconnected(void* ptr)
@@ -656,10 +656,10 @@ long long QAbstractSocket_Error(void* ptr)
 	return static_cast<QAbstractSocket*>(ptr)->error();
 }
 
-void QAbstractSocket_ConnectError2(void* ptr)
+void QAbstractSocket_ConnectError2(void* ptr, long long t)
 {
 	qRegisterMetaType<QAbstractSocket::SocketError>();
-	QObject::connect(static_cast<QAbstractSocket*>(ptr), static_cast<void (QAbstractSocket::*)(QAbstractSocket::SocketError)>(&QAbstractSocket::error), static_cast<MyQAbstractSocket*>(ptr), static_cast<void (MyQAbstractSocket::*)(QAbstractSocket::SocketError)>(&MyQAbstractSocket::Signal_Error2));
+	QObject::connect(static_cast<QAbstractSocket*>(ptr), static_cast<void (QAbstractSocket::*)(QAbstractSocket::SocketError)>(&QAbstractSocket::error), static_cast<MyQAbstractSocket*>(ptr), static_cast<void (MyQAbstractSocket::*)(QAbstractSocket::SocketError)>(&MyQAbstractSocket::Signal_Error2), static_cast<Qt::ConnectionType>(t));
 }
 
 void QAbstractSocket_DisconnectError2(void* ptr)
@@ -677,9 +677,9 @@ char QAbstractSocket_Flush(void* ptr)
 	return static_cast<QAbstractSocket*>(ptr)->flush();
 }
 
-void QAbstractSocket_ConnectHostFound(void* ptr)
+void QAbstractSocket_ConnectHostFound(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QAbstractSocket*>(ptr), static_cast<void (QAbstractSocket::*)()>(&QAbstractSocket::hostFound), static_cast<MyQAbstractSocket*>(ptr), static_cast<void (MyQAbstractSocket::*)()>(&MyQAbstractSocket::Signal_HostFound));
+	QObject::connect(static_cast<QAbstractSocket*>(ptr), static_cast<void (QAbstractSocket::*)()>(&QAbstractSocket::hostFound), static_cast<MyQAbstractSocket*>(ptr), static_cast<void (MyQAbstractSocket::*)()>(&MyQAbstractSocket::Signal_HostFound), static_cast<Qt::ConnectionType>(t));
 }
 
 void QAbstractSocket_DisconnectHostFound(void* ptr)
@@ -750,9 +750,9 @@ void* QAbstractSocket_Proxy(void* ptr)
 	return new QNetworkProxy(static_cast<QAbstractSocket*>(ptr)->proxy());
 }
 
-void QAbstractSocket_ConnectProxyAuthenticationRequired(void* ptr)
+void QAbstractSocket_ConnectProxyAuthenticationRequired(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QAbstractSocket*>(ptr), static_cast<void (QAbstractSocket::*)(const QNetworkProxy &, QAuthenticator *)>(&QAbstractSocket::proxyAuthenticationRequired), static_cast<MyQAbstractSocket*>(ptr), static_cast<void (MyQAbstractSocket::*)(const QNetworkProxy &, QAuthenticator *)>(&MyQAbstractSocket::Signal_ProxyAuthenticationRequired));
+	QObject::connect(static_cast<QAbstractSocket*>(ptr), static_cast<void (QAbstractSocket::*)(const QNetworkProxy &, QAuthenticator *)>(&QAbstractSocket::proxyAuthenticationRequired), static_cast<MyQAbstractSocket*>(ptr), static_cast<void (MyQAbstractSocket::*)(const QNetworkProxy &, QAuthenticator *)>(&MyQAbstractSocket::Signal_ProxyAuthenticationRequired), static_cast<Qt::ConnectionType>(t));
 }
 
 void QAbstractSocket_DisconnectProxyAuthenticationRequired(void* ptr)
@@ -933,10 +933,10 @@ long long QAbstractSocket_State(void* ptr)
 	return static_cast<QAbstractSocket*>(ptr)->state();
 }
 
-void QAbstractSocket_ConnectStateChanged(void* ptr)
+void QAbstractSocket_ConnectStateChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<QAbstractSocket::SocketState>();
-	QObject::connect(static_cast<QAbstractSocket*>(ptr), static_cast<void (QAbstractSocket::*)(QAbstractSocket::SocketState)>(&QAbstractSocket::stateChanged), static_cast<MyQAbstractSocket*>(ptr), static_cast<void (MyQAbstractSocket::*)(QAbstractSocket::SocketState)>(&MyQAbstractSocket::Signal_StateChanged));
+	QObject::connect(static_cast<QAbstractSocket*>(ptr), static_cast<void (QAbstractSocket::*)(QAbstractSocket::SocketState)>(&QAbstractSocket::stateChanged), static_cast<MyQAbstractSocket*>(ptr), static_cast<void (MyQAbstractSocket::*)(QAbstractSocket::SocketState)>(&MyQAbstractSocket::Signal_StateChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QAbstractSocket_DisconnectStateChanged(void* ptr)
@@ -1665,9 +1665,9 @@ struct QtNetwork_PackedString QDnsLookup_ErrorString(void* ptr)
 	return ({ QByteArray ta68e7f = static_cast<QDnsLookup*>(ptr)->errorString().toUtf8(); QtNetwork_PackedString { const_cast<char*>(ta68e7f.prepend("WHITESPACE").constData()+10), ta68e7f.size()-10 }; });
 }
 
-void QDnsLookup_ConnectFinished(void* ptr)
+void QDnsLookup_ConnectFinished(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QDnsLookup*>(ptr), static_cast<void (QDnsLookup::*)()>(&QDnsLookup::finished), static_cast<MyQDnsLookup*>(ptr), static_cast<void (MyQDnsLookup::*)()>(&MyQDnsLookup::Signal_Finished));
+	QObject::connect(static_cast<QDnsLookup*>(ptr), static_cast<void (QDnsLookup::*)()>(&QDnsLookup::finished), static_cast<MyQDnsLookup*>(ptr), static_cast<void (MyQDnsLookup::*)()>(&MyQDnsLookup::Signal_Finished), static_cast<Qt::ConnectionType>(t));
 }
 
 void QDnsLookup_DisconnectFinished(void* ptr)
@@ -1710,9 +1710,9 @@ struct QtNetwork_PackedString QDnsLookup_Name(void* ptr)
 	return ({ QByteArray td8dec7 = static_cast<QDnsLookup*>(ptr)->name().toUtf8(); QtNetwork_PackedString { const_cast<char*>(td8dec7.prepend("WHITESPACE").constData()+10), td8dec7.size()-10 }; });
 }
 
-void QDnsLookup_ConnectNameChanged(void* ptr)
+void QDnsLookup_ConnectNameChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QDnsLookup*>(ptr), static_cast<void (QDnsLookup::*)(const QString &)>(&QDnsLookup::nameChanged), static_cast<MyQDnsLookup*>(ptr), static_cast<void (MyQDnsLookup::*)(const QString &)>(&MyQDnsLookup::Signal_NameChanged));
+	QObject::connect(static_cast<QDnsLookup*>(ptr), static_cast<void (QDnsLookup::*)(const QString &)>(&QDnsLookup::nameChanged), static_cast<MyQDnsLookup*>(ptr), static_cast<void (MyQDnsLookup::*)(const QString &)>(&MyQDnsLookup::Signal_NameChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QDnsLookup_DisconnectNameChanged(void* ptr)
@@ -1735,9 +1735,9 @@ void* QDnsLookup_Nameserver(void* ptr)
 	return new QHostAddress(static_cast<QDnsLookup*>(ptr)->nameserver());
 }
 
-void QDnsLookup_ConnectNameserverChanged(void* ptr)
+void QDnsLookup_ConnectNameserverChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QDnsLookup*>(ptr), static_cast<void (QDnsLookup::*)(const QHostAddress &)>(&QDnsLookup::nameserverChanged), static_cast<MyQDnsLookup*>(ptr), static_cast<void (MyQDnsLookup::*)(const QHostAddress &)>(&MyQDnsLookup::Signal_NameserverChanged));
+	QObject::connect(static_cast<QDnsLookup*>(ptr), static_cast<void (QDnsLookup::*)(const QHostAddress &)>(&QDnsLookup::nameserverChanged), static_cast<MyQDnsLookup*>(ptr), static_cast<void (MyQDnsLookup::*)(const QHostAddress &)>(&MyQDnsLookup::Signal_NameserverChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QDnsLookup_DisconnectNameserverChanged(void* ptr)
@@ -1785,10 +1785,10 @@ long long QDnsLookup_Type(void* ptr)
 	return static_cast<QDnsLookup*>(ptr)->type();
 }
 
-void QDnsLookup_ConnectTypeChanged(void* ptr)
+void QDnsLookup_ConnectTypeChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<QDnsLookup::Type>();
-	QObject::connect(static_cast<QDnsLookup*>(ptr), static_cast<void (QDnsLookup::*)(QDnsLookup::Type)>(&QDnsLookup::typeChanged), static_cast<MyQDnsLookup*>(ptr), static_cast<void (MyQDnsLookup::*)(QDnsLookup::Type)>(&MyQDnsLookup::Signal_TypeChanged));
+	QObject::connect(static_cast<QDnsLookup*>(ptr), static_cast<void (QDnsLookup::*)(QDnsLookup::Type)>(&QDnsLookup::typeChanged), static_cast<MyQDnsLookup*>(ptr), static_cast<void (MyQDnsLookup::*)(QDnsLookup::Type)>(&MyQDnsLookup::Signal_TypeChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QDnsLookup_DisconnectTypeChanged(void* ptr)
@@ -2968,9 +2968,9 @@ int QLocalServer_MaxPendingConnections(void* ptr)
 	return static_cast<QLocalServer*>(ptr)->maxPendingConnections();
 }
 
-void QLocalServer_ConnectNewConnection(void* ptr)
+void QLocalServer_ConnectNewConnection(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QLocalServer*>(ptr), static_cast<void (QLocalServer::*)()>(&QLocalServer::newConnection), static_cast<MyQLocalServer*>(ptr), static_cast<void (MyQLocalServer::*)()>(&MyQLocalServer::Signal_NewConnection));
+	QObject::connect(static_cast<QLocalServer*>(ptr), static_cast<void (QLocalServer::*)()>(&QLocalServer::newConnection), static_cast<MyQLocalServer*>(ptr), static_cast<void (MyQLocalServer::*)()>(&MyQLocalServer::Signal_NewConnection), static_cast<Qt::ConnectionType>(t));
 }
 
 void QLocalServer_DisconnectNewConnection(void* ptr)
@@ -3294,9 +3294,9 @@ void QLocalSocket_ConnectToServer2(void* ptr, struct QtNetwork_PackedString name
 	static_cast<QLocalSocket*>(ptr)->connectToServer(QString::fromUtf8(name.data, name.len), static_cast<QIODevice::OpenModeFlag>(openMode));
 }
 
-void QLocalSocket_ConnectConnected(void* ptr)
+void QLocalSocket_ConnectConnected(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QLocalSocket*>(ptr), static_cast<void (QLocalSocket::*)()>(&QLocalSocket::connected), static_cast<MyQLocalSocket*>(ptr), static_cast<void (MyQLocalSocket::*)()>(&MyQLocalSocket::Signal_Connected));
+	QObject::connect(static_cast<QLocalSocket*>(ptr), static_cast<void (QLocalSocket::*)()>(&QLocalSocket::connected), static_cast<MyQLocalSocket*>(ptr), static_cast<void (MyQLocalSocket::*)()>(&MyQLocalSocket::Signal_Connected), static_cast<Qt::ConnectionType>(t));
 }
 
 void QLocalSocket_DisconnectConnected(void* ptr)
@@ -3314,9 +3314,9 @@ void QLocalSocket_DisconnectFromServer(void* ptr)
 	static_cast<QLocalSocket*>(ptr)->disconnectFromServer();
 }
 
-void QLocalSocket_ConnectDisconnected(void* ptr)
+void QLocalSocket_ConnectDisconnected(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QLocalSocket*>(ptr), static_cast<void (QLocalSocket::*)()>(&QLocalSocket::disconnected), static_cast<MyQLocalSocket*>(ptr), static_cast<void (MyQLocalSocket::*)()>(&MyQLocalSocket::Signal_Disconnected));
+	QObject::connect(static_cast<QLocalSocket*>(ptr), static_cast<void (QLocalSocket::*)()>(&QLocalSocket::disconnected), static_cast<MyQLocalSocket*>(ptr), static_cast<void (MyQLocalSocket::*)()>(&MyQLocalSocket::Signal_Disconnected), static_cast<Qt::ConnectionType>(t));
 }
 
 void QLocalSocket_DisconnectDisconnected(void* ptr)
@@ -3334,9 +3334,9 @@ long long QLocalSocket_Error(void* ptr)
 	return static_cast<QLocalSocket*>(ptr)->error();
 }
 
-void QLocalSocket_ConnectError2(void* ptr)
+void QLocalSocket_ConnectError2(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QLocalSocket*>(ptr), static_cast<void (QLocalSocket::*)(QLocalSocket::LocalSocketError)>(&QLocalSocket::error), static_cast<MyQLocalSocket*>(ptr), static_cast<void (MyQLocalSocket::*)(QLocalSocket::LocalSocketError)>(&MyQLocalSocket::Signal_Error2));
+	QObject::connect(static_cast<QLocalSocket*>(ptr), static_cast<void (QLocalSocket::*)(QLocalSocket::LocalSocketError)>(&QLocalSocket::error), static_cast<MyQLocalSocket*>(ptr), static_cast<void (MyQLocalSocket::*)(QLocalSocket::LocalSocketError)>(&MyQLocalSocket::Signal_Error2), static_cast<Qt::ConnectionType>(t));
 }
 
 void QLocalSocket_DisconnectError2(void* ptr)
@@ -3409,9 +3409,9 @@ long long QLocalSocket_State(void* ptr)
 	return static_cast<QLocalSocket*>(ptr)->state();
 }
 
-void QLocalSocket_ConnectStateChanged(void* ptr)
+void QLocalSocket_ConnectStateChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QLocalSocket*>(ptr), static_cast<void (QLocalSocket::*)(QLocalSocket::LocalSocketState)>(&QLocalSocket::stateChanged), static_cast<MyQLocalSocket*>(ptr), static_cast<void (MyQLocalSocket::*)(QLocalSocket::LocalSocketState)>(&MyQLocalSocket::Signal_StateChanged));
+	QObject::connect(static_cast<QLocalSocket*>(ptr), static_cast<void (QLocalSocket::*)(QLocalSocket::LocalSocketState)>(&QLocalSocket::stateChanged), static_cast<MyQLocalSocket*>(ptr), static_cast<void (MyQLocalSocket::*)(QLocalSocket::LocalSocketState)>(&MyQLocalSocket::Signal_StateChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QLocalSocket_DisconnectStateChanged(void* ptr)
@@ -3708,9 +3708,9 @@ void QNetworkAccessManager_AddStrictTransportSecurityHosts(void* ptr, void* know
 	static_cast<QNetworkAccessManager*>(ptr)->addStrictTransportSecurityHosts(*static_cast<QVector<QHstsPolicy>*>(knownHosts));
 }
 
-void QNetworkAccessManager_ConnectAuthenticationRequired(void* ptr)
+void QNetworkAccessManager_ConnectAuthenticationRequired(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QNetworkAccessManager*>(ptr), static_cast<void (QNetworkAccessManager::*)(QNetworkReply *, QAuthenticator *)>(&QNetworkAccessManager::authenticationRequired), static_cast<MyQNetworkAccessManager*>(ptr), static_cast<void (MyQNetworkAccessManager::*)(QNetworkReply *, QAuthenticator *)>(&MyQNetworkAccessManager::Signal_AuthenticationRequired));
+	QObject::connect(static_cast<QNetworkAccessManager*>(ptr), static_cast<void (QNetworkAccessManager::*)(QNetworkReply *, QAuthenticator *)>(&QNetworkAccessManager::authenticationRequired), static_cast<MyQNetworkAccessManager*>(ptr), static_cast<void (MyQNetworkAccessManager::*)(QNetworkReply *, QAuthenticator *)>(&MyQNetworkAccessManager::Signal_AuthenticationRequired), static_cast<Qt::ConnectionType>(t));
 }
 
 void QNetworkAccessManager_DisconnectAuthenticationRequired(void* ptr)
@@ -3783,9 +3783,9 @@ void QNetworkAccessManager_EnableStrictTransportSecurityStore(void* ptr, char en
 	static_cast<QNetworkAccessManager*>(ptr)->enableStrictTransportSecurityStore(enabled != 0, QString::fromUtf8(storeDir.data, storeDir.len));
 }
 
-void QNetworkAccessManager_ConnectEncrypted(void* ptr)
+void QNetworkAccessManager_ConnectEncrypted(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QNetworkAccessManager*>(ptr), static_cast<void (QNetworkAccessManager::*)(QNetworkReply *)>(&QNetworkAccessManager::encrypted), static_cast<MyQNetworkAccessManager*>(ptr), static_cast<void (MyQNetworkAccessManager::*)(QNetworkReply *)>(&MyQNetworkAccessManager::Signal_Encrypted));
+	QObject::connect(static_cast<QNetworkAccessManager*>(ptr), static_cast<void (QNetworkAccessManager::*)(QNetworkReply *)>(&QNetworkAccessManager::encrypted), static_cast<MyQNetworkAccessManager*>(ptr), static_cast<void (MyQNetworkAccessManager::*)(QNetworkReply *)>(&MyQNetworkAccessManager::Signal_Encrypted), static_cast<Qt::ConnectionType>(t));
 }
 
 void QNetworkAccessManager_DisconnectEncrypted(void* ptr)
@@ -3798,9 +3798,9 @@ void QNetworkAccessManager_Encrypted(void* ptr, void* reply)
 	static_cast<QNetworkAccessManager*>(ptr)->encrypted(static_cast<QNetworkReply*>(reply));
 }
 
-void QNetworkAccessManager_ConnectFinished(void* ptr)
+void QNetworkAccessManager_ConnectFinished(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QNetworkAccessManager*>(ptr), static_cast<void (QNetworkAccessManager::*)(QNetworkReply *)>(&QNetworkAccessManager::finished), static_cast<MyQNetworkAccessManager*>(ptr), static_cast<void (MyQNetworkAccessManager::*)(QNetworkReply *)>(&MyQNetworkAccessManager::Signal_Finished));
+	QObject::connect(static_cast<QNetworkAccessManager*>(ptr), static_cast<void (QNetworkAccessManager::*)(QNetworkReply *)>(&QNetworkAccessManager::finished), static_cast<MyQNetworkAccessManager*>(ptr), static_cast<void (MyQNetworkAccessManager::*)(QNetworkReply *)>(&MyQNetworkAccessManager::Signal_Finished), static_cast<Qt::ConnectionType>(t));
 }
 
 void QNetworkAccessManager_DisconnectFinished(void* ptr)
@@ -3838,10 +3838,10 @@ long long QNetworkAccessManager_NetworkAccessible(void* ptr)
 	return static_cast<QNetworkAccessManager*>(ptr)->networkAccessible();
 }
 
-void QNetworkAccessManager_ConnectNetworkAccessibleChanged(void* ptr)
+void QNetworkAccessManager_ConnectNetworkAccessibleChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<QNetworkAccessManager::NetworkAccessibility>();
-	QObject::connect(static_cast<QNetworkAccessManager*>(ptr), static_cast<void (QNetworkAccessManager::*)(QNetworkAccessManager::NetworkAccessibility)>(&QNetworkAccessManager::networkAccessibleChanged), static_cast<MyQNetworkAccessManager*>(ptr), static_cast<void (MyQNetworkAccessManager::*)(QNetworkAccessManager::NetworkAccessibility)>(&MyQNetworkAccessManager::Signal_NetworkAccessibleChanged));
+	QObject::connect(static_cast<QNetworkAccessManager*>(ptr), static_cast<void (QNetworkAccessManager::*)(QNetworkAccessManager::NetworkAccessibility)>(&QNetworkAccessManager::networkAccessibleChanged), static_cast<MyQNetworkAccessManager*>(ptr), static_cast<void (MyQNetworkAccessManager::*)(QNetworkAccessManager::NetworkAccessibility)>(&MyQNetworkAccessManager::Signal_NetworkAccessibleChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QNetworkAccessManager_DisconnectNetworkAccessibleChanged(void* ptr)
@@ -3869,9 +3869,9 @@ void* QNetworkAccessManager_Post3(void* ptr, void* request, void* multiPart)
 	return static_cast<QNetworkAccessManager*>(ptr)->post(*static_cast<QNetworkRequest*>(request), static_cast<QHttpMultiPart*>(multiPart));
 }
 
-void QNetworkAccessManager_ConnectPreSharedKeyAuthenticationRequired(void* ptr)
+void QNetworkAccessManager_ConnectPreSharedKeyAuthenticationRequired(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QNetworkAccessManager*>(ptr), static_cast<void (QNetworkAccessManager::*)(QNetworkReply *, QSslPreSharedKeyAuthenticator *)>(&QNetworkAccessManager::preSharedKeyAuthenticationRequired), static_cast<MyQNetworkAccessManager*>(ptr), static_cast<void (MyQNetworkAccessManager::*)(QNetworkReply *, QSslPreSharedKeyAuthenticator *)>(&MyQNetworkAccessManager::Signal_PreSharedKeyAuthenticationRequired));
+	QObject::connect(static_cast<QNetworkAccessManager*>(ptr), static_cast<void (QNetworkAccessManager::*)(QNetworkReply *, QSslPreSharedKeyAuthenticator *)>(&QNetworkAccessManager::preSharedKeyAuthenticationRequired), static_cast<MyQNetworkAccessManager*>(ptr), static_cast<void (MyQNetworkAccessManager::*)(QNetworkReply *, QSslPreSharedKeyAuthenticator *)>(&MyQNetworkAccessManager::Signal_PreSharedKeyAuthenticationRequired), static_cast<Qt::ConnectionType>(t));
 }
 
 void QNetworkAccessManager_DisconnectPreSharedKeyAuthenticationRequired(void* ptr)
@@ -3889,9 +3889,9 @@ void* QNetworkAccessManager_Proxy(void* ptr)
 	return new QNetworkProxy(static_cast<QNetworkAccessManager*>(ptr)->proxy());
 }
 
-void QNetworkAccessManager_ConnectProxyAuthenticationRequired(void* ptr)
+void QNetworkAccessManager_ConnectProxyAuthenticationRequired(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QNetworkAccessManager*>(ptr), static_cast<void (QNetworkAccessManager::*)(const QNetworkProxy &, QAuthenticator *)>(&QNetworkAccessManager::proxyAuthenticationRequired), static_cast<MyQNetworkAccessManager*>(ptr), static_cast<void (MyQNetworkAccessManager::*)(const QNetworkProxy &, QAuthenticator *)>(&MyQNetworkAccessManager::Signal_ProxyAuthenticationRequired));
+	QObject::connect(static_cast<QNetworkAccessManager*>(ptr), static_cast<void (QNetworkAccessManager::*)(const QNetworkProxy &, QAuthenticator *)>(&QNetworkAccessManager::proxyAuthenticationRequired), static_cast<MyQNetworkAccessManager*>(ptr), static_cast<void (MyQNetworkAccessManager::*)(const QNetworkProxy &, QAuthenticator *)>(&MyQNetworkAccessManager::Signal_ProxyAuthenticationRequired), static_cast<Qt::ConnectionType>(t));
 }
 
 void QNetworkAccessManager_DisconnectProxyAuthenticationRequired(void* ptr)
@@ -3984,9 +3984,9 @@ void QNetworkAccessManager_SetStrictTransportSecurityEnabled(void* ptr, char ena
 	static_cast<QNetworkAccessManager*>(ptr)->setStrictTransportSecurityEnabled(enabled != 0);
 }
 
-void QNetworkAccessManager_ConnectSslErrors(void* ptr)
+void QNetworkAccessManager_ConnectSslErrors(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QNetworkAccessManager*>(ptr), static_cast<void (QNetworkAccessManager::*)(QNetworkReply *, const QList<QSslError> &)>(&QNetworkAccessManager::sslErrors), static_cast<MyQNetworkAccessManager*>(ptr), static_cast<void (MyQNetworkAccessManager::*)(QNetworkReply *, const QList<QSslError> &)>(&MyQNetworkAccessManager::Signal_SslErrors));
+	QObject::connect(static_cast<QNetworkAccessManager*>(ptr), static_cast<void (QNetworkAccessManager::*)(QNetworkReply *, const QList<QSslError> &)>(&QNetworkAccessManager::sslErrors), static_cast<MyQNetworkAccessManager*>(ptr), static_cast<void (MyQNetworkAccessManager::*)(QNetworkReply *, const QList<QSslError> &)>(&MyQNetworkAccessManager::Signal_SslErrors), static_cast<Qt::ConnectionType>(t));
 }
 
 void QNetworkAccessManager_DisconnectSslErrors(void* ptr)
@@ -4593,9 +4593,9 @@ long long QNetworkConfigurationManager_Capabilities(void* ptr)
 	return static_cast<QNetworkConfigurationManager*>(ptr)->capabilities();
 }
 
-void QNetworkConfigurationManager_ConnectConfigurationAdded(void* ptr)
+void QNetworkConfigurationManager_ConnectConfigurationAdded(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QNetworkConfigurationManager*>(ptr), static_cast<void (QNetworkConfigurationManager::*)(const QNetworkConfiguration &)>(&QNetworkConfigurationManager::configurationAdded), static_cast<MyQNetworkConfigurationManager*>(ptr), static_cast<void (MyQNetworkConfigurationManager::*)(const QNetworkConfiguration &)>(&MyQNetworkConfigurationManager::Signal_ConfigurationAdded));
+	QObject::connect(static_cast<QNetworkConfigurationManager*>(ptr), static_cast<void (QNetworkConfigurationManager::*)(const QNetworkConfiguration &)>(&QNetworkConfigurationManager::configurationAdded), static_cast<MyQNetworkConfigurationManager*>(ptr), static_cast<void (MyQNetworkConfigurationManager::*)(const QNetworkConfiguration &)>(&MyQNetworkConfigurationManager::Signal_ConfigurationAdded), static_cast<Qt::ConnectionType>(t));
 }
 
 void QNetworkConfigurationManager_DisconnectConfigurationAdded(void* ptr)
@@ -4608,9 +4608,9 @@ void QNetworkConfigurationManager_ConfigurationAdded(void* ptr, void* config)
 	static_cast<QNetworkConfigurationManager*>(ptr)->configurationAdded(*static_cast<QNetworkConfiguration*>(config));
 }
 
-void QNetworkConfigurationManager_ConnectConfigurationChanged(void* ptr)
+void QNetworkConfigurationManager_ConnectConfigurationChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QNetworkConfigurationManager*>(ptr), static_cast<void (QNetworkConfigurationManager::*)(const QNetworkConfiguration &)>(&QNetworkConfigurationManager::configurationChanged), static_cast<MyQNetworkConfigurationManager*>(ptr), static_cast<void (MyQNetworkConfigurationManager::*)(const QNetworkConfiguration &)>(&MyQNetworkConfigurationManager::Signal_ConfigurationChanged));
+	QObject::connect(static_cast<QNetworkConfigurationManager*>(ptr), static_cast<void (QNetworkConfigurationManager::*)(const QNetworkConfiguration &)>(&QNetworkConfigurationManager::configurationChanged), static_cast<MyQNetworkConfigurationManager*>(ptr), static_cast<void (MyQNetworkConfigurationManager::*)(const QNetworkConfiguration &)>(&MyQNetworkConfigurationManager::Signal_ConfigurationChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QNetworkConfigurationManager_DisconnectConfigurationChanged(void* ptr)
@@ -4628,9 +4628,9 @@ void* QNetworkConfigurationManager_ConfigurationFromIdentifier(void* ptr, struct
 	return new QNetworkConfiguration(static_cast<QNetworkConfigurationManager*>(ptr)->configurationFromIdentifier(QString::fromUtf8(identifier.data, identifier.len)));
 }
 
-void QNetworkConfigurationManager_ConnectConfigurationRemoved(void* ptr)
+void QNetworkConfigurationManager_ConnectConfigurationRemoved(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QNetworkConfigurationManager*>(ptr), static_cast<void (QNetworkConfigurationManager::*)(const QNetworkConfiguration &)>(&QNetworkConfigurationManager::configurationRemoved), static_cast<MyQNetworkConfigurationManager*>(ptr), static_cast<void (MyQNetworkConfigurationManager::*)(const QNetworkConfiguration &)>(&MyQNetworkConfigurationManager::Signal_ConfigurationRemoved));
+	QObject::connect(static_cast<QNetworkConfigurationManager*>(ptr), static_cast<void (QNetworkConfigurationManager::*)(const QNetworkConfiguration &)>(&QNetworkConfigurationManager::configurationRemoved), static_cast<MyQNetworkConfigurationManager*>(ptr), static_cast<void (MyQNetworkConfigurationManager::*)(const QNetworkConfiguration &)>(&MyQNetworkConfigurationManager::Signal_ConfigurationRemoved), static_cast<Qt::ConnectionType>(t));
 }
 
 void QNetworkConfigurationManager_DisconnectConfigurationRemoved(void* ptr)
@@ -4653,9 +4653,9 @@ char QNetworkConfigurationManager_IsOnline(void* ptr)
 	return static_cast<QNetworkConfigurationManager*>(ptr)->isOnline();
 }
 
-void QNetworkConfigurationManager_ConnectOnlineStateChanged(void* ptr)
+void QNetworkConfigurationManager_ConnectOnlineStateChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QNetworkConfigurationManager*>(ptr), static_cast<void (QNetworkConfigurationManager::*)(bool)>(&QNetworkConfigurationManager::onlineStateChanged), static_cast<MyQNetworkConfigurationManager*>(ptr), static_cast<void (MyQNetworkConfigurationManager::*)(bool)>(&MyQNetworkConfigurationManager::Signal_OnlineStateChanged));
+	QObject::connect(static_cast<QNetworkConfigurationManager*>(ptr), static_cast<void (QNetworkConfigurationManager::*)(bool)>(&QNetworkConfigurationManager::onlineStateChanged), static_cast<MyQNetworkConfigurationManager*>(ptr), static_cast<void (MyQNetworkConfigurationManager::*)(bool)>(&MyQNetworkConfigurationManager::Signal_OnlineStateChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QNetworkConfigurationManager_DisconnectOnlineStateChanged(void* ptr)
@@ -4668,9 +4668,9 @@ void QNetworkConfigurationManager_OnlineStateChanged(void* ptr, char isOnline)
 	static_cast<QNetworkConfigurationManager*>(ptr)->onlineStateChanged(isOnline != 0);
 }
 
-void QNetworkConfigurationManager_ConnectUpdateCompleted(void* ptr)
+void QNetworkConfigurationManager_ConnectUpdateCompleted(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QNetworkConfigurationManager*>(ptr), static_cast<void (QNetworkConfigurationManager::*)()>(&QNetworkConfigurationManager::updateCompleted), static_cast<MyQNetworkConfigurationManager*>(ptr), static_cast<void (MyQNetworkConfigurationManager::*)()>(&MyQNetworkConfigurationManager::Signal_UpdateCompleted));
+	QObject::connect(static_cast<QNetworkConfigurationManager*>(ptr), static_cast<void (QNetworkConfigurationManager::*)()>(&QNetworkConfigurationManager::updateCompleted), static_cast<MyQNetworkConfigurationManager*>(ptr), static_cast<void (MyQNetworkConfigurationManager::*)()>(&MyQNetworkConfigurationManager::Signal_UpdateCompleted), static_cast<Qt::ConnectionType>(t));
 }
 
 void QNetworkConfigurationManager_DisconnectUpdateCompleted(void* ptr)
@@ -6243,9 +6243,9 @@ void QNetworkReply_CloseDefault(void* ptr)
 		static_cast<QNetworkReply*>(ptr)->QNetworkReply::close();
 }
 
-void QNetworkReply_ConnectDownloadProgress(void* ptr)
+void QNetworkReply_ConnectDownloadProgress(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QNetworkReply*>(ptr), static_cast<void (QNetworkReply::*)(qint64, qint64)>(&QNetworkReply::downloadProgress), static_cast<MyQNetworkReply*>(ptr), static_cast<void (MyQNetworkReply::*)(qint64, qint64)>(&MyQNetworkReply::Signal_DownloadProgress));
+	QObject::connect(static_cast<QNetworkReply*>(ptr), static_cast<void (QNetworkReply::*)(qint64, qint64)>(&QNetworkReply::downloadProgress), static_cast<MyQNetworkReply*>(ptr), static_cast<void (MyQNetworkReply::*)(qint64, qint64)>(&MyQNetworkReply::Signal_DownloadProgress), static_cast<Qt::ConnectionType>(t));
 }
 
 void QNetworkReply_DisconnectDownloadProgress(void* ptr)
@@ -6258,9 +6258,9 @@ void QNetworkReply_DownloadProgress(void* ptr, long long bytesReceived, long lon
 	static_cast<QNetworkReply*>(ptr)->downloadProgress(bytesReceived, bytesTotal);
 }
 
-void QNetworkReply_ConnectEncrypted(void* ptr)
+void QNetworkReply_ConnectEncrypted(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QNetworkReply*>(ptr), static_cast<void (QNetworkReply::*)()>(&QNetworkReply::encrypted), static_cast<MyQNetworkReply*>(ptr), static_cast<void (MyQNetworkReply::*)()>(&MyQNetworkReply::Signal_Encrypted));
+	QObject::connect(static_cast<QNetworkReply*>(ptr), static_cast<void (QNetworkReply::*)()>(&QNetworkReply::encrypted), static_cast<MyQNetworkReply*>(ptr), static_cast<void (MyQNetworkReply::*)()>(&MyQNetworkReply::Signal_Encrypted), static_cast<Qt::ConnectionType>(t));
 }
 
 void QNetworkReply_DisconnectEncrypted(void* ptr)
@@ -6278,10 +6278,10 @@ long long QNetworkReply_Error(void* ptr)
 	return static_cast<QNetworkReply*>(ptr)->error();
 }
 
-void QNetworkReply_ConnectError2(void* ptr)
+void QNetworkReply_ConnectError2(void* ptr, long long t)
 {
 	qRegisterMetaType<QNetworkReply::NetworkError>();
-	QObject::connect(static_cast<QNetworkReply*>(ptr), static_cast<void (QNetworkReply::*)(QNetworkReply::NetworkError)>(&QNetworkReply::error), static_cast<MyQNetworkReply*>(ptr), static_cast<void (MyQNetworkReply::*)(QNetworkReply::NetworkError)>(&MyQNetworkReply::Signal_Error2));
+	QObject::connect(static_cast<QNetworkReply*>(ptr), static_cast<void (QNetworkReply::*)(QNetworkReply::NetworkError)>(&QNetworkReply::error), static_cast<MyQNetworkReply*>(ptr), static_cast<void (MyQNetworkReply::*)(QNetworkReply::NetworkError)>(&MyQNetworkReply::Signal_Error2), static_cast<Qt::ConnectionType>(t));
 }
 
 void QNetworkReply_DisconnectError2(void* ptr)
@@ -6294,9 +6294,9 @@ void QNetworkReply_Error2(void* ptr, long long code)
 	static_cast<QNetworkReply*>(ptr)->error(static_cast<QNetworkReply::NetworkError>(code));
 }
 
-void QNetworkReply_ConnectFinished(void* ptr)
+void QNetworkReply_ConnectFinished(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QNetworkReply*>(ptr), static_cast<void (QNetworkReply::*)()>(&QNetworkReply::finished), static_cast<MyQNetworkReply*>(ptr), static_cast<void (MyQNetworkReply::*)()>(&MyQNetworkReply::Signal_Finished));
+	QObject::connect(static_cast<QNetworkReply*>(ptr), static_cast<void (QNetworkReply::*)()>(&QNetworkReply::finished), static_cast<MyQNetworkReply*>(ptr), static_cast<void (MyQNetworkReply::*)()>(&MyQNetworkReply::Signal_Finished), static_cast<Qt::ConnectionType>(t));
 }
 
 void QNetworkReply_DisconnectFinished(void* ptr)
@@ -6359,9 +6359,9 @@ void* QNetworkReply_Manager(void* ptr)
 	return static_cast<QNetworkReply*>(ptr)->manager();
 }
 
-void QNetworkReply_ConnectMetaDataChanged(void* ptr)
+void QNetworkReply_ConnectMetaDataChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QNetworkReply*>(ptr), static_cast<void (QNetworkReply::*)()>(&QNetworkReply::metaDataChanged), static_cast<MyQNetworkReply*>(ptr), static_cast<void (MyQNetworkReply::*)()>(&MyQNetworkReply::Signal_MetaDataChanged));
+	QObject::connect(static_cast<QNetworkReply*>(ptr), static_cast<void (QNetworkReply::*)()>(&QNetworkReply::metaDataChanged), static_cast<MyQNetworkReply*>(ptr), static_cast<void (MyQNetworkReply::*)()>(&MyQNetworkReply::Signal_MetaDataChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QNetworkReply_DisconnectMetaDataChanged(void* ptr)
@@ -6379,9 +6379,9 @@ long long QNetworkReply_Operation(void* ptr)
 	return static_cast<QNetworkReply*>(ptr)->operation();
 }
 
-void QNetworkReply_ConnectPreSharedKeyAuthenticationRequired(void* ptr)
+void QNetworkReply_ConnectPreSharedKeyAuthenticationRequired(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QNetworkReply*>(ptr), static_cast<void (QNetworkReply::*)(QSslPreSharedKeyAuthenticator *)>(&QNetworkReply::preSharedKeyAuthenticationRequired), static_cast<MyQNetworkReply*>(ptr), static_cast<void (MyQNetworkReply::*)(QSslPreSharedKeyAuthenticator *)>(&MyQNetworkReply::Signal_PreSharedKeyAuthenticationRequired));
+	QObject::connect(static_cast<QNetworkReply*>(ptr), static_cast<void (QNetworkReply::*)(QSslPreSharedKeyAuthenticator *)>(&QNetworkReply::preSharedKeyAuthenticationRequired), static_cast<MyQNetworkReply*>(ptr), static_cast<void (MyQNetworkReply::*)(QSslPreSharedKeyAuthenticator *)>(&MyQNetworkReply::Signal_PreSharedKeyAuthenticationRequired), static_cast<Qt::ConnectionType>(t));
 }
 
 void QNetworkReply_DisconnectPreSharedKeyAuthenticationRequired(void* ptr)
@@ -6409,9 +6409,9 @@ long long QNetworkReply_ReadBufferSize(void* ptr)
 	return static_cast<QNetworkReply*>(ptr)->readBufferSize();
 }
 
-void QNetworkReply_ConnectRedirectAllowed(void* ptr)
+void QNetworkReply_ConnectRedirectAllowed(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QNetworkReply*>(ptr), static_cast<void (QNetworkReply::*)()>(&QNetworkReply::redirectAllowed), static_cast<MyQNetworkReply*>(ptr), static_cast<void (MyQNetworkReply::*)()>(&MyQNetworkReply::Signal_RedirectAllowed));
+	QObject::connect(static_cast<QNetworkReply*>(ptr), static_cast<void (QNetworkReply::*)()>(&QNetworkReply::redirectAllowed), static_cast<MyQNetworkReply*>(ptr), static_cast<void (MyQNetworkReply::*)()>(&MyQNetworkReply::Signal_RedirectAllowed), static_cast<Qt::ConnectionType>(t));
 }
 
 void QNetworkReply_DisconnectRedirectAllowed(void* ptr)
@@ -6424,9 +6424,9 @@ void QNetworkReply_RedirectAllowed(void* ptr)
 	static_cast<QNetworkReply*>(ptr)->redirectAllowed();
 }
 
-void QNetworkReply_ConnectRedirected(void* ptr)
+void QNetworkReply_ConnectRedirected(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QNetworkReply*>(ptr), static_cast<void (QNetworkReply::*)(const QUrl &)>(&QNetworkReply::redirected), static_cast<MyQNetworkReply*>(ptr), static_cast<void (MyQNetworkReply::*)(const QUrl &)>(&MyQNetworkReply::Signal_Redirected));
+	QObject::connect(static_cast<QNetworkReply*>(ptr), static_cast<void (QNetworkReply::*)(const QUrl &)>(&QNetworkReply::redirected), static_cast<MyQNetworkReply*>(ptr), static_cast<void (MyQNetworkReply::*)(const QUrl &)>(&MyQNetworkReply::Signal_Redirected), static_cast<Qt::ConnectionType>(t));
 }
 
 void QNetworkReply_DisconnectRedirected(void* ptr)
@@ -6524,9 +6524,9 @@ void QNetworkReply_SslConfigurationImplementationDefault(void* ptr, void* config
 		static_cast<QNetworkReply*>(ptr)->QNetworkReply::sslConfigurationImplementation(*static_cast<QSslConfiguration*>(configuration));
 }
 
-void QNetworkReply_ConnectSslErrors(void* ptr)
+void QNetworkReply_ConnectSslErrors(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QNetworkReply*>(ptr), static_cast<void (QNetworkReply::*)(const QList<QSslError> &)>(&QNetworkReply::sslErrors), static_cast<MyQNetworkReply*>(ptr), static_cast<void (MyQNetworkReply::*)(const QList<QSslError> &)>(&MyQNetworkReply::Signal_SslErrors));
+	QObject::connect(static_cast<QNetworkReply*>(ptr), static_cast<void (QNetworkReply::*)(const QList<QSslError> &)>(&QNetworkReply::sslErrors), static_cast<MyQNetworkReply*>(ptr), static_cast<void (MyQNetworkReply::*)(const QList<QSslError> &)>(&MyQNetworkReply::Signal_SslErrors), static_cast<Qt::ConnectionType>(t));
 }
 
 void QNetworkReply_DisconnectSslErrors(void* ptr)
@@ -6539,9 +6539,9 @@ void QNetworkReply_SslErrors(void* ptr, void* errors)
 	static_cast<QNetworkReply*>(ptr)->sslErrors(*static_cast<QList<QSslError>*>(errors));
 }
 
-void QNetworkReply_ConnectUploadProgress(void* ptr)
+void QNetworkReply_ConnectUploadProgress(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QNetworkReply*>(ptr), static_cast<void (QNetworkReply::*)(qint64, qint64)>(&QNetworkReply::uploadProgress), static_cast<MyQNetworkReply*>(ptr), static_cast<void (MyQNetworkReply::*)(qint64, qint64)>(&MyQNetworkReply::Signal_UploadProgress));
+	QObject::connect(static_cast<QNetworkReply*>(ptr), static_cast<void (QNetworkReply::*)(qint64, qint64)>(&QNetworkReply::uploadProgress), static_cast<MyQNetworkReply*>(ptr), static_cast<void (MyQNetworkReply::*)(qint64, qint64)>(&MyQNetworkReply::Signal_UploadProgress), static_cast<Qt::ConnectionType>(t));
 }
 
 void QNetworkReply_DisconnectUploadProgress(void* ptr)
@@ -7101,9 +7101,9 @@ void QNetworkSession_CloseDefault(void* ptr)
 		static_cast<QNetworkSession*>(ptr)->QNetworkSession::close();
 }
 
-void QNetworkSession_ConnectClosed(void* ptr)
+void QNetworkSession_ConnectClosed(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QNetworkSession*>(ptr), static_cast<void (QNetworkSession::*)()>(&QNetworkSession::closed), static_cast<MyQNetworkSession*>(ptr), static_cast<void (MyQNetworkSession::*)()>(&MyQNetworkSession::Signal_Closed));
+	QObject::connect(static_cast<QNetworkSession*>(ptr), static_cast<void (QNetworkSession::*)()>(&QNetworkSession::closed), static_cast<MyQNetworkSession*>(ptr), static_cast<void (MyQNetworkSession::*)()>(&MyQNetworkSession::Signal_Closed), static_cast<Qt::ConnectionType>(t));
 }
 
 void QNetworkSession_DisconnectClosed(void* ptr)
@@ -7126,10 +7126,10 @@ long long QNetworkSession_Error(void* ptr)
 	return static_cast<QNetworkSession*>(ptr)->error();
 }
 
-void QNetworkSession_ConnectError2(void* ptr)
+void QNetworkSession_ConnectError2(void* ptr, long long t)
 {
 	qRegisterMetaType<QNetworkSession::SessionError>();
-	QObject::connect(static_cast<QNetworkSession*>(ptr), static_cast<void (QNetworkSession::*)(QNetworkSession::SessionError)>(&QNetworkSession::error), static_cast<MyQNetworkSession*>(ptr), static_cast<void (MyQNetworkSession::*)(QNetworkSession::SessionError)>(&MyQNetworkSession::Signal_Error2));
+	QObject::connect(static_cast<QNetworkSession*>(ptr), static_cast<void (QNetworkSession::*)(QNetworkSession::SessionError)>(&QNetworkSession::error), static_cast<MyQNetworkSession*>(ptr), static_cast<void (MyQNetworkSession::*)(QNetworkSession::SessionError)>(&MyQNetworkSession::Signal_Error2), static_cast<Qt::ConnectionType>(t));
 }
 
 void QNetworkSession_DisconnectError2(void* ptr)
@@ -7177,9 +7177,9 @@ void QNetworkSession_MigrateDefault(void* ptr)
 		static_cast<QNetworkSession*>(ptr)->QNetworkSession::migrate();
 }
 
-void QNetworkSession_ConnectNewConfigurationActivated(void* ptr)
+void QNetworkSession_ConnectNewConfigurationActivated(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QNetworkSession*>(ptr), static_cast<void (QNetworkSession::*)()>(&QNetworkSession::newConfigurationActivated), static_cast<MyQNetworkSession*>(ptr), static_cast<void (MyQNetworkSession::*)()>(&MyQNetworkSession::Signal_NewConfigurationActivated));
+	QObject::connect(static_cast<QNetworkSession*>(ptr), static_cast<void (QNetworkSession::*)()>(&QNetworkSession::newConfigurationActivated), static_cast<MyQNetworkSession*>(ptr), static_cast<void (MyQNetworkSession::*)()>(&MyQNetworkSession::Signal_NewConfigurationActivated), static_cast<Qt::ConnectionType>(t));
 }
 
 void QNetworkSession_DisconnectNewConfigurationActivated(void* ptr)
@@ -7202,9 +7202,9 @@ void QNetworkSession_OpenDefault(void* ptr)
 		static_cast<QNetworkSession*>(ptr)->QNetworkSession::open();
 }
 
-void QNetworkSession_ConnectOpened(void* ptr)
+void QNetworkSession_ConnectOpened(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QNetworkSession*>(ptr), static_cast<void (QNetworkSession::*)()>(&QNetworkSession::opened), static_cast<MyQNetworkSession*>(ptr), static_cast<void (MyQNetworkSession::*)()>(&MyQNetworkSession::Signal_Opened));
+	QObject::connect(static_cast<QNetworkSession*>(ptr), static_cast<void (QNetworkSession::*)()>(&QNetworkSession::opened), static_cast<MyQNetworkSession*>(ptr), static_cast<void (MyQNetworkSession::*)()>(&MyQNetworkSession::Signal_Opened), static_cast<Qt::ConnectionType>(t));
 }
 
 void QNetworkSession_DisconnectOpened(void* ptr)
@@ -7217,9 +7217,9 @@ void QNetworkSession_Opened(void* ptr)
 	static_cast<QNetworkSession*>(ptr)->opened();
 }
 
-void QNetworkSession_ConnectPreferredConfigurationChanged(void* ptr)
+void QNetworkSession_ConnectPreferredConfigurationChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QNetworkSession*>(ptr), static_cast<void (QNetworkSession::*)(const QNetworkConfiguration &, bool)>(&QNetworkSession::preferredConfigurationChanged), static_cast<MyQNetworkSession*>(ptr), static_cast<void (MyQNetworkSession::*)(const QNetworkConfiguration &, bool)>(&MyQNetworkSession::Signal_PreferredConfigurationChanged));
+	QObject::connect(static_cast<QNetworkSession*>(ptr), static_cast<void (QNetworkSession::*)(const QNetworkConfiguration &, bool)>(&QNetworkSession::preferredConfigurationChanged), static_cast<MyQNetworkSession*>(ptr), static_cast<void (MyQNetworkSession::*)(const QNetworkConfiguration &, bool)>(&MyQNetworkSession::Signal_PreferredConfigurationChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QNetworkSession_DisconnectPreferredConfigurationChanged(void* ptr)
@@ -7257,10 +7257,10 @@ long long QNetworkSession_State(void* ptr)
 	return static_cast<QNetworkSession*>(ptr)->state();
 }
 
-void QNetworkSession_ConnectStateChanged(void* ptr)
+void QNetworkSession_ConnectStateChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<QNetworkSession::State>();
-	QObject::connect(static_cast<QNetworkSession*>(ptr), static_cast<void (QNetworkSession::*)(QNetworkSession::State)>(&QNetworkSession::stateChanged), static_cast<MyQNetworkSession*>(ptr), static_cast<void (MyQNetworkSession::*)(QNetworkSession::State)>(&MyQNetworkSession::Signal_StateChanged));
+	QObject::connect(static_cast<QNetworkSession*>(ptr), static_cast<void (QNetworkSession::*)(QNetworkSession::State)>(&QNetworkSession::stateChanged), static_cast<MyQNetworkSession*>(ptr), static_cast<void (MyQNetworkSession::*)(QNetworkSession::State)>(&MyQNetworkSession::Signal_StateChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QNetworkSession_DisconnectStateChanged(void* ptr)
@@ -7288,10 +7288,10 @@ long long QNetworkSession_UsagePolicies(void* ptr)
 	return static_cast<QNetworkSession*>(ptr)->usagePolicies();
 }
 
-void QNetworkSession_ConnectUsagePoliciesChanged(void* ptr)
+void QNetworkSession_ConnectUsagePoliciesChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<QNetworkSession::UsagePolicies>();
-	QObject::connect(static_cast<QNetworkSession*>(ptr), static_cast<void (QNetworkSession::*)(QNetworkSession::UsagePolicies)>(&QNetworkSession::usagePoliciesChanged), static_cast<MyQNetworkSession*>(ptr), static_cast<void (MyQNetworkSession::*)(QNetworkSession::UsagePolicies)>(&MyQNetworkSession::Signal_UsagePoliciesChanged));
+	QObject::connect(static_cast<QNetworkSession*>(ptr), static_cast<void (QNetworkSession::*)(QNetworkSession::UsagePolicies)>(&QNetworkSession::usagePoliciesChanged), static_cast<MyQNetworkSession*>(ptr), static_cast<void (MyQNetworkSession::*)(QNetworkSession::UsagePolicies)>(&MyQNetworkSession::Signal_UsagePoliciesChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QNetworkSession_DisconnectUsagePoliciesChanged(void* ptr)
@@ -8899,9 +8899,9 @@ void QSslSocket_ConnectToHostEncrypted2(void* ptr, struct QtNetwork_PackedString
 	static_cast<QSslSocket*>(ptr)->connectToHostEncrypted(QString::fromUtf8(hostName.data, hostName.len), port, QString::fromUtf8(sslPeerName.data, sslPeerName.len), static_cast<QIODevice::OpenModeFlag>(mode), static_cast<QAbstractSocket::NetworkLayerProtocol>(protocol));
 }
 
-void QSslSocket_ConnectEncrypted(void* ptr)
+void QSslSocket_ConnectEncrypted(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSslSocket*>(ptr), static_cast<void (QSslSocket::*)()>(&QSslSocket::encrypted), static_cast<MyQSslSocket*>(ptr), static_cast<void (MyQSslSocket::*)()>(&MyQSslSocket::Signal_Encrypted));
+	QObject::connect(static_cast<QSslSocket*>(ptr), static_cast<void (QSslSocket::*)()>(&QSslSocket::encrypted), static_cast<MyQSslSocket*>(ptr), static_cast<void (MyQSslSocket::*)()>(&MyQSslSocket::Signal_Encrypted), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSslSocket_DisconnectEncrypted(void* ptr)
@@ -8924,9 +8924,9 @@ long long QSslSocket_EncryptedBytesToWrite(void* ptr)
 	return static_cast<QSslSocket*>(ptr)->encryptedBytesToWrite();
 }
 
-void QSslSocket_ConnectEncryptedBytesWritten(void* ptr)
+void QSslSocket_ConnectEncryptedBytesWritten(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSslSocket*>(ptr), static_cast<void (QSslSocket::*)(qint64)>(&QSslSocket::encryptedBytesWritten), static_cast<MyQSslSocket*>(ptr), static_cast<void (MyQSslSocket::*)(qint64)>(&MyQSslSocket::Signal_EncryptedBytesWritten));
+	QObject::connect(static_cast<QSslSocket*>(ptr), static_cast<void (QSslSocket::*)(qint64)>(&QSslSocket::encryptedBytesWritten), static_cast<MyQSslSocket*>(ptr), static_cast<void (MyQSslSocket::*)(qint64)>(&MyQSslSocket::Signal_EncryptedBytesWritten), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSslSocket_DisconnectEncryptedBytesWritten(void* ptr)
@@ -8974,9 +8974,9 @@ long long QSslSocket_Mode(void* ptr)
 	return static_cast<QSslSocket*>(ptr)->mode();
 }
 
-void QSslSocket_ConnectModeChanged(void* ptr)
+void QSslSocket_ConnectModeChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSslSocket*>(ptr), static_cast<void (QSslSocket::*)(QSslSocket::SslMode)>(&QSslSocket::modeChanged), static_cast<MyQSslSocket*>(ptr), static_cast<void (MyQSslSocket::*)(QSslSocket::SslMode)>(&MyQSslSocket::Signal_ModeChanged));
+	QObject::connect(static_cast<QSslSocket*>(ptr), static_cast<void (QSslSocket::*)(QSslSocket::SslMode)>(&QSslSocket::modeChanged), static_cast<MyQSslSocket*>(ptr), static_cast<void (MyQSslSocket::*)(QSslSocket::SslMode)>(&MyQSslSocket::Signal_ModeChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSslSocket_DisconnectModeChanged(void* ptr)
@@ -9009,9 +9009,9 @@ int QSslSocket_PeerVerifyDepth(void* ptr)
 	return static_cast<QSslSocket*>(ptr)->peerVerifyDepth();
 }
 
-void QSslSocket_ConnectPeerVerifyError(void* ptr)
+void QSslSocket_ConnectPeerVerifyError(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSslSocket*>(ptr), static_cast<void (QSslSocket::*)(const QSslError &)>(&QSslSocket::peerVerifyError), static_cast<MyQSslSocket*>(ptr), static_cast<void (MyQSslSocket::*)(const QSslError &)>(&MyQSslSocket::Signal_PeerVerifyError));
+	QObject::connect(static_cast<QSslSocket*>(ptr), static_cast<void (QSslSocket::*)(const QSslError &)>(&QSslSocket::peerVerifyError), static_cast<MyQSslSocket*>(ptr), static_cast<void (MyQSslSocket::*)(const QSslError &)>(&MyQSslSocket::Signal_PeerVerifyError), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSslSocket_DisconnectPeerVerifyError(void* ptr)
@@ -9034,9 +9034,9 @@ struct QtNetwork_PackedString QSslSocket_PeerVerifyName(void* ptr)
 	return ({ QByteArray tefa5dd = static_cast<QSslSocket*>(ptr)->peerVerifyName().toUtf8(); QtNetwork_PackedString { const_cast<char*>(tefa5dd.prepend("WHITESPACE").constData()+10), tefa5dd.size()-10 }; });
 }
 
-void QSslSocket_ConnectPreSharedKeyAuthenticationRequired(void* ptr)
+void QSslSocket_ConnectPreSharedKeyAuthenticationRequired(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSslSocket*>(ptr), static_cast<void (QSslSocket::*)(QSslPreSharedKeyAuthenticator *)>(&QSslSocket::preSharedKeyAuthenticationRequired), static_cast<MyQSslSocket*>(ptr), static_cast<void (MyQSslSocket::*)(QSslPreSharedKeyAuthenticator *)>(&MyQSslSocket::Signal_PreSharedKeyAuthenticationRequired));
+	QObject::connect(static_cast<QSslSocket*>(ptr), static_cast<void (QSslSocket::*)(QSslPreSharedKeyAuthenticator *)>(&QSslSocket::preSharedKeyAuthenticationRequired), static_cast<MyQSslSocket*>(ptr), static_cast<void (MyQSslSocket::*)(QSslPreSharedKeyAuthenticator *)>(&MyQSslSocket::Signal_PreSharedKeyAuthenticationRequired), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSslSocket_DisconnectPreSharedKeyAuthenticationRequired(void* ptr)
@@ -9129,9 +9129,9 @@ struct QtNetwork_PackedList QSslSocket_SslErrors(void* ptr)
 	return ({ QList<QSslError>* tmpValued3510b = new QList<QSslError>(static_cast<QSslSocket*>(ptr)->sslErrors()); QtNetwork_PackedList { tmpValued3510b, tmpValued3510b->size() }; });
 }
 
-void QSslSocket_ConnectSslErrors2(void* ptr)
+void QSslSocket_ConnectSslErrors2(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSslSocket*>(ptr), static_cast<void (QSslSocket::*)(const QList<QSslError> &)>(&QSslSocket::sslErrors), static_cast<MyQSslSocket*>(ptr), static_cast<void (MyQSslSocket::*)(const QList<QSslError> &)>(&MyQSslSocket::Signal_SslErrors2));
+	QObject::connect(static_cast<QSslSocket*>(ptr), static_cast<void (QSslSocket::*)(const QList<QSslError> &)>(&QSslSocket::sslErrors), static_cast<MyQSslSocket*>(ptr), static_cast<void (MyQSslSocket::*)(const QList<QSslError> &)>(&MyQSslSocket::Signal_SslErrors2), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSslSocket_DisconnectSslErrors2(void* ptr)
@@ -9582,10 +9582,10 @@ void* QTcpServer_NewQTcpServer(void* parent)
 	}
 }
 
-void QTcpServer_ConnectAcceptError(void* ptr)
+void QTcpServer_ConnectAcceptError(void* ptr, long long t)
 {
 	qRegisterMetaType<QAbstractSocket::SocketError>();
-	QObject::connect(static_cast<QTcpServer*>(ptr), static_cast<void (QTcpServer::*)(QAbstractSocket::SocketError)>(&QTcpServer::acceptError), static_cast<MyQTcpServer*>(ptr), static_cast<void (MyQTcpServer::*)(QAbstractSocket::SocketError)>(&MyQTcpServer::Signal_AcceptError));
+	QObject::connect(static_cast<QTcpServer*>(ptr), static_cast<void (QTcpServer::*)(QAbstractSocket::SocketError)>(&QTcpServer::acceptError), static_cast<MyQTcpServer*>(ptr), static_cast<void (MyQTcpServer::*)(QAbstractSocket::SocketError)>(&MyQTcpServer::Signal_AcceptError), static_cast<Qt::ConnectionType>(t));
 }
 
 void QTcpServer_DisconnectAcceptError(void* ptr)
@@ -9638,9 +9638,9 @@ int QTcpServer_MaxPendingConnections(void* ptr)
 	return static_cast<QTcpServer*>(ptr)->maxPendingConnections();
 }
 
-void QTcpServer_ConnectNewConnection(void* ptr)
+void QTcpServer_ConnectNewConnection(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QTcpServer*>(ptr), static_cast<void (QTcpServer::*)()>(&QTcpServer::newConnection), static_cast<MyQTcpServer*>(ptr), static_cast<void (MyQTcpServer::*)()>(&MyQTcpServer::Signal_NewConnection));
+	QObject::connect(static_cast<QTcpServer*>(ptr), static_cast<void (QTcpServer::*)()>(&QTcpServer::newConnection), static_cast<MyQTcpServer*>(ptr), static_cast<void (MyQTcpServer::*)()>(&MyQTcpServer::Signal_NewConnection), static_cast<Qt::ConnectionType>(t));
 }
 
 void QTcpServer_DisconnectNewConnection(void* ptr)

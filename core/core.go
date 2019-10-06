@@ -129,7 +129,7 @@ func (ptr *QAbstractAnimation) ConnectCurrentLoopChanged(f func(currentLoop int)
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "currentLoopChanged") {
-			C.QAbstractAnimation_ConnectCurrentLoopChanged(ptr.Pointer())
+			C.QAbstractAnimation_ConnectCurrentLoopChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "currentLoopChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "currentLoopChanged"); signal != nil {
@@ -190,7 +190,7 @@ func (ptr *QAbstractAnimation) ConnectDirectionChanged(f func(newDirection QAbst
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "directionChanged") {
-			C.QAbstractAnimation_ConnectDirectionChanged(ptr.Pointer())
+			C.QAbstractAnimation_ConnectDirectionChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "directionChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "directionChanged"); signal != nil {
@@ -268,7 +268,7 @@ func (ptr *QAbstractAnimation) ConnectFinished(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "finished") {
-			C.QAbstractAnimation_ConnectFinished(ptr.Pointer())
+			C.QAbstractAnimation_ConnectFinished(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "finished")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "finished"); signal != nil {
@@ -560,7 +560,7 @@ func (ptr *QAbstractAnimation) ConnectStateChanged(f func(newState QAbstractAnim
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stateChanged") {
-			C.QAbstractAnimation_ConnectStateChanged(ptr.Pointer())
+			C.QAbstractAnimation_ConnectStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
@@ -904,7 +904,7 @@ func (ptr *QAbstractEventDispatcher) ConnectAboutToBlock(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "aboutToBlock") {
-			C.QAbstractEventDispatcher_ConnectAboutToBlock(ptr.Pointer())
+			C.QAbstractEventDispatcher_ConnectAboutToBlock(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "aboutToBlock")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "aboutToBlock"); signal != nil {
@@ -944,7 +944,7 @@ func (ptr *QAbstractEventDispatcher) ConnectAwake(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "awake") {
-			C.QAbstractEventDispatcher_ConnectAwake(ptr.Pointer())
+			C.QAbstractEventDispatcher_ConnectAwake(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "awake")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "awake"); signal != nil {
@@ -1804,7 +1804,7 @@ func (ptr *QAbstractItemModel) ConnectColumnsAboutToBeInserted(f func(parent *QM
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "columnsAboutToBeInserted") {
-			C.QAbstractItemModel_ConnectColumnsAboutToBeInserted(ptr.Pointer())
+			C.QAbstractItemModel_ConnectColumnsAboutToBeInserted(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "columnsAboutToBeInserted")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "columnsAboutToBeInserted"); signal != nil {
@@ -1838,7 +1838,7 @@ func (ptr *QAbstractItemModel) ConnectColumnsAboutToBeMoved(f func(sourceParent 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "columnsAboutToBeMoved") {
-			C.QAbstractItemModel_ConnectColumnsAboutToBeMoved(ptr.Pointer())
+			C.QAbstractItemModel_ConnectColumnsAboutToBeMoved(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "columnsAboutToBeMoved")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "columnsAboutToBeMoved"); signal != nil {
@@ -1872,7 +1872,7 @@ func (ptr *QAbstractItemModel) ConnectColumnsAboutToBeRemoved(f func(parent *QMo
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "columnsAboutToBeRemoved") {
-			C.QAbstractItemModel_ConnectColumnsAboutToBeRemoved(ptr.Pointer())
+			C.QAbstractItemModel_ConnectColumnsAboutToBeRemoved(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "columnsAboutToBeRemoved")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "columnsAboutToBeRemoved"); signal != nil {
@@ -1906,7 +1906,7 @@ func (ptr *QAbstractItemModel) ConnectColumnsInserted(f func(parent *QModelIndex
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "columnsInserted") {
-			C.QAbstractItemModel_ConnectColumnsInserted(ptr.Pointer())
+			C.QAbstractItemModel_ConnectColumnsInserted(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "columnsInserted")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "columnsInserted"); signal != nil {
@@ -1940,7 +1940,7 @@ func (ptr *QAbstractItemModel) ConnectColumnsMoved(f func(parent *QModelIndex, s
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "columnsMoved") {
-			C.QAbstractItemModel_ConnectColumnsMoved(ptr.Pointer())
+			C.QAbstractItemModel_ConnectColumnsMoved(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "columnsMoved")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "columnsMoved"); signal != nil {
@@ -1974,7 +1974,7 @@ func (ptr *QAbstractItemModel) ConnectColumnsRemoved(f func(parent *QModelIndex,
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "columnsRemoved") {
-			C.QAbstractItemModel_ConnectColumnsRemoved(ptr.Pointer())
+			C.QAbstractItemModel_ConnectColumnsRemoved(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "columnsRemoved")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "columnsRemoved"); signal != nil {
@@ -2073,7 +2073,7 @@ func (ptr *QAbstractItemModel) ConnectDataChanged(f func(topLeft *QModelIndex, b
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "dataChanged") {
-			C.QAbstractItemModel_ConnectDataChanged(ptr.Pointer())
+			C.QAbstractItemModel_ConnectDataChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "dataChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "dataChanged"); signal != nil {
@@ -2395,7 +2395,7 @@ func (ptr *QAbstractItemModel) ConnectHeaderDataChanged(f func(orientation Qt__O
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "headerDataChanged") {
-			C.QAbstractItemModel_ConnectHeaderDataChanged(ptr.Pointer())
+			C.QAbstractItemModel_ConnectHeaderDataChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "headerDataChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "headerDataChanged"); signal != nil {
@@ -2657,7 +2657,7 @@ func (ptr *QAbstractItemModel) ConnectLayoutAboutToBeChanged(f func(parents []*Q
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "layoutAboutToBeChanged") {
-			C.QAbstractItemModel_ConnectLayoutAboutToBeChanged(ptr.Pointer())
+			C.QAbstractItemModel_ConnectLayoutAboutToBeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "layoutAboutToBeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "layoutAboutToBeChanged"); signal != nil {
@@ -2710,7 +2710,7 @@ func (ptr *QAbstractItemModel) ConnectLayoutChanged(f func(parents []*QPersisten
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "layoutChanged") {
-			C.QAbstractItemModel_ConnectLayoutChanged(ptr.Pointer())
+			C.QAbstractItemModel_ConnectLayoutChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "layoutChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "layoutChanged"); signal != nil {
@@ -2952,7 +2952,7 @@ func (ptr *QAbstractItemModel) ConnectModelAboutToBeReset(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "modelAboutToBeReset") {
-			C.QAbstractItemModel_ConnectModelAboutToBeReset(ptr.Pointer())
+			C.QAbstractItemModel_ConnectModelAboutToBeReset(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "modelAboutToBeReset")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "modelAboutToBeReset"); signal != nil {
@@ -2986,7 +2986,7 @@ func (ptr *QAbstractItemModel) ConnectModelReset(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "modelReset") {
-			C.QAbstractItemModel_ConnectModelReset(ptr.Pointer())
+			C.QAbstractItemModel_ConnectModelReset(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "modelReset")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "modelReset"); signal != nil {
@@ -3477,7 +3477,7 @@ func (ptr *QAbstractItemModel) ConnectRowsAboutToBeInserted(f func(parent *QMode
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "rowsAboutToBeInserted") {
-			C.QAbstractItemModel_ConnectRowsAboutToBeInserted(ptr.Pointer())
+			C.QAbstractItemModel_ConnectRowsAboutToBeInserted(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "rowsAboutToBeInserted")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "rowsAboutToBeInserted"); signal != nil {
@@ -3511,7 +3511,7 @@ func (ptr *QAbstractItemModel) ConnectRowsAboutToBeMoved(f func(sourceParent *QM
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "rowsAboutToBeMoved") {
-			C.QAbstractItemModel_ConnectRowsAboutToBeMoved(ptr.Pointer())
+			C.QAbstractItemModel_ConnectRowsAboutToBeMoved(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "rowsAboutToBeMoved")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "rowsAboutToBeMoved"); signal != nil {
@@ -3545,7 +3545,7 @@ func (ptr *QAbstractItemModel) ConnectRowsAboutToBeRemoved(f func(parent *QModel
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "rowsAboutToBeRemoved") {
-			C.QAbstractItemModel_ConnectRowsAboutToBeRemoved(ptr.Pointer())
+			C.QAbstractItemModel_ConnectRowsAboutToBeRemoved(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "rowsAboutToBeRemoved")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "rowsAboutToBeRemoved"); signal != nil {
@@ -3579,7 +3579,7 @@ func (ptr *QAbstractItemModel) ConnectRowsInserted(f func(parent *QModelIndex, f
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "rowsInserted") {
-			C.QAbstractItemModel_ConnectRowsInserted(ptr.Pointer())
+			C.QAbstractItemModel_ConnectRowsInserted(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "rowsInserted")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "rowsInserted"); signal != nil {
@@ -3613,7 +3613,7 @@ func (ptr *QAbstractItemModel) ConnectRowsMoved(f func(parent *QModelIndex, star
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "rowsMoved") {
-			C.QAbstractItemModel_ConnectRowsMoved(ptr.Pointer())
+			C.QAbstractItemModel_ConnectRowsMoved(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "rowsMoved")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "rowsMoved"); signal != nil {
@@ -3647,7 +3647,7 @@ func (ptr *QAbstractItemModel) ConnectRowsRemoved(f func(parent *QModelIndex, fi
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "rowsRemoved") {
-			C.QAbstractItemModel_ConnectRowsRemoved(ptr.Pointer())
+			C.QAbstractItemModel_ConnectRowsRemoved(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "rowsRemoved")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "rowsRemoved"); signal != nil {
@@ -5330,7 +5330,7 @@ func (ptr *QAbstractProxyModel) ConnectSourceModelChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "sourceModelChanged") {
-			C.QAbstractProxyModel_ConnectSourceModelChanged(ptr.Pointer())
+			C.QAbstractProxyModel_ConnectSourceModelChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "sourceModelChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "sourceModelChanged"); signal != nil {
@@ -5609,7 +5609,7 @@ func (ptr *QAbstractState) ConnectActiveChanged(f func(active bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "activeChanged") {
-			C.QAbstractState_ConnectActiveChanged(ptr.Pointer())
+			C.QAbstractState_ConnectActiveChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "activeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "activeChanged"); signal != nil {
@@ -5649,7 +5649,7 @@ func (ptr *QAbstractState) ConnectEntered(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "entered") {
-			C.QAbstractState_ConnectEntered(ptr.Pointer())
+			C.QAbstractState_ConnectEntered(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "entered")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "entered"); signal != nil {
@@ -5683,7 +5683,7 @@ func (ptr *QAbstractState) ConnectExited(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "exited") {
-			C.QAbstractState_ConnectExited(ptr.Pointer())
+			C.QAbstractState_ConnectExited(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "exited")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "exited"); signal != nil {
@@ -6313,7 +6313,7 @@ func (ptr *QAbstractTransition) ConnectTargetStateChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "targetStateChanged") {
-			C.QAbstractTransition_ConnectTargetStateChanged(ptr.Pointer())
+			C.QAbstractTransition_ConnectTargetStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "targetStateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "targetStateChanged"); signal != nil {
@@ -6361,7 +6361,7 @@ func (ptr *QAbstractTransition) ConnectTargetStatesChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "targetStatesChanged") {
-			C.QAbstractTransition_ConnectTargetStatesChanged(ptr.Pointer())
+			C.QAbstractTransition_ConnectTargetStatesChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "targetStatesChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "targetStatesChanged"); signal != nil {
@@ -6402,7 +6402,7 @@ func (ptr *QAbstractTransition) ConnectTriggered(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "triggered") {
-			C.QAbstractTransition_ConnectTriggered(ptr.Pointer())
+			C.QAbstractTransition_ConnectTriggered(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "triggered")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "triggered"); signal != nil {
@@ -13402,7 +13402,7 @@ func (ptr *QCoreApplication) ConnectAboutToQuit(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "aboutToQuit") {
-			C.QCoreApplication_ConnectAboutToQuit(ptr.Pointer())
+			C.QCoreApplication_ConnectAboutToQuit(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "aboutToQuit")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "aboutToQuit"); signal != nil {
@@ -13478,7 +13478,7 @@ func (ptr *QCoreApplication) ConnectApplicationNameChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "applicationNameChanged") {
-			C.QCoreApplication_ConnectApplicationNameChanged(ptr.Pointer())
+			C.QCoreApplication_ConnectApplicationNameChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "applicationNameChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "applicationNameChanged"); signal != nil {
@@ -13534,7 +13534,7 @@ func (ptr *QCoreApplication) ConnectApplicationVersionChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "applicationVersionChanged") {
-			C.QCoreApplication_ConnectApplicationVersionChanged(ptr.Pointer())
+			C.QCoreApplication_ConnectApplicationVersionChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "applicationVersionChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "applicationVersionChanged"); signal != nil {
@@ -13684,7 +13684,7 @@ func (ptr *QCoreApplication) ConnectOrganizationDomainChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "organizationDomainChanged") {
-			C.QCoreApplication_ConnectOrganizationDomainChanged(ptr.Pointer())
+			C.QCoreApplication_ConnectOrganizationDomainChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "organizationDomainChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "organizationDomainChanged"); signal != nil {
@@ -13732,7 +13732,7 @@ func (ptr *QCoreApplication) ConnectOrganizationNameChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "organizationNameChanged") {
-			C.QCoreApplication_ConnectOrganizationNameChanged(ptr.Pointer())
+			C.QCoreApplication_ConnectOrganizationNameChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "organizationNameChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "organizationNameChanged"); signal != nil {
@@ -19767,7 +19767,7 @@ func (ptr *QFileSystemWatcher) ConnectDirectoryChanged(f func(path string)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "directoryChanged") {
-			C.QFileSystemWatcher_ConnectDirectoryChanged(ptr.Pointer())
+			C.QFileSystemWatcher_ConnectDirectoryChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "directoryChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "directoryChanged"); signal != nil {
@@ -19801,7 +19801,7 @@ func (ptr *QFileSystemWatcher) ConnectFileChanged(f func(path string)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "fileChanged") {
-			C.QFileSystemWatcher_ConnectFileChanged(ptr.Pointer())
+			C.QFileSystemWatcher_ConnectFileChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "fileChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "fileChanged"); signal != nil {
@@ -21012,7 +21012,7 @@ func (ptr *QHistoryState) ConnectDefaultStateChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "defaultStateChanged") {
-			C.QHistoryState_ConnectDefaultStateChanged(ptr.Pointer())
+			C.QHistoryState_ConnectDefaultStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "defaultStateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "defaultStateChanged"); signal != nil {
@@ -21057,7 +21057,7 @@ func (ptr *QHistoryState) ConnectDefaultTransitionChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "defaultTransitionChanged") {
-			C.QHistoryState_ConnectDefaultTransitionChanged(ptr.Pointer())
+			C.QHistoryState_ConnectDefaultTransitionChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "defaultTransitionChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "defaultTransitionChanged"); signal != nil {
@@ -21098,7 +21098,7 @@ func (ptr *QHistoryState) ConnectHistoryTypeChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "historyTypeChanged") {
-			C.QHistoryState_ConnectHistoryTypeChanged(ptr.Pointer())
+			C.QHistoryState_ConnectHistoryTypeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "historyTypeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "historyTypeChanged"); signal != nil {
@@ -21355,7 +21355,7 @@ func (ptr *QIODevice) ConnectAboutToClose(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "aboutToClose") {
-			C.QIODevice_ConnectAboutToClose(ptr.Pointer())
+			C.QIODevice_ConnectAboutToClose(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "aboutToClose")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "aboutToClose"); signal != nil {
@@ -21530,7 +21530,7 @@ func (ptr *QIODevice) ConnectBytesWritten(f func(bytes int64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "bytesWritten") {
-			C.QIODevice_ConnectBytesWritten(ptr.Pointer())
+			C.QIODevice_ConnectBytesWritten(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "bytesWritten")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "bytesWritten"); signal != nil {
@@ -21615,7 +21615,7 @@ func (ptr *QIODevice) ConnectChannelBytesWritten(f func(channel int, bytes int64
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "channelBytesWritten") {
-			C.QIODevice_ConnectChannelBytesWritten(ptr.Pointer())
+			C.QIODevice_ConnectChannelBytesWritten(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "channelBytesWritten")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "channelBytesWritten"); signal != nil {
@@ -21655,7 +21655,7 @@ func (ptr *QIODevice) ConnectChannelReadyRead(f func(channel int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "channelReadyRead") {
-			C.QIODevice_ConnectChannelReadyRead(ptr.Pointer())
+			C.QIODevice_ConnectChannelReadyRead(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "channelReadyRead")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "channelReadyRead"); signal != nil {
@@ -22023,7 +22023,7 @@ func (ptr *QIODevice) ConnectReadChannelFinished(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "readChannelFinished") {
-			C.QIODevice_ConnectReadChannelFinished(ptr.Pointer())
+			C.QIODevice_ConnectReadChannelFinished(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "readChannelFinished")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "readChannelFinished"); signal != nil {
@@ -22185,7 +22185,7 @@ func (ptr *QIODevice) ConnectReadyRead(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "readyRead") {
-			C.QIODevice_ConnectReadyRead(ptr.Pointer())
+			C.QIODevice_ConnectReadyRead(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "readyRead")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "readyRead"); signal != nil {
@@ -23439,7 +23439,7 @@ func (ptr *QItemSelectionModel) ConnectCurrentChanged(f func(current *QModelInde
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "currentChanged") {
-			C.QItemSelectionModel_ConnectCurrentChanged(ptr.Pointer())
+			C.QItemSelectionModel_ConnectCurrentChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "currentChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "currentChanged"); signal != nil {
@@ -23479,7 +23479,7 @@ func (ptr *QItemSelectionModel) ConnectCurrentColumnChanged(f func(current *QMod
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "currentColumnChanged") {
-			C.QItemSelectionModel_ConnectCurrentColumnChanged(ptr.Pointer())
+			C.QItemSelectionModel_ConnectCurrentColumnChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "currentColumnChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "currentColumnChanged"); signal != nil {
@@ -23528,7 +23528,7 @@ func (ptr *QItemSelectionModel) ConnectCurrentRowChanged(f func(current *QModelI
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "currentRowChanged") {
-			C.QItemSelectionModel_ConnectCurrentRowChanged(ptr.Pointer())
+			C.QItemSelectionModel_ConnectCurrentRowChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "currentRowChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "currentRowChanged"); signal != nil {
@@ -23624,7 +23624,7 @@ func (ptr *QItemSelectionModel) ConnectModelChanged(f func(model *QAbstractItemM
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "modelChanged") {
-			C.QItemSelectionModel_ConnectModelChanged(ptr.Pointer())
+			C.QItemSelectionModel_ConnectModelChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "modelChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "modelChanged"); signal != nil {
@@ -23851,7 +23851,7 @@ func (ptr *QItemSelectionModel) ConnectSelectionChanged(f func(selected *QItemSe
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "selectionChanged") {
-			C.QItemSelectionModel_ConnectSelectionChanged(ptr.Pointer())
+			C.QItemSelectionModel_ConnectSelectionChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "selectionChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "selectionChanged"); signal != nil {
@@ -33716,6 +33716,13 @@ func NewQObjectFromPointer(ptr unsafe.Pointer) (n *QObject) {
 	n.SetPointer(ptr)
 	return
 }
+
+func (o *QObject) ConnectSignal(f, a interface{}, t Qt__ConnectionType) {
+	fn := strings.TrimSuffix(strings.Split(runtime.FuncForPC(reflect.ValueOf(f).Pointer()).Name(), ".Connect")[1], "-fm")
+	qt.RegisterConnectionType(o.Pointer(), strings.ToLower(fn[:1])+fn[1:], int64(t))
+	reflect.ValueOf(f).Call([]reflect.Value{reflect.ValueOf(a)})
+}
+
 func NewQObject(parent QObject_ITF) *QObject {
 	tmpValue := NewQObjectFromPointer(C.QObject_NewQObject(PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
@@ -33932,7 +33939,7 @@ func (ptr *QObject) ConnectDestroyed(f func(obj *QObject)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "destroyed") {
-			C.QObject_ConnectDestroyed(ptr.Pointer())
+			C.QObject_ConnectDestroyed(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "destroyed")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "destroyed"); signal != nil {
@@ -34348,7 +34355,7 @@ func (ptr *QObject) ConnectObjectNameChanged(f func(objectName string)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "objectNameChanged") {
-			C.QObject_ConnectObjectNameChanged(ptr.Pointer())
+			C.QObject_ConnectObjectNameChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "objectNameChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "objectNameChanged"); signal != nil {
@@ -36678,7 +36685,7 @@ func (ptr *QProcess) ConnectErrorOccurred(f func(error QProcess__ProcessError)) 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "errorOccurred") {
-			C.QProcess_ConnectErrorOccurred(ptr.Pointer())
+			C.QProcess_ConnectErrorOccurred(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "errorOccurred")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "errorOccurred"); signal != nil {
@@ -36772,7 +36779,7 @@ func (ptr *QProcess) ConnectFinished(f func(exitCode int, exitStatus QProcess__E
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "finished") {
-			C.QProcess_ConnectFinished(ptr.Pointer())
+			C.QProcess_ConnectFinished(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "finished")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "finished"); signal != nil {
@@ -36998,7 +37005,7 @@ func (ptr *QProcess) ConnectReadyReadStandardError(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "readyReadStandardError") {
-			C.QProcess_ConnectReadyReadStandardError(ptr.Pointer())
+			C.QProcess_ConnectReadyReadStandardError(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "readyReadStandardError")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "readyReadStandardError"); signal != nil {
@@ -37032,7 +37039,7 @@ func (ptr *QProcess) ConnectReadyReadStandardOutput(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "readyReadStandardOutput") {
-			C.QProcess_ConnectReadyReadStandardOutput(ptr.Pointer())
+			C.QProcess_ConnectReadyReadStandardOutput(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "readyReadStandardOutput")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "readyReadStandardOutput"); signal != nil {
@@ -37306,7 +37313,7 @@ func (ptr *QProcess) ConnectStarted(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "started") {
-			C.QProcess_ConnectStarted(ptr.Pointer())
+			C.QProcess_ConnectStarted(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "started")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "started"); signal != nil {
@@ -37347,7 +37354,7 @@ func (ptr *QProcess) ConnectStateChanged(f func(newState QProcess__ProcessState)
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stateChanged") {
-			C.QProcess_ConnectStateChanged(ptr.Pointer())
+			C.QProcess_ConnectStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
@@ -41379,7 +41386,7 @@ func (ptr *QSequentialAnimationGroup) ConnectCurrentAnimationChanged(f func(curr
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "currentAnimationChanged") {
-			C.QSequentialAnimationGroup_ConnectCurrentAnimationChanged(ptr.Pointer())
+			C.QSequentialAnimationGroup_ConnectCurrentAnimationChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "currentAnimationChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "currentAnimationChanged"); signal != nil {
@@ -42867,7 +42874,7 @@ func (ptr *QSignalTransition) ConnectSenderObjectChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "senderObjectChanged") {
-			C.QSignalTransition_ConnectSenderObjectChanged(ptr.Pointer())
+			C.QSignalTransition_ConnectSenderObjectChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "senderObjectChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "senderObjectChanged"); signal != nil {
@@ -42922,7 +42929,7 @@ func (ptr *QSignalTransition) ConnectSignalChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "signalChanged") {
-			C.QSignalTransition_ConnectSignalChanged(ptr.Pointer())
+			C.QSignalTransition_ConnectSignalChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "signalChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "signalChanged"); signal != nil {
@@ -43431,7 +43438,7 @@ func (ptr *QSocketNotifier) ConnectActivated(f func(socket int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "activated") {
-			C.QSocketNotifier_ConnectActivated(ptr.Pointer())
+			C.QSocketNotifier_ConnectActivated(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "activated")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "activated"); signal != nil {
@@ -44955,7 +44962,7 @@ func (ptr *QState) ConnectChildModeChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "childModeChanged") {
-			C.QState_ConnectChildModeChanged(ptr.Pointer())
+			C.QState_ConnectChildModeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "childModeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "childModeChanged"); signal != nil {
@@ -45000,7 +45007,7 @@ func (ptr *QState) ConnectErrorStateChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "errorStateChanged") {
-			C.QState_ConnectErrorStateChanged(ptr.Pointer())
+			C.QState_ConnectErrorStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "errorStateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "errorStateChanged"); signal != nil {
@@ -45034,7 +45041,7 @@ func (ptr *QState) ConnectFinished(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "finished") {
-			C.QState_ConnectFinished(ptr.Pointer())
+			C.QState_ConnectFinished(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "finished")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "finished"); signal != nil {
@@ -45079,7 +45086,7 @@ func (ptr *QState) ConnectInitialStateChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "initialStateChanged") {
-			C.QState_ConnectInitialStateChanged(ptr.Pointer())
+			C.QState_ConnectInitialStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "initialStateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "initialStateChanged"); signal != nil {
@@ -45199,7 +45206,7 @@ func (ptr *QState) ConnectPropertiesAssigned(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "propertiesAssigned") {
-			C.QState_ConnectPropertiesAssigned(ptr.Pointer())
+			C.QState_ConnectPropertiesAssigned(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "propertiesAssigned")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "propertiesAssigned"); signal != nil {
@@ -45513,7 +45520,7 @@ func (ptr *QStateMachine) ConnectRunningChanged(f func(running bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "runningChanged") {
-			C.QStateMachine_ConnectRunningChanged(ptr.Pointer())
+			C.QStateMachine_ConnectRunningChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "runningChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "runningChanged"); signal != nil {
@@ -45651,7 +45658,7 @@ func (ptr *QStateMachine) ConnectStarted(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "started") {
-			C.QStateMachine_ConnectStarted(ptr.Pointer())
+			C.QStateMachine_ConnectStarted(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "started")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "started"); signal != nil {
@@ -45728,7 +45735,7 @@ func (ptr *QStateMachine) ConnectStopped(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stopped") {
-			C.QStateMachine_ConnectStopped(ptr.Pointer())
+			C.QStateMachine_ConnectStopped(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stopped")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stopped"); signal != nil {
@@ -49932,7 +49939,7 @@ func (ptr *QThread) ConnectFinished(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "finished") {
-			C.QThread_ConnectFinished(ptr.Pointer())
+			C.QThread_ConnectFinished(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "finished")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "finished"); signal != nil {
@@ -50193,7 +50200,7 @@ func (ptr *QThread) ConnectStarted(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "started") {
-			C.QThread_ConnectStarted(ptr.Pointer())
+			C.QThread_ConnectStarted(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "started")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "started"); signal != nil {
@@ -51039,7 +51046,7 @@ func (ptr *QTimeLine) ConnectFinished(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "finished") {
-			C.QTimeLine_ConnectFinished(ptr.Pointer())
+			C.QTimeLine_ConnectFinished(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "finished")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "finished"); signal != nil {
@@ -51073,7 +51080,7 @@ func (ptr *QTimeLine) ConnectFrameChanged(f func(frame int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "frameChanged") {
-			C.QTimeLine_ConnectFrameChanged(ptr.Pointer())
+			C.QTimeLine_ConnectFrameChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "frameChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "frameChanged"); signal != nil {
@@ -51361,7 +51368,7 @@ func (ptr *QTimeLine) ConnectStateChanged(f func(newState QTimeLine__State)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stateChanged") {
-			C.QTimeLine_ConnectStateChanged(ptr.Pointer())
+			C.QTimeLine_ConnectStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
@@ -51488,7 +51495,7 @@ func (ptr *QTimeLine) ConnectValueChanged(f func(value float64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "valueChanged") {
-			C.QTimeLine_ConnectValueChanged(ptr.Pointer())
+			C.QTimeLine_ConnectValueChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "valueChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "valueChanged"); signal != nil {
@@ -52367,7 +52374,7 @@ func (ptr *QTimer) ConnectTimeout(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "timeout") {
-			C.QTimer_ConnectTimeout(ptr.Pointer())
+			C.QTimer_ConnectTimeout(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "timeout")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "timeout"); signal != nil {
@@ -56366,7 +56373,7 @@ func (ptr *QVariantAnimation) ConnectValueChanged(f func(value *QVariant)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "valueChanged") {
-			C.QVariantAnimation_ConnectValueChanged(ptr.Pointer())
+			C.QVariantAnimation_ConnectValueChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "valueChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "valueChanged"); signal != nil {

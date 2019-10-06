@@ -303,9 +303,9 @@ void* QAbstractTextDocumentLayout_DocumentSize(void* ptr)
 	return ({ QSizeF tmpValue = static_cast<QAbstractTextDocumentLayout*>(ptr)->documentSize(); new QSizeF(tmpValue.width(), tmpValue.height()); });
 }
 
-void QAbstractTextDocumentLayout_ConnectDocumentSizeChanged(void* ptr)
+void QAbstractTextDocumentLayout_ConnectDocumentSizeChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QAbstractTextDocumentLayout*>(ptr), static_cast<void (QAbstractTextDocumentLayout::*)(const QSizeF &)>(&QAbstractTextDocumentLayout::documentSizeChanged), static_cast<MyQAbstractTextDocumentLayout*>(ptr), static_cast<void (MyQAbstractTextDocumentLayout::*)(const QSizeF &)>(&MyQAbstractTextDocumentLayout::Signal_DocumentSizeChanged));
+	QObject::connect(static_cast<QAbstractTextDocumentLayout*>(ptr), static_cast<void (QAbstractTextDocumentLayout::*)(const QSizeF &)>(&QAbstractTextDocumentLayout::documentSizeChanged), static_cast<MyQAbstractTextDocumentLayout*>(ptr), static_cast<void (MyQAbstractTextDocumentLayout::*)(const QSizeF &)>(&MyQAbstractTextDocumentLayout::Signal_DocumentSizeChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QAbstractTextDocumentLayout_DisconnectDocumentSizeChanged(void* ptr)
@@ -363,9 +363,9 @@ int QAbstractTextDocumentLayout_PageCount(void* ptr)
 	return static_cast<QAbstractTextDocumentLayout*>(ptr)->pageCount();
 }
 
-void QAbstractTextDocumentLayout_ConnectPageCountChanged(void* ptr)
+void QAbstractTextDocumentLayout_ConnectPageCountChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QAbstractTextDocumentLayout*>(ptr), static_cast<void (QAbstractTextDocumentLayout::*)(int)>(&QAbstractTextDocumentLayout::pageCountChanged), static_cast<MyQAbstractTextDocumentLayout*>(ptr), static_cast<void (MyQAbstractTextDocumentLayout::*)(int)>(&MyQAbstractTextDocumentLayout::Signal_PageCountChanged));
+	QObject::connect(static_cast<QAbstractTextDocumentLayout*>(ptr), static_cast<void (QAbstractTextDocumentLayout::*)(int)>(&QAbstractTextDocumentLayout::pageCountChanged), static_cast<MyQAbstractTextDocumentLayout*>(ptr), static_cast<void (MyQAbstractTextDocumentLayout::*)(int)>(&MyQAbstractTextDocumentLayout::Signal_PageCountChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QAbstractTextDocumentLayout_DisconnectPageCountChanged(void* ptr)
@@ -444,9 +444,9 @@ void QAbstractTextDocumentLayout_UnregisterHandler(void* ptr, int objectType, vo
 	}
 }
 
-void QAbstractTextDocumentLayout_ConnectUpdate(void* ptr)
+void QAbstractTextDocumentLayout_ConnectUpdate(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QAbstractTextDocumentLayout*>(ptr), static_cast<void (QAbstractTextDocumentLayout::*)(const QRectF &)>(&QAbstractTextDocumentLayout::update), static_cast<MyQAbstractTextDocumentLayout*>(ptr), static_cast<void (MyQAbstractTextDocumentLayout::*)(const QRectF &)>(&MyQAbstractTextDocumentLayout::Signal_Update));
+	QObject::connect(static_cast<QAbstractTextDocumentLayout*>(ptr), static_cast<void (QAbstractTextDocumentLayout::*)(const QRectF &)>(&QAbstractTextDocumentLayout::update), static_cast<MyQAbstractTextDocumentLayout*>(ptr), static_cast<void (MyQAbstractTextDocumentLayout::*)(const QRectF &)>(&MyQAbstractTextDocumentLayout::Signal_Update), static_cast<Qt::ConnectionType>(t));
 }
 
 void QAbstractTextDocumentLayout_DisconnectUpdate(void* ptr)
@@ -459,9 +459,9 @@ void QAbstractTextDocumentLayout_Update(void* ptr, void* rect)
 	static_cast<QAbstractTextDocumentLayout*>(ptr)->update(*static_cast<QRectF*>(rect));
 }
 
-void QAbstractTextDocumentLayout_ConnectUpdateBlock(void* ptr)
+void QAbstractTextDocumentLayout_ConnectUpdateBlock(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QAbstractTextDocumentLayout*>(ptr), static_cast<void (QAbstractTextDocumentLayout::*)(const QTextBlock &)>(&QAbstractTextDocumentLayout::updateBlock), static_cast<MyQAbstractTextDocumentLayout*>(ptr), static_cast<void (MyQAbstractTextDocumentLayout::*)(const QTextBlock &)>(&MyQAbstractTextDocumentLayout::Signal_UpdateBlock));
+	QObject::connect(static_cast<QAbstractTextDocumentLayout*>(ptr), static_cast<void (QAbstractTextDocumentLayout::*)(const QTextBlock &)>(&QAbstractTextDocumentLayout::updateBlock), static_cast<MyQAbstractTextDocumentLayout*>(ptr), static_cast<void (MyQAbstractTextDocumentLayout::*)(const QTextBlock &)>(&MyQAbstractTextDocumentLayout::Signal_UpdateBlock), static_cast<Qt::ConnectionType>(t));
 }
 
 void QAbstractTextDocumentLayout_DisconnectUpdateBlock(void* ptr)
@@ -2949,9 +2949,9 @@ Q_DECLARE_METATYPE(MyQClipboard*)
 
 int QClipboard_QClipboard_QRegisterMetaType(){qRegisterMetaType<QClipboard*>(); return qRegisterMetaType<MyQClipboard*>();}
 
-void QClipboard_ConnectChanged(void* ptr)
+void QClipboard_ConnectChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QClipboard*>(ptr), static_cast<void (QClipboard::*)(QClipboard::Mode)>(&QClipboard::changed), static_cast<MyQClipboard*>(ptr), static_cast<void (MyQClipboard::*)(QClipboard::Mode)>(&MyQClipboard::Signal_Changed));
+	QObject::connect(static_cast<QClipboard*>(ptr), static_cast<void (QClipboard::*)(QClipboard::Mode)>(&QClipboard::changed), static_cast<MyQClipboard*>(ptr), static_cast<void (MyQClipboard::*)(QClipboard::Mode)>(&MyQClipboard::Signal_Changed), static_cast<Qt::ConnectionType>(t));
 }
 
 void QClipboard_DisconnectChanged(void* ptr)
@@ -2969,9 +2969,9 @@ void QClipboard_Clear(void* ptr, long long mode)
 	static_cast<QClipboard*>(ptr)->clear(static_cast<QClipboard::Mode>(mode));
 }
 
-void QClipboard_ConnectDataChanged(void* ptr)
+void QClipboard_ConnectDataChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QClipboard*>(ptr), static_cast<void (QClipboard::*)()>(&QClipboard::dataChanged), static_cast<MyQClipboard*>(ptr), static_cast<void (MyQClipboard::*)()>(&MyQClipboard::Signal_DataChanged));
+	QObject::connect(static_cast<QClipboard*>(ptr), static_cast<void (QClipboard::*)()>(&QClipboard::dataChanged), static_cast<MyQClipboard*>(ptr), static_cast<void (MyQClipboard::*)()>(&MyQClipboard::Signal_DataChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QClipboard_DisconnectDataChanged(void* ptr)
@@ -2984,9 +2984,9 @@ void QClipboard_DataChanged(void* ptr)
 	static_cast<QClipboard*>(ptr)->dataChanged();
 }
 
-void QClipboard_ConnectFindBufferChanged(void* ptr)
+void QClipboard_ConnectFindBufferChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QClipboard*>(ptr), static_cast<void (QClipboard::*)()>(&QClipboard::findBufferChanged), static_cast<MyQClipboard*>(ptr), static_cast<void (MyQClipboard::*)()>(&MyQClipboard::Signal_FindBufferChanged));
+	QObject::connect(static_cast<QClipboard*>(ptr), static_cast<void (QClipboard::*)()>(&QClipboard::findBufferChanged), static_cast<MyQClipboard*>(ptr), static_cast<void (MyQClipboard::*)()>(&MyQClipboard::Signal_FindBufferChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QClipboard_DisconnectFindBufferChanged(void* ptr)
@@ -3029,9 +3029,9 @@ void* QClipboard_Pixmap(void* ptr, long long mode)
 	return new QPixmap(static_cast<QClipboard*>(ptr)->pixmap(static_cast<QClipboard::Mode>(mode)));
 }
 
-void QClipboard_ConnectSelectionChanged(void* ptr)
+void QClipboard_ConnectSelectionChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QClipboard*>(ptr), static_cast<void (QClipboard::*)()>(&QClipboard::selectionChanged), static_cast<MyQClipboard*>(ptr), static_cast<void (MyQClipboard::*)()>(&MyQClipboard::Signal_SelectionChanged));
+	QObject::connect(static_cast<QClipboard*>(ptr), static_cast<void (QClipboard::*)()>(&QClipboard::selectionChanged), static_cast<MyQClipboard*>(ptr), static_cast<void (MyQClipboard::*)()>(&MyQClipboard::Signal_SelectionChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QClipboard_DisconnectSelectionChanged(void* ptr)
@@ -4123,9 +4123,9 @@ double QDoubleValidator_Bottom(void* ptr)
 	return static_cast<QDoubleValidator*>(ptr)->bottom();
 }
 
-void QDoubleValidator_ConnectBottomChanged(void* ptr)
+void QDoubleValidator_ConnectBottomChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QDoubleValidator*>(ptr), static_cast<void (QDoubleValidator::*)(double)>(&QDoubleValidator::bottomChanged), static_cast<MyQDoubleValidator*>(ptr), static_cast<void (MyQDoubleValidator::*)(double)>(&MyQDoubleValidator::Signal_BottomChanged));
+	QObject::connect(static_cast<QDoubleValidator*>(ptr), static_cast<void (QDoubleValidator::*)(double)>(&QDoubleValidator::bottomChanged), static_cast<MyQDoubleValidator*>(ptr), static_cast<void (MyQDoubleValidator::*)(double)>(&MyQDoubleValidator::Signal_BottomChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QDoubleValidator_DisconnectBottomChanged(void* ptr)
@@ -4143,9 +4143,9 @@ int QDoubleValidator_Decimals(void* ptr)
 	return static_cast<QDoubleValidator*>(ptr)->decimals();
 }
 
-void QDoubleValidator_ConnectDecimalsChanged(void* ptr)
+void QDoubleValidator_ConnectDecimalsChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QDoubleValidator*>(ptr), static_cast<void (QDoubleValidator::*)(int)>(&QDoubleValidator::decimalsChanged), static_cast<MyQDoubleValidator*>(ptr), static_cast<void (MyQDoubleValidator::*)(int)>(&MyQDoubleValidator::Signal_DecimalsChanged));
+	QObject::connect(static_cast<QDoubleValidator*>(ptr), static_cast<void (QDoubleValidator::*)(int)>(&QDoubleValidator::decimalsChanged), static_cast<MyQDoubleValidator*>(ptr), static_cast<void (MyQDoubleValidator::*)(int)>(&MyQDoubleValidator::Signal_DecimalsChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QDoubleValidator_DisconnectDecimalsChanged(void* ptr)
@@ -4163,10 +4163,10 @@ long long QDoubleValidator_Notation(void* ptr)
 	return static_cast<QDoubleValidator*>(ptr)->notation();
 }
 
-void QDoubleValidator_ConnectNotationChanged(void* ptr)
+void QDoubleValidator_ConnectNotationChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<QDoubleValidator::Notation>();
-	QObject::connect(static_cast<QDoubleValidator*>(ptr), static_cast<void (QDoubleValidator::*)(QDoubleValidator::Notation)>(&QDoubleValidator::notationChanged), static_cast<MyQDoubleValidator*>(ptr), static_cast<void (MyQDoubleValidator::*)(QDoubleValidator::Notation)>(&MyQDoubleValidator::Signal_NotationChanged));
+	QObject::connect(static_cast<QDoubleValidator*>(ptr), static_cast<void (QDoubleValidator::*)(QDoubleValidator::Notation)>(&QDoubleValidator::notationChanged), static_cast<MyQDoubleValidator*>(ptr), static_cast<void (MyQDoubleValidator::*)(QDoubleValidator::Notation)>(&MyQDoubleValidator::Signal_NotationChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QDoubleValidator_DisconnectNotationChanged(void* ptr)
@@ -4214,9 +4214,9 @@ double QDoubleValidator_Top(void* ptr)
 	return static_cast<QDoubleValidator*>(ptr)->top();
 }
 
-void QDoubleValidator_ConnectTopChanged(void* ptr)
+void QDoubleValidator_ConnectTopChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QDoubleValidator*>(ptr), static_cast<void (QDoubleValidator::*)(double)>(&QDoubleValidator::topChanged), static_cast<MyQDoubleValidator*>(ptr), static_cast<void (MyQDoubleValidator::*)(double)>(&MyQDoubleValidator::Signal_TopChanged));
+	QObject::connect(static_cast<QDoubleValidator*>(ptr), static_cast<void (QDoubleValidator::*)(double)>(&QDoubleValidator::topChanged), static_cast<MyQDoubleValidator*>(ptr), static_cast<void (MyQDoubleValidator::*)(double)>(&MyQDoubleValidator::Signal_TopChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QDoubleValidator_DisconnectTopChanged(void* ptr)
@@ -4321,10 +4321,10 @@ void* QDrag_NewQDrag(void* dragSource)
 	}
 }
 
-void QDrag_ConnectActionChanged(void* ptr)
+void QDrag_ConnectActionChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<Qt::DropAction>();
-	QObject::connect(static_cast<QDrag*>(ptr), static_cast<void (QDrag::*)(Qt::DropAction)>(&QDrag::actionChanged), static_cast<MyQDrag*>(ptr), static_cast<void (MyQDrag::*)(Qt::DropAction)>(&MyQDrag::Signal_ActionChanged));
+	QObject::connect(static_cast<QDrag*>(ptr), static_cast<void (QDrag::*)(Qt::DropAction)>(&QDrag::actionChanged), static_cast<MyQDrag*>(ptr), static_cast<void (MyQDrag::*)(Qt::DropAction)>(&MyQDrag::Signal_ActionChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QDrag_DisconnectActionChanged(void* ptr)
@@ -4412,9 +4412,9 @@ void* QDrag_Target(void* ptr)
 	return static_cast<QDrag*>(ptr)->target();
 }
 
-void QDrag_ConnectTargetChanged(void* ptr)
+void QDrag_ConnectTargetChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QDrag*>(ptr), static_cast<void (QDrag::*)(QObject *)>(&QDrag::targetChanged), static_cast<MyQDrag*>(ptr), static_cast<void (MyQDrag::*)(QObject *)>(&MyQDrag::Signal_TargetChanged));
+	QObject::connect(static_cast<QDrag*>(ptr), static_cast<void (QDrag::*)(QObject *)>(&QDrag::targetChanged), static_cast<MyQDrag*>(ptr), static_cast<void (MyQDrag::*)(QObject *)>(&MyQDrag::Signal_TargetChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QDrag_DisconnectTargetChanged(void* ptr)
@@ -6348,9 +6348,9 @@ struct QtGui_PackedString QGuiApplication_QGuiApplication_ApplicationDisplayName
 	return ({ QByteArray tb2b492 = QGuiApplication::applicationDisplayName().toUtf8(); QtGui_PackedString { const_cast<char*>(tb2b492.prepend("WHITESPACE").constData()+10), tb2b492.size()-10 }; });
 }
 
-void QGuiApplication_ConnectApplicationDisplayNameChanged(void* ptr)
+void QGuiApplication_ConnectApplicationDisplayNameChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)()>(&QGuiApplication::applicationDisplayNameChanged), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)()>(&MyQGuiApplication::Signal_ApplicationDisplayNameChanged));
+	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)()>(&QGuiApplication::applicationDisplayNameChanged), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)()>(&MyQGuiApplication::Signal_ApplicationDisplayNameChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGuiApplication_DisconnectApplicationDisplayNameChanged(void* ptr)
@@ -6368,10 +6368,10 @@ long long QGuiApplication_QGuiApplication_ApplicationState()
 	return QGuiApplication::applicationState();
 }
 
-void QGuiApplication_ConnectApplicationStateChanged(void* ptr)
+void QGuiApplication_ConnectApplicationStateChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<Qt::ApplicationState>();
-	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(Qt::ApplicationState)>(&QGuiApplication::applicationStateChanged), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(Qt::ApplicationState)>(&MyQGuiApplication::Signal_ApplicationStateChanged));
+	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(Qt::ApplicationState)>(&QGuiApplication::applicationStateChanged), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(Qt::ApplicationState)>(&MyQGuiApplication::Signal_ApplicationStateChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGuiApplication_DisconnectApplicationStateChanged(void* ptr)
@@ -6394,9 +6394,9 @@ void* QGuiApplication_QGuiApplication_Clipboard()
 	return QGuiApplication::clipboard();
 }
 
-void QGuiApplication_ConnectCommitDataRequest(void* ptr)
+void QGuiApplication_ConnectCommitDataRequest(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(QSessionManager &)>(&QGuiApplication::commitDataRequest), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(QSessionManager &)>(&MyQGuiApplication::Signal_CommitDataRequest));
+	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(QSessionManager &)>(&QGuiApplication::commitDataRequest), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(QSessionManager &)>(&MyQGuiApplication::Signal_CommitDataRequest), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGuiApplication_DisconnectCommitDataRequest(void* ptr)
@@ -6439,9 +6439,9 @@ void* QGuiApplication_QGuiApplication_FocusObject()
 	return QGuiApplication::focusObject();
 }
 
-void QGuiApplication_ConnectFocusObjectChanged(void* ptr)
+void QGuiApplication_ConnectFocusObjectChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(QObject *)>(&QGuiApplication::focusObjectChanged), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(QObject *)>(&MyQGuiApplication::Signal_FocusObjectChanged));
+	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(QObject *)>(&QGuiApplication::focusObjectChanged), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(QObject *)>(&MyQGuiApplication::Signal_FocusObjectChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGuiApplication_DisconnectFocusObjectChanged(void* ptr)
@@ -6469,9 +6469,9 @@ void* QGuiApplication_QGuiApplication_FocusWindow()
 	return QGuiApplication::focusWindow();
 }
 
-void QGuiApplication_ConnectFocusWindowChanged(void* ptr)
+void QGuiApplication_ConnectFocusWindowChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(QWindow *)>(&QGuiApplication::focusWindowChanged), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(QWindow *)>(&MyQGuiApplication::Signal_FocusWindowChanged));
+	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(QWindow *)>(&QGuiApplication::focusWindowChanged), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(QWindow *)>(&MyQGuiApplication::Signal_FocusWindowChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGuiApplication_DisconnectFocusWindowChanged(void* ptr)
@@ -6493,9 +6493,9 @@ void* QGuiApplication_QGuiApplication_Font()
 	return new QFont(QGuiApplication::font());
 }
 
-void QGuiApplication_ConnectFontChanged(void* ptr)
+void QGuiApplication_ConnectFontChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(const QFont &)>(&QGuiApplication::fontChanged), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(const QFont &)>(&MyQGuiApplication::Signal_FontChanged));
+	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(const QFont &)>(&QGuiApplication::fontChanged), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(const QFont &)>(&MyQGuiApplication::Signal_FontChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGuiApplication_DisconnectFontChanged(void* ptr)
@@ -6508,9 +6508,9 @@ void QGuiApplication_FontChanged(void* ptr, void* font)
 	static_cast<QGuiApplication*>(ptr)->fontChanged(*static_cast<QFont*>(font));
 }
 
-void QGuiApplication_ConnectFontDatabaseChanged(void* ptr)
+void QGuiApplication_ConnectFontDatabaseChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)()>(&QGuiApplication::fontDatabaseChanged), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)()>(&MyQGuiApplication::Signal_FontDatabaseChanged));
+	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)()>(&QGuiApplication::fontDatabaseChanged), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)()>(&MyQGuiApplication::Signal_FontDatabaseChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGuiApplication_DisconnectFontDatabaseChanged(void* ptr)
@@ -6558,9 +6558,9 @@ long long QGuiApplication_QGuiApplication_KeyboardModifiers()
 	return QGuiApplication::keyboardModifiers();
 }
 
-void QGuiApplication_ConnectLastWindowClosed(void* ptr)
+void QGuiApplication_ConnectLastWindowClosed(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)()>(&QGuiApplication::lastWindowClosed), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)()>(&MyQGuiApplication::Signal_LastWindowClosed));
+	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)()>(&QGuiApplication::lastWindowClosed), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)()>(&MyQGuiApplication::Signal_LastWindowClosed), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGuiApplication_DisconnectLastWindowClosed(void* ptr)
@@ -6578,10 +6578,10 @@ long long QGuiApplication_QGuiApplication_LayoutDirection()
 	return QGuiApplication::layoutDirection();
 }
 
-void QGuiApplication_ConnectLayoutDirectionChanged(void* ptr)
+void QGuiApplication_ConnectLayoutDirectionChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<Qt::LayoutDirection>();
-	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(Qt::LayoutDirection)>(&QGuiApplication::layoutDirectionChanged), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(Qt::LayoutDirection)>(&MyQGuiApplication::Signal_LayoutDirectionChanged));
+	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(Qt::LayoutDirection)>(&QGuiApplication::layoutDirectionChanged), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(Qt::LayoutDirection)>(&MyQGuiApplication::Signal_LayoutDirectionChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGuiApplication_DisconnectLayoutDirectionChanged(void* ptr)
@@ -6614,9 +6614,9 @@ void* QGuiApplication_QGuiApplication_Palette()
 	return new QPalette(QGuiApplication::palette());
 }
 
-void QGuiApplication_ConnectPaletteChanged(void* ptr)
+void QGuiApplication_ConnectPaletteChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(const QPalette &)>(&QGuiApplication::paletteChanged), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(const QPalette &)>(&MyQGuiApplication::Signal_PaletteChanged));
+	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(const QPalette &)>(&QGuiApplication::paletteChanged), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(const QPalette &)>(&MyQGuiApplication::Signal_PaletteChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGuiApplication_DisconnectPaletteChanged(void* ptr)
@@ -6639,9 +6639,9 @@ void* QGuiApplication_QGuiApplication_PrimaryScreen()
 	return QGuiApplication::primaryScreen();
 }
 
-void QGuiApplication_ConnectPrimaryScreenChanged(void* ptr)
+void QGuiApplication_ConnectPrimaryScreenChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(QScreen *)>(&QGuiApplication::primaryScreenChanged), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(QScreen *)>(&MyQGuiApplication::Signal_PrimaryScreenChanged));
+	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(QScreen *)>(&QGuiApplication::primaryScreenChanged), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(QScreen *)>(&MyQGuiApplication::Signal_PrimaryScreenChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGuiApplication_DisconnectPrimaryScreenChanged(void* ptr)
@@ -6669,9 +6669,9 @@ void QGuiApplication_QGuiApplication_RestoreOverrideCursor()
 	QGuiApplication::restoreOverrideCursor();
 }
 
-void QGuiApplication_ConnectSaveStateRequest(void* ptr)
+void QGuiApplication_ConnectSaveStateRequest(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(QSessionManager &)>(&QGuiApplication::saveStateRequest), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(QSessionManager &)>(&MyQGuiApplication::Signal_SaveStateRequest));
+	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(QSessionManager &)>(&QGuiApplication::saveStateRequest), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(QSessionManager &)>(&MyQGuiApplication::Signal_SaveStateRequest), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGuiApplication_DisconnectSaveStateRequest(void* ptr)
@@ -6684,9 +6684,9 @@ void QGuiApplication_SaveStateRequest(void* ptr, void* manager)
 	static_cast<QGuiApplication*>(ptr)->saveStateRequest(*static_cast<QSessionManager*>(manager));
 }
 
-void QGuiApplication_ConnectScreenAdded(void* ptr)
+void QGuiApplication_ConnectScreenAdded(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(QScreen *)>(&QGuiApplication::screenAdded), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(QScreen *)>(&MyQGuiApplication::Signal_ScreenAdded));
+	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(QScreen *)>(&QGuiApplication::screenAdded), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(QScreen *)>(&MyQGuiApplication::Signal_ScreenAdded), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGuiApplication_DisconnectScreenAdded(void* ptr)
@@ -6704,9 +6704,9 @@ void* QGuiApplication_QGuiApplication_ScreenAt(void* point)
 	return QGuiApplication::screenAt(*static_cast<QPoint*>(point));
 }
 
-void QGuiApplication_ConnectScreenRemoved(void* ptr)
+void QGuiApplication_ConnectScreenRemoved(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(QScreen *)>(&QGuiApplication::screenRemoved), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(QScreen *)>(&MyQGuiApplication::Signal_ScreenRemoved));
+	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(QScreen *)>(&QGuiApplication::screenRemoved), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(QScreen *)>(&MyQGuiApplication::Signal_ScreenRemoved), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGuiApplication_DisconnectScreenRemoved(void* ptr)
@@ -9363,9 +9363,9 @@ void* QInputMethod_AnchorRectangle(void* ptr)
 	return ({ QRectF tmpValue = static_cast<QInputMethod*>(ptr)->anchorRectangle(); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
-void QInputMethod_ConnectAnchorRectangleChanged(void* ptr)
+void QInputMethod_ConnectAnchorRectangleChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QInputMethod*>(ptr), static_cast<void (QInputMethod::*)()>(&QInputMethod::anchorRectangleChanged), static_cast<MyQInputMethod*>(ptr), static_cast<void (MyQInputMethod::*)()>(&MyQInputMethod::Signal_AnchorRectangleChanged));
+	QObject::connect(static_cast<QInputMethod*>(ptr), static_cast<void (QInputMethod::*)()>(&QInputMethod::anchorRectangleChanged), static_cast<MyQInputMethod*>(ptr), static_cast<void (MyQInputMethod::*)()>(&MyQInputMethod::Signal_AnchorRectangleChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QInputMethod_DisconnectAnchorRectangleChanged(void* ptr)
@@ -9378,9 +9378,9 @@ void QInputMethod_AnchorRectangleChanged(void* ptr)
 	static_cast<QInputMethod*>(ptr)->anchorRectangleChanged();
 }
 
-void QInputMethod_ConnectAnimatingChanged(void* ptr)
+void QInputMethod_ConnectAnimatingChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QInputMethod*>(ptr), static_cast<void (QInputMethod::*)()>(&QInputMethod::animatingChanged), static_cast<MyQInputMethod*>(ptr), static_cast<void (MyQInputMethod::*)()>(&MyQInputMethod::Signal_AnimatingChanged));
+	QObject::connect(static_cast<QInputMethod*>(ptr), static_cast<void (QInputMethod::*)()>(&QInputMethod::animatingChanged), static_cast<MyQInputMethod*>(ptr), static_cast<void (MyQInputMethod::*)()>(&MyQInputMethod::Signal_AnimatingChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QInputMethod_DisconnectAnimatingChanged(void* ptr)
@@ -9408,9 +9408,9 @@ void* QInputMethod_CursorRectangle(void* ptr)
 	return ({ QRectF tmpValue = static_cast<QInputMethod*>(ptr)->cursorRectangle(); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
-void QInputMethod_ConnectCursorRectangleChanged(void* ptr)
+void QInputMethod_ConnectCursorRectangleChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QInputMethod*>(ptr), static_cast<void (QInputMethod::*)()>(&QInputMethod::cursorRectangleChanged), static_cast<MyQInputMethod*>(ptr), static_cast<void (MyQInputMethod::*)()>(&MyQInputMethod::Signal_CursorRectangleChanged));
+	QObject::connect(static_cast<QInputMethod*>(ptr), static_cast<void (QInputMethod::*)()>(&QInputMethod::cursorRectangleChanged), static_cast<MyQInputMethod*>(ptr), static_cast<void (MyQInputMethod::*)()>(&MyQInputMethod::Signal_CursorRectangleChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QInputMethod_DisconnectCursorRectangleChanged(void* ptr)
@@ -9438,10 +9438,10 @@ long long QInputMethod_InputDirection(void* ptr)
 	return static_cast<QInputMethod*>(ptr)->inputDirection();
 }
 
-void QInputMethod_ConnectInputDirectionChanged(void* ptr)
+void QInputMethod_ConnectInputDirectionChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<Qt::LayoutDirection>();
-	QObject::connect(static_cast<QInputMethod*>(ptr), static_cast<void (QInputMethod::*)(Qt::LayoutDirection)>(&QInputMethod::inputDirectionChanged), static_cast<MyQInputMethod*>(ptr), static_cast<void (MyQInputMethod::*)(Qt::LayoutDirection)>(&MyQInputMethod::Signal_InputDirectionChanged));
+	QObject::connect(static_cast<QInputMethod*>(ptr), static_cast<void (QInputMethod::*)(Qt::LayoutDirection)>(&QInputMethod::inputDirectionChanged), static_cast<MyQInputMethod*>(ptr), static_cast<void (MyQInputMethod::*)(Qt::LayoutDirection)>(&MyQInputMethod::Signal_InputDirectionChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QInputMethod_DisconnectInputDirectionChanged(void* ptr)
@@ -9459,9 +9459,9 @@ void* QInputMethod_InputItemClipRectangle(void* ptr)
 	return ({ QRectF tmpValue = static_cast<QInputMethod*>(ptr)->inputItemClipRectangle(); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
-void QInputMethod_ConnectInputItemClipRectangleChanged(void* ptr)
+void QInputMethod_ConnectInputItemClipRectangleChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QInputMethod*>(ptr), static_cast<void (QInputMethod::*)()>(&QInputMethod::inputItemClipRectangleChanged), static_cast<MyQInputMethod*>(ptr), static_cast<void (MyQInputMethod::*)()>(&MyQInputMethod::Signal_InputItemClipRectangleChanged));
+	QObject::connect(static_cast<QInputMethod*>(ptr), static_cast<void (QInputMethod::*)()>(&QInputMethod::inputItemClipRectangleChanged), static_cast<MyQInputMethod*>(ptr), static_cast<void (MyQInputMethod::*)()>(&MyQInputMethod::Signal_InputItemClipRectangleChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QInputMethod_DisconnectInputItemClipRectangleChanged(void* ptr)
@@ -9510,9 +9510,9 @@ void* QInputMethod_KeyboardRectangle(void* ptr)
 	return ({ QRectF tmpValue = static_cast<QInputMethod*>(ptr)->keyboardRectangle(); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
-void QInputMethod_ConnectKeyboardRectangleChanged(void* ptr)
+void QInputMethod_ConnectKeyboardRectangleChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QInputMethod*>(ptr), static_cast<void (QInputMethod::*)()>(&QInputMethod::keyboardRectangleChanged), static_cast<MyQInputMethod*>(ptr), static_cast<void (MyQInputMethod::*)()>(&MyQInputMethod::Signal_KeyboardRectangleChanged));
+	QObject::connect(static_cast<QInputMethod*>(ptr), static_cast<void (QInputMethod::*)()>(&QInputMethod::keyboardRectangleChanged), static_cast<MyQInputMethod*>(ptr), static_cast<void (MyQInputMethod::*)()>(&MyQInputMethod::Signal_KeyboardRectangleChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QInputMethod_DisconnectKeyboardRectangleChanged(void* ptr)
@@ -9530,9 +9530,9 @@ void* QInputMethod_Locale(void* ptr)
 	return new QLocale(static_cast<QInputMethod*>(ptr)->locale());
 }
 
-void QInputMethod_ConnectLocaleChanged(void* ptr)
+void QInputMethod_ConnectLocaleChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QInputMethod*>(ptr), static_cast<void (QInputMethod::*)()>(&QInputMethod::localeChanged), static_cast<MyQInputMethod*>(ptr), static_cast<void (MyQInputMethod::*)()>(&MyQInputMethod::Signal_LocaleChanged));
+	QObject::connect(static_cast<QInputMethod*>(ptr), static_cast<void (QInputMethod::*)()>(&QInputMethod::localeChanged), static_cast<MyQInputMethod*>(ptr), static_cast<void (MyQInputMethod::*)()>(&MyQInputMethod::Signal_LocaleChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QInputMethod_DisconnectLocaleChanged(void* ptr)
@@ -9596,9 +9596,9 @@ void QInputMethod_UpdateDefault(void* ptr, long long queries)
 		static_cast<QInputMethod*>(ptr)->QInputMethod::update(static_cast<Qt::InputMethodQuery>(queries));
 }
 
-void QInputMethod_ConnectVisibleChanged(void* ptr)
+void QInputMethod_ConnectVisibleChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QInputMethod*>(ptr), static_cast<void (QInputMethod::*)()>(&QInputMethod::visibleChanged), static_cast<MyQInputMethod*>(ptr), static_cast<void (MyQInputMethod::*)()>(&MyQInputMethod::Signal_VisibleChanged));
+	QObject::connect(static_cast<QInputMethod*>(ptr), static_cast<void (QInputMethod::*)()>(&QInputMethod::visibleChanged), static_cast<MyQInputMethod*>(ptr), static_cast<void (MyQInputMethod::*)()>(&MyQInputMethod::Signal_VisibleChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QInputMethod_DisconnectVisibleChanged(void* ptr)
@@ -10006,9 +10006,9 @@ int QIntValidator_Bottom(void* ptr)
 	return static_cast<QIntValidator*>(ptr)->bottom();
 }
 
-void QIntValidator_ConnectBottomChanged(void* ptr)
+void QIntValidator_ConnectBottomChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QIntValidator*>(ptr), static_cast<void (QIntValidator::*)(int)>(&QIntValidator::bottomChanged), static_cast<MyQIntValidator*>(ptr), static_cast<void (MyQIntValidator::*)(int)>(&MyQIntValidator::Signal_BottomChanged));
+	QObject::connect(static_cast<QIntValidator*>(ptr), static_cast<void (QIntValidator::*)(int)>(&QIntValidator::bottomChanged), static_cast<MyQIntValidator*>(ptr), static_cast<void (MyQIntValidator::*)(int)>(&MyQIntValidator::Signal_BottomChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QIntValidator_DisconnectBottomChanged(void* ptr)
@@ -10046,9 +10046,9 @@ int QIntValidator_Top(void* ptr)
 	return static_cast<QIntValidator*>(ptr)->top();
 }
 
-void QIntValidator_ConnectTopChanged(void* ptr)
+void QIntValidator_ConnectTopChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QIntValidator*>(ptr), static_cast<void (QIntValidator::*)(int)>(&QIntValidator::topChanged), static_cast<MyQIntValidator*>(ptr), static_cast<void (MyQIntValidator::*)(int)>(&MyQIntValidator::Signal_TopChanged));
+	QObject::connect(static_cast<QIntValidator*>(ptr), static_cast<void (QIntValidator::*)(int)>(&QIntValidator::topChanged), static_cast<MyQIntValidator*>(ptr), static_cast<void (MyQIntValidator::*)(int)>(&MyQIntValidator::Signal_TopChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QIntValidator_DisconnectTopChanged(void* ptr)
@@ -11034,9 +11034,9 @@ void* QMovie_Device(void* ptr)
 	return static_cast<QMovie*>(ptr)->device();
 }
 
-void QMovie_ConnectError(void* ptr)
+void QMovie_ConnectError(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QMovie*>(ptr), static_cast<void (QMovie::*)(QImageReader::ImageReaderError)>(&QMovie::error), static_cast<MyQMovie*>(ptr), static_cast<void (MyQMovie::*)(QImageReader::ImageReaderError)>(&MyQMovie::Signal_Error));
+	QObject::connect(static_cast<QMovie*>(ptr), static_cast<void (QMovie::*)(QImageReader::ImageReaderError)>(&QMovie::error), static_cast<MyQMovie*>(ptr), static_cast<void (MyQMovie::*)(QImageReader::ImageReaderError)>(&MyQMovie::Signal_Error), static_cast<Qt::ConnectionType>(t));
 }
 
 void QMovie_DisconnectError(void* ptr)
@@ -11054,9 +11054,9 @@ struct QtGui_PackedString QMovie_FileName(void* ptr)
 	return ({ QByteArray t73bc7e = static_cast<QMovie*>(ptr)->fileName().toUtf8(); QtGui_PackedString { const_cast<char*>(t73bc7e.prepend("WHITESPACE").constData()+10), t73bc7e.size()-10 }; });
 }
 
-void QMovie_ConnectFinished(void* ptr)
+void QMovie_ConnectFinished(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QMovie*>(ptr), static_cast<void (QMovie::*)()>(&QMovie::finished), static_cast<MyQMovie*>(ptr), static_cast<void (MyQMovie::*)()>(&MyQMovie::Signal_Finished));
+	QObject::connect(static_cast<QMovie*>(ptr), static_cast<void (QMovie::*)()>(&QMovie::finished), static_cast<MyQMovie*>(ptr), static_cast<void (MyQMovie::*)()>(&MyQMovie::Signal_Finished), static_cast<Qt::ConnectionType>(t));
 }
 
 void QMovie_DisconnectFinished(void* ptr)
@@ -11074,9 +11074,9 @@ void* QMovie_Format(void* ptr)
 	return new QByteArray(static_cast<QMovie*>(ptr)->format());
 }
 
-void QMovie_ConnectFrameChanged(void* ptr)
+void QMovie_ConnectFrameChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QMovie*>(ptr), static_cast<void (QMovie::*)(int)>(&QMovie::frameChanged), static_cast<MyQMovie*>(ptr), static_cast<void (MyQMovie::*)(int)>(&MyQMovie::Signal_FrameChanged));
+	QObject::connect(static_cast<QMovie*>(ptr), static_cast<void (QMovie::*)(int)>(&QMovie::frameChanged), static_cast<MyQMovie*>(ptr), static_cast<void (MyQMovie::*)(int)>(&MyQMovie::Signal_FrameChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QMovie_DisconnectFrameChanged(void* ptr)
@@ -11141,9 +11141,9 @@ int QMovie_NextFrameDelay(void* ptr)
 	return static_cast<QMovie*>(ptr)->nextFrameDelay();
 }
 
-void QMovie_ConnectResized(void* ptr)
+void QMovie_ConnectResized(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QMovie*>(ptr), static_cast<void (QMovie::*)(const QSize &)>(&QMovie::resized), static_cast<MyQMovie*>(ptr), static_cast<void (MyQMovie::*)(const QSize &)>(&MyQMovie::Signal_Resized));
+	QObject::connect(static_cast<QMovie*>(ptr), static_cast<void (QMovie::*)(const QSize &)>(&QMovie::resized), static_cast<MyQMovie*>(ptr), static_cast<void (MyQMovie::*)(const QSize &)>(&MyQMovie::Signal_Resized), static_cast<Qt::ConnectionType>(t));
 }
 
 void QMovie_DisconnectResized(void* ptr)
@@ -11226,9 +11226,9 @@ void QMovie_StartDefault(void* ptr)
 		static_cast<QMovie*>(ptr)->QMovie::start();
 }
 
-void QMovie_ConnectStarted(void* ptr)
+void QMovie_ConnectStarted(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QMovie*>(ptr), static_cast<void (QMovie::*)()>(&QMovie::started), static_cast<MyQMovie*>(ptr), static_cast<void (MyQMovie::*)()>(&MyQMovie::Signal_Started));
+	QObject::connect(static_cast<QMovie*>(ptr), static_cast<void (QMovie::*)()>(&QMovie::started), static_cast<MyQMovie*>(ptr), static_cast<void (MyQMovie::*)()>(&MyQMovie::Signal_Started), static_cast<Qt::ConnectionType>(t));
 }
 
 void QMovie_DisconnectStarted(void* ptr)
@@ -11246,10 +11246,10 @@ long long QMovie_State(void* ptr)
 	return static_cast<QMovie*>(ptr)->state();
 }
 
-void QMovie_ConnectStateChanged(void* ptr)
+void QMovie_ConnectStateChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<QMovie::MovieState>();
-	QObject::connect(static_cast<QMovie*>(ptr), static_cast<void (QMovie::*)(QMovie::MovieState)>(&QMovie::stateChanged), static_cast<MyQMovie*>(ptr), static_cast<void (MyQMovie::*)(QMovie::MovieState)>(&MyQMovie::Signal_StateChanged));
+	QObject::connect(static_cast<QMovie*>(ptr), static_cast<void (QMovie::*)(QMovie::MovieState)>(&QMovie::stateChanged), static_cast<MyQMovie*>(ptr), static_cast<void (MyQMovie::*)(QMovie::MovieState)>(&MyQMovie::Signal_StateChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QMovie_DisconnectStateChanged(void* ptr)
@@ -11277,9 +11277,9 @@ struct QtGui_PackedList QMovie_QMovie_SupportedFormats()
 	return ({ QList<QByteArray>* tmpValue6b4223 = new QList<QByteArray>(QMovie::supportedFormats()); QtGui_PackedList { tmpValue6b4223, tmpValue6b4223->size() }; });
 }
 
-void QMovie_ConnectUpdated(void* ptr)
+void QMovie_ConnectUpdated(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QMovie*>(ptr), static_cast<void (QMovie::*)(const QRect &)>(&QMovie::updated), static_cast<MyQMovie*>(ptr), static_cast<void (MyQMovie::*)(const QRect &)>(&MyQMovie::Signal_Updated));
+	QObject::connect(static_cast<QMovie*>(ptr), static_cast<void (QMovie::*)(const QRect &)>(&QMovie::updated), static_cast<MyQMovie*>(ptr), static_cast<void (MyQMovie::*)(const QRect &)>(&MyQMovie::Signal_Updated), static_cast<Qt::ConnectionType>(t));
 }
 
 void QMovie_DisconnectUpdated(void* ptr)
@@ -11622,9 +11622,9 @@ void* QOffscreenSurface_Screen(void* ptr)
 		return static_cast<QOffscreenSurface*>(ptr)->screen();
 }
 
-void QOffscreenSurface_ConnectScreenChanged(void* ptr)
+void QOffscreenSurface_ConnectScreenChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QOffscreenSurface*>(ptr), static_cast<void (QOffscreenSurface::*)(QScreen *)>(&QOffscreenSurface::screenChanged), static_cast<MyQOffscreenSurface*>(ptr), static_cast<void (MyQOffscreenSurface::*)(QScreen *)>(&MyQOffscreenSurface::Signal_ScreenChanged));
+	QObject::connect(static_cast<QOffscreenSurface*>(ptr), static_cast<void (QOffscreenSurface::*)(QScreen *)>(&QOffscreenSurface::screenChanged), static_cast<MyQOffscreenSurface*>(ptr), static_cast<void (MyQOffscreenSurface::*)(QScreen *)>(&MyQOffscreenSurface::Signal_ScreenChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QOffscreenSurface_DisconnectScreenChanged(void* ptr)
@@ -12093,9 +12093,9 @@ void* QOpenGLContext_NewQOpenGLContext(void* parent)
 	}
 }
 
-void QOpenGLContext_ConnectAboutToBeDestroyed(void* ptr)
+void QOpenGLContext_ConnectAboutToBeDestroyed(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QOpenGLContext*>(ptr), static_cast<void (QOpenGLContext::*)()>(&QOpenGLContext::aboutToBeDestroyed), static_cast<MyQOpenGLContext*>(ptr), static_cast<void (MyQOpenGLContext::*)()>(&MyQOpenGLContext::Signal_AboutToBeDestroyed));
+	QObject::connect(static_cast<QOpenGLContext*>(ptr), static_cast<void (QOpenGLContext::*)()>(&QOpenGLContext::aboutToBeDestroyed), static_cast<MyQOpenGLContext*>(ptr), static_cast<void (MyQOpenGLContext::*)()>(&MyQOpenGLContext::Signal_AboutToBeDestroyed), static_cast<Qt::ConnectionType>(t));
 }
 
 void QOpenGLContext_DisconnectAboutToBeDestroyed(void* ptr)
@@ -12794,9 +12794,9 @@ long long QOpenGLDebugLogger_MaximumMessageLength(void* ptr)
 	return static_cast<QOpenGLDebugLogger*>(ptr)->maximumMessageLength();
 }
 
-void QOpenGLDebugLogger_ConnectMessageLogged(void* ptr)
+void QOpenGLDebugLogger_ConnectMessageLogged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QOpenGLDebugLogger*>(ptr), static_cast<void (QOpenGLDebugLogger::*)(const QOpenGLDebugMessage &)>(&QOpenGLDebugLogger::messageLogged), static_cast<MyQOpenGLDebugLogger*>(ptr), static_cast<void (MyQOpenGLDebugLogger::*)(const QOpenGLDebugMessage &)>(&MyQOpenGLDebugLogger::Signal_MessageLogged));
+	QObject::connect(static_cast<QOpenGLDebugLogger*>(ptr), static_cast<void (QOpenGLDebugLogger::*)(const QOpenGLDebugMessage &)>(&QOpenGLDebugLogger::messageLogged), static_cast<MyQOpenGLDebugLogger*>(ptr), static_cast<void (MyQOpenGLDebugLogger::*)(const QOpenGLDebugMessage &)>(&MyQOpenGLDebugLogger::Signal_MessageLogged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QOpenGLDebugLogger_DisconnectMessageLogged(void* ptr)
@@ -18085,9 +18085,9 @@ void QOpenGLWindow_DoneCurrent(void* ptr)
 	static_cast<QOpenGLWindow*>(ptr)->doneCurrent();
 }
 
-void QOpenGLWindow_ConnectFrameSwapped(void* ptr)
+void QOpenGLWindow_ConnectFrameSwapped(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QOpenGLWindow*>(ptr), static_cast<void (QOpenGLWindow::*)()>(&QOpenGLWindow::frameSwapped), static_cast<MyQOpenGLWindow*>(ptr), static_cast<void (MyQOpenGLWindow::*)()>(&MyQOpenGLWindow::Signal_FrameSwapped));
+	QObject::connect(static_cast<QOpenGLWindow*>(ptr), static_cast<void (QOpenGLWindow::*)()>(&QOpenGLWindow::frameSwapped), static_cast<MyQOpenGLWindow*>(ptr), static_cast<void (MyQOpenGLWindow::*)()>(&MyQOpenGLWindow::Signal_FrameSwapped), static_cast<Qt::ConnectionType>(t));
 }
 
 void QOpenGLWindow_DisconnectFrameSwapped(void* ptr)
@@ -24378,9 +24378,9 @@ void* QRegExpValidator_RegExp(void* ptr)
 	return const_cast<QRegExp*>(&static_cast<QRegExpValidator*>(ptr)->regExp());
 }
 
-void QRegExpValidator_ConnectRegExpChanged(void* ptr)
+void QRegExpValidator_ConnectRegExpChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QRegExpValidator*>(ptr), static_cast<void (QRegExpValidator::*)(const QRegExp &)>(&QRegExpValidator::regExpChanged), static_cast<MyQRegExpValidator*>(ptr), static_cast<void (MyQRegExpValidator::*)(const QRegExp &)>(&MyQRegExpValidator::Signal_RegExpChanged));
+	QObject::connect(static_cast<QRegExpValidator*>(ptr), static_cast<void (QRegExpValidator::*)(const QRegExp &)>(&QRegExpValidator::regExpChanged), static_cast<MyQRegExpValidator*>(ptr), static_cast<void (MyQRegExpValidator::*)(const QRegExp &)>(&MyQRegExpValidator::Signal_RegExpChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QRegExpValidator_DisconnectRegExpChanged(void* ptr)
@@ -24697,9 +24697,9 @@ void* QRegularExpressionValidator_RegularExpression(void* ptr)
 	return new QRegularExpression(static_cast<QRegularExpressionValidator*>(ptr)->regularExpression());
 }
 
-void QRegularExpressionValidator_ConnectRegularExpressionChanged(void* ptr)
+void QRegularExpressionValidator_ConnectRegularExpressionChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QRegularExpressionValidator*>(ptr), static_cast<void (QRegularExpressionValidator::*)(const QRegularExpression &)>(&QRegularExpressionValidator::regularExpressionChanged), static_cast<MyQRegularExpressionValidator*>(ptr), static_cast<void (MyQRegularExpressionValidator::*)(const QRegularExpression &)>(&MyQRegularExpressionValidator::Signal_RegularExpressionChanged));
+	QObject::connect(static_cast<QRegularExpressionValidator*>(ptr), static_cast<void (QRegularExpressionValidator::*)(const QRegularExpression &)>(&QRegularExpressionValidator::regularExpressionChanged), static_cast<MyQRegularExpressionValidator*>(ptr), static_cast<void (MyQRegularExpressionValidator::*)(const QRegularExpression &)>(&MyQRegularExpressionValidator::Signal_RegularExpressionChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QRegularExpressionValidator_DisconnectRegularExpressionChanged(void* ptr)
@@ -24884,9 +24884,9 @@ void* QScreen_AvailableGeometry(void* ptr)
 	return ({ QRect tmpValue = static_cast<QScreen*>(ptr)->availableGeometry(); new QRect(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
-void QScreen_ConnectAvailableGeometryChanged(void* ptr)
+void QScreen_ConnectAvailableGeometryChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QScreen*>(ptr), static_cast<void (QScreen::*)(const QRect &)>(&QScreen::availableGeometryChanged), static_cast<MyQScreen*>(ptr), static_cast<void (MyQScreen::*)(const QRect &)>(&MyQScreen::Signal_AvailableGeometryChanged));
+	QObject::connect(static_cast<QScreen*>(ptr), static_cast<void (QScreen::*)(const QRect &)>(&QScreen::availableGeometryChanged), static_cast<MyQScreen*>(ptr), static_cast<void (MyQScreen::*)(const QRect &)>(&MyQScreen::Signal_AvailableGeometryChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QScreen_DisconnectAvailableGeometryChanged(void* ptr)
@@ -24929,9 +24929,9 @@ void* QScreen_Geometry(void* ptr)
 	return ({ QRect tmpValue = static_cast<QScreen*>(ptr)->geometry(); new QRect(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
-void QScreen_ConnectGeometryChanged(void* ptr)
+void QScreen_ConnectGeometryChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QScreen*>(ptr), static_cast<void (QScreen::*)(const QRect &)>(&QScreen::geometryChanged), static_cast<MyQScreen*>(ptr), static_cast<void (MyQScreen::*)(const QRect &)>(&MyQScreen::Signal_GeometryChanged));
+	QObject::connect(static_cast<QScreen*>(ptr), static_cast<void (QScreen::*)(const QRect &)>(&QScreen::geometryChanged), static_cast<MyQScreen*>(ptr), static_cast<void (MyQScreen::*)(const QRect &)>(&MyQScreen::Signal_GeometryChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QScreen_DisconnectGeometryChanged(void* ptr)
@@ -24964,9 +24964,9 @@ double QScreen_LogicalDotsPerInch(void* ptr)
 	return static_cast<QScreen*>(ptr)->logicalDotsPerInch();
 }
 
-void QScreen_ConnectLogicalDotsPerInchChanged(void* ptr)
+void QScreen_ConnectLogicalDotsPerInchChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QScreen*>(ptr), static_cast<void (QScreen::*)(qreal)>(&QScreen::logicalDotsPerInchChanged), static_cast<MyQScreen*>(ptr), static_cast<void (MyQScreen::*)(qreal)>(&MyQScreen::Signal_LogicalDotsPerInchChanged));
+	QObject::connect(static_cast<QScreen*>(ptr), static_cast<void (QScreen::*)(qreal)>(&QScreen::logicalDotsPerInchChanged), static_cast<MyQScreen*>(ptr), static_cast<void (MyQScreen::*)(qreal)>(&MyQScreen::Signal_LogicalDotsPerInchChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QScreen_DisconnectLogicalDotsPerInchChanged(void* ptr)
@@ -25021,10 +25021,10 @@ long long QScreen_Orientation(void* ptr)
 	return static_cast<QScreen*>(ptr)->orientation();
 }
 
-void QScreen_ConnectOrientationChanged(void* ptr)
+void QScreen_ConnectOrientationChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<Qt::ScreenOrientation>();
-	QObject::connect(static_cast<QScreen*>(ptr), static_cast<void (QScreen::*)(Qt::ScreenOrientation)>(&QScreen::orientationChanged), static_cast<MyQScreen*>(ptr), static_cast<void (MyQScreen::*)(Qt::ScreenOrientation)>(&MyQScreen::Signal_OrientationChanged));
+	QObject::connect(static_cast<QScreen*>(ptr), static_cast<void (QScreen::*)(Qt::ScreenOrientation)>(&QScreen::orientationChanged), static_cast<MyQScreen*>(ptr), static_cast<void (MyQScreen::*)(Qt::ScreenOrientation)>(&MyQScreen::Signal_OrientationChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QScreen_DisconnectOrientationChanged(void* ptr)
@@ -25047,9 +25047,9 @@ double QScreen_PhysicalDotsPerInch(void* ptr)
 	return static_cast<QScreen*>(ptr)->physicalDotsPerInch();
 }
 
-void QScreen_ConnectPhysicalDotsPerInchChanged(void* ptr)
+void QScreen_ConnectPhysicalDotsPerInchChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QScreen*>(ptr), static_cast<void (QScreen::*)(qreal)>(&QScreen::physicalDotsPerInchChanged), static_cast<MyQScreen*>(ptr), static_cast<void (MyQScreen::*)(qreal)>(&MyQScreen::Signal_PhysicalDotsPerInchChanged));
+	QObject::connect(static_cast<QScreen*>(ptr), static_cast<void (QScreen::*)(qreal)>(&QScreen::physicalDotsPerInchChanged), static_cast<MyQScreen*>(ptr), static_cast<void (MyQScreen::*)(qreal)>(&MyQScreen::Signal_PhysicalDotsPerInchChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QScreen_DisconnectPhysicalDotsPerInchChanged(void* ptr)
@@ -25077,9 +25077,9 @@ void* QScreen_PhysicalSize(void* ptr)
 	return ({ QSizeF tmpValue = static_cast<QScreen*>(ptr)->physicalSize(); new QSizeF(tmpValue.width(), tmpValue.height()); });
 }
 
-void QScreen_ConnectPhysicalSizeChanged(void* ptr)
+void QScreen_ConnectPhysicalSizeChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QScreen*>(ptr), static_cast<void (QScreen::*)(const QSizeF &)>(&QScreen::physicalSizeChanged), static_cast<MyQScreen*>(ptr), static_cast<void (MyQScreen::*)(const QSizeF &)>(&MyQScreen::Signal_PhysicalSizeChanged));
+	QObject::connect(static_cast<QScreen*>(ptr), static_cast<void (QScreen::*)(const QSizeF &)>(&QScreen::physicalSizeChanged), static_cast<MyQScreen*>(ptr), static_cast<void (MyQScreen::*)(const QSizeF &)>(&MyQScreen::Signal_PhysicalSizeChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QScreen_DisconnectPhysicalSizeChanged(void* ptr)
@@ -25097,10 +25097,10 @@ long long QScreen_PrimaryOrientation(void* ptr)
 	return static_cast<QScreen*>(ptr)->primaryOrientation();
 }
 
-void QScreen_ConnectPrimaryOrientationChanged(void* ptr)
+void QScreen_ConnectPrimaryOrientationChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<Qt::ScreenOrientation>();
-	QObject::connect(static_cast<QScreen*>(ptr), static_cast<void (QScreen::*)(Qt::ScreenOrientation)>(&QScreen::primaryOrientationChanged), static_cast<MyQScreen*>(ptr), static_cast<void (MyQScreen::*)(Qt::ScreenOrientation)>(&MyQScreen::Signal_PrimaryOrientationChanged));
+	QObject::connect(static_cast<QScreen*>(ptr), static_cast<void (QScreen::*)(Qt::ScreenOrientation)>(&QScreen::primaryOrientationChanged), static_cast<MyQScreen*>(ptr), static_cast<void (MyQScreen::*)(Qt::ScreenOrientation)>(&MyQScreen::Signal_PrimaryOrientationChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QScreen_DisconnectPrimaryOrientationChanged(void* ptr)
@@ -25118,9 +25118,9 @@ double QScreen_RefreshRate(void* ptr)
 	return static_cast<QScreen*>(ptr)->refreshRate();
 }
 
-void QScreen_ConnectRefreshRateChanged(void* ptr)
+void QScreen_ConnectRefreshRateChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QScreen*>(ptr), static_cast<void (QScreen::*)(qreal)>(&QScreen::refreshRateChanged), static_cast<MyQScreen*>(ptr), static_cast<void (MyQScreen::*)(qreal)>(&MyQScreen::Signal_RefreshRateChanged));
+	QObject::connect(static_cast<QScreen*>(ptr), static_cast<void (QScreen::*)(qreal)>(&QScreen::refreshRateChanged), static_cast<MyQScreen*>(ptr), static_cast<void (MyQScreen::*)(qreal)>(&MyQScreen::Signal_RefreshRateChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QScreen_DisconnectRefreshRateChanged(void* ptr)
@@ -25158,9 +25158,9 @@ void* QScreen_VirtualGeometry(void* ptr)
 	return ({ QRect tmpValue = static_cast<QScreen*>(ptr)->virtualGeometry(); new QRect(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
-void QScreen_ConnectVirtualGeometryChanged(void* ptr)
+void QScreen_ConnectVirtualGeometryChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QScreen*>(ptr), static_cast<void (QScreen::*)(const QRect &)>(&QScreen::virtualGeometryChanged), static_cast<MyQScreen*>(ptr), static_cast<void (MyQScreen::*)(const QRect &)>(&MyQScreen::Signal_VirtualGeometryChanged));
+	QObject::connect(static_cast<QScreen*>(ptr), static_cast<void (QScreen::*)(const QRect &)>(&QScreen::virtualGeometryChanged), static_cast<MyQScreen*>(ptr), static_cast<void (MyQScreen::*)(const QRect &)>(&MyQScreen::Signal_VirtualGeometryChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QScreen_DisconnectVirtualGeometryChanged(void* ptr)
@@ -26760,9 +26760,9 @@ void* QStandardItemModel_Item(void* ptr, int row, int column)
 	return static_cast<QStandardItemModel*>(ptr)->item(row, column);
 }
 
-void QStandardItemModel_ConnectItemChanged(void* ptr)
+void QStandardItemModel_ConnectItemChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QStandardItemModel*>(ptr), static_cast<void (QStandardItemModel::*)(QStandardItem *)>(&QStandardItemModel::itemChanged), static_cast<MyQStandardItemModel*>(ptr), static_cast<void (MyQStandardItemModel::*)(QStandardItem *)>(&MyQStandardItemModel::Signal_ItemChanged));
+	QObject::connect(static_cast<QStandardItemModel*>(ptr), static_cast<void (QStandardItemModel::*)(QStandardItem *)>(&QStandardItemModel::itemChanged), static_cast<MyQStandardItemModel*>(ptr), static_cast<void (MyQStandardItemModel::*)(QStandardItem *)>(&MyQStandardItemModel::Signal_ItemChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QStandardItemModel_DisconnectItemChanged(void* ptr)
@@ -27758,9 +27758,9 @@ int QStyleHints_CursorFlashTime(void* ptr)
 	return static_cast<QStyleHints*>(ptr)->cursorFlashTime();
 }
 
-void QStyleHints_ConnectCursorFlashTimeChanged(void* ptr)
+void QStyleHints_ConnectCursorFlashTimeChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QStyleHints*>(ptr), static_cast<void (QStyleHints::*)(int)>(&QStyleHints::cursorFlashTimeChanged), static_cast<MyQStyleHints*>(ptr), static_cast<void (MyQStyleHints::*)(int)>(&MyQStyleHints::Signal_CursorFlashTimeChanged));
+	QObject::connect(static_cast<QStyleHints*>(ptr), static_cast<void (QStyleHints::*)(int)>(&QStyleHints::cursorFlashTimeChanged), static_cast<MyQStyleHints*>(ptr), static_cast<void (MyQStyleHints::*)(int)>(&MyQStyleHints::Signal_CursorFlashTimeChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QStyleHints_DisconnectCursorFlashTimeChanged(void* ptr)
@@ -27788,9 +27788,9 @@ int QStyleHints_KeyboardInputInterval(void* ptr)
 	return static_cast<QStyleHints*>(ptr)->keyboardInputInterval();
 }
 
-void QStyleHints_ConnectKeyboardInputIntervalChanged(void* ptr)
+void QStyleHints_ConnectKeyboardInputIntervalChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QStyleHints*>(ptr), static_cast<void (QStyleHints::*)(int)>(&QStyleHints::keyboardInputIntervalChanged), static_cast<MyQStyleHints*>(ptr), static_cast<void (MyQStyleHints::*)(int)>(&MyQStyleHints::Signal_KeyboardInputIntervalChanged));
+	QObject::connect(static_cast<QStyleHints*>(ptr), static_cast<void (QStyleHints::*)(int)>(&QStyleHints::keyboardInputIntervalChanged), static_cast<MyQStyleHints*>(ptr), static_cast<void (MyQStyleHints::*)(int)>(&MyQStyleHints::Signal_KeyboardInputIntervalChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QStyleHints_DisconnectKeyboardInputIntervalChanged(void* ptr)
@@ -27808,9 +27808,9 @@ int QStyleHints_MouseDoubleClickInterval(void* ptr)
 	return static_cast<QStyleHints*>(ptr)->mouseDoubleClickInterval();
 }
 
-void QStyleHints_ConnectMouseDoubleClickIntervalChanged(void* ptr)
+void QStyleHints_ConnectMouseDoubleClickIntervalChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QStyleHints*>(ptr), static_cast<void (QStyleHints::*)(int)>(&QStyleHints::mouseDoubleClickIntervalChanged), static_cast<MyQStyleHints*>(ptr), static_cast<void (MyQStyleHints::*)(int)>(&MyQStyleHints::Signal_MouseDoubleClickIntervalChanged));
+	QObject::connect(static_cast<QStyleHints*>(ptr), static_cast<void (QStyleHints::*)(int)>(&QStyleHints::mouseDoubleClickIntervalChanged), static_cast<MyQStyleHints*>(ptr), static_cast<void (MyQStyleHints::*)(int)>(&MyQStyleHints::Signal_MouseDoubleClickIntervalChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QStyleHints_DisconnectMouseDoubleClickIntervalChanged(void* ptr)
@@ -27828,9 +27828,9 @@ int QStyleHints_MousePressAndHoldInterval(void* ptr)
 	return static_cast<QStyleHints*>(ptr)->mousePressAndHoldInterval();
 }
 
-void QStyleHints_ConnectMousePressAndHoldIntervalChanged(void* ptr)
+void QStyleHints_ConnectMousePressAndHoldIntervalChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QStyleHints*>(ptr), static_cast<void (QStyleHints::*)(int)>(&QStyleHints::mousePressAndHoldIntervalChanged), static_cast<MyQStyleHints*>(ptr), static_cast<void (MyQStyleHints::*)(int)>(&MyQStyleHints::Signal_MousePressAndHoldIntervalChanged));
+	QObject::connect(static_cast<QStyleHints*>(ptr), static_cast<void (QStyleHints::*)(int)>(&QStyleHints::mousePressAndHoldIntervalChanged), static_cast<MyQStyleHints*>(ptr), static_cast<void (MyQStyleHints::*)(int)>(&MyQStyleHints::Signal_MousePressAndHoldIntervalChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QStyleHints_DisconnectMousePressAndHoldIntervalChanged(void* ptr)
@@ -27848,9 +27848,9 @@ int QStyleHints_MouseQuickSelectionThreshold(void* ptr)
 	return static_cast<QStyleHints*>(ptr)->mouseQuickSelectionThreshold();
 }
 
-void QStyleHints_ConnectMouseQuickSelectionThresholdChanged(void* ptr)
+void QStyleHints_ConnectMouseQuickSelectionThresholdChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QStyleHints*>(ptr), static_cast<void (QStyleHints::*)(int)>(&QStyleHints::mouseQuickSelectionThresholdChanged), static_cast<MyQStyleHints*>(ptr), static_cast<void (MyQStyleHints::*)(int)>(&MyQStyleHints::Signal_MouseQuickSelectionThresholdChanged));
+	QObject::connect(static_cast<QStyleHints*>(ptr), static_cast<void (QStyleHints::*)(int)>(&QStyleHints::mouseQuickSelectionThresholdChanged), static_cast<MyQStyleHints*>(ptr), static_cast<void (MyQStyleHints::*)(int)>(&MyQStyleHints::Signal_MouseQuickSelectionThresholdChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QStyleHints_DisconnectMouseQuickSelectionThresholdChanged(void* ptr)
@@ -27903,9 +27903,9 @@ char QStyleHints_ShowShortcutsInContextMenus(void* ptr)
 	return static_cast<QStyleHints*>(ptr)->showShortcutsInContextMenus();
 }
 
-void QStyleHints_ConnectShowShortcutsInContextMenusChanged(void* ptr)
+void QStyleHints_ConnectShowShortcutsInContextMenusChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QStyleHints*>(ptr), static_cast<void (QStyleHints::*)(bool)>(&QStyleHints::showShortcutsInContextMenusChanged), static_cast<MyQStyleHints*>(ptr), static_cast<void (MyQStyleHints::*)(bool)>(&MyQStyleHints::Signal_ShowShortcutsInContextMenusChanged));
+	QObject::connect(static_cast<QStyleHints*>(ptr), static_cast<void (QStyleHints::*)(bool)>(&QStyleHints::showShortcutsInContextMenusChanged), static_cast<MyQStyleHints*>(ptr), static_cast<void (MyQStyleHints::*)(bool)>(&MyQStyleHints::Signal_ShowShortcutsInContextMenusChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QStyleHints_DisconnectShowShortcutsInContextMenusChanged(void* ptr)
@@ -27928,9 +27928,9 @@ int QStyleHints_StartDragDistance(void* ptr)
 	return static_cast<QStyleHints*>(ptr)->startDragDistance();
 }
 
-void QStyleHints_ConnectStartDragDistanceChanged(void* ptr)
+void QStyleHints_ConnectStartDragDistanceChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QStyleHints*>(ptr), static_cast<void (QStyleHints::*)(int)>(&QStyleHints::startDragDistanceChanged), static_cast<MyQStyleHints*>(ptr), static_cast<void (MyQStyleHints::*)(int)>(&MyQStyleHints::Signal_StartDragDistanceChanged));
+	QObject::connect(static_cast<QStyleHints*>(ptr), static_cast<void (QStyleHints::*)(int)>(&QStyleHints::startDragDistanceChanged), static_cast<MyQStyleHints*>(ptr), static_cast<void (MyQStyleHints::*)(int)>(&MyQStyleHints::Signal_StartDragDistanceChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QStyleHints_DisconnectStartDragDistanceChanged(void* ptr)
@@ -27948,9 +27948,9 @@ int QStyleHints_StartDragTime(void* ptr)
 	return static_cast<QStyleHints*>(ptr)->startDragTime();
 }
 
-void QStyleHints_ConnectStartDragTimeChanged(void* ptr)
+void QStyleHints_ConnectStartDragTimeChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QStyleHints*>(ptr), static_cast<void (QStyleHints::*)(int)>(&QStyleHints::startDragTimeChanged), static_cast<MyQStyleHints*>(ptr), static_cast<void (MyQStyleHints::*)(int)>(&MyQStyleHints::Signal_StartDragTimeChanged));
+	QObject::connect(static_cast<QStyleHints*>(ptr), static_cast<void (QStyleHints::*)(int)>(&QStyleHints::startDragTimeChanged), static_cast<MyQStyleHints*>(ptr), static_cast<void (MyQStyleHints::*)(int)>(&MyQStyleHints::Signal_StartDragTimeChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QStyleHints_DisconnectStartDragTimeChanged(void* ptr)
@@ -27973,10 +27973,10 @@ long long QStyleHints_TabFocusBehavior(void* ptr)
 	return static_cast<QStyleHints*>(ptr)->tabFocusBehavior();
 }
 
-void QStyleHints_ConnectTabFocusBehaviorChanged(void* ptr)
+void QStyleHints_ConnectTabFocusBehaviorChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<Qt::TabFocusBehavior>();
-	QObject::connect(static_cast<QStyleHints*>(ptr), static_cast<void (QStyleHints::*)(Qt::TabFocusBehavior)>(&QStyleHints::tabFocusBehaviorChanged), static_cast<MyQStyleHints*>(ptr), static_cast<void (MyQStyleHints::*)(Qt::TabFocusBehavior)>(&MyQStyleHints::Signal_TabFocusBehaviorChanged));
+	QObject::connect(static_cast<QStyleHints*>(ptr), static_cast<void (QStyleHints::*)(Qt::TabFocusBehavior)>(&QStyleHints::tabFocusBehaviorChanged), static_cast<MyQStyleHints*>(ptr), static_cast<void (MyQStyleHints::*)(Qt::TabFocusBehavior)>(&MyQStyleHints::Signal_TabFocusBehaviorChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QStyleHints_DisconnectTabFocusBehaviorChanged(void* ptr)
@@ -27994,9 +27994,9 @@ char QStyleHints_UseHoverEffects(void* ptr)
 	return static_cast<QStyleHints*>(ptr)->useHoverEffects();
 }
 
-void QStyleHints_ConnectUseHoverEffectsChanged(void* ptr)
+void QStyleHints_ConnectUseHoverEffectsChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QStyleHints*>(ptr), static_cast<void (QStyleHints::*)(bool)>(&QStyleHints::useHoverEffectsChanged), static_cast<MyQStyleHints*>(ptr), static_cast<void (MyQStyleHints::*)(bool)>(&MyQStyleHints::Signal_UseHoverEffectsChanged));
+	QObject::connect(static_cast<QStyleHints*>(ptr), static_cast<void (QStyleHints::*)(bool)>(&QStyleHints::useHoverEffectsChanged), static_cast<MyQStyleHints*>(ptr), static_cast<void (MyQStyleHints::*)(bool)>(&MyQStyleHints::Signal_UseHoverEffectsChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QStyleHints_DisconnectUseHoverEffectsChanged(void* ptr)
@@ -28019,9 +28019,9 @@ int QStyleHints_WheelScrollLines(void* ptr)
 	return static_cast<QStyleHints*>(ptr)->wheelScrollLines();
 }
 
-void QStyleHints_ConnectWheelScrollLinesChanged(void* ptr)
+void QStyleHints_ConnectWheelScrollLinesChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QStyleHints*>(ptr), static_cast<void (QStyleHints::*)(int)>(&QStyleHints::wheelScrollLinesChanged), static_cast<MyQStyleHints*>(ptr), static_cast<void (MyQStyleHints::*)(int)>(&MyQStyleHints::Signal_WheelScrollLinesChanged));
+	QObject::connect(static_cast<QStyleHints*>(ptr), static_cast<void (QStyleHints::*)(int)>(&QStyleHints::wheelScrollLinesChanged), static_cast<MyQStyleHints*>(ptr), static_cast<void (MyQStyleHints::*)(int)>(&MyQStyleHints::Signal_WheelScrollLinesChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QStyleHints_DisconnectWheelScrollLinesChanged(void* ptr)
@@ -30191,9 +30191,9 @@ void* QTextDocument_BaseUrl(void* ptr)
 	return new QUrl(static_cast<QTextDocument*>(ptr)->baseUrl());
 }
 
-void QTextDocument_ConnectBaseUrlChanged(void* ptr)
+void QTextDocument_ConnectBaseUrlChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QTextDocument*>(ptr), static_cast<void (QTextDocument::*)(const QUrl &)>(&QTextDocument::baseUrlChanged), static_cast<MyQTextDocument*>(ptr), static_cast<void (MyQTextDocument::*)(const QUrl &)>(&MyQTextDocument::Signal_BaseUrlChanged));
+	QObject::connect(static_cast<QTextDocument*>(ptr), static_cast<void (QTextDocument::*)(const QUrl &)>(&QTextDocument::baseUrlChanged), static_cast<MyQTextDocument*>(ptr), static_cast<void (MyQTextDocument::*)(const QUrl &)>(&MyQTextDocument::Signal_BaseUrlChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QTextDocument_DisconnectBaseUrlChanged(void* ptr)
@@ -30216,9 +30216,9 @@ int QTextDocument_BlockCount(void* ptr)
 	return static_cast<QTextDocument*>(ptr)->blockCount();
 }
 
-void QTextDocument_ConnectBlockCountChanged(void* ptr)
+void QTextDocument_ConnectBlockCountChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QTextDocument*>(ptr), static_cast<void (QTextDocument::*)(int)>(&QTextDocument::blockCountChanged), static_cast<MyQTextDocument*>(ptr), static_cast<void (MyQTextDocument::*)(int)>(&MyQTextDocument::Signal_BlockCountChanged));
+	QObject::connect(static_cast<QTextDocument*>(ptr), static_cast<void (QTextDocument::*)(int)>(&QTextDocument::blockCountChanged), static_cast<MyQTextDocument*>(ptr), static_cast<void (MyQTextDocument::*)(int)>(&MyQTextDocument::Signal_BlockCountChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QTextDocument_DisconnectBlockCountChanged(void* ptr)
@@ -30271,9 +30271,9 @@ void* QTextDocument_Clone(void* ptr, void* parent)
 	}
 }
 
-void QTextDocument_ConnectContentsChange(void* ptr)
+void QTextDocument_ConnectContentsChange(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QTextDocument*>(ptr), static_cast<void (QTextDocument::*)(int, int, int)>(&QTextDocument::contentsChange), static_cast<MyQTextDocument*>(ptr), static_cast<void (MyQTextDocument::*)(int, int, int)>(&MyQTextDocument::Signal_ContentsChange));
+	QObject::connect(static_cast<QTextDocument*>(ptr), static_cast<void (QTextDocument::*)(int, int, int)>(&QTextDocument::contentsChange), static_cast<MyQTextDocument*>(ptr), static_cast<void (MyQTextDocument::*)(int, int, int)>(&MyQTextDocument::Signal_ContentsChange), static_cast<Qt::ConnectionType>(t));
 }
 
 void QTextDocument_DisconnectContentsChange(void* ptr)
@@ -30286,9 +30286,9 @@ void QTextDocument_ContentsChange(void* ptr, int position, int charsRemoved, int
 	static_cast<QTextDocument*>(ptr)->contentsChange(position, charsRemoved, charsAdded);
 }
 
-void QTextDocument_ConnectContentsChanged(void* ptr)
+void QTextDocument_ConnectContentsChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QTextDocument*>(ptr), static_cast<void (QTextDocument::*)()>(&QTextDocument::contentsChanged), static_cast<MyQTextDocument*>(ptr), static_cast<void (MyQTextDocument::*)()>(&MyQTextDocument::Signal_ContentsChanged));
+	QObject::connect(static_cast<QTextDocument*>(ptr), static_cast<void (QTextDocument::*)()>(&QTextDocument::contentsChanged), static_cast<MyQTextDocument*>(ptr), static_cast<void (MyQTextDocument::*)()>(&MyQTextDocument::Signal_ContentsChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QTextDocument_DisconnectContentsChanged(void* ptr)
@@ -30311,9 +30311,9 @@ void* QTextDocument_CreateObjectDefault(void* ptr, void* format)
 		return static_cast<QTextDocument*>(ptr)->QTextDocument::createObject(*static_cast<QTextFormat*>(format));
 }
 
-void QTextDocument_ConnectCursorPositionChanged(void* ptr)
+void QTextDocument_ConnectCursorPositionChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QTextDocument*>(ptr), static_cast<void (QTextDocument::*)(const QTextCursor &)>(&QTextDocument::cursorPositionChanged), static_cast<MyQTextDocument*>(ptr), static_cast<void (MyQTextDocument::*)(const QTextCursor &)>(&MyQTextDocument::Signal_CursorPositionChanged));
+	QObject::connect(static_cast<QTextDocument*>(ptr), static_cast<void (QTextDocument::*)(const QTextCursor &)>(&QTextDocument::cursorPositionChanged), static_cast<MyQTextDocument*>(ptr), static_cast<void (MyQTextDocument::*)(const QTextCursor &)>(&MyQTextDocument::Signal_CursorPositionChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QTextDocument_DisconnectCursorPositionChanged(void* ptr)
@@ -30351,9 +30351,9 @@ void* QTextDocument_DocumentLayout(void* ptr)
 	return static_cast<QTextDocument*>(ptr)->documentLayout();
 }
 
-void QTextDocument_ConnectDocumentLayoutChanged(void* ptr)
+void QTextDocument_ConnectDocumentLayoutChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QTextDocument*>(ptr), static_cast<void (QTextDocument::*)()>(&QTextDocument::documentLayoutChanged), static_cast<MyQTextDocument*>(ptr), static_cast<void (MyQTextDocument::*)()>(&MyQTextDocument::Signal_DocumentLayoutChanged));
+	QObject::connect(static_cast<QTextDocument*>(ptr), static_cast<void (QTextDocument::*)()>(&QTextDocument::documentLayoutChanged), static_cast<MyQTextDocument*>(ptr), static_cast<void (MyQTextDocument::*)()>(&MyQTextDocument::Signal_DocumentLayoutChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QTextDocument_DisconnectDocumentLayoutChanged(void* ptr)
@@ -30501,9 +30501,9 @@ struct QtGui_PackedString QTextDocument_MetaInformation(void* ptr, long long inf
 	return ({ QByteArray ta91ae2 = static_cast<QTextDocument*>(ptr)->metaInformation(static_cast<QTextDocument::MetaInformation>(info)).toUtf8(); QtGui_PackedString { const_cast<char*>(ta91ae2.prepend("WHITESPACE").constData()+10), ta91ae2.size()-10 }; });
 }
 
-void QTextDocument_ConnectModificationChanged(void* ptr)
+void QTextDocument_ConnectModificationChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QTextDocument*>(ptr), static_cast<void (QTextDocument::*)(bool)>(&QTextDocument::modificationChanged), static_cast<MyQTextDocument*>(ptr), static_cast<void (MyQTextDocument::*)(bool)>(&MyQTextDocument::Signal_ModificationChanged));
+	QObject::connect(static_cast<QTextDocument*>(ptr), static_cast<void (QTextDocument::*)(bool)>(&QTextDocument::modificationChanged), static_cast<MyQTextDocument*>(ptr), static_cast<void (MyQTextDocument::*)(bool)>(&MyQTextDocument::Signal_ModificationChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QTextDocument_DisconnectModificationChanged(void* ptr)
@@ -30562,9 +30562,9 @@ void QTextDocument_Redo2Default(void* ptr)
 		static_cast<QTextDocument*>(ptr)->QTextDocument::redo();
 }
 
-void QTextDocument_ConnectRedoAvailable(void* ptr)
+void QTextDocument_ConnectRedoAvailable(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QTextDocument*>(ptr), static_cast<void (QTextDocument::*)(bool)>(&QTextDocument::redoAvailable), static_cast<MyQTextDocument*>(ptr), static_cast<void (MyQTextDocument::*)(bool)>(&MyQTextDocument::Signal_RedoAvailable));
+	QObject::connect(static_cast<QTextDocument*>(ptr), static_cast<void (QTextDocument::*)(bool)>(&QTextDocument::redoAvailable), static_cast<MyQTextDocument*>(ptr), static_cast<void (MyQTextDocument::*)(bool)>(&MyQTextDocument::Signal_RedoAvailable), static_cast<Qt::ConnectionType>(t));
 }
 
 void QTextDocument_DisconnectRedoAvailable(void* ptr)
@@ -30722,9 +30722,9 @@ void QTextDocument_Undo2Default(void* ptr)
 		static_cast<QTextDocument*>(ptr)->QTextDocument::undo();
 }
 
-void QTextDocument_ConnectUndoAvailable(void* ptr)
+void QTextDocument_ConnectUndoAvailable(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QTextDocument*>(ptr), static_cast<void (QTextDocument::*)(bool)>(&QTextDocument::undoAvailable), static_cast<MyQTextDocument*>(ptr), static_cast<void (MyQTextDocument::*)(bool)>(&MyQTextDocument::Signal_UndoAvailable));
+	QObject::connect(static_cast<QTextDocument*>(ptr), static_cast<void (QTextDocument::*)(bool)>(&QTextDocument::undoAvailable), static_cast<MyQTextDocument*>(ptr), static_cast<void (MyQTextDocument::*)(bool)>(&MyQTextDocument::Signal_UndoAvailable), static_cast<Qt::ConnectionType>(t));
 }
 
 void QTextDocument_DisconnectUndoAvailable(void* ptr)
@@ -30737,9 +30737,9 @@ void QTextDocument_UndoAvailable(void* ptr, char available)
 	static_cast<QTextDocument*>(ptr)->undoAvailable(available != 0);
 }
 
-void QTextDocument_ConnectUndoCommandAdded(void* ptr)
+void QTextDocument_ConnectUndoCommandAdded(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QTextDocument*>(ptr), static_cast<void (QTextDocument::*)()>(&QTextDocument::undoCommandAdded), static_cast<MyQTextDocument*>(ptr), static_cast<void (MyQTextDocument::*)()>(&MyQTextDocument::Signal_UndoCommandAdded));
+	QObject::connect(static_cast<QTextDocument*>(ptr), static_cast<void (QTextDocument::*)()>(&QTextDocument::undoCommandAdded), static_cast<MyQTextDocument*>(ptr), static_cast<void (MyQTextDocument::*)()>(&MyQTextDocument::Signal_UndoCommandAdded), static_cast<Qt::ConnectionType>(t));
 }
 
 void QTextDocument_DisconnectUndoCommandAdded(void* ptr)
@@ -33689,9 +33689,9 @@ void* QValidator_NewQValidator(void* parent)
 	}
 }
 
-void QValidator_ConnectChanged(void* ptr)
+void QValidator_ConnectChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QValidator*>(ptr), static_cast<void (QValidator::*)()>(&QValidator::changed), static_cast<MyQValidator*>(ptr), static_cast<void (MyQValidator::*)()>(&MyQValidator::Signal_Changed));
+	QObject::connect(static_cast<QValidator*>(ptr), static_cast<void (QValidator::*)()>(&QValidator::changed), static_cast<MyQValidator*>(ptr), static_cast<void (MyQValidator::*)()>(&MyQValidator::Signal_Changed), static_cast<Qt::ConnectionType>(t));
 }
 
 void QValidator_DisconnectChanged(void* ptr)
@@ -34682,9 +34682,9 @@ void* QWindow_NewQWindow2(void* parent)
 	return new MyQWindow(static_cast<QWindow*>(parent));
 }
 
-void QWindow_ConnectActiveChanged(void* ptr)
+void QWindow_ConnectActiveChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)()>(&QWindow::activeChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)()>(&MyQWindow::Signal_ActiveChanged));
+	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)()>(&QWindow::activeChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)()>(&MyQWindow::Signal_ActiveChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QWindow_DisconnectActiveChanged(void* ptr)
@@ -34767,10 +34767,10 @@ long long QWindow_ContentOrientation(void* ptr)
 	}
 }
 
-void QWindow_ConnectContentOrientationChanged(void* ptr)
+void QWindow_ConnectContentOrientationChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<Qt::ScreenOrientation>();
-	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(Qt::ScreenOrientation)>(&QWindow::contentOrientationChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(Qt::ScreenOrientation)>(&MyQWindow::Signal_ContentOrientationChanged));
+	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(Qt::ScreenOrientation)>(&QWindow::contentOrientationChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(Qt::ScreenOrientation)>(&MyQWindow::Signal_ContentOrientationChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QWindow_DisconnectContentOrientationChanged(void* ptr)
@@ -34929,9 +34929,9 @@ void* QWindow_FocusObjectDefault(void* ptr)
 	}
 }
 
-void QWindow_ConnectFocusObjectChanged(void* ptr)
+void QWindow_ConnectFocusObjectChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(QObject *)>(&QWindow::focusObjectChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(QObject *)>(&MyQWindow::Signal_FocusObjectChanged));
+	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(QObject *)>(&QWindow::focusObjectChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(QObject *)>(&MyQWindow::Signal_FocusObjectChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QWindow_DisconnectFocusObjectChanged(void* ptr)
@@ -35062,9 +35062,9 @@ int QWindow_Height(void* ptr)
 	}
 }
 
-void QWindow_ConnectHeightChanged(void* ptr)
+void QWindow_ConnectHeightChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(int)>(&QWindow::heightChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(int)>(&MyQWindow::Signal_HeightChanged));
+	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(int)>(&QWindow::heightChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(int)>(&MyQWindow::Signal_HeightChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QWindow_DisconnectHeightChanged(void* ptr)
@@ -35298,9 +35298,9 @@ int QWindow_MaximumHeight(void* ptr)
 	}
 }
 
-void QWindow_ConnectMaximumHeightChanged(void* ptr)
+void QWindow_ConnectMaximumHeightChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(int)>(&QWindow::maximumHeightChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(int)>(&MyQWindow::Signal_MaximumHeightChanged));
+	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(int)>(&QWindow::maximumHeightChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(int)>(&MyQWindow::Signal_MaximumHeightChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QWindow_DisconnectMaximumHeightChanged(void* ptr)
@@ -35335,9 +35335,9 @@ int QWindow_MaximumWidth(void* ptr)
 	}
 }
 
-void QWindow_ConnectMaximumWidthChanged(void* ptr)
+void QWindow_ConnectMaximumWidthChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(int)>(&QWindow::maximumWidthChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(int)>(&MyQWindow::Signal_MaximumWidthChanged));
+	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(int)>(&QWindow::maximumWidthChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(int)>(&MyQWindow::Signal_MaximumWidthChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QWindow_DisconnectMaximumWidthChanged(void* ptr)
@@ -35363,9 +35363,9 @@ int QWindow_MinimumHeight(void* ptr)
 	}
 }
 
-void QWindow_ConnectMinimumHeightChanged(void* ptr)
+void QWindow_ConnectMinimumHeightChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(int)>(&QWindow::minimumHeightChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(int)>(&MyQWindow::Signal_MinimumHeightChanged));
+	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(int)>(&QWindow::minimumHeightChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(int)>(&MyQWindow::Signal_MinimumHeightChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QWindow_DisconnectMinimumHeightChanged(void* ptr)
@@ -35400,9 +35400,9 @@ int QWindow_MinimumWidth(void* ptr)
 	}
 }
 
-void QWindow_ConnectMinimumWidthChanged(void* ptr)
+void QWindow_ConnectMinimumWidthChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(int)>(&QWindow::minimumWidthChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(int)>(&MyQWindow::Signal_MinimumWidthChanged));
+	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(int)>(&QWindow::minimumWidthChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(int)>(&MyQWindow::Signal_MinimumWidthChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QWindow_DisconnectMinimumWidthChanged(void* ptr)
@@ -35428,10 +35428,10 @@ long long QWindow_Modality(void* ptr)
 	}
 }
 
-void QWindow_ConnectModalityChanged(void* ptr)
+void QWindow_ConnectModalityChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<Qt::WindowModality>();
-	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(Qt::WindowModality)>(&QWindow::modalityChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(Qt::WindowModality)>(&MyQWindow::Signal_ModalityChanged));
+	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(Qt::WindowModality)>(&QWindow::modalityChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(Qt::WindowModality)>(&MyQWindow::Signal_ModalityChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QWindow_DisconnectModalityChanged(void* ptr)
@@ -35589,9 +35589,9 @@ double QWindow_Opacity(void* ptr)
 	}
 }
 
-void QWindow_ConnectOpacityChanged(void* ptr)
+void QWindow_ConnectOpacityChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(qreal)>(&QWindow::opacityChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(qreal)>(&MyQWindow::Signal_OpacityChanged));
+	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(qreal)>(&QWindow::opacityChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(qreal)>(&MyQWindow::Signal_OpacityChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QWindow_DisconnectOpacityChanged(void* ptr)
@@ -35768,9 +35768,9 @@ void* QWindow_Screen(void* ptr)
 	}
 }
 
-void QWindow_ConnectScreenChanged(void* ptr)
+void QWindow_ConnectScreenChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(QScreen *)>(&QWindow::screenChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(QScreen *)>(&MyQWindow::Signal_ScreenChanged));
+	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(QScreen *)>(&QWindow::screenChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(QScreen *)>(&MyQWindow::Signal_ScreenChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QWindow_DisconnectScreenChanged(void* ptr)
@@ -36540,10 +36540,10 @@ long long QWindow_Visibility(void* ptr)
 	}
 }
 
-void QWindow_ConnectVisibilityChanged(void* ptr)
+void QWindow_ConnectVisibilityChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<QWindow::Visibility>();
-	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(QWindow::Visibility)>(&QWindow::visibilityChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(QWindow::Visibility)>(&MyQWindow::Signal_VisibilityChanged));
+	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(QWindow::Visibility)>(&QWindow::visibilityChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(QWindow::Visibility)>(&MyQWindow::Signal_VisibilityChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QWindow_DisconnectVisibilityChanged(void* ptr)
@@ -36560,9 +36560,9 @@ void QWindow_VisibilityChanged(void* ptr, long long visibility)
 	}
 }
 
-void QWindow_ConnectVisibleChanged(void* ptr)
+void QWindow_ConnectVisibleChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(bool)>(&QWindow::visibleChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(bool)>(&MyQWindow::Signal_VisibleChanged));
+	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(bool)>(&QWindow::visibleChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(bool)>(&MyQWindow::Signal_VisibleChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QWindow_DisconnectVisibleChanged(void* ptr)
@@ -36610,9 +36610,9 @@ int QWindow_Width(void* ptr)
 	}
 }
 
-void QWindow_ConnectWidthChanged(void* ptr)
+void QWindow_ConnectWidthChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(int)>(&QWindow::widthChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(int)>(&MyQWindow::Signal_WidthChanged));
+	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(int)>(&QWindow::widthChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(int)>(&MyQWindow::Signal_WidthChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QWindow_DisconnectWidthChanged(void* ptr)
@@ -36647,10 +36647,10 @@ long long QWindow_WindowState(void* ptr)
 	}
 }
 
-void QWindow_ConnectWindowStateChanged(void* ptr)
+void QWindow_ConnectWindowStateChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<Qt::WindowState>();
-	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(Qt::WindowState)>(&QWindow::windowStateChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(Qt::WindowState)>(&MyQWindow::Signal_WindowStateChanged));
+	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(Qt::WindowState)>(&QWindow::windowStateChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(Qt::WindowState)>(&MyQWindow::Signal_WindowStateChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QWindow_DisconnectWindowStateChanged(void* ptr)
@@ -36676,9 +36676,9 @@ long long QWindow_WindowStates(void* ptr)
 	}
 }
 
-void QWindow_ConnectWindowTitleChanged(void* ptr)
+void QWindow_ConnectWindowTitleChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(const QString &)>(&QWindow::windowTitleChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(const QString &)>(&MyQWindow::Signal_WindowTitleChanged));
+	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(const QString &)>(&QWindow::windowTitleChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(const QString &)>(&MyQWindow::Signal_WindowTitleChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QWindow_DisconnectWindowTitleChanged(void* ptr)
@@ -36704,9 +36704,9 @@ int QWindow_X(void* ptr)
 	}
 }
 
-void QWindow_ConnectXChanged(void* ptr)
+void QWindow_ConnectXChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(int)>(&QWindow::xChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(int)>(&MyQWindow::Signal_XChanged));
+	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(int)>(&QWindow::xChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(int)>(&MyQWindow::Signal_XChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QWindow_DisconnectXChanged(void* ptr)
@@ -36732,9 +36732,9 @@ int QWindow_Y(void* ptr)
 	}
 }
 
-void QWindow_ConnectYChanged(void* ptr)
+void QWindow_ConnectYChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(int)>(&QWindow::yChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(int)>(&MyQWindow::Signal_YChanged));
+	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(int)>(&QWindow::yChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(int)>(&MyQWindow::Signal_YChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QWindow_DisconnectYChanged(void* ptr)

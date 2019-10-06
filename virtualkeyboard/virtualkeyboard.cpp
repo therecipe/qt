@@ -201,10 +201,10 @@ void QVirtualKeyboardAbstractInputMethod_ResetDefault(void* ptr)
 		static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->QVirtualKeyboardAbstractInputMethod::reset();
 }
 
-void QVirtualKeyboardAbstractInputMethod_ConnectSelectionListActiveItemChanged(void* ptr)
+void QVirtualKeyboardAbstractInputMethod_ConnectSelectionListActiveItemChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<QVirtualKeyboardSelectionListModel::Type>();
-	QObject::connect(static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr), static_cast<void (QVirtualKeyboardAbstractInputMethod::*)(QVirtualKeyboardSelectionListModel::Type, int)>(&QVirtualKeyboardAbstractInputMethod::selectionListActiveItemChanged), static_cast<MyQVirtualKeyboardAbstractInputMethod*>(ptr), static_cast<void (MyQVirtualKeyboardAbstractInputMethod::*)(QVirtualKeyboardSelectionListModel::Type, int)>(&MyQVirtualKeyboardAbstractInputMethod::Signal_SelectionListActiveItemChanged));
+	QObject::connect(static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr), static_cast<void (QVirtualKeyboardAbstractInputMethod::*)(QVirtualKeyboardSelectionListModel::Type, int)>(&QVirtualKeyboardAbstractInputMethod::selectionListActiveItemChanged), static_cast<MyQVirtualKeyboardAbstractInputMethod*>(ptr), static_cast<void (MyQVirtualKeyboardAbstractInputMethod::*)(QVirtualKeyboardSelectionListModel::Type, int)>(&MyQVirtualKeyboardAbstractInputMethod::Signal_SelectionListActiveItemChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QVirtualKeyboardAbstractInputMethod_DisconnectSelectionListActiveItemChanged(void* ptr)
@@ -217,10 +217,10 @@ void QVirtualKeyboardAbstractInputMethod_SelectionListActiveItemChanged(void* pt
 	static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->selectionListActiveItemChanged(static_cast<QVirtualKeyboardSelectionListModel::Type>(ty), index);
 }
 
-void QVirtualKeyboardAbstractInputMethod_ConnectSelectionListChanged(void* ptr)
+void QVirtualKeyboardAbstractInputMethod_ConnectSelectionListChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<QVirtualKeyboardSelectionListModel::Type>();
-	QObject::connect(static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr), static_cast<void (QVirtualKeyboardAbstractInputMethod::*)(QVirtualKeyboardSelectionListModel::Type)>(&QVirtualKeyboardAbstractInputMethod::selectionListChanged), static_cast<MyQVirtualKeyboardAbstractInputMethod*>(ptr), static_cast<void (MyQVirtualKeyboardAbstractInputMethod::*)(QVirtualKeyboardSelectionListModel::Type)>(&MyQVirtualKeyboardAbstractInputMethod::Signal_SelectionListChanged));
+	QObject::connect(static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr), static_cast<void (QVirtualKeyboardAbstractInputMethod::*)(QVirtualKeyboardSelectionListModel::Type)>(&QVirtualKeyboardAbstractInputMethod::selectionListChanged), static_cast<MyQVirtualKeyboardAbstractInputMethod*>(ptr), static_cast<void (MyQVirtualKeyboardAbstractInputMethod::*)(QVirtualKeyboardSelectionListModel::Type)>(&MyQVirtualKeyboardAbstractInputMethod::Signal_SelectionListChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QVirtualKeyboardAbstractInputMethod_DisconnectSelectionListChanged(void* ptr)
@@ -283,9 +283,9 @@ struct QtVirtualKeyboard_PackedList QVirtualKeyboardAbstractInputMethod_Selectio
 		return ({ QList<QVirtualKeyboardSelectionListModel::Type>* tmpValue68d5c5 = new QList<QVirtualKeyboardSelectionListModel::Type>(static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr)->QVirtualKeyboardAbstractInputMethod::selectionLists()); QtVirtualKeyboard_PackedList { tmpValue68d5c5, tmpValue68d5c5->size() }; });
 }
 
-void QVirtualKeyboardAbstractInputMethod_ConnectSelectionListsChanged(void* ptr)
+void QVirtualKeyboardAbstractInputMethod_ConnectSelectionListsChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr), static_cast<void (QVirtualKeyboardAbstractInputMethod::*)()>(&QVirtualKeyboardAbstractInputMethod::selectionListsChanged), static_cast<MyQVirtualKeyboardAbstractInputMethod*>(ptr), static_cast<void (MyQVirtualKeyboardAbstractInputMethod::*)()>(&MyQVirtualKeyboardAbstractInputMethod::Signal_SelectionListsChanged));
+	QObject::connect(static_cast<QVirtualKeyboardAbstractInputMethod*>(ptr), static_cast<void (QVirtualKeyboardAbstractInputMethod::*)()>(&QVirtualKeyboardAbstractInputMethod::selectionListsChanged), static_cast<MyQVirtualKeyboardAbstractInputMethod*>(ptr), static_cast<void (MyQVirtualKeyboardAbstractInputMethod::*)()>(&MyQVirtualKeyboardAbstractInputMethod::Signal_SelectionListsChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QVirtualKeyboardAbstractInputMethod_DisconnectSelectionListsChanged(void* ptr)
@@ -794,9 +794,9 @@ int QVirtualKeyboardInputContext_AnchorPosition(void* ptr)
 	return static_cast<QVirtualKeyboardInputContext*>(ptr)->anchorPosition();
 }
 
-void QVirtualKeyboardInputContext_ConnectAnchorPositionChanged(void* ptr)
+void QVirtualKeyboardInputContext_ConnectAnchorPositionChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QVirtualKeyboardInputContext*>(ptr), static_cast<void (QVirtualKeyboardInputContext::*)()>(&QVirtualKeyboardInputContext::anchorPositionChanged), static_cast<MyQVirtualKeyboardInputContext*>(ptr), static_cast<void (MyQVirtualKeyboardInputContext::*)()>(&MyQVirtualKeyboardInputContext::Signal_AnchorPositionChanged));
+	QObject::connect(static_cast<QVirtualKeyboardInputContext*>(ptr), static_cast<void (QVirtualKeyboardInputContext::*)()>(&QVirtualKeyboardInputContext::anchorPositionChanged), static_cast<MyQVirtualKeyboardInputContext*>(ptr), static_cast<void (MyQVirtualKeyboardInputContext::*)()>(&MyQVirtualKeyboardInputContext::Signal_AnchorPositionChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QVirtualKeyboardInputContext_DisconnectAnchorPositionChanged(void* ptr)
@@ -814,9 +814,9 @@ char QVirtualKeyboardInputContext_AnchorRectIntersectsClipRect(void* ptr)
 	return static_cast<QVirtualKeyboardInputContext*>(ptr)->anchorRectIntersectsClipRect();
 }
 
-void QVirtualKeyboardInputContext_ConnectAnchorRectIntersectsClipRectChanged(void* ptr)
+void QVirtualKeyboardInputContext_ConnectAnchorRectIntersectsClipRectChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QVirtualKeyboardInputContext*>(ptr), static_cast<void (QVirtualKeyboardInputContext::*)()>(&QVirtualKeyboardInputContext::anchorRectIntersectsClipRectChanged), static_cast<MyQVirtualKeyboardInputContext*>(ptr), static_cast<void (MyQVirtualKeyboardInputContext::*)()>(&MyQVirtualKeyboardInputContext::Signal_AnchorRectIntersectsClipRectChanged));
+	QObject::connect(static_cast<QVirtualKeyboardInputContext*>(ptr), static_cast<void (QVirtualKeyboardInputContext::*)()>(&QVirtualKeyboardInputContext::anchorRectIntersectsClipRectChanged), static_cast<MyQVirtualKeyboardInputContext*>(ptr), static_cast<void (MyQVirtualKeyboardInputContext::*)()>(&MyQVirtualKeyboardInputContext::Signal_AnchorRectIntersectsClipRectChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QVirtualKeyboardInputContext_DisconnectAnchorRectIntersectsClipRectChanged(void* ptr)
@@ -834,9 +834,9 @@ void* QVirtualKeyboardInputContext_AnchorRectangle(void* ptr)
 	return ({ QRectF tmpValue = static_cast<QVirtualKeyboardInputContext*>(ptr)->anchorRectangle(); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
-void QVirtualKeyboardInputContext_ConnectAnchorRectangleChanged(void* ptr)
+void QVirtualKeyboardInputContext_ConnectAnchorRectangleChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QVirtualKeyboardInputContext*>(ptr), static_cast<void (QVirtualKeyboardInputContext::*)()>(&QVirtualKeyboardInputContext::anchorRectangleChanged), static_cast<MyQVirtualKeyboardInputContext*>(ptr), static_cast<void (MyQVirtualKeyboardInputContext::*)()>(&MyQVirtualKeyboardInputContext::Signal_AnchorRectangleChanged));
+	QObject::connect(static_cast<QVirtualKeyboardInputContext*>(ptr), static_cast<void (QVirtualKeyboardInputContext::*)()>(&QVirtualKeyboardInputContext::anchorRectangleChanged), static_cast<MyQVirtualKeyboardInputContext*>(ptr), static_cast<void (MyQVirtualKeyboardInputContext::*)()>(&MyQVirtualKeyboardInputContext::Signal_AnchorRectangleChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QVirtualKeyboardInputContext_DisconnectAnchorRectangleChanged(void* ptr)
@@ -849,9 +849,9 @@ void QVirtualKeyboardInputContext_AnchorRectangleChanged(void* ptr)
 	static_cast<QVirtualKeyboardInputContext*>(ptr)->anchorRectangleChanged();
 }
 
-void QVirtualKeyboardInputContext_ConnectAnimatingChanged(void* ptr)
+void QVirtualKeyboardInputContext_ConnectAnimatingChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QVirtualKeyboardInputContext*>(ptr), static_cast<void (QVirtualKeyboardInputContext::*)()>(&QVirtualKeyboardInputContext::animatingChanged), static_cast<MyQVirtualKeyboardInputContext*>(ptr), static_cast<void (MyQVirtualKeyboardInputContext::*)()>(&MyQVirtualKeyboardInputContext::Signal_AnimatingChanged));
+	QObject::connect(static_cast<QVirtualKeyboardInputContext*>(ptr), static_cast<void (QVirtualKeyboardInputContext::*)()>(&QVirtualKeyboardInputContext::animatingChanged), static_cast<MyQVirtualKeyboardInputContext*>(ptr), static_cast<void (MyQVirtualKeyboardInputContext::*)()>(&MyQVirtualKeyboardInputContext::Signal_AnimatingChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QVirtualKeyboardInputContext_DisconnectAnimatingChanged(void* ptr)
@@ -864,9 +864,9 @@ void QVirtualKeyboardInputContext_AnimatingChanged(void* ptr)
 	static_cast<QVirtualKeyboardInputContext*>(ptr)->animatingChanged();
 }
 
-void QVirtualKeyboardInputContext_ConnectCapsLockActiveChanged(void* ptr)
+void QVirtualKeyboardInputContext_ConnectCapsLockActiveChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QVirtualKeyboardInputContext*>(ptr), static_cast<void (QVirtualKeyboardInputContext::*)()>(&QVirtualKeyboardInputContext::capsLockActiveChanged), static_cast<MyQVirtualKeyboardInputContext*>(ptr), static_cast<void (MyQVirtualKeyboardInputContext::*)()>(&MyQVirtualKeyboardInputContext::Signal_CapsLockActiveChanged));
+	QObject::connect(static_cast<QVirtualKeyboardInputContext*>(ptr), static_cast<void (QVirtualKeyboardInputContext::*)()>(&QVirtualKeyboardInputContext::capsLockActiveChanged), static_cast<MyQVirtualKeyboardInputContext*>(ptr), static_cast<void (MyQVirtualKeyboardInputContext::*)()>(&MyQVirtualKeyboardInputContext::Signal_CapsLockActiveChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QVirtualKeyboardInputContext_DisconnectCapsLockActiveChanged(void* ptr)
@@ -899,9 +899,9 @@ int QVirtualKeyboardInputContext_CursorPosition(void* ptr)
 	return static_cast<QVirtualKeyboardInputContext*>(ptr)->cursorPosition();
 }
 
-void QVirtualKeyboardInputContext_ConnectCursorPositionChanged(void* ptr)
+void QVirtualKeyboardInputContext_ConnectCursorPositionChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QVirtualKeyboardInputContext*>(ptr), static_cast<void (QVirtualKeyboardInputContext::*)()>(&QVirtualKeyboardInputContext::cursorPositionChanged), static_cast<MyQVirtualKeyboardInputContext*>(ptr), static_cast<void (MyQVirtualKeyboardInputContext::*)()>(&MyQVirtualKeyboardInputContext::Signal_CursorPositionChanged));
+	QObject::connect(static_cast<QVirtualKeyboardInputContext*>(ptr), static_cast<void (QVirtualKeyboardInputContext::*)()>(&QVirtualKeyboardInputContext::cursorPositionChanged), static_cast<MyQVirtualKeyboardInputContext*>(ptr), static_cast<void (MyQVirtualKeyboardInputContext::*)()>(&MyQVirtualKeyboardInputContext::Signal_CursorPositionChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QVirtualKeyboardInputContext_DisconnectCursorPositionChanged(void* ptr)
@@ -919,9 +919,9 @@ char QVirtualKeyboardInputContext_CursorRectIntersectsClipRect(void* ptr)
 	return static_cast<QVirtualKeyboardInputContext*>(ptr)->cursorRectIntersectsClipRect();
 }
 
-void QVirtualKeyboardInputContext_ConnectCursorRectIntersectsClipRectChanged(void* ptr)
+void QVirtualKeyboardInputContext_ConnectCursorRectIntersectsClipRectChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QVirtualKeyboardInputContext*>(ptr), static_cast<void (QVirtualKeyboardInputContext::*)()>(&QVirtualKeyboardInputContext::cursorRectIntersectsClipRectChanged), static_cast<MyQVirtualKeyboardInputContext*>(ptr), static_cast<void (MyQVirtualKeyboardInputContext::*)()>(&MyQVirtualKeyboardInputContext::Signal_CursorRectIntersectsClipRectChanged));
+	QObject::connect(static_cast<QVirtualKeyboardInputContext*>(ptr), static_cast<void (QVirtualKeyboardInputContext::*)()>(&QVirtualKeyboardInputContext::cursorRectIntersectsClipRectChanged), static_cast<MyQVirtualKeyboardInputContext*>(ptr), static_cast<void (MyQVirtualKeyboardInputContext::*)()>(&MyQVirtualKeyboardInputContext::Signal_CursorRectIntersectsClipRectChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QVirtualKeyboardInputContext_DisconnectCursorRectIntersectsClipRectChanged(void* ptr)
@@ -939,9 +939,9 @@ void* QVirtualKeyboardInputContext_CursorRectangle(void* ptr)
 	return ({ QRectF tmpValue = static_cast<QVirtualKeyboardInputContext*>(ptr)->cursorRectangle(); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
-void QVirtualKeyboardInputContext_ConnectCursorRectangleChanged(void* ptr)
+void QVirtualKeyboardInputContext_ConnectCursorRectangleChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QVirtualKeyboardInputContext*>(ptr), static_cast<void (QVirtualKeyboardInputContext::*)()>(&QVirtualKeyboardInputContext::cursorRectangleChanged), static_cast<MyQVirtualKeyboardInputContext*>(ptr), static_cast<void (MyQVirtualKeyboardInputContext::*)()>(&MyQVirtualKeyboardInputContext::Signal_CursorRectangleChanged));
+	QObject::connect(static_cast<QVirtualKeyboardInputContext*>(ptr), static_cast<void (QVirtualKeyboardInputContext::*)()>(&QVirtualKeyboardInputContext::cursorRectangleChanged), static_cast<MyQVirtualKeyboardInputContext*>(ptr), static_cast<void (MyQVirtualKeyboardInputContext::*)()>(&MyQVirtualKeyboardInputContext::Signal_CursorRectangleChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QVirtualKeyboardInputContext_DisconnectCursorRectangleChanged(void* ptr)
@@ -964,9 +964,9 @@ void* QVirtualKeyboardInputContext_InputItem(void* ptr)
 	return static_cast<QVirtualKeyboardInputContext*>(ptr)->inputItem();
 }
 
-void QVirtualKeyboardInputContext_ConnectInputItemChanged(void* ptr)
+void QVirtualKeyboardInputContext_ConnectInputItemChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QVirtualKeyboardInputContext*>(ptr), static_cast<void (QVirtualKeyboardInputContext::*)()>(&QVirtualKeyboardInputContext::inputItemChanged), static_cast<MyQVirtualKeyboardInputContext*>(ptr), static_cast<void (MyQVirtualKeyboardInputContext::*)()>(&MyQVirtualKeyboardInputContext::Signal_InputItemChanged));
+	QObject::connect(static_cast<QVirtualKeyboardInputContext*>(ptr), static_cast<void (QVirtualKeyboardInputContext::*)()>(&QVirtualKeyboardInputContext::inputItemChanged), static_cast<MyQVirtualKeyboardInputContext*>(ptr), static_cast<void (MyQVirtualKeyboardInputContext::*)()>(&MyQVirtualKeyboardInputContext::Signal_InputItemChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QVirtualKeyboardInputContext_DisconnectInputItemChanged(void* ptr)
@@ -984,9 +984,9 @@ long long QVirtualKeyboardInputContext_InputMethodHints(void* ptr)
 	return static_cast<qint64>(static_cast<QVirtualKeyboardInputContext*>(ptr)->inputMethodHints());
 }
 
-void QVirtualKeyboardInputContext_ConnectInputMethodHintsChanged(void* ptr)
+void QVirtualKeyboardInputContext_ConnectInputMethodHintsChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QVirtualKeyboardInputContext*>(ptr), static_cast<void (QVirtualKeyboardInputContext::*)()>(&QVirtualKeyboardInputContext::inputMethodHintsChanged), static_cast<MyQVirtualKeyboardInputContext*>(ptr), static_cast<void (MyQVirtualKeyboardInputContext::*)()>(&MyQVirtualKeyboardInputContext::Signal_InputMethodHintsChanged));
+	QObject::connect(static_cast<QVirtualKeyboardInputContext*>(ptr), static_cast<void (QVirtualKeyboardInputContext::*)()>(&QVirtualKeyboardInputContext::inputMethodHintsChanged), static_cast<MyQVirtualKeyboardInputContext*>(ptr), static_cast<void (MyQVirtualKeyboardInputContext::*)()>(&MyQVirtualKeyboardInputContext::Signal_InputMethodHintsChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QVirtualKeyboardInputContext_DisconnectInputMethodHintsChanged(void* ptr)
@@ -1029,9 +1029,9 @@ struct QtVirtualKeyboard_PackedString QVirtualKeyboardInputContext_Locale(void* 
 	return ({ QByteArray tb5677a = static_cast<QVirtualKeyboardInputContext*>(ptr)->locale().toUtf8(); QtVirtualKeyboard_PackedString { const_cast<char*>(tb5677a.prepend("WHITESPACE").constData()+10), tb5677a.size()-10 }; });
 }
 
-void QVirtualKeyboardInputContext_ConnectLocaleChanged(void* ptr)
+void QVirtualKeyboardInputContext_ConnectLocaleChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QVirtualKeyboardInputContext*>(ptr), static_cast<void (QVirtualKeyboardInputContext::*)()>(&QVirtualKeyboardInputContext::localeChanged), static_cast<MyQVirtualKeyboardInputContext*>(ptr), static_cast<void (MyQVirtualKeyboardInputContext::*)()>(&MyQVirtualKeyboardInputContext::Signal_LocaleChanged));
+	QObject::connect(static_cast<QVirtualKeyboardInputContext*>(ptr), static_cast<void (QVirtualKeyboardInputContext::*)()>(&QVirtualKeyboardInputContext::localeChanged), static_cast<MyQVirtualKeyboardInputContext*>(ptr), static_cast<void (MyQVirtualKeyboardInputContext::*)()>(&MyQVirtualKeyboardInputContext::Signal_LocaleChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QVirtualKeyboardInputContext_DisconnectLocaleChanged(void* ptr)
@@ -1049,9 +1049,9 @@ struct QtVirtualKeyboard_PackedString QVirtualKeyboardInputContext_PreeditText(v
 	return ({ QByteArray t2c7998 = static_cast<QVirtualKeyboardInputContext*>(ptr)->preeditText().toUtf8(); QtVirtualKeyboard_PackedString { const_cast<char*>(t2c7998.prepend("WHITESPACE").constData()+10), t2c7998.size()-10 }; });
 }
 
-void QVirtualKeyboardInputContext_ConnectPreeditTextChanged(void* ptr)
+void QVirtualKeyboardInputContext_ConnectPreeditTextChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QVirtualKeyboardInputContext*>(ptr), static_cast<void (QVirtualKeyboardInputContext::*)()>(&QVirtualKeyboardInputContext::preeditTextChanged), static_cast<MyQVirtualKeyboardInputContext*>(ptr), static_cast<void (MyQVirtualKeyboardInputContext::*)()>(&MyQVirtualKeyboardInputContext::Signal_PreeditTextChanged));
+	QObject::connect(static_cast<QVirtualKeyboardInputContext*>(ptr), static_cast<void (QVirtualKeyboardInputContext::*)()>(&QVirtualKeyboardInputContext::preeditTextChanged), static_cast<MyQVirtualKeyboardInputContext*>(ptr), static_cast<void (MyQVirtualKeyboardInputContext::*)()>(&MyQVirtualKeyboardInputContext::Signal_PreeditTextChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QVirtualKeyboardInputContext_DisconnectPreeditTextChanged(void* ptr)
@@ -1069,9 +1069,9 @@ struct QtVirtualKeyboard_PackedString QVirtualKeyboardInputContext_SelectedText(
 	return ({ QByteArray tafca69 = static_cast<QVirtualKeyboardInputContext*>(ptr)->selectedText().toUtf8(); QtVirtualKeyboard_PackedString { const_cast<char*>(tafca69.prepend("WHITESPACE").constData()+10), tafca69.size()-10 }; });
 }
 
-void QVirtualKeyboardInputContext_ConnectSelectedTextChanged(void* ptr)
+void QVirtualKeyboardInputContext_ConnectSelectedTextChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QVirtualKeyboardInputContext*>(ptr), static_cast<void (QVirtualKeyboardInputContext::*)()>(&QVirtualKeyboardInputContext::selectedTextChanged), static_cast<MyQVirtualKeyboardInputContext*>(ptr), static_cast<void (MyQVirtualKeyboardInputContext::*)()>(&MyQVirtualKeyboardInputContext::Signal_SelectedTextChanged));
+	QObject::connect(static_cast<QVirtualKeyboardInputContext*>(ptr), static_cast<void (QVirtualKeyboardInputContext::*)()>(&QVirtualKeyboardInputContext::selectedTextChanged), static_cast<MyQVirtualKeyboardInputContext*>(ptr), static_cast<void (MyQVirtualKeyboardInputContext::*)()>(&MyQVirtualKeyboardInputContext::Signal_SelectedTextChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QVirtualKeyboardInputContext_DisconnectSelectedTextChanged(void* ptr)
@@ -1084,9 +1084,9 @@ void QVirtualKeyboardInputContext_SelectedTextChanged(void* ptr)
 	static_cast<QVirtualKeyboardInputContext*>(ptr)->selectedTextChanged();
 }
 
-void QVirtualKeyboardInputContext_ConnectSelectionControlVisibleChanged(void* ptr)
+void QVirtualKeyboardInputContext_ConnectSelectionControlVisibleChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QVirtualKeyboardInputContext*>(ptr), static_cast<void (QVirtualKeyboardInputContext::*)()>(&QVirtualKeyboardInputContext::selectionControlVisibleChanged), static_cast<MyQVirtualKeyboardInputContext*>(ptr), static_cast<void (MyQVirtualKeyboardInputContext::*)()>(&MyQVirtualKeyboardInputContext::Signal_SelectionControlVisibleChanged));
+	QObject::connect(static_cast<QVirtualKeyboardInputContext*>(ptr), static_cast<void (QVirtualKeyboardInputContext::*)()>(&QVirtualKeyboardInputContext::selectionControlVisibleChanged), static_cast<MyQVirtualKeyboardInputContext*>(ptr), static_cast<void (MyQVirtualKeyboardInputContext::*)()>(&MyQVirtualKeyboardInputContext::Signal_SelectionControlVisibleChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QVirtualKeyboardInputContext_DisconnectSelectionControlVisibleChanged(void* ptr)
@@ -1109,9 +1109,9 @@ void QVirtualKeyboardInputContext_SetAnimating(void* ptr, char isAnimating)
 	static_cast<QVirtualKeyboardInputContext*>(ptr)->setAnimating(isAnimating != 0);
 }
 
-void QVirtualKeyboardInputContext_ConnectShiftActiveChanged(void* ptr)
+void QVirtualKeyboardInputContext_ConnectShiftActiveChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QVirtualKeyboardInputContext*>(ptr), static_cast<void (QVirtualKeyboardInputContext::*)()>(&QVirtualKeyboardInputContext::shiftActiveChanged), static_cast<MyQVirtualKeyboardInputContext*>(ptr), static_cast<void (MyQVirtualKeyboardInputContext::*)()>(&MyQVirtualKeyboardInputContext::Signal_ShiftActiveChanged));
+	QObject::connect(static_cast<QVirtualKeyboardInputContext*>(ptr), static_cast<void (QVirtualKeyboardInputContext::*)()>(&QVirtualKeyboardInputContext::shiftActiveChanged), static_cast<MyQVirtualKeyboardInputContext*>(ptr), static_cast<void (MyQVirtualKeyboardInputContext::*)()>(&MyQVirtualKeyboardInputContext::Signal_ShiftActiveChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QVirtualKeyboardInputContext_DisconnectShiftActiveChanged(void* ptr)
@@ -1129,9 +1129,9 @@ struct QtVirtualKeyboard_PackedString QVirtualKeyboardInputContext_SurroundingTe
 	return ({ QByteArray t710186 = static_cast<QVirtualKeyboardInputContext*>(ptr)->surroundingText().toUtf8(); QtVirtualKeyboard_PackedString { const_cast<char*>(t710186.prepend("WHITESPACE").constData()+10), t710186.size()-10 }; });
 }
 
-void QVirtualKeyboardInputContext_ConnectSurroundingTextChanged(void* ptr)
+void QVirtualKeyboardInputContext_ConnectSurroundingTextChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QVirtualKeyboardInputContext*>(ptr), static_cast<void (QVirtualKeyboardInputContext::*)()>(&QVirtualKeyboardInputContext::surroundingTextChanged), static_cast<MyQVirtualKeyboardInputContext*>(ptr), static_cast<void (MyQVirtualKeyboardInputContext::*)()>(&MyQVirtualKeyboardInputContext::Signal_SurroundingTextChanged));
+	QObject::connect(static_cast<QVirtualKeyboardInputContext*>(ptr), static_cast<void (QVirtualKeyboardInputContext::*)()>(&QVirtualKeyboardInputContext::surroundingTextChanged), static_cast<MyQVirtualKeyboardInputContext*>(ptr), static_cast<void (MyQVirtualKeyboardInputContext::*)()>(&MyQVirtualKeyboardInputContext::Signal_SurroundingTextChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QVirtualKeyboardInputContext_DisconnectSurroundingTextChanged(void* ptr)
@@ -1144,9 +1144,9 @@ void QVirtualKeyboardInputContext_SurroundingTextChanged(void* ptr)
 	static_cast<QVirtualKeyboardInputContext*>(ptr)->surroundingTextChanged();
 }
 
-void QVirtualKeyboardInputContext_ConnectUppercaseChanged(void* ptr)
+void QVirtualKeyboardInputContext_ConnectUppercaseChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QVirtualKeyboardInputContext*>(ptr), static_cast<void (QVirtualKeyboardInputContext::*)()>(&QVirtualKeyboardInputContext::uppercaseChanged), static_cast<MyQVirtualKeyboardInputContext*>(ptr), static_cast<void (MyQVirtualKeyboardInputContext::*)()>(&MyQVirtualKeyboardInputContext::Signal_UppercaseChanged));
+	QObject::connect(static_cast<QVirtualKeyboardInputContext*>(ptr), static_cast<void (QVirtualKeyboardInputContext::*)()>(&QVirtualKeyboardInputContext::uppercaseChanged), static_cast<MyQVirtualKeyboardInputContext*>(ptr), static_cast<void (MyQVirtualKeyboardInputContext::*)()>(&MyQVirtualKeyboardInputContext::Signal_UppercaseChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QVirtualKeyboardInputContext_DisconnectUppercaseChanged(void* ptr)
@@ -1332,10 +1332,10 @@ long long QVirtualKeyboardInputEngine_ActiveKey(void* ptr)
 	return static_cast<qint64>(static_cast<QVirtualKeyboardInputEngine*>(ptr)->activeKey());
 }
 
-void QVirtualKeyboardInputEngine_ConnectActiveKeyChanged(void* ptr)
+void QVirtualKeyboardInputEngine_ConnectActiveKeyChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<Qt::Key>();
-	QObject::connect(static_cast<QVirtualKeyboardInputEngine*>(ptr), static_cast<void (QVirtualKeyboardInputEngine::*)(Qt::Key)>(&QVirtualKeyboardInputEngine::activeKeyChanged), static_cast<MyQVirtualKeyboardInputEngine*>(ptr), static_cast<void (MyQVirtualKeyboardInputEngine::*)(Qt::Key)>(&MyQVirtualKeyboardInputEngine::Signal_ActiveKeyChanged));
+	QObject::connect(static_cast<QVirtualKeyboardInputEngine*>(ptr), static_cast<void (QVirtualKeyboardInputEngine::*)(Qt::Key)>(&QVirtualKeyboardInputEngine::activeKeyChanged), static_cast<MyQVirtualKeyboardInputEngine*>(ptr), static_cast<void (MyQVirtualKeyboardInputEngine::*)(Qt::Key)>(&MyQVirtualKeyboardInputEngine::Signal_ActiveKeyChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QVirtualKeyboardInputEngine_DisconnectActiveKeyChanged(void* ptr)
@@ -1358,9 +1358,9 @@ void* QVirtualKeyboardInputEngine_InputMethod(void* ptr)
 	return static_cast<QVirtualKeyboardInputEngine*>(ptr)->inputMethod();
 }
 
-void QVirtualKeyboardInputEngine_ConnectInputMethodChanged(void* ptr)
+void QVirtualKeyboardInputEngine_ConnectInputMethodChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QVirtualKeyboardInputEngine*>(ptr), static_cast<void (QVirtualKeyboardInputEngine::*)()>(&QVirtualKeyboardInputEngine::inputMethodChanged), static_cast<MyQVirtualKeyboardInputEngine*>(ptr), static_cast<void (MyQVirtualKeyboardInputEngine::*)()>(&MyQVirtualKeyboardInputEngine::Signal_InputMethodChanged));
+	QObject::connect(static_cast<QVirtualKeyboardInputEngine*>(ptr), static_cast<void (QVirtualKeyboardInputEngine::*)()>(&QVirtualKeyboardInputEngine::inputMethodChanged), static_cast<MyQVirtualKeyboardInputEngine*>(ptr), static_cast<void (MyQVirtualKeyboardInputEngine::*)()>(&MyQVirtualKeyboardInputEngine::Signal_InputMethodChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QVirtualKeyboardInputEngine_DisconnectInputMethodChanged(void* ptr)
@@ -1373,9 +1373,9 @@ void QVirtualKeyboardInputEngine_InputMethodChanged(void* ptr)
 	static_cast<QVirtualKeyboardInputEngine*>(ptr)->inputMethodChanged();
 }
 
-void QVirtualKeyboardInputEngine_ConnectInputMethodReset(void* ptr)
+void QVirtualKeyboardInputEngine_ConnectInputMethodReset(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QVirtualKeyboardInputEngine*>(ptr), static_cast<void (QVirtualKeyboardInputEngine::*)()>(&QVirtualKeyboardInputEngine::inputMethodReset), static_cast<MyQVirtualKeyboardInputEngine*>(ptr), static_cast<void (MyQVirtualKeyboardInputEngine::*)()>(&MyQVirtualKeyboardInputEngine::Signal_InputMethodReset));
+	QObject::connect(static_cast<QVirtualKeyboardInputEngine*>(ptr), static_cast<void (QVirtualKeyboardInputEngine::*)()>(&QVirtualKeyboardInputEngine::inputMethodReset), static_cast<MyQVirtualKeyboardInputEngine*>(ptr), static_cast<void (MyQVirtualKeyboardInputEngine::*)()>(&MyQVirtualKeyboardInputEngine::Signal_InputMethodReset), static_cast<Qt::ConnectionType>(t));
 }
 
 void QVirtualKeyboardInputEngine_DisconnectInputMethodReset(void* ptr)
@@ -1388,9 +1388,9 @@ void QVirtualKeyboardInputEngine_InputMethodReset(void* ptr)
 	static_cast<QVirtualKeyboardInputEngine*>(ptr)->inputMethodReset();
 }
 
-void QVirtualKeyboardInputEngine_ConnectInputMethodUpdate(void* ptr)
+void QVirtualKeyboardInputEngine_ConnectInputMethodUpdate(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QVirtualKeyboardInputEngine*>(ptr), static_cast<void (QVirtualKeyboardInputEngine::*)()>(&QVirtualKeyboardInputEngine::inputMethodUpdate), static_cast<MyQVirtualKeyboardInputEngine*>(ptr), static_cast<void (MyQVirtualKeyboardInputEngine::*)()>(&MyQVirtualKeyboardInputEngine::Signal_InputMethodUpdate));
+	QObject::connect(static_cast<QVirtualKeyboardInputEngine*>(ptr), static_cast<void (QVirtualKeyboardInputEngine::*)()>(&QVirtualKeyboardInputEngine::inputMethodUpdate), static_cast<MyQVirtualKeyboardInputEngine*>(ptr), static_cast<void (MyQVirtualKeyboardInputEngine::*)()>(&MyQVirtualKeyboardInputEngine::Signal_InputMethodUpdate), static_cast<Qt::ConnectionType>(t));
 }
 
 void QVirtualKeyboardInputEngine_DisconnectInputMethodUpdate(void* ptr)
@@ -1408,9 +1408,9 @@ long long QVirtualKeyboardInputEngine_InputMode(void* ptr)
 	return static_cast<qint64>(static_cast<QVirtualKeyboardInputEngine*>(ptr)->inputMode());
 }
 
-void QVirtualKeyboardInputEngine_ConnectInputModeChanged(void* ptr)
+void QVirtualKeyboardInputEngine_ConnectInputModeChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QVirtualKeyboardInputEngine*>(ptr), static_cast<void (QVirtualKeyboardInputEngine::*)()>(&QVirtualKeyboardInputEngine::inputModeChanged), static_cast<MyQVirtualKeyboardInputEngine*>(ptr), static_cast<void (MyQVirtualKeyboardInputEngine::*)()>(&MyQVirtualKeyboardInputEngine::Signal_InputModeChanged));
+	QObject::connect(static_cast<QVirtualKeyboardInputEngine*>(ptr), static_cast<void (QVirtualKeyboardInputEngine::*)()>(&QVirtualKeyboardInputEngine::inputModeChanged), static_cast<MyQVirtualKeyboardInputEngine*>(ptr), static_cast<void (MyQVirtualKeyboardInputEngine::*)()>(&MyQVirtualKeyboardInputEngine::Signal_InputModeChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QVirtualKeyboardInputEngine_DisconnectInputModeChanged(void* ptr)
@@ -1428,9 +1428,9 @@ struct QtVirtualKeyboard_PackedList QVirtualKeyboardInputEngine_InputModes(void*
 	return ({ QList<int>* tmpValueefe75f = new QList<int>(static_cast<QVirtualKeyboardInputEngine*>(ptr)->inputModes()); QtVirtualKeyboard_PackedList { tmpValueefe75f, tmpValueefe75f->size() }; });
 }
 
-void QVirtualKeyboardInputEngine_ConnectInputModesChanged(void* ptr)
+void QVirtualKeyboardInputEngine_ConnectInputModesChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QVirtualKeyboardInputEngine*>(ptr), static_cast<void (QVirtualKeyboardInputEngine::*)()>(&QVirtualKeyboardInputEngine::inputModesChanged), static_cast<MyQVirtualKeyboardInputEngine*>(ptr), static_cast<void (MyQVirtualKeyboardInputEngine::*)()>(&MyQVirtualKeyboardInputEngine::Signal_InputModesChanged));
+	QObject::connect(static_cast<QVirtualKeyboardInputEngine*>(ptr), static_cast<void (QVirtualKeyboardInputEngine::*)()>(&QVirtualKeyboardInputEngine::inputModesChanged), static_cast<MyQVirtualKeyboardInputEngine*>(ptr), static_cast<void (MyQVirtualKeyboardInputEngine::*)()>(&MyQVirtualKeyboardInputEngine::Signal_InputModesChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QVirtualKeyboardInputEngine_DisconnectInputModesChanged(void* ptr)
@@ -1448,9 +1448,9 @@ struct QtVirtualKeyboard_PackedList QVirtualKeyboardInputEngine_PatternRecogniti
 	return ({ QList<int>* tmpValueaec2e9 = new QList<int>(static_cast<QVirtualKeyboardInputEngine*>(ptr)->patternRecognitionModes()); QtVirtualKeyboard_PackedList { tmpValueaec2e9, tmpValueaec2e9->size() }; });
 }
 
-void QVirtualKeyboardInputEngine_ConnectPatternRecognitionModesChanged(void* ptr)
+void QVirtualKeyboardInputEngine_ConnectPatternRecognitionModesChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QVirtualKeyboardInputEngine*>(ptr), static_cast<void (QVirtualKeyboardInputEngine::*)()>(&QVirtualKeyboardInputEngine::patternRecognitionModesChanged), static_cast<MyQVirtualKeyboardInputEngine*>(ptr), static_cast<void (MyQVirtualKeyboardInputEngine::*)()>(&MyQVirtualKeyboardInputEngine::Signal_PatternRecognitionModesChanged));
+	QObject::connect(static_cast<QVirtualKeyboardInputEngine*>(ptr), static_cast<void (QVirtualKeyboardInputEngine::*)()>(&QVirtualKeyboardInputEngine::patternRecognitionModesChanged), static_cast<MyQVirtualKeyboardInputEngine*>(ptr), static_cast<void (MyQVirtualKeyboardInputEngine::*)()>(&MyQVirtualKeyboardInputEngine::Signal_PatternRecognitionModesChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QVirtualKeyboardInputEngine_DisconnectPatternRecognitionModesChanged(void* ptr)
@@ -1468,10 +1468,10 @@ long long QVirtualKeyboardInputEngine_PreviousKey(void* ptr)
 	return static_cast<qint64>(static_cast<QVirtualKeyboardInputEngine*>(ptr)->previousKey());
 }
 
-void QVirtualKeyboardInputEngine_ConnectPreviousKeyChanged(void* ptr)
+void QVirtualKeyboardInputEngine_ConnectPreviousKeyChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<Qt::Key>();
-	QObject::connect(static_cast<QVirtualKeyboardInputEngine*>(ptr), static_cast<void (QVirtualKeyboardInputEngine::*)(Qt::Key)>(&QVirtualKeyboardInputEngine::previousKeyChanged), static_cast<MyQVirtualKeyboardInputEngine*>(ptr), static_cast<void (MyQVirtualKeyboardInputEngine::*)(Qt::Key)>(&MyQVirtualKeyboardInputEngine::Signal_PreviousKeyChanged));
+	QObject::connect(static_cast<QVirtualKeyboardInputEngine*>(ptr), static_cast<void (QVirtualKeyboardInputEngine::*)(Qt::Key)>(&QVirtualKeyboardInputEngine::previousKeyChanged), static_cast<MyQVirtualKeyboardInputEngine*>(ptr), static_cast<void (MyQVirtualKeyboardInputEngine::*)(Qt::Key)>(&MyQVirtualKeyboardInputEngine::Signal_PreviousKeyChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QVirtualKeyboardInputEngine_DisconnectPreviousKeyChanged(void* ptr)
@@ -1519,11 +1519,11 @@ char QVirtualKeyboardInputEngine_VirtualKeyClick(void* ptr, long long key, struc
 	return static_cast<QVirtualKeyboardInputEngine*>(ptr)->virtualKeyClick(static_cast<Qt::Key>(key), QString::fromUtf8(text.data, text.len), static_cast<Qt::KeyboardModifier>(modifiers));
 }
 
-void QVirtualKeyboardInputEngine_ConnectVirtualKeyClicked(void* ptr)
+void QVirtualKeyboardInputEngine_ConnectVirtualKeyClicked(void* ptr, long long t)
 {
 	qRegisterMetaType<Qt::Key>();
 	qRegisterMetaType<Qt::KeyboardModifiers>();
-	QObject::connect(static_cast<QVirtualKeyboardInputEngine*>(ptr), static_cast<void (QVirtualKeyboardInputEngine::*)(Qt::Key, const QString &, Qt::KeyboardModifiers, bool)>(&QVirtualKeyboardInputEngine::virtualKeyClicked), static_cast<MyQVirtualKeyboardInputEngine*>(ptr), static_cast<void (MyQVirtualKeyboardInputEngine::*)(Qt::Key, const QString &, Qt::KeyboardModifiers, bool)>(&MyQVirtualKeyboardInputEngine::Signal_VirtualKeyClicked));
+	QObject::connect(static_cast<QVirtualKeyboardInputEngine*>(ptr), static_cast<void (QVirtualKeyboardInputEngine::*)(Qt::Key, const QString &, Qt::KeyboardModifiers, bool)>(&QVirtualKeyboardInputEngine::virtualKeyClicked), static_cast<MyQVirtualKeyboardInputEngine*>(ptr), static_cast<void (MyQVirtualKeyboardInputEngine::*)(Qt::Key, const QString &, Qt::KeyboardModifiers, bool)>(&MyQVirtualKeyboardInputEngine::Signal_VirtualKeyClicked), static_cast<Qt::ConnectionType>(t));
 }
 
 void QVirtualKeyboardInputEngine_DisconnectVirtualKeyClicked(void* ptr)
@@ -1551,9 +1551,9 @@ void* QVirtualKeyboardInputEngine_WordCandidateListModel(void* ptr)
 	return static_cast<QVirtualKeyboardInputEngine*>(ptr)->wordCandidateListModel();
 }
 
-void QVirtualKeyboardInputEngine_ConnectWordCandidateListModelChanged(void* ptr)
+void QVirtualKeyboardInputEngine_ConnectWordCandidateListModelChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QVirtualKeyboardInputEngine*>(ptr), static_cast<void (QVirtualKeyboardInputEngine::*)()>(&QVirtualKeyboardInputEngine::wordCandidateListModelChanged), static_cast<MyQVirtualKeyboardInputEngine*>(ptr), static_cast<void (MyQVirtualKeyboardInputEngine::*)()>(&MyQVirtualKeyboardInputEngine::Signal_WordCandidateListModelChanged));
+	QObject::connect(static_cast<QVirtualKeyboardInputEngine*>(ptr), static_cast<void (QVirtualKeyboardInputEngine::*)()>(&QVirtualKeyboardInputEngine::wordCandidateListModelChanged), static_cast<MyQVirtualKeyboardInputEngine*>(ptr), static_cast<void (MyQVirtualKeyboardInputEngine::*)()>(&MyQVirtualKeyboardInputEngine::Signal_WordCandidateListModelChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QVirtualKeyboardInputEngine_DisconnectWordCandidateListModelChanged(void* ptr)
@@ -1571,9 +1571,9 @@ char QVirtualKeyboardInputEngine_WordCandidateListVisibleHint(void* ptr)
 	return static_cast<QVirtualKeyboardInputEngine*>(ptr)->wordCandidateListVisibleHint();
 }
 
-void QVirtualKeyboardInputEngine_ConnectWordCandidateListVisibleHintChanged(void* ptr)
+void QVirtualKeyboardInputEngine_ConnectWordCandidateListVisibleHintChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QVirtualKeyboardInputEngine*>(ptr), static_cast<void (QVirtualKeyboardInputEngine::*)()>(&QVirtualKeyboardInputEngine::wordCandidateListVisibleHintChanged), static_cast<MyQVirtualKeyboardInputEngine*>(ptr), static_cast<void (MyQVirtualKeyboardInputEngine::*)()>(&MyQVirtualKeyboardInputEngine::Signal_WordCandidateListVisibleHintChanged));
+	QObject::connect(static_cast<QVirtualKeyboardInputEngine*>(ptr), static_cast<void (QVirtualKeyboardInputEngine::*)()>(&QVirtualKeyboardInputEngine::wordCandidateListVisibleHintChanged), static_cast<MyQVirtualKeyboardInputEngine*>(ptr), static_cast<void (MyQVirtualKeyboardInputEngine::*)()>(&MyQVirtualKeyboardInputEngine::Signal_WordCandidateListVisibleHintChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QVirtualKeyboardInputEngine_DisconnectWordCandidateListVisibleHintChanged(void* ptr)
@@ -1892,9 +1892,9 @@ Q_DECLARE_METATYPE(MyQVirtualKeyboardSelectionListModel*)
 
 int QVirtualKeyboardSelectionListModel_QVirtualKeyboardSelectionListModel_QRegisterMetaType(){qRegisterMetaType<QVirtualKeyboardSelectionListModel*>(); return qRegisterMetaType<MyQVirtualKeyboardSelectionListModel*>();}
 
-void QVirtualKeyboardSelectionListModel_ConnectActiveItemChanged(void* ptr)
+void QVirtualKeyboardSelectionListModel_ConnectActiveItemChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QVirtualKeyboardSelectionListModel*>(ptr), static_cast<void (QVirtualKeyboardSelectionListModel::*)(int)>(&QVirtualKeyboardSelectionListModel::activeItemChanged), static_cast<MyQVirtualKeyboardSelectionListModel*>(ptr), static_cast<void (MyQVirtualKeyboardSelectionListModel::*)(int)>(&MyQVirtualKeyboardSelectionListModel::Signal_ActiveItemChanged));
+	QObject::connect(static_cast<QVirtualKeyboardSelectionListModel*>(ptr), static_cast<void (QVirtualKeyboardSelectionListModel::*)(int)>(&QVirtualKeyboardSelectionListModel::activeItemChanged), static_cast<MyQVirtualKeyboardSelectionListModel*>(ptr), static_cast<void (MyQVirtualKeyboardSelectionListModel::*)(int)>(&MyQVirtualKeyboardSelectionListModel::Signal_ActiveItemChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QVirtualKeyboardSelectionListModel_DisconnectActiveItemChanged(void* ptr)
@@ -1907,9 +1907,9 @@ void QVirtualKeyboardSelectionListModel_ActiveItemChanged(void* ptr, int index)
 	static_cast<QVirtualKeyboardSelectionListModel*>(ptr)->activeItemChanged(index);
 }
 
-void QVirtualKeyboardSelectionListModel_ConnectItemSelected(void* ptr)
+void QVirtualKeyboardSelectionListModel_ConnectItemSelected(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QVirtualKeyboardSelectionListModel*>(ptr), static_cast<void (QVirtualKeyboardSelectionListModel::*)(int)>(&QVirtualKeyboardSelectionListModel::itemSelected), static_cast<MyQVirtualKeyboardSelectionListModel*>(ptr), static_cast<void (MyQVirtualKeyboardSelectionListModel::*)(int)>(&MyQVirtualKeyboardSelectionListModel::Signal_ItemSelected));
+	QObject::connect(static_cast<QVirtualKeyboardSelectionListModel*>(ptr), static_cast<void (QVirtualKeyboardSelectionListModel::*)(int)>(&QVirtualKeyboardSelectionListModel::itemSelected), static_cast<MyQVirtualKeyboardSelectionListModel*>(ptr), static_cast<void (MyQVirtualKeyboardSelectionListModel::*)(int)>(&MyQVirtualKeyboardSelectionListModel::Signal_ItemSelected), static_cast<Qt::ConnectionType>(t));
 }
 
 void QVirtualKeyboardSelectionListModel_DisconnectItemSelected(void* ptr)
@@ -2534,9 +2534,9 @@ int QVirtualKeyboardTrace_AddPoint(void* ptr, void* point)
 	return static_cast<QVirtualKeyboardTrace*>(ptr)->addPoint(*static_cast<QPointF*>(point));
 }
 
-void QVirtualKeyboardTrace_ConnectCanceledChanged(void* ptr)
+void QVirtualKeyboardTrace_ConnectCanceledChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QVirtualKeyboardTrace*>(ptr), static_cast<void (QVirtualKeyboardTrace::*)(bool)>(&QVirtualKeyboardTrace::canceledChanged), static_cast<MyQVirtualKeyboardTrace*>(ptr), static_cast<void (MyQVirtualKeyboardTrace::*)(bool)>(&MyQVirtualKeyboardTrace::Signal_CanceledChanged));
+	QObject::connect(static_cast<QVirtualKeyboardTrace*>(ptr), static_cast<void (QVirtualKeyboardTrace::*)(bool)>(&QVirtualKeyboardTrace::canceledChanged), static_cast<MyQVirtualKeyboardTrace*>(ptr), static_cast<void (MyQVirtualKeyboardTrace::*)(bool)>(&MyQVirtualKeyboardTrace::Signal_CanceledChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QVirtualKeyboardTrace_DisconnectCanceledChanged(void* ptr)
@@ -2559,9 +2559,9 @@ struct QtVirtualKeyboard_PackedString QVirtualKeyboardTrace_Channels(void* ptr)
 	return ({ QByteArray t8a9301 = static_cast<QVirtualKeyboardTrace*>(ptr)->channels().join("¡¦!").toUtf8(); QtVirtualKeyboard_PackedString { const_cast<char*>(t8a9301.prepend("WHITESPACE").constData()+10), t8a9301.size()-10 }; });
 }
 
-void QVirtualKeyboardTrace_ConnectChannelsChanged(void* ptr)
+void QVirtualKeyboardTrace_ConnectChannelsChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QVirtualKeyboardTrace*>(ptr), static_cast<void (QVirtualKeyboardTrace::*)()>(&QVirtualKeyboardTrace::channelsChanged), static_cast<MyQVirtualKeyboardTrace*>(ptr), static_cast<void (MyQVirtualKeyboardTrace::*)()>(&MyQVirtualKeyboardTrace::Signal_ChannelsChanged));
+	QObject::connect(static_cast<QVirtualKeyboardTrace*>(ptr), static_cast<void (QVirtualKeyboardTrace::*)()>(&QVirtualKeyboardTrace::channelsChanged), static_cast<MyQVirtualKeyboardTrace*>(ptr), static_cast<void (MyQVirtualKeyboardTrace::*)()>(&MyQVirtualKeyboardTrace::Signal_ChannelsChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QVirtualKeyboardTrace_DisconnectChannelsChanged(void* ptr)
@@ -2574,9 +2574,9 @@ void QVirtualKeyboardTrace_ChannelsChanged(void* ptr)
 	static_cast<QVirtualKeyboardTrace*>(ptr)->channelsChanged();
 }
 
-void QVirtualKeyboardTrace_ConnectFinalChanged(void* ptr)
+void QVirtualKeyboardTrace_ConnectFinalChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QVirtualKeyboardTrace*>(ptr), static_cast<void (QVirtualKeyboardTrace::*)(bool)>(&QVirtualKeyboardTrace::finalChanged), static_cast<MyQVirtualKeyboardTrace*>(ptr), static_cast<void (MyQVirtualKeyboardTrace::*)(bool)>(&MyQVirtualKeyboardTrace::Signal_FinalChanged));
+	QObject::connect(static_cast<QVirtualKeyboardTrace*>(ptr), static_cast<void (QVirtualKeyboardTrace::*)(bool)>(&QVirtualKeyboardTrace::finalChanged), static_cast<MyQVirtualKeyboardTrace*>(ptr), static_cast<void (MyQVirtualKeyboardTrace::*)(bool)>(&MyQVirtualKeyboardTrace::Signal_FinalChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QVirtualKeyboardTrace_DisconnectFinalChanged(void* ptr)
@@ -2604,9 +2604,9 @@ int QVirtualKeyboardTrace_Length(void* ptr)
 	return static_cast<QVirtualKeyboardTrace*>(ptr)->length();
 }
 
-void QVirtualKeyboardTrace_ConnectLengthChanged(void* ptr)
+void QVirtualKeyboardTrace_ConnectLengthChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QVirtualKeyboardTrace*>(ptr), static_cast<void (QVirtualKeyboardTrace::*)(int)>(&QVirtualKeyboardTrace::lengthChanged), static_cast<MyQVirtualKeyboardTrace*>(ptr), static_cast<void (MyQVirtualKeyboardTrace::*)(int)>(&MyQVirtualKeyboardTrace::Signal_LengthChanged));
+	QObject::connect(static_cast<QVirtualKeyboardTrace*>(ptr), static_cast<void (QVirtualKeyboardTrace::*)(int)>(&QVirtualKeyboardTrace::lengthChanged), static_cast<MyQVirtualKeyboardTrace*>(ptr), static_cast<void (MyQVirtualKeyboardTrace::*)(int)>(&MyQVirtualKeyboardTrace::Signal_LengthChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QVirtualKeyboardTrace_DisconnectLengthChanged(void* ptr)
@@ -2624,9 +2624,9 @@ double QVirtualKeyboardTrace_Opacity(void* ptr)
 	return static_cast<QVirtualKeyboardTrace*>(ptr)->opacity();
 }
 
-void QVirtualKeyboardTrace_ConnectOpacityChanged(void* ptr)
+void QVirtualKeyboardTrace_ConnectOpacityChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QVirtualKeyboardTrace*>(ptr), static_cast<void (QVirtualKeyboardTrace::*)(qreal)>(&QVirtualKeyboardTrace::opacityChanged), static_cast<MyQVirtualKeyboardTrace*>(ptr), static_cast<void (MyQVirtualKeyboardTrace::*)(qreal)>(&MyQVirtualKeyboardTrace::Signal_OpacityChanged));
+	QObject::connect(static_cast<QVirtualKeyboardTrace*>(ptr), static_cast<void (QVirtualKeyboardTrace::*)(qreal)>(&QVirtualKeyboardTrace::opacityChanged), static_cast<MyQVirtualKeyboardTrace*>(ptr), static_cast<void (MyQVirtualKeyboardTrace::*)(qreal)>(&MyQVirtualKeyboardTrace::Signal_OpacityChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QVirtualKeyboardTrace_DisconnectOpacityChanged(void* ptr)
@@ -2679,9 +2679,9 @@ int QVirtualKeyboardTrace_TraceId(void* ptr)
 	return static_cast<QVirtualKeyboardTrace*>(ptr)->traceId();
 }
 
-void QVirtualKeyboardTrace_ConnectTraceIdChanged(void* ptr)
+void QVirtualKeyboardTrace_ConnectTraceIdChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QVirtualKeyboardTrace*>(ptr), static_cast<void (QVirtualKeyboardTrace::*)(int)>(&QVirtualKeyboardTrace::traceIdChanged), static_cast<MyQVirtualKeyboardTrace*>(ptr), static_cast<void (MyQVirtualKeyboardTrace::*)(int)>(&MyQVirtualKeyboardTrace::Signal_TraceIdChanged));
+	QObject::connect(static_cast<QVirtualKeyboardTrace*>(ptr), static_cast<void (QVirtualKeyboardTrace::*)(int)>(&QVirtualKeyboardTrace::traceIdChanged), static_cast<MyQVirtualKeyboardTrace*>(ptr), static_cast<void (MyQVirtualKeyboardTrace::*)(int)>(&MyQVirtualKeyboardTrace::Signal_TraceIdChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QVirtualKeyboardTrace_DisconnectTraceIdChanged(void* ptr)

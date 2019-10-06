@@ -8528,7 +8528,7 @@ func (ptr *QAbstractAudioInput) ConnectErrorChanged(f func(error QAudio__Error))
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "errorChanged") {
-			C.QAbstractAudioInput_ConnectErrorChanged(ptr.Pointer())
+			C.QAbstractAudioInput_ConnectErrorChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "errorChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "errorChanged"); signal != nil {
@@ -8608,7 +8608,7 @@ func (ptr *QAbstractAudioInput) ConnectNotify(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "notify") {
-			C.QAbstractAudioInput_ConnectNotify(ptr.Pointer())
+			C.QAbstractAudioInput_ConnectNotify(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "notify")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "notify"); signal != nil {
@@ -9058,7 +9058,7 @@ func (ptr *QAbstractAudioInput) ConnectStateChanged(f func(state QAudio__State))
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stateChanged") {
-			C.QAbstractAudioInput_ConnectStateChanged(ptr.Pointer())
+			C.QAbstractAudioInput_ConnectStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
@@ -9619,7 +9619,7 @@ func (ptr *QAbstractAudioOutput) ConnectErrorChanged(f func(error QAudio__Error)
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "errorChanged") {
-			C.QAbstractAudioOutput_ConnectErrorChanged(ptr.Pointer())
+			C.QAbstractAudioOutput_ConnectErrorChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "errorChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "errorChanged"); signal != nil {
@@ -9699,7 +9699,7 @@ func (ptr *QAbstractAudioOutput) ConnectNotify(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "notify") {
-			C.QAbstractAudioOutput_ConnectNotify(ptr.Pointer())
+			C.QAbstractAudioOutput_ConnectNotify(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "notify")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "notify"); signal != nil {
@@ -10192,7 +10192,7 @@ func (ptr *QAbstractAudioOutput) ConnectStateChanged(f func(state QAudio__State)
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stateChanged") {
-			C.QAbstractAudioOutput_ConnectStateChanged(ptr.Pointer())
+			C.QAbstractAudioOutput_ConnectStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
@@ -11129,7 +11129,7 @@ func (ptr *QAbstractVideoFilter) ConnectActiveChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "activeChanged") {
-			C.QAbstractVideoFilter_ConnectActiveChanged(ptr.Pointer())
+			C.QAbstractVideoFilter_ConnectActiveChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "activeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "activeChanged"); signal != nil {
@@ -11537,7 +11537,7 @@ func (ptr *QAbstractVideoSurface) ConnectActiveChanged(f func(active bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "activeChanged") {
-			C.QAbstractVideoSurface_ConnectActiveChanged(ptr.Pointer())
+			C.QAbstractVideoSurface_ConnectActiveChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "activeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "activeChanged"); signal != nil {
@@ -11645,7 +11645,7 @@ func (ptr *QAbstractVideoSurface) ConnectNativeResolutionChanged(f func(resoluti
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "nativeResolutionChanged") {
-			C.QAbstractVideoSurface_ConnectNativeResolutionChanged(ptr.Pointer())
+			C.QAbstractVideoSurface_ConnectNativeResolutionChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "nativeResolutionChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "nativeResolutionChanged"); signal != nil {
@@ -11872,7 +11872,7 @@ func (ptr *QAbstractVideoSurface) ConnectSupportedFormatsChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "supportedFormatsChanged") {
-			C.QAbstractVideoSurface_ConnectSupportedFormatsChanged(ptr.Pointer())
+			C.QAbstractVideoSurface_ConnectSupportedFormatsChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "supportedFormatsChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "supportedFormatsChanged"); signal != nil {
@@ -11978,7 +11978,7 @@ func (ptr *QAbstractVideoSurface) ConnectSurfaceFormatChanged(f func(format *QVi
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "surfaceFormatChanged") {
-			C.QAbstractVideoSurface_ConnectSurfaceFormatChanged(ptr.Pointer())
+			C.QAbstractVideoSurface_ConnectSurfaceFormatChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "surfaceFormatChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "surfaceFormatChanged"); signal != nil {
@@ -14222,7 +14222,7 @@ func (ptr *QAudioDecoder) ConnectBufferAvailableChanged(f func(available bool)) 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "bufferAvailableChanged") {
-			C.QAudioDecoder_ConnectBufferAvailableChanged(ptr.Pointer())
+			C.QAudioDecoder_ConnectBufferAvailableChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "bufferAvailableChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "bufferAvailableChanged"); signal != nil {
@@ -14262,7 +14262,7 @@ func (ptr *QAudioDecoder) ConnectBufferReady(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "bufferReady") {
-			C.QAudioDecoder_ConnectBufferReady(ptr.Pointer())
+			C.QAudioDecoder_ConnectBufferReady(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "bufferReady")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "bufferReady"); signal != nil {
@@ -14309,7 +14309,7 @@ func (ptr *QAudioDecoder) ConnectDurationChanged(f func(duration int64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "durationChanged") {
-			C.QAudioDecoder_ConnectDurationChanged(ptr.Pointer())
+			C.QAudioDecoder_ConnectDurationChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "durationChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "durationChanged"); signal != nil {
@@ -14356,7 +14356,7 @@ func (ptr *QAudioDecoder) ConnectError2(f func(error QAudioDecoder__Error)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "error2") {
-			C.QAudioDecoder_ConnectError2(ptr.Pointer())
+			C.QAudioDecoder_ConnectError2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error2"); signal != nil {
@@ -14403,7 +14403,7 @@ func (ptr *QAudioDecoder) ConnectFinished(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "finished") {
-			C.QAudioDecoder_ConnectFinished(ptr.Pointer())
+			C.QAudioDecoder_ConnectFinished(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "finished")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "finished"); signal != nil {
@@ -14443,7 +14443,7 @@ func (ptr *QAudioDecoder) ConnectFormatChanged(f func(format *QAudioFormat)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "formatChanged") {
-			C.QAudioDecoder_ConnectFormatChanged(ptr.Pointer())
+			C.QAudioDecoder_ConnectFormatChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "formatChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "formatChanged"); signal != nil {
@@ -14512,7 +14512,7 @@ func (ptr *QAudioDecoder) ConnectPositionChanged(f func(position int64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "positionChanged") {
-			C.QAudioDecoder_ConnectPositionChanged(ptr.Pointer())
+			C.QAudioDecoder_ConnectPositionChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "positionChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "positionChanged"); signal != nil {
@@ -14584,7 +14584,7 @@ func (ptr *QAudioDecoder) ConnectSourceChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "sourceChanged") {
-			C.QAudioDecoder_ConnectSourceChanged(ptr.Pointer())
+			C.QAudioDecoder_ConnectSourceChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "sourceChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "sourceChanged"); signal != nil {
@@ -14692,7 +14692,7 @@ func (ptr *QAudioDecoder) ConnectStateChanged(f func(state QAudioDecoder__State)
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stateChanged") {
-			C.QAudioDecoder_ConnectStateChanged(ptr.Pointer())
+			C.QAudioDecoder_ConnectStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
@@ -14946,7 +14946,7 @@ func (ptr *QAudioDecoderControl) ConnectBufferAvailableChanged(f func(available 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "bufferAvailableChanged") {
-			C.QAudioDecoderControl_ConnectBufferAvailableChanged(ptr.Pointer())
+			C.QAudioDecoderControl_ConnectBufferAvailableChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "bufferAvailableChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "bufferAvailableChanged"); signal != nil {
@@ -14986,7 +14986,7 @@ func (ptr *QAudioDecoderControl) ConnectBufferReady(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "bufferReady") {
-			C.QAudioDecoderControl_ConnectBufferReady(ptr.Pointer())
+			C.QAudioDecoderControl_ConnectBufferReady(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "bufferReady")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "bufferReady"); signal != nil {
@@ -15064,7 +15064,7 @@ func (ptr *QAudioDecoderControl) ConnectDurationChanged(f func(duration int64)) 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "durationChanged") {
-			C.QAudioDecoderControl_ConnectDurationChanged(ptr.Pointer())
+			C.QAudioDecoderControl_ConnectDurationChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "durationChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "durationChanged"); signal != nil {
@@ -15104,7 +15104,7 @@ func (ptr *QAudioDecoderControl) ConnectError(f func(error int, errorString stri
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "error") {
-			C.QAudioDecoderControl_ConnectError(ptr.Pointer())
+			C.QAudioDecoderControl_ConnectError(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error"); signal != nil {
@@ -15149,7 +15149,7 @@ func (ptr *QAudioDecoderControl) ConnectFinished(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "finished") {
-			C.QAudioDecoderControl_ConnectFinished(ptr.Pointer())
+			C.QAudioDecoderControl_ConnectFinished(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "finished")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "finished"); signal != nil {
@@ -15189,7 +15189,7 @@ func (ptr *QAudioDecoderControl) ConnectFormatChanged(f func(format *QAudioForma
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "formatChanged") {
-			C.QAudioDecoderControl_ConnectFormatChanged(ptr.Pointer())
+			C.QAudioDecoderControl_ConnectFormatChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "formatChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "formatChanged"); signal != nil {
@@ -15267,7 +15267,7 @@ func (ptr *QAudioDecoderControl) ConnectPositionChanged(f func(position int64)) 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "positionChanged") {
-			C.QAudioDecoderControl_ConnectPositionChanged(ptr.Pointer())
+			C.QAudioDecoderControl_ConnectPositionChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "positionChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "positionChanged"); signal != nil {
@@ -15460,7 +15460,7 @@ func (ptr *QAudioDecoderControl) ConnectSourceChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "sourceChanged") {
-			C.QAudioDecoderControl_ConnectSourceChanged(ptr.Pointer())
+			C.QAudioDecoderControl_ConnectSourceChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "sourceChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "sourceChanged"); signal != nil {
@@ -15655,7 +15655,7 @@ func (ptr *QAudioDecoderControl) ConnectStateChanged(f func(newState QAudioDecod
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stateChanged") {
-			C.QAudioDecoderControl_ConnectStateChanged(ptr.Pointer())
+			C.QAudioDecoderControl_ConnectStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
@@ -17145,7 +17145,7 @@ func (ptr *QAudioInput) ConnectStateChanged(f func(state QAudio__State)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stateChanged") {
-			C.QAudioInput_ConnectStateChanged(ptr.Pointer())
+			C.QAudioInput_ConnectStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
@@ -17587,7 +17587,7 @@ func (ptr *QAudioInputSelectorControl) ConnectActiveInputChanged(f func(name str
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "activeInputChanged") {
-			C.QAudioInputSelectorControl_ConnectActiveInputChanged(ptr.Pointer())
+			C.QAudioInputSelectorControl_ConnectActiveInputChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "activeInputChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "activeInputChanged"); signal != nil {
@@ -17632,7 +17632,7 @@ func (ptr *QAudioInputSelectorControl) ConnectAvailableInputsChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "availableInputsChanged") {
-			C.QAudioInputSelectorControl_ConnectAvailableInputsChanged(ptr.Pointer())
+			C.QAudioInputSelectorControl_ConnectAvailableInputsChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "availableInputsChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "availableInputsChanged"); signal != nil {
@@ -18049,7 +18049,7 @@ func (ptr *QAudioOutput) ConnectStateChanged(f func(state QAudio__State)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stateChanged") {
-			C.QAudioOutput_ConnectStateChanged(ptr.Pointer())
+			C.QAudioOutput_ConnectStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
@@ -18491,7 +18491,7 @@ func (ptr *QAudioOutputSelectorControl) ConnectActiveOutputChanged(f func(name s
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "activeOutputChanged") {
-			C.QAudioOutputSelectorControl_ConnectActiveOutputChanged(ptr.Pointer())
+			C.QAudioOutputSelectorControl_ConnectActiveOutputChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "activeOutputChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "activeOutputChanged"); signal != nil {
@@ -18536,7 +18536,7 @@ func (ptr *QAudioOutputSelectorControl) ConnectAvailableOutputsChanged(f func())
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "availableOutputsChanged") {
-			C.QAudioOutputSelectorControl_ConnectAvailableOutputsChanged(ptr.Pointer())
+			C.QAudioOutputSelectorControl_ConnectAvailableOutputsChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "availableOutputsChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "availableOutputsChanged"); signal != nil {
@@ -18815,7 +18815,7 @@ func (ptr *QAudioProbe) ConnectAudioBufferProbed(f func(buffer *QAudioBuffer)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "audioBufferProbed") {
-			C.QAudioProbe_ConnectAudioBufferProbed(ptr.Pointer())
+			C.QAudioProbe_ConnectAudioBufferProbed(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "audioBufferProbed")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "audioBufferProbed"); signal != nil {
@@ -18855,7 +18855,7 @@ func (ptr *QAudioProbe) ConnectFlush(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "flush") {
-			C.QAudioProbe_ConnectFlush(ptr.Pointer())
+			C.QAudioProbe_ConnectFlush(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "flush")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "flush"); signal != nil {
@@ -19274,7 +19274,7 @@ func (ptr *QAudioRecorder) ConnectAudioInputChanged(f func(name string)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "audioInputChanged") {
-			C.QAudioRecorder_ConnectAudioInputChanged(ptr.Pointer())
+			C.QAudioRecorder_ConnectAudioInputChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "audioInputChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "audioInputChanged"); signal != nil {
@@ -19338,7 +19338,7 @@ func (ptr *QAudioRecorder) ConnectAvailableAudioInputsChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "availableAudioInputsChanged") {
-			C.QAudioRecorder_ConnectAvailableAudioInputsChanged(ptr.Pointer())
+			C.QAudioRecorder_ConnectAvailableAudioInputsChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "availableAudioInputsChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "availableAudioInputsChanged"); signal != nil {
@@ -19569,7 +19569,7 @@ func (ptr *QAudioRoleControl) ConnectAudioRoleChanged(f func(role QAudio__Role))
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "audioRoleChanged") {
-			C.QAudioRoleControl_ConnectAudioRoleChanged(ptr.Pointer())
+			C.QAudioRoleControl_ConnectAudioRoleChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "audioRoleChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "audioRoleChanged"); signal != nil {
@@ -20595,7 +20595,7 @@ func (ptr *QCamera) ConnectCaptureModeChanged(f func(mode QCamera__CaptureMode))
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "captureModeChanged") {
-			C.QCamera_ConnectCaptureModeChanged(ptr.Pointer())
+			C.QCamera_ConnectCaptureModeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "captureModeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "captureModeChanged"); signal != nil {
@@ -20642,7 +20642,7 @@ func (ptr *QCamera) ConnectError2(f func(value QCamera__Error)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "error2") {
-			C.QCamera_ConnectError2(ptr.Pointer())
+			C.QCamera_ConnectError2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error2"); signal != nil {
@@ -20772,7 +20772,7 @@ func (ptr *QCamera) ConnectLockFailed(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "lockFailed") {
-			C.QCamera_ConnectLockFailed(ptr.Pointer())
+			C.QCamera_ConnectLockFailed(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "lockFailed")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "lockFailed"); signal != nil {
@@ -20826,7 +20826,7 @@ func (ptr *QCamera) ConnectLockStatusChanged(f func(status QCamera__LockStatus, 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "lockStatusChanged") {
-			C.QCamera_ConnectLockStatusChanged(ptr.Pointer())
+			C.QCamera_ConnectLockStatusChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "lockStatusChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "lockStatusChanged"); signal != nil {
@@ -20866,7 +20866,7 @@ func (ptr *QCamera) ConnectLockStatusChanged2(f func(lock QCamera__LockType, sta
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "lockStatusChanged2") {
-			C.QCamera_ConnectLockStatusChanged2(ptr.Pointer())
+			C.QCamera_ConnectLockStatusChanged2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "lockStatusChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "lockStatusChanged2"); signal != nil {
@@ -20906,7 +20906,7 @@ func (ptr *QCamera) ConnectLocked(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "locked") {
-			C.QCamera_ConnectLocked(ptr.Pointer())
+			C.QCamera_ConnectLocked(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "locked")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "locked"); signal != nil {
@@ -21150,7 +21150,7 @@ func (ptr *QCamera) ConnectStateChanged(f func(state QCamera__State)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stateChanged") {
-			C.QCamera_ConnectStateChanged(ptr.Pointer())
+			C.QCamera_ConnectStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
@@ -21197,7 +21197,7 @@ func (ptr *QCamera) ConnectStatusChanged(f func(status QCamera__Status)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "statusChanged") {
-			C.QCamera_ConnectStatusChanged(ptr.Pointer())
+			C.QCamera_ConnectStatusChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "statusChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "statusChanged"); signal != nil {
@@ -21672,7 +21672,7 @@ func (ptr *QCameraCaptureBufferFormatControl) ConnectBufferFormatChanged(f func(
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "bufferFormatChanged") {
-			C.QCameraCaptureBufferFormatControl_ConnectBufferFormatChanged(ptr.Pointer())
+			C.QCameraCaptureBufferFormatControl_ConnectBufferFormatChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "bufferFormatChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "bufferFormatChanged"); signal != nil {
@@ -21953,7 +21953,7 @@ func (ptr *QCameraCaptureDestinationControl) ConnectCaptureDestinationChanged(f 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "captureDestinationChanged") {
-			C.QCameraCaptureDestinationControl_ConnectCaptureDestinationChanged(ptr.Pointer())
+			C.QCameraCaptureDestinationControl_ConnectCaptureDestinationChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "captureDestinationChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "captureDestinationChanged"); signal != nil {
@@ -22249,7 +22249,7 @@ func (ptr *QCameraControl) ConnectCaptureModeChanged(f func(mode QCamera__Captur
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "captureModeChanged") {
-			C.QCameraControl_ConnectCaptureModeChanged(ptr.Pointer())
+			C.QCameraControl_ConnectCaptureModeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "captureModeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "captureModeChanged"); signal != nil {
@@ -22289,7 +22289,7 @@ func (ptr *QCameraControl) ConnectError(f func(error int, errorString string)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "error") {
-			C.QCameraControl_ConnectError(ptr.Pointer())
+			C.QCameraControl_ConnectError(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error"); signal != nil {
@@ -22482,7 +22482,7 @@ func (ptr *QCameraControl) ConnectStateChanged(f func(state QCamera__State)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stateChanged") {
-			C.QCameraControl_ConnectStateChanged(ptr.Pointer())
+			C.QCameraControl_ConnectStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
@@ -22560,7 +22560,7 @@ func (ptr *QCameraControl) ConnectStatusChanged(f func(status QCamera__Status)) 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "statusChanged") {
-			C.QCameraControl_ConnectStatusChanged(ptr.Pointer())
+			C.QCameraControl_ConnectStatusChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "statusChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "statusChanged"); signal != nil {
@@ -22749,7 +22749,7 @@ func (ptr *QCameraExposure) ConnectApertureChanged(f func(value float64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "apertureChanged") {
-			C.QCameraExposure_ConnectApertureChanged(ptr.Pointer())
+			C.QCameraExposure_ConnectApertureChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "apertureChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "apertureChanged"); signal != nil {
@@ -22789,7 +22789,7 @@ func (ptr *QCameraExposure) ConnectApertureRangeChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "apertureRangeChanged") {
-			C.QCameraExposure_ConnectApertureRangeChanged(ptr.Pointer())
+			C.QCameraExposure_ConnectApertureRangeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "apertureRangeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "apertureRangeChanged"); signal != nil {
@@ -22836,7 +22836,7 @@ func (ptr *QCameraExposure) ConnectExposureCompensationChanged(f func(value floa
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "exposureCompensationChanged") {
-			C.QCameraExposure_ConnectExposureCompensationChanged(ptr.Pointer())
+			C.QCameraExposure_ConnectExposureCompensationChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "exposureCompensationChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "exposureCompensationChanged"); signal != nil {
@@ -22890,7 +22890,7 @@ func (ptr *QCameraExposure) ConnectFlashReady(f func(ready bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "flashReady") {
-			C.QCameraExposure_ConnectFlashReady(ptr.Pointer())
+			C.QCameraExposure_ConnectFlashReady(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "flashReady")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "flashReady"); signal != nil {
@@ -22972,7 +22972,7 @@ func (ptr *QCameraExposure) ConnectIsoSensitivityChanged(f func(value int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "isoSensitivityChanged") {
-			C.QCameraExposure_ConnectIsoSensitivityChanged(ptr.Pointer())
+			C.QCameraExposure_ConnectIsoSensitivityChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "isoSensitivityChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "isoSensitivityChanged"); signal != nil {
@@ -23483,7 +23483,7 @@ func (ptr *QCameraExposure) ConnectShutterSpeedChanged(f func(speed float64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "shutterSpeedChanged") {
-			C.QCameraExposure_ConnectShutterSpeedChanged(ptr.Pointer())
+			C.QCameraExposure_ConnectShutterSpeedChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "shutterSpeedChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "shutterSpeedChanged"); signal != nil {
@@ -23523,7 +23523,7 @@ func (ptr *QCameraExposure) ConnectShutterSpeedRangeChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "shutterSpeedRangeChanged") {
-			C.QCameraExposure_ConnectShutterSpeedRangeChanged(ptr.Pointer())
+			C.QCameraExposure_ConnectShutterSpeedRangeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "shutterSpeedRangeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "shutterSpeedRangeChanged"); signal != nil {
@@ -24043,7 +24043,7 @@ func (ptr *QCameraExposureControl) ConnectActualValueChanged(f func(parameter in
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "actualValueChanged") {
-			C.QCameraExposureControl_ConnectActualValueChanged(ptr.Pointer())
+			C.QCameraExposureControl_ConnectActualValueChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "actualValueChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "actualValueChanged"); signal != nil {
@@ -24121,7 +24121,7 @@ func (ptr *QCameraExposureControl) ConnectParameterRangeChanged(f func(parameter
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "parameterRangeChanged") {
-			C.QCameraExposureControl_ConnectParameterRangeChanged(ptr.Pointer())
+			C.QCameraExposureControl_ConnectParameterRangeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "parameterRangeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "parameterRangeChanged"); signal != nil {
@@ -24201,7 +24201,7 @@ func (ptr *QCameraExposureControl) ConnectRequestedValueChanged(f func(parameter
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "requestedValueChanged") {
-			C.QCameraExposureControl_ConnectRequestedValueChanged(ptr.Pointer())
+			C.QCameraExposureControl_ConnectRequestedValueChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "requestedValueChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "requestedValueChanged"); signal != nil {
@@ -24798,7 +24798,7 @@ func (ptr *QCameraFlashControl) ConnectFlashReady(f func(ready bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "flashReady") {
-			C.QCameraFlashControl_ConnectFlashReady(ptr.Pointer())
+			C.QCameraFlashControl_ConnectFlashReady(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "flashReady")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "flashReady"); signal != nil {
@@ -25076,7 +25076,7 @@ func (ptr *QCameraFocus) ConnectDigitalZoomChanged(f func(value float64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "digitalZoomChanged") {
-			C.QCameraFocus_ConnectDigitalZoomChanged(ptr.Pointer())
+			C.QCameraFocus_ConnectDigitalZoomChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "digitalZoomChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "digitalZoomChanged"); signal != nil {
@@ -25130,7 +25130,7 @@ func (ptr *QCameraFocus) ConnectFocusZonesChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "focusZonesChanged") {
-			C.QCameraFocus_ConnectFocusZonesChanged(ptr.Pointer())
+			C.QCameraFocus_ConnectFocusZonesChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "focusZonesChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "focusZonesChanged"); signal != nil {
@@ -25198,7 +25198,7 @@ func (ptr *QCameraFocus) ConnectMaximumDigitalZoomChanged(f func(zoom float64)) 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "maximumDigitalZoomChanged") {
-			C.QCameraFocus_ConnectMaximumDigitalZoomChanged(ptr.Pointer())
+			C.QCameraFocus_ConnectMaximumDigitalZoomChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "maximumDigitalZoomChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "maximumDigitalZoomChanged"); signal != nil {
@@ -25245,7 +25245,7 @@ func (ptr *QCameraFocus) ConnectMaximumOpticalZoomChanged(f func(zoom float64)) 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "maximumOpticalZoomChanged") {
-			C.QCameraFocus_ConnectMaximumOpticalZoomChanged(ptr.Pointer())
+			C.QCameraFocus_ConnectMaximumOpticalZoomChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "maximumOpticalZoomChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "maximumOpticalZoomChanged"); signal != nil {
@@ -25292,7 +25292,7 @@ func (ptr *QCameraFocus) ConnectOpticalZoomChanged(f func(value float64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "opticalZoomChanged") {
-			C.QCameraFocus_ConnectOpticalZoomChanged(ptr.Pointer())
+			C.QCameraFocus_ConnectOpticalZoomChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "opticalZoomChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "opticalZoomChanged"); signal != nil {
@@ -25693,7 +25693,7 @@ func (ptr *QCameraFocusControl) ConnectCustomFocusPointChanged(f func(point *cor
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "customFocusPointChanged") {
-			C.QCameraFocusControl_ConnectCustomFocusPointChanged(ptr.Pointer())
+			C.QCameraFocusControl_ConnectCustomFocusPointChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "customFocusPointChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "customFocusPointChanged"); signal != nil {
@@ -25771,7 +25771,7 @@ func (ptr *QCameraFocusControl) ConnectFocusModeChanged(f func(mode QCameraFocus
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "focusModeChanged") {
-			C.QCameraFocusControl_ConnectFocusModeChanged(ptr.Pointer())
+			C.QCameraFocusControl_ConnectFocusModeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "focusModeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "focusModeChanged"); signal != nil {
@@ -25849,7 +25849,7 @@ func (ptr *QCameraFocusControl) ConnectFocusPointModeChanged(f func(mode QCamera
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "focusPointModeChanged") {
-			C.QCameraFocusControl_ConnectFocusPointModeChanged(ptr.Pointer())
+			C.QCameraFocusControl_ConnectFocusPointModeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "focusPointModeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "focusPointModeChanged"); signal != nil {
@@ -25889,7 +25889,7 @@ func (ptr *QCameraFocusControl) ConnectFocusZonesChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "focusZonesChanged") {
-			C.QCameraFocusControl_ConnectFocusZonesChanged(ptr.Pointer())
+			C.QCameraFocusControl_ConnectFocusZonesChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "focusZonesChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "focusZonesChanged"); signal != nil {
@@ -26340,7 +26340,7 @@ func (ptr *QCameraImageCapture) ConnectBufferFormatChanged(f func(format QVideoF
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "bufferFormatChanged") {
-			C.QCameraImageCapture_ConnectBufferFormatChanged(ptr.Pointer())
+			C.QCameraImageCapture_ConnectBufferFormatChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "bufferFormatChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "bufferFormatChanged"); signal != nil {
@@ -26485,7 +26485,7 @@ func (ptr *QCameraImageCapture) ConnectCaptureDestinationChanged(f func(destinat
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "captureDestinationChanged") {
-			C.QCameraImageCapture_ConnectCaptureDestinationChanged(ptr.Pointer())
+			C.QCameraImageCapture_ConnectCaptureDestinationChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "captureDestinationChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "captureDestinationChanged"); signal != nil {
@@ -26541,7 +26541,7 @@ func (ptr *QCameraImageCapture) ConnectError2(f func(id int, error QCameraImageC
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "error2") {
-			C.QCameraImageCapture_ConnectError2(ptr.Pointer())
+			C.QCameraImageCapture_ConnectError2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error2"); signal != nil {
@@ -26593,7 +26593,7 @@ func (ptr *QCameraImageCapture) ConnectImageAvailable(f func(id int, frame *QVid
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "imageAvailable") {
-			C.QCameraImageCapture_ConnectImageAvailable(ptr.Pointer())
+			C.QCameraImageCapture_ConnectImageAvailable(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "imageAvailable")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "imageAvailable"); signal != nil {
@@ -26633,7 +26633,7 @@ func (ptr *QCameraImageCapture) ConnectImageCaptured(f func(id int, preview *gui
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "imageCaptured") {
-			C.QCameraImageCapture_ConnectImageCaptured(ptr.Pointer())
+			C.QCameraImageCapture_ConnectImageCaptured(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "imageCaptured")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "imageCaptured"); signal != nil {
@@ -26685,7 +26685,7 @@ func (ptr *QCameraImageCapture) ConnectImageExposed(f func(id int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "imageExposed") {
-			C.QCameraImageCapture_ConnectImageExposed(ptr.Pointer())
+			C.QCameraImageCapture_ConnectImageExposed(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "imageExposed")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "imageExposed"); signal != nil {
@@ -26725,7 +26725,7 @@ func (ptr *QCameraImageCapture) ConnectImageMetadataAvailable(f func(id int, key
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "imageMetadataAvailable") {
-			C.QCameraImageCapture_ConnectImageMetadataAvailable(ptr.Pointer())
+			C.QCameraImageCapture_ConnectImageMetadataAvailable(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "imageMetadataAvailable")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "imageMetadataAvailable"); signal != nil {
@@ -26770,7 +26770,7 @@ func (ptr *QCameraImageCapture) ConnectImageSaved(f func(id int, fileName string
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "imageSaved") {
-			C.QCameraImageCapture_ConnectImageSaved(ptr.Pointer())
+			C.QCameraImageCapture_ConnectImageSaved(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "imageSaved")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "imageSaved"); signal != nil {
@@ -26889,7 +26889,7 @@ func (ptr *QCameraImageCapture) ConnectReadyForCaptureChanged(f func(ready bool)
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "readyForCaptureChanged") {
-			C.QCameraImageCapture_ConnectReadyForCaptureChanged(ptr.Pointer())
+			C.QCameraImageCapture_ConnectReadyForCaptureChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "readyForCaptureChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "readyForCaptureChanged"); signal != nil {
@@ -27594,7 +27594,7 @@ func (ptr *QCameraImageCaptureControl) ConnectError(f func(id int, error int, er
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "error") {
-			C.QCameraImageCaptureControl_ConnectError(ptr.Pointer())
+			C.QCameraImageCaptureControl_ConnectError(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error"); signal != nil {
@@ -27639,7 +27639,7 @@ func (ptr *QCameraImageCaptureControl) ConnectImageAvailable(f func(requestId in
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "imageAvailable") {
-			C.QCameraImageCaptureControl_ConnectImageAvailable(ptr.Pointer())
+			C.QCameraImageCaptureControl_ConnectImageAvailable(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "imageAvailable")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "imageAvailable"); signal != nil {
@@ -27679,7 +27679,7 @@ func (ptr *QCameraImageCaptureControl) ConnectImageCaptured(f func(requestId int
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "imageCaptured") {
-			C.QCameraImageCaptureControl_ConnectImageCaptured(ptr.Pointer())
+			C.QCameraImageCaptureControl_ConnectImageCaptured(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "imageCaptured")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "imageCaptured"); signal != nil {
@@ -27719,7 +27719,7 @@ func (ptr *QCameraImageCaptureControl) ConnectImageExposed(f func(requestId int)
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "imageExposed") {
-			C.QCameraImageCaptureControl_ConnectImageExposed(ptr.Pointer())
+			C.QCameraImageCaptureControl_ConnectImageExposed(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "imageExposed")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "imageExposed"); signal != nil {
@@ -27759,7 +27759,7 @@ func (ptr *QCameraImageCaptureControl) ConnectImageMetadataAvailable(f func(id i
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "imageMetadataAvailable") {
-			C.QCameraImageCaptureControl_ConnectImageMetadataAvailable(ptr.Pointer())
+			C.QCameraImageCaptureControl_ConnectImageMetadataAvailable(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "imageMetadataAvailable")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "imageMetadataAvailable"); signal != nil {
@@ -27804,7 +27804,7 @@ func (ptr *QCameraImageCaptureControl) ConnectImageSaved(f func(requestId int, f
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "imageSaved") {
-			C.QCameraImageCaptureControl_ConnectImageSaved(ptr.Pointer())
+			C.QCameraImageCaptureControl_ConnectImageSaved(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "imageSaved")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "imageSaved"); signal != nil {
@@ -27887,7 +27887,7 @@ func (ptr *QCameraImageCaptureControl) ConnectReadyForCaptureChanged(f func(read
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "readyForCaptureChanged") {
-			C.QCameraImageCaptureControl_ConnectReadyForCaptureChanged(ptr.Pointer())
+			C.QCameraImageCaptureControl_ConnectReadyForCaptureChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "readyForCaptureChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "readyForCaptureChanged"); signal != nil {
@@ -29147,7 +29147,7 @@ func (ptr *QCameraLocksControl) ConnectLockStatusChanged(f func(ty QCamera__Lock
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "lockStatusChanged") {
-			C.QCameraLocksControl_ConnectLockStatusChanged(ptr.Pointer())
+			C.QCameraLocksControl_ConnectLockStatusChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "lockStatusChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "lockStatusChanged"); signal != nil {
@@ -30045,7 +30045,7 @@ func (ptr *QCameraZoomControl) ConnectCurrentDigitalZoomChanged(f func(zoom floa
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "currentDigitalZoomChanged") {
-			C.QCameraZoomControl_ConnectCurrentDigitalZoomChanged(ptr.Pointer())
+			C.QCameraZoomControl_ConnectCurrentDigitalZoomChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "currentDigitalZoomChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "currentDigitalZoomChanged"); signal != nil {
@@ -30123,7 +30123,7 @@ func (ptr *QCameraZoomControl) ConnectCurrentOpticalZoomChanged(f func(zoom floa
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "currentOpticalZoomChanged") {
-			C.QCameraZoomControl_ConnectCurrentOpticalZoomChanged(ptr.Pointer())
+			C.QCameraZoomControl_ConnectCurrentOpticalZoomChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "currentOpticalZoomChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "currentOpticalZoomChanged"); signal != nil {
@@ -30201,7 +30201,7 @@ func (ptr *QCameraZoomControl) ConnectMaximumDigitalZoomChanged(f func(zoom floa
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "maximumDigitalZoomChanged") {
-			C.QCameraZoomControl_ConnectMaximumDigitalZoomChanged(ptr.Pointer())
+			C.QCameraZoomControl_ConnectMaximumDigitalZoomChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "maximumDigitalZoomChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "maximumDigitalZoomChanged"); signal != nil {
@@ -30279,7 +30279,7 @@ func (ptr *QCameraZoomControl) ConnectMaximumOpticalZoomChanged(f func(zoom floa
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "maximumOpticalZoomChanged") {
-			C.QCameraZoomControl_ConnectMaximumOpticalZoomChanged(ptr.Pointer())
+			C.QCameraZoomControl_ConnectMaximumOpticalZoomChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "maximumOpticalZoomChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "maximumOpticalZoomChanged"); signal != nil {
@@ -30357,7 +30357,7 @@ func (ptr *QCameraZoomControl) ConnectRequestedDigitalZoomChanged(f func(zoom fl
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "requestedDigitalZoomChanged") {
-			C.QCameraZoomControl_ConnectRequestedDigitalZoomChanged(ptr.Pointer())
+			C.QCameraZoomControl_ConnectRequestedDigitalZoomChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "requestedDigitalZoomChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "requestedDigitalZoomChanged"); signal != nil {
@@ -30435,7 +30435,7 @@ func (ptr *QCameraZoomControl) ConnectRequestedOpticalZoomChanged(f func(zoom fl
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "requestedOpticalZoomChanged") {
-			C.QCameraZoomControl_ConnectRequestedOpticalZoomChanged(ptr.Pointer())
+			C.QCameraZoomControl_ConnectRequestedOpticalZoomChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "requestedOpticalZoomChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "requestedOpticalZoomChanged"); signal != nil {
@@ -30643,7 +30643,7 @@ func (ptr *QCustomAudioRoleControl) ConnectCustomAudioRoleChanged(f func(role st
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "customAudioRoleChanged") {
-			C.QCustomAudioRoleControl_ConnectCustomAudioRoleChanged(ptr.Pointer())
+			C.QCustomAudioRoleControl_ConnectCustomAudioRoleChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "customAudioRoleChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "customAudioRoleChanged"); signal != nil {
@@ -32459,7 +32459,7 @@ func (ptr *QMediaAudioProbeControl) ConnectAudioBufferProbed(f func(buffer *QAud
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "audioBufferProbed") {
-			C.QMediaAudioProbeControl_ConnectAudioBufferProbed(ptr.Pointer())
+			C.QMediaAudioProbeControl_ConnectAudioBufferProbed(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "audioBufferProbed")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "audioBufferProbed"); signal != nil {
@@ -32499,7 +32499,7 @@ func (ptr *QMediaAudioProbeControl) ConnectFlush(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "flush") {
-			C.QMediaAudioProbeControl_ConnectFlush(ptr.Pointer())
+			C.QMediaAudioProbeControl_ConnectFlush(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "flush")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "flush"); signal != nil {
@@ -32670,7 +32670,7 @@ func (ptr *QMediaAvailabilityControl) ConnectAvailabilityChanged(f func(availabi
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "availabilityChanged") {
-			C.QMediaAvailabilityControl_ConnectAvailabilityChanged(ptr.Pointer())
+			C.QMediaAvailabilityControl_ConnectAvailabilityChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "availabilityChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "availabilityChanged"); signal != nil {
@@ -33722,7 +33722,7 @@ func (ptr *QMediaGaplessPlaybackControl) ConnectAdvancedToNextMedia(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "advancedToNextMedia") {
-			C.QMediaGaplessPlaybackControl_ConnectAdvancedToNextMedia(ptr.Pointer())
+			C.QMediaGaplessPlaybackControl_ConnectAdvancedToNextMedia(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "advancedToNextMedia")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "advancedToNextMedia"); signal != nil {
@@ -33800,7 +33800,7 @@ func (ptr *QMediaGaplessPlaybackControl) ConnectCrossfadeTimeChanged(f func(cros
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "crossfadeTimeChanged") {
-			C.QMediaGaplessPlaybackControl_ConnectCrossfadeTimeChanged(ptr.Pointer())
+			C.QMediaGaplessPlaybackControl_ConnectCrossfadeTimeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "crossfadeTimeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "crossfadeTimeChanged"); signal != nil {
@@ -33918,7 +33918,7 @@ func (ptr *QMediaGaplessPlaybackControl) ConnectNextMediaChanged(f func(media *Q
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "nextMediaChanged") {
-			C.QMediaGaplessPlaybackControl_ConnectNextMediaChanged(ptr.Pointer())
+			C.QMediaGaplessPlaybackControl_ConnectNextMediaChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "nextMediaChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "nextMediaChanged"); signal != nil {
@@ -34116,7 +34116,7 @@ func (ptr *QMediaNetworkAccessControl) ConnectConfigurationChanged(f func(config
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "configurationChanged") {
-			C.QMediaNetworkAccessControl_ConnectConfigurationChanged(ptr.Pointer())
+			C.QMediaNetworkAccessControl_ConnectConfigurationChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "configurationChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "configurationChanged"); signal != nil {
@@ -34408,7 +34408,7 @@ func (ptr *QMediaObject) ConnectAvailabilityChanged(f func(available bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "availabilityChanged") {
-			C.QMediaObject_ConnectAvailabilityChanged(ptr.Pointer())
+			C.QMediaObject_ConnectAvailabilityChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "availabilityChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "availabilityChanged"); signal != nil {
@@ -34448,7 +34448,7 @@ func (ptr *QMediaObject) ConnectAvailabilityChanged2(f func(availability QMultim
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "availabilityChanged2") {
-			C.QMediaObject_ConnectAvailabilityChanged2(ptr.Pointer())
+			C.QMediaObject_ConnectAvailabilityChanged2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "availabilityChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "availabilityChanged2"); signal != nil {
@@ -34606,7 +34606,7 @@ func (ptr *QMediaObject) ConnectMetaDataAvailableChanged(f func(available bool))
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "metaDataAvailableChanged") {
-			C.QMediaObject_ConnectMetaDataAvailableChanged(ptr.Pointer())
+			C.QMediaObject_ConnectMetaDataAvailableChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "metaDataAvailableChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "metaDataAvailableChanged"); signal != nil {
@@ -34646,7 +34646,7 @@ func (ptr *QMediaObject) ConnectMetaDataChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "metaDataChanged") {
-			C.QMediaObject_ConnectMetaDataChanged(ptr.Pointer())
+			C.QMediaObject_ConnectMetaDataChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "metaDataChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "metaDataChanged"); signal != nil {
@@ -34686,7 +34686,7 @@ func (ptr *QMediaObject) ConnectMetaDataChanged2(f func(key string, value *core.
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "metaDataChanged2") {
-			C.QMediaObject_ConnectMetaDataChanged2(ptr.Pointer())
+			C.QMediaObject_ConnectMetaDataChanged2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "metaDataChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "metaDataChanged2"); signal != nil {
@@ -34738,7 +34738,7 @@ func (ptr *QMediaObject) ConnectNotifyIntervalChanged(f func(milliseconds int)) 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "notifyIntervalChanged") {
-			C.QMediaObject_ConnectNotifyIntervalChanged(ptr.Pointer())
+			C.QMediaObject_ConnectNotifyIntervalChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "notifyIntervalChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "notifyIntervalChanged"); signal != nil {
@@ -35288,7 +35288,7 @@ func (ptr *QMediaPlayer) ConnectAudioAvailableChanged(f func(available bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "audioAvailableChanged") {
-			C.QMediaPlayer_ConnectAudioAvailableChanged(ptr.Pointer())
+			C.QMediaPlayer_ConnectAudioAvailableChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "audioAvailableChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "audioAvailableChanged"); signal != nil {
@@ -35335,7 +35335,7 @@ func (ptr *QMediaPlayer) ConnectAudioRoleChanged(f func(role QAudio__Role)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "audioRoleChanged") {
-			C.QMediaPlayer_ConnectAudioRoleChanged(ptr.Pointer())
+			C.QMediaPlayer_ConnectAudioRoleChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "audioRoleChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "audioRoleChanged"); signal != nil {
@@ -35382,7 +35382,7 @@ func (ptr *QMediaPlayer) ConnectBufferStatusChanged(f func(percentFilled int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "bufferStatusChanged") {
-			C.QMediaPlayer_ConnectBufferStatusChanged(ptr.Pointer())
+			C.QMediaPlayer_ConnectBufferStatusChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "bufferStatusChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "bufferStatusChanged"); signal != nil {
@@ -35431,7 +35431,7 @@ func (ptr *QMediaPlayer) ConnectCurrentMediaChanged(f func(media *QMediaContent)
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "currentMediaChanged") {
-			C.QMediaPlayer_ConnectCurrentMediaChanged(ptr.Pointer())
+			C.QMediaPlayer_ConnectCurrentMediaChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "currentMediaChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "currentMediaChanged"); signal != nil {
@@ -35487,7 +35487,7 @@ func (ptr *QMediaPlayer) ConnectCustomAudioRoleChanged(f func(role string)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "customAudioRoleChanged") {
-			C.QMediaPlayer_ConnectCustomAudioRoleChanged(ptr.Pointer())
+			C.QMediaPlayer_ConnectCustomAudioRoleChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "customAudioRoleChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "customAudioRoleChanged"); signal != nil {
@@ -35539,7 +35539,7 @@ func (ptr *QMediaPlayer) ConnectDurationChanged(f func(duration int64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "durationChanged") {
-			C.QMediaPlayer_ConnectDurationChanged(ptr.Pointer())
+			C.QMediaPlayer_ConnectDurationChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "durationChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "durationChanged"); signal != nil {
@@ -35586,7 +35586,7 @@ func (ptr *QMediaPlayer) ConnectError2(f func(error QMediaPlayer__Error)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "error2") {
-			C.QMediaPlayer_ConnectError2(ptr.Pointer())
+			C.QMediaPlayer_ConnectError2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error2"); signal != nil {
@@ -35692,7 +35692,7 @@ func (ptr *QMediaPlayer) ConnectMediaChanged(f func(media *QMediaContent)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "mediaChanged") {
-			C.QMediaPlayer_ConnectMediaChanged(ptr.Pointer())
+			C.QMediaPlayer_ConnectMediaChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "mediaChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "mediaChanged"); signal != nil {
@@ -35739,7 +35739,7 @@ func (ptr *QMediaPlayer) ConnectMediaStatusChanged(f func(status QMediaPlayer__M
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "mediaStatusChanged") {
-			C.QMediaPlayer_ConnectMediaStatusChanged(ptr.Pointer())
+			C.QMediaPlayer_ConnectMediaStatusChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "mediaStatusChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "mediaStatusChanged"); signal != nil {
@@ -35790,7 +35790,7 @@ func (ptr *QMediaPlayer) ConnectMutedChanged(f func(muted bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "mutedChanged") {
-			C.QMediaPlayer_ConnectMutedChanged(ptr.Pointer())
+			C.QMediaPlayer_ConnectMutedChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "mutedChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "mutedChanged"); signal != nil {
@@ -35830,7 +35830,7 @@ func (ptr *QMediaPlayer) ConnectNetworkConfigurationChanged(f func(configuration
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "networkConfigurationChanged") {
-			C.QMediaPlayer_ConnectNetworkConfigurationChanged(ptr.Pointer())
+			C.QMediaPlayer_ConnectNetworkConfigurationChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "networkConfigurationChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "networkConfigurationChanged"); signal != nil {
@@ -35963,7 +35963,7 @@ func (ptr *QMediaPlayer) ConnectPlaybackRateChanged(f func(rate float64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "playbackRateChanged") {
-			C.QMediaPlayer_ConnectPlaybackRateChanged(ptr.Pointer())
+			C.QMediaPlayer_ConnectPlaybackRateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "playbackRateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "playbackRateChanged"); signal != nil {
@@ -36021,7 +36021,7 @@ func (ptr *QMediaPlayer) ConnectPositionChanged(f func(position int64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "positionChanged") {
-			C.QMediaPlayer_ConnectPositionChanged(ptr.Pointer())
+			C.QMediaPlayer_ConnectPositionChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "positionChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "positionChanged"); signal != nil {
@@ -36061,7 +36061,7 @@ func (ptr *QMediaPlayer) ConnectSeekableChanged(f func(seekable bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "seekableChanged") {
-			C.QMediaPlayer_ConnectSeekableChanged(ptr.Pointer())
+			C.QMediaPlayer_ConnectSeekableChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "seekableChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "seekableChanged"); signal != nil {
@@ -36464,7 +36464,7 @@ func (ptr *QMediaPlayer) ConnectStateChanged(f func(state QMediaPlayer__State)) 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stateChanged") {
-			C.QMediaPlayer_ConnectStateChanged(ptr.Pointer())
+			C.QMediaPlayer_ConnectStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
@@ -36568,7 +36568,7 @@ func (ptr *QMediaPlayer) ConnectVideoAvailableChanged(f func(videoAvailable bool
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "videoAvailableChanged") {
-			C.QMediaPlayer_ConnectVideoAvailableChanged(ptr.Pointer())
+			C.QMediaPlayer_ConnectVideoAvailableChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "videoAvailableChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "videoAvailableChanged"); signal != nil {
@@ -36615,7 +36615,7 @@ func (ptr *QMediaPlayer) ConnectVolumeChanged(f func(volume int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "volumeChanged") {
-			C.QMediaPlayer_ConnectVolumeChanged(ptr.Pointer())
+			C.QMediaPlayer_ConnectVolumeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "volumeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "volumeChanged"); signal != nil {
@@ -36784,7 +36784,7 @@ func (ptr *QMediaPlayerControl) ConnectAudioAvailableChanged(f func(audioAvailab
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "audioAvailableChanged") {
-			C.QMediaPlayerControl_ConnectAudioAvailableChanged(ptr.Pointer())
+			C.QMediaPlayerControl_ConnectAudioAvailableChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "audioAvailableChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "audioAvailableChanged"); signal != nil {
@@ -36864,7 +36864,7 @@ func (ptr *QMediaPlayerControl) ConnectAvailablePlaybackRangesChanged(f func(ran
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "availablePlaybackRangesChanged") {
-			C.QMediaPlayerControl_ConnectAvailablePlaybackRangesChanged(ptr.Pointer())
+			C.QMediaPlayerControl_ConnectAvailablePlaybackRangesChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "availablePlaybackRangesChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "availablePlaybackRangesChanged"); signal != nil {
@@ -36942,7 +36942,7 @@ func (ptr *QMediaPlayerControl) ConnectBufferStatusChanged(f func(percentFilled 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "bufferStatusChanged") {
-			C.QMediaPlayerControl_ConnectBufferStatusChanged(ptr.Pointer())
+			C.QMediaPlayerControl_ConnectBufferStatusChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "bufferStatusChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "bufferStatusChanged"); signal != nil {
@@ -37020,7 +37020,7 @@ func (ptr *QMediaPlayerControl) ConnectDurationChanged(f func(duration int64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "durationChanged") {
-			C.QMediaPlayerControl_ConnectDurationChanged(ptr.Pointer())
+			C.QMediaPlayerControl_ConnectDurationChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "durationChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "durationChanged"); signal != nil {
@@ -37060,7 +37060,7 @@ func (ptr *QMediaPlayerControl) ConnectError(f func(error int, errorString strin
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "error") {
-			C.QMediaPlayerControl_ConnectError(ptr.Pointer())
+			C.QMediaPlayerControl_ConnectError(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error"); signal != nil {
@@ -37297,7 +37297,7 @@ func (ptr *QMediaPlayerControl) ConnectMediaChanged(f func(content *QMediaConten
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "mediaChanged") {
-			C.QMediaPlayerControl_ConnectMediaChanged(ptr.Pointer())
+			C.QMediaPlayerControl_ConnectMediaChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "mediaChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "mediaChanged"); signal != nil {
@@ -37375,7 +37375,7 @@ func (ptr *QMediaPlayerControl) ConnectMediaStatusChanged(f func(status QMediaPl
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "mediaStatusChanged") {
-			C.QMediaPlayerControl_ConnectMediaStatusChanged(ptr.Pointer())
+			C.QMediaPlayerControl_ConnectMediaStatusChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "mediaStatusChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "mediaStatusChanged"); signal != nil {
@@ -37457,7 +37457,7 @@ func (ptr *QMediaPlayerControl) ConnectMutedChanged(f func(mute bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "mutedChanged") {
-			C.QMediaPlayerControl_ConnectMutedChanged(ptr.Pointer())
+			C.QMediaPlayerControl_ConnectMutedChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "mutedChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "mutedChanged"); signal != nil {
@@ -37607,7 +37607,7 @@ func (ptr *QMediaPlayerControl) ConnectPlaybackRateChanged(f func(rate float64))
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "playbackRateChanged") {
-			C.QMediaPlayerControl_ConnectPlaybackRateChanged(ptr.Pointer())
+			C.QMediaPlayerControl_ConnectPlaybackRateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "playbackRateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "playbackRateChanged"); signal != nil {
@@ -37685,7 +37685,7 @@ func (ptr *QMediaPlayerControl) ConnectPositionChanged(f func(position int64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "positionChanged") {
-			C.QMediaPlayerControl_ConnectPositionChanged(ptr.Pointer())
+			C.QMediaPlayerControl_ConnectPositionChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "positionChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "positionChanged"); signal != nil {
@@ -37725,7 +37725,7 @@ func (ptr *QMediaPlayerControl) ConnectSeekableChanged(f func(seekable bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "seekableChanged") {
-			C.QMediaPlayerControl_ConnectSeekableChanged(ptr.Pointer())
+			C.QMediaPlayerControl_ConnectSeekableChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "seekableChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "seekableChanged"); signal != nil {
@@ -37983,7 +37983,7 @@ func (ptr *QMediaPlayerControl) ConnectStateChanged(f func(newState QMediaPlayer
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stateChanged") {
-			C.QMediaPlayerControl_ConnectStateChanged(ptr.Pointer())
+			C.QMediaPlayerControl_ConnectStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
@@ -38059,7 +38059,7 @@ func (ptr *QMediaPlayerControl) ConnectVideoAvailableChanged(f func(videoAvailab
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "videoAvailableChanged") {
-			C.QMediaPlayerControl_ConnectVideoAvailableChanged(ptr.Pointer())
+			C.QMediaPlayerControl_ConnectVideoAvailableChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "videoAvailableChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "videoAvailableChanged"); signal != nil {
@@ -38137,7 +38137,7 @@ func (ptr *QMediaPlayerControl) ConnectVolumeChanged(f func(volume int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "volumeChanged") {
-			C.QMediaPlayerControl_ConnectVolumeChanged(ptr.Pointer())
+			C.QMediaPlayerControl_ConnectVolumeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "volumeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "volumeChanged"); signal != nil {
@@ -38332,7 +38332,7 @@ func (ptr *QMediaPlaylist) ConnectCurrentIndexChanged(f func(position int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "currentIndexChanged") {
-			C.QMediaPlaylist_ConnectCurrentIndexChanged(ptr.Pointer())
+			C.QMediaPlaylist_ConnectCurrentIndexChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "currentIndexChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "currentIndexChanged"); signal != nil {
@@ -38381,7 +38381,7 @@ func (ptr *QMediaPlaylist) ConnectCurrentMediaChanged(f func(content *QMediaCont
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "currentMediaChanged") {
-			C.QMediaPlaylist_ConnectCurrentMediaChanged(ptr.Pointer())
+			C.QMediaPlaylist_ConnectCurrentMediaChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "currentMediaChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "currentMediaChanged"); signal != nil {
@@ -38502,7 +38502,7 @@ func (ptr *QMediaPlaylist) ConnectLoadFailed(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "loadFailed") {
-			C.QMediaPlaylist_ConnectLoadFailed(ptr.Pointer())
+			C.QMediaPlaylist_ConnectLoadFailed(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "loadFailed")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "loadFailed"); signal != nil {
@@ -38542,7 +38542,7 @@ func (ptr *QMediaPlaylist) ConnectLoaded(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "loaded") {
-			C.QMediaPlaylist_ConnectLoaded(ptr.Pointer())
+			C.QMediaPlaylist_ConnectLoaded(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "loaded")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "loaded"); signal != nil {
@@ -38591,7 +38591,7 @@ func (ptr *QMediaPlaylist) ConnectMediaAboutToBeInserted(f func(start int, end i
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "mediaAboutToBeInserted") {
-			C.QMediaPlaylist_ConnectMediaAboutToBeInserted(ptr.Pointer())
+			C.QMediaPlaylist_ConnectMediaAboutToBeInserted(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "mediaAboutToBeInserted")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "mediaAboutToBeInserted"); signal != nil {
@@ -38631,7 +38631,7 @@ func (ptr *QMediaPlaylist) ConnectMediaAboutToBeRemoved(f func(start int, end in
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "mediaAboutToBeRemoved") {
-			C.QMediaPlaylist_ConnectMediaAboutToBeRemoved(ptr.Pointer())
+			C.QMediaPlaylist_ConnectMediaAboutToBeRemoved(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "mediaAboutToBeRemoved")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "mediaAboutToBeRemoved"); signal != nil {
@@ -38671,7 +38671,7 @@ func (ptr *QMediaPlaylist) ConnectMediaChanged(f func(start int, end int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "mediaChanged") {
-			C.QMediaPlaylist_ConnectMediaChanged(ptr.Pointer())
+			C.QMediaPlaylist_ConnectMediaChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "mediaChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "mediaChanged"); signal != nil {
@@ -38718,7 +38718,7 @@ func (ptr *QMediaPlaylist) ConnectMediaInserted(f func(start int, end int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "mediaInserted") {
-			C.QMediaPlaylist_ConnectMediaInserted(ptr.Pointer())
+			C.QMediaPlaylist_ConnectMediaInserted(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "mediaInserted")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "mediaInserted"); signal != nil {
@@ -38811,7 +38811,7 @@ func (ptr *QMediaPlaylist) ConnectMediaRemoved(f func(start int, end int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "mediaRemoved") {
-			C.QMediaPlaylist_ConnectMediaRemoved(ptr.Pointer())
+			C.QMediaPlaylist_ConnectMediaRemoved(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "mediaRemoved")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "mediaRemoved"); signal != nil {
@@ -38915,7 +38915,7 @@ func (ptr *QMediaPlaylist) ConnectPlaybackModeChanged(f func(mode QMediaPlaylist
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "playbackModeChanged") {
-			C.QMediaPlaylist_ConnectPlaybackModeChanged(ptr.Pointer())
+			C.QMediaPlaylist_ConnectPlaybackModeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "playbackModeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "playbackModeChanged"); signal != nil {
@@ -39654,7 +39654,7 @@ func (ptr *QMediaRecorder) ConnectActualLocationChanged(f func(location *core.QU
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "actualLocationChanged") {
-			C.QMediaRecorder_ConnectActualLocationChanged(ptr.Pointer())
+			C.QMediaRecorder_ConnectActualLocationChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "actualLocationChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "actualLocationChanged"); signal != nil {
@@ -39722,7 +39722,7 @@ func (ptr *QMediaRecorder) ConnectAvailabilityChanged(f func(available bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "availabilityChanged") {
-			C.QMediaRecorder_ConnectAvailabilityChanged(ptr.Pointer())
+			C.QMediaRecorder_ConnectAvailabilityChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "availabilityChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "availabilityChanged"); signal != nil {
@@ -39762,7 +39762,7 @@ func (ptr *QMediaRecorder) ConnectAvailabilityChanged2(f func(availability QMult
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "availabilityChanged2") {
-			C.QMediaRecorder_ConnectAvailabilityChanged2(ptr.Pointer())
+			C.QMediaRecorder_ConnectAvailabilityChanged2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "availabilityChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "availabilityChanged2"); signal != nil {
@@ -39835,7 +39835,7 @@ func (ptr *QMediaRecorder) ConnectDurationChanged(f func(duration int64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "durationChanged") {
-			C.QMediaRecorder_ConnectDurationChanged(ptr.Pointer())
+			C.QMediaRecorder_ConnectDurationChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "durationChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "durationChanged"); signal != nil {
@@ -39882,7 +39882,7 @@ func (ptr *QMediaRecorder) ConnectError2(f func(error QMediaRecorder__Error)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "error2") {
-			C.QMediaRecorder_ConnectError2(ptr.Pointer())
+			C.QMediaRecorder_ConnectError2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error2"); signal != nil {
@@ -40024,7 +40024,7 @@ func (ptr *QMediaRecorder) ConnectMetaDataAvailableChanged(f func(available bool
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "metaDataAvailableChanged") {
-			C.QMediaRecorder_ConnectMetaDataAvailableChanged(ptr.Pointer())
+			C.QMediaRecorder_ConnectMetaDataAvailableChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "metaDataAvailableChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "metaDataAvailableChanged"); signal != nil {
@@ -40064,7 +40064,7 @@ func (ptr *QMediaRecorder) ConnectMetaDataChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "metaDataChanged") {
-			C.QMediaRecorder_ConnectMetaDataChanged(ptr.Pointer())
+			C.QMediaRecorder_ConnectMetaDataChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "metaDataChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "metaDataChanged"); signal != nil {
@@ -40104,7 +40104,7 @@ func (ptr *QMediaRecorder) ConnectMetaDataChanged2(f func(key string, value *cor
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "metaDataChanged2") {
-			C.QMediaRecorder_ConnectMetaDataChanged2(ptr.Pointer())
+			C.QMediaRecorder_ConnectMetaDataChanged2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "metaDataChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "metaDataChanged2"); signal != nil {
@@ -40149,7 +40149,7 @@ func (ptr *QMediaRecorder) ConnectMetaDataWritableChanged(f func(writable bool))
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "metaDataWritableChanged") {
-			C.QMediaRecorder_ConnectMetaDataWritableChanged(ptr.Pointer())
+			C.QMediaRecorder_ConnectMetaDataWritableChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "metaDataWritableChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "metaDataWritableChanged"); signal != nil {
@@ -40189,7 +40189,7 @@ func (ptr *QMediaRecorder) ConnectMutedChanged(f func(muted bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "mutedChanged") {
-			C.QMediaRecorder_ConnectMutedChanged(ptr.Pointer())
+			C.QMediaRecorder_ConnectMutedChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "mutedChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "mutedChanged"); signal != nil {
@@ -40469,7 +40469,7 @@ func (ptr *QMediaRecorder) ConnectStateChanged(f func(state QMediaRecorder__Stat
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stateChanged") {
-			C.QMediaRecorder_ConnectStateChanged(ptr.Pointer())
+			C.QMediaRecorder_ConnectStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
@@ -40516,7 +40516,7 @@ func (ptr *QMediaRecorder) ConnectStatusChanged(f func(status QMediaRecorder__St
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "statusChanged") {
-			C.QMediaRecorder_ConnectStatusChanged(ptr.Pointer())
+			C.QMediaRecorder_ConnectStatusChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "statusChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "statusChanged"); signal != nil {
@@ -40705,7 +40705,7 @@ func (ptr *QMediaRecorder) ConnectVolumeChanged(f func(volume float64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "volumeChanged") {
-			C.QMediaRecorder_ConnectVolumeChanged(ptr.Pointer())
+			C.QMediaRecorder_ConnectVolumeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "volumeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "volumeChanged"); signal != nil {
@@ -41230,7 +41230,7 @@ func (ptr *QMediaRecorderControl) ConnectActualLocationChanged(f func(location *
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "actualLocationChanged") {
-			C.QMediaRecorderControl_ConnectActualLocationChanged(ptr.Pointer())
+			C.QMediaRecorderControl_ConnectActualLocationChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "actualLocationChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "actualLocationChanged"); signal != nil {
@@ -41344,7 +41344,7 @@ func (ptr *QMediaRecorderControl) ConnectDurationChanged(f func(duration int64))
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "durationChanged") {
-			C.QMediaRecorderControl_ConnectDurationChanged(ptr.Pointer())
+			C.QMediaRecorderControl_ConnectDurationChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "durationChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "durationChanged"); signal != nil {
@@ -41384,7 +41384,7 @@ func (ptr *QMediaRecorderControl) ConnectError(f func(error int, errorString str
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "error") {
-			C.QMediaRecorderControl_ConnectError(ptr.Pointer())
+			C.QMediaRecorderControl_ConnectError(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error"); signal != nil {
@@ -41467,7 +41467,7 @@ func (ptr *QMediaRecorderControl) ConnectMutedChanged(f func(muted bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "mutedChanged") {
-			C.QMediaRecorderControl_ConnectMutedChanged(ptr.Pointer())
+			C.QMediaRecorderControl_ConnectMutedChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "mutedChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "mutedChanged"); signal != nil {
@@ -41731,7 +41731,7 @@ func (ptr *QMediaRecorderControl) ConnectStateChanged(f func(state QMediaRecorde
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stateChanged") {
-			C.QMediaRecorderControl_ConnectStateChanged(ptr.Pointer())
+			C.QMediaRecorderControl_ConnectStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
@@ -41809,7 +41809,7 @@ func (ptr *QMediaRecorderControl) ConnectStatusChanged(f func(status QMediaRecor
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "statusChanged") {
-			C.QMediaRecorderControl_ConnectStatusChanged(ptr.Pointer())
+			C.QMediaRecorderControl_ConnectStatusChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "statusChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "statusChanged"); signal != nil {
@@ -41887,7 +41887,7 @@ func (ptr *QMediaRecorderControl) ConnectVolumeChanged(f func(gain float64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "volumeChanged") {
-			C.QMediaRecorderControl_ConnectVolumeChanged(ptr.Pointer())
+			C.QMediaRecorderControl_ConnectVolumeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "volumeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "volumeChanged"); signal != nil {
@@ -44050,7 +44050,7 @@ func (ptr *QMediaStreamsControl) ConnectActiveStreamsChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "activeStreamsChanged") {
-			C.QMediaStreamsControl_ConnectActiveStreamsChanged(ptr.Pointer())
+			C.QMediaStreamsControl_ConnectActiveStreamsChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "activeStreamsChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "activeStreamsChanged"); signal != nil {
@@ -44285,7 +44285,7 @@ func (ptr *QMediaStreamsControl) ConnectStreamsChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "streamsChanged") {
-			C.QMediaStreamsControl_ConnectStreamsChanged(ptr.Pointer())
+			C.QMediaStreamsControl_ConnectStreamsChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "streamsChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "streamsChanged"); signal != nil {
@@ -44707,7 +44707,7 @@ func (ptr *QMediaVideoProbeControl) ConnectFlush(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "flush") {
-			C.QMediaVideoProbeControl_ConnectFlush(ptr.Pointer())
+			C.QMediaVideoProbeControl_ConnectFlush(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "flush")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "flush"); signal != nil {
@@ -44747,7 +44747,7 @@ func (ptr *QMediaVideoProbeControl) ConnectVideoFrameProbed(f func(frame *QVideo
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "videoFrameProbed") {
-			C.QMediaVideoProbeControl_ConnectVideoFrameProbed(ptr.Pointer())
+			C.QMediaVideoProbeControl_ConnectVideoFrameProbed(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "videoFrameProbed")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "videoFrameProbed"); signal != nil {
@@ -45002,7 +45002,7 @@ func (ptr *QMetaDataReaderControl) ConnectMetaDataAvailableChanged(f func(availa
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "metaDataAvailableChanged") {
-			C.QMetaDataReaderControl_ConnectMetaDataAvailableChanged(ptr.Pointer())
+			C.QMetaDataReaderControl_ConnectMetaDataAvailableChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "metaDataAvailableChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "metaDataAvailableChanged"); signal != nil {
@@ -45042,7 +45042,7 @@ func (ptr *QMetaDataReaderControl) ConnectMetaDataChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "metaDataChanged") {
-			C.QMetaDataReaderControl_ConnectMetaDataChanged(ptr.Pointer())
+			C.QMetaDataReaderControl_ConnectMetaDataChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "metaDataChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "metaDataChanged"); signal != nil {
@@ -45082,7 +45082,7 @@ func (ptr *QMetaDataReaderControl) ConnectMetaDataChanged2(f func(key string, va
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "metaDataChanged2") {
-			C.QMetaDataReaderControl_ConnectMetaDataChanged2(ptr.Pointer())
+			C.QMetaDataReaderControl_ConnectMetaDataChanged2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "metaDataChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "metaDataChanged2"); signal != nil {
@@ -45380,7 +45380,7 @@ func (ptr *QMetaDataWriterControl) ConnectMetaDataAvailableChanged(f func(availa
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "metaDataAvailableChanged") {
-			C.QMetaDataWriterControl_ConnectMetaDataAvailableChanged(ptr.Pointer())
+			C.QMetaDataWriterControl_ConnectMetaDataAvailableChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "metaDataAvailableChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "metaDataAvailableChanged"); signal != nil {
@@ -45420,7 +45420,7 @@ func (ptr *QMetaDataWriterControl) ConnectMetaDataChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "metaDataChanged") {
-			C.QMetaDataWriterControl_ConnectMetaDataChanged(ptr.Pointer())
+			C.QMetaDataWriterControl_ConnectMetaDataChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "metaDataChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "metaDataChanged"); signal != nil {
@@ -45460,7 +45460,7 @@ func (ptr *QMetaDataWriterControl) ConnectMetaDataChanged2(f func(key string, va
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "metaDataChanged2") {
-			C.QMetaDataWriterControl_ConnectMetaDataChanged2(ptr.Pointer())
+			C.QMetaDataWriterControl_ConnectMetaDataChanged2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "metaDataChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "metaDataChanged2"); signal != nil {
@@ -45546,7 +45546,7 @@ func (ptr *QMetaDataWriterControl) ConnectWritableChanged(f func(writable bool))
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "writableChanged") {
-			C.QMetaDataWriterControl_ConnectWritableChanged(ptr.Pointer())
+			C.QMetaDataWriterControl_ConnectWritableChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "writableChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "writableChanged"); signal != nil {
@@ -46237,7 +46237,7 @@ func (ptr *QRadioData) ConnectAlternativeFrequenciesEnabledChanged(f func(enable
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "alternativeFrequenciesEnabledChanged") {
-			C.QRadioData_ConnectAlternativeFrequenciesEnabledChanged(ptr.Pointer())
+			C.QRadioData_ConnectAlternativeFrequenciesEnabledChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "alternativeFrequenciesEnabledChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "alternativeFrequenciesEnabledChanged"); signal != nil {
@@ -46291,7 +46291,7 @@ func (ptr *QRadioData) ConnectError2(f func(error QRadioData__Error)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "error2") {
-			C.QRadioData_ConnectError2(ptr.Pointer())
+			C.QRadioData_ConnectError2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error2"); signal != nil {
@@ -46405,7 +46405,7 @@ func (ptr *QRadioData) ConnectProgramTypeChanged(f func(programType QRadioData__
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "programTypeChanged") {
-			C.QRadioData_ConnectProgramTypeChanged(ptr.Pointer())
+			C.QRadioData_ConnectProgramTypeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "programTypeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "programTypeChanged"); signal != nil {
@@ -46452,7 +46452,7 @@ func (ptr *QRadioData) ConnectProgramTypeNameChanged(f func(programTypeName stri
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "programTypeNameChanged") {
-			C.QRadioData_ConnectProgramTypeNameChanged(ptr.Pointer())
+			C.QRadioData_ConnectProgramTypeNameChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "programTypeNameChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "programTypeNameChanged"); signal != nil {
@@ -46504,7 +46504,7 @@ func (ptr *QRadioData) ConnectRadioTextChanged(f func(radioText string)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "radioTextChanged") {
-			C.QRadioData_ConnectRadioTextChanged(ptr.Pointer())
+			C.QRadioData_ConnectRadioTextChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "radioTextChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "radioTextChanged"); signal != nil {
@@ -46644,7 +46644,7 @@ func (ptr *QRadioData) ConnectStationIdChanged(f func(stationId string)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stationIdChanged") {
-			C.QRadioData_ConnectStationIdChanged(ptr.Pointer())
+			C.QRadioData_ConnectStationIdChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stationIdChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stationIdChanged"); signal != nil {
@@ -46696,7 +46696,7 @@ func (ptr *QRadioData) ConnectStationNameChanged(f func(stationName string)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stationNameChanged") {
-			C.QRadioData_ConnectStationNameChanged(ptr.Pointer())
+			C.QRadioData_ConnectStationNameChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stationNameChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stationNameChanged"); signal != nil {
@@ -47150,7 +47150,7 @@ func (ptr *QRadioDataControl) ConnectAlternativeFrequenciesEnabledChanged(f func
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "alternativeFrequenciesEnabledChanged") {
-			C.QRadioDataControl_ConnectAlternativeFrequenciesEnabledChanged(ptr.Pointer())
+			C.QRadioDataControl_ConnectAlternativeFrequenciesEnabledChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "alternativeFrequenciesEnabledChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "alternativeFrequenciesEnabledChanged"); signal != nil {
@@ -47228,7 +47228,7 @@ func (ptr *QRadioDataControl) ConnectError2(f func(error QRadioData__Error)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "error2") {
-			C.QRadioDataControl_ConnectError2(ptr.Pointer())
+			C.QRadioDataControl_ConnectError2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error2"); signal != nil {
@@ -47383,7 +47383,7 @@ func (ptr *QRadioDataControl) ConnectProgramTypeChanged(f func(programType QRadi
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "programTypeChanged") {
-			C.QRadioDataControl_ConnectProgramTypeChanged(ptr.Pointer())
+			C.QRadioDataControl_ConnectProgramTypeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "programTypeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "programTypeChanged"); signal != nil {
@@ -47462,7 +47462,7 @@ func (ptr *QRadioDataControl) ConnectProgramTypeNameChanged(f func(programTypeNa
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "programTypeNameChanged") {
-			C.QRadioDataControl_ConnectProgramTypeNameChanged(ptr.Pointer())
+			C.QRadioDataControl_ConnectProgramTypeNameChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "programTypeNameChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "programTypeNameChanged"); signal != nil {
@@ -47546,7 +47546,7 @@ func (ptr *QRadioDataControl) ConnectRadioTextChanged(f func(radioText string)) 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "radioTextChanged") {
-			C.QRadioDataControl_ConnectRadioTextChanged(ptr.Pointer())
+			C.QRadioDataControl_ConnectRadioTextChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "radioTextChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "radioTextChanged"); signal != nil {
@@ -47666,7 +47666,7 @@ func (ptr *QRadioDataControl) ConnectStationIdChanged(f func(stationId string)) 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stationIdChanged") {
-			C.QRadioDataControl_ConnectStationIdChanged(ptr.Pointer())
+			C.QRadioDataControl_ConnectStationIdChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stationIdChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stationIdChanged"); signal != nil {
@@ -47750,7 +47750,7 @@ func (ptr *QRadioDataControl) ConnectStationNameChanged(f func(stationName strin
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stationNameChanged") {
-			C.QRadioDataControl_ConnectStationNameChanged(ptr.Pointer())
+			C.QRadioDataControl_ConnectStationNameChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stationNameChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stationNameChanged"); signal != nil {
@@ -47940,7 +47940,7 @@ func (ptr *QRadioTuner) ConnectAntennaConnectedChanged(f func(connectionStatus b
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "antennaConnectedChanged") {
-			C.QRadioTuner_ConnectAntennaConnectedChanged(ptr.Pointer())
+			C.QRadioTuner_ConnectAntennaConnectedChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "antennaConnectedChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "antennaConnectedChanged"); signal != nil {
@@ -47987,7 +47987,7 @@ func (ptr *QRadioTuner) ConnectBandChanged(f func(band QRadioTuner__Band)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "bandChanged") {
-			C.QRadioTuner_ConnectBandChanged(ptr.Pointer())
+			C.QRadioTuner_ConnectBandChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "bandChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "bandChanged"); signal != nil {
@@ -48077,7 +48077,7 @@ func (ptr *QRadioTuner) ConnectError2(f func(error QRadioTuner__Error)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "error2") {
-			C.QRadioTuner_ConnectError2(ptr.Pointer())
+			C.QRadioTuner_ConnectError2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error2"); signal != nil {
@@ -48131,7 +48131,7 @@ func (ptr *QRadioTuner) ConnectFrequencyChanged(f func(frequency int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "frequencyChanged") {
-			C.QRadioTuner_ConnectFrequencyChanged(ptr.Pointer())
+			C.QRadioTuner_ConnectFrequencyChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "frequencyChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "frequencyChanged"); signal != nil {
@@ -48213,7 +48213,7 @@ func (ptr *QRadioTuner) ConnectMutedChanged(f func(muted bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "mutedChanged") {
-			C.QRadioTuner_ConnectMutedChanged(ptr.Pointer())
+			C.QRadioTuner_ConnectMutedChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "mutedChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "mutedChanged"); signal != nil {
@@ -48393,7 +48393,7 @@ func (ptr *QRadioTuner) ConnectSearchingChanged(f func(searching bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "searchingChanged") {
-			C.QRadioTuner_ConnectSearchingChanged(ptr.Pointer())
+			C.QRadioTuner_ConnectSearchingChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "searchingChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "searchingChanged"); signal != nil {
@@ -48618,7 +48618,7 @@ func (ptr *QRadioTuner) ConnectSignalStrengthChanged(f func(strength int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "signalStrengthChanged") {
-			C.QRadioTuner_ConnectSignalStrengthChanged(ptr.Pointer())
+			C.QRadioTuner_ConnectSignalStrengthChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "signalStrengthChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "signalStrengthChanged"); signal != nil {
@@ -48708,7 +48708,7 @@ func (ptr *QRadioTuner) ConnectStateChanged(f func(state QRadioTuner__State)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stateChanged") {
-			C.QRadioTuner_ConnectStateChanged(ptr.Pointer())
+			C.QRadioTuner_ConnectStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
@@ -48748,7 +48748,7 @@ func (ptr *QRadioTuner) ConnectStationFound(f func(frequency int, stationId stri
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stationFound") {
-			C.QRadioTuner_ConnectStationFound(ptr.Pointer())
+			C.QRadioTuner_ConnectStationFound(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stationFound")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stationFound"); signal != nil {
@@ -48800,7 +48800,7 @@ func (ptr *QRadioTuner) ConnectStereoStatusChanged(f func(stereo bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stereoStatusChanged") {
-			C.QRadioTuner_ConnectStereoStatusChanged(ptr.Pointer())
+			C.QRadioTuner_ConnectStereoStatusChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stereoStatusChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stereoStatusChanged"); signal != nil {
@@ -48890,7 +48890,7 @@ func (ptr *QRadioTuner) ConnectVolumeChanged(f func(volume int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "volumeChanged") {
-			C.QRadioTuner_ConnectVolumeChanged(ptr.Pointer())
+			C.QRadioTuner_ConnectVolumeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "volumeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "volumeChanged"); signal != nil {
@@ -49016,7 +49016,7 @@ func (ptr *QRadioTunerControl) ConnectAntennaConnectedChanged(f func(connectionS
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "antennaConnectedChanged") {
-			C.QRadioTunerControl_ConnectAntennaConnectedChanged(ptr.Pointer())
+			C.QRadioTunerControl_ConnectAntennaConnectedChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "antennaConnectedChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "antennaConnectedChanged"); signal != nil {
@@ -49094,7 +49094,7 @@ func (ptr *QRadioTunerControl) ConnectBandChanged(f func(band QRadioTuner__Band)
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "bandChanged") {
-			C.QRadioTunerControl_ConnectBandChanged(ptr.Pointer())
+			C.QRadioTunerControl_ConnectBandChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "bandChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "bandChanged"); signal != nil {
@@ -49208,7 +49208,7 @@ func (ptr *QRadioTunerControl) ConnectError2(f func(error QRadioTuner__Error)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "error2") {
-			C.QRadioTunerControl_ConnectError2(ptr.Pointer())
+			C.QRadioTunerControl_ConnectError2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error2"); signal != nil {
@@ -49325,7 +49325,7 @@ func (ptr *QRadioTunerControl) ConnectFrequencyChanged(f func(frequency int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "frequencyChanged") {
-			C.QRadioTunerControl_ConnectFrequencyChanged(ptr.Pointer())
+			C.QRadioTunerControl_ConnectFrequencyChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "frequencyChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "frequencyChanged"); signal != nil {
@@ -49600,7 +49600,7 @@ func (ptr *QRadioTunerControl) ConnectMutedChanged(f func(muted bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "mutedChanged") {
-			C.QRadioTunerControl_ConnectMutedChanged(ptr.Pointer())
+			C.QRadioTunerControl_ConnectMutedChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "mutedChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "mutedChanged"); signal != nil {
@@ -49748,7 +49748,7 @@ func (ptr *QRadioTunerControl) ConnectSearchingChanged(f func(searching bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "searchingChanged") {
-			C.QRadioTunerControl_ConnectSearchingChanged(ptr.Pointer())
+			C.QRadioTunerControl_ConnectSearchingChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "searchingChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "searchingChanged"); signal != nil {
@@ -50006,7 +50006,7 @@ func (ptr *QRadioTunerControl) ConnectSignalStrengthChanged(f func(strength int)
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "signalStrengthChanged") {
-			C.QRadioTunerControl_ConnectSignalStrengthChanged(ptr.Pointer())
+			C.QRadioTunerControl_ConnectSignalStrengthChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "signalStrengthChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "signalStrengthChanged"); signal != nil {
@@ -50120,7 +50120,7 @@ func (ptr *QRadioTunerControl) ConnectStateChanged(f func(state QRadioTuner__Sta
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stateChanged") {
-			C.QRadioTunerControl_ConnectStateChanged(ptr.Pointer())
+			C.QRadioTunerControl_ConnectStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
@@ -50160,7 +50160,7 @@ func (ptr *QRadioTunerControl) ConnectStationFound(f func(frequency int, station
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stationFound") {
-			C.QRadioTunerControl_ConnectStationFound(ptr.Pointer())
+			C.QRadioTunerControl_ConnectStationFound(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stationFound")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stationFound"); signal != nil {
@@ -50243,7 +50243,7 @@ func (ptr *QRadioTunerControl) ConnectStereoStatusChanged(f func(stereo bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stereoStatusChanged") {
-			C.QRadioTunerControl_ConnectStereoStatusChanged(ptr.Pointer())
+			C.QRadioTunerControl_ConnectStereoStatusChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stereoStatusChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stereoStatusChanged"); signal != nil {
@@ -50357,7 +50357,7 @@ func (ptr *QRadioTunerControl) ConnectVolumeChanged(f func(volume int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "volumeChanged") {
-			C.QRadioTunerControl_ConnectVolumeChanged(ptr.Pointer())
+			C.QRadioTunerControl_ConnectVolumeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "volumeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "volumeChanged"); signal != nil {
@@ -51343,7 +51343,7 @@ func (ptr *QSoundEffect) ConnectCategoryChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "categoryChanged") {
-			C.QSoundEffect_ConnectCategoryChanged(ptr.Pointer())
+			C.QSoundEffect_ConnectCategoryChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "categoryChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "categoryChanged"); signal != nil {
@@ -51404,7 +51404,7 @@ func (ptr *QSoundEffect) ConnectLoadedChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "loadedChanged") {
-			C.QSoundEffect_ConnectLoadedChanged(ptr.Pointer())
+			C.QSoundEffect_ConnectLoadedChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "loadedChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "loadedChanged"); signal != nil {
@@ -51451,7 +51451,7 @@ func (ptr *QSoundEffect) ConnectLoopCountChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "loopCountChanged") {
-			C.QSoundEffect_ConnectLoopCountChanged(ptr.Pointer())
+			C.QSoundEffect_ConnectLoopCountChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "loopCountChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "loopCountChanged"); signal != nil {
@@ -51498,7 +51498,7 @@ func (ptr *QSoundEffect) ConnectLoopsRemainingChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "loopsRemainingChanged") {
-			C.QSoundEffect_ConnectLoopsRemainingChanged(ptr.Pointer())
+			C.QSoundEffect_ConnectLoopsRemainingChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "loopsRemainingChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "loopsRemainingChanged"); signal != nil {
@@ -51538,7 +51538,7 @@ func (ptr *QSoundEffect) ConnectMutedChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "mutedChanged") {
-			C.QSoundEffect_ConnectMutedChanged(ptr.Pointer())
+			C.QSoundEffect_ConnectMutedChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "mutedChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "mutedChanged"); signal != nil {
@@ -51621,7 +51621,7 @@ func (ptr *QSoundEffect) ConnectPlayingChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "playingChanged") {
-			C.QSoundEffect_ConnectPlayingChanged(ptr.Pointer())
+			C.QSoundEffect_ConnectPlayingChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "playingChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "playingChanged"); signal != nil {
@@ -51705,7 +51705,7 @@ func (ptr *QSoundEffect) ConnectSourceChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "sourceChanged") {
-			C.QSoundEffect_ConnectSourceChanged(ptr.Pointer())
+			C.QSoundEffect_ConnectSourceChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "sourceChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "sourceChanged"); signal != nil {
@@ -51752,7 +51752,7 @@ func (ptr *QSoundEffect) ConnectStatusChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "statusChanged") {
-			C.QSoundEffect_ConnectStatusChanged(ptr.Pointer())
+			C.QSoundEffect_ConnectStatusChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "statusChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "statusChanged"); signal != nil {
@@ -51850,7 +51850,7 @@ func (ptr *QSoundEffect) ConnectVolumeChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "volumeChanged") {
-			C.QSoundEffect_ConnectVolumeChanged(ptr.Pointer())
+			C.QSoundEffect_ConnectVolumeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "volumeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "volumeChanged"); signal != nil {
@@ -52395,7 +52395,7 @@ func (ptr *QVideoDeviceSelectorControl) ConnectDevicesChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "devicesChanged") {
-			C.QVideoDeviceSelectorControl_ConnectDevicesChanged(ptr.Pointer())
+			C.QVideoDeviceSelectorControl_ConnectDevicesChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "devicesChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "devicesChanged"); signal != nil {
@@ -52473,7 +52473,7 @@ func (ptr *QVideoDeviceSelectorControl) ConnectSelectedDeviceChanged(f func(inde
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "selectedDeviceChanged") {
-			C.QVideoDeviceSelectorControl_ConnectSelectedDeviceChanged(ptr.Pointer())
+			C.QVideoDeviceSelectorControl_ConnectSelectedDeviceChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "selectedDeviceChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "selectedDeviceChanged"); signal != nil {
@@ -52513,7 +52513,7 @@ func (ptr *QVideoDeviceSelectorControl) ConnectSelectedDeviceChanged2(f func(nam
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "selectedDeviceChanged2") {
-			C.QVideoDeviceSelectorControl_ConnectSelectedDeviceChanged2(ptr.Pointer())
+			C.QVideoDeviceSelectorControl_ConnectSelectedDeviceChanged2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "selectedDeviceChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "selectedDeviceChanged2"); signal != nil {
@@ -53979,7 +53979,7 @@ func (ptr *QVideoProbe) ConnectFlush(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "flush") {
-			C.QVideoProbe_ConnectFlush(ptr.Pointer())
+			C.QVideoProbe_ConnectFlush(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "flush")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "flush"); signal != nil {
@@ -54040,7 +54040,7 @@ func (ptr *QVideoProbe) ConnectVideoFrameProbed(f func(frame *QVideoFrame)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "videoFrameProbed") {
-			C.QVideoProbe_ConnectVideoFrameProbed(ptr.Pointer())
+			C.QVideoProbe_ConnectVideoFrameProbed(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "videoFrameProbed")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "videoFrameProbed"); signal != nil {
@@ -54916,7 +54916,7 @@ func (ptr *QVideoWidget) ConnectBrightnessChanged(f func(brightness int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "brightnessChanged") {
-			C.QVideoWidget_ConnectBrightnessChanged(ptr.Pointer())
+			C.QVideoWidget_ConnectBrightnessChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "brightnessChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "brightnessChanged"); signal != nil {
@@ -54963,7 +54963,7 @@ func (ptr *QVideoWidget) ConnectContrastChanged(f func(contrast int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "contrastChanged") {
-			C.QVideoWidget_ConnectContrastChanged(ptr.Pointer())
+			C.QVideoWidget_ConnectContrastChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "contrastChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "contrastChanged"); signal != nil {
@@ -55048,7 +55048,7 @@ func (ptr *QVideoWidget) ConnectFullScreenChanged(f func(fullScreen bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "fullScreenChanged") {
-			C.QVideoWidget_ConnectFullScreenChanged(ptr.Pointer())
+			C.QVideoWidget_ConnectFullScreenChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "fullScreenChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "fullScreenChanged"); signal != nil {
@@ -55138,7 +55138,7 @@ func (ptr *QVideoWidget) ConnectHueChanged(f func(hue int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "hueChanged") {
-			C.QVideoWidget_ConnectHueChanged(ptr.Pointer())
+			C.QVideoWidget_ConnectHueChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "hueChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "hueChanged"); signal != nil {
@@ -55374,7 +55374,7 @@ func (ptr *QVideoWidget) ConnectSaturationChanged(f func(saturation int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "saturationChanged") {
-			C.QVideoWidget_ConnectSaturationChanged(ptr.Pointer())
+			C.QVideoWidget_ConnectSaturationChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "saturationChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "saturationChanged"); signal != nil {
@@ -57486,7 +57486,7 @@ func (ptr *QVideoWindowControl) ConnectBrightnessChanged(f func(brightness int))
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "brightnessChanged") {
-			C.QVideoWindowControl_ConnectBrightnessChanged(ptr.Pointer())
+			C.QVideoWindowControl_ConnectBrightnessChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "brightnessChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "brightnessChanged"); signal != nil {
@@ -57564,7 +57564,7 @@ func (ptr *QVideoWindowControl) ConnectContrastChanged(f func(contrast int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "contrastChanged") {
-			C.QVideoWindowControl_ConnectContrastChanged(ptr.Pointer())
+			C.QVideoWindowControl_ConnectContrastChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "contrastChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "contrastChanged"); signal != nil {
@@ -57644,7 +57644,7 @@ func (ptr *QVideoWindowControl) ConnectFullScreenChanged(f func(fullScreen bool)
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "fullScreenChanged") {
-			C.QVideoWindowControl_ConnectFullScreenChanged(ptr.Pointer())
+			C.QVideoWindowControl_ConnectFullScreenChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "fullScreenChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "fullScreenChanged"); signal != nil {
@@ -57722,7 +57722,7 @@ func (ptr *QVideoWindowControl) ConnectHueChanged(f func(hue int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "hueChanged") {
-			C.QVideoWindowControl_ConnectHueChanged(ptr.Pointer())
+			C.QVideoWindowControl_ConnectHueChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "hueChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "hueChanged"); signal != nil {
@@ -57840,7 +57840,7 @@ func (ptr *QVideoWindowControl) ConnectNativeSizeChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "nativeSizeChanged") {
-			C.QVideoWindowControl_ConnectNativeSizeChanged(ptr.Pointer())
+			C.QVideoWindowControl_ConnectNativeSizeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "nativeSizeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "nativeSizeChanged"); signal != nil {
@@ -57954,7 +57954,7 @@ func (ptr *QVideoWindowControl) ConnectSaturationChanged(f func(saturation int))
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "saturationChanged") {
-			C.QVideoWindowControl_ConnectSaturationChanged(ptr.Pointer())
+			C.QVideoWindowControl_ConnectSaturationChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "saturationChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "saturationChanged"); signal != nil {

@@ -257,7 +257,7 @@ func (ptr *QAbstractTextDocumentLayout) ConnectDocumentSizeChanged(f func(newSiz
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "documentSizeChanged") {
-			C.QAbstractTextDocumentLayout_ConnectDocumentSizeChanged(ptr.Pointer())
+			C.QAbstractTextDocumentLayout_ConnectDocumentSizeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "documentSizeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "documentSizeChanged"); signal != nil {
@@ -488,7 +488,7 @@ func (ptr *QAbstractTextDocumentLayout) ConnectPageCountChanged(f func(newPages 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "pageCountChanged") {
-			C.QAbstractTextDocumentLayout_ConnectPageCountChanged(ptr.Pointer())
+			C.QAbstractTextDocumentLayout_ConnectPageCountChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "pageCountChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "pageCountChanged"); signal != nil {
@@ -639,7 +639,7 @@ func (ptr *QAbstractTextDocumentLayout) ConnectUpdate(f func(rect *core.QRectF))
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "update") {
-			C.QAbstractTextDocumentLayout_ConnectUpdate(ptr.Pointer())
+			C.QAbstractTextDocumentLayout_ConnectUpdate(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "update")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "update"); signal != nil {
@@ -679,7 +679,7 @@ func (ptr *QAbstractTextDocumentLayout) ConnectUpdateBlock(f func(block *QTextBl
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "updateBlock") {
-			C.QAbstractTextDocumentLayout_ConnectUpdateBlock(ptr.Pointer())
+			C.QAbstractTextDocumentLayout_ConnectUpdateBlock(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "updateBlock")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "updateBlock"); signal != nil {
@@ -7478,7 +7478,7 @@ func (ptr *QClipboard) ConnectChanged(f func(mode QClipboard__Mode)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "changed") {
-			C.QClipboard_ConnectChanged(ptr.Pointer())
+			C.QClipboard_ConnectChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "changed")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "changed"); signal != nil {
@@ -7524,7 +7524,7 @@ func (ptr *QClipboard) ConnectDataChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "dataChanged") {
-			C.QClipboard_ConnectDataChanged(ptr.Pointer())
+			C.QClipboard_ConnectDataChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "dataChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "dataChanged"); signal != nil {
@@ -7564,7 +7564,7 @@ func (ptr *QClipboard) ConnectFindBufferChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "findBufferChanged") {
-			C.QClipboard_ConnectFindBufferChanged(ptr.Pointer())
+			C.QClipboard_ConnectFindBufferChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "findBufferChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "findBufferChanged"); signal != nil {
@@ -7654,7 +7654,7 @@ func (ptr *QClipboard) ConnectSelectionChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "selectionChanged") {
-			C.QClipboard_ConnectSelectionChanged(ptr.Pointer())
+			C.QClipboard_ConnectSelectionChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "selectionChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "selectionChanged"); signal != nil {
@@ -9531,7 +9531,7 @@ func (ptr *QDoubleValidator) ConnectBottomChanged(f func(bottom float64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "bottomChanged") {
-			C.QDoubleValidator_ConnectBottomChanged(ptr.Pointer())
+			C.QDoubleValidator_ConnectBottomChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "bottomChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "bottomChanged"); signal != nil {
@@ -9578,7 +9578,7 @@ func (ptr *QDoubleValidator) ConnectDecimalsChanged(f func(decimals int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "decimalsChanged") {
-			C.QDoubleValidator_ConnectDecimalsChanged(ptr.Pointer())
+			C.QDoubleValidator_ConnectDecimalsChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "decimalsChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "decimalsChanged"); signal != nil {
@@ -9625,7 +9625,7 @@ func (ptr *QDoubleValidator) ConnectNotationChanged(f func(notation QDoubleValid
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "notationChanged") {
-			C.QDoubleValidator_ConnectNotationChanged(ptr.Pointer())
+			C.QDoubleValidator_ConnectNotationChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "notationChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "notationChanged"); signal != nil {
@@ -9739,7 +9739,7 @@ func (ptr *QDoubleValidator) ConnectTopChanged(f func(top float64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "topChanged") {
-			C.QDoubleValidator_ConnectTopChanged(ptr.Pointer())
+			C.QDoubleValidator_ConnectTopChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "topChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "topChanged"); signal != nil {
@@ -9927,7 +9927,7 @@ func (ptr *QDrag) ConnectActionChanged(f func(action core.Qt__DropAction)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "actionChanged") {
-			C.QDrag_ConnectActionChanged(ptr.Pointer())
+			C.QDrag_ConnectActionChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "actionChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "actionChanged"); signal != nil {
@@ -10087,7 +10087,7 @@ func (ptr *QDrag) ConnectTargetChanged(f func(newTarget *core.QObject)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "targetChanged") {
-			C.QDrag_ConnectTargetChanged(ptr.Pointer())
+			C.QDrag_ConnectTargetChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "targetChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "targetChanged"); signal != nil {
@@ -14338,7 +14338,7 @@ func (ptr *QGuiApplication) ConnectApplicationDisplayNameChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "applicationDisplayNameChanged") {
-			C.QGuiApplication_ConnectApplicationDisplayNameChanged(ptr.Pointer())
+			C.QGuiApplication_ConnectApplicationDisplayNameChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "applicationDisplayNameChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "applicationDisplayNameChanged"); signal != nil {
@@ -14386,7 +14386,7 @@ func (ptr *QGuiApplication) ConnectApplicationStateChanged(f func(state core.Qt_
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "applicationStateChanged") {
-			C.QGuiApplication_ConnectApplicationStateChanged(ptr.Pointer())
+			C.QGuiApplication_ConnectApplicationStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "applicationStateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "applicationStateChanged"); signal != nil {
@@ -14450,7 +14450,7 @@ func (ptr *QGuiApplication) ConnectCommitDataRequest(f func(manager *QSessionMan
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "commitDataRequest") {
-			C.QGuiApplication_ConnectCommitDataRequest(ptr.Pointer())
+			C.QGuiApplication_ConnectCommitDataRequest(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "commitDataRequest")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "commitDataRequest"); signal != nil {
@@ -14553,7 +14553,7 @@ func (ptr *QGuiApplication) ConnectFocusObjectChanged(f func(focusObject *core.Q
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "focusObjectChanged") {
-			C.QGuiApplication_ConnectFocusObjectChanged(ptr.Pointer())
+			C.QGuiApplication_ConnectFocusObjectChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "focusObjectChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "focusObjectChanged"); signal != nil {
@@ -14609,7 +14609,7 @@ func (ptr *QGuiApplication) ConnectFocusWindowChanged(f func(focusWindow *QWindo
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "focusWindowChanged") {
-			C.QGuiApplication_ConnectFocusWindowChanged(ptr.Pointer())
+			C.QGuiApplication_ConnectFocusWindowChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "focusWindowChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "focusWindowChanged"); signal != nil {
@@ -14661,7 +14661,7 @@ func (ptr *QGuiApplication) ConnectFontChanged(f func(font *QFont)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "fontChanged") {
-			C.QGuiApplication_ConnectFontChanged(ptr.Pointer())
+			C.QGuiApplication_ConnectFontChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "fontChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "fontChanged"); signal != nil {
@@ -14701,7 +14701,7 @@ func (ptr *QGuiApplication) ConnectFontDatabaseChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "fontDatabaseChanged") {
-			C.QGuiApplication_ConnectFontDatabaseChanged(ptr.Pointer())
+			C.QGuiApplication_ConnectFontDatabaseChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "fontDatabaseChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "fontDatabaseChanged"); signal != nil {
@@ -14803,7 +14803,7 @@ func (ptr *QGuiApplication) ConnectLastWindowClosed(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "lastWindowClosed") {
-			C.QGuiApplication_ConnectLastWindowClosed(ptr.Pointer())
+			C.QGuiApplication_ConnectLastWindowClosed(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "lastWindowClosed")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "lastWindowClosed"); signal != nil {
@@ -14851,7 +14851,7 @@ func (ptr *QGuiApplication) ConnectLayoutDirectionChanged(f func(direction core.
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "layoutDirectionChanged") {
-			C.QGuiApplication_ConnectLayoutDirectionChanged(ptr.Pointer())
+			C.QGuiApplication_ConnectLayoutDirectionChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "layoutDirectionChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "layoutDirectionChanged"); signal != nil {
@@ -14935,7 +14935,7 @@ func (ptr *QGuiApplication) ConnectPaletteChanged(f func(palette *QPalette)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "paletteChanged") {
-			C.QGuiApplication_ConnectPaletteChanged(ptr.Pointer())
+			C.QGuiApplication_ConnectPaletteChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "paletteChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "paletteChanged"); signal != nil {
@@ -14999,7 +14999,7 @@ func (ptr *QGuiApplication) ConnectPrimaryScreenChanged(f func(screen *QScreen))
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "primaryScreenChanged") {
-			C.QGuiApplication_ConnectPrimaryScreenChanged(ptr.Pointer())
+			C.QGuiApplication_ConnectPrimaryScreenChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "primaryScreenChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "primaryScreenChanged"); signal != nil {
@@ -15063,7 +15063,7 @@ func (ptr *QGuiApplication) ConnectSaveStateRequest(f func(manager *QSessionMana
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "saveStateRequest") {
-			C.QGuiApplication_ConnectSaveStateRequest(ptr.Pointer())
+			C.QGuiApplication_ConnectSaveStateRequest(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "saveStateRequest")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "saveStateRequest"); signal != nil {
@@ -15103,7 +15103,7 @@ func (ptr *QGuiApplication) ConnectScreenAdded(f func(screen *QScreen)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "screenAdded") {
-			C.QGuiApplication_ConnectScreenAdded(ptr.Pointer())
+			C.QGuiApplication_ConnectScreenAdded(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "screenAdded")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "screenAdded"); signal != nil {
@@ -15159,7 +15159,7 @@ func (ptr *QGuiApplication) ConnectScreenRemoved(f func(screen *QScreen)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "screenRemoved") {
-			C.QGuiApplication_ConnectScreenRemoved(ptr.Pointer())
+			C.QGuiApplication_ConnectScreenRemoved(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "screenRemoved")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "screenRemoved"); signal != nil {
@@ -20968,7 +20968,7 @@ func (ptr *QInputMethod) ConnectAnchorRectangleChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "anchorRectangleChanged") {
-			C.QInputMethod_ConnectAnchorRectangleChanged(ptr.Pointer())
+			C.QInputMethod_ConnectAnchorRectangleChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "anchorRectangleChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "anchorRectangleChanged"); signal != nil {
@@ -21008,7 +21008,7 @@ func (ptr *QInputMethod) ConnectAnimatingChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "animatingChanged") {
-			C.QInputMethod_ConnectAnimatingChanged(ptr.Pointer())
+			C.QInputMethod_ConnectAnimatingChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "animatingChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "animatingChanged"); signal != nil {
@@ -21100,7 +21100,7 @@ func (ptr *QInputMethod) ConnectCursorRectangleChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "cursorRectangleChanged") {
-			C.QInputMethod_ConnectCursorRectangleChanged(ptr.Pointer())
+			C.QInputMethod_ConnectCursorRectangleChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "cursorRectangleChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "cursorRectangleChanged"); signal != nil {
@@ -21190,7 +21190,7 @@ func (ptr *QInputMethod) ConnectInputDirectionChanged(f func(newDirection core.Q
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "inputDirectionChanged") {
-			C.QInputMethod_ConnectInputDirectionChanged(ptr.Pointer())
+			C.QInputMethod_ConnectInputDirectionChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "inputDirectionChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "inputDirectionChanged"); signal != nil {
@@ -21239,7 +21239,7 @@ func (ptr *QInputMethod) ConnectInputItemClipRectangleChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "inputItemClipRectangleChanged") {
-			C.QInputMethod_ConnectInputItemClipRectangleChanged(ptr.Pointer())
+			C.QInputMethod_ConnectInputItemClipRectangleChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "inputItemClipRectangleChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "inputItemClipRectangleChanged"); signal != nil {
@@ -21363,7 +21363,7 @@ func (ptr *QInputMethod) ConnectKeyboardRectangleChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "keyboardRectangleChanged") {
-			C.QInputMethod_ConnectKeyboardRectangleChanged(ptr.Pointer())
+			C.QInputMethod_ConnectKeyboardRectangleChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "keyboardRectangleChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "keyboardRectangleChanged"); signal != nil {
@@ -21412,7 +21412,7 @@ func (ptr *QInputMethod) ConnectLocaleChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "localeChanged") {
-			C.QInputMethod_ConnectLocaleChanged(ptr.Pointer())
+			C.QInputMethod_ConnectLocaleChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "localeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "localeChanged"); signal != nil {
@@ -21611,7 +21611,7 @@ func (ptr *QInputMethod) ConnectVisibleChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "visibleChanged") {
-			C.QInputMethod_ConnectVisibleChanged(ptr.Pointer())
+			C.QInputMethod_ConnectVisibleChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "visibleChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "visibleChanged"); signal != nil {
@@ -22173,7 +22173,7 @@ func (ptr *QIntValidator) ConnectBottomChanged(f func(bottom int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "bottomChanged") {
-			C.QIntValidator_ConnectBottomChanged(ptr.Pointer())
+			C.QIntValidator_ConnectBottomChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "bottomChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "bottomChanged"); signal != nil {
@@ -22275,7 +22275,7 @@ func (ptr *QIntValidator) ConnectTopChanged(f func(top int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "topChanged") {
-			C.QIntValidator_ConnectTopChanged(ptr.Pointer())
+			C.QIntValidator_ConnectTopChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "topChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "topChanged"); signal != nil {
@@ -24144,7 +24144,7 @@ func (ptr *QMovie) ConnectError(f func(error QImageReader__ImageReaderError)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "error") {
-			C.QMovie_ConnectError(ptr.Pointer())
+			C.QMovie_ConnectError(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error"); signal != nil {
@@ -24191,7 +24191,7 @@ func (ptr *QMovie) ConnectFinished(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "finished") {
-			C.QMovie_ConnectFinished(ptr.Pointer())
+			C.QMovie_ConnectFinished(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "finished")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "finished"); signal != nil {
@@ -24240,7 +24240,7 @@ func (ptr *QMovie) ConnectFrameChanged(f func(frameNumber int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "frameChanged") {
-			C.QMovie_ConnectFrameChanged(ptr.Pointer())
+			C.QMovie_ConnectFrameChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "frameChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "frameChanged"); signal != nil {
@@ -24383,7 +24383,7 @@ func (ptr *QMovie) ConnectResized(f func(size *core.QSize)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "resized") {
-			C.QMovie_ConnectResized(ptr.Pointer())
+			C.QMovie_ConnectResized(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "resized")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "resized"); signal != nil {
@@ -24609,7 +24609,7 @@ func (ptr *QMovie) ConnectStarted(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "started") {
-			C.QMovie_ConnectStarted(ptr.Pointer())
+			C.QMovie_ConnectStarted(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "started")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "started"); signal != nil {
@@ -24656,7 +24656,7 @@ func (ptr *QMovie) ConnectStateChanged(f func(state QMovie__MovieState)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stateChanged") {
-			C.QMovie_ConnectStateChanged(ptr.Pointer())
+			C.QMovie_ConnectStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
@@ -24761,7 +24761,7 @@ func (ptr *QMovie) ConnectUpdated(f func(rect *core.QRect)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "updated") {
-			C.QMovie_ConnectUpdated(ptr.Pointer())
+			C.QMovie_ConnectUpdated(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "updated")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "updated"); signal != nil {
@@ -25391,7 +25391,7 @@ func (ptr *QOffscreenSurface) ConnectScreenChanged(f func(screen *QScreen)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "screenChanged") {
-			C.QOffscreenSurface_ConnectScreenChanged(ptr.Pointer())
+			C.QOffscreenSurface_ConnectScreenChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "screenChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "screenChanged"); signal != nil {
@@ -26197,7 +26197,7 @@ func (ptr *QOpenGLContext) ConnectAboutToBeDestroyed(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "aboutToBeDestroyed") {
-			C.QOpenGLContext_ConnectAboutToBeDestroyed(ptr.Pointer())
+			C.QOpenGLContext_ConnectAboutToBeDestroyed(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "aboutToBeDestroyed")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "aboutToBeDestroyed"); signal != nil {
@@ -27287,7 +27287,7 @@ func (ptr *QOpenGLDebugLogger) ConnectMessageLogged(f func(debugMessage *QOpenGL
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "messageLogged") {
-			C.QOpenGLDebugLogger_ConnectMessageLogged(ptr.Pointer())
+			C.QOpenGLDebugLogger_ConnectMessageLogged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "messageLogged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "messageLogged"); signal != nil {
@@ -38285,7 +38285,7 @@ func (ptr *QOpenGLWindow) ConnectFrameSwapped(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "frameSwapped") {
-			C.QOpenGLWindow_ConnectFrameSwapped(ptr.Pointer())
+			C.QOpenGLWindow_ConnectFrameSwapped(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "frameSwapped")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "frameSwapped"); signal != nil {
@@ -49904,7 +49904,7 @@ func (ptr *QRegExpValidator) ConnectRegExpChanged(f func(regExp *core.QRegExp)) 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "regExpChanged") {
-			C.QRegExpValidator_ConnectRegExpChanged(ptr.Pointer())
+			C.QRegExpValidator_ConnectRegExpChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "regExpChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "regExpChanged"); signal != nil {
@@ -50385,7 +50385,7 @@ func (ptr *QRegularExpressionValidator) ConnectRegularExpressionChanged(f func(r
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "regularExpressionChanged") {
-			C.QRegularExpressionValidator_ConnectRegularExpressionChanged(ptr.Pointer())
+			C.QRegularExpressionValidator_ConnectRegularExpressionChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "regularExpressionChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "regularExpressionChanged"); signal != nil {
@@ -50846,7 +50846,7 @@ func (ptr *QScreen) ConnectAvailableGeometryChanged(f func(geometry *core.QRect)
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "availableGeometryChanged") {
-			C.QScreen_ConnectAvailableGeometryChanged(ptr.Pointer())
+			C.QScreen_ConnectAvailableGeometryChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "availableGeometryChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "availableGeometryChanged"); signal != nil {
@@ -50936,7 +50936,7 @@ func (ptr *QScreen) ConnectGeometryChanged(f func(geometry *core.QRect)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "geometryChanged") {
-			C.QScreen_ConnectGeometryChanged(ptr.Pointer())
+			C.QScreen_ConnectGeometryChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "geometryChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "geometryChanged"); signal != nil {
@@ -51006,7 +51006,7 @@ func (ptr *QScreen) ConnectLogicalDotsPerInchChanged(f func(dpi float64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "logicalDotsPerInchChanged") {
-			C.QScreen_ConnectLogicalDotsPerInchChanged(ptr.Pointer())
+			C.QScreen_ConnectLogicalDotsPerInchChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "logicalDotsPerInchChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "logicalDotsPerInchChanged"); signal != nil {
@@ -51104,7 +51104,7 @@ func (ptr *QScreen) ConnectOrientationChanged(f func(orientation core.Qt__Screen
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "orientationChanged") {
-			C.QScreen_ConnectOrientationChanged(ptr.Pointer())
+			C.QScreen_ConnectOrientationChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "orientationChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "orientationChanged"); signal != nil {
@@ -51158,7 +51158,7 @@ func (ptr *QScreen) ConnectPhysicalDotsPerInchChanged(f func(dpi float64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "physicalDotsPerInchChanged") {
-			C.QScreen_ConnectPhysicalDotsPerInchChanged(ptr.Pointer())
+			C.QScreen_ConnectPhysicalDotsPerInchChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "physicalDotsPerInchChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "physicalDotsPerInchChanged"); signal != nil {
@@ -51221,7 +51221,7 @@ func (ptr *QScreen) ConnectPhysicalSizeChanged(f func(size *core.QSizeF)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "physicalSizeChanged") {
-			C.QScreen_ConnectPhysicalSizeChanged(ptr.Pointer())
+			C.QScreen_ConnectPhysicalSizeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "physicalSizeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "physicalSizeChanged"); signal != nil {
@@ -51268,7 +51268,7 @@ func (ptr *QScreen) ConnectPrimaryOrientationChanged(f func(orientation core.Qt_
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "primaryOrientationChanged") {
-			C.QScreen_ConnectPrimaryOrientationChanged(ptr.Pointer())
+			C.QScreen_ConnectPrimaryOrientationChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "primaryOrientationChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "primaryOrientationChanged"); signal != nil {
@@ -51315,7 +51315,7 @@ func (ptr *QScreen) ConnectRefreshRateChanged(f func(refreshRate float64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "refreshRateChanged") {
-			C.QScreen_ConnectRefreshRateChanged(ptr.Pointer())
+			C.QScreen_ConnectRefreshRateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "refreshRateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "refreshRateChanged"); signal != nil {
@@ -51395,7 +51395,7 @@ func (ptr *QScreen) ConnectVirtualGeometryChanged(f func(rect *core.QRect)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "virtualGeometryChanged") {
-			C.QScreen_ConnectVirtualGeometryChanged(ptr.Pointer())
+			C.QScreen_ConnectVirtualGeometryChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "virtualGeometryChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "virtualGeometryChanged"); signal != nil {
@@ -54301,7 +54301,7 @@ func (ptr *QStandardItemModel) ConnectItemChanged(f func(item *QStandardItem)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "itemChanged") {
-			C.QStandardItemModel_ConnectItemChanged(ptr.Pointer())
+			C.QStandardItemModel_ConnectItemChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "itemChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "itemChanged"); signal != nil {
@@ -56331,7 +56331,7 @@ func (ptr *QStyleHints) ConnectCursorFlashTimeChanged(f func(cursorFlashTime int
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "cursorFlashTimeChanged") {
-			C.QStyleHints_ConnectCursorFlashTimeChanged(ptr.Pointer())
+			C.QStyleHints_ConnectCursorFlashTimeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "cursorFlashTimeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "cursorFlashTimeChanged"); signal != nil {
@@ -56392,7 +56392,7 @@ func (ptr *QStyleHints) ConnectKeyboardInputIntervalChanged(f func(keyboardInput
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "keyboardInputIntervalChanged") {
-			C.QStyleHints_ConnectKeyboardInputIntervalChanged(ptr.Pointer())
+			C.QStyleHints_ConnectKeyboardInputIntervalChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "keyboardInputIntervalChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "keyboardInputIntervalChanged"); signal != nil {
@@ -56439,7 +56439,7 @@ func (ptr *QStyleHints) ConnectMouseDoubleClickIntervalChanged(f func(mouseDoubl
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "mouseDoubleClickIntervalChanged") {
-			C.QStyleHints_ConnectMouseDoubleClickIntervalChanged(ptr.Pointer())
+			C.QStyleHints_ConnectMouseDoubleClickIntervalChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "mouseDoubleClickIntervalChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "mouseDoubleClickIntervalChanged"); signal != nil {
@@ -56486,7 +56486,7 @@ func (ptr *QStyleHints) ConnectMousePressAndHoldIntervalChanged(f func(mousePres
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "mousePressAndHoldIntervalChanged") {
-			C.QStyleHints_ConnectMousePressAndHoldIntervalChanged(ptr.Pointer())
+			C.QStyleHints_ConnectMousePressAndHoldIntervalChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "mousePressAndHoldIntervalChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "mousePressAndHoldIntervalChanged"); signal != nil {
@@ -56533,7 +56533,7 @@ func (ptr *QStyleHints) ConnectMouseQuickSelectionThresholdChanged(f func(thresh
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "mouseQuickSelectionThresholdChanged") {
-			C.QStyleHints_ConnectMouseQuickSelectionThresholdChanged(ptr.Pointer())
+			C.QStyleHints_ConnectMouseQuickSelectionThresholdChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "mouseQuickSelectionThresholdChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "mouseQuickSelectionThresholdChanged"); signal != nil {
@@ -56629,7 +56629,7 @@ func (ptr *QStyleHints) ConnectShowShortcutsInContextMenusChanged(f func(vbo boo
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "showShortcutsInContextMenusChanged") {
-			C.QStyleHints_ConnectShowShortcutsInContextMenusChanged(ptr.Pointer())
+			C.QStyleHints_ConnectShowShortcutsInContextMenusChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "showShortcutsInContextMenusChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "showShortcutsInContextMenusChanged"); signal != nil {
@@ -56683,7 +56683,7 @@ func (ptr *QStyleHints) ConnectStartDragDistanceChanged(f func(startDragDistance
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "startDragDistanceChanged") {
-			C.QStyleHints_ConnectStartDragDistanceChanged(ptr.Pointer())
+			C.QStyleHints_ConnectStartDragDistanceChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "startDragDistanceChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "startDragDistanceChanged"); signal != nil {
@@ -56730,7 +56730,7 @@ func (ptr *QStyleHints) ConnectStartDragTimeChanged(f func(startDragTime int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "startDragTimeChanged") {
-			C.QStyleHints_ConnectStartDragTimeChanged(ptr.Pointer())
+			C.QStyleHints_ConnectStartDragTimeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "startDragTimeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "startDragTimeChanged"); signal != nil {
@@ -56784,7 +56784,7 @@ func (ptr *QStyleHints) ConnectTabFocusBehaviorChanged(f func(tabFocusBehavior c
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "tabFocusBehaviorChanged") {
-			C.QStyleHints_ConnectTabFocusBehaviorChanged(ptr.Pointer())
+			C.QStyleHints_ConnectTabFocusBehaviorChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "tabFocusBehaviorChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "tabFocusBehaviorChanged"); signal != nil {
@@ -56831,7 +56831,7 @@ func (ptr *QStyleHints) ConnectUseHoverEffectsChanged(f func(useHoverEffects boo
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "useHoverEffectsChanged") {
-			C.QStyleHints_ConnectUseHoverEffectsChanged(ptr.Pointer())
+			C.QStyleHints_ConnectUseHoverEffectsChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "useHoverEffectsChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "useHoverEffectsChanged"); signal != nil {
@@ -56885,7 +56885,7 @@ func (ptr *QStyleHints) ConnectWheelScrollLinesChanged(f func(scrollLines int)) 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "wheelScrollLinesChanged") {
-			C.QStyleHints_ConnectWheelScrollLinesChanged(ptr.Pointer())
+			C.QStyleHints_ConnectWheelScrollLinesChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "wheelScrollLinesChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "wheelScrollLinesChanged"); signal != nil {
@@ -60740,7 +60740,7 @@ func (ptr *QTextDocument) ConnectBaseUrlChanged(f func(url *core.QUrl)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "baseUrlChanged") {
-			C.QTextDocument_ConnectBaseUrlChanged(ptr.Pointer())
+			C.QTextDocument_ConnectBaseUrlChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "baseUrlChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "baseUrlChanged"); signal != nil {
@@ -60796,7 +60796,7 @@ func (ptr *QTextDocument) ConnectBlockCountChanged(f func(newBlockCount int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "blockCountChanged") {
-			C.QTextDocument_ConnectBlockCountChanged(ptr.Pointer())
+			C.QTextDocument_ConnectBlockCountChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "blockCountChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "blockCountChanged"); signal != nil {
@@ -60912,7 +60912,7 @@ func (ptr *QTextDocument) ConnectContentsChange(f func(position int, charsRemove
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "contentsChange") {
-			C.QTextDocument_ConnectContentsChange(ptr.Pointer())
+			C.QTextDocument_ConnectContentsChange(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "contentsChange")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "contentsChange"); signal != nil {
@@ -60952,7 +60952,7 @@ func (ptr *QTextDocument) ConnectContentsChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "contentsChanged") {
-			C.QTextDocument_ConnectContentsChanged(ptr.Pointer())
+			C.QTextDocument_ConnectContentsChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "contentsChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "contentsChanged"); signal != nil {
@@ -61045,7 +61045,7 @@ func (ptr *QTextDocument) ConnectCursorPositionChanged(f func(cursor *QTextCurso
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "cursorPositionChanged") {
-			C.QTextDocument_ConnectCursorPositionChanged(ptr.Pointer())
+			C.QTextDocument_ConnectCursorPositionChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "cursorPositionChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "cursorPositionChanged"); signal != nil {
@@ -61128,7 +61128,7 @@ func (ptr *QTextDocument) ConnectDocumentLayoutChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "documentLayoutChanged") {
-			C.QTextDocument_ConnectDocumentLayoutChanged(ptr.Pointer())
+			C.QTextDocument_ConnectDocumentLayoutChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "documentLayoutChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "documentLayoutChanged"); signal != nil {
@@ -61424,7 +61424,7 @@ func (ptr *QTextDocument) ConnectModificationChanged(f func(changed bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "modificationChanged") {
-			C.QTextDocument_ConnectModificationChanged(ptr.Pointer())
+			C.QTextDocument_ConnectModificationChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "modificationChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "modificationChanged"); signal != nil {
@@ -61557,7 +61557,7 @@ func (ptr *QTextDocument) ConnectRedoAvailable(f func(available bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "redoAvailable") {
-			C.QTextDocument_ConnectRedoAvailable(ptr.Pointer())
+			C.QTextDocument_ConnectRedoAvailable(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "redoAvailable")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "redoAvailable"); signal != nil {
@@ -61869,7 +61869,7 @@ func (ptr *QTextDocument) ConnectUndoAvailable(f func(available bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "undoAvailable") {
-			C.QTextDocument_ConnectUndoAvailable(ptr.Pointer())
+			C.QTextDocument_ConnectUndoAvailable(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "undoAvailable")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "undoAvailable"); signal != nil {
@@ -61909,7 +61909,7 @@ func (ptr *QTextDocument) ConnectUndoCommandAdded(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "undoCommandAdded") {
-			C.QTextDocument_ConnectUndoCommandAdded(ptr.Pointer())
+			C.QTextDocument_ConnectUndoCommandAdded(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "undoCommandAdded")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "undoCommandAdded"); signal != nil {
@@ -67419,7 +67419,7 @@ func (ptr *QValidator) ConnectChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "changed") {
-			C.QValidator_ConnectChanged(ptr.Pointer())
+			C.QValidator_ConnectChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "changed")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "changed"); signal != nil {
@@ -69302,7 +69302,7 @@ func (ptr *QWindow) ConnectActiveChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "activeChanged") {
-			C.QWindow_ConnectActiveChanged(ptr.Pointer())
+			C.QWindow_ConnectActiveChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "activeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "activeChanged"); signal != nil {
@@ -69446,7 +69446,7 @@ func (ptr *QWindow) ConnectContentOrientationChanged(f func(orientation core.Qt_
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "contentOrientationChanged") {
-			C.QWindow_ConnectContentOrientationChanged(ptr.Pointer())
+			C.QWindow_ConnectContentOrientationChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "contentOrientationChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "contentOrientationChanged"); signal != nil {
@@ -69712,7 +69712,7 @@ func (ptr *QWindow) ConnectFocusObjectChanged(f func(object *core.QObject)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "focusObjectChanged") {
-			C.QWindow_ConnectFocusObjectChanged(ptr.Pointer())
+			C.QWindow_ConnectFocusObjectChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "focusObjectChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "focusObjectChanged"); signal != nil {
@@ -69903,7 +69903,7 @@ func (ptr *QWindow) ConnectHeightChanged(f func(arg int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "heightChanged") {
-			C.QWindow_ConnectHeightChanged(ptr.Pointer())
+			C.QWindow_ConnectHeightChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "heightChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "heightChanged"); signal != nil {
@@ -70243,7 +70243,7 @@ func (ptr *QWindow) ConnectMaximumHeightChanged(f func(arg int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "maximumHeightChanged") {
-			C.QWindow_ConnectMaximumHeightChanged(ptr.Pointer())
+			C.QWindow_ConnectMaximumHeightChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "maximumHeightChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "maximumHeightChanged"); signal != nil {
@@ -70299,7 +70299,7 @@ func (ptr *QWindow) ConnectMaximumWidthChanged(f func(arg int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "maximumWidthChanged") {
-			C.QWindow_ConnectMaximumWidthChanged(ptr.Pointer())
+			C.QWindow_ConnectMaximumWidthChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "maximumWidthChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "maximumWidthChanged"); signal != nil {
@@ -70346,7 +70346,7 @@ func (ptr *QWindow) ConnectMinimumHeightChanged(f func(arg int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "minimumHeightChanged") {
-			C.QWindow_ConnectMinimumHeightChanged(ptr.Pointer())
+			C.QWindow_ConnectMinimumHeightChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "minimumHeightChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "minimumHeightChanged"); signal != nil {
@@ -70402,7 +70402,7 @@ func (ptr *QWindow) ConnectMinimumWidthChanged(f func(arg int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "minimumWidthChanged") {
-			C.QWindow_ConnectMinimumWidthChanged(ptr.Pointer())
+			C.QWindow_ConnectMinimumWidthChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "minimumWidthChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "minimumWidthChanged"); signal != nil {
@@ -70449,7 +70449,7 @@ func (ptr *QWindow) ConnectModalityChanged(f func(modality core.Qt__WindowModali
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "modalityChanged") {
-			C.QWindow_ConnectModalityChanged(ptr.Pointer())
+			C.QWindow_ConnectModalityChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "modalityChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "modalityChanged"); signal != nil {
@@ -70771,7 +70771,7 @@ func (ptr *QWindow) ConnectOpacityChanged(f func(opacity float64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "opacityChanged") {
-			C.QWindow_ConnectOpacityChanged(ptr.Pointer())
+			C.QWindow_ConnectOpacityChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "opacityChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "opacityChanged"); signal != nil {
@@ -71052,7 +71052,7 @@ func (ptr *QWindow) ConnectScreenChanged(f func(screen *QScreen)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "screenChanged") {
-			C.QWindow_ConnectScreenChanged(ptr.Pointer())
+			C.QWindow_ConnectScreenChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "screenChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "screenChanged"); signal != nil {
@@ -72243,7 +72243,7 @@ func (ptr *QWindow) ConnectVisibilityChanged(f func(visibility QWindow__Visibili
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "visibilityChanged") {
-			C.QWindow_ConnectVisibilityChanged(ptr.Pointer())
+			C.QWindow_ConnectVisibilityChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "visibilityChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "visibilityChanged"); signal != nil {
@@ -72283,7 +72283,7 @@ func (ptr *QWindow) ConnectVisibleChanged(f func(arg bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "visibleChanged") {
-			C.QWindow_ConnectVisibleChanged(ptr.Pointer())
+			C.QWindow_ConnectVisibleChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "visibleChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "visibleChanged"); signal != nil {
@@ -72373,7 +72373,7 @@ func (ptr *QWindow) ConnectWidthChanged(f func(arg int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "widthChanged") {
-			C.QWindow_ConnectWidthChanged(ptr.Pointer())
+			C.QWindow_ConnectWidthChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "widthChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "widthChanged"); signal != nil {
@@ -72427,7 +72427,7 @@ func (ptr *QWindow) ConnectWindowStateChanged(f func(windowState core.Qt__Window
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "windowStateChanged") {
-			C.QWindow_ConnectWindowStateChanged(ptr.Pointer())
+			C.QWindow_ConnectWindowStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "windowStateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "windowStateChanged"); signal != nil {
@@ -72474,7 +72474,7 @@ func (ptr *QWindow) ConnectWindowTitleChanged(f func(title string)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "windowTitleChanged") {
-			C.QWindow_ConnectWindowTitleChanged(ptr.Pointer())
+			C.QWindow_ConnectWindowTitleChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "windowTitleChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "windowTitleChanged"); signal != nil {
@@ -72526,7 +72526,7 @@ func (ptr *QWindow) ConnectXChanged(f func(arg int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "xChanged") {
-			C.QWindow_ConnectXChanged(ptr.Pointer())
+			C.QWindow_ConnectXChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "xChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "xChanged"); signal != nil {
@@ -72573,7 +72573,7 @@ func (ptr *QWindow) ConnectYChanged(f func(arg int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "yChanged") {
-			C.QWindow_ConnectYChanged(ptr.Pointer())
+			C.QWindow_ConnectYChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "yChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "yChanged"); signal != nil {

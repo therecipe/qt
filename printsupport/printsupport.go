@@ -3160,7 +3160,7 @@ func (ptr *QPrintDialog) ConnectAccepted(f func(printer *QPrinter)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "accepted") {
-			C.QPrintDialog_ConnectAccepted(ptr.Pointer())
+			C.QPrintDialog_ConnectAccepted(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "accepted")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "accepted"); signal != nil {
@@ -3821,7 +3821,7 @@ func (ptr *QPrintPreviewDialog) ConnectPaintRequested(f func(printer *QPrinter))
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "paintRequested") {
-			C.QPrintPreviewDialog_ConnectPaintRequested(ptr.Pointer())
+			C.QPrintPreviewDialog_ConnectPaintRequested(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "paintRequested")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "paintRequested"); signal != nil {
@@ -5388,7 +5388,7 @@ func (ptr *QPrintPreviewWidget) ConnectPaintRequested(f func(printer *QPrinter))
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "paintRequested") {
-			C.QPrintPreviewWidget_ConnectPaintRequested(ptr.Pointer())
+			C.QPrintPreviewWidget_ConnectPaintRequested(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "paintRequested")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "paintRequested"); signal != nil {
@@ -5428,7 +5428,7 @@ func (ptr *QPrintPreviewWidget) ConnectPreviewChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "previewChanged") {
-			C.QPrintPreviewWidget_ConnectPreviewChanged(ptr.Pointer())
+			C.QPrintPreviewWidget_ConnectPreviewChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "previewChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "previewChanged"); signal != nil {

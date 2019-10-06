@@ -251,7 +251,7 @@ func (ptr *QSerialPort) ConnectBaudRateChanged(f func(baudRate int, directions Q
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "baudRateChanged") {
-			C.QSerialPort_ConnectBaudRateChanged(ptr.Pointer())
+			C.QSerialPort_ConnectBaudRateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "baudRateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "baudRateChanged"); signal != nil {
@@ -291,7 +291,7 @@ func (ptr *QSerialPort) ConnectBreakEnabledChanged(f func(set bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "breakEnabledChanged") {
-			C.QSerialPort_ConnectBreakEnabledChanged(ptr.Pointer())
+			C.QSerialPort_ConnectBreakEnabledChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "breakEnabledChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "breakEnabledChanged"); signal != nil {
@@ -414,7 +414,7 @@ func (ptr *QSerialPort) ConnectDataBitsChanged(f func(dataBits QSerialPort__Data
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "dataBitsChanged") {
-			C.QSerialPort_ConnectDataBitsChanged(ptr.Pointer())
+			C.QSerialPort_ConnectDataBitsChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "dataBitsChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "dataBitsChanged"); signal != nil {
@@ -454,7 +454,7 @@ func (ptr *QSerialPort) ConnectDataTerminalReadyChanged(f func(set bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "dataTerminalReadyChanged") {
-			C.QSerialPort_ConnectDataTerminalReadyChanged(ptr.Pointer())
+			C.QSerialPort_ConnectDataTerminalReadyChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "dataTerminalReadyChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "dataTerminalReadyChanged"); signal != nil {
@@ -501,7 +501,7 @@ func (ptr *QSerialPort) ConnectErrorOccurred(f func(error QSerialPort__SerialPor
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "errorOccurred") {
-			C.QSerialPort_ConnectErrorOccurred(ptr.Pointer())
+			C.QSerialPort_ConnectErrorOccurred(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "errorOccurred")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "errorOccurred"); signal != nil {
@@ -548,7 +548,7 @@ func (ptr *QSerialPort) ConnectFlowControlChanged(f func(flow QSerialPort__FlowC
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "flowControlChanged") {
-			C.QSerialPort_ConnectFlowControlChanged(ptr.Pointer())
+			C.QSerialPort_ConnectFlowControlChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "flowControlChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "flowControlChanged"); signal != nil {
@@ -655,7 +655,7 @@ func (ptr *QSerialPort) ConnectParityChanged(f func(parity QSerialPort__Parity))
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "parityChanged") {
-			C.QSerialPort_ConnectParityChanged(ptr.Pointer())
+			C.QSerialPort_ConnectParityChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "parityChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "parityChanged"); signal != nil {
@@ -802,7 +802,7 @@ func (ptr *QSerialPort) ConnectRequestToSendChanged(f func(set bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "requestToSendChanged") {
-			C.QSerialPort_ConnectRequestToSendChanged(ptr.Pointer())
+			C.QSerialPort_ConnectRequestToSendChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "requestToSendChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "requestToSendChanged"); signal != nil {
@@ -948,7 +948,7 @@ func (ptr *QSerialPort) ConnectStopBitsChanged(f func(stopBits QSerialPort__Stop
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stopBitsChanged") {
-			C.QSerialPort_ConnectStopBitsChanged(ptr.Pointer())
+			C.QSerialPort_ConnectStopBitsChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stopBitsChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stopBitsChanged"); signal != nil {

@@ -342,6 +342,9 @@ func CppHeaderInput(f *parser.Function) string {
 	}
 
 	if f.Meta == parser.SIGNAL {
+		if f.SignalMode == parser.CONNECT {
+			tmp = append(tmp, "long long t")
+		}
 		return strings.Join(tmp, ", ")
 	}
 

@@ -610,7 +610,7 @@ func (ptr *QWebSocket) ConnectAboutToClose(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "aboutToClose") {
-			C.QWebSocket_ConnectAboutToClose(ptr.Pointer())
+			C.QWebSocket_ConnectAboutToClose(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "aboutToClose")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "aboutToClose"); signal != nil {
@@ -650,7 +650,7 @@ func (ptr *QWebSocket) ConnectBinaryFrameReceived(f func(frame *core.QByteArray,
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "binaryFrameReceived") {
-			C.QWebSocket_ConnectBinaryFrameReceived(ptr.Pointer())
+			C.QWebSocket_ConnectBinaryFrameReceived(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "binaryFrameReceived")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "binaryFrameReceived"); signal != nil {
@@ -690,7 +690,7 @@ func (ptr *QWebSocket) ConnectBinaryMessageReceived(f func(message *core.QByteAr
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "binaryMessageReceived") {
-			C.QWebSocket_ConnectBinaryMessageReceived(ptr.Pointer())
+			C.QWebSocket_ConnectBinaryMessageReceived(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "binaryMessageReceived")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "binaryMessageReceived"); signal != nil {
@@ -737,7 +737,7 @@ func (ptr *QWebSocket) ConnectBytesWritten(f func(bytes int64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "bytesWritten") {
-			C.QWebSocket_ConnectBytesWritten(ptr.Pointer())
+			C.QWebSocket_ConnectBytesWritten(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "bytesWritten")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "bytesWritten"); signal != nil {
@@ -844,7 +844,7 @@ func (ptr *QWebSocket) ConnectConnected(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "connected") {
-			C.QWebSocket_ConnectConnected(ptr.Pointer())
+			C.QWebSocket_ConnectConnected(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "connected")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "connected"); signal != nil {
@@ -884,7 +884,7 @@ func (ptr *QWebSocket) ConnectDisconnected(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "disconnected") {
-			C.QWebSocket_ConnectDisconnected(ptr.Pointer())
+			C.QWebSocket_ConnectDisconnected(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "disconnected")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "disconnected"); signal != nil {
@@ -931,7 +931,7 @@ func (ptr *QWebSocket) ConnectError2(f func(error network.QAbstractSocket__Socke
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "error2") {
-			C.QWebSocket_ConnectError2(ptr.Pointer())
+			C.QWebSocket_ConnectError2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error2"); signal != nil {
@@ -1240,7 +1240,7 @@ func (ptr *QWebSocket) ConnectPong(f func(elapsedTime uint64, payload *core.QByt
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "pong") {
-			C.QWebSocket_ConnectPong(ptr.Pointer())
+			C.QWebSocket_ConnectPong(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "pong")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "pong"); signal != nil {
@@ -1280,7 +1280,7 @@ func (ptr *QWebSocket) ConnectPreSharedKeyAuthenticationRequired(f func(authenti
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "preSharedKeyAuthenticationRequired") {
-			C.QWebSocket_ConnectPreSharedKeyAuthenticationRequired(ptr.Pointer())
+			C.QWebSocket_ConnectPreSharedKeyAuthenticationRequired(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "preSharedKeyAuthenticationRequired")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "preSharedKeyAuthenticationRequired"); signal != nil {
@@ -1329,7 +1329,7 @@ func (ptr *QWebSocket) ConnectProxyAuthenticationRequired(f func(proxy *network.
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "proxyAuthenticationRequired") {
-			C.QWebSocket_ConnectProxyAuthenticationRequired(ptr.Pointer())
+			C.QWebSocket_ConnectProxyAuthenticationRequired(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "proxyAuthenticationRequired")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "proxyAuthenticationRequired"); signal != nil {
@@ -1376,7 +1376,7 @@ func (ptr *QWebSocket) ConnectReadChannelFinished(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "readChannelFinished") {
-			C.QWebSocket_ConnectReadChannelFinished(ptr.Pointer())
+			C.QWebSocket_ConnectReadChannelFinished(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "readChannelFinished")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "readChannelFinished"); signal != nil {
@@ -1512,7 +1512,7 @@ func (ptr *QWebSocket) ConnectSslErrors(f func(errors []*network.QSslError)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "sslErrors") {
-			C.QWebSocket_ConnectSslErrors(ptr.Pointer())
+			C.QWebSocket_ConnectSslErrors(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "sslErrors")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "sslErrors"); signal != nil {
@@ -1565,7 +1565,7 @@ func (ptr *QWebSocket) ConnectStateChanged(f func(state network.QAbstractSocket_
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stateChanged") {
-			C.QWebSocket_ConnectStateChanged(ptr.Pointer())
+			C.QWebSocket_ConnectStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
@@ -1605,7 +1605,7 @@ func (ptr *QWebSocket) ConnectTextFrameReceived(f func(frame string, isLastFrame
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "textFrameReceived") {
-			C.QWebSocket_ConnectTextFrameReceived(ptr.Pointer())
+			C.QWebSocket_ConnectTextFrameReceived(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "textFrameReceived")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "textFrameReceived"); signal != nil {
@@ -1650,7 +1650,7 @@ func (ptr *QWebSocket) ConnectTextMessageReceived(f func(message string)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "textMessageReceived") {
-			C.QWebSocket_ConnectTextMessageReceived(ptr.Pointer())
+			C.QWebSocket_ConnectTextMessageReceived(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "textMessageReceived")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "textMessageReceived"); signal != nil {
@@ -2282,7 +2282,7 @@ func (ptr *QWebSocketServer) ConnectAcceptError(f func(socketError network.QAbst
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "acceptError") {
-			C.QWebSocketServer_ConnectAcceptError(ptr.Pointer())
+			C.QWebSocketServer_ConnectAcceptError(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "acceptError")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "acceptError"); signal != nil {
@@ -2328,7 +2328,7 @@ func (ptr *QWebSocketServer) ConnectClosed(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "closed") {
-			C.QWebSocketServer_ConnectClosed(ptr.Pointer())
+			C.QWebSocketServer_ConnectClosed(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "closed")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "closed"); signal != nil {
@@ -2416,7 +2416,7 @@ func (ptr *QWebSocketServer) ConnectNewConnection(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "newConnection") {
-			C.QWebSocketServer_ConnectNewConnection(ptr.Pointer())
+			C.QWebSocketServer_ConnectNewConnection(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "newConnection")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "newConnection"); signal != nil {
@@ -2509,7 +2509,7 @@ func (ptr *QWebSocketServer) ConnectOriginAuthenticationRequired(f func(authenti
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "originAuthenticationRequired") {
-			C.QWebSocketServer_ConnectOriginAuthenticationRequired(ptr.Pointer())
+			C.QWebSocketServer_ConnectOriginAuthenticationRequired(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "originAuthenticationRequired")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "originAuthenticationRequired"); signal != nil {
@@ -2555,7 +2555,7 @@ func (ptr *QWebSocketServer) ConnectPeerVerifyError(f func(error *network.QSslEr
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "peerVerifyError") {
-			C.QWebSocketServer_ConnectPeerVerifyError(ptr.Pointer())
+			C.QWebSocketServer_ConnectPeerVerifyError(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "peerVerifyError")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "peerVerifyError"); signal != nil {
@@ -2595,7 +2595,7 @@ func (ptr *QWebSocketServer) ConnectPreSharedKeyAuthenticationRequired(f func(au
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "preSharedKeyAuthenticationRequired") {
-			C.QWebSocketServer_ConnectPreSharedKeyAuthenticationRequired(ptr.Pointer())
+			C.QWebSocketServer_ConnectPreSharedKeyAuthenticationRequired(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "preSharedKeyAuthenticationRequired")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "preSharedKeyAuthenticationRequired"); signal != nil {
@@ -2666,7 +2666,7 @@ func (ptr *QWebSocketServer) ConnectServerError(f func(closeCode QWebSocketProto
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "serverError") {
-			C.QWebSocketServer_ConnectServerError(ptr.Pointer())
+			C.QWebSocketServer_ConnectServerError(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "serverError")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "serverError"); signal != nil {
@@ -2774,7 +2774,7 @@ func (ptr *QWebSocketServer) ConnectSslErrors(f func(errors []*network.QSslError
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "sslErrors") {
-			C.QWebSocketServer_ConnectSslErrors(ptr.Pointer())
+			C.QWebSocketServer_ConnectSslErrors(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "sslErrors")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "sslErrors"); signal != nil {

@@ -95,6 +95,12 @@ func Check(target string, docker, vagrant bool) {
 			}...)
 		}
 
+		if arm, ok := utils.GOARM(); ok {
+			vars = append(vars, [][]string{
+				{"GOARM", arm},
+			}...)
+		}
+
 		compiler := strings.TrimSpace(utils.RunCmd(exec.Command("go", "env", "CXX"), "get compiler name"))
 		if _, err := exec.LookPath(compiler); err != nil {
 			utils.Log.WithError(err).Panicf("failed to find %v, did you install %v?", compiler, compiler)

@@ -997,9 +997,9 @@ void QSvgRenderer_Render3Default(void* ptr, void* painter, struct QtSvg_PackedSt
 		static_cast<QSvgRenderer*>(ptr)->QSvgRenderer::render(static_cast<QPainter*>(painter), QString::fromUtf8(elementId.data, elementId.len), *static_cast<QRectF*>(bounds));
 }
 
-void QSvgRenderer_ConnectRepaintNeeded(void* ptr)
+void QSvgRenderer_ConnectRepaintNeeded(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSvgRenderer*>(ptr), static_cast<void (QSvgRenderer::*)()>(&QSvgRenderer::repaintNeeded), static_cast<MyQSvgRenderer*>(ptr), static_cast<void (MyQSvgRenderer::*)()>(&MyQSvgRenderer::Signal_RepaintNeeded));
+	QObject::connect(static_cast<QSvgRenderer*>(ptr), static_cast<void (QSvgRenderer::*)()>(&QSvgRenderer::repaintNeeded), static_cast<MyQSvgRenderer*>(ptr), static_cast<void (MyQSvgRenderer::*)()>(&MyQSvgRenderer::Signal_RepaintNeeded), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSvgRenderer_DisconnectRepaintNeeded(void* ptr)

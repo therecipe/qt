@@ -108,7 +108,7 @@ func (ptr *QAbstractAxis) ConnectColorChanged(f func(color *gui.QColor)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "colorChanged") {
-			C.QAbstractAxis_ConnectColorChanged(ptr.Pointer())
+			C.QAbstractAxis_ConnectColorChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "colorChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "colorChanged"); signal != nil {
@@ -157,7 +157,7 @@ func (ptr *QAbstractAxis) ConnectGridLineColorChanged(f func(color *gui.QColor))
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "gridLineColorChanged") {
-			C.QAbstractAxis_ConnectGridLineColorChanged(ptr.Pointer())
+			C.QAbstractAxis_ConnectGridLineColorChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "gridLineColorChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "gridLineColorChanged"); signal != nil {
@@ -206,7 +206,7 @@ func (ptr *QAbstractAxis) ConnectGridLinePenChanged(f func(pen *gui.QPen)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "gridLinePenChanged") {
-			C.QAbstractAxis_ConnectGridLinePenChanged(ptr.Pointer())
+			C.QAbstractAxis_ConnectGridLinePenChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "gridLinePenChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "gridLinePenChanged"); signal != nil {
@@ -246,7 +246,7 @@ func (ptr *QAbstractAxis) ConnectGridVisibleChanged(f func(visible bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "gridVisibleChanged") {
-			C.QAbstractAxis_ConnectGridVisibleChanged(ptr.Pointer())
+			C.QAbstractAxis_ConnectGridVisibleChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "gridVisibleChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "gridVisibleChanged"); signal != nil {
@@ -341,7 +341,7 @@ func (ptr *QAbstractAxis) ConnectLabelsAngleChanged(f func(angle int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "labelsAngleChanged") {
-			C.QAbstractAxis_ConnectLabelsAngleChanged(ptr.Pointer())
+			C.QAbstractAxis_ConnectLabelsAngleChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "labelsAngleChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "labelsAngleChanged"); signal != nil {
@@ -390,7 +390,7 @@ func (ptr *QAbstractAxis) ConnectLabelsBrushChanged(f func(brush *gui.QBrush)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "labelsBrushChanged") {
-			C.QAbstractAxis_ConnectLabelsBrushChanged(ptr.Pointer())
+			C.QAbstractAxis_ConnectLabelsBrushChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "labelsBrushChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "labelsBrushChanged"); signal != nil {
@@ -439,7 +439,7 @@ func (ptr *QAbstractAxis) ConnectLabelsColorChanged(f func(color *gui.QColor)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "labelsColorChanged") {
-			C.QAbstractAxis_ConnectLabelsColorChanged(ptr.Pointer())
+			C.QAbstractAxis_ConnectLabelsColorChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "labelsColorChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "labelsColorChanged"); signal != nil {
@@ -486,7 +486,7 @@ func (ptr *QAbstractAxis) ConnectLabelsEditableChanged(f func(editable bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "labelsEditableChanged") {
-			C.QAbstractAxis_ConnectLabelsEditableChanged(ptr.Pointer())
+			C.QAbstractAxis_ConnectLabelsEditableChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "labelsEditableChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "labelsEditableChanged"); signal != nil {
@@ -535,7 +535,7 @@ func (ptr *QAbstractAxis) ConnectLabelsFontChanged(f func(font *gui.QFont)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "labelsFontChanged") {
-			C.QAbstractAxis_ConnectLabelsFontChanged(ptr.Pointer())
+			C.QAbstractAxis_ConnectLabelsFontChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "labelsFontChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "labelsFontChanged"); signal != nil {
@@ -582,7 +582,7 @@ func (ptr *QAbstractAxis) ConnectLabelsVisibleChanged(f func(visible bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "labelsVisibleChanged") {
-			C.QAbstractAxis_ConnectLabelsVisibleChanged(ptr.Pointer())
+			C.QAbstractAxis_ConnectLabelsVisibleChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "labelsVisibleChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "labelsVisibleChanged"); signal != nil {
@@ -631,7 +631,7 @@ func (ptr *QAbstractAxis) ConnectLinePenChanged(f func(pen *gui.QPen)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "linePenChanged") {
-			C.QAbstractAxis_ConnectLinePenChanged(ptr.Pointer())
+			C.QAbstractAxis_ConnectLinePenChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "linePenChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "linePenChanged"); signal != nil {
@@ -680,7 +680,7 @@ func (ptr *QAbstractAxis) ConnectLineVisibleChanged(f func(visible bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "lineVisibleChanged") {
-			C.QAbstractAxis_ConnectLineVisibleChanged(ptr.Pointer())
+			C.QAbstractAxis_ConnectLineVisibleChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "lineVisibleChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "lineVisibleChanged"); signal != nil {
@@ -729,7 +729,7 @@ func (ptr *QAbstractAxis) ConnectMinorGridLineColorChanged(f func(color *gui.QCo
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "minorGridLineColorChanged") {
-			C.QAbstractAxis_ConnectMinorGridLineColorChanged(ptr.Pointer())
+			C.QAbstractAxis_ConnectMinorGridLineColorChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "minorGridLineColorChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "minorGridLineColorChanged"); signal != nil {
@@ -778,7 +778,7 @@ func (ptr *QAbstractAxis) ConnectMinorGridLinePenChanged(f func(pen *gui.QPen)) 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "minorGridLinePenChanged") {
-			C.QAbstractAxis_ConnectMinorGridLinePenChanged(ptr.Pointer())
+			C.QAbstractAxis_ConnectMinorGridLinePenChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "minorGridLinePenChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "minorGridLinePenChanged"); signal != nil {
@@ -818,7 +818,7 @@ func (ptr *QAbstractAxis) ConnectMinorGridVisibleChanged(f func(visible bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "minorGridVisibleChanged") {
-			C.QAbstractAxis_ConnectMinorGridVisibleChanged(ptr.Pointer())
+			C.QAbstractAxis_ConnectMinorGridVisibleChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "minorGridVisibleChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "minorGridVisibleChanged"); signal != nil {
@@ -865,7 +865,7 @@ func (ptr *QAbstractAxis) ConnectReverseChanged(f func(reverse bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "reverseChanged") {
-			C.QAbstractAxis_ConnectReverseChanged(ptr.Pointer())
+			C.QAbstractAxis_ConnectReverseChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "reverseChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "reverseChanged"); signal != nil {
@@ -1093,7 +1093,7 @@ func (ptr *QAbstractAxis) ConnectShadesBorderColorChanged(f func(color *gui.QCol
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "shadesBorderColorChanged") {
-			C.QAbstractAxis_ConnectShadesBorderColorChanged(ptr.Pointer())
+			C.QAbstractAxis_ConnectShadesBorderColorChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "shadesBorderColorChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "shadesBorderColorChanged"); signal != nil {
@@ -1142,7 +1142,7 @@ func (ptr *QAbstractAxis) ConnectShadesBrushChanged(f func(brush *gui.QBrush)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "shadesBrushChanged") {
-			C.QAbstractAxis_ConnectShadesBrushChanged(ptr.Pointer())
+			C.QAbstractAxis_ConnectShadesBrushChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "shadesBrushChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "shadesBrushChanged"); signal != nil {
@@ -1191,7 +1191,7 @@ func (ptr *QAbstractAxis) ConnectShadesColorChanged(f func(color *gui.QColor)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "shadesColorChanged") {
-			C.QAbstractAxis_ConnectShadesColorChanged(ptr.Pointer())
+			C.QAbstractAxis_ConnectShadesColorChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "shadesColorChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "shadesColorChanged"); signal != nil {
@@ -1240,7 +1240,7 @@ func (ptr *QAbstractAxis) ConnectShadesPenChanged(f func(pen *gui.QPen)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "shadesPenChanged") {
-			C.QAbstractAxis_ConnectShadesPenChanged(ptr.Pointer())
+			C.QAbstractAxis_ConnectShadesPenChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "shadesPenChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "shadesPenChanged"); signal != nil {
@@ -1287,7 +1287,7 @@ func (ptr *QAbstractAxis) ConnectShadesVisibleChanged(f func(visible bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "shadesVisibleChanged") {
-			C.QAbstractAxis_ConnectShadesVisibleChanged(ptr.Pointer())
+			C.QAbstractAxis_ConnectShadesVisibleChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "shadesVisibleChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "shadesVisibleChanged"); signal != nil {
@@ -1342,7 +1342,7 @@ func (ptr *QAbstractAxis) ConnectTitleBrushChanged(f func(brush *gui.QBrush)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "titleBrushChanged") {
-			C.QAbstractAxis_ConnectTitleBrushChanged(ptr.Pointer())
+			C.QAbstractAxis_ConnectTitleBrushChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "titleBrushChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "titleBrushChanged"); signal != nil {
@@ -1391,7 +1391,7 @@ func (ptr *QAbstractAxis) ConnectTitleFontChanged(f func(font *gui.QFont)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "titleFontChanged") {
-			C.QAbstractAxis_ConnectTitleFontChanged(ptr.Pointer())
+			C.QAbstractAxis_ConnectTitleFontChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "titleFontChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "titleFontChanged"); signal != nil {
@@ -1438,7 +1438,7 @@ func (ptr *QAbstractAxis) ConnectTitleTextChanged(f func(text string)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "titleTextChanged") {
-			C.QAbstractAxis_ConnectTitleTextChanged(ptr.Pointer())
+			C.QAbstractAxis_ConnectTitleTextChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "titleTextChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "titleTextChanged"); signal != nil {
@@ -1483,7 +1483,7 @@ func (ptr *QAbstractAxis) ConnectTitleVisibleChanged(f func(visible bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "titleVisibleChanged") {
-			C.QAbstractAxis_ConnectTitleVisibleChanged(ptr.Pointer())
+			C.QAbstractAxis_ConnectTitleVisibleChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "titleVisibleChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "titleVisibleChanged"); signal != nil {
@@ -1561,7 +1561,7 @@ func (ptr *QAbstractAxis) ConnectVisibleChanged(f func(visible bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "visibleChanged") {
-			C.QAbstractAxis_ConnectVisibleChanged(ptr.Pointer())
+			C.QAbstractAxis_ConnectVisibleChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "visibleChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "visibleChanged"); signal != nil {
@@ -2004,7 +2004,7 @@ func (ptr *QAbstractBarSeries) ConnectBarsetsAdded(f func(sets []*QBarSet)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "barsetsAdded") {
-			C.QAbstractBarSeries_ConnectBarsetsAdded(ptr.Pointer())
+			C.QAbstractBarSeries_ConnectBarsetsAdded(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "barsetsAdded")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "barsetsAdded"); signal != nil {
@@ -2057,7 +2057,7 @@ func (ptr *QAbstractBarSeries) ConnectBarsetsRemoved(f func(sets []*QBarSet)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "barsetsRemoved") {
-			C.QAbstractBarSeries_ConnectBarsetsRemoved(ptr.Pointer())
+			C.QAbstractBarSeries_ConnectBarsetsRemoved(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "barsetsRemoved")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "barsetsRemoved"); signal != nil {
@@ -2109,7 +2109,7 @@ func (ptr *QAbstractBarSeries) ConnectClicked(f func(index int, barset *QBarSet)
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "clicked") {
-			C.QAbstractBarSeries_ConnectClicked(ptr.Pointer())
+			C.QAbstractBarSeries_ConnectClicked(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "clicked")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "clicked"); signal != nil {
@@ -2156,7 +2156,7 @@ func (ptr *QAbstractBarSeries) ConnectCountChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "countChanged") {
-			C.QAbstractBarSeries_ConnectCountChanged(ptr.Pointer())
+			C.QAbstractBarSeries_ConnectCountChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "countChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "countChanged"); signal != nil {
@@ -2196,7 +2196,7 @@ func (ptr *QAbstractBarSeries) ConnectDoubleClicked(f func(index int, barset *QB
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "doubleClicked") {
-			C.QAbstractBarSeries_ConnectDoubleClicked(ptr.Pointer())
+			C.QAbstractBarSeries_ConnectDoubleClicked(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "doubleClicked")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "doubleClicked"); signal != nil {
@@ -2236,7 +2236,7 @@ func (ptr *QAbstractBarSeries) ConnectHovered(f func(status bool, index int, bar
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "hovered") {
-			C.QAbstractBarSeries_ConnectHovered(ptr.Pointer())
+			C.QAbstractBarSeries_ConnectHovered(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "hovered")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "hovered"); signal != nil {
@@ -2297,7 +2297,7 @@ func (ptr *QAbstractBarSeries) ConnectLabelsAngleChanged(f func(angle float64)) 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "labelsAngleChanged") {
-			C.QAbstractBarSeries_ConnectLabelsAngleChanged(ptr.Pointer())
+			C.QAbstractBarSeries_ConnectLabelsAngleChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "labelsAngleChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "labelsAngleChanged"); signal != nil {
@@ -2344,7 +2344,7 @@ func (ptr *QAbstractBarSeries) ConnectLabelsFormatChanged(f func(format string))
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "labelsFormatChanged") {
-			C.QAbstractBarSeries_ConnectLabelsFormatChanged(ptr.Pointer())
+			C.QAbstractBarSeries_ConnectLabelsFormatChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "labelsFormatChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "labelsFormatChanged"); signal != nil {
@@ -2396,7 +2396,7 @@ func (ptr *QAbstractBarSeries) ConnectLabelsPositionChanged(f func(position QAbs
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "labelsPositionChanged") {
-			C.QAbstractBarSeries_ConnectLabelsPositionChanged(ptr.Pointer())
+			C.QAbstractBarSeries_ConnectLabelsPositionChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "labelsPositionChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "labelsPositionChanged"); signal != nil {
@@ -2443,7 +2443,7 @@ func (ptr *QAbstractBarSeries) ConnectLabelsPrecisionChanged(f func(precision in
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "labelsPrecisionChanged") {
-			C.QAbstractBarSeries_ConnectLabelsPrecisionChanged(ptr.Pointer())
+			C.QAbstractBarSeries_ConnectLabelsPrecisionChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "labelsPrecisionChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "labelsPrecisionChanged"); signal != nil {
@@ -2483,7 +2483,7 @@ func (ptr *QAbstractBarSeries) ConnectLabelsVisibleChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "labelsVisibleChanged") {
-			C.QAbstractBarSeries_ConnectLabelsVisibleChanged(ptr.Pointer())
+			C.QAbstractBarSeries_ConnectLabelsVisibleChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "labelsVisibleChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "labelsVisibleChanged"); signal != nil {
@@ -2523,7 +2523,7 @@ func (ptr *QAbstractBarSeries) ConnectPressed(f func(index int, barset *QBarSet)
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "pressed") {
-			C.QAbstractBarSeries_ConnectPressed(ptr.Pointer())
+			C.QAbstractBarSeries_ConnectPressed(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "pressed")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "pressed"); signal != nil {
@@ -2563,7 +2563,7 @@ func (ptr *QAbstractBarSeries) ConnectReleased(f func(index int, barset *QBarSet
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "released") {
-			C.QAbstractBarSeries_ConnectReleased(ptr.Pointer())
+			C.QAbstractBarSeries_ConnectReleased(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "released")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "released"); signal != nil {
@@ -2930,7 +2930,7 @@ func (ptr *QAbstractSeries) ConnectNameChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "nameChanged") {
-			C.QAbstractSeries_ConnectNameChanged(ptr.Pointer())
+			C.QAbstractSeries_ConnectNameChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "nameChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "nameChanged"); signal != nil {
@@ -2977,7 +2977,7 @@ func (ptr *QAbstractSeries) ConnectOpacityChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "opacityChanged") {
-			C.QAbstractSeries_ConnectOpacityChanged(ptr.Pointer())
+			C.QAbstractSeries_ConnectOpacityChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "opacityChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "opacityChanged"); signal != nil {
@@ -3097,7 +3097,7 @@ func (ptr *QAbstractSeries) ConnectUseOpenGLChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "useOpenGLChanged") {
-			C.QAbstractSeries_ConnectUseOpenGLChanged(ptr.Pointer())
+			C.QAbstractSeries_ConnectUseOpenGLChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "useOpenGLChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "useOpenGLChanged"); signal != nil {
@@ -3137,7 +3137,7 @@ func (ptr *QAbstractSeries) ConnectVisibleChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "visibleChanged") {
-			C.QAbstractSeries_ConnectVisibleChanged(ptr.Pointer())
+			C.QAbstractSeries_ConnectVisibleChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "visibleChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "visibleChanged"); signal != nil {
@@ -3750,7 +3750,7 @@ func (ptr *QAreaSeries) ConnectBorderColorChanged(f func(color *gui.QColor)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "borderColorChanged") {
-			C.QAreaSeries_ConnectBorderColorChanged(ptr.Pointer())
+			C.QAreaSeries_ConnectBorderColorChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "borderColorChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "borderColorChanged"); signal != nil {
@@ -3799,7 +3799,7 @@ func (ptr *QAreaSeries) ConnectClicked(f func(point *core.QPointF)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "clicked") {
-			C.QAreaSeries_ConnectClicked(ptr.Pointer())
+			C.QAreaSeries_ConnectClicked(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "clicked")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "clicked"); signal != nil {
@@ -3848,7 +3848,7 @@ func (ptr *QAreaSeries) ConnectColorChanged(f func(color *gui.QColor)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "colorChanged") {
-			C.QAreaSeries_ConnectColorChanged(ptr.Pointer())
+			C.QAreaSeries_ConnectColorChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "colorChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "colorChanged"); signal != nil {
@@ -3888,7 +3888,7 @@ func (ptr *QAreaSeries) ConnectDoubleClicked(f func(point *core.QPointF)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "doubleClicked") {
-			C.QAreaSeries_ConnectDoubleClicked(ptr.Pointer())
+			C.QAreaSeries_ConnectDoubleClicked(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "doubleClicked")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "doubleClicked"); signal != nil {
@@ -3928,7 +3928,7 @@ func (ptr *QAreaSeries) ConnectHovered(f func(point *core.QPointF, state bool)) 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "hovered") {
-			C.QAreaSeries_ConnectHovered(ptr.Pointer())
+			C.QAreaSeries_ConnectHovered(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "hovered")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "hovered"); signal != nil {
@@ -3995,7 +3995,7 @@ func (ptr *QAreaSeries) ConnectPointLabelsClippingChanged(f func(clipping bool))
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "pointLabelsClippingChanged") {
-			C.QAreaSeries_ConnectPointLabelsClippingChanged(ptr.Pointer())
+			C.QAreaSeries_ConnectPointLabelsClippingChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "pointLabelsClippingChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "pointLabelsClippingChanged"); signal != nil {
@@ -4044,7 +4044,7 @@ func (ptr *QAreaSeries) ConnectPointLabelsColorChanged(f func(color *gui.QColor)
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "pointLabelsColorChanged") {
-			C.QAreaSeries_ConnectPointLabelsColorChanged(ptr.Pointer())
+			C.QAreaSeries_ConnectPointLabelsColorChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "pointLabelsColorChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "pointLabelsColorChanged"); signal != nil {
@@ -4093,7 +4093,7 @@ func (ptr *QAreaSeries) ConnectPointLabelsFontChanged(f func(font *gui.QFont)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "pointLabelsFontChanged") {
-			C.QAreaSeries_ConnectPointLabelsFontChanged(ptr.Pointer())
+			C.QAreaSeries_ConnectPointLabelsFontChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "pointLabelsFontChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "pointLabelsFontChanged"); signal != nil {
@@ -4140,7 +4140,7 @@ func (ptr *QAreaSeries) ConnectPointLabelsFormatChanged(f func(format string)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "pointLabelsFormatChanged") {
-			C.QAreaSeries_ConnectPointLabelsFormatChanged(ptr.Pointer())
+			C.QAreaSeries_ConnectPointLabelsFormatChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "pointLabelsFormatChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "pointLabelsFormatChanged"); signal != nil {
@@ -4185,7 +4185,7 @@ func (ptr *QAreaSeries) ConnectPointLabelsVisibilityChanged(f func(visible bool)
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "pointLabelsVisibilityChanged") {
-			C.QAreaSeries_ConnectPointLabelsVisibilityChanged(ptr.Pointer())
+			C.QAreaSeries_ConnectPointLabelsVisibilityChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "pointLabelsVisibilityChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "pointLabelsVisibilityChanged"); signal != nil {
@@ -4239,7 +4239,7 @@ func (ptr *QAreaSeries) ConnectPressed(f func(point *core.QPointF)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "pressed") {
-			C.QAreaSeries_ConnectPressed(ptr.Pointer())
+			C.QAreaSeries_ConnectPressed(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "pressed")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "pressed"); signal != nil {
@@ -4279,7 +4279,7 @@ func (ptr *QAreaSeries) ConnectReleased(f func(point *core.QPointF)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "released") {
-			C.QAreaSeries_ConnectReleased(ptr.Pointer())
+			C.QAreaSeries_ConnectReleased(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "released")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "released"); signal != nil {
@@ -4578,7 +4578,7 @@ func (ptr *QBarCategoryAxis) ConnectCategoriesChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "categoriesChanged") {
-			C.QBarCategoryAxis_ConnectCategoriesChanged(ptr.Pointer())
+			C.QBarCategoryAxis_ConnectCategoriesChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "categoriesChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "categoriesChanged"); signal != nil {
@@ -4631,7 +4631,7 @@ func (ptr *QBarCategoryAxis) ConnectCountChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "countChanged") {
-			C.QBarCategoryAxis_ConnectCountChanged(ptr.Pointer())
+			C.QBarCategoryAxis_ConnectCountChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "countChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "countChanged"); signal != nil {
@@ -4689,7 +4689,7 @@ func (ptr *QBarCategoryAxis) ConnectMaxChanged(f func(max string)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "maxChanged") {
-			C.QBarCategoryAxis_ConnectMaxChanged(ptr.Pointer())
+			C.QBarCategoryAxis_ConnectMaxChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "maxChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "maxChanged"); signal != nil {
@@ -4741,7 +4741,7 @@ func (ptr *QBarCategoryAxis) ConnectMinChanged(f func(min string)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "minChanged") {
-			C.QBarCategoryAxis_ConnectMinChanged(ptr.Pointer())
+			C.QBarCategoryAxis_ConnectMinChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "minChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "minChanged"); signal != nil {
@@ -4786,7 +4786,7 @@ func (ptr *QBarCategoryAxis) ConnectRangeChanged(f func(min string, max string))
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "rangeChanged") {
-			C.QBarCategoryAxis_ConnectRangeChanged(ptr.Pointer())
+			C.QBarCategoryAxis_ConnectRangeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "rangeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "rangeChanged"); signal != nil {
@@ -5418,7 +5418,7 @@ func (ptr *QBarSet) ConnectBorderColorChanged(f func(color *gui.QColor)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "borderColorChanged") {
-			C.QBarSet_ConnectBorderColorChanged(ptr.Pointer())
+			C.QBarSet_ConnectBorderColorChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "borderColorChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "borderColorChanged"); signal != nil {
@@ -5467,7 +5467,7 @@ func (ptr *QBarSet) ConnectBrushChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "brushChanged") {
-			C.QBarSet_ConnectBrushChanged(ptr.Pointer())
+			C.QBarSet_ConnectBrushChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "brushChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "brushChanged"); signal != nil {
@@ -5507,7 +5507,7 @@ func (ptr *QBarSet) ConnectClicked(f func(index int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "clicked") {
-			C.QBarSet_ConnectClicked(ptr.Pointer())
+			C.QBarSet_ConnectClicked(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "clicked")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "clicked"); signal != nil {
@@ -5556,7 +5556,7 @@ func (ptr *QBarSet) ConnectColorChanged(f func(color *gui.QColor)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "colorChanged") {
-			C.QBarSet_ConnectColorChanged(ptr.Pointer())
+			C.QBarSet_ConnectColorChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "colorChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "colorChanged"); signal != nil {
@@ -5603,7 +5603,7 @@ func (ptr *QBarSet) ConnectDoubleClicked(f func(index int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "doubleClicked") {
-			C.QBarSet_ConnectDoubleClicked(ptr.Pointer())
+			C.QBarSet_ConnectDoubleClicked(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "doubleClicked")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "doubleClicked"); signal != nil {
@@ -5643,7 +5643,7 @@ func (ptr *QBarSet) ConnectHovered(f func(status bool, index int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "hovered") {
-			C.QBarSet_ConnectHovered(ptr.Pointer())
+			C.QBarSet_ConnectHovered(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "hovered")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "hovered"); signal != nil {
@@ -5705,7 +5705,7 @@ func (ptr *QBarSet) ConnectLabelBrushChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "labelBrushChanged") {
-			C.QBarSet_ConnectLabelBrushChanged(ptr.Pointer())
+			C.QBarSet_ConnectLabelBrushChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "labelBrushChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "labelBrushChanged"); signal != nil {
@@ -5745,7 +5745,7 @@ func (ptr *QBarSet) ConnectLabelChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "labelChanged") {
-			C.QBarSet_ConnectLabelChanged(ptr.Pointer())
+			C.QBarSet_ConnectLabelChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "labelChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "labelChanged"); signal != nil {
@@ -5794,7 +5794,7 @@ func (ptr *QBarSet) ConnectLabelColorChanged(f func(color *gui.QColor)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "labelColorChanged") {
-			C.QBarSet_ConnectLabelColorChanged(ptr.Pointer())
+			C.QBarSet_ConnectLabelColorChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "labelColorChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "labelColorChanged"); signal != nil {
@@ -5843,7 +5843,7 @@ func (ptr *QBarSet) ConnectLabelFontChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "labelFontChanged") {
-			C.QBarSet_ConnectLabelFontChanged(ptr.Pointer())
+			C.QBarSet_ConnectLabelFontChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "labelFontChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "labelFontChanged"); signal != nil {
@@ -5892,7 +5892,7 @@ func (ptr *QBarSet) ConnectPenChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "penChanged") {
-			C.QBarSet_ConnectPenChanged(ptr.Pointer())
+			C.QBarSet_ConnectPenChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "penChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "penChanged"); signal != nil {
@@ -5932,7 +5932,7 @@ func (ptr *QBarSet) ConnectPressed(f func(index int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "pressed") {
-			C.QBarSet_ConnectPressed(ptr.Pointer())
+			C.QBarSet_ConnectPressed(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "pressed")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "pressed"); signal != nil {
@@ -5972,7 +5972,7 @@ func (ptr *QBarSet) ConnectReleased(f func(index int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "released") {
-			C.QBarSet_ConnectReleased(ptr.Pointer())
+			C.QBarSet_ConnectReleased(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "released")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "released"); signal != nil {
@@ -6084,7 +6084,7 @@ func (ptr *QBarSet) ConnectValueChanged(f func(index int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "valueChanged") {
-			C.QBarSet_ConnectValueChanged(ptr.Pointer())
+			C.QBarSet_ConnectValueChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "valueChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "valueChanged"); signal != nil {
@@ -6124,7 +6124,7 @@ func (ptr *QBarSet) ConnectValuesAdded(f func(index int, count int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "valuesAdded") {
-			C.QBarSet_ConnectValuesAdded(ptr.Pointer())
+			C.QBarSet_ConnectValuesAdded(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "valuesAdded")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "valuesAdded"); signal != nil {
@@ -6164,7 +6164,7 @@ func (ptr *QBarSet) ConnectValuesRemoved(f func(index int, count int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "valuesRemoved") {
-			C.QBarSet_ConnectValuesRemoved(ptr.Pointer())
+			C.QBarSet_ConnectValuesRemoved(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "valuesRemoved")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "valuesRemoved"); signal != nil {
@@ -6776,7 +6776,7 @@ func (ptr *QBoxPlotSeries) ConnectBoxOutlineVisibilityChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "boxOutlineVisibilityChanged") {
-			C.QBoxPlotSeries_ConnectBoxOutlineVisibilityChanged(ptr.Pointer())
+			C.QBoxPlotSeries_ConnectBoxOutlineVisibilityChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "boxOutlineVisibilityChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "boxOutlineVisibilityChanged"); signal != nil {
@@ -6844,7 +6844,7 @@ func (ptr *QBoxPlotSeries) ConnectBoxWidthChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "boxWidthChanged") {
-			C.QBoxPlotSeries_ConnectBoxWidthChanged(ptr.Pointer())
+			C.QBoxPlotSeries_ConnectBoxWidthChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "boxWidthChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "boxWidthChanged"); signal != nil {
@@ -6891,7 +6891,7 @@ func (ptr *QBoxPlotSeries) ConnectBoxsetsAdded(f func(sets []*QBoxSet)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "boxsetsAdded") {
-			C.QBoxPlotSeries_ConnectBoxsetsAdded(ptr.Pointer())
+			C.QBoxPlotSeries_ConnectBoxsetsAdded(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "boxsetsAdded")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "boxsetsAdded"); signal != nil {
@@ -6944,7 +6944,7 @@ func (ptr *QBoxPlotSeries) ConnectBoxsetsRemoved(f func(sets []*QBoxSet)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "boxsetsRemoved") {
-			C.QBoxPlotSeries_ConnectBoxsetsRemoved(ptr.Pointer())
+			C.QBoxPlotSeries_ConnectBoxsetsRemoved(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "boxsetsRemoved")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "boxsetsRemoved"); signal != nil {
@@ -6999,7 +6999,7 @@ func (ptr *QBoxPlotSeries) ConnectBrushChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "brushChanged") {
-			C.QBoxPlotSeries_ConnectBrushChanged(ptr.Pointer())
+			C.QBoxPlotSeries_ConnectBrushChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "brushChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "brushChanged"); signal != nil {
@@ -7045,7 +7045,7 @@ func (ptr *QBoxPlotSeries) ConnectClicked(f func(boxset *QBoxSet)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "clicked") {
-			C.QBoxPlotSeries_ConnectClicked(ptr.Pointer())
+			C.QBoxPlotSeries_ConnectClicked(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "clicked")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "clicked"); signal != nil {
@@ -7092,7 +7092,7 @@ func (ptr *QBoxPlotSeries) ConnectCountChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "countChanged") {
-			C.QBoxPlotSeries_ConnectCountChanged(ptr.Pointer())
+			C.QBoxPlotSeries_ConnectCountChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "countChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "countChanged"); signal != nil {
@@ -7132,7 +7132,7 @@ func (ptr *QBoxPlotSeries) ConnectDoubleClicked(f func(boxset *QBoxSet)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "doubleClicked") {
-			C.QBoxPlotSeries_ConnectDoubleClicked(ptr.Pointer())
+			C.QBoxPlotSeries_ConnectDoubleClicked(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "doubleClicked")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "doubleClicked"); signal != nil {
@@ -7172,7 +7172,7 @@ func (ptr *QBoxPlotSeries) ConnectHovered(f func(status bool, boxset *QBoxSet)) 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "hovered") {
-			C.QBoxPlotSeries_ConnectHovered(ptr.Pointer())
+			C.QBoxPlotSeries_ConnectHovered(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "hovered")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "hovered"); signal != nil {
@@ -7228,7 +7228,7 @@ func (ptr *QBoxPlotSeries) ConnectPenChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "penChanged") {
-			C.QBoxPlotSeries_ConnectPenChanged(ptr.Pointer())
+			C.QBoxPlotSeries_ConnectPenChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "penChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "penChanged"); signal != nil {
@@ -7268,7 +7268,7 @@ func (ptr *QBoxPlotSeries) ConnectPressed(f func(boxset *QBoxSet)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "pressed") {
-			C.QBoxPlotSeries_ConnectPressed(ptr.Pointer())
+			C.QBoxPlotSeries_ConnectPressed(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "pressed")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "pressed"); signal != nil {
@@ -7308,7 +7308,7 @@ func (ptr *QBoxPlotSeries) ConnectReleased(f func(boxset *QBoxSet)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "released") {
-			C.QBoxPlotSeries_ConnectReleased(ptr.Pointer())
+			C.QBoxPlotSeries_ConnectReleased(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "released")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "released"); signal != nil {
@@ -7673,7 +7673,7 @@ func (ptr *QBoxSet) ConnectBrushChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "brushChanged") {
-			C.QBoxSet_ConnectBrushChanged(ptr.Pointer())
+			C.QBoxSet_ConnectBrushChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "brushChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "brushChanged"); signal != nil {
@@ -7719,7 +7719,7 @@ func (ptr *QBoxSet) ConnectCleared(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "cleared") {
-			C.QBoxSet_ConnectCleared(ptr.Pointer())
+			C.QBoxSet_ConnectCleared(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "cleared")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "cleared"); signal != nil {
@@ -7759,7 +7759,7 @@ func (ptr *QBoxSet) ConnectClicked(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "clicked") {
-			C.QBoxSet_ConnectClicked(ptr.Pointer())
+			C.QBoxSet_ConnectClicked(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "clicked")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "clicked"); signal != nil {
@@ -7806,7 +7806,7 @@ func (ptr *QBoxSet) ConnectDoubleClicked(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "doubleClicked") {
-			C.QBoxSet_ConnectDoubleClicked(ptr.Pointer())
+			C.QBoxSet_ConnectDoubleClicked(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "doubleClicked")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "doubleClicked"); signal != nil {
@@ -7846,7 +7846,7 @@ func (ptr *QBoxSet) ConnectHovered(f func(status bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "hovered") {
-			C.QBoxSet_ConnectHovered(ptr.Pointer())
+			C.QBoxSet_ConnectHovered(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "hovered")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "hovered"); signal != nil {
@@ -7902,7 +7902,7 @@ func (ptr *QBoxSet) ConnectPenChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "penChanged") {
-			C.QBoxSet_ConnectPenChanged(ptr.Pointer())
+			C.QBoxSet_ConnectPenChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "penChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "penChanged"); signal != nil {
@@ -7942,7 +7942,7 @@ func (ptr *QBoxSet) ConnectPressed(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "pressed") {
-			C.QBoxSet_ConnectPressed(ptr.Pointer())
+			C.QBoxSet_ConnectPressed(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "pressed")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "pressed"); signal != nil {
@@ -7982,7 +7982,7 @@ func (ptr *QBoxSet) ConnectReleased(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "released") {
-			C.QBoxSet_ConnectReleased(ptr.Pointer())
+			C.QBoxSet_ConnectReleased(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "released")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "released"); signal != nil {
@@ -8051,7 +8051,7 @@ func (ptr *QBoxSet) ConnectValueChanged(f func(index int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "valueChanged") {
-			C.QBoxSet_ConnectValueChanged(ptr.Pointer())
+			C.QBoxSet_ConnectValueChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "valueChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "valueChanged"); signal != nil {
@@ -8091,7 +8091,7 @@ func (ptr *QBoxSet) ConnectValuesChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "valuesChanged") {
-			C.QBoxSet_ConnectValuesChanged(ptr.Pointer())
+			C.QBoxSet_ConnectValuesChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "valuesChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "valuesChanged"); signal != nil {
@@ -8682,7 +8682,7 @@ func (ptr *QCandlestickModelMapper) ConnectModelReplaced(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "modelReplaced") {
-			C.QCandlestickModelMapper_ConnectModelReplaced(ptr.Pointer())
+			C.QCandlestickModelMapper_ConnectModelReplaced(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "modelReplaced")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "modelReplaced"); signal != nil {
@@ -8778,7 +8778,7 @@ func (ptr *QCandlestickModelMapper) ConnectSeriesReplaced(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "seriesReplaced") {
-			C.QCandlestickModelMapper_ConnectSeriesReplaced(ptr.Pointer())
+			C.QCandlestickModelMapper_ConnectSeriesReplaced(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "seriesReplaced")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "seriesReplaced"); signal != nil {
@@ -9203,7 +9203,7 @@ func (ptr *QCandlestickSeries) ConnectBodyOutlineVisibilityChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "bodyOutlineVisibilityChanged") {
-			C.QCandlestickSeries_ConnectBodyOutlineVisibilityChanged(ptr.Pointer())
+			C.QCandlestickSeries_ConnectBodyOutlineVisibilityChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "bodyOutlineVisibilityChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "bodyOutlineVisibilityChanged"); signal != nil {
@@ -9257,7 +9257,7 @@ func (ptr *QCandlestickSeries) ConnectBodyWidthChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "bodyWidthChanged") {
-			C.QCandlestickSeries_ConnectBodyWidthChanged(ptr.Pointer())
+			C.QCandlestickSeries_ConnectBodyWidthChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "bodyWidthChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "bodyWidthChanged"); signal != nil {
@@ -9306,7 +9306,7 @@ func (ptr *QCandlestickSeries) ConnectBrushChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "brushChanged") {
-			C.QCandlestickSeries_ConnectBrushChanged(ptr.Pointer())
+			C.QCandlestickSeries_ConnectBrushChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "brushChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "brushChanged"); signal != nil {
@@ -9353,7 +9353,7 @@ func (ptr *QCandlestickSeries) ConnectCandlestickSetsAdded(f func(sets []*QCandl
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "candlestickSetsAdded") {
-			C.QCandlestickSeries_ConnectCandlestickSetsAdded(ptr.Pointer())
+			C.QCandlestickSeries_ConnectCandlestickSetsAdded(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "candlestickSetsAdded")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "candlestickSetsAdded"); signal != nil {
@@ -9406,7 +9406,7 @@ func (ptr *QCandlestickSeries) ConnectCandlestickSetsRemoved(f func(sets []*QCan
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "candlestickSetsRemoved") {
-			C.QCandlestickSeries_ConnectCandlestickSetsRemoved(ptr.Pointer())
+			C.QCandlestickSeries_ConnectCandlestickSetsRemoved(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "candlestickSetsRemoved")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "candlestickSetsRemoved"); signal != nil {
@@ -9452,7 +9452,7 @@ func (ptr *QCandlestickSeries) ConnectCapsVisibilityChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "capsVisibilityChanged") {
-			C.QCandlestickSeries_ConnectCapsVisibilityChanged(ptr.Pointer())
+			C.QCandlestickSeries_ConnectCapsVisibilityChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "capsVisibilityChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "capsVisibilityChanged"); signal != nil {
@@ -9506,7 +9506,7 @@ func (ptr *QCandlestickSeries) ConnectCapsWidthChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "capsWidthChanged") {
-			C.QCandlestickSeries_ConnectCapsWidthChanged(ptr.Pointer())
+			C.QCandlestickSeries_ConnectCapsWidthChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "capsWidthChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "capsWidthChanged"); signal != nil {
@@ -9552,7 +9552,7 @@ func (ptr *QCandlestickSeries) ConnectClicked(f func(set *QCandlestickSet)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "clicked") {
-			C.QCandlestickSeries_ConnectClicked(ptr.Pointer())
+			C.QCandlestickSeries_ConnectClicked(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "clicked")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "clicked"); signal != nil {
@@ -9599,7 +9599,7 @@ func (ptr *QCandlestickSeries) ConnectCountChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "countChanged") {
-			C.QCandlestickSeries_ConnectCountChanged(ptr.Pointer())
+			C.QCandlestickSeries_ConnectCountChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "countChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "countChanged"); signal != nil {
@@ -9648,7 +9648,7 @@ func (ptr *QCandlestickSeries) ConnectDecreasingColorChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "decreasingColorChanged") {
-			C.QCandlestickSeries_ConnectDecreasingColorChanged(ptr.Pointer())
+			C.QCandlestickSeries_ConnectDecreasingColorChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "decreasingColorChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "decreasingColorChanged"); signal != nil {
@@ -9688,7 +9688,7 @@ func (ptr *QCandlestickSeries) ConnectDoubleClicked(f func(set *QCandlestickSet)
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "doubleClicked") {
-			C.QCandlestickSeries_ConnectDoubleClicked(ptr.Pointer())
+			C.QCandlestickSeries_ConnectDoubleClicked(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "doubleClicked")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "doubleClicked"); signal != nil {
@@ -9728,7 +9728,7 @@ func (ptr *QCandlestickSeries) ConnectHovered(f func(status bool, set *QCandlest
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "hovered") {
-			C.QCandlestickSeries_ConnectHovered(ptr.Pointer())
+			C.QCandlestickSeries_ConnectHovered(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "hovered")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "hovered"); signal != nil {
@@ -9777,7 +9777,7 @@ func (ptr *QCandlestickSeries) ConnectIncreasingColorChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "increasingColorChanged") {
-			C.QCandlestickSeries_ConnectIncreasingColorChanged(ptr.Pointer())
+			C.QCandlestickSeries_ConnectIncreasingColorChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "increasingColorChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "increasingColorChanged"); signal != nil {
@@ -9831,7 +9831,7 @@ func (ptr *QCandlestickSeries) ConnectMaximumColumnWidthChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "maximumColumnWidthChanged") {
-			C.QCandlestickSeries_ConnectMaximumColumnWidthChanged(ptr.Pointer())
+			C.QCandlestickSeries_ConnectMaximumColumnWidthChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "maximumColumnWidthChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "maximumColumnWidthChanged"); signal != nil {
@@ -9878,7 +9878,7 @@ func (ptr *QCandlestickSeries) ConnectMinimumColumnWidthChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "minimumColumnWidthChanged") {
-			C.QCandlestickSeries_ConnectMinimumColumnWidthChanged(ptr.Pointer())
+			C.QCandlestickSeries_ConnectMinimumColumnWidthChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "minimumColumnWidthChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "minimumColumnWidthChanged"); signal != nil {
@@ -9927,7 +9927,7 @@ func (ptr *QCandlestickSeries) ConnectPenChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "penChanged") {
-			C.QCandlestickSeries_ConnectPenChanged(ptr.Pointer())
+			C.QCandlestickSeries_ConnectPenChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "penChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "penChanged"); signal != nil {
@@ -9967,7 +9967,7 @@ func (ptr *QCandlestickSeries) ConnectPressed(f func(set *QCandlestickSet)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "pressed") {
-			C.QCandlestickSeries_ConnectPressed(ptr.Pointer())
+			C.QCandlestickSeries_ConnectPressed(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "pressed")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "pressed"); signal != nil {
@@ -10007,7 +10007,7 @@ func (ptr *QCandlestickSeries) ConnectReleased(f func(set *QCandlestickSet)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "released") {
-			C.QCandlestickSeries_ConnectReleased(ptr.Pointer())
+			C.QCandlestickSeries_ConnectReleased(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "released")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "released"); signal != nil {
@@ -10408,7 +10408,7 @@ func (ptr *QCandlestickSet) ConnectBrushChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "brushChanged") {
-			C.QCandlestickSet_ConnectBrushChanged(ptr.Pointer())
+			C.QCandlestickSet_ConnectBrushChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "brushChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "brushChanged"); signal != nil {
@@ -10448,7 +10448,7 @@ func (ptr *QCandlestickSet) ConnectClicked(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "clicked") {
-			C.QCandlestickSet_ConnectClicked(ptr.Pointer())
+			C.QCandlestickSet_ConnectClicked(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "clicked")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "clicked"); signal != nil {
@@ -10495,7 +10495,7 @@ func (ptr *QCandlestickSet) ConnectCloseChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "closeChanged") {
-			C.QCandlestickSet_ConnectCloseChanged(ptr.Pointer())
+			C.QCandlestickSet_ConnectCloseChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "closeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "closeChanged"); signal != nil {
@@ -10535,7 +10535,7 @@ func (ptr *QCandlestickSet) ConnectDoubleClicked(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "doubleClicked") {
-			C.QCandlestickSet_ConnectDoubleClicked(ptr.Pointer())
+			C.QCandlestickSet_ConnectDoubleClicked(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "doubleClicked")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "doubleClicked"); signal != nil {
@@ -10582,7 +10582,7 @@ func (ptr *QCandlestickSet) ConnectHighChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "highChanged") {
-			C.QCandlestickSet_ConnectHighChanged(ptr.Pointer())
+			C.QCandlestickSet_ConnectHighChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "highChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "highChanged"); signal != nil {
@@ -10622,7 +10622,7 @@ func (ptr *QCandlestickSet) ConnectHovered(f func(status bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "hovered") {
-			C.QCandlestickSet_ConnectHovered(ptr.Pointer())
+			C.QCandlestickSet_ConnectHovered(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "hovered")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "hovered"); signal != nil {
@@ -10669,7 +10669,7 @@ func (ptr *QCandlestickSet) ConnectLowChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "lowChanged") {
-			C.QCandlestickSet_ConnectLowChanged(ptr.Pointer())
+			C.QCandlestickSet_ConnectLowChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "lowChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "lowChanged"); signal != nil {
@@ -10716,7 +10716,7 @@ func (ptr *QCandlestickSet) ConnectOpenChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "openChanged") {
-			C.QCandlestickSet_ConnectOpenChanged(ptr.Pointer())
+			C.QCandlestickSet_ConnectOpenChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "openChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "openChanged"); signal != nil {
@@ -10765,7 +10765,7 @@ func (ptr *QCandlestickSet) ConnectPenChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "penChanged") {
-			C.QCandlestickSet_ConnectPenChanged(ptr.Pointer())
+			C.QCandlestickSet_ConnectPenChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "penChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "penChanged"); signal != nil {
@@ -10805,7 +10805,7 @@ func (ptr *QCandlestickSet) ConnectPressed(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "pressed") {
-			C.QCandlestickSet_ConnectPressed(ptr.Pointer())
+			C.QCandlestickSet_ConnectPressed(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "pressed")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "pressed"); signal != nil {
@@ -10845,7 +10845,7 @@ func (ptr *QCandlestickSet) ConnectReleased(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "released") {
-			C.QCandlestickSet_ConnectReleased(ptr.Pointer())
+			C.QCandlestickSet_ConnectReleased(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "released")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "released"); signal != nil {
@@ -10934,7 +10934,7 @@ func (ptr *QCandlestickSet) ConnectTimestampChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "timestampChanged") {
-			C.QCandlestickSet_ConnectTimestampChanged(ptr.Pointer())
+			C.QCandlestickSet_ConnectTimestampChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "timestampChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "timestampChanged"); signal != nil {
@@ -11346,7 +11346,7 @@ func (ptr *QCategoryAxis) ConnectCategoriesChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "categoriesChanged") {
-			C.QCategoryAxis_ConnectCategoriesChanged(ptr.Pointer())
+			C.QCategoryAxis_ConnectCategoriesChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "categoriesChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "categoriesChanged"); signal != nil {
@@ -11419,7 +11419,7 @@ func (ptr *QCategoryAxis) ConnectLabelsPositionChanged(f func(position QCategory
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "labelsPositionChanged") {
-			C.QCategoryAxis_ConnectLabelsPositionChanged(ptr.Pointer())
+			C.QCategoryAxis_ConnectLabelsPositionChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "labelsPositionChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "labelsPositionChanged"); signal != nil {
@@ -11836,7 +11836,7 @@ func (ptr *QChart) ConnectPlotAreaChanged(f func(plotArea *core.QRectF)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "plotAreaChanged") {
-			C.QChart_ConnectPlotAreaChanged(ptr.Pointer())
+			C.QChart_ConnectPlotAreaChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "plotAreaChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "plotAreaChanged"); signal != nil {
@@ -15251,7 +15251,7 @@ func (ptr *QDateTimeAxis) ConnectFormatChanged(f func(format string)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "formatChanged") {
-			C.QDateTimeAxis_ConnectFormatChanged(ptr.Pointer())
+			C.QDateTimeAxis_ConnectFormatChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "formatChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "formatChanged"); signal != nil {
@@ -15305,7 +15305,7 @@ func (ptr *QDateTimeAxis) ConnectMaxChanged(f func(max *core.QDateTime)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "maxChanged") {
-			C.QDateTimeAxis_ConnectMaxChanged(ptr.Pointer())
+			C.QDateTimeAxis_ConnectMaxChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "maxChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "maxChanged"); signal != nil {
@@ -15354,7 +15354,7 @@ func (ptr *QDateTimeAxis) ConnectMinChanged(f func(min *core.QDateTime)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "minChanged") {
-			C.QDateTimeAxis_ConnectMinChanged(ptr.Pointer())
+			C.QDateTimeAxis_ConnectMinChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "minChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "minChanged"); signal != nil {
@@ -15394,7 +15394,7 @@ func (ptr *QDateTimeAxis) ConnectRangeChanged(f func(min *core.QDateTime, max *c
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "rangeChanged") {
-			C.QDateTimeAxis_ConnectRangeChanged(ptr.Pointer())
+			C.QDateTimeAxis_ConnectRangeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "rangeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "rangeChanged"); signal != nil {
@@ -15476,7 +15476,7 @@ func (ptr *QDateTimeAxis) ConnectTickCountChanged(f func(tickCount int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "tickCountChanged") {
-			C.QDateTimeAxis_ConnectTickCountChanged(ptr.Pointer())
+			C.QDateTimeAxis_ConnectTickCountChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "tickCountChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "tickCountChanged"); signal != nil {
@@ -15661,7 +15661,7 @@ func (ptr *QHBarModelMapper) ConnectColumnCountChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "columnCountChanged") {
-			C.QHBarModelMapper_ConnectColumnCountChanged(ptr.Pointer())
+			C.QHBarModelMapper_ConnectColumnCountChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "columnCountChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "columnCountChanged"); signal != nil {
@@ -15708,7 +15708,7 @@ func (ptr *QHBarModelMapper) ConnectFirstBarSetRowChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "firstBarSetRowChanged") {
-			C.QHBarModelMapper_ConnectFirstBarSetRowChanged(ptr.Pointer())
+			C.QHBarModelMapper_ConnectFirstBarSetRowChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "firstBarSetRowChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "firstBarSetRowChanged"); signal != nil {
@@ -15755,7 +15755,7 @@ func (ptr *QHBarModelMapper) ConnectFirstColumnChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "firstColumnChanged") {
-			C.QHBarModelMapper_ConnectFirstColumnChanged(ptr.Pointer())
+			C.QHBarModelMapper_ConnectFirstColumnChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "firstColumnChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "firstColumnChanged"); signal != nil {
@@ -15802,7 +15802,7 @@ func (ptr *QHBarModelMapper) ConnectLastBarSetRowChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "lastBarSetRowChanged") {
-			C.QHBarModelMapper_ConnectLastBarSetRowChanged(ptr.Pointer())
+			C.QHBarModelMapper_ConnectLastBarSetRowChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "lastBarSetRowChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "lastBarSetRowChanged"); signal != nil {
@@ -15853,7 +15853,7 @@ func (ptr *QHBarModelMapper) ConnectModelReplaced(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "modelReplaced") {
-			C.QHBarModelMapper_ConnectModelReplaced(ptr.Pointer())
+			C.QHBarModelMapper_ConnectModelReplaced(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "modelReplaced")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "modelReplaced"); signal != nil {
@@ -15904,7 +15904,7 @@ func (ptr *QHBarModelMapper) ConnectSeriesReplaced(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "seriesReplaced") {
-			C.QHBarModelMapper_ConnectSeriesReplaced(ptr.Pointer())
+			C.QHBarModelMapper_ConnectSeriesReplaced(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "seriesReplaced")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "seriesReplaced"); signal != nil {
@@ -16291,7 +16291,7 @@ func (ptr *QHBoxPlotModelMapper) ConnectColumnCountChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "columnCountChanged") {
-			C.QHBoxPlotModelMapper_ConnectColumnCountChanged(ptr.Pointer())
+			C.QHBoxPlotModelMapper_ConnectColumnCountChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "columnCountChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "columnCountChanged"); signal != nil {
@@ -16338,7 +16338,7 @@ func (ptr *QHBoxPlotModelMapper) ConnectFirstBoxSetRowChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "firstBoxSetRowChanged") {
-			C.QHBoxPlotModelMapper_ConnectFirstBoxSetRowChanged(ptr.Pointer())
+			C.QHBoxPlotModelMapper_ConnectFirstBoxSetRowChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "firstBoxSetRowChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "firstBoxSetRowChanged"); signal != nil {
@@ -16385,7 +16385,7 @@ func (ptr *QHBoxPlotModelMapper) ConnectFirstColumnChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "firstColumnChanged") {
-			C.QHBoxPlotModelMapper_ConnectFirstColumnChanged(ptr.Pointer())
+			C.QHBoxPlotModelMapper_ConnectFirstColumnChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "firstColumnChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "firstColumnChanged"); signal != nil {
@@ -16432,7 +16432,7 @@ func (ptr *QHBoxPlotModelMapper) ConnectLastBoxSetRowChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "lastBoxSetRowChanged") {
-			C.QHBoxPlotModelMapper_ConnectLastBoxSetRowChanged(ptr.Pointer())
+			C.QHBoxPlotModelMapper_ConnectLastBoxSetRowChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "lastBoxSetRowChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "lastBoxSetRowChanged"); signal != nil {
@@ -16483,7 +16483,7 @@ func (ptr *QHBoxPlotModelMapper) ConnectModelReplaced(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "modelReplaced") {
-			C.QHBoxPlotModelMapper_ConnectModelReplaced(ptr.Pointer())
+			C.QHBoxPlotModelMapper_ConnectModelReplaced(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "modelReplaced")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "modelReplaced"); signal != nil {
@@ -16534,7 +16534,7 @@ func (ptr *QHBoxPlotModelMapper) ConnectSeriesReplaced(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "seriesReplaced") {
-			C.QHBoxPlotModelMapper_ConnectSeriesReplaced(ptr.Pointer())
+			C.QHBoxPlotModelMapper_ConnectSeriesReplaced(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "seriesReplaced")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "seriesReplaced"); signal != nil {
@@ -16921,7 +16921,7 @@ func (ptr *QHCandlestickModelMapper) ConnectCloseColumnChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "closeColumnChanged") {
-			C.QHCandlestickModelMapper_ConnectCloseColumnChanged(ptr.Pointer())
+			C.QHCandlestickModelMapper_ConnectCloseColumnChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "closeColumnChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "closeColumnChanged"); signal != nil {
@@ -16968,7 +16968,7 @@ func (ptr *QHCandlestickModelMapper) ConnectFirstSetRowChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "firstSetRowChanged") {
-			C.QHCandlestickModelMapper_ConnectFirstSetRowChanged(ptr.Pointer())
+			C.QHCandlestickModelMapper_ConnectFirstSetRowChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "firstSetRowChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "firstSetRowChanged"); signal != nil {
@@ -17015,7 +17015,7 @@ func (ptr *QHCandlestickModelMapper) ConnectHighColumnChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "highColumnChanged") {
-			C.QHCandlestickModelMapper_ConnectHighColumnChanged(ptr.Pointer())
+			C.QHCandlestickModelMapper_ConnectHighColumnChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "highColumnChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "highColumnChanged"); signal != nil {
@@ -17062,7 +17062,7 @@ func (ptr *QHCandlestickModelMapper) ConnectLastSetRowChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "lastSetRowChanged") {
-			C.QHCandlestickModelMapper_ConnectLastSetRowChanged(ptr.Pointer())
+			C.QHCandlestickModelMapper_ConnectLastSetRowChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "lastSetRowChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "lastSetRowChanged"); signal != nil {
@@ -17109,7 +17109,7 @@ func (ptr *QHCandlestickModelMapper) ConnectLowColumnChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "lowColumnChanged") {
-			C.QHCandlestickModelMapper_ConnectLowColumnChanged(ptr.Pointer())
+			C.QHCandlestickModelMapper_ConnectLowColumnChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "lowColumnChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "lowColumnChanged"); signal != nil {
@@ -17156,7 +17156,7 @@ func (ptr *QHCandlestickModelMapper) ConnectOpenColumnChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "openColumnChanged") {
-			C.QHCandlestickModelMapper_ConnectOpenColumnChanged(ptr.Pointer())
+			C.QHCandlestickModelMapper_ConnectOpenColumnChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "openColumnChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "openColumnChanged"); signal != nil {
@@ -17290,7 +17290,7 @@ func (ptr *QHCandlestickModelMapper) ConnectTimestampColumnChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "timestampColumnChanged") {
-			C.QHCandlestickModelMapper_ConnectTimestampColumnChanged(ptr.Pointer())
+			C.QHCandlestickModelMapper_ConnectTimestampColumnChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "timestampColumnChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "timestampColumnChanged"); signal != nil {
@@ -17383,7 +17383,7 @@ func (ptr *QHPieModelMapper) ConnectColumnCountChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "columnCountChanged") {
-			C.QHPieModelMapper_ConnectColumnCountChanged(ptr.Pointer())
+			C.QHPieModelMapper_ConnectColumnCountChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "columnCountChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "columnCountChanged"); signal != nil {
@@ -17430,7 +17430,7 @@ func (ptr *QHPieModelMapper) ConnectFirstColumnChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "firstColumnChanged") {
-			C.QHPieModelMapper_ConnectFirstColumnChanged(ptr.Pointer())
+			C.QHPieModelMapper_ConnectFirstColumnChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "firstColumnChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "firstColumnChanged"); signal != nil {
@@ -17477,7 +17477,7 @@ func (ptr *QHPieModelMapper) ConnectLabelsRowChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "labelsRowChanged") {
-			C.QHPieModelMapper_ConnectLabelsRowChanged(ptr.Pointer())
+			C.QHPieModelMapper_ConnectLabelsRowChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "labelsRowChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "labelsRowChanged"); signal != nil {
@@ -17528,7 +17528,7 @@ func (ptr *QHPieModelMapper) ConnectModelReplaced(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "modelReplaced") {
-			C.QHPieModelMapper_ConnectModelReplaced(ptr.Pointer())
+			C.QHPieModelMapper_ConnectModelReplaced(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "modelReplaced")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "modelReplaced"); signal != nil {
@@ -17579,7 +17579,7 @@ func (ptr *QHPieModelMapper) ConnectSeriesReplaced(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "seriesReplaced") {
-			C.QHPieModelMapper_ConnectSeriesReplaced(ptr.Pointer())
+			C.QHPieModelMapper_ConnectSeriesReplaced(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "seriesReplaced")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "seriesReplaced"); signal != nil {
@@ -17662,7 +17662,7 @@ func (ptr *QHPieModelMapper) ConnectValuesRowChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "valuesRowChanged") {
-			C.QHPieModelMapper_ConnectValuesRowChanged(ptr.Pointer())
+			C.QHPieModelMapper_ConnectValuesRowChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "valuesRowChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "valuesRowChanged"); signal != nil {
@@ -17755,7 +17755,7 @@ func (ptr *QHXYModelMapper) ConnectColumnCountChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "columnCountChanged") {
-			C.QHXYModelMapper_ConnectColumnCountChanged(ptr.Pointer())
+			C.QHXYModelMapper_ConnectColumnCountChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "columnCountChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "columnCountChanged"); signal != nil {
@@ -17802,7 +17802,7 @@ func (ptr *QHXYModelMapper) ConnectFirstColumnChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "firstColumnChanged") {
-			C.QHXYModelMapper_ConnectFirstColumnChanged(ptr.Pointer())
+			C.QHXYModelMapper_ConnectFirstColumnChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "firstColumnChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "firstColumnChanged"); signal != nil {
@@ -17853,7 +17853,7 @@ func (ptr *QHXYModelMapper) ConnectModelReplaced(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "modelReplaced") {
-			C.QHXYModelMapper_ConnectModelReplaced(ptr.Pointer())
+			C.QHXYModelMapper_ConnectModelReplaced(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "modelReplaced")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "modelReplaced"); signal != nil {
@@ -17904,7 +17904,7 @@ func (ptr *QHXYModelMapper) ConnectSeriesReplaced(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "seriesReplaced") {
-			C.QHXYModelMapper_ConnectSeriesReplaced(ptr.Pointer())
+			C.QHXYModelMapper_ConnectSeriesReplaced(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "seriesReplaced")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "seriesReplaced"); signal != nil {
@@ -17987,7 +17987,7 @@ func (ptr *QHXYModelMapper) ConnectXRowChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "xRowChanged") {
-			C.QHXYModelMapper_ConnectXRowChanged(ptr.Pointer())
+			C.QHXYModelMapper_ConnectXRowChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "xRowChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "xRowChanged"); signal != nil {
@@ -18034,7 +18034,7 @@ func (ptr *QHXYModelMapper) ConnectYRowChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "yRowChanged") {
-			C.QHXYModelMapper_ConnectYRowChanged(ptr.Pointer())
+			C.QHXYModelMapper_ConnectYRowChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "yRowChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "yRowChanged"); signal != nil {
@@ -18551,7 +18551,7 @@ func (ptr *QLegend) ConnectBackgroundVisibleChanged(f func(visible bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "backgroundVisibleChanged") {
-			C.QLegend_ConnectBackgroundVisibleChanged(ptr.Pointer())
+			C.QLegend_ConnectBackgroundVisibleChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "backgroundVisibleChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "backgroundVisibleChanged"); signal != nil {
@@ -18600,7 +18600,7 @@ func (ptr *QLegend) ConnectBorderColorChanged(f func(color *gui.QColor)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "borderColorChanged") {
-			C.QLegend_ConnectBorderColorChanged(ptr.Pointer())
+			C.QLegend_ConnectBorderColorChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "borderColorChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "borderColorChanged"); signal != nil {
@@ -18658,7 +18658,7 @@ func (ptr *QLegend) ConnectColorChanged(f func(color *gui.QColor)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "colorChanged") {
-			C.QLegend_ConnectColorChanged(ptr.Pointer())
+			C.QLegend_ConnectColorChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "colorChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "colorChanged"); signal != nil {
@@ -18704,7 +18704,7 @@ func (ptr *QLegend) ConnectFontChanged(f func(font *gui.QFont)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "fontChanged") {
-			C.QLegend_ConnectFontChanged(ptr.Pointer())
+			C.QLegend_ConnectFontChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "fontChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "fontChanged"); signal != nil {
@@ -18776,7 +18776,7 @@ func (ptr *QLegend) ConnectLabelColorChanged(f func(color *gui.QColor)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "labelColorChanged") {
-			C.QLegend_ConnectLabelColorChanged(ptr.Pointer())
+			C.QLegend_ConnectLabelColorChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "labelColorChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "labelColorChanged"); signal != nil {
@@ -18823,7 +18823,7 @@ func (ptr *QLegend) ConnectMarkerShapeChanged(f func(shape QLegend__MarkerShape)
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "markerShapeChanged") {
-			C.QLegend_ConnectMarkerShapeChanged(ptr.Pointer())
+			C.QLegend_ConnectMarkerShapeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "markerShapeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "markerShapeChanged"); signal != nil {
@@ -18893,7 +18893,7 @@ func (ptr *QLegend) ConnectReverseMarkersChanged(f func(reverseMarkers bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "reverseMarkersChanged") {
-			C.QLegend_ConnectReverseMarkersChanged(ptr.Pointer())
+			C.QLegend_ConnectReverseMarkersChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "reverseMarkersChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "reverseMarkersChanged"); signal != nil {
@@ -19006,7 +19006,7 @@ func (ptr *QLegend) ConnectShowToolTipsChanged(f func(showToolTips bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "showToolTipsChanged") {
-			C.QLegend_ConnectShowToolTipsChanged(ptr.Pointer())
+			C.QLegend_ConnectShowToolTipsChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "showToolTipsChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "showToolTipsChanged"); signal != nil {
@@ -20499,7 +20499,7 @@ func (ptr *QLegendMarker) ConnectBrushChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "brushChanged") {
-			C.QLegendMarker_ConnectBrushChanged(ptr.Pointer())
+			C.QLegendMarker_ConnectBrushChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "brushChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "brushChanged"); signal != nil {
@@ -20539,7 +20539,7 @@ func (ptr *QLegendMarker) ConnectClicked(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "clicked") {
-			C.QLegendMarker_ConnectClicked(ptr.Pointer())
+			C.QLegendMarker_ConnectClicked(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "clicked")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "clicked"); signal != nil {
@@ -20588,7 +20588,7 @@ func (ptr *QLegendMarker) ConnectFontChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "fontChanged") {
-			C.QLegendMarker_ConnectFontChanged(ptr.Pointer())
+			C.QLegendMarker_ConnectFontChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "fontChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "fontChanged"); signal != nil {
@@ -20628,7 +20628,7 @@ func (ptr *QLegendMarker) ConnectHovered(f func(status bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "hovered") {
-			C.QLegendMarker_ConnectHovered(ptr.Pointer())
+			C.QLegendMarker_ConnectHovered(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "hovered")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "hovered"); signal != nil {
@@ -20691,7 +20691,7 @@ func (ptr *QLegendMarker) ConnectLabelBrushChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "labelBrushChanged") {
-			C.QLegendMarker_ConnectLabelBrushChanged(ptr.Pointer())
+			C.QLegendMarker_ConnectLabelBrushChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "labelBrushChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "labelBrushChanged"); signal != nil {
@@ -20731,7 +20731,7 @@ func (ptr *QLegendMarker) ConnectLabelChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "labelChanged") {
-			C.QLegendMarker_ConnectLabelChanged(ptr.Pointer())
+			C.QLegendMarker_ConnectLabelChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "labelChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "labelChanged"); signal != nil {
@@ -20780,7 +20780,7 @@ func (ptr *QLegendMarker) ConnectPenChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "penChanged") {
-			C.QLegendMarker_ConnectPenChanged(ptr.Pointer())
+			C.QLegendMarker_ConnectPenChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "penChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "penChanged"); signal != nil {
@@ -20916,7 +20916,7 @@ func (ptr *QLegendMarker) ConnectShapeChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "shapeChanged") {
-			C.QLegendMarker_ConnectShapeChanged(ptr.Pointer())
+			C.QLegendMarker_ConnectShapeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "shapeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "shapeChanged"); signal != nil {
@@ -20994,7 +20994,7 @@ func (ptr *QLegendMarker) ConnectVisibleChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "visibleChanged") {
-			C.QLegendMarker_ConnectVisibleChanged(ptr.Pointer())
+			C.QLegendMarker_ConnectVisibleChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "visibleChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "visibleChanged"); signal != nil {
@@ -21530,7 +21530,7 @@ func (ptr *QLogValueAxis) ConnectBaseChanged(f func(base float64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "baseChanged") {
-			C.QLogValueAxis_ConnectBaseChanged(ptr.Pointer())
+			C.QLogValueAxis_ConnectBaseChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "baseChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "baseChanged"); signal != nil {
@@ -21577,7 +21577,7 @@ func (ptr *QLogValueAxis) ConnectLabelFormatChanged(f func(format string)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "labelFormatChanged") {
-			C.QLogValueAxis_ConnectLabelFormatChanged(ptr.Pointer())
+			C.QLogValueAxis_ConnectLabelFormatChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "labelFormatChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "labelFormatChanged"); signal != nil {
@@ -21629,7 +21629,7 @@ func (ptr *QLogValueAxis) ConnectMaxChanged(f func(max float64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "maxChanged") {
-			C.QLogValueAxis_ConnectMaxChanged(ptr.Pointer())
+			C.QLogValueAxis_ConnectMaxChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "maxChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "maxChanged"); signal != nil {
@@ -21676,7 +21676,7 @@ func (ptr *QLogValueAxis) ConnectMinChanged(f func(min float64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "minChanged") {
-			C.QLogValueAxis_ConnectMinChanged(ptr.Pointer())
+			C.QLogValueAxis_ConnectMinChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "minChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "minChanged"); signal != nil {
@@ -21723,7 +21723,7 @@ func (ptr *QLogValueAxis) ConnectMinorTickCountChanged(f func(minorTickCount int
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "minorTickCountChanged") {
-			C.QLogValueAxis_ConnectMinorTickCountChanged(ptr.Pointer())
+			C.QLogValueAxis_ConnectMinorTickCountChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "minorTickCountChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "minorTickCountChanged"); signal != nil {
@@ -21763,7 +21763,7 @@ func (ptr *QLogValueAxis) ConnectRangeChanged(f func(min float64, max float64)) 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "rangeChanged") {
-			C.QLogValueAxis_ConnectRangeChanged(ptr.Pointer())
+			C.QLogValueAxis_ConnectRangeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "rangeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "rangeChanged"); signal != nil {
@@ -21851,7 +21851,7 @@ func (ptr *QLogValueAxis) ConnectTickCountChanged(f func(tickCount int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "tickCountChanged") {
-			C.QLogValueAxis_ConnectTickCountChanged(ptr.Pointer())
+			C.QLogValueAxis_ConnectTickCountChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "tickCountChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "tickCountChanged"); signal != nil {
@@ -22730,7 +22730,7 @@ func (ptr *QPieSeries) ConnectAdded(f func(slices []*QPieSlice)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "added") {
-			C.QPieSeries_ConnectAdded(ptr.Pointer())
+			C.QPieSeries_ConnectAdded(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "added")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "added"); signal != nil {
@@ -22818,7 +22818,7 @@ func (ptr *QPieSeries) ConnectClicked(f func(slice *QPieSlice)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "clicked") {
-			C.QPieSeries_ConnectClicked(ptr.Pointer())
+			C.QPieSeries_ConnectClicked(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "clicked")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "clicked"); signal != nil {
@@ -22865,7 +22865,7 @@ func (ptr *QPieSeries) ConnectCountChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "countChanged") {
-			C.QPieSeries_ConnectCountChanged(ptr.Pointer())
+			C.QPieSeries_ConnectCountChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "countChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "countChanged"); signal != nil {
@@ -22905,7 +22905,7 @@ func (ptr *QPieSeries) ConnectDoubleClicked(f func(slice *QPieSlice)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "doubleClicked") {
-			C.QPieSeries_ConnectDoubleClicked(ptr.Pointer())
+			C.QPieSeries_ConnectDoubleClicked(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "doubleClicked")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "doubleClicked"); signal != nil {
@@ -22959,7 +22959,7 @@ func (ptr *QPieSeries) ConnectHovered(f func(slice *QPieSlice, state bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "hovered") {
-			C.QPieSeries_ConnectHovered(ptr.Pointer())
+			C.QPieSeries_ConnectHovered(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "hovered")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "hovered"); signal != nil {
@@ -23034,7 +23034,7 @@ func (ptr *QPieSeries) ConnectPressed(f func(slice *QPieSlice)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "pressed") {
-			C.QPieSeries_ConnectPressed(ptr.Pointer())
+			C.QPieSeries_ConnectPressed(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "pressed")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "pressed"); signal != nil {
@@ -23074,7 +23074,7 @@ func (ptr *QPieSeries) ConnectReleased(f func(slice *QPieSlice)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "released") {
-			C.QPieSeries_ConnectReleased(ptr.Pointer())
+			C.QPieSeries_ConnectReleased(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "released")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "released"); signal != nil {
@@ -23128,7 +23128,7 @@ func (ptr *QPieSeries) ConnectRemoved(f func(slices []*QPieSlice)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "removed") {
-			C.QPieSeries_ConnectRemoved(ptr.Pointer())
+			C.QPieSeries_ConnectRemoved(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "removed")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "removed"); signal != nil {
@@ -23243,7 +23243,7 @@ func (ptr *QPieSeries) ConnectSumChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "sumChanged") {
-			C.QPieSeries_ConnectSumChanged(ptr.Pointer())
+			C.QPieSeries_ConnectSumChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "sumChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "sumChanged"); signal != nil {
@@ -23551,7 +23551,7 @@ func (ptr *QPieSlice) ConnectAngleSpanChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "angleSpanChanged") {
-			C.QPieSlice_ConnectAngleSpanChanged(ptr.Pointer())
+			C.QPieSlice_ConnectAngleSpanChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "angleSpanChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "angleSpanChanged"); signal != nil {
@@ -23600,7 +23600,7 @@ func (ptr *QPieSlice) ConnectBorderColorChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "borderColorChanged") {
-			C.QPieSlice_ConnectBorderColorChanged(ptr.Pointer())
+			C.QPieSlice_ConnectBorderColorChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "borderColorChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "borderColorChanged"); signal != nil {
@@ -23647,7 +23647,7 @@ func (ptr *QPieSlice) ConnectBorderWidthChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "borderWidthChanged") {
-			C.QPieSlice_ConnectBorderWidthChanged(ptr.Pointer())
+			C.QPieSlice_ConnectBorderWidthChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "borderWidthChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "borderWidthChanged"); signal != nil {
@@ -23696,7 +23696,7 @@ func (ptr *QPieSlice) ConnectBrushChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "brushChanged") {
-			C.QPieSlice_ConnectBrushChanged(ptr.Pointer())
+			C.QPieSlice_ConnectBrushChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "brushChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "brushChanged"); signal != nil {
@@ -23736,7 +23736,7 @@ func (ptr *QPieSlice) ConnectClicked(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "clicked") {
-			C.QPieSlice_ConnectClicked(ptr.Pointer())
+			C.QPieSlice_ConnectClicked(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "clicked")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "clicked"); signal != nil {
@@ -23785,7 +23785,7 @@ func (ptr *QPieSlice) ConnectColorChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "colorChanged") {
-			C.QPieSlice_ConnectColorChanged(ptr.Pointer())
+			C.QPieSlice_ConnectColorChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "colorChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "colorChanged"); signal != nil {
@@ -23825,7 +23825,7 @@ func (ptr *QPieSlice) ConnectDoubleClicked(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "doubleClicked") {
-			C.QPieSlice_ConnectDoubleClicked(ptr.Pointer())
+			C.QPieSlice_ConnectDoubleClicked(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "doubleClicked")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "doubleClicked"); signal != nil {
@@ -23872,7 +23872,7 @@ func (ptr *QPieSlice) ConnectHovered(f func(state bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "hovered") {
-			C.QPieSlice_ConnectHovered(ptr.Pointer())
+			C.QPieSlice_ConnectHovered(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "hovered")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "hovered"); signal != nil {
@@ -23949,7 +23949,7 @@ func (ptr *QPieSlice) ConnectLabelBrushChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "labelBrushChanged") {
-			C.QPieSlice_ConnectLabelBrushChanged(ptr.Pointer())
+			C.QPieSlice_ConnectLabelBrushChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "labelBrushChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "labelBrushChanged"); signal != nil {
@@ -23989,7 +23989,7 @@ func (ptr *QPieSlice) ConnectLabelChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "labelChanged") {
-			C.QPieSlice_ConnectLabelChanged(ptr.Pointer())
+			C.QPieSlice_ConnectLabelChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "labelChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "labelChanged"); signal != nil {
@@ -24038,7 +24038,7 @@ func (ptr *QPieSlice) ConnectLabelColorChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "labelColorChanged") {
-			C.QPieSlice_ConnectLabelColorChanged(ptr.Pointer())
+			C.QPieSlice_ConnectLabelColorChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "labelColorChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "labelColorChanged"); signal != nil {
@@ -24087,7 +24087,7 @@ func (ptr *QPieSlice) ConnectLabelFontChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "labelFontChanged") {
-			C.QPieSlice_ConnectLabelFontChanged(ptr.Pointer())
+			C.QPieSlice_ConnectLabelFontChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "labelFontChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "labelFontChanged"); signal != nil {
@@ -24134,7 +24134,7 @@ func (ptr *QPieSlice) ConnectLabelVisibleChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "labelVisibleChanged") {
-			C.QPieSlice_ConnectLabelVisibleChanged(ptr.Pointer())
+			C.QPieSlice_ConnectLabelVisibleChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "labelVisibleChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "labelVisibleChanged"); signal != nil {
@@ -24183,7 +24183,7 @@ func (ptr *QPieSlice) ConnectPenChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "penChanged") {
-			C.QPieSlice_ConnectPenChanged(ptr.Pointer())
+			C.QPieSlice_ConnectPenChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "penChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "penChanged"); signal != nil {
@@ -24230,7 +24230,7 @@ func (ptr *QPieSlice) ConnectPercentageChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "percentageChanged") {
-			C.QPieSlice_ConnectPercentageChanged(ptr.Pointer())
+			C.QPieSlice_ConnectPercentageChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "percentageChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "percentageChanged"); signal != nil {
@@ -24270,7 +24270,7 @@ func (ptr *QPieSlice) ConnectPressed(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "pressed") {
-			C.QPieSlice_ConnectPressed(ptr.Pointer())
+			C.QPieSlice_ConnectPressed(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "pressed")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "pressed"); signal != nil {
@@ -24310,7 +24310,7 @@ func (ptr *QPieSlice) ConnectReleased(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "released") {
-			C.QPieSlice_ConnectReleased(ptr.Pointer())
+			C.QPieSlice_ConnectReleased(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "released")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "released"); signal != nil {
@@ -24463,7 +24463,7 @@ func (ptr *QPieSlice) ConnectStartAngleChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "startAngleChanged") {
-			C.QPieSlice_ConnectStartAngleChanged(ptr.Pointer())
+			C.QPieSlice_ConnectStartAngleChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "startAngleChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "startAngleChanged"); signal != nil {
@@ -24510,7 +24510,7 @@ func (ptr *QPieSlice) ConnectValueChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "valueChanged") {
-			C.QPieSlice_ConnectValueChanged(ptr.Pointer())
+			C.QPieSlice_ConnectValueChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "valueChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "valueChanged"); signal != nil {
@@ -25051,7 +25051,7 @@ func (ptr *QScatterSeries) ConnectBorderColorChanged(f func(color *gui.QColor)) 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "borderColorChanged") {
-			C.QScatterSeries_ConnectBorderColorChanged(ptr.Pointer())
+			C.QScatterSeries_ConnectBorderColorChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "borderColorChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "borderColorChanged"); signal != nil {
@@ -25098,7 +25098,7 @@ func (ptr *QScatterSeries) ConnectMarkerShapeChanged(f func(shape QScatterSeries
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "markerShapeChanged") {
-			C.QScatterSeries_ConnectMarkerShapeChanged(ptr.Pointer())
+			C.QScatterSeries_ConnectMarkerShapeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "markerShapeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "markerShapeChanged"); signal != nil {
@@ -25145,7 +25145,7 @@ func (ptr *QScatterSeries) ConnectMarkerSizeChanged(f func(size float64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "markerSizeChanged") {
-			C.QScatterSeries_ConnectMarkerSizeChanged(ptr.Pointer())
+			C.QScatterSeries_ConnectMarkerSizeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "markerSizeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "markerSizeChanged"); signal != nil {
@@ -25579,7 +25579,7 @@ func (ptr *QVBarModelMapper) ConnectFirstBarSetColumnChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "firstBarSetColumnChanged") {
-			C.QVBarModelMapper_ConnectFirstBarSetColumnChanged(ptr.Pointer())
+			C.QVBarModelMapper_ConnectFirstBarSetColumnChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "firstBarSetColumnChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "firstBarSetColumnChanged"); signal != nil {
@@ -25626,7 +25626,7 @@ func (ptr *QVBarModelMapper) ConnectFirstRowChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "firstRowChanged") {
-			C.QVBarModelMapper_ConnectFirstRowChanged(ptr.Pointer())
+			C.QVBarModelMapper_ConnectFirstRowChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "firstRowChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "firstRowChanged"); signal != nil {
@@ -25673,7 +25673,7 @@ func (ptr *QVBarModelMapper) ConnectLastBarSetColumnChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "lastBarSetColumnChanged") {
-			C.QVBarModelMapper_ConnectLastBarSetColumnChanged(ptr.Pointer())
+			C.QVBarModelMapper_ConnectLastBarSetColumnChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "lastBarSetColumnChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "lastBarSetColumnChanged"); signal != nil {
@@ -25724,7 +25724,7 @@ func (ptr *QVBarModelMapper) ConnectModelReplaced(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "modelReplaced") {
-			C.QVBarModelMapper_ConnectModelReplaced(ptr.Pointer())
+			C.QVBarModelMapper_ConnectModelReplaced(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "modelReplaced")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "modelReplaced"); signal != nil {
@@ -25771,7 +25771,7 @@ func (ptr *QVBarModelMapper) ConnectRowCountChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "rowCountChanged") {
-			C.QVBarModelMapper_ConnectRowCountChanged(ptr.Pointer())
+			C.QVBarModelMapper_ConnectRowCountChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "rowCountChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "rowCountChanged"); signal != nil {
@@ -25822,7 +25822,7 @@ func (ptr *QVBarModelMapper) ConnectSeriesReplaced(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "seriesReplaced") {
-			C.QVBarModelMapper_ConnectSeriesReplaced(ptr.Pointer())
+			C.QVBarModelMapper_ConnectSeriesReplaced(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "seriesReplaced")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "seriesReplaced"); signal != nil {
@@ -26209,7 +26209,7 @@ func (ptr *QVBoxPlotModelMapper) ConnectFirstBoxSetColumnChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "firstBoxSetColumnChanged") {
-			C.QVBoxPlotModelMapper_ConnectFirstBoxSetColumnChanged(ptr.Pointer())
+			C.QVBoxPlotModelMapper_ConnectFirstBoxSetColumnChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "firstBoxSetColumnChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "firstBoxSetColumnChanged"); signal != nil {
@@ -26256,7 +26256,7 @@ func (ptr *QVBoxPlotModelMapper) ConnectFirstRowChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "firstRowChanged") {
-			C.QVBoxPlotModelMapper_ConnectFirstRowChanged(ptr.Pointer())
+			C.QVBoxPlotModelMapper_ConnectFirstRowChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "firstRowChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "firstRowChanged"); signal != nil {
@@ -26303,7 +26303,7 @@ func (ptr *QVBoxPlotModelMapper) ConnectLastBoxSetColumnChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "lastBoxSetColumnChanged") {
-			C.QVBoxPlotModelMapper_ConnectLastBoxSetColumnChanged(ptr.Pointer())
+			C.QVBoxPlotModelMapper_ConnectLastBoxSetColumnChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "lastBoxSetColumnChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "lastBoxSetColumnChanged"); signal != nil {
@@ -26354,7 +26354,7 @@ func (ptr *QVBoxPlotModelMapper) ConnectModelReplaced(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "modelReplaced") {
-			C.QVBoxPlotModelMapper_ConnectModelReplaced(ptr.Pointer())
+			C.QVBoxPlotModelMapper_ConnectModelReplaced(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "modelReplaced")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "modelReplaced"); signal != nil {
@@ -26401,7 +26401,7 @@ func (ptr *QVBoxPlotModelMapper) ConnectRowCountChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "rowCountChanged") {
-			C.QVBoxPlotModelMapper_ConnectRowCountChanged(ptr.Pointer())
+			C.QVBoxPlotModelMapper_ConnectRowCountChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "rowCountChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "rowCountChanged"); signal != nil {
@@ -26452,7 +26452,7 @@ func (ptr *QVBoxPlotModelMapper) ConnectSeriesReplaced(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "seriesReplaced") {
-			C.QVBoxPlotModelMapper_ConnectSeriesReplaced(ptr.Pointer())
+			C.QVBoxPlotModelMapper_ConnectSeriesReplaced(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "seriesReplaced")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "seriesReplaced"); signal != nil {
@@ -26839,7 +26839,7 @@ func (ptr *QVCandlestickModelMapper) ConnectCloseRowChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "closeRowChanged") {
-			C.QVCandlestickModelMapper_ConnectCloseRowChanged(ptr.Pointer())
+			C.QVCandlestickModelMapper_ConnectCloseRowChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "closeRowChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "closeRowChanged"); signal != nil {
@@ -26886,7 +26886,7 @@ func (ptr *QVCandlestickModelMapper) ConnectFirstSetColumnChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "firstSetColumnChanged") {
-			C.QVCandlestickModelMapper_ConnectFirstSetColumnChanged(ptr.Pointer())
+			C.QVCandlestickModelMapper_ConnectFirstSetColumnChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "firstSetColumnChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "firstSetColumnChanged"); signal != nil {
@@ -26933,7 +26933,7 @@ func (ptr *QVCandlestickModelMapper) ConnectHighRowChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "highRowChanged") {
-			C.QVCandlestickModelMapper_ConnectHighRowChanged(ptr.Pointer())
+			C.QVCandlestickModelMapper_ConnectHighRowChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "highRowChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "highRowChanged"); signal != nil {
@@ -26980,7 +26980,7 @@ func (ptr *QVCandlestickModelMapper) ConnectLastSetColumnChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "lastSetColumnChanged") {
-			C.QVCandlestickModelMapper_ConnectLastSetColumnChanged(ptr.Pointer())
+			C.QVCandlestickModelMapper_ConnectLastSetColumnChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "lastSetColumnChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "lastSetColumnChanged"); signal != nil {
@@ -27027,7 +27027,7 @@ func (ptr *QVCandlestickModelMapper) ConnectLowRowChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "lowRowChanged") {
-			C.QVCandlestickModelMapper_ConnectLowRowChanged(ptr.Pointer())
+			C.QVCandlestickModelMapper_ConnectLowRowChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "lowRowChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "lowRowChanged"); signal != nil {
@@ -27074,7 +27074,7 @@ func (ptr *QVCandlestickModelMapper) ConnectOpenRowChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "openRowChanged") {
-			C.QVCandlestickModelMapper_ConnectOpenRowChanged(ptr.Pointer())
+			C.QVCandlestickModelMapper_ConnectOpenRowChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "openRowChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "openRowChanged"); signal != nil {
@@ -27208,7 +27208,7 @@ func (ptr *QVCandlestickModelMapper) ConnectTimestampRowChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "timestampRowChanged") {
-			C.QVCandlestickModelMapper_ConnectTimestampRowChanged(ptr.Pointer())
+			C.QVCandlestickModelMapper_ConnectTimestampRowChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "timestampRowChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "timestampRowChanged"); signal != nil {
@@ -27301,7 +27301,7 @@ func (ptr *QVPieModelMapper) ConnectFirstRowChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "firstRowChanged") {
-			C.QVPieModelMapper_ConnectFirstRowChanged(ptr.Pointer())
+			C.QVPieModelMapper_ConnectFirstRowChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "firstRowChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "firstRowChanged"); signal != nil {
@@ -27348,7 +27348,7 @@ func (ptr *QVPieModelMapper) ConnectLabelsColumnChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "labelsColumnChanged") {
-			C.QVPieModelMapper_ConnectLabelsColumnChanged(ptr.Pointer())
+			C.QVPieModelMapper_ConnectLabelsColumnChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "labelsColumnChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "labelsColumnChanged"); signal != nil {
@@ -27399,7 +27399,7 @@ func (ptr *QVPieModelMapper) ConnectModelReplaced(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "modelReplaced") {
-			C.QVPieModelMapper_ConnectModelReplaced(ptr.Pointer())
+			C.QVPieModelMapper_ConnectModelReplaced(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "modelReplaced")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "modelReplaced"); signal != nil {
@@ -27446,7 +27446,7 @@ func (ptr *QVPieModelMapper) ConnectRowCountChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "rowCountChanged") {
-			C.QVPieModelMapper_ConnectRowCountChanged(ptr.Pointer())
+			C.QVPieModelMapper_ConnectRowCountChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "rowCountChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "rowCountChanged"); signal != nil {
@@ -27497,7 +27497,7 @@ func (ptr *QVPieModelMapper) ConnectSeriesReplaced(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "seriesReplaced") {
-			C.QVPieModelMapper_ConnectSeriesReplaced(ptr.Pointer())
+			C.QVPieModelMapper_ConnectSeriesReplaced(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "seriesReplaced")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "seriesReplaced"); signal != nil {
@@ -27580,7 +27580,7 @@ func (ptr *QVPieModelMapper) ConnectValuesColumnChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "valuesColumnChanged") {
-			C.QVPieModelMapper_ConnectValuesColumnChanged(ptr.Pointer())
+			C.QVPieModelMapper_ConnectValuesColumnChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "valuesColumnChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "valuesColumnChanged"); signal != nil {
@@ -27673,7 +27673,7 @@ func (ptr *QVXYModelMapper) ConnectFirstRowChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "firstRowChanged") {
-			C.QVXYModelMapper_ConnectFirstRowChanged(ptr.Pointer())
+			C.QVXYModelMapper_ConnectFirstRowChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "firstRowChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "firstRowChanged"); signal != nil {
@@ -27724,7 +27724,7 @@ func (ptr *QVXYModelMapper) ConnectModelReplaced(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "modelReplaced") {
-			C.QVXYModelMapper_ConnectModelReplaced(ptr.Pointer())
+			C.QVXYModelMapper_ConnectModelReplaced(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "modelReplaced")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "modelReplaced"); signal != nil {
@@ -27771,7 +27771,7 @@ func (ptr *QVXYModelMapper) ConnectRowCountChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "rowCountChanged") {
-			C.QVXYModelMapper_ConnectRowCountChanged(ptr.Pointer())
+			C.QVXYModelMapper_ConnectRowCountChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "rowCountChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "rowCountChanged"); signal != nil {
@@ -27822,7 +27822,7 @@ func (ptr *QVXYModelMapper) ConnectSeriesReplaced(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "seriesReplaced") {
-			C.QVXYModelMapper_ConnectSeriesReplaced(ptr.Pointer())
+			C.QVXYModelMapper_ConnectSeriesReplaced(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "seriesReplaced")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "seriesReplaced"); signal != nil {
@@ -27905,7 +27905,7 @@ func (ptr *QVXYModelMapper) ConnectXColumnChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "xColumnChanged") {
-			C.QVXYModelMapper_ConnectXColumnChanged(ptr.Pointer())
+			C.QVXYModelMapper_ConnectXColumnChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "xColumnChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "xColumnChanged"); signal != nil {
@@ -27952,7 +27952,7 @@ func (ptr *QVXYModelMapper) ConnectYColumnChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "yColumnChanged") {
-			C.QVXYModelMapper_ConnectYColumnChanged(ptr.Pointer())
+			C.QVXYModelMapper_ConnectYColumnChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "yColumnChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "yColumnChanged"); signal != nil {
@@ -28098,7 +28098,7 @@ func (ptr *QValueAxis) ConnectLabelFormatChanged(f func(format string)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "labelFormatChanged") {
-			C.QValueAxis_ConnectLabelFormatChanged(ptr.Pointer())
+			C.QValueAxis_ConnectLabelFormatChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "labelFormatChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "labelFormatChanged"); signal != nil {
@@ -28150,7 +28150,7 @@ func (ptr *QValueAxis) ConnectMaxChanged(f func(max float64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "maxChanged") {
-			C.QValueAxis_ConnectMaxChanged(ptr.Pointer())
+			C.QValueAxis_ConnectMaxChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "maxChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "maxChanged"); signal != nil {
@@ -28197,7 +28197,7 @@ func (ptr *QValueAxis) ConnectMinChanged(f func(min float64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "minChanged") {
-			C.QValueAxis_ConnectMinChanged(ptr.Pointer())
+			C.QValueAxis_ConnectMinChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "minChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "minChanged"); signal != nil {
@@ -28244,7 +28244,7 @@ func (ptr *QValueAxis) ConnectMinorTickCountChanged(f func(minorTickCount int)) 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "minorTickCountChanged") {
-			C.QValueAxis_ConnectMinorTickCountChanged(ptr.Pointer())
+			C.QValueAxis_ConnectMinorTickCountChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "minorTickCountChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "minorTickCountChanged"); signal != nil {
@@ -28284,7 +28284,7 @@ func (ptr *QValueAxis) ConnectRangeChanged(f func(min float64, max float64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "rangeChanged") {
-			C.QValueAxis_ConnectRangeChanged(ptr.Pointer())
+			C.QValueAxis_ConnectRangeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "rangeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "rangeChanged"); signal != nil {
@@ -28390,7 +28390,7 @@ func (ptr *QValueAxis) ConnectTickAnchorChanged(f func(anchor float64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "tickAnchorChanged") {
-			C.QValueAxis_ConnectTickAnchorChanged(ptr.Pointer())
+			C.QValueAxis_ConnectTickAnchorChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "tickAnchorChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "tickAnchorChanged"); signal != nil {
@@ -28437,7 +28437,7 @@ func (ptr *QValueAxis) ConnectTickCountChanged(f func(tickCount int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "tickCountChanged") {
-			C.QValueAxis_ConnectTickCountChanged(ptr.Pointer())
+			C.QValueAxis_ConnectTickCountChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "tickCountChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "tickCountChanged"); signal != nil {
@@ -28484,7 +28484,7 @@ func (ptr *QValueAxis) ConnectTickIntervalChanged(f func(interval float64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "tickIntervalChanged") {
-			C.QValueAxis_ConnectTickIntervalChanged(ptr.Pointer())
+			C.QValueAxis_ConnectTickIntervalChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "tickIntervalChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "tickIntervalChanged"); signal != nil {
@@ -28531,7 +28531,7 @@ func (ptr *QValueAxis) ConnectTickTypeChanged(f func(ty QValueAxis__TickType)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "tickTypeChanged") {
-			C.QValueAxis_ConnectTickTypeChanged(ptr.Pointer())
+			C.QValueAxis_ConnectTickTypeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "tickTypeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "tickTypeChanged"); signal != nil {
@@ -29274,7 +29274,7 @@ func (ptr *QXYSeries) ConnectClicked(f func(point *core.QPointF)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "clicked") {
-			C.QXYSeries_ConnectClicked(ptr.Pointer())
+			C.QXYSeries_ConnectClicked(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "clicked")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "clicked"); signal != nil {
@@ -29363,7 +29363,7 @@ func (ptr *QXYSeries) ConnectColorChanged(f func(color *gui.QColor)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "colorChanged") {
-			C.QXYSeries_ConnectColorChanged(ptr.Pointer())
+			C.QXYSeries_ConnectColorChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "colorChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "colorChanged"); signal != nil {
@@ -29410,7 +29410,7 @@ func (ptr *QXYSeries) ConnectDoubleClicked(f func(point *core.QPointF)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "doubleClicked") {
-			C.QXYSeries_ConnectDoubleClicked(ptr.Pointer())
+			C.QXYSeries_ConnectDoubleClicked(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "doubleClicked")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "doubleClicked"); signal != nil {
@@ -29450,7 +29450,7 @@ func (ptr *QXYSeries) ConnectHovered(f func(point *core.QPointF, state bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "hovered") {
-			C.QXYSeries_ConnectHovered(ptr.Pointer())
+			C.QXYSeries_ConnectHovered(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "hovered")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "hovered"); signal != nil {
@@ -29505,7 +29505,7 @@ func (ptr *QXYSeries) ConnectPenChanged(f func(pen *gui.QPen)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "penChanged") {
-			C.QXYSeries_ConnectPenChanged(ptr.Pointer())
+			C.QXYSeries_ConnectPenChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "penChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "penChanged"); signal != nil {
@@ -29545,7 +29545,7 @@ func (ptr *QXYSeries) ConnectPointAdded(f func(index int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "pointAdded") {
-			C.QXYSeries_ConnectPointAdded(ptr.Pointer())
+			C.QXYSeries_ConnectPointAdded(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "pointAdded")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "pointAdded"); signal != nil {
@@ -29592,7 +29592,7 @@ func (ptr *QXYSeries) ConnectPointLabelsClippingChanged(f func(clipping bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "pointLabelsClippingChanged") {
-			C.QXYSeries_ConnectPointLabelsClippingChanged(ptr.Pointer())
+			C.QXYSeries_ConnectPointLabelsClippingChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "pointLabelsClippingChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "pointLabelsClippingChanged"); signal != nil {
@@ -29641,7 +29641,7 @@ func (ptr *QXYSeries) ConnectPointLabelsColorChanged(f func(color *gui.QColor)) 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "pointLabelsColorChanged") {
-			C.QXYSeries_ConnectPointLabelsColorChanged(ptr.Pointer())
+			C.QXYSeries_ConnectPointLabelsColorChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "pointLabelsColorChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "pointLabelsColorChanged"); signal != nil {
@@ -29690,7 +29690,7 @@ func (ptr *QXYSeries) ConnectPointLabelsFontChanged(f func(font *gui.QFont)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "pointLabelsFontChanged") {
-			C.QXYSeries_ConnectPointLabelsFontChanged(ptr.Pointer())
+			C.QXYSeries_ConnectPointLabelsFontChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "pointLabelsFontChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "pointLabelsFontChanged"); signal != nil {
@@ -29737,7 +29737,7 @@ func (ptr *QXYSeries) ConnectPointLabelsFormatChanged(f func(format string)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "pointLabelsFormatChanged") {
-			C.QXYSeries_ConnectPointLabelsFormatChanged(ptr.Pointer())
+			C.QXYSeries_ConnectPointLabelsFormatChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "pointLabelsFormatChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "pointLabelsFormatChanged"); signal != nil {
@@ -29782,7 +29782,7 @@ func (ptr *QXYSeries) ConnectPointLabelsVisibilityChanged(f func(visible bool)) 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "pointLabelsVisibilityChanged") {
-			C.QXYSeries_ConnectPointLabelsVisibilityChanged(ptr.Pointer())
+			C.QXYSeries_ConnectPointLabelsVisibilityChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "pointLabelsVisibilityChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "pointLabelsVisibilityChanged"); signal != nil {
@@ -29829,7 +29829,7 @@ func (ptr *QXYSeries) ConnectPointRemoved(f func(index int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "pointRemoved") {
-			C.QXYSeries_ConnectPointRemoved(ptr.Pointer())
+			C.QXYSeries_ConnectPointRemoved(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "pointRemoved")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "pointRemoved"); signal != nil {
@@ -29869,7 +29869,7 @@ func (ptr *QXYSeries) ConnectPointReplaced(f func(index int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "pointReplaced") {
-			C.QXYSeries_ConnectPointReplaced(ptr.Pointer())
+			C.QXYSeries_ConnectPointReplaced(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "pointReplaced")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "pointReplaced"); signal != nil {
@@ -29923,7 +29923,7 @@ func (ptr *QXYSeries) ConnectPointsRemoved(f func(index int, count int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "pointsRemoved") {
-			C.QXYSeries_ConnectPointsRemoved(ptr.Pointer())
+			C.QXYSeries_ConnectPointsRemoved(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "pointsRemoved")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "pointsRemoved"); signal != nil {
@@ -29963,7 +29963,7 @@ func (ptr *QXYSeries) ConnectPointsReplaced(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "pointsReplaced") {
-			C.QXYSeries_ConnectPointsReplaced(ptr.Pointer())
+			C.QXYSeries_ConnectPointsReplaced(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "pointsReplaced")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "pointsReplaced"); signal != nil {
@@ -30024,7 +30024,7 @@ func (ptr *QXYSeries) ConnectPressed(f func(point *core.QPointF)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "pressed") {
-			C.QXYSeries_ConnectPressed(ptr.Pointer())
+			C.QXYSeries_ConnectPressed(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "pressed")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "pressed"); signal != nil {
@@ -30064,7 +30064,7 @@ func (ptr *QXYSeries) ConnectReleased(f func(point *core.QPointF)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "released") {
-			C.QXYSeries_ConnectReleased(ptr.Pointer())
+			C.QXYSeries_ConnectReleased(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "released")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "released"); signal != nil {

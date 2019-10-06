@@ -915,9 +915,9 @@ void QQmlApplicationEngine_LoadDataDefault(void* ptr, void* data, void* url)
 		static_cast<QQmlApplicationEngine*>(ptr)->QQmlApplicationEngine::loadData(*static_cast<QByteArray*>(data), *static_cast<QUrl*>(url));
 }
 
-void QQmlApplicationEngine_ConnectObjectCreated(void* ptr)
+void QQmlApplicationEngine_ConnectObjectCreated(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQmlApplicationEngine*>(ptr), static_cast<void (QQmlApplicationEngine::*)(QObject *, const QUrl &)>(&QQmlApplicationEngine::objectCreated), static_cast<MyQQmlApplicationEngine*>(ptr), static_cast<void (MyQQmlApplicationEngine::*)(QObject *, const QUrl &)>(&MyQQmlApplicationEngine::Signal_ObjectCreated));
+	QObject::connect(static_cast<QQmlApplicationEngine*>(ptr), static_cast<void (QQmlApplicationEngine::*)(QObject *, const QUrl &)>(&QQmlApplicationEngine::objectCreated), static_cast<MyQQmlApplicationEngine*>(ptr), static_cast<void (MyQQmlApplicationEngine::*)(QObject *, const QUrl &)>(&MyQQmlApplicationEngine::Signal_ObjectCreated), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQmlApplicationEngine_DisconnectObjectCreated(void* ptr)
@@ -1327,9 +1327,9 @@ double QQmlComponent_Progress(void* ptr)
 	return static_cast<QQmlComponent*>(ptr)->progress();
 }
 
-void QQmlComponent_ConnectProgressChanged(void* ptr)
+void QQmlComponent_ConnectProgressChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQmlComponent*>(ptr), static_cast<void (QQmlComponent::*)(qreal)>(&QQmlComponent::progressChanged), static_cast<MyQQmlComponent*>(ptr), static_cast<void (MyQQmlComponent::*)(qreal)>(&MyQQmlComponent::Signal_ProgressChanged));
+	QObject::connect(static_cast<QQmlComponent*>(ptr), static_cast<void (QQmlComponent::*)(qreal)>(&QQmlComponent::progressChanged), static_cast<MyQQmlComponent*>(ptr), static_cast<void (MyQQmlComponent::*)(qreal)>(&MyQQmlComponent::Signal_ProgressChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQmlComponent_DisconnectProgressChanged(void* ptr)
@@ -1357,10 +1357,10 @@ long long QQmlComponent_Status(void* ptr)
 	return static_cast<QQmlComponent*>(ptr)->status();
 }
 
-void QQmlComponent_ConnectStatusChanged(void* ptr)
+void QQmlComponent_ConnectStatusChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<QQmlComponent::Status>();
-	QObject::connect(static_cast<QQmlComponent*>(ptr), static_cast<void (QQmlComponent::*)(QQmlComponent::Status)>(&QQmlComponent::statusChanged), static_cast<MyQQmlComponent*>(ptr), static_cast<void (MyQQmlComponent::*)(QQmlComponent::Status)>(&MyQQmlComponent::Signal_StatusChanged));
+	QObject::connect(static_cast<QQmlComponent*>(ptr), static_cast<void (QQmlComponent::*)(QQmlComponent::Status)>(&QQmlComponent::statusChanged), static_cast<MyQQmlComponent*>(ptr), static_cast<void (MyQQmlComponent::*)(QQmlComponent::Status)>(&MyQQmlComponent::Signal_StatusChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQmlComponent_DisconnectStatusChanged(void* ptr)
@@ -2029,9 +2029,9 @@ void* QQmlEngine_QQmlEngine_ContextForObject(void* object)
 	return QQmlEngine::contextForObject(static_cast<QObject*>(object));
 }
 
-void QQmlEngine_ConnectExit(void* ptr)
+void QQmlEngine_ConnectExit(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQmlEngine*>(ptr), static_cast<void (QQmlEngine::*)(int)>(&QQmlEngine::exit), static_cast<MyQQmlEngine*>(ptr), static_cast<void (MyQQmlEngine::*)(int)>(&MyQQmlEngine::Signal_Exit));
+	QObject::connect(static_cast<QQmlEngine*>(ptr), static_cast<void (QQmlEngine::*)(int)>(&QQmlEngine::exit), static_cast<MyQQmlEngine*>(ptr), static_cast<void (MyQQmlEngine::*)(int)>(&MyQQmlEngine::Signal_Exit), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQmlEngine_DisconnectExit(void* ptr)
@@ -2099,9 +2099,9 @@ struct QtQml_PackedString QQmlEngine_PluginPathList(void* ptr)
 	return ({ QByteArray t04b834 = static_cast<QQmlEngine*>(ptr)->pluginPathList().join("¡¦!").toUtf8(); QtQml_PackedString { const_cast<char*>(t04b834.prepend("WHITESPACE").constData()+10), t04b834.size()-10 }; });
 }
 
-void QQmlEngine_ConnectQuit(void* ptr)
+void QQmlEngine_ConnectQuit(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQmlEngine*>(ptr), static_cast<void (QQmlEngine::*)()>(&QQmlEngine::quit), static_cast<MyQQmlEngine*>(ptr), static_cast<void (MyQQmlEngine::*)()>(&MyQQmlEngine::Signal_Quit));
+	QObject::connect(static_cast<QQmlEngine*>(ptr), static_cast<void (QQmlEngine::*)()>(&QQmlEngine::quit), static_cast<MyQQmlEngine*>(ptr), static_cast<void (MyQQmlEngine::*)()>(&MyQQmlEngine::Signal_Quit), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQmlEngine_DisconnectQuit(void* ptr)
@@ -2188,9 +2188,9 @@ void QQmlEngine_TrimComponentCache(void* ptr)
 	static_cast<QQmlEngine*>(ptr)->trimComponentCache();
 }
 
-void QQmlEngine_ConnectWarnings(void* ptr)
+void QQmlEngine_ConnectWarnings(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQmlEngine*>(ptr), static_cast<void (QQmlEngine::*)(const QList<QQmlError> &)>(&QQmlEngine::warnings), static_cast<MyQQmlEngine*>(ptr), static_cast<void (MyQQmlEngine::*)(const QList<QQmlError> &)>(&MyQQmlEngine::Signal_Warnings));
+	QObject::connect(static_cast<QQmlEngine*>(ptr), static_cast<void (QQmlEngine::*)(const QList<QQmlError> &)>(&QQmlEngine::warnings), static_cast<MyQQmlEngine*>(ptr), static_cast<void (MyQQmlEngine::*)(const QList<QQmlError> &)>(&MyQQmlEngine::Signal_Warnings), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQmlEngine_DisconnectWarnings(void* ptr)
@@ -2573,9 +2573,9 @@ struct QtQml_PackedString QQmlExpression_SourceFile(void* ptr)
 	return ({ QByteArray t4b188b = static_cast<QQmlExpression*>(ptr)->sourceFile().toUtf8(); QtQml_PackedString { const_cast<char*>(t4b188b.prepend("WHITESPACE").constData()+10), t4b188b.size()-10 }; });
 }
 
-void QQmlExpression_ConnectValueChanged(void* ptr)
+void QQmlExpression_ConnectValueChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQmlExpression*>(ptr), static_cast<void (QQmlExpression::*)()>(&QQmlExpression::valueChanged), static_cast<MyQQmlExpression*>(ptr), static_cast<void (MyQQmlExpression::*)()>(&MyQQmlExpression::Signal_ValueChanged));
+	QObject::connect(static_cast<QQmlExpression*>(ptr), static_cast<void (QQmlExpression::*)()>(&QQmlExpression::valueChanged), static_cast<MyQQmlExpression*>(ptr), static_cast<void (MyQQmlExpression::*)()>(&MyQQmlExpression::Signal_ValueChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQmlExpression_DisconnectValueChanged(void* ptr)
@@ -4033,9 +4033,9 @@ void* QQmlPropertyMap_Value(void* ptr, struct QtQml_PackedString key)
 	return new QVariant(static_cast<QQmlPropertyMap*>(ptr)->value(QString::fromUtf8(key.data, key.len)));
 }
 
-void QQmlPropertyMap_ConnectValueChanged(void* ptr)
+void QQmlPropertyMap_ConnectValueChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQmlPropertyMap*>(ptr), static_cast<void (QQmlPropertyMap::*)(const QString &, const QVariant &)>(&QQmlPropertyMap::valueChanged), static_cast<MyQQmlPropertyMap*>(ptr), static_cast<void (MyQQmlPropertyMap::*)(const QString &, const QVariant &)>(&MyQQmlPropertyMap::Signal_ValueChanged));
+	QObject::connect(static_cast<QQmlPropertyMap*>(ptr), static_cast<void (QQmlPropertyMap::*)(const QString &, const QVariant &)>(&QQmlPropertyMap::valueChanged), static_cast<MyQQmlPropertyMap*>(ptr), static_cast<void (MyQQmlPropertyMap::*)(const QString &, const QVariant &)>(&MyQQmlPropertyMap::Signal_ValueChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQmlPropertyMap_DisconnectValueChanged(void* ptr)

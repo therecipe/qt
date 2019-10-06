@@ -635,7 +635,7 @@ func (ptr *QCanBusDevice) ConnectErrorOccurred(f func(vqc QCanBusDevice__CanBusE
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "errorOccurred") {
-			C.QCanBusDevice_ConnectErrorOccurred(ptr.Pointer())
+			C.QCanBusDevice_ConnectErrorOccurred(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "errorOccurred")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "errorOccurred"); signal != nil {
@@ -689,7 +689,7 @@ func (ptr *QCanBusDevice) ConnectFramesReceived(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "framesReceived") {
-			C.QCanBusDevice_ConnectFramesReceived(ptr.Pointer())
+			C.QCanBusDevice_ConnectFramesReceived(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "framesReceived")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "framesReceived"); signal != nil {
@@ -736,7 +736,7 @@ func (ptr *QCanBusDevice) ConnectFramesWritten(f func(framesCount int64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "framesWritten") {
-			C.QCanBusDevice_ConnectFramesWritten(ptr.Pointer())
+			C.QCanBusDevice_ConnectFramesWritten(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "framesWritten")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "framesWritten"); signal != nil {
@@ -927,7 +927,7 @@ func (ptr *QCanBusDevice) ConnectStateChanged(f func(state QCanBusDevice__CanBus
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stateChanged") {
-			C.QCanBusDevice_ConnectStateChanged(ptr.Pointer())
+			C.QCanBusDevice_ConnectStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
@@ -2180,7 +2180,7 @@ func (ptr *QModbusClient) ConnectTimeoutChanged(f func(newTimeout int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "timeoutChanged") {
-			C.QModbusClient_ConnectTimeoutChanged(ptr.Pointer())
+			C.QModbusClient_ConnectTimeoutChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "timeoutChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "timeoutChanged"); signal != nil {
@@ -2676,7 +2676,7 @@ func (ptr *QModbusDevice) ConnectErrorOccurred(f func(error QModbusDevice__Error
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "errorOccurred") {
-			C.QModbusDevice_ConnectErrorOccurred(ptr.Pointer())
+			C.QModbusDevice_ConnectErrorOccurred(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "errorOccurred")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "errorOccurred"); signal != nil {
@@ -2791,7 +2791,7 @@ func (ptr *QModbusDevice) ConnectStateChanged(f func(state QModbusDevice__State)
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stateChanged") {
-			C.QModbusDevice_ConnectStateChanged(ptr.Pointer())
+			C.QModbusDevice_ConnectStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
@@ -3823,7 +3823,7 @@ func (ptr *QModbusReply) ConnectErrorOccurred(f func(error QModbusDevice__Error)
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "errorOccurred") {
-			C.QModbusReply_ConnectErrorOccurred(ptr.Pointer())
+			C.QModbusReply_ConnectErrorOccurred(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "errorOccurred")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "errorOccurred"); signal != nil {
@@ -3870,7 +3870,7 @@ func (ptr *QModbusReply) ConnectFinished(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "finished") {
-			C.QModbusReply_ConnectFinished(ptr.Pointer())
+			C.QModbusReply_ConnectFinished(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "finished")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "finished"); signal != nil {
@@ -4778,7 +4778,7 @@ func (ptr *QModbusServer) ConnectDataWritten(f func(table QModbusDataUnit__Regis
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "dataWritten") {
-			C.QModbusServer_ConnectDataWritten(ptr.Pointer())
+			C.QModbusServer_ConnectDataWritten(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "dataWritten")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "dataWritten"); signal != nil {
@@ -5577,7 +5577,7 @@ func (ptr *QModbusTcpServer) ConnectModbusClientDisconnected(f func(modbusClient
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "modbusClientDisconnected") {
-			C.QModbusTcpServer_ConnectModbusClientDisconnected(ptr.Pointer())
+			C.QModbusTcpServer_ConnectModbusClientDisconnected(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "modbusClientDisconnected")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "modbusClientDisconnected"); signal != nil {

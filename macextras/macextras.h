@@ -64,7 +64,7 @@ char QMacToolBar_EventFilterDefault(void* ptr, void* watched, void* event);
 void* QMacToolBar_MetaObjectDefault(void* ptr);
 void QMacToolBar_TimerEventDefault(void* ptr, void* event);
 void* QMacToolBarItem_NewQMacToolBarItem(void* parent);
-void QMacToolBarItem_ConnectActivated(void* ptr);
+void QMacToolBarItem_ConnectActivated(void* ptr, long long t);
 void QMacToolBarItem_DisconnectActivated(void* ptr);
 void QMacToolBarItem_Activated(void* ptr);
 void* QMacToolBarItem_Icon(void* ptr);

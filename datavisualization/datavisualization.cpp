@@ -164,9 +164,9 @@ void* Q3DBars_BarSpacing(void* ptr)
 	return ({ QSizeF tmpValue = static_cast<Q3DBars*>(ptr)->barSpacing(); new QSizeF(tmpValue.width(), tmpValue.height()); });
 }
 
-void Q3DBars_ConnectBarSpacingChanged(void* ptr)
+void Q3DBars_ConnectBarSpacingChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DBars*>(ptr), static_cast<void (Q3DBars::*)(const QSizeF &)>(&Q3DBars::barSpacingChanged), static_cast<MyQ3DBars*>(ptr), static_cast<void (MyQ3DBars::*)(const QSizeF &)>(&MyQ3DBars::Signal_BarSpacingChanged));
+	QObject::connect(static_cast<Q3DBars*>(ptr), static_cast<void (Q3DBars::*)(const QSizeF &)>(&Q3DBars::barSpacingChanged), static_cast<MyQ3DBars*>(ptr), static_cast<void (MyQ3DBars::*)(const QSizeF &)>(&MyQ3DBars::Signal_BarSpacingChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DBars_DisconnectBarSpacingChanged(void* ptr)
@@ -179,9 +179,9 @@ void Q3DBars_BarSpacingChanged(void* ptr, void* spacing)
 	static_cast<Q3DBars*>(ptr)->barSpacingChanged(*static_cast<QSizeF*>(spacing));
 }
 
-void Q3DBars_ConnectBarSpacingRelativeChanged(void* ptr)
+void Q3DBars_ConnectBarSpacingRelativeChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DBars*>(ptr), static_cast<void (Q3DBars::*)(bool)>(&Q3DBars::barSpacingRelativeChanged), static_cast<MyQ3DBars*>(ptr), static_cast<void (MyQ3DBars::*)(bool)>(&MyQ3DBars::Signal_BarSpacingRelativeChanged));
+	QObject::connect(static_cast<Q3DBars*>(ptr), static_cast<void (Q3DBars::*)(bool)>(&Q3DBars::barSpacingRelativeChanged), static_cast<MyQ3DBars*>(ptr), static_cast<void (MyQ3DBars::*)(bool)>(&MyQ3DBars::Signal_BarSpacingRelativeChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DBars_DisconnectBarSpacingRelativeChanged(void* ptr)
@@ -199,9 +199,9 @@ float Q3DBars_BarThickness(void* ptr)
 	return static_cast<Q3DBars*>(ptr)->barThickness();
 }
 
-void Q3DBars_ConnectBarThicknessChanged(void* ptr)
+void Q3DBars_ConnectBarThicknessChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DBars*>(ptr), static_cast<void (Q3DBars::*)(float)>(&Q3DBars::barThicknessChanged), static_cast<MyQ3DBars*>(ptr), static_cast<void (MyQ3DBars::*)(float)>(&MyQ3DBars::Signal_BarThicknessChanged));
+	QObject::connect(static_cast<Q3DBars*>(ptr), static_cast<void (Q3DBars::*)(float)>(&Q3DBars::barThicknessChanged), static_cast<MyQ3DBars*>(ptr), static_cast<void (MyQ3DBars::*)(float)>(&MyQ3DBars::Signal_BarThicknessChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DBars_DisconnectBarThicknessChanged(void* ptr)
@@ -219,9 +219,9 @@ void* Q3DBars_ColumnAxis(void* ptr)
 	return static_cast<Q3DBars*>(ptr)->columnAxis();
 }
 
-void Q3DBars_ConnectColumnAxisChanged(void* ptr)
+void Q3DBars_ConnectColumnAxisChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DBars*>(ptr), static_cast<void (Q3DBars::*)(QCategory3DAxis *)>(&Q3DBars::columnAxisChanged), static_cast<MyQ3DBars*>(ptr), static_cast<void (MyQ3DBars::*)(QCategory3DAxis *)>(&MyQ3DBars::Signal_ColumnAxisChanged));
+	QObject::connect(static_cast<Q3DBars*>(ptr), static_cast<void (Q3DBars::*)(QCategory3DAxis *)>(&Q3DBars::columnAxisChanged), static_cast<MyQ3DBars*>(ptr), static_cast<void (MyQ3DBars::*)(QCategory3DAxis *)>(&MyQ3DBars::Signal_ColumnAxisChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DBars_DisconnectColumnAxisChanged(void* ptr)
@@ -239,9 +239,9 @@ float Q3DBars_FloorLevel(void* ptr)
 	return static_cast<Q3DBars*>(ptr)->floorLevel();
 }
 
-void Q3DBars_ConnectFloorLevelChanged(void* ptr)
+void Q3DBars_ConnectFloorLevelChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DBars*>(ptr), static_cast<void (Q3DBars::*)(float)>(&Q3DBars::floorLevelChanged), static_cast<MyQ3DBars*>(ptr), static_cast<void (MyQ3DBars::*)(float)>(&MyQ3DBars::Signal_FloorLevelChanged));
+	QObject::connect(static_cast<Q3DBars*>(ptr), static_cast<void (Q3DBars::*)(float)>(&Q3DBars::floorLevelChanged), static_cast<MyQ3DBars*>(ptr), static_cast<void (MyQ3DBars::*)(float)>(&MyQ3DBars::Signal_FloorLevelChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DBars_DisconnectFloorLevelChanged(void* ptr)
@@ -269,9 +269,9 @@ char Q3DBars_IsMultiSeriesUniform(void* ptr)
 	return static_cast<Q3DBars*>(ptr)->isMultiSeriesUniform();
 }
 
-void Q3DBars_ConnectMultiSeriesUniformChanged(void* ptr)
+void Q3DBars_ConnectMultiSeriesUniformChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DBars*>(ptr), static_cast<void (Q3DBars::*)(bool)>(&Q3DBars::multiSeriesUniformChanged), static_cast<MyQ3DBars*>(ptr), static_cast<void (MyQ3DBars::*)(bool)>(&MyQ3DBars::Signal_MultiSeriesUniformChanged));
+	QObject::connect(static_cast<Q3DBars*>(ptr), static_cast<void (Q3DBars::*)(bool)>(&Q3DBars::multiSeriesUniformChanged), static_cast<MyQ3DBars*>(ptr), static_cast<void (MyQ3DBars::*)(bool)>(&MyQ3DBars::Signal_MultiSeriesUniformChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DBars_DisconnectMultiSeriesUniformChanged(void* ptr)
@@ -289,9 +289,9 @@ void* Q3DBars_PrimarySeries(void* ptr)
 	return static_cast<Q3DBars*>(ptr)->primarySeries();
 }
 
-void Q3DBars_ConnectPrimarySeriesChanged(void* ptr)
+void Q3DBars_ConnectPrimarySeriesChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DBars*>(ptr), static_cast<void (Q3DBars::*)(QBar3DSeries *)>(&Q3DBars::primarySeriesChanged), static_cast<MyQ3DBars*>(ptr), static_cast<void (MyQ3DBars::*)(QBar3DSeries *)>(&MyQ3DBars::Signal_PrimarySeriesChanged));
+	QObject::connect(static_cast<Q3DBars*>(ptr), static_cast<void (Q3DBars::*)(QBar3DSeries *)>(&Q3DBars::primarySeriesChanged), static_cast<MyQ3DBars*>(ptr), static_cast<void (MyQ3DBars::*)(QBar3DSeries *)>(&MyQ3DBars::Signal_PrimarySeriesChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DBars_DisconnectPrimarySeriesChanged(void* ptr)
@@ -319,9 +319,9 @@ void* Q3DBars_RowAxis(void* ptr)
 	return static_cast<Q3DBars*>(ptr)->rowAxis();
 }
 
-void Q3DBars_ConnectRowAxisChanged(void* ptr)
+void Q3DBars_ConnectRowAxisChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DBars*>(ptr), static_cast<void (Q3DBars::*)(QCategory3DAxis *)>(&Q3DBars::rowAxisChanged), static_cast<MyQ3DBars*>(ptr), static_cast<void (MyQ3DBars::*)(QCategory3DAxis *)>(&MyQ3DBars::Signal_RowAxisChanged));
+	QObject::connect(static_cast<Q3DBars*>(ptr), static_cast<void (Q3DBars::*)(QCategory3DAxis *)>(&Q3DBars::rowAxisChanged), static_cast<MyQ3DBars*>(ptr), static_cast<void (MyQ3DBars::*)(QCategory3DAxis *)>(&MyQ3DBars::Signal_RowAxisChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DBars_DisconnectRowAxisChanged(void* ptr)
@@ -339,9 +339,9 @@ void* Q3DBars_SelectedSeries(void* ptr)
 	return static_cast<Q3DBars*>(ptr)->selectedSeries();
 }
 
-void Q3DBars_ConnectSelectedSeriesChanged(void* ptr)
+void Q3DBars_ConnectSelectedSeriesChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DBars*>(ptr), static_cast<void (Q3DBars::*)(QBar3DSeries *)>(&Q3DBars::selectedSeriesChanged), static_cast<MyQ3DBars*>(ptr), static_cast<void (MyQ3DBars::*)(QBar3DSeries *)>(&MyQ3DBars::Signal_SelectedSeriesChanged));
+	QObject::connect(static_cast<Q3DBars*>(ptr), static_cast<void (Q3DBars::*)(QBar3DSeries *)>(&Q3DBars::selectedSeriesChanged), static_cast<MyQ3DBars*>(ptr), static_cast<void (MyQ3DBars::*)(QBar3DSeries *)>(&MyQ3DBars::Signal_SelectedSeriesChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DBars_DisconnectSelectedSeriesChanged(void* ptr)
@@ -409,9 +409,9 @@ void* Q3DBars_ValueAxis(void* ptr)
 	return static_cast<Q3DBars*>(ptr)->valueAxis();
 }
 
-void Q3DBars_ConnectValueAxisChanged(void* ptr)
+void Q3DBars_ConnectValueAxisChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DBars*>(ptr), static_cast<void (Q3DBars::*)(QValue3DAxis *)>(&Q3DBars::valueAxisChanged), static_cast<MyQ3DBars*>(ptr), static_cast<void (MyQ3DBars::*)(QValue3DAxis *)>(&MyQ3DBars::Signal_ValueAxisChanged));
+	QObject::connect(static_cast<Q3DBars*>(ptr), static_cast<void (Q3DBars::*)(QValue3DAxis *)>(&Q3DBars::valueAxisChanged), static_cast<MyQ3DBars*>(ptr), static_cast<void (MyQ3DBars::*)(QValue3DAxis *)>(&MyQ3DBars::Signal_ValueAxisChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DBars_DisconnectValueAxisChanged(void* ptr)
@@ -536,9 +536,9 @@ long long Q3DCamera_CameraPreset(void* ptr)
 	return static_cast<Q3DCamera*>(ptr)->cameraPreset();
 }
 
-void Q3DCamera_ConnectCameraPresetChanged(void* ptr)
+void Q3DCamera_ConnectCameraPresetChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DCamera*>(ptr), static_cast<void (Q3DCamera::*)(Q3DCamera::CameraPreset)>(&Q3DCamera::cameraPresetChanged), static_cast<MyQ3DCamera*>(ptr), static_cast<void (MyQ3DCamera::*)(Q3DCamera::CameraPreset)>(&MyQ3DCamera::Signal_CameraPresetChanged));
+	QObject::connect(static_cast<Q3DCamera*>(ptr), static_cast<void (Q3DCamera::*)(Q3DCamera::CameraPreset)>(&Q3DCamera::cameraPresetChanged), static_cast<MyQ3DCamera*>(ptr), static_cast<void (MyQ3DCamera::*)(Q3DCamera::CameraPreset)>(&MyQ3DCamera::Signal_CameraPresetChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DCamera_DisconnectCameraPresetChanged(void* ptr)
@@ -566,9 +566,9 @@ float Q3DCamera_MaxZoomLevel(void* ptr)
 	return static_cast<Q3DCamera*>(ptr)->maxZoomLevel();
 }
 
-void Q3DCamera_ConnectMaxZoomLevelChanged(void* ptr)
+void Q3DCamera_ConnectMaxZoomLevelChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DCamera*>(ptr), static_cast<void (Q3DCamera::*)(float)>(&Q3DCamera::maxZoomLevelChanged), static_cast<MyQ3DCamera*>(ptr), static_cast<void (MyQ3DCamera::*)(float)>(&MyQ3DCamera::Signal_MaxZoomLevelChanged));
+	QObject::connect(static_cast<Q3DCamera*>(ptr), static_cast<void (Q3DCamera::*)(float)>(&Q3DCamera::maxZoomLevelChanged), static_cast<MyQ3DCamera*>(ptr), static_cast<void (MyQ3DCamera::*)(float)>(&MyQ3DCamera::Signal_MaxZoomLevelChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DCamera_DisconnectMaxZoomLevelChanged(void* ptr)
@@ -586,9 +586,9 @@ float Q3DCamera_MinZoomLevel(void* ptr)
 	return static_cast<Q3DCamera*>(ptr)->minZoomLevel();
 }
 
-void Q3DCamera_ConnectMinZoomLevelChanged(void* ptr)
+void Q3DCamera_ConnectMinZoomLevelChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DCamera*>(ptr), static_cast<void (Q3DCamera::*)(float)>(&Q3DCamera::minZoomLevelChanged), static_cast<MyQ3DCamera*>(ptr), static_cast<void (MyQ3DCamera::*)(float)>(&MyQ3DCamera::Signal_MinZoomLevelChanged));
+	QObject::connect(static_cast<Q3DCamera*>(ptr), static_cast<void (Q3DCamera::*)(float)>(&Q3DCamera::minZoomLevelChanged), static_cast<MyQ3DCamera*>(ptr), static_cast<void (MyQ3DCamera::*)(float)>(&MyQ3DCamera::Signal_MinZoomLevelChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DCamera_DisconnectMinZoomLevelChanged(void* ptr)
@@ -656,9 +656,9 @@ void* Q3DCamera_Target(void* ptr)
 	return new QVector3D(static_cast<Q3DCamera*>(ptr)->target());
 }
 
-void Q3DCamera_ConnectTargetChanged(void* ptr)
+void Q3DCamera_ConnectTargetChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DCamera*>(ptr), static_cast<void (Q3DCamera::*)(const QVector3D &)>(&Q3DCamera::targetChanged), static_cast<MyQ3DCamera*>(ptr), static_cast<void (MyQ3DCamera::*)(const QVector3D &)>(&MyQ3DCamera::Signal_TargetChanged));
+	QObject::connect(static_cast<Q3DCamera*>(ptr), static_cast<void (Q3DCamera::*)(const QVector3D &)>(&Q3DCamera::targetChanged), static_cast<MyQ3DCamera*>(ptr), static_cast<void (MyQ3DCamera::*)(const QVector3D &)>(&MyQ3DCamera::Signal_TargetChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DCamera_DisconnectTargetChanged(void* ptr)
@@ -676,9 +676,9 @@ char Q3DCamera_WrapXRotation(void* ptr)
 	return static_cast<Q3DCamera*>(ptr)->wrapXRotation();
 }
 
-void Q3DCamera_ConnectWrapXRotationChanged(void* ptr)
+void Q3DCamera_ConnectWrapXRotationChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DCamera*>(ptr), static_cast<void (Q3DCamera::*)(bool)>(&Q3DCamera::wrapXRotationChanged), static_cast<MyQ3DCamera*>(ptr), static_cast<void (MyQ3DCamera::*)(bool)>(&MyQ3DCamera::Signal_WrapXRotationChanged));
+	QObject::connect(static_cast<Q3DCamera*>(ptr), static_cast<void (Q3DCamera::*)(bool)>(&Q3DCamera::wrapXRotationChanged), static_cast<MyQ3DCamera*>(ptr), static_cast<void (MyQ3DCamera::*)(bool)>(&MyQ3DCamera::Signal_WrapXRotationChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DCamera_DisconnectWrapXRotationChanged(void* ptr)
@@ -696,9 +696,9 @@ char Q3DCamera_WrapYRotation(void* ptr)
 	return static_cast<Q3DCamera*>(ptr)->wrapYRotation();
 }
 
-void Q3DCamera_ConnectWrapYRotationChanged(void* ptr)
+void Q3DCamera_ConnectWrapYRotationChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DCamera*>(ptr), static_cast<void (Q3DCamera::*)(bool)>(&Q3DCamera::wrapYRotationChanged), static_cast<MyQ3DCamera*>(ptr), static_cast<void (MyQ3DCamera::*)(bool)>(&MyQ3DCamera::Signal_WrapYRotationChanged));
+	QObject::connect(static_cast<Q3DCamera*>(ptr), static_cast<void (Q3DCamera::*)(bool)>(&Q3DCamera::wrapYRotationChanged), static_cast<MyQ3DCamera*>(ptr), static_cast<void (MyQ3DCamera::*)(bool)>(&MyQ3DCamera::Signal_WrapYRotationChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DCamera_DisconnectWrapYRotationChanged(void* ptr)
@@ -716,9 +716,9 @@ float Q3DCamera_XRotation(void* ptr)
 	return static_cast<Q3DCamera*>(ptr)->xRotation();
 }
 
-void Q3DCamera_ConnectXRotationChanged(void* ptr)
+void Q3DCamera_ConnectXRotationChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DCamera*>(ptr), static_cast<void (Q3DCamera::*)(float)>(&Q3DCamera::xRotationChanged), static_cast<MyQ3DCamera*>(ptr), static_cast<void (MyQ3DCamera::*)(float)>(&MyQ3DCamera::Signal_XRotationChanged));
+	QObject::connect(static_cast<Q3DCamera*>(ptr), static_cast<void (Q3DCamera::*)(float)>(&Q3DCamera::xRotationChanged), static_cast<MyQ3DCamera*>(ptr), static_cast<void (MyQ3DCamera::*)(float)>(&MyQ3DCamera::Signal_XRotationChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DCamera_DisconnectXRotationChanged(void* ptr)
@@ -736,9 +736,9 @@ float Q3DCamera_YRotation(void* ptr)
 	return static_cast<Q3DCamera*>(ptr)->yRotation();
 }
 
-void Q3DCamera_ConnectYRotationChanged(void* ptr)
+void Q3DCamera_ConnectYRotationChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DCamera*>(ptr), static_cast<void (Q3DCamera::*)(float)>(&Q3DCamera::yRotationChanged), static_cast<MyQ3DCamera*>(ptr), static_cast<void (MyQ3DCamera::*)(float)>(&MyQ3DCamera::Signal_YRotationChanged));
+	QObject::connect(static_cast<Q3DCamera*>(ptr), static_cast<void (Q3DCamera::*)(float)>(&Q3DCamera::yRotationChanged), static_cast<MyQ3DCamera*>(ptr), static_cast<void (MyQ3DCamera::*)(float)>(&MyQ3DCamera::Signal_YRotationChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DCamera_DisconnectYRotationChanged(void* ptr)
@@ -756,9 +756,9 @@ float Q3DCamera_ZoomLevel(void* ptr)
 	return static_cast<Q3DCamera*>(ptr)->zoomLevel();
 }
 
-void Q3DCamera_ConnectZoomLevelChanged(void* ptr)
+void Q3DCamera_ConnectZoomLevelChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DCamera*>(ptr), static_cast<void (Q3DCamera::*)(float)>(&Q3DCamera::zoomLevelChanged), static_cast<MyQ3DCamera*>(ptr), static_cast<void (MyQ3DCamera::*)(float)>(&MyQ3DCamera::Signal_ZoomLevelChanged));
+	QObject::connect(static_cast<Q3DCamera*>(ptr), static_cast<void (Q3DCamera::*)(float)>(&Q3DCamera::zoomLevelChanged), static_cast<MyQ3DCamera*>(ptr), static_cast<void (MyQ3DCamera::*)(float)>(&MyQ3DCamera::Signal_ZoomLevelChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DCamera_DisconnectZoomLevelChanged(void* ptr)
@@ -894,9 +894,9 @@ void Q3DInputHandler_MouseReleaseEventDefault(void* ptr, void* event, void* mous
 		static_cast<Q3DInputHandler*>(ptr)->Q3DInputHandler::mouseReleaseEvent(static_cast<QMouseEvent*>(event), *static_cast<QPoint*>(mousePos));
 }
 
-void Q3DInputHandler_ConnectRotationEnabledChanged(void* ptr)
+void Q3DInputHandler_ConnectRotationEnabledChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DInputHandler*>(ptr), static_cast<void (Q3DInputHandler::*)(bool)>(&Q3DInputHandler::rotationEnabledChanged), static_cast<MyQ3DInputHandler*>(ptr), static_cast<void (MyQ3DInputHandler::*)(bool)>(&MyQ3DInputHandler::Signal_RotationEnabledChanged));
+	QObject::connect(static_cast<Q3DInputHandler*>(ptr), static_cast<void (Q3DInputHandler::*)(bool)>(&Q3DInputHandler::rotationEnabledChanged), static_cast<MyQ3DInputHandler*>(ptr), static_cast<void (MyQ3DInputHandler::*)(bool)>(&MyQ3DInputHandler::Signal_RotationEnabledChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DInputHandler_DisconnectRotationEnabledChanged(void* ptr)
@@ -909,9 +909,9 @@ void Q3DInputHandler_RotationEnabledChanged(void* ptr, char enable)
 	static_cast<Q3DInputHandler*>(ptr)->rotationEnabledChanged(enable != 0);
 }
 
-void Q3DInputHandler_ConnectSelectionEnabledChanged(void* ptr)
+void Q3DInputHandler_ConnectSelectionEnabledChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DInputHandler*>(ptr), static_cast<void (Q3DInputHandler::*)(bool)>(&Q3DInputHandler::selectionEnabledChanged), static_cast<MyQ3DInputHandler*>(ptr), static_cast<void (MyQ3DInputHandler::*)(bool)>(&MyQ3DInputHandler::Signal_SelectionEnabledChanged));
+	QObject::connect(static_cast<Q3DInputHandler*>(ptr), static_cast<void (Q3DInputHandler::*)(bool)>(&Q3DInputHandler::selectionEnabledChanged), static_cast<MyQ3DInputHandler*>(ptr), static_cast<void (MyQ3DInputHandler::*)(bool)>(&MyQ3DInputHandler::Signal_SelectionEnabledChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DInputHandler_DisconnectSelectionEnabledChanged(void* ptr)
@@ -954,9 +954,9 @@ void Q3DInputHandler_WheelEventDefault(void* ptr, void* event)
 		static_cast<Q3DInputHandler*>(ptr)->Q3DInputHandler::wheelEvent(static_cast<QWheelEvent*>(event));
 }
 
-void Q3DInputHandler_ConnectZoomAtTargetEnabledChanged(void* ptr)
+void Q3DInputHandler_ConnectZoomAtTargetEnabledChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DInputHandler*>(ptr), static_cast<void (Q3DInputHandler::*)(bool)>(&Q3DInputHandler::zoomAtTargetEnabledChanged), static_cast<MyQ3DInputHandler*>(ptr), static_cast<void (MyQ3DInputHandler::*)(bool)>(&MyQ3DInputHandler::Signal_ZoomAtTargetEnabledChanged));
+	QObject::connect(static_cast<Q3DInputHandler*>(ptr), static_cast<void (Q3DInputHandler::*)(bool)>(&Q3DInputHandler::zoomAtTargetEnabledChanged), static_cast<MyQ3DInputHandler*>(ptr), static_cast<void (MyQ3DInputHandler::*)(bool)>(&MyQ3DInputHandler::Signal_ZoomAtTargetEnabledChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DInputHandler_DisconnectZoomAtTargetEnabledChanged(void* ptr)
@@ -969,9 +969,9 @@ void Q3DInputHandler_ZoomAtTargetEnabledChanged(void* ptr, char enable)
 	static_cast<Q3DInputHandler*>(ptr)->zoomAtTargetEnabledChanged(enable != 0);
 }
 
-void Q3DInputHandler_ConnectZoomEnabledChanged(void* ptr)
+void Q3DInputHandler_ConnectZoomEnabledChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DInputHandler*>(ptr), static_cast<void (Q3DInputHandler::*)(bool)>(&Q3DInputHandler::zoomEnabledChanged), static_cast<MyQ3DInputHandler*>(ptr), static_cast<void (MyQ3DInputHandler::*)(bool)>(&MyQ3DInputHandler::Signal_ZoomEnabledChanged));
+	QObject::connect(static_cast<Q3DInputHandler*>(ptr), static_cast<void (Q3DInputHandler::*)(bool)>(&Q3DInputHandler::zoomEnabledChanged), static_cast<MyQ3DInputHandler*>(ptr), static_cast<void (MyQ3DInputHandler::*)(bool)>(&MyQ3DInputHandler::Signal_ZoomEnabledChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DInputHandler_DisconnectZoomEnabledChanged(void* ptr)
@@ -1050,9 +1050,9 @@ void* Q3DLight_NewQ3DLight(void* parent)
 	}
 }
 
-void Q3DLight_ConnectAutoPositionChanged(void* ptr)
+void Q3DLight_ConnectAutoPositionChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DLight*>(ptr), static_cast<void (Q3DLight::*)(bool)>(&Q3DLight::autoPositionChanged), static_cast<MyQ3DLight*>(ptr), static_cast<void (MyQ3DLight::*)(bool)>(&MyQ3DLight::Signal_AutoPositionChanged));
+	QObject::connect(static_cast<Q3DLight*>(ptr), static_cast<void (Q3DLight::*)(bool)>(&Q3DLight::autoPositionChanged), static_cast<MyQ3DLight*>(ptr), static_cast<void (MyQ3DLight::*)(bool)>(&MyQ3DLight::Signal_AutoPositionChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DLight_DisconnectAutoPositionChanged(void* ptr)
@@ -1167,9 +1167,9 @@ void* Q3DObject_Position(void* ptr)
 	return new QVector3D(static_cast<Q3DObject*>(ptr)->position());
 }
 
-void Q3DObject_ConnectPositionChanged(void* ptr)
+void Q3DObject_ConnectPositionChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DObject*>(ptr), static_cast<void (Q3DObject::*)(const QVector3D &)>(&Q3DObject::positionChanged), static_cast<MyQ3DObject*>(ptr), static_cast<void (MyQ3DObject::*)(const QVector3D &)>(&MyQ3DObject::Signal_PositionChanged));
+	QObject::connect(static_cast<Q3DObject*>(ptr), static_cast<void (Q3DObject::*)(const QVector3D &)>(&Q3DObject::positionChanged), static_cast<MyQ3DObject*>(ptr), static_cast<void (MyQ3DObject::*)(const QVector3D &)>(&MyQ3DObject::Signal_PositionChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DObject_DisconnectPositionChanged(void* ptr)
@@ -1243,9 +1243,9 @@ void* Q3DScatter_AxisX(void* ptr)
 	return static_cast<Q3DScatter*>(ptr)->axisX();
 }
 
-void Q3DScatter_ConnectAxisXChanged(void* ptr)
+void Q3DScatter_ConnectAxisXChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DScatter*>(ptr), static_cast<void (Q3DScatter::*)(QValue3DAxis *)>(&Q3DScatter::axisXChanged), static_cast<MyQ3DScatter*>(ptr), static_cast<void (MyQ3DScatter::*)(QValue3DAxis *)>(&MyQ3DScatter::Signal_AxisXChanged));
+	QObject::connect(static_cast<Q3DScatter*>(ptr), static_cast<void (Q3DScatter::*)(QValue3DAxis *)>(&Q3DScatter::axisXChanged), static_cast<MyQ3DScatter*>(ptr), static_cast<void (MyQ3DScatter::*)(QValue3DAxis *)>(&MyQ3DScatter::Signal_AxisXChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DScatter_DisconnectAxisXChanged(void* ptr)
@@ -1263,9 +1263,9 @@ void* Q3DScatter_AxisY(void* ptr)
 	return static_cast<Q3DScatter*>(ptr)->axisY();
 }
 
-void Q3DScatter_ConnectAxisYChanged(void* ptr)
+void Q3DScatter_ConnectAxisYChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DScatter*>(ptr), static_cast<void (Q3DScatter::*)(QValue3DAxis *)>(&Q3DScatter::axisYChanged), static_cast<MyQ3DScatter*>(ptr), static_cast<void (MyQ3DScatter::*)(QValue3DAxis *)>(&MyQ3DScatter::Signal_AxisYChanged));
+	QObject::connect(static_cast<Q3DScatter*>(ptr), static_cast<void (Q3DScatter::*)(QValue3DAxis *)>(&Q3DScatter::axisYChanged), static_cast<MyQ3DScatter*>(ptr), static_cast<void (MyQ3DScatter::*)(QValue3DAxis *)>(&MyQ3DScatter::Signal_AxisYChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DScatter_DisconnectAxisYChanged(void* ptr)
@@ -1283,9 +1283,9 @@ void* Q3DScatter_AxisZ(void* ptr)
 	return static_cast<Q3DScatter*>(ptr)->axisZ();
 }
 
-void Q3DScatter_ConnectAxisZChanged(void* ptr)
+void Q3DScatter_ConnectAxisZChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DScatter*>(ptr), static_cast<void (Q3DScatter::*)(QValue3DAxis *)>(&Q3DScatter::axisZChanged), static_cast<MyQ3DScatter*>(ptr), static_cast<void (MyQ3DScatter::*)(QValue3DAxis *)>(&MyQ3DScatter::Signal_AxisZChanged));
+	QObject::connect(static_cast<Q3DScatter*>(ptr), static_cast<void (Q3DScatter::*)(QValue3DAxis *)>(&Q3DScatter::axisZChanged), static_cast<MyQ3DScatter*>(ptr), static_cast<void (MyQ3DScatter::*)(QValue3DAxis *)>(&MyQ3DScatter::Signal_AxisZChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DScatter_DisconnectAxisZChanged(void* ptr)
@@ -1313,9 +1313,9 @@ void* Q3DScatter_SelectedSeries(void* ptr)
 	return static_cast<Q3DScatter*>(ptr)->selectedSeries();
 }
 
-void Q3DScatter_ConnectSelectedSeriesChanged(void* ptr)
+void Q3DScatter_ConnectSelectedSeriesChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DScatter*>(ptr), static_cast<void (Q3DScatter::*)(QScatter3DSeries *)>(&Q3DScatter::selectedSeriesChanged), static_cast<MyQ3DScatter*>(ptr), static_cast<void (MyQ3DScatter::*)(QScatter3DSeries *)>(&MyQ3DScatter::Signal_SelectedSeriesChanged));
+	QObject::connect(static_cast<Q3DScatter*>(ptr), static_cast<void (Q3DScatter::*)(QScatter3DSeries *)>(&Q3DScatter::selectedSeriesChanged), static_cast<MyQ3DScatter*>(ptr), static_cast<void (MyQ3DScatter::*)(QScatter3DSeries *)>(&MyQ3DScatter::Signal_SelectedSeriesChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DScatter_DisconnectSelectedSeriesChanged(void* ptr)
@@ -1460,9 +1460,9 @@ void* Q3DScene_ActiveCamera(void* ptr)
 	return static_cast<Q3DScene*>(ptr)->activeCamera();
 }
 
-void Q3DScene_ConnectActiveCameraChanged(void* ptr)
+void Q3DScene_ConnectActiveCameraChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DScene*>(ptr), static_cast<void (Q3DScene::*)(Q3DCamera *)>(&Q3DScene::activeCameraChanged), static_cast<MyQ3DScene*>(ptr), static_cast<void (MyQ3DScene::*)(Q3DCamera *)>(&MyQ3DScene::Signal_ActiveCameraChanged));
+	QObject::connect(static_cast<Q3DScene*>(ptr), static_cast<void (Q3DScene::*)(Q3DCamera *)>(&Q3DScene::activeCameraChanged), static_cast<MyQ3DScene*>(ptr), static_cast<void (MyQ3DScene::*)(Q3DCamera *)>(&MyQ3DScene::Signal_ActiveCameraChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DScene_DisconnectActiveCameraChanged(void* ptr)
@@ -1480,9 +1480,9 @@ void* Q3DScene_ActiveLight(void* ptr)
 	return static_cast<Q3DScene*>(ptr)->activeLight();
 }
 
-void Q3DScene_ConnectActiveLightChanged(void* ptr)
+void Q3DScene_ConnectActiveLightChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DScene*>(ptr), static_cast<void (Q3DScene::*)(Q3DLight *)>(&Q3DScene::activeLightChanged), static_cast<MyQ3DScene*>(ptr), static_cast<void (MyQ3DScene::*)(Q3DLight *)>(&MyQ3DScene::Signal_ActiveLightChanged));
+	QObject::connect(static_cast<Q3DScene*>(ptr), static_cast<void (Q3DScene::*)(Q3DLight *)>(&Q3DScene::activeLightChanged), static_cast<MyQ3DScene*>(ptr), static_cast<void (MyQ3DScene::*)(Q3DLight *)>(&MyQ3DScene::Signal_ActiveLightChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DScene_DisconnectActiveLightChanged(void* ptr)
@@ -1500,9 +1500,9 @@ float Q3DScene_DevicePixelRatio(void* ptr)
 	return static_cast<Q3DScene*>(ptr)->devicePixelRatio();
 }
 
-void Q3DScene_ConnectDevicePixelRatioChanged(void* ptr)
+void Q3DScene_ConnectDevicePixelRatioChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DScene*>(ptr), static_cast<void (Q3DScene::*)(float)>(&Q3DScene::devicePixelRatioChanged), static_cast<MyQ3DScene*>(ptr), static_cast<void (MyQ3DScene::*)(float)>(&MyQ3DScene::Signal_DevicePixelRatioChanged));
+	QObject::connect(static_cast<Q3DScene*>(ptr), static_cast<void (Q3DScene::*)(float)>(&Q3DScene::devicePixelRatioChanged), static_cast<MyQ3DScene*>(ptr), static_cast<void (MyQ3DScene::*)(float)>(&MyQ3DScene::Signal_DevicePixelRatioChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DScene_DisconnectDevicePixelRatioChanged(void* ptr)
@@ -1520,9 +1520,9 @@ void* Q3DScene_GraphPositionQuery(void* ptr)
 	return ({ QPoint tmpValue = static_cast<Q3DScene*>(ptr)->graphPositionQuery(); new QPoint(tmpValue.x(), tmpValue.y()); });
 }
 
-void Q3DScene_ConnectGraphPositionQueryChanged(void* ptr)
+void Q3DScene_ConnectGraphPositionQueryChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DScene*>(ptr), static_cast<void (Q3DScene::*)(const QPoint &)>(&Q3DScene::graphPositionQueryChanged), static_cast<MyQ3DScene*>(ptr), static_cast<void (MyQ3DScene::*)(const QPoint &)>(&MyQ3DScene::Signal_GraphPositionQueryChanged));
+	QObject::connect(static_cast<Q3DScene*>(ptr), static_cast<void (Q3DScene::*)(const QPoint &)>(&Q3DScene::graphPositionQueryChanged), static_cast<MyQ3DScene*>(ptr), static_cast<void (MyQ3DScene::*)(const QPoint &)>(&MyQ3DScene::Signal_GraphPositionQueryChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DScene_DisconnectGraphPositionQueryChanged(void* ptr)
@@ -1565,9 +1565,9 @@ void* Q3DScene_PrimarySubViewport(void* ptr)
 	return ({ QRect tmpValue = static_cast<Q3DScene*>(ptr)->primarySubViewport(); new QRect(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
-void Q3DScene_ConnectPrimarySubViewportChanged(void* ptr)
+void Q3DScene_ConnectPrimarySubViewportChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DScene*>(ptr), static_cast<void (Q3DScene::*)(const QRect &)>(&Q3DScene::primarySubViewportChanged), static_cast<MyQ3DScene*>(ptr), static_cast<void (MyQ3DScene::*)(const QRect &)>(&MyQ3DScene::Signal_PrimarySubViewportChanged));
+	QObject::connect(static_cast<Q3DScene*>(ptr), static_cast<void (Q3DScene::*)(const QRect &)>(&Q3DScene::primarySubViewportChanged), static_cast<MyQ3DScene*>(ptr), static_cast<void (MyQ3DScene::*)(const QRect &)>(&MyQ3DScene::Signal_PrimarySubViewportChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DScene_DisconnectPrimarySubViewportChanged(void* ptr)
@@ -1585,9 +1585,9 @@ void* Q3DScene_SecondarySubViewport(void* ptr)
 	return ({ QRect tmpValue = static_cast<Q3DScene*>(ptr)->secondarySubViewport(); new QRect(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
-void Q3DScene_ConnectSecondarySubViewportChanged(void* ptr)
+void Q3DScene_ConnectSecondarySubViewportChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DScene*>(ptr), static_cast<void (Q3DScene::*)(const QRect &)>(&Q3DScene::secondarySubViewportChanged), static_cast<MyQ3DScene*>(ptr), static_cast<void (MyQ3DScene::*)(const QRect &)>(&MyQ3DScene::Signal_SecondarySubViewportChanged));
+	QObject::connect(static_cast<Q3DScene*>(ptr), static_cast<void (Q3DScene::*)(const QRect &)>(&Q3DScene::secondarySubViewportChanged), static_cast<MyQ3DScene*>(ptr), static_cast<void (MyQ3DScene::*)(const QRect &)>(&MyQ3DScene::Signal_SecondarySubViewportChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DScene_DisconnectSecondarySubViewportChanged(void* ptr)
@@ -1600,9 +1600,9 @@ void Q3DScene_SecondarySubViewportChanged(void* ptr, void* subViewport)
 	static_cast<Q3DScene*>(ptr)->secondarySubViewportChanged(*static_cast<QRect*>(subViewport));
 }
 
-void Q3DScene_ConnectSecondarySubviewOnTopChanged(void* ptr)
+void Q3DScene_ConnectSecondarySubviewOnTopChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DScene*>(ptr), static_cast<void (Q3DScene::*)(bool)>(&Q3DScene::secondarySubviewOnTopChanged), static_cast<MyQ3DScene*>(ptr), static_cast<void (MyQ3DScene::*)(bool)>(&MyQ3DScene::Signal_SecondarySubviewOnTopChanged));
+	QObject::connect(static_cast<Q3DScene*>(ptr), static_cast<void (Q3DScene::*)(bool)>(&Q3DScene::secondarySubviewOnTopChanged), static_cast<MyQ3DScene*>(ptr), static_cast<void (MyQ3DScene::*)(bool)>(&MyQ3DScene::Signal_SecondarySubviewOnTopChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DScene_DisconnectSecondarySubviewOnTopChanged(void* ptr)
@@ -1620,9 +1620,9 @@ void* Q3DScene_SelectionQueryPosition(void* ptr)
 	return ({ QPoint tmpValue = static_cast<Q3DScene*>(ptr)->selectionQueryPosition(); new QPoint(tmpValue.x(), tmpValue.y()); });
 }
 
-void Q3DScene_ConnectSelectionQueryPositionChanged(void* ptr)
+void Q3DScene_ConnectSelectionQueryPositionChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DScene*>(ptr), static_cast<void (Q3DScene::*)(const QPoint &)>(&Q3DScene::selectionQueryPositionChanged), static_cast<MyQ3DScene*>(ptr), static_cast<void (MyQ3DScene::*)(const QPoint &)>(&MyQ3DScene::Signal_SelectionQueryPositionChanged));
+	QObject::connect(static_cast<Q3DScene*>(ptr), static_cast<void (Q3DScene::*)(const QPoint &)>(&Q3DScene::selectionQueryPositionChanged), static_cast<MyQ3DScene*>(ptr), static_cast<void (MyQ3DScene::*)(const QPoint &)>(&MyQ3DScene::Signal_SelectionQueryPositionChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DScene_DisconnectSelectionQueryPositionChanged(void* ptr)
@@ -1680,9 +1680,9 @@ void Q3DScene_SetSlicingActive(void* ptr, char isSlicing)
 	static_cast<Q3DScene*>(ptr)->setSlicingActive(isSlicing != 0);
 }
 
-void Q3DScene_ConnectSlicingActiveChanged(void* ptr)
+void Q3DScene_ConnectSlicingActiveChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DScene*>(ptr), static_cast<void (Q3DScene::*)(bool)>(&Q3DScene::slicingActiveChanged), static_cast<MyQ3DScene*>(ptr), static_cast<void (MyQ3DScene::*)(bool)>(&MyQ3DScene::Signal_SlicingActiveChanged));
+	QObject::connect(static_cast<Q3DScene*>(ptr), static_cast<void (Q3DScene::*)(bool)>(&Q3DScene::slicingActiveChanged), static_cast<MyQ3DScene*>(ptr), static_cast<void (MyQ3DScene::*)(bool)>(&MyQ3DScene::Signal_SlicingActiveChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DScene_DisconnectSlicingActiveChanged(void* ptr)
@@ -1700,9 +1700,9 @@ void* Q3DScene_Viewport(void* ptr)
 	return ({ QRect tmpValue = static_cast<Q3DScene*>(ptr)->viewport(); new QRect(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
-void Q3DScene_ConnectViewportChanged(void* ptr)
+void Q3DScene_ConnectViewportChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DScene*>(ptr), static_cast<void (Q3DScene::*)(const QRect &)>(&Q3DScene::viewportChanged), static_cast<MyQ3DScene*>(ptr), static_cast<void (MyQ3DScene::*)(const QRect &)>(&MyQ3DScene::Signal_ViewportChanged));
+	QObject::connect(static_cast<Q3DScene*>(ptr), static_cast<void (Q3DScene::*)(const QRect &)>(&Q3DScene::viewportChanged), static_cast<MyQ3DScene*>(ptr), static_cast<void (MyQ3DScene::*)(const QRect &)>(&MyQ3DScene::Signal_ViewportChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DScene_DisconnectViewportChanged(void* ptr)
@@ -1767,9 +1767,9 @@ void* Q3DSurface_AxisX(void* ptr)
 	return static_cast<Q3DSurface*>(ptr)->axisX();
 }
 
-void Q3DSurface_ConnectAxisXChanged(void* ptr)
+void Q3DSurface_ConnectAxisXChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DSurface*>(ptr), static_cast<void (Q3DSurface::*)(QValue3DAxis *)>(&Q3DSurface::axisXChanged), static_cast<MyQ3DSurface*>(ptr), static_cast<void (MyQ3DSurface::*)(QValue3DAxis *)>(&MyQ3DSurface::Signal_AxisXChanged));
+	QObject::connect(static_cast<Q3DSurface*>(ptr), static_cast<void (Q3DSurface::*)(QValue3DAxis *)>(&Q3DSurface::axisXChanged), static_cast<MyQ3DSurface*>(ptr), static_cast<void (MyQ3DSurface::*)(QValue3DAxis *)>(&MyQ3DSurface::Signal_AxisXChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DSurface_DisconnectAxisXChanged(void* ptr)
@@ -1787,9 +1787,9 @@ void* Q3DSurface_AxisY(void* ptr)
 	return static_cast<Q3DSurface*>(ptr)->axisY();
 }
 
-void Q3DSurface_ConnectAxisYChanged(void* ptr)
+void Q3DSurface_ConnectAxisYChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DSurface*>(ptr), static_cast<void (Q3DSurface::*)(QValue3DAxis *)>(&Q3DSurface::axisYChanged), static_cast<MyQ3DSurface*>(ptr), static_cast<void (MyQ3DSurface::*)(QValue3DAxis *)>(&MyQ3DSurface::Signal_AxisYChanged));
+	QObject::connect(static_cast<Q3DSurface*>(ptr), static_cast<void (Q3DSurface::*)(QValue3DAxis *)>(&Q3DSurface::axisYChanged), static_cast<MyQ3DSurface*>(ptr), static_cast<void (MyQ3DSurface::*)(QValue3DAxis *)>(&MyQ3DSurface::Signal_AxisYChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DSurface_DisconnectAxisYChanged(void* ptr)
@@ -1807,9 +1807,9 @@ void* Q3DSurface_AxisZ(void* ptr)
 	return static_cast<Q3DSurface*>(ptr)->axisZ();
 }
 
-void Q3DSurface_ConnectAxisZChanged(void* ptr)
+void Q3DSurface_ConnectAxisZChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DSurface*>(ptr), static_cast<void (Q3DSurface::*)(QValue3DAxis *)>(&Q3DSurface::axisZChanged), static_cast<MyQ3DSurface*>(ptr), static_cast<void (MyQ3DSurface::*)(QValue3DAxis *)>(&MyQ3DSurface::Signal_AxisZChanged));
+	QObject::connect(static_cast<Q3DSurface*>(ptr), static_cast<void (Q3DSurface::*)(QValue3DAxis *)>(&Q3DSurface::axisZChanged), static_cast<MyQ3DSurface*>(ptr), static_cast<void (MyQ3DSurface::*)(QValue3DAxis *)>(&MyQ3DSurface::Signal_AxisZChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DSurface_DisconnectAxisZChanged(void* ptr)
@@ -1827,9 +1827,9 @@ char Q3DSurface_FlipHorizontalGrid(void* ptr)
 	return static_cast<Q3DSurface*>(ptr)->flipHorizontalGrid();
 }
 
-void Q3DSurface_ConnectFlipHorizontalGridChanged(void* ptr)
+void Q3DSurface_ConnectFlipHorizontalGridChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DSurface*>(ptr), static_cast<void (Q3DSurface::*)(bool)>(&Q3DSurface::flipHorizontalGridChanged), static_cast<MyQ3DSurface*>(ptr), static_cast<void (MyQ3DSurface::*)(bool)>(&MyQ3DSurface::Signal_FlipHorizontalGridChanged));
+	QObject::connect(static_cast<Q3DSurface*>(ptr), static_cast<void (Q3DSurface::*)(bool)>(&Q3DSurface::flipHorizontalGridChanged), static_cast<MyQ3DSurface*>(ptr), static_cast<void (MyQ3DSurface::*)(bool)>(&MyQ3DSurface::Signal_FlipHorizontalGridChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DSurface_DisconnectFlipHorizontalGridChanged(void* ptr)
@@ -1857,9 +1857,9 @@ void* Q3DSurface_SelectedSeries(void* ptr)
 	return static_cast<Q3DSurface*>(ptr)->selectedSeries();
 }
 
-void Q3DSurface_ConnectSelectedSeriesChanged(void* ptr)
+void Q3DSurface_ConnectSelectedSeriesChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DSurface*>(ptr), static_cast<void (Q3DSurface::*)(QSurface3DSeries *)>(&Q3DSurface::selectedSeriesChanged), static_cast<MyQ3DSurface*>(ptr), static_cast<void (MyQ3DSurface::*)(QSurface3DSeries *)>(&MyQ3DSurface::Signal_SelectedSeriesChanged));
+	QObject::connect(static_cast<Q3DSurface*>(ptr), static_cast<void (Q3DSurface::*)(QSurface3DSeries *)>(&Q3DSurface::selectedSeriesChanged), static_cast<MyQ3DSurface*>(ptr), static_cast<void (MyQ3DSurface::*)(QSurface3DSeries *)>(&MyQ3DSurface::Signal_SelectedSeriesChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DSurface_DisconnectSelectedSeriesChanged(void* ptr)
@@ -2069,9 +2069,9 @@ float Q3DTheme_AmbientLightStrength(void* ptr)
 	return static_cast<Q3DTheme*>(ptr)->ambientLightStrength();
 }
 
-void Q3DTheme_ConnectAmbientLightStrengthChanged(void* ptr)
+void Q3DTheme_ConnectAmbientLightStrengthChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(float)>(&Q3DTheme::ambientLightStrengthChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(float)>(&MyQ3DTheme::Signal_AmbientLightStrengthChanged));
+	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(float)>(&Q3DTheme::ambientLightStrengthChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(float)>(&MyQ3DTheme::Signal_AmbientLightStrengthChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DTheme_DisconnectAmbientLightStrengthChanged(void* ptr)
@@ -2089,9 +2089,9 @@ void* Q3DTheme_BackgroundColor(void* ptr)
 	return new QColor(static_cast<Q3DTheme*>(ptr)->backgroundColor());
 }
 
-void Q3DTheme_ConnectBackgroundColorChanged(void* ptr)
+void Q3DTheme_ConnectBackgroundColorChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(const QColor &)>(&Q3DTheme::backgroundColorChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(const QColor &)>(&MyQ3DTheme::Signal_BackgroundColorChanged));
+	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(const QColor &)>(&Q3DTheme::backgroundColorChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(const QColor &)>(&MyQ3DTheme::Signal_BackgroundColorChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DTheme_DisconnectBackgroundColorChanged(void* ptr)
@@ -2104,9 +2104,9 @@ void Q3DTheme_BackgroundColorChanged(void* ptr, void* color)
 	static_cast<Q3DTheme*>(ptr)->backgroundColorChanged(*static_cast<QColor*>(color));
 }
 
-void Q3DTheme_ConnectBackgroundEnabledChanged(void* ptr)
+void Q3DTheme_ConnectBackgroundEnabledChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(bool)>(&Q3DTheme::backgroundEnabledChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(bool)>(&MyQ3DTheme::Signal_BackgroundEnabledChanged));
+	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(bool)>(&Q3DTheme::backgroundEnabledChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(bool)>(&MyQ3DTheme::Signal_BackgroundEnabledChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DTheme_DisconnectBackgroundEnabledChanged(void* ptr)
@@ -2124,9 +2124,9 @@ struct QtDataVisualization_PackedList Q3DTheme_BaseColors(void* ptr)
 	return ({ QList<QColor>* tmpValue352da1 = new QList<QColor>(static_cast<Q3DTheme*>(ptr)->baseColors()); QtDataVisualization_PackedList { tmpValue352da1, tmpValue352da1->size() }; });
 }
 
-void Q3DTheme_ConnectBaseColorsChanged(void* ptr)
+void Q3DTheme_ConnectBaseColorsChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(const QList<QColor> &)>(&Q3DTheme::baseColorsChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(const QList<QColor> &)>(&MyQ3DTheme::Signal_BaseColorsChanged));
+	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(const QList<QColor> &)>(&Q3DTheme::baseColorsChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(const QList<QColor> &)>(&MyQ3DTheme::Signal_BaseColorsChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DTheme_DisconnectBaseColorsChanged(void* ptr)
@@ -2144,9 +2144,9 @@ struct QtDataVisualization_PackedList Q3DTheme_BaseGradients(void* ptr)
 	return ({ QList<QLinearGradient>* tmpValue2e4052 = new QList<QLinearGradient>(static_cast<Q3DTheme*>(ptr)->baseGradients()); QtDataVisualization_PackedList { tmpValue2e4052, tmpValue2e4052->size() }; });
 }
 
-void Q3DTheme_ConnectBaseGradientsChanged(void* ptr)
+void Q3DTheme_ConnectBaseGradientsChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(const QList<QLinearGradient> &)>(&Q3DTheme::baseGradientsChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(const QList<QLinearGradient> &)>(&MyQ3DTheme::Signal_BaseGradientsChanged));
+	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(const QList<QLinearGradient> &)>(&Q3DTheme::baseGradientsChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(const QList<QLinearGradient> &)>(&MyQ3DTheme::Signal_BaseGradientsChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DTheme_DisconnectBaseGradientsChanged(void* ptr)
@@ -2164,9 +2164,9 @@ long long Q3DTheme_ColorStyle(void* ptr)
 	return static_cast<Q3DTheme*>(ptr)->colorStyle();
 }
 
-void Q3DTheme_ConnectColorStyleChanged(void* ptr)
+void Q3DTheme_ConnectColorStyleChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(Q3DTheme::ColorStyle)>(&Q3DTheme::colorStyleChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(Q3DTheme::ColorStyle)>(&MyQ3DTheme::Signal_ColorStyleChanged));
+	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(Q3DTheme::ColorStyle)>(&Q3DTheme::colorStyleChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(Q3DTheme::ColorStyle)>(&MyQ3DTheme::Signal_ColorStyleChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DTheme_DisconnectColorStyleChanged(void* ptr)
@@ -2184,9 +2184,9 @@ void* Q3DTheme_Font(void* ptr)
 	return new QFont(static_cast<Q3DTheme*>(ptr)->font());
 }
 
-void Q3DTheme_ConnectFontChanged(void* ptr)
+void Q3DTheme_ConnectFontChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(const QFont &)>(&Q3DTheme::fontChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(const QFont &)>(&MyQ3DTheme::Signal_FontChanged));
+	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(const QFont &)>(&Q3DTheme::fontChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(const QFont &)>(&MyQ3DTheme::Signal_FontChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DTheme_DisconnectFontChanged(void* ptr)
@@ -2199,9 +2199,9 @@ void Q3DTheme_FontChanged(void* ptr, void* font)
 	static_cast<Q3DTheme*>(ptr)->fontChanged(*static_cast<QFont*>(font));
 }
 
-void Q3DTheme_ConnectGridEnabledChanged(void* ptr)
+void Q3DTheme_ConnectGridEnabledChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(bool)>(&Q3DTheme::gridEnabledChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(bool)>(&MyQ3DTheme::Signal_GridEnabledChanged));
+	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(bool)>(&Q3DTheme::gridEnabledChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(bool)>(&MyQ3DTheme::Signal_GridEnabledChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DTheme_DisconnectGridEnabledChanged(void* ptr)
@@ -2219,9 +2219,9 @@ void* Q3DTheme_GridLineColor(void* ptr)
 	return new QColor(static_cast<Q3DTheme*>(ptr)->gridLineColor());
 }
 
-void Q3DTheme_ConnectGridLineColorChanged(void* ptr)
+void Q3DTheme_ConnectGridLineColorChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(const QColor &)>(&Q3DTheme::gridLineColorChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(const QColor &)>(&MyQ3DTheme::Signal_GridLineColorChanged));
+	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(const QColor &)>(&Q3DTheme::gridLineColorChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(const QColor &)>(&MyQ3DTheme::Signal_GridLineColorChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DTheme_DisconnectGridLineColorChanged(void* ptr)
@@ -2239,9 +2239,9 @@ float Q3DTheme_HighlightLightStrength(void* ptr)
 	return static_cast<Q3DTheme*>(ptr)->highlightLightStrength();
 }
 
-void Q3DTheme_ConnectHighlightLightStrengthChanged(void* ptr)
+void Q3DTheme_ConnectHighlightLightStrengthChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(float)>(&Q3DTheme::highlightLightStrengthChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(float)>(&MyQ3DTheme::Signal_HighlightLightStrengthChanged));
+	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(float)>(&Q3DTheme::highlightLightStrengthChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(float)>(&MyQ3DTheme::Signal_HighlightLightStrengthChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DTheme_DisconnectHighlightLightStrengthChanged(void* ptr)
@@ -2279,9 +2279,9 @@ void* Q3DTheme_LabelBackgroundColor(void* ptr)
 	return new QColor(static_cast<Q3DTheme*>(ptr)->labelBackgroundColor());
 }
 
-void Q3DTheme_ConnectLabelBackgroundColorChanged(void* ptr)
+void Q3DTheme_ConnectLabelBackgroundColorChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(const QColor &)>(&Q3DTheme::labelBackgroundColorChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(const QColor &)>(&MyQ3DTheme::Signal_LabelBackgroundColorChanged));
+	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(const QColor &)>(&Q3DTheme::labelBackgroundColorChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(const QColor &)>(&MyQ3DTheme::Signal_LabelBackgroundColorChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DTheme_DisconnectLabelBackgroundColorChanged(void* ptr)
@@ -2294,9 +2294,9 @@ void Q3DTheme_LabelBackgroundColorChanged(void* ptr, void* color)
 	static_cast<Q3DTheme*>(ptr)->labelBackgroundColorChanged(*static_cast<QColor*>(color));
 }
 
-void Q3DTheme_ConnectLabelBackgroundEnabledChanged(void* ptr)
+void Q3DTheme_ConnectLabelBackgroundEnabledChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(bool)>(&Q3DTheme::labelBackgroundEnabledChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(bool)>(&MyQ3DTheme::Signal_LabelBackgroundEnabledChanged));
+	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(bool)>(&Q3DTheme::labelBackgroundEnabledChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(bool)>(&MyQ3DTheme::Signal_LabelBackgroundEnabledChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DTheme_DisconnectLabelBackgroundEnabledChanged(void* ptr)
@@ -2309,9 +2309,9 @@ void Q3DTheme_LabelBackgroundEnabledChanged(void* ptr, char enabled)
 	static_cast<Q3DTheme*>(ptr)->labelBackgroundEnabledChanged(enabled != 0);
 }
 
-void Q3DTheme_ConnectLabelBorderEnabledChanged(void* ptr)
+void Q3DTheme_ConnectLabelBorderEnabledChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(bool)>(&Q3DTheme::labelBorderEnabledChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(bool)>(&MyQ3DTheme::Signal_LabelBorderEnabledChanged));
+	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(bool)>(&Q3DTheme::labelBorderEnabledChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(bool)>(&MyQ3DTheme::Signal_LabelBorderEnabledChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DTheme_DisconnectLabelBorderEnabledChanged(void* ptr)
@@ -2329,9 +2329,9 @@ void* Q3DTheme_LabelTextColor(void* ptr)
 	return new QColor(static_cast<Q3DTheme*>(ptr)->labelTextColor());
 }
 
-void Q3DTheme_ConnectLabelTextColorChanged(void* ptr)
+void Q3DTheme_ConnectLabelTextColorChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(const QColor &)>(&Q3DTheme::labelTextColorChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(const QColor &)>(&MyQ3DTheme::Signal_LabelTextColorChanged));
+	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(const QColor &)>(&Q3DTheme::labelTextColorChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(const QColor &)>(&MyQ3DTheme::Signal_LabelTextColorChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DTheme_DisconnectLabelTextColorChanged(void* ptr)
@@ -2349,9 +2349,9 @@ void* Q3DTheme_LightColor(void* ptr)
 	return new QColor(static_cast<Q3DTheme*>(ptr)->lightColor());
 }
 
-void Q3DTheme_ConnectLightColorChanged(void* ptr)
+void Q3DTheme_ConnectLightColorChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(const QColor &)>(&Q3DTheme::lightColorChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(const QColor &)>(&MyQ3DTheme::Signal_LightColorChanged));
+	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(const QColor &)>(&Q3DTheme::lightColorChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(const QColor &)>(&MyQ3DTheme::Signal_LightColorChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DTheme_DisconnectLightColorChanged(void* ptr)
@@ -2369,9 +2369,9 @@ float Q3DTheme_LightStrength(void* ptr)
 	return static_cast<Q3DTheme*>(ptr)->lightStrength();
 }
 
-void Q3DTheme_ConnectLightStrengthChanged(void* ptr)
+void Q3DTheme_ConnectLightStrengthChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(float)>(&Q3DTheme::lightStrengthChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(float)>(&MyQ3DTheme::Signal_LightStrengthChanged));
+	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(float)>(&Q3DTheme::lightStrengthChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(float)>(&MyQ3DTheme::Signal_LightStrengthChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DTheme_DisconnectLightStrengthChanged(void* ptr)
@@ -2389,9 +2389,9 @@ void* Q3DTheme_MultiHighlightColor(void* ptr)
 	return new QColor(static_cast<Q3DTheme*>(ptr)->multiHighlightColor());
 }
 
-void Q3DTheme_ConnectMultiHighlightColorChanged(void* ptr)
+void Q3DTheme_ConnectMultiHighlightColorChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(const QColor &)>(&Q3DTheme::multiHighlightColorChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(const QColor &)>(&MyQ3DTheme::Signal_MultiHighlightColorChanged));
+	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(const QColor &)>(&Q3DTheme::multiHighlightColorChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(const QColor &)>(&MyQ3DTheme::Signal_MultiHighlightColorChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DTheme_DisconnectMultiHighlightColorChanged(void* ptr)
@@ -2409,9 +2409,9 @@ void* Q3DTheme_MultiHighlightGradient(void* ptr)
 	return new QLinearGradient(static_cast<Q3DTheme*>(ptr)->multiHighlightGradient());
 }
 
-void Q3DTheme_ConnectMultiHighlightGradientChanged(void* ptr)
+void Q3DTheme_ConnectMultiHighlightGradientChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(const QLinearGradient &)>(&Q3DTheme::multiHighlightGradientChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(const QLinearGradient &)>(&MyQ3DTheme::Signal_MultiHighlightGradientChanged));
+	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(const QLinearGradient &)>(&Q3DTheme::multiHighlightGradientChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(const QLinearGradient &)>(&MyQ3DTheme::Signal_MultiHighlightGradientChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DTheme_DisconnectMultiHighlightGradientChanged(void* ptr)
@@ -2539,9 +2539,9 @@ void* Q3DTheme_SingleHighlightColor(void* ptr)
 	return new QColor(static_cast<Q3DTheme*>(ptr)->singleHighlightColor());
 }
 
-void Q3DTheme_ConnectSingleHighlightColorChanged(void* ptr)
+void Q3DTheme_ConnectSingleHighlightColorChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(const QColor &)>(&Q3DTheme::singleHighlightColorChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(const QColor &)>(&MyQ3DTheme::Signal_SingleHighlightColorChanged));
+	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(const QColor &)>(&Q3DTheme::singleHighlightColorChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(const QColor &)>(&MyQ3DTheme::Signal_SingleHighlightColorChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DTheme_DisconnectSingleHighlightColorChanged(void* ptr)
@@ -2559,9 +2559,9 @@ void* Q3DTheme_SingleHighlightGradient(void* ptr)
 	return new QLinearGradient(static_cast<Q3DTheme*>(ptr)->singleHighlightGradient());
 }
 
-void Q3DTheme_ConnectSingleHighlightGradientChanged(void* ptr)
+void Q3DTheme_ConnectSingleHighlightGradientChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(const QLinearGradient &)>(&Q3DTheme::singleHighlightGradientChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(const QLinearGradient &)>(&MyQ3DTheme::Signal_SingleHighlightGradientChanged));
+	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(const QLinearGradient &)>(&Q3DTheme::singleHighlightGradientChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(const QLinearGradient &)>(&MyQ3DTheme::Signal_SingleHighlightGradientChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DTheme_DisconnectSingleHighlightGradientChanged(void* ptr)
@@ -2579,9 +2579,9 @@ long long Q3DTheme_Type(void* ptr)
 	return static_cast<Q3DTheme*>(ptr)->type();
 }
 
-void Q3DTheme_ConnectTypeChanged(void* ptr)
+void Q3DTheme_ConnectTypeChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(Q3DTheme::Theme)>(&Q3DTheme::typeChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(Q3DTheme::Theme)>(&MyQ3DTheme::Signal_TypeChanged));
+	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(Q3DTheme::Theme)>(&Q3DTheme::typeChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(Q3DTheme::Theme)>(&MyQ3DTheme::Signal_TypeChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DTheme_DisconnectTypeChanged(void* ptr)
@@ -2599,9 +2599,9 @@ void* Q3DTheme_WindowColor(void* ptr)
 	return new QColor(static_cast<Q3DTheme*>(ptr)->windowColor());
 }
 
-void Q3DTheme_ConnectWindowColorChanged(void* ptr)
+void Q3DTheme_ConnectWindowColorChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(const QColor &)>(&Q3DTheme::windowColorChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(const QColor &)>(&MyQ3DTheme::Signal_WindowColorChanged));
+	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(const QColor &)>(&Q3DTheme::windowColorChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(const QColor &)>(&MyQ3DTheme::Signal_WindowColorChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void Q3DTheme_DisconnectWindowColorChanged(void* ptr)
@@ -2737,9 +2737,9 @@ public:
 	 ~MyQAbstract3DAxis() { callbackQAbstract3DAxis_DestroyQAbstract3DAxis(this); };
 };
 
-void QAbstract3DAxis_ConnectAutoAdjustRangeChanged(void* ptr)
+void QAbstract3DAxis_ConnectAutoAdjustRangeChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QAbstract3DAxis*>(ptr), static_cast<void (QAbstract3DAxis::*)(bool)>(&QAbstract3DAxis::autoAdjustRangeChanged), static_cast<MyQAbstract3DAxis*>(ptr), static_cast<void (MyQAbstract3DAxis::*)(bool)>(&MyQAbstract3DAxis::Signal_AutoAdjustRangeChanged));
+	QObject::connect(static_cast<QAbstract3DAxis*>(ptr), static_cast<void (QAbstract3DAxis::*)(bool)>(&QAbstract3DAxis::autoAdjustRangeChanged), static_cast<MyQAbstract3DAxis*>(ptr), static_cast<void (MyQAbstract3DAxis::*)(bool)>(&MyQAbstract3DAxis::Signal_AutoAdjustRangeChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QAbstract3DAxis_DisconnectAutoAdjustRangeChanged(void* ptr)
@@ -2772,9 +2772,9 @@ float QAbstract3DAxis_LabelAutoRotation(void* ptr)
 	return static_cast<QAbstract3DAxis*>(ptr)->labelAutoRotation();
 }
 
-void QAbstract3DAxis_ConnectLabelAutoRotationChanged(void* ptr)
+void QAbstract3DAxis_ConnectLabelAutoRotationChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QAbstract3DAxis*>(ptr), static_cast<void (QAbstract3DAxis::*)(float)>(&QAbstract3DAxis::labelAutoRotationChanged), static_cast<MyQAbstract3DAxis*>(ptr), static_cast<void (MyQAbstract3DAxis::*)(float)>(&MyQAbstract3DAxis::Signal_LabelAutoRotationChanged));
+	QObject::connect(static_cast<QAbstract3DAxis*>(ptr), static_cast<void (QAbstract3DAxis::*)(float)>(&QAbstract3DAxis::labelAutoRotationChanged), static_cast<MyQAbstract3DAxis*>(ptr), static_cast<void (MyQAbstract3DAxis::*)(float)>(&MyQAbstract3DAxis::Signal_LabelAutoRotationChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QAbstract3DAxis_DisconnectLabelAutoRotationChanged(void* ptr)
@@ -2792,9 +2792,9 @@ struct QtDataVisualization_PackedString QAbstract3DAxis_Labels(void* ptr)
 	return ({ QByteArray t7dab2f = static_cast<QAbstract3DAxis*>(ptr)->labels().join("¡¦!").toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t7dab2f.prepend("WHITESPACE").constData()+10), t7dab2f.size()-10 }; });
 }
 
-void QAbstract3DAxis_ConnectLabelsChanged(void* ptr)
+void QAbstract3DAxis_ConnectLabelsChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QAbstract3DAxis*>(ptr), static_cast<void (QAbstract3DAxis::*)()>(&QAbstract3DAxis::labelsChanged), static_cast<MyQAbstract3DAxis*>(ptr), static_cast<void (MyQAbstract3DAxis::*)()>(&MyQAbstract3DAxis::Signal_LabelsChanged));
+	QObject::connect(static_cast<QAbstract3DAxis*>(ptr), static_cast<void (QAbstract3DAxis::*)()>(&QAbstract3DAxis::labelsChanged), static_cast<MyQAbstract3DAxis*>(ptr), static_cast<void (MyQAbstract3DAxis::*)()>(&MyQAbstract3DAxis::Signal_LabelsChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QAbstract3DAxis_DisconnectLabelsChanged(void* ptr)
@@ -2812,9 +2812,9 @@ float QAbstract3DAxis_Max(void* ptr)
 	return static_cast<QAbstract3DAxis*>(ptr)->max();
 }
 
-void QAbstract3DAxis_ConnectMaxChanged(void* ptr)
+void QAbstract3DAxis_ConnectMaxChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QAbstract3DAxis*>(ptr), static_cast<void (QAbstract3DAxis::*)(float)>(&QAbstract3DAxis::maxChanged), static_cast<MyQAbstract3DAxis*>(ptr), static_cast<void (MyQAbstract3DAxis::*)(float)>(&MyQAbstract3DAxis::Signal_MaxChanged));
+	QObject::connect(static_cast<QAbstract3DAxis*>(ptr), static_cast<void (QAbstract3DAxis::*)(float)>(&QAbstract3DAxis::maxChanged), static_cast<MyQAbstract3DAxis*>(ptr), static_cast<void (MyQAbstract3DAxis::*)(float)>(&MyQAbstract3DAxis::Signal_MaxChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QAbstract3DAxis_DisconnectMaxChanged(void* ptr)
@@ -2832,9 +2832,9 @@ float QAbstract3DAxis_Min(void* ptr)
 	return static_cast<QAbstract3DAxis*>(ptr)->min();
 }
 
-void QAbstract3DAxis_ConnectMinChanged(void* ptr)
+void QAbstract3DAxis_ConnectMinChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QAbstract3DAxis*>(ptr), static_cast<void (QAbstract3DAxis::*)(float)>(&QAbstract3DAxis::minChanged), static_cast<MyQAbstract3DAxis*>(ptr), static_cast<void (MyQAbstract3DAxis::*)(float)>(&MyQAbstract3DAxis::Signal_MinChanged));
+	QObject::connect(static_cast<QAbstract3DAxis*>(ptr), static_cast<void (QAbstract3DAxis::*)(float)>(&QAbstract3DAxis::minChanged), static_cast<MyQAbstract3DAxis*>(ptr), static_cast<void (MyQAbstract3DAxis::*)(float)>(&MyQAbstract3DAxis::Signal_MinChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QAbstract3DAxis_DisconnectMinChanged(void* ptr)
@@ -2852,9 +2852,9 @@ long long QAbstract3DAxis_Orientation(void* ptr)
 	return static_cast<QAbstract3DAxis*>(ptr)->orientation();
 }
 
-void QAbstract3DAxis_ConnectOrientationChanged(void* ptr)
+void QAbstract3DAxis_ConnectOrientationChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QAbstract3DAxis*>(ptr), static_cast<void (QAbstract3DAxis::*)(QAbstract3DAxis::AxisOrientation)>(&QAbstract3DAxis::orientationChanged), static_cast<MyQAbstract3DAxis*>(ptr), static_cast<void (MyQAbstract3DAxis::*)(QAbstract3DAxis::AxisOrientation)>(&MyQAbstract3DAxis::Signal_OrientationChanged));
+	QObject::connect(static_cast<QAbstract3DAxis*>(ptr), static_cast<void (QAbstract3DAxis::*)(QAbstract3DAxis::AxisOrientation)>(&QAbstract3DAxis::orientationChanged), static_cast<MyQAbstract3DAxis*>(ptr), static_cast<void (MyQAbstract3DAxis::*)(QAbstract3DAxis::AxisOrientation)>(&MyQAbstract3DAxis::Signal_OrientationChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QAbstract3DAxis_DisconnectOrientationChanged(void* ptr)
@@ -2867,9 +2867,9 @@ void QAbstract3DAxis_OrientationChanged(void* ptr, long long orientation)
 	static_cast<QAbstract3DAxis*>(ptr)->orientationChanged(static_cast<QAbstract3DAxis::AxisOrientation>(orientation));
 }
 
-void QAbstract3DAxis_ConnectRangeChanged(void* ptr)
+void QAbstract3DAxis_ConnectRangeChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QAbstract3DAxis*>(ptr), static_cast<void (QAbstract3DAxis::*)(float, float)>(&QAbstract3DAxis::rangeChanged), static_cast<MyQAbstract3DAxis*>(ptr), static_cast<void (MyQAbstract3DAxis::*)(float, float)>(&MyQAbstract3DAxis::Signal_RangeChanged));
+	QObject::connect(static_cast<QAbstract3DAxis*>(ptr), static_cast<void (QAbstract3DAxis::*)(float, float)>(&QAbstract3DAxis::rangeChanged), static_cast<MyQAbstract3DAxis*>(ptr), static_cast<void (MyQAbstract3DAxis::*)(float, float)>(&MyQAbstract3DAxis::Signal_RangeChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QAbstract3DAxis_DisconnectRangeChanged(void* ptr)
@@ -2932,9 +2932,9 @@ struct QtDataVisualization_PackedString QAbstract3DAxis_Title(void* ptr)
 	return ({ QByteArray tcaf968 = static_cast<QAbstract3DAxis*>(ptr)->title().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(tcaf968.prepend("WHITESPACE").constData()+10), tcaf968.size()-10 }; });
 }
 
-void QAbstract3DAxis_ConnectTitleChanged(void* ptr)
+void QAbstract3DAxis_ConnectTitleChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QAbstract3DAxis*>(ptr), static_cast<void (QAbstract3DAxis::*)(const QString &)>(&QAbstract3DAxis::titleChanged), static_cast<MyQAbstract3DAxis*>(ptr), static_cast<void (MyQAbstract3DAxis::*)(const QString &)>(&MyQAbstract3DAxis::Signal_TitleChanged));
+	QObject::connect(static_cast<QAbstract3DAxis*>(ptr), static_cast<void (QAbstract3DAxis::*)(const QString &)>(&QAbstract3DAxis::titleChanged), static_cast<MyQAbstract3DAxis*>(ptr), static_cast<void (MyQAbstract3DAxis::*)(const QString &)>(&MyQAbstract3DAxis::Signal_TitleChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QAbstract3DAxis_DisconnectTitleChanged(void* ptr)
@@ -2947,9 +2947,9 @@ void QAbstract3DAxis_TitleChanged(void* ptr, struct QtDataVisualization_PackedSt
 	static_cast<QAbstract3DAxis*>(ptr)->titleChanged(QString::fromUtf8(newTitle.data, newTitle.len));
 }
 
-void QAbstract3DAxis_ConnectTitleFixedChanged(void* ptr)
+void QAbstract3DAxis_ConnectTitleFixedChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QAbstract3DAxis*>(ptr), static_cast<void (QAbstract3DAxis::*)(bool)>(&QAbstract3DAxis::titleFixedChanged), static_cast<MyQAbstract3DAxis*>(ptr), static_cast<void (MyQAbstract3DAxis::*)(bool)>(&MyQAbstract3DAxis::Signal_TitleFixedChanged));
+	QObject::connect(static_cast<QAbstract3DAxis*>(ptr), static_cast<void (QAbstract3DAxis::*)(bool)>(&QAbstract3DAxis::titleFixedChanged), static_cast<MyQAbstract3DAxis*>(ptr), static_cast<void (MyQAbstract3DAxis::*)(bool)>(&MyQAbstract3DAxis::Signal_TitleFixedChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QAbstract3DAxis_DisconnectTitleFixedChanged(void* ptr)
@@ -2962,9 +2962,9 @@ void QAbstract3DAxis_TitleFixedChanged(void* ptr, char fixed)
 	static_cast<QAbstract3DAxis*>(ptr)->titleFixedChanged(fixed != 0);
 }
 
-void QAbstract3DAxis_ConnectTitleVisibilityChanged(void* ptr)
+void QAbstract3DAxis_ConnectTitleVisibilityChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QAbstract3DAxis*>(ptr), static_cast<void (QAbstract3DAxis::*)(bool)>(&QAbstract3DAxis::titleVisibilityChanged), static_cast<MyQAbstract3DAxis*>(ptr), static_cast<void (MyQAbstract3DAxis::*)(bool)>(&MyQAbstract3DAxis::Signal_TitleVisibilityChanged));
+	QObject::connect(static_cast<QAbstract3DAxis*>(ptr), static_cast<void (QAbstract3DAxis::*)(bool)>(&QAbstract3DAxis::titleVisibilityChanged), static_cast<MyQAbstract3DAxis*>(ptr), static_cast<void (MyQAbstract3DAxis::*)(bool)>(&MyQAbstract3DAxis::Signal_TitleVisibilityChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QAbstract3DAxis_DisconnectTitleVisibilityChanged(void* ptr)
@@ -3066,9 +3066,9 @@ long long QAbstract3DInputHandler_InputView(void* ptr)
 	return static_cast<QAbstract3DInputHandler*>(ptr)->inputView();
 }
 
-void QAbstract3DInputHandler_ConnectInputViewChanged(void* ptr)
+void QAbstract3DInputHandler_ConnectInputViewChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QAbstract3DInputHandler*>(ptr), static_cast<void (QAbstract3DInputHandler::*)(QAbstract3DInputHandler::InputView)>(&QAbstract3DInputHandler::inputViewChanged), static_cast<MyQAbstract3DInputHandler*>(ptr), static_cast<void (MyQAbstract3DInputHandler::*)(QAbstract3DInputHandler::InputView)>(&MyQAbstract3DInputHandler::Signal_InputViewChanged));
+	QObject::connect(static_cast<QAbstract3DInputHandler*>(ptr), static_cast<void (QAbstract3DInputHandler::*)(QAbstract3DInputHandler::InputView)>(&QAbstract3DInputHandler::inputViewChanged), static_cast<MyQAbstract3DInputHandler*>(ptr), static_cast<void (MyQAbstract3DInputHandler::*)(QAbstract3DInputHandler::InputView)>(&MyQAbstract3DInputHandler::Signal_InputViewChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QAbstract3DInputHandler_DisconnectInputViewChanged(void* ptr)
@@ -3121,9 +3121,9 @@ void QAbstract3DInputHandler_MouseReleaseEventDefault(void* ptr, void* event, vo
 		static_cast<QAbstract3DInputHandler*>(ptr)->QAbstract3DInputHandler::mouseReleaseEvent(static_cast<QMouseEvent*>(event), *static_cast<QPoint*>(mousePos));
 }
 
-void QAbstract3DInputHandler_ConnectPositionChanged(void* ptr)
+void QAbstract3DInputHandler_ConnectPositionChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QAbstract3DInputHandler*>(ptr), static_cast<void (QAbstract3DInputHandler::*)(const QPoint &)>(&QAbstract3DInputHandler::positionChanged), static_cast<MyQAbstract3DInputHandler*>(ptr), static_cast<void (MyQAbstract3DInputHandler::*)(const QPoint &)>(&MyQAbstract3DInputHandler::Signal_PositionChanged));
+	QObject::connect(static_cast<QAbstract3DInputHandler*>(ptr), static_cast<void (QAbstract3DInputHandler::*)(const QPoint &)>(&QAbstract3DInputHandler::positionChanged), static_cast<MyQAbstract3DInputHandler*>(ptr), static_cast<void (MyQAbstract3DInputHandler::*)(const QPoint &)>(&MyQAbstract3DInputHandler::Signal_PositionChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QAbstract3DInputHandler_DisconnectPositionChanged(void* ptr)
@@ -3151,9 +3151,9 @@ void* QAbstract3DInputHandler_Scene(void* ptr)
 	return static_cast<QAbstract3DInputHandler*>(ptr)->scene();
 }
 
-void QAbstract3DInputHandler_ConnectSceneChanged(void* ptr)
+void QAbstract3DInputHandler_ConnectSceneChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QAbstract3DInputHandler*>(ptr), static_cast<void (QAbstract3DInputHandler::*)(Q3DScene *)>(&QAbstract3DInputHandler::sceneChanged), static_cast<MyQAbstract3DInputHandler*>(ptr), static_cast<void (MyQAbstract3DInputHandler::*)(Q3DScene *)>(&MyQAbstract3DInputHandler::Signal_SceneChanged));
+	QObject::connect(static_cast<QAbstract3DInputHandler*>(ptr), static_cast<void (QAbstract3DInputHandler::*)(Q3DScene *)>(&QAbstract3DInputHandler::sceneChanged), static_cast<MyQAbstract3DInputHandler*>(ptr), static_cast<void (MyQAbstract3DInputHandler::*)(Q3DScene *)>(&MyQAbstract3DInputHandler::Signal_SceneChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QAbstract3DInputHandler_DisconnectSceneChanged(void* ptr)
@@ -3249,9 +3249,9 @@ void* QAbstract3DSeries_BaseColor(void* ptr)
 	return new QColor(static_cast<QAbstract3DSeries*>(ptr)->baseColor());
 }
 
-void QAbstract3DSeries_ConnectBaseColorChanged(void* ptr)
+void QAbstract3DSeries_ConnectBaseColorChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QAbstract3DSeries*>(ptr), static_cast<void (QAbstract3DSeries::*)(const QColor &)>(&QAbstract3DSeries::baseColorChanged), static_cast<MyQAbstract3DSeries*>(ptr), static_cast<void (MyQAbstract3DSeries::*)(const QColor &)>(&MyQAbstract3DSeries::Signal_BaseColorChanged));
+	QObject::connect(static_cast<QAbstract3DSeries*>(ptr), static_cast<void (QAbstract3DSeries::*)(const QColor &)>(&QAbstract3DSeries::baseColorChanged), static_cast<MyQAbstract3DSeries*>(ptr), static_cast<void (MyQAbstract3DSeries::*)(const QColor &)>(&MyQAbstract3DSeries::Signal_BaseColorChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QAbstract3DSeries_DisconnectBaseColorChanged(void* ptr)
@@ -3269,9 +3269,9 @@ void* QAbstract3DSeries_BaseGradient(void* ptr)
 	return new QLinearGradient(static_cast<QAbstract3DSeries*>(ptr)->baseGradient());
 }
 
-void QAbstract3DSeries_ConnectBaseGradientChanged(void* ptr)
+void QAbstract3DSeries_ConnectBaseGradientChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QAbstract3DSeries*>(ptr), static_cast<void (QAbstract3DSeries::*)(const QLinearGradient &)>(&QAbstract3DSeries::baseGradientChanged), static_cast<MyQAbstract3DSeries*>(ptr), static_cast<void (MyQAbstract3DSeries::*)(const QLinearGradient &)>(&MyQAbstract3DSeries::Signal_BaseGradientChanged));
+	QObject::connect(static_cast<QAbstract3DSeries*>(ptr), static_cast<void (QAbstract3DSeries::*)(const QLinearGradient &)>(&QAbstract3DSeries::baseGradientChanged), static_cast<MyQAbstract3DSeries*>(ptr), static_cast<void (MyQAbstract3DSeries::*)(const QLinearGradient &)>(&MyQAbstract3DSeries::Signal_BaseGradientChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QAbstract3DSeries_DisconnectBaseGradientChanged(void* ptr)
@@ -3289,9 +3289,9 @@ long long QAbstract3DSeries_ColorStyle(void* ptr)
 	return static_cast<QAbstract3DSeries*>(ptr)->colorStyle();
 }
 
-void QAbstract3DSeries_ConnectColorStyleChanged(void* ptr)
+void QAbstract3DSeries_ConnectColorStyleChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QAbstract3DSeries*>(ptr), static_cast<void (QAbstract3DSeries::*)(Q3DTheme::ColorStyle)>(&QAbstract3DSeries::colorStyleChanged), static_cast<MyQAbstract3DSeries*>(ptr), static_cast<void (MyQAbstract3DSeries::*)(Q3DTheme::ColorStyle)>(&MyQAbstract3DSeries::Signal_ColorStyleChanged));
+	QObject::connect(static_cast<QAbstract3DSeries*>(ptr), static_cast<void (QAbstract3DSeries::*)(Q3DTheme::ColorStyle)>(&QAbstract3DSeries::colorStyleChanged), static_cast<MyQAbstract3DSeries*>(ptr), static_cast<void (MyQAbstract3DSeries::*)(Q3DTheme::ColorStyle)>(&MyQAbstract3DSeries::Signal_ColorStyleChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QAbstract3DSeries_DisconnectColorStyleChanged(void* ptr)
@@ -3324,9 +3324,9 @@ struct QtDataVisualization_PackedString QAbstract3DSeries_ItemLabel(void* ptr)
 	return ({ QByteArray tdad3c7 = static_cast<QAbstract3DSeries*>(ptr)->itemLabel().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(tdad3c7.prepend("WHITESPACE").constData()+10), tdad3c7.size()-10 }; });
 }
 
-void QAbstract3DSeries_ConnectItemLabelChanged(void* ptr)
+void QAbstract3DSeries_ConnectItemLabelChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QAbstract3DSeries*>(ptr), static_cast<void (QAbstract3DSeries::*)(const QString &)>(&QAbstract3DSeries::itemLabelChanged), static_cast<MyQAbstract3DSeries*>(ptr), static_cast<void (MyQAbstract3DSeries::*)(const QString &)>(&MyQAbstract3DSeries::Signal_ItemLabelChanged));
+	QObject::connect(static_cast<QAbstract3DSeries*>(ptr), static_cast<void (QAbstract3DSeries::*)(const QString &)>(&QAbstract3DSeries::itemLabelChanged), static_cast<MyQAbstract3DSeries*>(ptr), static_cast<void (MyQAbstract3DSeries::*)(const QString &)>(&MyQAbstract3DSeries::Signal_ItemLabelChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QAbstract3DSeries_DisconnectItemLabelChanged(void* ptr)
@@ -3344,9 +3344,9 @@ struct QtDataVisualization_PackedString QAbstract3DSeries_ItemLabelFormat(void* 
 	return ({ QByteArray tf0cb25 = static_cast<QAbstract3DSeries*>(ptr)->itemLabelFormat().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(tf0cb25.prepend("WHITESPACE").constData()+10), tf0cb25.size()-10 }; });
 }
 
-void QAbstract3DSeries_ConnectItemLabelFormatChanged(void* ptr)
+void QAbstract3DSeries_ConnectItemLabelFormatChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QAbstract3DSeries*>(ptr), static_cast<void (QAbstract3DSeries::*)(const QString &)>(&QAbstract3DSeries::itemLabelFormatChanged), static_cast<MyQAbstract3DSeries*>(ptr), static_cast<void (MyQAbstract3DSeries::*)(const QString &)>(&MyQAbstract3DSeries::Signal_ItemLabelFormatChanged));
+	QObject::connect(static_cast<QAbstract3DSeries*>(ptr), static_cast<void (QAbstract3DSeries::*)(const QString &)>(&QAbstract3DSeries::itemLabelFormatChanged), static_cast<MyQAbstract3DSeries*>(ptr), static_cast<void (MyQAbstract3DSeries::*)(const QString &)>(&MyQAbstract3DSeries::Signal_ItemLabelFormatChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QAbstract3DSeries_DisconnectItemLabelFormatChanged(void* ptr)
@@ -3359,9 +3359,9 @@ void QAbstract3DSeries_ItemLabelFormatChanged(void* ptr, struct QtDataVisualizat
 	static_cast<QAbstract3DSeries*>(ptr)->itemLabelFormatChanged(QString::fromUtf8(format.data, format.len));
 }
 
-void QAbstract3DSeries_ConnectItemLabelVisibilityChanged(void* ptr)
+void QAbstract3DSeries_ConnectItemLabelVisibilityChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QAbstract3DSeries*>(ptr), static_cast<void (QAbstract3DSeries::*)(bool)>(&QAbstract3DSeries::itemLabelVisibilityChanged), static_cast<MyQAbstract3DSeries*>(ptr), static_cast<void (MyQAbstract3DSeries::*)(bool)>(&MyQAbstract3DSeries::Signal_ItemLabelVisibilityChanged));
+	QObject::connect(static_cast<QAbstract3DSeries*>(ptr), static_cast<void (QAbstract3DSeries::*)(bool)>(&QAbstract3DSeries::itemLabelVisibilityChanged), static_cast<MyQAbstract3DSeries*>(ptr), static_cast<void (MyQAbstract3DSeries::*)(bool)>(&MyQAbstract3DSeries::Signal_ItemLabelVisibilityChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QAbstract3DSeries_DisconnectItemLabelVisibilityChanged(void* ptr)
@@ -3379,9 +3379,9 @@ long long QAbstract3DSeries_Mesh(void* ptr)
 	return static_cast<QAbstract3DSeries*>(ptr)->mesh();
 }
 
-void QAbstract3DSeries_ConnectMeshChanged(void* ptr)
+void QAbstract3DSeries_ConnectMeshChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QAbstract3DSeries*>(ptr), static_cast<void (QAbstract3DSeries::*)(QAbstract3DSeries::Mesh)>(&QAbstract3DSeries::meshChanged), static_cast<MyQAbstract3DSeries*>(ptr), static_cast<void (MyQAbstract3DSeries::*)(QAbstract3DSeries::Mesh)>(&MyQAbstract3DSeries::Signal_MeshChanged));
+	QObject::connect(static_cast<QAbstract3DSeries*>(ptr), static_cast<void (QAbstract3DSeries::*)(QAbstract3DSeries::Mesh)>(&QAbstract3DSeries::meshChanged), static_cast<MyQAbstract3DSeries*>(ptr), static_cast<void (MyQAbstract3DSeries::*)(QAbstract3DSeries::Mesh)>(&MyQAbstract3DSeries::Signal_MeshChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QAbstract3DSeries_DisconnectMeshChanged(void* ptr)
@@ -3399,9 +3399,9 @@ void* QAbstract3DSeries_MeshRotation(void* ptr)
 	return new QQuaternion(static_cast<QAbstract3DSeries*>(ptr)->meshRotation());
 }
 
-void QAbstract3DSeries_ConnectMeshRotationChanged(void* ptr)
+void QAbstract3DSeries_ConnectMeshRotationChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QAbstract3DSeries*>(ptr), static_cast<void (QAbstract3DSeries::*)(const QQuaternion &)>(&QAbstract3DSeries::meshRotationChanged), static_cast<MyQAbstract3DSeries*>(ptr), static_cast<void (MyQAbstract3DSeries::*)(const QQuaternion &)>(&MyQAbstract3DSeries::Signal_MeshRotationChanged));
+	QObject::connect(static_cast<QAbstract3DSeries*>(ptr), static_cast<void (QAbstract3DSeries::*)(const QQuaternion &)>(&QAbstract3DSeries::meshRotationChanged), static_cast<MyQAbstract3DSeries*>(ptr), static_cast<void (MyQAbstract3DSeries::*)(const QQuaternion &)>(&MyQAbstract3DSeries::Signal_MeshRotationChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QAbstract3DSeries_DisconnectMeshRotationChanged(void* ptr)
@@ -3414,9 +3414,9 @@ void QAbstract3DSeries_MeshRotationChanged(void* ptr, void* rotation)
 	static_cast<QAbstract3DSeries*>(ptr)->meshRotationChanged(*static_cast<QQuaternion*>(rotation));
 }
 
-void QAbstract3DSeries_ConnectMeshSmoothChanged(void* ptr)
+void QAbstract3DSeries_ConnectMeshSmoothChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QAbstract3DSeries*>(ptr), static_cast<void (QAbstract3DSeries::*)(bool)>(&QAbstract3DSeries::meshSmoothChanged), static_cast<MyQAbstract3DSeries*>(ptr), static_cast<void (MyQAbstract3DSeries::*)(bool)>(&MyQAbstract3DSeries::Signal_MeshSmoothChanged));
+	QObject::connect(static_cast<QAbstract3DSeries*>(ptr), static_cast<void (QAbstract3DSeries::*)(bool)>(&QAbstract3DSeries::meshSmoothChanged), static_cast<MyQAbstract3DSeries*>(ptr), static_cast<void (MyQAbstract3DSeries::*)(bool)>(&MyQAbstract3DSeries::Signal_MeshSmoothChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QAbstract3DSeries_DisconnectMeshSmoothChanged(void* ptr)
@@ -3434,9 +3434,9 @@ void* QAbstract3DSeries_MultiHighlightColor(void* ptr)
 	return new QColor(static_cast<QAbstract3DSeries*>(ptr)->multiHighlightColor());
 }
 
-void QAbstract3DSeries_ConnectMultiHighlightColorChanged(void* ptr)
+void QAbstract3DSeries_ConnectMultiHighlightColorChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QAbstract3DSeries*>(ptr), static_cast<void (QAbstract3DSeries::*)(const QColor &)>(&QAbstract3DSeries::multiHighlightColorChanged), static_cast<MyQAbstract3DSeries*>(ptr), static_cast<void (MyQAbstract3DSeries::*)(const QColor &)>(&MyQAbstract3DSeries::Signal_MultiHighlightColorChanged));
+	QObject::connect(static_cast<QAbstract3DSeries*>(ptr), static_cast<void (QAbstract3DSeries::*)(const QColor &)>(&QAbstract3DSeries::multiHighlightColorChanged), static_cast<MyQAbstract3DSeries*>(ptr), static_cast<void (MyQAbstract3DSeries::*)(const QColor &)>(&MyQAbstract3DSeries::Signal_MultiHighlightColorChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QAbstract3DSeries_DisconnectMultiHighlightColorChanged(void* ptr)
@@ -3454,9 +3454,9 @@ void* QAbstract3DSeries_MultiHighlightGradient(void* ptr)
 	return new QLinearGradient(static_cast<QAbstract3DSeries*>(ptr)->multiHighlightGradient());
 }
 
-void QAbstract3DSeries_ConnectMultiHighlightGradientChanged(void* ptr)
+void QAbstract3DSeries_ConnectMultiHighlightGradientChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QAbstract3DSeries*>(ptr), static_cast<void (QAbstract3DSeries::*)(const QLinearGradient &)>(&QAbstract3DSeries::multiHighlightGradientChanged), static_cast<MyQAbstract3DSeries*>(ptr), static_cast<void (MyQAbstract3DSeries::*)(const QLinearGradient &)>(&MyQAbstract3DSeries::Signal_MultiHighlightGradientChanged));
+	QObject::connect(static_cast<QAbstract3DSeries*>(ptr), static_cast<void (QAbstract3DSeries::*)(const QLinearGradient &)>(&QAbstract3DSeries::multiHighlightGradientChanged), static_cast<MyQAbstract3DSeries*>(ptr), static_cast<void (MyQAbstract3DSeries::*)(const QLinearGradient &)>(&MyQAbstract3DSeries::Signal_MultiHighlightGradientChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QAbstract3DSeries_DisconnectMultiHighlightGradientChanged(void* ptr)
@@ -3474,9 +3474,9 @@ struct QtDataVisualization_PackedString QAbstract3DSeries_Name(void* ptr)
 	return ({ QByteArray t7f4311 = static_cast<QAbstract3DSeries*>(ptr)->name().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t7f4311.prepend("WHITESPACE").constData()+10), t7f4311.size()-10 }; });
 }
 
-void QAbstract3DSeries_ConnectNameChanged(void* ptr)
+void QAbstract3DSeries_ConnectNameChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QAbstract3DSeries*>(ptr), static_cast<void (QAbstract3DSeries::*)(const QString &)>(&QAbstract3DSeries::nameChanged), static_cast<MyQAbstract3DSeries*>(ptr), static_cast<void (MyQAbstract3DSeries::*)(const QString &)>(&MyQAbstract3DSeries::Signal_NameChanged));
+	QObject::connect(static_cast<QAbstract3DSeries*>(ptr), static_cast<void (QAbstract3DSeries::*)(const QString &)>(&QAbstract3DSeries::nameChanged), static_cast<MyQAbstract3DSeries*>(ptr), static_cast<void (MyQAbstract3DSeries::*)(const QString &)>(&MyQAbstract3DSeries::Signal_NameChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QAbstract3DSeries_DisconnectNameChanged(void* ptr)
@@ -3574,9 +3574,9 @@ void* QAbstract3DSeries_SingleHighlightColor(void* ptr)
 	return new QColor(static_cast<QAbstract3DSeries*>(ptr)->singleHighlightColor());
 }
 
-void QAbstract3DSeries_ConnectSingleHighlightColorChanged(void* ptr)
+void QAbstract3DSeries_ConnectSingleHighlightColorChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QAbstract3DSeries*>(ptr), static_cast<void (QAbstract3DSeries::*)(const QColor &)>(&QAbstract3DSeries::singleHighlightColorChanged), static_cast<MyQAbstract3DSeries*>(ptr), static_cast<void (MyQAbstract3DSeries::*)(const QColor &)>(&MyQAbstract3DSeries::Signal_SingleHighlightColorChanged));
+	QObject::connect(static_cast<QAbstract3DSeries*>(ptr), static_cast<void (QAbstract3DSeries::*)(const QColor &)>(&QAbstract3DSeries::singleHighlightColorChanged), static_cast<MyQAbstract3DSeries*>(ptr), static_cast<void (MyQAbstract3DSeries::*)(const QColor &)>(&MyQAbstract3DSeries::Signal_SingleHighlightColorChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QAbstract3DSeries_DisconnectSingleHighlightColorChanged(void* ptr)
@@ -3594,9 +3594,9 @@ void* QAbstract3DSeries_SingleHighlightGradient(void* ptr)
 	return new QLinearGradient(static_cast<QAbstract3DSeries*>(ptr)->singleHighlightGradient());
 }
 
-void QAbstract3DSeries_ConnectSingleHighlightGradientChanged(void* ptr)
+void QAbstract3DSeries_ConnectSingleHighlightGradientChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QAbstract3DSeries*>(ptr), static_cast<void (QAbstract3DSeries::*)(const QLinearGradient &)>(&QAbstract3DSeries::singleHighlightGradientChanged), static_cast<MyQAbstract3DSeries*>(ptr), static_cast<void (MyQAbstract3DSeries::*)(const QLinearGradient &)>(&MyQAbstract3DSeries::Signal_SingleHighlightGradientChanged));
+	QObject::connect(static_cast<QAbstract3DSeries*>(ptr), static_cast<void (QAbstract3DSeries::*)(const QLinearGradient &)>(&QAbstract3DSeries::singleHighlightGradientChanged), static_cast<MyQAbstract3DSeries*>(ptr), static_cast<void (MyQAbstract3DSeries::*)(const QLinearGradient &)>(&MyQAbstract3DSeries::Signal_SingleHighlightGradientChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QAbstract3DSeries_DisconnectSingleHighlightGradientChanged(void* ptr)
@@ -3619,9 +3619,9 @@ struct QtDataVisualization_PackedString QAbstract3DSeries_UserDefinedMesh(void* 
 	return ({ QByteArray t448627 = static_cast<QAbstract3DSeries*>(ptr)->userDefinedMesh().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t448627.prepend("WHITESPACE").constData()+10), t448627.size()-10 }; });
 }
 
-void QAbstract3DSeries_ConnectUserDefinedMeshChanged(void* ptr)
+void QAbstract3DSeries_ConnectUserDefinedMeshChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QAbstract3DSeries*>(ptr), static_cast<void (QAbstract3DSeries::*)(const QString &)>(&QAbstract3DSeries::userDefinedMeshChanged), static_cast<MyQAbstract3DSeries*>(ptr), static_cast<void (MyQAbstract3DSeries::*)(const QString &)>(&MyQAbstract3DSeries::Signal_UserDefinedMeshChanged));
+	QObject::connect(static_cast<QAbstract3DSeries*>(ptr), static_cast<void (QAbstract3DSeries::*)(const QString &)>(&QAbstract3DSeries::userDefinedMeshChanged), static_cast<MyQAbstract3DSeries*>(ptr), static_cast<void (MyQAbstract3DSeries::*)(const QString &)>(&MyQAbstract3DSeries::Signal_UserDefinedMeshChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QAbstract3DSeries_DisconnectUserDefinedMeshChanged(void* ptr)
@@ -3634,9 +3634,9 @@ void QAbstract3DSeries_UserDefinedMeshChanged(void* ptr, struct QtDataVisualizat
 	static_cast<QAbstract3DSeries*>(ptr)->userDefinedMeshChanged(QString::fromUtf8(fileName.data, fileName.len));
 }
 
-void QAbstract3DSeries_ConnectVisibilityChanged(void* ptr)
+void QAbstract3DSeries_ConnectVisibilityChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QAbstract3DSeries*>(ptr), static_cast<void (QAbstract3DSeries::*)(bool)>(&QAbstract3DSeries::visibilityChanged), static_cast<MyQAbstract3DSeries*>(ptr), static_cast<void (MyQAbstract3DSeries::*)(bool)>(&MyQAbstract3DSeries::Signal_VisibilityChanged));
+	QObject::connect(static_cast<QAbstract3DSeries*>(ptr), static_cast<void (QAbstract3DSeries::*)(bool)>(&QAbstract3DSeries::visibilityChanged), static_cast<MyQAbstract3DSeries*>(ptr), static_cast<void (MyQAbstract3DSeries::*)(bool)>(&MyQAbstract3DSeries::Signal_VisibilityChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QAbstract3DSeries_DisconnectVisibilityChanged(void* ptr)
@@ -3792,9 +3792,9 @@ void* QBar3DSeries_DataProxy(void* ptr)
 	return static_cast<QBar3DSeries*>(ptr)->dataProxy();
 }
 
-void QBar3DSeries_ConnectDataProxyChanged(void* ptr)
+void QBar3DSeries_ConnectDataProxyChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QBar3DSeries*>(ptr), static_cast<void (QBar3DSeries::*)(QBarDataProxy *)>(&QBar3DSeries::dataProxyChanged), static_cast<MyQBar3DSeries*>(ptr), static_cast<void (MyQBar3DSeries::*)(QBarDataProxy *)>(&MyQBar3DSeries::Signal_DataProxyChanged));
+	QObject::connect(static_cast<QBar3DSeries*>(ptr), static_cast<void (QBar3DSeries::*)(QBarDataProxy *)>(&QBar3DSeries::dataProxyChanged), static_cast<MyQBar3DSeries*>(ptr), static_cast<void (MyQBar3DSeries::*)(QBarDataProxy *)>(&MyQBar3DSeries::Signal_DataProxyChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QBar3DSeries_DisconnectDataProxyChanged(void* ptr)
@@ -3817,9 +3817,9 @@ float QBar3DSeries_MeshAngle(void* ptr)
 	return static_cast<QBar3DSeries*>(ptr)->meshAngle();
 }
 
-void QBar3DSeries_ConnectMeshAngleChanged(void* ptr)
+void QBar3DSeries_ConnectMeshAngleChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QBar3DSeries*>(ptr), static_cast<void (QBar3DSeries::*)(float)>(&QBar3DSeries::meshAngleChanged), static_cast<MyQBar3DSeries*>(ptr), static_cast<void (MyQBar3DSeries::*)(float)>(&MyQBar3DSeries::Signal_MeshAngleChanged));
+	QObject::connect(static_cast<QBar3DSeries*>(ptr), static_cast<void (QBar3DSeries::*)(float)>(&QBar3DSeries::meshAngleChanged), static_cast<MyQBar3DSeries*>(ptr), static_cast<void (MyQBar3DSeries::*)(float)>(&MyQBar3DSeries::Signal_MeshAngleChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QBar3DSeries_DisconnectMeshAngleChanged(void* ptr)
@@ -3837,9 +3837,9 @@ void* QBar3DSeries_SelectedBar(void* ptr)
 	return ({ QPoint tmpValue = static_cast<QBar3DSeries*>(ptr)->selectedBar(); new QPoint(tmpValue.x(), tmpValue.y()); });
 }
 
-void QBar3DSeries_ConnectSelectedBarChanged(void* ptr)
+void QBar3DSeries_ConnectSelectedBarChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QBar3DSeries*>(ptr), static_cast<void (QBar3DSeries::*)(const QPoint &)>(&QBar3DSeries::selectedBarChanged), static_cast<MyQBar3DSeries*>(ptr), static_cast<void (MyQBar3DSeries::*)(const QPoint &)>(&MyQBar3DSeries::Signal_SelectedBarChanged));
+	QObject::connect(static_cast<QBar3DSeries*>(ptr), static_cast<void (QBar3DSeries::*)(const QPoint &)>(&QBar3DSeries::selectedBarChanged), static_cast<MyQBar3DSeries*>(ptr), static_cast<void (MyQBar3DSeries::*)(const QPoint &)>(&MyQBar3DSeries::Signal_SelectedBarChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QBar3DSeries_DisconnectSelectedBarChanged(void* ptr)
@@ -3987,9 +3987,9 @@ void* QBarDataProxy_NewQBarDataProxy(void* parent)
 	}
 }
 
-void QBarDataProxy_ConnectArrayReset(void* ptr)
+void QBarDataProxy_ConnectArrayReset(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QBarDataProxy*>(ptr), static_cast<void (QBarDataProxy::*)()>(&QBarDataProxy::arrayReset), static_cast<MyQBarDataProxy*>(ptr), static_cast<void (MyQBarDataProxy::*)()>(&MyQBarDataProxy::Signal_ArrayReset));
+	QObject::connect(static_cast<QBarDataProxy*>(ptr), static_cast<void (QBarDataProxy::*)()>(&QBarDataProxy::arrayReset), static_cast<MyQBarDataProxy*>(ptr), static_cast<void (MyQBarDataProxy::*)()>(&MyQBarDataProxy::Signal_ArrayReset), static_cast<Qt::ConnectionType>(t));
 }
 
 void QBarDataProxy_DisconnectArrayReset(void* ptr)
@@ -4007,9 +4007,9 @@ struct QtDataVisualization_PackedString QBarDataProxy_ColumnLabels(void* ptr)
 	return ({ QByteArray t7f1685 = static_cast<QBarDataProxy*>(ptr)->columnLabels().join("¡¦!").toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t7f1685.prepend("WHITESPACE").constData()+10), t7f1685.size()-10 }; });
 }
 
-void QBarDataProxy_ConnectColumnLabelsChanged(void* ptr)
+void QBarDataProxy_ConnectColumnLabelsChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QBarDataProxy*>(ptr), static_cast<void (QBarDataProxy::*)()>(&QBarDataProxy::columnLabelsChanged), static_cast<MyQBarDataProxy*>(ptr), static_cast<void (MyQBarDataProxy::*)()>(&MyQBarDataProxy::Signal_ColumnLabelsChanged));
+	QObject::connect(static_cast<QBarDataProxy*>(ptr), static_cast<void (QBarDataProxy::*)()>(&QBarDataProxy::columnLabelsChanged), static_cast<MyQBarDataProxy*>(ptr), static_cast<void (MyQBarDataProxy::*)()>(&MyQBarDataProxy::Signal_ColumnLabelsChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QBarDataProxy_DisconnectColumnLabelsChanged(void* ptr)
@@ -4032,9 +4032,9 @@ void* QBarDataProxy_ItemAt2(void* ptr, void* position)
 	return const_cast<QBarDataItem*>(static_cast<QBarDataProxy*>(ptr)->itemAt(*static_cast<QPoint*>(position)));
 }
 
-void QBarDataProxy_ConnectItemChanged(void* ptr)
+void QBarDataProxy_ConnectItemChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QBarDataProxy*>(ptr), static_cast<void (QBarDataProxy::*)(int, int)>(&QBarDataProxy::itemChanged), static_cast<MyQBarDataProxy*>(ptr), static_cast<void (MyQBarDataProxy::*)(int, int)>(&MyQBarDataProxy::Signal_ItemChanged));
+	QObject::connect(static_cast<QBarDataProxy*>(ptr), static_cast<void (QBarDataProxy::*)(int, int)>(&QBarDataProxy::itemChanged), static_cast<MyQBarDataProxy*>(ptr), static_cast<void (MyQBarDataProxy::*)(int, int)>(&MyQBarDataProxy::Signal_ItemChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QBarDataProxy_DisconnectItemChanged(void* ptr)
@@ -4062,9 +4062,9 @@ int QBarDataProxy_RowCount(void* ptr)
 	return static_cast<QBarDataProxy*>(ptr)->rowCount();
 }
 
-void QBarDataProxy_ConnectRowCountChanged(void* ptr)
+void QBarDataProxy_ConnectRowCountChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QBarDataProxy*>(ptr), static_cast<void (QBarDataProxy::*)(int)>(&QBarDataProxy::rowCountChanged), static_cast<MyQBarDataProxy*>(ptr), static_cast<void (MyQBarDataProxy::*)(int)>(&MyQBarDataProxy::Signal_RowCountChanged));
+	QObject::connect(static_cast<QBarDataProxy*>(ptr), static_cast<void (QBarDataProxy::*)(int)>(&QBarDataProxy::rowCountChanged), static_cast<MyQBarDataProxy*>(ptr), static_cast<void (MyQBarDataProxy::*)(int)>(&MyQBarDataProxy::Signal_RowCountChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QBarDataProxy_DisconnectRowCountChanged(void* ptr)
@@ -4082,9 +4082,9 @@ struct QtDataVisualization_PackedString QBarDataProxy_RowLabels(void* ptr)
 	return ({ QByteArray t0565e1 = static_cast<QBarDataProxy*>(ptr)->rowLabels().join("¡¦!").toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t0565e1.prepend("WHITESPACE").constData()+10), t0565e1.size()-10 }; });
 }
 
-void QBarDataProxy_ConnectRowLabelsChanged(void* ptr)
+void QBarDataProxy_ConnectRowLabelsChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QBarDataProxy*>(ptr), static_cast<void (QBarDataProxy::*)()>(&QBarDataProxy::rowLabelsChanged), static_cast<MyQBarDataProxy*>(ptr), static_cast<void (MyQBarDataProxy::*)()>(&MyQBarDataProxy::Signal_RowLabelsChanged));
+	QObject::connect(static_cast<QBarDataProxy*>(ptr), static_cast<void (QBarDataProxy::*)()>(&QBarDataProxy::rowLabelsChanged), static_cast<MyQBarDataProxy*>(ptr), static_cast<void (MyQBarDataProxy::*)()>(&MyQBarDataProxy::Signal_RowLabelsChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QBarDataProxy_DisconnectRowLabelsChanged(void* ptr)
@@ -4097,9 +4097,9 @@ void QBarDataProxy_RowLabelsChanged(void* ptr)
 	static_cast<QBarDataProxy*>(ptr)->rowLabelsChanged();
 }
 
-void QBarDataProxy_ConnectRowsAdded(void* ptr)
+void QBarDataProxy_ConnectRowsAdded(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QBarDataProxy*>(ptr), static_cast<void (QBarDataProxy::*)(int, int)>(&QBarDataProxy::rowsAdded), static_cast<MyQBarDataProxy*>(ptr), static_cast<void (MyQBarDataProxy::*)(int, int)>(&MyQBarDataProxy::Signal_RowsAdded));
+	QObject::connect(static_cast<QBarDataProxy*>(ptr), static_cast<void (QBarDataProxy::*)(int, int)>(&QBarDataProxy::rowsAdded), static_cast<MyQBarDataProxy*>(ptr), static_cast<void (MyQBarDataProxy::*)(int, int)>(&MyQBarDataProxy::Signal_RowsAdded), static_cast<Qt::ConnectionType>(t));
 }
 
 void QBarDataProxy_DisconnectRowsAdded(void* ptr)
@@ -4112,9 +4112,9 @@ void QBarDataProxy_RowsAdded(void* ptr, int startIndex, int count)
 	static_cast<QBarDataProxy*>(ptr)->rowsAdded(startIndex, count);
 }
 
-void QBarDataProxy_ConnectRowsChanged(void* ptr)
+void QBarDataProxy_ConnectRowsChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QBarDataProxy*>(ptr), static_cast<void (QBarDataProxy::*)(int, int)>(&QBarDataProxy::rowsChanged), static_cast<MyQBarDataProxy*>(ptr), static_cast<void (MyQBarDataProxy::*)(int, int)>(&MyQBarDataProxy::Signal_RowsChanged));
+	QObject::connect(static_cast<QBarDataProxy*>(ptr), static_cast<void (QBarDataProxy::*)(int, int)>(&QBarDataProxy::rowsChanged), static_cast<MyQBarDataProxy*>(ptr), static_cast<void (MyQBarDataProxy::*)(int, int)>(&MyQBarDataProxy::Signal_RowsChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QBarDataProxy_DisconnectRowsChanged(void* ptr)
@@ -4127,9 +4127,9 @@ void QBarDataProxy_RowsChanged(void* ptr, int startIndex, int count)
 	static_cast<QBarDataProxy*>(ptr)->rowsChanged(startIndex, count);
 }
 
-void QBarDataProxy_ConnectRowsInserted(void* ptr)
+void QBarDataProxy_ConnectRowsInserted(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QBarDataProxy*>(ptr), static_cast<void (QBarDataProxy::*)(int, int)>(&QBarDataProxy::rowsInserted), static_cast<MyQBarDataProxy*>(ptr), static_cast<void (MyQBarDataProxy::*)(int, int)>(&MyQBarDataProxy::Signal_RowsInserted));
+	QObject::connect(static_cast<QBarDataProxy*>(ptr), static_cast<void (QBarDataProxy::*)(int, int)>(&QBarDataProxy::rowsInserted), static_cast<MyQBarDataProxy*>(ptr), static_cast<void (MyQBarDataProxy::*)(int, int)>(&MyQBarDataProxy::Signal_RowsInserted), static_cast<Qt::ConnectionType>(t));
 }
 
 void QBarDataProxy_DisconnectRowsInserted(void* ptr)
@@ -4142,9 +4142,9 @@ void QBarDataProxy_RowsInserted(void* ptr, int startIndex, int count)
 	static_cast<QBarDataProxy*>(ptr)->rowsInserted(startIndex, count);
 }
 
-void QBarDataProxy_ConnectRowsRemoved(void* ptr)
+void QBarDataProxy_ConnectRowsRemoved(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QBarDataProxy*>(ptr), static_cast<void (QBarDataProxy::*)(int, int)>(&QBarDataProxy::rowsRemoved), static_cast<MyQBarDataProxy*>(ptr), static_cast<void (MyQBarDataProxy::*)(int, int)>(&MyQBarDataProxy::Signal_RowsRemoved));
+	QObject::connect(static_cast<QBarDataProxy*>(ptr), static_cast<void (QBarDataProxy::*)(int, int)>(&QBarDataProxy::rowsRemoved), static_cast<MyQBarDataProxy*>(ptr), static_cast<void (MyQBarDataProxy::*)(int, int)>(&MyQBarDataProxy::Signal_RowsRemoved), static_cast<Qt::ConnectionType>(t));
 }
 
 void QBarDataProxy_DisconnectRowsRemoved(void* ptr)
@@ -4162,9 +4162,9 @@ void* QBarDataProxy_Series(void* ptr)
 	return static_cast<QBarDataProxy*>(ptr)->series();
 }
 
-void QBarDataProxy_ConnectSeriesChanged(void* ptr)
+void QBarDataProxy_ConnectSeriesChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QBarDataProxy*>(ptr), static_cast<void (QBarDataProxy::*)(QBar3DSeries *)>(&QBarDataProxy::seriesChanged), static_cast<MyQBarDataProxy*>(ptr), static_cast<void (MyQBarDataProxy::*)(QBar3DSeries *)>(&MyQBarDataProxy::Signal_SeriesChanged));
+	QObject::connect(static_cast<QBarDataProxy*>(ptr), static_cast<void (QBarDataProxy::*)(QBar3DSeries *)>(&QBarDataProxy::seriesChanged), static_cast<MyQBarDataProxy*>(ptr), static_cast<void (MyQBarDataProxy::*)(QBar3DSeries *)>(&MyQBarDataProxy::Signal_SeriesChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QBarDataProxy_DisconnectSeriesChanged(void* ptr)
@@ -4268,9 +4268,9 @@ struct QtDataVisualization_PackedString QCategory3DAxis_Labels(void* ptr)
 	return ({ QByteArray t2a027f = static_cast<QCategory3DAxis*>(ptr)->labels().join("¡¦!").toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t2a027f.prepend("WHITESPACE").constData()+10), t2a027f.size()-10 }; });
 }
 
-void QCategory3DAxis_ConnectLabelsChanged(void* ptr)
+void QCategory3DAxis_ConnectLabelsChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QCategory3DAxis*>(ptr), static_cast<void (QCategory3DAxis::*)()>(&QCategory3DAxis::labelsChanged), static_cast<MyQCategory3DAxis*>(ptr), static_cast<void (MyQCategory3DAxis::*)()>(&MyQCategory3DAxis::Signal_LabelsChanged));
+	QObject::connect(static_cast<QCategory3DAxis*>(ptr), static_cast<void (QCategory3DAxis::*)()>(&QCategory3DAxis::labelsChanged), static_cast<MyQCategory3DAxis*>(ptr), static_cast<void (MyQCategory3DAxis::*)()>(&MyQCategory3DAxis::Signal_LabelsChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QCategory3DAxis_DisconnectLabelsChanged(void* ptr)
@@ -4435,9 +4435,9 @@ struct QtDataVisualization_PackedString QCustom3DItem_MeshFile(void* ptr)
 	return ({ QByteArray t3766ee = static_cast<QCustom3DItem*>(ptr)->meshFile().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t3766ee.prepend("WHITESPACE").constData()+10), t3766ee.size()-10 }; });
 }
 
-void QCustom3DItem_ConnectMeshFileChanged(void* ptr)
+void QCustom3DItem_ConnectMeshFileChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QCustom3DItem*>(ptr), static_cast<void (QCustom3DItem::*)(const QString &)>(&QCustom3DItem::meshFileChanged), static_cast<MyQCustom3DItem*>(ptr), static_cast<void (MyQCustom3DItem::*)(const QString &)>(&MyQCustom3DItem::Signal_MeshFileChanged));
+	QObject::connect(static_cast<QCustom3DItem*>(ptr), static_cast<void (QCustom3DItem::*)(const QString &)>(&QCustom3DItem::meshFileChanged), static_cast<MyQCustom3DItem*>(ptr), static_cast<void (MyQCustom3DItem::*)(const QString &)>(&MyQCustom3DItem::Signal_MeshFileChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QCustom3DItem_DisconnectMeshFileChanged(void* ptr)
@@ -4455,9 +4455,9 @@ void* QCustom3DItem_Position(void* ptr)
 	return new QVector3D(static_cast<QCustom3DItem*>(ptr)->position());
 }
 
-void QCustom3DItem_ConnectPositionAbsoluteChanged(void* ptr)
+void QCustom3DItem_ConnectPositionAbsoluteChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QCustom3DItem*>(ptr), static_cast<void (QCustom3DItem::*)(bool)>(&QCustom3DItem::positionAbsoluteChanged), static_cast<MyQCustom3DItem*>(ptr), static_cast<void (MyQCustom3DItem::*)(bool)>(&MyQCustom3DItem::Signal_PositionAbsoluteChanged));
+	QObject::connect(static_cast<QCustom3DItem*>(ptr), static_cast<void (QCustom3DItem::*)(bool)>(&QCustom3DItem::positionAbsoluteChanged), static_cast<MyQCustom3DItem*>(ptr), static_cast<void (MyQCustom3DItem::*)(bool)>(&MyQCustom3DItem::Signal_PositionAbsoluteChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QCustom3DItem_DisconnectPositionAbsoluteChanged(void* ptr)
@@ -4470,9 +4470,9 @@ void QCustom3DItem_PositionAbsoluteChanged(void* ptr, char positionAbsolute)
 	static_cast<QCustom3DItem*>(ptr)->positionAbsoluteChanged(positionAbsolute != 0);
 }
 
-void QCustom3DItem_ConnectPositionChanged(void* ptr)
+void QCustom3DItem_ConnectPositionChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QCustom3DItem*>(ptr), static_cast<void (QCustom3DItem::*)(const QVector3D &)>(&QCustom3DItem::positionChanged), static_cast<MyQCustom3DItem*>(ptr), static_cast<void (MyQCustom3DItem::*)(const QVector3D &)>(&MyQCustom3DItem::Signal_PositionChanged));
+	QObject::connect(static_cast<QCustom3DItem*>(ptr), static_cast<void (QCustom3DItem::*)(const QVector3D &)>(&QCustom3DItem::positionChanged), static_cast<MyQCustom3DItem*>(ptr), static_cast<void (MyQCustom3DItem::*)(const QVector3D &)>(&MyQCustom3DItem::Signal_PositionChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QCustom3DItem_DisconnectPositionChanged(void* ptr)
@@ -4490,9 +4490,9 @@ void* QCustom3DItem_Rotation(void* ptr)
 	return new QQuaternion(static_cast<QCustom3DItem*>(ptr)->rotation());
 }
 
-void QCustom3DItem_ConnectRotationChanged(void* ptr)
+void QCustom3DItem_ConnectRotationChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QCustom3DItem*>(ptr), static_cast<void (QCustom3DItem::*)(const QQuaternion &)>(&QCustom3DItem::rotationChanged), static_cast<MyQCustom3DItem*>(ptr), static_cast<void (MyQCustom3DItem::*)(const QQuaternion &)>(&MyQCustom3DItem::Signal_RotationChanged));
+	QObject::connect(static_cast<QCustom3DItem*>(ptr), static_cast<void (QCustom3DItem::*)(const QQuaternion &)>(&QCustom3DItem::rotationChanged), static_cast<MyQCustom3DItem*>(ptr), static_cast<void (MyQCustom3DItem::*)(const QQuaternion &)>(&MyQCustom3DItem::Signal_RotationChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QCustom3DItem_DisconnectRotationChanged(void* ptr)
@@ -4510,9 +4510,9 @@ void* QCustom3DItem_Scaling(void* ptr)
 	return new QVector3D(static_cast<QCustom3DItem*>(ptr)->scaling());
 }
 
-void QCustom3DItem_ConnectScalingAbsoluteChanged(void* ptr)
+void QCustom3DItem_ConnectScalingAbsoluteChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QCustom3DItem*>(ptr), static_cast<void (QCustom3DItem::*)(bool)>(&QCustom3DItem::scalingAbsoluteChanged), static_cast<MyQCustom3DItem*>(ptr), static_cast<void (MyQCustom3DItem::*)(bool)>(&MyQCustom3DItem::Signal_ScalingAbsoluteChanged));
+	QObject::connect(static_cast<QCustom3DItem*>(ptr), static_cast<void (QCustom3DItem::*)(bool)>(&QCustom3DItem::scalingAbsoluteChanged), static_cast<MyQCustom3DItem*>(ptr), static_cast<void (MyQCustom3DItem::*)(bool)>(&MyQCustom3DItem::Signal_ScalingAbsoluteChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QCustom3DItem_DisconnectScalingAbsoluteChanged(void* ptr)
@@ -4525,9 +4525,9 @@ void QCustom3DItem_ScalingAbsoluteChanged(void* ptr, char scalingAbsolute)
 	static_cast<QCustom3DItem*>(ptr)->scalingAbsoluteChanged(scalingAbsolute != 0);
 }
 
-void QCustom3DItem_ConnectScalingChanged(void* ptr)
+void QCustom3DItem_ConnectScalingChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QCustom3DItem*>(ptr), static_cast<void (QCustom3DItem::*)(const QVector3D &)>(&QCustom3DItem::scalingChanged), static_cast<MyQCustom3DItem*>(ptr), static_cast<void (MyQCustom3DItem::*)(const QVector3D &)>(&MyQCustom3DItem::Signal_ScalingChanged));
+	QObject::connect(static_cast<QCustom3DItem*>(ptr), static_cast<void (QCustom3DItem::*)(const QVector3D &)>(&QCustom3DItem::scalingChanged), static_cast<MyQCustom3DItem*>(ptr), static_cast<void (MyQCustom3DItem::*)(const QVector3D &)>(&MyQCustom3DItem::Signal_ScalingChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QCustom3DItem_DisconnectScalingChanged(void* ptr)
@@ -4595,9 +4595,9 @@ void QCustom3DItem_SetVisible(void* ptr, char visible)
 	static_cast<QCustom3DItem*>(ptr)->setVisible(visible != 0);
 }
 
-void QCustom3DItem_ConnectShadowCastingChanged(void* ptr)
+void QCustom3DItem_ConnectShadowCastingChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QCustom3DItem*>(ptr), static_cast<void (QCustom3DItem::*)(bool)>(&QCustom3DItem::shadowCastingChanged), static_cast<MyQCustom3DItem*>(ptr), static_cast<void (MyQCustom3DItem::*)(bool)>(&MyQCustom3DItem::Signal_ShadowCastingChanged));
+	QObject::connect(static_cast<QCustom3DItem*>(ptr), static_cast<void (QCustom3DItem::*)(bool)>(&QCustom3DItem::shadowCastingChanged), static_cast<MyQCustom3DItem*>(ptr), static_cast<void (MyQCustom3DItem::*)(bool)>(&MyQCustom3DItem::Signal_ShadowCastingChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QCustom3DItem_DisconnectShadowCastingChanged(void* ptr)
@@ -4615,9 +4615,9 @@ struct QtDataVisualization_PackedString QCustom3DItem_TextureFile(void* ptr)
 	return ({ QByteArray t0c954e = static_cast<QCustom3DItem*>(ptr)->textureFile().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t0c954e.prepend("WHITESPACE").constData()+10), t0c954e.size()-10 }; });
 }
 
-void QCustom3DItem_ConnectTextureFileChanged(void* ptr)
+void QCustom3DItem_ConnectTextureFileChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QCustom3DItem*>(ptr), static_cast<void (QCustom3DItem::*)(const QString &)>(&QCustom3DItem::textureFileChanged), static_cast<MyQCustom3DItem*>(ptr), static_cast<void (MyQCustom3DItem::*)(const QString &)>(&MyQCustom3DItem::Signal_TextureFileChanged));
+	QObject::connect(static_cast<QCustom3DItem*>(ptr), static_cast<void (QCustom3DItem::*)(const QString &)>(&QCustom3DItem::textureFileChanged), static_cast<MyQCustom3DItem*>(ptr), static_cast<void (MyQCustom3DItem::*)(const QString &)>(&MyQCustom3DItem::Signal_TextureFileChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QCustom3DItem_DisconnectTextureFileChanged(void* ptr)
@@ -4630,9 +4630,9 @@ void QCustom3DItem_TextureFileChanged(void* ptr, struct QtDataVisualization_Pack
 	static_cast<QCustom3DItem*>(ptr)->textureFileChanged(QString::fromUtf8(textureFile.data, textureFile.len));
 }
 
-void QCustom3DItem_ConnectVisibleChanged(void* ptr)
+void QCustom3DItem_ConnectVisibleChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QCustom3DItem*>(ptr), static_cast<void (QCustom3DItem::*)(bool)>(&QCustom3DItem::visibleChanged), static_cast<MyQCustom3DItem*>(ptr), static_cast<void (MyQCustom3DItem::*)(bool)>(&MyQCustom3DItem::Signal_VisibleChanged));
+	QObject::connect(static_cast<QCustom3DItem*>(ptr), static_cast<void (QCustom3DItem::*)(bool)>(&QCustom3DItem::visibleChanged), static_cast<MyQCustom3DItem*>(ptr), static_cast<void (MyQCustom3DItem::*)(bool)>(&MyQCustom3DItem::Signal_VisibleChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QCustom3DItem_DisconnectVisibleChanged(void* ptr)
@@ -4770,9 +4770,9 @@ void* QCustom3DLabel_BackgroundColor(void* ptr)
 	return new QColor(static_cast<QCustom3DLabel*>(ptr)->backgroundColor());
 }
 
-void QCustom3DLabel_ConnectBackgroundColorChanged(void* ptr)
+void QCustom3DLabel_ConnectBackgroundColorChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QCustom3DLabel*>(ptr), static_cast<void (QCustom3DLabel::*)(const QColor &)>(&QCustom3DLabel::backgroundColorChanged), static_cast<MyQCustom3DLabel*>(ptr), static_cast<void (MyQCustom3DLabel::*)(const QColor &)>(&MyQCustom3DLabel::Signal_BackgroundColorChanged));
+	QObject::connect(static_cast<QCustom3DLabel*>(ptr), static_cast<void (QCustom3DLabel::*)(const QColor &)>(&QCustom3DLabel::backgroundColorChanged), static_cast<MyQCustom3DLabel*>(ptr), static_cast<void (MyQCustom3DLabel::*)(const QColor &)>(&MyQCustom3DLabel::Signal_BackgroundColorChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QCustom3DLabel_DisconnectBackgroundColorChanged(void* ptr)
@@ -4785,9 +4785,9 @@ void QCustom3DLabel_BackgroundColorChanged(void* ptr, void* color)
 	static_cast<QCustom3DLabel*>(ptr)->backgroundColorChanged(*static_cast<QColor*>(color));
 }
 
-void QCustom3DLabel_ConnectBackgroundEnabledChanged(void* ptr)
+void QCustom3DLabel_ConnectBackgroundEnabledChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QCustom3DLabel*>(ptr), static_cast<void (QCustom3DLabel::*)(bool)>(&QCustom3DLabel::backgroundEnabledChanged), static_cast<MyQCustom3DLabel*>(ptr), static_cast<void (MyQCustom3DLabel::*)(bool)>(&MyQCustom3DLabel::Signal_BackgroundEnabledChanged));
+	QObject::connect(static_cast<QCustom3DLabel*>(ptr), static_cast<void (QCustom3DLabel::*)(bool)>(&QCustom3DLabel::backgroundEnabledChanged), static_cast<MyQCustom3DLabel*>(ptr), static_cast<void (MyQCustom3DLabel::*)(bool)>(&MyQCustom3DLabel::Signal_BackgroundEnabledChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QCustom3DLabel_DisconnectBackgroundEnabledChanged(void* ptr)
@@ -4800,9 +4800,9 @@ void QCustom3DLabel_BackgroundEnabledChanged(void* ptr, char enabled)
 	static_cast<QCustom3DLabel*>(ptr)->backgroundEnabledChanged(enabled != 0);
 }
 
-void QCustom3DLabel_ConnectBorderEnabledChanged(void* ptr)
+void QCustom3DLabel_ConnectBorderEnabledChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QCustom3DLabel*>(ptr), static_cast<void (QCustom3DLabel::*)(bool)>(&QCustom3DLabel::borderEnabledChanged), static_cast<MyQCustom3DLabel*>(ptr), static_cast<void (MyQCustom3DLabel::*)(bool)>(&MyQCustom3DLabel::Signal_BorderEnabledChanged));
+	QObject::connect(static_cast<QCustom3DLabel*>(ptr), static_cast<void (QCustom3DLabel::*)(bool)>(&QCustom3DLabel::borderEnabledChanged), static_cast<MyQCustom3DLabel*>(ptr), static_cast<void (MyQCustom3DLabel::*)(bool)>(&MyQCustom3DLabel::Signal_BorderEnabledChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QCustom3DLabel_DisconnectBorderEnabledChanged(void* ptr)
@@ -4815,9 +4815,9 @@ void QCustom3DLabel_BorderEnabledChanged(void* ptr, char enabled)
 	static_cast<QCustom3DLabel*>(ptr)->borderEnabledChanged(enabled != 0);
 }
 
-void QCustom3DLabel_ConnectFacingCameraChanged(void* ptr)
+void QCustom3DLabel_ConnectFacingCameraChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QCustom3DLabel*>(ptr), static_cast<void (QCustom3DLabel::*)(bool)>(&QCustom3DLabel::facingCameraChanged), static_cast<MyQCustom3DLabel*>(ptr), static_cast<void (MyQCustom3DLabel::*)(bool)>(&MyQCustom3DLabel::Signal_FacingCameraChanged));
+	QObject::connect(static_cast<QCustom3DLabel*>(ptr), static_cast<void (QCustom3DLabel::*)(bool)>(&QCustom3DLabel::facingCameraChanged), static_cast<MyQCustom3DLabel*>(ptr), static_cast<void (MyQCustom3DLabel::*)(bool)>(&MyQCustom3DLabel::Signal_FacingCameraChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QCustom3DLabel_DisconnectFacingCameraChanged(void* ptr)
@@ -4835,9 +4835,9 @@ void* QCustom3DLabel_Font(void* ptr)
 	return new QFont(static_cast<QCustom3DLabel*>(ptr)->font());
 }
 
-void QCustom3DLabel_ConnectFontChanged(void* ptr)
+void QCustom3DLabel_ConnectFontChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QCustom3DLabel*>(ptr), static_cast<void (QCustom3DLabel::*)(const QFont &)>(&QCustom3DLabel::fontChanged), static_cast<MyQCustom3DLabel*>(ptr), static_cast<void (MyQCustom3DLabel::*)(const QFont &)>(&MyQCustom3DLabel::Signal_FontChanged));
+	QObject::connect(static_cast<QCustom3DLabel*>(ptr), static_cast<void (QCustom3DLabel::*)(const QFont &)>(&QCustom3DLabel::fontChanged), static_cast<MyQCustom3DLabel*>(ptr), static_cast<void (MyQCustom3DLabel::*)(const QFont &)>(&MyQCustom3DLabel::Signal_FontChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QCustom3DLabel_DisconnectFontChanged(void* ptr)
@@ -4905,9 +4905,9 @@ struct QtDataVisualization_PackedString QCustom3DLabel_Text(void* ptr)
 	return ({ QByteArray ta11a00 = static_cast<QCustom3DLabel*>(ptr)->text().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(ta11a00.prepend("WHITESPACE").constData()+10), ta11a00.size()-10 }; });
 }
 
-void QCustom3DLabel_ConnectTextChanged(void* ptr)
+void QCustom3DLabel_ConnectTextChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QCustom3DLabel*>(ptr), static_cast<void (QCustom3DLabel::*)(const QString &)>(&QCustom3DLabel::textChanged), static_cast<MyQCustom3DLabel*>(ptr), static_cast<void (MyQCustom3DLabel::*)(const QString &)>(&MyQCustom3DLabel::Signal_TextChanged));
+	QObject::connect(static_cast<QCustom3DLabel*>(ptr), static_cast<void (QCustom3DLabel::*)(const QString &)>(&QCustom3DLabel::textChanged), static_cast<MyQCustom3DLabel*>(ptr), static_cast<void (MyQCustom3DLabel::*)(const QString &)>(&MyQCustom3DLabel::Signal_TextChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QCustom3DLabel_DisconnectTextChanged(void* ptr)
@@ -4925,9 +4925,9 @@ void* QCustom3DLabel_TextColor(void* ptr)
 	return new QColor(static_cast<QCustom3DLabel*>(ptr)->textColor());
 }
 
-void QCustom3DLabel_ConnectTextColorChanged(void* ptr)
+void QCustom3DLabel_ConnectTextColorChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QCustom3DLabel*>(ptr), static_cast<void (QCustom3DLabel::*)(const QColor &)>(&QCustom3DLabel::textColorChanged), static_cast<MyQCustom3DLabel*>(ptr), static_cast<void (MyQCustom3DLabel::*)(const QColor &)>(&MyQCustom3DLabel::Signal_TextColorChanged));
+	QObject::connect(static_cast<QCustom3DLabel*>(ptr), static_cast<void (QCustom3DLabel::*)(const QColor &)>(&QCustom3DLabel::textColorChanged), static_cast<MyQCustom3DLabel*>(ptr), static_cast<void (MyQCustom3DLabel::*)(const QColor &)>(&MyQCustom3DLabel::Signal_TextColorChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QCustom3DLabel_DisconnectTextColorChanged(void* ptr)
@@ -5027,9 +5027,9 @@ float QCustom3DVolume_AlphaMultiplier(void* ptr)
 	return static_cast<QCustom3DVolume*>(ptr)->alphaMultiplier();
 }
 
-void QCustom3DVolume_ConnectAlphaMultiplierChanged(void* ptr)
+void QCustom3DVolume_ConnectAlphaMultiplierChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)(float)>(&QCustom3DVolume::alphaMultiplierChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)(float)>(&MyQCustom3DVolume::Signal_AlphaMultiplierChanged));
+	QObject::connect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)(float)>(&QCustom3DVolume::alphaMultiplierChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)(float)>(&MyQCustom3DVolume::Signal_AlphaMultiplierChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QCustom3DVolume_DisconnectAlphaMultiplierChanged(void* ptr)
@@ -5047,9 +5047,9 @@ struct QtDataVisualization_PackedList QCustom3DVolume_ColorTable(void* ptr)
 	return ({ QVector<QRgb>* tmpValue49812c = new QVector<QRgb>(static_cast<QCustom3DVolume*>(ptr)->colorTable()); QtDataVisualization_PackedList { tmpValue49812c, tmpValue49812c->size() }; });
 }
 
-void QCustom3DVolume_ConnectColorTableChanged(void* ptr)
+void QCustom3DVolume_ConnectColorTableChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)()>(&QCustom3DVolume::colorTableChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)()>(&MyQCustom3DVolume::Signal_ColorTableChanged));
+	QObject::connect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)()>(&QCustom3DVolume::colorTableChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)()>(&MyQCustom3DVolume::Signal_ColorTableChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QCustom3DVolume_DisconnectColorTableChanged(void* ptr)
@@ -5067,9 +5067,9 @@ char QCustom3DVolume_DrawSliceFrames(void* ptr)
 	return static_cast<QCustom3DVolume*>(ptr)->drawSliceFrames();
 }
 
-void QCustom3DVolume_ConnectDrawSliceFramesChanged(void* ptr)
+void QCustom3DVolume_ConnectDrawSliceFramesChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)(bool)>(&QCustom3DVolume::drawSliceFramesChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)(bool)>(&MyQCustom3DVolume::Signal_DrawSliceFramesChanged));
+	QObject::connect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)(bool)>(&QCustom3DVolume::drawSliceFramesChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)(bool)>(&MyQCustom3DVolume::Signal_DrawSliceFramesChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QCustom3DVolume_DisconnectDrawSliceFramesChanged(void* ptr)
@@ -5087,9 +5087,9 @@ char QCustom3DVolume_DrawSlices(void* ptr)
 	return static_cast<QCustom3DVolume*>(ptr)->drawSlices();
 }
 
-void QCustom3DVolume_ConnectDrawSlicesChanged(void* ptr)
+void QCustom3DVolume_ConnectDrawSlicesChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)(bool)>(&QCustom3DVolume::drawSlicesChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)(bool)>(&MyQCustom3DVolume::Signal_DrawSlicesChanged));
+	QObject::connect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)(bool)>(&QCustom3DVolume::drawSlicesChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)(bool)>(&MyQCustom3DVolume::Signal_DrawSlicesChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QCustom3DVolume_DisconnectDrawSlicesChanged(void* ptr)
@@ -5107,9 +5107,9 @@ char QCustom3DVolume_PreserveOpacity(void* ptr)
 	return static_cast<QCustom3DVolume*>(ptr)->preserveOpacity();
 }
 
-void QCustom3DVolume_ConnectPreserveOpacityChanged(void* ptr)
+void QCustom3DVolume_ConnectPreserveOpacityChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)(bool)>(&QCustom3DVolume::preserveOpacityChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)(bool)>(&MyQCustom3DVolume::Signal_PreserveOpacityChanged));
+	QObject::connect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)(bool)>(&QCustom3DVolume::preserveOpacityChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)(bool)>(&MyQCustom3DVolume::Signal_PreserveOpacityChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QCustom3DVolume_DisconnectPreserveOpacityChanged(void* ptr)
@@ -5237,9 +5237,9 @@ void* QCustom3DVolume_SliceFrameColor(void* ptr)
 	return new QColor(static_cast<QCustom3DVolume*>(ptr)->sliceFrameColor());
 }
 
-void QCustom3DVolume_ConnectSliceFrameColorChanged(void* ptr)
+void QCustom3DVolume_ConnectSliceFrameColorChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)(const QColor &)>(&QCustom3DVolume::sliceFrameColorChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)(const QColor &)>(&MyQCustom3DVolume::Signal_SliceFrameColorChanged));
+	QObject::connect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)(const QColor &)>(&QCustom3DVolume::sliceFrameColorChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)(const QColor &)>(&MyQCustom3DVolume::Signal_SliceFrameColorChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QCustom3DVolume_DisconnectSliceFrameColorChanged(void* ptr)
@@ -5257,9 +5257,9 @@ void* QCustom3DVolume_SliceFrameGaps(void* ptr)
 	return new QVector3D(static_cast<QCustom3DVolume*>(ptr)->sliceFrameGaps());
 }
 
-void QCustom3DVolume_ConnectSliceFrameGapsChanged(void* ptr)
+void QCustom3DVolume_ConnectSliceFrameGapsChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)(const QVector3D &)>(&QCustom3DVolume::sliceFrameGapsChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)(const QVector3D &)>(&MyQCustom3DVolume::Signal_SliceFrameGapsChanged));
+	QObject::connect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)(const QVector3D &)>(&QCustom3DVolume::sliceFrameGapsChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)(const QVector3D &)>(&MyQCustom3DVolume::Signal_SliceFrameGapsChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QCustom3DVolume_DisconnectSliceFrameGapsChanged(void* ptr)
@@ -5277,9 +5277,9 @@ void* QCustom3DVolume_SliceFrameThicknesses(void* ptr)
 	return new QVector3D(static_cast<QCustom3DVolume*>(ptr)->sliceFrameThicknesses());
 }
 
-void QCustom3DVolume_ConnectSliceFrameThicknessesChanged(void* ptr)
+void QCustom3DVolume_ConnectSliceFrameThicknessesChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)(const QVector3D &)>(&QCustom3DVolume::sliceFrameThicknessesChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)(const QVector3D &)>(&MyQCustom3DVolume::Signal_SliceFrameThicknessesChanged));
+	QObject::connect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)(const QVector3D &)>(&QCustom3DVolume::sliceFrameThicknessesChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)(const QVector3D &)>(&MyQCustom3DVolume::Signal_SliceFrameThicknessesChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QCustom3DVolume_DisconnectSliceFrameThicknessesChanged(void* ptr)
@@ -5297,9 +5297,9 @@ void* QCustom3DVolume_SliceFrameWidths(void* ptr)
 	return new QVector3D(static_cast<QCustom3DVolume*>(ptr)->sliceFrameWidths());
 }
 
-void QCustom3DVolume_ConnectSliceFrameWidthsChanged(void* ptr)
+void QCustom3DVolume_ConnectSliceFrameWidthsChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)(const QVector3D &)>(&QCustom3DVolume::sliceFrameWidthsChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)(const QVector3D &)>(&MyQCustom3DVolume::Signal_SliceFrameWidthsChanged));
+	QObject::connect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)(const QVector3D &)>(&QCustom3DVolume::sliceFrameWidthsChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)(const QVector3D &)>(&MyQCustom3DVolume::Signal_SliceFrameWidthsChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QCustom3DVolume_DisconnectSliceFrameWidthsChanged(void* ptr)
@@ -5317,9 +5317,9 @@ int QCustom3DVolume_SliceIndexX(void* ptr)
 	return static_cast<QCustom3DVolume*>(ptr)->sliceIndexX();
 }
 
-void QCustom3DVolume_ConnectSliceIndexXChanged(void* ptr)
+void QCustom3DVolume_ConnectSliceIndexXChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)(int)>(&QCustom3DVolume::sliceIndexXChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)(int)>(&MyQCustom3DVolume::Signal_SliceIndexXChanged));
+	QObject::connect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)(int)>(&QCustom3DVolume::sliceIndexXChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)(int)>(&MyQCustom3DVolume::Signal_SliceIndexXChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QCustom3DVolume_DisconnectSliceIndexXChanged(void* ptr)
@@ -5337,9 +5337,9 @@ int QCustom3DVolume_SliceIndexY(void* ptr)
 	return static_cast<QCustom3DVolume*>(ptr)->sliceIndexY();
 }
 
-void QCustom3DVolume_ConnectSliceIndexYChanged(void* ptr)
+void QCustom3DVolume_ConnectSliceIndexYChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)(int)>(&QCustom3DVolume::sliceIndexYChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)(int)>(&MyQCustom3DVolume::Signal_SliceIndexYChanged));
+	QObject::connect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)(int)>(&QCustom3DVolume::sliceIndexYChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)(int)>(&MyQCustom3DVolume::Signal_SliceIndexYChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QCustom3DVolume_DisconnectSliceIndexYChanged(void* ptr)
@@ -5357,9 +5357,9 @@ int QCustom3DVolume_SliceIndexZ(void* ptr)
 	return static_cast<QCustom3DVolume*>(ptr)->sliceIndexZ();
 }
 
-void QCustom3DVolume_ConnectSliceIndexZChanged(void* ptr)
+void QCustom3DVolume_ConnectSliceIndexZChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)(int)>(&QCustom3DVolume::sliceIndexZChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)(int)>(&MyQCustom3DVolume::Signal_SliceIndexZChanged));
+	QObject::connect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)(int)>(&QCustom3DVolume::sliceIndexZChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)(int)>(&MyQCustom3DVolume::Signal_SliceIndexZChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QCustom3DVolume_DisconnectSliceIndexZChanged(void* ptr)
@@ -5377,9 +5377,9 @@ int QCustom3DVolume_TextureDepth(void* ptr)
 	return static_cast<QCustom3DVolume*>(ptr)->textureDepth();
 }
 
-void QCustom3DVolume_ConnectTextureDepthChanged(void* ptr)
+void QCustom3DVolume_ConnectTextureDepthChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)(int)>(&QCustom3DVolume::textureDepthChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)(int)>(&MyQCustom3DVolume::Signal_TextureDepthChanged));
+	QObject::connect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)(int)>(&QCustom3DVolume::textureDepthChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)(int)>(&MyQCustom3DVolume::Signal_TextureDepthChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QCustom3DVolume_DisconnectTextureDepthChanged(void* ptr)
@@ -5397,9 +5397,9 @@ long long QCustom3DVolume_TextureFormat(void* ptr)
 	return static_cast<QCustom3DVolume*>(ptr)->textureFormat();
 }
 
-void QCustom3DVolume_ConnectTextureFormatChanged(void* ptr)
+void QCustom3DVolume_ConnectTextureFormatChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)(QImage::Format)>(&QCustom3DVolume::textureFormatChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)(QImage::Format)>(&MyQCustom3DVolume::Signal_TextureFormatChanged));
+	QObject::connect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)(QImage::Format)>(&QCustom3DVolume::textureFormatChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)(QImage::Format)>(&MyQCustom3DVolume::Signal_TextureFormatChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QCustom3DVolume_DisconnectTextureFormatChanged(void* ptr)
@@ -5417,9 +5417,9 @@ int QCustom3DVolume_TextureHeight(void* ptr)
 	return static_cast<QCustom3DVolume*>(ptr)->textureHeight();
 }
 
-void QCustom3DVolume_ConnectTextureHeightChanged(void* ptr)
+void QCustom3DVolume_ConnectTextureHeightChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)(int)>(&QCustom3DVolume::textureHeightChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)(int)>(&MyQCustom3DVolume::Signal_TextureHeightChanged));
+	QObject::connect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)(int)>(&QCustom3DVolume::textureHeightChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)(int)>(&MyQCustom3DVolume::Signal_TextureHeightChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QCustom3DVolume_DisconnectTextureHeightChanged(void* ptr)
@@ -5437,9 +5437,9 @@ int QCustom3DVolume_TextureWidth(void* ptr)
 	return static_cast<QCustom3DVolume*>(ptr)->textureWidth();
 }
 
-void QCustom3DVolume_ConnectTextureWidthChanged(void* ptr)
+void QCustom3DVolume_ConnectTextureWidthChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)(int)>(&QCustom3DVolume::textureWidthChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)(int)>(&MyQCustom3DVolume::Signal_TextureWidthChanged));
+	QObject::connect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)(int)>(&QCustom3DVolume::textureWidthChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)(int)>(&MyQCustom3DVolume::Signal_TextureWidthChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QCustom3DVolume_DisconnectTextureWidthChanged(void* ptr)
@@ -5457,9 +5457,9 @@ char QCustom3DVolume_UseHighDefShader(void* ptr)
 	return static_cast<QCustom3DVolume*>(ptr)->useHighDefShader();
 }
 
-void QCustom3DVolume_ConnectUseHighDefShaderChanged(void* ptr)
+void QCustom3DVolume_ConnectUseHighDefShaderChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)(bool)>(&QCustom3DVolume::useHighDefShaderChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)(bool)>(&MyQCustom3DVolume::Signal_UseHighDefShaderChanged));
+	QObject::connect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)(bool)>(&QCustom3DVolume::useHighDefShaderChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)(bool)>(&MyQCustom3DVolume::Signal_UseHighDefShaderChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QCustom3DVolume_DisconnectUseHighDefShaderChanged(void* ptr)
@@ -5692,9 +5692,9 @@ void* QHeightMapSurfaceDataProxy_HeightMap(void* ptr)
 	return new QImage(static_cast<QHeightMapSurfaceDataProxy*>(ptr)->heightMap());
 }
 
-void QHeightMapSurfaceDataProxy_ConnectHeightMapChanged(void* ptr)
+void QHeightMapSurfaceDataProxy_ConnectHeightMapChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QHeightMapSurfaceDataProxy*>(ptr), static_cast<void (QHeightMapSurfaceDataProxy::*)(const QImage &)>(&QHeightMapSurfaceDataProxy::heightMapChanged), static_cast<MyQHeightMapSurfaceDataProxy*>(ptr), static_cast<void (MyQHeightMapSurfaceDataProxy::*)(const QImage &)>(&MyQHeightMapSurfaceDataProxy::Signal_HeightMapChanged));
+	QObject::connect(static_cast<QHeightMapSurfaceDataProxy*>(ptr), static_cast<void (QHeightMapSurfaceDataProxy::*)(const QImage &)>(&QHeightMapSurfaceDataProxy::heightMapChanged), static_cast<MyQHeightMapSurfaceDataProxy*>(ptr), static_cast<void (MyQHeightMapSurfaceDataProxy::*)(const QImage &)>(&MyQHeightMapSurfaceDataProxy::Signal_HeightMapChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QHeightMapSurfaceDataProxy_DisconnectHeightMapChanged(void* ptr)
@@ -5712,9 +5712,9 @@ struct QtDataVisualization_PackedString QHeightMapSurfaceDataProxy_HeightMapFile
 	return ({ QByteArray t26dd34 = static_cast<QHeightMapSurfaceDataProxy*>(ptr)->heightMapFile().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t26dd34.prepend("WHITESPACE").constData()+10), t26dd34.size()-10 }; });
 }
 
-void QHeightMapSurfaceDataProxy_ConnectHeightMapFileChanged(void* ptr)
+void QHeightMapSurfaceDataProxy_ConnectHeightMapFileChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QHeightMapSurfaceDataProxy*>(ptr), static_cast<void (QHeightMapSurfaceDataProxy::*)(const QString &)>(&QHeightMapSurfaceDataProxy::heightMapFileChanged), static_cast<MyQHeightMapSurfaceDataProxy*>(ptr), static_cast<void (MyQHeightMapSurfaceDataProxy::*)(const QString &)>(&MyQHeightMapSurfaceDataProxy::Signal_HeightMapFileChanged));
+	QObject::connect(static_cast<QHeightMapSurfaceDataProxy*>(ptr), static_cast<void (QHeightMapSurfaceDataProxy::*)(const QString &)>(&QHeightMapSurfaceDataProxy::heightMapFileChanged), static_cast<MyQHeightMapSurfaceDataProxy*>(ptr), static_cast<void (MyQHeightMapSurfaceDataProxy::*)(const QString &)>(&MyQHeightMapSurfaceDataProxy::Signal_HeightMapFileChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QHeightMapSurfaceDataProxy_DisconnectHeightMapFileChanged(void* ptr)
@@ -5732,9 +5732,9 @@ float QHeightMapSurfaceDataProxy_MaxXValue(void* ptr)
 	return static_cast<QHeightMapSurfaceDataProxy*>(ptr)->maxXValue();
 }
 
-void QHeightMapSurfaceDataProxy_ConnectMaxXValueChanged(void* ptr)
+void QHeightMapSurfaceDataProxy_ConnectMaxXValueChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QHeightMapSurfaceDataProxy*>(ptr), static_cast<void (QHeightMapSurfaceDataProxy::*)(float)>(&QHeightMapSurfaceDataProxy::maxXValueChanged), static_cast<MyQHeightMapSurfaceDataProxy*>(ptr), static_cast<void (MyQHeightMapSurfaceDataProxy::*)(float)>(&MyQHeightMapSurfaceDataProxy::Signal_MaxXValueChanged));
+	QObject::connect(static_cast<QHeightMapSurfaceDataProxy*>(ptr), static_cast<void (QHeightMapSurfaceDataProxy::*)(float)>(&QHeightMapSurfaceDataProxy::maxXValueChanged), static_cast<MyQHeightMapSurfaceDataProxy*>(ptr), static_cast<void (MyQHeightMapSurfaceDataProxy::*)(float)>(&MyQHeightMapSurfaceDataProxy::Signal_MaxXValueChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QHeightMapSurfaceDataProxy_DisconnectMaxXValueChanged(void* ptr)
@@ -5752,9 +5752,9 @@ float QHeightMapSurfaceDataProxy_MaxZValue(void* ptr)
 	return static_cast<QHeightMapSurfaceDataProxy*>(ptr)->maxZValue();
 }
 
-void QHeightMapSurfaceDataProxy_ConnectMaxZValueChanged(void* ptr)
+void QHeightMapSurfaceDataProxy_ConnectMaxZValueChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QHeightMapSurfaceDataProxy*>(ptr), static_cast<void (QHeightMapSurfaceDataProxy::*)(float)>(&QHeightMapSurfaceDataProxy::maxZValueChanged), static_cast<MyQHeightMapSurfaceDataProxy*>(ptr), static_cast<void (MyQHeightMapSurfaceDataProxy::*)(float)>(&MyQHeightMapSurfaceDataProxy::Signal_MaxZValueChanged));
+	QObject::connect(static_cast<QHeightMapSurfaceDataProxy*>(ptr), static_cast<void (QHeightMapSurfaceDataProxy::*)(float)>(&QHeightMapSurfaceDataProxy::maxZValueChanged), static_cast<MyQHeightMapSurfaceDataProxy*>(ptr), static_cast<void (MyQHeightMapSurfaceDataProxy::*)(float)>(&MyQHeightMapSurfaceDataProxy::Signal_MaxZValueChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QHeightMapSurfaceDataProxy_DisconnectMaxZValueChanged(void* ptr)
@@ -5772,9 +5772,9 @@ float QHeightMapSurfaceDataProxy_MinXValue(void* ptr)
 	return static_cast<QHeightMapSurfaceDataProxy*>(ptr)->minXValue();
 }
 
-void QHeightMapSurfaceDataProxy_ConnectMinXValueChanged(void* ptr)
+void QHeightMapSurfaceDataProxy_ConnectMinXValueChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QHeightMapSurfaceDataProxy*>(ptr), static_cast<void (QHeightMapSurfaceDataProxy::*)(float)>(&QHeightMapSurfaceDataProxy::minXValueChanged), static_cast<MyQHeightMapSurfaceDataProxy*>(ptr), static_cast<void (MyQHeightMapSurfaceDataProxy::*)(float)>(&MyQHeightMapSurfaceDataProxy::Signal_MinXValueChanged));
+	QObject::connect(static_cast<QHeightMapSurfaceDataProxy*>(ptr), static_cast<void (QHeightMapSurfaceDataProxy::*)(float)>(&QHeightMapSurfaceDataProxy::minXValueChanged), static_cast<MyQHeightMapSurfaceDataProxy*>(ptr), static_cast<void (MyQHeightMapSurfaceDataProxy::*)(float)>(&MyQHeightMapSurfaceDataProxy::Signal_MinXValueChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QHeightMapSurfaceDataProxy_DisconnectMinXValueChanged(void* ptr)
@@ -5792,9 +5792,9 @@ float QHeightMapSurfaceDataProxy_MinZValue(void* ptr)
 	return static_cast<QHeightMapSurfaceDataProxy*>(ptr)->minZValue();
 }
 
-void QHeightMapSurfaceDataProxy_ConnectMinZValueChanged(void* ptr)
+void QHeightMapSurfaceDataProxy_ConnectMinZValueChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QHeightMapSurfaceDataProxy*>(ptr), static_cast<void (QHeightMapSurfaceDataProxy::*)(float)>(&QHeightMapSurfaceDataProxy::minZValueChanged), static_cast<MyQHeightMapSurfaceDataProxy*>(ptr), static_cast<void (MyQHeightMapSurfaceDataProxy::*)(float)>(&MyQHeightMapSurfaceDataProxy::Signal_MinZValueChanged));
+	QObject::connect(static_cast<QHeightMapSurfaceDataProxy*>(ptr), static_cast<void (QHeightMapSurfaceDataProxy::*)(float)>(&QHeightMapSurfaceDataProxy::minZValueChanged), static_cast<MyQHeightMapSurfaceDataProxy*>(ptr), static_cast<void (MyQHeightMapSurfaceDataProxy::*)(float)>(&MyQHeightMapSurfaceDataProxy::Signal_MinZValueChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QHeightMapSurfaceDataProxy_DisconnectMinZValueChanged(void* ptr)
@@ -6219,9 +6219,9 @@ char QItemModelBarDataProxy_AutoColumnCategories(void* ptr)
 	return static_cast<QItemModelBarDataProxy*>(ptr)->autoColumnCategories();
 }
 
-void QItemModelBarDataProxy_ConnectAutoColumnCategoriesChanged(void* ptr)
+void QItemModelBarDataProxy_ConnectAutoColumnCategoriesChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelBarDataProxy*>(ptr), static_cast<void (QItemModelBarDataProxy::*)(bool)>(&QItemModelBarDataProxy::autoColumnCategoriesChanged), static_cast<MyQItemModelBarDataProxy*>(ptr), static_cast<void (MyQItemModelBarDataProxy::*)(bool)>(&MyQItemModelBarDataProxy::Signal_AutoColumnCategoriesChanged));
+	QObject::connect(static_cast<QItemModelBarDataProxy*>(ptr), static_cast<void (QItemModelBarDataProxy::*)(bool)>(&QItemModelBarDataProxy::autoColumnCategoriesChanged), static_cast<MyQItemModelBarDataProxy*>(ptr), static_cast<void (MyQItemModelBarDataProxy::*)(bool)>(&MyQItemModelBarDataProxy::Signal_AutoColumnCategoriesChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelBarDataProxy_DisconnectAutoColumnCategoriesChanged(void* ptr)
@@ -6239,9 +6239,9 @@ char QItemModelBarDataProxy_AutoRowCategories(void* ptr)
 	return static_cast<QItemModelBarDataProxy*>(ptr)->autoRowCategories();
 }
 
-void QItemModelBarDataProxy_ConnectAutoRowCategoriesChanged(void* ptr)
+void QItemModelBarDataProxy_ConnectAutoRowCategoriesChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelBarDataProxy*>(ptr), static_cast<void (QItemModelBarDataProxy::*)(bool)>(&QItemModelBarDataProxy::autoRowCategoriesChanged), static_cast<MyQItemModelBarDataProxy*>(ptr), static_cast<void (MyQItemModelBarDataProxy::*)(bool)>(&MyQItemModelBarDataProxy::Signal_AutoRowCategoriesChanged));
+	QObject::connect(static_cast<QItemModelBarDataProxy*>(ptr), static_cast<void (QItemModelBarDataProxy::*)(bool)>(&QItemModelBarDataProxy::autoRowCategoriesChanged), static_cast<MyQItemModelBarDataProxy*>(ptr), static_cast<void (MyQItemModelBarDataProxy::*)(bool)>(&MyQItemModelBarDataProxy::Signal_AutoRowCategoriesChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelBarDataProxy_DisconnectAutoRowCategoriesChanged(void* ptr)
@@ -6259,9 +6259,9 @@ struct QtDataVisualization_PackedString QItemModelBarDataProxy_ColumnCategories(
 	return ({ QByteArray t86b84b = static_cast<QItemModelBarDataProxy*>(ptr)->columnCategories().join("¡¦!").toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t86b84b.prepend("WHITESPACE").constData()+10), t86b84b.size()-10 }; });
 }
 
-void QItemModelBarDataProxy_ConnectColumnCategoriesChanged(void* ptr)
+void QItemModelBarDataProxy_ConnectColumnCategoriesChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelBarDataProxy*>(ptr), static_cast<void (QItemModelBarDataProxy::*)()>(&QItemModelBarDataProxy::columnCategoriesChanged), static_cast<MyQItemModelBarDataProxy*>(ptr), static_cast<void (MyQItemModelBarDataProxy::*)()>(&MyQItemModelBarDataProxy::Signal_ColumnCategoriesChanged));
+	QObject::connect(static_cast<QItemModelBarDataProxy*>(ptr), static_cast<void (QItemModelBarDataProxy::*)()>(&QItemModelBarDataProxy::columnCategoriesChanged), static_cast<MyQItemModelBarDataProxy*>(ptr), static_cast<void (MyQItemModelBarDataProxy::*)()>(&MyQItemModelBarDataProxy::Signal_ColumnCategoriesChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelBarDataProxy_DisconnectColumnCategoriesChanged(void* ptr)
@@ -6284,9 +6284,9 @@ struct QtDataVisualization_PackedString QItemModelBarDataProxy_ColumnRole(void* 
 	return ({ QByteArray t1d4975 = static_cast<QItemModelBarDataProxy*>(ptr)->columnRole().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t1d4975.prepend("WHITESPACE").constData()+10), t1d4975.size()-10 }; });
 }
 
-void QItemModelBarDataProxy_ConnectColumnRoleChanged(void* ptr)
+void QItemModelBarDataProxy_ConnectColumnRoleChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelBarDataProxy*>(ptr), static_cast<void (QItemModelBarDataProxy::*)(const QString &)>(&QItemModelBarDataProxy::columnRoleChanged), static_cast<MyQItemModelBarDataProxy*>(ptr), static_cast<void (MyQItemModelBarDataProxy::*)(const QString &)>(&MyQItemModelBarDataProxy::Signal_ColumnRoleChanged));
+	QObject::connect(static_cast<QItemModelBarDataProxy*>(ptr), static_cast<void (QItemModelBarDataProxy::*)(const QString &)>(&QItemModelBarDataProxy::columnRoleChanged), static_cast<MyQItemModelBarDataProxy*>(ptr), static_cast<void (MyQItemModelBarDataProxy::*)(const QString &)>(&MyQItemModelBarDataProxy::Signal_ColumnRoleChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelBarDataProxy_DisconnectColumnRoleChanged(void* ptr)
@@ -6304,9 +6304,9 @@ void* QItemModelBarDataProxy_ColumnRolePattern(void* ptr)
 	return new QRegExp(static_cast<QItemModelBarDataProxy*>(ptr)->columnRolePattern());
 }
 
-void QItemModelBarDataProxy_ConnectColumnRolePatternChanged(void* ptr)
+void QItemModelBarDataProxy_ConnectColumnRolePatternChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelBarDataProxy*>(ptr), static_cast<void (QItemModelBarDataProxy::*)(const QRegExp &)>(&QItemModelBarDataProxy::columnRolePatternChanged), static_cast<MyQItemModelBarDataProxy*>(ptr), static_cast<void (MyQItemModelBarDataProxy::*)(const QRegExp &)>(&MyQItemModelBarDataProxy::Signal_ColumnRolePatternChanged));
+	QObject::connect(static_cast<QItemModelBarDataProxy*>(ptr), static_cast<void (QItemModelBarDataProxy::*)(const QRegExp &)>(&QItemModelBarDataProxy::columnRolePatternChanged), static_cast<MyQItemModelBarDataProxy*>(ptr), static_cast<void (MyQItemModelBarDataProxy::*)(const QRegExp &)>(&MyQItemModelBarDataProxy::Signal_ColumnRolePatternChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelBarDataProxy_DisconnectColumnRolePatternChanged(void* ptr)
@@ -6324,9 +6324,9 @@ struct QtDataVisualization_PackedString QItemModelBarDataProxy_ColumnRoleReplace
 	return ({ QByteArray tf1dce7 = static_cast<QItemModelBarDataProxy*>(ptr)->columnRoleReplace().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(tf1dce7.prepend("WHITESPACE").constData()+10), tf1dce7.size()-10 }; });
 }
 
-void QItemModelBarDataProxy_ConnectColumnRoleReplaceChanged(void* ptr)
+void QItemModelBarDataProxy_ConnectColumnRoleReplaceChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelBarDataProxy*>(ptr), static_cast<void (QItemModelBarDataProxy::*)(const QString &)>(&QItemModelBarDataProxy::columnRoleReplaceChanged), static_cast<MyQItemModelBarDataProxy*>(ptr), static_cast<void (MyQItemModelBarDataProxy::*)(const QString &)>(&MyQItemModelBarDataProxy::Signal_ColumnRoleReplaceChanged));
+	QObject::connect(static_cast<QItemModelBarDataProxy*>(ptr), static_cast<void (QItemModelBarDataProxy::*)(const QString &)>(&QItemModelBarDataProxy::columnRoleReplaceChanged), static_cast<MyQItemModelBarDataProxy*>(ptr), static_cast<void (MyQItemModelBarDataProxy::*)(const QString &)>(&MyQItemModelBarDataProxy::Signal_ColumnRoleReplaceChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelBarDataProxy_DisconnectColumnRoleReplaceChanged(void* ptr)
@@ -6344,9 +6344,9 @@ void* QItemModelBarDataProxy_ItemModel(void* ptr)
 	return static_cast<QItemModelBarDataProxy*>(ptr)->itemModel();
 }
 
-void QItemModelBarDataProxy_ConnectItemModelChanged(void* ptr)
+void QItemModelBarDataProxy_ConnectItemModelChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelBarDataProxy*>(ptr), static_cast<void (QItemModelBarDataProxy::*)(const QAbstractItemModel *)>(&QItemModelBarDataProxy::itemModelChanged), static_cast<MyQItemModelBarDataProxy*>(ptr), static_cast<void (MyQItemModelBarDataProxy::*)(const QAbstractItemModel *)>(&MyQItemModelBarDataProxy::Signal_ItemModelChanged));
+	QObject::connect(static_cast<QItemModelBarDataProxy*>(ptr), static_cast<void (QItemModelBarDataProxy::*)(const QAbstractItemModel *)>(&QItemModelBarDataProxy::itemModelChanged), static_cast<MyQItemModelBarDataProxy*>(ptr), static_cast<void (MyQItemModelBarDataProxy::*)(const QAbstractItemModel *)>(&MyQItemModelBarDataProxy::Signal_ItemModelChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelBarDataProxy_DisconnectItemModelChanged(void* ptr)
@@ -6364,9 +6364,9 @@ long long QItemModelBarDataProxy_MultiMatchBehavior(void* ptr)
 	return static_cast<QItemModelBarDataProxy*>(ptr)->multiMatchBehavior();
 }
 
-void QItemModelBarDataProxy_ConnectMultiMatchBehaviorChanged(void* ptr)
+void QItemModelBarDataProxy_ConnectMultiMatchBehaviorChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelBarDataProxy*>(ptr), static_cast<void (QItemModelBarDataProxy::*)(QItemModelBarDataProxy::MultiMatchBehavior)>(&QItemModelBarDataProxy::multiMatchBehaviorChanged), static_cast<MyQItemModelBarDataProxy*>(ptr), static_cast<void (MyQItemModelBarDataProxy::*)(QItemModelBarDataProxy::MultiMatchBehavior)>(&MyQItemModelBarDataProxy::Signal_MultiMatchBehaviorChanged));
+	QObject::connect(static_cast<QItemModelBarDataProxy*>(ptr), static_cast<void (QItemModelBarDataProxy::*)(QItemModelBarDataProxy::MultiMatchBehavior)>(&QItemModelBarDataProxy::multiMatchBehaviorChanged), static_cast<MyQItemModelBarDataProxy*>(ptr), static_cast<void (MyQItemModelBarDataProxy::*)(QItemModelBarDataProxy::MultiMatchBehavior)>(&MyQItemModelBarDataProxy::Signal_MultiMatchBehaviorChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelBarDataProxy_DisconnectMultiMatchBehaviorChanged(void* ptr)
@@ -6389,9 +6389,9 @@ struct QtDataVisualization_PackedString QItemModelBarDataProxy_RotationRole(void
 	return ({ QByteArray ta1c8cc = static_cast<QItemModelBarDataProxy*>(ptr)->rotationRole().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(ta1c8cc.prepend("WHITESPACE").constData()+10), ta1c8cc.size()-10 }; });
 }
 
-void QItemModelBarDataProxy_ConnectRotationRoleChanged(void* ptr)
+void QItemModelBarDataProxy_ConnectRotationRoleChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelBarDataProxy*>(ptr), static_cast<void (QItemModelBarDataProxy::*)(const QString &)>(&QItemModelBarDataProxy::rotationRoleChanged), static_cast<MyQItemModelBarDataProxy*>(ptr), static_cast<void (MyQItemModelBarDataProxy::*)(const QString &)>(&MyQItemModelBarDataProxy::Signal_RotationRoleChanged));
+	QObject::connect(static_cast<QItemModelBarDataProxy*>(ptr), static_cast<void (QItemModelBarDataProxy::*)(const QString &)>(&QItemModelBarDataProxy::rotationRoleChanged), static_cast<MyQItemModelBarDataProxy*>(ptr), static_cast<void (MyQItemModelBarDataProxy::*)(const QString &)>(&MyQItemModelBarDataProxy::Signal_RotationRoleChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelBarDataProxy_DisconnectRotationRoleChanged(void* ptr)
@@ -6409,9 +6409,9 @@ void* QItemModelBarDataProxy_RotationRolePattern(void* ptr)
 	return new QRegExp(static_cast<QItemModelBarDataProxy*>(ptr)->rotationRolePattern());
 }
 
-void QItemModelBarDataProxy_ConnectRotationRolePatternChanged(void* ptr)
+void QItemModelBarDataProxy_ConnectRotationRolePatternChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelBarDataProxy*>(ptr), static_cast<void (QItemModelBarDataProxy::*)(const QRegExp &)>(&QItemModelBarDataProxy::rotationRolePatternChanged), static_cast<MyQItemModelBarDataProxy*>(ptr), static_cast<void (MyQItemModelBarDataProxy::*)(const QRegExp &)>(&MyQItemModelBarDataProxy::Signal_RotationRolePatternChanged));
+	QObject::connect(static_cast<QItemModelBarDataProxy*>(ptr), static_cast<void (QItemModelBarDataProxy::*)(const QRegExp &)>(&QItemModelBarDataProxy::rotationRolePatternChanged), static_cast<MyQItemModelBarDataProxy*>(ptr), static_cast<void (MyQItemModelBarDataProxy::*)(const QRegExp &)>(&MyQItemModelBarDataProxy::Signal_RotationRolePatternChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelBarDataProxy_DisconnectRotationRolePatternChanged(void* ptr)
@@ -6429,9 +6429,9 @@ struct QtDataVisualization_PackedString QItemModelBarDataProxy_RotationRoleRepla
 	return ({ QByteArray tf65c4d = static_cast<QItemModelBarDataProxy*>(ptr)->rotationRoleReplace().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(tf65c4d.prepend("WHITESPACE").constData()+10), tf65c4d.size()-10 }; });
 }
 
-void QItemModelBarDataProxy_ConnectRotationRoleReplaceChanged(void* ptr)
+void QItemModelBarDataProxy_ConnectRotationRoleReplaceChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelBarDataProxy*>(ptr), static_cast<void (QItemModelBarDataProxy::*)(const QString &)>(&QItemModelBarDataProxy::rotationRoleReplaceChanged), static_cast<MyQItemModelBarDataProxy*>(ptr), static_cast<void (MyQItemModelBarDataProxy::*)(const QString &)>(&MyQItemModelBarDataProxy::Signal_RotationRoleReplaceChanged));
+	QObject::connect(static_cast<QItemModelBarDataProxy*>(ptr), static_cast<void (QItemModelBarDataProxy::*)(const QString &)>(&QItemModelBarDataProxy::rotationRoleReplaceChanged), static_cast<MyQItemModelBarDataProxy*>(ptr), static_cast<void (MyQItemModelBarDataProxy::*)(const QString &)>(&MyQItemModelBarDataProxy::Signal_RotationRoleReplaceChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelBarDataProxy_DisconnectRotationRoleReplaceChanged(void* ptr)
@@ -6449,9 +6449,9 @@ struct QtDataVisualization_PackedString QItemModelBarDataProxy_RowCategories(voi
 	return ({ QByteArray t50f4e1 = static_cast<QItemModelBarDataProxy*>(ptr)->rowCategories().join("¡¦!").toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t50f4e1.prepend("WHITESPACE").constData()+10), t50f4e1.size()-10 }; });
 }
 
-void QItemModelBarDataProxy_ConnectRowCategoriesChanged(void* ptr)
+void QItemModelBarDataProxy_ConnectRowCategoriesChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelBarDataProxy*>(ptr), static_cast<void (QItemModelBarDataProxy::*)()>(&QItemModelBarDataProxy::rowCategoriesChanged), static_cast<MyQItemModelBarDataProxy*>(ptr), static_cast<void (MyQItemModelBarDataProxy::*)()>(&MyQItemModelBarDataProxy::Signal_RowCategoriesChanged));
+	QObject::connect(static_cast<QItemModelBarDataProxy*>(ptr), static_cast<void (QItemModelBarDataProxy::*)()>(&QItemModelBarDataProxy::rowCategoriesChanged), static_cast<MyQItemModelBarDataProxy*>(ptr), static_cast<void (MyQItemModelBarDataProxy::*)()>(&MyQItemModelBarDataProxy::Signal_RowCategoriesChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelBarDataProxy_DisconnectRowCategoriesChanged(void* ptr)
@@ -6474,9 +6474,9 @@ struct QtDataVisualization_PackedString QItemModelBarDataProxy_RowRole(void* ptr
 	return ({ QByteArray t609fcb = static_cast<QItemModelBarDataProxy*>(ptr)->rowRole().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t609fcb.prepend("WHITESPACE").constData()+10), t609fcb.size()-10 }; });
 }
 
-void QItemModelBarDataProxy_ConnectRowRoleChanged(void* ptr)
+void QItemModelBarDataProxy_ConnectRowRoleChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelBarDataProxy*>(ptr), static_cast<void (QItemModelBarDataProxy::*)(const QString &)>(&QItemModelBarDataProxy::rowRoleChanged), static_cast<MyQItemModelBarDataProxy*>(ptr), static_cast<void (MyQItemModelBarDataProxy::*)(const QString &)>(&MyQItemModelBarDataProxy::Signal_RowRoleChanged));
+	QObject::connect(static_cast<QItemModelBarDataProxy*>(ptr), static_cast<void (QItemModelBarDataProxy::*)(const QString &)>(&QItemModelBarDataProxy::rowRoleChanged), static_cast<MyQItemModelBarDataProxy*>(ptr), static_cast<void (MyQItemModelBarDataProxy::*)(const QString &)>(&MyQItemModelBarDataProxy::Signal_RowRoleChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelBarDataProxy_DisconnectRowRoleChanged(void* ptr)
@@ -6494,9 +6494,9 @@ void* QItemModelBarDataProxy_RowRolePattern(void* ptr)
 	return new QRegExp(static_cast<QItemModelBarDataProxy*>(ptr)->rowRolePattern());
 }
 
-void QItemModelBarDataProxy_ConnectRowRolePatternChanged(void* ptr)
+void QItemModelBarDataProxy_ConnectRowRolePatternChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelBarDataProxy*>(ptr), static_cast<void (QItemModelBarDataProxy::*)(const QRegExp &)>(&QItemModelBarDataProxy::rowRolePatternChanged), static_cast<MyQItemModelBarDataProxy*>(ptr), static_cast<void (MyQItemModelBarDataProxy::*)(const QRegExp &)>(&MyQItemModelBarDataProxy::Signal_RowRolePatternChanged));
+	QObject::connect(static_cast<QItemModelBarDataProxy*>(ptr), static_cast<void (QItemModelBarDataProxy::*)(const QRegExp &)>(&QItemModelBarDataProxy::rowRolePatternChanged), static_cast<MyQItemModelBarDataProxy*>(ptr), static_cast<void (MyQItemModelBarDataProxy::*)(const QRegExp &)>(&MyQItemModelBarDataProxy::Signal_RowRolePatternChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelBarDataProxy_DisconnectRowRolePatternChanged(void* ptr)
@@ -6514,9 +6514,9 @@ struct QtDataVisualization_PackedString QItemModelBarDataProxy_RowRoleReplace(vo
 	return ({ QByteArray td8a1ca = static_cast<QItemModelBarDataProxy*>(ptr)->rowRoleReplace().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(td8a1ca.prepend("WHITESPACE").constData()+10), td8a1ca.size()-10 }; });
 }
 
-void QItemModelBarDataProxy_ConnectRowRoleReplaceChanged(void* ptr)
+void QItemModelBarDataProxy_ConnectRowRoleReplaceChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelBarDataProxy*>(ptr), static_cast<void (QItemModelBarDataProxy::*)(const QString &)>(&QItemModelBarDataProxy::rowRoleReplaceChanged), static_cast<MyQItemModelBarDataProxy*>(ptr), static_cast<void (MyQItemModelBarDataProxy::*)(const QString &)>(&MyQItemModelBarDataProxy::Signal_RowRoleReplaceChanged));
+	QObject::connect(static_cast<QItemModelBarDataProxy*>(ptr), static_cast<void (QItemModelBarDataProxy::*)(const QString &)>(&QItemModelBarDataProxy::rowRoleReplaceChanged), static_cast<MyQItemModelBarDataProxy*>(ptr), static_cast<void (MyQItemModelBarDataProxy::*)(const QString &)>(&MyQItemModelBarDataProxy::Signal_RowRoleReplaceChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelBarDataProxy_DisconnectRowRoleReplaceChanged(void* ptr)
@@ -6629,9 +6629,9 @@ char QItemModelBarDataProxy_UseModelCategories(void* ptr)
 	return static_cast<QItemModelBarDataProxy*>(ptr)->useModelCategories();
 }
 
-void QItemModelBarDataProxy_ConnectUseModelCategoriesChanged(void* ptr)
+void QItemModelBarDataProxy_ConnectUseModelCategoriesChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelBarDataProxy*>(ptr), static_cast<void (QItemModelBarDataProxy::*)(bool)>(&QItemModelBarDataProxy::useModelCategoriesChanged), static_cast<MyQItemModelBarDataProxy*>(ptr), static_cast<void (MyQItemModelBarDataProxy::*)(bool)>(&MyQItemModelBarDataProxy::Signal_UseModelCategoriesChanged));
+	QObject::connect(static_cast<QItemModelBarDataProxy*>(ptr), static_cast<void (QItemModelBarDataProxy::*)(bool)>(&QItemModelBarDataProxy::useModelCategoriesChanged), static_cast<MyQItemModelBarDataProxy*>(ptr), static_cast<void (MyQItemModelBarDataProxy::*)(bool)>(&MyQItemModelBarDataProxy::Signal_UseModelCategoriesChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelBarDataProxy_DisconnectUseModelCategoriesChanged(void* ptr)
@@ -6649,9 +6649,9 @@ struct QtDataVisualization_PackedString QItemModelBarDataProxy_ValueRole(void* p
 	return ({ QByteArray t03456f = static_cast<QItemModelBarDataProxy*>(ptr)->valueRole().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t03456f.prepend("WHITESPACE").constData()+10), t03456f.size()-10 }; });
 }
 
-void QItemModelBarDataProxy_ConnectValueRoleChanged(void* ptr)
+void QItemModelBarDataProxy_ConnectValueRoleChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelBarDataProxy*>(ptr), static_cast<void (QItemModelBarDataProxy::*)(const QString &)>(&QItemModelBarDataProxy::valueRoleChanged), static_cast<MyQItemModelBarDataProxy*>(ptr), static_cast<void (MyQItemModelBarDataProxy::*)(const QString &)>(&MyQItemModelBarDataProxy::Signal_ValueRoleChanged));
+	QObject::connect(static_cast<QItemModelBarDataProxy*>(ptr), static_cast<void (QItemModelBarDataProxy::*)(const QString &)>(&QItemModelBarDataProxy::valueRoleChanged), static_cast<MyQItemModelBarDataProxy*>(ptr), static_cast<void (MyQItemModelBarDataProxy::*)(const QString &)>(&MyQItemModelBarDataProxy::Signal_ValueRoleChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelBarDataProxy_DisconnectValueRoleChanged(void* ptr)
@@ -6669,9 +6669,9 @@ void* QItemModelBarDataProxy_ValueRolePattern(void* ptr)
 	return new QRegExp(static_cast<QItemModelBarDataProxy*>(ptr)->valueRolePattern());
 }
 
-void QItemModelBarDataProxy_ConnectValueRolePatternChanged(void* ptr)
+void QItemModelBarDataProxy_ConnectValueRolePatternChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelBarDataProxy*>(ptr), static_cast<void (QItemModelBarDataProxy::*)(const QRegExp &)>(&QItemModelBarDataProxy::valueRolePatternChanged), static_cast<MyQItemModelBarDataProxy*>(ptr), static_cast<void (MyQItemModelBarDataProxy::*)(const QRegExp &)>(&MyQItemModelBarDataProxy::Signal_ValueRolePatternChanged));
+	QObject::connect(static_cast<QItemModelBarDataProxy*>(ptr), static_cast<void (QItemModelBarDataProxy::*)(const QRegExp &)>(&QItemModelBarDataProxy::valueRolePatternChanged), static_cast<MyQItemModelBarDataProxy*>(ptr), static_cast<void (MyQItemModelBarDataProxy::*)(const QRegExp &)>(&MyQItemModelBarDataProxy::Signal_ValueRolePatternChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelBarDataProxy_DisconnectValueRolePatternChanged(void* ptr)
@@ -6689,9 +6689,9 @@ struct QtDataVisualization_PackedString QItemModelBarDataProxy_ValueRoleReplace(
 	return ({ QByteArray t1ef472 = static_cast<QItemModelBarDataProxy*>(ptr)->valueRoleReplace().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t1ef472.prepend("WHITESPACE").constData()+10), t1ef472.size()-10 }; });
 }
 
-void QItemModelBarDataProxy_ConnectValueRoleReplaceChanged(void* ptr)
+void QItemModelBarDataProxy_ConnectValueRoleReplaceChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelBarDataProxy*>(ptr), static_cast<void (QItemModelBarDataProxy::*)(const QString &)>(&QItemModelBarDataProxy::valueRoleReplaceChanged), static_cast<MyQItemModelBarDataProxy*>(ptr), static_cast<void (MyQItemModelBarDataProxy::*)(const QString &)>(&MyQItemModelBarDataProxy::Signal_ValueRoleReplaceChanged));
+	QObject::connect(static_cast<QItemModelBarDataProxy*>(ptr), static_cast<void (QItemModelBarDataProxy::*)(const QString &)>(&QItemModelBarDataProxy::valueRoleReplaceChanged), static_cast<MyQItemModelBarDataProxy*>(ptr), static_cast<void (MyQItemModelBarDataProxy::*)(const QString &)>(&MyQItemModelBarDataProxy::Signal_ValueRoleReplaceChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelBarDataProxy_DisconnectValueRoleReplaceChanged(void* ptr)
@@ -6931,9 +6931,9 @@ void* QItemModelScatterDataProxy_ItemModel(void* ptr)
 	return static_cast<QItemModelScatterDataProxy*>(ptr)->itemModel();
 }
 
-void QItemModelScatterDataProxy_ConnectItemModelChanged(void* ptr)
+void QItemModelScatterDataProxy_ConnectItemModelChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelScatterDataProxy*>(ptr), static_cast<void (QItemModelScatterDataProxy::*)(const QAbstractItemModel *)>(&QItemModelScatterDataProxy::itemModelChanged), static_cast<MyQItemModelScatterDataProxy*>(ptr), static_cast<void (MyQItemModelScatterDataProxy::*)(const QAbstractItemModel *)>(&MyQItemModelScatterDataProxy::Signal_ItemModelChanged));
+	QObject::connect(static_cast<QItemModelScatterDataProxy*>(ptr), static_cast<void (QItemModelScatterDataProxy::*)(const QAbstractItemModel *)>(&QItemModelScatterDataProxy::itemModelChanged), static_cast<MyQItemModelScatterDataProxy*>(ptr), static_cast<void (MyQItemModelScatterDataProxy::*)(const QAbstractItemModel *)>(&MyQItemModelScatterDataProxy::Signal_ItemModelChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelScatterDataProxy_DisconnectItemModelChanged(void* ptr)
@@ -6956,9 +6956,9 @@ struct QtDataVisualization_PackedString QItemModelScatterDataProxy_RotationRole(
 	return ({ QByteArray tb50293 = static_cast<QItemModelScatterDataProxy*>(ptr)->rotationRole().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(tb50293.prepend("WHITESPACE").constData()+10), tb50293.size()-10 }; });
 }
 
-void QItemModelScatterDataProxy_ConnectRotationRoleChanged(void* ptr)
+void QItemModelScatterDataProxy_ConnectRotationRoleChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelScatterDataProxy*>(ptr), static_cast<void (QItemModelScatterDataProxy::*)(const QString &)>(&QItemModelScatterDataProxy::rotationRoleChanged), static_cast<MyQItemModelScatterDataProxy*>(ptr), static_cast<void (MyQItemModelScatterDataProxy::*)(const QString &)>(&MyQItemModelScatterDataProxy::Signal_RotationRoleChanged));
+	QObject::connect(static_cast<QItemModelScatterDataProxy*>(ptr), static_cast<void (QItemModelScatterDataProxy::*)(const QString &)>(&QItemModelScatterDataProxy::rotationRoleChanged), static_cast<MyQItemModelScatterDataProxy*>(ptr), static_cast<void (MyQItemModelScatterDataProxy::*)(const QString &)>(&MyQItemModelScatterDataProxy::Signal_RotationRoleChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelScatterDataProxy_DisconnectRotationRoleChanged(void* ptr)
@@ -6976,9 +6976,9 @@ void* QItemModelScatterDataProxy_RotationRolePattern(void* ptr)
 	return new QRegExp(static_cast<QItemModelScatterDataProxy*>(ptr)->rotationRolePattern());
 }
 
-void QItemModelScatterDataProxy_ConnectRotationRolePatternChanged(void* ptr)
+void QItemModelScatterDataProxy_ConnectRotationRolePatternChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelScatterDataProxy*>(ptr), static_cast<void (QItemModelScatterDataProxy::*)(const QRegExp &)>(&QItemModelScatterDataProxy::rotationRolePatternChanged), static_cast<MyQItemModelScatterDataProxy*>(ptr), static_cast<void (MyQItemModelScatterDataProxy::*)(const QRegExp &)>(&MyQItemModelScatterDataProxy::Signal_RotationRolePatternChanged));
+	QObject::connect(static_cast<QItemModelScatterDataProxy*>(ptr), static_cast<void (QItemModelScatterDataProxy::*)(const QRegExp &)>(&QItemModelScatterDataProxy::rotationRolePatternChanged), static_cast<MyQItemModelScatterDataProxy*>(ptr), static_cast<void (MyQItemModelScatterDataProxy::*)(const QRegExp &)>(&MyQItemModelScatterDataProxy::Signal_RotationRolePatternChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelScatterDataProxy_DisconnectRotationRolePatternChanged(void* ptr)
@@ -6996,9 +6996,9 @@ struct QtDataVisualization_PackedString QItemModelScatterDataProxy_RotationRoleR
 	return ({ QByteArray t94bb1d = static_cast<QItemModelScatterDataProxy*>(ptr)->rotationRoleReplace().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t94bb1d.prepend("WHITESPACE").constData()+10), t94bb1d.size()-10 }; });
 }
 
-void QItemModelScatterDataProxy_ConnectRotationRoleReplaceChanged(void* ptr)
+void QItemModelScatterDataProxy_ConnectRotationRoleReplaceChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelScatterDataProxy*>(ptr), static_cast<void (QItemModelScatterDataProxy::*)(const QString &)>(&QItemModelScatterDataProxy::rotationRoleReplaceChanged), static_cast<MyQItemModelScatterDataProxy*>(ptr), static_cast<void (MyQItemModelScatterDataProxy::*)(const QString &)>(&MyQItemModelScatterDataProxy::Signal_RotationRoleReplaceChanged));
+	QObject::connect(static_cast<QItemModelScatterDataProxy*>(ptr), static_cast<void (QItemModelScatterDataProxy::*)(const QString &)>(&QItemModelScatterDataProxy::rotationRoleReplaceChanged), static_cast<MyQItemModelScatterDataProxy*>(ptr), static_cast<void (MyQItemModelScatterDataProxy::*)(const QString &)>(&MyQItemModelScatterDataProxy::Signal_RotationRoleReplaceChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelScatterDataProxy_DisconnectRotationRoleReplaceChanged(void* ptr)
@@ -7081,9 +7081,9 @@ struct QtDataVisualization_PackedString QItemModelScatterDataProxy_XPosRole(void
 	return ({ QByteArray t4f9501 = static_cast<QItemModelScatterDataProxy*>(ptr)->xPosRole().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t4f9501.prepend("WHITESPACE").constData()+10), t4f9501.size()-10 }; });
 }
 
-void QItemModelScatterDataProxy_ConnectXPosRoleChanged(void* ptr)
+void QItemModelScatterDataProxy_ConnectXPosRoleChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelScatterDataProxy*>(ptr), static_cast<void (QItemModelScatterDataProxy::*)(const QString &)>(&QItemModelScatterDataProxy::xPosRoleChanged), static_cast<MyQItemModelScatterDataProxy*>(ptr), static_cast<void (MyQItemModelScatterDataProxy::*)(const QString &)>(&MyQItemModelScatterDataProxy::Signal_XPosRoleChanged));
+	QObject::connect(static_cast<QItemModelScatterDataProxy*>(ptr), static_cast<void (QItemModelScatterDataProxy::*)(const QString &)>(&QItemModelScatterDataProxy::xPosRoleChanged), static_cast<MyQItemModelScatterDataProxy*>(ptr), static_cast<void (MyQItemModelScatterDataProxy::*)(const QString &)>(&MyQItemModelScatterDataProxy::Signal_XPosRoleChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelScatterDataProxy_DisconnectXPosRoleChanged(void* ptr)
@@ -7101,9 +7101,9 @@ void* QItemModelScatterDataProxy_XPosRolePattern(void* ptr)
 	return new QRegExp(static_cast<QItemModelScatterDataProxy*>(ptr)->xPosRolePattern());
 }
 
-void QItemModelScatterDataProxy_ConnectXPosRolePatternChanged(void* ptr)
+void QItemModelScatterDataProxy_ConnectXPosRolePatternChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelScatterDataProxy*>(ptr), static_cast<void (QItemModelScatterDataProxy::*)(const QRegExp &)>(&QItemModelScatterDataProxy::xPosRolePatternChanged), static_cast<MyQItemModelScatterDataProxy*>(ptr), static_cast<void (MyQItemModelScatterDataProxy::*)(const QRegExp &)>(&MyQItemModelScatterDataProxy::Signal_XPosRolePatternChanged));
+	QObject::connect(static_cast<QItemModelScatterDataProxy*>(ptr), static_cast<void (QItemModelScatterDataProxy::*)(const QRegExp &)>(&QItemModelScatterDataProxy::xPosRolePatternChanged), static_cast<MyQItemModelScatterDataProxy*>(ptr), static_cast<void (MyQItemModelScatterDataProxy::*)(const QRegExp &)>(&MyQItemModelScatterDataProxy::Signal_XPosRolePatternChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelScatterDataProxy_DisconnectXPosRolePatternChanged(void* ptr)
@@ -7121,9 +7121,9 @@ struct QtDataVisualization_PackedString QItemModelScatterDataProxy_XPosRoleRepla
 	return ({ QByteArray tb11de2 = static_cast<QItemModelScatterDataProxy*>(ptr)->xPosRoleReplace().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(tb11de2.prepend("WHITESPACE").constData()+10), tb11de2.size()-10 }; });
 }
 
-void QItemModelScatterDataProxy_ConnectXPosRoleReplaceChanged(void* ptr)
+void QItemModelScatterDataProxy_ConnectXPosRoleReplaceChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelScatterDataProxy*>(ptr), static_cast<void (QItemModelScatterDataProxy::*)(const QString &)>(&QItemModelScatterDataProxy::xPosRoleReplaceChanged), static_cast<MyQItemModelScatterDataProxy*>(ptr), static_cast<void (MyQItemModelScatterDataProxy::*)(const QString &)>(&MyQItemModelScatterDataProxy::Signal_XPosRoleReplaceChanged));
+	QObject::connect(static_cast<QItemModelScatterDataProxy*>(ptr), static_cast<void (QItemModelScatterDataProxy::*)(const QString &)>(&QItemModelScatterDataProxy::xPosRoleReplaceChanged), static_cast<MyQItemModelScatterDataProxy*>(ptr), static_cast<void (MyQItemModelScatterDataProxy::*)(const QString &)>(&MyQItemModelScatterDataProxy::Signal_XPosRoleReplaceChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelScatterDataProxy_DisconnectXPosRoleReplaceChanged(void* ptr)
@@ -7141,9 +7141,9 @@ struct QtDataVisualization_PackedString QItemModelScatterDataProxy_YPosRole(void
 	return ({ QByteArray td91cd2 = static_cast<QItemModelScatterDataProxy*>(ptr)->yPosRole().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(td91cd2.prepend("WHITESPACE").constData()+10), td91cd2.size()-10 }; });
 }
 
-void QItemModelScatterDataProxy_ConnectYPosRoleChanged(void* ptr)
+void QItemModelScatterDataProxy_ConnectYPosRoleChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelScatterDataProxy*>(ptr), static_cast<void (QItemModelScatterDataProxy::*)(const QString &)>(&QItemModelScatterDataProxy::yPosRoleChanged), static_cast<MyQItemModelScatterDataProxy*>(ptr), static_cast<void (MyQItemModelScatterDataProxy::*)(const QString &)>(&MyQItemModelScatterDataProxy::Signal_YPosRoleChanged));
+	QObject::connect(static_cast<QItemModelScatterDataProxy*>(ptr), static_cast<void (QItemModelScatterDataProxy::*)(const QString &)>(&QItemModelScatterDataProxy::yPosRoleChanged), static_cast<MyQItemModelScatterDataProxy*>(ptr), static_cast<void (MyQItemModelScatterDataProxy::*)(const QString &)>(&MyQItemModelScatterDataProxy::Signal_YPosRoleChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelScatterDataProxy_DisconnectYPosRoleChanged(void* ptr)
@@ -7161,9 +7161,9 @@ void* QItemModelScatterDataProxy_YPosRolePattern(void* ptr)
 	return new QRegExp(static_cast<QItemModelScatterDataProxy*>(ptr)->yPosRolePattern());
 }
 
-void QItemModelScatterDataProxy_ConnectYPosRolePatternChanged(void* ptr)
+void QItemModelScatterDataProxy_ConnectYPosRolePatternChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelScatterDataProxy*>(ptr), static_cast<void (QItemModelScatterDataProxy::*)(const QRegExp &)>(&QItemModelScatterDataProxy::yPosRolePatternChanged), static_cast<MyQItemModelScatterDataProxy*>(ptr), static_cast<void (MyQItemModelScatterDataProxy::*)(const QRegExp &)>(&MyQItemModelScatterDataProxy::Signal_YPosRolePatternChanged));
+	QObject::connect(static_cast<QItemModelScatterDataProxy*>(ptr), static_cast<void (QItemModelScatterDataProxy::*)(const QRegExp &)>(&QItemModelScatterDataProxy::yPosRolePatternChanged), static_cast<MyQItemModelScatterDataProxy*>(ptr), static_cast<void (MyQItemModelScatterDataProxy::*)(const QRegExp &)>(&MyQItemModelScatterDataProxy::Signal_YPosRolePatternChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelScatterDataProxy_DisconnectYPosRolePatternChanged(void* ptr)
@@ -7181,9 +7181,9 @@ struct QtDataVisualization_PackedString QItemModelScatterDataProxy_YPosRoleRepla
 	return ({ QByteArray t4307ad = static_cast<QItemModelScatterDataProxy*>(ptr)->yPosRoleReplace().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t4307ad.prepend("WHITESPACE").constData()+10), t4307ad.size()-10 }; });
 }
 
-void QItemModelScatterDataProxy_ConnectYPosRoleReplaceChanged(void* ptr)
+void QItemModelScatterDataProxy_ConnectYPosRoleReplaceChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelScatterDataProxy*>(ptr), static_cast<void (QItemModelScatterDataProxy::*)(const QString &)>(&QItemModelScatterDataProxy::yPosRoleReplaceChanged), static_cast<MyQItemModelScatterDataProxy*>(ptr), static_cast<void (MyQItemModelScatterDataProxy::*)(const QString &)>(&MyQItemModelScatterDataProxy::Signal_YPosRoleReplaceChanged));
+	QObject::connect(static_cast<QItemModelScatterDataProxy*>(ptr), static_cast<void (QItemModelScatterDataProxy::*)(const QString &)>(&QItemModelScatterDataProxy::yPosRoleReplaceChanged), static_cast<MyQItemModelScatterDataProxy*>(ptr), static_cast<void (MyQItemModelScatterDataProxy::*)(const QString &)>(&MyQItemModelScatterDataProxy::Signal_YPosRoleReplaceChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelScatterDataProxy_DisconnectYPosRoleReplaceChanged(void* ptr)
@@ -7201,9 +7201,9 @@ struct QtDataVisualization_PackedString QItemModelScatterDataProxy_ZPosRole(void
 	return ({ QByteArray t831570 = static_cast<QItemModelScatterDataProxy*>(ptr)->zPosRole().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t831570.prepend("WHITESPACE").constData()+10), t831570.size()-10 }; });
 }
 
-void QItemModelScatterDataProxy_ConnectZPosRoleChanged(void* ptr)
+void QItemModelScatterDataProxy_ConnectZPosRoleChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelScatterDataProxy*>(ptr), static_cast<void (QItemModelScatterDataProxy::*)(const QString &)>(&QItemModelScatterDataProxy::zPosRoleChanged), static_cast<MyQItemModelScatterDataProxy*>(ptr), static_cast<void (MyQItemModelScatterDataProxy::*)(const QString &)>(&MyQItemModelScatterDataProxy::Signal_ZPosRoleChanged));
+	QObject::connect(static_cast<QItemModelScatterDataProxy*>(ptr), static_cast<void (QItemModelScatterDataProxy::*)(const QString &)>(&QItemModelScatterDataProxy::zPosRoleChanged), static_cast<MyQItemModelScatterDataProxy*>(ptr), static_cast<void (MyQItemModelScatterDataProxy::*)(const QString &)>(&MyQItemModelScatterDataProxy::Signal_ZPosRoleChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelScatterDataProxy_DisconnectZPosRoleChanged(void* ptr)
@@ -7221,9 +7221,9 @@ void* QItemModelScatterDataProxy_ZPosRolePattern(void* ptr)
 	return new QRegExp(static_cast<QItemModelScatterDataProxy*>(ptr)->zPosRolePattern());
 }
 
-void QItemModelScatterDataProxy_ConnectZPosRolePatternChanged(void* ptr)
+void QItemModelScatterDataProxy_ConnectZPosRolePatternChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelScatterDataProxy*>(ptr), static_cast<void (QItemModelScatterDataProxy::*)(const QRegExp &)>(&QItemModelScatterDataProxy::zPosRolePatternChanged), static_cast<MyQItemModelScatterDataProxy*>(ptr), static_cast<void (MyQItemModelScatterDataProxy::*)(const QRegExp &)>(&MyQItemModelScatterDataProxy::Signal_ZPosRolePatternChanged));
+	QObject::connect(static_cast<QItemModelScatterDataProxy*>(ptr), static_cast<void (QItemModelScatterDataProxy::*)(const QRegExp &)>(&QItemModelScatterDataProxy::zPosRolePatternChanged), static_cast<MyQItemModelScatterDataProxy*>(ptr), static_cast<void (MyQItemModelScatterDataProxy::*)(const QRegExp &)>(&MyQItemModelScatterDataProxy::Signal_ZPosRolePatternChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelScatterDataProxy_DisconnectZPosRolePatternChanged(void* ptr)
@@ -7241,9 +7241,9 @@ struct QtDataVisualization_PackedString QItemModelScatterDataProxy_ZPosRoleRepla
 	return ({ QByteArray t4c6acb = static_cast<QItemModelScatterDataProxy*>(ptr)->zPosRoleReplace().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t4c6acb.prepend("WHITESPACE").constData()+10), t4c6acb.size()-10 }; });
 }
 
-void QItemModelScatterDataProxy_ConnectZPosRoleReplaceChanged(void* ptr)
+void QItemModelScatterDataProxy_ConnectZPosRoleReplaceChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelScatterDataProxy*>(ptr), static_cast<void (QItemModelScatterDataProxy::*)(const QString &)>(&QItemModelScatterDataProxy::zPosRoleReplaceChanged), static_cast<MyQItemModelScatterDataProxy*>(ptr), static_cast<void (MyQItemModelScatterDataProxy::*)(const QString &)>(&MyQItemModelScatterDataProxy::Signal_ZPosRoleReplaceChanged));
+	QObject::connect(static_cast<QItemModelScatterDataProxy*>(ptr), static_cast<void (QItemModelScatterDataProxy::*)(const QString &)>(&QItemModelScatterDataProxy::zPosRoleReplaceChanged), static_cast<MyQItemModelScatterDataProxy*>(ptr), static_cast<void (MyQItemModelScatterDataProxy::*)(const QString &)>(&MyQItemModelScatterDataProxy::Signal_ZPosRoleReplaceChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelScatterDataProxy_DisconnectZPosRoleReplaceChanged(void* ptr)
@@ -7636,9 +7636,9 @@ char QItemModelSurfaceDataProxy_AutoColumnCategories(void* ptr)
 	return static_cast<QItemModelSurfaceDataProxy*>(ptr)->autoColumnCategories();
 }
 
-void QItemModelSurfaceDataProxy_ConnectAutoColumnCategoriesChanged(void* ptr)
+void QItemModelSurfaceDataProxy_ConnectAutoColumnCategoriesChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)(bool)>(&QItemModelSurfaceDataProxy::autoColumnCategoriesChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)(bool)>(&MyQItemModelSurfaceDataProxy::Signal_AutoColumnCategoriesChanged));
+	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)(bool)>(&QItemModelSurfaceDataProxy::autoColumnCategoriesChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)(bool)>(&MyQItemModelSurfaceDataProxy::Signal_AutoColumnCategoriesChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelSurfaceDataProxy_DisconnectAutoColumnCategoriesChanged(void* ptr)
@@ -7656,9 +7656,9 @@ char QItemModelSurfaceDataProxy_AutoRowCategories(void* ptr)
 	return static_cast<QItemModelSurfaceDataProxy*>(ptr)->autoRowCategories();
 }
 
-void QItemModelSurfaceDataProxy_ConnectAutoRowCategoriesChanged(void* ptr)
+void QItemModelSurfaceDataProxy_ConnectAutoRowCategoriesChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)(bool)>(&QItemModelSurfaceDataProxy::autoRowCategoriesChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)(bool)>(&MyQItemModelSurfaceDataProxy::Signal_AutoRowCategoriesChanged));
+	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)(bool)>(&QItemModelSurfaceDataProxy::autoRowCategoriesChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)(bool)>(&MyQItemModelSurfaceDataProxy::Signal_AutoRowCategoriesChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelSurfaceDataProxy_DisconnectAutoRowCategoriesChanged(void* ptr)
@@ -7676,9 +7676,9 @@ struct QtDataVisualization_PackedString QItemModelSurfaceDataProxy_ColumnCategor
 	return ({ QByteArray tb94ba4 = static_cast<QItemModelSurfaceDataProxy*>(ptr)->columnCategories().join("¡¦!").toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(tb94ba4.prepend("WHITESPACE").constData()+10), tb94ba4.size()-10 }; });
 }
 
-void QItemModelSurfaceDataProxy_ConnectColumnCategoriesChanged(void* ptr)
+void QItemModelSurfaceDataProxy_ConnectColumnCategoriesChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)()>(&QItemModelSurfaceDataProxy::columnCategoriesChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)()>(&MyQItemModelSurfaceDataProxy::Signal_ColumnCategoriesChanged));
+	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)()>(&QItemModelSurfaceDataProxy::columnCategoriesChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)()>(&MyQItemModelSurfaceDataProxy::Signal_ColumnCategoriesChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelSurfaceDataProxy_DisconnectColumnCategoriesChanged(void* ptr)
@@ -7701,9 +7701,9 @@ struct QtDataVisualization_PackedString QItemModelSurfaceDataProxy_ColumnRole(vo
 	return ({ QByteArray tb79848 = static_cast<QItemModelSurfaceDataProxy*>(ptr)->columnRole().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(tb79848.prepend("WHITESPACE").constData()+10), tb79848.size()-10 }; });
 }
 
-void QItemModelSurfaceDataProxy_ConnectColumnRoleChanged(void* ptr)
+void QItemModelSurfaceDataProxy_ConnectColumnRoleChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)(const QString &)>(&QItemModelSurfaceDataProxy::columnRoleChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)(const QString &)>(&MyQItemModelSurfaceDataProxy::Signal_ColumnRoleChanged));
+	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)(const QString &)>(&QItemModelSurfaceDataProxy::columnRoleChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)(const QString &)>(&MyQItemModelSurfaceDataProxy::Signal_ColumnRoleChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelSurfaceDataProxy_DisconnectColumnRoleChanged(void* ptr)
@@ -7721,9 +7721,9 @@ void* QItemModelSurfaceDataProxy_ColumnRolePattern(void* ptr)
 	return new QRegExp(static_cast<QItemModelSurfaceDataProxy*>(ptr)->columnRolePattern());
 }
 
-void QItemModelSurfaceDataProxy_ConnectColumnRolePatternChanged(void* ptr)
+void QItemModelSurfaceDataProxy_ConnectColumnRolePatternChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)(const QRegExp &)>(&QItemModelSurfaceDataProxy::columnRolePatternChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)(const QRegExp &)>(&MyQItemModelSurfaceDataProxy::Signal_ColumnRolePatternChanged));
+	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)(const QRegExp &)>(&QItemModelSurfaceDataProxy::columnRolePatternChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)(const QRegExp &)>(&MyQItemModelSurfaceDataProxy::Signal_ColumnRolePatternChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelSurfaceDataProxy_DisconnectColumnRolePatternChanged(void* ptr)
@@ -7741,9 +7741,9 @@ struct QtDataVisualization_PackedString QItemModelSurfaceDataProxy_ColumnRoleRep
 	return ({ QByteArray t935d1d = static_cast<QItemModelSurfaceDataProxy*>(ptr)->columnRoleReplace().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t935d1d.prepend("WHITESPACE").constData()+10), t935d1d.size()-10 }; });
 }
 
-void QItemModelSurfaceDataProxy_ConnectColumnRoleReplaceChanged(void* ptr)
+void QItemModelSurfaceDataProxy_ConnectColumnRoleReplaceChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)(const QString &)>(&QItemModelSurfaceDataProxy::columnRoleReplaceChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)(const QString &)>(&MyQItemModelSurfaceDataProxy::Signal_ColumnRoleReplaceChanged));
+	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)(const QString &)>(&QItemModelSurfaceDataProxy::columnRoleReplaceChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)(const QString &)>(&MyQItemModelSurfaceDataProxy::Signal_ColumnRoleReplaceChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelSurfaceDataProxy_DisconnectColumnRoleReplaceChanged(void* ptr)
@@ -7761,9 +7761,9 @@ void* QItemModelSurfaceDataProxy_ItemModel(void* ptr)
 	return static_cast<QItemModelSurfaceDataProxy*>(ptr)->itemModel();
 }
 
-void QItemModelSurfaceDataProxy_ConnectItemModelChanged(void* ptr)
+void QItemModelSurfaceDataProxy_ConnectItemModelChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)(const QAbstractItemModel *)>(&QItemModelSurfaceDataProxy::itemModelChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)(const QAbstractItemModel *)>(&MyQItemModelSurfaceDataProxy::Signal_ItemModelChanged));
+	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)(const QAbstractItemModel *)>(&QItemModelSurfaceDataProxy::itemModelChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)(const QAbstractItemModel *)>(&MyQItemModelSurfaceDataProxy::Signal_ItemModelChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelSurfaceDataProxy_DisconnectItemModelChanged(void* ptr)
@@ -7781,9 +7781,9 @@ long long QItemModelSurfaceDataProxy_MultiMatchBehavior(void* ptr)
 	return static_cast<QItemModelSurfaceDataProxy*>(ptr)->multiMatchBehavior();
 }
 
-void QItemModelSurfaceDataProxy_ConnectMultiMatchBehaviorChanged(void* ptr)
+void QItemModelSurfaceDataProxy_ConnectMultiMatchBehaviorChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)(QItemModelSurfaceDataProxy::MultiMatchBehavior)>(&QItemModelSurfaceDataProxy::multiMatchBehaviorChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)(QItemModelSurfaceDataProxy::MultiMatchBehavior)>(&MyQItemModelSurfaceDataProxy::Signal_MultiMatchBehaviorChanged));
+	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)(QItemModelSurfaceDataProxy::MultiMatchBehavior)>(&QItemModelSurfaceDataProxy::multiMatchBehaviorChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)(QItemModelSurfaceDataProxy::MultiMatchBehavior)>(&MyQItemModelSurfaceDataProxy::Signal_MultiMatchBehaviorChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelSurfaceDataProxy_DisconnectMultiMatchBehaviorChanged(void* ptr)
@@ -7806,9 +7806,9 @@ struct QtDataVisualization_PackedString QItemModelSurfaceDataProxy_RowCategories
 	return ({ QByteArray t02a480 = static_cast<QItemModelSurfaceDataProxy*>(ptr)->rowCategories().join("¡¦!").toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t02a480.prepend("WHITESPACE").constData()+10), t02a480.size()-10 }; });
 }
 
-void QItemModelSurfaceDataProxy_ConnectRowCategoriesChanged(void* ptr)
+void QItemModelSurfaceDataProxy_ConnectRowCategoriesChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)()>(&QItemModelSurfaceDataProxy::rowCategoriesChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)()>(&MyQItemModelSurfaceDataProxy::Signal_RowCategoriesChanged));
+	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)()>(&QItemModelSurfaceDataProxy::rowCategoriesChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)()>(&MyQItemModelSurfaceDataProxy::Signal_RowCategoriesChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelSurfaceDataProxy_DisconnectRowCategoriesChanged(void* ptr)
@@ -7831,9 +7831,9 @@ struct QtDataVisualization_PackedString QItemModelSurfaceDataProxy_RowRole(void*
 	return ({ QByteArray t5df08d = static_cast<QItemModelSurfaceDataProxy*>(ptr)->rowRole().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t5df08d.prepend("WHITESPACE").constData()+10), t5df08d.size()-10 }; });
 }
 
-void QItemModelSurfaceDataProxy_ConnectRowRoleChanged(void* ptr)
+void QItemModelSurfaceDataProxy_ConnectRowRoleChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)(const QString &)>(&QItemModelSurfaceDataProxy::rowRoleChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)(const QString &)>(&MyQItemModelSurfaceDataProxy::Signal_RowRoleChanged));
+	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)(const QString &)>(&QItemModelSurfaceDataProxy::rowRoleChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)(const QString &)>(&MyQItemModelSurfaceDataProxy::Signal_RowRoleChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelSurfaceDataProxy_DisconnectRowRoleChanged(void* ptr)
@@ -7851,9 +7851,9 @@ void* QItemModelSurfaceDataProxy_RowRolePattern(void* ptr)
 	return new QRegExp(static_cast<QItemModelSurfaceDataProxy*>(ptr)->rowRolePattern());
 }
 
-void QItemModelSurfaceDataProxy_ConnectRowRolePatternChanged(void* ptr)
+void QItemModelSurfaceDataProxy_ConnectRowRolePatternChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)(const QRegExp &)>(&QItemModelSurfaceDataProxy::rowRolePatternChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)(const QRegExp &)>(&MyQItemModelSurfaceDataProxy::Signal_RowRolePatternChanged));
+	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)(const QRegExp &)>(&QItemModelSurfaceDataProxy::rowRolePatternChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)(const QRegExp &)>(&MyQItemModelSurfaceDataProxy::Signal_RowRolePatternChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelSurfaceDataProxy_DisconnectRowRolePatternChanged(void* ptr)
@@ -7871,9 +7871,9 @@ struct QtDataVisualization_PackedString QItemModelSurfaceDataProxy_RowRoleReplac
 	return ({ QByteArray t2f4502 = static_cast<QItemModelSurfaceDataProxy*>(ptr)->rowRoleReplace().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t2f4502.prepend("WHITESPACE").constData()+10), t2f4502.size()-10 }; });
 }
 
-void QItemModelSurfaceDataProxy_ConnectRowRoleReplaceChanged(void* ptr)
+void QItemModelSurfaceDataProxy_ConnectRowRoleReplaceChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)(const QString &)>(&QItemModelSurfaceDataProxy::rowRoleReplaceChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)(const QString &)>(&MyQItemModelSurfaceDataProxy::Signal_RowRoleReplaceChanged));
+	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)(const QString &)>(&QItemModelSurfaceDataProxy::rowRoleReplaceChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)(const QString &)>(&MyQItemModelSurfaceDataProxy::Signal_RowRoleReplaceChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelSurfaceDataProxy_DisconnectRowRoleReplaceChanged(void* ptr)
@@ -8001,9 +8001,9 @@ char QItemModelSurfaceDataProxy_UseModelCategories(void* ptr)
 	return static_cast<QItemModelSurfaceDataProxy*>(ptr)->useModelCategories();
 }
 
-void QItemModelSurfaceDataProxy_ConnectUseModelCategoriesChanged(void* ptr)
+void QItemModelSurfaceDataProxy_ConnectUseModelCategoriesChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)(bool)>(&QItemModelSurfaceDataProxy::useModelCategoriesChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)(bool)>(&MyQItemModelSurfaceDataProxy::Signal_UseModelCategoriesChanged));
+	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)(bool)>(&QItemModelSurfaceDataProxy::useModelCategoriesChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)(bool)>(&MyQItemModelSurfaceDataProxy::Signal_UseModelCategoriesChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelSurfaceDataProxy_DisconnectUseModelCategoriesChanged(void* ptr)
@@ -8021,9 +8021,9 @@ struct QtDataVisualization_PackedString QItemModelSurfaceDataProxy_XPosRole(void
 	return ({ QByteArray t72f466 = static_cast<QItemModelSurfaceDataProxy*>(ptr)->xPosRole().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t72f466.prepend("WHITESPACE").constData()+10), t72f466.size()-10 }; });
 }
 
-void QItemModelSurfaceDataProxy_ConnectXPosRoleChanged(void* ptr)
+void QItemModelSurfaceDataProxy_ConnectXPosRoleChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)(const QString &)>(&QItemModelSurfaceDataProxy::xPosRoleChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)(const QString &)>(&MyQItemModelSurfaceDataProxy::Signal_XPosRoleChanged));
+	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)(const QString &)>(&QItemModelSurfaceDataProxy::xPosRoleChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)(const QString &)>(&MyQItemModelSurfaceDataProxy::Signal_XPosRoleChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelSurfaceDataProxy_DisconnectXPosRoleChanged(void* ptr)
@@ -8041,9 +8041,9 @@ void* QItemModelSurfaceDataProxy_XPosRolePattern(void* ptr)
 	return new QRegExp(static_cast<QItemModelSurfaceDataProxy*>(ptr)->xPosRolePattern());
 }
 
-void QItemModelSurfaceDataProxy_ConnectXPosRolePatternChanged(void* ptr)
+void QItemModelSurfaceDataProxy_ConnectXPosRolePatternChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)(const QRegExp &)>(&QItemModelSurfaceDataProxy::xPosRolePatternChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)(const QRegExp &)>(&MyQItemModelSurfaceDataProxy::Signal_XPosRolePatternChanged));
+	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)(const QRegExp &)>(&QItemModelSurfaceDataProxy::xPosRolePatternChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)(const QRegExp &)>(&MyQItemModelSurfaceDataProxy::Signal_XPosRolePatternChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelSurfaceDataProxy_DisconnectXPosRolePatternChanged(void* ptr)
@@ -8061,9 +8061,9 @@ struct QtDataVisualization_PackedString QItemModelSurfaceDataProxy_XPosRoleRepla
 	return ({ QByteArray t9a9018 = static_cast<QItemModelSurfaceDataProxy*>(ptr)->xPosRoleReplace().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t9a9018.prepend("WHITESPACE").constData()+10), t9a9018.size()-10 }; });
 }
 
-void QItemModelSurfaceDataProxy_ConnectXPosRoleReplaceChanged(void* ptr)
+void QItemModelSurfaceDataProxy_ConnectXPosRoleReplaceChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)(const QString &)>(&QItemModelSurfaceDataProxy::xPosRoleReplaceChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)(const QString &)>(&MyQItemModelSurfaceDataProxy::Signal_XPosRoleReplaceChanged));
+	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)(const QString &)>(&QItemModelSurfaceDataProxy::xPosRoleReplaceChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)(const QString &)>(&MyQItemModelSurfaceDataProxy::Signal_XPosRoleReplaceChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelSurfaceDataProxy_DisconnectXPosRoleReplaceChanged(void* ptr)
@@ -8081,9 +8081,9 @@ struct QtDataVisualization_PackedString QItemModelSurfaceDataProxy_YPosRole(void
 	return ({ QByteArray ta04979 = static_cast<QItemModelSurfaceDataProxy*>(ptr)->yPosRole().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(ta04979.prepend("WHITESPACE").constData()+10), ta04979.size()-10 }; });
 }
 
-void QItemModelSurfaceDataProxy_ConnectYPosRoleChanged(void* ptr)
+void QItemModelSurfaceDataProxy_ConnectYPosRoleChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)(const QString &)>(&QItemModelSurfaceDataProxy::yPosRoleChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)(const QString &)>(&MyQItemModelSurfaceDataProxy::Signal_YPosRoleChanged));
+	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)(const QString &)>(&QItemModelSurfaceDataProxy::yPosRoleChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)(const QString &)>(&MyQItemModelSurfaceDataProxy::Signal_YPosRoleChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelSurfaceDataProxy_DisconnectYPosRoleChanged(void* ptr)
@@ -8101,9 +8101,9 @@ void* QItemModelSurfaceDataProxy_YPosRolePattern(void* ptr)
 	return new QRegExp(static_cast<QItemModelSurfaceDataProxy*>(ptr)->yPosRolePattern());
 }
 
-void QItemModelSurfaceDataProxy_ConnectYPosRolePatternChanged(void* ptr)
+void QItemModelSurfaceDataProxy_ConnectYPosRolePatternChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)(const QRegExp &)>(&QItemModelSurfaceDataProxy::yPosRolePatternChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)(const QRegExp &)>(&MyQItemModelSurfaceDataProxy::Signal_YPosRolePatternChanged));
+	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)(const QRegExp &)>(&QItemModelSurfaceDataProxy::yPosRolePatternChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)(const QRegExp &)>(&MyQItemModelSurfaceDataProxy::Signal_YPosRolePatternChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelSurfaceDataProxy_DisconnectYPosRolePatternChanged(void* ptr)
@@ -8121,9 +8121,9 @@ struct QtDataVisualization_PackedString QItemModelSurfaceDataProxy_YPosRoleRepla
 	return ({ QByteArray te4bace = static_cast<QItemModelSurfaceDataProxy*>(ptr)->yPosRoleReplace().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(te4bace.prepend("WHITESPACE").constData()+10), te4bace.size()-10 }; });
 }
 
-void QItemModelSurfaceDataProxy_ConnectYPosRoleReplaceChanged(void* ptr)
+void QItemModelSurfaceDataProxy_ConnectYPosRoleReplaceChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)(const QString &)>(&QItemModelSurfaceDataProxy::yPosRoleReplaceChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)(const QString &)>(&MyQItemModelSurfaceDataProxy::Signal_YPosRoleReplaceChanged));
+	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)(const QString &)>(&QItemModelSurfaceDataProxy::yPosRoleReplaceChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)(const QString &)>(&MyQItemModelSurfaceDataProxy::Signal_YPosRoleReplaceChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelSurfaceDataProxy_DisconnectYPosRoleReplaceChanged(void* ptr)
@@ -8141,9 +8141,9 @@ struct QtDataVisualization_PackedString QItemModelSurfaceDataProxy_ZPosRole(void
 	return ({ QByteArray tba9475 = static_cast<QItemModelSurfaceDataProxy*>(ptr)->zPosRole().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(tba9475.prepend("WHITESPACE").constData()+10), tba9475.size()-10 }; });
 }
 
-void QItemModelSurfaceDataProxy_ConnectZPosRoleChanged(void* ptr)
+void QItemModelSurfaceDataProxy_ConnectZPosRoleChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)(const QString &)>(&QItemModelSurfaceDataProxy::zPosRoleChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)(const QString &)>(&MyQItemModelSurfaceDataProxy::Signal_ZPosRoleChanged));
+	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)(const QString &)>(&QItemModelSurfaceDataProxy::zPosRoleChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)(const QString &)>(&MyQItemModelSurfaceDataProxy::Signal_ZPosRoleChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelSurfaceDataProxy_DisconnectZPosRoleChanged(void* ptr)
@@ -8161,9 +8161,9 @@ void* QItemModelSurfaceDataProxy_ZPosRolePattern(void* ptr)
 	return new QRegExp(static_cast<QItemModelSurfaceDataProxy*>(ptr)->zPosRolePattern());
 }
 
-void QItemModelSurfaceDataProxy_ConnectZPosRolePatternChanged(void* ptr)
+void QItemModelSurfaceDataProxy_ConnectZPosRolePatternChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)(const QRegExp &)>(&QItemModelSurfaceDataProxy::zPosRolePatternChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)(const QRegExp &)>(&MyQItemModelSurfaceDataProxy::Signal_ZPosRolePatternChanged));
+	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)(const QRegExp &)>(&QItemModelSurfaceDataProxy::zPosRolePatternChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)(const QRegExp &)>(&MyQItemModelSurfaceDataProxy::Signal_ZPosRolePatternChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelSurfaceDataProxy_DisconnectZPosRolePatternChanged(void* ptr)
@@ -8181,9 +8181,9 @@ struct QtDataVisualization_PackedString QItemModelSurfaceDataProxy_ZPosRoleRepla
 	return ({ QByteArray t5d7f56 = static_cast<QItemModelSurfaceDataProxy*>(ptr)->zPosRoleReplace().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t5d7f56.prepend("WHITESPACE").constData()+10), t5d7f56.size()-10 }; });
 }
 
-void QItemModelSurfaceDataProxy_ConnectZPosRoleReplaceChanged(void* ptr)
+void QItemModelSurfaceDataProxy_ConnectZPosRoleReplaceChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)(const QString &)>(&QItemModelSurfaceDataProxy::zPosRoleReplaceChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)(const QString &)>(&MyQItemModelSurfaceDataProxy::Signal_ZPosRoleReplaceChanged));
+	QObject::connect(static_cast<QItemModelSurfaceDataProxy*>(ptr), static_cast<void (QItemModelSurfaceDataProxy::*)(const QString &)>(&QItemModelSurfaceDataProxy::zPosRoleReplaceChanged), static_cast<MyQItemModelSurfaceDataProxy*>(ptr), static_cast<void (MyQItemModelSurfaceDataProxy::*)(const QString &)>(&MyQItemModelSurfaceDataProxy::Signal_ZPosRoleReplaceChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QItemModelSurfaceDataProxy_DisconnectZPosRoleReplaceChanged(void* ptr)
@@ -8269,9 +8269,9 @@ char QLogValue3DAxisFormatter_AutoSubGrid(void* ptr)
 	return static_cast<QLogValue3DAxisFormatter*>(ptr)->autoSubGrid();
 }
 
-void QLogValue3DAxisFormatter_ConnectAutoSubGridChanged(void* ptr)
+void QLogValue3DAxisFormatter_ConnectAutoSubGridChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QLogValue3DAxisFormatter*>(ptr), static_cast<void (QLogValue3DAxisFormatter::*)(bool)>(&QLogValue3DAxisFormatter::autoSubGridChanged), static_cast<MyQLogValue3DAxisFormatter*>(ptr), static_cast<void (MyQLogValue3DAxisFormatter::*)(bool)>(&MyQLogValue3DAxisFormatter::Signal_AutoSubGridChanged));
+	QObject::connect(static_cast<QLogValue3DAxisFormatter*>(ptr), static_cast<void (QLogValue3DAxisFormatter::*)(bool)>(&QLogValue3DAxisFormatter::autoSubGridChanged), static_cast<MyQLogValue3DAxisFormatter*>(ptr), static_cast<void (MyQLogValue3DAxisFormatter::*)(bool)>(&MyQLogValue3DAxisFormatter::Signal_AutoSubGridChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QLogValue3DAxisFormatter_DisconnectAutoSubGridChanged(void* ptr)
@@ -8289,9 +8289,9 @@ double QLogValue3DAxisFormatter_Base(void* ptr)
 	return static_cast<QLogValue3DAxisFormatter*>(ptr)->base();
 }
 
-void QLogValue3DAxisFormatter_ConnectBaseChanged(void* ptr)
+void QLogValue3DAxisFormatter_ConnectBaseChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QLogValue3DAxisFormatter*>(ptr), static_cast<void (QLogValue3DAxisFormatter::*)(qreal)>(&QLogValue3DAxisFormatter::baseChanged), static_cast<MyQLogValue3DAxisFormatter*>(ptr), static_cast<void (MyQLogValue3DAxisFormatter::*)(qreal)>(&MyQLogValue3DAxisFormatter::Signal_BaseChanged));
+	QObject::connect(static_cast<QLogValue3DAxisFormatter*>(ptr), static_cast<void (QLogValue3DAxisFormatter::*)(qreal)>(&QLogValue3DAxisFormatter::baseChanged), static_cast<MyQLogValue3DAxisFormatter*>(ptr), static_cast<void (MyQLogValue3DAxisFormatter::*)(qreal)>(&MyQLogValue3DAxisFormatter::Signal_BaseChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QLogValue3DAxisFormatter_DisconnectBaseChanged(void* ptr)
@@ -8324,9 +8324,9 @@ char QLogValue3DAxisFormatter_ShowEdgeLabels(void* ptr)
 	return static_cast<QLogValue3DAxisFormatter*>(ptr)->showEdgeLabels();
 }
 
-void QLogValue3DAxisFormatter_ConnectShowEdgeLabelsChanged(void* ptr)
+void QLogValue3DAxisFormatter_ConnectShowEdgeLabelsChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QLogValue3DAxisFormatter*>(ptr), static_cast<void (QLogValue3DAxisFormatter::*)(bool)>(&QLogValue3DAxisFormatter::showEdgeLabelsChanged), static_cast<MyQLogValue3DAxisFormatter*>(ptr), static_cast<void (MyQLogValue3DAxisFormatter::*)(bool)>(&MyQLogValue3DAxisFormatter::Signal_ShowEdgeLabelsChanged));
+	QObject::connect(static_cast<QLogValue3DAxisFormatter*>(ptr), static_cast<void (QLogValue3DAxisFormatter::*)(bool)>(&QLogValue3DAxisFormatter::showEdgeLabelsChanged), static_cast<MyQLogValue3DAxisFormatter*>(ptr), static_cast<void (MyQLogValue3DAxisFormatter::*)(bool)>(&MyQLogValue3DAxisFormatter::Signal_ShowEdgeLabelsChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QLogValue3DAxisFormatter_DisconnectShowEdgeLabelsChanged(void* ptr)
@@ -8460,9 +8460,9 @@ void* QScatter3DSeries_DataProxy(void* ptr)
 	return static_cast<QScatter3DSeries*>(ptr)->dataProxy();
 }
 
-void QScatter3DSeries_ConnectDataProxyChanged(void* ptr)
+void QScatter3DSeries_ConnectDataProxyChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QScatter3DSeries*>(ptr), static_cast<void (QScatter3DSeries::*)(QScatterDataProxy *)>(&QScatter3DSeries::dataProxyChanged), static_cast<MyQScatter3DSeries*>(ptr), static_cast<void (MyQScatter3DSeries::*)(QScatterDataProxy *)>(&MyQScatter3DSeries::Signal_DataProxyChanged));
+	QObject::connect(static_cast<QScatter3DSeries*>(ptr), static_cast<void (QScatter3DSeries::*)(QScatterDataProxy *)>(&QScatter3DSeries::dataProxyChanged), static_cast<MyQScatter3DSeries*>(ptr), static_cast<void (MyQScatter3DSeries::*)(QScatterDataProxy *)>(&MyQScatter3DSeries::Signal_DataProxyChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QScatter3DSeries_DisconnectDataProxyChanged(void* ptr)
@@ -8485,9 +8485,9 @@ float QScatter3DSeries_ItemSize(void* ptr)
 	return static_cast<QScatter3DSeries*>(ptr)->itemSize();
 }
 
-void QScatter3DSeries_ConnectItemSizeChanged(void* ptr)
+void QScatter3DSeries_ConnectItemSizeChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QScatter3DSeries*>(ptr), static_cast<void (QScatter3DSeries::*)(float)>(&QScatter3DSeries::itemSizeChanged), static_cast<MyQScatter3DSeries*>(ptr), static_cast<void (MyQScatter3DSeries::*)(float)>(&MyQScatter3DSeries::Signal_ItemSizeChanged));
+	QObject::connect(static_cast<QScatter3DSeries*>(ptr), static_cast<void (QScatter3DSeries::*)(float)>(&QScatter3DSeries::itemSizeChanged), static_cast<MyQScatter3DSeries*>(ptr), static_cast<void (MyQScatter3DSeries::*)(float)>(&MyQScatter3DSeries::Signal_ItemSizeChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QScatter3DSeries_DisconnectItemSizeChanged(void* ptr)
@@ -8505,9 +8505,9 @@ int QScatter3DSeries_SelectedItem(void* ptr)
 	return static_cast<QScatter3DSeries*>(ptr)->selectedItem();
 }
 
-void QScatter3DSeries_ConnectSelectedItemChanged(void* ptr)
+void QScatter3DSeries_ConnectSelectedItemChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QScatter3DSeries*>(ptr), static_cast<void (QScatter3DSeries::*)(int)>(&QScatter3DSeries::selectedItemChanged), static_cast<MyQScatter3DSeries*>(ptr), static_cast<void (MyQScatter3DSeries::*)(int)>(&MyQScatter3DSeries::Signal_SelectedItemChanged));
+	QObject::connect(static_cast<QScatter3DSeries*>(ptr), static_cast<void (QScatter3DSeries::*)(int)>(&QScatter3DSeries::selectedItemChanged), static_cast<MyQScatter3DSeries*>(ptr), static_cast<void (MyQScatter3DSeries::*)(int)>(&MyQScatter3DSeries::Signal_SelectedItemChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QScatter3DSeries_DisconnectSelectedItemChanged(void* ptr)
@@ -8687,9 +8687,9 @@ int QScatterDataProxy_AddItem(void* ptr, void* item)
 	return static_cast<QScatterDataProxy*>(ptr)->addItem(*static_cast<QScatterDataItem*>(item));
 }
 
-void QScatterDataProxy_ConnectArrayReset(void* ptr)
+void QScatterDataProxy_ConnectArrayReset(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QScatterDataProxy*>(ptr), static_cast<void (QScatterDataProxy::*)()>(&QScatterDataProxy::arrayReset), static_cast<MyQScatterDataProxy*>(ptr), static_cast<void (MyQScatterDataProxy::*)()>(&MyQScatterDataProxy::Signal_ArrayReset));
+	QObject::connect(static_cast<QScatterDataProxy*>(ptr), static_cast<void (QScatterDataProxy::*)()>(&QScatterDataProxy::arrayReset), static_cast<MyQScatterDataProxy*>(ptr), static_cast<void (MyQScatterDataProxy::*)()>(&MyQScatterDataProxy::Signal_ArrayReset), static_cast<Qt::ConnectionType>(t));
 }
 
 void QScatterDataProxy_DisconnectArrayReset(void* ptr)
@@ -8717,9 +8717,9 @@ int QScatterDataProxy_ItemCount(void* ptr)
 	return static_cast<QScatterDataProxy*>(ptr)->itemCount();
 }
 
-void QScatterDataProxy_ConnectItemCountChanged(void* ptr)
+void QScatterDataProxy_ConnectItemCountChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QScatterDataProxy*>(ptr), static_cast<void (QScatterDataProxy::*)(int)>(&QScatterDataProxy::itemCountChanged), static_cast<MyQScatterDataProxy*>(ptr), static_cast<void (MyQScatterDataProxy::*)(int)>(&MyQScatterDataProxy::Signal_ItemCountChanged));
+	QObject::connect(static_cast<QScatterDataProxy*>(ptr), static_cast<void (QScatterDataProxy::*)(int)>(&QScatterDataProxy::itemCountChanged), static_cast<MyQScatterDataProxy*>(ptr), static_cast<void (MyQScatterDataProxy::*)(int)>(&MyQScatterDataProxy::Signal_ItemCountChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QScatterDataProxy_DisconnectItemCountChanged(void* ptr)
@@ -8732,9 +8732,9 @@ void QScatterDataProxy_ItemCountChanged(void* ptr, int count)
 	static_cast<QScatterDataProxy*>(ptr)->itemCountChanged(count);
 }
 
-void QScatterDataProxy_ConnectItemsAdded(void* ptr)
+void QScatterDataProxy_ConnectItemsAdded(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QScatterDataProxy*>(ptr), static_cast<void (QScatterDataProxy::*)(int, int)>(&QScatterDataProxy::itemsAdded), static_cast<MyQScatterDataProxy*>(ptr), static_cast<void (MyQScatterDataProxy::*)(int, int)>(&MyQScatterDataProxy::Signal_ItemsAdded));
+	QObject::connect(static_cast<QScatterDataProxy*>(ptr), static_cast<void (QScatterDataProxy::*)(int, int)>(&QScatterDataProxy::itemsAdded), static_cast<MyQScatterDataProxy*>(ptr), static_cast<void (MyQScatterDataProxy::*)(int, int)>(&MyQScatterDataProxy::Signal_ItemsAdded), static_cast<Qt::ConnectionType>(t));
 }
 
 void QScatterDataProxy_DisconnectItemsAdded(void* ptr)
@@ -8747,9 +8747,9 @@ void QScatterDataProxy_ItemsAdded(void* ptr, int startIndex, int count)
 	static_cast<QScatterDataProxy*>(ptr)->itemsAdded(startIndex, count);
 }
 
-void QScatterDataProxy_ConnectItemsChanged(void* ptr)
+void QScatterDataProxy_ConnectItemsChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QScatterDataProxy*>(ptr), static_cast<void (QScatterDataProxy::*)(int, int)>(&QScatterDataProxy::itemsChanged), static_cast<MyQScatterDataProxy*>(ptr), static_cast<void (MyQScatterDataProxy::*)(int, int)>(&MyQScatterDataProxy::Signal_ItemsChanged));
+	QObject::connect(static_cast<QScatterDataProxy*>(ptr), static_cast<void (QScatterDataProxy::*)(int, int)>(&QScatterDataProxy::itemsChanged), static_cast<MyQScatterDataProxy*>(ptr), static_cast<void (MyQScatterDataProxy::*)(int, int)>(&MyQScatterDataProxy::Signal_ItemsChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QScatterDataProxy_DisconnectItemsChanged(void* ptr)
@@ -8762,9 +8762,9 @@ void QScatterDataProxy_ItemsChanged(void* ptr, int startIndex, int count)
 	static_cast<QScatterDataProxy*>(ptr)->itemsChanged(startIndex, count);
 }
 
-void QScatterDataProxy_ConnectItemsInserted(void* ptr)
+void QScatterDataProxy_ConnectItemsInserted(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QScatterDataProxy*>(ptr), static_cast<void (QScatterDataProxy::*)(int, int)>(&QScatterDataProxy::itemsInserted), static_cast<MyQScatterDataProxy*>(ptr), static_cast<void (MyQScatterDataProxy::*)(int, int)>(&MyQScatterDataProxy::Signal_ItemsInserted));
+	QObject::connect(static_cast<QScatterDataProxy*>(ptr), static_cast<void (QScatterDataProxy::*)(int, int)>(&QScatterDataProxy::itemsInserted), static_cast<MyQScatterDataProxy*>(ptr), static_cast<void (MyQScatterDataProxy::*)(int, int)>(&MyQScatterDataProxy::Signal_ItemsInserted), static_cast<Qt::ConnectionType>(t));
 }
 
 void QScatterDataProxy_DisconnectItemsInserted(void* ptr)
@@ -8777,9 +8777,9 @@ void QScatterDataProxy_ItemsInserted(void* ptr, int startIndex, int count)
 	static_cast<QScatterDataProxy*>(ptr)->itemsInserted(startIndex, count);
 }
 
-void QScatterDataProxy_ConnectItemsRemoved(void* ptr)
+void QScatterDataProxy_ConnectItemsRemoved(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QScatterDataProxy*>(ptr), static_cast<void (QScatterDataProxy::*)(int, int)>(&QScatterDataProxy::itemsRemoved), static_cast<MyQScatterDataProxy*>(ptr), static_cast<void (MyQScatterDataProxy::*)(int, int)>(&MyQScatterDataProxy::Signal_ItemsRemoved));
+	QObject::connect(static_cast<QScatterDataProxy*>(ptr), static_cast<void (QScatterDataProxy::*)(int, int)>(&QScatterDataProxy::itemsRemoved), static_cast<MyQScatterDataProxy*>(ptr), static_cast<void (MyQScatterDataProxy::*)(int, int)>(&MyQScatterDataProxy::Signal_ItemsRemoved), static_cast<Qt::ConnectionType>(t));
 }
 
 void QScatterDataProxy_DisconnectItemsRemoved(void* ptr)
@@ -8802,9 +8802,9 @@ void* QScatterDataProxy_Series(void* ptr)
 	return static_cast<QScatterDataProxy*>(ptr)->series();
 }
 
-void QScatterDataProxy_ConnectSeriesChanged(void* ptr)
+void QScatterDataProxy_ConnectSeriesChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QScatterDataProxy*>(ptr), static_cast<void (QScatterDataProxy::*)(QScatter3DSeries *)>(&QScatterDataProxy::seriesChanged), static_cast<MyQScatterDataProxy*>(ptr), static_cast<void (MyQScatterDataProxy::*)(QScatter3DSeries *)>(&MyQScatterDataProxy::Signal_SeriesChanged));
+	QObject::connect(static_cast<QScatterDataProxy*>(ptr), static_cast<void (QScatterDataProxy::*)(QScatter3DSeries *)>(&QScatterDataProxy::seriesChanged), static_cast<MyQScatterDataProxy*>(ptr), static_cast<void (MyQScatterDataProxy::*)(QScatter3DSeries *)>(&MyQScatterDataProxy::Signal_SeriesChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QScatterDataProxy_DisconnectSeriesChanged(void* ptr)
@@ -8947,9 +8947,9 @@ void* QSurface3DSeries_DataProxy(void* ptr)
 	return static_cast<QSurface3DSeries*>(ptr)->dataProxy();
 }
 
-void QSurface3DSeries_ConnectDataProxyChanged(void* ptr)
+void QSurface3DSeries_ConnectDataProxyChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSurface3DSeries*>(ptr), static_cast<void (QSurface3DSeries::*)(QSurfaceDataProxy *)>(&QSurface3DSeries::dataProxyChanged), static_cast<MyQSurface3DSeries*>(ptr), static_cast<void (MyQSurface3DSeries::*)(QSurfaceDataProxy *)>(&MyQSurface3DSeries::Signal_DataProxyChanged));
+	QObject::connect(static_cast<QSurface3DSeries*>(ptr), static_cast<void (QSurface3DSeries::*)(QSurfaceDataProxy *)>(&QSurface3DSeries::dataProxyChanged), static_cast<MyQSurface3DSeries*>(ptr), static_cast<void (MyQSurface3DSeries::*)(QSurfaceDataProxy *)>(&MyQSurface3DSeries::Signal_DataProxyChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSurface3DSeries_DisconnectDataProxyChanged(void* ptr)
@@ -8967,9 +8967,9 @@ long long QSurface3DSeries_DrawMode(void* ptr)
 	return static_cast<QSurface3DSeries*>(ptr)->drawMode();
 }
 
-void QSurface3DSeries_ConnectDrawModeChanged(void* ptr)
+void QSurface3DSeries_ConnectDrawModeChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSurface3DSeries*>(ptr), static_cast<void (QSurface3DSeries::*)(QSurface3DSeries::DrawFlags)>(&QSurface3DSeries::drawModeChanged), static_cast<MyQSurface3DSeries*>(ptr), static_cast<void (MyQSurface3DSeries::*)(QSurface3DSeries::DrawFlags)>(&MyQSurface3DSeries::Signal_DrawModeChanged));
+	QObject::connect(static_cast<QSurface3DSeries*>(ptr), static_cast<void (QSurface3DSeries::*)(QSurface3DSeries::DrawFlags)>(&QSurface3DSeries::drawModeChanged), static_cast<MyQSurface3DSeries*>(ptr), static_cast<void (MyQSurface3DSeries::*)(QSurface3DSeries::DrawFlags)>(&MyQSurface3DSeries::Signal_DrawModeChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSurface3DSeries_DisconnectDrawModeChanged(void* ptr)
@@ -8982,9 +8982,9 @@ void QSurface3DSeries_DrawModeChanged(void* ptr, long long mode)
 	static_cast<QSurface3DSeries*>(ptr)->drawModeChanged(static_cast<QSurface3DSeries::DrawFlag>(mode));
 }
 
-void QSurface3DSeries_ConnectFlatShadingEnabledChanged(void* ptr)
+void QSurface3DSeries_ConnectFlatShadingEnabledChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSurface3DSeries*>(ptr), static_cast<void (QSurface3DSeries::*)(bool)>(&QSurface3DSeries::flatShadingEnabledChanged), static_cast<MyQSurface3DSeries*>(ptr), static_cast<void (MyQSurface3DSeries::*)(bool)>(&MyQSurface3DSeries::Signal_FlatShadingEnabledChanged));
+	QObject::connect(static_cast<QSurface3DSeries*>(ptr), static_cast<void (QSurface3DSeries::*)(bool)>(&QSurface3DSeries::flatShadingEnabledChanged), static_cast<MyQSurface3DSeries*>(ptr), static_cast<void (MyQSurface3DSeries::*)(bool)>(&MyQSurface3DSeries::Signal_FlatShadingEnabledChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSurface3DSeries_DisconnectFlatShadingEnabledChanged(void* ptr)
@@ -8997,9 +8997,9 @@ void QSurface3DSeries_FlatShadingEnabledChanged(void* ptr, char enable)
 	static_cast<QSurface3DSeries*>(ptr)->flatShadingEnabledChanged(enable != 0);
 }
 
-void QSurface3DSeries_ConnectFlatShadingSupportedChanged(void* ptr)
+void QSurface3DSeries_ConnectFlatShadingSupportedChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSurface3DSeries*>(ptr), static_cast<void (QSurface3DSeries::*)(bool)>(&QSurface3DSeries::flatShadingSupportedChanged), static_cast<MyQSurface3DSeries*>(ptr), static_cast<void (MyQSurface3DSeries::*)(bool)>(&MyQSurface3DSeries::Signal_FlatShadingSupportedChanged));
+	QObject::connect(static_cast<QSurface3DSeries*>(ptr), static_cast<void (QSurface3DSeries::*)(bool)>(&QSurface3DSeries::flatShadingSupportedChanged), static_cast<MyQSurface3DSeries*>(ptr), static_cast<void (MyQSurface3DSeries::*)(bool)>(&MyQSurface3DSeries::Signal_FlatShadingSupportedChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSurface3DSeries_DisconnectFlatShadingSupportedChanged(void* ptr)
@@ -9032,9 +9032,9 @@ void* QSurface3DSeries_SelectedPoint(void* ptr)
 	return ({ QPoint tmpValue = static_cast<QSurface3DSeries*>(ptr)->selectedPoint(); new QPoint(tmpValue.x(), tmpValue.y()); });
 }
 
-void QSurface3DSeries_ConnectSelectedPointChanged(void* ptr)
+void QSurface3DSeries_ConnectSelectedPointChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSurface3DSeries*>(ptr), static_cast<void (QSurface3DSeries::*)(const QPoint &)>(&QSurface3DSeries::selectedPointChanged), static_cast<MyQSurface3DSeries*>(ptr), static_cast<void (MyQSurface3DSeries::*)(const QPoint &)>(&MyQSurface3DSeries::Signal_SelectedPointChanged));
+	QObject::connect(static_cast<QSurface3DSeries*>(ptr), static_cast<void (QSurface3DSeries::*)(const QPoint &)>(&QSurface3DSeries::selectedPointChanged), static_cast<MyQSurface3DSeries*>(ptr), static_cast<void (MyQSurface3DSeries::*)(const QPoint &)>(&MyQSurface3DSeries::Signal_SelectedPointChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSurface3DSeries_DisconnectSelectedPointChanged(void* ptr)
@@ -9082,9 +9082,9 @@ void* QSurface3DSeries_Texture(void* ptr)
 	return new QImage(static_cast<QSurface3DSeries*>(ptr)->texture());
 }
 
-void QSurface3DSeries_ConnectTextureChanged(void* ptr)
+void QSurface3DSeries_ConnectTextureChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSurface3DSeries*>(ptr), static_cast<void (QSurface3DSeries::*)(const QImage &)>(&QSurface3DSeries::textureChanged), static_cast<MyQSurface3DSeries*>(ptr), static_cast<void (MyQSurface3DSeries::*)(const QImage &)>(&MyQSurface3DSeries::Signal_TextureChanged));
+	QObject::connect(static_cast<QSurface3DSeries*>(ptr), static_cast<void (QSurface3DSeries::*)(const QImage &)>(&QSurface3DSeries::textureChanged), static_cast<MyQSurface3DSeries*>(ptr), static_cast<void (MyQSurface3DSeries::*)(const QImage &)>(&MyQSurface3DSeries::Signal_TextureChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSurface3DSeries_DisconnectTextureChanged(void* ptr)
@@ -9102,9 +9102,9 @@ struct QtDataVisualization_PackedString QSurface3DSeries_TextureFile(void* ptr)
 	return ({ QByteArray tf3d489 = static_cast<QSurface3DSeries*>(ptr)->textureFile().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(tf3d489.prepend("WHITESPACE").constData()+10), tf3d489.size()-10 }; });
 }
 
-void QSurface3DSeries_ConnectTextureFileChanged(void* ptr)
+void QSurface3DSeries_ConnectTextureFileChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSurface3DSeries*>(ptr), static_cast<void (QSurface3DSeries::*)(const QString &)>(&QSurface3DSeries::textureFileChanged), static_cast<MyQSurface3DSeries*>(ptr), static_cast<void (MyQSurface3DSeries::*)(const QString &)>(&MyQSurface3DSeries::Signal_TextureFileChanged));
+	QObject::connect(static_cast<QSurface3DSeries*>(ptr), static_cast<void (QSurface3DSeries::*)(const QString &)>(&QSurface3DSeries::textureFileChanged), static_cast<MyQSurface3DSeries*>(ptr), static_cast<void (MyQSurface3DSeries::*)(const QString &)>(&MyQSurface3DSeries::Signal_TextureFileChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSurface3DSeries_DisconnectTextureFileChanged(void* ptr)
@@ -9251,9 +9251,9 @@ void* QSurfaceDataProxy_NewQSurfaceDataProxy(void* parent)
 	}
 }
 
-void QSurfaceDataProxy_ConnectArrayReset(void* ptr)
+void QSurfaceDataProxy_ConnectArrayReset(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSurfaceDataProxy*>(ptr), static_cast<void (QSurfaceDataProxy::*)()>(&QSurfaceDataProxy::arrayReset), static_cast<MyQSurfaceDataProxy*>(ptr), static_cast<void (MyQSurfaceDataProxy::*)()>(&MyQSurfaceDataProxy::Signal_ArrayReset));
+	QObject::connect(static_cast<QSurfaceDataProxy*>(ptr), static_cast<void (QSurfaceDataProxy::*)()>(&QSurfaceDataProxy::arrayReset), static_cast<MyQSurfaceDataProxy*>(ptr), static_cast<void (MyQSurfaceDataProxy::*)()>(&MyQSurfaceDataProxy::Signal_ArrayReset), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSurfaceDataProxy_DisconnectArrayReset(void* ptr)
@@ -9271,9 +9271,9 @@ int QSurfaceDataProxy_ColumnCount(void* ptr)
 	return static_cast<QSurfaceDataProxy*>(ptr)->columnCount();
 }
 
-void QSurfaceDataProxy_ConnectColumnCountChanged(void* ptr)
+void QSurfaceDataProxy_ConnectColumnCountChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSurfaceDataProxy*>(ptr), static_cast<void (QSurfaceDataProxy::*)(int)>(&QSurfaceDataProxy::columnCountChanged), static_cast<MyQSurfaceDataProxy*>(ptr), static_cast<void (MyQSurfaceDataProxy::*)(int)>(&MyQSurfaceDataProxy::Signal_ColumnCountChanged));
+	QObject::connect(static_cast<QSurfaceDataProxy*>(ptr), static_cast<void (QSurfaceDataProxy::*)(int)>(&QSurfaceDataProxy::columnCountChanged), static_cast<MyQSurfaceDataProxy*>(ptr), static_cast<void (MyQSurfaceDataProxy::*)(int)>(&MyQSurfaceDataProxy::Signal_ColumnCountChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSurfaceDataProxy_DisconnectColumnCountChanged(void* ptr)
@@ -9296,9 +9296,9 @@ void* QSurfaceDataProxy_ItemAt2(void* ptr, void* position)
 	return const_cast<QSurfaceDataItem*>(static_cast<QSurfaceDataProxy*>(ptr)->itemAt(*static_cast<QPoint*>(position)));
 }
 
-void QSurfaceDataProxy_ConnectItemChanged(void* ptr)
+void QSurfaceDataProxy_ConnectItemChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSurfaceDataProxy*>(ptr), static_cast<void (QSurfaceDataProxy::*)(int, int)>(&QSurfaceDataProxy::itemChanged), static_cast<MyQSurfaceDataProxy*>(ptr), static_cast<void (MyQSurfaceDataProxy::*)(int, int)>(&MyQSurfaceDataProxy::Signal_ItemChanged));
+	QObject::connect(static_cast<QSurfaceDataProxy*>(ptr), static_cast<void (QSurfaceDataProxy::*)(int, int)>(&QSurfaceDataProxy::itemChanged), static_cast<MyQSurfaceDataProxy*>(ptr), static_cast<void (MyQSurfaceDataProxy::*)(int, int)>(&MyQSurfaceDataProxy::Signal_ItemChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSurfaceDataProxy_DisconnectItemChanged(void* ptr)
@@ -9321,9 +9321,9 @@ int QSurfaceDataProxy_RowCount(void* ptr)
 	return static_cast<QSurfaceDataProxy*>(ptr)->rowCount();
 }
 
-void QSurfaceDataProxy_ConnectRowCountChanged(void* ptr)
+void QSurfaceDataProxy_ConnectRowCountChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSurfaceDataProxy*>(ptr), static_cast<void (QSurfaceDataProxy::*)(int)>(&QSurfaceDataProxy::rowCountChanged), static_cast<MyQSurfaceDataProxy*>(ptr), static_cast<void (MyQSurfaceDataProxy::*)(int)>(&MyQSurfaceDataProxy::Signal_RowCountChanged));
+	QObject::connect(static_cast<QSurfaceDataProxy*>(ptr), static_cast<void (QSurfaceDataProxy::*)(int)>(&QSurfaceDataProxy::rowCountChanged), static_cast<MyQSurfaceDataProxy*>(ptr), static_cast<void (MyQSurfaceDataProxy::*)(int)>(&MyQSurfaceDataProxy::Signal_RowCountChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSurfaceDataProxy_DisconnectRowCountChanged(void* ptr)
@@ -9336,9 +9336,9 @@ void QSurfaceDataProxy_RowCountChanged(void* ptr, int count)
 	static_cast<QSurfaceDataProxy*>(ptr)->rowCountChanged(count);
 }
 
-void QSurfaceDataProxy_ConnectRowsAdded(void* ptr)
+void QSurfaceDataProxy_ConnectRowsAdded(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSurfaceDataProxy*>(ptr), static_cast<void (QSurfaceDataProxy::*)(int, int)>(&QSurfaceDataProxy::rowsAdded), static_cast<MyQSurfaceDataProxy*>(ptr), static_cast<void (MyQSurfaceDataProxy::*)(int, int)>(&MyQSurfaceDataProxy::Signal_RowsAdded));
+	QObject::connect(static_cast<QSurfaceDataProxy*>(ptr), static_cast<void (QSurfaceDataProxy::*)(int, int)>(&QSurfaceDataProxy::rowsAdded), static_cast<MyQSurfaceDataProxy*>(ptr), static_cast<void (MyQSurfaceDataProxy::*)(int, int)>(&MyQSurfaceDataProxy::Signal_RowsAdded), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSurfaceDataProxy_DisconnectRowsAdded(void* ptr)
@@ -9351,9 +9351,9 @@ void QSurfaceDataProxy_RowsAdded(void* ptr, int startIndex, int count)
 	static_cast<QSurfaceDataProxy*>(ptr)->rowsAdded(startIndex, count);
 }
 
-void QSurfaceDataProxy_ConnectRowsChanged(void* ptr)
+void QSurfaceDataProxy_ConnectRowsChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSurfaceDataProxy*>(ptr), static_cast<void (QSurfaceDataProxy::*)(int, int)>(&QSurfaceDataProxy::rowsChanged), static_cast<MyQSurfaceDataProxy*>(ptr), static_cast<void (MyQSurfaceDataProxy::*)(int, int)>(&MyQSurfaceDataProxy::Signal_RowsChanged));
+	QObject::connect(static_cast<QSurfaceDataProxy*>(ptr), static_cast<void (QSurfaceDataProxy::*)(int, int)>(&QSurfaceDataProxy::rowsChanged), static_cast<MyQSurfaceDataProxy*>(ptr), static_cast<void (MyQSurfaceDataProxy::*)(int, int)>(&MyQSurfaceDataProxy::Signal_RowsChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSurfaceDataProxy_DisconnectRowsChanged(void* ptr)
@@ -9366,9 +9366,9 @@ void QSurfaceDataProxy_RowsChanged(void* ptr, int startIndex, int count)
 	static_cast<QSurfaceDataProxy*>(ptr)->rowsChanged(startIndex, count);
 }
 
-void QSurfaceDataProxy_ConnectRowsInserted(void* ptr)
+void QSurfaceDataProxy_ConnectRowsInserted(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSurfaceDataProxy*>(ptr), static_cast<void (QSurfaceDataProxy::*)(int, int)>(&QSurfaceDataProxy::rowsInserted), static_cast<MyQSurfaceDataProxy*>(ptr), static_cast<void (MyQSurfaceDataProxy::*)(int, int)>(&MyQSurfaceDataProxy::Signal_RowsInserted));
+	QObject::connect(static_cast<QSurfaceDataProxy*>(ptr), static_cast<void (QSurfaceDataProxy::*)(int, int)>(&QSurfaceDataProxy::rowsInserted), static_cast<MyQSurfaceDataProxy*>(ptr), static_cast<void (MyQSurfaceDataProxy::*)(int, int)>(&MyQSurfaceDataProxy::Signal_RowsInserted), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSurfaceDataProxy_DisconnectRowsInserted(void* ptr)
@@ -9381,9 +9381,9 @@ void QSurfaceDataProxy_RowsInserted(void* ptr, int startIndex, int count)
 	static_cast<QSurfaceDataProxy*>(ptr)->rowsInserted(startIndex, count);
 }
 
-void QSurfaceDataProxy_ConnectRowsRemoved(void* ptr)
+void QSurfaceDataProxy_ConnectRowsRemoved(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSurfaceDataProxy*>(ptr), static_cast<void (QSurfaceDataProxy::*)(int, int)>(&QSurfaceDataProxy::rowsRemoved), static_cast<MyQSurfaceDataProxy*>(ptr), static_cast<void (MyQSurfaceDataProxy::*)(int, int)>(&MyQSurfaceDataProxy::Signal_RowsRemoved));
+	QObject::connect(static_cast<QSurfaceDataProxy*>(ptr), static_cast<void (QSurfaceDataProxy::*)(int, int)>(&QSurfaceDataProxy::rowsRemoved), static_cast<MyQSurfaceDataProxy*>(ptr), static_cast<void (MyQSurfaceDataProxy::*)(int, int)>(&MyQSurfaceDataProxy::Signal_RowsRemoved), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSurfaceDataProxy_DisconnectRowsRemoved(void* ptr)
@@ -9401,9 +9401,9 @@ void* QSurfaceDataProxy_Series(void* ptr)
 	return static_cast<QSurfaceDataProxy*>(ptr)->series();
 }
 
-void QSurfaceDataProxy_ConnectSeriesChanged(void* ptr)
+void QSurfaceDataProxy_ConnectSeriesChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSurfaceDataProxy*>(ptr), static_cast<void (QSurfaceDataProxy::*)(QSurface3DSeries *)>(&QSurfaceDataProxy::seriesChanged), static_cast<MyQSurfaceDataProxy*>(ptr), static_cast<void (MyQSurfaceDataProxy::*)(QSurface3DSeries *)>(&MyQSurfaceDataProxy::Signal_SeriesChanged));
+	QObject::connect(static_cast<QSurfaceDataProxy*>(ptr), static_cast<void (QSurfaceDataProxy::*)(QSurface3DSeries *)>(&QSurfaceDataProxy::seriesChanged), static_cast<MyQSurfaceDataProxy*>(ptr), static_cast<void (MyQSurfaceDataProxy::*)(QSurface3DSeries *)>(&MyQSurfaceDataProxy::Signal_SeriesChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSurfaceDataProxy_DisconnectSeriesChanged(void* ptr)
@@ -9577,9 +9577,9 @@ void* QValue3DAxis_Formatter(void* ptr)
 	return static_cast<QValue3DAxis*>(ptr)->formatter();
 }
 
-void QValue3DAxis_ConnectFormatterChanged(void* ptr)
+void QValue3DAxis_ConnectFormatterChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QValue3DAxis*>(ptr), static_cast<void (QValue3DAxis::*)(QValue3DAxisFormatter *)>(&QValue3DAxis::formatterChanged), static_cast<MyQValue3DAxis*>(ptr), static_cast<void (MyQValue3DAxis::*)(QValue3DAxisFormatter *)>(&MyQValue3DAxis::Signal_FormatterChanged));
+	QObject::connect(static_cast<QValue3DAxis*>(ptr), static_cast<void (QValue3DAxis::*)(QValue3DAxisFormatter *)>(&QValue3DAxis::formatterChanged), static_cast<MyQValue3DAxis*>(ptr), static_cast<void (MyQValue3DAxis::*)(QValue3DAxisFormatter *)>(&MyQValue3DAxis::Signal_FormatterChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QValue3DAxis_DisconnectFormatterChanged(void* ptr)
@@ -9597,9 +9597,9 @@ struct QtDataVisualization_PackedString QValue3DAxis_LabelFormat(void* ptr)
 	return ({ QByteArray teadd17 = static_cast<QValue3DAxis*>(ptr)->labelFormat().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(teadd17.prepend("WHITESPACE").constData()+10), teadd17.size()-10 }; });
 }
 
-void QValue3DAxis_ConnectLabelFormatChanged(void* ptr)
+void QValue3DAxis_ConnectLabelFormatChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QValue3DAxis*>(ptr), static_cast<void (QValue3DAxis::*)(const QString &)>(&QValue3DAxis::labelFormatChanged), static_cast<MyQValue3DAxis*>(ptr), static_cast<void (MyQValue3DAxis::*)(const QString &)>(&MyQValue3DAxis::Signal_LabelFormatChanged));
+	QObject::connect(static_cast<QValue3DAxis*>(ptr), static_cast<void (QValue3DAxis::*)(const QString &)>(&QValue3DAxis::labelFormatChanged), static_cast<MyQValue3DAxis*>(ptr), static_cast<void (MyQValue3DAxis::*)(const QString &)>(&MyQValue3DAxis::Signal_LabelFormatChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QValue3DAxis_DisconnectLabelFormatChanged(void* ptr)
@@ -9617,9 +9617,9 @@ char QValue3DAxis_Reversed(void* ptr)
 	return static_cast<QValue3DAxis*>(ptr)->reversed();
 }
 
-void QValue3DAxis_ConnectReversedChanged(void* ptr)
+void QValue3DAxis_ConnectReversedChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QValue3DAxis*>(ptr), static_cast<void (QValue3DAxis::*)(bool)>(&QValue3DAxis::reversedChanged), static_cast<MyQValue3DAxis*>(ptr), static_cast<void (MyQValue3DAxis::*)(bool)>(&MyQValue3DAxis::Signal_ReversedChanged));
+	QObject::connect(static_cast<QValue3DAxis*>(ptr), static_cast<void (QValue3DAxis::*)(bool)>(&QValue3DAxis::reversedChanged), static_cast<MyQValue3DAxis*>(ptr), static_cast<void (MyQValue3DAxis::*)(bool)>(&MyQValue3DAxis::Signal_ReversedChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QValue3DAxis_DisconnectReversedChanged(void* ptr)
@@ -9637,9 +9637,9 @@ int QValue3DAxis_SegmentCount(void* ptr)
 	return static_cast<QValue3DAxis*>(ptr)->segmentCount();
 }
 
-void QValue3DAxis_ConnectSegmentCountChanged(void* ptr)
+void QValue3DAxis_ConnectSegmentCountChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QValue3DAxis*>(ptr), static_cast<void (QValue3DAxis::*)(int)>(&QValue3DAxis::segmentCountChanged), static_cast<MyQValue3DAxis*>(ptr), static_cast<void (MyQValue3DAxis::*)(int)>(&MyQValue3DAxis::Signal_SegmentCountChanged));
+	QObject::connect(static_cast<QValue3DAxis*>(ptr), static_cast<void (QValue3DAxis::*)(int)>(&QValue3DAxis::segmentCountChanged), static_cast<MyQValue3DAxis*>(ptr), static_cast<void (MyQValue3DAxis::*)(int)>(&MyQValue3DAxis::Signal_SegmentCountChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QValue3DAxis_DisconnectSegmentCountChanged(void* ptr)
@@ -9682,9 +9682,9 @@ int QValue3DAxis_SubSegmentCount(void* ptr)
 	return static_cast<QValue3DAxis*>(ptr)->subSegmentCount();
 }
 
-void QValue3DAxis_ConnectSubSegmentCountChanged(void* ptr)
+void QValue3DAxis_ConnectSubSegmentCountChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QValue3DAxis*>(ptr), static_cast<void (QValue3DAxis::*)(int)>(&QValue3DAxis::subSegmentCountChanged), static_cast<MyQValue3DAxis*>(ptr), static_cast<void (MyQValue3DAxis::*)(int)>(&MyQValue3DAxis::Signal_SubSegmentCountChanged));
+	QObject::connect(static_cast<QValue3DAxis*>(ptr), static_cast<void (QValue3DAxis::*)(int)>(&QValue3DAxis::subSegmentCountChanged), static_cast<MyQValue3DAxis*>(ptr), static_cast<void (MyQValue3DAxis::*)(int)>(&MyQValue3DAxis::Signal_SubSegmentCountChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QValue3DAxis_DisconnectSubSegmentCountChanged(void* ptr)

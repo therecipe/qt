@@ -470,7 +470,7 @@ func (ptr *QInAppStore) ConnectProductRegistered(f func(product *QInAppProduct))
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "productRegistered") {
-			C.QInAppStore_ConnectProductRegistered(ptr.Pointer())
+			C.QInAppStore_ConnectProductRegistered(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "productRegistered")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "productRegistered"); signal != nil {
@@ -510,7 +510,7 @@ func (ptr *QInAppStore) ConnectProductUnknown(f func(productType QInAppProduct__
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "productUnknown") {
-			C.QInAppStore_ConnectProductUnknown(ptr.Pointer())
+			C.QInAppStore_ConnectProductUnknown(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "productUnknown")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "productUnknown"); signal != nil {
@@ -604,7 +604,7 @@ func (ptr *QInAppStore) ConnectTransactionReady(f func(transaction *QInAppTransa
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "transactionReady") {
-			C.QInAppStore_ConnectTransactionReady(ptr.Pointer())
+			C.QInAppStore_ConnectTransactionReady(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "transactionReady")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "transactionReady"); signal != nil {

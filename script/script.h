@@ -107,7 +107,7 @@ void QScriptEngine_SetAgent(void* ptr, void* agent);
 void QScriptEngine_SetDefaultPrototype(void* ptr, int metaTypeId, void* prototype);
 void QScriptEngine_SetGlobalObject(void* ptr, void* object);
 void QScriptEngine_SetProcessEventsInterval(void* ptr, int interval);
-void QScriptEngine_ConnectSignalHandlerException(void* ptr);
+void QScriptEngine_ConnectSignalHandlerException(void* ptr, long long t);
 void QScriptEngine_DisconnectSignalHandlerException(void* ptr);
 void QScriptEngine_SignalHandlerException(void* ptr, void* exception);
 void* QScriptEngine_ToObject(void* ptr, void* value);

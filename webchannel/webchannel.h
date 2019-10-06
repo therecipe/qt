@@ -20,7 +20,7 @@ void* QQmlWebChannel___registerObjects_objects_atList(void* ptr, struct QtWebCha
 void QQmlWebChannel___registerObjects_objects_setList(void* ptr, struct QtWebChannel_PackedString key, void* i);
 void* QWebChannel_NewQWebChannel(void* parent);
 char QWebChannel_BlockUpdates(void* ptr);
-void QWebChannel_ConnectBlockUpdatesChanged(void* ptr);
+void QWebChannel_ConnectBlockUpdatesChanged(void* ptr, long long t);
 void QWebChannel_DisconnectBlockUpdatesChanged(void* ptr);
 void QWebChannel_BlockUpdatesChanged(void* ptr, char block);
 void QWebChannel_ConnectTo(void* ptr, void* transport);
@@ -73,7 +73,7 @@ char QWebChannel_EventFilterDefault(void* ptr, void* watched, void* event);
 void* QWebChannel_MetaObjectDefault(void* ptr);
 void QWebChannel_TimerEventDefault(void* ptr, void* event);
 void* QWebChannelAbstractTransport_NewQWebChannelAbstractTransport(void* parent);
-void QWebChannelAbstractTransport_ConnectMessageReceived(void* ptr);
+void QWebChannelAbstractTransport_ConnectMessageReceived(void* ptr, long long t);
 void QWebChannelAbstractTransport_DisconnectMessageReceived(void* ptr);
 void QWebChannelAbstractTransport_MessageReceived(void* ptr, void* message, void* transport);
 void QWebChannelAbstractTransport_SendMessage(void* ptr, void* message);

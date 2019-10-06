@@ -1775,7 +1775,7 @@ func (ptr *QQuickFramebufferObject) ConnectMirrorVerticallyChanged(f func(vbo bo
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "mirrorVerticallyChanged") {
-			C.QQuickFramebufferObject_ConnectMirrorVerticallyChanged(ptr.Pointer())
+			C.QQuickFramebufferObject_ConnectMirrorVerticallyChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "mirrorVerticallyChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "mirrorVerticallyChanged"); signal != nil {
@@ -1834,7 +1834,7 @@ func (ptr *QQuickFramebufferObject) ConnectTextureFollowsItemSizeChanged(f func(
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "textureFollowsItemSizeChanged") {
-			C.QQuickFramebufferObject_ConnectTextureFollowsItemSizeChanged(ptr.Pointer())
+			C.QQuickFramebufferObject_ConnectTextureFollowsItemSizeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "textureFollowsItemSizeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "textureFollowsItemSizeChanged"); signal != nil {
@@ -2369,7 +2369,7 @@ func (ptr *QQuickImageResponse) ConnectFinished(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "finished") {
-			C.QQuickImageResponse_ConnectFinished(ptr.Pointer())
+			C.QQuickImageResponse_ConnectFinished(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "finished")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "finished"); signal != nil {
@@ -2873,7 +2873,7 @@ func (ptr *QQuickItem) ConnectActiveFocusChanged(f func(vbo bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "activeFocusChanged") {
-			C.QQuickItem_ConnectActiveFocusChanged(ptr.Pointer())
+			C.QQuickItem_ConnectActiveFocusChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "activeFocusChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "activeFocusChanged"); signal != nil {
@@ -2920,7 +2920,7 @@ func (ptr *QQuickItem) ConnectActiveFocusOnTabChanged(f func(vbo bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "activeFocusOnTabChanged") {
-			C.QQuickItem_ConnectActiveFocusOnTabChanged(ptr.Pointer())
+			C.QQuickItem_ConnectActiveFocusOnTabChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "activeFocusOnTabChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "activeFocusOnTabChanged"); signal != nil {
@@ -2967,7 +2967,7 @@ func (ptr *QQuickItem) ConnectAntialiasingChanged(f func(vbo bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "antialiasingChanged") {
-			C.QQuickItem_ConnectAntialiasingChanged(ptr.Pointer())
+			C.QQuickItem_ConnectAntialiasingChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "antialiasingChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "antialiasingChanged"); signal != nil {
@@ -3014,7 +3014,7 @@ func (ptr *QQuickItem) ConnectBaselineOffsetChanged(f func(vqr float64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "baselineOffsetChanged") {
-			C.QQuickItem_ConnectBaselineOffsetChanged(ptr.Pointer())
+			C.QQuickItem_ConnectBaselineOffsetChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "baselineOffsetChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "baselineOffsetChanged"); signal != nil {
@@ -3133,7 +3133,7 @@ func (ptr *QQuickItem) ConnectChildrenRectChanged(f func(vqr *core.QRectF)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "childrenRectChanged") {
-			C.QQuickItem_ConnectChildrenRectChanged(ptr.Pointer())
+			C.QQuickItem_ConnectChildrenRectChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "childrenRectChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "childrenRectChanged"); signal != nil {
@@ -3223,7 +3223,7 @@ func (ptr *QQuickItem) ConnectClipChanged(f func(vbo bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "clipChanged") {
-			C.QQuickItem_ConnectClipChanged(ptr.Pointer())
+			C.QQuickItem_ConnectClipChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "clipChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "clipChanged"); signal != nil {
@@ -3317,7 +3317,7 @@ func (ptr *QQuickItem) ConnectContainmentMaskChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "containmentMaskChanged") {
-			C.QQuickItem_ConnectContainmentMaskChanged(ptr.Pointer())
+			C.QQuickItem_ConnectContainmentMaskChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "containmentMaskChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "containmentMaskChanged"); signal != nil {
@@ -3583,7 +3583,7 @@ func (ptr *QQuickItem) ConnectEnabledChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "enabledChanged") {
-			C.QQuickItem_ConnectEnabledChanged(ptr.Pointer())
+			C.QQuickItem_ConnectEnabledChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "enabledChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "enabledChanged"); signal != nil {
@@ -3682,7 +3682,7 @@ func (ptr *QQuickItem) ConnectFocusChanged(f func(vbo bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "focusChanged") {
-			C.QQuickItem_ConnectFocusChanged(ptr.Pointer())
+			C.QQuickItem_ConnectFocusChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "focusChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "focusChanged"); signal != nil {
@@ -3902,7 +3902,7 @@ func (ptr *QQuickItem) ConnectHeightChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "heightChanged") {
-			C.QQuickItem_ConnectHeightChanged(ptr.Pointer())
+			C.QQuickItem_ConnectHeightChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "heightChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "heightChanged"); signal != nil {
@@ -4085,7 +4085,7 @@ func (ptr *QQuickItem) ConnectImplicitHeightChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "implicitHeightChanged") {
-			C.QQuickItem_ConnectImplicitHeightChanged(ptr.Pointer())
+			C.QQuickItem_ConnectImplicitHeightChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "implicitHeightChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "implicitHeightChanged"); signal != nil {
@@ -4132,7 +4132,7 @@ func (ptr *QQuickItem) ConnectImplicitWidthChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "implicitWidthChanged") {
-			C.QQuickItem_ConnectImplicitWidthChanged(ptr.Pointer())
+			C.QQuickItem_ConnectImplicitWidthChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "implicitWidthChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "implicitWidthChanged"); signal != nil {
@@ -4767,7 +4767,7 @@ func (ptr *QQuickItem) ConnectOpacityChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "opacityChanged") {
-			C.QQuickItem_ConnectOpacityChanged(ptr.Pointer())
+			C.QQuickItem_ConnectOpacityChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "opacityChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "opacityChanged"); signal != nil {
@@ -4807,7 +4807,7 @@ func (ptr *QQuickItem) ConnectParentChanged(f func(vqq *QQuickItem)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "parentChanged") {
-			C.QQuickItem_ConnectParentChanged(ptr.Pointer())
+			C.QQuickItem_ConnectParentChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "parentChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "parentChanged"); signal != nil {
@@ -4932,7 +4932,7 @@ func (ptr *QQuickItem) ConnectRotationChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "rotationChanged") {
-			C.QQuickItem_ConnectRotationChanged(ptr.Pointer())
+			C.QQuickItem_ConnectRotationChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "rotationChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "rotationChanged"); signal != nil {
@@ -4979,7 +4979,7 @@ func (ptr *QQuickItem) ConnectScaleChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "scaleChanged") {
-			C.QQuickItem_ConnectScaleChanged(ptr.Pointer())
+			C.QQuickItem_ConnectScaleChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "scaleChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "scaleChanged"); signal != nil {
@@ -5249,7 +5249,7 @@ func (ptr *QQuickItem) ConnectSmoothChanged(f func(vbo bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "smoothChanged") {
-			C.QQuickItem_ConnectSmoothChanged(ptr.Pointer())
+			C.QQuickItem_ConnectSmoothChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "smoothChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "smoothChanged"); signal != nil {
@@ -5308,7 +5308,7 @@ func (ptr *QQuickItem) ConnectStateChanged(f func(vqs string)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stateChanged") {
-			C.QQuickItem_ConnectStateChanged(ptr.Pointer())
+			C.QQuickItem_ConnectStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
@@ -5499,7 +5499,7 @@ func (ptr *QQuickItem) ConnectTransformOriginChanged(f func(vqq QQuickItem__Tran
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "transformOriginChanged") {
-			C.QQuickItem_ConnectTransformOriginChanged(ptr.Pointer())
+			C.QQuickItem_ConnectTransformOriginChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "transformOriginChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "transformOriginChanged"); signal != nil {
@@ -5649,7 +5649,7 @@ func (ptr *QQuickItem) ConnectVisibleChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "visibleChanged") {
-			C.QQuickItem_ConnectVisibleChanged(ptr.Pointer())
+			C.QQuickItem_ConnectVisibleChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "visibleChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "visibleChanged"); signal != nil {
@@ -5739,7 +5739,7 @@ func (ptr *QQuickItem) ConnectWidthChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "widthChanged") {
-			C.QQuickItem_ConnectWidthChanged(ptr.Pointer())
+			C.QQuickItem_ConnectWidthChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "widthChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "widthChanged"); signal != nil {
@@ -5797,7 +5797,7 @@ func (ptr *QQuickItem) ConnectWindowChanged(f func(window *QQuickWindow)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "windowChanged") {
-			C.QQuickItem_ConnectWindowChanged(ptr.Pointer())
+			C.QQuickItem_ConnectWindowChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "windowChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "windowChanged"); signal != nil {
@@ -5844,7 +5844,7 @@ func (ptr *QQuickItem) ConnectXChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "xChanged") {
-			C.QQuickItem_ConnectXChanged(ptr.Pointer())
+			C.QQuickItem_ConnectXChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "xChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "xChanged"); signal != nil {
@@ -5891,7 +5891,7 @@ func (ptr *QQuickItem) ConnectYChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "yChanged") {
-			C.QQuickItem_ConnectYChanged(ptr.Pointer())
+			C.QQuickItem_ConnectYChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "yChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "yChanged"); signal != nil {
@@ -5938,7 +5938,7 @@ func (ptr *QQuickItem) ConnectZChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "zChanged") {
-			C.QQuickItem_ConnectZChanged(ptr.Pointer())
+			C.QQuickItem_ConnectZChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "zChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "zChanged"); signal != nil {
@@ -6403,7 +6403,7 @@ func (ptr *QQuickItemGrabResult) ConnectReady(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "ready") {
-			C.QQuickItemGrabResult_ConnectReady(ptr.Pointer())
+			C.QQuickItemGrabResult_ConnectReady(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "ready")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "ready"); signal != nil {
@@ -6794,7 +6794,7 @@ func (ptr *QQuickPaintedItem) ConnectContentsScaleChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "contentsScaleChanged") {
-			C.QQuickPaintedItem_ConnectContentsScaleChanged(ptr.Pointer())
+			C.QQuickPaintedItem_ConnectContentsScaleChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "contentsScaleChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "contentsScaleChanged"); signal != nil {
@@ -6843,7 +6843,7 @@ func (ptr *QQuickPaintedItem) ConnectContentsSizeChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "contentsSizeChanged") {
-			C.QQuickPaintedItem_ConnectContentsSizeChanged(ptr.Pointer())
+			C.QQuickPaintedItem_ConnectContentsSizeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "contentsSizeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "contentsSizeChanged"); signal != nil {
@@ -6892,7 +6892,7 @@ func (ptr *QQuickPaintedItem) ConnectFillColorChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "fillColorChanged") {
-			C.QQuickPaintedItem_ConnectFillColorChanged(ptr.Pointer())
+			C.QQuickPaintedItem_ConnectFillColorChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "fillColorChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "fillColorChanged"); signal != nil {
@@ -6996,7 +6996,7 @@ func (ptr *QQuickPaintedItem) ConnectRenderTargetChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "renderTargetChanged") {
-			C.QQuickPaintedItem_ConnectRenderTargetChanged(ptr.Pointer())
+			C.QQuickPaintedItem_ConnectRenderTargetChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "renderTargetChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "renderTargetChanged"); signal != nil {
@@ -7099,7 +7099,7 @@ func (ptr *QQuickPaintedItem) ConnectTextureSizeChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "textureSizeChanged") {
-			C.QQuickPaintedItem_ConnectTextureSizeChanged(ptr.Pointer())
+			C.QQuickPaintedItem_ConnectTextureSizeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "textureSizeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "textureSizeChanged"); signal != nil {
@@ -7369,7 +7369,7 @@ func (ptr *QQuickRenderControl) ConnectRenderRequested(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "renderRequested") {
-			C.QQuickRenderControl_ConnectRenderRequested(ptr.Pointer())
+			C.QQuickRenderControl_ConnectRenderRequested(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "renderRequested")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "renderRequested"); signal != nil {
@@ -7478,7 +7478,7 @@ func (ptr *QQuickRenderControl) ConnectSceneChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "sceneChanged") {
-			C.QQuickRenderControl_ConnectSceneChanged(ptr.Pointer())
+			C.QQuickRenderControl_ConnectSceneChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "sceneChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "sceneChanged"); signal != nil {
@@ -9188,7 +9188,7 @@ func (ptr *QQuickView) ConnectStatusChanged(f func(status QQuickView__Status)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "statusChanged") {
-			C.QQuickView_ConnectStatusChanged(ptr.Pointer())
+			C.QQuickView_ConnectStatusChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "statusChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "statusChanged"); signal != nil {
@@ -9711,7 +9711,7 @@ func (ptr *QQuickWidget) ConnectSceneGraphError(f func(error QQuickWindow__Scene
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "sceneGraphError") {
-			C.QQuickWidget_ConnectSceneGraphError(ptr.Pointer())
+			C.QQuickWidget_ConnectSceneGraphError(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "sceneGraphError")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "sceneGraphError"); signal != nil {
@@ -9848,7 +9848,7 @@ func (ptr *QQuickWidget) ConnectStatusChanged(f func(status QQuickWidget__Status
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "statusChanged") {
-			C.QQuickWidget_ConnectStatusChanged(ptr.Pointer())
+			C.QQuickWidget_ConnectStatusChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "statusChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "statusChanged"); signal != nil {
@@ -11063,7 +11063,7 @@ func (ptr *QQuickWindow) ConnectActiveFocusItemChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "activeFocusItemChanged") {
-			C.QQuickWindow_ConnectActiveFocusItemChanged(ptr.Pointer())
+			C.QQuickWindow_ConnectActiveFocusItemChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "activeFocusItemChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "activeFocusItemChanged"); signal != nil {
@@ -11103,7 +11103,7 @@ func (ptr *QQuickWindow) ConnectAfterAnimating(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "afterAnimating") {
-			C.QQuickWindow_ConnectAfterAnimating(ptr.Pointer())
+			C.QQuickWindow_ConnectAfterAnimating(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "afterAnimating")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "afterAnimating"); signal != nil {
@@ -11143,7 +11143,7 @@ func (ptr *QQuickWindow) ConnectAfterRendering(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "afterRendering") {
-			C.QQuickWindow_ConnectAfterRendering(ptr.Pointer())
+			C.QQuickWindow_ConnectAfterRendering(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "afterRendering")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "afterRendering"); signal != nil {
@@ -11183,7 +11183,7 @@ func (ptr *QQuickWindow) ConnectAfterSynchronizing(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "afterSynchronizing") {
-			C.QQuickWindow_ConnectAfterSynchronizing(ptr.Pointer())
+			C.QQuickWindow_ConnectAfterSynchronizing(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "afterSynchronizing")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "afterSynchronizing"); signal != nil {
@@ -11223,7 +11223,7 @@ func (ptr *QQuickWindow) ConnectBeforeRendering(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "beforeRendering") {
-			C.QQuickWindow_ConnectBeforeRendering(ptr.Pointer())
+			C.QQuickWindow_ConnectBeforeRendering(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "beforeRendering")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "beforeRendering"); signal != nil {
@@ -11263,7 +11263,7 @@ func (ptr *QQuickWindow) ConnectBeforeSynchronizing(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "beforeSynchronizing") {
-			C.QQuickWindow_ConnectBeforeSynchronizing(ptr.Pointer())
+			C.QQuickWindow_ConnectBeforeSynchronizing(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "beforeSynchronizing")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "beforeSynchronizing"); signal != nil {
@@ -11319,7 +11319,7 @@ func (ptr *QQuickWindow) ConnectColorChanged(f func(vqc *gui.QColor)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "colorChanged") {
-			C.QQuickWindow_ConnectColorChanged(ptr.Pointer())
+			C.QQuickWindow_ConnectColorChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "colorChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "colorChanged"); signal != nil {
@@ -11485,7 +11485,7 @@ func (ptr *QQuickWindow) ConnectFrameSwapped(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "frameSwapped") {
-			C.QQuickWindow_ConnectFrameSwapped(ptr.Pointer())
+			C.QQuickWindow_ConnectFrameSwapped(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "frameSwapped")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "frameSwapped"); signal != nil {
@@ -11697,7 +11697,7 @@ func (ptr *QQuickWindow) ConnectOpenglContextCreated(f func(context *gui.QOpenGL
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "openglContextCreated") {
-			C.QQuickWindow_ConnectOpenglContextCreated(ptr.Pointer())
+			C.QQuickWindow_ConnectOpenglContextCreated(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "openglContextCreated")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "openglContextCreated"); signal != nil {
@@ -11831,7 +11831,7 @@ func (ptr *QQuickWindow) ConnectSceneGraphAboutToStop(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "sceneGraphAboutToStop") {
-			C.QQuickWindow_ConnectSceneGraphAboutToStop(ptr.Pointer())
+			C.QQuickWindow_ConnectSceneGraphAboutToStop(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "sceneGraphAboutToStop")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "sceneGraphAboutToStop"); signal != nil {
@@ -11879,7 +11879,7 @@ func (ptr *QQuickWindow) ConnectSceneGraphError(f func(error QQuickWindow__Scene
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "sceneGraphError") {
-			C.QQuickWindow_ConnectSceneGraphError(ptr.Pointer())
+			C.QQuickWindow_ConnectSceneGraphError(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "sceneGraphError")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "sceneGraphError"); signal != nil {
@@ -11924,7 +11924,7 @@ func (ptr *QQuickWindow) ConnectSceneGraphInitialized(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "sceneGraphInitialized") {
-			C.QQuickWindow_ConnectSceneGraphInitialized(ptr.Pointer())
+			C.QQuickWindow_ConnectSceneGraphInitialized(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "sceneGraphInitialized")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "sceneGraphInitialized"); signal != nil {
@@ -11964,7 +11964,7 @@ func (ptr *QQuickWindow) ConnectSceneGraphInvalidated(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "sceneGraphInvalidated") {
-			C.QQuickWindow_ConnectSceneGraphInvalidated(ptr.Pointer())
+			C.QQuickWindow_ConnectSceneGraphInvalidated(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "sceneGraphInvalidated")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "sceneGraphInvalidated"); signal != nil {
@@ -13230,7 +13230,7 @@ func (ptr *QSGAbstractRenderer) ConnectSceneGraphChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "sceneGraphChanged") {
-			C.QSGAbstractRenderer_ConnectSceneGraphChanged(ptr.Pointer())
+			C.QSGAbstractRenderer_ConnectSceneGraphChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "sceneGraphChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "sceneGraphChanged"); signal != nil {
@@ -19624,7 +19624,7 @@ func (ptr *QSGTextureProvider) ConnectTextureChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "textureChanged") {
-			C.QSGTextureProvider_ConnectTextureChanged(ptr.Pointer())
+			C.QSGTextureProvider_ConnectTextureChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "textureChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "textureChanged"); signal != nil {
