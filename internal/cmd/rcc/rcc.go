@@ -150,6 +150,8 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 						module = "webengine"
 					case "QCameraViewfinder":
 						module = "multimedia"
+					case "QQuickWidget":
+						module = "quick"
 					}
 					fmt.Fprintf(bb, "%v%v *%v.%v\n", strings.Title(ls[1][:1]), ls[1][1:], module, ls[0])
 
@@ -164,8 +166,10 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 				fmt.Fprintln(bb, "}")
 
 				if useuic {
-					if typ == "QGroupBox" {
+					if typ == "QGroupBox" || typ == "QMdiArea" || typ == "QScrollArea" || typ == "QStackedWidget" || typ == "QTabWidget" || typ == "QWizardPage" {
 						fmt.Fprintf(bb, "w := &%[1]v{%[2]v: widgets.New%[2]v(par)}\n", name, typ)
+					} else if typ == "QDockWidget" {
+						fmt.Fprintf(bb, "w := &%[1]v{%[2]v: widgets.New%[2]v2(par, core.Qt__WindowType(0))}\n", name, typ)
 					} else {
 						fmt.Fprintf(bb, "w := &%[1]v{%[2]v: widgets.New%[2]v(par, 0)}\n", name, typ)
 					}
@@ -290,7 +294,7 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 
 						//
 
-						for i, n := range []string{"QWebEngineView", "QCameraViewfinder", "QTableWidgetItem", "QTreeWidgetItem", "QListWidgetItem", "QSizePolicy", "QPalette", "QFont", "QIcon", "QBrush"} {
+						for i, n := range []string{"QWebEngineView", "QCameraViewfinder", "QQuickWidget", "QTableWidgetItem", "QTreeWidgetItem", "QListWidgetItem", "QSizePolicy", "QPalette", "QFont", "QIcon", "QBrush"} {
 							if !strings.Contains(l, n) {
 								continue
 							}
@@ -301,11 +305,13 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 								module = "webengine"
 							case i == 1:
 								module = "multimedia"
-							case i >= 6:
+							case i == 2:
+								module = "quick"
+							case i >= 7:
 								module = "gui"
 							}
 
-							if i <= 1 {
+							if i <= 2 {
 								l = strings.Replace(l, fmt.Sprintf("= new %v(", n), fmt.Sprintf("= %v.New%v(", module, n), -1)
 							} else {
 								if n == "QIcon" {
@@ -324,6 +330,9 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 
 						l = strings.Replace(l, "QIcon::hasThemeIcon", "gui.QIcon_HasThemeIcon", -1)
 						l = strings.Replace(l, "QIcon::fromTheme", "gui.QIcon_FromTheme", -1)
+						if utils.QT_API_NUM(utils.QT_VERSION()) <= 5063 && strings.Contains(l, "gui.QIcon_FromTheme") {
+							l = strings.TrimSuffix(l, ")") + ", gui.NewQIcon())"
+						}
 
 						l = strings.Replace(l, "QTabWidget::North", "widgets.QTabWidget__North", -1)
 						l = strings.Replace(l, "QTabWidget::Rounded", "widgets.QTabWidget__Rounded", -1)
@@ -334,6 +343,10 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 
 						for _, n := range []string{"QDockWidget", "QLCDNumber", "QLayout", "QTextEdit", "QPlainTextEdit", "QSlider", "QFrame", "QFormLayout", "QDialogButtonBox", "QSizePolicy", "QLineEdit", "QListView", "QAbstractItemView"} {
 							l = strings.Replace(l, n+"::", "widgets."+n+"__", -1)
+						}
+
+						for _, n := range []string{"QQuickWidget"} {
+							l = strings.Replace(l, n+"::", "quick."+n+"__", -1)
 						}
 
 						//
@@ -355,7 +368,7 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 
 						//
 
-						for _, n := range []string{"QWidget", "QLabel", "QSizePolicy", "QListWidgetItem", "QFrame"} {
+						for _, n := range []string{"QWidget", "QLabel", "QSizePolicy", "QListWidgetItem", "QFrame", "QToolBox", "QOpenGLWidget"} {
 							if strings.Contains(l, ".New"+n+"(") {
 								l = strings.TrimSuffix(l, ")") + ", 0)"
 							}
@@ -412,7 +425,7 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 							}
 						}
 
-						for _, n := range []string{"QFormLayout"} {
+						for _, n := range []string{"QFormLayout", "QWizardPage"} {
 							if strings.Contains(l, ".New"+n+"(") && strings.Contains(l, ".New"+n+"()") {
 								l = strings.Replace(l, ".New"+n+"(", ".New"+n+"(nil", -1)
 							}
@@ -455,7 +468,7 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 								l = strings.TrimSuffix(l, ")") + ", 0)"
 							}
 
-							if strings.Contains(l, "(icon") {
+							if strings.Contains(l, "(icon") || strings.Contains(typeForName(l), "QToolBox") {
 								l = strings.Replace(l, ".AddItem(", ".AddItem2(", -1)
 							}
 						}
@@ -673,7 +686,7 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 				}
 				fmt.Fprintln(bb, "import (")
 
-				for i, p := range []string{"runtime", "core", "gui", "widgets", "webengine", "multimedia", "uitools"} {
+				for i, p := range []string{"runtime", "core", "gui", "widgets", "webengine", "multimedia", "uitools", "quick"} {
 					if !bytes.Contains(by, []byte(p+".")) {
 						continue
 					}

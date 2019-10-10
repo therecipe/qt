@@ -78,7 +78,7 @@ func main() {
 		target = runtime.GOOS
 	}
 	utils.CheckBuildTarget(target, docker)
-	cmd.InitEnv(target)
+	cmd.InitEnv(target, docker)
 
 	if !filepath.IsAbs(path) {
 		oPath := path

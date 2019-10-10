@@ -96,8 +96,8 @@ func ParseFlags() bool {
 	return help != nil && *help
 }
 
-func InitEnv(target string) {
-	if target != runtime.GOOS || ((runtime.GOARCH != "amd64" || utils.GOARCH() != "amd64") && runtime.GOOS != "windows") {
+func InitEnv(target string, docker bool) {
+	if docker || target != runtime.GOOS || ((runtime.GOARCH != "amd64" || utils.GOARCH() != "amd64") && runtime.GOOS != "windows") {
 		return
 	}
 

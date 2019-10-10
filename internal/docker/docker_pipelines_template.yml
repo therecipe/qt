@@ -375,11 +375,11 @@ jobs:
     parameters:
       file: linux/Dockerfile.debian_10_arm64
       tag: linux_debian_10_arm64
-  -
-    template: docker_job_template.yml
-    parameters:
-      file: linux/Dockerfile.fedora_armv7
-      tag: linux_fedora_armv7
+#  -
+#    template: docker_job_template.yml
+#    parameters:
+#      file: linux/Dockerfile.fedora_armv7
+#      tag: linux_fedora_armv7
   -
     template: docker_job_template.yml
     parameters:

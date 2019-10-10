@@ -89,7 +89,7 @@ func main() {
 		target = runtime.GOOS
 	}
 	utils.CheckBuildTarget(target, docker)
-	cmd.InitEnv(target)
+	cmd.InitEnv(target, docker)
 
 	if dynamic && (target == runtime.GOOS || target == "js" || target == "wasm") {
 		os.Setenv("QT_DYNAMIC_SETUP", "true")
