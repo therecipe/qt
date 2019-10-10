@@ -16,6 +16,7 @@ import (
 	"github.com/therecipe/qt/xml"
 
 	"github.com/therecipe/qt/internal/cmd/moc/test/sub"
+	_ "github.com/therecipe/qt/internal/cmd/moc/test/sub/conf"
 	"github.com/therecipe/qt/internal/cmd/moc/test/sub/subsub" //subsubcustom
 )
 

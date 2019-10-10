@@ -710,7 +710,7 @@ func parse(path string) ([]*parser.Class, string, error) {
 			if len(class.Properties) != 0 || len(class.Functions) != 0 ||
 				len(class.Constructors) != 0 || len(class.GetBases()) != 0 {
 				classes = append(classes, class)
-			} else {
+			} else if _, ok := parser.State.GoClassMap[class.Name]; !ok { //TODO: support proper namespaces instead
 				ipkg := file.Name.String()
 				importAs := "custom_" + ipkg + "_" + class.Hash() + "m"
 				if strings.Contains(path, "/vendor/") {

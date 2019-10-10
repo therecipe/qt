@@ -827,11 +827,25 @@ func preambleCpp(module string, input []byte, mode int, target, tags string) []b
 			hName := c.Hash()
 			sep := []string{"\"_", "LIVE_", " ", "\t", "\n", "\r", "(", ")", ":", ";", "*", "<", ">", "&", "~", "{", "}", "[", "]", "_", "callback"}
 			for _, p := range sep {
+				if p == ":" {
+					continue
+				}
 				for _, s := range sep {
-					if s == "callback" {
+					if s == "callback" ||
+						(p == "(" && s == ")") ||
+						(p == " " && s == " ") ||
+						(p == ">" && s != ":") {
 						continue
 					}
-					pre = strings.Replace(pre, p+c.Name+s, p+c.Name+hName+s, -1)
+					if p == " " && (s == "(" || s == ")") {
+						p = "new "
+						pre = strings.Replace(pre, p+c.Name+s, p+c.Name+hName+s, -1)
+						p = ": "
+						pre = strings.Replace(pre, p+c.Name+s, p+c.Name+hName+s, -1)
+						p = " "
+					} else {
+						pre = strings.Replace(pre, p+c.Name+s, p+c.Name+hName+s, -1)
+					}
 				}
 			}
 		}

@@ -12,6 +12,8 @@ import (
 	"github.com/therecipe/qt/internal/cmd/moc/test/sub/bgo"
 	abcgo "github.com/therecipe/qt/internal/cmd/moc/test/sub/cgo"
 	. "github.com/therecipe/qt/internal/cmd/moc/test/sub/dgo"
+
+	_ "github.com/therecipe/qt/internal/cmd/moc/test/sub/conf"
 )
 
 //TODO:  duplicate struct name issue
