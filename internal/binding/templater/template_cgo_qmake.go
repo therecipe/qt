@@ -574,7 +574,7 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 
 	switch target {
 	case "android", "android-emulator":
-		fmt.Fprint(bb, "#cgo LDFLAGS: -Wl,--allow-shlib-undefined\n")
+		fmt.Fprintf(bb, "#cgo LDFLAGS: %s -Wl,--allow-shlib-undefined\n", utils.ANDROID_NDK_NOSTDLIBPP_LDFLAG())
 	case "windows":
 		if !utils.QT_MSVC() {
 			fmt.Fprint(bb, "#cgo LDFLAGS: -Wl,--allow-multiple-definition\n")

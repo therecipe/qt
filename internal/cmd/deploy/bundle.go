@@ -524,6 +524,9 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 		if target == "android-emulator" {
 			cmd = exec.Command(compiler, "c_main_wrapper.cpp", "-o", filepath.Join(depPath, "libgo.so"), "-I../..", "-L.", "-lgo_base", "-Wl,-soname,libgo.so", "-shared")
 		}
+		if utils.ANDROID_NDK_REQUIRE_NOSTDLIBPP_LDFLAG() {
+			cmd.Args = append(cmd.Args, "-nostdlib++")
+		}
 		cmd.Args = append(cmd.Args, strings.Split(env["CGO_CPPFLAGS"], " ")...)
 		cmd.Args = append(cmd.Args, "-I"+filepath.Join(utils.ANDROID_NDK_DIR(), "sysroot", "usr", "include"))
 		cmd.Args = append(cmd.Args, strings.Split(env["CGO_LDFLAGS"], " ")...)
