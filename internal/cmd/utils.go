@@ -61,8 +61,7 @@ func GetImports(path, target, tagsCustom string, level int, onlyDirect bool) []s
 	}
 
 	//TODO: cache
-	cmd := utils.GoList("{{join .TestImports \"|\"}}|{{join .XTestImports \"|\"}}|{{join ."+imp+" \"|\"}}", utils.BuildTags(tags))
-	cmd.Dir = path
+	cmd := utils.GoList("{{join .TestImports \"|\"}}|{{join .XTestImports \"|\"}}|{{join ."+imp+" \"|\"}}", utils.BuildTags(tags), path)
 	for k, v := range env {
 		cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", k, v))
 	}
@@ -152,8 +151,7 @@ func GetGoFiles(path, target, tagsCustom string) []string {
 	}
 
 	//TODO: cache
-	cmd := utils.GoList("{{join .GoFiles \"|\"}}|{{join .CgoFiles \"|\"}}|{{join .TestGoFiles \"|\"}}|{{join .XTestGoFiles \"|\"}}", "-find", utils.BuildTags(tags))
-	cmd.Dir = path
+	cmd := utils.GoList("{{join .GoFiles \"|\"}}|{{join .CgoFiles \"|\"}}|{{join .TestGoFiles \"|\"}}|{{join .XTestGoFiles \"|\"}}", "-find", utils.BuildTags(tags), path)
 	for k, v := range env {
 		cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", k, v))
 	}

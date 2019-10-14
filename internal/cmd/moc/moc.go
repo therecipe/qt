@@ -93,8 +93,7 @@ func moc(path, target, tags string, fast, slow, root bool, l int, dirty bool) {
 	if !dirty {
 		for _, f := range []bool{false, true} {
 			env, tagsEnv, _, _ := cmd.BuildEnv(target, "", "")
-			scmd := utils.GoList("{{.Stale}}|{{.StaleReason}}")
-			scmd.Dir = path
+			scmd := utils.GoList("{{.Stale}}|{{.StaleReason}}", path)
 
 			if ((!fast && !utils.QT_FAT()) || f) && !((!fast && !utils.QT_FAT()) && f) {
 				tagsEnv = append(tagsEnv, "minimal")
@@ -361,8 +360,7 @@ func moc(path, target, tags string, fast, slow, root bool, l int, dirty bool) {
 	var staleCheck string
 	if !(target == "js" || target == "wasm" || utils.QT_NOT_CACHED()) { //TODO: remove for module support + resolve dependencies
 		env, tagsEnv, _, _ := cmd.BuildEnv(target, "", "")
-		scmd := utils.GoList("{{.Stale}}|{{.StaleReason}}")
-		scmd.Dir = path
+		scmd := utils.GoList("{{.Stale}}|{{.StaleReason}}", path)
 
 		if !fast && !utils.QT_FAT() {
 			tagsEnv = append(tagsEnv, "minimal")

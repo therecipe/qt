@@ -27,6 +27,13 @@ Controller.prototype.IntroductionPageCallback = function()
   gui.clickButton(buttons.NextButton);
 }
 
+Controller.prototype.DynamicTelemetryPluginFormCallback = function()
+{
+  var page = gui.pageWidgetByObjectName("DynamicTelemetryPluginForm");
+  page.statisticGroupBox.disableStatisticRadioButton.setChecked(true);
+  gui.clickButton(buttons.NextButton);
+}
+
 Controller.prototype.TargetDirectoryPageCallback = function()
 {
   gui.clickButton(buttons.NextButton);

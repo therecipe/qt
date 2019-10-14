@@ -41,8 +41,7 @@ func Minimal(path, target, tags string) {
 
 	if !(target == "js" || target == "wasm" || utils.QT_NOT_CACHED()) { //TODO: remove for module support + resolve dependencies
 		env, tagsEnv, _, _ := cmd.BuildEnv(target, "", "")
-		scmd := utils.GoList("{{.Stale}}|{{.StaleReason}}")
-		scmd.Dir = path
+		scmd := utils.GoList("{{.Stale}}|{{.StaleReason}}", path)
 
 		tagsEnv = append(tagsEnv, "minimal")
 
