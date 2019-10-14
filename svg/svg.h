@@ -9,6 +9,7 @@
 
 #ifdef __cplusplus
 int QGraphicsSvgItem_QGraphicsSvgItem_QRegisterMetaType();
+int QSvgGenerator_QSvgGenerator_QRegisterMetaType();
 int QSvgRenderer_QSvgRenderer_QRegisterMetaType();
 int QSvgWidget_QSvgWidget_QRegisterMetaType();
 extern "C" {

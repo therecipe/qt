@@ -90,6 +90,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQVirtualKeyboardAbstractInputMethod_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QVirtualKeyboardAbstractInputMethod*)
 Q_DECLARE_METATYPE(MyQVirtualKeyboardAbstractInputMethod*)
 
 int QVirtualKeyboardAbstractInputMethod_QVirtualKeyboardAbstractInputMethod_QRegisterMetaType(){qRegisterMetaType<QVirtualKeyboardAbstractInputMethod*>(); return qRegisterMetaType<MyQVirtualKeyboardAbstractInputMethod*>();}
@@ -613,6 +614,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQVirtualKeyboardExtensionPlugin_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QVirtualKeyboardExtensionPlugin*)
 Q_DECLARE_METATYPE(MyQVirtualKeyboardExtensionPlugin*)
 
 int QVirtualKeyboardExtensionPlugin_QVirtualKeyboardExtensionPlugin_QRegisterMetaType(){qRegisterMetaType<QVirtualKeyboardExtensionPlugin*>(); return qRegisterMetaType<MyQVirtualKeyboardExtensionPlugin*>();}
@@ -785,6 +787,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQVirtualKeyboardInputContext_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QVirtualKeyboardInputContext*)
 Q_DECLARE_METATYPE(MyQVirtualKeyboardInputContext*)
 
 int QVirtualKeyboardInputContext_QVirtualKeyboardInputContext_QRegisterMetaType(){qRegisterMetaType<QVirtualKeyboardInputContext*>(); return qRegisterMetaType<MyQVirtualKeyboardInputContext*>();}
@@ -1323,6 +1326,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQVirtualKeyboardInputEngine_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QVirtualKeyboardInputEngine*)
 Q_DECLARE_METATYPE(MyQVirtualKeyboardInputEngine*)
 
 int QVirtualKeyboardInputEngine_QVirtualKeyboardInputEngine_QRegisterMetaType(){qRegisterMetaType<QVirtualKeyboardInputEngine*>(); return qRegisterMetaType<MyQVirtualKeyboardInputEngine*>();}
@@ -1888,6 +1892,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQVirtualKeyboardSelectionListModel_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QVirtualKeyboardSelectionListModel*)
 Q_DECLARE_METATYPE(MyQVirtualKeyboardSelectionListModel*)
 
 int QVirtualKeyboardSelectionListModel_QVirtualKeyboardSelectionListModel_QRegisterMetaType(){qRegisterMetaType<QVirtualKeyboardSelectionListModel*>(); return qRegisterMetaType<MyQVirtualKeyboardSelectionListModel*>();}
@@ -2525,6 +2530,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQVirtualKeyboardTrace_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QVirtualKeyboardTrace*)
 Q_DECLARE_METATYPE(MyQVirtualKeyboardTrace*)
 
 int QVirtualKeyboardTrace_QVirtualKeyboardTrace_QRegisterMetaType(){qRegisterMetaType<QVirtualKeyboardTrace*>(); return qRegisterMetaType<MyQVirtualKeyboardTrace*>();}

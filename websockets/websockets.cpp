@@ -69,6 +69,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMaskGenerator_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QMaskGenerator*)
 Q_DECLARE_METATYPE(MyQMaskGenerator*)
 
 int QMaskGenerator_QMaskGenerator_QRegisterMetaType(){qRegisterMetaType<QMaskGenerator*>(); return qRegisterMetaType<MyQMaskGenerator*>();}
@@ -304,6 +305,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWebSocket_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QWebSocket*)
 Q_DECLARE_METATYPE(MyQWebSocket*)
 
 int QWebSocket_QWebSocket_QRegisterMetaType(){qRegisterMetaType<QWebSocket*>(); return qRegisterMetaType<MyQWebSocket*>();}
@@ -965,6 +967,7 @@ void QWebSocket_TimerEventDefault(void* ptr, void* event)
 		static_cast<QWebSocket*>(ptr)->QWebSocket::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
+Q_DECLARE_METATYPE(QWebSocketCorsAuthenticator*)
 void* QWebSocketCorsAuthenticator_NewQWebSocketCorsAuthenticator(struct QtWebSockets_PackedString origin)
 {
 	return new QWebSocketCorsAuthenticator(QString::fromUtf8(origin.data, origin.len));
@@ -1032,6 +1035,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWebSocketServer_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QWebSocketServer*)
 Q_DECLARE_METATYPE(MyQWebSocketServer*)
 
 int QWebSocketServer_QWebSocketServer_QRegisterMetaType(){qRegisterMetaType<QWebSocketServer*>(); return qRegisterMetaType<MyQWebSocketServer*>();}

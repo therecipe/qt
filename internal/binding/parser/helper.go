@@ -277,7 +277,7 @@ func shouldBuildForTarget(module, target string, min bool) bool {
 
 	case "android", "android-emulator":
 		switch module {
-		case "DBus", "WebEngine", "Designer", "SerialPort", "SerialBus", "PrintSupport", "VirtualKeyboard": //TODO: PrintSupport
+		case "DBus", "WebEngine", "Designer", "SerialPort", "SerialBus", "PrintSupport", "VirtualKeyboard", "UiTools": //TODO: PrintSupport
 			return false
 		}
 		if strings.HasSuffix(module, "Extras") && module != "AndroidExtras" {
@@ -286,7 +286,7 @@ func shouldBuildForTarget(module, target string, min bool) bool {
 
 	case "ios", "ios-simulator":
 		switch module {
-		case "DBus", "WebEngine", "SerialPort", "SerialBus", "Designer", "PrintSupport", "VirtualKeyboard": //TODO: PrintSupport
+		case "DBus", "WebEngine", "SerialPort", "SerialBus", "Designer", "PrintSupport", "VirtualKeyboard", "UiTools": //TODO: PrintSupport
 			return false
 		}
 		if strings.HasSuffix(module, "Extras") {

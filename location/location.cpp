@@ -51,6 +51,8 @@
 #include <QWidget>
 #include <QWindow>
 
+Q_DECLARE_METATYPE(QGeoManeuver)
+Q_DECLARE_METATYPE(QGeoManeuver*)
 void* QGeoManeuver_NewQGeoManeuver()
 {
 	return new QGeoManeuver();
@@ -215,6 +217,8 @@ void* QGeoManeuver_____setExtendedAttributes_extendedAttributes_keyList_newList(
 	return new QList<QString>();
 }
 
+Q_DECLARE_METATYPE(QGeoRoute)
+Q_DECLARE_METATYPE(QGeoRoute*)
 void* QGeoRoute_NewQGeoRoute()
 {
 	return new QGeoRoute();
@@ -468,6 +472,8 @@ void* QGeoRoute_____setExtendedAttributes_extendedAttributes_keyList_newList(voi
 	return new QList<QString>();
 }
 
+Q_DECLARE_METATYPE(QGeoRouteLeg)
+Q_DECLARE_METATYPE(QGeoRouteLeg*)
 void* QGeoRouteLeg_NewQGeoRouteLeg()
 {
 	return new QGeoRouteLeg();
@@ -526,6 +532,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQGeoRouteReply_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QGeoRouteReply*)
 Q_DECLARE_METATYPE(MyQGeoRouteReply*)
 
 int QGeoRouteReply_QGeoRouteReply_QRegisterMetaType(){qRegisterMetaType<QGeoRouteReply*>(); return qRegisterMetaType<MyQGeoRouteReply*>();}
@@ -908,6 +915,7 @@ void QGeoRouteReply_TimerEventDefault(void* ptr, void* event)
 		static_cast<QGeoRouteReply*>(ptr)->QGeoRouteReply::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
+Q_DECLARE_METATYPE(QGeoRouteRequest*)
 void* QGeoRouteRequest_NewQGeoRouteRequest(void* waypoints)
 {
 	return new QGeoRouteRequest(*static_cast<QList<QGeoCoordinate>*>(waypoints));
@@ -1362,6 +1370,8 @@ void* QGeoRouteRequest_______waypointsMetadata_setList_i_keyList_newList(void* p
 	return new QList<QString>();
 }
 
+Q_DECLARE_METATYPE(QGeoRouteSegment)
+Q_DECLARE_METATYPE(QGeoRouteSegment*)
 void* QGeoRouteSegment_NewQGeoRouteSegment()
 {
 	return new QGeoRouteSegment();
@@ -1488,6 +1498,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQGeoRoutingManager_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QGeoRoutingManager*)
 Q_DECLARE_METATYPE(MyQGeoRoutingManager*)
 
 int QGeoRoutingManager_QGeoRoutingManager_QRegisterMetaType(){qRegisterMetaType<QGeoRoutingManager*>(); return qRegisterMetaType<MyQGeoRoutingManager*>();}
@@ -1750,6 +1761,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQGeoRoutingManagerEngine_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QGeoRoutingManagerEngine*)
 Q_DECLARE_METATYPE(MyQGeoRoutingManagerEngine*)
 
 int QGeoRoutingManagerEngine_QGeoRoutingManagerEngine_QRegisterMetaType(){qRegisterMetaType<QGeoRoutingManagerEngine*>(); return qRegisterMetaType<MyQGeoRoutingManagerEngine*>();}
@@ -2127,6 +2139,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQGeoServiceProvider_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QGeoServiceProvider*)
 Q_DECLARE_METATYPE(MyQGeoServiceProvider*)
 
 int QGeoServiceProvider_QGeoServiceProvider_QRegisterMetaType(){qRegisterMetaType<QGeoServiceProvider*>(); return qRegisterMetaType<MyQGeoServiceProvider*>();}
@@ -2626,6 +2639,11 @@ class MyQGeoServiceProviderFactory: public QGeoServiceProviderFactory
 public:
 	 ~MyQGeoServiceProviderFactory() { callbackQGeoServiceProviderFactory_DestroyQGeoServiceProviderFactory(this); };
 };
+
+Q_DECLARE_METATYPE(QGeoServiceProviderFactory*)
+Q_DECLARE_METATYPE(MyQGeoServiceProviderFactory*)
+
+int QGeoServiceProviderFactory_QGeoServiceProviderFactory_QRegisterMetaType(){qRegisterMetaType<QGeoServiceProviderFactory*>(); return qRegisterMetaType<MyQGeoServiceProviderFactory*>();}
 
 void QGeoServiceProviderFactory_DestroyQGeoServiceProviderFactory(void* ptr)
 {

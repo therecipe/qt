@@ -76,6 +76,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQCanBus_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QCanBus*)
 Q_DECLARE_METATYPE(MyQCanBus*)
 
 int QCanBus_QCanBus_QRegisterMetaType(){qRegisterMetaType<QCanBus*>(); return qRegisterMetaType<MyQCanBus*>();}
@@ -269,6 +270,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQCanBusDevice_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QCanBusDevice*)
 Q_DECLARE_METATYPE(MyQCanBusDevice*)
 
 int QCanBusDevice_QCanBusDevice_QRegisterMetaType(){qRegisterMetaType<QCanBusDevice*>(); return qRegisterMetaType<MyQCanBusDevice*>();}
@@ -705,6 +707,11 @@ public:
 	QCanBusDevice * createDevice(const QString & interfaceName, QString * errorMessage) const { QByteArray tf83f00 = interfaceName.toUtf8(); QtSerialBus_PackedString interfaceNamePacked = { const_cast<char*>(tf83f00.prepend("WHITESPACE").constData()+10), tf83f00.size()-10 };QByteArray t3f2abc = errorMessage->toUtf8(); QtSerialBus_PackedString errorMessagePacked = { const_cast<char*>(t3f2abc.prepend("WHITESPACE").constData()+10), t3f2abc.size()-10 };return static_cast<QCanBusDevice*>(callbackQCanBusFactory_CreateDevice(const_cast<void*>(static_cast<const void*>(this)), interfaceNamePacked, errorMessagePacked)); };
 };
 
+Q_DECLARE_METATYPE(QCanBusFactory*)
+Q_DECLARE_METATYPE(MyQCanBusFactory*)
+
+int QCanBusFactory_QCanBusFactory_QRegisterMetaType(){qRegisterMetaType<QCanBusFactory*>(); return qRegisterMetaType<MyQCanBusFactory*>();}
+
 void* QCanBusFactory_CreateDevice(void* ptr, struct QtSerialBus_PackedString interfaceName, struct QtSerialBus_PackedString errorMessage)
 {
 	return static_cast<QCanBusFactory*>(ptr)->createDevice(QString::fromUtf8(interfaceName.data, interfaceName.len), new QString(QString::fromUtf8(errorMessage.data, errorMessage.len)));
@@ -716,6 +723,11 @@ public:
 	QList<QCanBusDeviceInfo> availableDevices(QString * errorMessage) const { QByteArray t3f2abc = errorMessage->toUtf8(); QtSerialBus_PackedString errorMessagePacked = { const_cast<char*>(t3f2abc.prepend("WHITESPACE").constData()+10), t3f2abc.size()-10 };return ({ QList<QCanBusDeviceInfo>* tmpP = static_cast<QList<QCanBusDeviceInfo>*>(callbackQCanBusFactoryV2_AvailableDevices(const_cast<void*>(static_cast<const void*>(this)), errorMessagePacked)); QList<QCanBusDeviceInfo> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
 	QCanBusDevice * createDevice(const QString & interfaceName, QString * errorMessage) const { QByteArray tf83f00 = interfaceName.toUtf8(); QtSerialBus_PackedString interfaceNamePacked = { const_cast<char*>(tf83f00.prepend("WHITESPACE").constData()+10), tf83f00.size()-10 };QByteArray t3f2abc = errorMessage->toUtf8(); QtSerialBus_PackedString errorMessagePacked = { const_cast<char*>(t3f2abc.prepend("WHITESPACE").constData()+10), t3f2abc.size()-10 };return static_cast<QCanBusDevice*>(callbackQCanBusFactoryV2_CreateDevice(const_cast<void*>(static_cast<const void*>(this)), interfaceNamePacked, errorMessagePacked)); };
 };
+
+Q_DECLARE_METATYPE(QCanBusFactoryV2*)
+Q_DECLARE_METATYPE(MyQCanBusFactoryV2*)
+
+int QCanBusFactoryV2_QCanBusFactoryV2_QRegisterMetaType(){qRegisterMetaType<QCanBusFactoryV2*>(); return qRegisterMetaType<MyQCanBusFactoryV2*>();}
 
 struct QtSerialBus_PackedList QCanBusFactoryV2_AvailableDevices(void* ptr, struct QtSerialBus_PackedString errorMessage)
 {
@@ -743,6 +755,7 @@ void* QCanBusFactoryV2___availableDevices_newList(void* ptr)
 	return new QList<QCanBusDeviceInfo>();
 }
 
+Q_DECLARE_METATYPE(QCanBusFrame*)
 int QCanBusFrame_TransmissionTimeoutError_Type()
 {
 	return QCanBusFrame::TransmissionTimeoutError;
@@ -932,6 +945,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQModbusDevice_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QModbusClient*)
 Q_DECLARE_METATYPE(MyQModbusClient*)
 
 int QModbusClient_QModbusClient_QRegisterMetaType(){qRegisterMetaType<QModbusClient*>(); return qRegisterMetaType<MyQModbusClient*>();}
@@ -1102,6 +1116,8 @@ char QModbusClient_OpenDefault(void* ptr)
 	}
 }
 
+Q_DECLARE_METATYPE(QModbusDataUnit)
+Q_DECLARE_METATYPE(QModbusDataUnit*)
 void* QModbusDataUnit_NewQModbusDataUnit()
 {
 	return new QModbusDataUnit();
@@ -1279,6 +1295,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQModbusDevice_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QModbusDevice*)
 Q_DECLARE_METATYPE(MyQModbusDevice*)
 
 int QModbusDevice_QModbusDevice_QRegisterMetaType(){qRegisterMetaType<QModbusDevice*>(); return qRegisterMetaType<MyQModbusDevice*>();}
@@ -1679,6 +1696,7 @@ void QModbusDevice_TimerEventDefault(void* ptr, void* event)
 	}
 }
 
+Q_DECLARE_METATYPE(QModbusDeviceIdentification*)
 void* QModbusDeviceIdentification_NewQModbusDeviceIdentification()
 {
 	return new QModbusDeviceIdentification();
@@ -1822,11 +1840,16 @@ void* QModbusDeviceIdentification_____setM_objects__keyList_newList(void* ptr)
 class MyQModbusExceptionResponse: public QModbusExceptionResponse
 {
 public:
-	MyQModbusExceptionResponse() : QModbusExceptionResponse() {};
-	MyQModbusExceptionResponse(const QModbusPdu &pdu) : QModbusExceptionResponse(pdu) {};
-	MyQModbusExceptionResponse(QModbusPdu::FunctionCode code, QModbusPdu::ExceptionCode ec) : QModbusExceptionResponse(code, ec) {};
+	MyQModbusExceptionResponse() : QModbusExceptionResponse() {QModbusExceptionResponse_QModbusExceptionResponse_QRegisterMetaType();};
+	MyQModbusExceptionResponse(const QModbusPdu &pdu) : QModbusExceptionResponse(pdu) {QModbusExceptionResponse_QModbusExceptionResponse_QRegisterMetaType();};
+	MyQModbusExceptionResponse(QModbusPdu::FunctionCode code, QModbusPdu::ExceptionCode ec) : QModbusExceptionResponse(code, ec) {QModbusExceptionResponse_QModbusExceptionResponse_QRegisterMetaType();};
 	void setFunctionCode(QModbusPdu::FunctionCode c) { callbackQModbusPdu_SetFunctionCode(this, c); };
 };
+
+Q_DECLARE_METATYPE(QModbusExceptionResponse*)
+Q_DECLARE_METATYPE(MyQModbusExceptionResponse*)
+
+int QModbusExceptionResponse_QModbusExceptionResponse_QRegisterMetaType(){qRegisterMetaType<QModbusExceptionResponse*>(); return qRegisterMetaType<MyQModbusExceptionResponse*>();}
 
 void* QModbusExceptionResponse_NewQModbusExceptionResponse()
 {
@@ -1851,12 +1874,17 @@ void QModbusExceptionResponse_SetExceptionCode(void* ptr, long long ec)
 class MyQModbusPdu: public QModbusPdu
 {
 public:
-	MyQModbusPdu() : QModbusPdu() {};
-	MyQModbusPdu(QModbusPdu::FunctionCode code, const QByteArray &data) : QModbusPdu(code, data) {};
-	MyQModbusPdu(const QModbusPdu &other) : QModbusPdu(other) {};
+	MyQModbusPdu() : QModbusPdu() {QModbusPdu_QModbusPdu_QRegisterMetaType();};
+	MyQModbusPdu(QModbusPdu::FunctionCode code, const QByteArray &data) : QModbusPdu(code, data) {QModbusPdu_QModbusPdu_QRegisterMetaType();};
+	MyQModbusPdu(const QModbusPdu &other) : QModbusPdu(other) {QModbusPdu_QModbusPdu_QRegisterMetaType();};
 	void setFunctionCode(QModbusPdu::FunctionCode code) { callbackQModbusPdu_SetFunctionCode(this, code); };
 	 ~MyQModbusPdu() { callbackQModbusPdu_DestroyQModbusPdu(this); };
 };
+
+Q_DECLARE_METATYPE(QModbusPdu*)
+Q_DECLARE_METATYPE(MyQModbusPdu*)
+
+int QModbusPdu_QModbusPdu_QRegisterMetaType(){qRegisterMetaType<QModbusPdu*>(); return qRegisterMetaType<MyQModbusPdu*>();}
 
 void* QModbusPdu_NewQModbusPdu()
 {
@@ -1982,6 +2010,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQModbusReply_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QModbusReply*)
 Q_DECLARE_METATYPE(MyQModbusReply*)
 
 int QModbusReply_QModbusReply_QRegisterMetaType(){qRegisterMetaType<QModbusReply*>(); return qRegisterMetaType<MyQModbusReply*>();}
@@ -2227,11 +2256,16 @@ void QModbusReply_TimerEventDefault(void* ptr, void* event)
 class MyQModbusRequest: public QModbusRequest
 {
 public:
-	MyQModbusRequest() : QModbusRequest() {};
-	MyQModbusRequest(const QModbusPdu &pdu) : QModbusRequest(pdu) {};
-	MyQModbusRequest(QModbusPdu::FunctionCode code, const QByteArray &data = QByteArray()) : QModbusRequest(code, data) {};
+	MyQModbusRequest() : QModbusRequest() {QModbusRequest_QModbusRequest_QRegisterMetaType();};
+	MyQModbusRequest(const QModbusPdu &pdu) : QModbusRequest(pdu) {QModbusRequest_QModbusRequest_QRegisterMetaType();};
+	MyQModbusRequest(QModbusPdu::FunctionCode code, const QByteArray &data = QByteArray()) : QModbusRequest(code, data) {QModbusRequest_QModbusRequest_QRegisterMetaType();};
 	void setFunctionCode(QModbusPdu::FunctionCode code) { callbackQModbusPdu_SetFunctionCode(this, code); };
 };
+
+Q_DECLARE_METATYPE(QModbusRequest*)
+Q_DECLARE_METATYPE(MyQModbusRequest*)
+
+int QModbusRequest_QModbusRequest_QRegisterMetaType(){qRegisterMetaType<QModbusRequest*>(); return qRegisterMetaType<MyQModbusRequest*>();}
 
 void* QModbusRequest_NewQModbusRequest()
 {
@@ -2261,11 +2295,16 @@ int QModbusRequest_QModbusRequest_MinimumDataSize(void* request)
 class MyQModbusResponse: public QModbusResponse
 {
 public:
-	MyQModbusResponse() : QModbusResponse() {};
-	MyQModbusResponse(const QModbusPdu &pdu) : QModbusResponse(pdu) {};
-	MyQModbusResponse(QModbusPdu::FunctionCode code, const QByteArray &data = QByteArray()) : QModbusResponse(code, data) {};
+	MyQModbusResponse() : QModbusResponse() {QModbusResponse_QModbusResponse_QRegisterMetaType();};
+	MyQModbusResponse(const QModbusPdu &pdu) : QModbusResponse(pdu) {QModbusResponse_QModbusResponse_QRegisterMetaType();};
+	MyQModbusResponse(QModbusPdu::FunctionCode code, const QByteArray &data = QByteArray()) : QModbusResponse(code, data) {QModbusResponse_QModbusResponse_QRegisterMetaType();};
 	void setFunctionCode(QModbusPdu::FunctionCode code) { callbackQModbusPdu_SetFunctionCode(this, code); };
 };
+
+Q_DECLARE_METATYPE(QModbusResponse*)
+Q_DECLARE_METATYPE(MyQModbusResponse*)
+
+int QModbusResponse_QModbusResponse_QRegisterMetaType(){qRegisterMetaType<QModbusResponse*>(); return qRegisterMetaType<MyQModbusResponse*>();}
 
 void* QModbusResponse_NewQModbusResponse()
 {
@@ -2316,6 +2355,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQModbusDevice_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QModbusRtuSerialMaster*)
 Q_DECLARE_METATYPE(MyQModbusRtuSerialMaster*)
 
 int QModbusRtuSerialMaster_QModbusRtuSerialMaster_QRegisterMetaType(){qRegisterMetaType<QModbusRtuSerialMaster*>(); return qRegisterMetaType<MyQModbusRtuSerialMaster*>();}
@@ -2437,6 +2477,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQModbusDevice_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QModbusRtuSerialSlave*)
 Q_DECLARE_METATYPE(MyQModbusRtuSerialSlave*)
 
 int QModbusRtuSerialSlave_QModbusRtuSerialSlave_QRegisterMetaType(){qRegisterMetaType<QModbusRtuSerialSlave*>(); return qRegisterMetaType<MyQModbusRtuSerialSlave*>();}
@@ -2548,6 +2589,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQModbusDevice_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QModbusServer*)
 Q_DECLARE_METATYPE(MyQModbusServer*)
 
 int QModbusServer_QModbusServer_QRegisterMetaType(){qRegisterMetaType<QModbusServer*>(); return qRegisterMetaType<MyQModbusServer*>();}
@@ -2814,6 +2856,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQModbusDevice_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QModbusTcpClient*)
 Q_DECLARE_METATYPE(MyQModbusTcpClient*)
 
 int QModbusTcpClient_QModbusTcpClient_QRegisterMetaType(){qRegisterMetaType<QModbusTcpClient*>(); return qRegisterMetaType<MyQModbusTcpClient*>();}
@@ -2902,6 +2945,11 @@ public:
 	bool acceptNewConnection(QTcpSocket * newClient) { return callbackQModbusTcpConnectionObserver_AcceptNewConnection(this, newClient) != 0; };
 };
 
+Q_DECLARE_METATYPE(QModbusTcpConnectionObserver*)
+Q_DECLARE_METATYPE(MyQModbusTcpConnectionObserver*)
+
+int QModbusTcpConnectionObserver_QModbusTcpConnectionObserver_QRegisterMetaType(){qRegisterMetaType<QModbusTcpConnectionObserver*>(); return qRegisterMetaType<MyQModbusTcpConnectionObserver*>();}
+
 char QModbusTcpConnectionObserver_AcceptNewConnection(void* ptr, void* newClient)
 {
 	return static_cast<QModbusTcpConnectionObserver*>(ptr)->acceptNewConnection(static_cast<QTcpSocket*>(newClient));
@@ -2938,6 +2986,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQModbusDevice_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QModbusTcpServer*)
 Q_DECLARE_METATYPE(MyQModbusTcpServer*)
 
 int QModbusTcpServer_QModbusTcpServer_QRegisterMetaType(){qRegisterMetaType<QModbusTcpServer*>(); return qRegisterMetaType<MyQModbusTcpServer*>();}

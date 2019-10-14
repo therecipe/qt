@@ -56,6 +56,7 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackFelgoApplication_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(FelgoApplication*)
 Q_DECLARE_METATYPE(MyFelgoApplication*)
 
 int FelgoApplication_FelgoApplication_QRegisterMetaType(){qRegisterMetaType<FelgoApplication*>(); return qRegisterMetaType<MyFelgoApplication*>();}
@@ -450,6 +451,7 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackFelgoLiveClient_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(FelgoLiveClient*)
 Q_DECLARE_METATYPE(MyFelgoLiveClient*)
 
 int FelgoLiveClient_FelgoLiveClient_QRegisterMetaType(){qRegisterMetaType<FelgoLiveClient*>(); return qRegisterMetaType<MyFelgoLiveClient*>();}
@@ -523,9 +525,9 @@ struct QtFelgo_PackedString FelgoLiveClient_ClientName(void* ptr)
 	return ({ QByteArray t334812 = static_cast<FelgoLiveClient*>(ptr)->clientName().toUtf8(); QtFelgo_PackedString { const_cast<char*>(t334812.prepend("WHITESPACE").constData()+10), t334812.size()-10 }; });
 }
 
-void FelgoLiveClient_ConnectClientNameChanged(void* ptr)
+void FelgoLiveClient_ConnectClientNameChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<FelgoLiveClient*>(ptr), static_cast<void (FelgoLiveClient::*)(const QString &)>(&FelgoLiveClient::clientNameChanged), static_cast<MyFelgoLiveClient*>(ptr), static_cast<void (MyFelgoLiveClient::*)(const QString &)>(&MyFelgoLiveClient::Signal_ClientNameChanged));
+	QObject::connect(static_cast<FelgoLiveClient*>(ptr), static_cast<void (FelgoLiveClient::*)(const QString &)>(&FelgoLiveClient::clientNameChanged), static_cast<MyFelgoLiveClient*>(ptr), static_cast<void (MyFelgoLiveClient::*)(const QString &)>(&MyFelgoLiveClient::Signal_ClientNameChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void FelgoLiveClient_DisconnectClientNameChanged(void* ptr)
@@ -613,9 +615,9 @@ void FelgoLiveClient_OnProjectChangedDefault(void* ptr, struct QtFelgo_PackedStr
 		static_cast<FelgoLiveClient*>(ptr)->FelgoLiveClient::onProjectChanged(QString::fromUtf8(projectName.data, projectName.len), QString::fromUtf8(projectMainFile.data, projectMainFile.len));
 }
 
-void FelgoLiveClient_ConnectPendingProject(void* ptr)
+void FelgoLiveClient_ConnectPendingProject(void* ptr, long long t)
 {
-	QObject::connect(static_cast<FelgoLiveClient*>(ptr), static_cast<void (FelgoLiveClient::*)(const QString &, const QString &)>(&FelgoLiveClient::pendingProject), static_cast<MyFelgoLiveClient*>(ptr), static_cast<void (MyFelgoLiveClient::*)(const QString &, const QString &)>(&MyFelgoLiveClient::Signal_PendingProject));
+	QObject::connect(static_cast<FelgoLiveClient*>(ptr), static_cast<void (FelgoLiveClient::*)(const QString &, const QString &)>(&FelgoLiveClient::pendingProject), static_cast<MyFelgoLiveClient*>(ptr), static_cast<void (MyFelgoLiveClient::*)(const QString &, const QString &)>(&MyFelgoLiveClient::Signal_PendingProject), static_cast<Qt::ConnectionType>(t));
 }
 
 void FelgoLiveClient_DisconnectPendingProject(void* ptr)
@@ -638,9 +640,9 @@ void FelgoLiveClient_PrepareLoadingDocumentDefault(void* ptr)
 		static_cast<FelgoLiveClient*>(ptr)->FelgoLiveClient::prepareLoadingDocument();
 }
 
-void FelgoLiveClient_ConnectWebReceiverConnectionRefused(void* ptr)
+void FelgoLiveClient_ConnectWebReceiverConnectionRefused(void* ptr, long long t)
 {
-	QObject::connect(static_cast<FelgoLiveClient*>(ptr), static_cast<void (FelgoLiveClient::*)(const QString &)>(&FelgoLiveClient::webReceiverConnectionRefused), static_cast<MyFelgoLiveClient*>(ptr), static_cast<void (MyFelgoLiveClient::*)(const QString &)>(&MyFelgoLiveClient::Signal_WebReceiverConnectionRefused));
+	QObject::connect(static_cast<FelgoLiveClient*>(ptr), static_cast<void (FelgoLiveClient::*)(const QString &)>(&FelgoLiveClient::webReceiverConnectionRefused), static_cast<MyFelgoLiveClient*>(ptr), static_cast<void (MyFelgoLiveClient::*)(const QString &)>(&MyFelgoLiveClient::Signal_WebReceiverConnectionRefused), static_cast<Qt::ConnectionType>(t));
 }
 
 void FelgoLiveClient_DisconnectWebReceiverConnectionRefused(void* ptr)
@@ -653,9 +655,9 @@ void FelgoLiveClient_WebReceiverConnectionRefused(void* ptr, struct QtFelgo_Pack
 	static_cast<FelgoLiveClient*>(ptr)->webReceiverConnectionRefused(QString::fromUtf8(reason.data, reason.len));
 }
 
-void FelgoLiveClient_ConnectReceivedMatchId(void* ptr)
+void FelgoLiveClient_ConnectReceivedMatchId(void* ptr, long long t)
 {
-	QObject::connect(static_cast<FelgoLiveClient*>(ptr), static_cast<void (FelgoLiveClient::*)(const QString &)>(&FelgoLiveClient::receivedMatchId), static_cast<MyFelgoLiveClient*>(ptr), static_cast<void (MyFelgoLiveClient::*)(const QString &)>(&MyFelgoLiveClient::Signal_ReceivedMatchId));
+	QObject::connect(static_cast<FelgoLiveClient*>(ptr), static_cast<void (FelgoLiveClient::*)(const QString &)>(&FelgoLiveClient::receivedMatchId), static_cast<MyFelgoLiveClient*>(ptr), static_cast<void (MyFelgoLiveClient::*)(const QString &)>(&MyFelgoLiveClient::Signal_ReceivedMatchId), static_cast<Qt::ConnectionType>(t));
 }
 
 void FelgoLiveClient_DisconnectReceivedMatchId(void* ptr)
@@ -693,9 +695,9 @@ void FelgoLiveClient_ShakeDetectedDefault(void* ptr)
 		static_cast<FelgoLiveClient*>(ptr)->FelgoLiveClient::shakeDetected();
 }
 
-void FelgoLiveClient_ConnectWebReceiverConnected(void* ptr)
+void FelgoLiveClient_ConnectWebReceiverConnected(void* ptr, long long t)
 {
-	QObject::connect(static_cast<FelgoLiveClient*>(ptr), static_cast<void (FelgoLiveClient::*)()>(&FelgoLiveClient::webReceiverConnected), static_cast<MyFelgoLiveClient*>(ptr), static_cast<void (MyFelgoLiveClient::*)()>(&MyFelgoLiveClient::Signal_WebReceiverConnected));
+	QObject::connect(static_cast<FelgoLiveClient*>(ptr), static_cast<void (FelgoLiveClient::*)()>(&FelgoLiveClient::webReceiverConnected), static_cast<MyFelgoLiveClient*>(ptr), static_cast<void (MyFelgoLiveClient::*)()>(&MyFelgoLiveClient::Signal_WebReceiverConnected), static_cast<Qt::ConnectionType>(t));
 }
 
 void FelgoLiveClient_DisconnectWebReceiverConnected(void* ptr)

@@ -41,6 +41,7 @@
 #include <QWidget>
 #include <QWindow>
 
+Q_DECLARE_METATYPE(QAbstractItemModelTester*)
 void* QAbstractItemModelTester_NewQAbstractItemModelTester(void* model, void* parent)
 {
 	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(parent))) {
@@ -157,6 +158,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSignalSpy_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QSignalSpy*)
 Q_DECLARE_METATYPE(MyQSignalSpy*)
 
 int QSignalSpy_QSignalSpy_QRegisterMetaType(){qRegisterMetaType<QSignalSpy*>(); return qRegisterMetaType<MyQSignalSpy*>();}
@@ -380,6 +382,7 @@ void QSignalSpy_TimerEventDefault(void* ptr, void* event)
 		static_cast<QSignalSpy*>(ptr)->QSignalSpy::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
+Q_DECLARE_METATYPE(QTestEventList*)
 void* QTestEventList_NewQTestEventList()
 {
 	return new QTestEventList();

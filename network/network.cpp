@@ -118,6 +118,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractNetworkCache_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QAbstractNetworkCache*)
 Q_DECLARE_METATYPE(MyQAbstractNetworkCache*)
 
 int QAbstractNetworkCache_QAbstractNetworkCache_QRegisterMetaType(){qRegisterMetaType<QAbstractNetworkCache*>(); return qRegisterMetaType<MyQAbstractNetworkCache*>();}
@@ -436,6 +437,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractSocket_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QAbstractSocket*)
 Q_DECLARE_METATYPE(MyQAbstractSocket*)
 
 int QAbstractSocket_QAbstractSocket_QRegisterMetaType(){qRegisterMetaType<QAbstractSocket*>(); return qRegisterMetaType<MyQAbstractSocket*>();}
@@ -1302,6 +1304,8 @@ void QAbstractSocket_TimerEventDefault(void* ptr, void* event)
 	}
 }
 
+Q_DECLARE_METATYPE(QAuthenticator)
+Q_DECLARE_METATYPE(QAuthenticator*)
 void* QAuthenticator_NewQAuthenticator()
 {
 	return new QAuthenticator();
@@ -1399,6 +1403,8 @@ void* QAuthenticator_____options_keyList_newList(void* ptr)
 	return new QList<QString>();
 }
 
+Q_DECLARE_METATYPE(QDnsDomainNameRecord)
+Q_DECLARE_METATYPE(QDnsDomainNameRecord*)
 void* QDnsDomainNameRecord_NewQDnsDomainNameRecord()
 {
 	return new QDnsDomainNameRecord();
@@ -1434,6 +1440,8 @@ void QDnsDomainNameRecord_DestroyQDnsDomainNameRecord(void* ptr)
 	static_cast<QDnsDomainNameRecord*>(ptr)->~QDnsDomainNameRecord();
 }
 
+Q_DECLARE_METATYPE(QDnsHostAddressRecord)
+Q_DECLARE_METATYPE(QDnsHostAddressRecord*)
 void* QDnsHostAddressRecord_NewQDnsHostAddressRecord()
 {
 	return new QDnsHostAddressRecord();
@@ -1495,6 +1503,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQDnsLookup_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QDnsLookup*)
 Q_DECLARE_METATYPE(MyQDnsLookup*)
 
 int QDnsLookup_QDnsLookup_QRegisterMetaType(){qRegisterMetaType<QDnsLookup*>(); return qRegisterMetaType<MyQDnsLookup*>();}
@@ -2049,6 +2058,8 @@ void QDnsLookup_TimerEventDefault(void* ptr, void* event)
 		static_cast<QDnsLookup*>(ptr)->QDnsLookup::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
+Q_DECLARE_METATYPE(QDnsMailExchangeRecord)
+Q_DECLARE_METATYPE(QDnsMailExchangeRecord*)
 void* QDnsMailExchangeRecord_NewQDnsMailExchangeRecord()
 {
 	return new QDnsMailExchangeRecord();
@@ -2089,6 +2100,8 @@ void QDnsMailExchangeRecord_DestroyQDnsMailExchangeRecord(void* ptr)
 	static_cast<QDnsMailExchangeRecord*>(ptr)->~QDnsMailExchangeRecord();
 }
 
+Q_DECLARE_METATYPE(QDnsServiceRecord)
+Q_DECLARE_METATYPE(QDnsServiceRecord*)
 void* QDnsServiceRecord_NewQDnsServiceRecord()
 {
 	return new QDnsServiceRecord();
@@ -2139,6 +2152,8 @@ void QDnsServiceRecord_DestroyQDnsServiceRecord(void* ptr)
 	static_cast<QDnsServiceRecord*>(ptr)->~QDnsServiceRecord();
 }
 
+Q_DECLARE_METATYPE(QDnsTextRecord)
+Q_DECLARE_METATYPE(QDnsTextRecord*)
 void* QDnsTextRecord_NewQDnsTextRecord()
 {
 	return new QDnsTextRecord();
@@ -2190,6 +2205,8 @@ void* QDnsTextRecord___values_newList(void* ptr)
 	return new QList<QByteArray>();
 }
 
+Q_DECLARE_METATYPE(QHostAddress)
+Q_DECLARE_METATYPE(QHostAddress*)
 void* QHostAddress_NewQHostAddress()
 {
 	return new QHostAddress();
@@ -2345,6 +2362,7 @@ void QHostAddress_DestroyQHostAddress(void* ptr)
 	static_cast<QHostAddress*>(ptr)->~QHostAddress();
 }
 
+Q_DECLARE_METATYPE(QHostInfo*)
 void* QHostInfo_NewQHostInfo(int id)
 {
 	return new QHostInfo(id);
@@ -2472,6 +2490,8 @@ void* QHostInfo___setAddresses_addresses_newList(void* ptr)
 	return new QList<QHostAddress>();
 }
 
+Q_DECLARE_METATYPE(QHstsPolicy)
+Q_DECLARE_METATYPE(QHstsPolicy*)
 void* QHstsPolicy_NewQHstsPolicy()
 {
 	return new QHstsPolicy();
@@ -2551,6 +2571,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQHttpMultiPart_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QHttpMultiPart*)
 Q_DECLARE_METATYPE(MyQHttpMultiPart*)
 
 int QHttpMultiPart_QHttpMultiPart_QRegisterMetaType(){qRegisterMetaType<QHttpMultiPart*>(); return qRegisterMetaType<MyQHttpMultiPart*>();}
@@ -2805,6 +2826,8 @@ void QHttpMultiPart_TimerEventDefault(void* ptr, void* event)
 		static_cast<QHttpMultiPart*>(ptr)->QHttpMultiPart::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
+Q_DECLARE_METATYPE(QHttpPart)
+Q_DECLARE_METATYPE(QHttpPart*)
 void* QHttpPart_NewQHttpPart()
 {
 	return new QHttpPart();
@@ -2867,6 +2890,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQLocalServer_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QLocalServer*)
 Q_DECLARE_METATYPE(MyQLocalServer*)
 
 int QLocalServer_QLocalServer_QRegisterMetaType(){qRegisterMetaType<QLocalServer*>(); return qRegisterMetaType<MyQLocalServer*>();}
@@ -3208,6 +3232,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQLocalSocket_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QLocalSocket*)
 Q_DECLARE_METATYPE(MyQLocalSocket*)
 
 int QLocalSocket_QLocalSocket_QRegisterMetaType(){qRegisterMetaType<QLocalSocket*>(); return qRegisterMetaType<MyQLocalSocket*>();}
@@ -3647,6 +3672,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQNetworkAccessManager_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QNetworkAccessManager*)
 Q_DECLARE_METATYPE(MyQNetworkAccessManager*)
 
 int QNetworkAccessManager_QNetworkAccessManager_QRegisterMetaType(){qRegisterMetaType<QNetworkAccessManager*>(); return qRegisterMetaType<MyQNetworkAccessManager*>();}
@@ -4205,6 +4231,7 @@ void QNetworkAccessManager_TimerEventDefault(void* ptr, void* event)
 		static_cast<QNetworkAccessManager*>(ptr)->QNetworkAccessManager::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
+Q_DECLARE_METATYPE(QNetworkAddressEntry*)
 void* QNetworkAddressEntry_NewQNetworkAddressEntry()
 {
 	return new QNetworkAddressEntry();
@@ -4300,6 +4327,8 @@ void QNetworkAddressEntry_DestroyQNetworkAddressEntry(void* ptr)
 	static_cast<QNetworkAddressEntry*>(ptr)->~QNetworkAddressEntry();
 }
 
+Q_DECLARE_METATYPE(QNetworkCacheMetaData)
+Q_DECLARE_METATYPE(QNetworkCacheMetaData*)
 void* QNetworkCacheMetaData_NewQNetworkCacheMetaData()
 {
 	return new QNetworkCacheMetaData();
@@ -4407,6 +4436,7 @@ void* QNetworkCacheMetaData___setRawHeaders_list_newList(void* ptr)
 	return new QList<QNetworkCacheMetaData::RawHeader>();
 }
 
+Q_DECLARE_METATYPE(QNetworkConfiguration*)
 void* QNetworkConfiguration_NewQNetworkConfiguration()
 {
 	return new QNetworkConfiguration();
@@ -4532,6 +4562,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQNetworkConfigurationManager_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QNetworkConfigurationManager*)
 Q_DECLARE_METATYPE(MyQNetworkConfigurationManager*)
 
 int QNetworkConfigurationManager_QNetworkConfigurationManager_QRegisterMetaType(){qRegisterMetaType<QNetworkConfigurationManager*>(); return qRegisterMetaType<MyQNetworkConfigurationManager*>();}
@@ -4845,6 +4876,7 @@ void QNetworkConfigurationManager_TimerEventDefault(void* ptr, void* event)
 		static_cast<QNetworkConfigurationManager*>(ptr)->QNetworkConfigurationManager::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
+Q_DECLARE_METATYPE(QNetworkCookie*)
 void* QNetworkCookie_NewQNetworkCookie(void* name, void* value)
 {
 	return new QNetworkCookie(*static_cast<QByteArray*>(name), *static_cast<QByteArray*>(value));
@@ -5000,6 +5032,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQNetworkCookieJar_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QNetworkCookieJar*)
 Q_DECLARE_METATYPE(MyQNetworkCookieJar*)
 
 int QNetworkCookieJar_QNetworkCookieJar_QRegisterMetaType(){qRegisterMetaType<QNetworkCookieJar*>(); return qRegisterMetaType<MyQNetworkCookieJar*>();}
@@ -5321,6 +5354,7 @@ void QNetworkCookieJar_TimerEventDefault(void* ptr, void* event)
 		static_cast<QNetworkCookieJar*>(ptr)->QNetworkCookieJar::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
+Q_DECLARE_METATYPE(QNetworkDatagram*)
 void* QNetworkDatagram_NewQNetworkDatagram()
 {
 	return new QNetworkDatagram();
@@ -5453,6 +5487,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractNetworkCache_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QNetworkDiskCache*)
 Q_DECLARE_METATYPE(MyQNetworkDiskCache*)
 
 int QNetworkDiskCache_QNetworkDiskCache_QRegisterMetaType(){qRegisterMetaType<QNetworkDiskCache*>(); return qRegisterMetaType<MyQNetworkDiskCache*>();}
@@ -5630,6 +5665,7 @@ void QNetworkDiskCache_DestroyQNetworkDiskCacheDefault(void* ptr)
 
 }
 
+Q_DECLARE_METATYPE(QNetworkInterface*)
 void* QNetworkInterface_NewQNetworkInterface()
 {
 	return new QNetworkInterface();
@@ -5773,6 +5809,7 @@ void* QNetworkInterface___allInterfaces_newList(void* ptr)
 	return new QList<QNetworkInterface>();
 }
 
+Q_DECLARE_METATYPE(QNetworkProxy*)
 void* QNetworkProxy_NewQNetworkProxy()
 {
 	return new QNetworkProxy();
@@ -5927,10 +5964,15 @@ void* QNetworkProxy___rawHeaderList_newList(void* ptr)
 class MyQNetworkProxyFactory: public QNetworkProxyFactory
 {
 public:
-	MyQNetworkProxyFactory() : QNetworkProxyFactory() {};
+	MyQNetworkProxyFactory() : QNetworkProxyFactory() {QNetworkProxyFactory_QNetworkProxyFactory_QRegisterMetaType();};
 	QList<QNetworkProxy> queryProxy(const QNetworkProxyQuery & query) { return ({ QList<QNetworkProxy>* tmpP = static_cast<QList<QNetworkProxy>*>(callbackQNetworkProxyFactory_QueryProxy(this, const_cast<QNetworkProxyQuery*>(&query))); QList<QNetworkProxy> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
 	 ~MyQNetworkProxyFactory() { callbackQNetworkProxyFactory_DestroyQNetworkProxyFactory(this); };
 };
+
+Q_DECLARE_METATYPE(QNetworkProxyFactory*)
+Q_DECLARE_METATYPE(MyQNetworkProxyFactory*)
+
+int QNetworkProxyFactory_QNetworkProxyFactory_QRegisterMetaType(){qRegisterMetaType<QNetworkProxyFactory*>(); return qRegisterMetaType<MyQNetworkProxyFactory*>();}
 
 void* QNetworkProxyFactory_NewQNetworkProxyFactory()
 {
@@ -6026,6 +6068,8 @@ void* QNetworkProxyFactory___systemProxyForQuery_newList(void* ptr)
 	return new QList<QNetworkProxy>();
 }
 
+Q_DECLARE_METATYPE(QNetworkProxyQuery)
+Q_DECLARE_METATYPE(QNetworkProxyQuery*)
 void* QNetworkProxyQuery_NewQNetworkProxyQuery()
 {
 	return new QNetworkProxyQuery();
@@ -6177,6 +6221,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQNetworkReply_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QNetworkReply*)
 Q_DECLARE_METATYPE(MyQNetworkReply*)
 
 int QNetworkReply_QNetworkReply_QRegisterMetaType(){qRegisterMetaType<QNetworkReply*>(); return qRegisterMetaType<MyQNetworkReply*>();}
@@ -6847,6 +6892,7 @@ void QNetworkReply_TimerEventDefault(void* ptr, void* event)
 		static_cast<QNetworkReply*>(ptr)->QNetworkReply::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
+Q_DECLARE_METATYPE(QNetworkRequest*)
 void* QNetworkRequest_NewQNetworkRequest(void* url)
 {
 	return new QNetworkRequest(*static_cast<QUrl*>(url));
@@ -7015,6 +7061,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQNetworkSession_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QNetworkSession*)
 Q_DECLARE_METATYPE(MyQNetworkSession*)
 
 int QNetworkSession_QNetworkSession_QRegisterMetaType(){qRegisterMetaType<QNetworkSession*>(); return qRegisterMetaType<MyQNetworkSession*>();}
@@ -7445,6 +7492,7 @@ void QNetworkSession_TimerEventDefault(void* ptr, void* event)
 		static_cast<QNetworkSession*>(ptr)->QNetworkSession::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
+Q_DECLARE_METATYPE(QOcspResponse*)
 void* QOcspResponse_NewQOcspResponse()
 {
 	return new QOcspResponse();
@@ -7475,6 +7523,7 @@ void QOcspResponse_DestroyQOcspResponse(void* ptr)
 	static_cast<QOcspResponse*>(ptr)->~QOcspResponse();
 }
 
+Q_DECLARE_METATYPE(QSslCertificate*)
 void* QSslCertificate_NewQSslCertificate(void* device, long long format)
 {
 	return new QSslCertificate(static_cast<QIODevice*>(device), static_cast<QSsl::EncodingFormat>(format));
@@ -7821,6 +7870,8 @@ void* QSslCertificate_____subjectAlternativeNames_keyList_newList(void* ptr)
 	return new QList<QSsl::AlternativeNameEntryType>();
 }
 
+Q_DECLARE_METATYPE(QSslCertificateExtension)
+Q_DECLARE_METATYPE(QSslCertificateExtension*)
 void* QSslCertificateExtension_NewQSslCertificateExtension()
 {
 	return new QSslCertificateExtension();
@@ -7866,6 +7917,8 @@ void QSslCertificateExtension_DestroyQSslCertificateExtension(void* ptr)
 	static_cast<QSslCertificateExtension*>(ptr)->~QSslCertificateExtension();
 }
 
+Q_DECLARE_METATYPE(QSslCipher)
+Q_DECLARE_METATYPE(QSslCipher*)
 void* QSslCipher_NewQSslCipher()
 {
 	return new QSslCipher();
@@ -7941,6 +7994,7 @@ void QSslCipher_DestroyQSslCipher(void* ptr)
 	static_cast<QSslCipher*>(ptr)->~QSslCipher();
 }
 
+Q_DECLARE_METATYPE(QSslConfiguration*)
 void* QSslConfiguration_NewQSslConfiguration()
 {
 	return new QSslConfiguration();
@@ -8484,6 +8538,8 @@ void* QSslConfiguration_____setBackendConfiguration_backendConfiguration_keyList
 	return new QList<QByteArray>();
 }
 
+Q_DECLARE_METATYPE(QSslDiffieHellmanParameters)
+Q_DECLARE_METATYPE(QSslDiffieHellmanParameters*)
 void* QSslDiffieHellmanParameters_NewQSslDiffieHellmanParameters()
 {
 	return new QSslDiffieHellmanParameters();
@@ -8544,6 +8600,7 @@ void QSslDiffieHellmanParameters_DestroyQSslDiffieHellmanParameters(void* ptr)
 	static_cast<QSslDiffieHellmanParameters*>(ptr)->~QSslDiffieHellmanParameters();
 }
 
+Q_DECLARE_METATYPE(QSslEllipticCurve*)
 void* QSslEllipticCurve_NewQSslEllipticCurve()
 {
 	return new QSslEllipticCurve();
@@ -8579,6 +8636,8 @@ struct QtNetwork_PackedString QSslEllipticCurve_ShortName(void* ptr)
 	return ({ QByteArray tb6e6fc = static_cast<QSslEllipticCurve*>(ptr)->shortName().toUtf8(); QtNetwork_PackedString { const_cast<char*>(tb6e6fc.prepend("WHITESPACE").constData()+10), tb6e6fc.size()-10 }; });
 }
 
+Q_DECLARE_METATYPE(QSslError)
+Q_DECLARE_METATYPE(QSslError*)
 void* QSslError_NewQSslError()
 {
 	return new QSslError();
@@ -8624,6 +8683,8 @@ void QSslError_DestroyQSslError(void* ptr)
 	static_cast<QSslError*>(ptr)->~QSslError();
 }
 
+Q_DECLARE_METATYPE(QSslKey)
+Q_DECLARE_METATYPE(QSslKey*)
 void* QSslKey_NewQSslKey()
 {
 	return new QSslKey();
@@ -8808,6 +8869,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractSocket_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QSslSocket*)
 Q_DECLARE_METATYPE(MyQSslSocket*)
 
 int QSslSocket_QSslSocket_QRegisterMetaType(){qRegisterMetaType<QSslSocket*>(); return qRegisterMetaType<MyQSslSocket*>();}
@@ -9531,6 +9593,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQTcpServer_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QTcpServer*)
 Q_DECLARE_METATYPE(MyQTcpServer*)
 
 int QTcpServer_QTcpServer_QRegisterMetaType(){qRegisterMetaType<QTcpServer*>(); return qRegisterMetaType<MyQTcpServer*>();}
@@ -9899,6 +9962,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractSocket_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QTcpSocket*)
 Q_DECLARE_METATYPE(MyQTcpSocket*)
 
 int QTcpSocket_QTcpSocket_QRegisterMetaType(){qRegisterMetaType<QTcpSocket*>(); return qRegisterMetaType<MyQTcpSocket*>();}
@@ -10016,6 +10080,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractSocket_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QUdpSocket*)
 Q_DECLARE_METATYPE(MyQUdpSocket*)
 
 int QUdpSocket_QUdpSocket_QRegisterMetaType(){qRegisterMetaType<QUdpSocket*>(); return qRegisterMetaType<MyQUdpSocket*>();}

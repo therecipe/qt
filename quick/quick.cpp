@@ -128,7 +128,7 @@
 class MyQQuickAsyncImageProvider: public QQuickAsyncImageProvider
 {
 public:
-	MyQQuickAsyncImageProvider() : QQuickAsyncImageProvider() {};
+	MyQQuickAsyncImageProvider() : QQuickAsyncImageProvider() {QQuickAsyncImageProvider_QQuickAsyncImageProvider_QRegisterMetaType();};
 	QQuickImageResponse * requestImageResponse(const QString & id, const QSize & requestedSize) { QByteArray t87ea5d = id.toUtf8(); QtQuick_PackedString idPacked = { const_cast<char*>(t87ea5d.prepend("WHITESPACE").constData()+10), t87ea5d.size()-10 };return static_cast<QQuickImageResponse*>(callbackQQuickAsyncImageProvider_RequestImageResponse(this, idPacked, const_cast<QSize*>(&requestedSize))); };
 	 ~MyQQuickAsyncImageProvider() { callbackQQuickAsyncImageProvider_DestroyQQuickAsyncImageProvider(this); };
 	QQmlImageProviderBase::Flags flags() const { return static_cast<QQmlImageProviderBase::Flag>(callbackQQuickImageProvider_Flags(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -137,6 +137,11 @@ public:
 	QPixmap requestPixmap(const QString & id, QSize * size, const QSize & requestedSize) { QByteArray t87ea5d = id.toUtf8(); QtQuick_PackedString idPacked = { const_cast<char*>(t87ea5d.prepend("WHITESPACE").constData()+10), t87ea5d.size()-10 };return *static_cast<QPixmap*>(callbackQQuickImageProvider_RequestPixmap(this, idPacked, size, const_cast<QSize*>(&requestedSize))); };
 	QQuickTextureFactory * requestTexture(const QString & id, QSize * size, const QSize & requestedSize) { QByteArray t87ea5d = id.toUtf8(); QtQuick_PackedString idPacked = { const_cast<char*>(t87ea5d.prepend("WHITESPACE").constData()+10), t87ea5d.size()-10 };return static_cast<QQuickTextureFactory*>(callbackQQuickImageProvider_RequestTexture(this, idPacked, size, const_cast<QSize*>(&requestedSize))); };
 };
+
+Q_DECLARE_METATYPE(QQuickAsyncImageProvider*)
+Q_DECLARE_METATYPE(MyQQuickAsyncImageProvider*)
+
+int QQuickAsyncImageProvider_QQuickAsyncImageProvider_QRegisterMetaType(){qRegisterMetaType<QQuickAsyncImageProvider*>(); return qRegisterMetaType<MyQQuickAsyncImageProvider*>();}
 
 void* QQuickAsyncImageProvider_NewQQuickAsyncImageProvider()
 {
@@ -233,6 +238,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQQuickItem_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QQuickFramebufferObject*)
 Q_DECLARE_METATYPE(MyQQuickFramebufferObject*)
 
 int QQuickFramebufferObject_QQuickFramebufferObject_QRegisterMetaType(){qRegisterMetaType<QQuickFramebufferObject*>(); return qRegisterMetaType<MyQQuickFramebufferObject*>();}
@@ -290,7 +296,7 @@ void QQuickFramebufferObject_TextureFollowsItemSizeChanged(void* ptr, char vbo)
 class MyQQuickImageProvider: public QQuickImageProvider
 {
 public:
-	MyQQuickImageProvider(QQmlImageProviderBase::ImageType ty, QQmlImageProviderBase::Flags flags = Flags()) : QQuickImageProvider(ty, flags) {};
+	MyQQuickImageProvider(QQmlImageProviderBase::ImageType ty, QQmlImageProviderBase::Flags flags = Flags()) : QQuickImageProvider(ty, flags) {QQuickImageProvider_QQuickImageProvider_QRegisterMetaType();};
 	QQmlImageProviderBase::Flags flags() const { return static_cast<QQmlImageProviderBase::Flag>(callbackQQuickImageProvider_Flags(const_cast<void*>(static_cast<const void*>(this)))); };
 	QQmlImageProviderBase::ImageType imageType() const { return static_cast<QQmlImageProviderBase::ImageType>(callbackQQuickImageProvider_ImageType(const_cast<void*>(static_cast<const void*>(this)))); };
 	QImage requestImage(const QString & id, QSize * size, const QSize & requestedSize) { QByteArray t87ea5d = id.toUtf8(); QtQuick_PackedString idPacked = { const_cast<char*>(t87ea5d.prepend("WHITESPACE").constData()+10), t87ea5d.size()-10 };return *static_cast<QImage*>(callbackQQuickImageProvider_RequestImage(this, idPacked, size, const_cast<QSize*>(&requestedSize))); };
@@ -298,6 +304,11 @@ public:
 	QQuickTextureFactory * requestTexture(const QString & id, QSize * size, const QSize & requestedSize) { QByteArray t87ea5d = id.toUtf8(); QtQuick_PackedString idPacked = { const_cast<char*>(t87ea5d.prepend("WHITESPACE").constData()+10), t87ea5d.size()-10 };return static_cast<QQuickTextureFactory*>(callbackQQuickImageProvider_RequestTexture(this, idPacked, size, const_cast<QSize*>(&requestedSize))); };
 	 ~MyQQuickImageProvider() { callbackQQuickImageProvider_DestroyQQuickImageProvider(this); };
 };
+
+Q_DECLARE_METATYPE(QQuickImageProvider*)
+Q_DECLARE_METATYPE(MyQQuickImageProvider*)
+
+int QQuickImageProvider_QQuickImageProvider_QRegisterMetaType(){qRegisterMetaType<QQuickImageProvider*>(); return qRegisterMetaType<MyQQuickImageProvider*>();}
 
 void* QQuickImageProvider_NewQQuickImageProvider(long long ty, long long flags)
 {
@@ -407,6 +418,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQQuickImageResponse_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QQuickImageResponse*)
 Q_DECLARE_METATYPE(MyQQuickImageResponse*)
 
 int QQuickImageResponse_QQuickImageResponse_QRegisterMetaType(){qRegisterMetaType<QQuickImageResponse*>(); return qRegisterMetaType<MyQQuickImageResponse*>();}
@@ -2387,6 +2399,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQQuickItemGrabResult_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QQuickItemGrabResult*)
 Q_DECLARE_METATYPE(MyQQuickItemGrabResult*)
 
 int QQuickItemGrabResult_QQuickItemGrabResult_QRegisterMetaType(){qRegisterMetaType<QQuickItemGrabResult*>(); return qRegisterMetaType<MyQQuickItemGrabResult*>();}
@@ -2645,6 +2658,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQQuickItem_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QQuickPaintedItem*)
 Q_DECLARE_METATYPE(MyQQuickPaintedItem*)
 
 int QQuickPaintedItem_QQuickPaintedItem_QRegisterMetaType(){qRegisterMetaType<QQuickPaintedItem*>(); return qRegisterMetaType<MyQQuickPaintedItem*>();}
@@ -2856,6 +2870,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQQuickRenderControl_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QQuickRenderControl*)
 Q_DECLARE_METATYPE(MyQQuickRenderControl*)
 
 int QQuickRenderControl_QQuickRenderControl_QRegisterMetaType(){qRegisterMetaType<QQuickRenderControl*>(); return qRegisterMetaType<MyQQuickRenderControl*>();}
@@ -3341,6 +3356,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQQuickTextureFactory_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QQuickTextureFactory*)
 Q_DECLARE_METATYPE(MyQQuickTextureFactory*)
 
 int QQuickTextureFactory_QQuickTextureFactory_QRegisterMetaType(){qRegisterMetaType<QQuickTextureFactory*>(); return qRegisterMetaType<MyQQuickTextureFactory*>();}
@@ -3802,6 +3818,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQQuickWindow_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QQuickView*)
 Q_DECLARE_METATYPE(MyQQuickView*)
 
 int QQuickView_QQuickView_QRegisterMetaType(){qRegisterMetaType<QQuickView*>(); return qRegisterMetaType<MyQQuickView*>();}
@@ -4013,6 +4030,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQQuickWidget_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QQuickWidget*)
 Q_DECLARE_METATYPE(MyQQuickWidget*)
 
 int QQuickWidget_QQuickWidget_QRegisterMetaType(){qRegisterMetaType<QQuickWidget*>(); return qRegisterMetaType<MyQQuickWidget*>();}
@@ -5791,6 +5809,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSGAbstractRenderer_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QSGAbstractRenderer*)
 Q_DECLARE_METATYPE(MyQSGAbstractRenderer*)
 
 int QSGAbstractRenderer_QSGAbstractRenderer_QRegisterMetaType(){qRegisterMetaType<QSGAbstractRenderer*>(); return qRegisterMetaType<MyQSGAbstractRenderer*>();}
@@ -6033,6 +6052,11 @@ public:
 	void preprocess() { callbackQSGNode_Preprocess(this); };
 };
 
+Q_DECLARE_METATYPE(QSGBasicGeometryNode*)
+Q_DECLARE_METATYPE(MyQSGBasicGeometryNode*)
+
+int QSGBasicGeometryNode_QSGBasicGeometryNode_QRegisterMetaType(){qRegisterMetaType<QSGBasicGeometryNode*>(); return qRegisterMetaType<MyQSGBasicGeometryNode*>();}
+
 void* QSGBasicGeometryNode_Geometry(void* ptr)
 {
 	return const_cast<QSGGeometry*>(static_cast<QSGBasicGeometryNode*>(ptr)->geometry());
@@ -6062,11 +6086,16 @@ void QSGBasicGeometryNode_DestroyQSGBasicGeometryNodeDefault(void* ptr)
 class MyQSGClipNode: public QSGClipNode
 {
 public:
-	MyQSGClipNode() : QSGClipNode() {};
+	MyQSGClipNode() : QSGClipNode() {QSGClipNode_QSGClipNode_QRegisterMetaType();};
 	 ~MyQSGClipNode() { callbackQSGClipNode_DestroyQSGClipNode(this); };
 	bool isSubtreeBlocked() const { return callbackQSGNode_IsSubtreeBlocked(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	void preprocess() { callbackQSGNode_Preprocess(this); };
 };
+
+Q_DECLARE_METATYPE(QSGClipNode*)
+Q_DECLARE_METATYPE(MyQSGClipNode*)
+
+int QSGClipNode_QSGClipNode_QRegisterMetaType(){qRegisterMetaType<QSGClipNode*>(); return qRegisterMetaType<MyQSGClipNode*>();}
 
 void* QSGClipNode_NewQSGClipNode()
 {
@@ -6129,6 +6158,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSGTexture_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QSGDynamicTexture*)
 Q_DECLARE_METATYPE(MyQSGDynamicTexture*)
 
 int QSGDynamicTexture_QSGDynamicTexture_QRegisterMetaType(){qRegisterMetaType<QSGDynamicTexture*>(); return qRegisterMetaType<MyQSGDynamicTexture*>();}
@@ -6211,6 +6241,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSGEngine_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QSGEngine*)
 Q_DECLARE_METATYPE(MyQSGEngine*)
 
 int QSGEngine_QSGEngine_QRegisterMetaType(){qRegisterMetaType<QSGEngine*>(); return qRegisterMetaType<MyQSGEngine*>();}
@@ -6461,11 +6492,16 @@ void QSGEngine_TimerEventDefault(void* ptr, void* event)
 class MyQSGFlatColorMaterial: public QSGFlatColorMaterial
 {
 public:
-	MyQSGFlatColorMaterial() : QSGFlatColorMaterial() {};
+	MyQSGFlatColorMaterial() : QSGFlatColorMaterial() {QSGFlatColorMaterial_QSGFlatColorMaterial_QRegisterMetaType();};
 	int compare(const QSGMaterial * other) const { return callbackQSGMaterial_Compare(const_cast<void*>(static_cast<const void*>(this)), const_cast<QSGMaterial*>(other)); };
 	QSGMaterialShader * createShader() const { return static_cast<QSGMaterialShader*>(callbackQSGFlatColorMaterial_CreateShader(const_cast<void*>(static_cast<const void*>(this)))); };
 	QSGMaterialType * type() const { return static_cast<QSGMaterialType*>(callbackQSGFlatColorMaterial_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(QSGFlatColorMaterial*)
+Q_DECLARE_METATYPE(MyQSGFlatColorMaterial*)
+
+int QSGFlatColorMaterial_QSGFlatColorMaterial_QRegisterMetaType(){qRegisterMetaType<QSGFlatColorMaterial*>(); return qRegisterMetaType<MyQSGFlatColorMaterial*>();}
 
 void* QSGFlatColorMaterial_NewQSGFlatColorMaterial()
 {
@@ -6507,6 +6543,11 @@ class MyQSGGeometry: public QSGGeometry
 public:
 	 ~MyQSGGeometry() { callbackQSGGeometry_DestroyQSGGeometry(this); };
 };
+
+Q_DECLARE_METATYPE(QSGGeometry*)
+Q_DECLARE_METATYPE(MyQSGGeometry*)
+
+int QSGGeometry_QSGGeometry_QRegisterMetaType(){qRegisterMetaType<QSGGeometry*>(); return qRegisterMetaType<MyQSGGeometry*>();}
 
 void QSGGeometry_Allocate(void* ptr, int vertexCount, int indexCount)
 {
@@ -6662,11 +6703,16 @@ void QSGGeometry_DestroyQSGGeometryDefault(void* ptr)
 class MyQSGGeometryNode: public QSGGeometryNode
 {
 public:
-	MyQSGGeometryNode() : QSGGeometryNode() {};
+	MyQSGGeometryNode() : QSGGeometryNode() {QSGGeometryNode_QSGGeometryNode_QRegisterMetaType();};
 	 ~MyQSGGeometryNode() { callbackQSGGeometryNode_DestroyQSGGeometryNode(this); };
 	bool isSubtreeBlocked() const { return callbackQSGNode_IsSubtreeBlocked(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	void preprocess() { callbackQSGNode_Preprocess(this); };
 };
+
+Q_DECLARE_METATYPE(QSGGeometryNode*)
+Q_DECLARE_METATYPE(MyQSGGeometryNode*)
+
+int QSGGeometryNode_QSGGeometryNode_QRegisterMetaType(){qRegisterMetaType<QSGGeometryNode*>(); return qRegisterMetaType<MyQSGGeometryNode*>();}
 
 void* QSGGeometryNode_NewQSGGeometryNode()
 {
@@ -6724,6 +6770,11 @@ public:
 	bool isSubtreeBlocked() const { return callbackQSGNode_IsSubtreeBlocked(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	void preprocess() { callbackQSGNode_Preprocess(this); };
 };
+
+Q_DECLARE_METATYPE(QSGImageNode*)
+Q_DECLARE_METATYPE(MyQSGImageNode*)
+
+int QSGImageNode_QSGImageNode_QRegisterMetaType(){qRegisterMetaType<QSGImageNode*>(); return qRegisterMetaType<MyQSGImageNode*>();}
 
 long long QSGImageNode_Filtering(void* ptr)
 {
@@ -6818,6 +6869,11 @@ public:
 	QSGMaterialType * type() const { return static_cast<QSGMaterialType*>(callbackQSGMaterial_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(QSGMaterial*)
+Q_DECLARE_METATYPE(MyQSGMaterial*)
+
+int QSGMaterial_QSGMaterial_QRegisterMetaType(){qRegisterMetaType<QSGMaterial*>(); return qRegisterMetaType<MyQSGMaterial*>();}
+
 int QSGMaterial_Compare(void* ptr, void* other)
 {
 	return static_cast<QSGMaterial*>(ptr)->compare(static_cast<QSGMaterial*>(other));
@@ -6868,6 +6924,11 @@ public:
 	void initialize() { callbackQSGMaterialShader_Initialize(this); };
 	const char * vertexShader() const { return const_cast<const char*>(callbackQSGMaterialShader_VertexShader(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(QSGMaterialShader*)
+Q_DECLARE_METATYPE(MyQSGMaterialShader*)
+
+int QSGMaterialShader_QSGMaterialShader_QRegisterMetaType(){qRegisterMetaType<QSGMaterialShader*>(); return qRegisterMetaType<MyQSGMaterialShader*>();}
 
 void QSGMaterialShader_Activate(void* ptr)
 {
@@ -6947,11 +7008,16 @@ struct QtQuick_PackedString QSGMaterialShader_VertexShaderDefault(void* ptr)
 class MyQSGNode: public QSGNode
 {
 public:
-	MyQSGNode() : QSGNode() {};
+	MyQSGNode() : QSGNode() {QSGNode_QSGNode_QRegisterMetaType();};
 	bool isSubtreeBlocked() const { return callbackQSGNode_IsSubtreeBlocked(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	void preprocess() { callbackQSGNode_Preprocess(this); };
 	 ~MyQSGNode() { callbackQSGNode_DestroyQSGNode(this); };
 };
+
+Q_DECLARE_METATYPE(QSGNode*)
+Q_DECLARE_METATYPE(MyQSGNode*)
+
+int QSGNode_QSGNode_QRegisterMetaType(){qRegisterMetaType<QSGNode*>(); return qRegisterMetaType<MyQSGNode*>();}
 
 void* QSGNode_NewQSGNode()
 {
@@ -7126,11 +7192,16 @@ void QSGNode_DestroyQSGNodeDefault(void* ptr)
 class MyQSGOpacityNode: public QSGOpacityNode
 {
 public:
-	MyQSGOpacityNode() : QSGOpacityNode() {};
+	MyQSGOpacityNode() : QSGOpacityNode() {QSGOpacityNode_QSGOpacityNode_QRegisterMetaType();};
 	 ~MyQSGOpacityNode() { callbackQSGOpacityNode_DestroyQSGOpacityNode(this); };
 	bool isSubtreeBlocked() const { return callbackQSGNode_IsSubtreeBlocked(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	void preprocess() { callbackQSGNode_Preprocess(this); };
 };
+
+Q_DECLARE_METATYPE(QSGOpacityNode*)
+Q_DECLARE_METATYPE(MyQSGOpacityNode*)
+
+int QSGOpacityNode_QSGOpacityNode_QRegisterMetaType(){qRegisterMetaType<QSGOpacityNode*>(); return qRegisterMetaType<MyQSGOpacityNode*>();}
 
 void* QSGOpacityNode_NewQSGOpacityNode()
 {
@@ -7161,11 +7232,16 @@ void QSGOpacityNode_DestroyQSGOpacityNodeDefault(void* ptr)
 class MyQSGOpaqueTextureMaterial: public QSGOpaqueTextureMaterial
 {
 public:
-	MyQSGOpaqueTextureMaterial() : QSGOpaqueTextureMaterial() {};
+	MyQSGOpaqueTextureMaterial() : QSGOpaqueTextureMaterial() {QSGOpaqueTextureMaterial_QSGOpaqueTextureMaterial_QRegisterMetaType();};
 	int compare(const QSGMaterial * other) const { return callbackQSGMaterial_Compare(const_cast<void*>(static_cast<const void*>(this)), const_cast<QSGMaterial*>(other)); };
 	QSGMaterialShader * createShader() const { return static_cast<QSGMaterialShader*>(callbackQSGOpaqueTextureMaterial_CreateShader(const_cast<void*>(static_cast<const void*>(this)))); };
 	QSGMaterialType * type() const { return static_cast<QSGMaterialType*>(callbackQSGOpaqueTextureMaterial_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(QSGOpaqueTextureMaterial*)
+Q_DECLARE_METATYPE(MyQSGOpaqueTextureMaterial*)
+
+int QSGOpaqueTextureMaterial_QSGOpaqueTextureMaterial_QRegisterMetaType(){qRegisterMetaType<QSGOpaqueTextureMaterial*>(); return qRegisterMetaType<MyQSGOpaqueTextureMaterial*>();}
 
 void* QSGOpaqueTextureMaterial_NewQSGOpaqueTextureMaterial()
 {
@@ -7271,6 +7347,11 @@ public:
 	void preprocess() { callbackQSGNode_Preprocess(this); };
 };
 
+Q_DECLARE_METATYPE(QSGRectangleNode*)
+Q_DECLARE_METATYPE(MyQSGRectangleNode*)
+
+int QSGRectangleNode_QSGRectangleNode_QRegisterMetaType(){qRegisterMetaType<QSGRectangleNode*>(); return qRegisterMetaType<MyQSGRectangleNode*>();}
+
 void* QSGRectangleNode_Color(void* ptr)
 {
 	return new QColor(static_cast<QSGRectangleNode*>(ptr)->color());
@@ -7307,6 +7388,11 @@ public:
 	bool isSubtreeBlocked() const { return callbackQSGNode_IsSubtreeBlocked(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	void preprocess() { callbackQSGNode_Preprocess(this); };
 };
+
+Q_DECLARE_METATYPE(QSGRenderNode*)
+Q_DECLARE_METATYPE(MyQSGRenderNode*)
+
+int QSGRenderNode_QSGRenderNode_QRegisterMetaType(){qRegisterMetaType<QSGRenderNode*>(); return qRegisterMetaType<MyQSGRenderNode*>();}
 
 long long QSGRenderNode_ChangedStates(void* ptr)
 {
@@ -7385,6 +7471,11 @@ public:
 	QSGRendererInterface::ShaderType shaderType() const { return static_cast<QSGRendererInterface::ShaderType>(callbackQSGRendererInterface_ShaderType(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(QSGRendererInterface*)
+Q_DECLARE_METATYPE(MyQSGRendererInterface*)
+
+int QSGRendererInterface_QSGRendererInterface_QRegisterMetaType(){qRegisterMetaType<QSGRendererInterface*>(); return qRegisterMetaType<MyQSGRendererInterface*>();}
+
 void* QSGRendererInterface_GetResource(void* ptr, void* window, long long resource)
 {
 	return static_cast<QSGRendererInterface*>(ptr)->getResource(static_cast<QQuickWindow*>(window), static_cast<QSGRendererInterface::Resource>(resource));
@@ -7428,11 +7519,16 @@ long long QSGRendererInterface_ShaderType(void* ptr)
 class MyQSGSimpleRectNode: public QSGSimpleRectNode
 {
 public:
-	MyQSGSimpleRectNode(const QRectF &rect, const QColor &color) : QSGSimpleRectNode(rect, color) {};
-	MyQSGSimpleRectNode() : QSGSimpleRectNode() {};
+	MyQSGSimpleRectNode(const QRectF &rect, const QColor &color) : QSGSimpleRectNode(rect, color) {QSGSimpleRectNode_QSGSimpleRectNode_QRegisterMetaType();};
+	MyQSGSimpleRectNode() : QSGSimpleRectNode() {QSGSimpleRectNode_QSGSimpleRectNode_QRegisterMetaType();};
 	bool isSubtreeBlocked() const { return callbackQSGNode_IsSubtreeBlocked(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	void preprocess() { callbackQSGNode_Preprocess(this); };
 };
+
+Q_DECLARE_METATYPE(QSGSimpleRectNode*)
+Q_DECLARE_METATYPE(MyQSGSimpleRectNode*)
+
+int QSGSimpleRectNode_QSGSimpleRectNode_QRegisterMetaType(){qRegisterMetaType<QSGSimpleRectNode*>(); return qRegisterMetaType<MyQSGSimpleRectNode*>();}
 
 void* QSGSimpleRectNode_NewQSGSimpleRectNode(void* rect, void* color)
 {
@@ -7472,11 +7568,16 @@ void QSGSimpleRectNode_SetRect2(void* ptr, double x, double y, double w, double 
 class MyQSGSimpleTextureNode: public QSGSimpleTextureNode
 {
 public:
-	MyQSGSimpleTextureNode() : QSGSimpleTextureNode() {};
+	MyQSGSimpleTextureNode() : QSGSimpleTextureNode() {QSGSimpleTextureNode_QSGSimpleTextureNode_QRegisterMetaType();};
 	 ~MyQSGSimpleTextureNode() { callbackQSGSimpleTextureNode_DestroyQSGSimpleTextureNode(this); };
 	bool isSubtreeBlocked() const { return callbackQSGNode_IsSubtreeBlocked(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	void preprocess() { callbackQSGNode_Preprocess(this); };
 };
+
+Q_DECLARE_METATYPE(QSGSimpleTextureNode*)
+Q_DECLARE_METATYPE(MyQSGSimpleTextureNode*)
+
+int QSGSimpleTextureNode_QSGSimpleTextureNode_QRegisterMetaType(){qRegisterMetaType<QSGSimpleTextureNode*>(); return qRegisterMetaType<MyQSGSimpleTextureNode*>();}
 
 void* QSGSimpleTextureNode_NewQSGSimpleTextureNode()
 {
@@ -7590,6 +7691,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSGTexture_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QSGTexture*)
 Q_DECLARE_METATYPE(MyQSGTexture*)
 
 int QSGTexture_QSGTexture_QRegisterMetaType(){qRegisterMetaType<QSGTexture*>(); return qRegisterMetaType<MyQSGTexture*>();}
@@ -7930,6 +8032,11 @@ public:
 	QSGMaterialType * type() const { return static_cast<QSGMaterialType*>(callbackQSGOpaqueTextureMaterial_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(QSGTextureMaterial*)
+Q_DECLARE_METATYPE(MyQSGTextureMaterial*)
+
+int QSGTextureMaterial_QSGTextureMaterial_QRegisterMetaType(){qRegisterMetaType<QSGTextureMaterial*>(); return qRegisterMetaType<MyQSGTextureMaterial*>();}
+
 class MyQSGTextureProvider: public QSGTextureProvider
 {
 public:
@@ -7948,6 +8055,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSGTextureProvider_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QSGTextureProvider*)
 Q_DECLARE_METATYPE(MyQSGTextureProvider*)
 
 int QSGTextureProvider_QSGTextureProvider_QRegisterMetaType(){qRegisterMetaType<QSGTextureProvider*>(); return qRegisterMetaType<MyQSGTextureProvider*>();}
@@ -8120,11 +8228,16 @@ void QSGTextureProvider_TimerEventDefault(void* ptr, void* event)
 class MyQSGTransformNode: public QSGTransformNode
 {
 public:
-	MyQSGTransformNode() : QSGTransformNode() {};
+	MyQSGTransformNode() : QSGTransformNode() {QSGTransformNode_QSGTransformNode_QRegisterMetaType();};
 	 ~MyQSGTransformNode() { callbackQSGTransformNode_DestroyQSGTransformNode(this); };
 	bool isSubtreeBlocked() const { return callbackQSGNode_IsSubtreeBlocked(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	void preprocess() { callbackQSGNode_Preprocess(this); };
 };
+
+Q_DECLARE_METATYPE(QSGTransformNode*)
+Q_DECLARE_METATYPE(MyQSGTransformNode*)
+
+int QSGTransformNode_QSGTransformNode_QRegisterMetaType(){qRegisterMetaType<QSGTransformNode*>(); return qRegisterMetaType<MyQSGTransformNode*>();}
 
 void* QSGTransformNode_NewQSGTransformNode()
 {
@@ -8155,11 +8268,16 @@ void QSGTransformNode_DestroyQSGTransformNodeDefault(void* ptr)
 class MyQSGVertexColorMaterial: public QSGVertexColorMaterial
 {
 public:
-	MyQSGVertexColorMaterial() : QSGVertexColorMaterial() {};
+	MyQSGVertexColorMaterial() : QSGVertexColorMaterial() {QSGVertexColorMaterial_QSGVertexColorMaterial_QRegisterMetaType();};
 	int compare(const QSGMaterial * other) const { return callbackQSGMaterial_Compare(const_cast<void*>(static_cast<const void*>(this)), const_cast<QSGMaterial*>(other)); };
 	QSGMaterialShader * createShader() const { return static_cast<QSGMaterialShader*>(callbackQSGVertexColorMaterial_CreateShader(const_cast<void*>(static_cast<const void*>(this)))); };
 	QSGMaterialType * type() const { return static_cast<QSGMaterialType*>(callbackQSGVertexColorMaterial_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(QSGVertexColorMaterial*)
+Q_DECLARE_METATYPE(MyQSGVertexColorMaterial*)
+
+int QSGVertexColorMaterial_QSGVertexColorMaterial_QRegisterMetaType(){qRegisterMetaType<QSGVertexColorMaterial*>(); return qRegisterMetaType<MyQSGVertexColorMaterial*>();}
 
 void* QSGVertexColorMaterial_NewQSGVertexColorMaterial()
 {

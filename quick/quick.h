@@ -8,7 +8,9 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
+int QQuickAsyncImageProvider_QQuickAsyncImageProvider_QRegisterMetaType();
 int QQuickFramebufferObject_QQuickFramebufferObject_QRegisterMetaType();
+int QQuickImageProvider_QQuickImageProvider_QRegisterMetaType();
 int QQuickImageResponse_QQuickImageResponse_QRegisterMetaType();
 int QQuickItem_QQuickItem_QRegisterMetaType();
 int QQuickItemGrabResult_QQuickItemGrabResult_QRegisterMetaType();
@@ -21,10 +23,29 @@ int QQuickView_QQuickView_QRegisterMetaType();
 int QQuickWidget_QQuickWidget_QRegisterMetaType();
 int QQuickWindow_QQuickWindow_QRegisterMetaType();
 int QSGAbstractRenderer_QSGAbstractRenderer_QRegisterMetaType();
+int QSGBasicGeometryNode_QSGBasicGeometryNode_QRegisterMetaType();
+int QSGClipNode_QSGClipNode_QRegisterMetaType();
 int QSGDynamicTexture_QSGDynamicTexture_QRegisterMetaType();
 int QSGEngine_QSGEngine_QRegisterMetaType();
+int QSGFlatColorMaterial_QSGFlatColorMaterial_QRegisterMetaType();
+int QSGGeometry_QSGGeometry_QRegisterMetaType();
+int QSGGeometryNode_QSGGeometryNode_QRegisterMetaType();
+int QSGImageNode_QSGImageNode_QRegisterMetaType();
+int QSGMaterial_QSGMaterial_QRegisterMetaType();
+int QSGMaterialShader_QSGMaterialShader_QRegisterMetaType();
+int QSGNode_QSGNode_QRegisterMetaType();
+int QSGOpacityNode_QSGOpacityNode_QRegisterMetaType();
+int QSGOpaqueTextureMaterial_QSGOpaqueTextureMaterial_QRegisterMetaType();
+int QSGRectangleNode_QSGRectangleNode_QRegisterMetaType();
+int QSGRenderNode_QSGRenderNode_QRegisterMetaType();
+int QSGRendererInterface_QSGRendererInterface_QRegisterMetaType();
+int QSGSimpleRectNode_QSGSimpleRectNode_QRegisterMetaType();
+int QSGSimpleTextureNode_QSGSimpleTextureNode_QRegisterMetaType();
 int QSGTexture_QSGTexture_QRegisterMetaType();
+int QSGTextureMaterial_QSGTextureMaterial_QRegisterMetaType();
 int QSGTextureProvider_QSGTextureProvider_QRegisterMetaType();
+int QSGTransformNode_QSGTransformNode_QRegisterMetaType();
+int QSGVertexColorMaterial_QSGVertexColorMaterial_QRegisterMetaType();
 extern "C" {
 #endif
 

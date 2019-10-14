@@ -182,6 +182,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractAudioDeviceInfo_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QAbstractAudioDeviceInfo*)
 Q_DECLARE_METATYPE(MyQAbstractAudioDeviceInfo*)
 
 int QAbstractAudioDeviceInfo_QAbstractAudioDeviceInfo_QRegisterMetaType(){qRegisterMetaType<QAbstractAudioDeviceInfo*>(); return qRegisterMetaType<MyQAbstractAudioDeviceInfo*>();}
@@ -553,6 +554,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractAudioInput_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QAbstractAudioInput*)
 Q_DECLARE_METATYPE(MyQAbstractAudioInput*)
 
 int QAbstractAudioInput_QAbstractAudioInput_QRegisterMetaType(){qRegisterMetaType<QAbstractAudioInput*>(); return qRegisterMetaType<MyQAbstractAudioInput*>();}
@@ -938,6 +940,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractAudioOutput_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QAbstractAudioOutput*)
 Q_DECLARE_METATYPE(MyQAbstractAudioOutput*)
 
 int QAbstractAudioOutput_QAbstractAudioOutput_QRegisterMetaType(){qRegisterMetaType<QAbstractAudioOutput*>(); return qRegisterMetaType<MyQAbstractAudioOutput*>();}
@@ -1315,6 +1318,11 @@ public:
 	void unmap() { callbackQAbstractPlanarVideoBuffer_Unmap(this); };
 };
 
+Q_DECLARE_METATYPE(QAbstractPlanarVideoBuffer*)
+Q_DECLARE_METATYPE(MyQAbstractPlanarVideoBuffer*)
+
+int QAbstractPlanarVideoBuffer_QAbstractPlanarVideoBuffer_QRegisterMetaType(){qRegisterMetaType<QAbstractPlanarVideoBuffer*>(); return qRegisterMetaType<MyQAbstractPlanarVideoBuffer*>();}
+
 void QAbstractPlanarVideoBuffer_DestroyQAbstractPlanarVideoBuffer(void* ptr)
 {
 	static_cast<QAbstractPlanarVideoBuffer*>(ptr)->~QAbstractPlanarVideoBuffer();
@@ -1361,7 +1369,7 @@ void QAbstractPlanarVideoBuffer_UnmapDefault(void* ptr)
 class MyQAbstractVideoBuffer: public QAbstractVideoBuffer
 {
 public:
-	MyQAbstractVideoBuffer(QAbstractVideoBuffer::HandleType ty) : QAbstractVideoBuffer(ty) {};
+	MyQAbstractVideoBuffer(QAbstractVideoBuffer::HandleType ty) : QAbstractVideoBuffer(ty) {QAbstractVideoBuffer_QAbstractVideoBuffer_QRegisterMetaType();};
 	QVariant handle() const { return *static_cast<QVariant*>(callbackQAbstractVideoBuffer_Handle(const_cast<void*>(static_cast<const void*>(this)))); };
 	uchar * map(QAbstractVideoBuffer::MapMode mode, int * numBytes, int * bytesPerLine) { return static_cast<uchar*>(static_cast<void*>(callbackQAbstractVideoBuffer_Map(this, mode, *numBytes, *bytesPerLine))); };
 	QAbstractVideoBuffer::MapMode mapMode() const { return static_cast<QAbstractVideoBuffer::MapMode>(callbackQAbstractVideoBuffer_MapMode(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -1369,6 +1377,11 @@ public:
 	void unmap() { callbackQAbstractVideoBuffer_Unmap(this); };
 	 ~MyQAbstractVideoBuffer() { callbackQAbstractVideoBuffer_DestroyQAbstractVideoBuffer(this); };
 };
+
+Q_DECLARE_METATYPE(QAbstractVideoBuffer*)
+Q_DECLARE_METATYPE(MyQAbstractVideoBuffer*)
+
+int QAbstractVideoBuffer_QAbstractVideoBuffer_QRegisterMetaType(){qRegisterMetaType<QAbstractVideoBuffer*>(); return qRegisterMetaType<MyQAbstractVideoBuffer*>();}
 
 void* QAbstractVideoBuffer_NewQAbstractVideoBuffer(long long ty)
 {
@@ -1453,6 +1466,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractVideoFilter_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QAbstractVideoFilter*)
 Q_DECLARE_METATYPE(MyQAbstractVideoFilter*)
 
 int QAbstractVideoFilter_QAbstractVideoFilter_QRegisterMetaType(){qRegisterMetaType<QAbstractVideoFilter*>(); return qRegisterMetaType<MyQAbstractVideoFilter*>();}
@@ -2195,6 +2209,7 @@ double QAudio_QAudio_ConvertVolume(double volume, long long from, long long to)
 	return QAudio::convertVolume(volume, static_cast<QAudio::VolumeScale>(from), static_cast<QAudio::VolumeScale>(to));
 }
 
+Q_DECLARE_METATYPE(QAudioBuffer*)
 void* QAudioBuffer_NewQAudioBuffer()
 {
 	return new QAudioBuffer();
@@ -2305,6 +2320,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QAudioDecoder*)
 Q_DECLARE_METATYPE(MyQAudioDecoder*)
 
 int QAudioDecoder_QAudioDecoder_QRegisterMetaType(){qRegisterMetaType<QAudioDecoder*>(); return qRegisterMetaType<MyQAudioDecoder*>();}
@@ -2634,6 +2650,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QAudioDecoderControl*)
 Q_DECLARE_METATYPE(MyQAudioDecoderControl*)
 
 int QAudioDecoderControl_QAudioDecoderControl_QRegisterMetaType(){qRegisterMetaType<QAudioDecoderControl*>(); return qRegisterMetaType<MyQAudioDecoderControl*>();}
@@ -2897,6 +2914,7 @@ void QAudioDecoderControl_DestroyQAudioDecoderControlDefault(void* ptr)
 
 }
 
+Q_DECLARE_METATYPE(QAudioDeviceInfo*)
 void* QAudioDeviceInfo_NewQAudioDeviceInfo()
 {
 	return new QAudioDeviceInfo();
@@ -3078,6 +3096,7 @@ void* QAudioDeviceInfo___supportedSampleTypes_newList(void* ptr)
 	return new QList<QAudioFormat::SampleType>();
 }
 
+Q_DECLARE_METATYPE(QAudioEncoderSettings*)
 void* QAudioEncoderSettings_NewQAudioEncoderSettings()
 {
 	return new QAudioEncoderSettings();
@@ -3275,6 +3294,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QAudioEncoderSettingsControl*)
 Q_DECLARE_METATYPE(MyQAudioEncoderSettingsControl*)
 
 int QAudioEncoderSettingsControl_QAudioEncoderSettingsControl_QRegisterMetaType(){qRegisterMetaType<QAudioEncoderSettingsControl*>(); return qRegisterMetaType<MyQAudioEncoderSettingsControl*>();}
@@ -3378,6 +3398,7 @@ void* QAudioEncoderSettingsControl___supportedSampleRates_newList(void* ptr)
 	return new QList<int>();
 }
 
+Q_DECLARE_METATYPE(QAudioFormat*)
 void* QAudioFormat_NewQAudioFormat()
 {
 	return new QAudioFormat();
@@ -3513,6 +3534,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAudioInput_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QAudioInput*)
 Q_DECLARE_METATYPE(MyQAudioInput*)
 
 int QAudioInput_QAudioInput_QRegisterMetaType(){qRegisterMetaType<QAudioInput*>(); return qRegisterMetaType<MyQAudioInput*>();}
@@ -3961,6 +3983,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QAudioInputSelectorControl*)
 Q_DECLARE_METATYPE(MyQAudioInputSelectorControl*)
 
 int QAudioInputSelectorControl_QAudioInputSelectorControl_QRegisterMetaType(){qRegisterMetaType<QAudioInputSelectorControl*>(); return qRegisterMetaType<MyQAudioInputSelectorControl*>();}
@@ -4062,6 +4085,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAudioOutput_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QAudioOutput*)
 Q_DECLARE_METATYPE(MyQAudioOutput*)
 
 int QAudioOutput_QAudioOutput_QRegisterMetaType(){qRegisterMetaType<QAudioOutput*>(); return qRegisterMetaType<MyQAudioOutput*>();}
@@ -4520,6 +4544,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QAudioOutputSelectorControl*)
 Q_DECLARE_METATYPE(MyQAudioOutputSelectorControl*)
 
 int QAudioOutputSelectorControl_QAudioOutputSelectorControl_QRegisterMetaType(){qRegisterMetaType<QAudioOutputSelectorControl*>(); return qRegisterMetaType<MyQAudioOutputSelectorControl*>();}
@@ -4621,6 +4646,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAudioProbe_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QAudioProbe*)
 Q_DECLARE_METATYPE(MyQAudioProbe*)
 
 int QAudioProbe_QAudioProbe_QRegisterMetaType(){qRegisterMetaType<QAudioProbe*>(); return qRegisterMetaType<MyQAudioProbe*>();}
@@ -4974,6 +5000,7 @@ public:
 	bool setMediaObject(QMediaObject * object) { return callbackQMediaRecorder_SetMediaObject(this, object) != 0; };
 };
 
+Q_DECLARE_METATYPE(QAudioRecorder*)
 Q_DECLARE_METATYPE(MyQAudioRecorder*)
 
 int QAudioRecorder_QAudioRecorder_QRegisterMetaType(){qRegisterMetaType<QAudioRecorder*>(); return qRegisterMetaType<MyQAudioRecorder*>();}
@@ -5118,6 +5145,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QAudioRoleControl*)
 Q_DECLARE_METATYPE(MyQAudioRoleControl*)
 
 int QAudioRoleControl_QAudioRoleControl_QRegisterMetaType(){qRegisterMetaType<QAudioRoleControl*>(); return qRegisterMetaType<MyQAudioRoleControl*>();}
@@ -5276,6 +5304,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAudioSystemPlugin_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QAudioSystemPlugin*)
 Q_DECLARE_METATYPE(MyQAudioSystemPlugin*)
 
 int QAudioSystemPlugin_QAudioSystemPlugin_QRegisterMetaType(){qRegisterMetaType<QAudioSystemPlugin*>(); return qRegisterMetaType<MyQAudioSystemPlugin*>();}
@@ -5631,6 +5660,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QCamera*)
 Q_DECLARE_METATYPE(MyQCamera*)
 
 int QCamera_QCamera_QRegisterMetaType(){qRegisterMetaType<QCamera*>(); return qRegisterMetaType<MyQCamera*>();}
@@ -6240,6 +6270,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QCameraCaptureBufferFormatControl*)
 Q_DECLARE_METATYPE(MyQCameraCaptureBufferFormatControl*)
 
 int QCameraCaptureBufferFormatControl_QCameraCaptureBufferFormatControl_QRegisterMetaType(){qRegisterMetaType<QCameraCaptureBufferFormatControl*>(); return qRegisterMetaType<MyQCameraCaptureBufferFormatControl*>();}
@@ -6371,6 +6402,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QCameraCaptureDestinationControl*)
 Q_DECLARE_METATYPE(MyQCameraCaptureDestinationControl*)
 
 int QCameraCaptureDestinationControl_QCameraCaptureDestinationControl_QRegisterMetaType(){qRegisterMetaType<QCameraCaptureDestinationControl*>(); return qRegisterMetaType<MyQCameraCaptureDestinationControl*>();}
@@ -6493,6 +6525,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QCameraControl*)
 Q_DECLARE_METATYPE(MyQCameraControl*)
 
 int QCameraControl_QCameraControl_QRegisterMetaType(){qRegisterMetaType<QCameraControl*>(); return qRegisterMetaType<MyQCameraControl*>();}
@@ -6686,6 +6719,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQCameraExposure_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QCameraExposure*)
 Q_DECLARE_METATYPE(MyQCameraExposure*)
 
 int QCameraExposure_QCameraExposure_QRegisterMetaType(){qRegisterMetaType<QCameraExposure*>(); return qRegisterMetaType<MyQCameraExposure*>();}
@@ -7277,6 +7311,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QCameraExposureControl*)
 Q_DECLARE_METATYPE(MyQCameraExposureControl*)
 
 int QCameraExposureControl_QCameraExposureControl_QRegisterMetaType(){qRegisterMetaType<QCameraExposureControl*>(); return qRegisterMetaType<MyQCameraExposureControl*>();}
@@ -7448,6 +7483,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QCameraFeedbackControl*)
 Q_DECLARE_METATYPE(MyQCameraFeedbackControl*)
 
 int QCameraFeedbackControl_QCameraFeedbackControl_QRegisterMetaType(){qRegisterMetaType<QCameraFeedbackControl*>(); return qRegisterMetaType<MyQCameraFeedbackControl*>();}
@@ -7558,6 +7594,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QCameraFlashControl*)
 Q_DECLARE_METATYPE(MyQCameraFlashControl*)
 
 int QCameraFlashControl_QCameraFlashControl_QRegisterMetaType(){qRegisterMetaType<QCameraFlashControl*>(); return qRegisterMetaType<MyQCameraFlashControl*>();}
@@ -7676,6 +7713,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQCameraFocus_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QCameraFocus*)
 Q_DECLARE_METATYPE(MyQCameraFocus*)
 
 int QCameraFocus_QCameraFocus_QRegisterMetaType(){qRegisterMetaType<QCameraFocus*>(); return qRegisterMetaType<MyQCameraFocus*>();}
@@ -8059,6 +8097,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QCameraFocusControl*)
 Q_DECLARE_METATYPE(MyQCameraFocusControl*)
 
 int QCameraFocusControl_QCameraFocusControl_QRegisterMetaType(){qRegisterMetaType<QCameraFocusControl*>(); return qRegisterMetaType<MyQCameraFocusControl*>();}
@@ -8176,6 +8215,7 @@ void QCameraFocusControl_DestroyQCameraFocusControlDefault(void* ptr)
 
 }
 
+Q_DECLARE_METATYPE(QCameraFocusZone*)
 void* QCameraFocusZone_NewQCameraFocusZone(void* other)
 {
 	return new QCameraFocusZone(*static_cast<QCameraFocusZone*>(other));
@@ -8232,6 +8272,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQCameraImageCapture_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QCameraImageCapture*)
 Q_DECLARE_METATYPE(MyQCameraImageCapture*)
 
 int QCameraImageCapture_QCameraImageCapture_QRegisterMetaType(){qRegisterMetaType<QCameraImageCapture*>(); return qRegisterMetaType<MyQCameraImageCapture*>();}
@@ -8840,6 +8881,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QCameraImageCaptureControl*)
 Q_DECLARE_METATYPE(MyQCameraImageCaptureControl*)
 
 int QCameraImageCaptureControl_QCameraImageCaptureControl_QRegisterMetaType(){qRegisterMetaType<QCameraImageCaptureControl*>(); return qRegisterMetaType<MyQCameraImageCaptureControl*>();}
@@ -9048,6 +9090,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQCameraImageProcessing_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QCameraImageProcessing*)
 Q_DECLARE_METATYPE(MyQCameraImageProcessing*)
 
 int QCameraImageProcessing_QCameraImageProcessing_QRegisterMetaType(){qRegisterMetaType<QCameraImageProcessing*>(); return qRegisterMetaType<MyQCameraImageProcessing*>();}
@@ -9374,6 +9417,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QCameraImageProcessingControl*)
 Q_DECLARE_METATYPE(MyQCameraImageProcessingControl*)
 
 int QCameraImageProcessingControl_QCameraImageProcessingControl_QRegisterMetaType(){qRegisterMetaType<QCameraImageProcessingControl*>(); return qRegisterMetaType<MyQCameraImageProcessingControl*>();}
@@ -9456,6 +9500,7 @@ void QCameraImageProcessingControl_DestroyQCameraImageProcessingControlDefault(v
 
 }
 
+Q_DECLARE_METATYPE(QCameraInfo*)
 void* QCameraInfo_NewQCameraInfo(void* name)
 {
 	return new QCameraInfo(*static_cast<QByteArray*>(name));
@@ -9547,6 +9592,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QCameraInfoControl*)
 Q_DECLARE_METATYPE(MyQCameraInfoControl*)
 
 int QCameraInfoControl_QCameraInfoControl_QRegisterMetaType(){qRegisterMetaType<QCameraInfoControl*>(); return qRegisterMetaType<MyQCameraInfoControl*>();}
@@ -9642,6 +9688,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QCameraLocksControl*)
 Q_DECLARE_METATYPE(MyQCameraLocksControl*)
 
 int QCameraLocksControl_QCameraLocksControl_QRegisterMetaType(){qRegisterMetaType<QCameraLocksControl*>(); return qRegisterMetaType<MyQCameraLocksControl*>();}
@@ -9742,6 +9789,7 @@ void QCameraLocksControl_DestroyQCameraLocksControlDefault(void* ptr)
 
 }
 
+Q_DECLARE_METATYPE(QCameraViewfinderSettings*)
 void* QCameraViewfinderSettings_NewQCameraViewfinderSettings()
 {
 	return new QCameraViewfinderSettings();
@@ -9848,6 +9896,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QCameraViewfinderSettingsControl*)
 Q_DECLARE_METATYPE(MyQCameraViewfinderSettingsControl*)
 
 int QCameraViewfinderSettingsControl_QCameraViewfinderSettingsControl_QRegisterMetaType(){qRegisterMetaType<QCameraViewfinderSettingsControl*>(); return qRegisterMetaType<MyQCameraViewfinderSettingsControl*>();}
@@ -9946,6 +9995,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QCameraViewfinderSettingsControl2*)
 Q_DECLARE_METATYPE(MyQCameraViewfinderSettingsControl2*)
 
 int QCameraViewfinderSettingsControl2_QCameraViewfinderSettingsControl2_QRegisterMetaType(){qRegisterMetaType<QCameraViewfinderSettingsControl2*>(); return qRegisterMetaType<MyQCameraViewfinderSettingsControl2*>();}
@@ -10070,6 +10120,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QCameraZoomControl*)
 Q_DECLARE_METATYPE(MyQCameraZoomControl*)
 
 int QCameraZoomControl_QCameraZoomControl_QRegisterMetaType(){qRegisterMetaType<QCameraZoomControl*>(); return qRegisterMetaType<MyQCameraZoomControl*>();}
@@ -10279,6 +10330,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QCustomAudioRoleControl*)
 Q_DECLARE_METATYPE(MyQCustomAudioRoleControl*)
 
 int QCustomAudioRoleControl_QCustomAudioRoleControl_QRegisterMetaType(){qRegisterMetaType<QCustomAudioRoleControl*>(); return qRegisterMetaType<MyQCustomAudioRoleControl*>();}
@@ -10394,6 +10446,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QImageEncoderControl*)
 Q_DECLARE_METATYPE(MyQImageEncoderControl*)
 
 int QImageEncoderControl_QImageEncoderControl_QRegisterMetaType(){qRegisterMetaType<QImageEncoderControl*>(); return qRegisterMetaType<MyQImageEncoderControl*>();}
@@ -10497,6 +10550,7 @@ void* QImageEncoderControl___supportedResolutions_newList(void* ptr)
 	return new QList<QSize>();
 }
 
+Q_DECLARE_METATYPE(QImageEncoderSettings*)
 void* QImageEncoderSettings_NewQImageEncoderSettings()
 {
 	return new QImageEncoderSettings();
@@ -10666,6 +10720,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QMediaAudioProbeControl*)
 Q_DECLARE_METATYPE(MyQMediaAudioProbeControl*)
 
 int QMediaAudioProbeControl_QMediaAudioProbeControl_QRegisterMetaType(){qRegisterMetaType<QMediaAudioProbeControl*>(); return qRegisterMetaType<MyQMediaAudioProbeControl*>();}
@@ -10778,6 +10833,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QMediaAvailabilityControl*)
 Q_DECLARE_METATYPE(MyQMediaAvailabilityControl*)
 
 int QMediaAvailabilityControl_QMediaAvailabilityControl_QRegisterMetaType(){qRegisterMetaType<QMediaAvailabilityControl*>(); return qRegisterMetaType<MyQMediaAvailabilityControl*>();}
@@ -10869,6 +10925,11 @@ public:
 	 ~MyQMediaBindableInterface() { callbackQMediaBindableInterface_DestroyQMediaBindableInterface(this); };
 };
 
+Q_DECLARE_METATYPE(QMediaBindableInterface*)
+Q_DECLARE_METATYPE(MyQMediaBindableInterface*)
+
+int QMediaBindableInterface_QMediaBindableInterface_QRegisterMetaType(){qRegisterMetaType<QMediaBindableInterface*>(); return qRegisterMetaType<MyQMediaBindableInterface*>();}
+
 void* QMediaBindableInterface_MediaObject(void* ptr)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(ptr))) {
@@ -10936,6 +10997,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QMediaContainerControl*)
 Q_DECLARE_METATYPE(MyQMediaContainerControl*)
 
 int QMediaContainerControl_QMediaContainerControl_QRegisterMetaType(){qRegisterMetaType<QMediaContainerControl*>(); return qRegisterMetaType<MyQMediaContainerControl*>();}
@@ -11018,6 +11080,7 @@ void QMediaContainerControl_DestroyQMediaContainerControlDefault(void* ptr)
 
 }
 
+Q_DECLARE_METATYPE(QMediaContent*)
 void* QMediaContent_NewQMediaContent()
 {
 	return new QMediaContent();
@@ -11118,6 +11181,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QMediaControl*)
 Q_DECLARE_METATYPE(MyQMediaControl*)
 
 int QMediaControl_QMediaControl_QRegisterMetaType(){qRegisterMetaType<QMediaControl*>(); return qRegisterMetaType<MyQMediaControl*>();}
@@ -12755,6 +12819,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QMediaGaplessPlaybackControl*)
 Q_DECLARE_METATYPE(MyQMediaGaplessPlaybackControl*)
 
 int QMediaGaplessPlaybackControl_QMediaGaplessPlaybackControl_QRegisterMetaType(){qRegisterMetaType<QMediaGaplessPlaybackControl*>(); return qRegisterMetaType<MyQMediaGaplessPlaybackControl*>();}
@@ -12907,6 +12972,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QMediaNetworkAccessControl*)
 Q_DECLARE_METATYPE(MyQMediaNetworkAccessControl*)
 
 int QMediaNetworkAccessControl_QMediaNetworkAccessControl_QRegisterMetaType(){qRegisterMetaType<QMediaNetworkAccessControl*>(); return qRegisterMetaType<MyQMediaNetworkAccessControl*>();}
@@ -12992,6 +13058,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QMediaObject*)
 Q_DECLARE_METATYPE(MyQMediaObject*)
 
 int QMediaObject_QMediaObject_QRegisterMetaType(){qRegisterMetaType<QMediaObject*>(); return qRegisterMetaType<MyQMediaObject*>();}
@@ -13887,6 +13954,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QMediaPlayer*)
 Q_DECLARE_METATYPE(MyQMediaPlayer*)
 
 int QMediaPlayer_QMediaPlayer_QRegisterMetaType(){qRegisterMetaType<QMediaPlayer*>(); return qRegisterMetaType<MyQMediaPlayer*>();}
@@ -14529,6 +14597,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QMediaPlayerControl*)
 Q_DECLARE_METATYPE(MyQMediaPlayerControl*)
 
 int QMediaPlayerControl_QMediaPlayerControl_QRegisterMetaType(){qRegisterMetaType<QMediaPlayerControl*>(); return qRegisterMetaType<MyQMediaPlayerControl*>();}
@@ -14947,6 +15016,7 @@ public:
 	bool setMediaObject(QMediaObject * object) { return callbackQMediaPlaylist_SetMediaObject(this, object) != 0; };
 };
 
+Q_DECLARE_METATYPE(QMediaPlaylist*)
 Q_DECLARE_METATYPE(MyQMediaPlaylist*)
 
 int QMediaPlaylist_QMediaPlaylist_QRegisterMetaType(){qRegisterMetaType<QMediaPlaylist*>(); return qRegisterMetaType<MyQMediaPlaylist*>();}
@@ -15639,6 +15709,7 @@ public:
 	bool setMediaObject(QMediaObject * object) { return callbackQMediaRecorder_SetMediaObject(this, object) != 0; };
 };
 
+Q_DECLARE_METATYPE(QMediaRecorder*)
 Q_DECLARE_METATYPE(MyQMediaRecorder*)
 
 int QMediaRecorder_QMediaRecorder_QRegisterMetaType(){qRegisterMetaType<QMediaRecorder*>(); return qRegisterMetaType<MyQMediaRecorder*>();}
@@ -16523,6 +16594,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QMediaRecorderControl*)
 Q_DECLARE_METATYPE(MyQMediaRecorderControl*)
 
 int QMediaRecorderControl_QMediaRecorderControl_QRegisterMetaType(){qRegisterMetaType<QMediaRecorderControl*>(); return qRegisterMetaType<MyQMediaRecorderControl*>();}
@@ -16748,6 +16820,7 @@ void QMediaRecorderControl_DestroyQMediaRecorderControlDefault(void* ptr)
 
 }
 
+Q_DECLARE_METATYPE(QMediaResource*)
 void* QMediaResource_NewQMediaResource()
 {
 	return new QMediaResource();
@@ -16982,6 +17055,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaService_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QMediaService*)
 Q_DECLARE_METATYPE(MyQMediaService*)
 
 int QMediaService_QMediaService_QRegisterMetaType(){qRegisterMetaType<QMediaService*>(); return qRegisterMetaType<MyQMediaService*>();}
@@ -17272,6 +17346,11 @@ public:
 	 ~MyQMediaServiceCameraInfoInterface() { callbackQMediaServiceCameraInfoInterface_DestroyQMediaServiceCameraInfoInterface(this); };
 };
 
+Q_DECLARE_METATYPE(QMediaServiceCameraInfoInterface*)
+Q_DECLARE_METATYPE(MyQMediaServiceCameraInfoInterface*)
+
+int QMediaServiceCameraInfoInterface_QMediaServiceCameraInfoInterface_QRegisterMetaType(){qRegisterMetaType<QMediaServiceCameraInfoInterface*>(); return qRegisterMetaType<MyQMediaServiceCameraInfoInterface*>();}
+
 int QMediaServiceCameraInfoInterface_CameraOrientation(void* ptr, void* device)
 {
 	return static_cast<QMediaServiceCameraInfoInterface*>(ptr)->cameraOrientation(*static_cast<QByteArray*>(device));
@@ -17300,6 +17379,11 @@ public:
 	 ~MyQMediaServiceDefaultDeviceInterface() { callbackQMediaServiceDefaultDeviceInterface_DestroyQMediaServiceDefaultDeviceInterface(this); };
 };
 
+Q_DECLARE_METATYPE(QMediaServiceDefaultDeviceInterface*)
+Q_DECLARE_METATYPE(MyQMediaServiceDefaultDeviceInterface*)
+
+int QMediaServiceDefaultDeviceInterface_QMediaServiceDefaultDeviceInterface_QRegisterMetaType(){qRegisterMetaType<QMediaServiceDefaultDeviceInterface*>(); return qRegisterMetaType<MyQMediaServiceDefaultDeviceInterface*>();}
+
 void* QMediaServiceDefaultDeviceInterface_DefaultDevice(void* ptr, void* service)
 {
 	return new QByteArray(static_cast<QMediaServiceDefaultDeviceInterface*>(ptr)->defaultDevice(*static_cast<QByteArray*>(service)));
@@ -17321,6 +17405,11 @@ class MyQMediaServiceFeaturesInterface: public QMediaServiceFeaturesInterface
 public:
 	 ~MyQMediaServiceFeaturesInterface() { callbackQMediaServiceFeaturesInterface_DestroyQMediaServiceFeaturesInterface(this); };
 };
+
+Q_DECLARE_METATYPE(QMediaServiceFeaturesInterface*)
+Q_DECLARE_METATYPE(MyQMediaServiceFeaturesInterface*)
+
+int QMediaServiceFeaturesInterface_QMediaServiceFeaturesInterface_QRegisterMetaType(){qRegisterMetaType<QMediaServiceFeaturesInterface*>(); return qRegisterMetaType<MyQMediaServiceFeaturesInterface*>();}
 
 void QMediaServiceFeaturesInterface_DestroyQMediaServiceFeaturesInterface(void* ptr)
 {
@@ -17351,6 +17440,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaServiceProviderPlugin_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QMediaServiceProviderPlugin*)
 Q_DECLARE_METATYPE(MyQMediaServiceProviderPlugin*)
 
 int QMediaServiceProviderPlugin_QMediaServiceProviderPlugin_QRegisterMetaType(){qRegisterMetaType<QMediaServiceProviderPlugin*>(); return qRegisterMetaType<MyQMediaServiceProviderPlugin*>();}
@@ -17639,6 +17729,11 @@ public:
 	 ~MyQMediaServiceSupportedDevicesInterface() { callbackQMediaServiceSupportedDevicesInterface_DestroyQMediaServiceSupportedDevicesInterface(this); };
 };
 
+Q_DECLARE_METATYPE(QMediaServiceSupportedDevicesInterface*)
+Q_DECLARE_METATYPE(MyQMediaServiceSupportedDevicesInterface*)
+
+int QMediaServiceSupportedDevicesInterface_QMediaServiceSupportedDevicesInterface_QRegisterMetaType(){qRegisterMetaType<QMediaServiceSupportedDevicesInterface*>(); return qRegisterMetaType<MyQMediaServiceSupportedDevicesInterface*>();}
+
 struct QtMultimedia_PackedString QMediaServiceSupportedDevicesInterface_DeviceDescription(void* ptr, void* service, void* device)
 {
 	return ({ QByteArray tc3bd23 = static_cast<QMediaServiceSupportedDevicesInterface*>(ptr)->deviceDescription(*static_cast<QByteArray*>(service), *static_cast<QByteArray*>(device)).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tc3bd23.prepend("WHITESPACE").constData()+10), tc3bd23.size()-10 }; });
@@ -17683,6 +17778,11 @@ public:
 	QStringList supportedMimeTypes() const { return ({ QtMultimedia_PackedString tempVal = callbackQMediaServiceSupportedFormatsInterface_SupportedMimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	 ~MyQMediaServiceSupportedFormatsInterface() { callbackQMediaServiceSupportedFormatsInterface_DestroyQMediaServiceSupportedFormatsInterface(this); };
 };
+
+Q_DECLARE_METATYPE(QMediaServiceSupportedFormatsInterface*)
+Q_DECLARE_METATYPE(MyQMediaServiceSupportedFormatsInterface*)
+
+int QMediaServiceSupportedFormatsInterface_QMediaServiceSupportedFormatsInterface_QRegisterMetaType(){qRegisterMetaType<QMediaServiceSupportedFormatsInterface*>(); return qRegisterMetaType<MyQMediaServiceSupportedFormatsInterface*>();}
 
 long long QMediaServiceSupportedFormatsInterface_HasSupport(void* ptr, struct QtMultimedia_PackedString mimeType, struct QtMultimedia_PackedString codecs)
 {
@@ -17730,6 +17830,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QMediaStreamsControl*)
 Q_DECLARE_METATYPE(MyQMediaStreamsControl*)
 
 int QMediaStreamsControl_QMediaStreamsControl_QRegisterMetaType(){qRegisterMetaType<QMediaStreamsControl*>(); return qRegisterMetaType<MyQMediaStreamsControl*>();}
@@ -17847,6 +17948,8 @@ void QMediaStreamsControl_DestroyQMediaStreamsControlDefault(void* ptr)
 
 }
 
+Q_DECLARE_METATYPE(QMediaTimeInterval)
+Q_DECLARE_METATYPE(QMediaTimeInterval*)
 void* QMediaTimeInterval_NewQMediaTimeInterval()
 {
 	return new QMediaTimeInterval();
@@ -17892,6 +17995,8 @@ void* QMediaTimeInterval_Translated(void* ptr, long long offset)
 	return new QMediaTimeInterval(static_cast<QMediaTimeInterval*>(ptr)->translated(offset));
 }
 
+Q_DECLARE_METATYPE(QMediaTimeRange)
+Q_DECLARE_METATYPE(QMediaTimeRange*)
 void* QMediaTimeRange_NewQMediaTimeRange()
 {
 	return new QMediaTimeRange();
@@ -18018,6 +18123,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QMediaVideoProbeControl*)
 Q_DECLARE_METATYPE(MyQMediaVideoProbeControl*)
 
 int QMediaVideoProbeControl_QMediaVideoProbeControl_QRegisterMetaType(){qRegisterMetaType<QMediaVideoProbeControl*>(); return qRegisterMetaType<MyQMediaVideoProbeControl*>();}
@@ -18134,6 +18240,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QMetaDataReaderControl*)
 Q_DECLARE_METATYPE(MyQMetaDataReaderControl*)
 
 int QMetaDataReaderControl_QMetaDataReaderControl_QRegisterMetaType(){qRegisterMetaType<QMetaDataReaderControl*>(); return qRegisterMetaType<MyQMetaDataReaderControl*>();}
@@ -18283,6 +18390,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QMetaDataWriterControl*)
 Q_DECLARE_METATYPE(MyQMetaDataWriterControl*)
 
 int QMetaDataWriterControl_QMetaDataWriterControl_QRegisterMetaType(){qRegisterMetaType<QMetaDataWriterControl*>(); return qRegisterMetaType<MyQMetaDataWriterControl*>();}
@@ -18458,6 +18566,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQRadioData_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QRadioData*)
 Q_DECLARE_METATYPE(MyQRadioData*)
 
 int QRadioData_QRadioData_QRegisterMetaType(){qRegisterMetaType<QRadioData*>(); return qRegisterMetaType<MyQRadioData*>();}
@@ -18960,6 +19069,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QRadioDataControl*)
 Q_DECLARE_METATYPE(MyQRadioDataControl*)
 
 int QRadioDataControl_QRadioDataControl_QRegisterMetaType(){qRegisterMetaType<QRadioDataControl*>(); return qRegisterMetaType<MyQRadioDataControl*>();}
@@ -19224,6 +19334,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QRadioTuner*)
 Q_DECLARE_METATYPE(MyQRadioTuner*)
 
 int QRadioTuner_QRadioTuner_QRegisterMetaType(){qRegisterMetaType<QRadioTuner*>(); return qRegisterMetaType<MyQRadioTuner*>();}
@@ -19689,6 +19800,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QRadioTunerControl*)
 Q_DECLARE_METATYPE(MyQRadioTunerControl*)
 
 int QRadioTunerControl_QRadioTunerControl_QRegisterMetaType(){qRegisterMetaType<QRadioTunerControl*>(); return qRegisterMetaType<MyQRadioTunerControl*>();}
@@ -20022,6 +20134,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSound_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QSound*)
 Q_DECLARE_METATYPE(MyQSound*)
 
 int QSound_QSound_QRegisterMetaType(){qRegisterMetaType<QSound*>(); return qRegisterMetaType<MyQSound*>();}
@@ -20369,6 +20482,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSoundEffect_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QSoundEffect*)
 Q_DECLARE_METATYPE(MyQSoundEffect*)
 
 int QSoundEffect_QSoundEffect_QRegisterMetaType(){qRegisterMetaType<QSoundEffect*>(); return qRegisterMetaType<MyQSoundEffect*>();}
@@ -20940,6 +21054,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QVideoDeviceSelectorControl*)
 Q_DECLARE_METATYPE(MyQVideoDeviceSelectorControl*)
 
 int QVideoDeviceSelectorControl_QVideoDeviceSelectorControl_QRegisterMetaType(){qRegisterMetaType<QVideoDeviceSelectorControl*>(); return qRegisterMetaType<MyQVideoDeviceSelectorControl*>();}
@@ -21077,6 +21192,7 @@ void QVideoDeviceSelectorControl_DestroyQVideoDeviceSelectorControlDefault(void*
 
 }
 
+Q_DECLARE_METATYPE(QVideoEncoderSettings*)
 void* QVideoEncoderSettings_NewQVideoEncoderSettings()
 {
 	return new QVideoEncoderSettings();
@@ -21280,6 +21396,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QVideoEncoderSettingsControl*)
 Q_DECLARE_METATYPE(MyQVideoEncoderSettingsControl*)
 
 int QVideoEncoderSettingsControl_QVideoEncoderSettingsControl_QRegisterMetaType(){qRegisterMetaType<QVideoEncoderSettingsControl*>(); return qRegisterMetaType<MyQVideoEncoderSettingsControl*>();}
@@ -21410,11 +21527,17 @@ public:
 	QVideoFrame run(QVideoFrame * input, const QVideoSurfaceFormat & surfaceFormat, QVideoFilterRunnable::RunFlags flags) { return *static_cast<QVideoFrame*>(callbackQVideoFilterRunnable_Run(this, input, const_cast<QVideoSurfaceFormat*>(&surfaceFormat), flags)); };
 };
 
+Q_DECLARE_METATYPE(QVideoFilterRunnable*)
+Q_DECLARE_METATYPE(MyQVideoFilterRunnable*)
+
+int QVideoFilterRunnable_QVideoFilterRunnable_QRegisterMetaType(){qRegisterMetaType<QVideoFilterRunnable*>(); return qRegisterMetaType<MyQVideoFilterRunnable*>();}
+
 void* QVideoFilterRunnable_Run(void* ptr, void* input, void* surfaceFormat, long long flags)
 {
 	return new QVideoFrame(static_cast<QVideoFilterRunnable*>(ptr)->run(static_cast<QVideoFrame*>(input), *static_cast<QVideoSurfaceFormat*>(surfaceFormat), static_cast<QVideoFilterRunnable::RunFlag>(flags)));
 }
 
+Q_DECLARE_METATYPE(QVideoFrame*)
 void* QVideoFrame_NewQVideoFrame()
 {
 	return new QVideoFrame();
@@ -21667,6 +21790,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQVideoProbe_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QVideoProbe*)
 Q_DECLARE_METATYPE(MyQVideoProbe*)
 
 int QVideoProbe_QVideoProbe_QRegisterMetaType(){qRegisterMetaType<QVideoProbe*>(); return qRegisterMetaType<MyQVideoProbe*>();}
@@ -21999,6 +22123,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QVideoRendererControl*)
 Q_DECLARE_METATYPE(MyQVideoRendererControl*)
 
 int QVideoRendererControl_QVideoRendererControl_QRegisterMetaType(){qRegisterMetaType<QVideoRendererControl*>(); return qRegisterMetaType<MyQVideoRendererControl*>();}
@@ -22071,6 +22196,7 @@ void QVideoRendererControl_DestroyQVideoRendererControlDefault(void* ptr)
 
 }
 
+Q_DECLARE_METATYPE(QVideoSurfaceFormat*)
 void* QVideoSurfaceFormat_NewQVideoSurfaceFormat()
 {
 	return new QVideoSurfaceFormat();
@@ -22322,6 +22448,7 @@ public:
 	bool setMediaObject(QMediaObject * object) { return callbackQVideoWidget_SetMediaObject(this, object) != 0; };
 };
 
+Q_DECLARE_METATYPE(QVideoWidget*)
 Q_DECLARE_METATYPE(MyQVideoWidget*)
 
 int QVideoWidget_QVideoWidget_QRegisterMetaType(){qRegisterMetaType<QVideoWidget*>(); return qRegisterMetaType<MyQVideoWidget*>();}
@@ -23420,6 +23547,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QVideoWidgetControl*)
 Q_DECLARE_METATYPE(MyQVideoWidgetControl*)
 
 int QVideoWidgetControl_QVideoWidgetControl_QRegisterMetaType(){qRegisterMetaType<QVideoWidgetControl*>(); return qRegisterMetaType<MyQVideoWidgetControl*>();}
@@ -23466,6 +23594,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QVideoWindowControl*)
 Q_DECLARE_METATYPE(MyQVideoWindowControl*)
 
 int QVideoWindowControl_QVideoWindowControl_QRegisterMetaType(){qRegisterMetaType<QVideoWindowControl*>(); return qRegisterMetaType<MyQVideoWindowControl*>();}

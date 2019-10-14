@@ -84,6 +84,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQJSEngine_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QJSEngine*)
 Q_DECLARE_METATYPE(MyQJSEngine*)
 
 int QJSEngine_QJSEngine_QRegisterMetaType(){qRegisterMetaType<QJSEngine*>(); return qRegisterMetaType<MyQJSEngine*>();}
@@ -390,6 +391,7 @@ void QJSEngine_TimerEventDefault(void* ptr, void* event)
 	}
 }
 
+Q_DECLARE_METATYPE(QJSValue*)
 void* QJSValue_NewQJSValue(long long value)
 {
 	return new QJSValue(static_cast<QJSValue::SpecialValue>(value));
@@ -686,10 +688,15 @@ void* QJSValue___callWithInstance_args_newList(void* ptr)
 class MyQQmlAbstractUrlInterceptor: public QQmlAbstractUrlInterceptor
 {
 public:
-	MyQQmlAbstractUrlInterceptor() : QQmlAbstractUrlInterceptor() {};
+	MyQQmlAbstractUrlInterceptor() : QQmlAbstractUrlInterceptor() {QQmlAbstractUrlInterceptor_QQmlAbstractUrlInterceptor_QRegisterMetaType();};
 	QUrl intercept(const QUrl & url, QQmlAbstractUrlInterceptor::DataType ty) { return *static_cast<QUrl*>(callbackQQmlAbstractUrlInterceptor_Intercept(this, const_cast<QUrl*>(&url), ty)); };
 	 ~MyQQmlAbstractUrlInterceptor() { callbackQQmlAbstractUrlInterceptor_DestroyQQmlAbstractUrlInterceptor(this); };
 };
+
+Q_DECLARE_METATYPE(QQmlAbstractUrlInterceptor*)
+Q_DECLARE_METATYPE(MyQQmlAbstractUrlInterceptor*)
+
+int QQmlAbstractUrlInterceptor_QQmlAbstractUrlInterceptor_QRegisterMetaType(){qRegisterMetaType<QQmlAbstractUrlInterceptor*>(); return qRegisterMetaType<MyQQmlAbstractUrlInterceptor*>();}
 
 void* QQmlAbstractUrlInterceptor_NewQQmlAbstractUrlInterceptor()
 {
@@ -740,6 +747,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQJSEngine_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QQmlApplicationEngine*)
 Q_DECLARE_METATYPE(MyQQmlApplicationEngine*)
 
 int QQmlApplicationEngine_QQmlApplicationEngine_QRegisterMetaType(){qRegisterMetaType<QQmlApplicationEngine*>(); return qRegisterMetaType<MyQQmlApplicationEngine*>();}
@@ -1549,6 +1557,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQQmlContext_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QQmlContext*)
 Q_DECLARE_METATYPE(MyQQmlContext*)
 
 int QQmlContext_QQmlContext_QRegisterMetaType(){qRegisterMetaType<QQmlContext*>(); return qRegisterMetaType<MyQQmlContext*>();}
@@ -1948,6 +1957,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQJSEngine_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QQmlEngine*)
 Q_DECLARE_METATYPE(MyQQmlEngine*)
 
 int QQmlEngine_QQmlEngine_QRegisterMetaType(){qRegisterMetaType<QQmlEngine*>(); return qRegisterMetaType<MyQQmlEngine*>();}
@@ -2304,6 +2314,8 @@ void* QQmlEngine___warnings_warnings_newList(void* ptr)
 	return new QList<QQmlError>();
 }
 
+Q_DECLARE_METATYPE(QQmlError)
+Q_DECLARE_METATYPE(QQmlError*)
 void* QQmlError_NewQQmlError()
 {
 	return new QQmlError();
@@ -2395,6 +2407,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQQmlExpression_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QQmlExpression*)
 Q_DECLARE_METATYPE(MyQQmlExpression*)
 
 int QQmlExpression_QQmlExpression_QRegisterMetaType(){qRegisterMetaType<QQmlExpression*>(); return qRegisterMetaType<MyQQmlExpression*>();}
@@ -2743,6 +2756,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQQmlExtensionPlugin_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QQmlExtensionPlugin*)
 Q_DECLARE_METATYPE(MyQQmlExtensionPlugin*)
 
 int QQmlExtensionPlugin_QQmlExtensionPlugin_QRegisterMetaType(){qRegisterMetaType<QQmlExtensionPlugin*>(); return qRegisterMetaType<MyQQmlExtensionPlugin*>();}
@@ -2957,6 +2971,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQQmlFileSelector_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QQmlFileSelector*)
 Q_DECLARE_METATYPE(MyQQmlFileSelector*)
 
 int QQmlFileSelector_QQmlFileSelector_QRegisterMetaType(){qRegisterMetaType<QQmlFileSelector*>(); return qRegisterMetaType<MyQQmlFileSelector*>();}
@@ -3176,6 +3191,11 @@ public:
 	QQmlImageProviderBase::ImageType imageType() const { return static_cast<QQmlImageProviderBase::ImageType>(callbackQQmlImageProviderBase_ImageType(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(QQmlImageProviderBase*)
+Q_DECLARE_METATYPE(MyQQmlImageProviderBase*)
+
+int QQmlImageProviderBase_QQmlImageProviderBase_QRegisterMetaType(){qRegisterMetaType<QQmlImageProviderBase*>(); return qRegisterMetaType<MyQQmlImageProviderBase*>();}
+
 long long QQmlImageProviderBase_Flags(void* ptr)
 {
 	return static_cast<QQmlImageProviderBase*>(ptr)->flags();
@@ -3189,9 +3209,14 @@ long long QQmlImageProviderBase_ImageType(void* ptr)
 class MyQQmlIncubationController: public QQmlIncubationController
 {
 public:
-	MyQQmlIncubationController() : QQmlIncubationController() {};
+	MyQQmlIncubationController() : QQmlIncubationController() {QQmlIncubationController_QQmlIncubationController_QRegisterMetaType();};
 	void incubatingObjectCountChanged(int incubatingObjectCount) { callbackQQmlIncubationController_IncubatingObjectCountChanged(this, incubatingObjectCount); };
 };
+
+Q_DECLARE_METATYPE(QQmlIncubationController*)
+Q_DECLARE_METATYPE(MyQQmlIncubationController*)
+
+int QQmlIncubationController_QQmlIncubationController_QRegisterMetaType(){qRegisterMetaType<QQmlIncubationController*>(); return qRegisterMetaType<MyQQmlIncubationController*>();}
 
 void* QQmlIncubationController_NewQQmlIncubationController2()
 {
@@ -3226,10 +3251,15 @@ void QQmlIncubationController_IncubatingObjectCountChangedDefault(void* ptr, int
 class MyQQmlIncubator: public QQmlIncubator
 {
 public:
-	MyQQmlIncubator(QQmlIncubator::IncubationMode mode = Asynchronous) : QQmlIncubator(mode) {};
+	MyQQmlIncubator(QQmlIncubator::IncubationMode mode = Asynchronous) : QQmlIncubator(mode) {QQmlIncubator_QQmlIncubator_QRegisterMetaType();};
 	void setInitialState(QObject * object) { callbackQQmlIncubator_SetInitialState(this, object); };
 	void statusChanged(QQmlIncubator::Status status) { callbackQQmlIncubator_StatusChanged(this, status); };
 };
+
+Q_DECLARE_METATYPE(QQmlIncubator*)
+Q_DECLARE_METATYPE(MyQQmlIncubator*)
+
+int QQmlIncubator_QQmlIncubator_QRegisterMetaType(){qRegisterMetaType<QQmlIncubator*>(); return qRegisterMetaType<MyQQmlIncubator*>();}
 
 void* QQmlIncubator_NewQQmlIncubator2(long long mode)
 {
@@ -3322,6 +3352,7 @@ void* QQmlIncubator___errors_newList(void* ptr)
 	return new QList<QQmlError>();
 }
 
+Q_DECLARE_METATYPE(QQmlListReference*)
 void* QQmlListReference_NewQQmlListReference()
 {
 	return new QQmlListReference();
@@ -3442,10 +3473,15 @@ void* QQmlListReference_Object(void* ptr)
 class MyQQmlNetworkAccessManagerFactory: public QQmlNetworkAccessManagerFactory
 {
 public:
-	MyQQmlNetworkAccessManagerFactory() : QQmlNetworkAccessManagerFactory() {};
+	MyQQmlNetworkAccessManagerFactory() : QQmlNetworkAccessManagerFactory() {QQmlNetworkAccessManagerFactory_QQmlNetworkAccessManagerFactory_QRegisterMetaType();};
 	QNetworkAccessManager * create(QObject * parent) { return static_cast<QNetworkAccessManager*>(callbackQQmlNetworkAccessManagerFactory_Create(this, parent)); };
 	 ~MyQQmlNetworkAccessManagerFactory() { callbackQQmlNetworkAccessManagerFactory_DestroyQQmlNetworkAccessManagerFactory(this); };
 };
+
+Q_DECLARE_METATYPE(QQmlNetworkAccessManagerFactory*)
+Q_DECLARE_METATYPE(MyQQmlNetworkAccessManagerFactory*)
+
+int QQmlNetworkAccessManagerFactory_QQmlNetworkAccessManagerFactory_QRegisterMetaType(){qRegisterMetaType<QQmlNetworkAccessManagerFactory*>(); return qRegisterMetaType<MyQQmlNetworkAccessManagerFactory*>();}
 
 void* QQmlNetworkAccessManagerFactory_Create(void* ptr, void* parent)
 {
@@ -3475,6 +3511,11 @@ public:
 	void componentComplete() { callbackQQmlParserStatus_ComponentComplete(this); };
 };
 
+Q_DECLARE_METATYPE(QQmlParserStatus*)
+Q_DECLARE_METATYPE(MyQQmlParserStatus*)
+
+int QQmlParserStatus_QQmlParserStatus_QRegisterMetaType(){qRegisterMetaType<QQmlParserStatus*>(); return qRegisterMetaType<MyQQmlParserStatus*>();}
+
 void QQmlParserStatus_ClassBegin(void* ptr)
 {
 	static_cast<QQmlParserStatus*>(ptr)->classBegin();
@@ -3485,6 +3526,8 @@ void QQmlParserStatus_ComponentComplete(void* ptr)
 	static_cast<QQmlParserStatus*>(ptr)->componentComplete();
 }
 
+Q_DECLARE_METATYPE(QQmlProperty)
+Q_DECLARE_METATYPE(QQmlProperty*)
 void* QQmlProperty_NewQQmlProperty()
 {
 	return new QQmlProperty();
@@ -3932,6 +3975,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQQmlPropertyMap_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QQmlPropertyMap*)
 Q_DECLARE_METATYPE(MyQQmlPropertyMap*)
 
 int QQmlPropertyMap_QQmlPropertyMap_QRegisterMetaType(){qRegisterMetaType<QQmlPropertyMap*>(); return qRegisterMetaType<MyQQmlPropertyMap*>();}
@@ -4187,10 +4231,15 @@ void QQmlPropertyMap_TimerEventDefault(void* ptr, void* event)
 class MyQQmlPropertyValueSource: public QQmlPropertyValueSource
 {
 public:
-	MyQQmlPropertyValueSource() : QQmlPropertyValueSource() {};
+	MyQQmlPropertyValueSource() : QQmlPropertyValueSource() {QQmlPropertyValueSource_QQmlPropertyValueSource_QRegisterMetaType();};
 	void setTarget(const QQmlProperty & property) { callbackQQmlPropertyValueSource_SetTarget(this, const_cast<QQmlProperty*>(&property)); };
 	 ~MyQQmlPropertyValueSource() { callbackQQmlPropertyValueSource_DestroyQQmlPropertyValueSource(this); };
 };
+
+Q_DECLARE_METATYPE(QQmlPropertyValueSource*)
+Q_DECLARE_METATYPE(MyQQmlPropertyValueSource*)
+
+int QQmlPropertyValueSource_QQmlPropertyValueSource_QRegisterMetaType(){qRegisterMetaType<QQmlPropertyValueSource*>(); return qRegisterMetaType<MyQQmlPropertyValueSource*>();}
 
 void* QQmlPropertyValueSource_NewQQmlPropertyValueSource()
 {
@@ -4213,6 +4262,7 @@ void QQmlPropertyValueSource_DestroyQQmlPropertyValueSourceDefault(void* ptr)
 
 }
 
+Q_DECLARE_METATYPE(QQmlScriptString*)
 void* QQmlScriptString_NewQQmlScriptString()
 {
 	return new QQmlScriptString();

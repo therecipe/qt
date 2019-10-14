@@ -8,6 +8,18 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
+int QXmlAttributes_QXmlAttributes_QRegisterMetaType();
+int QXmlContentHandler_QXmlContentHandler_QRegisterMetaType();
+int QXmlDTDHandler_QXmlDTDHandler_QRegisterMetaType();
+int QXmlDeclHandler_QXmlDeclHandler_QRegisterMetaType();
+int QXmlDefaultHandler_QXmlDefaultHandler_QRegisterMetaType();
+int QXmlEntityResolver_QXmlEntityResolver_QRegisterMetaType();
+int QXmlErrorHandler_QXmlErrorHandler_QRegisterMetaType();
+int QXmlInputSource_QXmlInputSource_QRegisterMetaType();
+int QXmlLexicalHandler_QXmlLexicalHandler_QRegisterMetaType();
+int QXmlLocator_QXmlLocator_QRegisterMetaType();
+int QXmlReader_QXmlReader_QRegisterMetaType();
+int QXmlSimpleReader_QXmlSimpleReader_QRegisterMetaType();
 extern "C" {
 #endif
 

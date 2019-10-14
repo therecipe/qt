@@ -62,6 +62,7 @@
 #include <QWidget>
 #include <QWindow>
 
+Q_DECLARE_METATYPE(QBluetoothAddress*)
 void* QBluetoothAddress_NewQBluetoothAddress()
 {
 	return new QBluetoothAddress();
@@ -134,6 +135,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQBluetoothDeviceDiscoveryAgent_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QBluetoothDeviceDiscoveryAgent*)
 Q_DECLARE_METATYPE(MyQBluetoothDeviceDiscoveryAgent*)
 
 int QBluetoothDeviceDiscoveryAgent_QBluetoothDeviceDiscoveryAgent_QRegisterMetaType(){qRegisterMetaType<QBluetoothDeviceDiscoveryAgent*>(); return qRegisterMetaType<MyQBluetoothDeviceDiscoveryAgent*>();}
@@ -536,6 +538,7 @@ void QBluetoothDeviceDiscoveryAgent_TimerEventDefault(void* ptr, void* event)
 		static_cast<QBluetoothDeviceDiscoveryAgent*>(ptr)->QBluetoothDeviceDiscoveryAgent::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
+Q_DECLARE_METATYPE(QBluetoothDeviceInfo*)
 void* QBluetoothDeviceInfo_NewQBluetoothDeviceInfo()
 {
 	return new QBluetoothDeviceInfo();
@@ -726,6 +729,7 @@ void* QBluetoothDeviceInfo_____manufacturerData_keyList_newList2(void* ptr)
 	return new QList<quint16>();
 }
 
+Q_DECLARE_METATYPE(QBluetoothHostInfo*)
 void* QBluetoothHostInfo_NewQBluetoothHostInfo()
 {
 	return new QBluetoothHostInfo();
@@ -788,6 +792,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQBluetoothLocalDevice_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QBluetoothLocalDevice*)
 Q_DECLARE_METATYPE(MyQBluetoothLocalDevice*)
 
 int QBluetoothLocalDevice_QBluetoothLocalDevice_QRegisterMetaType(){qRegisterMetaType<QBluetoothLocalDevice*>(); return qRegisterMetaType<MyQBluetoothLocalDevice*>();}
@@ -1242,6 +1247,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQBluetoothServer_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QBluetoothServer*)
 Q_DECLARE_METATYPE(MyQBluetoothServer*)
 
 int QBluetoothServer_QBluetoothServer_QRegisterMetaType(){qRegisterMetaType<QBluetoothServer*>(); return qRegisterMetaType<MyQBluetoothServer*>();}
@@ -1556,6 +1562,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQBluetoothServiceDiscoveryAgent_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QBluetoothServiceDiscoveryAgent*)
 Q_DECLARE_METATYPE(MyQBluetoothServiceDiscoveryAgent*)
 
 int QBluetoothServiceDiscoveryAgent_QBluetoothServiceDiscoveryAgent_QRegisterMetaType(){qRegisterMetaType<QBluetoothServiceDiscoveryAgent*>(); return qRegisterMetaType<MyQBluetoothServiceDiscoveryAgent*>();}
@@ -1975,6 +1982,7 @@ void QBluetoothServiceDiscoveryAgent_TimerEventDefault(void* ptr, void* event)
 		static_cast<QBluetoothServiceDiscoveryAgent*>(ptr)->QBluetoothServiceDiscoveryAgent::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
+Q_DECLARE_METATYPE(QBluetoothServiceInfo*)
 int QBluetoothServiceInfo_ServiceName_Type()
 {
 	return QBluetoothServiceInfo::ServiceName;
@@ -2196,6 +2204,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQBluetoothSocket_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QBluetoothSocket*)
 Q_DECLARE_METATYPE(MyQBluetoothSocket*)
 
 int QBluetoothSocket_QBluetoothSocket_QRegisterMetaType(){qRegisterMetaType<QBluetoothSocket*>(); return qRegisterMetaType<MyQBluetoothSocket*>();}
@@ -2706,6 +2715,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQBluetoothTransferManager_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QBluetoothTransferManager*)
 Q_DECLARE_METATYPE(MyQBluetoothTransferManager*)
 
 int QBluetoothTransferManager_QBluetoothTransferManager_QRegisterMetaType(){qRegisterMetaType<QBluetoothTransferManager*>(); return qRegisterMetaType<MyQBluetoothTransferManager*>();}
@@ -2939,6 +2949,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQBluetoothTransferReply_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QBluetoothTransferReply*)
 Q_DECLARE_METATYPE(MyQBluetoothTransferReply*)
 
 int QBluetoothTransferReply_QBluetoothTransferReply_QRegisterMetaType(){qRegisterMetaType<QBluetoothTransferReply*>(); return qRegisterMetaType<MyQBluetoothTransferReply*>();}
@@ -3222,6 +3233,7 @@ void QBluetoothTransferReply_TimerEventDefault(void* ptr, void* event)
 		static_cast<QBluetoothTransferReply*>(ptr)->QBluetoothTransferReply::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
+Q_DECLARE_METATYPE(QBluetoothTransferRequest*)
 void* QBluetoothTransferRequest_NewQBluetoothTransferRequest(void* address)
 {
 	return new QBluetoothTransferRequest(*static_cast<QBluetoothAddress*>(address));
@@ -3252,6 +3264,7 @@ void QBluetoothTransferRequest_DestroyQBluetoothTransferRequest(void* ptr)
 	static_cast<QBluetoothTransferRequest*>(ptr)->~QBluetoothTransferRequest();
 }
 
+Q_DECLARE_METATYPE(QBluetoothUuid*)
 void* QBluetoothUuid_NewQBluetoothUuid()
 {
 	return new QBluetoothUuid();
@@ -3342,6 +3355,8 @@ void QBluetoothUuid_DestroyQBluetoothUuid(void* ptr)
 	static_cast<QBluetoothUuid*>(ptr)->~QBluetoothUuid();
 }
 
+Q_DECLARE_METATYPE(QLowEnergyAdvertisingData)
+Q_DECLARE_METATYPE(QLowEnergyAdvertisingData*)
 void* QLowEnergyAdvertisingData_NewQLowEnergyAdvertisingData()
 {
 	return new QLowEnergyAdvertisingData();
@@ -3459,6 +3474,8 @@ void* QLowEnergyAdvertisingData___setServices_services_newList(void* ptr)
 	return new QList<QBluetoothUuid>();
 }
 
+Q_DECLARE_METATYPE(QLowEnergyAdvertisingParameters)
+Q_DECLARE_METATYPE(QLowEnergyAdvertisingParameters*)
 void* QLowEnergyAdvertisingParameters_NewQLowEnergyAdvertisingParameters()
 {
 	return new QLowEnergyAdvertisingParameters();
@@ -3509,6 +3526,7 @@ void QLowEnergyAdvertisingParameters_DestroyQLowEnergyAdvertisingParameters(void
 	static_cast<QLowEnergyAdvertisingParameters*>(ptr)->~QLowEnergyAdvertisingParameters();
 }
 
+Q_DECLARE_METATYPE(QLowEnergyCharacteristic*)
 void* QLowEnergyCharacteristic_NewQLowEnergyCharacteristic()
 {
 	return new QLowEnergyCharacteristic();
@@ -3575,6 +3593,8 @@ void* QLowEnergyCharacteristic___descriptors_newList(void* ptr)
 	return new QList<QLowEnergyDescriptor>();
 }
 
+Q_DECLARE_METATYPE(QLowEnergyCharacteristicData)
+Q_DECLARE_METATYPE(QLowEnergyCharacteristicData*)
 void* QLowEnergyCharacteristicData_NewQLowEnergyCharacteristicData()
 {
 	return new QLowEnergyCharacteristicData();
@@ -3712,6 +3732,7 @@ void* QLowEnergyCharacteristicData___setDescriptors_descriptors_newList(void* pt
 	return new QList<QLowEnergyDescriptorData>();
 }
 
+Q_DECLARE_METATYPE(QLowEnergyConnectionParameters*)
 void* QLowEnergyConnectionParameters_NewQLowEnergyConnectionParameters()
 {
 	return new QLowEnergyConnectionParameters();
@@ -3791,6 +3812,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQLowEnergyController_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QLowEnergyController*)
 Q_DECLARE_METATYPE(MyQLowEnergyController*)
 
 int QLowEnergyController_QLowEnergyController_QRegisterMetaType(){qRegisterMetaType<QLowEnergyController*>(); return qRegisterMetaType<MyQLowEnergyController*>();}
@@ -4159,6 +4181,7 @@ void QLowEnergyController_TimerEventDefault(void* ptr, void* event)
 		static_cast<QLowEnergyController*>(ptr)->QLowEnergyController::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
+Q_DECLARE_METATYPE(QLowEnergyDescriptor*)
 void* QLowEnergyDescriptor_NewQLowEnergyDescriptor()
 {
 	return new QLowEnergyDescriptor();
@@ -4199,6 +4222,8 @@ void QLowEnergyDescriptor_DestroyQLowEnergyDescriptor(void* ptr)
 	static_cast<QLowEnergyDescriptor*>(ptr)->~QLowEnergyDescriptor();
 }
 
+Q_DECLARE_METATYPE(QLowEnergyDescriptorData)
+Q_DECLARE_METATYPE(QLowEnergyDescriptorData*)
 void* QLowEnergyDescriptorData_NewQLowEnergyDescriptorData()
 {
 	return new QLowEnergyDescriptorData();
@@ -4303,6 +4328,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQLowEnergyService_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QLowEnergyService*)
 Q_DECLARE_METATYPE(MyQLowEnergyService*)
 
 int QLowEnergyService_QLowEnergyService_QRegisterMetaType(){qRegisterMetaType<QLowEnergyService*>(); return qRegisterMetaType<MyQLowEnergyService*>();}
@@ -4657,6 +4683,8 @@ void QLowEnergyService_TimerEventDefault(void* ptr, void* event)
 		static_cast<QLowEnergyService*>(ptr)->QLowEnergyService::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
+Q_DECLARE_METATYPE(QLowEnergyServiceData)
+Q_DECLARE_METATYPE(QLowEnergyServiceData*)
 void* QLowEnergyServiceData_NewQLowEnergyServiceData()
 {
 	return new QLowEnergyServiceData();

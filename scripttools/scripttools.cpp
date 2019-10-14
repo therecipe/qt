@@ -57,6 +57,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQScriptEngineDebugger_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QScriptEngineDebugger*)
 Q_DECLARE_METATYPE(MyQScriptEngineDebugger*)
 
 int QScriptEngineDebugger_QScriptEngineDebugger_QRegisterMetaType(){qRegisterMetaType<QScriptEngineDebugger*>(); return qRegisterMetaType<MyQScriptEngineDebugger*>();}

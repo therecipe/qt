@@ -73,6 +73,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQDBusAbstractAdaptor_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QDBusAbstractAdaptor*)
 Q_DECLARE_METATYPE(MyQDBusAbstractAdaptor*)
 
 int QDBusAbstractAdaptor_QDBusAbstractAdaptor_QRegisterMetaType(){qRegisterMetaType<QDBusAbstractAdaptor*>(); return qRegisterMetaType<MyQDBusAbstractAdaptor*>();}
@@ -307,6 +308,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQDBusAbstractInterface_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QDBusAbstractInterface*)
 Q_DECLARE_METATYPE(MyQDBusAbstractInterface*)
 
 int QDBusAbstractInterface_QDBusAbstractInterface_QRegisterMetaType(){qRegisterMetaType<QDBusAbstractInterface*>(); return qRegisterMetaType<MyQDBusAbstractInterface*>();}
@@ -703,6 +705,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQDBusAbstractInterfaceBase_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QDBusAbstractInterfaceBase*)
 Q_DECLARE_METATYPE(MyQDBusAbstractInterfaceBase*)
 
 int QDBusAbstractInterfaceBase_QDBusAbstractInterfaceBase_QRegisterMetaType(){qRegisterMetaType<QDBusAbstractInterfaceBase*>(); return qRegisterMetaType<MyQDBusAbstractInterfaceBase*>();}
@@ -852,6 +855,7 @@ void QDBusAbstractInterfaceBase_TimerEventDefault(void* ptr, void* event)
 		static_cast<QDBusAbstractInterfaceBase*>(ptr)->QDBusAbstractInterfaceBase::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
+Q_DECLARE_METATYPE(QDBusArgument*)
 void* QDBusArgument_NewQDBusArgument()
 {
 	return new QDBusArgument();
@@ -967,6 +971,7 @@ void QDBusArgument_DestroyQDBusArgument(void* ptr)
 	static_cast<QDBusArgument*>(ptr)->~QDBusArgument();
 }
 
+Q_DECLARE_METATYPE(QDBusConnection*)
 void* QDBusConnection_NewQDBusConnection(struct QtDBus_PackedString name)
 {
 	return new QDBusConnection(QString::fromUtf8(name.data, name.len));
@@ -1187,6 +1192,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQDBusAbstractInterface_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QDBusConnectionInterface*)
 Q_DECLARE_METATYPE(MyQDBusConnectionInterface*)
 
 int QDBusConnectionInterface_QDBusConnectionInterface_QRegisterMetaType(){qRegisterMetaType<QDBusConnectionInterface*>(); return qRegisterMetaType<MyQDBusConnectionInterface*>();}
@@ -1236,6 +1242,8 @@ void QDBusConnectionInterface_ServiceUnregistered(void* ptr, struct QtDBus_Packe
 	static_cast<QDBusConnectionInterface*>(ptr)->serviceUnregistered(QString::fromUtf8(service.data, service.len));
 }
 
+Q_DECLARE_METATYPE(QDBusContext)
+Q_DECLARE_METATYPE(QDBusContext*)
 void* QDBusContext_NewQDBusContext()
 {
 	return new QDBusContext();
@@ -1329,6 +1337,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQDBusAbstractInterface_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QDBusInterface*)
 Q_DECLARE_METATYPE(MyQDBusInterface*)
 
 int QDBusInterface_QDBusInterface_QRegisterMetaType(){qRegisterMetaType<QDBusInterface*>(); return qRegisterMetaType<MyQDBusInterface*>();}
@@ -1391,6 +1400,7 @@ void QDBusInterface_DestroyQDBusInterfaceDefault(void* ptr)
 
 }
 
+Q_DECLARE_METATYPE(QDBusMessage*)
 void* QDBusMessage_NewQDBusMessage()
 {
 	return new QDBusMessage();
@@ -1599,6 +1609,7 @@ void* QDBusMessage___setArguments_arguments_newList(void* ptr)
 	return new QList<QVariant>();
 }
 
+Q_DECLARE_METATYPE(QDBusObjectPath*)
 void* QDBusObjectPath_NewQDBusObjectPath()
 {
 	return new QDBusObjectPath();
@@ -1634,6 +1645,7 @@ void QDBusObjectPath_Swap(void* ptr, void* other)
 	static_cast<QDBusObjectPath*>(ptr)->swap(*static_cast<QDBusObjectPath*>(other));
 }
 
+Q_DECLARE_METATYPE(QDBusPendingCall*)
 void* QDBusPendingCall_NewQDBusPendingCall(void* other)
 {
 	return new QDBusPendingCall(*static_cast<QDBusPendingCall*>(other));
@@ -1690,6 +1702,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQDBusPendingCallWatcher_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QDBusPendingCallWatcher*)
 Q_DECLARE_METATYPE(MyQDBusPendingCallWatcher*)
 
 int QDBusPendingCallWatcher_QDBusPendingCallWatcher_QRegisterMetaType(){qRegisterMetaType<QDBusPendingCallWatcher*>(); return qRegisterMetaType<MyQDBusPendingCallWatcher*>();}
@@ -1949,6 +1962,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQDBusServer_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QDBusServer*)
 Q_DECLARE_METATYPE(MyQDBusServer*)
 
 int QDBusServer_QDBusServer_QRegisterMetaType(){qRegisterMetaType<QDBusServer*>(); return qRegisterMetaType<MyQDBusServer*>();}
@@ -2260,6 +2274,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQDBusServiceWatcher_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QDBusServiceWatcher*)
 Q_DECLARE_METATYPE(MyQDBusServiceWatcher*)
 
 int QDBusServiceWatcher_QDBusServiceWatcher_QRegisterMetaType(){qRegisterMetaType<QDBusServiceWatcher*>(); return qRegisterMetaType<MyQDBusServiceWatcher*>();}
@@ -2599,6 +2614,7 @@ void QDBusServiceWatcher_TimerEventDefault(void* ptr, void* event)
 		static_cast<QDBusServiceWatcher*>(ptr)->QDBusServiceWatcher::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
+Q_DECLARE_METATYPE(QDBusSignature*)
 void* QDBusSignature_NewQDBusSignature()
 {
 	return new QDBusSignature();
@@ -2634,6 +2650,7 @@ void QDBusSignature_Swap(void* ptr, void* other)
 	static_cast<QDBusSignature*>(ptr)->swap(*static_cast<QDBusSignature*>(other));
 }
 
+Q_DECLARE_METATYPE(QDBusUnixFileDescriptor*)
 void* QDBusUnixFileDescriptor_NewQDBusUnixFileDescriptor()
 {
 	return new QDBusUnixFileDescriptor();
@@ -2679,6 +2696,7 @@ void QDBusUnixFileDescriptor_DestroyQDBusUnixFileDescriptor(void* ptr)
 	static_cast<QDBusUnixFileDescriptor*>(ptr)->~QDBusUnixFileDescriptor();
 }
 
+Q_DECLARE_METATYPE(QDBusVariant*)
 void* QDBusVariant_NewQDBusVariant()
 {
 	return new QDBusVariant();
@@ -2724,6 +2742,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQDBusVirtualObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QDBusVirtualObject*)
 Q_DECLARE_METATYPE(MyQDBusVirtualObject*)
 
 int QDBusVirtualObject_QDBusVirtualObject_QRegisterMetaType(){qRegisterMetaType<QDBusVirtualObject*>(); return qRegisterMetaType<MyQDBusVirtualObject*>();}

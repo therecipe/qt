@@ -94,6 +94,11 @@ public:
 	 ~MyQAbstractExtensionManager() { callbackQAbstractExtensionManager_DestroyQAbstractExtensionManager(this); };
 };
 
+Q_DECLARE_METATYPE(QAbstractExtensionManager*)
+Q_DECLARE_METATYPE(MyQAbstractExtensionManager*)
+
+int QAbstractExtensionManager_QAbstractExtensionManager_QRegisterMetaType(){qRegisterMetaType<QAbstractExtensionManager*>(); return qRegisterMetaType<MyQAbstractExtensionManager*>();}
+
 void* QAbstractExtensionManager_Extension(void* ptr, void* object, struct QtDesigner_PackedString iid)
 {
 	if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(ptr))) {
@@ -163,11 +168,16 @@ void QAbstractExtensionManager_DestroyQAbstractExtensionManagerDefault(void* ptr
 class MyQAbstractFormBuilder: public QAbstractFormBuilder
 {
 public:
-	MyQAbstractFormBuilder() : QAbstractFormBuilder() {};
+	MyQAbstractFormBuilder() : QAbstractFormBuilder() {QAbstractFormBuilder_QAbstractFormBuilder_QRegisterMetaType();};
 	QWidget * load(QIODevice * device, QWidget * parent) { return static_cast<QWidget*>(callbackQAbstractFormBuilder_Load(this, device, parent)); };
 	void save(QIODevice * device, QWidget * widget) { callbackQAbstractFormBuilder_Save(this, device, widget); };
 	 ~MyQAbstractFormBuilder() { callbackQAbstractFormBuilder_DestroyQAbstractFormBuilder(this); };
 };
+
+Q_DECLARE_METATYPE(QAbstractFormBuilder*)
+Q_DECLARE_METATYPE(MyQAbstractFormBuilder*)
+
+int QAbstractFormBuilder_QAbstractFormBuilder_QRegisterMetaType(){qRegisterMetaType<QAbstractFormBuilder*>(); return qRegisterMetaType<MyQAbstractFormBuilder*>();}
 
 void* QAbstractFormBuilder_NewQAbstractFormBuilder()
 {
@@ -327,6 +337,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQDesignerActionEditorInterface_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QDesignerActionEditorInterface*)
 Q_DECLARE_METATYPE(MyQDesignerActionEditorInterface*)
 
 int QDesignerActionEditorInterface_QDesignerActionEditorInterface_QRegisterMetaType(){qRegisterMetaType<QDesignerActionEditorInterface*>(); return qRegisterMetaType<MyQDesignerActionEditorInterface*>();}
@@ -870,6 +881,11 @@ public:
 	 ~MyQDesignerContainerExtension() { callbackQDesignerContainerExtension_DestroyQDesignerContainerExtension(this); };
 };
 
+Q_DECLARE_METATYPE(QDesignerContainerExtension*)
+Q_DECLARE_METATYPE(MyQDesignerContainerExtension*)
+
+int QDesignerContainerExtension_QDesignerContainerExtension_QRegisterMetaType(){qRegisterMetaType<QDesignerContainerExtension*>(); return qRegisterMetaType<MyQDesignerContainerExtension*>();}
+
 void QDesignerContainerExtension_AddWidget(void* ptr, void* page)
 {
 	static_cast<QDesignerContainerExtension*>(ptr)->addWidget(static_cast<QWidget*>(page));
@@ -943,6 +959,11 @@ public:
 	 ~MyQDesignerCustomWidgetCollectionInterface() { callbackQDesignerCustomWidgetCollectionInterface_DestroyQDesignerCustomWidgetCollectionInterface(this); };
 };
 
+Q_DECLARE_METATYPE(QDesignerCustomWidgetCollectionInterface*)
+Q_DECLARE_METATYPE(MyQDesignerCustomWidgetCollectionInterface*)
+
+int QDesignerCustomWidgetCollectionInterface_QDesignerCustomWidgetCollectionInterface_QRegisterMetaType(){qRegisterMetaType<QDesignerCustomWidgetCollectionInterface*>(); return qRegisterMetaType<MyQDesignerCustomWidgetCollectionInterface*>();}
+
 struct QtDesigner_PackedList QDesignerCustomWidgetCollectionInterface_CustomWidgets(void* ptr)
 {
 	return ({ QList<QDesignerCustomWidgetInterface *>* tmpValue2adca0 = new QList<QDesignerCustomWidgetInterface *>(static_cast<QDesignerCustomWidgetCollectionInterface*>(ptr)->customWidgets()); QtDesigner_PackedList { tmpValue2adca0, tmpValue2adca0->size() }; });
@@ -992,6 +1013,11 @@ public:
 	QString whatsThis() const { return ({ QtDesigner_PackedString tempVal = callbackQDesignerCustomWidgetInterface_WhatsThis(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	 ~MyQDesignerCustomWidgetInterface() { callbackQDesignerCustomWidgetInterface_DestroyQDesignerCustomWidgetInterface(this); };
 };
+
+Q_DECLARE_METATYPE(QDesignerCustomWidgetInterface*)
+Q_DECLARE_METATYPE(MyQDesignerCustomWidgetInterface*)
+
+int QDesignerCustomWidgetInterface_QDesignerCustomWidgetInterface_QRegisterMetaType(){qRegisterMetaType<QDesignerCustomWidgetInterface*>(); return qRegisterMetaType<MyQDesignerCustomWidgetInterface*>();}
 
 struct QtDesigner_PackedString QDesignerCustomWidgetInterface_CodeTemplate(void* ptr)
 {
@@ -1095,6 +1121,11 @@ public:
 	 ~MyQDesignerDynamicPropertySheetExtension() { callbackQDesignerDynamicPropertySheetExtension_DestroyQDesignerDynamicPropertySheetExtension(this); };
 };
 
+Q_DECLARE_METATYPE(QDesignerDynamicPropertySheetExtension*)
+Q_DECLARE_METATYPE(MyQDesignerDynamicPropertySheetExtension*)
+
+int QDesignerDynamicPropertySheetExtension_QDesignerDynamicPropertySheetExtension_QRegisterMetaType(){qRegisterMetaType<QDesignerDynamicPropertySheetExtension*>(); return qRegisterMetaType<MyQDesignerDynamicPropertySheetExtension*>();}
+
 int QDesignerDynamicPropertySheetExtension_AddDynamicProperty(void* ptr, struct QtDesigner_PackedString propertyName, void* value)
 {
 	return static_cast<QDesignerDynamicPropertySheetExtension*>(ptr)->addDynamicProperty(QString::fromUtf8(propertyName.data, propertyName.len), *static_cast<QVariant*>(value));
@@ -1149,6 +1180,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQDesignerFormEditorInterface_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QDesignerFormEditorInterface*)
 Q_DECLARE_METATYPE(MyQDesignerFormEditorInterface*)
 
 int QDesignerFormEditorInterface_QDesignerFormEditorInterface_QRegisterMetaType(){qRegisterMetaType<QDesignerFormEditorInterface*>(); return qRegisterMetaType<MyQDesignerFormEditorInterface*>();}
@@ -1474,6 +1506,11 @@ public:
 	 ~MyQDesignerFormWindowCursorInterface() { callbackQDesignerFormWindowCursorInterface_DestroyQDesignerFormWindowCursorInterface(this); };
 };
 
+Q_DECLARE_METATYPE(QDesignerFormWindowCursorInterface*)
+Q_DECLARE_METATYPE(MyQDesignerFormWindowCursorInterface*)
+
+int QDesignerFormWindowCursorInterface_QDesignerFormWindowCursorInterface_QRegisterMetaType(){qRegisterMetaType<QDesignerFormWindowCursorInterface*>(); return qRegisterMetaType<MyQDesignerFormWindowCursorInterface*>();}
+
 void* QDesignerFormWindowCursorInterface_Current(void* ptr)
 {
 	return static_cast<QDesignerFormWindowCursorInterface*>(ptr)->current();
@@ -1688,6 +1725,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQDesignerFormWindowInterface_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QDesignerFormWindowInterface*)
 Q_DECLARE_METATYPE(MyQDesignerFormWindowInterface*)
 
 int QDesignerFormWindowInterface_QDesignerFormWindowInterface_QRegisterMetaType(){qRegisterMetaType<QDesignerFormWindowInterface*>(); return qRegisterMetaType<MyQDesignerFormWindowInterface*>();}
@@ -2691,6 +2729,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQDesignerFormWindowManagerInterface_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QDesignerFormWindowManagerInterface*)
 Q_DECLARE_METATYPE(MyQDesignerFormWindowManagerInterface*)
 
 int QDesignerFormWindowManagerInterface_QDesignerFormWindowManagerInterface_QRegisterMetaType(){qRegisterMetaType<QDesignerFormWindowManagerInterface*>(); return qRegisterMetaType<MyQDesignerFormWindowManagerInterface*>();}
@@ -3017,6 +3056,11 @@ public:
 	 ~MyQDesignerMemberSheetExtension() { callbackQDesignerMemberSheetExtension_DestroyQDesignerMemberSheetExtension(this); };
 };
 
+Q_DECLARE_METATYPE(QDesignerMemberSheetExtension*)
+Q_DECLARE_METATYPE(MyQDesignerMemberSheetExtension*)
+
+int QDesignerMemberSheetExtension_QDesignerMemberSheetExtension_QRegisterMetaType(){qRegisterMetaType<QDesignerMemberSheetExtension*>(); return qRegisterMetaType<MyQDesignerMemberSheetExtension*>();}
+
 int QDesignerMemberSheetExtension_Count(void* ptr)
 {
 	return static_cast<QDesignerMemberSheetExtension*>(ptr)->count();
@@ -3209,6 +3253,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQDesignerObjectInspectorInterface_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QDesignerObjectInspectorInterface*)
 Q_DECLARE_METATYPE(MyQDesignerObjectInspectorInterface*)
 
 int QDesignerObjectInspectorInterface_QDesignerObjectInspectorInterface_QRegisterMetaType(){qRegisterMetaType<QDesignerObjectInspectorInterface*>(); return qRegisterMetaType<MyQDesignerObjectInspectorInterface*>();}
@@ -3812,6 +3857,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQDesignerPropertyEditorInterface_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QDesignerPropertyEditorInterface*)
 Q_DECLARE_METATYPE(MyQDesignerPropertyEditorInterface*)
 
 int QDesignerPropertyEditorInterface_QDesignerPropertyEditorInterface_QRegisterMetaType(){qRegisterMetaType<QDesignerPropertyEditorInterface*>(); return qRegisterMetaType<MyQDesignerPropertyEditorInterface*>();}
@@ -4392,6 +4438,11 @@ public:
 	 ~MyQDesignerPropertySheetExtension() { callbackQDesignerPropertySheetExtension_DestroyQDesignerPropertySheetExtension(this); };
 };
 
+Q_DECLARE_METATYPE(QDesignerPropertySheetExtension*)
+Q_DECLARE_METATYPE(MyQDesignerPropertySheetExtension*)
+
+int QDesignerPropertySheetExtension_QDesignerPropertySheetExtension_QRegisterMetaType(){qRegisterMetaType<QDesignerPropertySheetExtension*>(); return qRegisterMetaType<MyQDesignerPropertySheetExtension*>();}
+
 int QDesignerPropertySheetExtension_Count(void* ptr)
 {
 	return static_cast<QDesignerPropertySheetExtension*>(ptr)->count();
@@ -4563,6 +4614,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQDesignerResourceBrowserInterface_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QDesignerResourceBrowserInterface*)
 Q_DECLARE_METATYPE(MyQDesignerResourceBrowserInterface*)
 
 int QDesignerResourceBrowserInterface_QDesignerResourceBrowserInterface_QRegisterMetaType(){qRegisterMetaType<QDesignerResourceBrowserInterface*>(); return qRegisterMetaType<MyQDesignerResourceBrowserInterface*>();}
@@ -5058,6 +5110,11 @@ public:
 	 ~MyQDesignerTaskMenuExtension() { callbackQDesignerTaskMenuExtension_DestroyQDesignerTaskMenuExtension(this); };
 };
 
+Q_DECLARE_METATYPE(QDesignerTaskMenuExtension*)
+Q_DECLARE_METATYPE(MyQDesignerTaskMenuExtension*)
+
+int QDesignerTaskMenuExtension_QDesignerTaskMenuExtension_QRegisterMetaType(){qRegisterMetaType<QDesignerTaskMenuExtension*>(); return qRegisterMetaType<MyQDesignerTaskMenuExtension*>();}
+
 void* QDesignerTaskMenuExtension_PreferredEditAction(void* ptr)
 {
 	return static_cast<QDesignerTaskMenuExtension*>(ptr)->preferredEditAction();
@@ -5180,6 +5237,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQDesignerWidgetBoxInterface_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QDesignerWidgetBoxInterface*)
 Q_DECLARE_METATYPE(MyQDesignerWidgetBoxInterface*)
 
 int QDesignerWidgetBoxInterface_QDesignerWidgetBoxInterface_QRegisterMetaType(){qRegisterMetaType<QDesignerWidgetBoxInterface*>(); return qRegisterMetaType<MyQDesignerWidgetBoxInterface*>();}
@@ -5723,6 +5781,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQExtensionFactory_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QExtensionFactory*)
 Q_DECLARE_METATYPE(MyQExtensionFactory*)
 
 int QExtensionFactory_QExtensionFactory_QRegisterMetaType(){qRegisterMetaType<QExtensionFactory*>(); return qRegisterMetaType<MyQExtensionFactory*>();}
@@ -6008,6 +6067,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQExtensionManager_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QExtensionManager*)
 Q_DECLARE_METATYPE(MyQExtensionManager*)
 
 int QExtensionManager_QExtensionManager_QRegisterMetaType(){qRegisterMetaType<QExtensionManager*>(); return qRegisterMetaType<MyQExtensionManager*>();}
@@ -6295,11 +6355,16 @@ void QExtensionManager_TimerEventDefault(void* ptr, void* event)
 class MyQFormBuilder: public QFormBuilder
 {
 public:
-	MyQFormBuilder() : QFormBuilder() {};
+	MyQFormBuilder() : QFormBuilder() {QFormBuilder_QFormBuilder_QRegisterMetaType();};
 	 ~MyQFormBuilder() { callbackQFormBuilder_DestroyQFormBuilder(this); };
 	QWidget * load(QIODevice * device, QWidget * parent) { return static_cast<QWidget*>(callbackQAbstractFormBuilder_Load(this, device, parent)); };
 	void save(QIODevice * device, QWidget * widget) { callbackQAbstractFormBuilder_Save(this, device, widget); };
 };
+
+Q_DECLARE_METATYPE(QFormBuilder*)
+Q_DECLARE_METATYPE(MyQFormBuilder*)
+
+int QFormBuilder_QFormBuilder_QRegisterMetaType(){qRegisterMetaType<QFormBuilder*>(); return qRegisterMetaType<MyQFormBuilder*>();}
 
 void* QFormBuilder_NewQFormBuilder()
 {

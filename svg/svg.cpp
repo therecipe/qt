@@ -140,6 +140,7 @@ public:
 	void wheelEvent(QGraphicsSceneWheelEvent * event) { callbackQGraphicsSvgItem_WheelEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QGraphicsSvgItem*)
 Q_DECLARE_METATYPE(MyQGraphicsSvgItem*)
 
 int QGraphicsSvgItem_QGraphicsSvgItem_QRegisterMetaType(){qRegisterMetaType<QGraphicsSvgItem*>(); return qRegisterMetaType<MyQGraphicsSvgItem*>();}
@@ -563,10 +564,15 @@ void QGraphicsSvgItem_WheelEventDefault(void* ptr, void* event)
 class MyQSvgGenerator: public QSvgGenerator
 {
 public:
-	MyQSvgGenerator() : QSvgGenerator() {};
+	MyQSvgGenerator() : QSvgGenerator() {QSvgGenerator_QSvgGenerator_QRegisterMetaType();};
 	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQSvgGenerator_PaintEngine(const_cast<void*>(static_cast<const void*>(this)))); };
 	 ~MyQSvgGenerator() { callbackQSvgGenerator_DestroyQSvgGenerator(this); };
 };
+
+Q_DECLARE_METATYPE(QSvgGenerator*)
+Q_DECLARE_METATYPE(MyQSvgGenerator*)
+
+int QSvgGenerator_QSvgGenerator_QRegisterMetaType(){qRegisterMetaType<QSvgGenerator*>(); return qRegisterMetaType<MyQSvgGenerator*>();}
 
 void* QSvgGenerator_NewQSvgGenerator()
 {
@@ -704,6 +710,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSvgRenderer_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QSvgRenderer*)
 Q_DECLARE_METATYPE(MyQSvgRenderer*)
 
 int QSvgRenderer_QSvgRenderer_QRegisterMetaType(){qRegisterMetaType<QSvgRenderer*>(); return qRegisterMetaType<MyQSvgRenderer*>();}
@@ -1253,6 +1260,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSvgWidget_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QSvgWidget*)
 Q_DECLARE_METATYPE(MyQSvgWidget*)
 
 int QSvgWidget_QSvgWidget_QRegisterMetaType(){qRegisterMetaType<QSvgWidget*>(); return qRegisterMetaType<MyQSvgWidget*>();}

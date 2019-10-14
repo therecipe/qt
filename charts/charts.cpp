@@ -233,6 +233,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractAxis_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QAbstractAxis*)
 Q_DECLARE_METATYPE(MyQAbstractAxis*)
 
 int QAbstractAxis_QAbstractAxis_QRegisterMetaType(){qRegisterMetaType<QAbstractAxis*>(); return qRegisterMetaType<MyQAbstractAxis*>();}
@@ -1206,6 +1207,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractSeries_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QAbstractBarSeries*)
 Q_DECLARE_METATYPE(MyQAbstractBarSeries*)
 
 int QAbstractBarSeries_QAbstractBarSeries_QRegisterMetaType(){qRegisterMetaType<QAbstractBarSeries*>(); return qRegisterMetaType<MyQAbstractBarSeries*>();}
@@ -1626,6 +1628,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractSeries_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QAbstractSeries*)
 Q_DECLARE_METATYPE(MyQAbstractSeries*)
 
 int QAbstractSeries_QAbstractSeries_QRegisterMetaType(){qRegisterMetaType<QAbstractSeries*>(); return qRegisterMetaType<MyQAbstractSeries*>();}
@@ -2233,6 +2236,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQLegendMarker_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QAreaLegendMarker*)
 Q_DECLARE_METATYPE(MyQAreaLegendMarker*)
 
 int QAreaLegendMarker_QAreaLegendMarker_QRegisterMetaType(){qRegisterMetaType<QAreaLegendMarker*>(); return qRegisterMetaType<MyQAreaLegendMarker*>();}
@@ -2304,6 +2308,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractSeries_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QAreaSeries*)
 Q_DECLARE_METATYPE(MyQAreaSeries*)
 
 int QAreaSeries_QAreaSeries_QRegisterMetaType(){qRegisterMetaType<QAreaSeries*>(); return qRegisterMetaType<MyQAreaSeries*>();}
@@ -2731,6 +2736,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractAxis_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QBarCategoryAxis*)
 Q_DECLARE_METATYPE(MyQBarCategoryAxis*)
 
 int QBarCategoryAxis_QBarCategoryAxis_QRegisterMetaType(){qRegisterMetaType<QBarCategoryAxis*>(); return qRegisterMetaType<MyQBarCategoryAxis*>();}
@@ -2981,6 +2987,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQLegendMarker_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QBarLegendMarker*)
 Q_DECLARE_METATYPE(MyQBarLegendMarker*)
 
 int QBarLegendMarker_QBarLegendMarker_QRegisterMetaType(){qRegisterMetaType<QBarLegendMarker*>(); return qRegisterMetaType<MyQBarLegendMarker*>();}
@@ -3057,6 +3064,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractSeries_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QBarSeries*)
 Q_DECLARE_METATYPE(MyQBarSeries*)
 
 int QBarSeries_QBarSeries_QRegisterMetaType(){qRegisterMetaType<QBarSeries*>(); return qRegisterMetaType<MyQBarSeries*>();}
@@ -3163,6 +3171,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQBarSet_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QBarSet*)
 Q_DECLARE_METATYPE(MyQBarSet*)
 
 int QBarSet_QBarSet_QRegisterMetaType(){qRegisterMetaType<QBarSet*>(); return qRegisterMetaType<MyQBarSet*>();}
@@ -3754,6 +3763,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQLegendMarker_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QBoxPlotLegendMarker*)
 Q_DECLARE_METATYPE(MyQBoxPlotLegendMarker*)
 
 int QBoxPlotLegendMarker_QBoxPlotLegendMarker_QRegisterMetaType(){qRegisterMetaType<QBoxPlotLegendMarker*>(); return qRegisterMetaType<MyQBoxPlotLegendMarker*>();}
@@ -3824,6 +3834,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractSeries_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QBoxPlotSeries*)
 Q_DECLARE_METATYPE(MyQBoxPlotSeries*)
 
 int QBoxPlotSeries_QBoxPlotSeries_QRegisterMetaType(){qRegisterMetaType<QBoxPlotSeries*>(); return qRegisterMetaType<MyQBoxPlotSeries*>();}
@@ -4249,6 +4260,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQBoxSet_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QBoxSet*)
 Q_DECLARE_METATYPE(MyQBoxSet*)
 
 int QBoxSet_QBoxSet_QRegisterMetaType(){qRegisterMetaType<QBoxSet*>(); return qRegisterMetaType<MyQBoxSet*>();}
@@ -4736,6 +4748,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQLegendMarker_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QCandlestickLegendMarker*)
 Q_DECLARE_METATYPE(MyQCandlestickLegendMarker*)
 
 int QCandlestickLegendMarker_QCandlestickLegendMarker_QRegisterMetaType(){qRegisterMetaType<QCandlestickLegendMarker*>(); return qRegisterMetaType<MyQCandlestickLegendMarker*>();}
@@ -4780,6 +4793,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQCandlestickModelMapper_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QCandlestickModelMapper*)
 Q_DECLARE_METATYPE(MyQCandlestickModelMapper*)
 
 int QCandlestickModelMapper_QCandlestickModelMapper_QRegisterMetaType(){qRegisterMetaType<QCandlestickModelMapper*>(); return qRegisterMetaType<MyQCandlestickModelMapper*>();}
@@ -5176,6 +5190,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractSeries_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QCandlestickSeries*)
 Q_DECLARE_METATYPE(MyQCandlestickSeries*)
 
 int QCandlestickSeries_QCandlestickSeries_QRegisterMetaType(){qRegisterMetaType<QCandlestickSeries*>(); return qRegisterMetaType<MyQCandlestickSeries*>();}
@@ -5774,6 +5789,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQCandlestickSet_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QCandlestickSet*)
 Q_DECLARE_METATYPE(MyQCandlestickSet*)
 
 int QCandlestickSet_QCandlestickSet_QRegisterMetaType(){qRegisterMetaType<QCandlestickSet*>(); return qRegisterMetaType<MyQCandlestickSet*>();}
@@ -6315,6 +6331,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractAxis_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QCategoryAxis*)
 Q_DECLARE_METATYPE(MyQCategoryAxis*)
 
 int QCategoryAxis_QCategoryAxis_QRegisterMetaType(){qRegisterMetaType<QCategoryAxis*>(); return qRegisterMetaType<MyQCategoryAxis*>();}
@@ -6541,6 +6558,7 @@ public:
 	void wheelEvent(QGraphicsSceneWheelEvent * event) { callbackQChart_WheelEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QChart*)
 Q_DECLARE_METATYPE(MyQChart*)
 
 int QChart_QChart_QRegisterMetaType(){qRegisterMetaType<QChart*>(); return qRegisterMetaType<MyQChart*>();}
@@ -7746,6 +7764,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQChartView_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QChartView*)
 Q_DECLARE_METATYPE(MyQChartView*)
 
 int QChartView_QChartView_QRegisterMetaType(){qRegisterMetaType<QChartView*>(); return qRegisterMetaType<MyQChartView*>();}
@@ -8483,6 +8502,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractAxis_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QDateTimeAxis*)
 Q_DECLARE_METATYPE(MyQDateTimeAxis*)
 
 int QDateTimeAxis_QDateTimeAxis_QRegisterMetaType(){qRegisterMetaType<QDateTimeAxis*>(); return qRegisterMetaType<MyQDateTimeAxis*>();}
@@ -8698,6 +8718,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQHBarModelMapper_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QHBarModelMapper*)
 Q_DECLARE_METATYPE(MyQHBarModelMapper*)
 
 int QHBarModelMapper_QHBarModelMapper_QRegisterMetaType(){qRegisterMetaType<QHBarModelMapper*>(); return qRegisterMetaType<MyQHBarModelMapper*>();}
@@ -9047,6 +9068,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQHBoxPlotModelMapper_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QHBoxPlotModelMapper*)
 Q_DECLARE_METATYPE(MyQHBoxPlotModelMapper*)
 
 int QHBoxPlotModelMapper_QHBoxPlotModelMapper_QRegisterMetaType(){qRegisterMetaType<QHBoxPlotModelMapper*>(); return qRegisterMetaType<MyQHBoxPlotModelMapper*>();}
@@ -9400,6 +9422,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQCandlestickModelMapper_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QHCandlestickModelMapper*)
 Q_DECLARE_METATYPE(MyQHCandlestickModelMapper*)
 
 int QHCandlestickModelMapper_QHCandlestickModelMapper_QRegisterMetaType(){qRegisterMetaType<QHCandlestickModelMapper*>(); return qRegisterMetaType<MyQHCandlestickModelMapper*>();}
@@ -9659,6 +9682,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQPieModelMapper_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QHPieModelMapper*)
 Q_DECLARE_METATYPE(MyQHPieModelMapper*)
 
 int QHPieModelMapper_QHPieModelMapper_QRegisterMetaType(){qRegisterMetaType<QHPieModelMapper*>(); return qRegisterMetaType<MyQHPieModelMapper*>();}
@@ -9883,6 +9907,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQXYModelMapper_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QHXYModelMapper*)
 Q_DECLARE_METATYPE(MyQHXYModelMapper*)
 
 int QHXYModelMapper_QHXYModelMapper_QRegisterMetaType(){qRegisterMetaType<QHXYModelMapper*>(); return qRegisterMetaType<MyQHXYModelMapper*>();}
@@ -10120,6 +10145,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractSeries_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QHorizontalBarSeries*)
 Q_DECLARE_METATYPE(MyQHorizontalBarSeries*)
 
 int QHorizontalBarSeries_QHorizontalBarSeries_QRegisterMetaType(){qRegisterMetaType<QHorizontalBarSeries*>(); return qRegisterMetaType<MyQHorizontalBarSeries*>();}
@@ -10228,6 +10254,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractSeries_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QHorizontalPercentBarSeries*)
 Q_DECLARE_METATYPE(MyQHorizontalPercentBarSeries*)
 
 int QHorizontalPercentBarSeries_QHorizontalPercentBarSeries_QRegisterMetaType(){qRegisterMetaType<QHorizontalPercentBarSeries*>(); return qRegisterMetaType<MyQHorizontalPercentBarSeries*>();}
@@ -10336,6 +10363,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractSeries_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QHorizontalStackedBarSeries*)
 Q_DECLARE_METATYPE(MyQHorizontalStackedBarSeries*)
 
 int QHorizontalStackedBarSeries_QHorizontalStackedBarSeries_QRegisterMetaType(){qRegisterMetaType<QHorizontalStackedBarSeries*>(); return qRegisterMetaType<MyQHorizontalStackedBarSeries*>();}
@@ -10498,6 +10526,7 @@ public:
 	void wheelEvent(QGraphicsSceneWheelEvent * event) { callbackQLegend_WheelEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QLegend*)
 Q_DECLARE_METATYPE(MyQLegend*)
 
 int QLegend_QLegend_QRegisterMetaType(){qRegisterMetaType<QLegend*>(); return qRegisterMetaType<MyQLegend*>();}
@@ -11314,6 +11343,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQLegendMarker_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QLegendMarker*)
 Q_DECLARE_METATYPE(MyQLegendMarker*)
 
 int QLegendMarker_QLegendMarker_QRegisterMetaType(){qRegisterMetaType<QLegendMarker*>(); return qRegisterMetaType<MyQLegendMarker*>();}
@@ -11839,6 +11869,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractSeries_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QLineSeries*)
 Q_DECLARE_METATYPE(MyQLineSeries*)
 
 int QLineSeries_QLineSeries_QRegisterMetaType(){qRegisterMetaType<QLineSeries*>(); return qRegisterMetaType<MyQLineSeries*>();}
@@ -11967,6 +11998,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractAxis_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QLogValueAxis*)
 Q_DECLARE_METATYPE(MyQLogValueAxis*)
 
 int QLogValueAxis_QLogValueAxis_QRegisterMetaType(){qRegisterMetaType<QLogValueAxis*>(); return qRegisterMetaType<MyQLogValueAxis*>();}
@@ -12240,6 +12272,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractSeries_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QPercentBarSeries*)
 Q_DECLARE_METATYPE(MyQPercentBarSeries*)
 
 int QPercentBarSeries_QPercentBarSeries_QRegisterMetaType(){qRegisterMetaType<QPercentBarSeries*>(); return qRegisterMetaType<MyQPercentBarSeries*>();}
@@ -12340,6 +12373,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQLegendMarker_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QPieLegendMarker*)
 Q_DECLARE_METATYPE(MyQPieLegendMarker*)
 
 int QPieLegendMarker_QPieLegendMarker_QRegisterMetaType(){qRegisterMetaType<QPieLegendMarker*>(); return qRegisterMetaType<MyQPieLegendMarker*>();}
@@ -12396,6 +12430,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQPieModelMapper_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QPieModelMapper*)
 Q_DECLARE_METATYPE(MyQPieModelMapper*)
 
 int QPieModelMapper_QPieModelMapper_QRegisterMetaType(){qRegisterMetaType<QPieModelMapper*>(); return qRegisterMetaType<MyQPieModelMapper*>();}
@@ -12661,6 +12696,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractSeries_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QPieSeries*)
 Q_DECLARE_METATYPE(MyQPieSeries*)
 
 int QPieSeries_QPieSeries_QRegisterMetaType(){qRegisterMetaType<QPieSeries*>(); return qRegisterMetaType<MyQPieSeries*>();}
@@ -13095,6 +13131,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQPieSlice_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QPieSlice*)
 Q_DECLARE_METATYPE(MyQPieSlice*)
 
 int QPieSlice_QPieSlice_QRegisterMetaType(){qRegisterMetaType<QPieSlice*>(); return qRegisterMetaType<MyQPieSlice*>();}
@@ -13868,6 +13905,7 @@ public:
 	void wheelEvent(QGraphicsSceneWheelEvent * event) { callbackQChart_WheelEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QPolarChart*)
 Q_DECLARE_METATYPE(MyQPolarChart*)
 
 int QPolarChart_QPolarChart_QRegisterMetaType(){qRegisterMetaType<QPolarChart*>(); return qRegisterMetaType<MyQPolarChart*>();}
@@ -13956,6 +13994,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractSeries_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QScatterSeries*)
 Q_DECLARE_METATYPE(MyQScatterSeries*)
 
 int QScatterSeries_QScatterSeries_QRegisterMetaType(){qRegisterMetaType<QScatterSeries*>(); return qRegisterMetaType<MyQScatterSeries*>();}
@@ -14147,6 +14186,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractSeries_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QSplineSeries*)
 Q_DECLARE_METATYPE(MyQSplineSeries*)
 
 int QSplineSeries_QSplineSeries_QRegisterMetaType(){qRegisterMetaType<QSplineSeries*>(); return qRegisterMetaType<MyQSplineSeries*>();}
@@ -14245,6 +14285,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractSeries_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QStackedBarSeries*)
 Q_DECLARE_METATYPE(MyQStackedBarSeries*)
 
 int QStackedBarSeries_QStackedBarSeries_QRegisterMetaType(){qRegisterMetaType<QStackedBarSeries*>(); return qRegisterMetaType<MyQStackedBarSeries*>();}
@@ -14340,6 +14381,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQVBarModelMapper_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QVBarModelMapper*)
 Q_DECLARE_METATYPE(MyQVBarModelMapper*)
 
 int QVBarModelMapper_QVBarModelMapper_QRegisterMetaType(){qRegisterMetaType<QVBarModelMapper*>(); return qRegisterMetaType<MyQVBarModelMapper*>();}
@@ -14689,6 +14731,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQVBoxPlotModelMapper_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QVBoxPlotModelMapper*)
 Q_DECLARE_METATYPE(MyQVBoxPlotModelMapper*)
 
 int QVBoxPlotModelMapper_QVBoxPlotModelMapper_QRegisterMetaType(){qRegisterMetaType<QVBoxPlotModelMapper*>(); return qRegisterMetaType<MyQVBoxPlotModelMapper*>();}
@@ -15042,6 +15085,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQCandlestickModelMapper_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QVCandlestickModelMapper*)
 Q_DECLARE_METATYPE(MyQVCandlestickModelMapper*)
 
 int QVCandlestickModelMapper_QVCandlestickModelMapper_QRegisterMetaType(){qRegisterMetaType<QVCandlestickModelMapper*>(); return qRegisterMetaType<MyQVCandlestickModelMapper*>();}
@@ -15301,6 +15345,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQPieModelMapper_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QVPieModelMapper*)
 Q_DECLARE_METATYPE(MyQVPieModelMapper*)
 
 int QVPieModelMapper_QVPieModelMapper_QRegisterMetaType(){qRegisterMetaType<QVPieModelMapper*>(); return qRegisterMetaType<MyQVPieModelMapper*>();}
@@ -15525,6 +15570,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQXYModelMapper_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QVXYModelMapper*)
 Q_DECLARE_METATYPE(MyQVXYModelMapper*)
 
 int QVXYModelMapper_QVXYModelMapper_QRegisterMetaType(){qRegisterMetaType<QVXYModelMapper*>(); return qRegisterMetaType<MyQVXYModelMapper*>();}
@@ -15781,6 +15827,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractAxis_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QValueAxis*)
 Q_DECLARE_METATYPE(MyQValueAxis*)
 
 int QValueAxis_QValueAxis_QRegisterMetaType(){qRegisterMetaType<QValueAxis*>(); return qRegisterMetaType<MyQValueAxis*>();}
@@ -16119,6 +16166,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQLegendMarker_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QXYLegendMarker*)
 Q_DECLARE_METATYPE(MyQXYLegendMarker*)
 
 int QXYLegendMarker_QXYLegendMarker_QRegisterMetaType(){qRegisterMetaType<QXYLegendMarker*>(); return qRegisterMetaType<MyQXYLegendMarker*>();}
@@ -16171,6 +16219,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQXYModelMapper_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QXYModelMapper*)
 Q_DECLARE_METATYPE(MyQXYModelMapper*)
 
 int QXYModelMapper_QXYModelMapper_QRegisterMetaType(){qRegisterMetaType<QXYModelMapper*>(); return qRegisterMetaType<MyQXYModelMapper*>();}
@@ -16474,6 +16523,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractSeries_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QXYSeries*)
 Q_DECLARE_METATYPE(MyQXYSeries*)
 
 int QXYSeries_QXYSeries_QRegisterMetaType(){qRegisterMetaType<QXYSeries*>(); return qRegisterMetaType<MyQXYSeries*>();}

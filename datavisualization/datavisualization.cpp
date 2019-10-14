@@ -121,7 +121,7 @@ typedef QtDataVisualization::QValue3DAxisFormatter QValue3DAxisFormatter;
 class MyQ3DBars: public Q3DBars
 {
 public:
-	MyQ3DBars(const QSurfaceFormat *format = Q_NULLPTR, QWindow *parent = Q_NULLPTR) : Q3DBars(format, parent) {};
+	MyQ3DBars(const QSurfaceFormat *format = Q_NULLPTR, QWindow *parent = Q_NULLPTR) : Q3DBars(format, parent) {Q3DBars_Q3DBars_QRegisterMetaType();};
 	void Signal_BarSpacingChanged(const QSizeF & spacing) { callbackQ3DBars_BarSpacingChanged(this, const_cast<QSizeF*>(&spacing)); };
 	void Signal_BarSpacingRelativeChanged(bool relative) { callbackQ3DBars_BarSpacingRelativeChanged(this, relative); };
 	void Signal_BarThicknessChanged(float thicknessRatio) { callbackQ3DBars_BarThicknessChanged(this, thicknessRatio); };
@@ -134,6 +134,11 @@ public:
 	void Signal_ValueAxisChanged(QValue3DAxis * axis) { callbackQ3DBars_ValueAxisChanged(this, axis); };
 	 ~MyQ3DBars() { callbackQ3DBars_DestroyQ3DBars(this); };
 };
+
+Q_DECLARE_METATYPE(Q3DBars*)
+Q_DECLARE_METATYPE(MyQ3DBars*)
+
+int Q3DBars_Q3DBars_QRegisterMetaType(){qRegisterMetaType<Q3DBars*>(); return qRegisterMetaType<MyQ3DBars*>();}
 
 void* Q3DBars_NewQ3DBars(void* format, void* parent)
 {
@@ -470,7 +475,7 @@ void* Q3DBars___seriesList_newList(void* ptr)
 class MyQ3DCamera: public Q3DCamera
 {
 public:
-	MyQ3DCamera(QObject *parent = Q_NULLPTR) : Q3DCamera(parent) {};
+	MyQ3DCamera(QObject *parent = Q_NULLPTR) : Q3DCamera(parent) {Q3DCamera_Q3DCamera_QRegisterMetaType();};
 	void Signal_CameraPresetChanged(Q3DCamera::CameraPreset preset) { callbackQ3DCamera_CameraPresetChanged(this, preset); };
 	void copyValuesFrom(const Q3DObject & source) { callbackQ3DCamera_CopyValuesFrom(this, const_cast<Q3DObject*>(&source)); };
 	void Signal_MaxZoomLevelChanged(float zoomLevel) { callbackQ3DCamera_MaxZoomLevelChanged(this, zoomLevel); };
@@ -483,6 +488,11 @@ public:
 	void Signal_ZoomLevelChanged(float zoomLevel) { callbackQ3DCamera_ZoomLevelChanged(this, zoomLevel); };
 	 ~MyQ3DCamera() { callbackQ3DCamera_DestroyQ3DCamera(this); };
 };
+
+Q_DECLARE_METATYPE(Q3DCamera*)
+Q_DECLARE_METATYPE(MyQ3DCamera*)
+
+int Q3DCamera_Q3DCamera_QRegisterMetaType(){qRegisterMetaType<Q3DCamera*>(); return qRegisterMetaType<MyQ3DCamera*>();}
 
 void* Q3DCamera_NewQ3DCamera(void* parent)
 {
@@ -785,7 +795,7 @@ void Q3DCamera_DestroyQ3DCameraDefault(void* ptr)
 class MyQ3DInputHandler: public Q3DInputHandler
 {
 public:
-	MyQ3DInputHandler(QObject *parent = Q_NULLPTR) : Q3DInputHandler(parent) {};
+	MyQ3DInputHandler(QObject *parent = Q_NULLPTR) : Q3DInputHandler(parent) {Q3DInputHandler_Q3DInputHandler_QRegisterMetaType();};
 	void mouseMoveEvent(QMouseEvent * event, const QPoint & mousePos) { callbackQ3DInputHandler_MouseMoveEvent(this, event, const_cast<QPoint*>(&mousePos)); };
 	void mousePressEvent(QMouseEvent * event, const QPoint & mousePos) { callbackQ3DInputHandler_MousePressEvent(this, event, const_cast<QPoint*>(&mousePos)); };
 	void mouseReleaseEvent(QMouseEvent * event, const QPoint & mousePos) { callbackQ3DInputHandler_MouseReleaseEvent(this, event, const_cast<QPoint*>(&mousePos)); };
@@ -796,6 +806,11 @@ public:
 	void Signal_ZoomEnabledChanged(bool enable) { callbackQ3DInputHandler_ZoomEnabledChanged(this, enable); };
 	 ~MyQ3DInputHandler() { callbackQ3DInputHandler_DestroyQ3DInputHandler(this); };
 };
+
+Q_DECLARE_METATYPE(Q3DInputHandler*)
+Q_DECLARE_METATYPE(MyQ3DInputHandler*)
+
+int Q3DInputHandler_Q3DInputHandler_QRegisterMetaType(){qRegisterMetaType<Q3DInputHandler*>(); return qRegisterMetaType<MyQ3DInputHandler*>();}
 
 void* Q3DInputHandler_NewQ3DInputHandler(void* parent)
 {
@@ -998,10 +1013,15 @@ void Q3DInputHandler_DestroyQ3DInputHandlerDefault(void* ptr)
 class MyQ3DLight: public Q3DLight
 {
 public:
-	MyQ3DLight(QObject *parent = Q_NULLPTR) : Q3DLight(parent) {};
+	MyQ3DLight(QObject *parent = Q_NULLPTR) : Q3DLight(parent) {Q3DLight_Q3DLight_QRegisterMetaType();};
 	void Signal_AutoPositionChanged(bool autoPosition) { callbackQ3DLight_AutoPositionChanged(this, autoPosition); };
 	 ~MyQ3DLight() { callbackQ3DLight_DestroyQ3DLight(this); };
 };
+
+Q_DECLARE_METATYPE(Q3DLight*)
+Q_DECLARE_METATYPE(MyQ3DLight*)
+
+int Q3DLight_Q3DLight_QRegisterMetaType(){qRegisterMetaType<Q3DLight*>(); return qRegisterMetaType<MyQ3DLight*>();}
 
 void* Q3DLight_NewQ3DLight(void* parent)
 {
@@ -1089,11 +1109,16 @@ void Q3DLight_DestroyQ3DLightDefault(void* ptr)
 class MyQ3DObject: public Q3DObject
 {
 public:
-	MyQ3DObject(QObject *parent = Q_NULLPTR) : Q3DObject(parent) {};
+	MyQ3DObject(QObject *parent = Q_NULLPTR) : Q3DObject(parent) {Q3DObject_Q3DObject_QRegisterMetaType();};
 	void copyValuesFrom(const Q3DObject & source) { callbackQ3DObject_CopyValuesFrom(this, const_cast<Q3DObject*>(&source)); };
 	void Signal_PositionChanged(const QVector3D & position) { callbackQ3DObject_PositionChanged(this, const_cast<QVector3D*>(&position)); };
 	 ~MyQ3DObject() { callbackQ3DObject_DestroyQ3DObject(this); };
 };
+
+Q_DECLARE_METATYPE(Q3DObject*)
+Q_DECLARE_METATYPE(MyQ3DObject*)
+
+int Q3DObject_Q3DObject_QRegisterMetaType(){qRegisterMetaType<Q3DObject*>(); return qRegisterMetaType<MyQ3DObject*>();}
 
 void* Q3DObject_NewQ3DObject(void* parent)
 {
@@ -1206,13 +1231,18 @@ void Q3DObject_DestroyQ3DObjectDefault(void* ptr)
 class MyQ3DScatter: public Q3DScatter
 {
 public:
-	MyQ3DScatter(const QSurfaceFormat *format = Q_NULLPTR, QWindow *parent = Q_NULLPTR) : Q3DScatter(format, parent) {};
+	MyQ3DScatter(const QSurfaceFormat *format = Q_NULLPTR, QWindow *parent = Q_NULLPTR) : Q3DScatter(format, parent) {Q3DScatter_Q3DScatter_QRegisterMetaType();};
 	void Signal_AxisXChanged(QValue3DAxis * axis) { callbackQ3DScatter_AxisXChanged(this, axis); };
 	void Signal_AxisYChanged(QValue3DAxis * axis) { callbackQ3DScatter_AxisYChanged(this, axis); };
 	void Signal_AxisZChanged(QValue3DAxis * axis) { callbackQ3DScatter_AxisZChanged(this, axis); };
 	void Signal_SelectedSeriesChanged(QScatter3DSeries * series) { callbackQ3DScatter_SelectedSeriesChanged(this, series); };
 	 ~MyQ3DScatter() { callbackQ3DScatter_DestroyQ3DScatter(this); };
 };
+
+Q_DECLARE_METATYPE(Q3DScatter*)
+Q_DECLARE_METATYPE(MyQ3DScatter*)
+
+int Q3DScatter_Q3DScatter_QRegisterMetaType(){qRegisterMetaType<Q3DScatter*>(); return qRegisterMetaType<MyQ3DScatter*>();}
 
 void* Q3DScatter_NewQ3DScatter(void* format, void* parent)
 {
@@ -1394,7 +1424,7 @@ void* Q3DScatter___seriesList_newList(void* ptr)
 class MyQ3DScene: public Q3DScene
 {
 public:
-	MyQ3DScene(QObject *parent = Q_NULLPTR) : Q3DScene(parent) {};
+	MyQ3DScene(QObject *parent = Q_NULLPTR) : Q3DScene(parent) {Q3DScene_Q3DScene_QRegisterMetaType();};
 	void Signal_ActiveCameraChanged(Q3DCamera * camera) { callbackQ3DScene_ActiveCameraChanged(this, camera); };
 	void Signal_ActiveLightChanged(Q3DLight * light) { callbackQ3DScene_ActiveLightChanged(this, light); };
 	void Signal_DevicePixelRatioChanged(float pixelRatio) { callbackQ3DScene_DevicePixelRatioChanged(this, pixelRatio); };
@@ -1407,6 +1437,11 @@ public:
 	void Signal_ViewportChanged(const QRect & viewport) { callbackQ3DScene_ViewportChanged(this, const_cast<QRect*>(&viewport)); };
 	 ~MyQ3DScene() { callbackQ3DScene_DestroyQ3DScene(this); };
 };
+
+Q_DECLARE_METATYPE(Q3DScene*)
+Q_DECLARE_METATYPE(MyQ3DScene*)
+
+int Q3DScene_Q3DScene_QRegisterMetaType(){qRegisterMetaType<Q3DScene*>(); return qRegisterMetaType<MyQ3DScene*>();}
 
 void* Q3DScene_NewQ3DScene(void* parent)
 {
@@ -1729,7 +1764,7 @@ void Q3DScene_DestroyQ3DSceneDefault(void* ptr)
 class MyQ3DSurface: public Q3DSurface
 {
 public:
-	MyQ3DSurface(const QSurfaceFormat *format = Q_NULLPTR, QWindow *parent = Q_NULLPTR) : Q3DSurface(format, parent) {};
+	MyQ3DSurface(const QSurfaceFormat *format = Q_NULLPTR, QWindow *parent = Q_NULLPTR) : Q3DSurface(format, parent) {Q3DSurface_Q3DSurface_QRegisterMetaType();};
 	void Signal_AxisXChanged(QValue3DAxis * axis) { callbackQ3DSurface_AxisXChanged(this, axis); };
 	void Signal_AxisYChanged(QValue3DAxis * axis) { callbackQ3DSurface_AxisYChanged(this, axis); };
 	void Signal_AxisZChanged(QValue3DAxis * axis) { callbackQ3DSurface_AxisZChanged(this, axis); };
@@ -1737,6 +1772,11 @@ public:
 	void Signal_SelectedSeriesChanged(QSurface3DSeries * series) { callbackQ3DSurface_SelectedSeriesChanged(this, series); };
 	 ~MyQ3DSurface() { callbackQ3DSurface_DestroyQ3DSurface(this); };
 };
+
+Q_DECLARE_METATYPE(Q3DSurface*)
+Q_DECLARE_METATYPE(MyQ3DSurface*)
+
+int Q3DSurface_Q3DSurface_QRegisterMetaType(){qRegisterMetaType<Q3DSurface*>(); return qRegisterMetaType<MyQ3DSurface*>();}
 
 void* Q3DSurface_NewQ3DSurface(void* format, void* parent)
 {
@@ -1943,8 +1983,8 @@ void* Q3DSurface___seriesList_newList(void* ptr)
 class MyQ3DTheme: public Q3DTheme
 {
 public:
-	MyQ3DTheme(QObject *parent = Q_NULLPTR) : Q3DTheme(parent) {};
-	MyQ3DTheme(Q3DTheme::Theme themeType, QObject *parent = Q_NULLPTR) : Q3DTheme(themeType, parent) {};
+	MyQ3DTheme(QObject *parent = Q_NULLPTR) : Q3DTheme(parent) {Q3DTheme_Q3DTheme_QRegisterMetaType();};
+	MyQ3DTheme(Q3DTheme::Theme themeType, QObject *parent = Q_NULLPTR) : Q3DTheme(themeType, parent) {Q3DTheme_Q3DTheme_QRegisterMetaType();};
 	void Signal_AmbientLightStrengthChanged(float strength) { callbackQ3DTheme_AmbientLightStrengthChanged(this, strength); };
 	void Signal_BackgroundColorChanged(const QColor & color) { callbackQ3DTheme_BackgroundColorChanged(this, const_cast<QColor*>(&color)); };
 	void Signal_BackgroundEnabledChanged(bool enabled) { callbackQ3DTheme_BackgroundEnabledChanged(this, enabled); };
@@ -1969,6 +2009,11 @@ public:
 	void Signal_WindowColorChanged(const QColor & color) { callbackQ3DTheme_WindowColorChanged(this, const_cast<QColor*>(&color)); };
 	 ~MyQ3DTheme() { callbackQ3DTheme_DestroyQ3DTheme(this); };
 };
+
+Q_DECLARE_METATYPE(Q3DTheme*)
+Q_DECLARE_METATYPE(MyQ3DTheme*)
+
+int Q3DTheme_Q3DTheme_QRegisterMetaType(){qRegisterMetaType<Q3DTheme*>(); return qRegisterMetaType<MyQ3DTheme*>();}
 
 void* Q3DTheme_NewQ3DTheme(void* parent)
 {
@@ -2737,6 +2782,11 @@ public:
 	 ~MyQAbstract3DAxis() { callbackQAbstract3DAxis_DestroyQAbstract3DAxis(this); };
 };
 
+Q_DECLARE_METATYPE(QAbstract3DAxis*)
+Q_DECLARE_METATYPE(MyQAbstract3DAxis*)
+
+int QAbstract3DAxis_QAbstract3DAxis_QRegisterMetaType(){qRegisterMetaType<QAbstract3DAxis*>(); return qRegisterMetaType<MyQAbstract3DAxis*>();}
+
 void QAbstract3DAxis_ConnectAutoAdjustRangeChanged(void* ptr, long long t)
 {
 	QObject::connect(static_cast<QAbstract3DAxis*>(ptr), static_cast<void (QAbstract3DAxis::*)(bool)>(&QAbstract3DAxis::autoAdjustRangeChanged), static_cast<MyQAbstract3DAxis*>(ptr), static_cast<void (MyQAbstract3DAxis::*)(bool)>(&MyQAbstract3DAxis::Signal_AutoAdjustRangeChanged), static_cast<Qt::ConnectionType>(t));
@@ -2996,7 +3046,7 @@ void QAbstract3DAxis_DestroyQAbstract3DAxisDefault(void* ptr)
 class MyQAbstract3DInputHandler: public QAbstract3DInputHandler
 {
 public:
-	MyQAbstract3DInputHandler(QObject *parent = Q_NULLPTR) : QAbstract3DInputHandler(parent) {};
+	MyQAbstract3DInputHandler(QObject *parent = Q_NULLPTR) : QAbstract3DInputHandler(parent) {QAbstract3DInputHandler_QAbstract3DInputHandler_QRegisterMetaType();};
 	void Signal_InputViewChanged(QAbstract3DInputHandler::InputView view) { callbackQAbstract3DInputHandler_InputViewChanged(this, view); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQAbstract3DInputHandler_MouseDoubleClickEvent(this, event); };
 	void mouseMoveEvent(QMouseEvent * event, const QPoint & mousePos) { callbackQAbstract3DInputHandler_MouseMoveEvent(this, event, const_cast<QPoint*>(&mousePos)); };
@@ -3008,6 +3058,11 @@ public:
 	void wheelEvent(QWheelEvent * event) { callbackQAbstract3DInputHandler_WheelEvent(this, event); };
 	 ~MyQAbstract3DInputHandler() { callbackQAbstract3DInputHandler_DestroyQAbstract3DInputHandler(this); };
 };
+
+Q_DECLARE_METATYPE(QAbstract3DInputHandler*)
+Q_DECLARE_METATYPE(MyQAbstract3DInputHandler*)
+
+int QAbstract3DInputHandler_QAbstract3DInputHandler_QRegisterMetaType(){qRegisterMetaType<QAbstract3DInputHandler*>(); return qRegisterMetaType<MyQAbstract3DInputHandler*>();}
 
 void* QAbstract3DInputHandler_NewQAbstract3DInputHandler(void* parent)
 {
@@ -3243,6 +3298,11 @@ public:
 	void Signal_VisibilityChanged(bool visible) { callbackQAbstract3DSeries_VisibilityChanged(this, visible); };
 	 ~MyQAbstract3DSeries() { callbackQAbstract3DSeries_DestroyQAbstract3DSeries(this); };
 };
+
+Q_DECLARE_METATYPE(QAbstract3DSeries*)
+Q_DECLARE_METATYPE(MyQAbstract3DSeries*)
+
+int QAbstract3DSeries_QAbstract3DSeries_QRegisterMetaType(){qRegisterMetaType<QAbstract3DSeries*>(); return qRegisterMetaType<MyQAbstract3DSeries*>();}
 
 void* QAbstract3DSeries_BaseColor(void* ptr)
 {
@@ -3666,6 +3726,11 @@ public:
 	 ~MyQAbstractDataProxy() { callbackQAbstractDataProxy_DestroyQAbstractDataProxy(this); };
 };
 
+Q_DECLARE_METATYPE(QAbstractDataProxy*)
+Q_DECLARE_METATYPE(MyQAbstractDataProxy*)
+
+int QAbstractDataProxy_QAbstractDataProxy_QRegisterMetaType(){qRegisterMetaType<QAbstractDataProxy*>(); return qRegisterMetaType<MyQAbstractDataProxy*>();}
+
 long long QAbstractDataProxy_Type(void* ptr)
 {
 	return static_cast<QAbstractDataProxy*>(ptr)->type();
@@ -3685,13 +3750,18 @@ void QAbstractDataProxy_DestroyQAbstractDataProxyDefault(void* ptr)
 class MyQBar3DSeries: public QBar3DSeries
 {
 public:
-	MyQBar3DSeries(QObject *parent = Q_NULLPTR) : QBar3DSeries(parent) {};
-	MyQBar3DSeries(QBarDataProxy *dataProxy, QObject *parent = Q_NULLPTR) : QBar3DSeries(dataProxy, parent) {};
+	MyQBar3DSeries(QObject *parent = Q_NULLPTR) : QBar3DSeries(parent) {QBar3DSeries_QBar3DSeries_QRegisterMetaType();};
+	MyQBar3DSeries(QBarDataProxy *dataProxy, QObject *parent = Q_NULLPTR) : QBar3DSeries(dataProxy, parent) {QBar3DSeries_QBar3DSeries_QRegisterMetaType();};
 	void Signal_DataProxyChanged(QBarDataProxy * proxy) { callbackQBar3DSeries_DataProxyChanged(this, proxy); };
 	void Signal_MeshAngleChanged(float angle) { callbackQBar3DSeries_MeshAngleChanged(this, angle); };
 	void Signal_SelectedBarChanged(const QPoint & position) { callbackQBar3DSeries_SelectedBarChanged(this, const_cast<QPoint*>(&position)); };
 	 ~MyQBar3DSeries() { callbackQBar3DSeries_DestroyQBar3DSeries(this); };
 };
+
+Q_DECLARE_METATYPE(QBar3DSeries*)
+Q_DECLARE_METATYPE(MyQBar3DSeries*)
+
+int QBar3DSeries_QBar3DSeries_QRegisterMetaType(){qRegisterMetaType<QBar3DSeries*>(); return qRegisterMetaType<MyQBar3DSeries*>();}
 
 void* QBar3DSeries_NewQBar3DSeries(void* parent)
 {
@@ -3878,6 +3948,8 @@ void QBar3DSeries_DestroyQBar3DSeriesDefault(void* ptr)
 
 }
 
+Q_DECLARE_METATYPE(QBarDataItem)
+Q_DECLARE_METATYPE(QBarDataItem*)
 void* QBarDataItem_NewQBarDataItem()
 {
 	return new QBarDataItem();
@@ -3926,7 +3998,7 @@ void QBarDataItem_DestroyQBarDataItem(void* ptr)
 class MyQBarDataProxy: public QBarDataProxy
 {
 public:
-	MyQBarDataProxy(QObject *parent = Q_NULLPTR) : QBarDataProxy(parent) {};
+	MyQBarDataProxy(QObject *parent = Q_NULLPTR) : QBarDataProxy(parent) {QBarDataProxy_QBarDataProxy_QRegisterMetaType();};
 	void Signal_ArrayReset() { callbackQBarDataProxy_ArrayReset(this); };
 	void Signal_ColumnLabelsChanged() { callbackQBarDataProxy_ColumnLabelsChanged(this); };
 	void Signal_ItemChanged(int rowIndex, int columnIndex) { callbackQBarDataProxy_ItemChanged(this, rowIndex, columnIndex); };
@@ -3939,6 +4011,11 @@ public:
 	void Signal_SeriesChanged(QBar3DSeries * series) { callbackQBarDataProxy_SeriesChanged(this, series); };
 	 ~MyQBarDataProxy() { callbackQBarDataProxy_DestroyQBarDataProxy(this); };
 };
+
+Q_DECLARE_METATYPE(QBarDataProxy*)
+Q_DECLARE_METATYPE(MyQBarDataProxy*)
+
+int QBarDataProxy_QBarDataProxy_QRegisterMetaType(){qRegisterMetaType<QBarDataProxy*>(); return qRegisterMetaType<MyQBarDataProxy*>();}
 
 void* QBarDataProxy_NewQBarDataProxy(void* parent)
 {
@@ -4211,10 +4288,15 @@ void QBarDataProxy_DestroyQBarDataProxyDefault(void* ptr)
 class MyQCategory3DAxis: public QCategory3DAxis
 {
 public:
-	MyQCategory3DAxis(QObject *parent = Q_NULLPTR) : QCategory3DAxis(parent) {};
+	MyQCategory3DAxis(QObject *parent = Q_NULLPTR) : QCategory3DAxis(parent) {QCategory3DAxis_QCategory3DAxis_QRegisterMetaType();};
 	void Signal_LabelsChanged() { callbackQCategory3DAxis_LabelsChanged(this); };
 	 ~MyQCategory3DAxis() { callbackQCategory3DAxis_DestroyQCategory3DAxis(this); };
 };
+
+Q_DECLARE_METATYPE(QCategory3DAxis*)
+Q_DECLARE_METATYPE(MyQCategory3DAxis*)
+
+int QCategory3DAxis_QCategory3DAxis_QRegisterMetaType(){qRegisterMetaType<QCategory3DAxis*>(); return qRegisterMetaType<MyQCategory3DAxis*>();}
 
 void* QCategory3DAxis_NewQCategory3DAxis(void* parent)
 {
@@ -4302,8 +4384,8 @@ void QCategory3DAxis_DestroyQCategory3DAxisDefault(void* ptr)
 class MyQCustom3DItem: public QCustom3DItem
 {
 public:
-	MyQCustom3DItem(QObject *parent = Q_NULLPTR) : QCustom3DItem(parent) {};
-	MyQCustom3DItem(const QString &meshFile, const QVector3D &position, const QVector3D &scaling, const QQuaternion &rotation, const QImage &texture, QObject *parent = Q_NULLPTR) : QCustom3DItem(meshFile, position, scaling, rotation, texture, parent) {};
+	MyQCustom3DItem(QObject *parent = Q_NULLPTR) : QCustom3DItem(parent) {QCustom3DItem_QCustom3DItem_QRegisterMetaType();};
+	MyQCustom3DItem(const QString &meshFile, const QVector3D &position, const QVector3D &scaling, const QQuaternion &rotation, const QImage &texture, QObject *parent = Q_NULLPTR) : QCustom3DItem(meshFile, position, scaling, rotation, texture, parent) {QCustom3DItem_QCustom3DItem_QRegisterMetaType();};
 	void Signal_MeshFileChanged(const QString & meshFile) { QByteArray tdc0aec = meshFile.toUtf8(); QtDataVisualization_PackedString meshFilePacked = { const_cast<char*>(tdc0aec.prepend("WHITESPACE").constData()+10), tdc0aec.size()-10 };callbackQCustom3DItem_MeshFileChanged(this, meshFilePacked); };
 	void Signal_PositionAbsoluteChanged(bool positionAbsolute) { callbackQCustom3DItem_PositionAbsoluteChanged(this, positionAbsolute); };
 	void Signal_PositionChanged(const QVector3D & position) { callbackQCustom3DItem_PositionChanged(this, const_cast<QVector3D*>(&position)); };
@@ -4315,6 +4397,11 @@ public:
 	void Signal_VisibleChanged(bool visible) { callbackQCustom3DItem_VisibleChanged(this, visible); };
 	 ~MyQCustom3DItem() { callbackQCustom3DItem_DestroyQCustom3DItem(this); };
 };
+
+Q_DECLARE_METATYPE(QCustom3DItem*)
+Q_DECLARE_METATYPE(MyQCustom3DItem*)
+
+int QCustom3DItem_QCustom3DItem_QRegisterMetaType(){qRegisterMetaType<QCustom3DItem*>(); return qRegisterMetaType<MyQCustom3DItem*>();}
 
 void* QCustom3DItem_NewQCustom3DItem(void* parent)
 {
@@ -4659,8 +4746,8 @@ void QCustom3DItem_DestroyQCustom3DItemDefault(void* ptr)
 class MyQCustom3DLabel: public QCustom3DLabel
 {
 public:
-	MyQCustom3DLabel(QObject *parent = Q_NULLPTR) : QCustom3DLabel(parent) {};
-	MyQCustom3DLabel(const QString &text, const QFont &font, const QVector3D &position, const QVector3D &scaling, const QQuaternion &rotation, QObject *parent = Q_NULLPTR) : QCustom3DLabel(text, font, position, scaling, rotation, parent) {};
+	MyQCustom3DLabel(QObject *parent = Q_NULLPTR) : QCustom3DLabel(parent) {QCustom3DLabel_QCustom3DLabel_QRegisterMetaType();};
+	MyQCustom3DLabel(const QString &text, const QFont &font, const QVector3D &position, const QVector3D &scaling, const QQuaternion &rotation, QObject *parent = Q_NULLPTR) : QCustom3DLabel(text, font, position, scaling, rotation, parent) {QCustom3DLabel_QCustom3DLabel_QRegisterMetaType();};
 	void Signal_BackgroundColorChanged(const QColor & color) { callbackQCustom3DLabel_BackgroundColorChanged(this, const_cast<QColor*>(&color)); };
 	void Signal_BackgroundEnabledChanged(bool enabled) { callbackQCustom3DLabel_BackgroundEnabledChanged(this, enabled); };
 	void Signal_BorderEnabledChanged(bool enabled) { callbackQCustom3DLabel_BorderEnabledChanged(this, enabled); };
@@ -4670,6 +4757,11 @@ public:
 	void Signal_TextColorChanged(const QColor & color) { callbackQCustom3DLabel_TextColorChanged(this, const_cast<QColor*>(&color)); };
 	 ~MyQCustom3DLabel() { callbackQCustom3DLabel_DestroyQCustom3DLabel(this); };
 };
+
+Q_DECLARE_METATYPE(QCustom3DLabel*)
+Q_DECLARE_METATYPE(MyQCustom3DLabel*)
+
+int QCustom3DLabel_QCustom3DLabel_QRegisterMetaType(){qRegisterMetaType<QCustom3DLabel*>(); return qRegisterMetaType<MyQCustom3DLabel*>();}
 
 void* QCustom3DLabel_NewQCustom3DLabel(void* parent)
 {
@@ -4954,7 +5046,7 @@ void QCustom3DLabel_DestroyQCustom3DLabelDefault(void* ptr)
 class MyQCustom3DVolume: public QCustom3DVolume
 {
 public:
-	MyQCustom3DVolume(QObject *parent = Q_NULLPTR) : QCustom3DVolume(parent) {};
+	MyQCustom3DVolume(QObject *parent = Q_NULLPTR) : QCustom3DVolume(parent) {QCustom3DVolume_QCustom3DVolume_QRegisterMetaType();};
 	void Signal_AlphaMultiplierChanged(float mult) { callbackQCustom3DVolume_AlphaMultiplierChanged(this, mult); };
 	void Signal_ColorTableChanged() { callbackQCustom3DVolume_ColorTableChanged(this); };
 	void Signal_DrawSliceFramesChanged(bool enabled) { callbackQCustom3DVolume_DrawSliceFramesChanged(this, enabled); };
@@ -4974,6 +5066,11 @@ public:
 	void Signal_UseHighDefShaderChanged(bool enabled) { callbackQCustom3DVolume_UseHighDefShaderChanged(this, enabled); };
 	 ~MyQCustom3DVolume() { callbackQCustom3DVolume_DestroyQCustom3DVolume(this); };
 };
+
+Q_DECLARE_METATYPE(QCustom3DVolume*)
+Q_DECLARE_METATYPE(MyQCustom3DVolume*)
+
+int QCustom3DVolume_QCustom3DVolume_QRegisterMetaType(){qRegisterMetaType<QCustom3DVolume*>(); return qRegisterMetaType<MyQCustom3DVolume*>();}
 
 void* QCustom3DVolume_NewQCustom3DVolume(void* parent)
 {
@@ -5534,9 +5631,9 @@ void* QCustom3DVolume___setColorTable_colors_newList(void* ptr)
 class MyQHeightMapSurfaceDataProxy: public QHeightMapSurfaceDataProxy
 {
 public:
-	MyQHeightMapSurfaceDataProxy(QObject *parent = Q_NULLPTR) : QHeightMapSurfaceDataProxy(parent) {};
-	MyQHeightMapSurfaceDataProxy(const QImage &image, QObject *parent = Q_NULLPTR) : QHeightMapSurfaceDataProxy(image, parent) {};
-	MyQHeightMapSurfaceDataProxy(const QString &filename, QObject *parent = Q_NULLPTR) : QHeightMapSurfaceDataProxy(filename, parent) {};
+	MyQHeightMapSurfaceDataProxy(QObject *parent = Q_NULLPTR) : QHeightMapSurfaceDataProxy(parent) {QHeightMapSurfaceDataProxy_QHeightMapSurfaceDataProxy_QRegisterMetaType();};
+	MyQHeightMapSurfaceDataProxy(const QImage &image, QObject *parent = Q_NULLPTR) : QHeightMapSurfaceDataProxy(image, parent) {QHeightMapSurfaceDataProxy_QHeightMapSurfaceDataProxy_QRegisterMetaType();};
+	MyQHeightMapSurfaceDataProxy(const QString &filename, QObject *parent = Q_NULLPTR) : QHeightMapSurfaceDataProxy(filename, parent) {QHeightMapSurfaceDataProxy_QHeightMapSurfaceDataProxy_QRegisterMetaType();};
 	void Signal_HeightMapChanged(const QImage & image) { callbackQHeightMapSurfaceDataProxy_HeightMapChanged(this, const_cast<QImage*>(&image)); };
 	void Signal_HeightMapFileChanged(const QString & filename) { QByteArray t08deae = filename.toUtf8(); QtDataVisualization_PackedString filenamePacked = { const_cast<char*>(t08deae.prepend("WHITESPACE").constData()+10), t08deae.size()-10 };callbackQHeightMapSurfaceDataProxy_HeightMapFileChanged(this, filenamePacked); };
 	void Signal_MaxXValueChanged(float value) { callbackQHeightMapSurfaceDataProxy_MaxXValueChanged(this, value); };
@@ -5545,6 +5642,11 @@ public:
 	void Signal_MinZValueChanged(float value) { callbackQHeightMapSurfaceDataProxy_MinZValueChanged(this, value); };
 	 ~MyQHeightMapSurfaceDataProxy() { callbackQHeightMapSurfaceDataProxy_DestroyQHeightMapSurfaceDataProxy(this); };
 };
+
+Q_DECLARE_METATYPE(QHeightMapSurfaceDataProxy*)
+Q_DECLARE_METATYPE(MyQHeightMapSurfaceDataProxy*)
+
+int QHeightMapSurfaceDataProxy_QHeightMapSurfaceDataProxy_QRegisterMetaType(){qRegisterMetaType<QHeightMapSurfaceDataProxy*>(); return qRegisterMetaType<MyQHeightMapSurfaceDataProxy*>();}
 
 void* QHeightMapSurfaceDataProxy_NewQHeightMapSurfaceDataProxy(void* parent)
 {
@@ -5856,13 +5958,13 @@ void QHeightMapSurfaceDataProxy_DestroyQHeightMapSurfaceDataProxyDefault(void* p
 class MyQItemModelBarDataProxy: public QItemModelBarDataProxy
 {
 public:
-	MyQItemModelBarDataProxy(QObject *parent = Q_NULLPTR) : QItemModelBarDataProxy(parent) {};
-	MyQItemModelBarDataProxy(QAbstractItemModel *itemModel, QObject *parent = Q_NULLPTR) : QItemModelBarDataProxy(itemModel, parent) {};
-	MyQItemModelBarDataProxy(QAbstractItemModel *itemModel, const QString &valueRole, QObject *parent = Q_NULLPTR) : QItemModelBarDataProxy(itemModel, valueRole, parent) {};
-	MyQItemModelBarDataProxy(QAbstractItemModel *itemModel, const QString &rowRole, const QString &columnRole, const QString &valueRole, QObject *parent = Q_NULLPTR) : QItemModelBarDataProxy(itemModel, rowRole, columnRole, valueRole, parent) {};
-	MyQItemModelBarDataProxy(QAbstractItemModel *itemModel, const QString &rowRole, const QString &columnRole, const QString &valueRole, const QString &rotationRole, QObject *parent = Q_NULLPTR) : QItemModelBarDataProxy(itemModel, rowRole, columnRole, valueRole, rotationRole, parent) {};
-	MyQItemModelBarDataProxy(QAbstractItemModel *itemModel, const QString &rowRole, const QString &columnRole, const QString &valueRole, const QStringList &rowCategories, const QStringList &columnCategories, QObject *parent = Q_NULLPTR) : QItemModelBarDataProxy(itemModel, rowRole, columnRole, valueRole, rowCategories, columnCategories, parent) {};
-	MyQItemModelBarDataProxy(QAbstractItemModel *itemModel, const QString &rowRole, const QString &columnRole, const QString &valueRole, const QString &rotationRole, const QStringList &rowCategories, const QStringList &columnCategories, QObject *parent = Q_NULLPTR) : QItemModelBarDataProxy(itemModel, rowRole, columnRole, valueRole, rotationRole, rowCategories, columnCategories, parent) {};
+	MyQItemModelBarDataProxy(QObject *parent = Q_NULLPTR) : QItemModelBarDataProxy(parent) {QItemModelBarDataProxy_QItemModelBarDataProxy_QRegisterMetaType();};
+	MyQItemModelBarDataProxy(QAbstractItemModel *itemModel, QObject *parent = Q_NULLPTR) : QItemModelBarDataProxy(itemModel, parent) {QItemModelBarDataProxy_QItemModelBarDataProxy_QRegisterMetaType();};
+	MyQItemModelBarDataProxy(QAbstractItemModel *itemModel, const QString &valueRole, QObject *parent = Q_NULLPTR) : QItemModelBarDataProxy(itemModel, valueRole, parent) {QItemModelBarDataProxy_QItemModelBarDataProxy_QRegisterMetaType();};
+	MyQItemModelBarDataProxy(QAbstractItemModel *itemModel, const QString &rowRole, const QString &columnRole, const QString &valueRole, QObject *parent = Q_NULLPTR) : QItemModelBarDataProxy(itemModel, rowRole, columnRole, valueRole, parent) {QItemModelBarDataProxy_QItemModelBarDataProxy_QRegisterMetaType();};
+	MyQItemModelBarDataProxy(QAbstractItemModel *itemModel, const QString &rowRole, const QString &columnRole, const QString &valueRole, const QString &rotationRole, QObject *parent = Q_NULLPTR) : QItemModelBarDataProxy(itemModel, rowRole, columnRole, valueRole, rotationRole, parent) {QItemModelBarDataProxy_QItemModelBarDataProxy_QRegisterMetaType();};
+	MyQItemModelBarDataProxy(QAbstractItemModel *itemModel, const QString &rowRole, const QString &columnRole, const QString &valueRole, const QStringList &rowCategories, const QStringList &columnCategories, QObject *parent = Q_NULLPTR) : QItemModelBarDataProxy(itemModel, rowRole, columnRole, valueRole, rowCategories, columnCategories, parent) {QItemModelBarDataProxy_QItemModelBarDataProxy_QRegisterMetaType();};
+	MyQItemModelBarDataProxy(QAbstractItemModel *itemModel, const QString &rowRole, const QString &columnRole, const QString &valueRole, const QString &rotationRole, const QStringList &rowCategories, const QStringList &columnCategories, QObject *parent = Q_NULLPTR) : QItemModelBarDataProxy(itemModel, rowRole, columnRole, valueRole, rotationRole, rowCategories, columnCategories, parent) {QItemModelBarDataProxy_QItemModelBarDataProxy_QRegisterMetaType();};
 	void Signal_AutoColumnCategoriesChanged(bool enable) { callbackQItemModelBarDataProxy_AutoColumnCategoriesChanged(this, enable); };
 	void Signal_AutoRowCategoriesChanged(bool enable) { callbackQItemModelBarDataProxy_AutoRowCategoriesChanged(this, enable); };
 	void Signal_ColumnCategoriesChanged() { callbackQItemModelBarDataProxy_ColumnCategoriesChanged(this); };
@@ -5884,6 +5986,11 @@ public:
 	void Signal_ValueRoleReplaceChanged(const QString & replace) { QByteArray t3cacc7 = replace.toUtf8(); QtDataVisualization_PackedString replacePacked = { const_cast<char*>(t3cacc7.prepend("WHITESPACE").constData()+10), t3cacc7.size()-10 };callbackQItemModelBarDataProxy_ValueRoleReplaceChanged(this, replacePacked); };
 	 ~MyQItemModelBarDataProxy() { callbackQItemModelBarDataProxy_DestroyQItemModelBarDataProxy(this); };
 };
+
+Q_DECLARE_METATYPE(QItemModelBarDataProxy*)
+Q_DECLARE_METATYPE(MyQItemModelBarDataProxy*)
+
+int QItemModelBarDataProxy_QItemModelBarDataProxy_QRegisterMetaType(){qRegisterMetaType<QItemModelBarDataProxy*>(); return qRegisterMetaType<MyQItemModelBarDataProxy*>();}
 
 void* QItemModelBarDataProxy_NewQItemModelBarDataProxy(void* parent)
 {
@@ -6718,10 +6825,10 @@ void QItemModelBarDataProxy_DestroyQItemModelBarDataProxyDefault(void* ptr)
 class MyQItemModelScatterDataProxy: public QItemModelScatterDataProxy
 {
 public:
-	MyQItemModelScatterDataProxy(QObject *parent = Q_NULLPTR) : QItemModelScatterDataProxy(parent) {};
-	MyQItemModelScatterDataProxy(QAbstractItemModel *itemModel, QObject *parent = Q_NULLPTR) : QItemModelScatterDataProxy(itemModel, parent) {};
-	MyQItemModelScatterDataProxy(QAbstractItemModel *itemModel, const QString &xPosRole, const QString &yPosRole, const QString &zPosRole, QObject *parent = Q_NULLPTR) : QItemModelScatterDataProxy(itemModel, xPosRole, yPosRole, zPosRole, parent) {};
-	MyQItemModelScatterDataProxy(QAbstractItemModel *itemModel, const QString &xPosRole, const QString &yPosRole, const QString &zPosRole, const QString &rotationRole, QObject *parent = Q_NULLPTR) : QItemModelScatterDataProxy(itemModel, xPosRole, yPosRole, zPosRole, rotationRole, parent) {};
+	MyQItemModelScatterDataProxy(QObject *parent = Q_NULLPTR) : QItemModelScatterDataProxy(parent) {QItemModelScatterDataProxy_QItemModelScatterDataProxy_QRegisterMetaType();};
+	MyQItemModelScatterDataProxy(QAbstractItemModel *itemModel, QObject *parent = Q_NULLPTR) : QItemModelScatterDataProxy(itemModel, parent) {QItemModelScatterDataProxy_QItemModelScatterDataProxy_QRegisterMetaType();};
+	MyQItemModelScatterDataProxy(QAbstractItemModel *itemModel, const QString &xPosRole, const QString &yPosRole, const QString &zPosRole, QObject *parent = Q_NULLPTR) : QItemModelScatterDataProxy(itemModel, xPosRole, yPosRole, zPosRole, parent) {QItemModelScatterDataProxy_QItemModelScatterDataProxy_QRegisterMetaType();};
+	MyQItemModelScatterDataProxy(QAbstractItemModel *itemModel, const QString &xPosRole, const QString &yPosRole, const QString &zPosRole, const QString &rotationRole, QObject *parent = Q_NULLPTR) : QItemModelScatterDataProxy(itemModel, xPosRole, yPosRole, zPosRole, rotationRole, parent) {QItemModelScatterDataProxy_QItemModelScatterDataProxy_QRegisterMetaType();};
 	void Signal_ItemModelChanged(const QAbstractItemModel * itemModel) { callbackQItemModelScatterDataProxy_ItemModelChanged(this, const_cast<QAbstractItemModel*>(itemModel)); };
 	void Signal_RotationRoleChanged(const QString & role) { QByteArray t8dca46 = role.toUtf8(); QtDataVisualization_PackedString rolePacked = { const_cast<char*>(t8dca46.prepend("WHITESPACE").constData()+10), t8dca46.size()-10 };callbackQItemModelScatterDataProxy_RotationRoleChanged(this, rolePacked); };
 	void Signal_RotationRolePatternChanged(const QRegExp & pattern) { callbackQItemModelScatterDataProxy_RotationRolePatternChanged(this, const_cast<QRegExp*>(&pattern)); };
@@ -6737,6 +6844,11 @@ public:
 	void Signal_ZPosRoleReplaceChanged(const QString & replace) { QByteArray t3cacc7 = replace.toUtf8(); QtDataVisualization_PackedString replacePacked = { const_cast<char*>(t3cacc7.prepend("WHITESPACE").constData()+10), t3cacc7.size()-10 };callbackQItemModelScatterDataProxy_ZPosRoleReplaceChanged(this, replacePacked); };
 	 ~MyQItemModelScatterDataProxy() { callbackQItemModelScatterDataProxy_DestroyQItemModelScatterDataProxy(this); };
 };
+
+Q_DECLARE_METATYPE(QItemModelScatterDataProxy*)
+Q_DECLARE_METATYPE(MyQItemModelScatterDataProxy*)
+
+int QItemModelScatterDataProxy_QItemModelScatterDataProxy_QRegisterMetaType(){qRegisterMetaType<QItemModelScatterDataProxy*>(); return qRegisterMetaType<MyQItemModelScatterDataProxy*>();}
 
 void* QItemModelScatterDataProxy_NewQItemModelScatterDataProxy(void* parent)
 {
@@ -7270,13 +7382,13 @@ void QItemModelScatterDataProxy_DestroyQItemModelScatterDataProxyDefault(void* p
 class MyQItemModelSurfaceDataProxy: public QItemModelSurfaceDataProxy
 {
 public:
-	MyQItemModelSurfaceDataProxy(QObject *parent = Q_NULLPTR) : QItemModelSurfaceDataProxy(parent) {};
-	MyQItemModelSurfaceDataProxy(QAbstractItemModel *itemModel, QObject *parent = Q_NULLPTR) : QItemModelSurfaceDataProxy(itemModel, parent) {};
-	MyQItemModelSurfaceDataProxy(QAbstractItemModel *itemModel, const QString &yPosRole, QObject *parent = Q_NULLPTR) : QItemModelSurfaceDataProxy(itemModel, yPosRole, parent) {};
-	MyQItemModelSurfaceDataProxy(QAbstractItemModel *itemModel, const QString &rowRole, const QString &columnRole, const QString &yPosRole, QObject *parent = Q_NULLPTR) : QItemModelSurfaceDataProxy(itemModel, rowRole, columnRole, yPosRole, parent) {};
-	MyQItemModelSurfaceDataProxy(QAbstractItemModel *itemModel, const QString &rowRole, const QString &columnRole, const QString &xPosRole, const QString &yPosRole, const QString &zPosRole, QObject *parent = Q_NULLPTR) : QItemModelSurfaceDataProxy(itemModel, rowRole, columnRole, xPosRole, yPosRole, zPosRole, parent) {};
-	MyQItemModelSurfaceDataProxy(QAbstractItemModel *itemModel, const QString &rowRole, const QString &columnRole, const QString &yPosRole, const QStringList &rowCategories, const QStringList &columnCategories, QObject *parent = Q_NULLPTR) : QItemModelSurfaceDataProxy(itemModel, rowRole, columnRole, yPosRole, rowCategories, columnCategories, parent) {};
-	MyQItemModelSurfaceDataProxy(QAbstractItemModel *itemModel, const QString &rowRole, const QString &columnRole, const QString &xPosRole, const QString &yPosRole, const QString &zPosRole, const QStringList &rowCategories, const QStringList &columnCategories, QObject *parent = Q_NULLPTR) : QItemModelSurfaceDataProxy(itemModel, rowRole, columnRole, xPosRole, yPosRole, zPosRole, rowCategories, columnCategories, parent) {};
+	MyQItemModelSurfaceDataProxy(QObject *parent = Q_NULLPTR) : QItemModelSurfaceDataProxy(parent) {QItemModelSurfaceDataProxy_QItemModelSurfaceDataProxy_QRegisterMetaType();};
+	MyQItemModelSurfaceDataProxy(QAbstractItemModel *itemModel, QObject *parent = Q_NULLPTR) : QItemModelSurfaceDataProxy(itemModel, parent) {QItemModelSurfaceDataProxy_QItemModelSurfaceDataProxy_QRegisterMetaType();};
+	MyQItemModelSurfaceDataProxy(QAbstractItemModel *itemModel, const QString &yPosRole, QObject *parent = Q_NULLPTR) : QItemModelSurfaceDataProxy(itemModel, yPosRole, parent) {QItemModelSurfaceDataProxy_QItemModelSurfaceDataProxy_QRegisterMetaType();};
+	MyQItemModelSurfaceDataProxy(QAbstractItemModel *itemModel, const QString &rowRole, const QString &columnRole, const QString &yPosRole, QObject *parent = Q_NULLPTR) : QItemModelSurfaceDataProxy(itemModel, rowRole, columnRole, yPosRole, parent) {QItemModelSurfaceDataProxy_QItemModelSurfaceDataProxy_QRegisterMetaType();};
+	MyQItemModelSurfaceDataProxy(QAbstractItemModel *itemModel, const QString &rowRole, const QString &columnRole, const QString &xPosRole, const QString &yPosRole, const QString &zPosRole, QObject *parent = Q_NULLPTR) : QItemModelSurfaceDataProxy(itemModel, rowRole, columnRole, xPosRole, yPosRole, zPosRole, parent) {QItemModelSurfaceDataProxy_QItemModelSurfaceDataProxy_QRegisterMetaType();};
+	MyQItemModelSurfaceDataProxy(QAbstractItemModel *itemModel, const QString &rowRole, const QString &columnRole, const QString &yPosRole, const QStringList &rowCategories, const QStringList &columnCategories, QObject *parent = Q_NULLPTR) : QItemModelSurfaceDataProxy(itemModel, rowRole, columnRole, yPosRole, rowCategories, columnCategories, parent) {QItemModelSurfaceDataProxy_QItemModelSurfaceDataProxy_QRegisterMetaType();};
+	MyQItemModelSurfaceDataProxy(QAbstractItemModel *itemModel, const QString &rowRole, const QString &columnRole, const QString &xPosRole, const QString &yPosRole, const QString &zPosRole, const QStringList &rowCategories, const QStringList &columnCategories, QObject *parent = Q_NULLPTR) : QItemModelSurfaceDataProxy(itemModel, rowRole, columnRole, xPosRole, yPosRole, zPosRole, rowCategories, columnCategories, parent) {QItemModelSurfaceDataProxy_QItemModelSurfaceDataProxy_QRegisterMetaType();};
 	void Signal_AutoColumnCategoriesChanged(bool enable) { callbackQItemModelSurfaceDataProxy_AutoColumnCategoriesChanged(this, enable); };
 	void Signal_AutoRowCategoriesChanged(bool enable) { callbackQItemModelSurfaceDataProxy_AutoRowCategoriesChanged(this, enable); };
 	void Signal_ColumnCategoriesChanged() { callbackQItemModelSurfaceDataProxy_ColumnCategoriesChanged(this); };
@@ -7301,6 +7413,11 @@ public:
 	void Signal_ZPosRoleReplaceChanged(const QString & replace) { QByteArray t3cacc7 = replace.toUtf8(); QtDataVisualization_PackedString replacePacked = { const_cast<char*>(t3cacc7.prepend("WHITESPACE").constData()+10), t3cacc7.size()-10 };callbackQItemModelSurfaceDataProxy_ZPosRoleReplaceChanged(this, replacePacked); };
 	 ~MyQItemModelSurfaceDataProxy() { callbackQItemModelSurfaceDataProxy_DestroyQItemModelSurfaceDataProxy(this); };
 };
+
+Q_DECLARE_METATYPE(QItemModelSurfaceDataProxy*)
+Q_DECLARE_METATYPE(MyQItemModelSurfaceDataProxy*)
+
+int QItemModelSurfaceDataProxy_QItemModelSurfaceDataProxy_QRegisterMetaType(){qRegisterMetaType<QItemModelSurfaceDataProxy*>(); return qRegisterMetaType<MyQItemModelSurfaceDataProxy*>();}
 
 void* QItemModelSurfaceDataProxy_NewQItemModelSurfaceDataProxy(void* parent)
 {
@@ -8210,12 +8327,17 @@ void QItemModelSurfaceDataProxy_DestroyQItemModelSurfaceDataProxyDefault(void* p
 class MyQLogValue3DAxisFormatter: public QLogValue3DAxisFormatter
 {
 public:
-	MyQLogValue3DAxisFormatter(QObject *parent = Q_NULLPTR) : QLogValue3DAxisFormatter(parent) {};
+	MyQLogValue3DAxisFormatter(QObject *parent = Q_NULLPTR) : QLogValue3DAxisFormatter(parent) {QLogValue3DAxisFormatter_QLogValue3DAxisFormatter_QRegisterMetaType();};
 	void Signal_AutoSubGridChanged(bool enabled) { callbackQLogValue3DAxisFormatter_AutoSubGridChanged(this, enabled); };
 	void Signal_BaseChanged(qreal base) { callbackQLogValue3DAxisFormatter_BaseChanged(this, base); };
 	void Signal_ShowEdgeLabelsChanged(bool enabled) { callbackQLogValue3DAxisFormatter_ShowEdgeLabelsChanged(this, enabled); };
 	 ~MyQLogValue3DAxisFormatter() { callbackQLogValue3DAxisFormatter_DestroyQLogValue3DAxisFormatter(this); };
 };
+
+Q_DECLARE_METATYPE(QLogValue3DAxisFormatter*)
+Q_DECLARE_METATYPE(MyQLogValue3DAxisFormatter*)
+
+int QLogValue3DAxisFormatter_QLogValue3DAxisFormatter_QRegisterMetaType(){qRegisterMetaType<QLogValue3DAxisFormatter*>(); return qRegisterMetaType<MyQLogValue3DAxisFormatter*>();}
 
 void* QLogValue3DAxisFormatter_NewQLogValue3DAxisFormatter2(void* parent)
 {
@@ -8353,13 +8475,18 @@ void QLogValue3DAxisFormatter_DestroyQLogValue3DAxisFormatterDefault(void* ptr)
 class MyQScatter3DSeries: public QScatter3DSeries
 {
 public:
-	MyQScatter3DSeries(QObject *parent = Q_NULLPTR) : QScatter3DSeries(parent) {};
-	MyQScatter3DSeries(QScatterDataProxy *dataProxy, QObject *parent = Q_NULLPTR) : QScatter3DSeries(dataProxy, parent) {};
+	MyQScatter3DSeries(QObject *parent = Q_NULLPTR) : QScatter3DSeries(parent) {QScatter3DSeries_QScatter3DSeries_QRegisterMetaType();};
+	MyQScatter3DSeries(QScatterDataProxy *dataProxy, QObject *parent = Q_NULLPTR) : QScatter3DSeries(dataProxy, parent) {QScatter3DSeries_QScatter3DSeries_QRegisterMetaType();};
 	void Signal_DataProxyChanged(QScatterDataProxy * proxy) { callbackQScatter3DSeries_DataProxyChanged(this, proxy); };
 	void Signal_ItemSizeChanged(float size) { callbackQScatter3DSeries_ItemSizeChanged(this, size); };
 	void Signal_SelectedItemChanged(int index) { callbackQScatter3DSeries_SelectedItemChanged(this, index); };
 	 ~MyQScatter3DSeries() { callbackQScatter3DSeries_DestroyQScatter3DSeries(this); };
 };
+
+Q_DECLARE_METATYPE(QScatter3DSeries*)
+Q_DECLARE_METATYPE(MyQScatter3DSeries*)
+
+int QScatter3DSeries_QScatter3DSeries_QRegisterMetaType(){qRegisterMetaType<QScatter3DSeries*>(); return qRegisterMetaType<MyQScatter3DSeries*>();}
 
 void* QScatter3DSeries_NewQScatter3DSeries(void* parent)
 {
@@ -8546,6 +8673,8 @@ void QScatter3DSeries_DestroyQScatter3DSeriesDefault(void* ptr)
 
 }
 
+Q_DECLARE_METATYPE(QScatterDataItem)
+Q_DECLARE_METATYPE(QScatterDataItem*)
 void* QScatterDataItem_NewQScatterDataItem()
 {
 	return new QScatterDataItem();
@@ -8624,7 +8753,7 @@ void QScatterDataItem_DestroyQScatterDataItem(void* ptr)
 class MyQScatterDataProxy: public QScatterDataProxy
 {
 public:
-	MyQScatterDataProxy(QObject *parent = Q_NULLPTR) : QScatterDataProxy(parent) {};
+	MyQScatterDataProxy(QObject *parent = Q_NULLPTR) : QScatterDataProxy(parent) {QScatterDataProxy_QScatterDataProxy_QRegisterMetaType();};
 	void Signal_ArrayReset() { callbackQScatterDataProxy_ArrayReset(this); };
 	void Signal_ItemCountChanged(int count) { callbackQScatterDataProxy_ItemCountChanged(this, count); };
 	void Signal_ItemsAdded(int startIndex, int count) { callbackQScatterDataProxy_ItemsAdded(this, startIndex, count); };
@@ -8634,6 +8763,11 @@ public:
 	void Signal_SeriesChanged(QScatter3DSeries * series) { callbackQScatterDataProxy_SeriesChanged(this, series); };
 	 ~MyQScatterDataProxy() { callbackQScatterDataProxy_DestroyQScatterDataProxy(this); };
 };
+
+Q_DECLARE_METATYPE(QScatterDataProxy*)
+Q_DECLARE_METATYPE(MyQScatterDataProxy*)
+
+int QScatterDataProxy_QScatterDataProxy_QRegisterMetaType(){qRegisterMetaType<QScatterDataProxy*>(); return qRegisterMetaType<MyQScatterDataProxy*>();}
 
 void* QScatterDataProxy_NewQScatterDataProxy(void* parent)
 {
@@ -8836,8 +8970,8 @@ void QScatterDataProxy_DestroyQScatterDataProxyDefault(void* ptr)
 class MyQSurface3DSeries: public QSurface3DSeries
 {
 public:
-	MyQSurface3DSeries(QObject *parent = Q_NULLPTR) : QSurface3DSeries(parent) {};
-	MyQSurface3DSeries(QSurfaceDataProxy *dataProxy, QObject *parent = Q_NULLPTR) : QSurface3DSeries(dataProxy, parent) {};
+	MyQSurface3DSeries(QObject *parent = Q_NULLPTR) : QSurface3DSeries(parent) {QSurface3DSeries_QSurface3DSeries_QRegisterMetaType();};
+	MyQSurface3DSeries(QSurfaceDataProxy *dataProxy, QObject *parent = Q_NULLPTR) : QSurface3DSeries(dataProxy, parent) {QSurface3DSeries_QSurface3DSeries_QRegisterMetaType();};
 	void Signal_DataProxyChanged(QSurfaceDataProxy * proxy) { callbackQSurface3DSeries_DataProxyChanged(this, proxy); };
 	void Signal_DrawModeChanged(QSurface3DSeries::DrawFlags mode) { callbackQSurface3DSeries_DrawModeChanged(this, mode); };
 	void Signal_FlatShadingEnabledChanged(bool enable) { callbackQSurface3DSeries_FlatShadingEnabledChanged(this, enable); };
@@ -8847,6 +8981,11 @@ public:
 	void Signal_TextureFileChanged(const QString & filename) { QByteArray t08deae = filename.toUtf8(); QtDataVisualization_PackedString filenamePacked = { const_cast<char*>(t08deae.prepend("WHITESPACE").constData()+10), t08deae.size()-10 };callbackQSurface3DSeries_TextureFileChanged(this, filenamePacked); };
 	 ~MyQSurface3DSeries() { callbackQSurface3DSeries_DestroyQSurface3DSeries(this); };
 };
+
+Q_DECLARE_METATYPE(QSurface3DSeries*)
+Q_DECLARE_METATYPE(MyQSurface3DSeries*)
+
+int QSurface3DSeries_QSurface3DSeries_QRegisterMetaType(){qRegisterMetaType<QSurface3DSeries*>(); return qRegisterMetaType<MyQSurface3DSeries*>();}
 
 void* QSurface3DSeries_NewQSurface3DSeries(void* parent)
 {
@@ -9128,6 +9267,8 @@ void QSurface3DSeries_DestroyQSurface3DSeriesDefault(void* ptr)
 
 }
 
+Q_DECLARE_METATYPE(QSurfaceDataItem)
+Q_DECLARE_METATYPE(QSurfaceDataItem*)
 void* QSurfaceDataItem_NewQSurfaceDataItem()
 {
 	return new QSurfaceDataItem();
@@ -9191,7 +9332,7 @@ void QSurfaceDataItem_DestroyQSurfaceDataItem(void* ptr)
 class MyQSurfaceDataProxy: public QSurfaceDataProxy
 {
 public:
-	MyQSurfaceDataProxy(QObject *parent = Q_NULLPTR) : QSurfaceDataProxy(parent) {};
+	MyQSurfaceDataProxy(QObject *parent = Q_NULLPTR) : QSurfaceDataProxy(parent) {QSurfaceDataProxy_QSurfaceDataProxy_QRegisterMetaType();};
 	void Signal_ArrayReset() { callbackQSurfaceDataProxy_ArrayReset(this); };
 	void Signal_ColumnCountChanged(int count) { callbackQSurfaceDataProxy_ColumnCountChanged(this, count); };
 	void Signal_ItemChanged(int rowIndex, int columnIndex) { callbackQSurfaceDataProxy_ItemChanged(this, rowIndex, columnIndex); };
@@ -9203,6 +9344,11 @@ public:
 	void Signal_SeriesChanged(QSurface3DSeries * series) { callbackQSurfaceDataProxy_SeriesChanged(this, series); };
 	 ~MyQSurfaceDataProxy() { callbackQSurfaceDataProxy_DestroyQSurfaceDataProxy(this); };
 };
+
+Q_DECLARE_METATYPE(QSurfaceDataProxy*)
+Q_DECLARE_METATYPE(MyQSurfaceDataProxy*)
+
+int QSurfaceDataProxy_QSurfaceDataProxy_QRegisterMetaType(){qRegisterMetaType<QSurfaceDataProxy*>(); return qRegisterMetaType<MyQSurfaceDataProxy*>();}
 
 void* QSurfaceDataProxy_NewQSurfaceDataProxy(void* parent)
 {
@@ -9440,10 +9586,15 @@ void QSurfaceDataProxy_DestroyQSurfaceDataProxyDefault(void* ptr)
 class MyQTouch3DInputHandler: public QTouch3DInputHandler
 {
 public:
-	MyQTouch3DInputHandler(QObject *parent = Q_NULLPTR) : QTouch3DInputHandler(parent) {};
+	MyQTouch3DInputHandler(QObject *parent = Q_NULLPTR) : QTouch3DInputHandler(parent) {QTouch3DInputHandler_QTouch3DInputHandler_QRegisterMetaType();};
 	void touchEvent(QTouchEvent * event) { callbackQTouch3DInputHandler_TouchEvent(this, event); };
 	 ~MyQTouch3DInputHandler() { callbackQTouch3DInputHandler_DestroyQTouch3DInputHandler(this); };
 };
+
+Q_DECLARE_METATYPE(QTouch3DInputHandler*)
+Q_DECLARE_METATYPE(MyQTouch3DInputHandler*)
+
+int QTouch3DInputHandler_QTouch3DInputHandler_QRegisterMetaType(){qRegisterMetaType<QTouch3DInputHandler*>(); return qRegisterMetaType<MyQTouch3DInputHandler*>();}
 
 void* QTouch3DInputHandler_NewQTouch3DInputHandler(void* parent)
 {
@@ -9516,7 +9667,7 @@ void QTouch3DInputHandler_DestroyQTouch3DInputHandlerDefault(void* ptr)
 class MyQValue3DAxis: public QValue3DAxis
 {
 public:
-	MyQValue3DAxis(QObject *parent = Q_NULLPTR) : QValue3DAxis(parent) {};
+	MyQValue3DAxis(QObject *parent = Q_NULLPTR) : QValue3DAxis(parent) {QValue3DAxis_QValue3DAxis_QRegisterMetaType();};
 	void Signal_FormatterChanged(QValue3DAxisFormatter * formatter) { callbackQValue3DAxis_FormatterChanged(this, formatter); };
 	void Signal_LabelFormatChanged(const QString & format) { QByteArray t785987 = format.toUtf8(); QtDataVisualization_PackedString formatPacked = { const_cast<char*>(t785987.prepend("WHITESPACE").constData()+10), t785987.size()-10 };callbackQValue3DAxis_LabelFormatChanged(this, formatPacked); };
 	void Signal_ReversedChanged(bool enable) { callbackQValue3DAxis_ReversedChanged(this, enable); };
@@ -9524,6 +9675,11 @@ public:
 	void Signal_SubSegmentCountChanged(int count) { callbackQValue3DAxis_SubSegmentCountChanged(this, count); };
 	 ~MyQValue3DAxis() { callbackQValue3DAxis_DestroyQValue3DAxis(this); };
 };
+
+Q_DECLARE_METATYPE(QValue3DAxis*)
+Q_DECLARE_METATYPE(MyQValue3DAxis*)
+
+int QValue3DAxis_QValue3DAxis_QRegisterMetaType(){qRegisterMetaType<QValue3DAxis*>(); return qRegisterMetaType<MyQValue3DAxis*>();}
 
 void* QValue3DAxis_NewQValue3DAxis(void* parent)
 {
@@ -9711,7 +9867,7 @@ void QValue3DAxis_DestroyQValue3DAxisDefault(void* ptr)
 class MyQValue3DAxisFormatter: public QValue3DAxisFormatter
 {
 public:
-	MyQValue3DAxisFormatter(QObject *parent = Q_NULLPTR) : QValue3DAxisFormatter(parent) {};
+	MyQValue3DAxisFormatter(QObject *parent = Q_NULLPTR) : QValue3DAxisFormatter(parent) {QValue3DAxisFormatter_QValue3DAxisFormatter_QRegisterMetaType();};
 	QValue3DAxisFormatter * createNewInstance() const { return static_cast<QValue3DAxisFormatter*>(callbackQValue3DAxisFormatter_CreateNewInstance(const_cast<void*>(static_cast<const void*>(this)))); };
 	void populateCopy(QValue3DAxisFormatter & copy) const { callbackQValue3DAxisFormatter_PopulateCopy(const_cast<void*>(static_cast<const void*>(this)), static_cast<QValue3DAxisFormatter*>(&copy)); };
 	float positionAt(float value) const { return callbackQValue3DAxisFormatter_PositionAt(const_cast<void*>(static_cast<const void*>(this)), value); };
@@ -9720,6 +9876,11 @@ public:
 	float valueAt(float position) const { return callbackQValue3DAxisFormatter_ValueAt(const_cast<void*>(static_cast<const void*>(this)), position); };
 	 ~MyQValue3DAxisFormatter() { callbackQValue3DAxisFormatter_DestroyQValue3DAxisFormatter(this); };
 };
+
+Q_DECLARE_METATYPE(QValue3DAxisFormatter*)
+Q_DECLARE_METATYPE(MyQValue3DAxisFormatter*)
+
+int QValue3DAxisFormatter_QValue3DAxisFormatter_QRegisterMetaType(){qRegisterMetaType<QValue3DAxisFormatter*>(); return qRegisterMetaType<MyQValue3DAxisFormatter*>();}
 
 void* QValue3DAxisFormatter_NewQValue3DAxisFormatter2(void* parent)
 {

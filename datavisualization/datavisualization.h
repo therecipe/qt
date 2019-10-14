@@ -8,6 +8,37 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
+int Q3DBars_Q3DBars_QRegisterMetaType();
+int Q3DCamera_Q3DCamera_QRegisterMetaType();
+int Q3DInputHandler_Q3DInputHandler_QRegisterMetaType();
+int Q3DLight_Q3DLight_QRegisterMetaType();
+int Q3DObject_Q3DObject_QRegisterMetaType();
+int Q3DScatter_Q3DScatter_QRegisterMetaType();
+int Q3DScene_Q3DScene_QRegisterMetaType();
+int Q3DSurface_Q3DSurface_QRegisterMetaType();
+int Q3DTheme_Q3DTheme_QRegisterMetaType();
+int QAbstract3DAxis_QAbstract3DAxis_QRegisterMetaType();
+int QAbstract3DInputHandler_QAbstract3DInputHandler_QRegisterMetaType();
+int QAbstract3DSeries_QAbstract3DSeries_QRegisterMetaType();
+int QAbstractDataProxy_QAbstractDataProxy_QRegisterMetaType();
+int QBar3DSeries_QBar3DSeries_QRegisterMetaType();
+int QBarDataProxy_QBarDataProxy_QRegisterMetaType();
+int QCategory3DAxis_QCategory3DAxis_QRegisterMetaType();
+int QCustom3DItem_QCustom3DItem_QRegisterMetaType();
+int QCustom3DLabel_QCustom3DLabel_QRegisterMetaType();
+int QCustom3DVolume_QCustom3DVolume_QRegisterMetaType();
+int QHeightMapSurfaceDataProxy_QHeightMapSurfaceDataProxy_QRegisterMetaType();
+int QItemModelBarDataProxy_QItemModelBarDataProxy_QRegisterMetaType();
+int QItemModelScatterDataProxy_QItemModelScatterDataProxy_QRegisterMetaType();
+int QItemModelSurfaceDataProxy_QItemModelSurfaceDataProxy_QRegisterMetaType();
+int QLogValue3DAxisFormatter_QLogValue3DAxisFormatter_QRegisterMetaType();
+int QScatter3DSeries_QScatter3DSeries_QRegisterMetaType();
+int QScatterDataProxy_QScatterDataProxy_QRegisterMetaType();
+int QSurface3DSeries_QSurface3DSeries_QRegisterMetaType();
+int QSurfaceDataProxy_QSurfaceDataProxy_QRegisterMetaType();
+int QTouch3DInputHandler_QTouch3DInputHandler_QRegisterMetaType();
+int QValue3DAxis_QValue3DAxis_QRegisterMetaType();
+int QValue3DAxisFormatter_QValue3DAxisFormatter_QRegisterMetaType();
 extern "C" {
 #endif
 

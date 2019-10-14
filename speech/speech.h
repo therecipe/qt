@@ -10,6 +10,7 @@
 #ifdef __cplusplus
 int QTextToSpeech_QTextToSpeech_QRegisterMetaType();
 int QTextToSpeechEngine_QTextToSpeechEngine_QRegisterMetaType();
+int QTextToSpeechPlugin_QTextToSpeechPlugin_QRegisterMetaType();
 extern "C" {
 #endif
 

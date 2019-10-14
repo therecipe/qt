@@ -51,6 +51,11 @@ public:
 	QString mimeFor(QString flav) { QByteArray t81c607 = flav.toUtf8(); QtMacExtras_PackedString flavPacked = { const_cast<char*>(t81c607.prepend("WHITESPACE").constData()+10), t81c607.size()-10 };return ({ QtMacExtras_PackedString tempVal = callbackQMacPasteboardMime_MimeFor(this, flavPacked); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 };
 
+Q_DECLARE_METATYPE(QMacPasteboardMime*)
+Q_DECLARE_METATYPE(MyQMacPasteboardMime*)
+
+int QMacPasteboardMime_QMacPasteboardMime_QRegisterMetaType(){qRegisterMetaType<QMacPasteboardMime*>(); return qRegisterMetaType<MyQMacPasteboardMime*>();}
+
 char QMacPasteboardMime_CanConvert(void* ptr, struct QtMacExtras_PackedString mime, struct QtMacExtras_PackedString flav)
 {
 	return static_cast<QMacPasteboardMime*>(ptr)->canConvert(QString::fromUtf8(mime.data, mime.len), QString::fromUtf8(flav.data, flav.len));
@@ -341,6 +346,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMacToolBarItem_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QMacToolBarItem*)
 Q_DECLARE_METATYPE(MyQMacToolBarItem*)
 
 int QMacToolBarItem_QMacToolBarItem_QRegisterMetaType(){qRegisterMetaType<QMacToolBarItem*>(); return qRegisterMetaType<MyQMacToolBarItem*>();}

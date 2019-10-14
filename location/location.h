@@ -12,6 +12,7 @@ int QGeoRouteReply_QGeoRouteReply_QRegisterMetaType();
 int QGeoRoutingManager_QGeoRoutingManager_QRegisterMetaType();
 int QGeoRoutingManagerEngine_QGeoRoutingManagerEngine_QRegisterMetaType();
 int QGeoServiceProvider_QGeoServiceProvider_QRegisterMetaType();
+int QGeoServiceProviderFactory_QGeoServiceProviderFactory_QRegisterMetaType();
 extern "C" {
 #endif
 

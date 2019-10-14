@@ -126,6 +126,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractItemModelReplica_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QAbstractItemModelReplica*)
 Q_DECLARE_METATYPE(MyQAbstractItemModelReplica*)
 
 int QAbstractItemModelReplica_QAbstractItemModelReplica_QRegisterMetaType(){qRegisterMetaType<QAbstractItemModelReplica*>(); return qRegisterMetaType<MyQAbstractItemModelReplica*>();}
@@ -797,6 +798,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQRemoteObjectAbstractPersistedStore_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QRemoteObjectAbstractPersistedStore*)
 Q_DECLARE_METATYPE(MyQRemoteObjectAbstractPersistedStore*)
 
 int QRemoteObjectAbstractPersistedStore_QRemoteObjectAbstractPersistedStore_QRegisterMetaType(){qRegisterMetaType<QRemoteObjectAbstractPersistedStore*>(); return qRegisterMetaType<MyQRemoteObjectAbstractPersistedStore*>();}
@@ -1095,6 +1097,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQRemoteObjectReplica_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QRemoteObjectDynamicReplica*)
 Q_DECLARE_METATYPE(MyQRemoteObjectDynamicReplica*)
 
 int QRemoteObjectDynamicReplica_QRemoteObjectDynamicReplica_QRegisterMetaType(){qRegisterMetaType<QRemoteObjectDynamicReplica*>(); return qRegisterMetaType<MyQRemoteObjectDynamicReplica*>();}
@@ -1134,6 +1137,7 @@ public:
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtRemoteObjects_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQRemoteObjectNode_ObjectNameChanged(this, objectNamePacked); };
 };
 
+Q_DECLARE_METATYPE(QRemoteObjectHost*)
 Q_DECLARE_METATYPE(MyQRemoteObjectHost*)
 
 int QRemoteObjectHost_QRemoteObjectHost_QRegisterMetaType(){qRegisterMetaType<QRemoteObjectHost*>(); return qRegisterMetaType<MyQRemoteObjectHost*>();}
@@ -1318,6 +1322,7 @@ public:
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtRemoteObjects_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQRemoteObjectNode_ObjectNameChanged(this, objectNamePacked); };
 };
 
+Q_DECLARE_METATYPE(QRemoteObjectHostBase*)
 Q_DECLARE_METATYPE(MyQRemoteObjectHostBase*)
 
 int QRemoteObjectHostBase_QRemoteObjectHostBase_QRegisterMetaType(){qRegisterMetaType<QRemoteObjectHostBase*>(); return qRegisterMetaType<MyQRemoteObjectHostBase*>();}
@@ -1387,6 +1392,7 @@ public:
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtRemoteObjects_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQRemoteObjectNode_ObjectNameChanged(this, objectNamePacked); };
 };
 
+Q_DECLARE_METATYPE(QRemoteObjectNode*)
 Q_DECLARE_METATYPE(MyQRemoteObjectNode*)
 
 int QRemoteObjectNode_QRemoteObjectNode_QRegisterMetaType(){qRegisterMetaType<QRemoteObjectNode*>(); return qRegisterMetaType<MyQRemoteObjectNode*>();}
@@ -1889,6 +1895,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQRemoteObjectPendingCallWatcher_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QRemoteObjectPendingCallWatcher*)
 Q_DECLARE_METATYPE(MyQRemoteObjectPendingCallWatcher*)
 
 int QRemoteObjectPendingCallWatcher_QRemoteObjectPendingCallWatcher_QRegisterMetaType(){qRegisterMetaType<QRemoteObjectPendingCallWatcher*>(); return qRegisterMetaType<MyQRemoteObjectPendingCallWatcher*>();}
@@ -2107,6 +2114,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQRemoteObjectReplica_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QRemoteObjectRegistry*)
 Q_DECLARE_METATYPE(MyQRemoteObjectRegistry*)
 
 int QRemoteObjectRegistry_QRemoteObjectRegistry_QRegisterMetaType(){qRegisterMetaType<QRemoteObjectRegistry*>(); return qRegisterMetaType<MyQRemoteObjectRegistry*>();}
@@ -2142,6 +2150,7 @@ public:
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtRemoteObjects_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQRemoteObjectNode_ObjectNameChanged(this, objectNamePacked); };
 };
 
+Q_DECLARE_METATYPE(QRemoteObjectRegistryHost*)
 Q_DECLARE_METATYPE(MyQRemoteObjectRegistryHost*)
 
 int QRemoteObjectRegistryHost_QRemoteObjectRegistryHost_QRegisterMetaType(){qRegisterMetaType<QRemoteObjectRegistryHost*>(); return qRegisterMetaType<MyQRemoteObjectRegistryHost*>();}
@@ -2212,6 +2221,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQRemoteObjectReplica_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QRemoteObjectReplica*)
 Q_DECLARE_METATYPE(MyQRemoteObjectReplica*)
 
 int QRemoteObjectReplica_QRemoteObjectReplica_QRegisterMetaType(){qRegisterMetaType<QRemoteObjectReplica*>(); return qRegisterMetaType<MyQRemoteObjectReplica*>();}
@@ -2594,6 +2604,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQRemoteObjectAbstractPersistedStore_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QRemoteObjectSettingsStore*)
 Q_DECLARE_METATYPE(MyQRemoteObjectSettingsStore*)
 
 int QRemoteObjectSettingsStore_QRemoteObjectSettingsStore_QRegisterMetaType(){qRegisterMetaType<QRemoteObjectSettingsStore*>(); return qRegisterMetaType<MyQRemoteObjectSettingsStore*>();}

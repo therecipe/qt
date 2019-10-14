@@ -32,6 +32,11 @@ public:
 	void handleActivityResult(int receiverRequestCode, int resultCode, const QAndroidJniObject & data) { callbackQAndroidActivityResultReceiver_HandleActivityResult(this, receiverRequestCode, resultCode, const_cast<QAndroidJniObject*>(&data)); };
 };
 
+Q_DECLARE_METATYPE(QAndroidActivityResultReceiver*)
+Q_DECLARE_METATYPE(MyQAndroidActivityResultReceiver*)
+
+int QAndroidActivityResultReceiver_QAndroidActivityResultReceiver_QRegisterMetaType(){qRegisterMetaType<QAndroidActivityResultReceiver*>(); return qRegisterMetaType<MyQAndroidActivityResultReceiver*>();}
+
 void QAndroidActivityResultReceiver_HandleActivityResult(void* ptr, int receiverRequestCode, int resultCode, void* data)
 {
 	static_cast<QAndroidActivityResultReceiver*>(ptr)->handleActivityResult(receiverRequestCode, resultCode, *static_cast<QAndroidJniObject*>(data));
@@ -40,9 +45,14 @@ void QAndroidActivityResultReceiver_HandleActivityResult(void* ptr, int receiver
 class MyQAndroidBinder: public QAndroidBinder
 {
 public:
-	MyQAndroidBinder() : QAndroidBinder() {};
-	MyQAndroidBinder(const QAndroidJniObject &binder) : QAndroidBinder(binder) {};
+	MyQAndroidBinder() : QAndroidBinder() {QAndroidBinder_QAndroidBinder_QRegisterMetaType();};
+	MyQAndroidBinder(const QAndroidJniObject &binder) : QAndroidBinder(binder) {QAndroidBinder_QAndroidBinder_QRegisterMetaType();};
 };
+
+Q_DECLARE_METATYPE(QAndroidBinder*)
+Q_DECLARE_METATYPE(MyQAndroidBinder*)
+
+int QAndroidBinder_QAndroidBinder_QRegisterMetaType(){qRegisterMetaType<QAndroidBinder*>(); return qRegisterMetaType<MyQAndroidBinder*>();}
 
 void* QAndroidBinder_NewQAndroidBinder()
 {
@@ -64,6 +74,8 @@ char QAndroidBinder_Transact(void* ptr, int code, void* data, void* reply, long 
 	return static_cast<QAndroidBinder*>(ptr)->transact(code, *static_cast<QAndroidParcel*>(data), static_cast<QAndroidParcel*>(reply), static_cast<QAndroidBinder::CallType>(flags));
 }
 
+Q_DECLARE_METATYPE(QAndroidIntent)
+Q_DECLARE_METATYPE(QAndroidIntent*)
 void* QAndroidIntent_NewQAndroidIntent()
 {
 	return new QAndroidIntent();
@@ -109,6 +121,7 @@ void QAndroidIntent_PutExtra2(void* ptr, struct QtAndroidExtras_PackedString key
 	static_cast<QAndroidIntent*>(ptr)->putExtra(QString::fromUtf8(key.data, key.len), *static_cast<QVariant*>(value));
 }
 
+Q_DECLARE_METATYPE(QAndroidJniEnvironment*)
 void* QAndroidJniEnvironment_NewQAndroidJniEnvironment()
 {
 	return new QAndroidJniEnvironment();
@@ -149,6 +162,7 @@ void* QAndroidJniEnvironment_QAndroidJniEnvironment_ExceptionOccurred()
 	return ({ QAndroidJniEnvironment env; env->ExceptionOccurred(); });
 }
 
+Q_DECLARE_METATYPE(QAndroidJniExceptionCleaner*)
 void* QAndroidJniExceptionCleaner_NewQAndroidJniExceptionCleaner(long long outputMode)
 {
 	return new QAndroidJniExceptionCleaner(static_cast<QAndroidJniExceptionCleaner::OutputMode>(outputMode));
@@ -164,6 +178,8 @@ void QAndroidJniExceptionCleaner_DestroyQAndroidJniExceptionCleaner(void* ptr)
 	static_cast<QAndroidJniExceptionCleaner*>(ptr)->~QAndroidJniExceptionCleaner();
 }
 
+Q_DECLARE_METATYPE(QAndroidJniObject)
+Q_DECLARE_METATYPE(QAndroidJniObject*)
 void* QAndroidJniObject_NewQAndroidJniObject()
 {
 	return new QAndroidJniObject();
@@ -769,6 +785,8 @@ void QAndroidJniObject_DestroyQAndroidJniObject(void* ptr)
 	static_cast<QAndroidJniObject*>(ptr)->~QAndroidJniObject();
 }
 
+Q_DECLARE_METATYPE(QAndroidParcel)
+Q_DECLARE_METATYPE(QAndroidParcel*)
 void* QAndroidParcel_NewQAndroidParcel()
 {
 	return new QAndroidParcel();
@@ -848,6 +866,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAndroidService_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QAndroidService*)
 Q_DECLARE_METATYPE(MyQAndroidService*)
 
 int QAndroidService_QAndroidService_QRegisterMetaType(){qRegisterMetaType<QAndroidService*>(); return qRegisterMetaType<MyQAndroidService*>();}
@@ -1007,11 +1026,16 @@ void QAndroidService_TimerEventDefault(void* ptr, void* event)
 class MyQAndroidServiceConnection: public QAndroidServiceConnection
 {
 public:
-	MyQAndroidServiceConnection() : QAndroidServiceConnection() {};
-	MyQAndroidServiceConnection(const QAndroidJniObject &serviceConnection) : QAndroidServiceConnection(serviceConnection) {};
+	MyQAndroidServiceConnection() : QAndroidServiceConnection() {QAndroidServiceConnection_QAndroidServiceConnection_QRegisterMetaType();};
+	MyQAndroidServiceConnection(const QAndroidJniObject &serviceConnection) : QAndroidServiceConnection(serviceConnection) {QAndroidServiceConnection_QAndroidServiceConnection_QRegisterMetaType();};
 	void onServiceConnected(const QString & name, const QAndroidBinder & serviceBinder) { QByteArray t6ae999 = name.toUtf8(); QtAndroidExtras_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };callbackQAndroidServiceConnection_OnServiceConnected(this, namePacked, const_cast<QAndroidBinder*>(&serviceBinder)); };
 	void onServiceDisconnected(const QString & name) { QByteArray t6ae999 = name.toUtf8(); QtAndroidExtras_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };callbackQAndroidServiceConnection_OnServiceDisconnected(this, namePacked); };
 };
+
+Q_DECLARE_METATYPE(QAndroidServiceConnection*)
+Q_DECLARE_METATYPE(MyQAndroidServiceConnection*)
+
+int QAndroidServiceConnection_QAndroidServiceConnection_QRegisterMetaType(){qRegisterMetaType<QAndroidServiceConnection*>(); return qRegisterMetaType<MyQAndroidServiceConnection*>();}
 
 void* QAndroidServiceConnection_NewQAndroidServiceConnection()
 {

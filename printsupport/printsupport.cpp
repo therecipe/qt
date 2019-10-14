@@ -138,6 +138,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractPrintDialog_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QAbstractPrintDialog*)
 Q_DECLARE_METATYPE(MyQAbstractPrintDialog*)
 
 int QAbstractPrintDialog_QAbstractPrintDialog_QRegisterMetaType(){qRegisterMetaType<QAbstractPrintDialog*>(); return qRegisterMetaType<MyQAbstractPrintDialog*>();}
@@ -1052,6 +1053,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQPageSetupDialog_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QPageSetupDialog*)
 Q_DECLARE_METATYPE(MyQPageSetupDialog*)
 
 int QPageSetupDialog_QPageSetupDialog_QRegisterMetaType(){qRegisterMetaType<QPageSetupDialog*>(); return qRegisterMetaType<MyQPageSetupDialog*>();}
@@ -1651,6 +1653,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractPrintDialog_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QPrintDialog*)
 Q_DECLARE_METATYPE(MyQPrintDialog*)
 
 int QPrintDialog_QPrintDialog_QRegisterMetaType(){qRegisterMetaType<QPrintDialog*>(); return qRegisterMetaType<MyQPrintDialog*>();}
@@ -1742,6 +1745,11 @@ public:
 	void setProperty(QPrintEngine::PrintEnginePropertyKey key, const QVariant & value) { callbackQPrintEngine_SetProperty(this, key, const_cast<QVariant*>(&value)); };
 	 ~MyQPrintEngine() { callbackQPrintEngine_DestroyQPrintEngine(this); };
 };
+
+Q_DECLARE_METATYPE(QPrintEngine*)
+Q_DECLARE_METATYPE(MyQPrintEngine*)
+
+int QPrintEngine_QPrintEngine_QRegisterMetaType(){qRegisterMetaType<QPrintEngine*>(); return qRegisterMetaType<MyQPrintEngine*>();}
 
 char QPrintEngine_Abort(void* ptr)
 {
@@ -1870,6 +1878,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQPrintPreviewDialog_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QPrintPreviewDialog*)
 Q_DECLARE_METATYPE(MyQPrintPreviewDialog*)
 
 int QPrintPreviewDialog_QPrintPreviewDialog_QRegisterMetaType(){qRegisterMetaType<QPrintPreviewDialog*>(); return qRegisterMetaType<MyQPrintPreviewDialog*>();}
@@ -2491,6 +2500,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQPrintPreviewWidget_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QPrintPreviewWidget*)
 Q_DECLARE_METATYPE(MyQPrintPreviewWidget*)
 
 int QPrintPreviewWidget_QPrintPreviewWidget_QRegisterMetaType(){qRegisterMetaType<QPrintPreviewWidget*>(); return qRegisterMetaType<MyQPrintPreviewWidget*>();}
@@ -3197,8 +3207,8 @@ void QPrintPreviewWidget_TimerEventDefault(void* ptr, void* event)
 class MyQPrinter: public QPrinter
 {
 public:
-	MyQPrinter(QPrinter::PrinterMode mode = ScreenResolution) : QPrinter(mode) {};
-	MyQPrinter(const QPrinterInfo &printer, QPrinter::PrinterMode mode = ScreenResolution) : QPrinter(printer, mode) {};
+	MyQPrinter(QPrinter::PrinterMode mode = ScreenResolution) : QPrinter(mode) {QPrinter_QPrinter_QRegisterMetaType();};
+	MyQPrinter(const QPrinterInfo &printer, QPrinter::PrinterMode mode = ScreenResolution) : QPrinter(printer, mode) {QPrinter_QPrinter_QRegisterMetaType();};
 	bool newPage() { return callbackQPrinter_NewPage(this) != 0; };
 	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQPrinter_PaintEngine(const_cast<void*>(static_cast<const void*>(this)))); };
 	 ~MyQPrinter() { callbackQPrinter_DestroyQPrinter(this); };
@@ -3206,6 +3216,11 @@ public:
 	void setPageSizeMM(const QSizeF & size) { callbackQPrinter_SetPageSizeMM(this, const_cast<QSizeF*>(&size)); };
 	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQPrinter_Metric(const_cast<void*>(static_cast<const void*>(this)), metric); };
 };
+
+Q_DECLARE_METATYPE(QPrinter*)
+Q_DECLARE_METATYPE(MyQPrinter*)
+
+int QPrinter_QPrinter_QRegisterMetaType(){qRegisterMetaType<QPrinter*>(); return qRegisterMetaType<MyQPrinter*>();}
 
 void* QPrinter_NewQPrinter(long long mode)
 {
@@ -3519,6 +3534,8 @@ int QPrinter_MetricDefault(void* ptr, long long metric)
 		return static_cast<QPrinter*>(ptr)->QPrinter::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
 }
 
+Q_DECLARE_METATYPE(QPrinterInfo)
+Q_DECLARE_METATYPE(QPrinterInfo*)
 void* QPrinterInfo_NewQPrinterInfo()
 {
 	return new QPrinterInfo();

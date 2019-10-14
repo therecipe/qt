@@ -53,6 +53,7 @@
 #include <QWindow>
 #include <QXmlStreamReader>
 
+Q_DECLARE_METATYPE(QScxmlCompiler*)
 void* QScxmlCompiler_NewQScxmlCompiler(void* reader)
 {
 	return new QScxmlCompiler(static_cast<QXmlStreamReader*>(reader));
@@ -120,6 +121,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQScxmlDataModel_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QScxmlCppDataModel*)
 Q_DECLARE_METATYPE(MyQScxmlCppDataModel*)
 
 int QScxmlCppDataModel_QScxmlCppDataModel_QRegisterMetaType(){qRegisterMetaType<QScxmlCppDataModel*>(); return qRegisterMetaType<MyQScxmlCppDataModel*>();}
@@ -500,6 +502,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQScxmlInvokableServiceFactory_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QScxmlDynamicScxmlServiceFactory*)
 Q_DECLARE_METATYPE(MyQScxmlDynamicScxmlServiceFactory*)
 
 int QScxmlDynamicScxmlServiceFactory_QScxmlDynamicScxmlServiceFactory_QRegisterMetaType(){qRegisterMetaType<QScxmlDynamicScxmlServiceFactory*>(); return qRegisterMetaType<MyQScxmlDynamicScxmlServiceFactory*>();}
@@ -549,6 +552,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQScxmlDataModel_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QScxmlEcmaScriptDataModel*)
 Q_DECLARE_METATYPE(MyQScxmlEcmaScriptDataModel*)
 
 int QScxmlEcmaScriptDataModel_QScxmlEcmaScriptDataModel_QRegisterMetaType(){qRegisterMetaType<QScxmlEcmaScriptDataModel*>(); return qRegisterMetaType<MyQScxmlEcmaScriptDataModel*>();}
@@ -650,6 +654,7 @@ char QScxmlEcmaScriptDataModel_SetupDefault(void* ptr, void* initialDataValues)
 		return static_cast<QScxmlEcmaScriptDataModel*>(ptr)->QScxmlEcmaScriptDataModel::setup(({ QMap<QString, QVariant>* tmpP = static_cast<QMap<QString, QVariant>*>(initialDataValues); QMap<QString, QVariant> tmpV = *tmpP; tmpP->~QMap(); free(tmpP); tmpV; }));
 }
 
+Q_DECLARE_METATYPE(QScxmlError*)
 void* QScxmlError_NewQScxmlError()
 {
 	return new QScxmlError();
@@ -700,6 +705,7 @@ void QScxmlError_DestroyQScxmlError(void* ptr)
 	static_cast<QScxmlError*>(ptr)->~QScxmlError();
 }
 
+Q_DECLARE_METATYPE(QScxmlEvent*)
 void* QScxmlEvent_NewQScxmlEvent()
 {
 	return new QScxmlEvent();
@@ -1011,6 +1017,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQScxmlInvokableServiceFactory_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QScxmlInvokableServiceFactory*)
 Q_DECLARE_METATYPE(MyQScxmlInvokableServiceFactory*)
 
 int QScxmlInvokableServiceFactory_QScxmlInvokableServiceFactory_QRegisterMetaType(){qRegisterMetaType<QScxmlInvokableServiceFactory*>(); return qRegisterMetaType<MyQScxmlInvokableServiceFactory*>();}
@@ -1247,6 +1254,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQScxmlDataModel_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QScxmlNullDataModel*)
 Q_DECLARE_METATYPE(MyQScxmlNullDataModel*)
 
 int QScxmlNullDataModel_QScxmlNullDataModel_QRegisterMetaType(){qRegisterMetaType<QScxmlNullDataModel*>(); return qRegisterMetaType<MyQScxmlNullDataModel*>();}
@@ -1968,6 +1976,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQScxmlInvokableServiceFactory_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QScxmlStaticScxmlServiceFactory*)
 Q_DECLARE_METATYPE(MyQScxmlStaticScxmlServiceFactory*)
 
 int QScxmlStaticScxmlServiceFactory_QScxmlStaticScxmlServiceFactory_QRegisterMetaType(){qRegisterMetaType<QScxmlStaticScxmlServiceFactory*>(); return qRegisterMetaType<MyQScxmlStaticScxmlServiceFactory*>();}
@@ -2001,6 +2010,11 @@ public:
 	QScxmlInvokableServiceFactory * serviceFactory(int id) const { return static_cast<QScxmlInvokableServiceFactory*>(callbackQScxmlTableData_ServiceFactory(const_cast<void*>(static_cast<const void*>(this)), id)); };
 	 ~MyQScxmlTableData() { callbackQScxmlTableData_DestroyQScxmlTableData(this); };
 };
+
+Q_DECLARE_METATYPE(QScxmlTableData*)
+Q_DECLARE_METATYPE(MyQScxmlTableData*)
+
+int QScxmlTableData_QScxmlTableData_QRegisterMetaType(){qRegisterMetaType<QScxmlTableData*>(); return qRegisterMetaType<MyQScxmlTableData*>();}
 
 struct QtScxml_PackedString QScxmlTableData_Name(void* ptr)
 {

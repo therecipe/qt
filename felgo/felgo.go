@@ -876,7 +876,7 @@ func (ptr *FelgoLiveClient) ConnectClientNameChanged(f func(clientName string)) 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "clientNameChanged") {
-			C.FelgoLiveClient_ConnectClientNameChanged(ptr.Pointer())
+			C.FelgoLiveClient_ConnectClientNameChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "clientNameChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "clientNameChanged"); signal != nil {
@@ -1297,7 +1297,7 @@ func (ptr *FelgoLiveClient) ConnectPendingProject(f func(projectName string, pro
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "pendingProject") {
-			C.FelgoLiveClient_ConnectPendingProject(ptr.Pointer())
+			C.FelgoLiveClient_ConnectPendingProject(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "pendingProject")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "pendingProject"); signal != nil {
@@ -1390,7 +1390,7 @@ func (ptr *FelgoLiveClient) ConnectWebReceiverConnectionRefused(f func(reason st
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "webReceiverConnectionRefused") {
-			C.FelgoLiveClient_ConnectWebReceiverConnectionRefused(ptr.Pointer())
+			C.FelgoLiveClient_ConnectWebReceiverConnectionRefused(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "webReceiverConnectionRefused")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "webReceiverConnectionRefused"); signal != nil {
@@ -1435,7 +1435,7 @@ func (ptr *FelgoLiveClient) ConnectReceivedMatchId(f func(matchId string)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "receivedMatchId") {
-			C.FelgoLiveClient_ConnectReceivedMatchId(ptr.Pointer())
+			C.FelgoLiveClient_ConnectReceivedMatchId(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "receivedMatchId")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "receivedMatchId"); signal != nil {
@@ -1551,7 +1551,7 @@ func (ptr *FelgoLiveClient) ConnectWebReceiverConnected(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "webReceiverConnected") {
-			C.FelgoLiveClient_ConnectWebReceiverConnected(ptr.Pointer())
+			C.FelgoLiveClient_ConnectWebReceiverConnected(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "webReceiverConnected")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "webReceiverConnected"); signal != nil {

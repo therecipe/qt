@@ -185,7 +185,7 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 
 							func() string {
 								var pre string
-								if class.IsSubClassOfQObject() {
+								if class.IsSubClassOfQObject() || class.HasCallbackFunctions() {
 									pre = fmt.Sprintf("%[1]v_%[1]v_QRegisterMetaType();", className)
 								}
 								if mode != MOC {
@@ -316,7 +316,17 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 
 				fmt.Fprint(bb, "};\n\n")
 			}
-			if class.IsSubClassOfQObject() {
+			if class.IsSubClassOfQObject() || class.HasCallbackFunctions() {
+				if mode != MOC {
+					switch class.Name {
+					case "QSurface", "QGraphicsItem", "QObject", "QMacToolBar", "QQmlComponent", "QQmlWebChannel",
+						"QAbstractVideoSurface", "QScxmlDataModel", "QScxmlInvokableService", "QScxmlStateMachine",
+						"QGamepad", "QQuickItem", "QQuickTextDocument", "QQuickTransform", "QQuickWindow", "QWebEngineCookieStore":
+						//re-definition
+					default:
+						fmt.Fprintf(bb, "Q_DECLARE_METATYPE(%v*)\n", class.Name)
+					}
+				}
 				fmt.Fprintf(bb, "Q_DECLARE_METATYPE(%v%v*)\n\n",
 					func() string {
 						if mode != MOC {
@@ -397,6 +407,40 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 						fmt.Fprintf(bb, "\tqRegisterMetaType<%v>();\n", t)
 					}
 					fmt.Fprint(bb, "}\n\n")
+				}
+			} else if strings.HasPrefix(class.Name, "Q") {
+				if f := class.GetFunction(class.Name); f != nil {
+					if cppFunction(f); f.IsSupported() {
+						switch class.Name {
+						case "QFileInfo", "QItemSelection", "QItemSelectionRange", "QStorageInfo",
+							"QVariant", "QVersionNumber", "QOpenGLDebugMessage", "QPageLayout",
+							"QPageSize", "QStaticText", "QNetworkAddressEntry", "QNetworkConfiguration",
+							"QNetworkDatagram", "QNetworkInterface", "QNetworkProxy", "QOcspResponse",
+							"QSslConfiguration", "QSslEllipticCurve", "QSslPreSharedKeyAuthenticator",
+							"QDBusArgument", "QDBusMessage", "QDBusObjectPath", "QDBusSignature", "QDBusUnixFileDescriptor",
+							"QDBusVariant", "QNdefMessage", "QGeoAddress", "QGeoCircle", "QGeoCoordinate", "QGeoPath", "QGeoPolygon",
+							"QGeoPositionInfo", "QGeoRectangle", "QGeoShape", "QQmlListReference", "QQmlScriptString",
+							"QSourceLocation", "QXmlItem", "QXmlName", "QBluetoothAddress", "QBluetoothDeviceInfo", "QBluetoothHostInfo",
+							"QBluetoothServiceInfo", "QBluetoothUuid", "QLowEnergyCharacteristic", "QLowEnergyConnectionParameters",
+							"QLowEnergyDescriptor", "QAudioBuffer", "QAudioDeviceInfo", "QAudioEncoderSettings", "QAudioFormat", "QCameraViewfinderSettings",
+							"QImageEncoderSettings", "QMediaContent", "QMediaResource", "QVideoEncoderSettings", "QVideoFrame",
+							"QVideoSurfaceFormat", "QTestEventList", "QModbusDeviceIdentification", "QScxmlError", "QScxmlEvent":
+							//re-definition
+						case "QCommandLineParser", "QDataStream", "QEventLoopLocker", "QMessageLogger", "QMimeDatabase",
+							"QSemaphoreReleaser", "QTemporaryDir", "QWaitCondition", "QXmlStreamReader", "QXmlStreamWriter",
+							"QImageReader", "QImageWriter", "QOpenGLTextureBlitter", "QPainter", "QPainterPathStroker",
+							"QPictureIO", "QTextDocumentWriter", "QTextLayout", "QXmlNamespaceSupport", "QStylePainter",
+							"QXmlSchemaValidator", "QAndroidJniEnvironment":
+							//constructor issue
+						default:
+							if len(f.Parameters) == 0 {
+								fmt.Fprintf(bb, "Q_DECLARE_METATYPE(%v)\n", class.Name)
+							}
+						}
+						if class.Name != "QSslPreSharedKeyAuthenticator" {
+							fmt.Fprintf(bb, "Q_DECLARE_METATYPE(%v*)\n", class.Name)
+						}
+					}
 				}
 			}
 		}

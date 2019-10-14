@@ -17,6 +17,7 @@ int QScxmlInvokableServiceFactory_QScxmlInvokableServiceFactory_QRegisterMetaTyp
 int QScxmlNullDataModel_QScxmlNullDataModel_QRegisterMetaType();
 int QScxmlStateMachine_QScxmlStateMachine_QRegisterMetaType();
 int QScxmlStaticScxmlServiceFactory_QScxmlStaticScxmlServiceFactory_QRegisterMetaType();
+int QScxmlTableData_QScxmlTableData_QRegisterMetaType();
 extern "C" {
 #endif
 

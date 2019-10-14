@@ -253,6 +253,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QAbstractAnimation*)
 Q_DECLARE_METATYPE(MyQAbstractAnimation*)
 
 int QAbstractAnimation_QAbstractAnimation_QRegisterMetaType(){qRegisterMetaType<QAbstractAnimation*>(); return qRegisterMetaType<MyQAbstractAnimation*>();}
@@ -664,6 +665,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QAbstractEventDispatcher*)
 Q_DECLARE_METATYPE(MyQAbstractEventDispatcher*)
 
 int QAbstractEventDispatcher_QAbstractEventDispatcher_QRegisterMetaType(){qRegisterMetaType<QAbstractEventDispatcher*>(); return qRegisterMetaType<MyQAbstractEventDispatcher*>();}
@@ -866,6 +868,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QAbstractItemModel*)
 Q_DECLARE_METATYPE(MyQAbstractItemModel*)
 
 int QAbstractItemModel_QAbstractItemModel_QRegisterMetaType(){qRegisterMetaType<QAbstractItemModel*>(); return qRegisterMetaType<MyQAbstractItemModel*>();}
@@ -2533,6 +2536,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QAbstractListModel*)
 Q_DECLARE_METATYPE(MyQAbstractListModel*)
 
 int QAbstractListModel_QAbstractListModel_QRegisterMetaType(){qRegisterMetaType<QAbstractListModel*>(); return qRegisterMetaType<MyQAbstractListModel*>();}
@@ -2668,10 +2672,15 @@ int QAbstractListModel_RowCountDefault(void* ptr, void* parent)
 class MyQAbstractNativeEventFilter: public QAbstractNativeEventFilter
 {
 public:
-	MyQAbstractNativeEventFilter() : QAbstractNativeEventFilter() {};
+	MyQAbstractNativeEventFilter() : QAbstractNativeEventFilter() {QAbstractNativeEventFilter_QAbstractNativeEventFilter_QRegisterMetaType();};
 	bool nativeEventFilter(const QByteArray & eventType, void * message, long * result) { return callbackQAbstractNativeEventFilter_NativeEventFilter(this, const_cast<QByteArray*>(&eventType), message, result) != 0; };
 	 ~MyQAbstractNativeEventFilter() { callbackQAbstractNativeEventFilter_DestroyQAbstractNativeEventFilter(this); };
 };
+
+Q_DECLARE_METATYPE(QAbstractNativeEventFilter*)
+Q_DECLARE_METATYPE(MyQAbstractNativeEventFilter*)
+
+int QAbstractNativeEventFilter_QAbstractNativeEventFilter_QRegisterMetaType(){qRegisterMetaType<QAbstractNativeEventFilter*>(); return qRegisterMetaType<MyQAbstractNativeEventFilter*>();}
 
 void* QAbstractNativeEventFilter_NewQAbstractNativeEventFilter()
 {
@@ -2771,6 +2780,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QAbstractProxyModel*)
 Q_DECLARE_METATYPE(MyQAbstractProxyModel*)
 
 int QAbstractProxyModel_QAbstractProxyModel_QRegisterMetaType(){qRegisterMetaType<QAbstractProxyModel*>(); return qRegisterMetaType<MyQAbstractProxyModel*>();}
@@ -3061,6 +3071,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QAbstractState*)
 Q_DECLARE_METATYPE(MyQAbstractState*)
 
 int QAbstractState_QAbstractState_QRegisterMetaType(){qRegisterMetaType<QAbstractState*>(); return qRegisterMetaType<MyQAbstractState*>();}
@@ -3212,6 +3223,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QAbstractTableModel*)
 Q_DECLARE_METATYPE(MyQAbstractTableModel*)
 
 int QAbstractTableModel_QAbstractTableModel_QRegisterMetaType(){qRegisterMetaType<QAbstractTableModel*>(); return qRegisterMetaType<MyQAbstractTableModel*>();}
@@ -3354,6 +3366,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QAbstractTransition*)
 Q_DECLARE_METATYPE(MyQAbstractTransition*)
 
 int QAbstractTransition_QAbstractTransition_QRegisterMetaType(){qRegisterMetaType<QAbstractTransition*>(); return qRegisterMetaType<MyQAbstractTransition*>();}
@@ -3549,6 +3562,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QAnimationGroup*)
 Q_DECLARE_METATYPE(MyQAnimationGroup*)
 
 int QAnimationGroup_QAnimationGroup_QRegisterMetaType(){qRegisterMetaType<QAnimationGroup*>(); return qRegisterMetaType<MyQAnimationGroup*>();}
@@ -3698,6 +3712,8 @@ char QBasicMutex_IsRecursive2(void* ptr)
 	return static_cast<QBasicMutex*>(ptr)->isRecursive();
 }
 
+Q_DECLARE_METATYPE(QBasicTimer)
+Q_DECLARE_METATYPE(QBasicTimer*)
 void* QBasicTimer_NewQBasicTimer()
 {
 	return new QBasicTimer();
@@ -3733,6 +3749,8 @@ void QBasicTimer_DestroyQBasicTimer(void* ptr)
 	static_cast<QBasicTimer*>(ptr)->~QBasicTimer();
 }
 
+Q_DECLARE_METATYPE(QBitArray)
+Q_DECLARE_METATYPE(QBitArray*)
 void* QBitArray_NewQBitArray()
 {
 	return new QBitArray();
@@ -3884,6 +3902,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QBuffer*)
 Q_DECLARE_METATYPE(MyQBuffer*)
 
 int QBuffer_QBuffer_QRegisterMetaType(){qRegisterMetaType<QBuffer*>(); return qRegisterMetaType<MyQBuffer*>();}
@@ -4043,6 +4062,8 @@ void QBuffer_DestroyQBufferDefault(void* ptr)
 
 }
 
+Q_DECLARE_METATYPE(QByteArray)
+Q_DECLARE_METATYPE(QByteArray*)
 void* QByteArray_NewQByteArray()
 {
 	return new QByteArray();
@@ -4749,6 +4770,8 @@ void* QByteArrayList_Join3(void* ptr, char* separator)
 	return new QByteArray(static_cast<QByteArrayList*>(ptr)->join(*separator));
 }
 
+Q_DECLARE_METATYPE(QByteArrayMatcher)
+Q_DECLARE_METATYPE(QByteArrayMatcher*)
 void* QByteArrayMatcher_NewQByteArrayMatcher()
 {
 	return new QByteArrayMatcher();
@@ -4794,6 +4817,8 @@ void QByteArrayMatcher_DestroyQByteArrayMatcher(void* ptr)
 	static_cast<QByteArrayMatcher*>(ptr)->~QByteArrayMatcher();
 }
 
+Q_DECLARE_METATYPE(QCborArray)
+Q_DECLARE_METATYPE(QCborArray*)
 void* QCborArray_NewQCborArray()
 {
 	return new QCborArray();
@@ -4976,6 +5001,8 @@ struct QtCore_PackedString QCborError_ToString(void* ptr)
 	return ({ QByteArray t344b49 = static_cast<QCborError*>(ptr)->toString().toUtf8(); QtCore_PackedString { const_cast<char*>(t344b49.prepend("WHITESPACE").constData()+10), t344b49.size()-10 }; });
 }
 
+Q_DECLARE_METATYPE(QCborMap)
+Q_DECLARE_METATYPE(QCborMap*)
 void* QCborMap_NewQCborMap()
 {
 	return new QCborMap();
@@ -5314,6 +5341,8 @@ int QCborValue_Undefined_Type()
 	return QCborValue::Undefined;
 }
 
+Q_DECLARE_METATYPE(QChar)
+Q_DECLARE_METATYPE(QChar*)
 void* QChar_NewQChar()
 {
 	return new QChar();
@@ -5732,8 +5761,13 @@ long long QChar_QChar_UnicodeVersion2(unsigned int ucs4)
 class MyQChildEvent: public QChildEvent
 {
 public:
-	MyQChildEvent(QEvent::Type ty, QObject *child) : QChildEvent(ty, child) {};
+	MyQChildEvent(QEvent::Type ty, QObject *child) : QChildEvent(ty, child) {QChildEvent_QChildEvent_QRegisterMetaType();};
 };
+
+Q_DECLARE_METATYPE(QChildEvent*)
+Q_DECLARE_METATYPE(MyQChildEvent*)
+
+int QChildEvent_QChildEvent_QRegisterMetaType(){qRegisterMetaType<QChildEvent*>(); return qRegisterMetaType<MyQChildEvent*>();}
 
 void* QChildEvent_NewQChildEvent(long long ty, void* child)
 {
@@ -5802,6 +5836,7 @@ char QChildEvent_Removed(void* ptr)
 	return static_cast<QChildEvent*>(ptr)->removed();
 }
 
+Q_DECLARE_METATYPE(QCollator*)
 void* QCollator_NewQCollator(void* locale)
 {
 	return new QCollator(*static_cast<QLocale*>(locale));
@@ -5887,6 +5922,7 @@ void QCollator_DestroyQCollator(void* ptr)
 	static_cast<QCollator*>(ptr)->~QCollator();
 }
 
+Q_DECLARE_METATYPE(QCollatorSortKey*)
 void* QCollatorSortKey_NewQCollatorSortKey(void* other)
 {
 	return new QCollatorSortKey(*static_cast<QCollatorSortKey*>(other));
@@ -5907,6 +5943,7 @@ void QCollatorSortKey_DestroyQCollatorSortKey(void* ptr)
 	static_cast<QCollatorSortKey*>(ptr)->~QCollatorSortKey();
 }
 
+Q_DECLARE_METATYPE(QCommandLineOption*)
 void* QCommandLineOption_NewQCommandLineOption(struct QtCore_PackedString name)
 {
 	return new QCommandLineOption(QString::fromUtf8(name.data, name.len));
@@ -5992,6 +6029,7 @@ void QCommandLineOption_DestroyQCommandLineOption(void* ptr)
 	static_cast<QCommandLineOption*>(ptr)->~QCommandLineOption();
 }
 
+Q_DECLARE_METATYPE(QCommandLineParser*)
 void* QCommandLineParser_NewQCommandLineParser()
 {
 	return new QCommandLineParser();
@@ -6219,6 +6257,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QConcatenateTablesProxyModel*)
 Q_DECLARE_METATYPE(MyQConcatenateTablesProxyModel*)
 
 int QConcatenateTablesProxyModel_QConcatenateTablesProxyModel_QRegisterMetaType(){qRegisterMetaType<QConcatenateTablesProxyModel*>(); return qRegisterMetaType<MyQConcatenateTablesProxyModel*>();}
@@ -6375,6 +6414,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QCoreApplication*)
 Q_DECLARE_METATYPE(MyQCoreApplication*)
 
 int QCoreApplication_QCoreApplication_QRegisterMetaType(){qRegisterMetaType<QCoreApplication*>(); return qRegisterMetaType<MyQCoreApplication*>();}
@@ -6682,6 +6722,7 @@ void QCoreApplication_DestroyQCoreApplicationDefault(void* ptr)
 
 }
 
+Q_DECLARE_METATYPE(QCryptographicHash*)
 void* QCryptographicHash_NewQCryptographicHash(long long method)
 {
 	return new QCryptographicHash(static_cast<QCryptographicHash::Algorithm>(method));
@@ -6727,6 +6768,7 @@ void QCryptographicHash_DestroyQCryptographicHash(void* ptr)
 	static_cast<QCryptographicHash*>(ptr)->~QCryptographicHash();
 }
 
+Q_DECLARE_METATYPE(QDataStream*)
 void* QDataStream_NewQDataStream()
 {
 	return new QDataStream();
@@ -6847,6 +6889,8 @@ void QDataStream_DestroyQDataStream(void* ptr)
 	static_cast<QDataStream*>(ptr)->~QDataStream();
 }
 
+Q_DECLARE_METATYPE(QDate)
+Q_DECLARE_METATYPE(QDate*)
 void* QDate_NewQDate2()
 {
 	return new QDate();
@@ -6987,6 +7031,8 @@ int QDate_Year(void* ptr)
 	return static_cast<QDate*>(ptr)->year();
 }
 
+Q_DECLARE_METATYPE(QDateTime)
+Q_DECLARE_METATYPE(QDateTime*)
 void* QDateTime_NewQDateTime()
 {
 	return new QDateTime();
@@ -7257,6 +7303,7 @@ void QDateTime_DestroyQDateTime(void* ptr)
 	static_cast<QDateTime*>(ptr)->~QDateTime();
 }
 
+Q_DECLARE_METATYPE(QDeadlineTimer*)
 void* QDeadlineTimer_NewQDeadlineTimer(long long timerType)
 {
 	return new QDeadlineTimer(static_cast<Qt::TimerType>(timerType));
@@ -7337,6 +7384,7 @@ long long QDeadlineTimer_TimerType(void* ptr)
 	return static_cast<QDeadlineTimer*>(ptr)->timerType();
 }
 
+Q_DECLARE_METATYPE(QDebug*)
 void* QDebug_NewQDebug(void* device)
 {
 	return new QDebug(static_cast<QIODevice*>(device));
@@ -7422,6 +7470,7 @@ void QDebug_DestroyQDebug(void* ptr)
 	static_cast<QDebug*>(ptr)->~QDebug();
 }
 
+Q_DECLARE_METATYPE(QDebugStateSaver*)
 void* QDebugStateSaver_NewQDebugStateSaver(void* dbg)
 {
 	return new QDebugStateSaver(*static_cast<QDebug*>(dbg));
@@ -7435,8 +7484,13 @@ void QDebugStateSaver_DestroyQDebugStateSaver(void* ptr)
 class MyQDeferredDeleteEvent: public QDeferredDeleteEvent
 {
 public:
-	MyQDeferredDeleteEvent() : QDeferredDeleteEvent() {};
+	MyQDeferredDeleteEvent() : QDeferredDeleteEvent() {QDeferredDeleteEvent_QDeferredDeleteEvent_QRegisterMetaType();};
 };
+
+Q_DECLARE_METATYPE(QDeferredDeleteEvent*)
+Q_DECLARE_METATYPE(MyQDeferredDeleteEvent*)
+
+int QDeferredDeleteEvent_QDeferredDeleteEvent_QRegisterMetaType(){qRegisterMetaType<QDeferredDeleteEvent*>(); return qRegisterMetaType<MyQDeferredDeleteEvent*>();}
 
 void* QDeferredDeleteEvent_NewQDeferredDeleteEvent()
 {
@@ -7448,6 +7502,7 @@ int QDeferredDeleteEvent_LoopLevel(void* ptr)
 	return static_cast<QDeferredDeleteEvent*>(ptr)->loopLevel();
 }
 
+Q_DECLARE_METATYPE(QDir*)
 void* QDir_NewQDir(void* dir)
 {
 	return new QDir(*static_cast<QDir*>(dir));
@@ -7819,8 +7874,13 @@ void* QDir___entryInfoList_newList2(void* ptr)
 class MyQDynamicPropertyChangeEvent: public QDynamicPropertyChangeEvent
 {
 public:
-	MyQDynamicPropertyChangeEvent(const QByteArray &name) : QDynamicPropertyChangeEvent(name) {};
+	MyQDynamicPropertyChangeEvent(const QByteArray &name) : QDynamicPropertyChangeEvent(name) {QDynamicPropertyChangeEvent_QDynamicPropertyChangeEvent_QRegisterMetaType();};
 };
+
+Q_DECLARE_METATYPE(QDynamicPropertyChangeEvent*)
+Q_DECLARE_METATYPE(MyQDynamicPropertyChangeEvent*)
+
+int QDynamicPropertyChangeEvent_QDynamicPropertyChangeEvent_QRegisterMetaType(){qRegisterMetaType<QDynamicPropertyChangeEvent*>(); return qRegisterMetaType<MyQDynamicPropertyChangeEvent*>();}
 
 void* QDynamicPropertyChangeEvent_NewQDynamicPropertyChangeEvent(void* name)
 {
@@ -7832,6 +7892,7 @@ void* QDynamicPropertyChangeEvent_PropertyName(void* ptr)
 	return new QByteArray(static_cast<QDynamicPropertyChangeEvent*>(ptr)->propertyName());
 }
 
+Q_DECLARE_METATYPE(QEasingCurve*)
 void* QEasingCurve_NewQEasingCurve(long long ty)
 {
 	return new QEasingCurve(static_cast<QEasingCurve::Type>(ty));
@@ -7949,6 +8010,8 @@ void* QEasingCurve___toCubicSpline_newList(void* ptr)
 	return new QVector<QPointF>();
 }
 
+Q_DECLARE_METATYPE(QElapsedTimer)
+Q_DECLARE_METATYPE(QElapsedTimer*)
 void* QElapsedTimer_NewQElapsedTimer()
 {
 	return new QElapsedTimer();
@@ -8017,9 +8080,14 @@ void QElapsedTimer_Start(void* ptr)
 class MyQEvent: public QEvent
 {
 public:
-	MyQEvent(QEvent::Type ty) : QEvent(ty) {};
+	MyQEvent(QEvent::Type ty) : QEvent(ty) {QEvent_QEvent_QRegisterMetaType();};
 	 ~MyQEvent() { callbackQEvent_DestroyQEvent(this); };
 };
+
+Q_DECLARE_METATYPE(QEvent*)
+Q_DECLARE_METATYPE(MyQEvent*)
+
+int QEvent_QEvent_QRegisterMetaType(){qRegisterMetaType<QEvent*>(); return qRegisterMetaType<MyQEvent*>();}
 
 void* QEvent_NewQEvent(long long ty)
 {
@@ -8091,6 +8159,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QEventLoop*)
 Q_DECLARE_METATYPE(MyQEventLoop*)
 
 int QEventLoop_QEventLoop_QRegisterMetaType(){qRegisterMetaType<QEventLoop*>(); return qRegisterMetaType<MyQEventLoop*>();}
@@ -8193,6 +8262,7 @@ void QEventLoop_DestroyQEventLoopDefault(void* ptr)
 
 }
 
+Q_DECLARE_METATYPE(QEventLoopLocker*)
 void* QEventLoopLocker_NewQEventLoopLocker()
 {
 	return new QEventLoopLocker();
@@ -8237,6 +8307,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QEventTransition*)
 Q_DECLARE_METATYPE(MyQEventTransition*)
 
 int QEventTransition_QEventTransition_QRegisterMetaType(){qRegisterMetaType<QEventTransition*>(); return qRegisterMetaType<MyQEventTransition*>();}
@@ -8391,6 +8462,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QFile*)
 Q_DECLARE_METATYPE(MyQFile*)
 
 int QFile_QFile_QRegisterMetaType(){qRegisterMetaType<QFile*>(); return qRegisterMetaType<MyQFile*>();}
@@ -8653,6 +8725,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QFileDevice*)
 Q_DECLARE_METATYPE(MyQFileDevice*)
 
 int QFileDevice_QFileDevice_QRegisterMetaType(){qRegisterMetaType<QFileDevice*>(); return qRegisterMetaType<MyQFileDevice*>();}
@@ -8816,6 +8889,7 @@ void QFileDevice_DestroyQFileDeviceDefault(void* ptr)
 
 }
 
+Q_DECLARE_METATYPE(QFileInfo*)
 void* QFileInfo_NewQFileInfo2()
 {
 	return new QFileInfo();
@@ -9094,6 +9168,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QFileSelector*)
 Q_DECLARE_METATYPE(MyQFileSelector*)
 
 int QFileSelector_QFileSelector_QRegisterMetaType(){qRegisterMetaType<QFileSelector*>(); return qRegisterMetaType<MyQFileSelector*>();}
@@ -9202,6 +9277,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QFileSystemWatcher*)
 Q_DECLARE_METATYPE(MyQFileSystemWatcher*)
 
 int QFileSystemWatcher_QFileSystemWatcher_QRegisterMetaType(){qRegisterMetaType<QFileSystemWatcher*>(); return qRegisterMetaType<MyQFileSystemWatcher*>();}
@@ -9384,6 +9460,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QFinalState*)
 Q_DECLARE_METATYPE(MyQFinalState*)
 
 int QFinalState_QFinalState_QRegisterMetaType(){qRegisterMetaType<QFinalState*>(); return qRegisterMetaType<MyQFinalState*>();}
@@ -9424,6 +9501,7 @@ void QFinalState_DestroyQFinalStateDefault(void* ptr)
 
 }
 
+Q_DECLARE_METATYPE(QFlag*)
 void* QFlag_NewQFlag(int value)
 {
 	return new QFlag(value);
@@ -9492,10 +9570,12 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QFutureWatcherBase*)
 Q_DECLARE_METATYPE(MyQFutureWatcherBase*)
 
 int QFutureWatcherBase_QFutureWatcherBase_QRegisterMetaType(){qRegisterMetaType<QFutureWatcherBase*>(); return qRegisterMetaType<MyQFutureWatcherBase*>();}
 
+Q_DECLARE_METATYPE(QGenericArgument*)
 void* QGenericArgument_NewQGenericArgument(char* name, void* data)
 {
 	return new QGenericArgument(const_cast<const char*>(name), data);
@@ -9511,6 +9591,7 @@ struct QtCore_PackedString QGenericArgument_Name(void* ptr)
 	return QtCore_PackedString { const_cast<char*>(static_cast<QGenericArgument*>(ptr)->name()), -1 };
 }
 
+Q_DECLARE_METATYPE(QGenericReturnArgument*)
 void* QGenericReturnArgument_NewQGenericReturnArgument(char* name, void* data)
 {
 	return new QGenericReturnArgument(const_cast<const char*>(name), data);
@@ -9543,6 +9624,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QHistoryState*)
 Q_DECLARE_METATYPE(MyQHistoryState*)
 
 int QHistoryState_QHistoryState_QRegisterMetaType(){qRegisterMetaType<QHistoryState*>(); return qRegisterMetaType<MyQHistoryState*>();}
@@ -9689,6 +9771,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QIODevice*)
 Q_DECLARE_METATYPE(MyQIODevice*)
 
 int QIODevice_QIODevice_QRegisterMetaType(){qRegisterMetaType<QIODevice*>(); return qRegisterMetaType<MyQIODevice*>();}
@@ -10434,6 +10517,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QIdentityProxyModel*)
 Q_DECLARE_METATYPE(MyQIdentityProxyModel*)
 
 int QIdentityProxyModel_QIdentityProxyModel_QRegisterMetaType(){qRegisterMetaType<QIdentityProxyModel*>(); return qRegisterMetaType<MyQIdentityProxyModel*>();}
@@ -10556,6 +10640,7 @@ void QIdentityProxyModel_DestroyQIdentityProxyModelDefault(void* ptr)
 
 }
 
+Q_DECLARE_METATYPE(QItemSelection*)
 void* QItemSelection_NewQItemSelection()
 {
 	return new QItemSelection();
@@ -10638,6 +10723,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QItemSelectionModel*)
 Q_DECLARE_METATYPE(MyQItemSelectionModel*)
 
 int QItemSelectionModel_QItemSelectionModel_QRegisterMetaType(){qRegisterMetaType<QItemSelectionModel*>(); return qRegisterMetaType<MyQItemSelectionModel*>();}
@@ -10976,6 +11062,7 @@ void* QItemSelectionModel___selectedRows_newList(void* ptr)
 	return new QList<QModelIndex>();
 }
 
+Q_DECLARE_METATYPE(QItemSelectionRange*)
 void* QItemSelectionRange_NewQItemSelectionRange()
 {
 	return new QItemSelectionRange();
@@ -11102,6 +11189,8 @@ void* QItemSelectionRange___indexes_newList(void* ptr)
 	return new QList<QModelIndex>();
 }
 
+Q_DECLARE_METATYPE(QJsonArray)
+Q_DECLARE_METATYPE(QJsonArray*)
 void* QJsonArray_NewQJsonArray()
 {
 	return new QJsonArray();
@@ -11274,6 +11363,8 @@ void* QJsonArray___toVariantList_newList(void* ptr)
 	return new QList<QVariant>();
 }
 
+Q_DECLARE_METATYPE(QJsonDocument)
+Q_DECLARE_METATYPE(QJsonDocument*)
 void* QJsonDocument_NewQJsonDocument()
 {
 	return new QJsonDocument();
@@ -11394,6 +11485,8 @@ void QJsonDocument_DestroyQJsonDocument(void* ptr)
 	static_cast<QJsonDocument*>(ptr)->~QJsonDocument();
 }
 
+Q_DECLARE_METATYPE(QJsonObject)
+Q_DECLARE_METATYPE(QJsonObject*)
 void* QJsonObject_NewQJsonObject()
 {
 	return new QJsonObject();
@@ -11646,6 +11739,7 @@ void QJsonParseError_SetError(void* ptr, long long vqj)
 	static_cast<QJsonParseError*>(ptr)->error = static_cast<QJsonParseError::ParseError>(vqj);
 }
 
+Q_DECLARE_METATYPE(QJsonValue*)
 void* QJsonValue_NewQJsonValue(long long ty)
 {
 	return new QJsonValue(static_cast<QJsonValue::Type>(ty));
@@ -11811,6 +11905,7 @@ void QJsonValue_DestroyQJsonValue(void* ptr)
 	static_cast<QJsonValue*>(ptr)->~QJsonValue();
 }
 
+Q_DECLARE_METATYPE(QLatin1Char*)
 void* QLatin1Char_NewQLatin1Char(char* c)
 {
 	return new QLatin1Char(*c);
@@ -11826,6 +11921,8 @@ unsigned short QLatin1Char_Unicode(void* ptr)
 	return static_cast<QLatin1Char*>(ptr)->unicode();
 }
 
+Q_DECLARE_METATYPE(QLatin1String)
+Q_DECLARE_METATYPE(QLatin1String*)
 void* QLatin1String_NewQLatin1String()
 {
 	return new QLatin1String();
@@ -11977,6 +12074,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QLibrary*)
 Q_DECLARE_METATYPE(MyQLibrary*)
 
 int QLibrary_QLibrary_QRegisterMetaType(){qRegisterMetaType<QLibrary*>(); return qRegisterMetaType<MyQLibrary*>();}
@@ -12250,6 +12348,8 @@ void* QLibraryInfo_QLibraryInfo_Version()
 	return new QVersionNumber(QLibraryInfo::version());
 }
 
+Q_DECLARE_METATYPE(QLine)
+Q_DECLARE_METATYPE(QLine*)
 void* QLine_NewQLine()
 {
 	return new QLine();
@@ -12355,6 +12455,8 @@ int QLine_Y2(void* ptr)
 	return static_cast<QLine*>(ptr)->y2();
 }
 
+Q_DECLARE_METATYPE(QLineF)
+Q_DECLARE_METATYPE(QLineF*)
 void* QLineF_NewQLineF()
 {
 	return new QLineF();
@@ -12520,6 +12622,8 @@ double QLineF_Y2(void* ptr)
 	return static_cast<QLineF*>(ptr)->y2();
 }
 
+Q_DECLARE_METATYPE(QLocale)
+Q_DECLARE_METATYPE(QLocale*)
 void* QLocale_NewQLocale()
 {
 	return new QLocale();
@@ -13132,6 +13236,7 @@ void* QLocale___weekdays_newList(void* ptr)
 	return new QList<Qt::DayOfWeek>();
 }
 
+Q_DECLARE_METATYPE(QLockFile*)
 void* QLockFile_NewQLockFile(struct QtCore_PackedString fileName)
 {
 	return new QLockFile(QString::fromUtf8(fileName.data, fileName.len));
@@ -13187,6 +13292,7 @@ void QLockFile_DestroyQLockFile(void* ptr)
 	static_cast<QLockFile*>(ptr)->~QLockFile();
 }
 
+Q_DECLARE_METATYPE(QLoggingCategory*)
 void* QLoggingCategory_NewQLoggingCategory2(char* category)
 {
 	return new QLoggingCategory(const_cast<const char*>(category));
@@ -13232,6 +13338,8 @@ void QLoggingCategory_DestroyQLoggingCategory(void* ptr)
 	static_cast<QLoggingCategory*>(ptr)->~QLoggingCategory();
 }
 
+Q_DECLARE_METATYPE(QMargins)
+Q_DECLARE_METATYPE(QMargins*)
 void* QMargins_NewQMargins()
 {
 	return new QMargins();
@@ -13287,6 +13395,8 @@ int QMargins_Top(void* ptr)
 	return static_cast<QMargins*>(ptr)->top();
 }
 
+Q_DECLARE_METATYPE(QMarginsF)
+Q_DECLARE_METATYPE(QMarginsF*)
 void* QMarginsF_NewQMarginsF()
 {
 	return new QMarginsF();
@@ -13352,6 +13462,7 @@ double QMarginsF_Top(void* ptr)
 	return static_cast<QMarginsF*>(ptr)->top();
 }
 
+Q_DECLARE_METATYPE(QMessageAuthenticationCode*)
 void* QMessageAuthenticationCode_NewQMessageAuthenticationCode(long long method, void* key)
 {
 	return new QMessageAuthenticationCode(static_cast<QCryptographicHash::Algorithm>(method), *static_cast<QByteArray*>(key));
@@ -13397,6 +13508,7 @@ void QMessageAuthenticationCode_DestroyQMessageAuthenticationCode(void* ptr)
 	static_cast<QMessageAuthenticationCode*>(ptr)->~QMessageAuthenticationCode();
 }
 
+Q_DECLARE_METATYPE(QMessageLogger*)
 void* QMessageLogger_NewQMessageLogger2()
 {
 	return new QMessageLogger();
@@ -13949,6 +14061,7 @@ char QMetaProperty_WriteOnGadget(void* ptr, void* gadget, void* value)
 	return static_cast<QMetaProperty*>(ptr)->writeOnGadget(gadget, *static_cast<QVariant*>(value));
 }
 
+Q_DECLARE_METATYPE(QMetaType*)
 void* QMetaType_NewQMetaType(int typeId)
 {
 	return new QMetaType(typeId);
@@ -14115,6 +14228,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QMimeData*)
 Q_DECLARE_METATYPE(MyQMimeData*)
 
 int QMimeData_QMimeData_QRegisterMetaType(){qRegisterMetaType<QMimeData*>(); return qRegisterMetaType<MyQMimeData*>();}
@@ -14292,6 +14406,7 @@ void* QMimeData___urls_newList(void* ptr)
 	return new QList<QUrl>();
 }
 
+Q_DECLARE_METATYPE(QMimeDatabase*)
 void* QMimeDatabase_NewQMimeDatabase2()
 {
 	return new QMimeDatabase();
@@ -14389,6 +14504,8 @@ void* QMimeDatabase___mimeTypesForFileName_newList(void* ptr)
 	return new QList<QMimeType>();
 }
 
+Q_DECLARE_METATYPE(QMimeType)
+Q_DECLARE_METATYPE(QMimeType*)
 void* QMimeType_NewQMimeType()
 {
 	return new QMimeType();
@@ -14479,6 +14596,8 @@ void QMimeType_DestroyQMimeType(void* ptr)
 	static_cast<QMimeType*>(ptr)->~QMimeType();
 }
 
+Q_DECLARE_METATYPE(QModelIndex)
+Q_DECLARE_METATYPE(QModelIndex*)
 void* QModelIndex_NewQModelIndex()
 {
 	return new QModelIndex();
@@ -14544,6 +14663,7 @@ void* QModelIndex_SiblingAtRow(void* ptr, int row)
 	return new QModelIndex(static_cast<QModelIndex*>(ptr)->siblingAtRow(row));
 }
 
+Q_DECLARE_METATYPE(QMutex*)
 void* QMutex_NewQMutex(long long mode)
 {
 	return new QMutex(static_cast<QMutex::RecursionMode>(mode));
@@ -14574,6 +14694,7 @@ void QMutex_DestroyQMutex(void* ptr)
 	static_cast<QMutex*>(ptr)->~QMutex();
 }
 
+Q_DECLARE_METATYPE(QMutexLocker*)
 void* QMutexLocker_NewQMutexLocker(void* mutex)
 {
 	return new QMutexLocker(static_cast<QMutex*>(mutex));
@@ -15980,6 +16101,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QObjectCleanupHandler*)
 Q_DECLARE_METATYPE(MyQObjectCleanupHandler*)
 
 int QObjectCleanupHandler_QObjectCleanupHandler_QRegisterMetaType(){qRegisterMetaType<QObjectCleanupHandler*>(); return qRegisterMetaType<MyQObjectCleanupHandler*>();}
@@ -16084,6 +16206,7 @@ void* QObjectData___setChildren__newList(void* ptr)
 	return new QList<QObject *>();
 }
 
+Q_DECLARE_METATYPE(QOperatingSystemVersion*)
 void* QOperatingSystemVersion_NewQOperatingSystemVersion2(long long osType, int vmajor, int vminor, int vmicro)
 {
 	return new QOperatingSystemVersion(static_cast<QOperatingSystemVersion::OSType>(osType), vmajor, vminor, vmicro);
@@ -16266,6 +16389,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QParallelAnimationGroup*)
 Q_DECLARE_METATYPE(MyQParallelAnimationGroup*)
 
 int QParallelAnimationGroup_QParallelAnimationGroup_QRegisterMetaType(){qRegisterMetaType<QParallelAnimationGroup*>(); return qRegisterMetaType<MyQParallelAnimationGroup*>();}
@@ -16381,6 +16505,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QPauseAnimation*)
 Q_DECLARE_METATYPE(MyQPauseAnimation*)
 
 int QPauseAnimation_QPauseAnimation_QRegisterMetaType(){qRegisterMetaType<QPauseAnimation*>(); return qRegisterMetaType<MyQPauseAnimation*>();}
@@ -16515,6 +16640,7 @@ void QPauseAnimation_DestroyQPauseAnimationDefault(void* ptr)
 
 }
 
+Q_DECLARE_METATYPE(QPersistentModelIndex*)
 void* QPersistentModelIndex_NewQPersistentModelIndex2(void* index)
 {
 	return new QPersistentModelIndex(*static_cast<QModelIndex*>(index));
@@ -16594,6 +16720,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QPluginLoader*)
 Q_DECLARE_METATYPE(MyQPluginLoader*)
 
 int QPluginLoader_QPluginLoader_QRegisterMetaType(){qRegisterMetaType<QPluginLoader*>(); return qRegisterMetaType<MyQPluginLoader*>();}
@@ -16785,6 +16912,8 @@ void* QPluginLoader___staticPlugins_newList(void* ptr)
 	return new QVector<QStaticPlugin>();
 }
 
+Q_DECLARE_METATYPE(QPoint)
+Q_DECLARE_METATYPE(QPoint*)
 void* QPoint_NewQPoint()
 {
 	return new QPoint();
@@ -16840,6 +16969,8 @@ int QPoint_Y(void* ptr)
 	return static_cast<QPoint*>(ptr)->y();
 }
 
+Q_DECLARE_METATYPE(QPointF)
+Q_DECLARE_METATYPE(QPointF*)
 void* QPointF_NewQPointF()
 {
 	return new QPointF();
@@ -16954,6 +17085,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QProcess*)
 Q_DECLARE_METATYPE(MyQProcess*)
 
 int QProcess_QProcess_QRegisterMetaType(){qRegisterMetaType<QProcess*>(); return qRegisterMetaType<MyQProcess*>();}
@@ -17355,6 +17487,8 @@ void QProcess_DestroyQProcessDefault(void* ptr)
 
 }
 
+Q_DECLARE_METATYPE(QProcessEnvironment)
+Q_DECLARE_METATYPE(QProcessEnvironment*)
 void* QProcessEnvironment_NewQProcessEnvironment()
 {
 	return new QProcessEnvironment();
@@ -17461,6 +17595,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QPropertyAnimation*)
 Q_DECLARE_METATYPE(MyQPropertyAnimation*)
 
 int QPropertyAnimation_QPropertyAnimation_QRegisterMetaType(){qRegisterMetaType<QPropertyAnimation*>(); return qRegisterMetaType<MyQPropertyAnimation*>();}
@@ -17590,6 +17725,7 @@ void QPropertyAnimation_DestroyQPropertyAnimationDefault(void* ptr)
 
 }
 
+Q_DECLARE_METATYPE(QRandomGenerator*)
 void* QRandomGenerator_NewQRandomGenerator(unsigned int seedValue)
 {
 	return new QRandomGenerator(seedValue);
@@ -17675,6 +17811,7 @@ unsigned long long QRandomGenerator64_Generate(void* ptr)
 	return static_cast<QRandomGenerator64*>(ptr)->generate();
 }
 
+Q_DECLARE_METATYPE(QReadLocker*)
 void* QReadLocker_NewQReadLocker(void* lock)
 {
 	return new QReadLocker(static_cast<QReadWriteLock*>(lock));
@@ -17700,6 +17837,7 @@ void QReadLocker_DestroyQReadLocker(void* ptr)
 	static_cast<QReadLocker*>(ptr)->~QReadLocker();
 }
 
+Q_DECLARE_METATYPE(QReadWriteLock*)
 void* QReadWriteLock_NewQReadWriteLock(long long recursionMode)
 {
 	return new QReadWriteLock(static_cast<QReadWriteLock::RecursionMode>(recursionMode));
@@ -17745,6 +17883,8 @@ void QReadWriteLock_DestroyQReadWriteLock(void* ptr)
 	static_cast<QReadWriteLock*>(ptr)->~QReadWriteLock();
 }
 
+Q_DECLARE_METATYPE(QRect)
+Q_DECLARE_METATYPE(QRect*)
 void* QRect_NewQRect()
 {
 	return new QRect();
@@ -18075,6 +18215,8 @@ int QRect_Y(void* ptr)
 	return static_cast<QRect*>(ptr)->y();
 }
 
+Q_DECLARE_METATYPE(QRectF)
+Q_DECLARE_METATYPE(QRectF*)
 void* QRectF_NewQRectF()
 {
 	return new QRectF();
@@ -18415,6 +18557,8 @@ double QRectF_Y(void* ptr)
 	return static_cast<QRectF*>(ptr)->y();
 }
 
+Q_DECLARE_METATYPE(QRegExp)
+Q_DECLARE_METATYPE(QRegExp*)
 void* QRegExp_NewQRegExp()
 {
 	return new QRegExp();
@@ -18540,6 +18684,8 @@ void QRegExp_DestroyQRegExp(void* ptr)
 	static_cast<QRegExp*>(ptr)->~QRegExp();
 }
 
+Q_DECLARE_METATYPE(QRegularExpression)
+Q_DECLARE_METATYPE(QRegularExpression*)
 void* QRegularExpression_NewQRegularExpression()
 {
 	return new QRegularExpression();
@@ -18650,6 +18796,8 @@ void QRegularExpression_DestroyQRegularExpression(void* ptr)
 	static_cast<QRegularExpression*>(ptr)->~QRegularExpression();
 }
 
+Q_DECLARE_METATYPE(QRegularExpressionMatch)
+Q_DECLARE_METATYPE(QRegularExpressionMatch*)
 void* QRegularExpressionMatch_NewQRegularExpressionMatch()
 {
 	return new QRegularExpressionMatch();
@@ -18795,6 +18943,7 @@ void QRegularExpressionMatch_DestroyQRegularExpressionMatch(void* ptr)
 	static_cast<QRegularExpressionMatch*>(ptr)->~QRegularExpressionMatch();
 }
 
+Q_DECLARE_METATYPE(QResource*)
 void* QResource_NewQResource(struct QtCore_PackedString file, void* locale)
 {
 	return new QResource(QString::fromUtf8(file.data, file.len), *static_cast<QLocale*>(locale));
@@ -18898,10 +19047,15 @@ void QResource_DestroyQResource(void* ptr)
 class MyQRunnable: public QRunnable
 {
 public:
-	MyQRunnable() : QRunnable() {};
+	MyQRunnable() : QRunnable() {QRunnable_QRunnable_QRegisterMetaType();};
 	void run() { callbackQRunnable_Run(this); };
 	 ~MyQRunnable() { callbackQRunnable_DestroyQRunnable(this); };
 };
+
+Q_DECLARE_METATYPE(QRunnable*)
+Q_DECLARE_METATYPE(MyQRunnable*)
+
+int QRunnable_QRunnable_QRegisterMetaType(){qRegisterMetaType<QRunnable*>(); return qRegisterMetaType<MyQRunnable*>();}
 
 void* QRunnable_NewQRunnable()
 {
@@ -18980,6 +19134,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QSaveFile*)
 Q_DECLARE_METATYPE(MyQSaveFile*)
 
 int QSaveFile_QSaveFile_QRegisterMetaType(){qRegisterMetaType<QSaveFile*>(); return qRegisterMetaType<MyQSaveFile*>();}
@@ -19119,6 +19274,7 @@ void QSaveFile_DestroyQSaveFileDefault(void* ptr)
 
 }
 
+Q_DECLARE_METATYPE(QSemaphore*)
 void* QSemaphore_NewQSemaphore(int n)
 {
 	return new QSemaphore(n);
@@ -19154,6 +19310,7 @@ void QSemaphore_DestroyQSemaphore(void* ptr)
 	static_cast<QSemaphore*>(ptr)->~QSemaphore();
 }
 
+Q_DECLARE_METATYPE(QSemaphoreReleaser*)
 void* QSemaphoreReleaser_NewQSemaphoreReleaser()
 {
 	return new QSemaphoreReleaser();
@@ -19222,6 +19379,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QSequentialAnimationGroup*)
 Q_DECLARE_METATYPE(MyQSequentialAnimationGroup*)
 
 int QSequentialAnimationGroup_QSequentialAnimationGroup_QRegisterMetaType(){qRegisterMetaType<QSequentialAnimationGroup*>(); return qRegisterMetaType<MyQSequentialAnimationGroup*>();}
@@ -19372,6 +19530,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QSettings*)
 Q_DECLARE_METATYPE(MyQSettings*)
 
 int QSettings_QSettings_QRegisterMetaType(){qRegisterMetaType<QSettings*>(); return qRegisterMetaType<MyQSettings*>();}
@@ -19834,6 +19993,8 @@ void QSettings_DestroyQSettingsDefault(void* ptr)
 
 }
 
+Q_DECLARE_METATYPE(QSharedData)
+Q_DECLARE_METATYPE(QSharedData*)
 void* QSharedData_NewQSharedData()
 {
 	return new QSharedData();
@@ -19863,6 +20024,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QSharedMemory*)
 Q_DECLARE_METATYPE(MyQSharedMemory*)
 
 int QSharedMemory_QSharedMemory_QRegisterMetaType(){qRegisterMetaType<QSharedMemory*>(); return qRegisterMetaType<MyQSharedMemory*>();}
@@ -20052,6 +20214,7 @@ void QSharedMemory_DestroyQSharedMemoryDefault(void* ptr)
 
 }
 
+Q_DECLARE_METATYPE(QSignalBlocker*)
 void* QSignalBlocker_NewQSignalBlocker(void* object)
 {
 	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(object))) {
@@ -20187,6 +20350,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QSignalTransition*)
 Q_DECLARE_METATYPE(MyQSignalTransition*)
 
 int QSignalTransition_QSignalTransition_QRegisterMetaType(){qRegisterMetaType<QSignalTransition*>(); return qRegisterMetaType<MyQSignalTransition*>();}
@@ -20314,6 +20478,8 @@ void QSignalTransition_DestroyQSignalTransitionDefault(void* ptr)
 
 }
 
+Q_DECLARE_METATYPE(QSize)
+Q_DECLARE_METATYPE(QSize*)
 void* QSize_NewQSize()
 {
 	return new QSize();
@@ -20409,6 +20575,8 @@ int QSize_Width(void* ptr)
 	return static_cast<QSize*>(ptr)->width();
 }
 
+Q_DECLARE_METATYPE(QSizeF)
+Q_DECLARE_METATYPE(QSizeF*)
 void* QSizeF_NewQSizeF()
 {
 	return new QSizeF();
@@ -20533,6 +20701,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QSocketNotifier*)
 Q_DECLARE_METATYPE(MyQSocketNotifier*)
 
 int QSocketNotifier_QSocketNotifier_QRegisterMetaType(){qRegisterMetaType<QSocketNotifier*>(); return qRegisterMetaType<MyQSocketNotifier*>();}
@@ -20665,6 +20834,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QSortFilterProxyModel*)
 Q_DECLARE_METATYPE(MyQSortFilterProxyModel*)
 
 int QSortFilterProxyModel_QSortFilterProxyModel_QRegisterMetaType(){qRegisterMetaType<QSortFilterProxyModel*>(); return qRegisterMetaType<MyQSortFilterProxyModel*>();}
@@ -21056,6 +21226,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QState*)
 Q_DECLARE_METATYPE(MyQState*)
 
 int QState_QState_QRegisterMetaType(){qRegisterMetaType<QState*>(); return qRegisterMetaType<MyQState*>();}
@@ -21270,6 +21441,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QStateMachine*)
 Q_DECLARE_METATYPE(MyQStateMachine*)
 
 int QStateMachine_QStateMachine_QRegisterMetaType(){qRegisterMetaType<QStateMachine*>(); return qRegisterMetaType<MyQStateMachine*>();}
@@ -21555,6 +21727,7 @@ struct QtCore_PackedString QStaticPlugin_RawMetaData(void* ptr)
 	return QtCore_PackedString { const_cast<char*>(static_cast<QStaticPlugin*>(ptr)->rawMetaData()), -1 };
 }
 
+Q_DECLARE_METATYPE(QStorageInfo*)
 void* QStorageInfo_NewQStorageInfo()
 {
 	return new QStorageInfo();
@@ -21762,6 +21935,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QStringListModel*)
 Q_DECLARE_METATYPE(MyQStringListModel*)
 
 int QStringListModel_QStringListModel_QRegisterMetaType(){qRegisterMetaType<QStringListModel*>(); return qRegisterMetaType<MyQStringListModel*>();}
@@ -21890,6 +22064,8 @@ struct QtCore_PackedString QStringListModel_StringList(void* ptr)
 	return ({ QByteArray t02c9ed = static_cast<QStringListModel*>(ptr)->stringList().join("¡¦!").toUtf8(); QtCore_PackedString { const_cast<char*>(t02c9ed.prepend("WHITESPACE").constData()+10), t02c9ed.size()-10 }; });
 }
 
+Q_DECLARE_METATYPE(QStringMatcher)
+Q_DECLARE_METATYPE(QStringMatcher*)
 void* QStringMatcher_NewQStringMatcher()
 {
 	return new QStringMatcher();
@@ -21945,6 +22121,8 @@ void QStringMatcher_DestroyQStringMatcher(void* ptr)
 	static_cast<QStringMatcher*>(ptr)->~QStringMatcher();
 }
 
+Q_DECLARE_METATYPE(QStringRef)
+Q_DECLARE_METATYPE(QStringRef*)
 void* QStringRef_NewQStringRef()
 {
 	return new QStringRef();
@@ -22398,6 +22576,8 @@ void* QStringRef___toUcs4_newList(void* ptr)
 	return new QVector<uint>();
 }
 
+Q_DECLARE_METATYPE(QStringView)
+Q_DECLARE_METATYPE(QStringView*)
 void* QStringView_NewQStringView()
 {
 	return new QStringView();
@@ -22625,6 +22805,7 @@ struct QtCore_PackedString QSysInfo_QSysInfo_ProductVersion()
 	return ({ QByteArray tf9eb38 = QSysInfo::productVersion().toUtf8(); QtCore_PackedString { const_cast<char*>(tf9eb38.prepend("WHITESPACE").constData()+10), tf9eb38.size()-10 }; });
 }
 
+Q_DECLARE_METATYPE(QSystemSemaphore*)
 void* QSystemSemaphore_NewQSystemSemaphore(struct QtCore_PackedString key, int initialValue, long long mode)
 {
 	return new QSystemSemaphore(QString::fromUtf8(key.data, key.len), initialValue, static_cast<QSystemSemaphore::AccessMode>(mode));
@@ -22665,6 +22846,7 @@ void QSystemSemaphore_DestroyQSystemSemaphore(void* ptr)
 	static_cast<QSystemSemaphore*>(ptr)->~QSystemSemaphore();
 }
 
+Q_DECLARE_METATYPE(QTemporaryDir*)
 void* QTemporaryDir_NewQTemporaryDir()
 {
 	return new QTemporaryDir();
@@ -22761,6 +22943,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QTemporaryFile*)
 Q_DECLARE_METATYPE(MyQTemporaryFile*)
 
 int QTemporaryFile_QTemporaryFile_QRegisterMetaType(){qRegisterMetaType<QTemporaryFile*>(); return qRegisterMetaType<MyQTemporaryFile*>();}
@@ -22915,6 +23098,8 @@ void QTemporaryFile_DestroyQTemporaryFileDefault(void* ptr)
 
 }
 
+Q_DECLARE_METATYPE(QTextBoundaryFinder)
+Q_DECLARE_METATYPE(QTextBoundaryFinder*)
 void* QTextBoundaryFinder_NewQTextBoundaryFinder()
 {
 	return new QTextBoundaryFinder();
@@ -22998,6 +23183,11 @@ public:
 	QByteArray name() const { return *static_cast<QByteArray*>(callbackQTextCodec_Name(const_cast<void*>(static_cast<const void*>(this)))); };
 	 ~MyQTextCodec() { callbackQTextCodec_DestroyQTextCodec(this); };
 };
+
+Q_DECLARE_METATYPE(QTextCodec*)
+Q_DECLARE_METATYPE(MyQTextCodec*)
+
+int QTextCodec_QTextCodec_QRegisterMetaType(){qRegisterMetaType<QTextCodec*>(); return qRegisterMetaType<MyQTextCodec*>();}
 
 struct QtCore_PackedList QTextCodec_Aliases(void* ptr)
 {
@@ -23178,6 +23368,7 @@ void* QTextCodec___availableMibs_newList(void* ptr)
 	return new QList<int>();
 }
 
+Q_DECLARE_METATYPE(QTextDecoder*)
 void* QTextDecoder_NewQTextDecoder2(void* codec)
 {
 	return new QTextDecoder(static_cast<QTextCodec*>(codec));
@@ -23208,6 +23399,7 @@ void QTextDecoder_DestroyQTextDecoder(void* ptr)
 	static_cast<QTextDecoder*>(ptr)->~QTextDecoder();
 }
 
+Q_DECLARE_METATYPE(QTextEncoder*)
 void* QTextEncoder_NewQTextEncoder2(void* codec)
 {
 	return new QTextEncoder(static_cast<QTextCodec*>(codec));
@@ -23241,13 +23433,18 @@ void QTextEncoder_DestroyQTextEncoder(void* ptr)
 class MyQTextStream: public QTextStream
 {
 public:
-	MyQTextStream() : QTextStream() {};
-	MyQTextStream(QIODevice *device) : QTextStream(device) {};
-	MyQTextStream(QString *stri, QIODevice::OpenMode openMode = QIODevice::ReadWrite) : QTextStream(stri, openMode) {};
-	MyQTextStream(QByteArray *array, QIODevice::OpenMode openMode = QIODevice::ReadWrite) : QTextStream(array, openMode) {};
-	MyQTextStream(const QByteArray &array, QIODevice::OpenMode openMode = QIODevice::ReadOnly) : QTextStream(array, openMode) {};
+	MyQTextStream() : QTextStream() {QTextStream_QTextStream_QRegisterMetaType();};
+	MyQTextStream(QIODevice *device) : QTextStream(device) {QTextStream_QTextStream_QRegisterMetaType();};
+	MyQTextStream(QString *stri, QIODevice::OpenMode openMode = QIODevice::ReadWrite) : QTextStream(stri, openMode) {QTextStream_QTextStream_QRegisterMetaType();};
+	MyQTextStream(QByteArray *array, QIODevice::OpenMode openMode = QIODevice::ReadWrite) : QTextStream(array, openMode) {QTextStream_QTextStream_QRegisterMetaType();};
+	MyQTextStream(const QByteArray &array, QIODevice::OpenMode openMode = QIODevice::ReadOnly) : QTextStream(array, openMode) {QTextStream_QTextStream_QRegisterMetaType();};
 	 ~MyQTextStream() { callbackQTextStream_DestroyQTextStream(this); };
 };
+
+Q_DECLARE_METATYPE(QTextStream*)
+Q_DECLARE_METATYPE(MyQTextStream*)
+
+int QTextStream_QTextStream_QRegisterMetaType(){qRegisterMetaType<QTextStream*>(); return qRegisterMetaType<MyQTextStream*>();}
 
 void* QTextStream_NewQTextStream()
 {
@@ -23509,6 +23706,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QThread*)
 Q_DECLARE_METATYPE(MyQThread*)
 
 int QThread_QThread_QRegisterMetaType(){qRegisterMetaType<QThread*>(); return qRegisterMetaType<MyQThread*>();}
@@ -23754,6 +23952,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QThreadPool*)
 Q_DECLARE_METATYPE(MyQThreadPool*)
 
 int QThreadPool_QThreadPool_QRegisterMetaType(){qRegisterMetaType<QThreadPool*>(); return qRegisterMetaType<MyQThreadPool*>();}
@@ -23891,6 +24090,8 @@ void QThreadPool_DestroyQThreadPoolDefault(void* ptr)
 
 }
 
+Q_DECLARE_METATYPE(QTime)
+Q_DECLARE_METATYPE(QTime*)
 void* QTime_NewQTime2()
 {
 	return new QTime();
@@ -24045,6 +24246,7 @@ public:
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtCore_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQObject_ObjectNameChanged(this, objectNamePacked); };
 };
 
+Q_DECLARE_METATYPE(QTimeLine*)
 Q_DECLARE_METATYPE(MyQTimeLine*)
 
 int QTimeLine_QTimeLine_QRegisterMetaType(){qRegisterMetaType<QTimeLine*>(); return qRegisterMetaType<MyQTimeLine*>();}
@@ -24327,6 +24529,8 @@ void QTimeLine_DestroyQTimeLineDefault(void* ptr)
 
 }
 
+Q_DECLARE_METATYPE(QTimeZone)
+Q_DECLARE_METATYPE(QTimeZone*)
 void* QTimeZone_NewQTimeZone()
 {
 	return new QTimeZone();
@@ -24589,6 +24793,7 @@ public:
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtCore_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQObject_ObjectNameChanged(this, objectNamePacked); };
 };
 
+Q_DECLARE_METATYPE(QTimer*)
 Q_DECLARE_METATYPE(MyQTimer*)
 
 int QTimer_QTimer_QRegisterMetaType(){qRegisterMetaType<QTimer*>(); return qRegisterMetaType<MyQTimer*>();}
@@ -24749,8 +24954,13 @@ void QTimer_DestroyQTimerDefault(void* ptr)
 class MyQTimerEvent: public QTimerEvent
 {
 public:
-	MyQTimerEvent(int timerId) : QTimerEvent(timerId) {};
+	MyQTimerEvent(int timerId) : QTimerEvent(timerId) {QTimerEvent_QTimerEvent_QRegisterMetaType();};
 };
+
+Q_DECLARE_METATYPE(QTimerEvent*)
+Q_DECLARE_METATYPE(MyQTimerEvent*)
+
+int QTimerEvent_QTimerEvent_QRegisterMetaType(){qRegisterMetaType<QTimerEvent*>(); return qRegisterMetaType<MyQTimerEvent*>();}
 
 void* QTimerEvent_NewQTimerEvent(int timerId)
 {
@@ -24782,6 +24992,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QTranslator*)
 Q_DECLARE_METATYPE(MyQTranslator*)
 
 int QTranslator_QTranslator_QRegisterMetaType(){qRegisterMetaType<QTranslator*>(); return qRegisterMetaType<MyQTranslator*>();}
@@ -24956,6 +25167,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QTransposeProxyModel*)
 Q_DECLARE_METATYPE(MyQTransposeProxyModel*)
 
 int QTransposeProxyModel_QTransposeProxyModel_QRegisterMetaType(){qRegisterMetaType<QTransposeProxyModel*>(); return qRegisterMetaType<MyQTransposeProxyModel*>();}
@@ -25083,6 +25295,13 @@ class MyQUnhandledException: public QUnhandledException
 public:
 };
 
+Q_DECLARE_METATYPE(QUnhandledException*)
+Q_DECLARE_METATYPE(MyQUnhandledException*)
+
+int QUnhandledException_QUnhandledException_QRegisterMetaType(){qRegisterMetaType<QUnhandledException*>(); return qRegisterMetaType<MyQUnhandledException*>();}
+
+Q_DECLARE_METATYPE(QUrl)
+Q_DECLARE_METATYPE(QUrl*)
 void* QUrl_NewQUrl()
 {
 	return new QUrl();
@@ -25426,6 +25645,8 @@ void* QUrl___toStringList_urls_newList(void* ptr)
 	return new QList<QUrl>();
 }
 
+Q_DECLARE_METATYPE(QUrlQuery)
+Q_DECLARE_METATYPE(QUrlQuery*)
 void* QUrlQuery_NewQUrlQuery()
 {
 	return new QUrlQuery();
@@ -25536,6 +25757,8 @@ void QUrlQuery_DestroyQUrlQuery(void* ptr)
 	static_cast<QUrlQuery*>(ptr)->~QUrlQuery();
 }
 
+Q_DECLARE_METATYPE(QUuid)
+Q_DECLARE_METATYPE(QUuid*)
 void* QUuid_NewQUuid2()
 {
 	return new QUuid();
@@ -25636,6 +25859,7 @@ long long QUuid_Version(void* ptr)
 	return static_cast<QUuid*>(ptr)->version();
 }
 
+Q_DECLARE_METATYPE(QVariant*)
 void* QVariant_NewQVariant()
 {
 	return new QVariant();
@@ -26356,6 +26580,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QVariantAnimation*)
 Q_DECLARE_METATYPE(MyQVariantAnimation*)
 
 int QVariantAnimation_QVariantAnimation_QRegisterMetaType(){qRegisterMetaType<QVariantAnimation*>(); return qRegisterMetaType<MyQVariantAnimation*>();}
@@ -26539,6 +26764,7 @@ void QVariantAnimation_DestroyQVariantAnimationDefault(void* ptr)
 
 }
 
+Q_DECLARE_METATYPE(QVersionNumber*)
 void* QVersionNumber_NewQVersionNumber()
 {
 	return new QVersionNumber();
@@ -26697,6 +26923,7 @@ void* QVersionNumber___segments_newList(void* ptr)
 	return new QVector<int>();
 }
 
+Q_DECLARE_METATYPE(QWaitCondition*)
 void* QWaitCondition_NewQWaitCondition()
 {
 	return new QWaitCondition();
@@ -26737,6 +26964,7 @@ void QWaitCondition_DestroyQWaitCondition(void* ptr)
 	static_cast<QWaitCondition*>(ptr)->~QWaitCondition();
 }
 
+Q_DECLARE_METATYPE(QWriteLocker*)
 void* QWriteLocker_NewQWriteLocker(void* lock)
 {
 	return new QWriteLocker(static_cast<QReadWriteLock*>(lock));
@@ -26762,6 +26990,8 @@ void QWriteLocker_DestroyQWriteLocker(void* ptr)
 	static_cast<QWriteLocker*>(ptr)->~QWriteLocker();
 }
 
+Q_DECLARE_METATYPE(QXmlStreamAttribute)
+Q_DECLARE_METATYPE(QXmlStreamAttribute*)
 void* QXmlStreamAttribute_NewQXmlStreamAttribute()
 {
 	return new QXmlStreamAttribute();
@@ -26817,6 +27047,8 @@ void QXmlStreamAttribute_DestroyQXmlStreamAttribute(void* ptr)
 	static_cast<QXmlStreamAttribute*>(ptr)->~QXmlStreamAttribute();
 }
 
+Q_DECLARE_METATYPE(QXmlStreamAttributes)
+Q_DECLARE_METATYPE(QXmlStreamAttributes*)
 void* QXmlStreamAttributes_NewQXmlStreamAttributes()
 {
 	return new QXmlStreamAttributes();
@@ -26872,6 +27104,8 @@ void* QXmlStreamAttributes_Value5(void* ptr, void* qualifiedName)
 	return new QStringRef(static_cast<QXmlStreamAttributes*>(ptr)->value(*static_cast<QLatin1String*>(qualifiedName)));
 }
 
+Q_DECLARE_METATYPE(QXmlStreamEntityDeclaration)
+Q_DECLARE_METATYPE(QXmlStreamEntityDeclaration*)
 void* QXmlStreamEntityDeclaration_NewQXmlStreamEntityDeclaration()
 {
 	return new QXmlStreamEntityDeclaration();
@@ -26919,6 +27153,11 @@ public:
 	 ~MyQXmlStreamEntityResolver() { callbackQXmlStreamEntityResolver_DestroyQXmlStreamEntityResolver(this); };
 };
 
+Q_DECLARE_METATYPE(QXmlStreamEntityResolver*)
+Q_DECLARE_METATYPE(MyQXmlStreamEntityResolver*)
+
+int QXmlStreamEntityResolver_QXmlStreamEntityResolver_QRegisterMetaType(){qRegisterMetaType<QXmlStreamEntityResolver*>(); return qRegisterMetaType<MyQXmlStreamEntityResolver*>();}
+
 struct QtCore_PackedString QXmlStreamEntityResolver_ResolveUndeclaredEntity(void* ptr, struct QtCore_PackedString name)
 {
 	return ({ QByteArray t961153 = static_cast<QXmlStreamEntityResolver*>(ptr)->resolveUndeclaredEntity(QString::fromUtf8(name.data, name.len)).toUtf8(); QtCore_PackedString { const_cast<char*>(t961153.prepend("WHITESPACE").constData()+10), t961153.size()-10 }; });
@@ -26940,6 +27179,8 @@ void QXmlStreamEntityResolver_DestroyQXmlStreamEntityResolverDefault(void* ptr)
 
 }
 
+Q_DECLARE_METATYPE(QXmlStreamNamespaceDeclaration)
+Q_DECLARE_METATYPE(QXmlStreamNamespaceDeclaration*)
 void* QXmlStreamNamespaceDeclaration_NewQXmlStreamNamespaceDeclaration()
 {
 	return new QXmlStreamNamespaceDeclaration();
@@ -26970,6 +27211,8 @@ void QXmlStreamNamespaceDeclaration_DestroyQXmlStreamNamespaceDeclaration(void* 
 	static_cast<QXmlStreamNamespaceDeclaration*>(ptr)->~QXmlStreamNamespaceDeclaration();
 }
 
+Q_DECLARE_METATYPE(QXmlStreamNotationDeclaration)
+Q_DECLARE_METATYPE(QXmlStreamNotationDeclaration*)
 void* QXmlStreamNotationDeclaration_NewQXmlStreamNotationDeclaration()
 {
 	return new QXmlStreamNotationDeclaration();
@@ -27000,6 +27243,7 @@ void QXmlStreamNotationDeclaration_DestroyQXmlStreamNotationDeclaration(void* pt
 	static_cast<QXmlStreamNotationDeclaration*>(ptr)->~QXmlStreamNotationDeclaration();
 }
 
+Q_DECLARE_METATYPE(QXmlStreamReader*)
 void* QXmlStreamReader_NewQXmlStreamReader()
 {
 	return new QXmlStreamReader();
@@ -27275,6 +27519,7 @@ void QXmlStreamReader_DestroyQXmlStreamReader(void* ptr)
 	static_cast<QXmlStreamReader*>(ptr)->~QXmlStreamReader();
 }
 
+Q_DECLARE_METATYPE(QXmlStreamWriter*)
 void* QXmlStreamWriter_NewQXmlStreamWriter()
 {
 	return new QXmlStreamWriter();

@@ -96,6 +96,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWebChannel_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QWebChannel*)
 Q_DECLARE_METATYPE(MyQWebChannel*)
 
 int QWebChannel_QWebChannel_QRegisterMetaType(){qRegisterMetaType<QWebChannel*>(); return qRegisterMetaType<MyQWebChannel*>();}
@@ -486,6 +487,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWebChannelAbstractTransport_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QWebChannelAbstractTransport*)
 Q_DECLARE_METATYPE(MyQWebChannelAbstractTransport*)
 
 int QWebChannelAbstractTransport_QWebChannelAbstractTransport_QRegisterMetaType(){qRegisterMetaType<QWebChannelAbstractTransport*>(); return qRegisterMetaType<MyQWebChannelAbstractTransport*>();}

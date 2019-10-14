@@ -92,6 +92,8 @@
 #include <QWidget>
 #include <QWindow>
 
+Q_DECLARE_METATYPE(QCompressedHelpInfo)
+Q_DECLARE_METATYPE(QCompressedHelpInfo*)
 void* QCompressedHelpInfo_NewQCompressedHelpInfo()
 {
 	return new QCompressedHelpInfo();
@@ -249,6 +251,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQHelpContentModel_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QHelpContentModel*)
 Q_DECLARE_METATYPE(MyQHelpContentModel*)
 
 int QHelpContentModel_QHelpContentModel_QRegisterMetaType(){qRegisterMetaType<QHelpContentModel*>(); return qRegisterMetaType<MyQHelpContentModel*>();}
@@ -1045,6 +1048,7 @@ public:
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtHelp_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQHelpContentWidget_ObjectNameChanged(this, objectNamePacked); };
 };
 
+Q_DECLARE_METATYPE(QHelpContentWidget*)
 Q_DECLARE_METATYPE(MyQHelpContentWidget*)
 
 int QHelpContentWidget_QHelpContentWidget_QRegisterMetaType(){qRegisterMetaType<QHelpContentWidget*>(); return qRegisterMetaType<MyQHelpContentWidget*>();}
@@ -1868,6 +1872,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQHelpEngineCore_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QHelpEngine*)
 Q_DECLARE_METATYPE(MyQHelpEngine*)
 
 int QHelpEngine_QHelpEngine_QRegisterMetaType(){qRegisterMetaType<QHelpEngine*>(); return qRegisterMetaType<MyQHelpEngine*>();}
@@ -1976,6 +1981,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQHelpEngineCore_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QHelpEngineCore*)
 Q_DECLARE_METATYPE(MyQHelpEngineCore*)
 
 int QHelpEngineCore_QHelpEngineCore_QRegisterMetaType(){qRegisterMetaType<QHelpEngineCore*>(); return qRegisterMetaType<MyQHelpEngineCore*>();}
@@ -2496,6 +2502,8 @@ void QHelpEngineCore_TimerEventDefault(void* ptr, void* event)
 	}
 }
 
+Q_DECLARE_METATYPE(QHelpFilterData)
+Q_DECLARE_METATYPE(QHelpFilterData*)
 void* QHelpFilterData_NewQHelpFilterData()
 {
 	return new QHelpFilterData();
@@ -2585,6 +2593,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQHelpFilterEngine_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QHelpFilterEngine*)
 Q_DECLARE_METATYPE(MyQHelpFilterEngine*)
 
 int QHelpFilterEngine_QHelpFilterEngine_QRegisterMetaType(){qRegisterMetaType<QHelpFilterEngine*>(); return qRegisterMetaType<MyQHelpFilterEngine*>();}
@@ -2924,6 +2933,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQHelpIndexModel_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QHelpIndexModel*)
 Q_DECLARE_METATYPE(MyQHelpIndexModel*)
 
 int QHelpIndexModel_QHelpIndexModel_QRegisterMetaType(){qRegisterMetaType<QHelpIndexModel*>(); return qRegisterMetaType<MyQHelpIndexModel*>();}
@@ -3707,6 +3717,7 @@ public:
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtHelp_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQHelpIndexWidget_ObjectNameChanged(this, objectNamePacked); };
 };
 
+Q_DECLARE_METATYPE(QHelpIndexWidget*)
 Q_DECLARE_METATYPE(MyQHelpIndexWidget*)
 
 int QHelpIndexWidget_QHelpIndexWidget_QRegisterMetaType(){qRegisterMetaType<QHelpIndexWidget*>(); return qRegisterMetaType<MyQHelpIndexWidget*>();}
@@ -4541,6 +4552,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQHelpSearchEngine_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QHelpSearchEngine*)
 Q_DECLARE_METATYPE(MyQHelpSearchEngine*)
 
 int QHelpSearchEngine_QHelpSearchEngine_QRegisterMetaType(){qRegisterMetaType<QHelpSearchEngine*>(); return qRegisterMetaType<MyQHelpSearchEngine*>();}
@@ -4901,6 +4913,8 @@ void QHelpSearchEngine_TimerEventDefault(void* ptr, void* event)
 		static_cast<QHelpSearchEngine*>(ptr)->QHelpSearchEngine::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
+Q_DECLARE_METATYPE(QHelpSearchQuery)
+Q_DECLARE_METATYPE(QHelpSearchQuery*)
 void* QHelpSearchQuery_NewQHelpSearchQuery()
 {
 	return new QHelpSearchQuery();
@@ -4984,6 +4998,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQHelpSearchQueryWidget_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QHelpSearchQueryWidget*)
 Q_DECLARE_METATYPE(MyQHelpSearchQueryWidget*)
 
 int QHelpSearchQueryWidget_QHelpSearchQueryWidget_QRegisterMetaType(){qRegisterMetaType<QHelpSearchQueryWidget*>(); return qRegisterMetaType<MyQHelpSearchQueryWidget*>();}
@@ -5524,6 +5539,8 @@ void QHelpSearchQueryWidget_TimerEventDefault(void* ptr, void* event)
 		static_cast<QHelpSearchQueryWidget*>(ptr)->QHelpSearchQueryWidget::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
+Q_DECLARE_METATYPE(QHelpSearchResult)
+Q_DECLARE_METATYPE(QHelpSearchResult*)
 void* QHelpSearchResult_NewQHelpSearchResult()
 {
 	return new QHelpSearchResult();
@@ -5636,6 +5653,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQHelpSearchResultWidget_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QHelpSearchResultWidget*)
 Q_DECLARE_METATYPE(MyQHelpSearchResultWidget*)
 
 int QHelpSearchResultWidget_QHelpSearchResultWidget_QRegisterMetaType(){qRegisterMetaType<QHelpSearchResultWidget*>(); return qRegisterMetaType<MyQHelpSearchResultWidget*>();}

@@ -66,6 +66,8 @@
 #include <QWidget>
 #include <QWindow>
 
+Q_DECLARE_METATYPE(QSqlDatabase)
+Q_DECLARE_METATYPE(QSqlDatabase*)
 void* QSqlDatabase_NewQSqlDatabase()
 {
 	return new QSqlDatabase();
@@ -344,6 +346,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSqlDriver_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QSqlDriver*)
 Q_DECLARE_METATYPE(MyQSqlDriver*)
 
 int QSqlDriver_QSqlDriver_QRegisterMetaType(){qRegisterMetaType<QSqlDriver*>(); return qRegisterMetaType<MyQSqlDriver*>();}
@@ -798,6 +801,11 @@ public:
 	 ~MyQSqlDriverCreatorBase() { callbackQSqlDriverCreatorBase_DestroyQSqlDriverCreatorBase(this); };
 };
 
+Q_DECLARE_METATYPE(QSqlDriverCreatorBase*)
+Q_DECLARE_METATYPE(MyQSqlDriverCreatorBase*)
+
+int QSqlDriverCreatorBase_QSqlDriverCreatorBase_QRegisterMetaType(){qRegisterMetaType<QSqlDriverCreatorBase*>(); return qRegisterMetaType<MyQSqlDriverCreatorBase*>();}
+
 void* QSqlDriverCreatorBase_CreateObject(void* ptr)
 {
 	return static_cast<QSqlDriverCreatorBase*>(ptr)->createObject();
@@ -833,6 +841,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSqlDriverPlugin_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QSqlDriverPlugin*)
 Q_DECLARE_METATYPE(MyQSqlDriverPlugin*)
 
 int QSqlDriverPlugin_QSqlDriverPlugin_QRegisterMetaType(){qRegisterMetaType<QSqlDriverPlugin*>(); return qRegisterMetaType<MyQSqlDriverPlugin*>();}
@@ -1025,6 +1034,7 @@ void QSqlDriverPlugin_TimerEventDefault(void* ptr, void* event)
 		static_cast<QSqlDriverPlugin*>(ptr)->QSqlDriverPlugin::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
+Q_DECLARE_METATYPE(QSqlError*)
 void* QSqlError_NewQSqlError2(struct QtSql_PackedString driverText, struct QtSql_PackedString databaseText, long long ty, struct QtSql_PackedString code)
 {
 	return new QSqlError(QString::fromUtf8(driverText.data, driverText.len), QString::fromUtf8(databaseText.data, databaseText.len), static_cast<QSqlError::ErrorType>(ty), QString::fromUtf8(code.data, code.len));
@@ -1080,6 +1090,7 @@ void QSqlError_DestroyQSqlError(void* ptr)
 	static_cast<QSqlError*>(ptr)->~QSqlError();
 }
 
+Q_DECLARE_METATYPE(QSqlField*)
 void* QSqlField_NewQSqlField(struct QtSql_PackedString fieldName, long long ty)
 {
 	return new QSqlField(QString::fromUtf8(fieldName.data, fieldName.len), static_cast<QVariant::Type>(ty));
@@ -1230,6 +1241,7 @@ void QSqlField_DestroyQSqlField(void* ptr)
 	static_cast<QSqlField*>(ptr)->~QSqlField();
 }
 
+Q_DECLARE_METATYPE(QSqlIndex*)
 void* QSqlIndex_NewQSqlIndex(struct QtSql_PackedString cursorname, struct QtSql_PackedString name)
 {
 	return new QSqlIndex(QString::fromUtf8(cursorname.data, cursorname.len), QString::fromUtf8(name.data, name.len));
@@ -1312,6 +1324,7 @@ void* QSqlIndex___setSorts__newList(void* ptr)
 	return new QVector<bool>();
 }
 
+Q_DECLARE_METATYPE(QSqlQuery*)
 void* QSqlQuery_NewQSqlQuery(void* result)
 {
 	return new QSqlQuery(static_cast<QSqlResult*>(result));
@@ -1643,6 +1656,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSqlQueryModel_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QSqlQueryModel*)
 Q_DECLARE_METATYPE(MyQSqlQueryModel*)
 
 int QSqlQueryModel_QSqlQueryModel_QRegisterMetaType(){qRegisterMetaType<QSqlQueryModel*>(); return qRegisterMetaType<MyQSqlQueryModel*>();}
@@ -2638,6 +2652,8 @@ void QSqlQueryModel_TimerEventDefault(void* ptr, void* event)
 	}
 }
 
+Q_DECLARE_METATYPE(QSqlRecord)
+Q_DECLARE_METATYPE(QSqlRecord*)
 void* QSqlRecord_NewQSqlRecord()
 {
 	return new QSqlRecord();
@@ -2783,6 +2799,8 @@ void QSqlRecord_DestroyQSqlRecord(void* ptr)
 	static_cast<QSqlRecord*>(ptr)->~QSqlRecord();
 }
 
+Q_DECLARE_METATYPE(QSqlRelation)
+Q_DECLARE_METATYPE(QSqlRelation*)
 void* QSqlRelation_NewQSqlRelation()
 {
 	return new QSqlRelation();
@@ -2852,6 +2870,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSqlRelationalDelegate_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QSqlRelationalDelegate*)
 Q_DECLARE_METATYPE(MyQSqlRelationalDelegate*)
 
 int QSqlRelationalDelegate_QSqlRelationalDelegate_QRegisterMetaType(){qRegisterMetaType<QSqlRelationalDelegate*>(); return qRegisterMetaType<MyQSqlRelationalDelegate*>();}
@@ -3198,6 +3217,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSqlQueryModel_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QSqlRelationalTableModel*)
 Q_DECLARE_METATYPE(MyQSqlRelationalTableModel*)
 
 int QSqlRelationalTableModel_QSqlRelationalTableModel_QRegisterMetaType(){qRegisterMetaType<QSqlRelationalTableModel*>(); return qRegisterMetaType<MyQSqlRelationalTableModel*>();}
@@ -3313,7 +3333,7 @@ void QSqlRelationalTableModel_DestroyQSqlRelationalTableModelDefault(void* ptr)
 class MyQSqlResult: public QSqlResult
 {
 public:
-	MyQSqlResult(const QSqlDriver *db) : QSqlResult(db) {};
+	MyQSqlResult(const QSqlDriver *db) : QSqlResult(db) {QSqlResult_QSqlResult_QRegisterMetaType();};
 	void bindValue(int index, const QVariant & val, QSql::ParamType paramType) { callbackQSqlResult_BindValue(this, index, const_cast<QVariant*>(&val), paramType); };
 	void bindValue(const QString & placeholder, const QVariant & val, QSql::ParamType paramType) { QByteArray tff5543 = placeholder.toUtf8(); QtSql_PackedString placeholderPacked = { const_cast<char*>(tff5543.prepend("WHITESPACE").constData()+10), tff5543.size()-10 };callbackQSqlResult_BindValue2(this, placeholderPacked, const_cast<QVariant*>(&val), paramType); };
 	QVariant data(int index) { return *static_cast<QVariant*>(callbackQSqlResult_Data(this, index)); };
@@ -3340,6 +3360,11 @@ public:
 	int size() { return callbackQSqlResult_Size(this); };
 	 ~MyQSqlResult() { callbackQSqlResult_DestroyQSqlResult(this); };
 };
+
+Q_DECLARE_METATYPE(QSqlResult*)
+Q_DECLARE_METATYPE(MyQSqlResult*)
+
+int QSqlResult_QSqlResult_QRegisterMetaType(){qRegisterMetaType<QSqlResult*>(); return qRegisterMetaType<MyQSqlResult*>();}
 
 void* QSqlResult_NewQSqlResult(void* db)
 {
@@ -3770,6 +3795,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSqlQueryModel_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QSqlTableModel*)
 Q_DECLARE_METATYPE(MyQSqlTableModel*)
 
 int QSqlTableModel_QSqlTableModel_QRegisterMetaType(){qRegisterMetaType<QSqlTableModel*>(); return qRegisterMetaType<MyQSqlTableModel*>();}

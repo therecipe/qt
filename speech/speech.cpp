@@ -76,6 +76,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQTextToSpeech_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QTextToSpeech*)
 Q_DECLARE_METATYPE(MyQTextToSpeech*)
 
 int QTextToSpeech_QTextToSpeech_QRegisterMetaType(){qRegisterMetaType<QTextToSpeech*>(); return qRegisterMetaType<MyQTextToSpeech*>();}
@@ -592,6 +593,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQTextToSpeechEngine_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QTextToSpeechEngine*)
 Q_DECLARE_METATYPE(MyQTextToSpeechEngine*)
 
 int QTextToSpeechEngine_QTextToSpeechEngine_QRegisterMetaType(){qRegisterMetaType<QTextToSpeechEngine*>(); return qRegisterMetaType<MyQTextToSpeechEngine*>();}
@@ -916,6 +918,11 @@ class MyQTextToSpeechPlugin: public QTextToSpeechPlugin
 public:
 	QTextToSpeechEngine * createTextToSpeechEngine(const QVariantMap & parameters, QObject * parent, QString * errorString) const { QByteArray tc8b6bd = errorString->toUtf8(); QtSpeech_PackedString errorStringPacked = { const_cast<char*>(tc8b6bd.prepend("WHITESPACE").constData()+10), tc8b6bd.size()-10 };return static_cast<QTextToSpeechEngine*>(callbackQTextToSpeechPlugin_CreateTextToSpeechEngine(const_cast<void*>(static_cast<const void*>(this)), ({ QMap<QString, QVariant>* tmpValuef1f142 = new QMap<QString, QVariant>(parameters); QtSpeech_PackedList { tmpValuef1f142, tmpValuef1f142->size() }; }), parent, errorStringPacked)); };
 };
+
+Q_DECLARE_METATYPE(QTextToSpeechPlugin*)
+Q_DECLARE_METATYPE(MyQTextToSpeechPlugin*)
+
+int QTextToSpeechPlugin_QTextToSpeechPlugin_QRegisterMetaType(){qRegisterMetaType<QTextToSpeechPlugin*>(); return qRegisterMetaType<MyQTextToSpeechPlugin*>();}
 
 void* QTextToSpeechPlugin_CreateTextToSpeechEngine(void* ptr, void* parameters, void* parent, struct QtSpeech_PackedString errorString)
 {

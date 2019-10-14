@@ -10,6 +10,12 @@
 #ifdef __cplusplus
 int QAbstractMessageHandler_QAbstractMessageHandler_QRegisterMetaType();
 int QAbstractUriResolver_QAbstractUriResolver_QRegisterMetaType();
+int QAbstractXmlNodeModel_QAbstractXmlNodeModel_QRegisterMetaType();
+int QAbstractXmlReceiver_QAbstractXmlReceiver_QRegisterMetaType();
+int QSimpleXmlNodeModel_QSimpleXmlNodeModel_QRegisterMetaType();
+int QXmlFormatter_QXmlFormatter_QRegisterMetaType();
+int QXmlResultItems_QXmlResultItems_QRegisterMetaType();
+int QXmlSerializer_QXmlSerializer_QRegisterMetaType();
 extern "C" {
 #endif
 

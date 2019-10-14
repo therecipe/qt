@@ -62,6 +62,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQUiLoader_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QUiLoader*)
 Q_DECLARE_METATYPE(MyQUiLoader*)
 
 int QUiLoader_QUiLoader_QRegisterMetaType(){qRegisterMetaType<QUiLoader*>(); return qRegisterMetaType<MyQUiLoader*>();}

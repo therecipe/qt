@@ -8,7 +8,10 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
+int QAndroidActivityResultReceiver_QAndroidActivityResultReceiver_QRegisterMetaType();
+int QAndroidBinder_QAndroidBinder_QRegisterMetaType();
 int QAndroidService_QAndroidService_QRegisterMetaType();
+int QAndroidServiceConnection_QAndroidServiceConnection_QRegisterMetaType();
 extern "C" {
 #endif
 

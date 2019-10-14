@@ -56,6 +56,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQInAppProduct_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QInAppProduct*)
 Q_DECLARE_METATYPE(MyQInAppProduct*)
 
 int QInAppProduct_QInAppProduct_QRegisterMetaType(){qRegisterMetaType<QInAppProduct*>(); return qRegisterMetaType<MyQInAppProduct*>();}
@@ -236,6 +237,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQInAppStore_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QInAppStore*)
 Q_DECLARE_METATYPE(MyQInAppStore*)
 
 int QInAppStore_QInAppStore_QRegisterMetaType(){qRegisterMetaType<QInAppStore*>(); return qRegisterMetaType<MyQInAppStore*>();}
@@ -510,6 +512,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQInAppTransaction_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QInAppTransaction*)
 Q_DECLARE_METATYPE(MyQInAppTransaction*)
 
 int QInAppTransaction_QInAppTransaction_QRegisterMetaType(){qRegisterMetaType<QInAppTransaction*>(); return qRegisterMetaType<MyQInAppTransaction*>();}

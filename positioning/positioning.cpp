@@ -54,6 +54,7 @@
 #include <QWidget>
 #include <QWindow>
 
+Q_DECLARE_METATYPE(QGeoAddress*)
 void* QGeoAddress_NewQGeoAddress()
 {
 	return new QGeoAddress();
@@ -174,6 +175,7 @@ void QGeoAddress_DestroyQGeoAddress(void* ptr)
 	static_cast<QGeoAddress*>(ptr)->~QGeoAddress();
 }
 
+Q_DECLARE_METATYPE(QGeoAreaMonitorInfo*)
 void* QGeoAreaMonitorInfo_NewQGeoAreaMonitorInfo(struct QtPositioning_PackedString name)
 {
 	return new QGeoAreaMonitorInfo(QString::fromUtf8(name.data, name.len));
@@ -354,6 +356,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQGeoAreaMonitorSource_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QGeoAreaMonitorSource*)
 Q_DECLARE_METATYPE(MyQGeoAreaMonitorSource*)
 
 int QGeoAreaMonitorSource_QGeoAreaMonitorSource_QRegisterMetaType(){qRegisterMetaType<QGeoAreaMonitorSource*>(); return qRegisterMetaType<MyQGeoAreaMonitorSource*>();}
@@ -708,6 +711,7 @@ void QGeoAreaMonitorSource_TimerEventDefault(void* ptr, void* event)
 		static_cast<QGeoAreaMonitorSource*>(ptr)->QGeoAreaMonitorSource::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
+Q_DECLARE_METATYPE(QGeoCircle*)
 void* QGeoCircle_NewQGeoCircle()
 {
 	return new QGeoCircle();
@@ -763,6 +767,7 @@ void QGeoCircle_DestroyQGeoCircle(void* ptr)
 	static_cast<QGeoCircle*>(ptr)->~QGeoCircle();
 }
 
+Q_DECLARE_METATYPE(QGeoCoordinate*)
 void* QGeoCoordinate_NewQGeoCoordinate()
 {
 	return new QGeoCoordinate();
@@ -848,6 +853,7 @@ void QGeoCoordinate_DestroyQGeoCoordinate(void* ptr)
 	static_cast<QGeoCoordinate*>(ptr)->~QGeoCoordinate();
 }
 
+Q_DECLARE_METATYPE(QGeoPath*)
 void* QGeoPath_NewQGeoPath()
 {
 	return new QGeoPath();
@@ -1033,6 +1039,7 @@ void* QGeoPath___variantPath_newList(void* ptr)
 	return new QList<QVariant>();
 }
 
+Q_DECLARE_METATYPE(QGeoPolygon*)
 void* QGeoPolygon_NewQGeoPolygon()
 {
 	return new QGeoPolygon();
@@ -1291,6 +1298,7 @@ void* QGeoPolygon___setPerimeter_path_newList(void* ptr)
 	return new QList<QVariant>();
 }
 
+Q_DECLARE_METATYPE(QGeoPositionInfo*)
 void* QGeoPositionInfo_NewQGeoPositionInfo()
 {
 	return new QGeoPositionInfo();
@@ -1387,6 +1395,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQGeoPositionInfoSource_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QGeoPositionInfoSource*)
 Q_DECLARE_METATYPE(MyQGeoPositionInfoSource*)
 
 int QGeoPositionInfoSource_QGeoPositionInfoSource_QRegisterMetaType(){qRegisterMetaType<QGeoPositionInfoSource*>(); return qRegisterMetaType<MyQGeoPositionInfoSource*>();}
@@ -1772,6 +1781,11 @@ public:
 	 ~MyQGeoPositionInfoSourceFactory() { callbackQGeoPositionInfoSourceFactory_DestroyQGeoPositionInfoSourceFactory(this); };
 };
 
+Q_DECLARE_METATYPE(QGeoPositionInfoSourceFactory*)
+Q_DECLARE_METATYPE(MyQGeoPositionInfoSourceFactory*)
+
+int QGeoPositionInfoSourceFactory_QGeoPositionInfoSourceFactory_QRegisterMetaType(){qRegisterMetaType<QGeoPositionInfoSourceFactory*>(); return qRegisterMetaType<MyQGeoPositionInfoSourceFactory*>();}
+
 void* QGeoPositionInfoSourceFactory_AreaMonitor(void* ptr, void* parent)
 {
 	return static_cast<QGeoPositionInfoSourceFactory*>(ptr)->areaMonitor(static_cast<QObject*>(parent));
@@ -1798,6 +1812,7 @@ void QGeoPositionInfoSourceFactory_DestroyQGeoPositionInfoSourceFactoryDefault(v
 
 }
 
+Q_DECLARE_METATYPE(QGeoRectangle*)
 void* QGeoRectangle_NewQGeoRectangle()
 {
 	return new QGeoRectangle();
@@ -1944,6 +1959,8 @@ void* QGeoRectangle___QGeoRectangle_coordinates_newList4(void* ptr)
 	return new QList<QGeoCoordinate>();
 }
 
+Q_DECLARE_METATYPE(QGeoSatelliteInfo)
+Q_DECLARE_METATYPE(QGeoSatelliteInfo*)
 void* QGeoSatelliteInfo_NewQGeoSatelliteInfo()
 {
 	return new QGeoSatelliteInfo();
@@ -2037,6 +2054,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQGeoSatelliteInfoSource_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QGeoSatelliteInfoSource*)
 Q_DECLARE_METATYPE(MyQGeoSatelliteInfoSource*)
 
 int QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_QRegisterMetaType(){qRegisterMetaType<QGeoSatelliteInfoSource*>(); return qRegisterMetaType<MyQGeoSatelliteInfoSource*>();}
@@ -2376,6 +2394,7 @@ void QGeoSatelliteInfoSource_TimerEventDefault(void* ptr, void* event)
 		static_cast<QGeoSatelliteInfoSource*>(ptr)->QGeoSatelliteInfoSource::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
+Q_DECLARE_METATYPE(QGeoShape*)
 void* QGeoShape_NewQGeoShape()
 {
 	return new QGeoShape();
@@ -2458,6 +2477,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQGeoPositionInfoSource_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QNmeaPositionInfoSource*)
 Q_DECLARE_METATYPE(MyQNmeaPositionInfoSource*)
 
 int QNmeaPositionInfoSource_QNmeaPositionInfoSource_QRegisterMetaType(){qRegisterMetaType<QNmeaPositionInfoSource*>(); return qRegisterMetaType<MyQNmeaPositionInfoSource*>();}

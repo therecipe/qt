@@ -10,13 +10,20 @@
 #ifdef __cplusplus
 int QCanBus_QCanBus_QRegisterMetaType();
 int QCanBusDevice_QCanBusDevice_QRegisterMetaType();
+int QCanBusFactory_QCanBusFactory_QRegisterMetaType();
+int QCanBusFactoryV2_QCanBusFactoryV2_QRegisterMetaType();
 int QModbusClient_QModbusClient_QRegisterMetaType();
 int QModbusDevice_QModbusDevice_QRegisterMetaType();
+int QModbusExceptionResponse_QModbusExceptionResponse_QRegisterMetaType();
+int QModbusPdu_QModbusPdu_QRegisterMetaType();
 int QModbusReply_QModbusReply_QRegisterMetaType();
+int QModbusRequest_QModbusRequest_QRegisterMetaType();
+int QModbusResponse_QModbusResponse_QRegisterMetaType();
 int QModbusRtuSerialMaster_QModbusRtuSerialMaster_QRegisterMetaType();
 int QModbusRtuSerialSlave_QModbusRtuSerialSlave_QRegisterMetaType();
 int QModbusServer_QModbusServer_QRegisterMetaType();
 int QModbusTcpClient_QModbusTcpClient_QRegisterMetaType();
+int QModbusTcpConnectionObserver_QModbusTcpConnectionObserver_QRegisterMetaType();
 int QModbusTcpServer_QModbusTcpServer_QRegisterMetaType();
 extern "C" {
 #endif

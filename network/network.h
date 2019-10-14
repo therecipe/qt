@@ -18,6 +18,7 @@ int QNetworkAccessManager_QNetworkAccessManager_QRegisterMetaType();
 int QNetworkConfigurationManager_QNetworkConfigurationManager_QRegisterMetaType();
 int QNetworkCookieJar_QNetworkCookieJar_QRegisterMetaType();
 int QNetworkDiskCache_QNetworkDiskCache_QRegisterMetaType();
+int QNetworkProxyFactory_QNetworkProxyFactory_QRegisterMetaType();
 int QNetworkReply_QNetworkReply_QRegisterMetaType();
 int QNetworkSession_QNetworkSession_QRegisterMetaType();
 int QSslSocket_QSslSocket_QRegisterMetaType();

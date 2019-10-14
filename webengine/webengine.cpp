@@ -129,6 +129,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQQuickWebEngineProfile_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QQuickWebEngineProfile*)
 Q_DECLARE_METATYPE(MyQQuickWebEngineProfile*)
 
 int QQuickWebEngineProfile_QQuickWebEngineProfile_QRegisterMetaType(){qRegisterMetaType<QQuickWebEngineProfile*>(); return qRegisterMetaType<MyQQuickWebEngineProfile*>();}
@@ -718,6 +719,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQQuickWebEngineScript_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QQuickWebEngineScript*)
 Q_DECLARE_METATYPE(MyQQuickWebEngineScript*)
 
 int QQuickWebEngineScript_QQuickWebEngineScript_QRegisterMetaType(){qRegisterMetaType<QQuickWebEngineScript*>(); return qRegisterMetaType<MyQQuickWebEngineScript*>();}
@@ -1071,6 +1073,7 @@ void* QWebEngineCertificateError_Url(void* ptr)
 	return new QUrl(static_cast<QWebEngineCertificateError*>(ptr)->url());
 }
 
+Q_DECLARE_METATYPE(QWebEngineClientCertificateSelection*)
 void* QWebEngineClientCertificateSelection_NewQWebEngineClientCertificateSelection(void* vqw)
 {
 	return new QWebEngineClientCertificateSelection(*static_cast<QWebEngineClientCertificateSelection*>(vqw));
@@ -1362,6 +1365,7 @@ void QWebEngineCookieStore_TimerEventDefault(void* ptr, void* event)
 		static_cast<QWebEngineCookieStore*>(ptr)->QWebEngineCookieStore::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
+Q_DECLARE_METATYPE(QWebEngineHttpRequest*)
 void* QWebEngineHttpRequest_NewQWebEngineHttpRequest(void* url, long long method)
 {
 	return new QWebEngineHttpRequest(*static_cast<QUrl*>(url), static_cast<QWebEngineHttpRequest::Method>(method));
@@ -1515,6 +1519,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWebEngineNotification_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QWebEngineNotification*)
 Q_DECLARE_METATYPE(MyQWebEngineNotification*)
 
 int QWebEngineNotification_QWebEngineNotification_QRegisterMetaType(){qRegisterMetaType<QWebEngineNotification*>(); return qRegisterMetaType<MyQWebEngineNotification*>();}
@@ -1779,6 +1784,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWebEnginePage_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QWebEnginePage*)
 Q_DECLARE_METATYPE(MyQWebEnginePage*)
 
 int QWebEnginePage_QWebEnginePage_QRegisterMetaType(){qRegisterMetaType<QWebEnginePage*>(); return qRegisterMetaType<MyQWebEnginePage*>();}
@@ -2669,6 +2675,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWebEngineProfile_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QWebEngineProfile*)
 Q_DECLARE_METATYPE(MyQWebEngineProfile*)
 
 int QWebEngineProfile_QWebEngineProfile_QRegisterMetaType(){qRegisterMetaType<QWebEngineProfile*>(); return qRegisterMetaType<MyQWebEngineProfile*>();}
@@ -2854,6 +2861,7 @@ struct QtWebEngine_PackedString QWebEngineRegisterProtocolHandlerRequest_Scheme(
 	return ({ QByteArray t21b2e9 = static_cast<QWebEngineRegisterProtocolHandlerRequest*>(ptr)->scheme().toUtf8(); QtWebEngine_PackedString { const_cast<char*>(t21b2e9.prepend("WHITESPACE").constData()+10), t21b2e9.size()-10 }; });
 }
 
+Q_DECLARE_METATYPE(QWebEngineSettings*)
 void* QWebEngineSettings_NewQWebEngineSettings2(void* parentSettings)
 {
 	return new QWebEngineSettings(static_cast<QWebEngineSettings*>(parentSettings));
@@ -3002,6 +3010,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWebEngineUrlRequestInterceptor_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QWebEngineUrlRequestInterceptor*)
 Q_DECLARE_METATYPE(MyQWebEngineUrlRequestInterceptor*)
 
 int QWebEngineUrlRequestInterceptor_QWebEngineUrlRequestInterceptor_QRegisterMetaType(){qRegisterMetaType<QWebEngineUrlRequestInterceptor*>(); return qRegisterMetaType<MyQWebEngineUrlRequestInterceptor*>();}
@@ -3199,6 +3208,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWebEngineUrlRequestJob_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QWebEngineUrlRequestJob*)
 Q_DECLARE_METATYPE(MyQWebEngineUrlRequestJob*)
 
 int QWebEngineUrlRequestJob_QWebEngineUrlRequestJob_QRegisterMetaType(){qRegisterMetaType<QWebEngineUrlRequestJob*>(); return qRegisterMetaType<MyQWebEngineUrlRequestJob*>();}
@@ -3400,6 +3410,8 @@ void QWebEngineUrlRequestJob_TimerEventDefault(void* ptr, void* event)
 		static_cast<QWebEngineUrlRequestJob*>(ptr)->QWebEngineUrlRequestJob::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
+Q_DECLARE_METATYPE(QWebEngineUrlScheme)
+Q_DECLARE_METATYPE(QWebEngineUrlScheme*)
 void* QWebEngineUrlScheme_NewQWebEngineUrlScheme()
 {
 	return new QWebEngineUrlScheme();
@@ -3489,6 +3501,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWebEngineUrlSchemeHandler_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QWebEngineUrlSchemeHandler*)
 Q_DECLARE_METATYPE(MyQWebEngineUrlSchemeHandler*)
 
 int QWebEngineUrlSchemeHandler_QWebEngineUrlSchemeHandler_QRegisterMetaType(){qRegisterMetaType<QWebEngineUrlSchemeHandler*>(); return qRegisterMetaType<MyQWebEngineUrlSchemeHandler*>();}
@@ -3770,6 +3783,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWebEngineView_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QWebEngineView*)
 Q_DECLARE_METATYPE(MyQWebEngineView*)
 
 int QWebEngineView_QWebEngineView_QRegisterMetaType(){qRegisterMetaType<QWebEngineView*>(); return qRegisterMetaType<MyQWebEngineView*>();}

@@ -11,8 +11,10 @@
 int QAbstractPrintDialog_QAbstractPrintDialog_QRegisterMetaType();
 int QPageSetupDialog_QPageSetupDialog_QRegisterMetaType();
 int QPrintDialog_QPrintDialog_QRegisterMetaType();
+int QPrintEngine_QPrintEngine_QRegisterMetaType();
 int QPrintPreviewDialog_QPrintPreviewDialog_QRegisterMetaType();
 int QPrintPreviewWidget_QPrintPreviewWidget_QRegisterMetaType();
+int QPrinter_QPrinter_QRegisterMetaType();
 extern "C" {
 #endif
 

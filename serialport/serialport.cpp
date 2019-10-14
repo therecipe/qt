@@ -89,6 +89,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSerialPort_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QSerialPort*)
 Q_DECLARE_METATYPE(MyQSerialPort*)
 
 int QSerialPort_QSerialPort_QRegisterMetaType(){qRegisterMetaType<QSerialPort*>(); return qRegisterMetaType<MyQSerialPort*>();}
@@ -745,6 +746,8 @@ void QSerialPort_TimerEventDefault(void* ptr, void* event)
 		static_cast<QSerialPort*>(ptr)->QSerialPort::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
+Q_DECLARE_METATYPE(QSerialPortInfo)
+Q_DECLARE_METATYPE(QSerialPortInfo*)
 void* QSerialPortInfo_NewQSerialPortInfo()
 {
 	return new QSerialPortInfo();

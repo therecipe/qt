@@ -822,6 +822,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQGamepadKeyNavigation_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QGamepadKeyNavigation*)
 Q_DECLARE_METATYPE(MyQGamepadKeyNavigation*)
 
 int QGamepadKeyNavigation_QGamepadKeyNavigation_QRegisterMetaType(){qRegisterMetaType<QGamepadKeyNavigation*>(); return qRegisterMetaType<MyQGamepadKeyNavigation*>();}
@@ -1622,6 +1623,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQGamepadManager_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QGamepadManager*)
 Q_DECLARE_METATYPE(MyQGamepadManager*)
 
 int QGamepadManager_QGamepadManager_QRegisterMetaType(){qRegisterMetaType<QGamepadManager*>(); return qRegisterMetaType<MyQGamepadManager*>();}

@@ -53,7 +53,7 @@
 class MyQScriptClass: public QScriptClass
 {
 public:
-	MyQScriptClass(QScriptEngine *engine) : QScriptClass(engine) {};
+	MyQScriptClass(QScriptEngine *engine) : QScriptClass(engine) {QScriptClass_QScriptClass_QRegisterMetaType();};
 	QVariant extension(QScriptClass::Extension extension, const QVariant & argument) { return *static_cast<QVariant*>(callbackQScriptClass_Extension(this, extension, const_cast<QVariant*>(&argument))); };
 	QString name() const { return ({ QtScript_PackedString tempVal = callbackQScriptClass_Name(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	QScriptClassPropertyIterator * newIterator(const QScriptValue & object) { return static_cast<QScriptClassPropertyIterator*>(callbackQScriptClass_NewIterator(this, const_cast<QScriptValue*>(&object))); };
@@ -65,6 +65,11 @@ public:
 	bool supportsExtension(QScriptClass::Extension extension) const { return callbackQScriptClass_SupportsExtension(const_cast<void*>(static_cast<const void*>(this)), extension) != 0; };
 	 ~MyQScriptClass() { callbackQScriptClass_DestroyQScriptClass(this); };
 };
+
+Q_DECLARE_METATYPE(QScriptClass*)
+Q_DECLARE_METATYPE(MyQScriptClass*)
+
+int QScriptClass_QScriptClass_QRegisterMetaType(){qRegisterMetaType<QScriptClass*>(); return qRegisterMetaType<MyQScriptClass*>();}
 
 void* QScriptClass_NewQScriptClass(void* engine)
 {
@@ -267,6 +272,7 @@ void QScriptContext_DestroyQScriptContext(void* ptr)
 	static_cast<QScriptContext*>(ptr)->~QScriptContext();
 }
 
+Q_DECLARE_METATYPE(QScriptContextInfo*)
 void* QScriptContextInfo_NewQScriptContextInfo(void* context)
 {
 	return new QScriptContextInfo(static_cast<QScriptContext*>(context));
@@ -357,6 +363,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQScriptEngine_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QScriptEngine*)
 Q_DECLARE_METATYPE(MyQScriptEngine*)
 
 int QScriptEngine_QScriptEngine_QRegisterMetaType(){qRegisterMetaType<QScriptEngine*>(); return qRegisterMetaType<MyQScriptEngine*>();}
@@ -805,7 +812,7 @@ void QScriptEngine_TimerEventDefault(void* ptr, void* event)
 class MyQScriptEngineAgent: public QScriptEngineAgent
 {
 public:
-	MyQScriptEngineAgent(QScriptEngine *engine) : QScriptEngineAgent(engine) {};
+	MyQScriptEngineAgent(QScriptEngine *engine) : QScriptEngineAgent(engine) {QScriptEngineAgent_QScriptEngineAgent_QRegisterMetaType();};
 	void contextPop() { callbackQScriptEngineAgent_ContextPop(this); };
 	void contextPush() { callbackQScriptEngineAgent_ContextPush(this); };
 	void exceptionCatch(qint64 scriptId, const QScriptValue & exception) { callbackQScriptEngineAgent_ExceptionCatch(this, scriptId, const_cast<QScriptValue*>(&exception)); };
@@ -819,6 +826,11 @@ public:
 	bool supportsExtension(QScriptEngineAgent::Extension extension) const { return callbackQScriptEngineAgent_SupportsExtension(const_cast<void*>(static_cast<const void*>(this)), extension) != 0; };
 	 ~MyQScriptEngineAgent() { callbackQScriptEngineAgent_DestroyQScriptEngineAgent(this); };
 };
+
+Q_DECLARE_METATYPE(QScriptEngineAgent*)
+Q_DECLARE_METATYPE(MyQScriptEngineAgent*)
+
+int QScriptEngineAgent_QScriptEngineAgent_QRegisterMetaType(){qRegisterMetaType<QScriptEngineAgent*>(); return qRegisterMetaType<MyQScriptEngineAgent*>();}
 
 void* QScriptEngineAgent_NewQScriptEngineAgent(void* engine)
 {
@@ -971,6 +983,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQScriptExtensionPlugin_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QScriptExtensionPlugin*)
 Q_DECLARE_METATYPE(MyQScriptExtensionPlugin*)
 
 int QScriptExtensionPlugin_QScriptExtensionPlugin_QRegisterMetaType(){qRegisterMetaType<QScriptExtensionPlugin*>(); return qRegisterMetaType<MyQScriptExtensionPlugin*>();}
@@ -1200,6 +1213,8 @@ void QScriptExtensionPlugin_TimerEventDefault(void* ptr, void* event)
 		static_cast<QScriptExtensionPlugin*>(ptr)->QScriptExtensionPlugin::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
+Q_DECLARE_METATYPE(QScriptProgram)
+Q_DECLARE_METATYPE(QScriptProgram*)
 void* QScriptProgram_NewQScriptProgram()
 {
 	return new QScriptProgram();
@@ -1240,6 +1255,8 @@ void QScriptProgram_DestroyQScriptProgram(void* ptr)
 	static_cast<QScriptProgram*>(ptr)->~QScriptProgram();
 }
 
+Q_DECLARE_METATYPE(QScriptString)
+Q_DECLARE_METATYPE(QScriptString*)
 void* QScriptString_NewQScriptString()
 {
 	return new QScriptString();
@@ -1270,6 +1287,7 @@ void QScriptString_DestroyQScriptString(void* ptr)
 	static_cast<QScriptString*>(ptr)->~QScriptString();
 }
 
+Q_DECLARE_METATYPE(QScriptSyntaxCheckResult*)
 void* QScriptSyntaxCheckResult_NewQScriptSyntaxCheckResult(void* other)
 {
 	return new QScriptSyntaxCheckResult(*static_cast<QScriptSyntaxCheckResult*>(other));
@@ -1300,6 +1318,8 @@ void QScriptSyntaxCheckResult_DestroyQScriptSyntaxCheckResult(void* ptr)
 	static_cast<QScriptSyntaxCheckResult*>(ptr)->~QScriptSyntaxCheckResult();
 }
 
+Q_DECLARE_METATYPE(QScriptValue)
+Q_DECLARE_METATYPE(QScriptValue*)
 void* QScriptValue_NewQScriptValue()
 {
 	return new QScriptValue();

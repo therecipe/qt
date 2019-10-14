@@ -49,6 +49,8 @@
 #include <QWidget>
 #include <QWindow>
 
+Q_DECLARE_METATYPE(QNdefFilter)
+Q_DECLARE_METATYPE(QNdefFilter*)
 void* QNdefFilter_NewQNdefFilter()
 {
 	return new QNdefFilter();
@@ -89,6 +91,7 @@ void QNdefFilter_DestroyQNdefFilter(void* ptr)
 	static_cast<QNdefFilter*>(ptr)->~QNdefFilter();
 }
 
+Q_DECLARE_METATYPE(QNdefMessage*)
 void* QNdefMessage_NewQNdefMessage()
 {
 	return new QNdefMessage();
@@ -135,6 +138,8 @@ void* QNdefMessage___QNdefMessage_records_newList4(void* ptr)
 	return new QList<QNdefRecord>();
 }
 
+Q_DECLARE_METATYPE(QNdefNfcSmartPosterRecord)
+Q_DECLARE_METATYPE(QNdefNfcSmartPosterRecord*)
 void* QNdefNfcSmartPosterRecord_NewQNdefNfcSmartPosterRecord()
 {
 	return new QNdefNfcSmartPosterRecord();
@@ -379,6 +384,8 @@ void* QNdefNfcSmartPosterRecord___titleRecords_newList(void* ptr)
 	return new QList<QNdefNfcTextRecord>();
 }
 
+Q_DECLARE_METATYPE(QNdefNfcTextRecord)
+Q_DECLARE_METATYPE(QNdefNfcTextRecord*)
 void* QNdefNfcTextRecord_NewQNdefNfcTextRecord()
 {
 	return new QNdefNfcTextRecord();
@@ -419,6 +426,8 @@ struct QtNfc_PackedString QNdefNfcTextRecord_Text(void* ptr)
 	return ({ QByteArray tbe9455 = static_cast<QNdefNfcTextRecord*>(ptr)->text().toUtf8(); QtNfc_PackedString { const_cast<char*>(tbe9455.prepend("WHITESPACE").constData()+10), tbe9455.size()-10 }; });
 }
 
+Q_DECLARE_METATYPE(QNdefNfcUriRecord)
+Q_DECLARE_METATYPE(QNdefNfcUriRecord*)
 void* QNdefNfcUriRecord_NewQNdefNfcUriRecord()
 {
 	return new QNdefNfcUriRecord();
@@ -439,6 +448,8 @@ void* QNdefNfcUriRecord_Uri(void* ptr)
 	return new QUrl(static_cast<QNdefNfcUriRecord*>(ptr)->uri());
 }
 
+Q_DECLARE_METATYPE(QNdefRecord)
+Q_DECLARE_METATYPE(QNdefRecord*)
 void* QNdefRecord_NewQNdefRecord()
 {
 	return new QNdefRecord();
@@ -519,6 +530,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQNearFieldManager_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QNearFieldManager*)
 Q_DECLARE_METATYPE(MyQNearFieldManager*)
 
 int QNearFieldManager_QNearFieldManager_QRegisterMetaType(){qRegisterMetaType<QNearFieldManager*>(); return qRegisterMetaType<MyQNearFieldManager*>();}
@@ -807,6 +819,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQNearFieldShareManager_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QNearFieldShareManager*)
 Q_DECLARE_METATYPE(MyQNearFieldShareManager*)
 
 int QNearFieldShareManager_QNearFieldShareManager_QRegisterMetaType(){qRegisterMetaType<QNearFieldShareManager*>(); return qRegisterMetaType<MyQNearFieldShareManager*>();}
@@ -1079,6 +1092,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQNearFieldShareTarget_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QNearFieldShareTarget*)
 Q_DECLARE_METATYPE(MyQNearFieldShareTarget*)
 
 int QNearFieldShareTarget_QNearFieldShareTarget_QRegisterMetaType(){qRegisterMetaType<QNearFieldShareTarget*>(); return qRegisterMetaType<MyQNearFieldShareTarget*>();}
@@ -1322,6 +1336,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQNearFieldTarget_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QNearFieldTarget*)
 Q_DECLARE_METATYPE(MyQNearFieldTarget*)
 
 int QNearFieldTarget_QNearFieldTarget_QRegisterMetaType(){qRegisterMetaType<QNearFieldTarget*>(); return qRegisterMetaType<MyQNearFieldTarget*>();}
@@ -1668,6 +1683,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQQmlNdefRecord_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QQmlNdefRecord*)
 Q_DECLARE_METATYPE(MyQQmlNdefRecord*)
 
 int QQmlNdefRecord_QQmlNdefRecord_QRegisterMetaType(){qRegisterMetaType<QQmlNdefRecord*>(); return qRegisterMetaType<MyQQmlNdefRecord*>();}

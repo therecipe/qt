@@ -140,6 +140,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QAccelerometer*)
 Q_DECLARE_METATYPE(MyQAccelerometer*)
 
 int QAccelerometer_QAccelerometer_QRegisterMetaType(){qRegisterMetaType<QAccelerometer*>(); return qRegisterMetaType<MyQAccelerometer*>();}
@@ -238,6 +239,11 @@ public:
 	bool filter(QAccelerometerReading * reading) { return callbackQAccelerometerFilter_Filter(this, reading) != 0; };
 };
 
+Q_DECLARE_METATYPE(QAccelerometerFilter*)
+Q_DECLARE_METATYPE(MyQAccelerometerFilter*)
+
+int QAccelerometerFilter_QAccelerometerFilter_QRegisterMetaType(){qRegisterMetaType<QAccelerometerFilter*>(); return qRegisterMetaType<MyQAccelerometerFilter*>();}
+
 char QAccelerometerFilter_Filter(void* ptr, void* reading)
 {
 	return static_cast<QAccelerometerFilter*>(ptr)->filter(static_cast<QAccelerometerReading*>(reading));
@@ -259,6 +265,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensorReading_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QAccelerometerReading*)
 Q_DECLARE_METATYPE(MyQAccelerometerReading*)
 
 int QAccelerometerReading_QAccelerometerReading_QRegisterMetaType(){qRegisterMetaType<QAccelerometerReading*>(); return qRegisterMetaType<MyQAccelerometerReading*>();}
@@ -327,6 +334,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QAltimeter*)
 Q_DECLARE_METATYPE(MyQAltimeter*)
 
 int QAltimeter_QAltimeter_QRegisterMetaType(){qRegisterMetaType<QAltimeter*>(); return qRegisterMetaType<MyQAltimeter*>();}
@@ -400,6 +408,11 @@ public:
 	bool filter(QAltimeterReading * reading) { return callbackQAltimeterFilter_Filter(this, reading) != 0; };
 };
 
+Q_DECLARE_METATYPE(QAltimeterFilter*)
+Q_DECLARE_METATYPE(MyQAltimeterFilter*)
+
+int QAltimeterFilter_QAltimeterFilter_QRegisterMetaType(){qRegisterMetaType<QAltimeterFilter*>(); return qRegisterMetaType<MyQAltimeterFilter*>();}
+
 char QAltimeterFilter_Filter(void* ptr, void* reading)
 {
 	return static_cast<QAltimeterFilter*>(ptr)->filter(static_cast<QAltimeterReading*>(reading));
@@ -421,6 +434,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensorReading_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QAltimeterReading*)
 Q_DECLARE_METATYPE(MyQAltimeterReading*)
 
 int QAltimeterReading_QAltimeterReading_QRegisterMetaType(){qRegisterMetaType<QAltimeterReading*>(); return qRegisterMetaType<MyQAltimeterReading*>();}
@@ -440,6 +454,11 @@ class MyQAmbientLightFilter: public QAmbientLightFilter
 public:
 	bool filter(QAmbientLightReading * reading) { return callbackQAmbientLightFilter_Filter(this, reading) != 0; };
 };
+
+Q_DECLARE_METATYPE(QAmbientLightFilter*)
+Q_DECLARE_METATYPE(MyQAmbientLightFilter*)
+
+int QAmbientLightFilter_QAmbientLightFilter_QRegisterMetaType(){qRegisterMetaType<QAmbientLightFilter*>(); return qRegisterMetaType<MyQAmbientLightFilter*>();}
 
 char QAmbientLightFilter_Filter(void* ptr, void* reading)
 {
@@ -462,6 +481,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensorReading_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QAmbientLightReading*)
 Q_DECLARE_METATYPE(MyQAmbientLightReading*)
 
 int QAmbientLightReading_QAmbientLightReading_QRegisterMetaType(){qRegisterMetaType<QAmbientLightReading*>(); return qRegisterMetaType<MyQAmbientLightReading*>();}
@@ -510,6 +530,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QAmbientLightSensor*)
 Q_DECLARE_METATYPE(MyQAmbientLightSensor*)
 
 int QAmbientLightSensor_QAmbientLightSensor_QRegisterMetaType(){qRegisterMetaType<QAmbientLightSensor*>(); return qRegisterMetaType<MyQAmbientLightSensor*>();}
@@ -583,6 +604,11 @@ public:
 	bool filter(QAmbientTemperatureReading * reading) { return callbackQAmbientTemperatureFilter_Filter(this, reading) != 0; };
 };
 
+Q_DECLARE_METATYPE(QAmbientTemperatureFilter*)
+Q_DECLARE_METATYPE(MyQAmbientTemperatureFilter*)
+
+int QAmbientTemperatureFilter_QAmbientTemperatureFilter_QRegisterMetaType(){qRegisterMetaType<QAmbientTemperatureFilter*>(); return qRegisterMetaType<MyQAmbientTemperatureFilter*>();}
+
 char QAmbientTemperatureFilter_Filter(void* ptr, void* reading)
 {
 	return static_cast<QAmbientTemperatureFilter*>(ptr)->filter(static_cast<QAmbientTemperatureReading*>(reading));
@@ -604,6 +630,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensorReading_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QAmbientTemperatureReading*)
 Q_DECLARE_METATYPE(MyQAmbientTemperatureReading*)
 
 int QAmbientTemperatureReading_QAmbientTemperatureReading_QRegisterMetaType(){qRegisterMetaType<QAmbientTemperatureReading*>(); return qRegisterMetaType<MyQAmbientTemperatureReading*>();}
@@ -652,6 +679,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QAmbientTemperatureSensor*)
 Q_DECLARE_METATYPE(MyQAmbientTemperatureSensor*)
 
 int QAmbientTemperatureSensor_QAmbientTemperatureSensor_QRegisterMetaType(){qRegisterMetaType<QAmbientTemperatureSensor*>(); return qRegisterMetaType<MyQAmbientTemperatureSensor*>();}
@@ -753,6 +781,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QCompass*)
 Q_DECLARE_METATYPE(MyQCompass*)
 
 int QCompass_QCompass_QRegisterMetaType(){qRegisterMetaType<QCompass*>(); return qRegisterMetaType<MyQCompass*>();}
@@ -826,6 +855,11 @@ public:
 	bool filter(QCompassReading * reading) { return callbackQCompassFilter_Filter(this, reading) != 0; };
 };
 
+Q_DECLARE_METATYPE(QCompassFilter*)
+Q_DECLARE_METATYPE(MyQCompassFilter*)
+
+int QCompassFilter_QCompassFilter_QRegisterMetaType(){qRegisterMetaType<QCompassFilter*>(); return qRegisterMetaType<MyQCompassFilter*>();}
+
 char QCompassFilter_Filter(void* ptr, void* reading)
 {
 	return static_cast<QCompassFilter*>(ptr)->filter(static_cast<QCompassReading*>(reading));
@@ -847,6 +881,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensorReading_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QCompassReading*)
 Q_DECLARE_METATYPE(MyQCompassReading*)
 
 int QCompassReading_QCompassReading_QRegisterMetaType(){qRegisterMetaType<QCompassReading*>(); return qRegisterMetaType<MyQCompassReading*>();}
@@ -877,6 +912,11 @@ public:
 	bool filter(QDistanceReading * reading) { return callbackQDistanceFilter_Filter(this, reading) != 0; };
 };
 
+Q_DECLARE_METATYPE(QDistanceFilter*)
+Q_DECLARE_METATYPE(MyQDistanceFilter*)
+
+int QDistanceFilter_QDistanceFilter_QRegisterMetaType(){qRegisterMetaType<QDistanceFilter*>(); return qRegisterMetaType<MyQDistanceFilter*>();}
+
 char QDistanceFilter_Filter(void* ptr, void* reading)
 {
 	return static_cast<QDistanceFilter*>(ptr)->filter(static_cast<QDistanceReading*>(reading));
@@ -898,6 +938,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensorReading_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QDistanceReading*)
 Q_DECLARE_METATYPE(MyQDistanceReading*)
 
 int QDistanceReading_QDistanceReading_QRegisterMetaType(){qRegisterMetaType<QDistanceReading*>(); return qRegisterMetaType<MyQDistanceReading*>();}
@@ -946,6 +987,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QDistanceSensor*)
 Q_DECLARE_METATYPE(MyQDistanceSensor*)
 
 int QDistanceSensor_QDistanceSensor_QRegisterMetaType(){qRegisterMetaType<QDistanceSensor*>(); return qRegisterMetaType<MyQDistanceSensor*>();}
@@ -1047,6 +1089,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QGyroscope*)
 Q_DECLARE_METATYPE(MyQGyroscope*)
 
 int QGyroscope_QGyroscope_QRegisterMetaType(){qRegisterMetaType<QGyroscope*>(); return qRegisterMetaType<MyQGyroscope*>();}
@@ -1120,6 +1163,11 @@ public:
 	bool filter(QGyroscopeReading * reading) { return callbackQGyroscopeFilter_Filter(this, reading) != 0; };
 };
 
+Q_DECLARE_METATYPE(QGyroscopeFilter*)
+Q_DECLARE_METATYPE(MyQGyroscopeFilter*)
+
+int QGyroscopeFilter_QGyroscopeFilter_QRegisterMetaType(){qRegisterMetaType<QGyroscopeFilter*>(); return qRegisterMetaType<MyQGyroscopeFilter*>();}
+
 char QGyroscopeFilter_Filter(void* ptr, void* reading)
 {
 	return static_cast<QGyroscopeFilter*>(ptr)->filter(static_cast<QGyroscopeReading*>(reading));
@@ -1141,6 +1189,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensorReading_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QGyroscopeReading*)
 Q_DECLARE_METATYPE(MyQGyroscopeReading*)
 
 int QGyroscopeReading_QGyroscopeReading_QRegisterMetaType(){qRegisterMetaType<QGyroscopeReading*>(); return qRegisterMetaType<MyQGyroscopeReading*>();}
@@ -1181,6 +1230,11 @@ public:
 	bool filter(QHolsterReading * reading) { return callbackQHolsterFilter_Filter(this, reading) != 0; };
 };
 
+Q_DECLARE_METATYPE(QHolsterFilter*)
+Q_DECLARE_METATYPE(MyQHolsterFilter*)
+
+int QHolsterFilter_QHolsterFilter_QRegisterMetaType(){qRegisterMetaType<QHolsterFilter*>(); return qRegisterMetaType<MyQHolsterFilter*>();}
+
 char QHolsterFilter_Filter(void* ptr, void* reading)
 {
 	return static_cast<QHolsterFilter*>(ptr)->filter(static_cast<QHolsterReading*>(reading));
@@ -1202,6 +1256,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensorReading_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QHolsterReading*)
 Q_DECLARE_METATYPE(MyQHolsterReading*)
 
 int QHolsterReading_QHolsterReading_QRegisterMetaType(){qRegisterMetaType<QHolsterReading*>(); return qRegisterMetaType<MyQHolsterReading*>();}
@@ -1250,6 +1305,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QHolsterSensor*)
 Q_DECLARE_METATYPE(MyQHolsterSensor*)
 
 int QHolsterSensor_QHolsterSensor_QRegisterMetaType(){qRegisterMetaType<QHolsterSensor*>(); return qRegisterMetaType<MyQHolsterSensor*>();}
@@ -1323,6 +1379,11 @@ public:
 	bool filter(QHumidityReading * reading) { return callbackQHumidityFilter_Filter(this, reading) != 0; };
 };
 
+Q_DECLARE_METATYPE(QHumidityFilter*)
+Q_DECLARE_METATYPE(MyQHumidityFilter*)
+
+int QHumidityFilter_QHumidityFilter_QRegisterMetaType(){qRegisterMetaType<QHumidityFilter*>(); return qRegisterMetaType<MyQHumidityFilter*>();}
+
 char QHumidityFilter_Filter(void* ptr, void* reading)
 {
 	return static_cast<QHumidityFilter*>(ptr)->filter(static_cast<QHumidityReading*>(reading));
@@ -1344,6 +1405,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensorReading_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QHumidityReading*)
 Q_DECLARE_METATYPE(MyQHumidityReading*)
 
 int QHumidityReading_QHumidityReading_QRegisterMetaType(){qRegisterMetaType<QHumidityReading*>(); return qRegisterMetaType<MyQHumidityReading*>();}
@@ -1402,6 +1464,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QHumiditySensor*)
 Q_DECLARE_METATYPE(MyQHumiditySensor*)
 
 int QHumiditySensor_QHumiditySensor_QRegisterMetaType(){qRegisterMetaType<QHumiditySensor*>(); return qRegisterMetaType<MyQHumiditySensor*>();}
@@ -1475,6 +1538,11 @@ public:
 	bool filter(QIRProximityReading * reading) { return callbackQIRProximityFilter_Filter(this, reading) != 0; };
 };
 
+Q_DECLARE_METATYPE(QIRProximityFilter*)
+Q_DECLARE_METATYPE(MyQIRProximityFilter*)
+
+int QIRProximityFilter_QIRProximityFilter_QRegisterMetaType(){qRegisterMetaType<QIRProximityFilter*>(); return qRegisterMetaType<MyQIRProximityFilter*>();}
+
 char QIRProximityFilter_Filter(void* ptr, void* reading)
 {
 	return static_cast<QIRProximityFilter*>(ptr)->filter(static_cast<QIRProximityReading*>(reading));
@@ -1496,6 +1564,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensorReading_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QIRProximityReading*)
 Q_DECLARE_METATYPE(MyQIRProximityReading*)
 
 int QIRProximityReading_QIRProximityReading_QRegisterMetaType(){qRegisterMetaType<QIRProximityReading*>(); return qRegisterMetaType<MyQIRProximityReading*>();}
@@ -1544,6 +1613,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QIRProximitySensor*)
 Q_DECLARE_METATYPE(MyQIRProximitySensor*)
 
 int QIRProximitySensor_QIRProximitySensor_QRegisterMetaType(){qRegisterMetaType<QIRProximitySensor*>(); return qRegisterMetaType<MyQIRProximitySensor*>();}
@@ -1617,6 +1687,11 @@ public:
 	bool filter(QLidReading * reading) { return callbackQLidFilter_Filter(this, reading) != 0; };
 };
 
+Q_DECLARE_METATYPE(QLidFilter*)
+Q_DECLARE_METATYPE(MyQLidFilter*)
+
+int QLidFilter_QLidFilter_QRegisterMetaType(){qRegisterMetaType<QLidFilter*>(); return qRegisterMetaType<MyQLidFilter*>();}
+
 char QLidFilter_Filter(void* ptr, void* reading)
 {
 	return static_cast<QLidFilter*>(ptr)->filter(static_cast<QLidReading*>(reading));
@@ -1638,6 +1713,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensorReading_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QLidReading*)
 Q_DECLARE_METATYPE(MyQLidReading*)
 
 int QLidReading_QLidReading_QRegisterMetaType(){qRegisterMetaType<QLidReading*>(); return qRegisterMetaType<MyQLidReading*>();}
@@ -1696,6 +1772,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QLidSensor*)
 Q_DECLARE_METATYPE(MyQLidSensor*)
 
 int QLidSensor_QLidSensor_QRegisterMetaType(){qRegisterMetaType<QLidSensor*>(); return qRegisterMetaType<MyQLidSensor*>();}
@@ -1769,6 +1846,11 @@ public:
 	bool filter(QLightReading * reading) { return callbackQLightFilter_Filter(this, reading) != 0; };
 };
 
+Q_DECLARE_METATYPE(QLightFilter*)
+Q_DECLARE_METATYPE(MyQLightFilter*)
+
+int QLightFilter_QLightFilter_QRegisterMetaType(){qRegisterMetaType<QLightFilter*>(); return qRegisterMetaType<MyQLightFilter*>();}
+
 char QLightFilter_Filter(void* ptr, void* reading)
 {
 	return static_cast<QLightFilter*>(ptr)->filter(static_cast<QLightReading*>(reading));
@@ -1790,6 +1872,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensorReading_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QLightReading*)
 Q_DECLARE_METATYPE(MyQLightReading*)
 
 int QLightReading_QLightReading_QRegisterMetaType(){qRegisterMetaType<QLightReading*>(); return qRegisterMetaType<MyQLightReading*>();}
@@ -1839,6 +1922,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QLightSensor*)
 Q_DECLARE_METATYPE(MyQLightSensor*)
 
 int QLightSensor_QLightSensor_QRegisterMetaType(){qRegisterMetaType<QLightSensor*>(); return qRegisterMetaType<MyQLightSensor*>();}
@@ -1966,6 +2050,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QMagnetometer*)
 Q_DECLARE_METATYPE(MyQMagnetometer*)
 
 int QMagnetometer_QMagnetometer_QRegisterMetaType(){qRegisterMetaType<QMagnetometer*>(); return qRegisterMetaType<MyQMagnetometer*>();}
@@ -2064,6 +2149,11 @@ public:
 	bool filter(QMagnetometerReading * reading) { return callbackQMagnetometerFilter_Filter(this, reading) != 0; };
 };
 
+Q_DECLARE_METATYPE(QMagnetometerFilter*)
+Q_DECLARE_METATYPE(MyQMagnetometerFilter*)
+
+int QMagnetometerFilter_QMagnetometerFilter_QRegisterMetaType(){qRegisterMetaType<QMagnetometerFilter*>(); return qRegisterMetaType<MyQMagnetometerFilter*>();}
+
 char QMagnetometerFilter_Filter(void* ptr, void* reading)
 {
 	return static_cast<QMagnetometerFilter*>(ptr)->filter(static_cast<QMagnetometerReading*>(reading));
@@ -2085,6 +2175,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensorReading_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QMagnetometerReading*)
 Q_DECLARE_METATYPE(MyQMagnetometerReading*)
 
 int QMagnetometerReading_QMagnetometerReading_QRegisterMetaType(){qRegisterMetaType<QMagnetometerReading*>(); return qRegisterMetaType<MyQMagnetometerReading*>();}
@@ -2135,6 +2226,11 @@ public:
 	bool filter(QOrientationReading * reading) { return callbackQOrientationFilter_Filter(this, reading) != 0; };
 };
 
+Q_DECLARE_METATYPE(QOrientationFilter*)
+Q_DECLARE_METATYPE(MyQOrientationFilter*)
+
+int QOrientationFilter_QOrientationFilter_QRegisterMetaType(){qRegisterMetaType<QOrientationFilter*>(); return qRegisterMetaType<MyQOrientationFilter*>();}
+
 char QOrientationFilter_Filter(void* ptr, void* reading)
 {
 	return static_cast<QOrientationFilter*>(ptr)->filter(static_cast<QOrientationReading*>(reading));
@@ -2156,6 +2252,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensorReading_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QOrientationReading*)
 Q_DECLARE_METATYPE(MyQOrientationReading*)
 
 int QOrientationReading_QOrientationReading_QRegisterMetaType(){qRegisterMetaType<QOrientationReading*>(); return qRegisterMetaType<MyQOrientationReading*>();}
@@ -2204,6 +2301,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QOrientationSensor*)
 Q_DECLARE_METATYPE(MyQOrientationSensor*)
 
 int QOrientationSensor_QOrientationSensor_QRegisterMetaType(){qRegisterMetaType<QOrientationSensor*>(); return qRegisterMetaType<MyQOrientationSensor*>();}
@@ -2277,6 +2375,11 @@ public:
 	bool filter(QPressureReading * reading) { return callbackQPressureFilter_Filter(this, reading) != 0; };
 };
 
+Q_DECLARE_METATYPE(QPressureFilter*)
+Q_DECLARE_METATYPE(MyQPressureFilter*)
+
+int QPressureFilter_QPressureFilter_QRegisterMetaType(){qRegisterMetaType<QPressureFilter*>(); return qRegisterMetaType<MyQPressureFilter*>();}
+
 char QPressureFilter_Filter(void* ptr, void* reading)
 {
 	return static_cast<QPressureFilter*>(ptr)->filter(static_cast<QPressureReading*>(reading));
@@ -2298,6 +2401,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensorReading_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QPressureReading*)
 Q_DECLARE_METATYPE(MyQPressureReading*)
 
 int QPressureReading_QPressureReading_QRegisterMetaType(){qRegisterMetaType<QPressureReading*>(); return qRegisterMetaType<MyQPressureReading*>();}
@@ -2356,6 +2460,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QPressureSensor*)
 Q_DECLARE_METATYPE(MyQPressureSensor*)
 
 int QPressureSensor_QPressureSensor_QRegisterMetaType(){qRegisterMetaType<QPressureSensor*>(); return qRegisterMetaType<MyQPressureSensor*>();}
@@ -2429,6 +2534,11 @@ public:
 	bool filter(QProximityReading * reading) { return callbackQProximityFilter_Filter(this, reading) != 0; };
 };
 
+Q_DECLARE_METATYPE(QProximityFilter*)
+Q_DECLARE_METATYPE(MyQProximityFilter*)
+
+int QProximityFilter_QProximityFilter_QRegisterMetaType(){qRegisterMetaType<QProximityFilter*>(); return qRegisterMetaType<MyQProximityFilter*>();}
+
 char QProximityFilter_Filter(void* ptr, void* reading)
 {
 	return static_cast<QProximityFilter*>(ptr)->filter(static_cast<QProximityReading*>(reading));
@@ -2450,6 +2560,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensorReading_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QProximityReading*)
 Q_DECLARE_METATYPE(MyQProximityReading*)
 
 int QProximityReading_QProximityReading_QRegisterMetaType(){qRegisterMetaType<QProximityReading*>(); return qRegisterMetaType<MyQProximityReading*>();}
@@ -2498,6 +2609,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QProximitySensor*)
 Q_DECLARE_METATYPE(MyQProximitySensor*)
 
 int QProximitySensor_QProximitySensor_QRegisterMetaType(){qRegisterMetaType<QProximitySensor*>(); return qRegisterMetaType<MyQProximitySensor*>();}
@@ -2571,6 +2683,11 @@ public:
 	bool filter(QRotationReading * reading) { return callbackQRotationFilter_Filter(this, reading) != 0; };
 };
 
+Q_DECLARE_METATYPE(QRotationFilter*)
+Q_DECLARE_METATYPE(MyQRotationFilter*)
+
+int QRotationFilter_QRotationFilter_QRegisterMetaType(){qRegisterMetaType<QRotationFilter*>(); return qRegisterMetaType<MyQRotationFilter*>();}
+
 char QRotationFilter_Filter(void* ptr, void* reading)
 {
 	return static_cast<QRotationFilter*>(ptr)->filter(static_cast<QRotationReading*>(reading));
@@ -2592,6 +2709,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensorReading_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QRotationReading*)
 Q_DECLARE_METATYPE(MyQRotationReading*)
 
 int QRotationReading_QRotationReading_QRegisterMetaType(){qRegisterMetaType<QRotationReading*>(); return qRegisterMetaType<MyQRotationReading*>();}
@@ -2651,6 +2769,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QRotationSensor*)
 Q_DECLARE_METATYPE(MyQRotationSensor*)
 
 int QRotationSensor_QRotationSensor_QRegisterMetaType(){qRegisterMetaType<QRotationSensor*>(); return qRegisterMetaType<MyQRotationSensor*>();}
@@ -2777,6 +2896,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QSensor*)
 Q_DECLARE_METATYPE(MyQSensor*)
 
 int QSensor_QSensor_QRegisterMetaType(){qRegisterMetaType<QSensor*>(); return qRegisterMetaType<MyQSensor*>();}
@@ -3893,6 +4013,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensorBackend_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QSensorBackend*)
 Q_DECLARE_METATYPE(MyQSensorBackend*)
 
 int QSensorBackend_QSensorBackend_QRegisterMetaType(){qRegisterMetaType<QSensorBackend*>(); return qRegisterMetaType<MyQSensorBackend*>();}
@@ -4098,6 +4219,11 @@ public:
 	QSensorBackend * createBackend(QSensor * sensor) { return static_cast<QSensorBackend*>(callbackQSensorBackendFactory_CreateBackend(this, sensor)); };
 };
 
+Q_DECLARE_METATYPE(QSensorBackendFactory*)
+Q_DECLARE_METATYPE(MyQSensorBackendFactory*)
+
+int QSensorBackendFactory_QSensorBackendFactory_QRegisterMetaType(){qRegisterMetaType<QSensorBackendFactory*>(); return qRegisterMetaType<MyQSensorBackendFactory*>();}
+
 void* QSensorBackendFactory_CreateBackend(void* ptr, void* sensor)
 {
 	return static_cast<QSensorBackendFactory*>(ptr)->createBackend(static_cast<QSensor*>(sensor));
@@ -4108,6 +4234,11 @@ class MyQSensorChangesInterface: public QSensorChangesInterface
 public:
 	void sensorsChanged() { callbackQSensorChangesInterface_SensorsChanged(this); };
 };
+
+Q_DECLARE_METATYPE(QSensorChangesInterface*)
+Q_DECLARE_METATYPE(MyQSensorChangesInterface*)
+
+int QSensorChangesInterface_QSensorChangesInterface_QRegisterMetaType(){qRegisterMetaType<QSensorChangesInterface*>(); return qRegisterMetaType<MyQSensorChangesInterface*>();}
 
 void QSensorChangesInterface_SensorsChanged(void* ptr)
 {
@@ -4120,6 +4251,11 @@ public:
 	bool filter(QSensorReading * reading) { return callbackQSensorFilter_Filter(this, reading) != 0; };
 	 ~MyQSensorFilter() { callbackQSensorFilter_DestroyQSensorFilter(this); };
 };
+
+Q_DECLARE_METATYPE(QSensorFilter*)
+Q_DECLARE_METATYPE(MyQSensorFilter*)
+
+int QSensorFilter_QSensorFilter_QRegisterMetaType(){qRegisterMetaType<QSensorFilter*>(); return qRegisterMetaType<MyQSensorFilter*>();}
 
 char QSensorFilter_Filter(void* ptr, void* reading)
 {
@@ -4158,6 +4294,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensorGesture_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QSensorGesture*)
 Q_DECLARE_METATYPE(MyQSensorGesture*)
 
 int QSensorGesture_QSensorGesture_QRegisterMetaType(){qRegisterMetaType<QSensorGesture*>(); return qRegisterMetaType<MyQSensorGesture*>();}
@@ -4415,6 +4552,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensorGestureManager_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QSensorGestureManager*)
 Q_DECLARE_METATYPE(MyQSensorGestureManager*)
 
 int QSensorGestureManager_QSensorGestureManager_QRegisterMetaType(){qRegisterMetaType<QSensorGestureManager*>(); return qRegisterMetaType<MyQSensorGestureManager*>();}
@@ -4640,12 +4778,17 @@ void QSensorGestureManager_TimerEventDefault(void* ptr, void* event)
 class MyQSensorGesturePluginInterface: public QSensorGesturePluginInterface
 {
 public:
-	MyQSensorGesturePluginInterface() : QSensorGesturePluginInterface() {};
+	MyQSensorGesturePluginInterface() : QSensorGesturePluginInterface() {QSensorGesturePluginInterface_QSensorGesturePluginInterface_QRegisterMetaType();};
 	QList<QSensorGestureRecognizer *> createRecognizers() { return ({ QList<QSensorGestureRecognizer *>* tmpP = static_cast<QList<QSensorGestureRecognizer *>*>(callbackQSensorGesturePluginInterface_CreateRecognizers(this)); QList<QSensorGestureRecognizer *> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
 	QString name() const { return ({ QtSensors_PackedString tempVal = callbackQSensorGesturePluginInterface_Name(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	QStringList supportedIds() const { return ({ QtSensors_PackedString tempVal = callbackQSensorGesturePluginInterface_SupportedIds(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	 ~MyQSensorGesturePluginInterface() { callbackQSensorGesturePluginInterface_DestroyQSensorGesturePluginInterface(this); };
 };
+
+Q_DECLARE_METATYPE(QSensorGesturePluginInterface*)
+Q_DECLARE_METATYPE(MyQSensorGesturePluginInterface*)
+
+int QSensorGesturePluginInterface_QSensorGesturePluginInterface_QRegisterMetaType(){qRegisterMetaType<QSensorGesturePluginInterface*>(); return qRegisterMetaType<MyQSensorGesturePluginInterface*>();}
 
 void* QSensorGesturePluginInterface_NewQSensorGesturePluginInterface()
 {
@@ -4718,6 +4861,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensorGestureRecognizer_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QSensorGestureRecognizer*)
 Q_DECLARE_METATYPE(MyQSensorGestureRecognizer*)
 
 int QSensorGestureRecognizer_QSensorGestureRecognizer_QRegisterMetaType(){qRegisterMetaType<QSensorGestureRecognizer*>(); return qRegisterMetaType<MyQSensorGestureRecognizer*>();}
@@ -4996,6 +5140,11 @@ public:
 	void registerSensors() { callbackQSensorPluginInterface_RegisterSensors(this); };
 };
 
+Q_DECLARE_METATYPE(QSensorPluginInterface*)
+Q_DECLARE_METATYPE(MyQSensorPluginInterface*)
+
+int QSensorPluginInterface_QSensorPluginInterface_QRegisterMetaType(){qRegisterMetaType<QSensorPluginInterface*>(); return qRegisterMetaType<MyQSensorPluginInterface*>();}
+
 void QSensorPluginInterface_RegisterSensors(void* ptr)
 {
 	static_cast<QSensorPluginInterface*>(ptr)->registerSensors();
@@ -5017,6 +5166,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensorReading_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QSensorReading*)
 Q_DECLARE_METATYPE(MyQSensorReading*)
 
 int QSensorReading_QSensorReading_QRegisterMetaType(){qRegisterMetaType<QSensorReading*>(); return qRegisterMetaType<MyQSensorReading*>();}
@@ -5532,6 +5682,11 @@ public:
 	bool filter(QTapReading * reading) { return callbackQTapFilter_Filter(this, reading) != 0; };
 };
 
+Q_DECLARE_METATYPE(QTapFilter*)
+Q_DECLARE_METATYPE(MyQTapFilter*)
+
+int QTapFilter_QTapFilter_QRegisterMetaType(){qRegisterMetaType<QTapFilter*>(); return qRegisterMetaType<MyQTapFilter*>();}
+
 char QTapFilter_Filter(void* ptr, void* reading)
 {
 	return static_cast<QTapFilter*>(ptr)->filter(static_cast<QTapReading*>(reading));
@@ -5553,6 +5708,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensorReading_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QTapReading*)
 Q_DECLARE_METATYPE(MyQTapReading*)
 
 int QTapReading_QTapReading_QRegisterMetaType(){qRegisterMetaType<QTapReading*>(); return qRegisterMetaType<MyQTapReading*>();}
@@ -5612,6 +5768,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QTapSensor*)
 Q_DECLARE_METATYPE(MyQTapSensor*)
 
 int QTapSensor_QTapSensor_QRegisterMetaType(){qRegisterMetaType<QTapSensor*>(); return qRegisterMetaType<MyQTapSensor*>();}
@@ -5710,6 +5867,11 @@ public:
 	bool filter(QTiltReading * reading) { return callbackQTiltFilter_Filter(this, reading) != 0; };
 };
 
+Q_DECLARE_METATYPE(QTiltFilter*)
+Q_DECLARE_METATYPE(MyQTiltFilter*)
+
+int QTiltFilter_QTiltFilter_QRegisterMetaType(){qRegisterMetaType<QTiltFilter*>(); return qRegisterMetaType<MyQTiltFilter*>();}
+
 char QTiltFilter_Filter(void* ptr, void* reading)
 {
 	return static_cast<QTiltFilter*>(ptr)->filter(static_cast<QTiltReading*>(reading));
@@ -5731,6 +5893,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensorReading_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QTiltReading*)
 Q_DECLARE_METATYPE(MyQTiltReading*)
 
 int QTiltReading_QTiltReading_QRegisterMetaType(){qRegisterMetaType<QTiltReading*>(); return qRegisterMetaType<MyQTiltReading*>();}
@@ -5789,6 +5952,7 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QTiltSensor*)
 Q_DECLARE_METATYPE(MyQTiltSensor*)
 
 int QTiltSensor_QTiltSensor_QRegisterMetaType(){qRegisterMetaType<QTiltSensor*>(); return qRegisterMetaType<MyQTiltSensor*>();}

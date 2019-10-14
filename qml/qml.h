@@ -9,6 +9,7 @@
 
 #ifdef __cplusplus
 int QJSEngine_QJSEngine_QRegisterMetaType();
+int QQmlAbstractUrlInterceptor_QQmlAbstractUrlInterceptor_QRegisterMetaType();
 int QQmlApplicationEngine_QQmlApplicationEngine_QRegisterMetaType();
 int QQmlComponent_QQmlComponent_QRegisterMetaType();
 int QQmlContext_QQmlContext_QRegisterMetaType();
@@ -16,7 +17,13 @@ int QQmlEngine_QQmlEngine_QRegisterMetaType();
 int QQmlExpression_QQmlExpression_QRegisterMetaType();
 int QQmlExtensionPlugin_QQmlExtensionPlugin_QRegisterMetaType();
 int QQmlFileSelector_QQmlFileSelector_QRegisterMetaType();
+int QQmlImageProviderBase_QQmlImageProviderBase_QRegisterMetaType();
+int QQmlIncubationController_QQmlIncubationController_QRegisterMetaType();
+int QQmlIncubator_QQmlIncubator_QRegisterMetaType();
+int QQmlNetworkAccessManagerFactory_QQmlNetworkAccessManagerFactory_QRegisterMetaType();
+int QQmlParserStatus_QQmlParserStatus_QRegisterMetaType();
 int QQmlPropertyMap_QQmlPropertyMap_QRegisterMetaType();
+int QQmlPropertyValueSource_QQmlPropertyValueSource_QRegisterMetaType();
 extern "C" {
 #endif
 
