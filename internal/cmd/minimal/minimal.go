@@ -42,6 +42,7 @@ func Minimal(path, target, tags string) {
 	if !(target == "js" || target == "wasm" || utils.QT_NOT_CACHED()) { //TODO: remove for module support + resolve dependencies
 		env, tagsEnv, _, _ := cmd.BuildEnv(target, "", "")
 		scmd := utils.GoList("{{.Stale}}|{{.StaleReason}}")
+		scmd.Dir = path
 
 		tagsEnv = append(tagsEnv, "minimal")
 
@@ -49,7 +50,6 @@ func Minimal(path, target, tags string) {
 			tagsEnv = append(tagsEnv, strings.Split(tags, " ")...)
 		}
 		scmd.Args = append(scmd.Args, utils.BuildTags(tagsEnv))
-		scmd.Args = append(scmd.Args, path)
 
 		if target != runtime.GOOS {
 			scmd.Args = append(scmd.Args, []string{"-pkgdir", filepath.Join(utils.MustGoPath(), "pkg", fmt.Sprintf("%v_%v_%v", strings.Replace(target, "-", "_", -1), env["GOOS"], env["GOARCH"]))}...)

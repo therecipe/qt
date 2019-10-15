@@ -654,7 +654,8 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 		if tagsCustom != "" {
 			tags = append(tags, strings.Split(tagsCustom, " ")...)
 		}
-		cmdF := utils.GoList("{{if not .Standard}}|{{join .CgoCPPFLAGS \"|\"}}|{{join .CgoCFLAGS \"|\"}}|{{join .CgoCXXFLAGS \"|\"}}|{{join .CgoLDFLAGS \"|\"}}|{{end}}", "-deps", utils.BuildTags(tags), path)
+		cmdF := utils.GoList("{{if not .Standard}}|{{join .CgoCPPFLAGS \"|\"}}|{{join .CgoCFLAGS \"|\"}}|{{join .CgoCXXFLAGS \"|\"}}|{{join .CgoLDFLAGS \"|\"}}|{{end}}", "-deps", utils.BuildTags(tags))
+		cmdF.Dir = path
 		for k, v := range env {
 			cmdF.Env = append(cmdF.Env, fmt.Sprintf("%v=%v", k, v))
 		}
@@ -850,7 +851,8 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 			if tagsCustom != "" {
 				tags = append(tags, strings.Split(tagsCustom, " ")...)
 			}
-			lcmd := utils.GoList("{{join .Deps \"|\"}}", utils.BuildTags(tags), path)
+			lcmd := utils.GoList("{{join .Deps \"|\"}}", utils.BuildTags(tags))
+			lcmd.Dir = path
 			for k, v := range env {
 				lcmd.Env = append(lcmd.Env, fmt.Sprintf("%v=%v", k, v))
 			}

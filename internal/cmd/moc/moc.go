@@ -94,6 +94,9 @@ func moc(path, target, tags string, fast, slow, root bool, l int, dirty bool) {
 		for _, f := range []bool{false, true} {
 			env, tagsEnv, _, _ := cmd.BuildEnv(target, "", "")
 			scmd := utils.GoList("{{.Stale}}|{{.StaleReason}}")
+			if !utils.UseGOMOD(path) || (utils.UseGOMOD(path) && !strings.Contains(strings.Replace(path, "\\", "/", -1), "/vendor/")) {
+				scmd.Dir = path
+			}
 
 			if ((!fast && !utils.QT_FAT()) || f) && !((!fast && !utils.QT_FAT()) && f) {
 				tagsEnv = append(tagsEnv, "minimal")
@@ -102,7 +105,11 @@ func moc(path, target, tags string, fast, slow, root bool, l int, dirty bool) {
 				tagsEnv = append(tagsEnv, strings.Split(tags, " ")...)
 			}
 			scmd.Args = append(scmd.Args, utils.BuildTags(tagsEnv))
-			scmd.Args = append(scmd.Args, path)
+			if utils.UseGOMOD(path) && strings.Contains(strings.Replace(path, "\\", "/", -1), "/vendor/") {
+				scmd.Dir = filepath.Dir(utils.GOMOD(path))
+				vl := strings.Split(strings.Replace(path, "\\", "/", -1), "/vendor/")
+				scmd.Args = append(scmd.Args, vl[len(vl)-1])
+			}
 
 			if target != runtime.GOOS {
 				scmd.Args = append(scmd.Args, []string{"-pkgdir", filepath.Join(utils.MustGoPath(), "pkg", fmt.Sprintf("%v_%v_%v", strings.Replace(target, "-", "_", -1), env["GOOS"], env["GOARCH"]))}...)
@@ -362,6 +369,9 @@ func moc(path, target, tags string, fast, slow, root bool, l int, dirty bool) {
 	if !(target == "js" || target == "wasm" || utils.QT_NOT_CACHED()) { //TODO: remove for module support + resolve dependencies
 		env, tagsEnv, _, _ := cmd.BuildEnv(target, "", "")
 		scmd := utils.GoList("{{.Stale}}|{{.StaleReason}}")
+		if !utils.UseGOMOD(path) || (utils.UseGOMOD(path) && !strings.Contains(strings.Replace(path, "\\", "/", -1), "/vendor/")) {
+			scmd.Dir = path
+		}
 
 		if !fast && !utils.QT_FAT() {
 			tagsEnv = append(tagsEnv, "minimal")
@@ -370,7 +380,11 @@ func moc(path, target, tags string, fast, slow, root bool, l int, dirty bool) {
 			tagsEnv = append(tagsEnv, strings.Split(tags, " ")...)
 		}
 		scmd.Args = append(scmd.Args, utils.BuildTags(tagsEnv))
-		scmd.Args = append(scmd.Args, path)
+		if utils.UseGOMOD(path) && strings.Contains(strings.Replace(path, "\\", "/", -1), "/vendor/") {
+			scmd.Dir = filepath.Dir(utils.GOMOD(path))
+			vl := strings.Split(strings.Replace(path, "\\", "/", -1), "/vendor/")
+			scmd.Args = append(scmd.Args, vl[len(vl)-1])
+		}
 
 		if target != runtime.GOOS {
 			scmd.Args = append(scmd.Args, []string{"-pkgdir", filepath.Join(utils.MustGoPath(), "pkg", fmt.Sprintf("%v_%v_%v", strings.Replace(target, "-", "_", -1), env["GOOS"], env["GOARCH"]))}...)

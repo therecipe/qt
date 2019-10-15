@@ -754,7 +754,15 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 		tags = append(tags, strings.Split(tagsCustom, " ")...)
 	}
 
-	pkgCmd := utils.GoList("{{.Name}}", "-find", utils.BuildTags(tags), path)
+	pkgCmd := utils.GoList("{{.Name}}", "-find", utils.BuildTags(tags))
+	if !utils.UseGOMOD(path) || (utils.UseGOMOD(path) && !strings.Contains(strings.Replace(path, "\\", "/", -1), "/vendor/")) {
+		pkgCmd.Dir = path
+	} else if utils.UseGOMOD(path) && strings.Contains(strings.Replace(path, "\\", "/", -1), "/vendor/") {
+		pkgCmd.Dir = filepath.Dir(utils.GOMOD(path))
+		vl := strings.Split(strings.Replace(path, "\\", "/", -1), "/vendor/")
+		pkgCmd.Args = append(pkgCmd.Args, vl[len(vl)-1])
+	}
+
 	for k, v := range env {
 		pkgCmd.Env = append(pkgCmd.Env, fmt.Sprintf("%v=%v", k, v))
 	}
@@ -804,7 +812,15 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 		}
 	}
 
-	nameCmd := utils.GoList("{{.ImportPath}}", "-find", utils.BuildTags(tags), path)
+	nameCmd := utils.GoList("{{.ImportPath}}", "-find", utils.BuildTags(tags))
+	if !utils.UseGOMOD(path) || (utils.UseGOMOD(path) && !strings.Contains(strings.Replace(path, "\\", "/", -1), "/vendor/")) {
+		nameCmd.Dir = path
+	} else if utils.UseGOMOD(path) && strings.Contains(strings.Replace(path, "\\", "/", -1), "/vendor/") {
+		nameCmd.Dir = filepath.Dir(utils.GOMOD(path))
+		vl := strings.Split(strings.Replace(path, "\\", "/", -1), "/vendor/")
+		nameCmd.Args = append(nameCmd.Args, vl[len(vl)-1])
+	}
+
 	for k, v := range env {
 		nameCmd.Env = append(nameCmd.Env, fmt.Sprintf("%v=%v", k, v))
 	}

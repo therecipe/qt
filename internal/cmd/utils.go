@@ -61,7 +61,15 @@ func GetImports(path, target, tagsCustom string, level int, onlyDirect bool) []s
 	}
 
 	//TODO: cache
-	cmd := utils.GoList("{{join .TestImports \"|\"}}|{{join .XTestImports \"|\"}}|{{join ."+imp+" \"|\"}}", utils.BuildTags(tags), path)
+	cmd := utils.GoList("{{join .TestImports \"|\"}}|{{join .XTestImports \"|\"}}|{{join ."+imp+" \"|\"}}", utils.BuildTags(tags))
+	if !utils.UseGOMOD(path) || (utils.UseGOMOD(path) && !strings.Contains(strings.Replace(path, "\\", "/", -1), "/vendor/")) {
+		cmd.Dir = path
+	} else if utils.UseGOMOD(path) && strings.Contains(strings.Replace(path, "\\", "/", -1), "/vendor/") {
+		cmd.Dir = filepath.Dir(utils.GOMOD(path))
+		vl := strings.Split(strings.Replace(path, "\\", "/", -1), "/vendor/")
+		cmd.Args = append(cmd.Args, vl[len(vl)-1])
+	}
+
 	for k, v := range env {
 		cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", k, v))
 	}
@@ -151,7 +159,15 @@ func GetGoFiles(path, target, tagsCustom string) []string {
 	}
 
 	//TODO: cache
-	cmd := utils.GoList("{{join .GoFiles \"|\"}}|{{join .CgoFiles \"|\"}}|{{join .TestGoFiles \"|\"}}|{{join .XTestGoFiles \"|\"}}", "-find", utils.BuildTags(tags), path)
+	cmd := utils.GoList("{{join .GoFiles \"|\"}}|{{join .CgoFiles \"|\"}}|{{join .TestGoFiles \"|\"}}|{{join .XTestGoFiles \"|\"}}", "-find", utils.BuildTags(tags))
+	if !utils.UseGOMOD(path) || (utils.UseGOMOD(path) && !strings.Contains(strings.Replace(path, "\\", "/", -1), "/vendor/")) {
+		cmd.Dir = path
+	} else if utils.UseGOMOD(path) && strings.Contains(strings.Replace(path, "\\", "/", -1), "/vendor/") {
+		cmd.Dir = filepath.Dir(utils.GOMOD(path))
+		vl := strings.Split(strings.Replace(path, "\\", "/", -1), "/vendor/")
+		cmd.Args = append(cmd.Args, vl[len(vl)-1])
+	}
+
 	for k, v := range env {
 		cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", k, v))
 	}
