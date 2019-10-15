@@ -1,10 +1,11 @@
 package utils
 
 import (
-	"fmt"
+	"io/ioutil"
 	"os"
 	"os/exec"
 	"path/filepath"
+	"regexp"
 	"runtime"
 	"strconv"
 	"strings"
@@ -62,9 +63,37 @@ func ANDROID_NDK_DIR() string {
 
 func ANDROID_NDK_MAJOR_VERSION() int {
 
-	rawVersion := strings.Split(RunCmd(exec.Command("sed", "-En", "-e", `s/^Pkg.Revision\s*=\s*([0-9a-f]+)/r\1/p`, fmt.Sprintf("%s/source.properties", ANDROID_NDK_DIR())), "Android NDK version parsing"), ".")
-	// discards the prefix in r<Number> major version
-	major, err := strconv.Atoi(rawVersion[0][1:])
+	var (
+		propsRegex = regexp.MustCompile(`[#].*\\n|\\s+\\n|\\S+[=]|.*\n`)
+		pairRegex  = regexp.MustCompile(`\s+=\s+`)
+	)
+
+	source := filepath.Join(ANDROID_NDK_DIR(), "source.properties")
+	props, err := ioutil.ReadFile(source)
+	if err != nil {
+		fields := logrus.Fields{"_func": "ANDROID_NDK_MAJOR_VERSION", "source": source}
+		Log.WithError(err).WithFields(fields).Error("Failed to read source.properties file of Android NDK")
+		os.Exit(1)
+	}
+
+	var version_string string
+	pairs := propsRegex.FindAll(props, -1)
+	for _, pair := range pairs {
+		str_pair := strings.TrimSpace(string(pair))
+		if strings.HasPrefix(str_pair, "Pkg.Revision") {
+			if aux := pairRegex.Split(str_pair, -1); len(aux) == 2 {
+				version_string = aux[1]
+				break
+			} else {
+				fields := logrus.Fields{"_func": "ANDROID_NDK_MAJOR_VERSION", "property_pair": str_pair}
+				Log.WithError(err).WithFields(fields).Error("Failed to proccess source.properties file of Android NDK")
+				os.Exit(1)
+			}
+		}
+	}
+
+	rawVersion := strings.Split(version_string, ".")
+	major, err := strconv.Atoi(rawVersion[0])
 	if err != nil {
 		fields := logrus.Fields{"_func": "ANDROID_NDK_MAJOR_VERSION", "major_version": rawVersion[0]}
 		Log.WithError(err).WithFields(fields).Error("Failed to parse major version of Android NDK")
