@@ -201,7 +201,7 @@ func moc(path, target, tags string, fast, slow, root bool, l int, dirty bool) {
 			}
 
 			importAs := "custom_" + ipkg + "_" + cls[0].Hash() + "m"
-			if strings.Contains(spath, "/vendor/") {
+			if strings.Contains(spath, "/vendor/") && !utils.UseGOMOD(path) {
 				importAs = ipkg
 			}
 
@@ -727,7 +727,7 @@ func parse(path string) ([]*parser.Class, string, error) {
 			} else if _, ok := parser.State.GoClassMap[class.Name]; !ok { //TODO: support proper namespaces instead
 				ipkg := file.Name.String()
 				importAs := "custom_" + ipkg + "_" + class.Hash() + "m"
-				if strings.Contains(path, "/vendor/") {
+				if strings.Contains(path, "/vendor/") && !utils.UseGOMOD(path) {
 					importAs = ipkg
 				}
 				class.Module = importAs

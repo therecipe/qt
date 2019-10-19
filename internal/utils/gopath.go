@@ -23,7 +23,7 @@ func GOPATH() string { return envOr("GOPATH", build.Default.GOPATH) }
 func MustGoPath() string {
 	mustGoPathMutex.Lock()
 	if mustGoPath == "" {
-		if _, err := exec.LookPath("go"); err == nil {
+		if _, err := exec.LookPath("go"); err == nil && !UseGOMOD("") {
 			mustGoPath = strings.TrimSpace(RunCmd(GoList("{{.Root}}", PackageName, "-find"), "get list gopath"))
 		}
 		if mustGoPath == "" {

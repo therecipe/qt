@@ -27,10 +27,14 @@ func Check(target string, docker, vagrant bool) {
 	}
 
 	hash := "please install git"
-	if _, err := exec.LookPath("git"); err == nil {
-		cmd := exec.Command("git", "rev-parse", "--verify", "HEAD")
-		cmd.Dir = utils.GoQtPkgPath()
-		hash = strings.TrimSpace(utils.RunCmdOptional(cmd, "get git hash"))
+	if utils.UseGOMOD("") {
+		hash = utils.GoListOptional("{{.Version}}", "github.com/therecipe/qt", "-m", "get qt hash")
+	} else {
+		if _, err := exec.LookPath("git"); err == nil {
+			cmd := exec.Command("git", "rev-parse", "--verify", "HEAD")
+			cmd.Dir = utils.GoQtPkgPath()
+			hash = strings.TrimSpace(utils.RunCmdOptional(cmd, "get git hash"))
+		}
 	}
 
 	vars := [][]string{
