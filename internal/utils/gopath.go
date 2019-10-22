@@ -16,7 +16,18 @@ var (
 	mustGoPathMutex = new(sync.Mutex)
 )
 
-func GOBIN() string  { return envOr("GOBIN", filepath.Join(MustGoPath(), "bin")) }
+func GOBIN() string {
+	return envOr("GOBIN", func() string {
+		if QT_DOCKER() {
+			for _, p := range filepath.SplitList(GOPATH()) {
+				if strings.HasPrefix(p, os.Getenv("HOME")) {
+					return filepath.Join(p, "bin")
+				}
+			}
+		}
+		return filepath.Join(MustGoPath(), "bin")
+	}())
+}
 func GOPATH() string { return envOr("GOPATH", build.Default.GOPATH) }
 
 // MustGoPath returns the GOPATH that holds this package

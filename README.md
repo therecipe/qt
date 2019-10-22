@@ -22,19 +22,20 @@ Installation
 ##### Windows [(more info)](https://github.com/therecipe/qt/wiki/Installation-on-Windows)
 
 ```powershell
-go get -u -v github.com/therecipe/qt/cmd/... && for /f %v in ('go env GOPATH') do %v\bin\qtsetup test && %v\bin\qtsetup -test=false
+set GO111MODULE=off
+go get -v github.com/therecipe/qt/cmd/... && for /f %v in ('go env GOPATH') do %v\bin\qtsetup test && %v\bin\qtsetup -test=false
 ```
 
 ##### macOS [(more info)](https://github.com/therecipe/qt/wiki/Installation-on-macOS)
 
 ```bash
-xcode-select --install; go get -u -v github.com/therecipe/qt/cmd/... && $(go env GOPATH)/bin/qtsetup test && $(go env GOPATH)/bin/qtsetup -test=false
+export GO111MODULE=off; xcode-select --install; go get -v github.com/therecipe/qt/cmd/... && $(go env GOPATH)/bin/qtsetup test && $(go env GOPATH)/bin/qtsetup -test=false
 ```
 
 ##### Linux [(more info)](https://github.com/therecipe/qt/wiki/Installation-on-Linux)
 
 ```bash
-go get -u -v github.com/therecipe/qt/cmd/... && $(go env GOPATH)/bin/qtsetup test && $(go env GOPATH)/bin/qtsetup -test=false
+export GO111MODULE=off; go get -v github.com/therecipe/qt/cmd/... && $(go env GOPATH)/bin/qtsetup test && $(go env GOPATH)/bin/qtsetup -test=false
 ```
 
 Resources

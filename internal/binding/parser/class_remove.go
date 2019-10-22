@@ -22,7 +22,8 @@ func (c *Class) removeFunctions() {
 		case (f.Status == "obsolete" || f.Status == "compat") ||
 			!(f.Access == "public" || f.Access == "protected") ||
 			strings.ContainsAny(f.Name, "&<>=/!()[]{}^|*+-") ||
-			strings.Contains(f.Name, "Operator") || strings.Contains(f.Name, "qHash"):
+			strings.Contains(f.Name, "Operator") || strings.Contains(f.Name, "qHash") ||
+			f.ClassName() == "":
 			{
 				c.Functions = append(c.Functions[:i], c.Functions[i+1:]...)
 			}
@@ -56,7 +57,8 @@ func (c *Class) removeFunctions_Version() {
 func (c *Class) removeEnums() {
 	for i := len(c.Enums) - 1; i >= 0; i-- {
 		if e := c.Enums[i]; (e.Status == "obsolete" || e.Status == "compat") ||
-			!(e.Access == "public" || e.Access == "protected") {
+			!(e.Access == "public" || e.Access == "protected") ||
+			e.ClassName() == "" {
 
 			c.Enums = append(c.Enums[:i], c.Enums[i+1:]...)
 		}

@@ -424,13 +424,14 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 							"QBluetoothServiceInfo", "QBluetoothUuid", "QLowEnergyCharacteristic", "QLowEnergyConnectionParameters",
 							"QLowEnergyDescriptor", "QAudioBuffer", "QAudioDeviceInfo", "QAudioEncoderSettings", "QAudioFormat", "QCameraViewfinderSettings",
 							"QImageEncoderSettings", "QMediaContent", "QMediaResource", "QVideoEncoderSettings", "QVideoFrame",
-							"QVideoSurfaceFormat", "QTestEventList", "QModbusDeviceIdentification", "QScxmlError", "QScxmlEvent":
+							"QVideoSurfaceFormat", "QTestEventList", "QModbusDeviceIdentification", "QScxmlError", "QScxmlEvent",
+							"QNetworkRequest":
 							//re-definition
 						case "QCommandLineParser", "QDataStream", "QEventLoopLocker", "QMessageLogger", "QMimeDatabase",
 							"QSemaphoreReleaser", "QTemporaryDir", "QWaitCondition", "QXmlStreamReader", "QXmlStreamWriter",
 							"QImageReader", "QImageWriter", "QOpenGLTextureBlitter", "QPainter", "QPainterPathStroker",
 							"QPictureIO", "QTextDocumentWriter", "QTextLayout", "QXmlNamespaceSupport", "QStylePainter",
-							"QXmlSchemaValidator", "QAndroidJniEnvironment":
+							"QXmlSchemaValidator", "QAndroidJniEnvironment", "QMutex", "QRecursiveMutex":
 							//constructor issue
 						default:
 							if len(f.Parameters) == 0 {

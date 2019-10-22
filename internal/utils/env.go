@@ -495,7 +495,7 @@ func GOVERSION_NUM() int {
 	vmaj, _ := strconv.Atoi(string(version[0]))
 	vmin, _ := strconv.Atoi(strings.Replace(version[1:], ".", "", -1))
 	if strings.Count(version, ".") == 2 {
-		vmin, _ = strconv.Atoi(strings.Split(version[1:], ".")[1])
+		vmin, _ = strconv.Atoi(strings.Split(version, ".")[1])
 	}
 	return vmaj*1e2 + vmin
 }

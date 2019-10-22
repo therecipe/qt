@@ -55,6 +55,13 @@ func (c *Class) fixEnums() {
 				}
 			}
 		}
+		if e.Fullname == "QDateTime::YearRange" {
+			for i := len(e.Values) - 1; i >= 0; i-- {
+				if v := e.Values[i]; v.Name == "Last" {
+					e.Values = append(e.Values[:i], e.Values[i+1:]...)
+				}
+			}
+		}
 		if utils.QT_MACPORTS() {
 			if e.Fullname == "QWebSettings::WebAttribute" {
 				for i := len(e.Values) - 1; i >= 0; i-- {
@@ -428,13 +435,16 @@ func getBasesFromHeader(f string, n string, m string) string {
 					l = strings.Split(l, "/")[0]
 				}
 
-				var tmp = strings.Split(l, ":")[1]
+				if strings.Contains(l, ":") {
 
-				for _, s := range []string{"{", "}", "#ifndef", "QT_NO_QOBJECT", "#else", "#endif", "class", "Q_" + strings.ToUpper(strings.TrimPrefix(m, "Qt")) + "_EXPORT " + n, "public", "protected", "private", "  ", " "} {
-					tmp = strings.Replace(tmp, s, "", -1)
+					tmp := strings.Split(l, ":")[1]
+
+					for _, s := range []string{"{", "}", "#ifndef", "QT_NO_QOBJECT", "#else", "#endif", "class", "Q_" + strings.ToUpper(strings.TrimPrefix(m, "Qt")) + "_EXPORT " + n, "public", "protected", "private", "  ", " "} {
+						tmp = strings.Replace(tmp, s, "", -1)
+					}
+
+					return strings.TrimSpace(tmp)
 				}
-
-				return strings.TrimSpace(tmp)
 			}
 		}
 	}

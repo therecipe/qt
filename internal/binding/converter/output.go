@@ -816,7 +816,10 @@ func _cppOutput(name, value string, f *parser.Function) string {
 		{
 			if parser.UseJs() {
 				return fmt.Sprintf("enum_cast<long>(%v)", name)
-			} else if strings.HasPrefix(f.ClassName(), "QVirtualKeyboard") {
+			} else if strings.HasPrefix(f.ClassName(), "QVirtualKeyboard") ||
+				f.ClassName() == "QColorSpace" ||
+				f.Fullname == "QGuiApplication::highDpiScaleFactorRoundingPolicy" ||
+				f.Fullname == "QCanBusDevice::busStatus" {
 				return fmt.Sprintf("static_cast<qint64>(%v)", name)
 			}
 			return name

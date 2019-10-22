@@ -234,16 +234,7 @@ func build_sailfish(target, path, ldFlagsCustom, name string) {
 }
 
 func build_js(target string, path string, env map[string]string, tags []string, out string) {
-	gopherjs := filepath.Join(utils.GOBIN(), "gopherjs")
-	if utils.QT_DOCKER() {
-		for _, p := range filepath.SplitList(utils.GOPATH()) {
-			if strings.HasPrefix(p, os.Getenv("HOME")) {
-				gopherjs = filepath.Join(p, "bin", "gopherjs")
-				break
-			}
-		}
-	}
-	cmd := exec.Command(gopherjs, "build", ".", "-v", "-m", "-o", filepath.Join(filepath.Dir(out), "go.js"))
+	cmd := exec.Command(filepath.Join(utils.GOBIN(), "gopherjs"), "build", ".", "-v", "-m", "-o", filepath.Join(filepath.Dir(out), "go.js"))
 	cmd.Dir = path
 
 	//TODO (bug in gopherjs?): cmd.Args = append(cmd.Args, fmt.Sprintf("--tags=\"%v\"", strings.Join(tags[1:], " ")))

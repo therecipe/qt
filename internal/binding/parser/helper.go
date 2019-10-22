@@ -462,7 +462,7 @@ var (
 	getCustomLibsCacheMutex = new(sync.Mutex)
 )
 
-func GetCustomLibs(target string, env map[string]string, tags []string) map[string]string {
+func GetCustomLibs(_ string, env map[string]string, tags []string) map[string]string {
 	getCustomLibsCacheMutex.Lock()
 	defer getCustomLibsCacheMutex.Unlock()
 

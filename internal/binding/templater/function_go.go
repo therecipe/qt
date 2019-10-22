@@ -234,6 +234,10 @@ func goFunctionBody(function *parser.Function) string {
 					var bb = new(bytes.Buffer)
 					defer bb.Reset()
 
+					if class.Module == parser.MOC && function.Meta == parser.CONSTRUCTOR {
+						fmt.Fprintf(bb, "%v_QRegisterMetaType()\n", class.Name)
+					}
+
 					fmt.Fprintf(bb, "tmpValue := %v\n", body)
 
 					if class.Name != "SailfishApp" {
