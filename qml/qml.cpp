@@ -21,6 +21,7 @@
 #include <QHash>
 #include <QJSEngine>
 #include <QJSValue>
+#include <QJSValueIterator>
 #include <QLatin1String>
 #include <QLayout>
 #include <QMediaPlaylist>
@@ -151,6 +152,11 @@ void* QJSEngine_Evaluate(void* ptr, struct QtQml_PackedString program, struct Qt
 	return new QJSValue(static_cast<QJSEngine*>(ptr)->evaluate(QString::fromUtf8(program.data, program.len), QString::fromUtf8(fileName.data, fileName.len), lineNumber));
 }
 
+void* QJSEngine_FromScriptValue(void* ptr, void* value)
+{
+	return new QVariant(static_cast<QJSEngine*>(ptr)->fromScriptValue<QVariant>(*static_cast<QJSValue*>(value)));
+}
+
 void* QJSEngine_GlobalObject(void* ptr)
 {
 	return new QJSValue(static_cast<QJSEngine*>(ptr)->globalObject());
@@ -191,6 +197,11 @@ void* QJSEngine_NewQObject(void* ptr, void* object)
 	return new QJSValue(static_cast<QJSEngine*>(ptr)->newQObject(static_cast<QObject*>(object)));
 }
 
+void* QJSEngine_QJSEngine_qjsEngine(void* object)
+{
+	return qjsEngine(static_cast<QObject*>(object));
+}
+
 void QJSEngine_ThrowError(void* ptr, struct QtQml_PackedString message)
 {
 	static_cast<QJSEngine*>(ptr)->throwError(QString::fromUtf8(message.data, message.len));
@@ -199,6 +210,11 @@ void QJSEngine_ThrowError(void* ptr, struct QtQml_PackedString message)
 void QJSEngine_ThrowError2(void* ptr, long long errorType, struct QtQml_PackedString message)
 {
 	static_cast<QJSEngine*>(ptr)->throwError(static_cast<QJSValue::ErrorType>(errorType), QString::fromUtf8(message.data, message.len));
+}
+
+void* QJSEngine_ToScriptValue(void* ptr, void* value)
+{
+	return new QJSValue(static_cast<QJSEngine*>(ptr)->toScriptValue(*static_cast<QVariant*>(value)));
 }
 
 void QJSEngine_DestroyQJSEngine(void* ptr)
@@ -683,6 +699,37 @@ void* QJSValue___callWithInstance_args_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QJSValue>();
+}
+
+Q_DECLARE_METATYPE(QJSValueIterator*)
+void* QJSValueIterator_NewQJSValueIterator(void* object)
+{
+	return new QJSValueIterator(*static_cast<QJSValue*>(object));
+}
+
+char QJSValueIterator_HasNext(void* ptr)
+{
+	return static_cast<QJSValueIterator*>(ptr)->hasNext();
+}
+
+struct QtQml_PackedString QJSValueIterator_Name(void* ptr)
+{
+	return ({ QByteArray t042ed1 = static_cast<QJSValueIterator*>(ptr)->name().toUtf8(); QtQml_PackedString { const_cast<char*>(t042ed1.prepend("WHITESPACE").constData()+10), t042ed1.size()-10 }; });
+}
+
+char QJSValueIterator_Next(void* ptr)
+{
+	return static_cast<QJSValueIterator*>(ptr)->next();
+}
+
+void* QJSValueIterator_Value(void* ptr)
+{
+	return new QJSValue(static_cast<QJSValueIterator*>(ptr)->value());
+}
+
+void QJSValueIterator_DestroyQJSValueIterator(void* ptr)
+{
+	static_cast<QJSValueIterator*>(ptr)->~QJSValueIterator();
 }
 
 class MyQQmlAbstractUrlInterceptor: public QQmlAbstractUrlInterceptor

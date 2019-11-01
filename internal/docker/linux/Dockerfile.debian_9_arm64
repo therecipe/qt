@@ -1,4 +1,4 @@
-FROM balenalib/generic-aarch64-debian-golang:1.12.9-stretch as base
+FROM balenalib/generic-aarch64-debian-golang:1.13.4-stretch as base
 
 ENV USER user
 ENV HOME /home/$USER

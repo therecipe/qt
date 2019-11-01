@@ -127,6 +127,15 @@ func (ptr *QJSEngine) Evaluate(program string, fileName string, lineNumber int) 
 	return nil
 }
 
+func (ptr *QJSEngine) FromScriptValue(value QJSValue_ITF) *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QJSEngine_FromScriptValue(ptr.Pointer(), PointerFromQJSValue(value)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QJSEngine) GlobalObject() *QJSValue {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQJSValueFromPointer(C.QJSEngine_GlobalObject(ptr.Pointer()))
@@ -206,6 +215,22 @@ func (ptr *QJSEngine) NewQObject(object core.QObject_ITF) *QJSValue {
 	return nil
 }
 
+func QJSEngine_qjsEngine(object core.QObject_ITF) *QJSEngine {
+	tmpValue := NewQJSEngineFromPointer(C.QJSEngine_QJSEngine_qjsEngine(core.PointerFromQObject(object)))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
+
+func (ptr *QJSEngine) qjsEngine(object core.QObject_ITF) *QJSEngine {
+	tmpValue := NewQJSEngineFromPointer(C.QJSEngine_QJSEngine_qjsEngine(core.PointerFromQObject(object)))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
+
 func (ptr *QJSEngine) ThrowError(message string) {
 	if ptr.Pointer() != nil {
 		var messageC *C.char
@@ -226,6 +251,15 @@ func (ptr *QJSEngine) ThrowError2(errorType QJSValue__ErrorType, message string)
 		}
 		C.QJSEngine_ThrowError2(ptr.Pointer(), C.longlong(errorType), C.struct_QtQml_PackedString{data: messageC, len: C.longlong(len(message))})
 	}
+}
+
+func (ptr *QJSEngine) ToScriptValue(value core.QVariant_ITF) *QJSValue {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQJSValueFromPointer(C.QJSEngine_ToScriptValue(ptr.Pointer(), core.PointerFromQVariant(value)))
+		runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
+		return tmpValue
+	}
+	return nil
 }
 
 //export callbackQJSEngine_DestroyQJSEngine
@@ -1092,6 +1126,49 @@ func NewQJSValueIteratorFromPointer(ptr unsafe.Pointer) (n *QJSValueIterator) {
 	n = new(QJSValueIterator)
 	n.SetPointer(ptr)
 	return
+}
+func NewQJSValueIterator(object QJSValue_ITF) *QJSValueIterator {
+	tmpValue := NewQJSValueIteratorFromPointer(C.QJSValueIterator_NewQJSValueIterator(PointerFromQJSValue(object)))
+	runtime.SetFinalizer(tmpValue, (*QJSValueIterator).DestroyQJSValueIterator)
+	return tmpValue
+}
+
+func (ptr *QJSValueIterator) HasNext() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QJSValueIterator_HasNext(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QJSValueIterator) Name() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QJSValueIterator_Name(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QJSValueIterator) Next() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QJSValueIterator_Next(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QJSValueIterator) Value() *QJSValue {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQJSValueFromPointer(C.QJSValueIterator_Value(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QJSValueIterator) DestroyQJSValueIterator() {
+	if ptr.Pointer() != nil {
+		C.QJSValueIterator_DestroyQJSValueIterator(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
 }
 
 type QQmlAbstractUrlInterceptor struct {

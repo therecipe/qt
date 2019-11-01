@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"os"
 	"os/exec"
 	"path/filepath"
 	"runtime"
@@ -184,4 +185,19 @@ func GetGoFiles(path, target, tagsCustom string) []string {
 		olibs = append(olibs, filepath.Join(path, k))
 	}
 	return olibs
+}
+
+func RestartWithPinnedVersion(path string) {
+	cmd := exec.Command("go", "list", "-m", "-mod=vendor", "-f", "{{.Version}}", "github.com/therecipe/qt")
+	cmd.Dir = path
+	version := strings.TrimSpace(utils.RunCmd(cmd, "get qt tooling version"))
+
+	cmd = exec.Command("go", "install", "-v", "-tags=no_env", "github.com/therecipe/qt/cmd/...@"+version)
+	cmd.Dir = path
+	utils.RunCmd(cmd, "re-install qt tooling based on the go.mod version")
+
+	procAttr := new(os.ProcAttr)
+	procAttr.Files = []*os.File{os.Stdin, os.Stdout, os.Stderr}
+	p, _ := os.StartProcess(filepath.Join(utils.GOBIN(), os.Args[0]), append(os.Args, "non_recursive"), procAttr)
+	p.Wait()
 }

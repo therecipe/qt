@@ -26085,6 +26085,11 @@ void* QVariant_NewQVariant45(void* other)
 	return new QVariant(*static_cast<QVariant*>(other));
 }
 
+char QVariant_CanConvert(void* ptr, int targetTypeId)
+{
+	return static_cast<QVariant*>(ptr)->canConvert(targetTypeId);
+}
+
 void QVariant_Clear(void* ptr)
 {
 	static_cast<QVariant*>(ptr)->clear();

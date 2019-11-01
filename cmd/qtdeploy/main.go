@@ -16,6 +16,12 @@ import (
 )
 
 func main() {
+	var non_recursive bool
+	if os.Args[len(os.Args)-1] == "non_recursive" {
+		non_recursive = true
+		os.Args = os.Args[:len(os.Args)-1]
+	}
+
 	flag.Usage = func() {
 		println("Usage: qtdeploy [-docker] [mode] [target] [path/to/project]\n")
 
@@ -126,6 +132,11 @@ func main() {
 				path = dir
 			}
 		}
+	}
+
+	if utils.QT_DOCKER() && utils.UseGOMOD(path) && !non_recursive {
+		cmd.RestartWithPinnedVersion(path)
+		return
 	}
 
 	if !(target == runtime.GOOS || strings.HasPrefix(target, "js") || strings.HasPrefix(target, "wasm")) {

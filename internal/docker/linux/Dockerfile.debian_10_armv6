@@ -1,4 +1,4 @@
-FROM balenalib/raspberry-pi-debian-golang:1.12.9-buster as base
+FROM balenalib/raspberry-pi-debian-golang:1.13.4-buster as base
 
 ENV USER user
 ENV HOME /home/$USER

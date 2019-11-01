@@ -14,6 +14,12 @@ import (
 )
 
 func main() {
+	var non_recursive bool
+	if os.Args[len(os.Args)-1] == "non_recursive" {
+		non_recursive = true
+		os.Args = os.Args[:len(os.Args)-1]
+	}
+
 	flag.Usage = func() {
 		println("Usage: qtsetup [-debug] [mode] [target]\n")
 
@@ -90,6 +96,15 @@ func main() {
 	}
 	utils.CheckBuildTarget(target, docker)
 	cmd.InitEnv(target, docker)
+
+	path, err := os.Getwd()
+	if err != nil {
+		utils.Log.WithError(err).Debug("failed to get cwd")
+	}
+	if utils.QT_DOCKER() && utils.UseGOMOD(path) && !non_recursive {
+		cmd.RestartWithPinnedVersion(path)
+		return
+	}
 
 	if dynamic && (target == runtime.GOOS || target == "js" || target == "wasm") {
 		os.Setenv("QT_DYNAMIC_SETUP", "true")

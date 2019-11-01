@@ -3862,6 +3862,7 @@ void* QVariant_NewQVariant42(void* val);
 void* QVariant_NewQVariant43(void* val);
 void* QVariant_NewQVariant44(void* val);
 void* QVariant_NewQVariant45(void* other);
+char QVariant_CanConvert(void* ptr, int targetTypeId);
 void QVariant_Clear(void* ptr);
 char QVariant_Convert(void* ptr, int targetTypeId);
 char QVariant_IsNull(void* ptr);

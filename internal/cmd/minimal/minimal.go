@@ -277,6 +277,7 @@ func Minimal(path, target, tags string) {
 	if _, ok := parser.State.ClassMap["QVariant"]; ok {
 		exportClass(parser.State.ClassMap["QVariant"], files)
 		exportFunction(parser.State.ClassMap["QVariant"].GetFunction("type"), files)
+		exportFunction(parser.State.ClassMap["QVariant"].GetFunction("canConvert"), files)
 
 		for _, v := range parser.State.ClassMap["QVariant"].Enums[0].Values {
 			if f := parser.State.ClassMap["QVariant"].GetFunction("to" + v.Name); f != nil {

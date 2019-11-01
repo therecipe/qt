@@ -156,6 +156,13 @@ func (f *Function) fixGeneral_Version() {
 				}
 			}
 		}
+	case "QJSEngine::toScriptValue":
+		f.Parameters[0].Value = "const QVariant &"
+	case "QJSEngine::fromScriptValue":
+		f.Output = "QVariant"
+		f.TemplateModeGo = "QVariant"
+	case "QJSEngine::qjsEngine":
+		f.Static = true
 	}
 }
 

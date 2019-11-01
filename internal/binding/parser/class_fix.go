@@ -176,11 +176,11 @@ func (c *Class) fixGeneral_Version() {
 			}
 		}
 
-	case "QWebEnginePage", "QWebEngineView", "QWebEngineClientCertificateSelection", "QWebEngineSettings",
+	case "QWebEnginePage", "QWebEngineView", "QWebEngineClientCertificateSelection", "QWebEngineSettings", "QWebEngineProfile",
 		"QDesktopWidget", "QQuickAsyncImageProvider":
 		{
 			for _, f := range c.Functions {
-				if !((f.Name == "QWebEnginePage" && f.OverloadNumber == "3") ||
+				if !(((f.Name == "QWebEnginePage" || f.Name == "QWebEngineProfile") && f.OverloadNumber == "3") ||
 					(f.Name == "QWebEngineView" && f.OverloadNumber == "2") ||
 					f.Name == "QWebEngineSettings" && !f.Overload ||
 					f.Name == "QDesktopWidget" && f.Overload) {

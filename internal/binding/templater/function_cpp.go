@@ -593,7 +593,7 @@ func cppFunctionBodyInternal(function *parser.Function) string {
 							return ""
 						}
 						if function.Static {
-							if strings.Contains(function.Fullname, "QtGlobal") {
+							if strings.Contains(function.Fullname, "QtGlobal") || function.Fullname == "QJSEngine::qjsEngine" {
 								return ""
 							}
 							return fmt.Sprintf("%v::", function.ClassName())

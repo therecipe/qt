@@ -344,22 +344,22 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 
 	if utils.UseGOMOD(path) {
 		args = append(args, []string{"-v", fmt.Sprintf("%v:/media/%v", filepath.Dir(utils.GOMOD(path)), filepath.Base(filepath.Dir(utils.GOMOD(path))))}...)
-	} else {
-		for i, gp := range strings.Split(utils.GOPATH(), string(filepath.ListSeparator)) {
-			if runtime.GOOS == "windows" {
-				gp = "//" + strings.ToLower(gp[:1]) + gp[1:]
-			}
-			gp = strings.Replace(gp, "\\", "/", -1)
-			gp = strings.Replace(gp, ":", "", -1)
+	}
 
-			var pathprefix string
-			if docker {
-				args = append(args, []string{"-v", fmt.Sprintf("%v:/media/sf_GOPATH%v", gp, i)}...)
-			} else if system == "windows" {
-				pathprefix = "C:"
-			}
-			paths = append(paths, fmt.Sprintf(pathprefix+"/media/sf_GOPATH%v", i))
+	for i, gp := range strings.Split(utils.GOPATH(), string(filepath.ListSeparator)) {
+		if runtime.GOOS == "windows" {
+			gp = "//" + strings.ToLower(gp[:1]) + gp[1:]
 		}
+		gp = strings.Replace(gp, "\\", "/", -1)
+		gp = strings.Replace(gp, ":", "", -1)
+
+		var pathprefix string
+		if docker {
+			args = append(args, []string{"-v", fmt.Sprintf("%v:/media/sf_GOPATH%v", gp, i)}...)
+		} else if system == "windows" {
+			pathprefix = "C:"
+		}
+		paths = append(paths, fmt.Sprintf(pathprefix+"/media/sf_GOPATH%v", i))
 	}
 
 	var gpfs string
@@ -381,14 +381,18 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 		pathseperator = ";"
 	}
 	gpath := strings.Join(paths, pathseperator)
-	if writeCacheToHost {
+	if utils.UseGOMOD(path) {
 		gpath += pathseperator + gpfs
-		args = append(args, []string{"-e", "QT_STUB=true"}...) //TODO: won't work with wine images atm
 	} else {
-		if strings.Contains(path, "github.com/therecipe/qt/internal/examples") && !strings.Contains(path, "github.com/therecipe/qt/internal/examples/androidextras") {
+		if writeCacheToHost {
 			gpath += pathseperator + gpfs
+			args = append(args, []string{"-e", "QT_STUB=true"}...) //TODO: won't work with wine images atm
 		} else {
-			gpath = gpfs + pathseperator + gpath
+			if strings.Contains(path, "github.com/therecipe/qt/internal/examples") && !strings.Contains(path, "github.com/therecipe/qt/internal/examples/androidextras") {
+				gpath += pathseperator + gpfs
+			} else {
+				gpath = gpfs + pathseperator + gpath
+			}
 		}
 	}
 
@@ -452,15 +456,11 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 		args = append(args, []string{"-e", "GOPRIVATE=" + v}...)
 	}
 
-	//TODO: flag for shared GOCACHE
-
-	if !utils.UseGOMOD(path) {
-		if docker {
-			args = append(args, []string{"-e", "GOPATH=" + gpath}...)
-		} else {
-			args = append(args, []string{"-e", "QT_VAGRANT=true"}...) //TODO: won't work with wine images atm
-			args = append(args, []string{"-e", "GOPATH='" + gpath + "'"}...)
-		}
+	if docker {
+		args = append(args, []string{"-e", "GOPATH=" + gpath}...)
+	} else {
+		args = append(args, []string{"-e", "QT_VAGRANT=true"}...) //TODO: won't work with wine images atm
+		args = append(args, []string{"-e", "GOPATH='" + gpath + "'"}...)
 	}
 
 	if docker {

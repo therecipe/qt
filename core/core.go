@@ -33717,9 +33717,9 @@ func NewQObjectFromPointer(ptr unsafe.Pointer) (n *QObject) {
 	return
 }
 
-func (o *QObject) ConnectSignal(f, a interface{}, t Qt__ConnectionType) {
+func (ptr *QObject) ConnectSignal(f, a interface{}, t Qt__ConnectionType) {
 	fn := strings.TrimSuffix(strings.Split(runtime.FuncForPC(reflect.ValueOf(f).Pointer()).Name(), ".Connect")[1], "-fm")
-	qt.RegisterConnectionType(o.Pointer(), strings.ToLower(fn[:1])+fn[1:], int64(t))
+	qt.RegisterConnectionType(ptr.Pointer(), strings.ToLower(fn[:1])+fn[1:], int64(t))
 	reflect.ValueOf(f).Call([]reflect.Value{reflect.ValueOf(a)})
 }
 
@@ -54793,10 +54793,44 @@ func NewQVariant1(i interface{}) *QVariant {
 	case qVariant_ITF:
 		return d.ToVariant()
 	default:
-		return NewQVariant()
+		s := reflect.ValueOf(i)
+		if s.Kind() == reflect.Ptr {
+			s = s.Elem()
+		}
+		switch s.Kind() {
+		case reflect.Struct:
+			tmp := make(map[string]*QVariant, s.NumField())
+			for id := 0; id < s.NumField(); id++ {
+				if field := s.Field(id); field.CanInterface() {
+					tmp[s.Type().Field(id).Name] = NewQVariant1(field.Interface())
+				}
+			}
+			return NewQVariant1(tmp)
 
+		case reflect.Slice, reflect.Array:
+			tmp := make([]*QVariant, s.Len())
+			for id := 0; id < s.Len(); id++ {
+				if field := s.Index(id); field.CanInterface() {
+					tmp[id] = NewQVariant1(field.Interface())
+				}
+			}
+			return NewQVariant1(tmp)
+
+		case reflect.Map:
+			tmp := make(map[string]*QVariant, s.Len())
+			for _, id := range s.MapKeys() {
+				if field := s.MapIndex(id); field.CanInterface() {
+					if key := NewQVariant1(id.Interface()); key.CanConvert(int(QMetaType__QString)) {
+						tmp[key.ToString()] = NewQVariant1(field.Interface())
+					}
+				}
+			}
+			return NewQVariant1(tmp)
+		}
+		return NewQVariant()
 	}
 }
+
 func (v *QVariant) ToInterface() interface{} {
 	switch v.Type() {
 	case QVariant__Bool:
@@ -54878,6 +54912,69 @@ func (v *QVariant) ToInterface() interface{} {
 
 	}
 	return v
+}
+
+func (src *QVariant) ToGoType(dst interface{}) {
+	v := reflect.ValueOf(dst)
+	if v.Kind() == reflect.Ptr {
+		v = v.Elem()
+	}
+
+	switch src.Type() {
+	case QVariant__List:
+		d := src.ToList()
+
+		switch v.Kind() {
+		case reflect.Slice:
+			v.Set(reflect.MakeSlice(v.Type(), len(d), len(d)))
+
+		case reflect.Array:
+			v.Set(reflect.Indirect(reflect.New(v.Type())))
+		}
+
+		for i := 0; i < len(d); i++ {
+			switch v.Type().Elem().Kind() {
+			case reflect.Struct, reflect.Map, reflect.Slice, reflect.Array:
+				s := reflect.New(v.Type().Elem())
+				d[i].ToGoType(s.Interface())
+				v.Index(i).Set(reflect.Indirect(s))
+
+			default:
+				v.Index(i).Set(reflect.ValueOf(d[i].ToInterface()).Convert(v.Type().Elem()))
+			}
+		}
+
+	case QVariant__Map:
+		d := src.ToMap()
+
+		if v.Kind() == reflect.Struct {
+			for k, val := range d {
+				switch v.FieldByName(k).Kind() {
+				case reflect.Struct, reflect.Map, reflect.Slice, reflect.Array:
+					val.ToGoType(v.FieldByName(k).Addr().Interface())
+
+				default:
+					v.FieldByName(k).Set(reflect.ValueOf(val.ToInterface()))
+				}
+			}
+		} else {
+			v.Set(reflect.MakeMapWithSize(v.Type(), len(d)))
+			for k, val := range d {
+				switch v.Type().Elem().Kind() {
+				case reflect.Struct, reflect.Map, reflect.Slice, reflect.Array:
+					s := reflect.New(v.Type().Elem())
+					val.ToGoType(s.Interface())
+					v.SetMapIndex(reflect.ValueOf(k).Convert(v.Type().Key()), reflect.Indirect(s))
+
+				default:
+					v.SetMapIndex(reflect.ValueOf(k).Convert(v.Type().Key()), reflect.ValueOf(val.ToInterface()).Convert(v.Type().Elem()))
+				}
+			}
+		}
+
+	default:
+		v.Set(reflect.ValueOf(src.ToInterface()).Convert(v.Type()))
+	}
 }
 
 //go:generate stringer -type=QVariant__Type
@@ -55245,6 +55342,13 @@ func NewQVariant45(other QVariant_ITF) *QVariant {
 	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant45(PointerFromQVariant(other)))
 	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
+}
+
+func (ptr *QVariant) CanConvert(targetTypeId int) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QVariant_CanConvert(ptr.Pointer(), C.int(int32(targetTypeId)))) != 0
+	}
+	return false
 }
 
 func (ptr *QVariant) Clear() {

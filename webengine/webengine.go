@@ -6064,6 +6064,428 @@ const (
 	QWebEngineProfile__ForcePersistentCookies QWebEngineProfile__PersistentCookiesPolicy = QWebEngineProfile__PersistentCookiesPolicy(2)
 )
 
+func NewQWebEngineProfile(parent core.QObject_ITF) *QWebEngineProfile {
+	tmpValue := NewQWebEngineProfileFromPointer(C.QWebEngineProfile_NewQWebEngineProfile(core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
+
+func NewQWebEngineProfile2(name string, parent core.QObject_ITF) *QWebEngineProfile {
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
+	tmpValue := NewQWebEngineProfileFromPointer(C.QWebEngineProfile_NewQWebEngineProfile2(C.struct_QtWebEngine_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
+
+func (ptr *QWebEngineProfile) CachePath() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QWebEngineProfile_CachePath(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QWebEngineProfile) ClearAllVisitedLinks() {
+	if ptr.Pointer() != nil {
+		C.QWebEngineProfile_ClearAllVisitedLinks(ptr.Pointer())
+	}
+}
+
+func (ptr *QWebEngineProfile) ClearHttpCache() {
+	if ptr.Pointer() != nil {
+		C.QWebEngineProfile_ClearHttpCache(ptr.Pointer())
+	}
+}
+
+func (ptr *QWebEngineProfile) ClearVisitedLinks(urls []*core.QUrl) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineProfile_ClearVisitedLinks(ptr.Pointer(), func() unsafe.Pointer {
+			tmpList := NewQWebEngineProfileFromPointer(NewQWebEngineProfileFromPointer(nil).__clearVisitedLinks_urls_newList())
+			for _, v := range urls {
+				tmpList.__clearVisitedLinks_urls_setList(v)
+			}
+			return tmpList.Pointer()
+		}())
+	}
+}
+
+func (ptr *QWebEngineProfile) ClientCertificateStore() *QWebEngineClientCertificateStore {
+	if ptr.Pointer() != nil {
+		return NewQWebEngineClientCertificateStoreFromPointer(C.QWebEngineProfile_ClientCertificateStore(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineProfile) CookieStore() *QWebEngineCookieStore {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQWebEngineCookieStoreFromPointer(C.QWebEngineProfile_CookieStore(ptr.Pointer()))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func QWebEngineProfile_DefaultProfile() *QWebEngineProfile {
+	tmpValue := NewQWebEngineProfileFromPointer(C.QWebEngineProfile_QWebEngineProfile_DefaultProfile())
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
+
+func (ptr *QWebEngineProfile) DefaultProfile() *QWebEngineProfile {
+	tmpValue := NewQWebEngineProfileFromPointer(C.QWebEngineProfile_QWebEngineProfile_DefaultProfile())
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
+
+func (ptr *QWebEngineProfile) DownloadPath() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QWebEngineProfile_DownloadPath(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QWebEngineProfile) HttpAcceptLanguage() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QWebEngineProfile_HttpAcceptLanguage(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QWebEngineProfile) HttpCacheMaximumSize() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QWebEngineProfile_HttpCacheMaximumSize(ptr.Pointer())))
+	}
+	return 0
+}
+
+func (ptr *QWebEngineProfile) HttpCacheType() QWebEngineProfile__HttpCacheType {
+	if ptr.Pointer() != nil {
+		return QWebEngineProfile__HttpCacheType(C.QWebEngineProfile_HttpCacheType(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QWebEngineProfile) HttpUserAgent() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QWebEngineProfile_HttpUserAgent(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QWebEngineProfile) InstallUrlSchemeHandler(scheme core.QByteArray_ITF, vqw QWebEngineUrlSchemeHandler_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineProfile_InstallUrlSchemeHandler(ptr.Pointer(), core.PointerFromQByteArray(scheme), PointerFromQWebEngineUrlSchemeHandler(vqw))
+	}
+}
+
+func (ptr *QWebEngineProfile) IsOffTheRecord() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QWebEngineProfile_IsOffTheRecord(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QWebEngineProfile) IsSpellCheckEnabled() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QWebEngineProfile_IsSpellCheckEnabled(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QWebEngineProfile) IsUsedForGlobalCertificateVerification() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QWebEngineProfile_IsUsedForGlobalCertificateVerification(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+//export callbackQWebEngineProfile_MetaObject
+func callbackQWebEngineProfile_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
+	}
+
+	return core.PointerFromQMetaObject(NewQWebEngineProfileFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QWebEngineProfile) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QWebEngineProfile_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineProfile) PersistentCookiesPolicy() QWebEngineProfile__PersistentCookiesPolicy {
+	if ptr.Pointer() != nil {
+		return QWebEngineProfile__PersistentCookiesPolicy(C.QWebEngineProfile_PersistentCookiesPolicy(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QWebEngineProfile) PersistentStoragePath() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QWebEngineProfile_PersistentStoragePath(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QWebEngineProfile) RemoveAllUrlSchemeHandlers() {
+	if ptr.Pointer() != nil {
+		C.QWebEngineProfile_RemoveAllUrlSchemeHandlers(ptr.Pointer())
+	}
+}
+
+func (ptr *QWebEngineProfile) RemoveUrlScheme(scheme core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineProfile_RemoveUrlScheme(ptr.Pointer(), core.PointerFromQByteArray(scheme))
+	}
+}
+
+func (ptr *QWebEngineProfile) RemoveUrlSchemeHandler(vqw QWebEngineUrlSchemeHandler_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineProfile_RemoveUrlSchemeHandler(ptr.Pointer(), PointerFromQWebEngineUrlSchemeHandler(vqw))
+	}
+}
+
+func (ptr *QWebEngineProfile) Scripts() *QWebEngineScriptCollection {
+	if ptr.Pointer() != nil {
+		return NewQWebEngineScriptCollectionFromPointer(C.QWebEngineProfile_Scripts(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineProfile) SetCachePath(path string) {
+	if ptr.Pointer() != nil {
+		var pathC *C.char
+		if path != "" {
+			pathC = C.CString(path)
+			defer C.free(unsafe.Pointer(pathC))
+		}
+		C.QWebEngineProfile_SetCachePath(ptr.Pointer(), C.struct_QtWebEngine_PackedString{data: pathC, len: C.longlong(len(path))})
+	}
+}
+
+func (ptr *QWebEngineProfile) SetDownloadPath(path string) {
+	if ptr.Pointer() != nil {
+		var pathC *C.char
+		if path != "" {
+			pathC = C.CString(path)
+			defer C.free(unsafe.Pointer(pathC))
+		}
+		C.QWebEngineProfile_SetDownloadPath(ptr.Pointer(), C.struct_QtWebEngine_PackedString{data: pathC, len: C.longlong(len(path))})
+	}
+}
+
+func (ptr *QWebEngineProfile) SetHttpAcceptLanguage(httpAcceptLanguage string) {
+	if ptr.Pointer() != nil {
+		var httpAcceptLanguageC *C.char
+		if httpAcceptLanguage != "" {
+			httpAcceptLanguageC = C.CString(httpAcceptLanguage)
+			defer C.free(unsafe.Pointer(httpAcceptLanguageC))
+		}
+		C.QWebEngineProfile_SetHttpAcceptLanguage(ptr.Pointer(), C.struct_QtWebEngine_PackedString{data: httpAcceptLanguageC, len: C.longlong(len(httpAcceptLanguage))})
+	}
+}
+
+func (ptr *QWebEngineProfile) SetHttpCacheMaximumSize(maxSize int) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineProfile_SetHttpCacheMaximumSize(ptr.Pointer(), C.int(int32(maxSize)))
+	}
+}
+
+func (ptr *QWebEngineProfile) SetHttpCacheType(vqw QWebEngineProfile__HttpCacheType) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineProfile_SetHttpCacheType(ptr.Pointer(), C.longlong(vqw))
+	}
+}
+
+func (ptr *QWebEngineProfile) SetHttpUserAgent(userAgent string) {
+	if ptr.Pointer() != nil {
+		var userAgentC *C.char
+		if userAgent != "" {
+			userAgentC = C.CString(userAgent)
+			defer C.free(unsafe.Pointer(userAgentC))
+		}
+		C.QWebEngineProfile_SetHttpUserAgent(ptr.Pointer(), C.struct_QtWebEngine_PackedString{data: userAgentC, len: C.longlong(len(userAgent))})
+	}
+}
+
+func (ptr *QWebEngineProfile) SetPersistentCookiesPolicy(vqw QWebEngineProfile__PersistentCookiesPolicy) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineProfile_SetPersistentCookiesPolicy(ptr.Pointer(), C.longlong(vqw))
+	}
+}
+
+func (ptr *QWebEngineProfile) SetPersistentStoragePath(path string) {
+	if ptr.Pointer() != nil {
+		var pathC *C.char
+		if path != "" {
+			pathC = C.CString(path)
+			defer C.free(unsafe.Pointer(pathC))
+		}
+		C.QWebEngineProfile_SetPersistentStoragePath(ptr.Pointer(), C.struct_QtWebEngine_PackedString{data: pathC, len: C.longlong(len(path))})
+	}
+}
+
+func (ptr *QWebEngineProfile) SetRequestInterceptor(interceptor QWebEngineUrlRequestInterceptor_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineProfile_SetRequestInterceptor(ptr.Pointer(), PointerFromQWebEngineUrlRequestInterceptor(interceptor))
+	}
+}
+
+func (ptr *QWebEngineProfile) SetSpellCheckEnabled(enabled bool) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineProfile_SetSpellCheckEnabled(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(enabled))))
+	}
+}
+
+func (ptr *QWebEngineProfile) SetSpellCheckLanguages(languages []string) {
+	if ptr.Pointer() != nil {
+		languagesC := C.CString(strings.Join(languages, "¡¦!"))
+		defer C.free(unsafe.Pointer(languagesC))
+		C.QWebEngineProfile_SetSpellCheckLanguages(ptr.Pointer(), C.struct_QtWebEngine_PackedString{data: languagesC, len: C.longlong(len(strings.Join(languages, "¡¦!")))})
+	}
+}
+
+func (ptr *QWebEngineProfile) SetUrlRequestInterceptor(interceptor QWebEngineUrlRequestInterceptor_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineProfile_SetUrlRequestInterceptor(ptr.Pointer(), PointerFromQWebEngineUrlRequestInterceptor(interceptor))
+	}
+}
+
+func (ptr *QWebEngineProfile) SetUseForGlobalCertificateVerification(enabled bool) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineProfile_SetUseForGlobalCertificateVerification(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(enabled))))
+	}
+}
+
+func (ptr *QWebEngineProfile) Settings() *QWebEngineSettings {
+	if ptr.Pointer() != nil {
+		return NewQWebEngineSettingsFromPointer(C.QWebEngineProfile_Settings(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineProfile) SpellCheckLanguages() []string {
+	if ptr.Pointer() != nil {
+		return unpackStringList(cGoUnpackString(C.QWebEngineProfile_SpellCheckLanguages(ptr.Pointer())))
+	}
+	return make([]string, 0)
+}
+
+func (ptr *QWebEngineProfile) StorageName() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QWebEngineProfile_StorageName(ptr.Pointer()))
+	}
+	return ""
+}
+
+func QWebEngineProfile_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QWebEngineProfile_QWebEngineProfile_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QWebEngineProfile) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QWebEngineProfile_QWebEngineProfile_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QWebEngineProfile) UrlSchemeHandler(vqb core.QByteArray_ITF) *QWebEngineUrlSchemeHandler {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQWebEngineUrlSchemeHandlerFromPointer(C.QWebEngineProfile_UrlSchemeHandler(ptr.Pointer(), core.PointerFromQByteArray(vqb)))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineProfile) VisitedLinksContainsUrl(url core.QUrl_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QWebEngineProfile_VisitedLinksContainsUrl(ptr.Pointer(), core.PointerFromQUrl(url))) != 0
+	}
+	return false
+}
+
+//export callbackQWebEngineProfile_DestroyQWebEngineProfile
+func callbackQWebEngineProfile_DestroyQWebEngineProfile(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "~QWebEngineProfile"); signal != nil {
+		(*(*func())(signal))()
+	} else {
+		NewQWebEngineProfileFromPointer(ptr).DestroyQWebEngineProfileDefault()
+	}
+}
+
+func (ptr *QWebEngineProfile) ConnectDestroyQWebEngineProfile(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "~QWebEngineProfile"); signal != nil {
+			f := func() {
+				(*(*func())(signal))()
+				f()
+			}
+			qt.ConnectSignal(ptr.Pointer(), "~QWebEngineProfile", unsafe.Pointer(&f))
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "~QWebEngineProfile", unsafe.Pointer(&f))
+		}
+	}
+}
+
+func (ptr *QWebEngineProfile) DisconnectDestroyQWebEngineProfile() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "~QWebEngineProfile")
+	}
+}
+
+func (ptr *QWebEngineProfile) DestroyQWebEngineProfile() {
+	if ptr.Pointer() != nil {
+		C.QWebEngineProfile_DestroyQWebEngineProfile(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *QWebEngineProfile) DestroyQWebEngineProfileDefault() {
+	if ptr.Pointer() != nil {
+		C.QWebEngineProfile_DestroyQWebEngineProfileDefault(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
 func (ptr *QWebEngineProfile) __clearVisitedLinks_urls_atList(i int) *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QWebEngineProfile___clearVisitedLinks_urls_atList(ptr.Pointer(), C.int(int32(i))))
@@ -6300,22 +6722,6 @@ func (ptr *QWebEngineProfile) EventFilterDefault(watched core.QObject_ITF, event
 		return int8(C.QWebEngineProfile_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
-}
-
-//export callbackQWebEngineProfile_MetaObject
-func callbackQWebEngineProfile_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQWebEngineProfileFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QWebEngineProfile) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QWebEngineProfile_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
 }
 
 //export callbackQWebEngineProfile_ObjectNameChanged

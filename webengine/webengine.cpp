@@ -2662,6 +2662,10 @@ void QWebEnginePage_TimerEventDefault(void* ptr, void* event)
 class MyQWebEngineProfile: public QWebEngineProfile
 {
 public:
+	MyQWebEngineProfile(QObject *parent = Q_NULLPTR) : QWebEngineProfile(parent) {QWebEngineProfile_QWebEngineProfile_QRegisterMetaType();};
+	MyQWebEngineProfile(const QString &name, QObject *parent = Q_NULLPTR) : QWebEngineProfile(name, parent) {QWebEngineProfile_QWebEngineProfile_QRegisterMetaType();};
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebEngineProfile_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
+	 ~MyQWebEngineProfile() { callbackQWebEngineProfile_DestroyQWebEngineProfile(this); };
 	void childEvent(QChildEvent * event) { callbackQWebEngineProfile_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQWebEngineProfile_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQWebEngineProfile_CustomEvent(this, event); };
@@ -2670,7 +2674,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQWebEngineProfile_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQWebEngineProfile_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQWebEngineProfile_EventFilter(this, watched, event) != 0; };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebEngineProfile_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWebEngine_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQWebEngineProfile_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQWebEngineProfile_TimerEvent(this, event); };
 };
@@ -2679,6 +2682,321 @@ Q_DECLARE_METATYPE(QWebEngineProfile*)
 Q_DECLARE_METATYPE(MyQWebEngineProfile*)
 
 int QWebEngineProfile_QWebEngineProfile_QRegisterMetaType(){qRegisterMetaType<QWebEngineProfile*>(); return qRegisterMetaType<MyQWebEngineProfile*>();}
+
+void* QWebEngineProfile_NewQWebEngineProfile(void* parent)
+{
+	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(static_cast<QAudioSystemPlugin*>(parent));
+	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(static_cast<QMediaServiceProviderPlugin*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(static_cast<QRemoteObjectPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(static_cast<QScriptExtensionPlugin*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQWebEngineProfile(static_cast<QObject*>(parent));
+	}
+}
+
+void* QWebEngineProfile_NewQWebEngineProfile2(struct QtWebEngine_PackedString name, void* parent)
+{
+	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(QString::fromUtf8(name.data, name.len), static_cast<QAudioSystemPlugin*>(parent));
+	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(QString::fromUtf8(name.data, name.len), static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(QString::fromUtf8(name.data, name.len), static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(QString::fromUtf8(name.data, name.len), static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(QString::fromUtf8(name.data, name.len), static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(QString::fromUtf8(name.data, name.len), static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(QString::fromUtf8(name.data, name.len), static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(QString::fromUtf8(name.data, name.len), static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(QString::fromUtf8(name.data, name.len), static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(QString::fromUtf8(name.data, name.len), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(QString::fromUtf8(name.data, name.len), static_cast<QMediaServiceProviderPlugin*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(QString::fromUtf8(name.data, name.len), static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(QString::fromUtf8(name.data, name.len), static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(QString::fromUtf8(name.data, name.len), static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(QString::fromUtf8(name.data, name.len), static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(QString::fromUtf8(name.data, name.len), static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QRemoteObjectPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(QString::fromUtf8(name.data, name.len), static_cast<QRemoteObjectPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QScriptExtensionPlugin*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(QString::fromUtf8(name.data, name.len), static_cast<QScriptExtensionPlugin*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(QString::fromUtf8(name.data, name.len), static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(QString::fromUtf8(name.data, name.len), static_cast<QWindow*>(parent));
+	} else {
+		return new MyQWebEngineProfile(QString::fromUtf8(name.data, name.len), static_cast<QObject*>(parent));
+	}
+}
+
+struct QtWebEngine_PackedString QWebEngineProfile_CachePath(void* ptr)
+{
+	return ({ QByteArray td354e7 = static_cast<QWebEngineProfile*>(ptr)->cachePath().toUtf8(); QtWebEngine_PackedString { const_cast<char*>(td354e7.prepend("WHITESPACE").constData()+10), td354e7.size()-10 }; });
+}
+
+void QWebEngineProfile_ClearAllVisitedLinks(void* ptr)
+{
+	static_cast<QWebEngineProfile*>(ptr)->clearAllVisitedLinks();
+}
+
+void QWebEngineProfile_ClearHttpCache(void* ptr)
+{
+	static_cast<QWebEngineProfile*>(ptr)->clearHttpCache();
+}
+
+void QWebEngineProfile_ClearVisitedLinks(void* ptr, void* urls)
+{
+	static_cast<QWebEngineProfile*>(ptr)->clearVisitedLinks(*static_cast<QList<QUrl>*>(urls));
+}
+
+void* QWebEngineProfile_ClientCertificateStore(void* ptr)
+{
+	return static_cast<QWebEngineProfile*>(ptr)->clientCertificateStore();
+}
+
+void* QWebEngineProfile_CookieStore(void* ptr)
+{
+	return static_cast<QWebEngineProfile*>(ptr)->cookieStore();
+}
+
+void* QWebEngineProfile_QWebEngineProfile_DefaultProfile()
+{
+	return QWebEngineProfile::defaultProfile();
+}
+
+struct QtWebEngine_PackedString QWebEngineProfile_DownloadPath(void* ptr)
+{
+	return ({ QByteArray tef81e2 = static_cast<QWebEngineProfile*>(ptr)->downloadPath().toUtf8(); QtWebEngine_PackedString { const_cast<char*>(tef81e2.prepend("WHITESPACE").constData()+10), tef81e2.size()-10 }; });
+}
+
+struct QtWebEngine_PackedString QWebEngineProfile_HttpAcceptLanguage(void* ptr)
+{
+	return ({ QByteArray t46ad8d = static_cast<QWebEngineProfile*>(ptr)->httpAcceptLanguage().toUtf8(); QtWebEngine_PackedString { const_cast<char*>(t46ad8d.prepend("WHITESPACE").constData()+10), t46ad8d.size()-10 }; });
+}
+
+int QWebEngineProfile_HttpCacheMaximumSize(void* ptr)
+{
+	return static_cast<QWebEngineProfile*>(ptr)->httpCacheMaximumSize();
+}
+
+long long QWebEngineProfile_HttpCacheType(void* ptr)
+{
+	return static_cast<QWebEngineProfile*>(ptr)->httpCacheType();
+}
+
+struct QtWebEngine_PackedString QWebEngineProfile_HttpUserAgent(void* ptr)
+{
+	return ({ QByteArray t5c173a = static_cast<QWebEngineProfile*>(ptr)->httpUserAgent().toUtf8(); QtWebEngine_PackedString { const_cast<char*>(t5c173a.prepend("WHITESPACE").constData()+10), t5c173a.size()-10 }; });
+}
+
+void QWebEngineProfile_InstallUrlSchemeHandler(void* ptr, void* scheme, void* vqw)
+{
+	static_cast<QWebEngineProfile*>(ptr)->installUrlSchemeHandler(*static_cast<QByteArray*>(scheme), static_cast<QWebEngineUrlSchemeHandler*>(vqw));
+}
+
+char QWebEngineProfile_IsOffTheRecord(void* ptr)
+{
+	return static_cast<QWebEngineProfile*>(ptr)->isOffTheRecord();
+}
+
+char QWebEngineProfile_IsSpellCheckEnabled(void* ptr)
+{
+	return static_cast<QWebEngineProfile*>(ptr)->isSpellCheckEnabled();
+}
+
+char QWebEngineProfile_IsUsedForGlobalCertificateVerification(void* ptr)
+{
+	return static_cast<QWebEngineProfile*>(ptr)->isUsedForGlobalCertificateVerification();
+}
+
+void* QWebEngineProfile_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QWebEngineProfile*>(ptr)->QWebEngineProfile::metaObject());
+}
+
+long long QWebEngineProfile_PersistentCookiesPolicy(void* ptr)
+{
+	return static_cast<QWebEngineProfile*>(ptr)->persistentCookiesPolicy();
+}
+
+struct QtWebEngine_PackedString QWebEngineProfile_PersistentStoragePath(void* ptr)
+{
+	return ({ QByteArray t1c9837 = static_cast<QWebEngineProfile*>(ptr)->persistentStoragePath().toUtf8(); QtWebEngine_PackedString { const_cast<char*>(t1c9837.prepend("WHITESPACE").constData()+10), t1c9837.size()-10 }; });
+}
+
+void QWebEngineProfile_RemoveAllUrlSchemeHandlers(void* ptr)
+{
+	static_cast<QWebEngineProfile*>(ptr)->removeAllUrlSchemeHandlers();
+}
+
+void QWebEngineProfile_RemoveUrlScheme(void* ptr, void* scheme)
+{
+	static_cast<QWebEngineProfile*>(ptr)->removeUrlScheme(*static_cast<QByteArray*>(scheme));
+}
+
+void QWebEngineProfile_RemoveUrlSchemeHandler(void* ptr, void* vqw)
+{
+	static_cast<QWebEngineProfile*>(ptr)->removeUrlSchemeHandler(static_cast<QWebEngineUrlSchemeHandler*>(vqw));
+}
+
+void* QWebEngineProfile_Scripts(void* ptr)
+{
+	return static_cast<QWebEngineProfile*>(ptr)->scripts();
+}
+
+void QWebEngineProfile_SetCachePath(void* ptr, struct QtWebEngine_PackedString path)
+{
+	static_cast<QWebEngineProfile*>(ptr)->setCachePath(QString::fromUtf8(path.data, path.len));
+}
+
+void QWebEngineProfile_SetDownloadPath(void* ptr, struct QtWebEngine_PackedString path)
+{
+	static_cast<QWebEngineProfile*>(ptr)->setDownloadPath(QString::fromUtf8(path.data, path.len));
+}
+
+void QWebEngineProfile_SetHttpAcceptLanguage(void* ptr, struct QtWebEngine_PackedString httpAcceptLanguage)
+{
+	static_cast<QWebEngineProfile*>(ptr)->setHttpAcceptLanguage(QString::fromUtf8(httpAcceptLanguage.data, httpAcceptLanguage.len));
+}
+
+void QWebEngineProfile_SetHttpCacheMaximumSize(void* ptr, int maxSize)
+{
+	static_cast<QWebEngineProfile*>(ptr)->setHttpCacheMaximumSize(maxSize);
+}
+
+void QWebEngineProfile_SetHttpCacheType(void* ptr, long long vqw)
+{
+	static_cast<QWebEngineProfile*>(ptr)->setHttpCacheType(static_cast<QWebEngineProfile::HttpCacheType>(vqw));
+}
+
+void QWebEngineProfile_SetHttpUserAgent(void* ptr, struct QtWebEngine_PackedString userAgent)
+{
+	static_cast<QWebEngineProfile*>(ptr)->setHttpUserAgent(QString::fromUtf8(userAgent.data, userAgent.len));
+}
+
+void QWebEngineProfile_SetPersistentCookiesPolicy(void* ptr, long long vqw)
+{
+	static_cast<QWebEngineProfile*>(ptr)->setPersistentCookiesPolicy(static_cast<QWebEngineProfile::PersistentCookiesPolicy>(vqw));
+}
+
+void QWebEngineProfile_SetPersistentStoragePath(void* ptr, struct QtWebEngine_PackedString path)
+{
+	static_cast<QWebEngineProfile*>(ptr)->setPersistentStoragePath(QString::fromUtf8(path.data, path.len));
+}
+
+void QWebEngineProfile_SetRequestInterceptor(void* ptr, void* interceptor)
+{
+	static_cast<QWebEngineProfile*>(ptr)->setRequestInterceptor(static_cast<QWebEngineUrlRequestInterceptor*>(interceptor));
+}
+
+void QWebEngineProfile_SetSpellCheckEnabled(void* ptr, char enabled)
+{
+	static_cast<QWebEngineProfile*>(ptr)->setSpellCheckEnabled(enabled != 0);
+}
+
+void QWebEngineProfile_SetSpellCheckLanguages(void* ptr, struct QtWebEngine_PackedString languages)
+{
+	static_cast<QWebEngineProfile*>(ptr)->setSpellCheckLanguages(QString::fromUtf8(languages.data, languages.len).split("¡¦!", QString::SkipEmptyParts));
+}
+
+void QWebEngineProfile_SetUrlRequestInterceptor(void* ptr, void* interceptor)
+{
+	static_cast<QWebEngineProfile*>(ptr)->setUrlRequestInterceptor(static_cast<QWebEngineUrlRequestInterceptor*>(interceptor));
+}
+
+void QWebEngineProfile_SetUseForGlobalCertificateVerification(void* ptr, char enabled)
+{
+	static_cast<QWebEngineProfile*>(ptr)->setUseForGlobalCertificateVerification(enabled != 0);
+}
+
+void* QWebEngineProfile_Settings(void* ptr)
+{
+	return static_cast<QWebEngineProfile*>(ptr)->settings();
+}
+
+struct QtWebEngine_PackedString QWebEngineProfile_SpellCheckLanguages(void* ptr)
+{
+	return ({ QByteArray tba4fdb = static_cast<QWebEngineProfile*>(ptr)->spellCheckLanguages().join("¡¦!").toUtf8(); QtWebEngine_PackedString { const_cast<char*>(tba4fdb.prepend("WHITESPACE").constData()+10), tba4fdb.size()-10 }; });
+}
+
+struct QtWebEngine_PackedString QWebEngineProfile_StorageName(void* ptr)
+{
+	return ({ QByteArray tcbe040 = static_cast<QWebEngineProfile*>(ptr)->storageName().toUtf8(); QtWebEngine_PackedString { const_cast<char*>(tcbe040.prepend("WHITESPACE").constData()+10), tcbe040.size()-10 }; });
+}
+
+struct QtWebEngine_PackedString QWebEngineProfile_QWebEngineProfile_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray tf8cda5 = QWebEngineProfile::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtWebEngine_PackedString { const_cast<char*>(tf8cda5.prepend("WHITESPACE").constData()+10), tf8cda5.size()-10 }; });
+}
+
+void* QWebEngineProfile_UrlSchemeHandler(void* ptr, void* vqb)
+{
+	return const_cast<QWebEngineUrlSchemeHandler*>(static_cast<QWebEngineProfile*>(ptr)->urlSchemeHandler(*static_cast<QByteArray*>(vqb)));
+}
+
+char QWebEngineProfile_VisitedLinksContainsUrl(void* ptr, void* url)
+{
+	return static_cast<QWebEngineProfile*>(ptr)->visitedLinksContainsUrl(*static_cast<QUrl*>(url));
+}
+
+void QWebEngineProfile_DestroyQWebEngineProfile(void* ptr)
+{
+	static_cast<QWebEngineProfile*>(ptr)->~QWebEngineProfile();
+}
+
+void QWebEngineProfile_DestroyQWebEngineProfileDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
 
 void* QWebEngineProfile___clearVisitedLinks_urls_atList(void* ptr, int i)
 {
@@ -2809,11 +3127,6 @@ char QWebEngineProfile_EventDefault(void* ptr, void* e)
 char QWebEngineProfile_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 		return static_cast<QWebEngineProfile*>(ptr)->QWebEngineProfile::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-}
-
-void* QWebEngineProfile_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QWebEngineProfile*>(ptr)->QWebEngineProfile::metaObject());
 }
 
 void QWebEngineProfile_TimerEventDefault(void* ptr, void* event)

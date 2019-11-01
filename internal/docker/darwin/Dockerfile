@@ -48,7 +48,7 @@ RUN rm /usr/bin/strip && ln -s /osxcross/target/bin/x86_64-apple-darwin18-strip 
 RUN ln -s /osxcross/target/bin/x86_64-apple-darwin18-otool /usr/bin/otool
 RUN ln -s /osxcross/target/bin/x86_64-apple-darwin18-install_name_tool /usr/bin/install_name_tool
 
-RUN GO=go1.12.9.linux-amd64.tar.gz && curl -sL --retry 10 --retry-delay 60 -O https://dl.google.com/go/$GO && tar -xzf $GO -C /usr/local
+RUN GO=go1.13.4.linux-amd64.tar.gz && curl -sL --retry 10 --retry-delay 60 -O https://dl.google.com/go/$GO && tar -xzf $GO -C /usr/local
 RUN go get github.com/therecipe/qt/cmd/...
 RUN go get github.com/therecipe/env_darwin_amd64_513 && DST=$GOPATH/src/github.com/therecipe/env_darwin_amd64_513/5.13.0/clang_64/bin && rm -r $DST && cp -r $GOPATH/src/github.com/therecipe/env_linux_amd64_513/5.13.0/gcc_64/bin $DST
 

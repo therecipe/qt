@@ -291,7 +291,7 @@ func (f *Function) IsSupported() bool {
 		}
 	}
 
-	if f.Related == "true" && !strings.Contains(f.Fullname, "QtGlobal") {
+	if f.Related == "true" && !(strings.Contains(f.Fullname, "QtGlobal") || f.Fullname == "QJSEngine::qjsEngine") {
 		f.Access = "unsupported_isBlockedFunction"
 		return false
 	}
@@ -315,10 +315,10 @@ func (f *Function) IsSupported() bool {
 
 		f.Fullname == "QSGMaterialShader::attributeNames",
 
-		f.ClassName() == "QVariant" && (f.Name == "value" || f.Name == "canConvert"), //needs template
+		f.ClassName() == "QVariant" && (f.Name == "value" || (f.Name == "canConvert") && len(f.Parameters) == 0), //needs template
 
 		f.Fullname == "QNdefRecord::isRecordType", f.Fullname == "QScriptEngine::scriptValueFromQMetaObject", //needs template
-		f.Fullname == "QScriptEngine::fromScriptValue", f.Fullname == "QJSEngine::fromScriptValue",
+		f.Fullname == "QScriptEngine::fromScriptValue",
 
 		f.ClassName() == "QMetaType" && //needs template
 			(f.Name == "hasRegisteredComparators" || f.Name == "registerComparators" ||

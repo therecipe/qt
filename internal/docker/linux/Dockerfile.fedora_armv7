@@ -1,4 +1,4 @@
-FROM balenalib/generic-armv7ahf-fedora-golang:1.12.9 as base
+FROM balenalib/generic-armv7ahf-fedora-golang:1.13.4 as base
 
 ENV USER user
 ENV HOME /home/$USER
