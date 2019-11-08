@@ -18,8 +18,8 @@ RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install automak
 #RUN git clone -q --depth 1 https://github.com/tpoechtrager/cctools-port.git && cd /cctools-port/cctools && ./configure --prefix=/osxcross/target --target=x86_64-apple-darwin18 --with-libtapi=/osxcross/target && make -j $(grep -c ^processor /proc/cpuinfo) && make install -j $(grep -c ^processor /proc/cpuinfo)
 
 
-#RUN curl -sL --retry 10 --retry-delay 60 -o /osxcross/tarballs/MacOSX10.14.sdk.tar.xz https://.../MacOSX10.14.sdk.tar.xz
-COPY MacOSX10.14.sdk.tar.xz /osxcross/tarballs/MacOSX10.14.sdk.tar.xz
+#RUN curl -sL --retry 10 --retry-delay 60 -o /osxcross/tarballs/MacOSX10.15.sdk.tar.xz https://.../MacOSX10.15.sdk.tar.xz
+COPY MacOSX10.15.sdk.tar.xz /osxcross/tarballs/MacOSX10.15.sdk.tar.xz
 
 
 RUN cd /osxcross && OSX_VERSION_MIN=10.12 UNATTENDED=1 ./build.sh
@@ -54,7 +54,7 @@ RUN go get github.com/therecipe/env_darwin_amd64_513 && DST=$GOPATH/src/github.c
 
 RUN sed -i -e 's/isEmpty(QMAKE_XCODEBUILD_PATH)/if(false)/g' -e 's/!if/if/g' -e 's/!if/if/g' -e 's/isEmpty(QMAKE/if(false){#/g' $GOPATH/src/github.com/therecipe/env_darwin_amd64_513/5.13.0/clang_64/mkspecs/features/mac/default_pre.prf
 RUN sed -i -e 's/$$QMAKE_MAC_SDK_PATH/$$(QMAKE_MAC_SDK_PATH)/g' $GOPATH/src/github.com/therecipe/env_darwin_amd64_513/5.13.0/clang_64/mkspecs/features/mac/default_post.prf
-ENV QMAKE_MAC_SDK_PATH /osxcross/target/SDK/MacOSX10.14.sdk
+ENV QMAKE_MAC_SDK_PATH /osxcross/target/SDK/MacOSX10.15.sdk
 
 RUN curl -sL --retry 10 --retry-delay 60 https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add -
 RUN apt-add-repository "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-6.0 main"

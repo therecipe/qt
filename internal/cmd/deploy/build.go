@@ -75,10 +75,6 @@ func build(mode, target, path, ldFlagsCustom, tagsCustom, name, depPath string, 
 
 	cmd.Dir = path
 
-	if fast && !utils.QT_STUB() {
-		cmd.Args = append(cmd.Args, "-i")
-	}
-
 	if comply {
 		utils.MkdirAll(depPath + "_obj")
 		cmd.Env = append(cmd.Env, fmt.Sprintf("GOTMPDIR=%v", depPath+"_obj"))
