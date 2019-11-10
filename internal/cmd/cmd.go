@@ -96,7 +96,7 @@ func ParseFlags() bool {
 	return help != nil && *help
 }
 
-func InitEnv(target string, docker bool) {
+func InitEnv(target string, docker bool, path string) {
 	if docker || target != runtime.GOOS || ((runtime.GOARCH != "amd64" || utils.GOARCH() != "amd64") && runtime.GOOS != "windows") {
 		return
 	}
@@ -214,7 +214,11 @@ func InitEnv(target string, docker bool) {
 		}
 		if err != nil && target == runtime.GOOS {
 			if !(utils.ExistsFile(link) || utils.ExistsDir(link)) {
-				utils.Log.WithError(err).Warn("failed to create env symlink; fallback to patching binaries instead (this won't work for go modules)\r\nplease open an issue")
+				if s := "failed to create env symlink; fallback to patching binaries instead (this won't work for go modules)\r\nplease open an issue"; utils.UseGOMOD(path) {
+					utils.Log.WithError(err).Warn(s)
+				} else {
+					utils.Log.WithError(err).Debug(s)
+				}
 				cmd := exec.Command("go", "run", "patch.go", qt_dir)
 				cmd.Dir = qt_dir
 				_, err = utils.RunCmdOptionalError(cmd, "patch env binaries")
@@ -246,7 +250,7 @@ func InitEnv(target string, docker bool) {
 			}
 		}
 
-		if len(bindir) != 0 && utils.UseGOMOD("") && strings.Contains(qt_dir, "@") {
+		if len(bindir) != 0 && utils.UseGOMOD(path) && strings.Contains(qt_dir, "@") {
 			filepath.Walk(bindir, func(path string, info os.FileInfo, err error) error {
 				if err != nil || info.IsDir() {
 					return err

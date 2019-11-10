@@ -1,4 +1,4 @@
-FROM balenalib/generic-armv7ahf-ubuntu-golang:1.13.4-bionic as base
+FROM balenalib/generic-armv7ahf-ubuntu-golang:1.13.3-bionic as base
 
 ENV USER user
 ENV HOME /home/$USER

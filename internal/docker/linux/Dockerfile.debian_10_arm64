@@ -1,4 +1,4 @@
-FROM balenalib/generic-aarch64-debian-golang:1.13.4-buster as base
+FROM balenalib/generic-aarch64-debian-golang:1.13.3-buster as base
 
 ENV USER user
 ENV HOME /home/$USER

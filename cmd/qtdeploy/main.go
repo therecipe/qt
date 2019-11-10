@@ -114,7 +114,6 @@ func main() {
 		target = runtime.GOOS
 	}
 	utils.CheckBuildTarget(target, docker)
-	cmd.InitEnv(target, docker)
 
 	if !filepath.IsAbs(path) {
 		oPath := path
@@ -134,9 +133,11 @@ func main() {
 		}
 	}
 
+	cmd.InitEnv(target, docker, path)
 	if utils.QT_DOCKER() && utils.UseGOMOD(path) && !non_recursive {
-		cmd.RestartWithPinnedVersion(path)
-		return
+		if cmd.RestartWithPinnedVersion(path) {
+			return
+		}
 	}
 
 	if !(target == runtime.GOOS || strings.HasPrefix(target, "js") || strings.HasPrefix(target, "wasm")) {

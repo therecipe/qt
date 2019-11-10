@@ -6,6 +6,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"runtime"
+	"strconv"
 	"strings"
 	"sync"
 
@@ -187,17 +188,38 @@ func GetGoFiles(path, target, tagsCustom string) []string {
 	return olibs
 }
 
-func RestartWithPinnedVersion(path string) {
+func QtModVersion(path string) string {
 	cmd := exec.Command("go", "list", "-m", "-mod=vendor", "-f", "{{.Version}}", "github.com/therecipe/qt")
 	cmd.Dir = path
-	version := strings.TrimSpace(utils.RunCmd(cmd, "get qt tooling version"))
+	version := strings.TrimSpace(utils.RunCmdOptional(cmd, "get qt tooling version"))
+	if !strings.HasPrefix(version, "v") {
+		return "latest"
+	}
+	return version
+}
 
-	cmd = exec.Command("go", "install", "-v", "-tags=no_env", "github.com/therecipe/qt/cmd/...@"+version)
+func RestartWithPinnedVersion(path string) bool {
+	cmd := exec.Command("go", "mod", "download")
 	cmd.Dir = path
+	utils.RunCmd(cmd, "download qt based on the go.mod version")
+
+	if v := QtModVersion(path); strings.Count(v, "-") == 2 {
+		if i, err := strconv.Atoi(strings.Split(v, "-")[1]); !(err == nil && i >= 20191101224504) { //79e83fbcfd0c6cb569a84fe30d1e69b25acce1c2
+			return false
+		}
+	}
+
+	cmd = exec.Command("go", "install", "-v", "-tags=no_env", "github.com/therecipe/qt/cmd/...")
+	cmd.Dir = path
+	cmd.Env = append(os.Environ(), "GOBIN="+utils.GOBIN())
 	utils.RunCmd(cmd, "re-install qt tooling based on the go.mod version")
 
 	procAttr := new(os.ProcAttr)
 	procAttr.Files = []*os.File{os.Stdin, os.Stdout, os.Stderr}
-	p, _ := os.StartProcess(filepath.Join(utils.GOBIN(), os.Args[0]), append(os.Args, "non_recursive"), procAttr)
+	p, err := os.StartProcess(filepath.Join(utils.GOBIN(), filepath.Base(os.Args[0])), append(os.Args, "non_recursive"), procAttr)
+	if err != nil {
+		utils.Log.WithError(err).Error("failed to RestartWithPinnedVersion")
+	}
 	p.Wait()
+	return true
 }
