@@ -204,7 +204,7 @@ func RestartWithPinnedVersion(path string) bool {
 	utils.RunCmd(cmd, "download qt based on the go.mod version")
 
 	if v := QtModVersion(path); strings.Count(v, "-") == 2 {
-		if i, err := strconv.Atoi(strings.Split(v, "-")[1]); !(err == nil && i >= 20191101224504) { //79e83fbcfd0c6cb569a84fe30d1e69b25acce1c2
+		if i, err := strconv.Atoi(strings.Split(v, "-")[1]); !(err == nil && i >= 20191110184604) { //6e660afb3df7
 			return false
 		}
 	}
