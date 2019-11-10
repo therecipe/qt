@@ -117,3 +117,19 @@ func ANDROID_NDK_NOSTDLIBPP_LDFLAG() string {
 	}
 	return ""
 }
+
+// ANDROID_NDK_PLATFORM returns the Android API level to use in the building process
+func ANDROID_NDK_PLATFORM() string {
+
+	// default value as set in cmd.go BuildEnv function
+	if QT_FELGO() {
+		return "android-16"
+	}
+	// if env var exists and is not empty use env var of the system
+	if value, exist := os.LookupEnv("ANDROID_NDK_PLATFORM"); exist && value != "" {
+		return value
+	}
+
+	// default value as set in cmd.go BuildEnv function
+	return "android-21"
+}

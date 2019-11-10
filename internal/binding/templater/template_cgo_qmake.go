@@ -311,7 +311,7 @@ func createMakefile(module, path, target string, mode int) {
 		cmd.Args = append(cmd.Args, []string{"-spec", "macx-ios-clang", "CONFIG+=iphonesimulator", "CONFIG+=simulator"}...)
 	case "android", "android-emulator":
 		cmd.Args = append(cmd.Args, []string{"-spec", "android-clang"}...)
-		cmd.Env = []string{fmt.Sprintf("ANDROID_NDK_ROOT=%v", utils.ANDROID_NDK_DIR())}
+		cmd.Env = []string{fmt.Sprintf("ANDROID_NDK_ROOT=%v", utils.ANDROID_NDK_DIR()), fmt.Sprintf("ANDROID_NDK_PLATFORM=%v", utils.ANDROID_NDK_PLATFORM())}
 	case "sailfish", "sailfish-emulator":
 		cmd.Args = append(cmd.Args, []string{"-spec", "linux-g++"}...)
 		cmd.Env = []string{
