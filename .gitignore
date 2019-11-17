@@ -17,6 +17,7 @@ Mfile*
 */minimal_*
 
 /internal/binding/dump/*
+/internal/binding/runtime/moc*
 /internal/cmd/moc/test/**/moc*
 /internal/examples/**/deploy
 /internal/examples/**/moc*

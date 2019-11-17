@@ -91,6 +91,7 @@ func NewQJSEngine() *QJSEngine {
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
+	Z_initEngine(tmpValue)
 	return tmpValue
 }
 
@@ -99,6 +100,7 @@ func NewQJSEngine2(parent core.QObject_ITF) *QJSEngine {
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
+	Z_initEngine(tmpValue)
 	return tmpValue
 }
 
@@ -1354,6 +1356,7 @@ func NewQQmlApplicationEngine(parent core.QObject_ITF) *QQmlApplicationEngine {
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
+	Z_initEngine(tmpValue)
 	return tmpValue
 }
 
@@ -1362,6 +1365,7 @@ func NewQQmlApplicationEngine2(url core.QUrl_ITF, parent core.QObject_ITF) *QQml
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
+	Z_initEngine(tmpValue)
 	return tmpValue
 }
 
@@ -1375,6 +1379,7 @@ func NewQQmlApplicationEngine3(filePath string, parent core.QObject_ITF) *QQmlAp
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
+	Z_initEngine(tmpValue)
 	return tmpValue
 }
 
@@ -3282,6 +3287,7 @@ func NewQQmlEngine(parent core.QObject_ITF) *QQmlEngine {
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
+	Z_initEngine(tmpValue)
 	return tmpValue
 }
 
@@ -7616,4 +7622,149 @@ func (ptr *QQmlScriptString) StringLiteral() string {
 		return cGoUnpackString(C.QQmlScriptString_StringLiteral(ptr.Pointer()))
 	}
 	return ""
+}
+
+func init() {
+	qt.ItfMap["qml.QJSEngine_ITF"] = QJSEngine{}
+	qt.FuncMap["qml.NewQJSEngine"] = NewQJSEngine
+	qt.FuncMap["qml.NewQJSEngine2"] = NewQJSEngine2
+	qt.FuncMap["qml.QJSEngine_qjsEngine"] = QJSEngine_qjsEngine
+	qt.EnumMap["qml.QJSEngine__TranslationExtension"] = int64(QJSEngine__TranslationExtension)
+	qt.EnumMap["qml.QJSEngine__ConsoleExtension"] = int64(QJSEngine__ConsoleExtension)
+	qt.EnumMap["qml.QJSEngine__GarbageCollectionExtension"] = int64(QJSEngine__GarbageCollectionExtension)
+	qt.EnumMap["qml.QJSEngine__AllExtensions"] = int64(QJSEngine__AllExtensions)
+	qt.ItfMap["qml.QJSValue_ITF"] = QJSValue{}
+	qt.FuncMap["qml.NewQJSValue"] = NewQJSValue
+	qt.FuncMap["qml.NewQJSValue2"] = NewQJSValue2
+	qt.FuncMap["qml.NewQJSValue3"] = NewQJSValue3
+	qt.FuncMap["qml.NewQJSValue4"] = NewQJSValue4
+	qt.FuncMap["qml.NewQJSValue5"] = NewQJSValue5
+	qt.FuncMap["qml.NewQJSValue6"] = NewQJSValue6
+	qt.FuncMap["qml.NewQJSValue7"] = NewQJSValue7
+	qt.FuncMap["qml.NewQJSValue8"] = NewQJSValue8
+	qt.FuncMap["qml.NewQJSValue9"] = NewQJSValue9
+	qt.FuncMap["qml.NewQJSValue10"] = NewQJSValue10
+	qt.EnumMap["qml.QJSValue__NullValue"] = int64(QJSValue__NullValue)
+	qt.EnumMap["qml.QJSValue__UndefinedValue"] = int64(QJSValue__UndefinedValue)
+	qt.EnumMap["qml.QJSValue__NoError"] = int64(QJSValue__NoError)
+	qt.EnumMap["qml.QJSValue__GenericError"] = int64(QJSValue__GenericError)
+	qt.EnumMap["qml.QJSValue__EvalError"] = int64(QJSValue__EvalError)
+	qt.EnumMap["qml.QJSValue__RangeError"] = int64(QJSValue__RangeError)
+	qt.EnumMap["qml.QJSValue__ReferenceError"] = int64(QJSValue__ReferenceError)
+	qt.EnumMap["qml.QJSValue__SyntaxError"] = int64(QJSValue__SyntaxError)
+	qt.EnumMap["qml.QJSValue__TypeError"] = int64(QJSValue__TypeError)
+	qt.EnumMap["qml.QJSValue__URIError"] = int64(QJSValue__URIError)
+	qt.ItfMap["qml.QJSValueIterator_ITF"] = QJSValueIterator{}
+	qt.FuncMap["qml.NewQJSValueIterator"] = NewQJSValueIterator
+	qt.ItfMap["qml.QQmlAbstractUrlInterceptor_ITF"] = QQmlAbstractUrlInterceptor{}
+	qt.FuncMap["qml.NewQQmlAbstractUrlInterceptor"] = NewQQmlAbstractUrlInterceptor
+	qt.EnumMap["qml.QQmlAbstractUrlInterceptor__QmlFile"] = int64(QQmlAbstractUrlInterceptor__QmlFile)
+	qt.EnumMap["qml.QQmlAbstractUrlInterceptor__JavaScriptFile"] = int64(QQmlAbstractUrlInterceptor__JavaScriptFile)
+	qt.EnumMap["qml.QQmlAbstractUrlInterceptor__QmldirFile"] = int64(QQmlAbstractUrlInterceptor__QmldirFile)
+	qt.EnumMap["qml.QQmlAbstractUrlInterceptor__UrlString"] = int64(QQmlAbstractUrlInterceptor__UrlString)
+	qt.ItfMap["qml.QQmlApplicationEngine_ITF"] = QQmlApplicationEngine{}
+	qt.FuncMap["qml.NewQQmlApplicationEngine"] = NewQQmlApplicationEngine
+	qt.FuncMap["qml.NewQQmlApplicationEngine2"] = NewQQmlApplicationEngine2
+	qt.FuncMap["qml.NewQQmlApplicationEngine3"] = NewQQmlApplicationEngine3
+	qt.ItfMap["qml.QQmlComponent_ITF"] = QQmlComponent{}
+	qt.FuncMap["qml.NewQQmlComponent2"] = NewQQmlComponent2
+	qt.FuncMap["qml.NewQQmlComponent3"] = NewQQmlComponent3
+	qt.FuncMap["qml.NewQQmlComponent4"] = NewQQmlComponent4
+	qt.FuncMap["qml.NewQQmlComponent5"] = NewQQmlComponent5
+	qt.FuncMap["qml.NewQQmlComponent6"] = NewQQmlComponent6
+	qt.EnumMap["qml.QQmlComponent__PreferSynchronous"] = int64(QQmlComponent__PreferSynchronous)
+	qt.EnumMap["qml.QQmlComponent__Asynchronous"] = int64(QQmlComponent__Asynchronous)
+	qt.EnumMap["qml.QQmlComponent__Null"] = int64(QQmlComponent__Null)
+	qt.EnumMap["qml.QQmlComponent__Ready"] = int64(QQmlComponent__Ready)
+	qt.EnumMap["qml.QQmlComponent__Loading"] = int64(QQmlComponent__Loading)
+	qt.EnumMap["qml.QQmlComponent__Error"] = int64(QQmlComponent__Error)
+	qt.ItfMap["qml.QQmlContext_ITF"] = QQmlContext{}
+	qt.FuncMap["qml.NewQQmlContext"] = NewQQmlContext
+	qt.FuncMap["qml.NewQQmlContext2"] = NewQQmlContext2
+	qt.ItfMap["qml.QQmlDebuggingEnabler_ITF"] = QQmlDebuggingEnabler{}
+	qt.FuncMap["qml.QQmlDebuggingEnabler_ConnectToLocalDebugger"] = QQmlDebuggingEnabler_ConnectToLocalDebugger
+	qt.FuncMap["qml.QQmlDebuggingEnabler_DebuggerServices"] = QQmlDebuggingEnabler_DebuggerServices
+	qt.FuncMap["qml.QQmlDebuggingEnabler_InspectorServices"] = QQmlDebuggingEnabler_InspectorServices
+	qt.FuncMap["qml.QQmlDebuggingEnabler_NativeDebuggerServices"] = QQmlDebuggingEnabler_NativeDebuggerServices
+	qt.FuncMap["qml.QQmlDebuggingEnabler_ProfilerServices"] = QQmlDebuggingEnabler_ProfilerServices
+	qt.FuncMap["qml.QQmlDebuggingEnabler_SetServices"] = QQmlDebuggingEnabler_SetServices
+	qt.FuncMap["qml.QQmlDebuggingEnabler_StartDebugConnector"] = QQmlDebuggingEnabler_StartDebugConnector
+	qt.FuncMap["qml.QQmlDebuggingEnabler_StartTcpDebugServer"] = QQmlDebuggingEnabler_StartTcpDebugServer
+	qt.EnumMap["qml.QQmlDebuggingEnabler__DoNotWaitForClient"] = int64(QQmlDebuggingEnabler__DoNotWaitForClient)
+	qt.EnumMap["qml.QQmlDebuggingEnabler__WaitForClient"] = int64(QQmlDebuggingEnabler__WaitForClient)
+	qt.ItfMap["qml.QQmlEngine_ITF"] = QQmlEngine{}
+	qt.FuncMap["qml.NewQQmlEngine"] = NewQQmlEngine
+	qt.FuncMap["qml.QQmlEngine_ContextForObject"] = QQmlEngine_ContextForObject
+	qt.FuncMap["qml.QQmlEngine_ObjectOwnership"] = QQmlEngine_ObjectOwnership
+	qt.FuncMap["qml.QQmlEngine_SetContextForObject"] = QQmlEngine_SetContextForObject
+	qt.FuncMap["qml.QQmlEngine_SetObjectOwnership"] = QQmlEngine_SetObjectOwnership
+	qt.FuncMap["qml.QQmlEngine_QmlRegisterSingletonType"] = QQmlEngine_QmlRegisterSingletonType
+	qt.EnumMap["qml.QQmlEngine__CppOwnership"] = int64(QQmlEngine__CppOwnership)
+	qt.EnumMap["qml.QQmlEngine__JavaScriptOwnership"] = int64(QQmlEngine__JavaScriptOwnership)
+	qt.ItfMap["qml.QQmlError_ITF"] = QQmlError{}
+	qt.FuncMap["qml.NewQQmlError"] = NewQQmlError
+	qt.FuncMap["qml.NewQQmlError2"] = NewQQmlError2
+	qt.ItfMap["qml.QQmlExpression_ITF"] = QQmlExpression{}
+	qt.FuncMap["qml.NewQQmlExpression"] = NewQQmlExpression
+	qt.FuncMap["qml.NewQQmlExpression2"] = NewQQmlExpression2
+	qt.FuncMap["qml.NewQQmlExpression3"] = NewQQmlExpression3
+	qt.ItfMap["qml.QQmlExtensionPlugin_ITF"] = QQmlExtensionPlugin{}
+	qt.FuncMap["qml.NewQQmlExtensionPlugin"] = NewQQmlExtensionPlugin
+	qt.ItfMap["qml.QQmlFileSelector_ITF"] = QQmlFileSelector{}
+	qt.FuncMap["qml.NewQQmlFileSelector"] = NewQQmlFileSelector
+	qt.FuncMap["qml.QQmlFileSelector_Get"] = QQmlFileSelector_Get
+	qt.ItfMap["qml.QQmlImageProviderBase_ITF"] = QQmlImageProviderBase{}
+	qt.EnumMap["qml.QQmlImageProviderBase__Image"] = int64(QQmlImageProviderBase__Image)
+	qt.EnumMap["qml.QQmlImageProviderBase__Pixmap"] = int64(QQmlImageProviderBase__Pixmap)
+	qt.EnumMap["qml.QQmlImageProviderBase__Texture"] = int64(QQmlImageProviderBase__Texture)
+	qt.EnumMap["qml.QQmlImageProviderBase__Invalid"] = int64(QQmlImageProviderBase__Invalid)
+	qt.EnumMap["qml.QQmlImageProviderBase__ImageResponse"] = int64(QQmlImageProviderBase__ImageResponse)
+	qt.EnumMap["qml.QQmlImageProviderBase__ForceAsynchronousImageLoading"] = int64(QQmlImageProviderBase__ForceAsynchronousImageLoading)
+	qt.ItfMap["qml.QQmlIncubationController_ITF"] = QQmlIncubationController{}
+	qt.FuncMap["qml.NewQQmlIncubationController2"] = NewQQmlIncubationController2
+	qt.ItfMap["qml.QQmlIncubator_ITF"] = QQmlIncubator{}
+	qt.FuncMap["qml.NewQQmlIncubator2"] = NewQQmlIncubator2
+	qt.EnumMap["qml.QQmlIncubator__Asynchronous"] = int64(QQmlIncubator__Asynchronous)
+	qt.EnumMap["qml.QQmlIncubator__AsynchronousIfNested"] = int64(QQmlIncubator__AsynchronousIfNested)
+	qt.EnumMap["qml.QQmlIncubator__Synchronous"] = int64(QQmlIncubator__Synchronous)
+	qt.EnumMap["qml.QQmlIncubator__Null"] = int64(QQmlIncubator__Null)
+	qt.EnumMap["qml.QQmlIncubator__Ready"] = int64(QQmlIncubator__Ready)
+	qt.EnumMap["qml.QQmlIncubator__Loading"] = int64(QQmlIncubator__Loading)
+	qt.EnumMap["qml.QQmlIncubator__Error"] = int64(QQmlIncubator__Error)
+	qt.ItfMap["qml.QQmlInfo_ITF"] = QQmlInfo{}
+	qt.ItfMap["qml.QQmlListReference_ITF"] = QQmlListReference{}
+	qt.FuncMap["qml.NewQQmlListReference"] = NewQQmlListReference
+	qt.FuncMap["qml.NewQQmlListReference2"] = NewQQmlListReference2
+	qt.ItfMap["qml.QQmlNetworkAccessManagerFactory_ITF"] = QQmlNetworkAccessManagerFactory{}
+	qt.FuncMap["qml.NewQQmlNetworkAccessManagerFactory"] = NewQQmlNetworkAccessManagerFactory
+	qt.ItfMap["qml.QQmlParserStatus_ITF"] = QQmlParserStatus{}
+	qt.ItfMap["qml.QQmlProperty_ITF"] = QQmlProperty{}
+	qt.FuncMap["qml.NewQQmlProperty"] = NewQQmlProperty
+	qt.FuncMap["qml.NewQQmlProperty2"] = NewQQmlProperty2
+	qt.FuncMap["qml.NewQQmlProperty3"] = NewQQmlProperty3
+	qt.FuncMap["qml.NewQQmlProperty4"] = NewQQmlProperty4
+	qt.FuncMap["qml.NewQQmlProperty5"] = NewQQmlProperty5
+	qt.FuncMap["qml.NewQQmlProperty6"] = NewQQmlProperty6
+	qt.FuncMap["qml.NewQQmlProperty7"] = NewQQmlProperty7
+	qt.FuncMap["qml.NewQQmlProperty8"] = NewQQmlProperty8
+	qt.FuncMap["qml.QQmlProperty_Read2"] = QQmlProperty_Read2
+	qt.FuncMap["qml.QQmlProperty_Read3"] = QQmlProperty_Read3
+	qt.FuncMap["qml.QQmlProperty_Read4"] = QQmlProperty_Read4
+	qt.FuncMap["qml.QQmlProperty_Write2"] = QQmlProperty_Write2
+	qt.FuncMap["qml.QQmlProperty_Write3"] = QQmlProperty_Write3
+	qt.FuncMap["qml.QQmlProperty_Write4"] = QQmlProperty_Write4
+	qt.EnumMap["qml.QQmlProperty__InvalidCategory"] = int64(QQmlProperty__InvalidCategory)
+	qt.EnumMap["qml.QQmlProperty__List"] = int64(QQmlProperty__List)
+	qt.EnumMap["qml.QQmlProperty__Object"] = int64(QQmlProperty__Object)
+	qt.EnumMap["qml.QQmlProperty__Normal"] = int64(QQmlProperty__Normal)
+	qt.EnumMap["qml.QQmlProperty__Invalid"] = int64(QQmlProperty__Invalid)
+	qt.EnumMap["qml.QQmlProperty__Property"] = int64(QQmlProperty__Property)
+	qt.EnumMap["qml.QQmlProperty__SignalProperty"] = int64(QQmlProperty__SignalProperty)
+	qt.ItfMap["qml.QQmlPropertyMap_ITF"] = QQmlPropertyMap{}
+	qt.FuncMap["qml.NewQQmlPropertyMap"] = NewQQmlPropertyMap
+	qt.ItfMap["qml.QQmlPropertyValueSource_ITF"] = QQmlPropertyValueSource{}
+	qt.FuncMap["qml.NewQQmlPropertyValueSource"] = NewQQmlPropertyValueSource
+	qt.ItfMap["qml.QQmlScriptString_ITF"] = QQmlScriptString{}
+	qt.FuncMap["qml.NewQQmlScriptString"] = NewQQmlScriptString
+	qt.FuncMap["qml.NewQQmlScriptString2"] = NewQQmlScriptString2
 }

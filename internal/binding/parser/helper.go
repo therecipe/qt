@@ -468,7 +468,7 @@ func GetCustomLibs(_ string, env map[string]string, tags []string) map[string]st
 
 	out := make(map[string]string)
 	var modules []string
-	var pkgs []string
+	var paths []string
 	for _, lm := range []map[string]*Class{State.ClassMap, State.GoClassMap} {
 		for _, c := range lm {
 			if c.Pkg == "" {
@@ -478,7 +478,7 @@ func GetCustomLibs(_ string, env map[string]string, tags []string) map[string]st
 				if _, ok = out[c.Module]; !ok {
 					out[c.Module] = c.Pkg
 					modules = append(modules, c.Module)
-					pkgs = append(pkgs, c.Pkg)
+					paths = append(paths, c.Pkg)
 				}
 			} else {
 				out[c.Module] = path
@@ -487,16 +487,18 @@ func GetCustomLibs(_ string, env map[string]string, tags []string) map[string]st
 	}
 
 	if len(modules) > 0 {
-		cmd := utils.GoList(append([]string{"{{.ImportPath}}", "-find", utils.BuildTags(tags)}, pkgs...)...)
-		for k, v := range env {
-			cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", k, v))
-		}
+		for i, path := range paths {
+			cmd := utils.GoList(append([]string{"{{.ImportPath}}", "-find", utils.BuildTags(tags)}, path)...)
+			for k, v := range env {
+				cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", k, v))
+			}
 
-		for i, path := range strings.Split(strings.TrimSpace(utils.RunCmd(cmd, "get import path")), "\n") {
-			path = strings.TrimSpace(path)
+			for _, pkg := range strings.Split(strings.TrimSpace(utils.RunCmd(cmd, "get import pkg")), "\n") {
+				pkg = strings.TrimSpace(pkg)
 
-			getCustomLibsCache[pkgs[i]] = path
-			out[modules[i]] = path
+				getCustomLibsCache[paths[i]] = pkg
+				out[modules[i]] = pkg
+			}
 		}
 	}
 

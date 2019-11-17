@@ -1191,3 +1191,11 @@ func (ptr *QWebChannelAbstractTransport) TimerEventDefault(event core.QTimerEven
 		C.QWebChannelAbstractTransport_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
+
+func init() {
+	qt.ItfMap["webchannel.QQmlWebChannel_ITF"] = QQmlWebChannel{}
+	qt.ItfMap["webchannel.QWebChannel_ITF"] = QWebChannel{}
+	qt.FuncMap["webchannel.NewQWebChannel"] = NewQWebChannel
+	qt.ItfMap["webchannel.QWebChannelAbstractTransport_ITF"] = QWebChannelAbstractTransport{}
+	qt.FuncMap["webchannel.NewQWebChannelAbstractTransport"] = NewQWebChannelAbstractTransport
+}

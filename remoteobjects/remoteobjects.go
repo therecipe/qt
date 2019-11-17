@@ -4848,3 +4848,48 @@ func (ptr *SourceApiMap) DestroySourceApiMap() {
 		runtime.SetFinalizer(ptr, nil)
 	}
 }
+
+func init() {
+	qt.ItfMap["remoteobjects.QAbstractItemModelReplica_ITF"] = QAbstractItemModelReplica{}
+	qt.ItfMap["remoteobjects.QMetaTypeId_ITF"] = QMetaTypeId{}
+	qt.ItfMap["remoteobjects.QRemoteObjectAbstractPersistedStore_ITF"] = QRemoteObjectAbstractPersistedStore{}
+	qt.FuncMap["remoteobjects.NewQRemoteObjectAbstractPersistedStore"] = NewQRemoteObjectAbstractPersistedStore
+	qt.ItfMap["remoteobjects.QRemoteObjectDynamicReplica_ITF"] = QRemoteObjectDynamicReplica{}
+	qt.ItfMap["remoteobjects.QRemoteObjectHost_ITF"] = QRemoteObjectHost{}
+	qt.FuncMap["remoteobjects.NewQRemoteObjectHost"] = NewQRemoteObjectHost
+	qt.FuncMap["remoteobjects.NewQRemoteObjectHost2"] = NewQRemoteObjectHost2
+	qt.FuncMap["remoteobjects.NewQRemoteObjectHost3"] = NewQRemoteObjectHost3
+	qt.ItfMap["remoteobjects.QRemoteObjectHostBase_ITF"] = QRemoteObjectHostBase{}
+	qt.EnumMap["remoteobjects.QRemoteObjectHostBase__BuiltInSchemasOnly"] = int64(QRemoteObjectHostBase__BuiltInSchemasOnly)
+	qt.EnumMap["remoteobjects.QRemoteObjectHostBase__AllowExternalRegistration"] = int64(QRemoteObjectHostBase__AllowExternalRegistration)
+	qt.ItfMap["remoteobjects.QRemoteObjectNode_ITF"] = QRemoteObjectNode{}
+	qt.FuncMap["remoteobjects.NewQRemoteObjectNode"] = NewQRemoteObjectNode
+	qt.FuncMap["remoteobjects.NewQRemoteObjectNode2"] = NewQRemoteObjectNode2
+	qt.EnumMap["remoteobjects.QRemoteObjectNode__NoError"] = int64(QRemoteObjectNode__NoError)
+	qt.EnumMap["remoteobjects.QRemoteObjectNode__RegistryNotAcquired"] = int64(QRemoteObjectNode__RegistryNotAcquired)
+	qt.EnumMap["remoteobjects.QRemoteObjectNode__RegistryAlreadyHosted"] = int64(QRemoteObjectNode__RegistryAlreadyHosted)
+	qt.EnumMap["remoteobjects.QRemoteObjectNode__NodeIsNoServer"] = int64(QRemoteObjectNode__NodeIsNoServer)
+	qt.EnumMap["remoteobjects.QRemoteObjectNode__ServerAlreadyCreated"] = int64(QRemoteObjectNode__ServerAlreadyCreated)
+	qt.EnumMap["remoteobjects.QRemoteObjectNode__UnintendedRegistryHosting"] = int64(QRemoteObjectNode__UnintendedRegistryHosting)
+	qt.EnumMap["remoteobjects.QRemoteObjectNode__OperationNotValidOnClientNode"] = int64(QRemoteObjectNode__OperationNotValidOnClientNode)
+	qt.EnumMap["remoteobjects.QRemoteObjectNode__SourceNotRegistered"] = int64(QRemoteObjectNode__SourceNotRegistered)
+	qt.EnumMap["remoteobjects.QRemoteObjectNode__MissingObjectName"] = int64(QRemoteObjectNode__MissingObjectName)
+	qt.EnumMap["remoteobjects.QRemoteObjectNode__HostUrlInvalid"] = int64(QRemoteObjectNode__HostUrlInvalid)
+	qt.EnumMap["remoteobjects.QRemoteObjectNode__ProtocolMismatch"] = int64(QRemoteObjectNode__ProtocolMismatch)
+	qt.EnumMap["remoteobjects.QRemoteObjectNode__ListenFailed"] = int64(QRemoteObjectNode__ListenFailed)
+	qt.ItfMap["remoteobjects.QRemoteObjectPendingCall_ITF"] = QRemoteObjectPendingCall{}
+	qt.ItfMap["remoteobjects.QRemoteObjectPendingCallWatcher_ITF"] = QRemoteObjectPendingCallWatcher{}
+	qt.ItfMap["remoteobjects.QRemoteObjectPendingReply_ITF"] = QRemoteObjectPendingReply{}
+	qt.ItfMap["remoteobjects.QRemoteObjectRegistry_ITF"] = QRemoteObjectRegistry{}
+	qt.ItfMap["remoteobjects.QRemoteObjectRegistryHost_ITF"] = QRemoteObjectRegistryHost{}
+	qt.FuncMap["remoteobjects.NewQRemoteObjectRegistryHost"] = NewQRemoteObjectRegistryHost
+	qt.ItfMap["remoteobjects.QRemoteObjectReplica_ITF"] = QRemoteObjectReplica{}
+	qt.EnumMap["remoteobjects.QRemoteObjectReplica__Uninitialized"] = int64(QRemoteObjectReplica__Uninitialized)
+	qt.EnumMap["remoteobjects.QRemoteObjectReplica__Default"] = int64(QRemoteObjectReplica__Default)
+	qt.EnumMap["remoteobjects.QRemoteObjectReplica__Valid"] = int64(QRemoteObjectReplica__Valid)
+	qt.EnumMap["remoteobjects.QRemoteObjectReplica__Suspect"] = int64(QRemoteObjectReplica__Suspect)
+	qt.EnumMap["remoteobjects.QRemoteObjectReplica__SignatureMismatch"] = int64(QRemoteObjectReplica__SignatureMismatch)
+	qt.ItfMap["remoteobjects.QRemoteObjectSettingsStore_ITF"] = QRemoteObjectSettingsStore{}
+	qt.ItfMap["remoteobjects.QRemoteObjectSourceLocationInfo_ITF"] = QRemoteObjectSourceLocationInfo{}
+	qt.ItfMap["remoteobjects.QTypeInfo_ITF"] = QTypeInfo{}
+}

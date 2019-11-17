@@ -214,16 +214,14 @@ func InitEnv(target string, docker bool, path string) {
 		}
 		if err != nil && target == runtime.GOOS {
 			if !(utils.ExistsFile(link) || utils.ExistsDir(link)) {
-				if s := "failed to create env symlink; fallback to patching binaries instead (this won't work for go modules)\r\nplease open an issue"; utils.UseGOMOD(path) {
-					utils.Log.WithError(err).Warn(s)
-				} else {
+				if s := "failed to create env symlink; fallback to patching binaries instead"; utils.UseGOMOD(path) {
 					utils.Log.WithError(err).Debug(s)
 				}
 				cmd := exec.Command("go", "run", "patch.go", qt_dir)
 				cmd.Dir = qt_dir
 				_, err = utils.RunCmdOptionalError(cmd, "patch env binaries")
 				if err != nil {
-					utils.Log.WithError(err).Warn("failed to patch binaries (do you use go modules?)\r\nyou won't be able to simply \"go build/run\" your application, but qtdeploy-ing applications should work nevertheless\r\nplease open an issue")
+					utils.Log.WithError(err).Warn("failed to patch binaries\r\nyou won't be able to simply \"go build/run\" your application, but qtdeploy-ing applications should work nevertheless")
 				}
 			}
 		}

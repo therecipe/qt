@@ -1266,3 +1266,13 @@ func (ptr *QMacToolBarItem) TimerEventDefault(event core.QTimerEvent_ITF) {
 		C.QMacToolBarItem_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
+
+func init() {
+	qt.ItfMap["macextras.QMacPasteboardMime_ITF"] = QMacPasteboardMime{}
+	qt.ItfMap["macextras.QMacToolBar_ITF"] = QMacToolBar{}
+	qt.ItfMap["macextras.QMacToolBarItem_ITF"] = QMacToolBarItem{}
+	qt.FuncMap["macextras.NewQMacToolBarItem"] = NewQMacToolBarItem
+	qt.EnumMap["macextras.QMacToolBarItem__NoStandardItem"] = int64(QMacToolBarItem__NoStandardItem)
+	qt.EnumMap["macextras.QMacToolBarItem__Space"] = int64(QMacToolBarItem__Space)
+	qt.EnumMap["macextras.QMacToolBarItem__FlexibleSpace"] = int64(QMacToolBarItem__FlexibleSpace)
+}

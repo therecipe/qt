@@ -511,7 +511,28 @@ switch s.Kind() {
 	case reflect.Struct:
 		tmp := make(map[string]*QVariant, s.NumField())
 		for id := 0; id < s.NumField(); id++ {
-			if field := s.Field(id); field.CanInterface() {
+			field := s.Field(id)
+			if !field.CanInterface() {
+				continue
+			}
+			if tag, ok := s.Type().Field(id).Tag.Lookup("json"); ok {
+				switch {
+				case (strings.HasSuffix(tag, ",omitempty") && field.IsZero()) || tag == "-":
+				case strings.Count(tag, ",") == 0:
+					tmp[tag] = NewQVariant1(field.Interface())
+				default:
+					tags := strings.Split(tag, ",")
+					name := s.Type().Field(id).Name
+					if len(tags[0]) != 0 {
+						name = tags[0]
+					}
+					v := NewQVariant1(field.Interface())
+					if tags[1] == "string" {
+						v = NewQVariant1(v.ToString()) //TODO: pure go type conversion
+					}
+					tmp[name] = v
+				}
+			} else {
 				tmp[s.Type().Field(id).Name] = NewQVariant1(field.Interface())
 			}
 		}
@@ -608,12 +629,34 @@ case QVariant__Map:
 
 	if v.Kind() == reflect.Struct {
 		for k, val := range d {
-			switch v.FieldByName(k).Kind() {
-			case reflect.Struct, reflect.Map, reflect.Slice, reflect.Array:
-				val.ToGoType(v.FieldByName(k).Addr().Interface())
-
-			default:
-				v.FieldByName(k).Set(reflect.ValueOf(val.ToInterface()))
+			realName := k
+			toInt := false
+			for id := 0; id < v.NumField(); id++ {
+				if tag, ok := v.Type().Field(id).Tag.Lookup("json"); ok {
+					switch {
+					case strings.Count(tag, ",") == 0:
+						if k == tag {
+							realName = v.Type().Field(id).Name
+						}
+					default:
+						tags := strings.Split(tag, ",")
+						if k == tags[0] || (len(tags[0]) == 0 && k == v.Type().Field(id).Name) {
+							realName = v.Type().Field(id).Name
+							if tags[1] == "string" {
+								toInt = true
+							}
+						}
+					}
+				}
+			}
+			field := v.FieldByName(realName)
+			if !field.IsValid() {
+				continue
+			}
+			if toInt {
+				field.Set(reflect.ValueOf(val.ToLongLong(nil)).Convert(field.Type())) //TODO: pure go type conversion
+			} else {
+				val.ToGoType(field.Addr().Interface())
 			}
 		}
 	} else {
@@ -648,8 +691,8 @@ default:
 		cTemplate(bb, class, goEnum, goFunction, "\n\n", true)
 	}
 
+	fmt.Fprint(bb, "func init() {\n")
 	if UseJs() {
-		fmt.Fprint(bb, "func init() {\n")
 		for _, l := range strings.Split(bb.String(), "\n") {
 			if strings.HasPrefix(l, "//export") {
 				if parser.UseWasm() {
@@ -671,22 +714,36 @@ default:
 			fmt.Fprint(bb, "\tmodule = m\n")
 			fmt.Fprint(bb, "}\n")
 		}
+	}
 
-		for _, c := range parser.SortedClassesForModule(module, true) {
-			implemented := make(map[string]struct{})
-			for _, f := range c.Functions {
-				if f.Meta != parser.CONSTRUCTOR && !f.Static {
-					continue
-				}
-				if strings.Contains(f.Name, "RegisterMetaType") || strings.Contains(f.Name, "RegisterType") { //TODO:
-					continue
-				}
-				var _, e = implemented[fmt.Sprint(f.Name, f.OverloadNumber)]
-				if e || !f.IsSupported() {
-					continue
-				}
-				implemented[fmt.Sprint(f.Name, f.OverloadNumber)] = struct{}{}
+	for _, c := range parser.SortedClassesForModule(module, true) {
 
+		if !parser.UseJs() {
+			if c.IsSupported() {
+				bb.WriteString(fmt.Sprintf("qt.ItfMap[\"%[1]v.%[2]v_ITF\"] = %[2]v{}\n", goModule(func() string {
+					if mode == MOC {
+						return pkg
+					}
+					return module
+				}()), c.Name))
+			}
+		}
+
+		implemented := make(map[string]struct{})
+		for _, f := range c.Functions {
+			if f.Meta != parser.CONSTRUCTOR && !f.Static {
+				continue
+			}
+			if strings.Contains(f.Name, "RegisterMetaType") || strings.Contains(f.Name, "RegisterType") { //TODO:
+				continue
+			}
+			var _, e = implemented[fmt.Sprint(f.Name, f.OverloadNumber)]
+			if e || !f.IsSupported() {
+				continue
+			}
+			implemented[fmt.Sprint(f.Name, f.OverloadNumber)] = struct{}{}
+
+			if parser.UseJs() {
 				var ip string
 				oldsm := f.SignalMode
 				f.SignalMode = parser.CALLBACK
@@ -708,24 +765,36 @@ default:
 				if !strings.Contains(out, "unsupported_") && !strings.Contains(out, "C.") && strings.Contains(bb.String(), converter.GoHeaderName(f)+"(") {
 					bb.WriteString(out)
 				}
-			}
-
-			for _, e := range c.Enums {
-				for _, v := range e.Values {
-					if v.Name == "ByteOrder" {
-						continue
+			} else {
+				out := fmt.Sprintf("qt.FuncMap[\"%[1]v.%[2]v\"] = %[2]v\n", goModule(func() string {
+					if mode == MOC {
+						return pkg
 					}
-					if parser.UseWasm() {
-						//TODO:
-					} else {
-						fmt.Fprintf(bb, "module.Set(\"%v__%v\", int64(%v__%v))\n", strings.Split(e.Fullname, "::")[0], v.Name, strings.Split(e.Fullname, "::")[0], v.Name)
-					}
+					return module
+				}()), converter.GoHeaderName(f)) //TODO: use setter and getter
+				if !strings.Contains(out, "unsupported_") && strings.Contains(bb.String(), converter.GoHeaderName(f)+"(") {
+					bb.WriteString(out)
 				}
 			}
 		}
 
-		fmt.Fprint(bb, "}\n")
+		for _, e := range c.Enums {
+			for _, v := range e.Values {
+				if v.Name == "ByteOrder" {
+					continue
+				}
+				if parser.UseWasm() {
+					//TODO: same as for js ?
+				} else if parser.UseJs() {
+					fmt.Fprintf(bb, "module.Set(\"%v__%v\", int64(%v__%v))\n", strings.Split(e.Fullname, "::")[0], v.Name, strings.Split(e.Fullname, "::")[0], v.Name)
+				} else {
+					bb.WriteString(fmt.Sprintf("qt.EnumMap[\"%[1]v.%[2]v__%[3]v\"] = int64(%[2]v__%[3]v)\n", goModule(module), strings.Split(e.Fullname, "::")[0], v.Name))
+				}
+			}
+		}
 	}
+
+	fmt.Fprint(bb, "}\n")
 
 	return preambleGo(module, goModule(module), bb.Bytes(), stub, mode, pkg, target, tags)
 }
@@ -897,6 +966,14 @@ import "C"
 					}
 				}
 				//TODO: REVIEW
+			}
+		}
+
+		if module == "gui" {
+			if mode == NONE {
+				fmt.Fprintln(bb, "_ \"github.com/therecipe/qt/internal/binding/runtime\"")
+			} else if mode == MINIMAL && (cmd.ImportsQtStd("qml") || cmd.ImportsQtStd("quick")) {
+				fmt.Fprintln(bb, "_ \"github.com/therecipe/qt/internal/binding/runtime\"")
 			}
 		}
 	}

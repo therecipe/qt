@@ -742,3 +742,8 @@ func (ptr *QUiLoader) TimerEventDefault(event core.QTimerEvent_ITF) {
 		C.QUiLoader_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
+
+func init() {
+	qt.ItfMap["uitools.QUiLoader_ITF"] = QUiLoader{}
+	qt.FuncMap["uitools.NewQUiLoader"] = NewQUiLoader
+}

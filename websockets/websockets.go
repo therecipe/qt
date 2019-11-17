@@ -3208,3 +3208,42 @@ func (ptr *QtWebSocketsDeclarativeModule) DestroyQtWebSocketsDeclarativeModule()
 		runtime.SetFinalizer(ptr, nil)
 	}
 }
+
+func init() {
+	qt.ItfMap["websockets.QMaskGenerator_ITF"] = QMaskGenerator{}
+	qt.FuncMap["websockets.NewQMaskGenerator2"] = NewQMaskGenerator2
+	qt.ItfMap["websockets.QWebSocket_ITF"] = QWebSocket{}
+	qt.FuncMap["websockets.NewQWebSocket2"] = NewQWebSocket2
+	qt.ItfMap["websockets.QWebSocketCorsAuthenticator_ITF"] = QWebSocketCorsAuthenticator{}
+	qt.FuncMap["websockets.NewQWebSocketCorsAuthenticator"] = NewQWebSocketCorsAuthenticator
+	qt.FuncMap["websockets.NewQWebSocketCorsAuthenticator2"] = NewQWebSocketCorsAuthenticator2
+	qt.FuncMap["websockets.NewQWebSocketCorsAuthenticator3"] = NewQWebSocketCorsAuthenticator3
+	qt.ItfMap["websockets.QWebSocketProtocol_ITF"] = QWebSocketProtocol{}
+	qt.EnumMap["websockets.QWebSocketProtocol__CloseCodeNormal"] = int64(QWebSocketProtocol__CloseCodeNormal)
+	qt.EnumMap["websockets.QWebSocketProtocol__CloseCodeGoingAway"] = int64(QWebSocketProtocol__CloseCodeGoingAway)
+	qt.EnumMap["websockets.QWebSocketProtocol__CloseCodeProtocolError"] = int64(QWebSocketProtocol__CloseCodeProtocolError)
+	qt.EnumMap["websockets.QWebSocketProtocol__CloseCodeDatatypeNotSupported"] = int64(QWebSocketProtocol__CloseCodeDatatypeNotSupported)
+	qt.EnumMap["websockets.QWebSocketProtocol__CloseCodeReserved1004"] = int64(QWebSocketProtocol__CloseCodeReserved1004)
+	qt.EnumMap["websockets.QWebSocketProtocol__CloseCodeMissingStatusCode"] = int64(QWebSocketProtocol__CloseCodeMissingStatusCode)
+	qt.EnumMap["websockets.QWebSocketProtocol__CloseCodeAbnormalDisconnection"] = int64(QWebSocketProtocol__CloseCodeAbnormalDisconnection)
+	qt.EnumMap["websockets.QWebSocketProtocol__CloseCodeWrongDatatype"] = int64(QWebSocketProtocol__CloseCodeWrongDatatype)
+	qt.EnumMap["websockets.QWebSocketProtocol__CloseCodePolicyViolated"] = int64(QWebSocketProtocol__CloseCodePolicyViolated)
+	qt.EnumMap["websockets.QWebSocketProtocol__CloseCodeTooMuchData"] = int64(QWebSocketProtocol__CloseCodeTooMuchData)
+	qt.EnumMap["websockets.QWebSocketProtocol__CloseCodeMissingExtension"] = int64(QWebSocketProtocol__CloseCodeMissingExtension)
+	qt.EnumMap["websockets.QWebSocketProtocol__CloseCodeBadOperation"] = int64(QWebSocketProtocol__CloseCodeBadOperation)
+	qt.EnumMap["websockets.QWebSocketProtocol__CloseCodeTlsHandshakeFailed"] = int64(QWebSocketProtocol__CloseCodeTlsHandshakeFailed)
+	qt.EnumMap["websockets.QWebSocketProtocol__VersionUnknown"] = int64(QWebSocketProtocol__VersionUnknown)
+	qt.EnumMap["websockets.QWebSocketProtocol__Version0"] = int64(QWebSocketProtocol__Version0)
+	qt.EnumMap["websockets.QWebSocketProtocol__Version4"] = int64(QWebSocketProtocol__Version4)
+	qt.EnumMap["websockets.QWebSocketProtocol__Version5"] = int64(QWebSocketProtocol__Version5)
+	qt.EnumMap["websockets.QWebSocketProtocol__Version6"] = int64(QWebSocketProtocol__Version6)
+	qt.EnumMap["websockets.QWebSocketProtocol__Version7"] = int64(QWebSocketProtocol__Version7)
+	qt.EnumMap["websockets.QWebSocketProtocol__Version8"] = int64(QWebSocketProtocol__Version8)
+	qt.EnumMap["websockets.QWebSocketProtocol__Version13"] = int64(QWebSocketProtocol__Version13)
+	qt.EnumMap["websockets.QWebSocketProtocol__VersionLatest"] = int64(QWebSocketProtocol__VersionLatest)
+	qt.ItfMap["websockets.QWebSocketServer_ITF"] = QWebSocketServer{}
+	qt.FuncMap["websockets.NewQWebSocketServer2"] = NewQWebSocketServer2
+	qt.EnumMap["websockets.QWebSocketServer__SecureMode"] = int64(QWebSocketServer__SecureMode)
+	qt.EnumMap["websockets.QWebSocketServer__NonSecureMode"] = int64(QWebSocketServer__NonSecureMode)
+	qt.ItfMap["websockets.QtWebSocketsDeclarativeModule_ITF"] = QtWebSocketsDeclarativeModule{}
+}

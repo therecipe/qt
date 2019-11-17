@@ -13950,3 +13950,39 @@ func (ptr *QHelpSearchResultWidget) TimerEventDefault(event core.QTimerEvent_ITF
 		C.QHelpSearchResultWidget_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
+
+func init() {
+	qt.ItfMap["help.QCompressedHelpInfo_ITF"] = QCompressedHelpInfo{}
+	qt.FuncMap["help.NewQCompressedHelpInfo"] = NewQCompressedHelpInfo
+	qt.FuncMap["help.NewQCompressedHelpInfo2"] = NewQCompressedHelpInfo2
+	qt.FuncMap["help.NewQCompressedHelpInfo3"] = NewQCompressedHelpInfo3
+	qt.FuncMap["help.QCompressedHelpInfo_FromCompressedHelpFile"] = QCompressedHelpInfo_FromCompressedHelpFile
+	qt.ItfMap["help.QHelpContentItem_ITF"] = QHelpContentItem{}
+	qt.ItfMap["help.QHelpContentModel_ITF"] = QHelpContentModel{}
+	qt.ItfMap["help.QHelpContentWidget_ITF"] = QHelpContentWidget{}
+	qt.ItfMap["help.QHelpEngine_ITF"] = QHelpEngine{}
+	qt.FuncMap["help.NewQHelpEngine"] = NewQHelpEngine
+	qt.ItfMap["help.QHelpEngineCore_ITF"] = QHelpEngineCore{}
+	qt.FuncMap["help.NewQHelpEngineCore"] = NewQHelpEngineCore
+	qt.FuncMap["help.QHelpEngineCore_MetaData"] = QHelpEngineCore_MetaData
+	qt.FuncMap["help.QHelpEngineCore_NamespaceName"] = QHelpEngineCore_NamespaceName
+	qt.ItfMap["help.QHelpFilterData_ITF"] = QHelpFilterData{}
+	qt.FuncMap["help.NewQHelpFilterData"] = NewQHelpFilterData
+	qt.FuncMap["help.NewQHelpFilterData2"] = NewQHelpFilterData2
+	qt.FuncMap["help.NewQHelpFilterData3"] = NewQHelpFilterData3
+	qt.ItfMap["help.QHelpFilterEngine_ITF"] = QHelpFilterEngine{}
+	qt.ItfMap["help.QHelpGlobal_ITF"] = QHelpGlobal{}
+	qt.ItfMap["help.QHelpIndexModel_ITF"] = QHelpIndexModel{}
+	qt.ItfMap["help.QHelpIndexWidget_ITF"] = QHelpIndexWidget{}
+	qt.ItfMap["help.QHelpSearchEngine_ITF"] = QHelpSearchEngine{}
+	qt.FuncMap["help.NewQHelpSearchEngine"] = NewQHelpSearchEngine
+	qt.ItfMap["help.QHelpSearchQuery_ITF"] = QHelpSearchQuery{}
+	qt.FuncMap["help.NewQHelpSearchQuery"] = NewQHelpSearchQuery
+	qt.ItfMap["help.QHelpSearchQueryWidget_ITF"] = QHelpSearchQueryWidget{}
+	qt.FuncMap["help.NewQHelpSearchQueryWidget"] = NewQHelpSearchQueryWidget
+	qt.ItfMap["help.QHelpSearchResult_ITF"] = QHelpSearchResult{}
+	qt.FuncMap["help.NewQHelpSearchResult"] = NewQHelpSearchResult
+	qt.FuncMap["help.NewQHelpSearchResult2"] = NewQHelpSearchResult2
+	qt.FuncMap["help.NewQHelpSearchResult3"] = NewQHelpSearchResult3
+	qt.ItfMap["help.QHelpSearchResultWidget_ITF"] = QHelpSearchResultWidget{}
+}

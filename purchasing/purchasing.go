@@ -1550,3 +1550,19 @@ func (ptr *QInAppTransaction) TimerEventDefault(event core.QTimerEvent_ITF) {
 		C.QInAppTransaction_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
+
+func init() {
+	qt.ItfMap["purchasing.QInAppProduct_ITF"] = QInAppProduct{}
+	qt.EnumMap["purchasing.QInAppProduct__Consumable"] = int64(QInAppProduct__Consumable)
+	qt.EnumMap["purchasing.QInAppProduct__Unlockable"] = int64(QInAppProduct__Unlockable)
+	qt.ItfMap["purchasing.QInAppStore_ITF"] = QInAppStore{}
+	qt.FuncMap["purchasing.NewQInAppStore"] = NewQInAppStore
+	qt.ItfMap["purchasing.QInAppTransaction_ITF"] = QInAppTransaction{}
+	qt.EnumMap["purchasing.QInAppTransaction__Unknown"] = int64(QInAppTransaction__Unknown)
+	qt.EnumMap["purchasing.QInAppTransaction__PurchaseApproved"] = int64(QInAppTransaction__PurchaseApproved)
+	qt.EnumMap["purchasing.QInAppTransaction__PurchaseFailed"] = int64(QInAppTransaction__PurchaseFailed)
+	qt.EnumMap["purchasing.QInAppTransaction__PurchaseRestored"] = int64(QInAppTransaction__PurchaseRestored)
+	qt.EnumMap["purchasing.QInAppTransaction__NoFailure"] = int64(QInAppTransaction__NoFailure)
+	qt.EnumMap["purchasing.QInAppTransaction__CanceledByUser"] = int64(QInAppTransaction__CanceledByUser)
+	qt.EnumMap["purchasing.QInAppTransaction__ErrorOccurred"] = int64(QInAppTransaction__ErrorOccurred)
+}

@@ -107,6 +107,6 @@ func main() {
 	case vagrant:
 		cmd.Vagrant([]string{"qtminimal", "-debug", "-tags=" + tags}, target, path, false, vagrant_system)
 	default:
-		minimal.Minimal(path, target, tags)
+		minimal.Minimal(path, target, tags, false)
 	}
 }

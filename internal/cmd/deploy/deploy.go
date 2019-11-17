@@ -101,13 +101,13 @@ func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast b
 			utils.RemoveAll(depPath + "_obj")
 		}
 
-		rcc.Rcc(path, target, tags, os.Getenv("QTRCC_OUTPUT_DIR"), useuic, quickcompiler, true)
+		rcc.Rcc(path, target, tags, os.Getenv("QTRCC_OUTPUT_DIR"), useuic, quickcompiler, true, true)
 		if !fast {
-			moc.Moc(path, target, tags, false, false, true)
+			moc.Moc(path, target, tags, false, false, true, true)
 		}
 
 		if ((!fast || utils.QT_STUB()) || ((target == "js" || target == "wasm") && (utils.QT_DOCKER() || utils.QT_VAGRANT()))) && !utils.QT_FAT() {
-			minimal.Minimal(path, target, tags)
+			minimal.Minimal(path, target, tags, true)
 		}
 
 		build(mode, target, path, ldFlags, tags, name, depPath, fast, comply)

@@ -19,8 +19,8 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func Minimal(path, target, tags string) {
-	if utils.UseGOMOD(path) {
+func Minimal(path, target, tags string, skipSetup bool) {
+	if utils.UseGOMOD(path) && !skipSetup {
 		if !utils.ExistsDir(filepath.Join(filepath.Dir(utils.GOMOD(path)), "vendor")) {
 			cmd := exec.Command("go", "mod", "vendor")
 			cmd.Dir = path
@@ -106,12 +106,12 @@ func Minimal(path, target, tags string) {
 				files = append(files, file)
 				fileMutex.Unlock()
 			}
-			if target == "js" { //TODO: wasm as well
+			if target == "js" || cmd.ImportsQtStd("qml") || cmd.ImportsQtStd("quick") { //TODO: wasm as well
 				filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
 					if err != nil || info.IsDir() {
 						return err
 					}
-					if filepath.Ext(path) == ".js" {
+					if filepath.Ext(path) == ".js" || filepath.Ext(path) == ".qml" {
 						utils.Log.WithField("path", path).Debug("analyse js for minimal")
 						file := utils.Load(path)
 						fileMutex.Lock()
@@ -278,10 +278,9 @@ func Minimal(path, target, tags string) {
 
 	if _, ok := parser.State.ClassMap["QVariant"]; ok {
 		exportClass(parser.State.ClassMap["QVariant"], files)
-		exportFunction(parser.State.ClassMap["QVariant"].GetFunction("type"), files)
-		exportFunction(parser.State.ClassMap["QVariant"].GetFunction("canConvert"), files)
-		exportFunction(parser.State.ClassMap["QVariant"].GetFunction("toList"), files)
-		exportFunction(parser.State.ClassMap["QVariant"].GetFunction("toMap"), files)
+		for _, fn := range []string{"type", "canConvert", "toList", "toMap", "isValid", "toString"} {
+			exportFunction(parser.State.ClassMap["QVariant"].GetFunction(fn), files)
+		}
 
 		for _, v := range parser.State.ClassMap["QVariant"].Enums[0].Values {
 			if f := parser.State.ClassMap["QVariant"].GetFunction("to" + v.Name); f != nil {
@@ -293,6 +292,27 @@ func Minimal(path, target, tags string) {
 					exportFunction(f, files)
 				}
 			}
+		}
+	}
+
+	if _, ok := parser.State.ClassMap["QJSValue"]; ok {
+		exportClass(parser.State.ClassMap["QJSValue"], files)
+		for _, fn := range []string{"property", "setProperty", "toQObject", "isCallable", "isNull", "isUndefined", "toString", "call", "toInt"} {
+			exportFunction(parser.State.ClassMap["QJSValue"].GetFunction(fn), files)
+		}
+	}
+
+	if _, ok := parser.State.ClassMap["QJSEngine"]; ok {
+		exportClass(parser.State.ClassMap["QJSEngine"], files)
+		for _, fn := range []string{"newQObject", "newObject", "qjsEngine", "toScriptValue", "globalObject", "newArray", "evaluate"} {
+			exportFunction(parser.State.ClassMap["QJSEngine"].GetFunction(fn), files)
+		}
+	}
+
+	if _, ok := parser.State.ClassMap["QQuickView"]; ok {
+		exportClass(parser.State.ClassMap["QQuickView"], files)
+		for _, fn := range []string{"engine"} {
+			exportFunction(parser.State.ClassMap["QQuickView"].GetFunction(fn), files)
 		}
 	}
 

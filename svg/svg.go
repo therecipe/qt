@@ -3730,3 +3730,19 @@ func (ptr *QSvgWidget) TimerEventDefault(event core.QTimerEvent_ITF) {
 		C.QSvgWidget_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
+
+func init() {
+	qt.ItfMap["svg.QGraphicsSvgItem_ITF"] = QGraphicsSvgItem{}
+	qt.FuncMap["svg.NewQGraphicsSvgItem"] = NewQGraphicsSvgItem
+	qt.FuncMap["svg.NewQGraphicsSvgItem2"] = NewQGraphicsSvgItem2
+	qt.ItfMap["svg.QSvgGenerator_ITF"] = QSvgGenerator{}
+	qt.FuncMap["svg.NewQSvgGenerator"] = NewQSvgGenerator
+	qt.ItfMap["svg.QSvgRenderer_ITF"] = QSvgRenderer{}
+	qt.FuncMap["svg.NewQSvgRenderer"] = NewQSvgRenderer
+	qt.FuncMap["svg.NewQSvgRenderer2"] = NewQSvgRenderer2
+	qt.FuncMap["svg.NewQSvgRenderer3"] = NewQSvgRenderer3
+	qt.FuncMap["svg.NewQSvgRenderer4"] = NewQSvgRenderer4
+	qt.ItfMap["svg.QSvgWidget_ITF"] = QSvgWidget{}
+	qt.FuncMap["svg.NewQSvgWidget"] = NewQSvgWidget
+	qt.FuncMap["svg.NewQSvgWidget2"] = NewQSvgWidget2
+}

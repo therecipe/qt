@@ -50,8 +50,8 @@ var (
 	goDirCacheMutex = new(sync.Mutex)
 )
 
-func Moc(path, target, tags string, fast, slow, deploying bool) {
-	if utils.UseGOMOD(path) {
+func Moc(path, target, tags string, fast, slow, deploying bool, skipSetup bool) {
+	if utils.UseGOMOD(path) && !skipSetup {
 		if !utils.ExistsDir(filepath.Join(filepath.Dir(utils.GOMOD(path)), "vendor")) {
 			cmd := exec.Command("go", "mod", "vendor")
 			cmd.Dir = path
@@ -170,6 +170,10 @@ func moc(path, target, tags string, fast, slow, root bool, l int, dirty bool) {
 			}(path)
 		}
 		wg.Wait()
+
+		if cmd.ImportsQtStd("qml") || cmd.ImportsQtStd("quick") {
+			moc(utils.GoQtPkgPath("internal/binding/runtime"), target, tags, false, slow, false, l, dirty)
+		}
 	}
 
 	var (

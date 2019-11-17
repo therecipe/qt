@@ -146,10 +146,21 @@ func GetImports(path, target, tagsCustom string, level int, onlyDirect bool) []s
 }
 
 func GetQtStdImports() (o []string) {
+	importedStdMutex.Lock()
 	for k := range importedStd {
 		o = append(o, strings.TrimPrefix(k, "github.com/therecipe/qt/"))
 	}
+	importedStdMutex.Unlock()
 	return
+}
+
+func ImportsQtStd(m string) bool {
+	for _, l := range GetQtStdImports() {
+		if l == m {
+			return true
+		}
+	}
+	return false
 }
 
 func GetGoFiles(path, target, tagsCustom string) []string {
@@ -188,8 +199,9 @@ func GetGoFiles(path, target, tagsCustom string) []string {
 	return olibs
 }
 
+//TODO: directly parse go.mod to make it possible to skip "go mod download"
 func QtModVersion(path string) string {
-	cmd := exec.Command("go", "list", "-m", "-mod=vendor", "-f", "{{.Version}}", "github.com/therecipe/qt")
+	cmd := exec.Command("go", "list", "-m", "-f", "{{.Version}}", "github.com/therecipe/qt")
 	cmd.Dir = path
 	version := strings.TrimSpace(utils.RunCmdOptional(cmd, "get qt tooling version"))
 	if !strings.HasPrefix(version, "v") {
@@ -204,9 +216,11 @@ func RestartWithPinnedVersion(path string) bool {
 	utils.RunCmd(cmd, "download qt based on the go.mod version")
 
 	if v := QtModVersion(path); strings.Count(v, "-") == 2 {
-		if i, err := strconv.Atoi(strings.Split(v, "-")[1]); !(err == nil && i >= 20191110184604) { //6e660afb3df7
+		if i, err := strconv.ParseInt(strings.Split(v, "-")[1], 10, 64); !(err == nil && i >= 20191110184604) { //6e660afb3df7
 			return false
 		}
+	} else {
+		return false
 	}
 
 	cmd = exec.Command("go", "install", "-v", "-tags=no_env", "github.com/therecipe/qt/cmd/...")

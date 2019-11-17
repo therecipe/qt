@@ -1714,3 +1714,73 @@ func (ptr *QSerialPortInfo) __standardBaudRates_setList(i int) {
 func (ptr *QSerialPortInfo) __standardBaudRates_newList() unsafe.Pointer {
 	return C.QSerialPortInfo___standardBaudRates_newList(ptr.Pointer())
 }
+
+func init() {
+	qt.ItfMap["serialport.QSerialPort_ITF"] = QSerialPort{}
+	qt.FuncMap["serialport.NewQSerialPort"] = NewQSerialPort
+	qt.FuncMap["serialport.NewQSerialPort2"] = NewQSerialPort2
+	qt.FuncMap["serialport.NewQSerialPort3"] = NewQSerialPort3
+	qt.EnumMap["serialport.QSerialPort__Input"] = int64(QSerialPort__Input)
+	qt.EnumMap["serialport.QSerialPort__Output"] = int64(QSerialPort__Output)
+	qt.EnumMap["serialport.QSerialPort__AllDirections"] = int64(QSerialPort__AllDirections)
+	qt.EnumMap["serialport.QSerialPort__Baud1200"] = int64(QSerialPort__Baud1200)
+	qt.EnumMap["serialport.QSerialPort__Baud2400"] = int64(QSerialPort__Baud2400)
+	qt.EnumMap["serialport.QSerialPort__Baud4800"] = int64(QSerialPort__Baud4800)
+	qt.EnumMap["serialport.QSerialPort__Baud9600"] = int64(QSerialPort__Baud9600)
+	qt.EnumMap["serialport.QSerialPort__Baud19200"] = int64(QSerialPort__Baud19200)
+	qt.EnumMap["serialport.QSerialPort__Baud38400"] = int64(QSerialPort__Baud38400)
+	qt.EnumMap["serialport.QSerialPort__Baud57600"] = int64(QSerialPort__Baud57600)
+	qt.EnumMap["serialport.QSerialPort__Baud115200"] = int64(QSerialPort__Baud115200)
+	qt.EnumMap["serialport.QSerialPort__UnknownBaud"] = int64(QSerialPort__UnknownBaud)
+	qt.EnumMap["serialport.QSerialPort__Data5"] = int64(QSerialPort__Data5)
+	qt.EnumMap["serialport.QSerialPort__Data6"] = int64(QSerialPort__Data6)
+	qt.EnumMap["serialport.QSerialPort__Data7"] = int64(QSerialPort__Data7)
+	qt.EnumMap["serialport.QSerialPort__Data8"] = int64(QSerialPort__Data8)
+	qt.EnumMap["serialport.QSerialPort__UnknownDataBits"] = int64(QSerialPort__UnknownDataBits)
+	qt.EnumMap["serialport.QSerialPort__NoParity"] = int64(QSerialPort__NoParity)
+	qt.EnumMap["serialport.QSerialPort__EvenParity"] = int64(QSerialPort__EvenParity)
+	qt.EnumMap["serialport.QSerialPort__OddParity"] = int64(QSerialPort__OddParity)
+	qt.EnumMap["serialport.QSerialPort__SpaceParity"] = int64(QSerialPort__SpaceParity)
+	qt.EnumMap["serialport.QSerialPort__MarkParity"] = int64(QSerialPort__MarkParity)
+	qt.EnumMap["serialport.QSerialPort__UnknownParity"] = int64(QSerialPort__UnknownParity)
+	qt.EnumMap["serialport.QSerialPort__OneStop"] = int64(QSerialPort__OneStop)
+	qt.EnumMap["serialport.QSerialPort__OneAndHalfStop"] = int64(QSerialPort__OneAndHalfStop)
+	qt.EnumMap["serialport.QSerialPort__TwoStop"] = int64(QSerialPort__TwoStop)
+	qt.EnumMap["serialport.QSerialPort__UnknownStopBits"] = int64(QSerialPort__UnknownStopBits)
+	qt.EnumMap["serialport.QSerialPort__NoFlowControl"] = int64(QSerialPort__NoFlowControl)
+	qt.EnumMap["serialport.QSerialPort__HardwareControl"] = int64(QSerialPort__HardwareControl)
+	qt.EnumMap["serialport.QSerialPort__SoftwareControl"] = int64(QSerialPort__SoftwareControl)
+	qt.EnumMap["serialport.QSerialPort__UnknownFlowControl"] = int64(QSerialPort__UnknownFlowControl)
+	qt.EnumMap["serialport.QSerialPort__NoSignal"] = int64(QSerialPort__NoSignal)
+	qt.EnumMap["serialport.QSerialPort__TransmittedDataSignal"] = int64(QSerialPort__TransmittedDataSignal)
+	qt.EnumMap["serialport.QSerialPort__ReceivedDataSignal"] = int64(QSerialPort__ReceivedDataSignal)
+	qt.EnumMap["serialport.QSerialPort__DataTerminalReadySignal"] = int64(QSerialPort__DataTerminalReadySignal)
+	qt.EnumMap["serialport.QSerialPort__DataCarrierDetectSignal"] = int64(QSerialPort__DataCarrierDetectSignal)
+	qt.EnumMap["serialport.QSerialPort__DataSetReadySignal"] = int64(QSerialPort__DataSetReadySignal)
+	qt.EnumMap["serialport.QSerialPort__RingIndicatorSignal"] = int64(QSerialPort__RingIndicatorSignal)
+	qt.EnumMap["serialport.QSerialPort__RequestToSendSignal"] = int64(QSerialPort__RequestToSendSignal)
+	qt.EnumMap["serialport.QSerialPort__ClearToSendSignal"] = int64(QSerialPort__ClearToSendSignal)
+	qt.EnumMap["serialport.QSerialPort__SecondaryTransmittedDataSignal"] = int64(QSerialPort__SecondaryTransmittedDataSignal)
+	qt.EnumMap["serialport.QSerialPort__SecondaryReceivedDataSignal"] = int64(QSerialPort__SecondaryReceivedDataSignal)
+	qt.EnumMap["serialport.QSerialPort__NoError"] = int64(QSerialPort__NoError)
+	qt.EnumMap["serialport.QSerialPort__DeviceNotFoundError"] = int64(QSerialPort__DeviceNotFoundError)
+	qt.EnumMap["serialport.QSerialPort__PermissionError"] = int64(QSerialPort__PermissionError)
+	qt.EnumMap["serialport.QSerialPort__OpenError"] = int64(QSerialPort__OpenError)
+	qt.EnumMap["serialport.QSerialPort__ParityError"] = int64(QSerialPort__ParityError)
+	qt.EnumMap["serialport.QSerialPort__FramingError"] = int64(QSerialPort__FramingError)
+	qt.EnumMap["serialport.QSerialPort__BreakConditionError"] = int64(QSerialPort__BreakConditionError)
+	qt.EnumMap["serialport.QSerialPort__WriteError"] = int64(QSerialPort__WriteError)
+	qt.EnumMap["serialport.QSerialPort__ReadError"] = int64(QSerialPort__ReadError)
+	qt.EnumMap["serialport.QSerialPort__ResourceError"] = int64(QSerialPort__ResourceError)
+	qt.EnumMap["serialport.QSerialPort__UnsupportedOperationError"] = int64(QSerialPort__UnsupportedOperationError)
+	qt.EnumMap["serialport.QSerialPort__UnknownError"] = int64(QSerialPort__UnknownError)
+	qt.EnumMap["serialport.QSerialPort__TimeoutError"] = int64(QSerialPort__TimeoutError)
+	qt.EnumMap["serialport.QSerialPort__NotOpenError"] = int64(QSerialPort__NotOpenError)
+	qt.ItfMap["serialport.QSerialPortInfo_ITF"] = QSerialPortInfo{}
+	qt.FuncMap["serialport.NewQSerialPortInfo"] = NewQSerialPortInfo
+	qt.FuncMap["serialport.NewQSerialPortInfo2"] = NewQSerialPortInfo2
+	qt.FuncMap["serialport.NewQSerialPortInfo3"] = NewQSerialPortInfo3
+	qt.FuncMap["serialport.NewQSerialPortInfo4"] = NewQSerialPortInfo4
+	qt.FuncMap["serialport.QSerialPortInfo_AvailablePorts"] = QSerialPortInfo_AvailablePorts
+	qt.FuncMap["serialport.QSerialPortInfo_StandardBaudRates"] = QSerialPortInfo_StandardBaudRates
+}

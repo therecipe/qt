@@ -4610,3 +4610,32 @@ func (ptr *QScxmlTableData) DestroyQScxmlTableDataDefault() {
 		ptr.SetPointer(nil)
 	}
 }
+
+func init() {
+	qt.ItfMap["scxml.QScxmlCompiler_ITF"] = QScxmlCompiler{}
+	qt.FuncMap["scxml.NewQScxmlCompiler"] = NewQScxmlCompiler
+	qt.ItfMap["scxml.QScxmlCppDataModel_ITF"] = QScxmlCppDataModel{}
+	qt.ItfMap["scxml.QScxmlDataModel_ITF"] = QScxmlDataModel{}
+	qt.ItfMap["scxml.QScxmlDynamicScxmlServiceFactory_ITF"] = QScxmlDynamicScxmlServiceFactory{}
+	qt.ItfMap["scxml.QScxmlEcmaScriptDataModel_ITF"] = QScxmlEcmaScriptDataModel{}
+	qt.FuncMap["scxml.NewQScxmlEcmaScriptDataModel"] = NewQScxmlEcmaScriptDataModel
+	qt.ItfMap["scxml.QScxmlError_ITF"] = QScxmlError{}
+	qt.FuncMap["scxml.NewQScxmlError"] = NewQScxmlError
+	qt.FuncMap["scxml.NewQScxmlError2"] = NewQScxmlError2
+	qt.FuncMap["scxml.NewQScxmlError3"] = NewQScxmlError3
+	qt.ItfMap["scxml.QScxmlEvent_ITF"] = QScxmlEvent{}
+	qt.FuncMap["scxml.NewQScxmlEvent"] = NewQScxmlEvent
+	qt.FuncMap["scxml.NewQScxmlEvent2"] = NewQScxmlEvent2
+	qt.EnumMap["scxml.QScxmlEvent__PlatformEvent"] = int64(QScxmlEvent__PlatformEvent)
+	qt.EnumMap["scxml.QScxmlEvent__InternalEvent"] = int64(QScxmlEvent__InternalEvent)
+	qt.EnumMap["scxml.QScxmlEvent__ExternalEvent"] = int64(QScxmlEvent__ExternalEvent)
+	qt.ItfMap["scxml.QScxmlInvokableService_ITF"] = QScxmlInvokableService{}
+	qt.ItfMap["scxml.QScxmlInvokableServiceFactory_ITF"] = QScxmlInvokableServiceFactory{}
+	qt.ItfMap["scxml.QScxmlNullDataModel_ITF"] = QScxmlNullDataModel{}
+	qt.FuncMap["scxml.NewQScxmlNullDataModel"] = NewQScxmlNullDataModel
+	qt.ItfMap["scxml.QScxmlStateMachine_ITF"] = QScxmlStateMachine{}
+	qt.FuncMap["scxml.QScxmlStateMachine_FromData"] = QScxmlStateMachine_FromData
+	qt.FuncMap["scxml.QScxmlStateMachine_FromFile"] = QScxmlStateMachine_FromFile
+	qt.ItfMap["scxml.QScxmlStaticScxmlServiceFactory_ITF"] = QScxmlStaticScxmlServiceFactory{}
+	qt.ItfMap["scxml.QScxmlTableData_ITF"] = QScxmlTableData{}
+}

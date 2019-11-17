@@ -6484,3 +6484,47 @@ func (ptr *QVirtualKeyboardTrace) TimerEventDefault(event core.QTimerEvent_ITF) 
 		C.QVirtualKeyboardTrace_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
+
+func init() {
+	qt.ItfMap["virtualkeyboard.QVirtualKeyboardAbstractInputMethod_ITF"] = QVirtualKeyboardAbstractInputMethod{}
+	qt.FuncMap["virtualkeyboard.NewQVirtualKeyboardAbstractInputMethod"] = NewQVirtualKeyboardAbstractInputMethod
+	qt.ItfMap["virtualkeyboard.QVirtualKeyboardExtensionPlugin_ITF"] = QVirtualKeyboardExtensionPlugin{}
+	qt.ItfMap["virtualkeyboard.QVirtualKeyboardInputContext_ITF"] = QVirtualKeyboardInputContext{}
+	qt.ItfMap["virtualkeyboard.QVirtualKeyboardInputEngine_ITF"] = QVirtualKeyboardInputEngine{}
+	qt.EnumMap["virtualkeyboard.QVirtualKeyboardInputEngine__Lower"] = int64(QVirtualKeyboardInputEngine__Lower)
+	qt.EnumMap["virtualkeyboard.QVirtualKeyboardInputEngine__Upper"] = int64(QVirtualKeyboardInputEngine__Upper)
+	qt.EnumMap["virtualkeyboard.QVirtualKeyboardInputEngine__Latin"] = int64(QVirtualKeyboardInputEngine__Latin)
+	qt.EnumMap["virtualkeyboard.QVirtualKeyboardInputEngine__Numeric"] = int64(QVirtualKeyboardInputEngine__Numeric)
+	qt.EnumMap["virtualkeyboard.QVirtualKeyboardInputEngine__Dialable"] = int64(QVirtualKeyboardInputEngine__Dialable)
+	qt.EnumMap["virtualkeyboard.QVirtualKeyboardInputEngine__Pinyin"] = int64(QVirtualKeyboardInputEngine__Pinyin)
+	qt.EnumMap["virtualkeyboard.QVirtualKeyboardInputEngine__Cangjie"] = int64(QVirtualKeyboardInputEngine__Cangjie)
+	qt.EnumMap["virtualkeyboard.QVirtualKeyboardInputEngine__Zhuyin"] = int64(QVirtualKeyboardInputEngine__Zhuyin)
+	qt.EnumMap["virtualkeyboard.QVirtualKeyboardInputEngine__Hangul"] = int64(QVirtualKeyboardInputEngine__Hangul)
+	qt.EnumMap["virtualkeyboard.QVirtualKeyboardInputEngine__Hiragana"] = int64(QVirtualKeyboardInputEngine__Hiragana)
+	qt.EnumMap["virtualkeyboard.QVirtualKeyboardInputEngine__Katakana"] = int64(QVirtualKeyboardInputEngine__Katakana)
+	qt.EnumMap["virtualkeyboard.QVirtualKeyboardInputEngine__FullwidthLatin"] = int64(QVirtualKeyboardInputEngine__FullwidthLatin)
+	qt.EnumMap["virtualkeyboard.QVirtualKeyboardInputEngine__Greek"] = int64(QVirtualKeyboardInputEngine__Greek)
+	qt.EnumMap["virtualkeyboard.QVirtualKeyboardInputEngine__Cyrillic"] = int64(QVirtualKeyboardInputEngine__Cyrillic)
+	qt.EnumMap["virtualkeyboard.QVirtualKeyboardInputEngine__Arabic"] = int64(QVirtualKeyboardInputEngine__Arabic)
+	qt.EnumMap["virtualkeyboard.QVirtualKeyboardInputEngine__Hebrew"] = int64(QVirtualKeyboardInputEngine__Hebrew)
+	qt.EnumMap["virtualkeyboard.QVirtualKeyboardInputEngine__ChineseHandwriting"] = int64(QVirtualKeyboardInputEngine__ChineseHandwriting)
+	qt.EnumMap["virtualkeyboard.QVirtualKeyboardInputEngine__JapaneseHandwriting"] = int64(QVirtualKeyboardInputEngine__JapaneseHandwriting)
+	qt.EnumMap["virtualkeyboard.QVirtualKeyboardInputEngine__KoreanHandwriting"] = int64(QVirtualKeyboardInputEngine__KoreanHandwriting)
+	qt.EnumMap["virtualkeyboard.QVirtualKeyboardInputEngine__Thai"] = int64(QVirtualKeyboardInputEngine__Thai)
+	qt.EnumMap["virtualkeyboard.QVirtualKeyboardInputEngine__None"] = int64(QVirtualKeyboardInputEngine__None)
+	qt.EnumMap["virtualkeyboard.QVirtualKeyboardInputEngine__PatternRecognitionDisabled"] = int64(QVirtualKeyboardInputEngine__PatternRecognitionDisabled)
+	qt.EnumMap["virtualkeyboard.QVirtualKeyboardInputEngine__Handwriting"] = int64(QVirtualKeyboardInputEngine__Handwriting)
+	qt.EnumMap["virtualkeyboard.QVirtualKeyboardInputEngine__HandwritingRecoginition"] = int64(QVirtualKeyboardInputEngine__HandwritingRecoginition)
+	qt.EnumMap["virtualkeyboard.QVirtualKeyboardInputEngine__WordBeforeCursor"] = int64(QVirtualKeyboardInputEngine__WordBeforeCursor)
+	qt.EnumMap["virtualkeyboard.QVirtualKeyboardInputEngine__WordAfterCursor"] = int64(QVirtualKeyboardInputEngine__WordAfterCursor)
+	qt.EnumMap["virtualkeyboard.QVirtualKeyboardInputEngine__WordAtCursor"] = int64(QVirtualKeyboardInputEngine__WordAtCursor)
+	qt.ItfMap["virtualkeyboard.QVirtualKeyboardSelectionListModel_ITF"] = QVirtualKeyboardSelectionListModel{}
+	qt.EnumMap["virtualkeyboard.QVirtualKeyboardSelectionListModel__WordCandidateList"] = int64(QVirtualKeyboardSelectionListModel__WordCandidateList)
+	qt.EnumMap["virtualkeyboard.QVirtualKeyboardSelectionListModel__Display"] = int64(QVirtualKeyboardSelectionListModel__Display)
+	qt.EnumMap["virtualkeyboard.QVirtualKeyboardSelectionListModel__DisplayRole"] = int64(QVirtualKeyboardSelectionListModel__DisplayRole)
+	qt.EnumMap["virtualkeyboard.QVirtualKeyboardSelectionListModel__Dictionary"] = int64(QVirtualKeyboardSelectionListModel__Dictionary)
+	qt.EnumMap["virtualkeyboard.QVirtualKeyboardSelectionListModel__CanRemoveSuggestion"] = int64(QVirtualKeyboardSelectionListModel__CanRemoveSuggestion)
+	qt.EnumMap["virtualkeyboard.QVirtualKeyboardSelectionListModel__Default"] = int64(QVirtualKeyboardSelectionListModel__Default)
+	qt.EnumMap["virtualkeyboard.QVirtualKeyboardSelectionListModel__User"] = int64(QVirtualKeyboardSelectionListModel__User)
+	qt.ItfMap["virtualkeyboard.QVirtualKeyboardTrace_ITF"] = QVirtualKeyboardTrace{}
+}

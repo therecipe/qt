@@ -259,6 +259,14 @@ func goFunctionBody(function *parser.Function) string {
 					}
 					*/
 
+					if function.Meta == parser.CONSTRUCTOR {
+						if class.IsSubClassOf("QJSEngine") {
+							fmt.Fprintln(bb, "Z_initEngine(tmpValue)")
+						} else if class.IsSubClassOf("QQuickView") {
+							fmt.Fprintln(bb, "qml.Z_initEngine(tmpValue.Engine())")
+						}
+					}
+
 					fmt.Fprint(bb, "return tmpValue")
 
 					return bb.String()

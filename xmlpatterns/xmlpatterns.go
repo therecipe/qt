@@ -4534,3 +4534,70 @@ func (ptr *QXmlSerializer) StartOfSequenceDefault() {
 		C.QXmlSerializer_StartOfSequenceDefault(ptr.Pointer())
 	}
 }
+
+func init() {
+	qt.ItfMap["xmlpatterns.QAbstractMessageHandler_ITF"] = QAbstractMessageHandler{}
+	qt.ItfMap["xmlpatterns.QAbstractUriResolver_ITF"] = QAbstractUriResolver{}
+	qt.FuncMap["xmlpatterns.NewQAbstractUriResolver"] = NewQAbstractUriResolver
+	qt.ItfMap["xmlpatterns.QAbstractXmlNodeModel_ITF"] = QAbstractXmlNodeModel{}
+	qt.EnumMap["xmlpatterns.QAbstractXmlNodeModel__Parent"] = int64(QAbstractXmlNodeModel__Parent)
+	qt.EnumMap["xmlpatterns.QAbstractXmlNodeModel__FirstChild"] = int64(QAbstractXmlNodeModel__FirstChild)
+	qt.EnumMap["xmlpatterns.QAbstractXmlNodeModel__PreviousSibling"] = int64(QAbstractXmlNodeModel__PreviousSibling)
+	qt.EnumMap["xmlpatterns.QAbstractXmlNodeModel__NextSibling"] = int64(QAbstractXmlNodeModel__NextSibling)
+	qt.ItfMap["xmlpatterns.QAbstractXmlReceiver_ITF"] = QAbstractXmlReceiver{}
+	qt.FuncMap["xmlpatterns.NewQAbstractXmlReceiver"] = NewQAbstractXmlReceiver
+	qt.ItfMap["xmlpatterns.QSimpleXmlNodeModel_ITF"] = QSimpleXmlNodeModel{}
+	qt.ItfMap["xmlpatterns.QSourceLocation_ITF"] = QSourceLocation{}
+	qt.FuncMap["xmlpatterns.NewQSourceLocation"] = NewQSourceLocation
+	qt.FuncMap["xmlpatterns.NewQSourceLocation2"] = NewQSourceLocation2
+	qt.FuncMap["xmlpatterns.NewQSourceLocation3"] = NewQSourceLocation3
+	qt.ItfMap["xmlpatterns.QXmlFormatter_ITF"] = QXmlFormatter{}
+	qt.FuncMap["xmlpatterns.NewQXmlFormatter"] = NewQXmlFormatter
+	qt.ItfMap["xmlpatterns.QXmlItem_ITF"] = QXmlItem{}
+	qt.FuncMap["xmlpatterns.NewQXmlItem"] = NewQXmlItem
+	qt.FuncMap["xmlpatterns.NewQXmlItem2"] = NewQXmlItem2
+	qt.FuncMap["xmlpatterns.NewQXmlItem3"] = NewQXmlItem3
+	qt.FuncMap["xmlpatterns.NewQXmlItem4"] = NewQXmlItem4
+	qt.ItfMap["xmlpatterns.QXmlName_ITF"] = QXmlName{}
+	qt.FuncMap["xmlpatterns.NewQXmlName"] = NewQXmlName
+	qt.FuncMap["xmlpatterns.NewQXmlName2"] = NewQXmlName2
+	qt.FuncMap["xmlpatterns.NewQXmlName3"] = NewQXmlName3
+	qt.FuncMap["xmlpatterns.QXmlName_FromClarkName"] = QXmlName_FromClarkName
+	qt.FuncMap["xmlpatterns.QXmlName_IsNCName"] = QXmlName_IsNCName
+	qt.ItfMap["xmlpatterns.QXmlNamePool_ITF"] = QXmlNamePool{}
+	qt.FuncMap["xmlpatterns.NewQXmlNamePool"] = NewQXmlNamePool
+	qt.FuncMap["xmlpatterns.NewQXmlNamePool2"] = NewQXmlNamePool2
+	qt.ItfMap["xmlpatterns.QXmlNodeModelIndex_ITF"] = QXmlNodeModelIndex{}
+	qt.FuncMap["xmlpatterns.NewQXmlNodeModelIndex"] = NewQXmlNodeModelIndex
+	qt.FuncMap["xmlpatterns.NewQXmlNodeModelIndex2"] = NewQXmlNodeModelIndex2
+	qt.EnumMap["xmlpatterns.QXmlNodeModelIndex__Attribute"] = int64(QXmlNodeModelIndex__Attribute)
+	qt.EnumMap["xmlpatterns.QXmlNodeModelIndex__Comment"] = int64(QXmlNodeModelIndex__Comment)
+	qt.EnumMap["xmlpatterns.QXmlNodeModelIndex__Document"] = int64(QXmlNodeModelIndex__Document)
+	qt.EnumMap["xmlpatterns.QXmlNodeModelIndex__Element"] = int64(QXmlNodeModelIndex__Element)
+	qt.EnumMap["xmlpatterns.QXmlNodeModelIndex__Namespace"] = int64(QXmlNodeModelIndex__Namespace)
+	qt.EnumMap["xmlpatterns.QXmlNodeModelIndex__ProcessingInstruction"] = int64(QXmlNodeModelIndex__ProcessingInstruction)
+	qt.EnumMap["xmlpatterns.QXmlNodeModelIndex__Text"] = int64(QXmlNodeModelIndex__Text)
+	qt.EnumMap["xmlpatterns.QXmlNodeModelIndex__Precedes"] = int64(QXmlNodeModelIndex__Precedes)
+	qt.EnumMap["xmlpatterns.QXmlNodeModelIndex__Is"] = int64(QXmlNodeModelIndex__Is)
+	qt.EnumMap["xmlpatterns.QXmlNodeModelIndex__Follows"] = int64(QXmlNodeModelIndex__Follows)
+	qt.ItfMap["xmlpatterns.QXmlQuery_ITF"] = QXmlQuery{}
+	qt.FuncMap["xmlpatterns.NewQXmlQuery"] = NewQXmlQuery
+	qt.FuncMap["xmlpatterns.NewQXmlQuery2"] = NewQXmlQuery2
+	qt.FuncMap["xmlpatterns.NewQXmlQuery3"] = NewQXmlQuery3
+	qt.FuncMap["xmlpatterns.NewQXmlQuery4"] = NewQXmlQuery4
+	qt.EnumMap["xmlpatterns.QXmlQuery__XQuery10"] = int64(QXmlQuery__XQuery10)
+	qt.EnumMap["xmlpatterns.QXmlQuery__XSLT20"] = int64(QXmlQuery__XSLT20)
+	qt.EnumMap["xmlpatterns.QXmlQuery__XmlSchema11IdentityConstraintSelector"] = int64(QXmlQuery__XmlSchema11IdentityConstraintSelector)
+	qt.EnumMap["xmlpatterns.QXmlQuery__XmlSchema11IdentityConstraintField"] = int64(QXmlQuery__XmlSchema11IdentityConstraintField)
+	qt.EnumMap["xmlpatterns.QXmlQuery__XPath20"] = int64(QXmlQuery__XPath20)
+	qt.ItfMap["xmlpatterns.QXmlResultItems_ITF"] = QXmlResultItems{}
+	qt.FuncMap["xmlpatterns.NewQXmlResultItems"] = NewQXmlResultItems
+	qt.ItfMap["xmlpatterns.QXmlSchema_ITF"] = QXmlSchema{}
+	qt.FuncMap["xmlpatterns.NewQXmlSchema"] = NewQXmlSchema
+	qt.FuncMap["xmlpatterns.NewQXmlSchema2"] = NewQXmlSchema2
+	qt.ItfMap["xmlpatterns.QXmlSchemaValidator_ITF"] = QXmlSchemaValidator{}
+	qt.FuncMap["xmlpatterns.NewQXmlSchemaValidator"] = NewQXmlSchemaValidator
+	qt.FuncMap["xmlpatterns.NewQXmlSchemaValidator2"] = NewQXmlSchemaValidator2
+	qt.ItfMap["xmlpatterns.QXmlSerializer_ITF"] = QXmlSerializer{}
+	qt.FuncMap["xmlpatterns.NewQXmlSerializer"] = NewQXmlSerializer
+}

@@ -24,6 +24,10 @@ var (
 
 	connectionTypes      = make(map[unsafe.Pointer]map[string]int64)
 	connectionTypesMutex = new(sync.Mutex)
+
+	FuncMap = make(map[string]interface{})
+	ItfMap  = make(map[string]interface{})
+	EnumMap = make(map[string]int64)
 )
 
 func init() { runtime.LockOSThread() }

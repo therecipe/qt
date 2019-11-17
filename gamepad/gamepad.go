@@ -4117,3 +4117,12 @@ func (ptr *QGamepadManager) TimerEventDefault(event core.QTimerEvent_ITF) {
 		C.QGamepadManager_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
+
+func init() {
+	qt.ItfMap["gamepad.QGamepad_ITF"] = QGamepad{}
+	qt.FuncMap["gamepad.NewQGamepad"] = NewQGamepad
+	qt.ItfMap["gamepad.QGamepadKeyNavigation_ITF"] = QGamepadKeyNavigation{}
+	qt.FuncMap["gamepad.NewQGamepadKeyNavigation"] = NewQGamepadKeyNavigation
+	qt.ItfMap["gamepad.QGamepadManager_ITF"] = QGamepadManager{}
+	qt.FuncMap["gamepad.QGamepadManager_Instance"] = QGamepadManager_Instance
+}

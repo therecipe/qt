@@ -90,6 +90,41 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 		dep.Dir = filepath.Dir(dep.Path)
 		utils.RunCmd(dep, fmt.Sprintf("deploy for %v on %v", target, runtime.GOOS))
 
+		//break the rpath
+		pPath := "/break_the_rpath/"
+		fn := filepath.Join(depPath, name+".app", "Contents", "MacOS", name)
+		data, err := ioutil.ReadFile(fn)
+		if err != nil {
+			utils.Log.WithError(err).Warn("couldn't find", fn)
+			break
+		}
+
+		prefPath := utils.QT_DIR()
+
+		start := bytes.Index(data, []byte(prefPath))
+		if start == -1 {
+			break
+		}
+
+		end := bytes.IndexByte(data[start:], byte(0))
+		if end == -1 {
+			break
+		}
+
+		rep := append([]byte(prefPath), []byte(pPath)...)
+		if lendiff := end - len(rep); lendiff < 0 {
+			end -= lendiff
+		} else {
+			rep = append(rep, bytes.Repeat([]byte{0}, lendiff)...)
+		}
+		data = bytes.Replace(data, data[start:start+end], rep, -1)
+
+		if err := ioutil.WriteFile(fn, data, 0755); err != nil {
+			utils.Log.WithError(err).Warn("couldn't patch", fn)
+		} else {
+			utils.Log.Debug("patched", fn)
+		}
+
 	case "linux", "rpi1", "rpi2", "rpi3", "freebsd":
 		var rpiToolPath string
 		if strings.HasPrefix(target, "rpi") {

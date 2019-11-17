@@ -24,8 +24,8 @@ var (
 	ResourceNamesMutex = new(sync.Mutex)
 )
 
-func Rcc(path, target, tagsCustom, output_dir string, useuic, quickcompiler, deploying bool) {
-	if utils.UseGOMOD(path) {
+func Rcc(path, target, tagsCustom, output_dir string, useuic, quickcompiler, deploying bool, skipSetup bool) {
+	if utils.UseGOMOD(path) && !skipSetup {
 		if !utils.ExistsDir(filepath.Join(filepath.Dir(utils.GOMOD(path)), "vendor")) {
 			cmd := exec.Command("go", "mod", "vendor")
 			cmd.Dir = path

@@ -8,6 +8,7 @@ package quickcontrols2
 //#include "quickcontrols2.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"runtime"
 	"strings"
 	"unsafe"
@@ -163,4 +164,15 @@ func QQuickStyle_StylePathList() []string {
 
 func (ptr *QQuickStyle) StylePathList() []string {
 	return unpackStringList(cGoUnpackString(C.QQuickStyle_QQuickStyle_StylePathList()))
+}
+
+func init() {
+	qt.ItfMap["quickcontrols2.QQuickStyle_ITF"] = QQuickStyle{}
+	qt.FuncMap["quickcontrols2.QQuickStyle_AddStylePath"] = QQuickStyle_AddStylePath
+	qt.FuncMap["quickcontrols2.QQuickStyle_AvailableStyles"] = QQuickStyle_AvailableStyles
+	qt.FuncMap["quickcontrols2.QQuickStyle_Name"] = QQuickStyle_Name
+	qt.FuncMap["quickcontrols2.QQuickStyle_Path"] = QQuickStyle_Path
+	qt.FuncMap["quickcontrols2.QQuickStyle_SetFallbackStyle"] = QQuickStyle_SetFallbackStyle
+	qt.FuncMap["quickcontrols2.QQuickStyle_SetStyle"] = QQuickStyle_SetStyle
+	qt.FuncMap["quickcontrols2.QQuickStyle_StylePathList"] = QQuickStyle_StylePathList
 }

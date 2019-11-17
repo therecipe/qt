@@ -27,8 +27,8 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 
 		path := utils.GoQtPkgPath("internal", "cmd", "moc", "test")
 
-		moc.Moc(path, target, "", false, false, false)
-		minimal.Minimal(path, target, "")
+		moc.Moc(path, target, "", false, false, false, true)
+		minimal.Minimal(path, target, "", true)
 
 		var pattern string
 		if utils.GOVERSION_NUM() >= 110 {

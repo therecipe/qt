@@ -8,6 +8,7 @@ package webview
 //#include "webview.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"runtime"
 	"strings"
 	"unsafe"
@@ -85,4 +86,9 @@ func QtWebView_Initialize() {
 
 func (ptr *QtWebView) Initialize() {
 	C.QtWebView_QtWebView_Initialize()
+}
+
+func init() {
+	qt.ItfMap["webview.QtWebView_ITF"] = QtWebView{}
+	qt.FuncMap["webview.QtWebView_Initialize"] = QtWebView_Initialize
 }

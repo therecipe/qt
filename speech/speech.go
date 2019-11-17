@@ -3140,3 +3140,30 @@ func (ptr *QVoice) Name() string {
 	}
 	return ""
 }
+
+func init() {
+	qt.ItfMap["speech.QTextToSpeech_ITF"] = QTextToSpeech{}
+	qt.FuncMap["speech.NewQTextToSpeech"] = NewQTextToSpeech
+	qt.FuncMap["speech.NewQTextToSpeech2"] = NewQTextToSpeech2
+	qt.FuncMap["speech.QTextToSpeech_AvailableEngines"] = QTextToSpeech_AvailableEngines
+	qt.EnumMap["speech.QTextToSpeech__Ready"] = int64(QTextToSpeech__Ready)
+	qt.EnumMap["speech.QTextToSpeech__Speaking"] = int64(QTextToSpeech__Speaking)
+	qt.EnumMap["speech.QTextToSpeech__Paused"] = int64(QTextToSpeech__Paused)
+	qt.EnumMap["speech.QTextToSpeech__BackendError"] = int64(QTextToSpeech__BackendError)
+	qt.ItfMap["speech.QTextToSpeechEngine_ITF"] = QTextToSpeechEngine{}
+	qt.FuncMap["speech.NewQTextToSpeechEngine"] = NewQTextToSpeechEngine
+	qt.FuncMap["speech.QTextToSpeechEngine_CreateVoice"] = QTextToSpeechEngine_CreateVoice
+	qt.FuncMap["speech.QTextToSpeechEngine_VoiceData"] = QTextToSpeechEngine_VoiceData
+	qt.ItfMap["speech.QTextToSpeechPlugin_ITF"] = QTextToSpeechPlugin{}
+	qt.ItfMap["speech.QVoice_ITF"] = QVoice{}
+	qt.FuncMap["speech.QVoice_AgeName"] = QVoice_AgeName
+	qt.FuncMap["speech.QVoice_GenderName"] = QVoice_GenderName
+	qt.EnumMap["speech.QVoice__Child"] = int64(QVoice__Child)
+	qt.EnumMap["speech.QVoice__Teenager"] = int64(QVoice__Teenager)
+	qt.EnumMap["speech.QVoice__Adult"] = int64(QVoice__Adult)
+	qt.EnumMap["speech.QVoice__Senior"] = int64(QVoice__Senior)
+	qt.EnumMap["speech.QVoice__Other"] = int64(QVoice__Other)
+	qt.EnumMap["speech.QVoice__Male"] = int64(QVoice__Male)
+	qt.EnumMap["speech.QVoice__Female"] = int64(QVoice__Female)
+	qt.EnumMap["speech.QVoice__Unknown"] = int64(QVoice__Unknown)
+}

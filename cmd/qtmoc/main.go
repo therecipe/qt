@@ -113,6 +113,6 @@ func main() {
 	case vagrant:
 		cmd.Vagrant([]string{"qtmoc", "-debug", "-tags=" + tags}, target, path, false, vagrant_system)
 	default:
-		moc.Moc(path, target, tags, fast, slow, false)
+		moc.Moc(path, target, tags, fast, slow, false, false)
 	}
 }

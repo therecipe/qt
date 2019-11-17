@@ -602,3 +602,34 @@ func (ptr *QScriptEngineDebugger) TimerEventDefault(event core.QTimerEvent_ITF) 
 		C.QScriptEngineDebugger_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
+
+func init() {
+	qt.ItfMap["scripttools.QScriptEngineDebugger_ITF"] = QScriptEngineDebugger{}
+	qt.FuncMap["scripttools.NewQScriptEngineDebugger"] = NewQScriptEngineDebugger
+	qt.EnumMap["scripttools.QScriptEngineDebugger__InterruptAction"] = int64(QScriptEngineDebugger__InterruptAction)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__ContinueAction"] = int64(QScriptEngineDebugger__ContinueAction)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__StepIntoAction"] = int64(QScriptEngineDebugger__StepIntoAction)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__StepOverAction"] = int64(QScriptEngineDebugger__StepOverAction)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__StepOutAction"] = int64(QScriptEngineDebugger__StepOutAction)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__RunToCursorAction"] = int64(QScriptEngineDebugger__RunToCursorAction)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__RunToNewScriptAction"] = int64(QScriptEngineDebugger__RunToNewScriptAction)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__ToggleBreakpointAction"] = int64(QScriptEngineDebugger__ToggleBreakpointAction)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__ClearDebugOutputAction"] = int64(QScriptEngineDebugger__ClearDebugOutputAction)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__ClearErrorLogAction"] = int64(QScriptEngineDebugger__ClearErrorLogAction)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__ClearConsoleAction"] = int64(QScriptEngineDebugger__ClearConsoleAction)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__FindInScriptAction"] = int64(QScriptEngineDebugger__FindInScriptAction)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__FindNextInScriptAction"] = int64(QScriptEngineDebugger__FindNextInScriptAction)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__FindPreviousInScriptAction"] = int64(QScriptEngineDebugger__FindPreviousInScriptAction)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__GoToLineAction"] = int64(QScriptEngineDebugger__GoToLineAction)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__ConsoleWidget"] = int64(QScriptEngineDebugger__ConsoleWidget)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__StackWidget"] = int64(QScriptEngineDebugger__StackWidget)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__ScriptsWidget"] = int64(QScriptEngineDebugger__ScriptsWidget)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__LocalsWidget"] = int64(QScriptEngineDebugger__LocalsWidget)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__CodeWidget"] = int64(QScriptEngineDebugger__CodeWidget)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__CodeFinderWidget"] = int64(QScriptEngineDebugger__CodeFinderWidget)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__BreakpointsWidget"] = int64(QScriptEngineDebugger__BreakpointsWidget)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__DebugOutputWidget"] = int64(QScriptEngineDebugger__DebugOutputWidget)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__ErrorLogWidget"] = int64(QScriptEngineDebugger__ErrorLogWidget)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__RunningState"] = int64(QScriptEngineDebugger__RunningState)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__SuspendedState"] = int64(QScriptEngineDebugger__SuspendedState)
+}
