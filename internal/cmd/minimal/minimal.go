@@ -15,11 +15,20 @@ import (
 	"github.com/therecipe/qt/internal/binding/templater"
 
 	"github.com/therecipe/qt/internal/cmd"
+	"github.com/therecipe/qt/internal/cmd/moc"
 
 	"github.com/therecipe/qt/internal/utils"
 )
 
 func Minimal(path, target, tags string, skipSetup bool) {
+	defer func() {
+		if cmd.ImportsQtStd("qml") || cmd.ImportsQtStd("quick") { //TODO: and not deploying + reinstate on moc.moc with deploying ?
+			if !utils.ExistsFile(filepath.Join(utils.GoQtPkgPath("internal/binding/runtime"), "moc.go")) {
+				moc.Moc(utils.GoQtPkgPath("internal/binding/runtime"), target, "", true, false, false, true)
+			}
+		}
+	}()
+
 	if utils.UseGOMOD(path) && !skipSetup {
 		if !utils.ExistsDir(filepath.Join(filepath.Dir(utils.GOMOD(path)), "vendor")) {
 			cmd := exec.Command("go", "mod", "vendor")

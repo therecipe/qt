@@ -11,6 +11,7 @@ import (
 	"github.com/therecipe/qt/internal/binding/templater"
 
 	"github.com/therecipe/qt/internal/cmd"
+	"github.com/therecipe/qt/internal/cmd/moc"
 	"github.com/therecipe/qt/internal/utils"
 )
 
@@ -66,4 +67,5 @@ func Generate(target string, docker, vagrant bool) {
 			}
 		}
 	}
+	moc.Moc(utils.GoQtPkgPath("internal/binding/runtime"), target, "", true, false, false, true)
 }

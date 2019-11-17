@@ -45,6 +45,10 @@ func (m *Module) Prepare() error {
 	m.add()
 
 	for _, f := range m.Namespace.Functions {
+		if m.Project == "QtQml" && f.Name == "qjsEngine" {
+			f.Fullname = "QJSEngine::qjsEngine"
+			f.register(m.Project)
+		}
 		if m.Project != "QtCore" || !(strings.Contains(f.Name, "Environment") || strings.HasSuffix(f.Name, "env") || f.Name == "qVersion") {
 			continue
 		}

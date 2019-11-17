@@ -170,10 +170,6 @@ func moc(path, target, tags string, fast, slow, root bool, l int, dirty bool) {
 			}(path)
 		}
 		wg.Wait()
-
-		if cmd.ImportsQtStd("qml") || cmd.ImportsQtStd("quick") {
-			moc(utils.GoQtPkgPath("internal/binding/runtime"), target, tags, false, slow, false, l, dirty)
-		}
 	}
 
 	var (
