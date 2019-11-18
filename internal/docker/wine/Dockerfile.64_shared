@@ -48,6 +48,7 @@ RUN PKG=$(tac repo | grep 2018 | grep -m 1 -o -P 'mingw-w64-x86_64-xz-.*tar.xz(?
 RUN PKG=$(tac repo | grep 2018 | grep -m 1 -o -P 'mingw-w64-x86_64-graphite2-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
 RUN PKG=$(tac repo | grep 2019 | grep -m 1 -o -P 'mingw-w64-x86_64-libwinpthread-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
 RUN PKG=$(tac repo | grep 2019 | grep -m 1 -o -P 'mingw-w64-x86_64-double-conversion-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
+RUN PKG=$(tac repo | grep 2019 | grep -m 1 -o -P 'mingw-w64-x86_64-zstd-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
 
 RUN mkdir -p $HOME/.wine/drive_c/msys64/mingw64/x86_64-w64-mingw32/lib/
 RUN ln -s $HOME/.wine/drive_c/mingw64/x86_64-w64-mingw32/lib/libglu32.a $HOME/.wine/drive_c/msys64/mingw64/x86_64-w64-mingw32/lib/

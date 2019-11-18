@@ -20,7 +20,8 @@ func GoTemplate(module string, stub bool, mode int, pkg, target, tags string) []
 	} else if module == "Qml" {
 		cont := utils.Load(filepath.Join(strings.TrimSpace(utils.GoListOptional("{{.Dir}}", "github.com/therecipe/qt/internal", "-find", "get files dir")), "/binding/files/utils-qml.go"))
 		if utils.QT_API_NUM(utils.QT_VERSION()) < 5060 {
-			cont = strings.Replace(cont, "Property2", "Property", -1)
+			cont = strings.Replace(cont, "Property(", "Property3(", -1)
+			cont = strings.Replace(cont, "Property2(", "Property(", -1)
 		}
 		if utils.QT_API_NUM(utils.QT_VERSION()) < 5050 {
 			cont = "package qml"

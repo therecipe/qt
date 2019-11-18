@@ -57,7 +57,7 @@ RUN PKG=$(tac repo | grep 2019 | grep -m 1 -o -P 'mingw-w64-i686-headers-.*tar.x
 RUN PKG=$(tac repo | grep 2019 | grep -m 1 -o -P 'mingw-w64-i686-isl-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
 RUN PKG=$(tac repo | grep 2018 | grep -m 1 -o -P 'mingw-w64-i686-mpc-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
 RUN PKG=$(tac repo | grep 2017 | grep -m 1 -o -P 'mingw-w64-i686-windows-default-manifest-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O http://repo.msys2.org/mingw/i686/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
-RUN PKG=$(tac repo | grep 2018 | grep -m 1 -o -P 'mingw-w64-i686-winpthreads-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
+RUN PKG=$(tac repo | grep 2019 | grep -m 1 -o -P 'mingw-w64-i686-winpthreads-.*tar.xz(?=\")') && curl -sL --retry 10 --retry-delay 60 -O $REPO/$PKG && tar -xf $PKG -C $HOME/.wine/drive_c/msys64 && rm -f $PKG
 
 RUN ln -s $HOME/.wine/drive_c/msys64/mingw32/lib/libdbus-1.a $HOME/.wine/drive_c/msys64/mingw32/qt5-static/lib/
 RUN ln -s $HOME/.wine/drive_c/msys64/mingw32/lib/libcrypto.a $HOME/.wine/drive_c/msys64/mingw32/qt5-static/lib/
