@@ -35,12 +35,6 @@ func GenModule(m, target string, mode int) {
 		utils.MkdirAll(utils.GoQtPkgPath(strings.ToLower(m)))
 	}
 
-	if m == "AndroidExtras" {
-		utils.Save(utils.GoQtPkgPath(strings.ToLower(m), "utils-androidextras_android.go"), utils.Load(filepath.Join(strings.TrimSpace(utils.GoListOptional("{{.Dir}}", "github.com/therecipe/qt/internal", "-find", "get files dir")), "/binding/files/utils-androidextras_android.go")))
-	} else if m == "Qml" {
-		utils.Save(utils.GoQtPkgPath(strings.ToLower(m), "utils-qml.go"), utils.Load(filepath.Join(strings.TrimSpace(utils.GoListOptional("{{.Dir}}", "github.com/therecipe/qt/internal", "-find", "get files dir")), "/binding/files/utils-qml.go")))
-	}
-
 	if mode == MINIMAL {
 		if suffix != "" {
 			return

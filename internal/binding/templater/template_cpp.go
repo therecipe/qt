@@ -838,7 +838,11 @@ func preambleCpp(module string, input []byte, mode int, target, tags string) []b
 	}
 
 	if mode == MOC {
-		fmt.Fprint(bb, "\n#ifdef QT_QML_LIB\n\t#include <QQmlEngine>\n#endif\n")
+		if utils.QT_VERSION_NUM() < 5070 {
+			fmt.Fprint(bb, "\n#ifdef QT_QML_LIB\n\t#include <QtQml>\n#endif\n")
+		} else {
+			fmt.Fprint(bb, "\n#ifdef QT_QML_LIB\n\t#include <QQmlEngine>\n#endif\n")
+		}
 	}
 
 	fmt.Fprint(bb, "\n")

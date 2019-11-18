@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"go/format"
+	"path/filepath"
 	"strings"
 
 	"github.com/therecipe/qt/internal/binding/converter"
@@ -13,6 +14,20 @@ import (
 )
 
 func GoTemplate(module string, stub bool, mode int, pkg, target, tags string) []byte {
+
+	if module == "AndroidExtras" {
+		utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "utils-androidextras_android.go"), utils.Load(filepath.Join(strings.TrimSpace(utils.GoListOptional("{{.Dir}}", "github.com/therecipe/qt/internal", "-find", "get files dir")), "/binding/files/utils-androidextras_android.go")))
+	} else if module == "Qml" {
+		cont := utils.Load(filepath.Join(strings.TrimSpace(utils.GoListOptional("{{.Dir}}", "github.com/therecipe/qt/internal", "-find", "get files dir")), "/binding/files/utils-qml.go"))
+		if utils.QT_API_NUM(utils.QT_VERSION()) < 5060 {
+			cont = strings.Replace(cont, "Property2", "Property", -1)
+		}
+		if utils.QT_API_NUM(utils.QT_VERSION()) < 5050 {
+			cont = "package qml"
+		}
+		utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "utils-qml.go"), cont)
+	}
+
 	utils.Log.WithField("module", module).Debug("generating go")
 	parser.State.Target = target
 
@@ -1006,7 +1021,7 @@ import "C"
 			}
 		}
 
-		if module == "gui" {
+		if module == "gui" && utils.QT_API_NUM(utils.QT_VERSION()) >= 5050 {
 			if mode == NONE {
 				fmt.Fprintln(bb, "_ \"github.com/therecipe/qt/internal/binding/runtime\"")
 			} else if mode == MINIMAL && (cmd.ImportsQtStd("qml") || cmd.ImportsQtStd("quick")) {

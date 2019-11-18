@@ -259,7 +259,7 @@ func goFunctionBody(function *parser.Function) string {
 					}
 					*/
 
-					if function.Meta == parser.CONSTRUCTOR {
+					if function.Meta == parser.CONSTRUCTOR && utils.QT_API_NUM(utils.QT_VERSION()) >= 5050 {
 						if class.IsSubClassOf("QJSEngine") {
 							fmt.Fprintln(bb, "Z_initEngine(tmpValue)")
 						} else if class.IsSubClassOf("QQuickView") {
