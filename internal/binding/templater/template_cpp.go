@@ -425,7 +425,7 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 							"QLowEnergyDescriptor", "QAudioBuffer", "QAudioDeviceInfo", "QAudioEncoderSettings", "QAudioFormat", "QCameraViewfinderSettings",
 							"QImageEncoderSettings", "QMediaContent", "QMediaResource", "QVideoEncoderSettings", "QVideoFrame",
 							"QVideoSurfaceFormat", "QTestEventList", "QModbusDeviceIdentification", "QScxmlError", "QScxmlEvent",
-							"QNetworkRequest":
+							"QNetworkRequest", "QWebElement":
 							//re-definition
 						case "QCommandLineParser", "QDataStream", "QEventLoopLocker", "QMessageLogger", "QMimeDatabase",
 							"QSemaphoreReleaser", "QTemporaryDir", "QWaitCondition", "QXmlStreamReader", "QXmlStreamWriter",
