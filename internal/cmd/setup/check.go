@@ -83,7 +83,7 @@ func Check(target string, docker, vagrant bool) {
 		}
 
 		if _, err := exec.LookPath("clang++"); err != nil {
-			utils.Log.WithError(err).Panic("failed to find clang++, did you install Xcode?; please run: xcode-select --install")
+			utils.Log.WithError(err).Panic("failed to find clang++, did you install Xcode?\nplease install Xcode (https://itunes.apple.com/us/app/xcode/id497799835) and then run: xcode-select --install")
 		}
 
 	case "linux", "ubports", "freebsd":

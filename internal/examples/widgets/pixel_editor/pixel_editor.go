@@ -122,20 +122,18 @@ func drawpixel(x, y int) {
 
 func keyPressEvent(e *gui.QKeyEvent) {
 
-	if e.Modifiers() == core.Qt__ControlModifier || e.Modifiers() == core.Qt__MetaModifier {
-		switch int32(e.Key()) {
-		case int32(core.Qt__Key_Plus):
-			View.Scale(1.25, 1.25)
+	switch int32(e.Key()) {
+	case int32(core.Qt__Key_0):
+		View.Scale(1.25, 1.25)
 
-		case int32(core.Qt__Key_Minus):
-			View.Scale(0.8, 0.8)
-		}
+	case int32(core.Qt__Key_9):
+		View.Scale(0.8, 0.8)
 	}
 
 }
 
 func wheelEvent(e *widgets.QGraphicsSceneWheelEvent) {
-	if e.Modifiers() == core.Qt__ControlModifier || e.Modifiers() == core.Qt__MetaModifier {
+	if gui.QGuiApplication_QueryKeyboardModifiers()&core.Qt__ShiftModifier != 0 {
 		if e.Delta() > 0 {
 			View.Scale(1.25, 1.25)
 		} else {

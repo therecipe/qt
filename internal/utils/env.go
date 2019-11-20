@@ -412,7 +412,7 @@ func QT_GEN_OPENGL() bool {
 func GoList(args ...string) *exec.Cmd {
 	cmd := exec.Command("go", "list")
 	if UseGOMOD("") {
-		if strings.Contains(strings.Join(args, "|"), "github.com/therecipe/qt/internal") {
+		if strings.Contains(strings.Join(args, "|"), "github.com/therecipe/qt/internal") && !strings.Contains(strings.Join(args, "|"), "github.com/therecipe/qt/internal/binding/runtime") {
 			cmd.Args = append(cmd.Args, "-mod=readonly")
 		} else {
 			cmd.Args = append(cmd.Args, GOFLAGS())

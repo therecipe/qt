@@ -22,7 +22,7 @@ import (
 
 func Minimal(path, target, tags string, skipSetup bool) {
 	defer func() {
-		if cmd.ImportsQtStd("qml") || cmd.ImportsQtStd("quick") { //TODO: and not deploying + reinstate on moc.moc with deploying ?
+		if cmd.ImportsQmlOrQuick() { //TODO: and not deploying + reinstate on moc.moc with deploying ?
 			if !utils.ExistsFile(filepath.Join(utils.GoQtPkgPath("internal/binding/runtime"), templater.CgoFileNames("", path, target, templater.MOC)[0])) {
 				moc.Moc(utils.GoQtPkgPath("internal/binding/runtime"), target, "", true, false, false, true)
 			}
@@ -115,7 +115,7 @@ func Minimal(path, target, tags string, skipSetup bool) {
 				files = append(files, file)
 				fileMutex.Unlock()
 			}
-			if target == "js" || cmd.ImportsQtStd("qml") || cmd.ImportsQtStd("quick") { //TODO: wasm as well
+			if target == "js" || cmd.ImportsQmlOrQuick() { //TODO: wasm as well
 				filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
 					if err != nil || info.IsDir() {
 						return err

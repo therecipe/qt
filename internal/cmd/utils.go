@@ -20,8 +20,9 @@ var (
 	imported      = make(map[string]string)
 	importedMutex = new(sync.Mutex)
 
-	importedStd      = make(map[string]struct{})
-	importedStdMutex = new(sync.Mutex)
+	importedStd       = make(map[string]struct{})
+	importedStdMutex  = new(sync.Mutex)
+	importsQmlOrQuick string //TODO: needs to be cleared after deployment, to make qtsetup test work properly -> templater.CleanupDepsForCI()
 )
 
 func IsStdPkg(pkg string) bool {
@@ -40,6 +41,7 @@ func IsStdPkg(pkg string) bool {
 	return false
 }
 
+//TODO:
 func GetImports(path, target, tagsCustom string, level int, onlyDirect bool) []string {
 	utils.Log.WithField("path", path).WithField("level", level).Debug("get imports")
 
@@ -60,6 +62,36 @@ func GetImports(path, target, tagsCustom string, level int, onlyDirect bool) []s
 	imp := "Deps"
 	if onlyDirect {
 		imp = "Imports"
+	} else {
+		defer func() {
+			importedStdMutex.Lock()
+			if importsQmlOrQuick == "" {
+				stdImport := make([]string, len(importedStd)+1)
+				var c int
+				for k := range importedStd {
+					stdImport[c] = k
+					c++
+				}
+				stdImport[len(stdImport)-1] = "github.com/therecipe/qt/internal/binding/runtime"
+
+				cmd := utils.GoList(fmt.Sprintf("{{if not .Standard}}{{if eq .ImportPath \"%v\"}}{{else}}{{range .Imports}}{{if eq . \"github.com/therecipe/qt/qml\" \"github.com/therecipe/qt/quick\"}}{{.}}{{end}}{{end}}{{end}}{{end}}", strings.Join(stdImport, "\" \"")), "-deps")
+				if !utils.UseGOMOD(path) || (utils.UseGOMOD(path) && !strings.Contains(strings.Replace(path, "\\", "/", -1), "/vendor/")) {
+					cmd.Dir = path
+				} else if utils.UseGOMOD(path) && strings.Contains(strings.Replace(path, "\\", "/", -1), "/vendor/") {
+					cmd.Dir = filepath.Dir(utils.GOMOD(path))
+					vl := strings.Split(strings.Replace(path, "\\", "/", -1), "/vendor/")
+					cmd.Args = append(cmd.Args, vl[len(vl)-1])
+				}
+				for k, v := range env {
+					cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", k, v))
+				}
+
+				importsQmlOrQuick = fmt.Sprint(strings.TrimSpace(utils.RunCmd(cmd, "go list imports qml or quick")) != "")
+
+				utils.Log.WithField("path", path).Debug("project depends on qml or quick: " + importsQmlOrQuick)
+			}
+			importedStdMutex.Unlock()
+		}()
 	}
 
 	//TODO: cache
@@ -154,13 +186,11 @@ func GetQtStdImports() (o []string) {
 	return
 }
 
-func ImportsQtStd(m string) bool {
-	for _, l := range GetQtStdImports() {
-		if l == m {
-			return true
-		}
-	}
-	return false
+func ImportsQmlOrQuick() (o bool) {
+	importedStdMutex.Lock()
+	o = importsQmlOrQuick == "true"
+	importedStdMutex.Unlock()
+	return
 }
 
 func GetGoFiles(path, target, tagsCustom string) []string {

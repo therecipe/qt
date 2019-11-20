@@ -20,8 +20,7 @@ func GoTemplate(module string, stub bool, mode int, pkg, target, tags string) []
 	} else if module == "Qml" {
 		cont := utils.Load(filepath.Join(strings.TrimSpace(utils.GoListOptional("{{.Dir}}", "github.com/therecipe/qt/internal", "-find", "get files dir")), "/binding/files/utils-qml.go"))
 		if utils.QT_API_NUM(utils.QT_VERSION()) < 5060 {
-			cont = strings.Replace(cont, "Property(", "Property3(", -1)
-			cont = strings.Replace(cont, "Property2(", "Property(", -1)
+			cont = strings.Replace(cont, "Property2(", "Property3(", -1)
 		}
 		if utils.QT_API_NUM(utils.QT_VERSION()) < 5050 {
 			cont = "package qml"
@@ -1025,7 +1024,7 @@ import "C"
 		if module == "gui" && utils.QT_API_NUM(utils.QT_VERSION()) >= 5050 {
 			if mode == NONE {
 				fmt.Fprintln(bb, "_ \"github.com/therecipe/qt/internal/binding/runtime\"")
-			} else if mode == MINIMAL && (cmd.ImportsQtStd("qml") || cmd.ImportsQtStd("quick")) {
+			} else if mode == MINIMAL && cmd.ImportsQmlOrQuick() {
 				fmt.Fprintln(bb, "_ \"github.com/therecipe/qt/internal/binding/runtime\"")
 			}
 		}
