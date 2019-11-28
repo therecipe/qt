@@ -3057,6 +3057,7 @@ func NewQPlatformPrintDeviceFromPointer(ptr unsafe.Pointer) (n *QPlatformPrintDe
 
 func (ptr *QPlatformPrintDevice) DestroyQPlatformPrintDevice() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -8386,6 +8387,7 @@ func (ptr *QPrinterInfo) SupportsCustomPageSizes() bool {
 func (ptr *QPrinterInfo) DestroyQPrinterInfo() {
 	if ptr.Pointer() != nil {
 		C.QPrinterInfo_DestroyQPrinterInfo(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}

@@ -146,6 +146,7 @@ func (ptr *QCompressedHelpInfo) Version() *core.QVersionNumber {
 func (ptr *QCompressedHelpInfo) DestroyQCompressedHelpInfo() {
 	if ptr.Pointer() != nil {
 		C.QCompressedHelpInfo_DestroyQCompressedHelpInfo(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -242,6 +243,7 @@ func (ptr *QHelpContentItem) Url() *core.QUrl {
 func (ptr *QHelpContentItem) DestroyQHelpContentItem() {
 	if ptr.Pointer() != nil {
 		C.QHelpContentItem_DestroyQHelpContentItem(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -5566,6 +5568,7 @@ func (ptr *QHelpFilterData) Versions() []*core.QVersionNumber {
 func (ptr *QHelpFilterData) DestroyQHelpFilterData() {
 	if ptr.Pointer() != nil {
 		C.QHelpFilterData_DestroyQHelpFilterData(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -6234,6 +6237,7 @@ func NewQHelpGlobalFromPointer(ptr unsafe.Pointer) (n *QHelpGlobal) {
 
 func (ptr *QHelpGlobal) DestroyQHelpGlobal() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -11066,6 +11070,7 @@ func NewQHelpSearchQueryFromPointer(ptr unsafe.Pointer) (n *QHelpSearchQuery) {
 
 func (ptr *QHelpSearchQuery) DestroyQHelpSearchQuery() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -12591,6 +12596,7 @@ func (ptr *QHelpSearchResult) Url() *core.QUrl {
 func (ptr *QHelpSearchResult) DestroyQHelpSearchResult() {
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResult_DestroyQHelpSearchResult(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}

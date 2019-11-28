@@ -77,6 +77,7 @@ func NewQSqlFromPointer(ptr unsafe.Pointer) (n *QSql) {
 
 func (ptr *QSql) DestroyQSql() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -683,6 +684,7 @@ func (ptr *QSqlDatabase) UserName() string {
 func (ptr *QSqlDatabase) DestroyQSqlDatabase() {
 	if ptr.Pointer() != nil {
 		C.QSqlDatabase_DestroyQSqlDatabase(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -2375,8 +2377,9 @@ func NewQSqlDriverCreatorFromPointer(ptr unsafe.Pointer) (n *QSqlDriverCreator) 
 
 func (ptr *QSqlDriverCreator) DestroyQSqlDriverCreator() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -3039,6 +3042,7 @@ func (ptr *QSqlError) Type() QSqlError__ErrorType {
 func (ptr *QSqlError) DestroyQSqlError() {
 	if ptr.Pointer() != nil {
 		C.QSqlError_DestroyQSqlError(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -3311,6 +3315,7 @@ func (ptr *QSqlField) Value() *core.QVariant {
 func (ptr *QSqlField) DestroyQSqlField() {
 	if ptr.Pointer() != nil {
 		C.QSqlField_DestroyQSqlField(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -3434,6 +3439,7 @@ func (ptr *QSqlIndex) SetName(name string) {
 func (ptr *QSqlIndex) DestroyQSqlIndex() {
 	if ptr.Pointer() != nil {
 		C.QSqlIndex_DestroyQSqlIndex(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -3873,6 +3879,7 @@ func (ptr *QSqlQuery) Value2(name string) *core.QVariant {
 func (ptr *QSqlQuery) DestroyQSqlQuery() {
 	if ptr.Pointer() != nil {
 		C.QSqlQuery_DestroyQSqlQuery(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -6025,6 +6032,7 @@ func (ptr *QSqlRecord) Value2(name string) *core.QVariant {
 func (ptr *QSqlRecord) DestroyQSqlRecord() {
 	if ptr.Pointer() != nil {
 		C.QSqlRecord_DestroyQSqlRecord(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -6070,6 +6078,7 @@ func NewQSqlRelationFromPointer(ptr unsafe.Pointer) (n *QSqlRelation) {
 
 func (ptr *QSqlRelation) DestroyQSqlRelation() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)

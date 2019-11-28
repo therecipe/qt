@@ -2162,6 +2162,7 @@ func (ptr *QWebDatabase) RemoveDatabase(db QWebDatabase_ITF) {
 func (ptr *QWebDatabase) DestroyQWebDatabase() {
 	if ptr.Pointer() != nil {
 		C.QWebDatabase_DestroyQWebDatabase(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -2592,6 +2593,7 @@ func (ptr *QWebElement) ToggleClass(name string) {
 func (ptr *QWebElement) DestroyQWebElement() {
 	if ptr.Pointer() != nil {
 		C.QWebElement_DestroyQWebElement(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -2958,6 +2960,7 @@ func (ptr *QWebElementCollection) Append(other QWebElementCollection_ITF) {
 func (ptr *QWebElementCollection) DestroyQWebElementCollection() {
 	if ptr.Pointer() != nil {
 		C.QWebElementCollection_DestroyQWebElementCollection(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -4332,6 +4335,7 @@ func NewQWebHistoryFromPointer(ptr unsafe.Pointer) (n *QWebHistory) {
 
 func (ptr *QWebHistory) DestroyQWebHistory() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -5154,6 +5158,7 @@ func (ptr *QWebHistoryItem) SetUserData(userData core.QVariant_ITF) {
 func (ptr *QWebHistoryItem) DestroyQWebHistoryItem() {
 	if ptr.Pointer() != nil {
 		C.QWebHistoryItem_DestroyQWebHistoryItem(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -5414,6 +5419,7 @@ func NewQWebHitTestResult2(other QWebHitTestResult_ITF) *QWebHitTestResult {
 func (ptr *QWebHitTestResult) DestroyQWebHitTestResult() {
 	if ptr.Pointer() != nil {
 		C.QWebHitTestResult_DestroyQWebHitTestResult(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -10242,6 +10248,7 @@ func (ptr *QWebSecurityOrigin) SetDatabaseQuota(quota int64) {
 func (ptr *QWebSecurityOrigin) DestroyQWebSecurityOrigin() {
 	if ptr.Pointer() != nil {
 		C.QWebSecurityOrigin_DestroyQWebSecurityOrigin(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -10374,6 +10381,7 @@ func NewQWebSettingsFromPointer(ptr unsafe.Pointer) (n *QWebSettings) {
 
 func (ptr *QWebSettings) DestroyQWebSettings() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)

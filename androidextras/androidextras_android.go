@@ -91,8 +91,9 @@ func NewQAndroidActivityResultReceiverFromPointer(ptr unsafe.Pointer) (n *QAndro
 
 func (ptr *QAndroidActivityResultReceiver) DestroyQAndroidActivityResultReceiver() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -174,8 +175,9 @@ func NewQAndroidBinderFromPointer(ptr unsafe.Pointer) (n *QAndroidBinder) {
 
 func (ptr *QAndroidBinder) DestroyQAndroidBinder() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -254,6 +256,7 @@ func NewQAndroidIntentFromPointer(ptr unsafe.Pointer) (n *QAndroidIntent) {
 
 func (ptr *QAndroidIntent) DestroyQAndroidIntent() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -419,6 +422,7 @@ func (ptr *QAndroidJniEnvironment) JavaVM() unsafe.Pointer {
 func (ptr *QAndroidJniEnvironment) DestroyQAndroidJniEnvironment() {
 	if ptr.Pointer() != nil {
 		C.QAndroidJniEnvironment_DestroyQAndroidJniEnvironment(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -518,6 +522,7 @@ func (ptr *QAndroidJniExceptionCleaner) Clean() {
 func (ptr *QAndroidJniExceptionCleaner) DestroyQAndroidJniExceptionCleaner() {
 	if ptr.Pointer() != nil {
 		C.QAndroidJniExceptionCleaner_DestroyQAndroidJniExceptionCleaner(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -3640,6 +3645,7 @@ func (ptr *QAndroidJniObject) DestroyQAndroidJniObject() {
 	if ptr.Pointer() != nil {
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
 		C.QAndroidJniObject_DestroyQAndroidJniObject(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -3685,6 +3691,7 @@ func NewQAndroidParcelFromPointer(ptr unsafe.Pointer) (n *QAndroidParcel) {
 
 func (ptr *QAndroidParcel) DestroyQAndroidParcel() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -4216,8 +4223,9 @@ func NewQAndroidServiceConnectionFromPointer(ptr unsafe.Pointer) (n *QAndroidSer
 
 func (ptr *QAndroidServiceConnection) DestroyQAndroidServiceConnection() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -4362,6 +4370,7 @@ func NewQtAndroidFromPointer(ptr unsafe.Pointer) (n *QtAndroid) {
 
 func (ptr *QtAndroid) DestroyQtAndroid() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)

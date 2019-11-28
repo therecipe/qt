@@ -210,7 +210,7 @@ func New%vFromPointer(ptr unsafe.Pointer) (n *%[2]v) {
 				if UseStub(stub, module, mode) {
 					fmt.Fprintf(bb, "\nfunc (ptr *%v) Destroy%v() {}\n\n", class.Name, strings.Title(class.Name))
 				} else if !class.IsSubClassOfQObject() {
-					if UseJs() {
+					if UseJs() { //TODO: free c ptr in js/wasm ?
 						fmt.Fprintf(bb, `
 func (ptr *%[1]v) Destroy%[1]v() {
 	if ptr != nil {
@@ -230,7 +230,8 @@ func (ptr *%[1]v) Destroy%[1]v() {
 						fmt.Fprintf(bb, `
 func (ptr *%[1]v) Destroy%[1]v() {
 	if ptr != nil {
-		C.free(ptr.Pointer())%v
+		%v
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}

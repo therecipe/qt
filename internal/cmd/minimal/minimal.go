@@ -23,8 +23,8 @@ import (
 func Minimal(path, target, tags string, skipSetup bool) {
 	defer func() {
 		if cmd.ImportsQmlOrQuick() { //TODO: and not deploying + reinstate on moc.moc with deploying ?
-			if !utils.ExistsFile(filepath.Join(utils.GoQtPkgPath("internal/binding/runtime"), templater.CgoFileNames("", path, target, templater.MOC)[0])) {
-				moc.Moc(utils.GoQtPkgPath("internal/binding/runtime"), target, "", true, false, false, true)
+			if pkg_path := utils.GoQtPkgPath("internal/binding/runtime"); !utils.ExistsFile(filepath.Join(pkg_path, templater.CgoFileNames(pkg_path, target, templater.MOC)[0])) {
+				moc.Moc(pkg_path, target, "", true, false, false, true)
 			}
 		}
 	}()

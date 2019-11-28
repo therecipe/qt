@@ -77,6 +77,7 @@ func NewQBluetoothFromPointer(ptr unsafe.Pointer) (n *QBluetooth) {
 
 func (ptr *QBluetooth) DestroyQBluetooth() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -201,6 +202,7 @@ func (ptr *QBluetoothAddress) ToUInt64() uint64 {
 func (ptr *QBluetoothAddress) DestroyQBluetoothAddress() {
 	if ptr.Pointer() != nil {
 		C.QBluetoothAddress_DestroyQBluetoothAddress(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -1434,6 +1436,7 @@ func (ptr *QBluetoothDeviceInfo) SetServiceUuids2(uuids []*QBluetoothUuid) {
 func (ptr *QBluetoothDeviceInfo) DestroyQBluetoothDeviceInfo() {
 	if ptr.Pointer() != nil {
 		C.QBluetoothDeviceInfo_DestroyQBluetoothDeviceInfo(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -1615,6 +1618,7 @@ func (ptr *QBluetoothHostInfo) SetName(name string) {
 func (ptr *QBluetoothHostInfo) DestroyQBluetoothHostInfo() {
 	if ptr.Pointer() != nil {
 		C.QBluetoothHostInfo_DestroyQBluetoothHostInfo(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -4130,6 +4134,7 @@ func (ptr *QBluetoothServiceInfo) UnregisterService() bool {
 func (ptr *QBluetoothServiceInfo) DestroyQBluetoothServiceInfo() {
 	if ptr.Pointer() != nil {
 		C.QBluetoothServiceInfo_DestroyQBluetoothServiceInfo(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -6445,6 +6450,7 @@ func (ptr *QBluetoothTransferRequest) SetAttribute(code QBluetoothTransferReques
 func (ptr *QBluetoothTransferRequest) DestroyQBluetoothTransferRequest() {
 	if ptr.Pointer() != nil {
 		C.QBluetoothTransferRequest_DestroyQBluetoothTransferRequest(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -6914,6 +6920,7 @@ func (ptr *QBluetoothUuid) ToUInt32(ok *bool) uint {
 func (ptr *QBluetoothUuid) DestroyQBluetoothUuid() {
 	if ptr.Pointer() != nil {
 		C.QBluetoothUuid_DestroyQBluetoothUuid(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -7094,6 +7101,7 @@ func (ptr *QLowEnergyAdvertisingData) Swap(other QLowEnergyAdvertisingData_ITF) 
 func (ptr *QLowEnergyAdvertisingData) DestroyQLowEnergyAdvertisingData() {
 	if ptr.Pointer() != nil {
 		C.QLowEnergyAdvertisingData_DestroyQLowEnergyAdvertisingData(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -7257,6 +7265,7 @@ func (ptr *QLowEnergyAdvertisingParameters) Swap(other QLowEnergyAdvertisingPara
 func (ptr *QLowEnergyAdvertisingParameters) DestroyQLowEnergyAdvertisingParameters() {
 	if ptr.Pointer() != nil {
 		C.QLowEnergyAdvertisingParameters_DestroyQLowEnergyAdvertisingParameters(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -7393,6 +7402,7 @@ func (ptr *QLowEnergyCharacteristic) Value() *core.QByteArray {
 func (ptr *QLowEnergyCharacteristic) DestroyQLowEnergyCharacteristic() {
 	if ptr.Pointer() != nil {
 		C.QLowEnergyCharacteristic_DestroyQLowEnergyCharacteristic(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -7603,6 +7613,7 @@ func (ptr *QLowEnergyCharacteristicData) WriteConstraints() QBluetooth__AttAcces
 func (ptr *QLowEnergyCharacteristicData) DestroyQLowEnergyCharacteristicData() {
 	if ptr.Pointer() != nil {
 		C.QLowEnergyCharacteristicData_DestroyQLowEnergyCharacteristicData(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -7750,6 +7761,7 @@ func (ptr *QLowEnergyConnectionParameters) Swap(other QLowEnergyConnectionParame
 func (ptr *QLowEnergyConnectionParameters) DestroyQLowEnergyConnectionParameters() {
 	if ptr.Pointer() != nil {
 		C.QLowEnergyConnectionParameters_DestroyQLowEnergyConnectionParameters(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -8715,6 +8727,7 @@ func (ptr *QLowEnergyDescriptor) Value() *core.QByteArray {
 func (ptr *QLowEnergyDescriptor) DestroyQLowEnergyDescriptor() {
 	if ptr.Pointer() != nil {
 		C.QLowEnergyDescriptor_DestroyQLowEnergyDescriptor(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -8861,6 +8874,7 @@ func (ptr *QLowEnergyDescriptorData) WriteConstraints() QBluetooth__AttAccessCon
 func (ptr *QLowEnergyDescriptorData) DestroyQLowEnergyDescriptorData() {
 	if ptr.Pointer() != nil {
 		C.QLowEnergyDescriptorData_DestroyQLowEnergyDescriptorData(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -9858,6 +9872,7 @@ func (ptr *QLowEnergyServiceData) Uuid() *QBluetoothUuid {
 func (ptr *QLowEnergyServiceData) DestroyQLowEnergyServiceData() {
 	if ptr.Pointer() != nil {
 		C.QLowEnergyServiceData_DestroyQLowEnergyServiceData(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}

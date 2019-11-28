@@ -1836,3 +1836,10 @@ func (ptr *FelgoLiveClient) MetaObjectDefault() *core.QMetaObject {
 	}
 	return nil
 }
+
+func init() {
+	qt.ItfMap["felgo.FelgoApplication_ITF"] = FelgoApplication{}
+	qt.FuncMap["felgo.NewFelgoApplication"] = NewFelgoApplication
+	qt.ItfMap["felgo.FelgoLiveClient_ITF"] = FelgoLiveClient{}
+	qt.FuncMap["felgo.NewFelgoLiveClient"] = NewFelgoLiveClient
+}

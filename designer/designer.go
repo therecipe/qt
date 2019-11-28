@@ -155,6 +155,7 @@ func NewAppearanceOptionsFromPointer(ptr unsafe.Pointer) (n *AppearanceOptions) 
 
 func (ptr *AppearanceOptions) DestroyAppearanceOptions() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -2573,6 +2574,7 @@ func NewQDesignerComponentsFromPointer(ptr unsafe.Pointer) (n *QDesignerComponen
 
 func (ptr *QDesignerComponents) DestroyQDesignerComponents() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -9974,6 +9976,7 @@ func NewQDesignerLanguageExtensionFromPointer(ptr unsafe.Pointer) (n *QDesignerL
 
 func (ptr *QDesignerLanguageExtension) DestroyQDesignerLanguageExtension() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -15772,6 +15775,7 @@ func NewQDesignerSettingsFromPointer(ptr unsafe.Pointer) (n *QDesignerSettings) 
 
 func (ptr *QDesignerSettings) DestroyQDesignerSettings() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -18888,6 +18892,7 @@ func NewToolWindowFontSettingsFromPointer(ptr unsafe.Pointer) (n *ToolWindowFont
 
 func (ptr *ToolWindowFontSettings) DestroyToolWindowFontSettings() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)

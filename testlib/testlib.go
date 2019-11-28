@@ -76,6 +76,7 @@ func NewQAbstractItemModelTesterFromPointer(ptr unsafe.Pointer) (n *QAbstractIte
 
 func (ptr *QAbstractItemModelTester) DestroyQAbstractItemModelTester() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -155,6 +156,7 @@ func NewQEventSizeOfCheckerFromPointer(ptr unsafe.Pointer) (n *QEventSizeOfCheck
 
 func (ptr *QEventSizeOfChecker) DestroyQEventSizeOfChecker() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -567,6 +569,7 @@ func NewQSpontaneKeyEventFromPointer(ptr unsafe.Pointer) (n *QSpontaneKeyEvent) 
 
 func (ptr *QSpontaneKeyEvent) DestroyQSpontaneKeyEvent() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -613,6 +616,7 @@ func NewQTestFromPointer(ptr unsafe.Pointer) (n *QTest) {
 
 func (ptr *QTest) DestroyQTest() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -769,6 +773,7 @@ func NewQTestDataFromPointer(ptr unsafe.Pointer) (n *QTestData) {
 
 func (ptr *QTestData) DestroyQTestData() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -816,6 +821,7 @@ func NewQTestDelayEventFromPointer(ptr unsafe.Pointer) (n *QTestDelayEvent) {
 
 func (ptr *QTestDelayEvent) DestroyQTestDelayEvent() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -862,6 +868,7 @@ func NewQTestEventFromPointer(ptr unsafe.Pointer) (n *QTestEvent) {
 
 func (ptr *QTestEvent) DestroyQTestEvent() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -1030,6 +1037,7 @@ func (ptr *QTestEventList) Simulate(w widgets.QWidget_ITF) {
 func (ptr *QTestEventList) DestroyQTestEventList() {
 	if ptr.Pointer() != nil {
 		C.QTestEventList_DestroyQTestEventList(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -1075,6 +1083,7 @@ func NewQTestEventLoopFromPointer(ptr unsafe.Pointer) (n *QTestEventLoop) {
 
 func (ptr *QTestEventLoop) DestroyQTestEventLoop() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -1122,6 +1131,7 @@ func NewQTestKeyClicksEventFromPointer(ptr unsafe.Pointer) (n *QTestKeyClicksEve
 
 func (ptr *QTestKeyClicksEvent) DestroyQTestKeyClicksEvent() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -1169,6 +1179,7 @@ func NewQTestKeyEventFromPointer(ptr unsafe.Pointer) (n *QTestKeyEvent) {
 
 func (ptr *QTestKeyEvent) DestroyQTestKeyEvent() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -1216,6 +1227,7 @@ func NewQTestMouseEventFromPointer(ptr unsafe.Pointer) (n *QTestMouseEvent) {
 
 func (ptr *QTestMouseEvent) DestroyQTestMouseEvent() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)

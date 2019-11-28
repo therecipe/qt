@@ -2535,8 +2535,9 @@ func NewQTextToSpeechPluginFromPointer(ptr unsafe.Pointer) (n *QTextToSpeechPlug
 
 func (ptr *QTextToSpeechPlugin) DestroyQTextToSpeechPlugin() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -3030,6 +3031,7 @@ func NewQTextToSpeechProcessorFliteFromPointer(ptr unsafe.Pointer) (n *QTextToSp
 
 func (ptr *QTextToSpeechProcessorFlite) DestroyQTextToSpeechProcessorFlite() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -3076,6 +3078,7 @@ func NewQVoiceFromPointer(ptr unsafe.Pointer) (n *QVoice) {
 
 func (ptr *QVoice) DestroyQVoice() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)

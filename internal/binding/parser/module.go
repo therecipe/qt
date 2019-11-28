@@ -112,6 +112,16 @@ func (m *Module) Prepare() error {
 	}
 
 	//mutate classmap
+	if utils.QT_GEN_QUICK_EXTRAS() {
+		if m.Project == "QtQuickControls2" {
+			for _, c := range append(SortedClassesForModule(m.Project, false), snsExtraClasses...) {
+				if strings.HasPrefix(c.Name, "QQuick") && !strings.HasSuffix(c.Name, "Private") {
+					c.Status = "active"
+					c.Access = "public"
+				}
+			}
+		}
+	}
 	m.remove()
 
 	//mutate classes

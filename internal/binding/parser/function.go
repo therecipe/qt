@@ -32,6 +32,7 @@ type Function struct {
 	TmpName           string
 	Export            bool
 	NeedsFinalizer    bool
+	NeedsFinalizerFor []string
 	Container         string
 	TemplateModeGo    string
 	NonMember         bool
@@ -425,6 +426,8 @@ func (f *Function) IsSupported() bool {
 
 		f.Fullname == "FelgoLiveClient::Q_PROPERTY",
 
+		f.Fullname == "QQuickTumblerView::wrapChange",
+
 		strings.Contains(f.Access, "unsupported"):
 		{
 			if !strings.Contains(f.Access, "unsupported") {
@@ -556,6 +559,7 @@ func IsBlockedDefault() []string {
 
 		"QAbstractBarSeries::type",
 		"QXYSeries::type",
+		"QQuickStylePlugin::registerTypes",
 	}
 }
 

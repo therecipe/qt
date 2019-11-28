@@ -351,6 +351,7 @@ func NewAVFCameraInfoFromPointer(ptr unsafe.Pointer) (n *AVFCameraInfo) {
 
 func (ptr *AVFCameraInfo) DestroyAVFCameraInfo() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -709,6 +710,7 @@ func NewAVFConfigurationLockFromPointer(ptr unsafe.Pointer) (n *AVFConfiguration
 
 func (ptr *AVFConfigurationLock) DestroyAVFConfigurationLock() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -1229,6 +1231,7 @@ func NewAVFObjectDeleterFromPointer(ptr unsafe.Pointer) (n *AVFObjectDeleter) {
 
 func (ptr *AVFObjectDeleter) DestroyAVFObjectDeleter() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -1275,6 +1278,7 @@ func NewAVFScopedPointerFromPointer(ptr unsafe.Pointer) (n *AVFScopedPointer) {
 
 func (ptr *AVFScopedPointer) DestroyAVFScopedPointer() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -1369,6 +1373,7 @@ func NewAVFStorageLocationFromPointer(ptr unsafe.Pointer) (n *AVFStorageLocation
 
 func (ptr *AVFStorageLocation) DestroyAVFStorageLocation() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -1493,6 +1498,7 @@ func NewAVFVideoOutputFromPointer(ptr unsafe.Pointer) (n *AVFVideoOutput) {
 
 func (ptr *AVFVideoOutput) DestroyAVFVideoOutput() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -1621,6 +1627,7 @@ func NewAVFVideoWidgetControlFromPointer(ptr unsafe.Pointer) (n *AVFVideoWidgetC
 
 func (ptr *AVFVideoWidgetControl) DestroyAVFVideoWidgetControl() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -1709,6 +1716,7 @@ func NewAndroidCamcorderProfileFromPointer(ptr unsafe.Pointer) (n *AndroidCamcor
 
 func (ptr *AndroidCamcorderProfile) DestroyAndroidCamcorderProfile() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -1794,6 +1802,7 @@ func NewAndroidMediaMetadataRetrieverFromPointer(ptr unsafe.Pointer) (n *Android
 
 func (ptr *AndroidMediaMetadataRetriever) DestroyAndroidMediaMetadataRetriever() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -1918,6 +1927,7 @@ func NewAndroidMultimediaUtilsFromPointer(ptr unsafe.Pointer) (n *AndroidMultime
 
 func (ptr *AndroidMultimediaUtils) DestroyAndroidMultimediaUtils() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -2081,6 +2091,7 @@ func NewAsyncCallbackFromPointer(ptr unsafe.Pointer) (n *AsyncCallback) {
 
 func (ptr *AsyncCallback) DestroyAsyncCallback() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -2400,6 +2411,7 @@ func NewAudioInterfaceFromPointer(ptr unsafe.Pointer) (n *AudioInterface) {
 
 func (ptr *AudioInterface) DestroyAudioInterface() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -2486,6 +2498,7 @@ func NewAudioSampleGrabberCallbackFromPointer(ptr unsafe.Pointer) (n *AudioSampl
 
 func (ptr *AudioSampleGrabberCallback) DestroyAudioSampleGrabberCallback() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -3276,6 +3289,7 @@ func NewBbMediaStorageLocationFromPointer(ptr unsafe.Pointer) (n *BbMediaStorage
 
 func (ptr *BbMediaStorageLocation) DestroyBbMediaStorageLocation() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -4348,6 +4362,7 @@ func NewCoreAudioBufferListFromPointer(ptr unsafe.Pointer) (n *CoreAudioBufferLi
 
 func (ptr *CoreAudioBufferList) DestroyCoreAudioBufferList() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -4667,6 +4682,7 @@ func NewCoreAudioPacketFeederFromPointer(ptr unsafe.Pointer) (n *CoreAudioPacket
 
 func (ptr *CoreAudioPacketFeeder) DestroyCoreAudioPacketFeeder() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -4752,6 +4768,7 @@ func NewCoreAudioRingBufferFromPointer(ptr unsafe.Pointer) (n *CoreAudioRingBuff
 
 func (ptr *CoreAudioRingBuffer) DestroyCoreAudioRingBuffer() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -4837,6 +4854,7 @@ func NewCoreAudioUtilsFromPointer(ptr unsafe.Pointer) (n *CoreAudioUtils) {
 
 func (ptr *CoreAudioUtils) DestroyCoreAudioUtils() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -4883,6 +4901,7 @@ func NewD3DPresentEngineFromPointer(ptr unsafe.Pointer) (n *D3DPresentEngine) {
 
 func (ptr *D3DPresentEngine) DestroyD3DPresentEngine() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -5367,6 +5386,7 @@ func NewDirectShowBaseFilterFromPointer(ptr unsafe.Pointer) (n *DirectShowBaseFi
 
 func (ptr *DirectShowBaseFilter) DestroyDirectShowBaseFilter() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -5647,6 +5667,7 @@ func NewDirectShowEvrVideoWindowControlFromPointer(ptr unsafe.Pointer) (n *Direc
 
 func (ptr *DirectShowEvrVideoWindowControl) DestroyDirectShowEvrVideoWindowControl() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -5732,6 +5753,7 @@ func NewDirectShowIOSourceFromPointer(ptr unsafe.Pointer) (n *DirectShowIOSource
 
 func (ptr *DirectShowIOSource) DestroyDirectShowIOSource() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -5779,6 +5801,7 @@ func NewDirectShowInputPinFromPointer(ptr unsafe.Pointer) (n *DirectShowInputPin
 
 func (ptr *DirectShowInputPin) DestroyDirectShowInputPin() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -5825,6 +5848,7 @@ func NewDirectShowMediaTypeFromPointer(ptr unsafe.Pointer) (n *DirectShowMediaTy
 
 func (ptr *DirectShowMediaType) DestroyDirectShowMediaType() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -5871,6 +5895,7 @@ func NewDirectShowMediaTypeEnumFromPointer(ptr unsafe.Pointer) (n *DirectShowMed
 
 func (ptr *DirectShowMediaTypeEnum) DestroyDirectShowMediaTypeEnum() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -5957,6 +5982,7 @@ func NewDirectShowOutputPinFromPointer(ptr unsafe.Pointer) (n *DirectShowOutputP
 
 func (ptr *DirectShowOutputPin) DestroyDirectShowOutputPin() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -6003,6 +6029,7 @@ func NewDirectShowPinFromPointer(ptr unsafe.Pointer) (n *DirectShowPin) {
 
 func (ptr *DirectShowPin) DestroyDirectShowPin() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -6049,6 +6076,7 @@ func NewDirectShowPinEnumFromPointer(ptr unsafe.Pointer) (n *DirectShowPinEnum) 
 
 func (ptr *DirectShowPinEnum) DestroyDirectShowPinEnum() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -6213,8 +6241,9 @@ func NewDirectShowVideoBufferFromPointer(ptr unsafe.Pointer) (n *DirectShowVideo
 
 func (ptr *DirectShowVideoBuffer) DestroyDirectShowVideoBuffer() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -6455,6 +6484,7 @@ func NewMFAbstractActivateFromPointer(ptr unsafe.Pointer) (n *MFAbstractActivate
 
 func (ptr *MFAbstractActivate) DestroyMFAbstractActivate() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -6696,6 +6726,7 @@ func NewMFEvrVideoWindowControlFromPointer(ptr unsafe.Pointer) (n *MFEvrVideoWin
 
 func (ptr *MFEvrVideoWindowControl) DestroyMFEvrVideoWindowControl() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -6937,6 +6968,7 @@ func NewMFTransformFromPointer(ptr unsafe.Pointer) (n *MFTransform) {
 
 func (ptr *MFTransform) DestroyMFTransform() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -7220,6 +7252,7 @@ func NewMmRendererMetaDataFromPointer(ptr unsafe.Pointer) (n *MmRendererMetaData
 
 func (ptr *MmRendererMetaData) DestroyMmRendererMetaData() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -13628,6 +13661,7 @@ func NewQAndroidSGVideoNodeFromPointer(ptr unsafe.Pointer) (n *QAndroidSGVideoNo
 
 func (ptr *QAndroidSGVideoNode) DestroyQAndroidSGVideoNode() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -13674,6 +13708,7 @@ func NewQAndroidSGVideoNodeFactoryPluginFromPointer(ptr unsafe.Pointer) (n *QAnd
 
 func (ptr *QAndroidSGVideoNodeFactoryPlugin) DestroyQAndroidSGVideoNodeFactoryPlugin() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -13915,6 +13950,7 @@ func NewQAudioFromPointer(ptr unsafe.Pointer) (n *QAudio) {
 
 func (ptr *QAudio) DestroyQAudio() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -14121,6 +14157,7 @@ func (ptr *QAudioBuffer) StartTime() int64 {
 func (ptr *QAudioBuffer) DestroyQAudioBuffer() {
 	if ptr.Pointer() != nil {
 		C.QAudioBuffer_DestroyQAudioBuffer(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -15980,6 +16017,7 @@ func (ptr *QAudioDeviceInfo) SupportedSampleTypes() []QAudioFormat__SampleType {
 func (ptr *QAudioDeviceInfo) DestroyQAudioDeviceInfo() {
 	if ptr.Pointer() != nil {
 		C.QAudioDeviceInfo_DestroyQAudioDeviceInfo(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -16282,6 +16320,7 @@ func (ptr *QAudioEncoderSettings) SetSampleRate(rate int) {
 func (ptr *QAudioEncoderSettings) DestroyQAudioEncoderSettings() {
 	if ptr.Pointer() != nil {
 		C.QAudioEncoderSettings_DestroyQAudioEncoderSettings(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -16962,6 +17001,7 @@ func (ptr *QAudioFormat) SetSampleType(sampleType QAudioFormat__SampleType) {
 func (ptr *QAudioFormat) DestroyQAudioFormat() {
 	if ptr.Pointer() != nil {
 		C.QAudioFormat_DestroyQAudioFormat(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -19794,6 +19834,7 @@ func NewQAudioSystemFactoryInterfaceFromPointer(ptr unsafe.Pointer) (n *QAudioSy
 
 func (ptr *QAudioSystemFactoryInterface) DestroyQAudioSystemFactoryInterface() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -26229,6 +26270,7 @@ func (ptr *QCameraFocusZone) Status() QCameraFocusZone__FocusZoneStatus {
 func (ptr *QCameraFocusZone) DestroyQCameraFocusZone() {
 	if ptr.Pointer() != nil {
 		C.QCameraFocusZone_DestroyQCameraFocusZone(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -28848,6 +28890,7 @@ func (ptr *QCameraInfo) Position() QCamera__Position {
 func (ptr *QCameraInfo) DestroyQCameraInfo() {
 	if ptr.Pointer() != nil {
 		C.QCameraInfo_DestroyQCameraInfo(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -29478,6 +29521,7 @@ func (ptr *QCameraViewfinderSettings) Swap(other QCameraViewfinderSettings_ITF) 
 func (ptr *QCameraViewfinderSettings) DestroyQCameraViewfinderSettings() {
 	if ptr.Pointer() != nil {
 		C.QCameraViewfinderSettings_DestroyQCameraViewfinderSettings(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -31278,6 +31322,7 @@ func NewQGstreamerElementFactoryFromPointer(ptr unsafe.Pointer) (n *QGstreamerEl
 
 func (ptr *QGstreamerElementFactory) DestroyQGstreamerElementFactory() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -31724,6 +31769,7 @@ func NewQGstreamerVideoInputFromPointer(ptr unsafe.Pointer) (n *QGstreamerVideoI
 
 func (ptr *QGstreamerVideoInput) DestroyQGstreamerVideoInput() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -32227,6 +32273,7 @@ func (ptr *QImageEncoderSettings) SetResolution2(width int, height int) {
 func (ptr *QImageEncoderSettings) DestroyQImageEncoderSettings() {
 	if ptr.Pointer() != nil {
 		C.QImageEncoderSettings_DestroyQImageEncoderSettings(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -33270,6 +33317,7 @@ func (ptr *QMediaContent) Playlist() *QMediaPlaylist {
 func (ptr *QMediaContent) DestroyQMediaContent() {
 	if ptr.Pointer() != nil {
 		C.QMediaContent_DestroyQMediaContent(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -42208,6 +42256,7 @@ func (ptr *QMediaResource) VideoCodec() string {
 func (ptr *QMediaResource) DestroyQMediaResource() {
 	if ptr.Pointer() != nil {
 		C.QMediaResource_DestroyQMediaResource(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -43165,6 +43214,7 @@ func NewQMediaServiceProviderFactoryInterfaceFromPointer(ptr unsafe.Pointer) (n 
 
 func (ptr *QMediaServiceProviderFactoryInterface) DestroyQMediaServiceProviderFactoryInterface() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -44400,6 +44450,7 @@ func NewQMediaTimeIntervalFromPointer(ptr unsafe.Pointer) (n *QMediaTimeInterval
 
 func (ptr *QMediaTimeInterval) DestroyQMediaTimeInterval() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -44625,6 +44676,7 @@ func (ptr *QMediaTimeRange) RemoveTimeRange(ran QMediaTimeRange_ITF) {
 func (ptr *QMediaTimeRange) DestroyQMediaTimeRange() {
 	if ptr.Pointer() != nil {
 		C.QMediaTimeRange_DestroyQMediaTimeRange(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -45661,6 +45713,7 @@ func NewQMultimediaFromPointer(ptr unsafe.Pointer) (n *QMultimedia) {
 
 func (ptr *QMultimedia) DestroyQMultimedia() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -45869,6 +45922,7 @@ func NewQOpenSLESEngineFromPointer(ptr unsafe.Pointer) (n *QOpenSLESEngine) {
 
 func (ptr *QOpenSLESEngine) DestroyQOpenSLESEngine() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -50472,6 +50526,7 @@ func NewQSGVideoMaterial_EGLFromPointer(ptr unsafe.Pointer) (n *QSGVideoMaterial
 
 func (ptr *QSGVideoMaterial_EGL) DestroyQSGVideoMaterial_EGL() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -50518,6 +50573,7 @@ func NewQSGVideoNodeFactory_EGLFromPointer(ptr unsafe.Pointer) (n *QSGVideoNodeF
 
 func (ptr *QSGVideoNodeFactory_EGL) DestroyQSGVideoNodeFactory_EGL() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -50564,6 +50620,7 @@ func NewQSGVideoNode_EGLFromPointer(ptr unsafe.Pointer) (n *QSGVideoNode_EGL) {
 
 func (ptr *QSGVideoNode_EGL) DestroyQSGVideoNode_EGL() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -50610,6 +50667,7 @@ func NewQSGVivanteVideoMaterialFromPointer(ptr unsafe.Pointer) (n *QSGVivanteVid
 
 func (ptr *QSGVivanteVideoMaterial) DestroyQSGVivanteVideoMaterial() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -50656,6 +50714,7 @@ func NewQSGVivanteVideoMaterialShaderFromPointer(ptr unsafe.Pointer) (n *QSGViva
 
 func (ptr *QSGVivanteVideoMaterialShader) DestroyQSGVivanteVideoMaterialShader() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -50702,6 +50761,7 @@ func NewQSGVivanteVideoNodeFromPointer(ptr unsafe.Pointer) (n *QSGVivanteVideoNo
 
 func (ptr *QSGVivanteVideoNode) DestroyQSGVivanteVideoNode() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -52830,6 +52890,7 @@ func (ptr *QVideoEncoderSettings) SetResolution2(width int, height int) {
 func (ptr *QVideoEncoderSettings) DestroyQVideoEncoderSettings() {
 	if ptr.Pointer() != nil {
 		C.QVideoEncoderSettings_DestroyQVideoEncoderSettings(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -53421,8 +53482,9 @@ func NewQVideoFilterRunnableFromPointer(ptr unsafe.Pointer) (n *QVideoFilterRunn
 
 func (ptr *QVideoFilterRunnable) DestroyQVideoFilterRunnable() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -53851,6 +53913,7 @@ func (ptr *QVideoFrame) Width() int {
 func (ptr *QVideoFrame) DestroyQVideoFrame() {
 	if ptr.Pointer() != nil {
 		C.QVideoFrame_DestroyQVideoFrame(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -54817,6 +54880,7 @@ func (ptr *QVideoSurfaceFormat) YCbCrColorSpace() QVideoSurfaceFormat__YCbCrColo
 func (ptr *QVideoSurfaceFormat) DestroyQVideoSurfaceFormat() {
 	if ptr.Pointer() != nil {
 		C.QVideoSurfaceFormat_DestroyQVideoSurfaceFormat(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -59577,6 +59641,7 @@ func NewResourcePolicyImplFromPointer(ptr unsafe.Pointer) (n *ResourcePolicyImpl
 
 func (ptr *ResourcePolicyImpl) DestroyResourcePolicyImpl() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -59662,6 +59727,7 @@ func NewResourcePolicyPluginFromPointer(ptr unsafe.Pointer) (n *ResourcePolicyPl
 
 func (ptr *ResourcePolicyPlugin) DestroyResourcePolicyPlugin() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -59708,6 +59774,7 @@ func NewRingBufferFromPointer(ptr unsafe.Pointer) (n *RingBuffer) {
 
 func (ptr *RingBuffer) DestroyRingBuffer() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -59754,6 +59821,7 @@ func NewSampleGrabberCallbackFromPointer(ptr unsafe.Pointer) (n *SampleGrabberCa
 
 func (ptr *SampleGrabberCallback) DestroySampleGrabberCallback() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -59800,6 +59868,7 @@ func NewSamplePoolFromPointer(ptr unsafe.Pointer) (n *SamplePool) {
 
 func (ptr *SamplePool) DestroySamplePool() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -59846,6 +59915,7 @@ func NewSchedulerFromPointer(ptr unsafe.Pointer) (n *Scheduler) {
 
 func (ptr *Scheduler) DestroyScheduler() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)

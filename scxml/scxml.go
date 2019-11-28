@@ -124,6 +124,7 @@ func (ptr *QScxmlCompiler) SetFileName(fileName string) {
 func (ptr *QScxmlCompiler) DestroyQScxmlCompiler() {
 	if ptr.Pointer() != nil {
 		C.QScxmlCompiler_DestroyQScxmlCompiler(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -1617,6 +1618,7 @@ func (ptr *QScxmlError) ToString() string {
 func (ptr *QScxmlError) DestroyQScxmlError() {
 	if ptr.Pointer() != nil {
 		C.QScxmlError_DestroyQScxmlError(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -1854,6 +1856,7 @@ func (ptr *QScxmlEvent) SetSendId(sendid string) {
 func (ptr *QScxmlEvent) DestroyQScxmlEvent() {
 	if ptr.Pointer() != nil {
 		C.QScxmlEvent_DestroyQScxmlEvent(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}

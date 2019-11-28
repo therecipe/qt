@@ -817,6 +817,7 @@ func (ptr *QScriptContext) ToString() string {
 func (ptr *QScriptContext) DestroyQScriptContext() {
 	if ptr.Pointer() != nil {
 		C.QScriptContext_DestroyQScriptContext(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -962,6 +963,7 @@ func (ptr *QScriptContextInfo) ScriptId() int64 {
 func (ptr *QScriptContextInfo) DestroyQScriptContextInfo() {
 	if ptr.Pointer() != nil {
 		C.QScriptContextInfo_DestroyQScriptContextInfo(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -2413,6 +2415,7 @@ func NewQScriptExtensionInterfaceFromPointer(ptr unsafe.Pointer) (n *QScriptExte
 
 func (ptr *QScriptExtensionInterface) DestroyQScriptExtensionInterface() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -3021,6 +3024,7 @@ func (ptr *QScriptProgram) SourceCode() string {
 func (ptr *QScriptProgram) DestroyQScriptProgram() {
 	if ptr.Pointer() != nil {
 		C.QScriptProgram_DestroyQScriptProgram(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -3104,6 +3108,7 @@ func (ptr *QScriptString) ToString() string {
 func (ptr *QScriptString) DestroyQScriptString() {
 	if ptr.Pointer() != nil {
 		C.QScriptString_DestroyQScriptString(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -3194,6 +3199,7 @@ func (ptr *QScriptSyntaxCheckResult) State() QScriptSyntaxCheckResult__State {
 func (ptr *QScriptSyntaxCheckResult) DestroyQScriptSyntaxCheckResult() {
 	if ptr.Pointer() != nil {
 		C.QScriptSyntaxCheckResult_DestroyQScriptSyntaxCheckResult(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -3698,6 +3704,7 @@ func (ptr *QScriptValue) ToVariant() *core.QVariant {
 func (ptr *QScriptValue) DestroyQScriptValue() {
 	if ptr.Pointer() != nil {
 		C.QScriptValue_DestroyQScriptValue(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -3781,6 +3788,7 @@ func NewQScriptableFromPointer(ptr unsafe.Pointer) (n *QScriptable) {
 
 func (ptr *QScriptable) DestroyQScriptable() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)

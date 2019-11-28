@@ -75,6 +75,7 @@ func NewDataEntriesFromPointer(ptr unsafe.Pointer) (n *DataEntries) {
 
 func (ptr *DataEntries) DestroyDataEntries() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -121,6 +122,7 @@ func NewIndexValuePairFromPointer(ptr unsafe.Pointer) (n *IndexValuePair) {
 
 func (ptr *IndexValuePair) DestroyIndexValuePair() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -167,6 +169,7 @@ func NewModelIndexFromPointer(ptr unsafe.Pointer) (n *ModelIndex) {
 
 func (ptr *ModelIndex) DestroyModelIndex() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -1794,6 +1797,7 @@ func NewQMetaTypeIdFromPointer(ptr unsafe.Pointer) (n *QMetaTypeId) {
 
 func (ptr *QMetaTypeId) DestroyQMetaTypeId() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -3356,6 +3360,7 @@ func NewQRemoteObjectPendingCallFromPointer(ptr unsafe.Pointer) (n *QRemoteObjec
 
 func (ptr *QRemoteObjectPendingCall) DestroyQRemoteObjectPendingCall() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -3760,6 +3765,7 @@ func NewQRemoteObjectPendingReplyFromPointer(ptr unsafe.Pointer) (n *QRemoteObje
 
 func (ptr *QRemoteObjectPendingReply) DestroyQRemoteObjectPendingReply() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -4659,6 +4665,7 @@ func NewQRemoteObjectSourceLocationInfoFromPointer(ptr unsafe.Pointer) (n *QRemo
 
 func (ptr *QRemoteObjectSourceLocationInfo) DestroyQRemoteObjectSourceLocationInfo() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -4705,6 +4712,7 @@ func NewQTypeInfoFromPointer(ptr unsafe.Pointer) (n *QTypeInfo) {
 
 func (ptr *QTypeInfo) DestroyQTypeInfo() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -4751,6 +4759,7 @@ func NewQtROClientFactoryFromPointer(ptr unsafe.Pointer) (n *QtROClientFactory) 
 
 func (ptr *QtROClientFactory) DestroyQtROClientFactory() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -4797,6 +4806,7 @@ func NewQtROServerFactoryFromPointer(ptr unsafe.Pointer) (n *QtROServerFactory) 
 
 func (ptr *QtROServerFactory) DestroyQtROServerFactory() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -4843,6 +4853,7 @@ func NewSourceApiMapFromPointer(ptr unsafe.Pointer) (n *SourceApiMap) {
 
 func (ptr *SourceApiMap) DestroySourceApiMap() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)

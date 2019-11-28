@@ -99,7 +99,11 @@ func (ptr *QAbstractAxis) Alignment() core.Qt__AlignmentFlag {
 //export callbackQAbstractAxis_ColorChanged
 func callbackQAbstractAxis_ColorChanged(ptr unsafe.Pointer, color unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "colorChanged"); signal != nil {
-		(*(*func(*gui.QColor))(signal))(gui.NewQColorFromPointer(color))
+		(*(*func(*gui.QColor))(signal))(func() *gui.QColor {
+			tmpValue := gui.NewQColorFromPointer(color)
+			runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+			return tmpValue
+		}())
 	}
 
 }
@@ -430,7 +434,11 @@ func (ptr *QAbstractAxis) LabelsColor() *gui.QColor {
 //export callbackQAbstractAxis_LabelsColorChanged
 func callbackQAbstractAxis_LabelsColorChanged(ptr unsafe.Pointer, color unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "labelsColorChanged"); signal != nil {
-		(*(*func(*gui.QColor))(signal))(gui.NewQColorFromPointer(color))
+		(*(*func(*gui.QColor))(signal))(func() *gui.QColor {
+			tmpValue := gui.NewQColorFromPointer(color)
+			runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+			return tmpValue
+		}())
 	}
 
 }
@@ -1084,7 +1092,11 @@ func (ptr *QAbstractAxis) ShadesBorderColor() *gui.QColor {
 //export callbackQAbstractAxis_ShadesBorderColorChanged
 func callbackQAbstractAxis_ShadesBorderColorChanged(ptr unsafe.Pointer, color unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "shadesBorderColorChanged"); signal != nil {
-		(*(*func(*gui.QColor))(signal))(gui.NewQColorFromPointer(color))
+		(*(*func(*gui.QColor))(signal))(func() *gui.QColor {
+			tmpValue := gui.NewQColorFromPointer(color)
+			runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+			return tmpValue
+		}())
 	}
 
 }
@@ -1182,7 +1194,11 @@ func (ptr *QAbstractAxis) ShadesColor() *gui.QColor {
 //export callbackQAbstractAxis_ShadesColorChanged
 func callbackQAbstractAxis_ShadesColorChanged(ptr unsafe.Pointer, color unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "shadesColorChanged"); signal != nil {
-		(*(*func(*gui.QColor))(signal))(gui.NewQColorFromPointer(color))
+		(*(*func(*gui.QColor))(signal))(func() *gui.QColor {
+			tmpValue := gui.NewQColorFromPointer(color)
+			runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+			return tmpValue
+		}())
 	}
 
 }
@@ -3741,7 +3757,11 @@ func (ptr *QAreaSeries) BorderColor() *gui.QColor {
 //export callbackQAreaSeries_BorderColorChanged
 func callbackQAreaSeries_BorderColorChanged(ptr unsafe.Pointer, color unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "borderColorChanged"); signal != nil {
-		(*(*func(*gui.QColor))(signal))(gui.NewQColorFromPointer(color))
+		(*(*func(*gui.QColor))(signal))(func() *gui.QColor {
+			tmpValue := gui.NewQColorFromPointer(color)
+			runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+			return tmpValue
+		}())
 	}
 
 }
@@ -3839,7 +3859,11 @@ func (ptr *QAreaSeries) Color() *gui.QColor {
 //export callbackQAreaSeries_ColorChanged
 func callbackQAreaSeries_ColorChanged(ptr unsafe.Pointer, color unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "colorChanged"); signal != nil {
-		(*(*func(*gui.QColor))(signal))(gui.NewQColorFromPointer(color))
+		(*(*func(*gui.QColor))(signal))(func() *gui.QColor {
+			tmpValue := gui.NewQColorFromPointer(color)
+			runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+			return tmpValue
+		}())
 	}
 
 }
@@ -5409,7 +5433,11 @@ func (ptr *QBarSet) BorderColor() *gui.QColor {
 //export callbackQBarSet_BorderColorChanged
 func callbackQBarSet_BorderColorChanged(ptr unsafe.Pointer, color unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "borderColorChanged"); signal != nil {
-		(*(*func(*gui.QColor))(signal))(gui.NewQColorFromPointer(color))
+		(*(*func(*gui.QColor))(signal))(func() *gui.QColor {
+			tmpValue := gui.NewQColorFromPointer(color)
+			runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+			return tmpValue
+		}())
 	}
 
 }
@@ -5547,7 +5575,11 @@ func (ptr *QBarSet) Color() *gui.QColor {
 //export callbackQBarSet_ColorChanged
 func callbackQBarSet_ColorChanged(ptr unsafe.Pointer, color unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "colorChanged"); signal != nil {
-		(*(*func(*gui.QColor))(signal))(gui.NewQColorFromPointer(color))
+		(*(*func(*gui.QColor))(signal))(func() *gui.QColor {
+			tmpValue := gui.NewQColorFromPointer(color)
+			runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+			return tmpValue
+		}())
 	}
 
 }
@@ -5785,7 +5817,11 @@ func (ptr *QBarSet) LabelColor() *gui.QColor {
 //export callbackQBarSet_LabelColorChanged
 func callbackQBarSet_LabelColorChanged(ptr unsafe.Pointer, color unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "labelColorChanged"); signal != nil {
-		(*(*func(*gui.QColor))(signal))(gui.NewQColorFromPointer(color))
+		(*(*func(*gui.QColor))(signal))(func() *gui.QColor {
+			tmpValue := gui.NewQColorFromPointer(color)
+			runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+			return tmpValue
+		}())
 	}
 
 }
@@ -14302,7 +14338,19 @@ func (ptr *QChartView) PaintEventDefault(event gui.QPaintEvent_ITF) {
 //export callbackQChartView_RubberBandChanged
 func callbackQChartView_RubberBandChanged(ptr unsafe.Pointer, rubberBandRect unsafe.Pointer, fromScenePoint unsafe.Pointer, toScenePoint unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "rubberBandChanged"); signal != nil {
-		(*(*func(*core.QRect, *core.QPointF, *core.QPointF))(signal))(core.NewQRectFromPointer(rubberBandRect), core.NewQPointFFromPointer(fromScenePoint), core.NewQPointFFromPointer(toScenePoint))
+		(*(*func(*core.QRect, *core.QPointF, *core.QPointF))(signal))(func() *core.QRect {
+			tmpValue := core.NewQRectFromPointer(rubberBandRect)
+			runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+			return tmpValue
+		}(), func() *core.QPointF {
+			tmpValue := core.NewQPointFFromPointer(fromScenePoint)
+			runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+			return tmpValue
+		}(), func() *core.QPointF {
+			tmpValue := core.NewQPointFFromPointer(toScenePoint)
+			runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+			return tmpValue
+		}())
 	}
 
 }
@@ -15296,7 +15344,11 @@ func (ptr *QDateTimeAxis) Max() *core.QDateTime {
 //export callbackQDateTimeAxis_MaxChanged
 func callbackQDateTimeAxis_MaxChanged(ptr unsafe.Pointer, max unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "maxChanged"); signal != nil {
-		(*(*func(*core.QDateTime))(signal))(core.NewQDateTimeFromPointer(max))
+		(*(*func(*core.QDateTime))(signal))(func() *core.QDateTime {
+			tmpValue := core.NewQDateTimeFromPointer(max)
+			runtime.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
+			return tmpValue
+		}())
 	}
 
 }
@@ -15345,7 +15397,11 @@ func (ptr *QDateTimeAxis) Min() *core.QDateTime {
 //export callbackQDateTimeAxis_MinChanged
 func callbackQDateTimeAxis_MinChanged(ptr unsafe.Pointer, min unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "minChanged"); signal != nil {
-		(*(*func(*core.QDateTime))(signal))(core.NewQDateTimeFromPointer(min))
+		(*(*func(*core.QDateTime))(signal))(func() *core.QDateTime {
+			tmpValue := core.NewQDateTimeFromPointer(min)
+			runtime.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
+			return tmpValue
+		}())
 	}
 
 }
@@ -15385,7 +15441,15 @@ func (ptr *QDateTimeAxis) MinChanged(min core.QDateTime_ITF) {
 //export callbackQDateTimeAxis_RangeChanged
 func callbackQDateTimeAxis_RangeChanged(ptr unsafe.Pointer, min unsafe.Pointer, max unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "rangeChanged"); signal != nil {
-		(*(*func(*core.QDateTime, *core.QDateTime))(signal))(core.NewQDateTimeFromPointer(min), core.NewQDateTimeFromPointer(max))
+		(*(*func(*core.QDateTime, *core.QDateTime))(signal))(func() *core.QDateTime {
+			tmpValue := core.NewQDateTimeFromPointer(min)
+			runtime.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
+			return tmpValue
+		}(), func() *core.QDateTime {
+			tmpValue := core.NewQDateTimeFromPointer(max)
+			runtime.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
+			return tmpValue
+		}())
 	}
 
 }
@@ -18591,7 +18655,11 @@ func (ptr *QLegend) BorderColor() *gui.QColor {
 //export callbackQLegend_BorderColorChanged
 func callbackQLegend_BorderColorChanged(ptr unsafe.Pointer, color unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "borderColorChanged"); signal != nil {
-		(*(*func(*gui.QColor))(signal))(gui.NewQColorFromPointer(color))
+		(*(*func(*gui.QColor))(signal))(func() *gui.QColor {
+			tmpValue := gui.NewQColorFromPointer(color)
+			runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+			return tmpValue
+		}())
 	}
 
 }
@@ -18649,7 +18717,11 @@ func (ptr *QLegend) Color() *gui.QColor {
 //export callbackQLegend_ColorChanged
 func callbackQLegend_ColorChanged(ptr unsafe.Pointer, color unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "colorChanged"); signal != nil {
-		(*(*func(*gui.QColor))(signal))(gui.NewQColorFromPointer(color))
+		(*(*func(*gui.QColor))(signal))(func() *gui.QColor {
+			tmpValue := gui.NewQColorFromPointer(color)
+			runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+			return tmpValue
+		}())
 	}
 
 }
@@ -18695,7 +18767,11 @@ func (ptr *QLegend) DetachFromChart() {
 //export callbackQLegend_FontChanged
 func callbackQLegend_FontChanged(ptr unsafe.Pointer, font unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "fontChanged"); signal != nil {
-		(*(*func(*gui.QFont))(signal))(gui.NewQFontFromPointer(font))
+		(*(*func(*gui.QFont))(signal))(func() *gui.QFont {
+			tmpValue := gui.NewQFontFromPointer(font)
+			runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
+			return tmpValue
+		}())
 	}
 
 }
@@ -18767,7 +18843,11 @@ func (ptr *QLegend) LabelColor() *gui.QColor {
 //export callbackQLegend_LabelColorChanged
 func callbackQLegend_LabelColorChanged(ptr unsafe.Pointer, color unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "labelColorChanged"); signal != nil {
-		(*(*func(*gui.QColor))(signal))(gui.NewQColorFromPointer(color))
+		(*(*func(*gui.QColor))(signal))(func() *gui.QColor {
+			tmpValue := gui.NewQColorFromPointer(color)
+			runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+			return tmpValue
+		}())
 	}
 
 }
@@ -25042,7 +25122,11 @@ func (ptr *QScatterSeries) BorderColor() *gui.QColor {
 //export callbackQScatterSeries_BorderColorChanged
 func callbackQScatterSeries_BorderColorChanged(ptr unsafe.Pointer, color unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "borderColorChanged"); signal != nil {
-		(*(*func(*gui.QColor))(signal))(gui.NewQColorFromPointer(color))
+		(*(*func(*gui.QColor))(signal))(func() *gui.QColor {
+			tmpValue := gui.NewQColorFromPointer(color)
+			runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+			return tmpValue
+		}())
 	}
 
 }
@@ -29354,7 +29438,11 @@ func (ptr *QXYSeries) ColorDefault() *gui.QColor {
 //export callbackQXYSeries_ColorChanged
 func callbackQXYSeries_ColorChanged(ptr unsafe.Pointer, color unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "colorChanged"); signal != nil {
-		(*(*func(*gui.QColor))(signal))(gui.NewQColorFromPointer(color))
+		(*(*func(*gui.QColor))(signal))(func() *gui.QColor {
+			tmpValue := gui.NewQColorFromPointer(color)
+			runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+			return tmpValue
+		}())
 	}
 
 }

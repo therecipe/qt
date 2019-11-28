@@ -289,9 +289,17 @@ func (ptr *QAbstractTextDocumentLayout) DocumentSizeChanged(newSize core.QSizeF_
 //export callbackQAbstractTextDocumentLayout_DrawInlineObject
 func callbackQAbstractTextDocumentLayout_DrawInlineObject(ptr unsafe.Pointer, painter unsafe.Pointer, rect unsafe.Pointer, object unsafe.Pointer, posInDocument C.int, format unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "drawInlineObject"); signal != nil {
-		(*(*func(*QPainter, *core.QRectF, *QTextInlineObject, int, *QTextFormat))(signal))(NewQPainterFromPointer(painter), core.NewQRectFFromPointer(rect), NewQTextInlineObjectFromPointer(object), int(int32(posInDocument)), NewQTextFormatFromPointer(format))
+		(*(*func(*QPainter, *core.QRectF, *QTextInlineObject, int, *QTextFormat))(signal))(NewQPainterFromPointer(painter), core.NewQRectFFromPointer(rect), func() *QTextInlineObject {
+			tmpValue := NewQTextInlineObjectFromPointer(object)
+			runtime.SetFinalizer(tmpValue, (*QTextInlineObject).DestroyQTextInlineObject)
+			return tmpValue
+		}(), int(int32(posInDocument)), NewQTextFormatFromPointer(format))
 	} else {
-		NewQAbstractTextDocumentLayoutFromPointer(ptr).DrawInlineObjectDefault(NewQPainterFromPointer(painter), core.NewQRectFFromPointer(rect), NewQTextInlineObjectFromPointer(object), int(int32(posInDocument)), NewQTextFormatFromPointer(format))
+		NewQAbstractTextDocumentLayoutFromPointer(ptr).DrawInlineObjectDefault(NewQPainterFromPointer(painter), core.NewQRectFFromPointer(rect), func() *QTextInlineObject {
+			tmpValue := NewQTextInlineObjectFromPointer(object)
+			runtime.SetFinalizer(tmpValue, (*QTextInlineObject).DestroyQTextInlineObject)
+			return tmpValue
+		}(), int(int32(posInDocument)), NewQTextFormatFromPointer(format))
 	}
 }
 
@@ -527,9 +535,17 @@ func (ptr *QAbstractTextDocumentLayout) PaintDevice() *QPaintDevice {
 //export callbackQAbstractTextDocumentLayout_PositionInlineObject
 func callbackQAbstractTextDocumentLayout_PositionInlineObject(ptr unsafe.Pointer, item unsafe.Pointer, posInDocument C.int, format unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "positionInlineObject"); signal != nil {
-		(*(*func(*QTextInlineObject, int, *QTextFormat))(signal))(NewQTextInlineObjectFromPointer(item), int(int32(posInDocument)), NewQTextFormatFromPointer(format))
+		(*(*func(*QTextInlineObject, int, *QTextFormat))(signal))(func() *QTextInlineObject {
+			tmpValue := NewQTextInlineObjectFromPointer(item)
+			runtime.SetFinalizer(tmpValue, (*QTextInlineObject).DestroyQTextInlineObject)
+			return tmpValue
+		}(), int(int32(posInDocument)), NewQTextFormatFromPointer(format))
 	} else {
-		NewQAbstractTextDocumentLayoutFromPointer(ptr).PositionInlineObjectDefault(NewQTextInlineObjectFromPointer(item), int(int32(posInDocument)), NewQTextFormatFromPointer(format))
+		NewQAbstractTextDocumentLayoutFromPointer(ptr).PositionInlineObjectDefault(func() *QTextInlineObject {
+			tmpValue := NewQTextInlineObjectFromPointer(item)
+			runtime.SetFinalizer(tmpValue, (*QTextInlineObject).DestroyQTextInlineObject)
+			return tmpValue
+		}(), int(int32(posInDocument)), NewQTextFormatFromPointer(format))
 	}
 }
 
@@ -576,9 +592,17 @@ func (ptr *QAbstractTextDocumentLayout) RegisterHandler(objectType int, componen
 //export callbackQAbstractTextDocumentLayout_ResizeInlineObject
 func callbackQAbstractTextDocumentLayout_ResizeInlineObject(ptr unsafe.Pointer, item unsafe.Pointer, posInDocument C.int, format unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "resizeInlineObject"); signal != nil {
-		(*(*func(*QTextInlineObject, int, *QTextFormat))(signal))(NewQTextInlineObjectFromPointer(item), int(int32(posInDocument)), NewQTextFormatFromPointer(format))
+		(*(*func(*QTextInlineObject, int, *QTextFormat))(signal))(func() *QTextInlineObject {
+			tmpValue := NewQTextInlineObjectFromPointer(item)
+			runtime.SetFinalizer(tmpValue, (*QTextInlineObject).DestroyQTextInlineObject)
+			return tmpValue
+		}(), int(int32(posInDocument)), NewQTextFormatFromPointer(format))
 	} else {
-		NewQAbstractTextDocumentLayoutFromPointer(ptr).ResizeInlineObjectDefault(NewQTextInlineObjectFromPointer(item), int(int32(posInDocument)), NewQTextFormatFromPointer(format))
+		NewQAbstractTextDocumentLayoutFromPointer(ptr).ResizeInlineObjectDefault(func() *QTextInlineObject {
+			tmpValue := NewQTextInlineObjectFromPointer(item)
+			runtime.SetFinalizer(tmpValue, (*QTextInlineObject).DestroyQTextInlineObject)
+			return tmpValue
+		}(), int(int32(posInDocument)), NewQTextFormatFromPointer(format))
 	}
 }
 
@@ -1006,6 +1030,7 @@ func NewQAbstractUndoItemFromPointer(ptr unsafe.Pointer) (n *QAbstractUndoItem) 
 
 func (ptr *QAbstractUndoItem) DestroyQAbstractUndoItem() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -1052,6 +1077,7 @@ func NewQAccessibleFromPointer(ptr unsafe.Pointer) (n *QAccessible) {
 
 func (ptr *QAccessible) DestroyQAccessible() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -3776,8 +3802,9 @@ func NewQAccessibleStateChangeEventFromPointer(ptr unsafe.Pointer) (n *QAccessib
 
 func (ptr *QAccessibleStateChangeEvent) DestroyQAccessibleStateChangeEvent() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -5234,8 +5261,9 @@ func NewQAccessibleTableModelChangeEventFromPointer(ptr unsafe.Pointer) (n *QAcc
 
 func (ptr *QAccessibleTableModelChangeEvent) DestroyQAccessibleTableModelChangeEvent() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -5368,8 +5396,9 @@ func NewQAccessibleTextCursorEventFromPointer(ptr unsafe.Pointer) (n *QAccessibl
 
 func (ptr *QAccessibleTextCursorEvent) DestroyQAccessibleTextCursorEvent() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -5437,8 +5466,9 @@ func NewQAccessibleTextInsertEventFromPointer(ptr unsafe.Pointer) (n *QAccessibl
 
 func (ptr *QAccessibleTextInsertEvent) DestroyQAccessibleTextInsertEvent() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -6187,8 +6217,9 @@ func NewQAccessibleTextRemoveEventFromPointer(ptr unsafe.Pointer) (n *QAccessibl
 
 func (ptr *QAccessibleTextRemoveEvent) DestroyQAccessibleTextRemoveEvent() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -6267,8 +6298,9 @@ func NewQAccessibleTextSelectionEventFromPointer(ptr unsafe.Pointer) (n *QAccess
 
 func (ptr *QAccessibleTextSelectionEvent) DestroyQAccessibleTextSelectionEvent() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -6343,8 +6375,9 @@ func NewQAccessibleTextUpdateEventFromPointer(ptr unsafe.Pointer) (n *QAccessibl
 
 func (ptr *QAccessibleTextUpdateEvent) DestroyQAccessibleTextUpdateEvent() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -6440,8 +6473,9 @@ func NewQAccessibleValueChangeEventFromPointer(ptr unsafe.Pointer) (n *QAccessib
 
 func (ptr *QAccessibleValueChangeEvent) DestroyQAccessibleValueChangeEvent() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -6792,8 +6826,9 @@ func NewQActionEventFromPointer(ptr unsafe.Pointer) (n *QActionEvent) {
 
 func (ptr *QActionEvent) DestroyQActionEvent() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -6860,8 +6895,9 @@ func NewQApplicationStateChangeEventFromPointer(ptr unsafe.Pointer) (n *QApplica
 
 func (ptr *QApplicationStateChangeEvent) DestroyQApplicationStateChangeEvent() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -7006,6 +7042,7 @@ func (ptr *QBackingStore) Window() *QWindow {
 func (ptr *QBackingStore) DestroyQBackingStore() {
 	if ptr.Pointer() != nil {
 		C.QBackingStore_DestroyQBackingStore(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -7403,6 +7440,7 @@ func (ptr *QBrush) Transform() *QTransform {
 func (ptr *QBrush) DestroyQBrush() {
 	if ptr.Pointer() != nil {
 		C.QBrush_DestroyQBrush(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -8044,8 +8082,9 @@ func NewQCloseEventFromPointer(ptr unsafe.Pointer) (n *QCloseEvent) {
 
 func (ptr *QCloseEvent) DestroyQCloseEvent() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -8097,6 +8136,7 @@ func NewQColorFromPointer(ptr unsafe.Pointer) (n *QColor) {
 
 func (ptr *QColor) DestroyQColor() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -8931,6 +8971,7 @@ func NewQColorDialogOptionsFromPointer(ptr unsafe.Pointer) (n *QColorDialogOptio
 
 func (ptr *QColorDialogOptions) DestroyQColorDialogOptions() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -8978,6 +9019,7 @@ func NewQConicalGradientFromPointer(ptr unsafe.Pointer) (n *QConicalGradient) {
 
 func (ptr *QConicalGradient) DestroyQConicalGradient() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -9077,8 +9119,9 @@ func NewQContextMenuEventFromPointer(ptr unsafe.Pointer) (n *QContextMenuEvent) 
 
 func (ptr *QContextMenuEvent) DestroyQContextMenuEvent() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -9344,6 +9387,7 @@ func (ptr *QCursor) Swap(other QCursor_ITF) {
 func (ptr *QCursor) DestroyQCursor() {
 	if ptr.Pointer() != nil {
 		C.QCursor_DestroyQCursor(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -9389,6 +9433,7 @@ func NewQDesktopServicesFromPointer(ptr unsafe.Pointer) (n *QDesktopServices) {
 
 func (ptr *QDesktopServices) DestroyQDesktopServices() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -10462,8 +10507,9 @@ func NewQDragEnterEventFromPointer(ptr unsafe.Pointer) (n *QDragEnterEvent) {
 
 func (ptr *QDragEnterEvent) DestroyQDragEnterEvent() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -10516,8 +10562,9 @@ func NewQDragLeaveEventFromPointer(ptr unsafe.Pointer) (n *QDragLeaveEvent) {
 
 func (ptr *QDragLeaveEvent) DestroyQDragLeaveEvent() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -10682,8 +10729,9 @@ func NewQDropEventFromPointer(ptr unsafe.Pointer) (n *QDropEvent) {
 
 func (ptr *QDropEvent) DestroyQDropEvent() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -10821,8 +10869,9 @@ func NewQEnterEventFromPointer(ptr unsafe.Pointer) (n *QEnterEvent) {
 
 func (ptr *QEnterEvent) DestroyQEnterEvent() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -10942,8 +10991,9 @@ func NewQExposeEventFromPointer(ptr unsafe.Pointer) (n *QExposeEvent) {
 
 func (ptr *QExposeEvent) DestroyQExposeEvent() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -11002,6 +11052,7 @@ func NewQFileDialogOptionsFromPointer(ptr unsafe.Pointer) (n *QFileDialogOptions
 
 func (ptr *QFileDialogOptions) DestroyQFileDialogOptions() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -11049,8 +11100,9 @@ func NewQFileOpenEventFromPointer(ptr unsafe.Pointer) (n *QFileOpenEvent) {
 
 func (ptr *QFileOpenEvent) DestroyQFileOpenEvent() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -11120,8 +11172,9 @@ func NewQFocusEventFromPointer(ptr unsafe.Pointer) (n *QFocusEvent) {
 
 func (ptr *QFocusEvent) DestroyQFocusEvent() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -11819,6 +11872,7 @@ func (ptr *QFont) WordSpacing() float64 {
 func (ptr *QFont) DestroyQFont() {
 	if ptr.Pointer() != nil {
 		C.QFont_DestroyQFont(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -11873,6 +11927,7 @@ func NewQFontDatabaseFromPointer(ptr unsafe.Pointer) (n *QFontDatabase) {
 
 func (ptr *QFontDatabase) DestroyQFontDatabase() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -12345,6 +12400,7 @@ func NewQFontDialogOptionsFromPointer(ptr unsafe.Pointer) (n *QFontDialogOptions
 
 func (ptr *QFontDialogOptions) DestroyQFontDialogOptions() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -12493,6 +12549,7 @@ func (ptr *QFontInfo) Weight() int {
 func (ptr *QFontInfo) DestroyQFontInfo() {
 	if ptr.Pointer() != nil {
 		C.QFontInfo_DestroyQFontInfo(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -12805,6 +12862,7 @@ func (ptr *QFontMetrics) XHeight() int {
 func (ptr *QFontMetrics) DestroyQFontMetrics() {
 	if ptr.Pointer() != nil {
 		C.QFontMetrics_DestroyQFontMetrics(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -13109,6 +13167,7 @@ func (ptr *QFontMetricsF) XHeight() float64 {
 func (ptr *QFontMetricsF) DestroyQFontMetricsF() {
 	if ptr.Pointer() != nil {
 		C.QFontMetricsF_DestroyQFontMetricsF(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -13154,6 +13213,7 @@ func NewQGenericMatrixFromPointer(ptr unsafe.Pointer) (n *QGenericMatrix) {
 
 func (ptr *QGenericMatrix) DestroyQGenericMatrix() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -13603,6 +13663,7 @@ func NewQGenericPluginFactoryFromPointer(ptr unsafe.Pointer) (n *QGenericPluginF
 
 func (ptr *QGenericPluginFactory) DestroyQGenericPluginFactory() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -13896,6 +13957,7 @@ func (ptr *QGlyphRun) Underline() bool {
 func (ptr *QGlyphRun) DestroyQGlyphRun() {
 	if ptr.Pointer() != nil {
 		C.QGlyphRun_DestroyQGlyphRun(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -14013,6 +14075,7 @@ func NewQGradientFromPointer(ptr unsafe.Pointer) (n *QGradient) {
 
 func (ptr *QGradient) DestroyQGradient() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -15782,8 +15845,9 @@ func NewQHelpEventFromPointer(ptr unsafe.Pointer) (n *QHelpEvent) {
 
 func (ptr *QHelpEvent) DestroyQHelpEvent() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -15878,8 +15942,9 @@ func NewQHideEventFromPointer(ptr unsafe.Pointer) (n *QHideEvent) {
 
 func (ptr *QHideEvent) DestroyQHideEvent() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -15932,8 +15997,9 @@ func NewQHoverEventFromPointer(ptr unsafe.Pointer) (n *QHoverEvent) {
 
 func (ptr *QHoverEvent) DestroyQHoverEvent() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -16370,6 +16436,7 @@ func (ptr *QIcon) ThemeSearchPaths() []string {
 func (ptr *QIcon) DestroyQIcon() {
 	if ptr.Pointer() != nil {
 		C.QIcon_DestroyQIcon(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -16444,8 +16511,9 @@ func NewQIconDragEventFromPointer(ptr unsafe.Pointer) (n *QIconDragEvent) {
 
 func (ptr *QIconDragEvent) DestroyQIconDragEvent() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -20281,6 +20349,7 @@ func (ptr *QImageReader) Transformation() QImageIOHandler__Transformation {
 func (ptr *QImageReader) DestroyQImageReader() {
 	if ptr.Pointer() != nil {
 		C.QImageReader_DestroyQImageReader(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -20402,6 +20471,7 @@ func NewQImageTextKeyLangFromPointer(ptr unsafe.Pointer) (n *QImageTextKeyLang) 
 
 func (ptr *QImageTextKeyLang) DestroyQImageTextKeyLang() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -20757,6 +20827,7 @@ func (ptr *QImageWriter) Write(image QImage_ITF) bool {
 func (ptr *QImageWriter) DestroyQImageWriter() {
 	if ptr.Pointer() != nil {
 		C.QImageWriter_DestroyQImageWriter(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -20879,8 +20950,9 @@ func NewQInputEventFromPointer(ptr unsafe.Pointer) (n *QInputEvent) {
 
 func (ptr *QInputEvent) DestroyQInputEvent() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -21939,8 +22011,9 @@ func NewQInputMethodEventFromPointer(ptr unsafe.Pointer) (n *QInputMethodEvent) 
 
 func (ptr *QInputMethodEvent) DestroyQInputMethodEvent() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -22058,8 +22131,9 @@ func NewQInputMethodQueryEventFromPointer(ptr unsafe.Pointer) (n *QInputMethodQu
 
 func (ptr *QInputMethodQueryEvent) DestroyQInputMethodQueryEvent() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -22447,8 +22521,9 @@ func NewQKeyEventFromPointer(ptr unsafe.Pointer) (n *QKeyEvent) {
 
 func (ptr *QKeyEvent) DestroyQKeyEvent() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -22857,6 +22932,7 @@ func (ptr *QKeySequence) ToString(format QKeySequence__SequenceFormat) string {
 func (ptr *QKeySequence) DestroyQKeySequence() {
 	if ptr.Pointer() != nil {
 		C.QKeySequence_DestroyQKeySequence(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -22960,6 +23036,7 @@ func NewQLinearGradientFromPointer(ptr unsafe.Pointer) (n *QLinearGradient) {
 
 func (ptr *QLinearGradient) DestroyQLinearGradient() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -23066,6 +23143,7 @@ func NewQMatrixFromPointer(ptr unsafe.Pointer) (n *QMatrix) {
 
 func (ptr *QMatrix) DestroyQMatrix() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -23366,6 +23444,7 @@ func NewQMatrix4x4FromPointer(ptr unsafe.Pointer) (n *QMatrix4x4) {
 
 func (ptr *QMatrix4x4) DestroyQMatrix4x4() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -23753,6 +23832,7 @@ func NewQMessageDialogOptionsFromPointer(ptr unsafe.Pointer) (n *QMessageDialogO
 
 func (ptr *QMessageDialogOptions) DestroyQMessageDialogOptions() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -23800,8 +23880,9 @@ func NewQMouseEventFromPointer(ptr unsafe.Pointer) (n *QMouseEvent) {
 
 func (ptr *QMouseEvent) DestroyQMouseEvent() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -23967,8 +24048,9 @@ func NewQMoveEventFromPointer(ptr unsafe.Pointer) (n *QMoveEvent) {
 
 func (ptr *QMoveEvent) DestroyQMoveEvent() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -25155,8 +25237,9 @@ func NewQNativeGestureEventFromPointer(ptr unsafe.Pointer) (n *QNativeGestureEve
 
 func (ptr *QNativeGestureEvent) DestroyQNativeGestureEvent() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -26125,6 +26208,7 @@ func (ptr *QOpenGLBuffer) Write(offset int, data unsafe.Pointer, count int) {
 func (ptr *QOpenGLBuffer) DestroyQOpenGLBuffer() {
 	if ptr.Pointer() != nil {
 		C.QOpenGLBuffer_DestroyQOpenGLBuffer(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -27964,6 +28048,7 @@ func (ptr *QOpenGLDebugMessage) Type() QOpenGLDebugMessage__Type {
 func (ptr *QOpenGLDebugMessage) DestroyQOpenGLDebugMessage() {
 	if ptr.Pointer() != nil {
 		C.QOpenGLDebugMessage_DestroyQOpenGLDebugMessage(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -28010,6 +28095,7 @@ func NewQOpenGLExtraFunctionsFromPointer(ptr unsafe.Pointer) (n *QOpenGLExtraFun
 
 func (ptr *QOpenGLExtraFunctions) DestroyQOpenGLExtraFunctions() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -29646,6 +29732,7 @@ func (ptr *QOpenGLFramebufferObjectFormat) TextureTarget() uint {
 func (ptr *QOpenGLFramebufferObjectFormat) DestroyQOpenGLFramebufferObjectFormat() {
 	if ptr.Pointer() != nil {
 		C.QOpenGLFramebufferObjectFormat_DestroyQOpenGLFramebufferObjectFormat(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -30642,6 +30729,7 @@ func (ptr *QOpenGLFunctions) OpenGLFeatures() QOpenGLFunctions__OpenGLFeature {
 func (ptr *QOpenGLFunctions) DestroyQOpenGLFunctions() {
 	if ptr.Pointer() != nil {
 		C.QOpenGLFunctions_DestroyQOpenGLFunctions(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -30688,8 +30776,9 @@ func NewQOpenGLFunctions_1_0FromPointer(ptr unsafe.Pointer) (n *QOpenGLFunctions
 
 func (ptr *QOpenGLFunctions_1_0) DestroyQOpenGLFunctions_1_0() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -30736,6 +30825,7 @@ func NewQOpenGLFunctions_1_0_CoreBackendFromPointer(ptr unsafe.Pointer) (n *QOpe
 
 func (ptr *QOpenGLFunctions_1_0_CoreBackend) DestroyQOpenGLFunctions_1_0_CoreBackend() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -30783,6 +30873,7 @@ func NewQOpenGLFunctions_1_0_DeprecatedBackendFromPointer(ptr unsafe.Pointer) (n
 
 func (ptr *QOpenGLFunctions_1_0_DeprecatedBackend) DestroyQOpenGLFunctions_1_0_DeprecatedBackend() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -30830,8 +30921,9 @@ func NewQOpenGLFunctions_1_1FromPointer(ptr unsafe.Pointer) (n *QOpenGLFunctions
 
 func (ptr *QOpenGLFunctions_1_1) DestroyQOpenGLFunctions_1_1() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -30878,6 +30970,7 @@ func NewQOpenGLFunctions_1_1_CoreBackendFromPointer(ptr unsafe.Pointer) (n *QOpe
 
 func (ptr *QOpenGLFunctions_1_1_CoreBackend) DestroyQOpenGLFunctions_1_1_CoreBackend() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -30925,6 +31018,7 @@ func NewQOpenGLFunctions_1_1_DeprecatedBackendFromPointer(ptr unsafe.Pointer) (n
 
 func (ptr *QOpenGLFunctions_1_1_DeprecatedBackend) DestroyQOpenGLFunctions_1_1_DeprecatedBackend() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -30972,8 +31066,9 @@ func NewQOpenGLFunctions_1_2FromPointer(ptr unsafe.Pointer) (n *QOpenGLFunctions
 
 func (ptr *QOpenGLFunctions_1_2) DestroyQOpenGLFunctions_1_2() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -31020,6 +31115,7 @@ func NewQOpenGLFunctions_1_2_CoreBackendFromPointer(ptr unsafe.Pointer) (n *QOpe
 
 func (ptr *QOpenGLFunctions_1_2_CoreBackend) DestroyQOpenGLFunctions_1_2_CoreBackend() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -31067,6 +31163,7 @@ func NewQOpenGLFunctions_1_2_DeprecatedBackendFromPointer(ptr unsafe.Pointer) (n
 
 func (ptr *QOpenGLFunctions_1_2_DeprecatedBackend) DestroyQOpenGLFunctions_1_2_DeprecatedBackend() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -31114,8 +31211,9 @@ func NewQOpenGLFunctions_1_3FromPointer(ptr unsafe.Pointer) (n *QOpenGLFunctions
 
 func (ptr *QOpenGLFunctions_1_3) DestroyQOpenGLFunctions_1_3() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -31162,6 +31260,7 @@ func NewQOpenGLFunctions_1_3_CoreBackendFromPointer(ptr unsafe.Pointer) (n *QOpe
 
 func (ptr *QOpenGLFunctions_1_3_CoreBackend) DestroyQOpenGLFunctions_1_3_CoreBackend() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -31209,6 +31308,7 @@ func NewQOpenGLFunctions_1_3_DeprecatedBackendFromPointer(ptr unsafe.Pointer) (n
 
 func (ptr *QOpenGLFunctions_1_3_DeprecatedBackend) DestroyQOpenGLFunctions_1_3_DeprecatedBackend() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -31256,8 +31356,9 @@ func NewQOpenGLFunctions_1_4FromPointer(ptr unsafe.Pointer) (n *QOpenGLFunctions
 
 func (ptr *QOpenGLFunctions_1_4) DestroyQOpenGLFunctions_1_4() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -31304,6 +31405,7 @@ func NewQOpenGLFunctions_1_4_CoreBackendFromPointer(ptr unsafe.Pointer) (n *QOpe
 
 func (ptr *QOpenGLFunctions_1_4_CoreBackend) DestroyQOpenGLFunctions_1_4_CoreBackend() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -31351,6 +31453,7 @@ func NewQOpenGLFunctions_1_4_DeprecatedBackendFromPointer(ptr unsafe.Pointer) (n
 
 func (ptr *QOpenGLFunctions_1_4_DeprecatedBackend) DestroyQOpenGLFunctions_1_4_DeprecatedBackend() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -31398,8 +31501,9 @@ func NewQOpenGLFunctions_1_5FromPointer(ptr unsafe.Pointer) (n *QOpenGLFunctions
 
 func (ptr *QOpenGLFunctions_1_5) DestroyQOpenGLFunctions_1_5() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -31446,6 +31550,7 @@ func NewQOpenGLFunctions_1_5_CoreBackendFromPointer(ptr unsafe.Pointer) (n *QOpe
 
 func (ptr *QOpenGLFunctions_1_5_CoreBackend) DestroyQOpenGLFunctions_1_5_CoreBackend() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -31493,8 +31598,9 @@ func NewQOpenGLFunctions_2_0FromPointer(ptr unsafe.Pointer) (n *QOpenGLFunctions
 
 func (ptr *QOpenGLFunctions_2_0) DestroyQOpenGLFunctions_2_0() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -31541,6 +31647,7 @@ func NewQOpenGLFunctions_2_0_CoreBackendFromPointer(ptr unsafe.Pointer) (n *QOpe
 
 func (ptr *QOpenGLFunctions_2_0_CoreBackend) DestroyQOpenGLFunctions_2_0_CoreBackend() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -31588,6 +31695,7 @@ func NewQOpenGLFunctions_2_0_DeprecatedBackendFromPointer(ptr unsafe.Pointer) (n
 
 func (ptr *QOpenGLFunctions_2_0_DeprecatedBackend) DestroyQOpenGLFunctions_2_0_DeprecatedBackend() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -31635,8 +31743,9 @@ func NewQOpenGLFunctions_2_1FromPointer(ptr unsafe.Pointer) (n *QOpenGLFunctions
 
 func (ptr *QOpenGLFunctions_2_1) DestroyQOpenGLFunctions_2_1() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -31683,6 +31792,7 @@ func NewQOpenGLFunctions_2_1_CoreBackendFromPointer(ptr unsafe.Pointer) (n *QOpe
 
 func (ptr *QOpenGLFunctions_2_1_CoreBackend) DestroyQOpenGLFunctions_2_1_CoreBackend() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -31730,8 +31840,9 @@ func NewQOpenGLFunctions_3_0FromPointer(ptr unsafe.Pointer) (n *QOpenGLFunctions
 
 func (ptr *QOpenGLFunctions_3_0) DestroyQOpenGLFunctions_3_0() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -31778,6 +31889,7 @@ func NewQOpenGLFunctions_3_0_CoreBackendFromPointer(ptr unsafe.Pointer) (n *QOpe
 
 func (ptr *QOpenGLFunctions_3_0_CoreBackend) DestroyQOpenGLFunctions_3_0_CoreBackend() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -31825,6 +31937,7 @@ func NewQOpenGLFunctions_3_0_DeprecatedBackendFromPointer(ptr unsafe.Pointer) (n
 
 func (ptr *QOpenGLFunctions_3_0_DeprecatedBackend) DestroyQOpenGLFunctions_3_0_DeprecatedBackend() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -31872,8 +31985,9 @@ func NewQOpenGLFunctions_3_1FromPointer(ptr unsafe.Pointer) (n *QOpenGLFunctions
 
 func (ptr *QOpenGLFunctions_3_1) DestroyQOpenGLFunctions_3_1() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -31920,6 +32034,7 @@ func NewQOpenGLFunctions_3_1_CoreBackendFromPointer(ptr unsafe.Pointer) (n *QOpe
 
 func (ptr *QOpenGLFunctions_3_1_CoreBackend) DestroyQOpenGLFunctions_3_1_CoreBackend() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -31967,8 +32082,9 @@ func NewQOpenGLFunctions_3_2_CompatibilityFromPointer(ptr unsafe.Pointer) (n *QO
 
 func (ptr *QOpenGLFunctions_3_2_Compatibility) DestroyQOpenGLFunctions_3_2_Compatibility() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -32015,8 +32131,9 @@ func NewQOpenGLFunctions_3_2_CoreFromPointer(ptr unsafe.Pointer) (n *QOpenGLFunc
 
 func (ptr *QOpenGLFunctions_3_2_Core) DestroyQOpenGLFunctions_3_2_Core() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -32063,6 +32180,7 @@ func NewQOpenGLFunctions_3_2_CoreBackendFromPointer(ptr unsafe.Pointer) (n *QOpe
 
 func (ptr *QOpenGLFunctions_3_2_CoreBackend) DestroyQOpenGLFunctions_3_2_CoreBackend() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -32110,8 +32228,9 @@ func NewQOpenGLFunctions_3_3_CompatibilityFromPointer(ptr unsafe.Pointer) (n *QO
 
 func (ptr *QOpenGLFunctions_3_3_Compatibility) DestroyQOpenGLFunctions_3_3_Compatibility() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -32158,8 +32277,9 @@ func NewQOpenGLFunctions_3_3_CoreFromPointer(ptr unsafe.Pointer) (n *QOpenGLFunc
 
 func (ptr *QOpenGLFunctions_3_3_Core) DestroyQOpenGLFunctions_3_3_Core() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -32206,6 +32326,7 @@ func NewQOpenGLFunctions_3_3_CoreBackendFromPointer(ptr unsafe.Pointer) (n *QOpe
 
 func (ptr *QOpenGLFunctions_3_3_CoreBackend) DestroyQOpenGLFunctions_3_3_CoreBackend() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -32253,6 +32374,7 @@ func NewQOpenGLFunctions_3_3_DeprecatedBackendFromPointer(ptr unsafe.Pointer) (n
 
 func (ptr *QOpenGLFunctions_3_3_DeprecatedBackend) DestroyQOpenGLFunctions_3_3_DeprecatedBackend() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -32300,8 +32422,9 @@ func NewQOpenGLFunctions_4_0_CompatibilityFromPointer(ptr unsafe.Pointer) (n *QO
 
 func (ptr *QOpenGLFunctions_4_0_Compatibility) DestroyQOpenGLFunctions_4_0_Compatibility() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -32348,8 +32471,9 @@ func NewQOpenGLFunctions_4_0_CoreFromPointer(ptr unsafe.Pointer) (n *QOpenGLFunc
 
 func (ptr *QOpenGLFunctions_4_0_Core) DestroyQOpenGLFunctions_4_0_Core() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -32396,6 +32520,7 @@ func NewQOpenGLFunctions_4_0_CoreBackendFromPointer(ptr unsafe.Pointer) (n *QOpe
 
 func (ptr *QOpenGLFunctions_4_0_CoreBackend) DestroyQOpenGLFunctions_4_0_CoreBackend() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -32443,8 +32568,9 @@ func NewQOpenGLFunctions_4_1_CompatibilityFromPointer(ptr unsafe.Pointer) (n *QO
 
 func (ptr *QOpenGLFunctions_4_1_Compatibility) DestroyQOpenGLFunctions_4_1_Compatibility() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -32491,8 +32617,9 @@ func NewQOpenGLFunctions_4_1_CoreFromPointer(ptr unsafe.Pointer) (n *QOpenGLFunc
 
 func (ptr *QOpenGLFunctions_4_1_Core) DestroyQOpenGLFunctions_4_1_Core() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -32539,6 +32666,7 @@ func NewQOpenGLFunctions_4_1_CoreBackendFromPointer(ptr unsafe.Pointer) (n *QOpe
 
 func (ptr *QOpenGLFunctions_4_1_CoreBackend) DestroyQOpenGLFunctions_4_1_CoreBackend() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -32586,8 +32714,9 @@ func NewQOpenGLFunctions_4_2_CompatibilityFromPointer(ptr unsafe.Pointer) (n *QO
 
 func (ptr *QOpenGLFunctions_4_2_Compatibility) DestroyQOpenGLFunctions_4_2_Compatibility() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -32634,8 +32763,9 @@ func NewQOpenGLFunctions_4_2_CoreFromPointer(ptr unsafe.Pointer) (n *QOpenGLFunc
 
 func (ptr *QOpenGLFunctions_4_2_Core) DestroyQOpenGLFunctions_4_2_Core() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -32682,6 +32812,7 @@ func NewQOpenGLFunctions_4_2_CoreBackendFromPointer(ptr unsafe.Pointer) (n *QOpe
 
 func (ptr *QOpenGLFunctions_4_2_CoreBackend) DestroyQOpenGLFunctions_4_2_CoreBackend() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -32729,8 +32860,9 @@ func NewQOpenGLFunctions_4_3_CompatibilityFromPointer(ptr unsafe.Pointer) (n *QO
 
 func (ptr *QOpenGLFunctions_4_3_Compatibility) DestroyQOpenGLFunctions_4_3_Compatibility() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -32777,8 +32909,9 @@ func NewQOpenGLFunctions_4_3_CoreFromPointer(ptr unsafe.Pointer) (n *QOpenGLFunc
 
 func (ptr *QOpenGLFunctions_4_3_Core) DestroyQOpenGLFunctions_4_3_Core() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -32825,6 +32958,7 @@ func NewQOpenGLFunctions_4_3_CoreBackendFromPointer(ptr unsafe.Pointer) (n *QOpe
 
 func (ptr *QOpenGLFunctions_4_3_CoreBackend) DestroyQOpenGLFunctions_4_3_CoreBackend() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -32872,8 +33006,9 @@ func NewQOpenGLFunctions_4_4_CompatibilityFromPointer(ptr unsafe.Pointer) (n *QO
 
 func (ptr *QOpenGLFunctions_4_4_Compatibility) DestroyQOpenGLFunctions_4_4_Compatibility() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -32920,8 +33055,9 @@ func NewQOpenGLFunctions_4_4_CoreFromPointer(ptr unsafe.Pointer) (n *QOpenGLFunc
 
 func (ptr *QOpenGLFunctions_4_4_Core) DestroyQOpenGLFunctions_4_4_Core() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -32968,6 +33104,7 @@ func NewQOpenGLFunctions_4_4_CoreBackendFromPointer(ptr unsafe.Pointer) (n *QOpe
 
 func (ptr *QOpenGLFunctions_4_4_CoreBackend) DestroyQOpenGLFunctions_4_4_CoreBackend() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -33015,8 +33152,9 @@ func NewQOpenGLFunctions_4_5_CompatibilityFromPointer(ptr unsafe.Pointer) (n *QO
 
 func (ptr *QOpenGLFunctions_4_5_Compatibility) DestroyQOpenGLFunctions_4_5_Compatibility() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -33063,8 +33201,9 @@ func NewQOpenGLFunctions_4_5_CoreFromPointer(ptr unsafe.Pointer) (n *QOpenGLFunc
 
 func (ptr *QOpenGLFunctions_4_5_Core) DestroyQOpenGLFunctions_4_5_Core() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -33111,6 +33250,7 @@ func NewQOpenGLFunctions_4_5_CoreBackendFromPointer(ptr unsafe.Pointer) (n *QOpe
 
 func (ptr *QOpenGLFunctions_4_5_CoreBackend) DestroyQOpenGLFunctions_4_5_CoreBackend() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -33158,6 +33298,7 @@ func NewQOpenGLFunctions_4_5_DeprecatedBackendFromPointer(ptr unsafe.Pointer) (n
 
 func (ptr *QOpenGLFunctions_4_5_DeprecatedBackend) DestroyQOpenGLFunctions_4_5_DeprecatedBackend() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -33205,8 +33346,9 @@ func NewQOpenGLFunctions_ES2FromPointer(ptr unsafe.Pointer) (n *QOpenGLFunctions
 
 func (ptr *QOpenGLFunctions_ES2) DestroyQOpenGLFunctions_ES2() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -33618,6 +33760,7 @@ func (ptr *QOpenGLPixelTransferOptions) SkipRows() int {
 func (ptr *QOpenGLPixelTransferOptions) DestroyQOpenGLPixelTransferOptions() {
 	if ptr.Pointer() != nil {
 		C.QOpenGLPixelTransferOptions_DestroyQOpenGLPixelTransferOptions(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -35611,6 +35754,7 @@ func NewQOpenGLTextureFromPointer(ptr unsafe.Pointer) (n *QOpenGLTexture) {
 
 func (ptr *QOpenGLTexture) DestroyQOpenGLTexture() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -36703,6 +36847,7 @@ func (ptr *QOpenGLTextureBlitter) TargetTransform(target core.QRectF_ITF, viewpo
 func (ptr *QOpenGLTextureBlitter) DestroyQOpenGLTextureBlitter() {
 	if ptr.Pointer() != nil {
 		C.QOpenGLTextureBlitter_DestroyQOpenGLTextureBlitter(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -37594,6 +37739,7 @@ func NewQOpenGLVersionFunctionsBackendFromPointer(ptr unsafe.Pointer) (n *QOpenG
 
 func (ptr *QOpenGLVersionFunctionsBackend) DestroyQOpenGLVersionFunctionsBackend() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -37640,6 +37786,7 @@ func NewQOpenGLVersionFunctionsStorageFromPointer(ptr unsafe.Pointer) (n *QOpenG
 
 func (ptr *QOpenGLVersionFunctionsStorage) DestroyQOpenGLVersionFunctionsStorage() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -37744,6 +37891,7 @@ func (ptr *QOpenGLVersionProfile) SetVersion(majorVersion int, minorVersion int)
 func (ptr *QOpenGLVersionProfile) DestroyQOpenGLVersionProfile() {
 	if ptr.Pointer() != nil {
 		C.QOpenGLVersionProfile_DestroyQOpenGLVersionProfile(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -37789,6 +37937,7 @@ func NewQOpenGLVersionStatusFromPointer(ptr unsafe.Pointer) (n *QOpenGLVersionSt
 
 func (ptr *QOpenGLVersionStatus) DestroyQOpenGLVersionStatus() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -38947,6 +39096,7 @@ func (ptr *QPageLayout) Units() QPageLayout__Unit {
 func (ptr *QPageLayout) DestroyQPageLayout() {
 	if ptr.Pointer() != nil {
 		C.QPageLayout_DestroyQPageLayout(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -39412,6 +39562,7 @@ func (ptr *QPageSize) WindowsId2(pageSizeId QPageSize__PageSizeId) int {
 func (ptr *QPageSize) DestroyQPageSize() {
 	if ptr.Pointer() != nil {
 		C.QPageSize_DestroyQPageSize(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -41332,6 +41483,7 @@ func NewQPaintEngineStateFromPointer(ptr unsafe.Pointer) (n *QPaintEngineState) 
 
 func (ptr *QPaintEngineState) DestroyQPaintEngineState() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -41521,8 +41673,9 @@ func NewQPaintEventFromPointer(ptr unsafe.Pointer) (n *QPaintEvent) {
 
 func (ptr *QPaintEvent) DestroyQPaintEvent() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -42948,6 +43101,7 @@ func (ptr *QPainter) WorldTransform() *QTransform {
 func (ptr *QPainter) DestroyQPainter() {
 	if ptr.Pointer() != nil {
 		C.QPainter_DestroyQPainter(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -43609,6 +43763,7 @@ func (ptr *QPainterPath) United(p QPainterPath_ITF) *QPainterPath {
 func (ptr *QPainterPath) DestroyQPainterPath() {
 	if ptr.Pointer() != nil {
 		C.QPainterPath_DestroyQPainterPath(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -43861,6 +44016,7 @@ func (ptr *QPainterPathStroker) Width() float64 {
 func (ptr *QPainterPathStroker) DestroyQPainterPathStroker() {
 	if ptr.Pointer() != nil {
 		C.QPainterPathStroker_DestroyQPainterPathStroker(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -44282,6 +44438,7 @@ func (ptr *QPalette) WindowText() *QBrush {
 func (ptr *QPalette) DestroyQPalette() {
 	if ptr.Pointer() != nil {
 		C.QPalette_DestroyQPalette(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -45113,6 +45270,7 @@ func (ptr *QPen) WidthF() float64 {
 func (ptr *QPen) DestroyQPen() {
 	if ptr.Pointer() != nil {
 		C.QPen_DestroyQPen(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -46294,6 +46452,7 @@ func (ptr *QPictureIO) Write() bool {
 func (ptr *QPictureIO) DestroyQPictureIO() {
 	if ptr.Pointer() != nil {
 		C.QPictureIO_DestroyQPictureIO(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -46377,6 +46536,7 @@ func NewQPixelFormatFromPointer(ptr unsafe.Pointer) (n *QPixelFormat) {
 
 func (ptr *QPixelFormat) DestroyQPixelFormat() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -47197,6 +47357,7 @@ func NewQPixmapCacheFromPointer(ptr unsafe.Pointer) (n *QPixmapCache) {
 
 func (ptr *QPixmapCache) DestroyQPixmapCache() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -47322,6 +47483,7 @@ func NewQPlatformDragQtResponseFromPointer(ptr unsafe.Pointer) (n *QPlatformDrag
 
 func (ptr *QPlatformDragQtResponse) DestroyQPlatformDragQtResponse() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -47368,6 +47530,7 @@ func NewQPlatformDropQtResponseFromPointer(ptr unsafe.Pointer) (n *QPlatformDrop
 
 func (ptr *QPlatformDropQtResponse) DestroyQPlatformDropQtResponse() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -47570,8 +47733,9 @@ func NewQPlatformOffscreenSurfaceFromPointer(ptr unsafe.Pointer) (n *QPlatformOf
 
 func (ptr *QPlatformOffscreenSurface) DestroyQPlatformOffscreenSurface() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -47617,6 +47781,7 @@ func NewQPlatformSessionManagerFromPointer(ptr unsafe.Pointer) (n *QPlatformSess
 
 func (ptr *QPlatformSessionManager) DestroyQPlatformSessionManager() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -47664,8 +47829,9 @@ func NewQPlatformSurfaceEventFromPointer(ptr unsafe.Pointer) (n *QPlatformSurfac
 
 func (ptr *QPlatformSurfaceEvent) DestroyQPlatformSurfaceEvent() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -47772,6 +47938,7 @@ func NewQPointingDeviceUniqueIdFromPointer(ptr unsafe.Pointer) (n *QPointingDevi
 
 func (ptr *QPointingDeviceUniqueId) DestroyQPointingDeviceUniqueId() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -48006,6 +48173,7 @@ func (ptr *QPolygon) United(r QPolygon_ITF) *QPolygon {
 func (ptr *QPolygon) DestroyQPolygon() {
 	if ptr.Pointer() != nil {
 		C.QPolygon_DestroyQPolygon(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -48444,6 +48612,7 @@ func (ptr *QPolygonF) United(r QPolygonF_ITF) *QPolygonF {
 func (ptr *QPolygonF) DestroyQPolygonF() {
 	if ptr.Pointer() != nil {
 		C.QPolygonF_DestroyQPolygonF(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -48737,6 +48906,7 @@ func NewQQuaternionFromPointer(ptr unsafe.Pointer) (n *QQuaternion) {
 
 func (ptr *QQuaternion) DestroyQQuaternion() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -49109,6 +49279,7 @@ func NewQRadialGradientFromPointer(ptr unsafe.Pointer) (n *QRadialGradient) {
 
 func (ptr *QRadialGradient) DestroyQRadialGradient() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -49721,6 +49892,7 @@ func (ptr *QRawFont) XHeight() float64 {
 func (ptr *QRawFont) DestroyQRawFont() {
 	if ptr.Pointer() != nil {
 		C.QRawFont_DestroyQRawFont(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -50081,6 +50253,7 @@ func NewQRegionFromPointer(ptr unsafe.Pointer) (n *QRegion) {
 
 func (ptr *QRegion) DestroyQRegion() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -50600,8 +50773,9 @@ func NewQResizeEventFromPointer(ptr unsafe.Pointer) (n *QResizeEvent) {
 
 func (ptr *QResizeEvent) DestroyQResizeEvent() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -50667,6 +50841,7 @@ func NewQRgba64FromPointer(ptr unsafe.Pointer) (n *QRgba64) {
 
 func (ptr *QRgba64) DestroyQRgba64() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -52740,8 +52915,9 @@ func NewQShowEventFromPointer(ptr unsafe.Pointer) (n *QShowEvent) {
 
 func (ptr *QShowEvent) DestroyQShowEvent() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -56204,6 +56380,7 @@ func (ptr *QStaticText) TextWidth() float64 {
 func (ptr *QStaticText) DestroyQStaticText() {
 	if ptr.Pointer() != nil {
 		C.QStaticText_DestroyQStaticText(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -56250,8 +56427,9 @@ func NewQStatusTipEventFromPointer(ptr unsafe.Pointer) (n *QStatusTipEvent) {
 
 func (ptr *QStatusTipEvent) DestroyQStatusTipEvent() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -57814,6 +57992,7 @@ func (ptr *QSurfaceFormat) TestOption(option QSurfaceFormat__FormatOption) bool 
 func (ptr *QSurfaceFormat) DestroyQSurfaceFormat() {
 	if ptr.Pointer() != nil {
 		C.QSurfaceFormat_DestroyQSurfaceFormat(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -58432,8 +58611,9 @@ func NewQTabletEventFromPointer(ptr unsafe.Pointer) (n *QTabletEvent) {
 
 func (ptr *QTabletEvent) DestroyQTabletEvent() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -58661,6 +58841,7 @@ func NewQTextBlockFromPointer(ptr unsafe.Pointer) (n *QTextBlock) {
 
 func (ptr *QTextBlock) DestroyQTextBlock() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -58913,6 +59094,7 @@ func NewQTextBlockFormatFromPointer(ptr unsafe.Pointer) (n *QTextBlockFormat) {
 
 func (ptr *QTextBlockFormat) DestroyQTextBlockFormat() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -59481,6 +59663,7 @@ func NewQTextCharFormatFromPointer(ptr unsafe.Pointer) (n *QTextCharFormat) {
 
 func (ptr *QTextCharFormat) DestroyQTextCharFormat() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -60575,6 +60758,7 @@ func (ptr *QTextCursor) VisualNavigation() bool {
 func (ptr *QTextCursor) DestroyQTextCursor() {
 	if ptr.Pointer() != nil {
 		C.QTextCursor_DestroyQTextCursor(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -62420,6 +62604,7 @@ func (ptr *QTextDocumentFragment) ToPlainText() string {
 func (ptr *QTextDocumentFragment) DestroyQTextDocumentFragment() {
 	if ptr.Pointer() != nil {
 		C.QTextDocumentFragment_DestroyQTextDocumentFragment(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -62587,6 +62772,7 @@ func (ptr *QTextDocumentWriter) Write2(fragment QTextDocumentFragment_ITF) bool 
 func (ptr *QTextDocumentWriter) DestroyQTextDocumentWriter() {
 	if ptr.Pointer() != nil {
 		C.QTextDocumentWriter_DestroyQTextDocumentWriter(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -63150,6 +63336,7 @@ func (ptr *QTextFormat) Type() int {
 func (ptr *QTextFormat) DestroyQTextFormat() {
 	if ptr.Pointer() != nil {
 		C.QTextFormat_DestroyQTextFormat(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -63283,6 +63470,7 @@ func NewQTextFragmentFromPointer(ptr unsafe.Pointer) (n *QTextFragment) {
 
 func (ptr *QTextFragment) DestroyQTextFragment() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -63612,6 +63800,7 @@ func NewQTextFrameFormatFromPointer(ptr unsafe.Pointer) (n *QTextFrameFormat) {
 
 func (ptr *QTextFrameFormat) DestroyQTextFrameFormat() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -63879,6 +64068,7 @@ func NewQTextFrameLayoutDataFromPointer(ptr unsafe.Pointer) (n *QTextFrameLayout
 
 func (ptr *QTextFrameLayoutData) DestroyQTextFrameLayoutData() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -63926,6 +64116,7 @@ func NewQTextImageFormatFromPointer(ptr unsafe.Pointer) (n *QTextImageFormat) {
 
 func (ptr *QTextImageFormat) DestroyQTextImageFormat() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -64035,6 +64226,7 @@ func NewQTextInlineObjectFromPointer(ptr unsafe.Pointer) (n *QTextInlineObject) 
 
 func (ptr *QTextInlineObject) DestroyQTextInlineObject() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -64173,6 +64365,7 @@ func NewQTextItemFromPointer(ptr unsafe.Pointer) (n *QTextItem) {
 
 func (ptr *QTextItem) DestroyQTextItem() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -64567,6 +64760,7 @@ func (ptr *QTextLayout) TextOption() *QTextOption {
 func (ptr *QTextLayout) DestroyQTextLayout() {
 	if ptr.Pointer() != nil {
 		C.QTextLayout_DestroyQTextLayout(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -64635,6 +64829,7 @@ func NewQTextLengthFromPointer(ptr unsafe.Pointer) (n *QTextLength) {
 
 func (ptr *QTextLength) DestroyQTextLength() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -64724,6 +64919,7 @@ func NewQTextLineFromPointer(ptr unsafe.Pointer) (n *QTextLine) {
 
 func (ptr *QTextLine) DestroyQTextLine() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -65105,6 +65301,7 @@ func NewQTextListFormatFromPointer(ptr unsafe.Pointer) (n *QTextListFormat) {
 
 func (ptr *QTextListFormat) DestroyQTextListFormat() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -65946,6 +66143,7 @@ func (ptr *QTextOption) WrapMode() QTextOption__WrapMode {
 func (ptr *QTextOption) DestroyQTextOption() {
 	if ptr.Pointer() != nil {
 		C.QTextOption_DestroyQTextOption(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -66284,6 +66482,7 @@ func (ptr *QTextTableCell) TableCellFormatIndex() int {
 func (ptr *QTextTableCell) DestroyQTextTableCell() {
 	if ptr.Pointer() != nil {
 		C.QTextTableCell_DestroyQTextTableCell(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -66330,6 +66529,7 @@ func NewQTextTableCellFormatFromPointer(ptr unsafe.Pointer) (n *QTextTableCellFo
 
 func (ptr *QTextTableCellFormat) DestroyQTextTableCellFormat() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -66441,6 +66641,7 @@ func NewQTextTableFormatFromPointer(ptr unsafe.Pointer) (n *QTextTableFormat) {
 
 func (ptr *QTextTableFormat) DestroyQTextTableFormat() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -66717,6 +66918,7 @@ func (ptr *QTouchDevice) Type() QTouchDevice__DeviceType {
 func (ptr *QTouchDevice) DestroyQTouchDevice() {
 	if ptr.Pointer() != nil {
 		C.QTouchDevice_DestroyQTouchDevice(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -66920,6 +67122,7 @@ func NewQTransformFromPointer(ptr unsafe.Pointer) (n *QTransform) {
 
 func (ptr *QTransform) DestroyQTransform() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -67904,6 +68107,7 @@ func NewQVector2DFromPointer(ptr unsafe.Pointer) (n *QVector2D) {
 
 func (ptr *QVector2D) DestroyQVector2D() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -68106,6 +68310,7 @@ func NewQVector3DFromPointer(ptr unsafe.Pointer) (n *QVector3D) {
 
 func (ptr *QVector3D) DestroyQVector3D() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -68395,6 +68600,7 @@ func NewQVector4DFromPointer(ptr unsafe.Pointer) (n *QVector4D) {
 
 func (ptr *QVector4D) DestroyQVector4D() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -68639,6 +68845,7 @@ func NewQVulkanDeviceFunctionsFromPointer(ptr unsafe.Pointer) (n *QVulkanDeviceF
 
 func (ptr *QVulkanDeviceFunctions) DestroyQVulkanDeviceFunctions() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -68685,6 +68892,7 @@ func NewQVulkanExtensionFromPointer(ptr unsafe.Pointer) (n *QVulkanExtension) {
 
 func (ptr *QVulkanExtension) DestroyQVulkanExtension() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -68731,6 +68939,7 @@ func NewQVulkanFunctionsFromPointer(ptr unsafe.Pointer) (n *QVulkanFunctions) {
 
 func (ptr *QVulkanFunctions) DestroyQVulkanFunctions() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -68778,6 +68987,7 @@ func NewQVulkanInfoVectorFromPointer(ptr unsafe.Pointer) (n *QVulkanInfoVector) 
 
 func (ptr *QVulkanInfoVector) DestroyQVulkanInfoVector() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -68870,6 +69080,7 @@ func NewQVulkanLayerFromPointer(ptr unsafe.Pointer) (n *QVulkanLayer) {
 
 func (ptr *QVulkanLayer) DestroyQVulkanLayer() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -69002,8 +69213,9 @@ func NewQWhatsThisClickedEventFromPointer(ptr unsafe.Pointer) (n *QWhatsThisClic
 
 func (ptr *QWhatsThisClickedEvent) DestroyQWhatsThisClickedEvent() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -69068,8 +69280,9 @@ func NewQWheelEventFromPointer(ptr unsafe.Pointer) (n *QWheelEvent) {
 
 func (ptr *QWheelEvent) DestroyQWheelEvent() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -72983,8 +73196,9 @@ func NewQWindowStateChangeEventFromPointer(ptr unsafe.Pointer) (n *QWindowStateC
 
 func (ptr *QWindowStateChangeEvent) DestroyQWindowStateChangeEvent() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}

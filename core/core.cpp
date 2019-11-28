@@ -25967,17 +25967,17 @@ void* QVariant_NewQVariant21(void* val)
 
 void* QVariant_NewQVariant22(void* val)
 {
-	return new QVariant(*static_cast<QList<QVariant>*>(val));
+	return new QVariant(({ QList<QVariant>* tmpP = static_cast<QList<QVariant>*>(val); QList<QVariant> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }));
 }
 
 void* QVariant_NewQVariant23(void* val)
 {
-	return new QVariant(*static_cast<QMap<QString, QVariant>*>(val));
+	return new QVariant(({ QMap<QString, QVariant>* tmpP = static_cast<QMap<QString, QVariant>*>(val); QMap<QString, QVariant> tmpV = *tmpP; tmpP->~QMap(); free(tmpP); tmpV; }));
 }
 
 void* QVariant_NewQVariant24(void* val)
 {
-	return new QVariant(*static_cast<QHash<QString, QVariant>*>(val));
+	return new QVariant(({ QHash<QString, QVariant>* tmpP = static_cast<QHash<QString, QVariant>*>(val); QHash<QString, QVariant> tmpV = *tmpP; tmpP->~QHash(); free(tmpP); tmpV; }));
 }
 
 void* QVariant_NewQVariant25(void* val)

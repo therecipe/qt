@@ -207,6 +207,7 @@ func NewQGeoJsonFromPointer(ptr unsafe.Pointer) (n *QGeoJson) {
 
 func (ptr *QGeoJson) DestroyQGeoJson() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -405,6 +406,7 @@ func (ptr *QGeoManeuver) Waypoint() *positioning.QGeoCoordinate {
 func (ptr *QGeoManeuver) DestroyQGeoManeuver() {
 	if ptr.Pointer() != nil {
 		C.QGeoManeuver_DestroyQGeoManeuver(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -772,6 +774,7 @@ func (ptr *QGeoRoute) TravelTime() int {
 func (ptr *QGeoRoute) DestroyQGeoRoute() {
 	if ptr.Pointer() != nil {
 		C.QGeoRoute_DestroyQGeoRoute(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -1064,6 +1067,7 @@ func (ptr *QGeoRouteLeg) SetOverallRoute(route QGeoRoute_ITF) {
 func (ptr *QGeoRouteLeg) DestroyQGeoRouteLeg() {
 	if ptr.Pointer() != nil {
 		C.QGeoRouteLeg_DestroyQGeoRouteLeg(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -2063,6 +2067,7 @@ func (ptr *QGeoRouteRequest) Waypoints() []*positioning.QGeoCoordinate {
 func (ptr *QGeoRouteRequest) DestroyQGeoRouteRequest() {
 	if ptr.Pointer() != nil {
 		C.QGeoRouteRequest_DestroyQGeoRouteRequest(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -2761,6 +2766,7 @@ func (ptr *QGeoRouteSegment) TravelTime() int {
 func (ptr *QGeoRouteSegment) DestroyQGeoRouteSegment() {
 	if ptr.Pointer() != nil {
 		C.QGeoRouteSegment_DestroyQGeoRouteSegment(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -5246,8 +5252,9 @@ func NewQGeoServiceProviderFactoryV3FromPointer(ptr unsafe.Pointer) (n *QGeoServ
 
 func (ptr *QGeoServiceProviderFactoryV3) DestroyQGeoServiceProviderFactoryV3() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -5293,6 +5300,7 @@ func NewQLocationFromPointer(ptr unsafe.Pointer) (n *QLocation) {
 
 func (ptr *QLocation) DestroyQLocation() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)

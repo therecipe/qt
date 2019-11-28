@@ -502,8 +502,8 @@ func cppInput(name, value string, f *parser.Function) string {
 				return fmt.Sprintf("static_cast<%v*>(%v)", value, name)
 			}
 
-			if strings.HasPrefix(vOld, "const") || f.Fullname == "QMacToolBar::setItems" || f.Fullname == "QMacToolBar::setAllowedItems" {
-				return fmt.Sprintf("*static_cast<%v*>(%v)", value, name)
+			if (strings.HasPrefix(vOld, "const") || f.Fullname == "QMacToolBar::setItems" || f.Fullname == "QMacToolBar::setAllowedItems") && f.Name != "QVariant" {
+				return fmt.Sprintf("*static_cast<%v*>(%v)", value, name) //TODO: this might leak memory in some cases
 			}
 
 			return lambda(fmt.Sprintf("({ %v* tmpP = static_cast<%v*>(%v); %v tmpV = *tmpP; tmpP->~%v(); free(tmpP); tmpV; })", parser.CleanValue(value), value, name, parser.CleanValue(value), strings.Split(parser.CleanValue(value), "<")[0]))

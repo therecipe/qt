@@ -1432,8 +1432,9 @@ func NewQSvgIOHandlerFromPointer(ptr unsafe.Pointer) (n *QSvgIOHandler) {
 
 func (ptr *QSvgIOHandler) DestroyQSvgIOHandler() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -1480,8 +1481,9 @@ func NewQSvgIconEngineFromPointer(ptr unsafe.Pointer) (n *QSvgIconEngine) {
 
 func (ptr *QSvgIconEngine) DestroyQSvgIconEngine() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}

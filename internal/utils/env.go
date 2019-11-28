@@ -409,6 +409,10 @@ func QT_GEN_OPENGL() bool {
 	return os.Getenv("QT_GEN_OPENGL") == "true"
 }
 
+func QT_GEN_QUICK_EXTRAS() bool {
+	return os.Getenv("QT_GEN_QUICK_EXTRAS") == "true"
+}
+
 func GoList(args ...string) *exec.Cmd {
 	cmd := exec.Command("go", "list")
 	if UseGOMOD("") {

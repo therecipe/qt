@@ -1,7 +1,6 @@
 package qml
 
 import (
-	"fmt"
 	"math"
 	"reflect"
 	"runtime"
@@ -12,7 +11,7 @@ import (
 	"github.com/therecipe/qt/core"
 )
 
-var Z_engineHelper *core.QObject
+var Z_newEngineHelper func(p core.QObject_ITF) *core.QObject
 
 type ptr_itf interface {
 	Pointer() unsafe.Pointer
@@ -23,21 +22,72 @@ func Z_initEngine(engine QJSEngine_ITF) {
 	if !ptr.GlobalObject().Property("___engineHelper").IsUndefined() {
 		return
 	}
-	ptr.GlobalObject().SetProperty("___engineHelper", ptr.NewQObject(Z_engineHelper))
+	ptr.GlobalObject().SetProperty("___engineHelper", ptr.NewQObject(Z_newEngineHelper(engine)))
+	ptr.GlobalObject().SetProperty("___factory_single_func", ptr.Evaluate(`
+(function(that, cn, fn) {
+	return function(...args) {
+		return Array.isArray(...args) ? ___engineHelper.wrapperFunction([that, cn, fn].concat(args)) : ___engineHelper.wrapperFunction([that, cn, fn].concat(...args));
+	};
+});
 
-	for k, v := range qt.EnumMap {
+`, "", 0))
+	ptr.GlobalObject().SetProperty("___factory_batch_funcs", ptr.Evaluate(`
+(function(that, cn, fns) {
+	for (var fn of fns) {
+		that[fn] = ___factory_single_func(that, cn, fn, false);
+	}
+});
+
+`, "", 0))
+	ptr.GlobalObject().SetProperty("___factory_batch_global_funcs", ptr.Evaluate(`
+(function(that, pfx, fns) {
+	for (var fn of fns) {
+		that[fn] = ___factory_single_func(___engineHelper, pfx+"."+fn, "", false);
+	}
+});
+`, "", 0))
+
+	ptr.GlobalObject().SetProperty("___factory_batch_global_enums", ptr.Evaluate(`
+(function(that, ens) {
+	for (var en of ens) {
+		that[en[0]] = en[1];
+	}
+});
+`, "", 0))
+
+	prefE := make(map[string][][]interface{})
+	for en, ev := range qt.EnumMap {
+		pfx := strings.Split(en, ".")
+		prefE[pfx[0]] = append(prefE[pfx[0]], []interface{}{pfx[1], ev})
+	}
+	for pfx, ens := range prefE {
 		var jsv *QJSValue
-		if m := ptr.GlobalObject().Property(strings.Split(k, ".")[0]); m.IsUndefined() {
+		if m := ptr.GlobalObject().Property(pfx); m.IsUndefined() {
 			jsv = ptr.NewObject()
-			ptr.GlobalObject().SetProperty(strings.Split(k, ".")[0], jsv)
+			ptr.GlobalObject().SetProperty(pfx, jsv)
 		} else {
 			jsv = m
 		}
-		jsv.SetProperty(strings.Split(k, ".")[1], ptr.NewGoType(v))
+		ptr.GlobalObject().Property("___factory_batch_global_enums").Call([]*QJSValue{jsv, ptr.NewGoType(ens)})
 	}
 
-	for _, f := range qt.FuncMap {
-		ptr.NewGoType(f)
+	pref := make(map[string][]string)
+	for fn := range qt.FuncMap {
+		pfx := strings.Split(fn, ".")
+		if len(pfx) == 2 { //TODO: re-register 3rdparty functions?
+			pref[pfx[0]] = append(pref[pfx[0]], pfx[1])
+		}
+	}
+
+	for pfx, fns := range pref {
+		var jsv *QJSValue
+		if m := ptr.GlobalObject().Property(pfx); m.IsUndefined() {
+			jsv = ptr.NewObject()
+			ptr.GlobalObject().SetProperty(pfx, jsv)
+		} else {
+			jsv = m
+		}
+		ptr.GlobalObject().Property("___factory_batch_global_funcs").Call([]*QJSValue{jsv, NewQJSValue8(pfx), ptr.ToScriptValue(core.NewQVariant1(fns))})
 	}
 }
 
@@ -99,8 +149,17 @@ func (ptr *QJSEngine) fromJsToRef(tofi reflect.Type, jsval *QJSValue) reflect.Va
 		tofi = tofi.Elem()
 	}
 
-	switch t, ok := qt.ItfMap[tofi.String()]; {
+	t, ok := qt.ItfMap[tofi.String()+"_ITF"]
+	if ok {
+		tofi = reflect.TypeOf(t)
+	} else {
+		t, ok = qt.ItfMap[tofi.String()]
+		if ok {
+			tofi = reflect.TypeOf(t)
+		}
+	}
 
+	switch {
 	case tofi.Kind() == reflect.Func:
 		return reflect.MakeFunc(tofi, func(args []reflect.Value) []reflect.Value {
 			input := make([]*QJSValue, len(args))
@@ -145,7 +204,7 @@ func (ptr *QJSEngine) fromJsToRef(tofi reflect.Type, jsval *QJSValue) reflect.Va
 		//TODO: use ptr_itf instead ?
 		//TODO: use *FromPointer instead
 		//TODO: make SetPointer work as backup, for classes that don't support *FromPointer -> needs manual registration like for *FromPointer
-		rv := reflect.New(reflect.TypeOf(t))
+		rv := reflect.New(tofi)
 		rv.MethodByName("SetPointer").Call([]reflect.Value{reflect.ValueOf(unsafe.Pointer(uintptr(jsval.Property("___pointer").ToVariant().ToULongLong(nil))))})
 		return rv
 
@@ -199,6 +258,8 @@ func (ptr *QJSEngine) fromJsToRef(tofi reflect.Type, jsval *QJSValue) reflect.Va
 	jsval.ToVariant().ToGoType(ii.Interface()) //TODO: does ToGoType support QObject or ptr_itf types inside maps/slices/structs ?
 	return reflect.ValueOf(ii.Elem().Interface())
 }
+
+//TODO: NewQJSValue1
 
 func (ptr *QJSEngine) NewGoType(i ...interface{}) *QJSValue {
 	rv := reflect.ValueOf(i[0])
@@ -297,6 +358,8 @@ func (ptr *QJSEngine) NewGoType(i ...interface{}) *QJSValue {
 	if v := core.NewQVariant1(i[0]); v.IsValid() {
 		if !reflect.TypeOf(i[0]).Implements(reflect.TypeOf((*core.QObject_ITF)(nil)).Elem()) && reflect.TypeOf(i[0]).Implements(reflect.TypeOf((*ptr_itf)(nil)).Elem()) {
 			jsv = ptr.NewObject()
+		} else if reflect.TypeOf(i[0]).Implements(reflect.TypeOf((*core.QObject_ITF)(nil)).Elem()) {
+			jsv = ptr.NewQObject(core.NewQObjectFromPointer(i[0].(ptr_itf).Pointer()))
 		} else {
 			jsv = ptr.ToScriptValue(v)
 		}
@@ -349,23 +412,7 @@ func isZero(v reflect.Value) bool {
 
 func (ptr *QJSEngine) makeFuncWrapper(fn string) *QJSValue {
 
-	rv := reflect.ValueOf(qt.FuncMap[fn])
-
-	var ret string
-	if rv.Type().NumOut() != 0 {
-		ret = "return"
-	}
-
-	inl := make([]string, rv.Type().NumIn())
-	var in string
-	if len(inl) > 0 {
-		for il := 0; il < len(inl); il++ {
-			inl[il] = fmt.Sprintf("v%v", il)
-		}
-		in = ", " + strings.Join(inl, ", ")
-	}
-
-	retV := ptr.Evaluate(fmt.Sprintf("(function(%v){%v ___engineHelper.wrapperFunction([___engineHelper, \"%v\", \"\"%v]); })", strings.Join(inl, ", "), ret, fn, in), "", 1)
+	retV := ptr.GlobalObject().Property("___factory_single_func").Call([]*QJSValue{ptr.GlobalObject().Property("___engineHelper"), NewQJSValue8(fn), NewQJSValue8("")})
 
 	//TODO: allow creation of funcs in arbitrary module depth
 	var jsv *QJSValue
@@ -376,7 +423,7 @@ func (ptr *QJSEngine) makeFuncWrapper(fn string) *QJSValue {
 		jsv = m
 	}
 	if strings.Count(fn, ".") == 0 {
-		ptr.GlobalObject().SetProperty(strings.Split(fn, ".")[0], retV)
+		ptr.GlobalObject().SetProperty(fn, retV)
 	} else {
 		jsv.SetProperty(strings.Split(fn, ".")[1], retV)
 	}
@@ -402,37 +449,9 @@ func (ptr *QJSEngine) makeObjectWrapper(in interface{}, jsv *QJSValue) {
 	}
 	*/
 
+	fns := make([]string, rv.NumMethod())
 	for i := 0; i < rv.NumMethod(); i++ {
-		hasOut := rv.Method(i).Type().NumOut() != 0
-
-		var ret string
-		if hasOut {
-			ret = "return"
-		}
-
-		inl := make([]string, rv.Method(i).Type().NumIn())
-		var in string
-		if len(inl) > 0 {
-			for il := 0; il < len(inl); il++ {
-				inl[il] = fmt.Sprintf("v%v", il)
-			}
-			in = ", " + strings.Join(inl, ", ")
-		}
-
-		//TODO: is this needed at all ?
-		var pre string
-		var past string
-		if hasOut {
-			switch rv.Method(i).Type().Out(0).Kind() {
-			case reflect.Float32, reflect.Float64:
-			default:
-				if rv.Method(i).Type().Out(0).ConvertibleTo(reflect.TypeOf(int8(0))) {
-					pre = "Math.trunc("
-					past = ")"
-				}
-			}
-		}
-
-		jsv.SetProperty(rv.Type().Method(i).Name, ptr.Evaluate(fmt.Sprintf("(function(%v){%v %v___engineHelper.wrapperFunction([this, \"%v\", \"%v\"%v])%v; })", strings.Join(inl, ", "), ret, pre, className, rv.Type().Method(i).Name, in, past), "", 1))
+		fns[i] = rv.Type().Method(i).Name
 	}
+	ptr.GlobalObject().Property("___factory_batch_funcs").Call([]*QJSValue{jsv, NewQJSValue8(className), ptr.ToScriptValue(core.NewQVariant1(fns))})
 }

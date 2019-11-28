@@ -2525,6 +2525,7 @@ func (ptr *QAuthenticator) User() string {
 func (ptr *QAuthenticator) DestroyQAuthenticator() {
 	if ptr.Pointer() != nil {
 		C.QAuthenticator_DestroyQAuthenticator(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -2674,6 +2675,7 @@ func (ptr *QDnsDomainNameRecord) Value() string {
 func (ptr *QDnsDomainNameRecord) DestroyQDnsDomainNameRecord() {
 	if ptr.Pointer() != nil {
 		C.QDnsDomainNameRecord_DestroyQDnsDomainNameRecord(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -2760,6 +2762,7 @@ func (ptr *QDnsHostAddressRecord) Value() *QHostAddress {
 func (ptr *QDnsHostAddressRecord) DestroyQDnsHostAddressRecord() {
 	if ptr.Pointer() != nil {
 		C.QDnsHostAddressRecord_DestroyQDnsHostAddressRecord(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -3809,6 +3812,7 @@ func (ptr *QDnsMailExchangeRecord) TimeToLive() uint {
 func (ptr *QDnsMailExchangeRecord) DestroyQDnsMailExchangeRecord() {
 	if ptr.Pointer() != nil {
 		C.QDnsMailExchangeRecord_DestroyQDnsMailExchangeRecord(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -3914,6 +3918,7 @@ func (ptr *QDnsServiceRecord) Weight() uint16 {
 func (ptr *QDnsServiceRecord) DestroyQDnsServiceRecord() {
 	if ptr.Pointer() != nil {
 		C.QDnsServiceRecord_DestroyQDnsServiceRecord(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -4005,6 +4010,7 @@ func (ptr *QDnsTextRecord) Values() []*core.QByteArray {
 func (ptr *QDnsTextRecord) DestroyQDnsTextRecord() {
 	if ptr.Pointer() != nil {
 		C.QDnsTextRecord_DestroyQDnsTextRecord(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -4438,6 +4444,7 @@ func (ptr *QHostAddress) ToString() string {
 func (ptr *QHostAddress) DestroyQHostAddress() {
 	if ptr.Pointer() != nil {
 		C.QHostAddress_DestroyQHostAddress(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -4674,6 +4681,7 @@ func (ptr *QHostInfo) Swap(other QHostInfo_ITF) {
 func (ptr *QHostInfo) DestroyQHostInfo() {
 	if ptr.Pointer() != nil {
 		C.QHostInfo_DestroyQHostInfo(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -4848,6 +4856,7 @@ func (ptr *QHstsPolicy) Swap(other QHstsPolicy_ITF) {
 func (ptr *QHstsPolicy) DestroyQHstsPolicy() {
 	if ptr.Pointer() != nil {
 		C.QHstsPolicy_DestroyQHstsPolicy(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -5333,6 +5342,7 @@ func (ptr *QHttpPart) Swap(other QHttpPart_ITF) {
 func (ptr *QHttpPart) DestroyQHttpPart() {
 	if ptr.Pointer() != nil {
 		C.QHttpPart_DestroyQHttpPart(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -5378,6 +5388,7 @@ func NewQIPv6AddressFromPointer(ptr unsafe.Pointer) (n *QIPv6Address) {
 
 func (ptr *QIPv6Address) DestroyQIPv6Address() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -8438,6 +8449,7 @@ func (ptr *QNetworkAddressEntry) Swap(other QNetworkAddressEntry_ITF) {
 func (ptr *QNetworkAddressEntry) DestroyQNetworkAddressEntry() {
 	if ptr.Pointer() != nil {
 		C.QNetworkAddressEntry_DestroyQNetworkAddressEntry(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -8592,6 +8604,7 @@ func (ptr *QNetworkCacheMetaData) Url() *core.QUrl {
 func (ptr *QNetworkCacheMetaData) DestroyQNetworkCacheMetaData() {
 	if ptr.Pointer() != nil {
 		C.QNetworkCacheMetaData_DestroyQNetworkCacheMetaData(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -8845,6 +8858,7 @@ func (ptr *QNetworkConfiguration) Type() QNetworkConfiguration__Type {
 func (ptr *QNetworkConfiguration) DestroyQNetworkConfiguration() {
 	if ptr.Pointer() != nil {
 		C.QNetworkConfiguration_DestroyQNetworkConfiguration(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -9774,6 +9788,7 @@ func (ptr *QNetworkCookie) Value() *core.QByteArray {
 func (ptr *QNetworkCookie) DestroyQNetworkCookie() {
 	if ptr.Pointer() != nil {
 		C.QNetworkCookie_DestroyQNetworkCookie(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -10613,6 +10628,7 @@ func NewQNetworkDatagramFromPointer(ptr unsafe.Pointer) (n *QNetworkDatagram) {
 
 func (ptr *QNetworkDatagram) DestroyQNetworkDatagram() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -11591,6 +11607,7 @@ func (ptr *QNetworkInterface) Type() QNetworkInterface__InterfaceType {
 func (ptr *QNetworkInterface) DestroyQNetworkInterface() {
 	if ptr.Pointer() != nil {
 		C.QNetworkInterface_DestroyQNetworkInterface(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -11938,6 +11955,7 @@ func (ptr *QNetworkProxy) User() string {
 func (ptr *QNetworkProxy) DestroyQNetworkProxy() {
 	if ptr.Pointer() != nil {
 		C.QNetworkProxy_DestroyQNetworkProxy(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -12427,6 +12445,7 @@ func (ptr *QNetworkProxyQuery) Url() *core.QUrl {
 func (ptr *QNetworkProxyQuery) DestroyQNetworkProxyQuery() {
 	if ptr.Pointer() != nil {
 		C.QNetworkProxyQuery_DestroyQNetworkProxyQuery(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -14447,6 +14466,7 @@ func (ptr *QNetworkRequest) Url() *core.QUrl {
 func (ptr *QNetworkRequest) DestroyQNetworkRequest() {
 	if ptr.Pointer() != nil {
 		C.QNetworkRequest_DestroyQNetworkRequest(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -15645,6 +15665,7 @@ func (ptr *QOcspResponse) Swap(other QOcspResponse_ITF) {
 func (ptr *QOcspResponse) DestroyQOcspResponse() {
 	if ptr.Pointer() != nil {
 		C.QOcspResponse_DestroyQOcspResponse(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -15690,6 +15711,7 @@ func NewQPasswordDigestorFromPointer(ptr unsafe.Pointer) (n *QPasswordDigestor) 
 
 func (ptr *QPasswordDigestor) DestroyQPasswordDigestor() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -15814,6 +15836,7 @@ func NewQSslFromPointer(ptr unsafe.Pointer) (n *QSsl) {
 
 func (ptr *QSsl) DestroyQSsl() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -16326,6 +16349,7 @@ func (ptr *QSslCertificate) Version() *core.QByteArray {
 func (ptr *QSslCertificate) DestroyQSslCertificate() {
 	if ptr.Pointer() != nil {
 		C.QSslCertificate_DestroyQSslCertificate(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -16650,6 +16674,7 @@ func (ptr *QSslCertificateExtension) Value() *core.QVariant {
 func (ptr *QSslCertificateExtension) DestroyQSslCertificateExtension() {
 	if ptr.Pointer() != nil {
 		C.QSslCertificateExtension_DestroyQSslCertificateExtension(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -16798,6 +16823,7 @@ func (ptr *QSslCipher) UsedBits() int {
 func (ptr *QSslCipher) DestroyQSslCipher() {
 	if ptr.Pointer() != nil {
 		C.QSslCipher_DestroyQSslCipher(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -17302,6 +17328,7 @@ func (ptr *QSslConfiguration) TestSslOption(option QSsl__SslOption) bool {
 func (ptr *QSslConfiguration) DestroyQSslConfiguration() {
 	if ptr.Pointer() != nil {
 		C.QSslConfiguration_DestroyQSslConfiguration(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -17816,6 +17843,7 @@ func (ptr *QSslDiffieHellmanParameters) Swap(other QSslDiffieHellmanParameters_I
 func (ptr *QSslDiffieHellmanParameters) DestroyQSslDiffieHellmanParameters() {
 	if ptr.Pointer() != nil {
 		C.QSslDiffieHellmanParameters_DestroyQSslDiffieHellmanParameters(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -17861,6 +17889,7 @@ func NewQSslEllipticCurveFromPointer(ptr unsafe.Pointer) (n *QSslEllipticCurve) 
 
 func (ptr *QSslEllipticCurve) DestroyQSslEllipticCurve() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -18084,6 +18113,7 @@ func (ptr *QSslError) Swap(other QSslError_ITF) {
 func (ptr *QSslError) DestroyQSslError() {
 	if ptr.Pointer() != nil {
 		C.QSslError_DestroyQSslError(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -18211,6 +18241,7 @@ func (ptr *QSslKey) Type() QSsl__KeyType {
 func (ptr *QSslKey) DestroyQSslKey() {
 	if ptr.Pointer() != nil {
 		C.QSslKey_DestroyQSslKey(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -18327,6 +18358,7 @@ func (ptr *QSslPreSharedKeyAuthenticator) Swap(authenticator QSslPreSharedKeyAut
 func (ptr *QSslPreSharedKeyAuthenticator) DestroyQSslPreSharedKeyAuthenticator() {
 	if ptr.Pointer() != nil {
 		C.QSslPreSharedKeyAuthenticator_DestroyQSslPreSharedKeyAuthenticator(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -20562,6 +20594,7 @@ func NewQNetworkCacheMetaData_RawHeaderFromPointer(ptr unsafe.Pointer) (n *QNetw
 
 func (ptr *QNetworkCacheMetaData_RawHeader) DestroyQNetworkCacheMetaData_RawHeader() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)

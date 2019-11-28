@@ -75,6 +75,7 @@ func NewQDBusFromPointer(ptr unsafe.Pointer) (n *QDBus) {
 
 func (ptr *QDBus) DestroyQDBus() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -1565,6 +1566,7 @@ func (ptr *QDBusArgument) Swap(other QDBusArgument_ITF) {
 func (ptr *QDBusArgument) DestroyQDBusArgument() {
 	if ptr.Pointer() != nil {
 		C.QDBusArgument_DestroyQDBusArgument(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -2215,6 +2217,7 @@ func (ptr *QDBusConnection) UnregisterService(serviceName string) bool {
 func (ptr *QDBusConnection) DestroyQDBusConnection() {
 	if ptr.Pointer() != nil {
 		C.QDBusConnection_DestroyQDBusConnection(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -2527,6 +2530,7 @@ func (ptr *QDBusContext) SetDelayedReply(enable bool) {
 func (ptr *QDBusContext) DestroyQDBusContext() {
 	if ptr.Pointer() != nil {
 		C.QDBusContext_DestroyQDBusContext(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -2572,6 +2576,7 @@ func NewQDBusErrorFromPointer(ptr unsafe.Pointer) (n *QDBusError) {
 
 func (ptr *QDBusError) DestroyQDBusError() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -3240,6 +3245,7 @@ func (ptr *QDBusMessage) Type() QDBusMessage__MessageType {
 func (ptr *QDBusMessage) DestroyQDBusMessage() {
 	if ptr.Pointer() != nil {
 		C.QDBusMessage_DestroyQDBusMessage(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -3342,6 +3348,7 @@ func NewQDBusObjectPathFromPointer(ptr unsafe.Pointer) (n *QDBusObjectPath) {
 
 func (ptr *QDBusObjectPath) DestroyQDBusObjectPath() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -3482,6 +3489,7 @@ func (ptr *QDBusPendingCall) Swap(other QDBusPendingCall_ITF) {
 func (ptr *QDBusPendingCall) DestroyQDBusPendingCall() {
 	if ptr.Pointer() != nil {
 		C.QDBusPendingCall_DestroyQDBusPendingCall(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -3993,6 +4001,7 @@ func NewQDBusPendingReplyFromPointer(ptr unsafe.Pointer) (n *QDBusPendingReply) 
 
 func (ptr *QDBusPendingReply) DestroyQDBusPendingReply() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -4040,6 +4049,7 @@ func NewQDBusPendingReplyDataFromPointer(ptr unsafe.Pointer) (n *QDBusPendingRep
 
 func (ptr *QDBusPendingReplyData) DestroyQDBusPendingReplyData() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -4086,6 +4096,7 @@ func NewQDBusReplyFromPointer(ptr unsafe.Pointer) (n *QDBusReply) {
 
 func (ptr *QDBusReply) DestroyQDBusReply() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -5149,6 +5160,7 @@ func NewQDBusSignatureFromPointer(ptr unsafe.Pointer) (n *QDBusSignature) {
 
 func (ptr *QDBusSignature) DestroyQDBusSignature() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -5305,6 +5317,7 @@ func (ptr *QDBusUnixFileDescriptor) Swap(other QDBusUnixFileDescriptor_ITF) {
 func (ptr *QDBusUnixFileDescriptor) DestroyQDBusUnixFileDescriptor() {
 	if ptr.Pointer() != nil {
 		C.QDBusUnixFileDescriptor_DestroyQDBusUnixFileDescriptor(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -5350,6 +5363,7 @@ func NewQDBusVariantFromPointer(ptr unsafe.Pointer) (n *QDBusVariant) {
 
 func (ptr *QDBusVariant) DestroyQDBusVariant() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -5862,6 +5876,7 @@ func NewQMetaTypeId2FromPointer(ptr unsafe.Pointer) (n *QMetaTypeId2) {
 
 func (ptr *QMetaTypeId2) DestroyQMetaTypeId2() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)

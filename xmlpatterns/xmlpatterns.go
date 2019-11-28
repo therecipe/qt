@@ -2647,6 +2647,7 @@ func (ptr *QSourceLocation) Uri() *core.QUrl {
 func (ptr *QSourceLocation) DestroyQSourceLocation() {
 	if ptr.Pointer() != nil {
 		C.QSourceLocation_DestroyQSourceLocation(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -2693,8 +2694,9 @@ func NewQXmlFormatterFromPointer(ptr unsafe.Pointer) (n *QXmlFormatter) {
 
 func (ptr *QXmlFormatter) DestroyQXmlFormatter() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -2820,6 +2822,7 @@ func (ptr *QXmlItem) ToNodeModelIndex() *QXmlNodeModelIndex {
 func (ptr *QXmlItem) DestroyQXmlItem() {
 	if ptr.Pointer() != nil {
 		C.QXmlItem_DestroyQXmlItem(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -2865,6 +2868,7 @@ func NewQXmlNameFromPointer(ptr unsafe.Pointer) (n *QXmlName) {
 
 func (ptr *QXmlName) DestroyQXmlName() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -3031,6 +3035,7 @@ func NewQXmlNamePool2(other QXmlNamePool_ITF) *QXmlNamePool {
 func (ptr *QXmlNamePool) DestroyQXmlNamePool() {
 	if ptr.Pointer() != nil {
 		C.QXmlNamePool_DestroyQXmlNamePool(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -3076,6 +3081,7 @@ func NewQXmlNodeModelIndexFromPointer(ptr unsafe.Pointer) (n *QXmlNodeModelIndex
 
 func (ptr *QXmlNodeModelIndex) DestroyQXmlNodeModelIndex() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -3496,6 +3502,7 @@ func (ptr *QXmlQuery) UriResolver() *QAbstractUriResolver {
 func (ptr *QXmlQuery) DestroyQXmlQuery() {
 	if ptr.Pointer() != nil {
 		C.QXmlQuery_DestroyQXmlQuery(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -3765,6 +3772,7 @@ func (ptr *QXmlSchema) UriResolver() *QAbstractUriResolver {
 func (ptr *QXmlSchema) DestroyQXmlSchema() {
 	if ptr.Pointer() != nil {
 		C.QXmlSchema_DestroyQXmlSchema(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -3918,6 +3926,7 @@ func (ptr *QXmlSchemaValidator) Validate3(data core.QByteArray_ITF, documentUri 
 func (ptr *QXmlSchemaValidator) DestroyQXmlSchemaValidator() {
 	if ptr.Pointer() != nil {
 		C.QXmlSchemaValidator_DestroyQXmlSchemaValidator(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -3964,8 +3973,9 @@ func NewQXmlSerializerFromPointer(ptr unsafe.Pointer) (n *QXmlSerializer) {
 
 func (ptr *QXmlSerializer) DestroyQXmlSerializer() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}

@@ -76,6 +76,7 @@ func NewQDomAttrFromPointer(ptr unsafe.Pointer) (n *QDomAttr) {
 
 func (ptr *QDomAttr) DestroyQDomAttr() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -176,6 +177,7 @@ func NewQDomCDATASectionFromPointer(ptr unsafe.Pointer) (n *QDomCDATASection) {
 
 func (ptr *QDomCDATASection) DestroyQDomCDATASection() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -235,6 +237,7 @@ func NewQDomCharacterDataFromPointer(ptr unsafe.Pointer) (n *QDomCharacterData) 
 
 func (ptr *QDomCharacterData) DestroyQDomCharacterData() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -365,6 +368,7 @@ func NewQDomCommentFromPointer(ptr unsafe.Pointer) (n *QDomComment) {
 
 func (ptr *QDomComment) DestroyQDomComment() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -808,6 +812,7 @@ func (ptr *QDomDocument) ToString(indent int) string {
 func (ptr *QDomDocument) DestroyQDomDocument() {
 	if ptr.Pointer() != nil {
 		C.QDomDocument_DestroyQDomDocument(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -854,6 +859,7 @@ func NewQDomDocumentFragmentFromPointer(ptr unsafe.Pointer) (n *QDomDocumentFrag
 
 func (ptr *QDomDocumentFragment) DestroyQDomDocumentFragment() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -913,6 +919,7 @@ func NewQDomDocumentTypeFromPointer(ptr unsafe.Pointer) (n *QDomDocumentType) {
 
 func (ptr *QDomDocumentType) DestroyQDomDocumentType() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -1018,6 +1025,7 @@ func NewQDomElementFromPointer(ptr unsafe.Pointer) (n *QDomElement) {
 
 func (ptr *QDomElement) DestroyQDomElement() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -1473,6 +1481,7 @@ func NewQDomEntityFromPointer(ptr unsafe.Pointer) (n *QDomEntity) {
 
 func (ptr *QDomEntity) DestroyQDomEntity() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -1553,6 +1562,7 @@ func NewQDomEntityReferenceFromPointer(ptr unsafe.Pointer) (n *QDomEntityReferen
 
 func (ptr *QDomEntityReference) DestroyQDomEntityReference() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -1717,6 +1727,7 @@ func (ptr *QDomImplementation) SetInvalidDataPolicy(policy QDomImplementation__I
 func (ptr *QDomImplementation) DestroyQDomImplementation() {
 	if ptr.Pointer() != nil {
 		C.QDomImplementation_DestroyQDomImplementation(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -1907,6 +1918,7 @@ func (ptr *QDomNamedNodeMap) Size() int {
 func (ptr *QDomNamedNodeMap) DestroyQDomNamedNodeMap() {
 	if ptr.Pointer() != nil {
 		C.QDomNamedNodeMap_DestroyQDomNamedNodeMap(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -2524,6 +2536,7 @@ func (ptr *QDomNode) ToText() *QDomText {
 func (ptr *QDomNode) DestroyQDomNode() {
 	if ptr.Pointer() != nil {
 		C.QDomNode_DestroyQDomNode(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -2627,6 +2640,7 @@ func (ptr *QDomNodeList) Size() int {
 func (ptr *QDomNodeList) DestroyQDomNodeList() {
 	if ptr.Pointer() != nil {
 		C.QDomNodeList_DestroyQDomNodeList(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -2673,6 +2687,7 @@ func NewQDomNotationFromPointer(ptr unsafe.Pointer) (n *QDomNotation) {
 
 func (ptr *QDomNotation) DestroyQDomNotation() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -2746,6 +2761,7 @@ func NewQDomProcessingInstructionFromPointer(ptr unsafe.Pointer) (n *QDomProcess
 
 func (ptr *QDomProcessingInstruction) DestroyQDomProcessingInstruction() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -2830,6 +2846,7 @@ func NewQDomTextFromPointer(ptr unsafe.Pointer) (n *QDomText) {
 
 func (ptr *QDomText) DestroyQDomText() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -7466,6 +7483,7 @@ func (ptr *QXmlNamespaceSupport) Uri(prefix string) string {
 func (ptr *QXmlNamespaceSupport) DestroyQXmlNamespaceSupport() {
 	if ptr.Pointer() != nil {
 		C.QXmlNamespaceSupport_DestroyQXmlNamespaceSupport(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -7573,6 +7591,7 @@ func (ptr *QXmlParseException) SystemId() string {
 func (ptr *QXmlParseException) DestroyQXmlParseException() {
 	if ptr.Pointer() != nil {
 		C.QXmlParseException_DestroyQXmlParseException(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}

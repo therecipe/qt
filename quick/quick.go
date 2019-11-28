@@ -79,6 +79,7 @@ func NewBacktraceJobFromPointer(ptr unsafe.Pointer) (n *BacktraceJob) {
 
 func (ptr *BacktraceJob) DestroyBacktraceJob() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -126,6 +127,7 @@ func NewCollectJobFromPointer(ptr unsafe.Pointer) (n *CollectJob) {
 
 func (ptr *CollectJob) DestroyCollectJob() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -173,6 +175,7 @@ func NewEvalJobFromPointer(ptr unsafe.Pointer) (n *EvalJob) {
 
 func (ptr *EvalJob) DestroyEvalJob() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -220,6 +223,7 @@ func NewExpressionEvalJobFromPointer(ptr unsafe.Pointer) (n *ExpressionEvalJob) 
 
 func (ptr *ExpressionEvalJob) DestroyExpressionEvalJob() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -267,6 +271,7 @@ func NewFrameJobFromPointer(ptr unsafe.Pointer) (n *FrameJob) {
 
 func (ptr *FrameJob) DestroyFrameJob() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -314,6 +319,7 @@ func NewGatherSourcesJobFromPointer(ptr unsafe.Pointer) (n *GatherSourcesJob) {
 
 func (ptr *GatherSourcesJob) DestroyGatherSourcesJob() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -361,6 +367,7 @@ func NewJavaScriptJobFromPointer(ptr unsafe.Pointer) (n *JavaScriptJob) {
 
 func (ptr *JavaScriptJob) DestroyJavaScriptJob() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -407,6 +414,7 @@ func NewQDebugMessageServiceFactoryFromPointer(ptr unsafe.Pointer) (n *QDebugMes
 
 func (ptr *QDebugMessageServiceFactory) DestroyQDebugMessageServiceFactory() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -453,6 +461,7 @@ func NewQDebugMessageServiceImplFromPointer(ptr unsafe.Pointer) (n *QDebugMessag
 
 func (ptr *QDebugMessageServiceImpl) DestroyQDebugMessageServiceImpl() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -499,6 +508,7 @@ func NewQLocalClientConnectionFactoryFromPointer(ptr unsafe.Pointer) (n *QLocalC
 
 func (ptr *QLocalClientConnectionFactory) DestroyQLocalClientConnectionFactory() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -545,6 +555,7 @@ func NewQOpenVGMatrixFromPointer(ptr unsafe.Pointer) (n *QOpenVGMatrix) {
 
 func (ptr *QOpenVGMatrix) DestroyQOpenVGMatrix() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -591,6 +602,7 @@ func NewQOpenVGOffscreenSurfaceFromPointer(ptr unsafe.Pointer) (n *QOpenVGOffscr
 
 func (ptr *QOpenVGOffscreenSurface) DestroyQOpenVGOffscreenSurface() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -637,6 +649,7 @@ func NewQQmlDebugServerFactoryFromPointer(ptr unsafe.Pointer) (n *QQmlDebugServe
 
 func (ptr *QQmlDebugServerFactory) DestroyQQmlDebugServerFactory() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -683,6 +696,7 @@ func NewQQmlDebuggerServiceFactoryFromPointer(ptr unsafe.Pointer) (n *QQmlDebugg
 
 func (ptr *QQmlDebuggerServiceFactory) DestroyQQmlDebuggerServiceFactory() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -729,6 +743,7 @@ func NewQQmlEngineControlServiceImplFromPointer(ptr unsafe.Pointer) (n *QQmlEngi
 
 func (ptr *QQmlEngineControlServiceImpl) DestroyQQmlEngineControlServiceImpl() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -775,6 +790,7 @@ func NewQQmlEngineDebugServiceImplFromPointer(ptr unsafe.Pointer) (n *QQmlEngine
 
 func (ptr *QQmlEngineDebugServiceImpl) DestroyQQmlEngineDebugServiceImpl() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -821,6 +837,7 @@ func NewQQmlInspectorServiceFactoryFromPointer(ptr unsafe.Pointer) (n *QQmlInspe
 
 func (ptr *QQmlInspectorServiceFactory) DestroyQQmlInspectorServiceFactory() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -867,6 +884,7 @@ func NewQQmlNativeDebugConnectorFromPointer(ptr unsafe.Pointer) (n *QQmlNativeDe
 
 func (ptr *QQmlNativeDebugConnector) DestroyQQmlNativeDebugConnector() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -913,6 +931,7 @@ func NewQQmlNativeDebugConnectorFactoryFromPointer(ptr unsafe.Pointer) (n *QQmlN
 
 func (ptr *QQmlNativeDebugConnectorFactory) DestroyQQmlNativeDebugConnectorFactory() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -959,6 +978,7 @@ func NewQQmlNativeDebugServiceFactoryFromPointer(ptr unsafe.Pointer) (n *QQmlNat
 
 func (ptr *QQmlNativeDebugServiceFactory) DestroyQQmlNativeDebugServiceFactory() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -1005,6 +1025,7 @@ func NewQQmlNativeDebugServiceImplFromPointer(ptr unsafe.Pointer) (n *QQmlNative
 
 func (ptr *QQmlNativeDebugServiceImpl) DestroyQQmlNativeDebugServiceImpl() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -1051,6 +1072,7 @@ func NewQQmlPreviewBlacklistFromPointer(ptr unsafe.Pointer) (n *QQmlPreviewBlack
 
 func (ptr *QQmlPreviewBlacklist) DestroyQQmlPreviewBlacklist() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -1097,6 +1119,7 @@ func NewQQmlPreviewFileEngineFromPointer(ptr unsafe.Pointer) (n *QQmlPreviewFile
 
 func (ptr *QQmlPreviewFileEngine) DestroyQQmlPreviewFileEngine() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -1143,6 +1166,7 @@ func NewQQmlPreviewFileEngineHandlerFromPointer(ptr unsafe.Pointer) (n *QQmlPrev
 
 func (ptr *QQmlPreviewFileEngineHandler) DestroyQQmlPreviewFileEngineHandler() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -1267,6 +1291,7 @@ func NewQQmlPreviewPositionFromPointer(ptr unsafe.Pointer) (n *QQmlPreviewPositi
 
 func (ptr *QQmlPreviewPosition) DestroyQQmlPreviewPosition() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -1313,6 +1338,7 @@ func NewQQmlPreviewServiceFactoryFromPointer(ptr unsafe.Pointer) (n *QQmlPreview
 
 func (ptr *QQmlPreviewServiceFactory) DestroyQQmlPreviewServiceFactory() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -1359,6 +1385,7 @@ func NewQQmlPreviewServiceImplFromPointer(ptr unsafe.Pointer) (n *QQmlPreviewSer
 
 func (ptr *QQmlPreviewServiceImpl) DestroyQQmlPreviewServiceImpl() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -1405,6 +1432,7 @@ func NewQQmlProfilerAdapterFromPointer(ptr unsafe.Pointer) (n *QQmlProfilerAdapt
 
 func (ptr *QQmlProfilerAdapter) DestroyQQmlProfilerAdapter() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -1451,6 +1479,7 @@ func NewQQmlProfilerServiceFactoryFromPointer(ptr unsafe.Pointer) (n *QQmlProfil
 
 func (ptr *QQmlProfilerServiceFactory) DestroyQQmlProfilerServiceFactory() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -1497,6 +1526,7 @@ func NewQQmlProfilerServiceImplFromPointer(ptr unsafe.Pointer) (n *QQmlProfilerS
 
 func (ptr *QQmlProfilerServiceImpl) DestroyQQmlProfilerServiceImpl() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -7220,6 +7250,7 @@ func NewQQuickProfilerAdapterFromPointer(ptr unsafe.Pointer) (n *QQuickProfilerA
 
 func (ptr *QQuickProfilerAdapter) DestroyQQuickProfilerAdapter() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -7266,6 +7297,7 @@ func NewQQuickProfilerAdapterFactoryFromPointer(ptr unsafe.Pointer) (n *QQuickPr
 
 func (ptr *QQuickProfilerAdapterFactory) DestroyQQuickProfilerAdapterFactory() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -14460,8 +14492,9 @@ func NewQSGFlatColorMaterialFromPointer(ptr unsafe.Pointer) (n *QSGFlatColorMate
 
 func (ptr *QSGFlatColorMaterial) DestroyQSGFlatColorMaterial() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -15013,8 +15046,9 @@ func NewQSGImageNodeFromPointer(ptr unsafe.Pointer) (n *QSGImageNode) {
 
 func (ptr *QSGImageNode) DestroyQSGImageNode() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -15616,8 +15650,9 @@ func NewQSGMaterialFromPointer(ptr unsafe.Pointer) (n *QSGMaterial) {
 
 func (ptr *QSGMaterial) DestroyQSGMaterial() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -15809,8 +15844,9 @@ func NewQSGMaterialShaderFromPointer(ptr unsafe.Pointer) (n *QSGMaterialShader) 
 
 func (ptr *QSGMaterialShader) DestroyQSGMaterialShader() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -16148,6 +16184,7 @@ func NewQSGMaterialTypeFromPointer(ptr unsafe.Pointer) (n *QSGMaterialType) {
 
 func (ptr *QSGMaterialType) DestroyQSGMaterialType() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -16631,8 +16668,9 @@ func NewQSGOpaqueTextureMaterialFromPointer(ptr unsafe.Pointer) (n *QSGOpaqueTex
 
 func (ptr *QSGOpaqueTextureMaterial) DestroyQSGOpaqueTextureMaterial() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -16810,6 +16848,7 @@ func NewQSGOpenVGFontGlyphCacheFromPointer(ptr unsafe.Pointer) (n *QSGOpenVGFont
 
 func (ptr *QSGOpenVGFontGlyphCache) DestroyQSGOpenVGFontGlyphCache() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -16856,6 +16895,7 @@ func NewQSGOpenVGFontGlyphCacheManagerFromPointer(ptr unsafe.Pointer) (n *QSGOpe
 
 func (ptr *QSGOpenVGFontGlyphCacheManager) DestroyQSGOpenVGFontGlyphCacheManager() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -16906,8 +16946,9 @@ func NewQSGOpenVGImageNodeFromPointer(ptr unsafe.Pointer) (n *QSGOpenVGImageNode
 
 func (ptr *QSGOpenVGImageNode) DestroyQSGOpenVGImageNode() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -16954,6 +16995,7 @@ func NewQSGOpenVGInternalImageNodeFromPointer(ptr unsafe.Pointer) (n *QSGOpenVGI
 
 func (ptr *QSGOpenVGInternalImageNode) DestroyQSGOpenVGInternalImageNode() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -17001,6 +17043,7 @@ func NewQSGOpenVGInternalRectangleNodeFromPointer(ptr unsafe.Pointer) (n *QSGOpe
 
 func (ptr *QSGOpenVGInternalRectangleNode) DestroyQSGOpenVGInternalRectangleNode() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -17047,6 +17090,7 @@ func NewQSGOpenVGLayerFromPointer(ptr unsafe.Pointer) (n *QSGOpenVGLayer) {
 
 func (ptr *QSGOpenVGLayer) DestroyQSGOpenVGLayer() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -17097,8 +17141,9 @@ func NewQSGOpenVGNinePatchNodeFromPointer(ptr unsafe.Pointer) (n *QSGOpenVGNineP
 
 func (ptr *QSGOpenVGNinePatchNode) DestroyQSGOpenVGNinePatchNode() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -17144,6 +17189,7 @@ func NewQSGOpenVGNodeVisitorFromPointer(ptr unsafe.Pointer) (n *QSGOpenVGNodeVis
 
 func (ptr *QSGOpenVGNodeVisitor) DestroyQSGOpenVGNodeVisitor() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -17191,6 +17237,7 @@ func NewQSGOpenVGPainterNodeFromPointer(ptr unsafe.Pointer) (n *QSGOpenVGPainter
 
 func (ptr *QSGOpenVGPainterNode) DestroyQSGOpenVGPainterNode() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -17241,8 +17288,9 @@ func NewQSGOpenVGRectangleNodeFromPointer(ptr unsafe.Pointer) (n *QSGOpenVGRecta
 
 func (ptr *QSGOpenVGRectangleNode) DestroyQSGOpenVGRectangleNode() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -17288,6 +17336,7 @@ func NewQSGOpenVGRenderableFromPointer(ptr unsafe.Pointer) (n *QSGOpenVGRenderab
 
 func (ptr *QSGOpenVGRenderable) DestroyQSGOpenVGRenderable() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -17335,6 +17384,7 @@ func NewQSGOpenVGSpriteNodeFromPointer(ptr unsafe.Pointer) (n *QSGOpenVGSpriteNo
 
 func (ptr *QSGOpenVGSpriteNode) DestroyQSGOpenVGSpriteNode() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -17421,8 +17471,9 @@ func NewQSGRectangleNodeFromPointer(ptr unsafe.Pointer) (n *QSGRectangleNode) {
 
 func (ptr *QSGRectangleNode) DestroyQSGRectangleNode() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -17940,8 +17991,9 @@ func NewQSGRendererInterfaceFromPointer(ptr unsafe.Pointer) (n *QSGRendererInter
 
 func (ptr *QSGRendererInterface) DestroyQSGRendererInterface() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -18292,8 +18344,9 @@ func NewQSGSimpleMaterialFromPointer(ptr unsafe.Pointer) (n *QSGSimpleMaterial) 
 
 func (ptr *QSGSimpleMaterial) DestroyQSGSimpleMaterial() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -18340,8 +18393,9 @@ func NewQSGSimpleMaterialComparableMaterialFromPointer(ptr unsafe.Pointer) (n *Q
 
 func (ptr *QSGSimpleMaterialComparableMaterial) DestroyQSGSimpleMaterialComparableMaterial() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -18388,8 +18442,9 @@ func NewQSGSimpleMaterialShaderFromPointer(ptr unsafe.Pointer) (n *QSGSimpleMate
 
 func (ptr *QSGSimpleMaterialShader) DestroyQSGSimpleMaterialShader() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -18436,8 +18491,9 @@ func NewQSGSimpleRectNodeFromPointer(ptr unsafe.Pointer) (n *QSGSimpleRectNode) 
 
 func (ptr *QSGSimpleRectNode) DestroyQSGSimpleRectNode() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -19527,8 +19583,9 @@ func NewQSGTextureMaterialFromPointer(ptr unsafe.Pointer) (n *QSGTextureMaterial
 
 func (ptr *QSGTextureMaterial) DestroyQSGTextureMaterial() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -20054,8 +20111,9 @@ func NewQSGVertexColorMaterialFromPointer(ptr unsafe.Pointer) (n *QSGVertexColor
 
 func (ptr *QSGVertexColorMaterial) DestroyQSGVertexColorMaterial() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -20151,6 +20209,7 @@ func NewQTcpServerConnectionFactoryFromPointer(ptr unsafe.Pointer) (n *QTcpServe
 
 func (ptr *QTcpServerConnectionFactory) DestroyQTcpServerConnectionFactory() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -20197,6 +20256,7 @@ func NewQV4DataCollectorFromPointer(ptr unsafe.Pointer) (n *QV4DataCollector) {
 
 func (ptr *QV4DataCollector) DestroyQV4DataCollector() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -20243,6 +20303,7 @@ func NewQV4DebugJobFromPointer(ptr unsafe.Pointer) (n *QV4DebugJob) {
 
 func (ptr *QV4DebugJob) DestroyQV4DebugJob() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -20289,6 +20350,7 @@ func NewQV4DebugServiceImplFromPointer(ptr unsafe.Pointer) (n *QV4DebugServiceIm
 
 func (ptr *QV4DebugServiceImpl) DestroyQV4DebugServiceImpl() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -20335,6 +20397,7 @@ func NewQV4DebuggerFromPointer(ptr unsafe.Pointer) (n *QV4Debugger) {
 
 func (ptr *QV4Debugger) DestroyQV4Debugger() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -20420,6 +20483,7 @@ func NewQV4ProfilerAdapterFromPointer(ptr unsafe.Pointer) (n *QV4ProfilerAdapter
 
 func (ptr *QV4ProfilerAdapter) DestroyQV4ProfilerAdapter() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -20466,8 +20530,9 @@ func NewQWavefrontMeshFromPointer(ptr unsafe.Pointer) (n *QWavefrontMesh) {
 
 func (ptr *QWavefrontMesh) DestroyQWavefrontMesh() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -20514,6 +20579,7 @@ func NewScopeJobFromPointer(ptr unsafe.Pointer) (n *ScopeJob) {
 
 func (ptr *ScopeJob) DestroyScopeJob() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -20560,6 +20626,7 @@ func NewSharedImageProviderFromPointer(ptr unsafe.Pointer) (n *SharedImageProvid
 
 func (ptr *SharedImageProvider) DestroySharedImageProvider() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -20607,6 +20674,7 @@ func NewValueLookupJobFromPointer(ptr unsafe.Pointer) (n *ValueLookupJob) {
 
 func (ptr *ValueLookupJob) DestroyValueLookupJob() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)

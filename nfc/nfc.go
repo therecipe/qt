@@ -119,6 +119,7 @@ func (ptr *QNdefFilter) SetOrderMatch(on bool) {
 func (ptr *QNdefFilter) DestroyQNdefFilter() {
 	if ptr.Pointer() != nil {
 		C.QNdefFilter_DestroyQNdefFilter(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -164,6 +165,7 @@ func NewQNdefMessageFromPointer(ptr unsafe.Pointer) (n *QNdefMessage) {
 
 func (ptr *QNdefMessage) DestroyQNdefMessage() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -281,6 +283,7 @@ func NewQNdefNfcIconRecordFromPointer(ptr unsafe.Pointer) (n *QNdefNfcIconRecord
 
 func (ptr *QNdefNfcIconRecord) DestroyQNdefNfcIconRecord() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -629,6 +632,7 @@ func (ptr *QNdefNfcSmartPosterRecord) UriRecord() *QNdefNfcUriRecord {
 func (ptr *QNdefNfcSmartPosterRecord) DestroyQNdefNfcSmartPosterRecord() {
 	if ptr.Pointer() != nil {
 		C.QNdefNfcSmartPosterRecord_DestroyQNdefNfcSmartPosterRecord(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -751,6 +755,7 @@ func NewQNdefNfcTextRecordFromPointer(ptr unsafe.Pointer) (n *QNdefNfcTextRecord
 
 func (ptr *QNdefNfcTextRecord) DestroyQNdefNfcTextRecord() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -868,6 +873,7 @@ func NewQNdefNfcUriRecordFromPointer(ptr unsafe.Pointer) (n *QNdefNfcUriRecord) 
 
 func (ptr *QNdefNfcUriRecord) DestroyQNdefNfcUriRecord() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -1032,6 +1038,7 @@ func (ptr *QNdefRecord) TypeNameFormat() QNdefRecord__TypeNameFormat {
 func (ptr *QNdefRecord) DestroyQNdefRecord() {
 	if ptr.Pointer() != nil {
 		C.QNdefRecord_DestroyQNdefRecord(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}

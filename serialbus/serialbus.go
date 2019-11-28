@@ -1456,6 +1456,7 @@ func (ptr *QCanBusDeviceInfo) Swap(other QCanBusDeviceInfo_ITF) {
 func (ptr *QCanBusDeviceInfo) DestroyQCanBusDeviceInfo() {
 	if ptr.Pointer() != nil {
 		C.QCanBusDeviceInfo_DestroyQCanBusDeviceInfo(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -1500,8 +1501,9 @@ func NewQCanBusFactoryFromPointer(ptr unsafe.Pointer) (n *QCanBusFactory) {
 
 func (ptr *QCanBusFactory) DestroyQCanBusFactory() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -1600,8 +1602,9 @@ func NewQCanBusFactoryV2FromPointer(ptr unsafe.Pointer) (n *QCanBusFactoryV2) {
 
 func (ptr *QCanBusFactoryV2) DestroyQCanBusFactoryV2() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -1780,6 +1783,7 @@ func NewQCanBusFrameFromPointer(ptr unsafe.Pointer) (n *QCanBusFrame) {
 
 func (ptr *QCanBusFrame) DestroyQCanBusFrame() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -2292,6 +2296,7 @@ func NewQModbusDataUnitFromPointer(ptr unsafe.Pointer) (n *QModbusDataUnit) {
 
 func (ptr *QModbusDataUnit) DestroyQModbusDataUnit() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -3164,6 +3169,7 @@ func NewQModbusDeviceIdentificationFromPointer(ptr unsafe.Pointer) (n *QModbusDe
 
 func (ptr *QModbusDeviceIdentification) DestroyQModbusDeviceIdentification() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -3450,8 +3456,9 @@ func NewQModbusExceptionResponseFromPointer(ptr unsafe.Pointer) (n *QModbusExcep
 
 func (ptr *QModbusExceptionResponse) DestroyQModbusExceptionResponse() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -4236,8 +4243,9 @@ func NewQModbusRequestFromPointer(ptr unsafe.Pointer) (n *QModbusRequest) {
 
 func (ptr *QModbusRequest) DestroyQModbusRequest() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -4312,8 +4320,9 @@ func NewQModbusResponseFromPointer(ptr unsafe.Pointer) (n *QModbusResponse) {
 
 func (ptr *QModbusResponse) DestroyQModbusResponse() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -5425,8 +5434,9 @@ func NewQModbusTcpConnectionObserverFromPointer(ptr unsafe.Pointer) (n *QModbusT
 
 func (ptr *QModbusTcpConnectionObserver) DestroyQModbusTcpConnectionObserver() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}

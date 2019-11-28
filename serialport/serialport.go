@@ -1674,6 +1674,7 @@ func (ptr *QSerialPortInfo) VendorIdentifier() uint16 {
 func (ptr *QSerialPortInfo) DestroyQSerialPortInfo() {
 	if ptr.Pointer() != nil {
 		C.QSerialPortInfo_DestroyQSerialPortInfo(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}

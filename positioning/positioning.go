@@ -308,6 +308,7 @@ func (ptr *QGeoAddress) Text() string {
 func (ptr *QGeoAddress) DestroyQGeoAddress() {
 	if ptr.Pointer() != nil {
 		C.QGeoAddress_DestroyQGeoAddress(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -471,6 +472,7 @@ func (ptr *QGeoAreaMonitorInfo) SetPersistent(isPersistent bool) {
 func (ptr *QGeoAreaMonitorInfo) DestroyQGeoAreaMonitorInfo() {
 	if ptr.Pointer() != nil {
 		C.QGeoAreaMonitorInfo_DestroyQGeoAreaMonitorInfo(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -1743,6 +1745,7 @@ func (ptr *QGeoCircle) Translated(degreesLatitude float64, degreesLongitude floa
 func (ptr *QGeoCircle) DestroyQGeoCircle() {
 	if ptr.Pointer() != nil {
 		C.QGeoCircle_DestroyQGeoCircle(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -1919,6 +1922,7 @@ func (ptr *QGeoCoordinate) Type() QGeoCoordinate__CoordinateType {
 func (ptr *QGeoCoordinate) DestroyQGeoCoordinate() {
 	if ptr.Pointer() != nil {
 		C.QGeoCoordinate_DestroyQGeoCoordinate(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -2153,6 +2157,7 @@ func (ptr *QGeoPath) Width() float64 {
 func (ptr *QGeoPath) DestroyQGeoPath() {
 	if ptr.Pointer() != nil {
 		C.QGeoPath_DestroyQGeoPath(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -2510,6 +2515,7 @@ func (ptr *QGeoPolygon) Translated(degreesLatitude float64, degreesLongitude flo
 func (ptr *QGeoPolygon) DestroyQGeoPolygon() {
 	if ptr.Pointer() != nil {
 		C.QGeoPolygon_DestroyQGeoPolygon(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -2802,6 +2808,7 @@ func (ptr *QGeoPositionInfo) Timestamp() *core.QDateTime {
 func (ptr *QGeoPositionInfo) DestroyQGeoPositionInfo() {
 	if ptr.Pointer() != nil {
 		C.QGeoPositionInfo_DestroyQGeoPositionInfo(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -4188,6 +4195,7 @@ func (ptr *QGeoRectangle) Width() float64 {
 func (ptr *QGeoRectangle) DestroyQGeoRectangle() {
 	if ptr.Pointer() != nil {
 		C.QGeoRectangle_DestroyQGeoRectangle(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -4349,6 +4357,7 @@ func (ptr *QGeoSatelliteInfo) SignalStrength() int {
 func (ptr *QGeoSatelliteInfo) DestroyQGeoSatelliteInfo() {
 	if ptr.Pointer() != nil {
 		C.QGeoSatelliteInfo_DestroyQGeoSatelliteInfo(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -5350,6 +5359,7 @@ func (ptr *QGeoShape) Type() QGeoShape__ShapeType {
 func (ptr *QGeoShape) DestroyQGeoShape() {
 	if ptr.Pointer() != nil {
 		C.QGeoShape_DestroyQGeoShape(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}

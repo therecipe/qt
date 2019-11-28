@@ -80,6 +80,7 @@ func NewCertificateErrorControllerFromPointer(ptr unsafe.Pointer) (n *Certificat
 
 func (ptr *CertificateErrorController) DestroyCertificateErrorController() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -126,6 +127,7 @@ func NewClientCertSelectControllerFromPointer(ptr unsafe.Pointer) (n *ClientCert
 
 func (ptr *ClientCertSelectController) DestroyClientCertSelectController() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -172,6 +174,7 @@ func NewCommandLinePrefStoreQtFromPointer(ptr unsafe.Pointer) (n *CommandLinePre
 
 func (ptr *CommandLinePrefStoreQt) DestroyCommandLinePrefStoreQt() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -257,6 +260,7 @@ func NewProxyConfigServiceQtFromPointer(ptr unsafe.Pointer) (n *ProxyConfigServi
 
 func (ptr *ProxyConfigServiceQt) DestroyProxyConfigServiceQt() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -2142,6 +2146,7 @@ func NewQWebEngineCallbackFromPointer(ptr unsafe.Pointer) (n *QWebEngineCallback
 
 func (ptr *QWebEngineCallback) DestroyQWebEngineCallback() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -2188,6 +2193,7 @@ func NewQWebEngineCertificateErrorFromPointer(ptr unsafe.Pointer) (n *QWebEngine
 
 func (ptr *QWebEngineCertificateError) DestroyQWebEngineCertificateError() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -2286,6 +2292,7 @@ func NewQWebEngineClientCertificateSelectionFromPointer(ptr unsafe.Pointer) (n *
 
 func (ptr *QWebEngineClientCertificateSelection) DestroyQWebEngineClientCertificateSelection() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -2392,6 +2399,7 @@ func NewQWebEngineClientCertificateStoreFromPointer(ptr unsafe.Pointer) (n *QWeb
 
 func (ptr *QWebEngineClientCertificateStore) DestroyQWebEngineClientCertificateStore() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -2489,6 +2497,7 @@ func NewQWebEngineContextMenuDataFromPointer(ptr unsafe.Pointer) (n *QWebEngineC
 
 func (ptr *QWebEngineContextMenuData) DestroyQWebEngineContextMenuData() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -3126,6 +3135,7 @@ func (ptr *QWebEngineHttpRequest) Url() *core.QUrl {
 func (ptr *QWebEngineHttpRequest) DestroyQWebEngineHttpRequest() {
 	if ptr.Pointer() != nil {
 		C.QWebEngineHttpRequest_DestroyQWebEngineHttpRequest(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -5312,7 +5322,11 @@ func (ptr *QWebEnginePage) ScrollPositionChanged(position core.QPointF_ITF) {
 //export callbackQWebEnginePage_SelectClientCertificate
 func callbackQWebEnginePage_SelectClientCertificate(ptr unsafe.Pointer, clientCertSelection unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "selectClientCertificate"); signal != nil {
-		(*(*func(*QWebEngineClientCertificateSelection))(signal))(NewQWebEngineClientCertificateSelectionFromPointer(clientCertSelection))
+		(*(*func(*QWebEngineClientCertificateSelection))(signal))(func() *QWebEngineClientCertificateSelection {
+			tmpValue := NewQWebEngineClientCertificateSelectionFromPointer(clientCertSelection)
+			runtime.SetFinalizer(tmpValue, (*QWebEngineClientCertificateSelection).DestroyQWebEngineClientCertificateSelection)
+			return tmpValue
+		}())
 	}
 
 }
@@ -6787,6 +6801,7 @@ func NewQWebEngineQuotaRequestFromPointer(ptr unsafe.Pointer) (n *QWebEngineQuot
 
 func (ptr *QWebEngineQuotaRequest) DestroyQWebEngineQuotaRequest() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -6861,6 +6876,7 @@ func NewQWebEngineRegisterProtocolHandlerRequestFromPointer(ptr unsafe.Pointer) 
 
 func (ptr *QWebEngineRegisterProtocolHandlerRequest) DestroyQWebEngineRegisterProtocolHandlerRequest() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -6935,6 +6951,7 @@ func NewQWebEngineScriptFromPointer(ptr unsafe.Pointer) (n *QWebEngineScript) {
 
 func (ptr *QWebEngineScript) DestroyQWebEngineScript() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -7001,6 +7018,7 @@ func NewQWebEngineScriptCollectionFromPointer(ptr unsafe.Pointer) (n *QWebEngine
 
 func (ptr *QWebEngineScriptCollection) DestroyQWebEngineScriptCollection() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -7242,6 +7260,7 @@ func (ptr *QWebEngineSettings) UnknownUrlSchemePolicy() QWebEngineSettings__Unkn
 func (ptr *QWebEngineSettings) DestroyQWebEngineSettings() {
 	if ptr.Pointer() != nil {
 		C.QWebEngineSettings_DestroyQWebEngineSettings(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -7287,6 +7306,7 @@ func NewQWebEngineUrlRequestInfoFromPointer(ptr unsafe.Pointer) (n *QWebEngineUr
 
 func (ptr *QWebEngineUrlRequestInfo) DestroyQWebEngineUrlRequestInfo() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -8317,6 +8337,7 @@ func (ptr *QWebEngineUrlScheme) SetSyntax(newValue QWebEngineUrlScheme__Syntax) 
 func (ptr *QWebEngineUrlScheme) DestroyQWebEngineUrlScheme() {
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlScheme_DestroyQWebEngineUrlScheme(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -10713,6 +10734,7 @@ func NewQtWebEngineFromPointer(ptr unsafe.Pointer) (n *QtWebEngine) {
 
 func (ptr *QtWebEngine) DestroyQtWebEngine() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -10767,6 +10789,7 @@ func NewRenderViewObserverQtFromPointer(ptr unsafe.Pointer) (n *RenderViewObserv
 
 func (ptr *RenderViewObserverQt) DestroyRenderViewObserverQt() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -10813,6 +10836,7 @@ func NewServiceQtFromPointer(ptr unsafe.Pointer) (n *ServiceQt) {
 
 func (ptr *ServiceQt) DestroyServiceQt() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -10859,6 +10883,7 @@ func NewUserResourceControllerFromPointer(ptr unsafe.Pointer) (n *UserResourceCo
 
 func (ptr *UserResourceController) DestroyUserResourceController() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -10905,6 +10930,7 @@ func NewUserScriptDataFromPointer(ptr unsafe.Pointer) (n *UserScriptData) {
 
 func (ptr *UserScriptData) DestroyUserScriptData() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -10951,6 +10977,7 @@ func NewWebEngineErrorFromPointer(ptr unsafe.Pointer) (n *WebEngineError) {
 
 func (ptr *WebEngineError) DestroyWebEngineError() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -10997,6 +11024,7 @@ func NewWebEngineLibraryInfoFromPointer(ptr unsafe.Pointer) (n *WebEngineLibrary
 
 func (ptr *WebEngineLibraryInfo) DestroyWebEngineLibraryInfo() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -11043,6 +11071,7 @@ func NewWebEventFactoryFromPointer(ptr unsafe.Pointer) (n *WebEventFactory) {
 
 func (ptr *WebEventFactory) DestroyWebEventFactory() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)

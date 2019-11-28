@@ -297,6 +297,30 @@ func goOutputFailed(value string, f *parser.Function, p string) string {
 }
 
 func cgoOutput(name, value string, f *parser.Function, p string) string {
+	if len(f.NeedsFinalizerFor) != 0 {
+		cgoout := _cgoOutput(name, value, f, p)
+		name := parser.CleanName(name, value)
+		value := parser.CleanValue(value)
+		for _, n := range f.NeedsFinalizerFor {
+			if n != name {
+				continue
+			}
+			if strings.Contains(value, ".") {
+				value = strings.Split(value, ".")[1]
+			}
+			if m := module(parser.State.ClassMap[value].Module); m != module(f) {
+				if _, ok := parser.State.ClassMap[f.ClassName()].WeakLink[parser.State.ClassMap[value].Module]; ok {
+					return cgoout //TODO: this might leak memory
+				}
+				return fmt.Sprintf("func()*%[3]v.%[1]v{ tmpValue:=%[2]v; runtime.SetFinalizer(tmpValue, (*%[3]v.%[1]v).Destroy%[1]v); return tmpValue; }()", strings.Title(value), cgoout, m)
+			}
+			return fmt.Sprintf("func()*%[1]v{ tmpValue:=%[2]v; runtime.SetFinalizer(tmpValue, (*%[1]v).Destroy%[1]v); return tmpValue; }()", strings.Title(value), cgoout)
+		}
+	}
+	return _cgoOutput(name, value, f, p)
+}
+
+func _cgoOutput(name, value string, f *parser.Function, p string) string {
 	vOld := value
 
 	name = parser.CleanName(name, value)
@@ -847,6 +871,9 @@ func _cppOutput(name, value string, f *parser.Function) string {
 			}
 
 			f.NeedsFinalizer = true
+			if f.SignalMode == parser.CALLBACK {
+				f.NeedsFinalizerFor = append(f.NeedsFinalizerFor, name)
+			}
 
 			switch value {
 			case "QModelIndex", "QMetaMethod", "QItemSelection", "QVoice", "QNdefNfcIconRecord":

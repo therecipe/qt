@@ -84,7 +84,7 @@ func isAlreadyCached(module, path, target string, mode int, libs []string) bool 
 		return false
 	}
 
-	for _, file := range CgoFileNames(module, path, target, mode) {
+	for _, file := range CgoFileNames(path, target, mode) {
 		file = filepath.Join(path, file)
 		if utils.ExistsFile(file) {
 			file = utils.Load(file)
@@ -243,6 +243,12 @@ func createProject(module, path, target string, mode int, libs []string) {
 	defer bb.Reset()
 	for _, o := range out {
 		fmt.Fprintf(bb, "qtHaveModule(%[1]v) { QT+=%[1]v }\n", o)
+		if o == "quickcontrols2" && utils.QT_GEN_QUICK_EXTRAS() {
+			fmt.Fprintf(bb, "qtHaveModule(qml-private) { QT+=qml-private }\n", o)
+			fmt.Fprintf(bb, "qtHaveModule(quick-private) { QT+=quick-private }\n", o)
+			fmt.Fprintf(bb, "qtHaveModule(quicktemplates2-private) { QT+=quicktemplates2-private }\n", o)
+			fmt.Fprintf(bb, "qtHaveModule(quickcontrols2-private) { QT+=quickcontrols2-private }\n", o)
+		}
 	}
 	if hasVirtualKeyboard && (utils.QT_STATIC() || target == "js" || target == "wasm") {
 		fmt.Fprintf(bb, "QTPLUGIN += qtvirtualkeyboardplugin\n")
@@ -642,7 +648,7 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 		return tmp
 	}
 
-	for _, file := range CgoFileNames(module, path, target, mode) {
+	for _, file := range CgoFileNames(path, target, mode) {
 		switch target {
 		case "android", "android-emulator":
 			tmp = strings.Replace(tmp, "/opt/android/"+filepath.Base(utils.ANDROID_NDK_DIR()), utils.ANDROID_NDK_DIR(), -1)
@@ -727,24 +733,24 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 	return ""
 }
 
-func CgoFileNames(_, path, target string, mode int) []string {
-	return cgoFileNamesRecursive("", path, target, mode, true)
+func CgoFileNames(path string, target string, mode int) []string {
+	return cgoFileNamesRecursive(path, target, mode, true)
 }
 
-func cgoFileNamesRecursive(_, path, target string, mode int, recursive bool) []string {
+func cgoFileNamesRecursive(path string, target string, mode int, recursive bool) []string {
 	var pFix string
 	switch mode {
 	case RCC:
 		pFix = "rcc_"
 		if utils.QT_STATIC() && target == "linux" && recursive { //TODO: fix wrong order issue in LDFLAGS instead
-			if mocName := filepath.Join(path, cgoFileNamesRecursive("", path, target, MOC, false)[0]); utils.ExistsFile(mocName) {
+			if mocName := filepath.Join(path, cgoFileNamesRecursive(path, target, MOC, false)[0]); utils.ExistsFile(mocName) {
 				pFix = "omit"
 			}
 		}
 	case MOC:
 		pFix = "moc_"
 		if utils.QT_STATIC() && target == "linux" && recursive { //TODO: fix wrong order issue in LDFLAGS instead
-			if rccName := filepath.Join(path, cgoFileNamesRecursive("", path, target, RCC, false)[0]); utils.ExistsFile(rccName) {
+			if rccName := filepath.Join(path, cgoFileNamesRecursive(path, target, RCC, false)[0]); utils.ExistsFile(rccName) {
 				utils.RemoveAll(rccName)
 			}
 		}
@@ -812,7 +818,7 @@ func cgoFileNamesRecursive(_, path, target string, mode int, recursive bool) []s
 func ParseCgo(module, target string) (string, string) {
 	utils.Log.WithField("module", module).WithField("target", target).Debug("parse cgo for shared lib")
 
-	tmp := utils.LoadOptional(utils.GoQtPkgPath(module, CgoFileNames(module, "", target, NONE)[0]))
+	tmp := utils.LoadOptional(utils.GoQtPkgPath(module, CgoFileNames("", target, NONE)[0]))
 	if tmp != "" {
 		tmp = strings.Split(tmp, "/*")[1]
 		tmp = strings.Split(tmp, "*/")[0]
@@ -837,10 +843,10 @@ func ParseCgo(module, target string) (string, string) {
 func ReplaceCgo(module, target string) {
 	utils.Log.WithField("module", module).WithField("target", target).Debug("replace cgo for shared lib")
 
-	tmp := utils.LoadOptional(utils.GoQtPkgPath(module, CgoFileNames(module, "", target, NONE)[0]))
+	tmp := utils.LoadOptional(utils.GoQtPkgPath(module, CgoFileNames("", target, NONE)[0]))
 	if tmp != "" {
 		pre := strings.Split(tmp, "/*")[0]
 		past := strings.Split(tmp, "*/")[1]
-		utils.Save(utils.GoQtPkgPath(module, CgoFileNames(module, "", target, NONE)[0]), fmt.Sprintf("%v/*\n#cgo CFLAGS: -I.\n#cgo LDFLAGS: -L. -l%v -Wl,-rpath,%v\n*/%v", pre, module, utils.GoQtPkgPath(), past))
+		utils.Save(utils.GoQtPkgPath(module, CgoFileNames("", target, NONE)[0]), fmt.Sprintf("%v/*\n#cgo CFLAGS: -I.\n#cgo LDFLAGS: -L. -l%v -Wl,-rpath,%v\n*/%v", pre, module, utils.GoQtPkgPath(), past))
 	}
 }

@@ -25,6 +25,7 @@ type Class struct {
 	Properties []*Variable `xml:"property"`
 	Classes    []*Class    `xml:"class"`
 	Since      string      `xml:"since,attr"`
+	Filepath   string      `xml:"filepath,attr"`
 
 	DocModule    string
 	Stub         bool
@@ -249,7 +250,9 @@ func (c *Class) IsSupported() bool {
 
 	switch c.Name {
 	case "QCborStreamReader", "QCborStreamWriter", "QCborValue", "QScopeGuard", "QTest",
-		"QImageReaderWriterHelpers", "QPasswordDigestor", "QDtls", "QDtlsClientVerifier", "QGeoJson":
+		"QImageReaderWriterHelpers", "QPasswordDigestor", "QDtls", "QDtlsClientVerifier", "QGeoJson",
+		"QQuickPopupItem", "QQuickDeferredPointer", "QQuickPopupPositioner", "QQuickVelocityCalculator",
+		"QQuickPressHandler", "QQuickStackElement", "QQuickPopupTransitionManager":
 		c.Access = "unsupported_isBlockedClass"
 		return false
 	}

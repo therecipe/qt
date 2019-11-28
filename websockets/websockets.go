@@ -2122,6 +2122,7 @@ func (ptr *QWebSocketCorsAuthenticator) Swap(other QWebSocketCorsAuthenticator_I
 func (ptr *QWebSocketCorsAuthenticator) DestroyQWebSocketCorsAuthenticator() {
 	if ptr.Pointer() != nil {
 		C.QWebSocketCorsAuthenticator_DestroyQWebSocketCorsAuthenticator(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -2167,6 +2168,7 @@ func NewQWebSocketProtocolFromPointer(ptr unsafe.Pointer) (n *QWebSocketProtocol
 
 func (ptr *QWebSocketProtocol) DestroyQWebSocketProtocol() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -3203,6 +3205,7 @@ func NewQtWebSocketsDeclarativeModuleFromPointer(ptr unsafe.Pointer) (n *QtWebSo
 
 func (ptr *QtWebSocketsDeclarativeModule) DestroyQtWebSocketsDeclarativeModule() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)

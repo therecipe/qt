@@ -74,6 +74,7 @@ func NewQQuickStyleFromPointer(ptr unsafe.Pointer) (n *QQuickStyle) {
 
 func (ptr *QQuickStyle) DestroyQQuickStyle() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)

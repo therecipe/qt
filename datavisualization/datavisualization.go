@@ -7888,6 +7888,7 @@ func (ptr *QBarDataItem) Value() float32 {
 func (ptr *QBarDataItem) DestroyQBarDataItem() {
 	if ptr.Pointer() != nil {
 		C.QBarDataItem_DestroyQBarDataItem(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -15735,6 +15736,7 @@ func (ptr *QScatterDataItem) Z() float32 {
 func (ptr *QScatterDataItem) DestroyQScatterDataItem() {
 	if ptr.Pointer() != nil {
 		C.QScatterDataItem_DestroyQScatterDataItem(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -16758,6 +16760,7 @@ func (ptr *QSurfaceDataItem) Z() float32 {
 func (ptr *QSurfaceDataItem) DestroyQSurfaceDataItem() {
 	if ptr.Pointer() != nil {
 		C.QSurfaceDataItem_DestroyQSurfaceDataItem(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}

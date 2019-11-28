@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"math"
 	"math/rand"
+	"path/filepath"
 	"sort"
 	"strings"
 	"time"
@@ -226,6 +227,7 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 
 						implementedVirtuals[f.Name+f.OverloadNumber] = struct{}{}
 
+						fOld := f
 						var f = *f
 						f.SignalMode = parser.CALLBACK
 						f.Fullname = fmt.Sprintf("%v::%v", class.Name, f.Name)
@@ -235,6 +237,10 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 							if fb := cppFunctionCallback(&f); len(fb) != 0 {
 								fmt.Fprintf(bb, "\t%v\n", fb)
 							}
+						}
+						if f.NeedsFinalizer {
+							fOld.NeedsFinalizer = true
+							fOld.NeedsFinalizerFor = f.NeedsFinalizerFor
 						}
 					}
 				}
@@ -295,9 +301,12 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 					fmt.Fprintln(bb, "public slots:")
 					for _, function := range class.Functions {
 						if function.Meta == parser.SLOT {
+							osm := function.SignalMode
+							function.SignalMode = parser.CALLBACK
 							if fb := cppFunctionCallback(function); len(fb) != 0 {
 								fmt.Fprintf(bb, "\t%v\n", fb)
 							}
+							function.SignalMode = osm
 						}
 					}
 
@@ -324,7 +333,9 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 						"QGamepad", "QQuickItem", "QQuickTextDocument", "QQuickTransform", "QQuickWindow", "QWebEngineCookieStore":
 						//re-definition
 					default:
-						fmt.Fprintf(bb, "Q_DECLARE_METATYPE(%v*)\n", class.Name)
+						if class.Module != "QtQuickControls2" || (class.Module == "QtQuickControls2" && !strings.HasPrefix(class.Name, "QQuick")) {
+							fmt.Fprintf(bb, "Q_DECLARE_METATYPE(%v*)\n", class.Name)
+						}
 					}
 				}
 				fmt.Fprintf(bb, "Q_DECLARE_METATYPE(%v%v*)\n\n",
@@ -339,7 +350,11 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 					if strings.HasPrefix(class.Name, "QMac") && !strings.HasPrefix(parser.State.ClassMap[class.Name].Module, "QtMac") {
 						fmt.Fprintf(bb, "int %[1]v_%[1]v_QRegisterMetaType(){\n\t#ifdef Q_OS_OSX\n\t\tqRegisterMetaType<%[1]v*>(); return qRegisterMetaType<My%[1]v*>();\n\t#else\n\t\treturn 0;\n\t#endif\n}\n\n", class.Name)
 					} else {
-						fmt.Fprintf(bb, "int %[1]v_%[1]v_QRegisterMetaType(){qRegisterMetaType<%[1]v*>(); return qRegisterMetaType<My%[1]v*>();}\n\n", class.Name)
+						if class.Module == "QtQuickControls2" && strings.HasPrefix(class.Name, "QQuick") {
+							fmt.Fprintf(bb, "int %[1]v_%[1]v_QRegisterMetaType(){return qRegisterMetaType<My%[1]v*>();}\n\n", class.Name)
+						} else {
+							fmt.Fprintf(bb, "int %[1]v_%[1]v_QRegisterMetaType(){qRegisterMetaType<%[1]v*>(); return qRegisterMetaType<My%[1]v*>();}\n\n", class.Name)
+						}
 					}
 				} else {
 					typeMap := make(map[string]string)
@@ -718,7 +733,16 @@ func preambleCpp(module string, input []byte, mode int, target, tags string) []b
 				}
 			}
 
-			fmt.Fprintf(bb, "#include <%v>\n", class)
+			if c.Module == "QtQuickControls2" && strings.HasPrefix(c.Name, "QQuick") && c.Name != "QQuickStyle" {
+				dir, fn := filepath.Split(c.Filepath)
+				if filepath.Base(dir) == "quickcontrols2" {
+					fmt.Fprintf(bb, "#include <QtQuickControls2/private/%v>\n", fn)
+				} else {
+					fmt.Fprintf(bb, "#include <QtQuickTemplates2/private/%v>\n", fn)
+				}
+			} else {
+				fmt.Fprintf(bb, "#include <%v>\n", class)
+			}
 
 			if (strings.HasPrefix(target, "ios") || target == "js" || target == "wasm") && mode == MINIMAL {
 				oldModuleGo := strings.TrimPrefix(c.Module, "Qt")

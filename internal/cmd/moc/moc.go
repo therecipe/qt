@@ -107,14 +107,15 @@ func moc(path, target, tags string, fast, slow, root bool, l int, dirty bool) {
 				tagsEnv = append(tagsEnv, strings.Split(tags, " ")...)
 			}
 			scmd.Args = append(scmd.Args, utils.BuildTags(tagsEnv))
+
+			if target != runtime.GOOS {
+				scmd.Args = append(scmd.Args, []string{"-pkgdir", filepath.Join(utils.MustGoPath(), "pkg", fmt.Sprintf("%v_%v_%v", strings.Replace(target, "-", "_", -1), env["GOOS"], env["GOARCH"]))}...)
+			}
+
 			if utils.UseGOMOD(path) && strings.Contains(strings.Replace(path, "\\", "/", -1), "/vendor/") {
 				scmd.Dir = filepath.Dir(utils.GOMOD(path))
 				vl := strings.Split(strings.Replace(path, "\\", "/", -1), "/vendor/")
 				scmd.Args = append(scmd.Args, vl[len(vl)-1])
-			}
-
-			if target != runtime.GOOS {
-				scmd.Args = append(scmd.Args, []string{"-pkgdir", filepath.Join(utils.MustGoPath(), "pkg", fmt.Sprintf("%v_%v_%v", strings.Replace(target, "-", "_", -1), env["GOOS"], env["GOARCH"]))}...)
 			}
 
 			for key, value := range env {
@@ -382,14 +383,15 @@ func moc(path, target, tags string, fast, slow, root bool, l int, dirty bool) {
 			tagsEnv = append(tagsEnv, strings.Split(tags, " ")...)
 		}
 		scmd.Args = append(scmd.Args, utils.BuildTags(tagsEnv))
+
+		if target != runtime.GOOS {
+			scmd.Args = append(scmd.Args, []string{"-pkgdir", filepath.Join(utils.MustGoPath(), "pkg", fmt.Sprintf("%v_%v_%v", strings.Replace(target, "-", "_", -1), env["GOOS"], env["GOARCH"]))}...)
+		}
+
 		if utils.UseGOMOD(path) && strings.Contains(strings.Replace(path, "\\", "/", -1), "/vendor/") {
 			scmd.Dir = filepath.Dir(utils.GOMOD(path))
 			vl := strings.Split(strings.Replace(path, "\\", "/", -1), "/vendor/")
 			scmd.Args = append(scmd.Args, vl[len(vl)-1])
-		}
-
-		if target != runtime.GOOS {
-			scmd.Args = append(scmd.Args, []string{"-pkgdir", filepath.Join(utils.MustGoPath(), "pkg", fmt.Sprintf("%v_%v_%v", strings.Replace(target, "-", "_", -1), env["GOOS"], env["GOARCH"]))}...)
 		}
 
 		for key, value := range env {

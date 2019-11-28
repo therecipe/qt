@@ -1030,6 +1030,7 @@ func (ptr *QJSValue) ToVariant() *core.QVariant {
 func (ptr *QJSValue) DestroyQJSValue() {
 	if ptr.Pointer() != nil {
 		C.QJSValue_DestroyQJSValue(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -1168,6 +1169,7 @@ func (ptr *QJSValueIterator) Value() *QJSValue {
 func (ptr *QJSValueIterator) DestroyQJSValueIterator() {
 	if ptr.Pointer() != nil {
 		C.QJSValueIterator_DestroyQJSValueIterator(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -3044,6 +3046,7 @@ func NewQQmlDebuggingEnablerFromPointer(ptr unsafe.Pointer) (n *QQmlDebuggingEna
 
 func (ptr *QQmlDebuggingEnabler) DestroyQQmlDebuggingEnabler() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -3972,6 +3975,7 @@ func NewQQmlErrorFromPointer(ptr unsafe.Pointer) (n *QQmlError) {
 
 func (ptr *QQmlError) DestroyQQmlError() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -5471,8 +5475,9 @@ func NewQQmlImageProviderBaseFromPointer(ptr unsafe.Pointer) (n *QQmlImageProvid
 
 func (ptr *QQmlImageProviderBase) DestroyQQmlImageProviderBase() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -5614,8 +5619,9 @@ func NewQQmlIncubationControllerFromPointer(ptr unsafe.Pointer) (n *QQmlIncubati
 
 func (ptr *QQmlIncubationController) DestroyQQmlIncubationController() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -5732,8 +5738,9 @@ func NewQQmlIncubatorFromPointer(ptr unsafe.Pointer) (n *QQmlIncubator) {
 
 func (ptr *QQmlIncubator) DestroyQQmlIncubator() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -5989,6 +5996,7 @@ func NewQQmlInfoFromPointer(ptr unsafe.Pointer) (n *QQmlInfo) {
 
 func (ptr *QQmlInfo) DestroyQQmlInfo() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -6035,6 +6043,7 @@ func NewQQmlListPropertyFromPointer(ptr unsafe.Pointer) (n *QQmlListProperty) {
 
 func (ptr *QQmlListProperty) DestroyQQmlListProperty() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -6081,6 +6090,7 @@ func NewQQmlListReferenceFromPointer(ptr unsafe.Pointer) (n *QQmlListReference) 
 
 func (ptr *QQmlListReference) DestroyQQmlListReference() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -6372,8 +6382,9 @@ func NewQQmlParserStatusFromPointer(ptr unsafe.Pointer) (n *QQmlParserStatus) {
 
 func (ptr *QQmlParserStatus) DestroyQQmlParserStatus() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -6491,6 +6502,7 @@ func NewQQmlPropertyFromPointer(ptr unsafe.Pointer) (n *QQmlProperty) {
 
 func (ptr *QQmlProperty) DestroyQQmlProperty() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -7554,6 +7566,7 @@ func NewQQmlScriptStringFromPointer(ptr unsafe.Pointer) (n *QQmlScriptString) {
 
 func (ptr *QQmlScriptString) DestroyQQmlScriptString() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)

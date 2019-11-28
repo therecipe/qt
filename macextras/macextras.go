@@ -76,8 +76,9 @@ func NewQMacPasteboardMimeFromPointer(ptr unsafe.Pointer) (n *QMacPasteboardMime
 
 func (ptr *QMacPasteboardMime) DestroyQMacPasteboardMime() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -136,7 +137,11 @@ func callbackQMacPasteboardMime_ConvertFromMime(ptr unsafe.Pointer, mime C.struc
 	if signal := qt.GetSignal(ptr, "convertFromMime"); signal != nil {
 		return func() unsafe.Pointer {
 			tmpList := NewQMacPasteboardMimeFromPointer(NewQMacPasteboardMimeFromPointer(nil).__convertFromMime_newList())
-			for _, v := range (*(*func(string, *core.QVariant, string) []*core.QByteArray)(signal))(cGoUnpackString(mime), core.NewQVariantFromPointer(data), cGoUnpackString(flav)) {
+			for _, v := range (*(*func(string, *core.QVariant, string) []*core.QByteArray)(signal))(cGoUnpackString(mime), func() *core.QVariant {
+				tmpValue := core.NewQVariantFromPointer(data)
+				runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+				return tmpValue
+			}(), cGoUnpackString(flav)) {
 				tmpList.__convertFromMime_setList(v)
 			}
 			return tmpList.Pointer()

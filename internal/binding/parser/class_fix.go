@@ -199,6 +199,25 @@ func (c *Class) fixGeneral_Version() {
 			}
 		}
 	}
+
+	if c.Module == "QtQuickControls2" && strings.HasPrefix(c.Name, "QQuick") {
+		for _, f := range c.Functions {
+			if f.Meta == CONSTRUCTOR && strings.Contains(f.Signature, "&") {
+				continue
+			}
+			if f.Meta == CONSTRUCTOR && (c.Name == "QQuickPaletteProvider" ||
+				c.Name == "QQuickPopupPositioner" ||
+				c.Name == "QQuickPopupTransitionManager" ||
+				c.Name == "QQuickStackElement" ||
+				c.Name == "QQuickStyleSelector" ||
+				c.Name == "QQuickTheme") {
+				continue
+			}
+
+			f.Status = "active"
+			f.Access = "public"
+		}
+	}
 }
 
 func (c *Class) fixLinkage() {

@@ -674,6 +674,9 @@ func goFunctionBody(function *parser.Function) string {
 	}
 
 	if (function.Name == "deleteLater" || strings.HasPrefix(function.Name, parser.TILDE)) && function.SignalMode == "" {
+		if !UseJs() && !class.HasCallbackFunctions() { //TODO: free c ptr in js/wasm ?
+			fmt.Fprint(bb, "\nC.free(ptr.Pointer())")
+		}
 		if function.Name != "deleteLater" {
 			fmt.Fprint(bb, "\nptr.SetPointer(nil)")
 		}

@@ -75,6 +75,7 @@ func NewAndroidAccelerometerFromPointer(ptr unsafe.Pointer) (n *AndroidAccelerom
 
 func (ptr *AndroidAccelerometer) DestroyAndroidAccelerometer() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -160,6 +161,7 @@ func NewAndroidGyroscopeFromPointer(ptr unsafe.Pointer) (n *AndroidGyroscope) {
 
 func (ptr *AndroidGyroscope) DestroyAndroidGyroscope() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -206,6 +208,7 @@ func NewAndroidLightFromPointer(ptr unsafe.Pointer) (n *AndroidLight) {
 
 func (ptr *AndroidLight) DestroyAndroidLight() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -252,6 +255,7 @@ func NewAndroidMagnetometerFromPointer(ptr unsafe.Pointer) (n *AndroidMagnetomet
 
 func (ptr *AndroidMagnetometer) DestroyAndroidMagnetometer() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -298,6 +302,7 @@ func NewAndroidPressureFromPointer(ptr unsafe.Pointer) (n *AndroidPressure) {
 
 func (ptr *AndroidPressure) DestroyAndroidPressure() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -344,6 +349,7 @@ func NewAndroidProximityFromPointer(ptr unsafe.Pointer) (n *AndroidProximity) {
 
 func (ptr *AndroidProximity) DestroyAndroidProximity() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -390,6 +396,7 @@ func NewAndroidRotationFromPointer(ptr unsafe.Pointer) (n *AndroidRotation) {
 
 func (ptr *AndroidRotation) DestroyAndroidRotation() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -436,6 +443,7 @@ func NewAndroidTemperatureFromPointer(ptr unsafe.Pointer) (n *AndroidTemperature
 
 func (ptr *AndroidTemperature) DestroyAndroidTemperature() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -483,8 +491,9 @@ func NewFunctionEventFromPointer(ptr unsafe.Pointer) (n *FunctionEvent) {
 
 func (ptr *FunctionEvent) DestroyFunctionEvent() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -1131,8 +1140,9 @@ func NewQAccelerometerFilterFromPointer(ptr unsafe.Pointer) (n *QAccelerometerFi
 
 func (ptr *QAccelerometerFilter) DestroyQAccelerometerFilter() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -1398,8 +1408,9 @@ func NewQAltimeterFilterFromPointer(ptr unsafe.Pointer) (n *QAltimeterFilter) {
 
 func (ptr *QAltimeterFilter) DestroyQAltimeterFilter() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -1535,8 +1546,9 @@ func NewQAmbientLightFilterFromPointer(ptr unsafe.Pointer) (n *QAmbientLightFilt
 
 func (ptr *QAmbientLightFilter) DestroyQAmbientLightFilter() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -1790,8 +1802,9 @@ func NewQAmbientTemperatureFilterFromPointer(ptr unsafe.Pointer) (n *QAmbientTem
 
 func (ptr *QAmbientTemperatureFilter) DestroyQAmbientTemperatureFilter() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -2135,8 +2148,9 @@ func NewQCompassFilterFromPointer(ptr unsafe.Pointer) (n *QCompassFilter) {
 
 func (ptr *QCompassFilter) DestroyQCompassFilter() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -2285,8 +2299,9 @@ func NewQDistanceFilterFromPointer(ptr unsafe.Pointer) (n *QDistanceFilter) {
 
 func (ptr *QDistanceFilter) DestroyQDistanceFilter() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -2630,8 +2645,9 @@ func NewQGyroscopeFilterFromPointer(ptr unsafe.Pointer) (n *QGyroscopeFilter) {
 
 func (ptr *QGyroscopeFilter) DestroyQGyroscopeFilter() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -2793,8 +2809,9 @@ func NewQHolsterFilterFromPointer(ptr unsafe.Pointer) (n *QHolsterFilter) {
 
 func (ptr *QHolsterFilter) DestroyQHolsterFilter() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -3034,8 +3051,9 @@ func NewQHumidityFilterFromPointer(ptr unsafe.Pointer) (n *QHumidityFilter) {
 
 func (ptr *QHumidityFilter) DestroyQHumidityFilter() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -3288,8 +3306,9 @@ func NewQIRProximityFilterFromPointer(ptr unsafe.Pointer) (n *QIRProximityFilter
 
 func (ptr *QIRProximityFilter) DestroyQIRProximityFilter() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -3529,8 +3548,9 @@ func NewQLidFilterFromPointer(ptr unsafe.Pointer) (n *QLidFilter) {
 
 func (ptr *QLidFilter) DestroyQLidFilter() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -3783,8 +3803,9 @@ func NewQLightFilterFromPointer(ptr unsafe.Pointer) (n *QLightFilter) {
 
 func (ptr *QLightFilter) DestroyQLightFilter() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -4234,8 +4255,9 @@ func NewQMagnetometerFilterFromPointer(ptr unsafe.Pointer) (n *QMagnetometerFilt
 
 func (ptr *QMagnetometerFilter) DestroyQMagnetometerFilter() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -4410,8 +4432,9 @@ func NewQOrientationFilterFromPointer(ptr unsafe.Pointer) (n *QOrientationFilter
 
 func (ptr *QOrientationFilter) DestroyQOrientationFilter() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -4666,8 +4689,9 @@ func NewQPressureFilterFromPointer(ptr unsafe.Pointer) (n *QPressureFilter) {
 
 func (ptr *QPressureFilter) DestroyQPressureFilter() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -4920,8 +4944,9 @@ func NewQProximityFilterFromPointer(ptr unsafe.Pointer) (n *QProximityFilter) {
 
 func (ptr *QProximityFilter) DestroyQProximityFilter() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -5161,8 +5186,9 @@ func NewQRotationFilterFromPointer(ptr unsafe.Pointer) (n *QRotationFilter) {
 
 func (ptr *QRotationFilter) DestroyQRotationFilter() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -7339,8 +7365,9 @@ func NewQSensorBackendFactoryFromPointer(ptr unsafe.Pointer) (n *QSensorBackendF
 
 func (ptr *QSensorBackendFactory) DestroyQSensorBackendFactory() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -7428,8 +7455,9 @@ func NewQSensorChangesInterfaceFromPointer(ptr unsafe.Pointer) (n *QSensorChange
 
 func (ptr *QSensorChangesInterface) DestroyQSensorChangesInterface() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -9365,6 +9393,7 @@ func NewQSensorManagerFromPointer(ptr unsafe.Pointer) (n *QSensorManager) {
 
 func (ptr *QSensorManager) DestroyQSensorManager() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
@@ -9459,8 +9488,9 @@ func NewQSensorPluginInterfaceFromPointer(ptr unsafe.Pointer) (n *QSensorPluginI
 
 func (ptr *QSensorPluginInterface) DestroyQSensorPluginInterface() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -9868,8 +9898,9 @@ func NewQTapFilterFromPointer(ptr unsafe.Pointer) (n *QTapFilter) {
 
 func (ptr *QTapFilter) DestroyQTapFilter() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -10196,8 +10227,9 @@ func NewQTiltFilterFromPointer(ptr unsafe.Pointer) (n *QTiltFilter) {
 
 func (ptr *QTiltFilter) DestroyQTiltFilter() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}

@@ -74,6 +74,7 @@ func NewQtWebViewFromPointer(ptr unsafe.Pointer) (n *QtWebView) {
 
 func (ptr *QtWebView) DestroyQtWebView() {
 	if ptr != nil {
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
