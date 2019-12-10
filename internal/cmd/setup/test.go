@@ -11,6 +11,7 @@ import (
 	"github.com/therecipe/qt/internal/binding/parser"
 	"github.com/therecipe/qt/internal/binding/templater"
 
+	"github.com/therecipe/qt/internal/cmd"
 	"github.com/therecipe/qt/internal/cmd/deploy"
 	"github.com/therecipe/qt/internal/cmd/minimal"
 	"github.com/therecipe/qt/internal/cmd/moc"
@@ -179,6 +180,7 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 			)
 			templater.CleanupDepsForCI()
 			templater.CleanupDepsForCI = func() {}
+			cmd.CleanupImportsQmlOrQuickForCI()
 		}
 	}
 }

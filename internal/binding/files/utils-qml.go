@@ -4,6 +4,7 @@ import (
 	"math"
 	"reflect"
 	"runtime"
+	"runtime/debug"
 	"strings"
 	"unsafe"
 
@@ -19,47 +20,58 @@ type ptr_itf interface {
 
 func Z_initEngine(engine QJSEngine_ITF) {
 	ptr := engine.QJSEngine_PTR()
-	if !ptr.GlobalObject().Property("___engineHelper").IsUndefined() {
+	if !ptr.GlobalObject().Property("___engineHelper").IsUndefined() || Z_newEngineHelper == nil {
 		return
 	}
+	ptr.GlobalObject().SetProperty("nil", NewQJSValue(QJSValue__UndefinedValue))
 	ptr.GlobalObject().SetProperty("___engineHelper", ptr.NewQObject(Z_newEngineHelper(engine)))
 	ptr.GlobalObject().SetProperty("___factory_single_func", ptr.Evaluate(`
 (function(that, cn, fn) {
-	return function(...args) {
-		return Array.isArray(...args) ? ___engineHelper.wrapperFunction([that, cn, fn].concat(args)) : ___engineHelper.wrapperFunction([that, cn, fn].concat(...args));
+	return function() {
+		var callArgs = [that, cn, fn];
+		for (var i = 0; i < arguments.length; i++) { callArgs.push(arguments[i]) }
+		return ___engineHelper.wrapperFunction(callArgs);
 	};
 });
-
 `, "", 0))
+
 	ptr.GlobalObject().SetProperty("___factory_batch_funcs", ptr.Evaluate(`
 (function(that, cn, fns) {
-	for (var fn of fns) {
+	fns.forEach(function(fn) {
 		that[fn] = ___factory_single_func(that, cn, fn, false);
-	}
+	})
 });
-
 `, "", 0))
+
 	ptr.GlobalObject().SetProperty("___factory_batch_global_funcs", ptr.Evaluate(`
 (function(that, pfx, fns) {
-	for (var fn of fns) {
+	fns.forEach(function(fn) {
 		that[fn] = ___factory_single_func(___engineHelper, pfx+"."+fn, "", false);
-	}
+	})
 });
 `, "", 0))
 
 	ptr.GlobalObject().SetProperty("___factory_batch_global_enums", ptr.Evaluate(`
 (function(that, ens) {
-	for (var en of ens) {
+	ens.forEach(function(en) {
 		that[en[0]] = en[1];
-	}
+	})
+});
+`, "", 0))
+
+	ptr.GlobalObject().SetProperty("___connectDestroyed", ptr.Evaluate(`
+(function(that) {
+	that.ConnectDestroyed(function(){ that.___pointer = nil })
 });
 `, "", 0))
 
 	prefE := make(map[string][][]interface{})
+	qt.EnumMapMutex.Lock()
 	for en, ev := range qt.EnumMap {
 		pfx := strings.Split(en, ".")
 		prefE[pfx[0]] = append(prefE[pfx[0]], []interface{}{pfx[1], ev})
 	}
+	qt.EnumMapMutex.Unlock()
 	for pfx, ens := range prefE {
 		var jsv *QJSValue
 		if m := ptr.GlobalObject().Property(pfx); m.IsUndefined() {
@@ -68,16 +80,20 @@ func Z_initEngine(engine QJSEngine_ITF) {
 		} else {
 			jsv = m
 		}
-		ptr.GlobalObject().Property("___factory_batch_global_enums").Call([]*QJSValue{jsv, ptr.NewGoType(ens)})
+		inp := ptr.NewGoType(ens)
+		ptr.GlobalObject().Property("___factory_batch_global_enums").Call([]*QJSValue{jsv, inp})
+		inp.DestroyQJSValue()
 	}
 
 	pref := make(map[string][]string)
+	qt.FuncMapMutex.Lock()
 	for fn := range qt.FuncMap {
 		pfx := strings.Split(fn, ".")
 		if len(pfx) == 2 { //TODO: re-register 3rdparty functions?
 			pref[pfx[0]] = append(pref[pfx[0]], pfx[1])
 		}
 	}
+	qt.FuncMapMutex.Unlock()
 
 	for pfx, fns := range pref {
 		var jsv *QJSValue
@@ -87,11 +103,20 @@ func Z_initEngine(engine QJSEngine_ITF) {
 		} else {
 			jsv = m
 		}
-		ptr.GlobalObject().Property("___factory_batch_global_funcs").Call([]*QJSValue{jsv, NewQJSValue8(pfx), ptr.ToScriptValue(core.NewQVariant1(fns))})
+		v := core.NewQVariant1(fns)
+		sv := ptr.ToScriptValue(v)
+		v.DestroyQVariant()
+		ptr.GlobalObject().Property("___factory_batch_global_funcs").Call([]*QJSValue{jsv, NewQJSValue8(pfx), sv})
+		sv.DestroyQJSValue()
 	}
 }
 
 func Z_wrapperFunction(jsvals *QJSValue) *QJSValue {
+	//TODO: the underlying ptr might be freed randomly atm, maybe same issue as the wasm issue ?
+	debug.SetGCPercent(-1)
+	defer debug.SetGCPercent(100)
+
+	//
 
 	var (
 		m      reflect.Value
@@ -99,15 +124,16 @@ func Z_wrapperFunction(jsvals *QJSValue) *QJSValue {
 	)
 
 	if cn, fn := jsvals.Property2(1).ToString(), jsvals.Property2(2).ToString(); fn == "" {
-		m = reflect.ValueOf(qt.FuncMap[cn])
+		v, _ := qt.GetFuncMap(cn)
+		m = reflect.ValueOf(v)
 
 		engine = QJSEngine_qjsEngine(jsvals.Property2(0).ToQObject())
 	} else {
 		var rt reflect.Type
-		if t, ok := qt.ItfMap[cn+"_ITF"]; ok {
+		if t, ok := qt.GetItfMap(cn + "_ITF"); ok {
 			rt = reflect.TypeOf(t)
 		} else {
-			t, _ = qt.ItfMap[cn]
+			t, _ = qt.GetItfMap(cn)
 			rt = reflect.TypeOf(t)
 		}
 
@@ -135,7 +161,17 @@ func Z_wrapperFunction(jsvals *QJSValue) *QJSValue {
 		return NewQJSValue(QJSValue__UndefinedValue)
 	}
 
-	return engine.NewGoType(ret[0].Interface())
+	rret := engine.NewGoType(ret[0].Interface())
+
+	if reflect.TypeOf(ret[0].Interface()).Implements(reflect.TypeOf((*core.QObject_ITF)(nil)).Elem()) { //TODO: check for destroyed signal instead, or simply override the destructor instead ?
+		if qt.ExistsSignal(ret[0].Interface().(ptr_itf).Pointer(), "destroyed") {
+			engine.GlobalObject().Property("___connectDestroyed").Call([]*QJSValue{rret, jsvals.Property2(1), jsvals.Property2(2)}) //TODO: connect destroyed/destructor from go instead ?
+		}
+	} else if reflect.TypeOf(ret[0].Interface()).Implements(reflect.TypeOf((*ptr_itf)(nil)).Elem()) {
+		qt.SetFinalizer(ret[0].Interface(), nil) //TODO: this leaks
+	}
+
+	return rret
 }
 
 func (ptr *QJSEngine) ToGoType(jsval *QJSValue, dst interface{}) {
@@ -149,11 +185,11 @@ func (ptr *QJSEngine) fromJsToRef(tofi reflect.Type, jsval *QJSValue) reflect.Va
 		tofi = tofi.Elem()
 	}
 
-	t, ok := qt.ItfMap[tofi.String()+"_ITF"]
+	t, ok := qt.GetItfMap(tofi.String() + "_ITF")
 	if ok {
 		tofi = reflect.TypeOf(t)
 	} else {
-		t, ok = qt.ItfMap[tofi.String()]
+		t, ok = qt.GetItfMap(tofi.String())
 		if ok {
 			tofi = reflect.TypeOf(t)
 		}
@@ -173,7 +209,7 @@ func (ptr *QJSEngine) fromJsToRef(tofi reflect.Type, jsval *QJSValue) reflect.Va
 		})
 
 		//TODO: merge into (*core.QVariant).ToGoType ? >>>
-	case tofi.ConvertibleTo(reflect.TypeOf(int8(0))):
+	case tofiO.ConvertibleTo(reflect.TypeOf(int8(0))):
 		switch tofi.Kind() {
 		case reflect.Float32, reflect.Float64:
 			return reflect.ValueOf(jsval.ToVariant().ToDouble(nil)).Convert(tofi)
@@ -201,6 +237,24 @@ func (ptr *QJSEngine) fromJsToRef(tofi reflect.Type, jsval *QJSValue) reflect.Va
 		return rv
 
 	case ok:
+		if tofi.String() == "qml.QJSValue" {
+			if className := jsval.Property("___className").ToString(); className != "qml.QJSValue" {
+				t, ok := qt.GetItfMap(className + "_ITF")
+				if ok {
+					tofi = reflect.TypeOf(t)
+				} else {
+					t, ok = qt.GetItfMap(className)
+					if ok {
+						tofi = reflect.TypeOf(t)
+					}
+				}
+				if ok {
+					rv := reflect.New(tofi)
+					rv.MethodByName("SetPointer").Call([]reflect.Value{reflect.ValueOf(unsafe.Pointer(uintptr(jsval.Property("___pointer").ToVariant().ToULongLong(nil))))})
+					return reflect.ValueOf(ptr.NewGoType(rv.Interface()))
+				}
+			}
+		}
 		//TODO: use ptr_itf instead ?
 		//TODO: use *FromPointer instead
 		//TODO: make SetPointer work as backup, for classes that don't support *FromPointer -> needs manual registration like for *FromPointer
@@ -256,12 +310,25 @@ func (ptr *QJSEngine) fromJsToRef(tofi reflect.Type, jsval *QJSValue) reflect.Va
 
 	ii := reflect.New(tofi)
 	jsval.ToVariant().ToGoType(ii.Interface()) //TODO: does ToGoType support QObject or ptr_itf types inside maps/slices/structs ?
+
+	if tofiO.Kind() == reflect.Ptr {
+		return reflect.ValueOf(ii.Interface())
+	}
+
 	return reflect.ValueOf(ii.Elem().Interface())
 }
 
 //TODO: NewQJSValue1
 
+func (ptr *QJSEngine) NewJSType(property *QJSValue, name string, i *QJSValue) { //TODO: support for js functions + rebuild QJSValues in wrapper function asap to work around the finalizer
+	ptr.newGoType(property, name, i)
+}
+
 func (ptr *QJSEngine) NewGoType(i ...interface{}) *QJSValue {
+	return ptr.newGoType(nil, "", i...)
+}
+
+func (ptr *QJSEngine) newGoType(property *QJSValue, name string, i ...interface{}) *QJSValue {
 	rv := reflect.ValueOf(i[0])
 	if len(i) > 1 {
 		rv = reflect.ValueOf(i[1])
@@ -298,8 +365,8 @@ func (ptr *QJSEngine) NewGoType(i ...interface{}) *QJSValue {
 			}
 		}
 
-		if _, ok := qt.FuncMap[fn]; !ok {
-			qt.FuncMap[fn] = rv.Interface()
+		if _, ok := qt.GetFuncMap(fn); !ok {
+			qt.SetFuncMap(fn, rv.Interface())
 		}
 
 		return ptr.makeFuncWrapper(fn)
@@ -307,7 +374,9 @@ func (ptr *QJSEngine) NewGoType(i ...interface{}) *QJSValue {
 	case reflect.Slice, reflect.Array:
 		jsv := ptr.NewArray(uint(rv.Len()))
 		for i := 0; i < rv.Len(); i++ {
-			jsv.SetProperty2(uint(i), ptr.NewGoType(rv.Index(i).Interface()))
+			inp := ptr.NewGoType(rv.Index(i).Interface())
+			jsv.SetProperty2(uint(i), inp)
+			inp.DestroyQJSValue()
 		}
 		return jsv
 
@@ -356,17 +425,42 @@ func (ptr *QJSEngine) NewGoType(i ...interface{}) *QJSValue {
 	var jsv *QJSValue
 
 	if v := core.NewQVariant1(i[0]); v.IsValid() {
-		if !reflect.TypeOf(i[0]).Implements(reflect.TypeOf((*core.QObject_ITF)(nil)).Elem()) && reflect.TypeOf(i[0]).Implements(reflect.TypeOf((*ptr_itf)(nil)).Elem()) {
+		if reflect.TypeOf(i[0]).Implements(reflect.TypeOf((*ptr_itf)(nil)).Elem()) {
 			jsv = ptr.NewObject()
-		} else if reflect.TypeOf(i[0]).Implements(reflect.TypeOf((*core.QObject_ITF)(nil)).Elem()) {
-			jsv = ptr.NewQObject(core.NewQObjectFromPointer(i[0].(ptr_itf).Pointer()))
 		} else {
 			jsv = ptr.ToScriptValue(v)
 		}
+	} else {
+		return NewQJSValue(QJSValue__UndefinedValue)
 	}
 
-	if reflect.TypeOf(i[0]).Implements(reflect.TypeOf((*ptr_itf)(nil)).Elem()) {
+	if rv.Type().String() == "*qml.QJSValue" {
+		className := rv.Interface().(*QJSValue).Property("___className").ToString()
+		if className != "qml.QJSValue" {
+			var tofi reflect.Type
+			t, ok := qt.GetItfMap(className + "_ITF")
+			if ok {
+				tofi = reflect.TypeOf(t)
+			} else {
+				t, ok = qt.GetItfMap(className)
+				if ok {
+					tofi = reflect.TypeOf(t)
+				}
+			}
+			if ok {
+				rvn := reflect.New(tofi)
+				rvn.MethodByName("SetPointer").Call([]reflect.Value{reflect.ValueOf(unsafe.Pointer(uintptr(rv.Interface().(*QJSValue).Property("___pointer").ToVariant().ToULongLong(nil))))})
+				ptr.makeObjectWrapper(rvn.Interface(), jsv)
+			}
+		}
+	}
+
+	if property == nil && reflect.TypeOf(i[0]).Implements(reflect.TypeOf((*ptr_itf)(nil)).Elem()) {
 		ptr.makeObjectWrapper(i[0], jsv)
+	}
+
+	if property != nil {
+		property.SetProperty(name, jsv)
 	}
 
 	return jsv
@@ -438,9 +532,10 @@ func (ptr *QJSEngine) makeObjectWrapper(in interface{}, jsv *QJSValue) {
 	rv := reflect.ValueOf(in)
 
 	className := rv.Type().Elem().String()
-	_, ok1 := qt.ItfMap[className+"_ITF"]
-	if _, ok2 := qt.ItfMap[className]; !(ok1 || ok2) {
-		qt.ItfMap[className] = rv.Elem().Interface()
+	jsv.SetProperty("___className", NewQJSValue8(className))
+	_, ok1 := qt.GetItfMap(className + "_ITF")
+	if _, ok2 := qt.GetItfMap(className); !(ok1 || ok2) {
+		qt.SetItfMap(className, rv.Elem().Interface())
 	}
 
 	/* TODO:

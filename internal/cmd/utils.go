@@ -22,7 +22,7 @@ var (
 
 	importedStd       = make(map[string]struct{})
 	importedStdMutex  = new(sync.Mutex)
-	importsQmlOrQuick string //TODO: needs to be cleared after deployment, to make qtsetup test work properly -> templater.CleanupDepsForCI()
+	importsQmlOrQuick string
 )
 
 func IsStdPkg(pkg string) bool {
@@ -192,6 +192,7 @@ func ImportsQmlOrQuick() (o bool) {
 	importedStdMutex.Unlock()
 	return
 }
+func CleanupImportsQmlOrQuickForCI() { importsQmlOrQuick = "" }
 
 func GetGoFiles(path, target, tagsCustom string) []string {
 	utils.Log.WithField("path", path).WithField("target", target).WithField("tagsCustom", tagsCustom).Debug("get go files")

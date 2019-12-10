@@ -242,7 +242,7 @@ func createProject(module, path, target string, mode int, libs []string) {
 	bb := new(bytes.Buffer)
 	defer bb.Reset()
 	for _, o := range out {
-		if !cmd.ImportsQmlOrQuick() && (o == "qml" || o == "quick") && !strings.Contains(strings.Replace(path, "\\", "/", -1), "internal/binding/runtime") {
+		if !cmd.ImportsQmlOrQuick() && (o == "qml" || o == "quick") && module == "build_static" {
 			continue
 		}
 		fmt.Fprintf(bb, "qtHaveModule(%[1]v) { QT+=%[1]v }\n", o)
