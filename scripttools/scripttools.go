@@ -12,7 +12,6 @@ import (
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/script"
 	"github.com/therecipe/qt/widgets"
-	"runtime"
 	"strings"
 	"unsafe"
 )
@@ -333,7 +332,7 @@ func (ptr *QScriptEngineDebugger) DestroyQScriptEngineDebugger() {
 	if ptr.Pointer() != nil {
 		C.QScriptEngineDebugger_DestroyQScriptEngineDebugger(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -341,7 +340,7 @@ func (ptr *QScriptEngineDebugger) DestroyQScriptEngineDebuggerDefault() {
 	if ptr.Pointer() != nil {
 		C.QScriptEngineDebugger_DestroyQScriptEngineDebuggerDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -369,7 +368,7 @@ func (ptr *QScriptEngineDebugger) __children_newList() unsafe.Pointer {
 func (ptr *QScriptEngineDebugger) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QScriptEngineDebugger___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -505,7 +504,7 @@ func callbackQScriptEngineDebugger_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QScriptEngineDebugger) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QScriptEngineDebugger_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 

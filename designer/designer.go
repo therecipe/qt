@@ -12,7 +12,6 @@ import (
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
 	"github.com/therecipe/qt/widgets"
-	"runtime"
 	"strings"
 	"unsafe"
 )
@@ -158,7 +157,7 @@ func (ptr *AppearanceOptions) DestroyAppearanceOptions() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -799,7 +798,7 @@ func (ptr *QAbstractFormBuilder) SetWorkingDirectory(directory core.QDir_ITF) {
 func (ptr *QAbstractFormBuilder) WorkingDirectory() *core.QDir {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQDirFromPointer(C.QAbstractFormBuilder_WorkingDirectory(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QDir).DestroyQDir)
+		qt.SetFinalizer(tmpValue, (*core.QDir).DestroyQDir)
 		return tmpValue
 	}
 	return nil
@@ -840,7 +839,7 @@ func (ptr *QAbstractFormBuilder) DestroyQAbstractFormBuilder() {
 	if ptr.Pointer() != nil {
 		C.QAbstractFormBuilder_DestroyQAbstractFormBuilder(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -848,7 +847,7 @@ func (ptr *QAbstractFormBuilder) DestroyQAbstractFormBuilderDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractFormBuilder_DestroyQAbstractFormBuilderDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1145,7 +1144,7 @@ func (ptr *QDesignerActionEditorInterface) DestroyQDesignerActionEditorInterface
 	if ptr.Pointer() != nil {
 		C.QDesignerActionEditorInterface_DestroyQDesignerActionEditorInterface(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1153,7 +1152,7 @@ func (ptr *QDesignerActionEditorInterface) DestroyQDesignerActionEditorInterface
 	if ptr.Pointer() != nil {
 		C.QDesignerActionEditorInterface_DestroyQDesignerActionEditorInterfaceDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1244,7 +1243,7 @@ func (ptr *QDesignerActionEditorInterface) __children_newList() unsafe.Pointer {
 func (ptr *QDesignerActionEditorInterface) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QDesignerActionEditorInterface___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -1648,7 +1647,7 @@ func callbackQDesignerActionEditorInterface_InputMethodQuery(ptr unsafe.Pointer,
 func (ptr *QDesignerActionEditorInterface) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QDesignerActionEditorInterface_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -1742,7 +1741,7 @@ func callbackQDesignerActionEditorInterface_MinimumSizeHint(ptr unsafe.Pointer) 
 func (ptr *QDesignerActionEditorInterface) MinimumSizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QDesignerActionEditorInterface_MinimumSizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -2157,7 +2156,7 @@ func callbackQDesignerActionEditorInterface_SizeHint(ptr unsafe.Pointer) unsafe.
 func (ptr *QDesignerActionEditorInterface) SizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QDesignerActionEditorInterface_SizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -2296,7 +2295,7 @@ func callbackQDesignerActionEditorInterface_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QDesignerActionEditorInterface) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QDesignerActionEditorInterface_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2577,7 +2576,7 @@ func (ptr *QDesignerComponents) DestroyQDesignerComponents() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3418,7 +3417,7 @@ func (ptr *QDesignerCustomWidgetInterface) DisconnectIcon() {
 func (ptr *QDesignerCustomWidgetInterface) Icon() *gui.QIcon {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQIconFromPointer(C.QDesignerCustomWidgetInterface_Icon(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+		qt.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
 		return tmpValue
 	}
 	return nil
@@ -3741,7 +3740,7 @@ func (ptr *QDesignerCustomWidgetInterface) DestroyQDesignerCustomWidgetInterface
 	if ptr.Pointer() != nil {
 		C.QDesignerCustomWidgetInterface_DestroyQDesignerCustomWidgetInterface(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3749,7 +3748,7 @@ func (ptr *QDesignerCustomWidgetInterface) DestroyQDesignerCustomWidgetInterface
 	if ptr.Pointer() != nil {
 		C.QDesignerCustomWidgetInterface_DestroyQDesignerCustomWidgetInterfaceDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4218,7 +4217,7 @@ func (ptr *QDesignerFormEditorInterface) DestroyQDesignerFormEditorInterface() {
 	if ptr.Pointer() != nil {
 		C.QDesignerFormEditorInterface_DestroyQDesignerFormEditorInterface(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4226,7 +4225,7 @@ func (ptr *QDesignerFormEditorInterface) DestroyQDesignerFormEditorInterfaceDefa
 	if ptr.Pointer() != nil {
 		C.QDesignerFormEditorInterface_DestroyQDesignerFormEditorInterfaceDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4283,7 +4282,7 @@ func (ptr *QDesignerFormEditorInterface) __children_newList() unsafe.Pointer {
 func (ptr *QDesignerFormEditorInterface) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QDesignerFormEditorInterface___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -4419,7 +4418,7 @@ func callbackQDesignerFormEditorInterface_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QDesignerFormEditorInterface) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QDesignerFormEditorInterface_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5322,7 +5321,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectAbsoluteDir() {
 func (ptr *QDesignerFormWindowInterface) AbsoluteDir() *core.QDir {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQDirFromPointer(C.QDesignerFormWindowInterface_AbsoluteDir(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QDir).DestroyQDir)
+		qt.SetFinalizer(tmpValue, (*core.QDir).DestroyQDir)
 		return tmpValue
 	}
 	return nil
@@ -6181,7 +6180,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectGrid() {
 func (ptr *QDesignerFormWindowInterface) Grid() *core.QPoint {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFromPointer(C.QDesignerFormWindowInterface_Grid(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
+		qt.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
 		return tmpValue
 	}
 	return nil
@@ -7593,7 +7592,7 @@ func (ptr *QDesignerFormWindowInterface) DestroyQDesignerFormWindowInterface() {
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowInterface_DestroyQDesignerFormWindowInterface(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7601,7 +7600,7 @@ func (ptr *QDesignerFormWindowInterface) DestroyQDesignerFormWindowInterfaceDefa
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowInterface_DestroyQDesignerFormWindowInterfaceDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7713,7 +7712,7 @@ func (ptr *QDesignerFormWindowInterface) __children_newList() unsafe.Pointer {
 func (ptr *QDesignerFormWindowInterface) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QDesignerFormWindowInterface___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8117,7 +8116,7 @@ func callbackQDesignerFormWindowInterface_InputMethodQuery(ptr unsafe.Pointer, q
 func (ptr *QDesignerFormWindowInterface) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QDesignerFormWindowInterface_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -8211,7 +8210,7 @@ func callbackQDesignerFormWindowInterface_MinimumSizeHint(ptr unsafe.Pointer) un
 func (ptr *QDesignerFormWindowInterface) MinimumSizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QDesignerFormWindowInterface_MinimumSizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -8626,7 +8625,7 @@ func callbackQDesignerFormWindowInterface_SizeHint(ptr unsafe.Pointer) unsafe.Po
 func (ptr *QDesignerFormWindowInterface) SizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QDesignerFormWindowInterface_SizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -8765,7 +8764,7 @@ func callbackQDesignerFormWindowInterface_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QDesignerFormWindowInterface) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowInterface_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -9277,7 +9276,7 @@ func (ptr *QDesignerFormWindowManagerInterface) DisconnectCreatePreviewPixmap() 
 func (ptr *QDesignerFormWindowManagerInterface) CreatePreviewPixmap() *gui.QPixmap {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPixmapFromPointer(C.QDesignerFormWindowManagerInterface_CreatePreviewPixmap(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QPixmap).DestroyQPixmap)
+		qt.SetFinalizer(tmpValue, (*gui.QPixmap).DestroyQPixmap)
 		return tmpValue
 	}
 	return nil
@@ -9662,7 +9661,7 @@ func (ptr *QDesignerFormWindowManagerInterface) DestroyQDesignerFormWindowManage
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowManagerInterface_DestroyQDesignerFormWindowManagerInterface(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -9670,7 +9669,7 @@ func (ptr *QDesignerFormWindowManagerInterface) DestroyQDesignerFormWindowManage
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowManagerInterface_DestroyQDesignerFormWindowManagerInterfaceDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -9702,7 +9701,7 @@ func (ptr *QDesignerFormWindowManagerInterface) __children_newList() unsafe.Poin
 func (ptr *QDesignerFormWindowManagerInterface) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QDesignerFormWindowManagerInterface___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -9838,7 +9837,7 @@ func callbackQDesignerFormWindowManagerInterface_DeleteLater(ptr unsafe.Pointer)
 func (ptr *QDesignerFormWindowManagerInterface) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowManagerInterface_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -9979,7 +9978,7 @@ func (ptr *QDesignerLanguageExtension) DestroyQDesignerLanguageExtension() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -10636,7 +10635,7 @@ func (ptr *QDesignerMemberSheetExtension) DestroyQDesignerMemberSheetExtension()
 	if ptr.Pointer() != nil {
 		C.QDesignerMemberSheetExtension_DestroyQDesignerMemberSheetExtension(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -10644,14 +10643,14 @@ func (ptr *QDesignerMemberSheetExtension) DestroyQDesignerMemberSheetExtensionDe
 	if ptr.Pointer() != nil {
 		C.QDesignerMemberSheetExtension_DestroyQDesignerMemberSheetExtensionDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QDesignerMemberSheetExtension) __parameterNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QDesignerMemberSheetExtension___parameterNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -10670,7 +10669,7 @@ func (ptr *QDesignerMemberSheetExtension) __parameterNames_newList() unsafe.Poin
 func (ptr *QDesignerMemberSheetExtension) __parameterTypes_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QDesignerMemberSheetExtension___parameterTypes_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -10856,7 +10855,7 @@ func (ptr *QDesignerObjectInspectorInterface) DestroyQDesignerObjectInspectorInt
 	if ptr.Pointer() != nil {
 		C.QDesignerObjectInspectorInterface_DestroyQDesignerObjectInspectorInterface(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -10864,7 +10863,7 @@ func (ptr *QDesignerObjectInspectorInterface) DestroyQDesignerObjectInspectorInt
 	if ptr.Pointer() != nil {
 		C.QDesignerObjectInspectorInterface_DestroyQDesignerObjectInspectorInterfaceDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -10955,7 +10954,7 @@ func (ptr *QDesignerObjectInspectorInterface) __children_newList() unsafe.Pointe
 func (ptr *QDesignerObjectInspectorInterface) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QDesignerObjectInspectorInterface___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -11359,7 +11358,7 @@ func callbackQDesignerObjectInspectorInterface_InputMethodQuery(ptr unsafe.Point
 func (ptr *QDesignerObjectInspectorInterface) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QDesignerObjectInspectorInterface_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -11453,7 +11452,7 @@ func callbackQDesignerObjectInspectorInterface_MinimumSizeHint(ptr unsafe.Pointe
 func (ptr *QDesignerObjectInspectorInterface) MinimumSizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QDesignerObjectInspectorInterface_MinimumSizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -11868,7 +11867,7 @@ func callbackQDesignerObjectInspectorInterface_SizeHint(ptr unsafe.Pointer) unsa
 func (ptr *QDesignerObjectInspectorInterface) SizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QDesignerObjectInspectorInterface_SizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -12007,7 +12006,7 @@ func callbackQDesignerObjectInspectorInterface_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QDesignerObjectInspectorInterface) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QDesignerObjectInspectorInterface_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -12500,7 +12499,7 @@ func (ptr *QDesignerPropertyEditorInterface) DestroyQDesignerPropertyEditorInter
 	if ptr.Pointer() != nil {
 		C.QDesignerPropertyEditorInterface_DestroyQDesignerPropertyEditorInterface(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -12508,7 +12507,7 @@ func (ptr *QDesignerPropertyEditorInterface) DestroyQDesignerPropertyEditorInter
 	if ptr.Pointer() != nil {
 		C.QDesignerPropertyEditorInterface_DestroyQDesignerPropertyEditorInterfaceDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -12599,7 +12598,7 @@ func (ptr *QDesignerPropertyEditorInterface) __children_newList() unsafe.Pointer
 func (ptr *QDesignerPropertyEditorInterface) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QDesignerPropertyEditorInterface___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -13003,7 +13002,7 @@ func callbackQDesignerPropertyEditorInterface_InputMethodQuery(ptr unsafe.Pointe
 func (ptr *QDesignerPropertyEditorInterface) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QDesignerPropertyEditorInterface_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -13097,7 +13096,7 @@ func callbackQDesignerPropertyEditorInterface_MinimumSizeHint(ptr unsafe.Pointer
 func (ptr *QDesignerPropertyEditorInterface) MinimumSizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QDesignerPropertyEditorInterface_MinimumSizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -13512,7 +13511,7 @@ func callbackQDesignerPropertyEditorInterface_SizeHint(ptr unsafe.Pointer) unsaf
 func (ptr *QDesignerPropertyEditorInterface) SizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QDesignerPropertyEditorInterface_SizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -13651,7 +13650,7 @@ func callbackQDesignerPropertyEditorInterface_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QDesignerPropertyEditorInterface) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QDesignerPropertyEditorInterface_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -14083,7 +14082,7 @@ func (ptr *QDesignerPropertySheetExtension) DisconnectProperty() {
 func (ptr *QDesignerPropertySheetExtension) Property(index int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QDesignerPropertySheetExtension_Property(ptr.Pointer(), C.int(int32(index))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -14425,7 +14424,7 @@ func (ptr *QDesignerPropertySheetExtension) DestroyQDesignerPropertySheetExtensi
 	if ptr.Pointer() != nil {
 		C.QDesignerPropertySheetExtension_DestroyQDesignerPropertySheetExtension(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -14433,7 +14432,7 @@ func (ptr *QDesignerPropertySheetExtension) DestroyQDesignerPropertySheetExtensi
 	if ptr.Pointer() != nil {
 		C.QDesignerPropertySheetExtension_DestroyQDesignerPropertySheetExtensionDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -14562,7 +14561,7 @@ func (ptr *QDesignerResourceBrowserInterface) __children_newList() unsafe.Pointe
 func (ptr *QDesignerResourceBrowserInterface) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QDesignerResourceBrowserInterface___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -14966,7 +14965,7 @@ func callbackQDesignerResourceBrowserInterface_InputMethodQuery(ptr unsafe.Point
 func (ptr *QDesignerResourceBrowserInterface) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QDesignerResourceBrowserInterface_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -15060,7 +15059,7 @@ func callbackQDesignerResourceBrowserInterface_MinimumSizeHint(ptr unsafe.Pointe
 func (ptr *QDesignerResourceBrowserInterface) MinimumSizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QDesignerResourceBrowserInterface_MinimumSizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -15475,7 +15474,7 @@ func callbackQDesignerResourceBrowserInterface_SizeHint(ptr unsafe.Pointer) unsa
 func (ptr *QDesignerResourceBrowserInterface) SizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QDesignerResourceBrowserInterface_SizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -15614,7 +15613,7 @@ func callbackQDesignerResourceBrowserInterface_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QDesignerResourceBrowserInterface) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QDesignerResourceBrowserInterface_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -15778,7 +15777,7 @@ func (ptr *QDesignerSettings) DestroyQDesignerSettings() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -16265,7 +16264,7 @@ func (ptr *QDesignerWidgetBoxInterface) DestroyQDesignerWidgetBoxInterface() {
 	if ptr.Pointer() != nil {
 		C.QDesignerWidgetBoxInterface_DestroyQDesignerWidgetBoxInterface(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -16273,7 +16272,7 @@ func (ptr *QDesignerWidgetBoxInterface) DestroyQDesignerWidgetBoxInterfaceDefaul
 	if ptr.Pointer() != nil {
 		C.QDesignerWidgetBoxInterface_DestroyQDesignerWidgetBoxInterfaceDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -16368,7 +16367,7 @@ func (ptr *QDesignerWidgetBoxInterface) __children_newList() unsafe.Pointer {
 func (ptr *QDesignerWidgetBoxInterface) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QDesignerWidgetBoxInterface___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -16772,7 +16771,7 @@ func callbackQDesignerWidgetBoxInterface_InputMethodQuery(ptr unsafe.Pointer, qu
 func (ptr *QDesignerWidgetBoxInterface) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QDesignerWidgetBoxInterface_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -16866,7 +16865,7 @@ func callbackQDesignerWidgetBoxInterface_MinimumSizeHint(ptr unsafe.Pointer) uns
 func (ptr *QDesignerWidgetBoxInterface) MinimumSizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QDesignerWidgetBoxInterface_MinimumSizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -17281,7 +17280,7 @@ func callbackQDesignerWidgetBoxInterface_SizeHint(ptr unsafe.Pointer) unsafe.Poi
 func (ptr *QDesignerWidgetBoxInterface) SizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QDesignerWidgetBoxInterface_SizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -17420,7 +17419,7 @@ func callbackQDesignerWidgetBoxInterface_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QDesignerWidgetBoxInterface) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QDesignerWidgetBoxInterface_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -17751,7 +17750,7 @@ func (ptr *QExtensionFactory) __children_newList() unsafe.Pointer {
 func (ptr *QExtensionFactory) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QExtensionFactory___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -17905,14 +17904,14 @@ func callbackQExtensionFactory_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QExtensionFactory) DeleteLater() {
 	if ptr.Pointer() != nil {
 		C.QExtensionFactory_DeleteLater(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QExtensionFactory) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QExtensionFactory_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -18296,7 +18295,7 @@ func (ptr *QExtensionManager) DestroyQExtensionManager() {
 	if ptr.Pointer() != nil {
 		C.QExtensionManager_DestroyQExtensionManager(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -18304,7 +18303,7 @@ func (ptr *QExtensionManager) DestroyQExtensionManagerDefault() {
 	if ptr.Pointer() != nil {
 		C.QExtensionManager_DestroyQExtensionManagerDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -18332,7 +18331,7 @@ func (ptr *QExtensionManager) __children_newList() unsafe.Pointer {
 func (ptr *QExtensionManager) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QExtensionManager___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -18486,14 +18485,14 @@ func callbackQExtensionManager_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QExtensionManager) DeleteLater() {
 	if ptr.Pointer() != nil {
 		C.QExtensionManager_DeleteLater(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QExtensionManager) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QExtensionManager_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -18895,7 +18894,7 @@ func (ptr *ToolWindowFontSettings) DestroyToolWindowFontSettings() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 

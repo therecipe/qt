@@ -11,7 +11,6 @@ import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"reflect"
-	"runtime"
 	"strings"
 	"unsafe"
 )
@@ -1096,7 +1095,7 @@ func (ptr *QSerialPort) DestroyQSerialPort() {
 	if ptr.Pointer() != nil {
 		C.QSerialPort_DestroyQSerialPort(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1104,7 +1103,7 @@ func (ptr *QSerialPort) DestroyQSerialPortDefault() {
 	if ptr.Pointer() != nil {
 		C.QSerialPort_DestroyQSerialPortDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1132,7 +1131,7 @@ func (ptr *QSerialPort) __children_newList() unsafe.Pointer {
 func (ptr *QSerialPort) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QSerialPort___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -1380,7 +1379,7 @@ func callbackQSerialPort_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QSerialPort) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QSerialPort_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1517,13 +1516,13 @@ func NewQSerialPortInfoFromPointer(ptr unsafe.Pointer) (n *QSerialPortInfo) {
 }
 func NewQSerialPortInfo() *QSerialPortInfo {
 	tmpValue := NewQSerialPortInfoFromPointer(C.QSerialPortInfo_NewQSerialPortInfo())
-	runtime.SetFinalizer(tmpValue, (*QSerialPortInfo).DestroyQSerialPortInfo)
+	qt.SetFinalizer(tmpValue, (*QSerialPortInfo).DestroyQSerialPortInfo)
 	return tmpValue
 }
 
 func NewQSerialPortInfo2(port QSerialPort_ITF) *QSerialPortInfo {
 	tmpValue := NewQSerialPortInfoFromPointer(C.QSerialPortInfo_NewQSerialPortInfo2(PointerFromQSerialPort(port)))
-	runtime.SetFinalizer(tmpValue, (*QSerialPortInfo).DestroyQSerialPortInfo)
+	qt.SetFinalizer(tmpValue, (*QSerialPortInfo).DestroyQSerialPortInfo)
 	return tmpValue
 }
 
@@ -1534,13 +1533,13 @@ func NewQSerialPortInfo3(name string) *QSerialPortInfo {
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	tmpValue := NewQSerialPortInfoFromPointer(C.QSerialPortInfo_NewQSerialPortInfo3(C.struct_QtSerialPort_PackedString{data: nameC, len: C.longlong(len(name))}))
-	runtime.SetFinalizer(tmpValue, (*QSerialPortInfo).DestroyQSerialPortInfo)
+	qt.SetFinalizer(tmpValue, (*QSerialPortInfo).DestroyQSerialPortInfo)
 	return tmpValue
 }
 
 func NewQSerialPortInfo4(other QSerialPortInfo_ITF) *QSerialPortInfo {
 	tmpValue := NewQSerialPortInfoFromPointer(C.QSerialPortInfo_NewQSerialPortInfo4(PointerFromQSerialPortInfo(other)))
-	runtime.SetFinalizer(tmpValue, (*QSerialPortInfo).DestroyQSerialPortInfo)
+	qt.SetFinalizer(tmpValue, (*QSerialPortInfo).DestroyQSerialPortInfo)
 	return tmpValue
 }
 
@@ -1676,14 +1675,14 @@ func (ptr *QSerialPortInfo) DestroyQSerialPortInfo() {
 		C.QSerialPortInfo_DestroyQSerialPortInfo(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QSerialPortInfo) __availablePorts_atList(i int) *QSerialPortInfo {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSerialPortInfoFromPointer(C.QSerialPortInfo___availablePorts_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSerialPortInfo).DestroyQSerialPortInfo)
+		qt.SetFinalizer(tmpValue, (*QSerialPortInfo).DestroyQSerialPortInfo)
 		return tmpValue
 	}
 	return nil

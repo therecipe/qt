@@ -10,7 +10,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"runtime"
 	"strings"
 	"unsafe"
 )
@@ -81,7 +80,7 @@ func (ptr *QQmlWebChannel) __registerObjects_objects_atList(v string, i int) *co
 			defer C.free(unsafe.Pointer(vC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QQmlWebChannel___registerObjects_objects_atList(ptr.Pointer(), C.struct_QtWebChannel_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -361,7 +360,7 @@ func (ptr *QWebChannel) DestroyQWebChannel() {
 	if ptr.Pointer() != nil {
 		C.QWebChannel_DestroyQWebChannel(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -369,7 +368,7 @@ func (ptr *QWebChannel) DestroyQWebChannelDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebChannel_DestroyQWebChannelDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -531,7 +530,7 @@ func (ptr *QWebChannel) __children_newList() unsafe.Pointer {
 func (ptr *QWebChannel) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QWebChannel___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -667,7 +666,7 @@ func callbackQWebChannel_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QWebChannel) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebChannel_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -922,7 +921,7 @@ func (ptr *QWebChannelAbstractTransport) DestroyQWebChannelAbstractTransport() {
 	if ptr.Pointer() != nil {
 		C.QWebChannelAbstractTransport_DestroyQWebChannelAbstractTransport(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -930,7 +929,7 @@ func (ptr *QWebChannelAbstractTransport) DestroyQWebChannelAbstractTransportDefa
 	if ptr.Pointer() != nil {
 		C.QWebChannelAbstractTransport_DestroyQWebChannelAbstractTransportDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -958,7 +957,7 @@ func (ptr *QWebChannelAbstractTransport) __children_newList() unsafe.Pointer {
 func (ptr *QWebChannelAbstractTransport) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QWebChannelAbstractTransport___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -1094,7 +1093,7 @@ func callbackQWebChannelAbstractTransport_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QWebChannelAbstractTransport) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebChannelAbstractTransport_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 

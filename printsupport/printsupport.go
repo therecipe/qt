@@ -12,7 +12,6 @@ import (
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
 	"github.com/therecipe/qt/widgets"
-	"runtime"
 	"strings"
 	"unsafe"
 )
@@ -328,7 +327,7 @@ func (ptr *QAbstractPrintDialog) __children_newList() unsafe.Pointer {
 func (ptr *QAbstractPrintDialog) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QAbstractPrintDialog___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -526,7 +525,7 @@ func callbackQAbstractPrintDialog_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Poi
 func (ptr *QAbstractPrintDialog) MinimumSizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QAbstractPrintDialog_MinimumSizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -627,7 +626,7 @@ func callbackQAbstractPrintDialog_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 func (ptr *QAbstractPrintDialog) SizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QAbstractPrintDialog_SizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -928,7 +927,7 @@ func callbackQAbstractPrintDialog_InputMethodQuery(ptr unsafe.Pointer, query C.l
 func (ptr *QAbstractPrintDialog) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QAbstractPrintDialog_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -1480,7 +1479,7 @@ func callbackQAbstractPrintDialog_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QAbstractPrintDialog) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractPrintDialog_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1730,7 +1729,7 @@ func (ptr *QPageSetupDialog) DestroyQPageSetupDialog() {
 	if ptr.Pointer() != nil {
 		C.QPageSetupDialog_DestroyQPageSetupDialog(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1738,7 +1737,7 @@ func (ptr *QPageSetupDialog) DestroyQPageSetupDialogDefault() {
 	if ptr.Pointer() != nil {
 		C.QPageSetupDialog_DestroyQPageSetupDialogDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1829,7 +1828,7 @@ func (ptr *QPageSetupDialog) __children_newList() unsafe.Pointer {
 func (ptr *QPageSetupDialog) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QPageSetupDialog___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -2012,7 +2011,7 @@ func callbackQPageSetupDialog_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer
 func (ptr *QPageSetupDialog) MinimumSizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QPageSetupDialog_MinimumSizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -2098,7 +2097,7 @@ func callbackQPageSetupDialog_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 func (ptr *QPageSetupDialog) SizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QPageSetupDialog_SizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -2399,7 +2398,7 @@ func callbackQPageSetupDialog_InputMethodQuery(ptr unsafe.Pointer, query C.longl
 func (ptr *QPageSetupDialog) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QPageSetupDialog_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -2951,7 +2950,7 @@ func callbackQPageSetupDialog_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QPageSetupDialog) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QPageSetupDialog_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3060,7 +3059,7 @@ func (ptr *QPlatformPrintDevice) DestroyQPlatformPrintDevice() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3349,7 +3348,7 @@ func (ptr *QPrintDialog) DestroyQPrintDialog() {
 	if ptr.Pointer() != nil {
 		C.QPrintDialog_DestroyQPrintDialog(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3357,7 +3356,7 @@ func (ptr *QPrintDialog) DestroyQPrintDialogDefault() {
 	if ptr.Pointer() != nil {
 		C.QPrintDialog_DestroyQPrintDialogDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3624,7 +3623,7 @@ func (ptr *QPrintEngine) DisconnectProperty() {
 func (ptr *QPrintEngine) Property(key QPrintEngine__PrintEnginePropertyKey) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QPrintEngine_Property(ptr.Pointer(), C.longlong(key)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -3701,7 +3700,7 @@ func (ptr *QPrintEngine) DestroyQPrintEngine() {
 	if ptr.Pointer() != nil {
 		C.QPrintEngine_DestroyQPrintEngine(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3709,7 +3708,7 @@ func (ptr *QPrintEngine) DestroyQPrintEngineDefault() {
 	if ptr.Pointer() != nil {
 		C.QPrintEngine_DestroyQPrintEngineDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3907,7 +3906,7 @@ func (ptr *QPrintPreviewDialog) DestroyQPrintPreviewDialog() {
 	if ptr.Pointer() != nil {
 		C.QPrintPreviewDialog_DestroyQPrintPreviewDialog(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3915,7 +3914,7 @@ func (ptr *QPrintPreviewDialog) DestroyQPrintPreviewDialogDefault() {
 	if ptr.Pointer() != nil {
 		C.QPrintPreviewDialog_DestroyQPrintPreviewDialogDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4006,7 +4005,7 @@ func (ptr *QPrintPreviewDialog) __children_newList() unsafe.Pointer {
 func (ptr *QPrintPreviewDialog) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QPrintPreviewDialog___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -4205,7 +4204,7 @@ func callbackQPrintPreviewDialog_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Poin
 func (ptr *QPrintPreviewDialog) MinimumSizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QPrintPreviewDialog_MinimumSizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -4276,7 +4275,7 @@ func callbackQPrintPreviewDialog_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 func (ptr *QPrintPreviewDialog) SizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QPrintPreviewDialog_SizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -4577,7 +4576,7 @@ func callbackQPrintPreviewDialog_InputMethodQuery(ptr unsafe.Pointer, query C.lo
 func (ptr *QPrintPreviewDialog) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QPrintPreviewDialog_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -5129,7 +5128,7 @@ func callbackQPrintPreviewDialog_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QPrintPreviewDialog) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QPrintPreviewDialog_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6158,7 +6157,7 @@ func (ptr *QPrintPreviewWidget) DestroyQPrintPreviewWidget() {
 	if ptr.Pointer() != nil {
 		C.QPrintPreviewWidget_DestroyQPrintPreviewWidget(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6166,7 +6165,7 @@ func (ptr *QPrintPreviewWidget) DestroyQPrintPreviewWidgetDefault() {
 	if ptr.Pointer() != nil {
 		C.QPrintPreviewWidget_DestroyQPrintPreviewWidgetDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6257,7 +6256,7 @@ func (ptr *QPrintPreviewWidget) __children_newList() unsafe.Pointer {
 func (ptr *QPrintPreviewWidget) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QPrintPreviewWidget___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -6661,7 +6660,7 @@ func callbackQPrintPreviewWidget_InputMethodQuery(ptr unsafe.Pointer, query C.lo
 func (ptr *QPrintPreviewWidget) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QPrintPreviewWidget_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -6755,7 +6754,7 @@ func callbackQPrintPreviewWidget_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Poin
 func (ptr *QPrintPreviewWidget) MinimumSizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QPrintPreviewWidget_MinimumSizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -7155,7 +7154,7 @@ func callbackQPrintPreviewWidget_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 func (ptr *QPrintPreviewWidget) SizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QPrintPreviewWidget_SizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -7294,7 +7293,7 @@ func callbackQPrintPreviewWidget_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QPrintPreviewWidget) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QPrintPreviewWidget_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7686,7 +7685,7 @@ func (ptr *QPrinter) PageOrder() QPrinter__PageOrder {
 func (ptr *QPrinter) PageRect2(unit QPrinter__Unit) *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QPrinter_PageRect2(ptr.Pointer(), C.longlong(unit)))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -7740,7 +7739,7 @@ func (ptr *QPrinter) PaintEngineDefault() *gui.QPaintEngine {
 func (ptr *QPrinter) PaperRect2(unit QPrinter__Unit) *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QPrinter_PaperRect2(ptr.Pointer(), C.longlong(unit)))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -8022,7 +8021,7 @@ func (ptr *QPrinter) DestroyQPrinter() {
 	if ptr.Pointer() != nil {
 		C.QPrinter_DestroyQPrinter(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -8030,7 +8029,7 @@ func (ptr *QPrinter) DestroyQPrinterDefault() {
 	if ptr.Pointer() != nil {
 		C.QPrinter_DestroyQPrinterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -8136,19 +8135,19 @@ func NewQPrinterInfoFromPointer(ptr unsafe.Pointer) (n *QPrinterInfo) {
 }
 func NewQPrinterInfo() *QPrinterInfo {
 	tmpValue := NewQPrinterInfoFromPointer(C.QPrinterInfo_NewQPrinterInfo())
-	runtime.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
+	qt.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
 	return tmpValue
 }
 
 func NewQPrinterInfo2(other QPrinterInfo_ITF) *QPrinterInfo {
 	tmpValue := NewQPrinterInfoFromPointer(C.QPrinterInfo_NewQPrinterInfo2(PointerFromQPrinterInfo(other)))
-	runtime.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
+	qt.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
 	return tmpValue
 }
 
 func NewQPrinterInfo3(printer QPrinter_ITF) *QPrinterInfo {
 	tmpValue := NewQPrinterInfoFromPointer(C.QPrinterInfo_NewQPrinterInfo3(PointerFromQPrinter(printer)))
-	runtime.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
+	qt.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
 	return tmpValue
 }
 
@@ -8199,7 +8198,7 @@ func (ptr *QPrinterInfo) DefaultDuplexMode() QPrinter__DuplexMode {
 func (ptr *QPrinterInfo) DefaultPageSize() *gui.QPageSize {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPageSizeFromPointer(C.QPrinterInfo_DefaultPageSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QPageSize).DestroyQPageSize)
+		qt.SetFinalizer(tmpValue, (*gui.QPageSize).DestroyQPageSize)
 		return tmpValue
 	}
 	return nil
@@ -8207,13 +8206,13 @@ func (ptr *QPrinterInfo) DefaultPageSize() *gui.QPageSize {
 
 func QPrinterInfo_DefaultPrinter() *QPrinterInfo {
 	tmpValue := NewQPrinterInfoFromPointer(C.QPrinterInfo_QPrinterInfo_DefaultPrinter())
-	runtime.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
+	qt.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
 	return tmpValue
 }
 
 func (ptr *QPrinterInfo) DefaultPrinter() *QPrinterInfo {
 	tmpValue := NewQPrinterInfoFromPointer(C.QPrinterInfo_QPrinterInfo_DefaultPrinter())
-	runtime.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
+	qt.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
 	return tmpValue
 }
 
@@ -8270,7 +8269,7 @@ func (ptr *QPrinterInfo) MakeAndModel() string {
 func (ptr *QPrinterInfo) MaximumPhysicalPageSize() *gui.QPageSize {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPageSizeFromPointer(C.QPrinterInfo_MaximumPhysicalPageSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QPageSize).DestroyQPageSize)
+		qt.SetFinalizer(tmpValue, (*gui.QPageSize).DestroyQPageSize)
 		return tmpValue
 	}
 	return nil
@@ -8279,7 +8278,7 @@ func (ptr *QPrinterInfo) MaximumPhysicalPageSize() *gui.QPageSize {
 func (ptr *QPrinterInfo) MinimumPhysicalPageSize() *gui.QPageSize {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPageSizeFromPointer(C.QPrinterInfo_MinimumPhysicalPageSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QPageSize).DestroyQPageSize)
+		qt.SetFinalizer(tmpValue, (*gui.QPageSize).DestroyQPageSize)
 		return tmpValue
 	}
 	return nil
@@ -8292,7 +8291,7 @@ func QPrinterInfo_PrinterInfo(printerName string) *QPrinterInfo {
 		defer C.free(unsafe.Pointer(printerNameC))
 	}
 	tmpValue := NewQPrinterInfoFromPointer(C.QPrinterInfo_QPrinterInfo_PrinterInfo(C.struct_QtPrintSupport_PackedString{data: printerNameC, len: C.longlong(len(printerName))}))
-	runtime.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
+	qt.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
 	return tmpValue
 }
 
@@ -8303,7 +8302,7 @@ func (ptr *QPrinterInfo) PrinterInfo(printerName string) *QPrinterInfo {
 		defer C.free(unsafe.Pointer(printerNameC))
 	}
 	tmpValue := NewQPrinterInfoFromPointer(C.QPrinterInfo_QPrinterInfo_PrinterInfo(C.struct_QtPrintSupport_PackedString{data: printerNameC, len: C.longlong(len(printerName))}))
-	runtime.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
+	qt.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
 	return tmpValue
 }
 
@@ -8389,14 +8388,14 @@ func (ptr *QPrinterInfo) DestroyQPrinterInfo() {
 		C.QPrinterInfo_DestroyQPrinterInfo(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QPrinterInfo) __availablePrinters_atList(i int) *QPrinterInfo {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQPrinterInfoFromPointer(C.QPrinterInfo___availablePrinters_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
+		qt.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
 		return tmpValue
 	}
 	return nil
@@ -8449,7 +8448,7 @@ func (ptr *QPrinterInfo) __supportedDuplexModes_newList() unsafe.Pointer {
 func (ptr *QPrinterInfo) __supportedPageSizes_atList(i int) *gui.QPageSize {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPageSizeFromPointer(C.QPrinterInfo___supportedPageSizes_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*gui.QPageSize).DestroyQPageSize)
+		qt.SetFinalizer(tmpValue, (*gui.QPageSize).DestroyQPageSize)
 		return tmpValue
 	}
 	return nil

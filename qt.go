@@ -25,9 +25,17 @@ var (
 	connectionTypes      = make(map[unsafe.Pointer]map[string]int64)
 	connectionTypesMutex = new(sync.Mutex)
 
-	FuncMap = make(map[string]interface{})
-	ItfMap  = make(map[string]interface{})
-	EnumMap = make(map[string]int64)
+	finalizerMap      = make(map[unsafe.Pointer]struct{})
+	finalizerMapMutex = new(sync.Mutex)
+
+	//
+
+	FuncMap      = make(map[string]interface{})
+	FuncMapMutex = new(sync.Mutex)
+	ItfMap       = make(map[string]interface{})
+	itfMapMutex  = new(sync.Mutex)
+	EnumMap      = make(map[string]int64)
+	EnumMapMutex = new(sync.Mutex)
 )
 
 func init() { runtime.LockOSThread() }
@@ -252,4 +260,64 @@ func ConnectionType(cPtr unsafe.Pointer, signal string) (m int64) {
 	}
 	connectionTypesMutex.Unlock()
 	return
+}
+
+func GetFuncMap(n string) (o interface{}, ok bool) {
+	FuncMapMutex.Lock()
+	o, ok = FuncMap[n]
+	FuncMapMutex.Unlock()
+	return
+}
+
+func SetFuncMap(n string, v interface{}) {
+	FuncMapMutex.Lock()
+	FuncMap[n] = v
+	FuncMapMutex.Unlock()
+}
+
+func GetItfMap(n string) (o interface{}, ok bool) {
+	itfMapMutex.Lock()
+	o, ok = ItfMap[n]
+	itfMapMutex.Unlock()
+	return
+}
+
+func SetItfMap(n string, v interface{}) {
+	itfMapMutex.Lock()
+	ItfMap[n] = v
+	itfMapMutex.Unlock()
+}
+
+func GetEnumMap(n string) (o int64, ok bool) {
+	EnumMapMutex.Lock()
+	o, ok = EnumMap[n]
+	EnumMapMutex.Unlock()
+	return
+}
+
+func SetEnumMap(n string, v int64) {
+	EnumMapMutex.Lock()
+	EnumMap[n] = v
+	EnumMapMutex.Unlock()
+}
+
+type ptr_itf interface {
+	Pointer() unsafe.Pointer
+	SetPointer(p unsafe.Pointer)
+}
+
+func SetFinalizer(ptr interface{}, f interface{}) {
+	finalizerMapMutex.Lock()
+	cPtr := ptr.(ptr_itf).Pointer()
+	if _, ok := finalizerMap[cPtr]; !ok || f == nil {
+		runtime.SetFinalizer(ptr, f)
+		if f == nil {
+			delete(finalizerMap, cPtr)
+		} else {
+			finalizerMap[cPtr] = struct{}{}
+		}
+	} else {
+		runtime.SetFinalizer(ptr, func(p ptr_itf) { p.SetPointer(nil) })
+	}
+	finalizerMapMutex.Unlock()
 }

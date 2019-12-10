@@ -846,20 +846,20 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 
 		utils.Save(filepath.Join(depPath, "c_main_wrapper_js.cpp"), js_c_main_wrapper(target))
 		env, _, _, _ := cmd.BuildEnv(target, "", "")
-		cmd := exec.Command(filepath.Join(env["EMSCRIPTEN"], "em++"), "c_main_wrapper_js.cpp", target+".js_plugin_import.cpp")
-		cmd.Dir = depPath
+		cmdD := exec.Command(filepath.Join(env["EMSCRIPTEN"], "em++"), "c_main_wrapper_js.cpp", target+".js_plugin_import.cpp")
+		cmdD.Dir = depPath
 		newArgs := templater.GetiOSClang(target, "", depPath)
 		if utils.ExistsFile(filepath.Join(depPath, target+".js_qml_plugin_import.cpp")) {
-			cmd.Args = append(cmd.Args, target+".js_qml_plugin_import.cpp")
+			cmdD.Args = append(cmdD.Args, target+".js_qml_plugin_import.cpp")
 		}
 
 		for rccFile := range rcc.ResourceNames {
-			cmd.Args = append(cmd.Args, rccFile)
+			cmdD.Args = append(cmdD.Args, rccFile)
 		}
 		rcc.ResourceNames = make(map[string]string)
 
 		for mocFile := range moc.ResourceNames {
-			cmd.Args = append(cmd.Args, mocFile)
+			cmdD.Args = append(cmdD.Args, mocFile)
 		}
 		moc.ResourceNames = make(map[string]string)
 
@@ -868,7 +868,10 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 		for _, l := range parser.LibDeps["build_static"] {
 			for _, ml := range parser.GetLibs() {
 				if strings.ToLower(l) == strings.ToLower(ml) {
-					cmd.Args = append(cmd.Args, utils.GoQtPkgPath(strings.ToLower(l), strings.ToLower(l)+"-minimal.cpp"))
+					if (strings.ToLower(l) == "qml" || strings.ToLower(l) == "quick") && !cmd.ImportsQmlOrQuick() {
+						continue
+					}
+					cmdD.Args = append(cmdD.Args, utils.GoQtPkgPath(strings.ToLower(l), strings.ToLower(l)+"-minimal.cpp"))
 					break
 				}
 			}
@@ -877,7 +880,7 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 		for _, l := range parser.LibDeps[parser.MOC] {
 			for _, ml := range parser.GetLibs() {
 				if strings.ToLower(l) == strings.ToLower(ml) {
-					cmd.Args = append(cmd.Args, utils.GoQtPkgPath(strings.ToLower(l), strings.ToLower(l)+"-minimal.cpp"))
+					cmdD.Args = append(cmdD.Args, utils.GoQtPkgPath(strings.ToLower(l), strings.ToLower(l)+"-minimal.cpp"))
 					break
 				}
 			}
@@ -906,12 +909,12 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 		//<-
 
 		//TODO: check if minimal packages are stale and skip main.js rebuild this if they aren't
-		cmd.Args = append(cmd.Args, newArgs...)
-		cmd.Args = append(cmd.Args, []string{"-o", "main.js"}...)
+		cmdD.Args = append(cmdD.Args, newArgs...)
+		cmdD.Args = append(cmdD.Args, []string{"-o", "main.js"}...)
 		for key, value := range env {
-			cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", key, value))
+			cmdD.Env = append(cmdD.Env, fmt.Sprintf("%v=%v", key, value))
 		}
-		utils.RunCmd(cmd, fmt.Sprintf("compile wrapper for %v (%v) on %v", target, target, runtime.GOOS))
+		utils.RunCmd(cmdD, fmt.Sprintf("compile wrapper for %v (%v) on %v", target, target, runtime.GOOS))
 
 		utils.RemoveAll(filepath.Join(depPath, "c_main_wrapper_js.cpp"))
 		utils.RemoveAll(filepath.Join(depPath, target+".js_plugin_import.cpp"))

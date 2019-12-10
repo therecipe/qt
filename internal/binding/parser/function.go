@@ -3,6 +3,7 @@ package parser
 import (
 	"fmt"
 	"sort"
+	"strconv"
 	"strings"
 
 	"github.com/therecipe/qt/internal/utils"
@@ -266,6 +267,16 @@ func (f *Function) IsJNIGeneric() bool {
 
 //TODO:
 func (f *Function) IsSupported() bool {
+
+	if strings.Contains(f.Since, ".") {
+		version := strings.TrimPrefix(f.Since, "Qt")
+		vmaj, _ := strconv.Atoi(string(version[0]))
+		vmin, _ := strconv.Atoi(strings.Replace(version[1:], ".", "", -1))
+		if vmaj*1e3+vmin*10 > utils.QT_VERSION_NUM() {
+			f.Access = "unsupported_isApiVersionBlockedFunction"
+			return false
+		}
+	}
 
 	if utils.QT_MACPORTS() {
 		if f.Fullname == "QWebFrame::ownerElement" || f.Fullname == "QWebHistory::toMap" ||

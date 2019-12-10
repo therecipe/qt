@@ -796,7 +796,7 @@ func (ptr *QAbstractAnimation) DestroyQAbstractAnimation() {
 	if ptr.Pointer() != nil {
 		C.QAbstractAnimation_DestroyQAbstractAnimation(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -804,7 +804,7 @@ func (ptr *QAbstractAnimation) DestroyQAbstractAnimationDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractAnimation_DestroyQAbstractAnimationDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -851,7 +851,7 @@ func (ptr *QAbstractConcatenable) DestroyQAbstractConcatenable() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1462,7 +1462,7 @@ func (ptr *QAbstractEventDispatcher) DestroyQAbstractEventDispatcher() {
 	if ptr.Pointer() != nil {
 		C.QAbstractEventDispatcher_DestroyQAbstractEventDispatcher(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1470,7 +1470,7 @@ func (ptr *QAbstractEventDispatcher) DestroyQAbstractEventDispatcherDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractEventDispatcher_DestroyQAbstractEventDispatcherDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1620,7 +1620,7 @@ func (ptr *QAbstractItemModel) DisconnectBuddy() {
 func (ptr *QAbstractItemModel) Buddy(index QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QAbstractItemModel_Buddy(ptr.Pointer(), PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -1629,7 +1629,7 @@ func (ptr *QAbstractItemModel) Buddy(index QModelIndex_ITF) *QModelIndex {
 func (ptr *QAbstractItemModel) BuddyDefault(index QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QAbstractItemModel_BuddyDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -2001,7 +2001,7 @@ func (ptr *QAbstractItemModel) DisconnectColumnsRemoved() {
 func (ptr *QAbstractItemModel) CreateIndex(row int, column int, p unsafe.Pointer) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QAbstractItemModel_CreateIndex(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), p))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -2010,7 +2010,7 @@ func (ptr *QAbstractItemModel) CreateIndex(row int, column int, p unsafe.Pointer
 func (ptr *QAbstractItemModel) CreateIndex2(row int, column int, id uintptr) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QAbstractItemModel_CreateIndex2(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), C.uintptr_t(id)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -2050,7 +2050,7 @@ func (ptr *QAbstractItemModel) DisconnectData() {
 func (ptr *QAbstractItemModel) Data(index QModelIndex_ITF, role int) *QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVariantFromPointer(C.QAbstractItemModel_Data(ptr.Pointer(), PointerFromQModelIndex(index), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -2370,7 +2370,7 @@ func (ptr *QAbstractItemModel) DisconnectHeaderData() {
 func (ptr *QAbstractItemModel) HeaderData(section int, orientation Qt__Orientation, role int) *QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVariantFromPointer(C.QAbstractItemModel_HeaderData(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -2379,7 +2379,7 @@ func (ptr *QAbstractItemModel) HeaderData(section int, orientation Qt__Orientati
 func (ptr *QAbstractItemModel) HeaderDataDefault(section int, orientation Qt__Orientation, role int) *QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVariantFromPointer(C.QAbstractItemModel_HeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -2459,7 +2459,7 @@ func (ptr *QAbstractItemModel) DisconnectIndex() {
 func (ptr *QAbstractItemModel) Index(row int, column int, parent QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QAbstractItemModel_Index(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), PointerFromQModelIndex(parent)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -3148,7 +3148,7 @@ func (ptr *QAbstractItemModel) DisconnectParent() {
 func (ptr *QAbstractItemModel) Parent(index QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QAbstractItemModel_Parent(ptr.Pointer(), PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -3866,7 +3866,7 @@ func (ptr *QAbstractItemModel) DisconnectSibling() {
 func (ptr *QAbstractItemModel) Sibling(row int, column int, index QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QAbstractItemModel_Sibling(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -3875,7 +3875,7 @@ func (ptr *QAbstractItemModel) Sibling(row int, column int, index QModelIndex_IT
 func (ptr *QAbstractItemModel) SiblingDefault(row int, column int, index QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QAbstractItemModel_SiblingDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -3958,7 +3958,7 @@ func (ptr *QAbstractItemModel) DisconnectSpan() {
 func (ptr *QAbstractItemModel) Span(index QModelIndex_ITF) *QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSizeFromPointer(C.QAbstractItemModel_Span(ptr.Pointer(), PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -3967,7 +3967,7 @@ func (ptr *QAbstractItemModel) Span(index QModelIndex_ITF) *QSize {
 func (ptr *QAbstractItemModel) SpanDefault(index QModelIndex_ITF) *QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSizeFromPointer(C.QAbstractItemModel_SpanDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -4143,7 +4143,7 @@ func (ptr *QAbstractItemModel) DestroyQAbstractItemModel() {
 	if ptr.Pointer() != nil {
 		C.QAbstractItemModel_DestroyQAbstractItemModel(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4151,14 +4151,14 @@ func (ptr *QAbstractItemModel) DestroyQAbstractItemModelDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractItemModel_DestroyQAbstractItemModelDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QAbstractItemModel) __changePersistentIndexList_from_atList(i int) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QAbstractItemModel___changePersistentIndexList_from_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -4177,7 +4177,7 @@ func (ptr *QAbstractItemModel) __changePersistentIndexList_from_newList() unsafe
 func (ptr *QAbstractItemModel) __changePersistentIndexList_to_atList(i int) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QAbstractItemModel___changePersistentIndexList_to_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -4213,7 +4213,7 @@ func (ptr *QAbstractItemModel) __dataChanged_roles_newList() unsafe.Pointer {
 func (ptr *QAbstractItemModel) __doSetRoleNames_roleNames_atList(v int, i int) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QAbstractItemModel___doSetRoleNames_roleNames_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -4246,7 +4246,7 @@ func (ptr *QAbstractItemModel) __doSetRoleNames_roleNames_keyList() []int {
 func (ptr *QAbstractItemModel) __encodeData_indexes_atList(i int) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QAbstractItemModel___encodeData_indexes_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -4265,7 +4265,7 @@ func (ptr *QAbstractItemModel) __encodeData_indexes_newList() unsafe.Pointer {
 func (ptr *QAbstractItemModel) __itemData_atList(v int, i int) *QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVariantFromPointer(C.QAbstractItemModel___itemData_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -4298,7 +4298,7 @@ func (ptr *QAbstractItemModel) __itemData_keyList() []int {
 func (ptr *QAbstractItemModel) __layoutAboutToBeChanged_parents_atList(i int) *QPersistentModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQPersistentModelIndexFromPointer(C.QAbstractItemModel___layoutAboutToBeChanged_parents_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QPersistentModelIndex).DestroyQPersistentModelIndex)
+		qt.SetFinalizer(tmpValue, (*QPersistentModelIndex).DestroyQPersistentModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -4317,7 +4317,7 @@ func (ptr *QAbstractItemModel) __layoutAboutToBeChanged_parents_newList() unsafe
 func (ptr *QAbstractItemModel) __layoutChanged_parents_atList(i int) *QPersistentModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQPersistentModelIndexFromPointer(C.QAbstractItemModel___layoutChanged_parents_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QPersistentModelIndex).DestroyQPersistentModelIndex)
+		qt.SetFinalizer(tmpValue, (*QPersistentModelIndex).DestroyQPersistentModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -4336,7 +4336,7 @@ func (ptr *QAbstractItemModel) __layoutChanged_parents_newList() unsafe.Pointer 
 func (ptr *QAbstractItemModel) __match_atList(i int) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QAbstractItemModel___match_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -4355,7 +4355,7 @@ func (ptr *QAbstractItemModel) __match_newList() unsafe.Pointer {
 func (ptr *QAbstractItemModel) __mimeData_indexes_atList(i int) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QAbstractItemModel___mimeData_indexes_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -4374,7 +4374,7 @@ func (ptr *QAbstractItemModel) __mimeData_indexes_newList() unsafe.Pointer {
 func (ptr *QAbstractItemModel) __persistentIndexList_atList(i int) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QAbstractItemModel___persistentIndexList_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -4393,7 +4393,7 @@ func (ptr *QAbstractItemModel) __persistentIndexList_newList() unsafe.Pointer {
 func (ptr *QAbstractItemModel) __roleNames_atList(v int, i int) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QAbstractItemModel___roleNames_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -4426,7 +4426,7 @@ func (ptr *QAbstractItemModel) __roleNames_keyList() []int {
 func (ptr *QAbstractItemModel) __setItemData_roles_atList(v int, i int) *QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVariantFromPointer(C.QAbstractItemModel___setItemData_roles_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -4459,7 +4459,7 @@ func (ptr *QAbstractItemModel) __setItemData_roles_keyList() []int {
 func (ptr *QAbstractItemModel) __setRoleNames_roleNames_atList(v int, i int) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QAbstractItemModel___setRoleNames_roleNames_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -4654,7 +4654,7 @@ func (ptr *QAbstractListModel) DisconnectIndex() {
 func (ptr *QAbstractListModel) Index(row int, column int, parent QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QAbstractListModel_Index(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), PointerFromQModelIndex(parent)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -4663,7 +4663,7 @@ func (ptr *QAbstractListModel) Index(row int, column int, parent QModelIndex_ITF
 func (ptr *QAbstractListModel) IndexDefault(row int, column int, parent QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QAbstractListModel_IndexDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), PointerFromQModelIndex(parent)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -4704,7 +4704,7 @@ func (ptr *QAbstractListModel) DestroyQAbstractListModel() {
 	if ptr.Pointer() != nil {
 		C.QAbstractListModel_DestroyQAbstractListModel(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4712,7 +4712,7 @@ func (ptr *QAbstractListModel) DestroyQAbstractListModelDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractListModel_DestroyQAbstractListModelDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4751,7 +4751,7 @@ func callbackQAbstractListModel_Data(ptr unsafe.Pointer, index unsafe.Pointer, r
 func (ptr *QAbstractListModel) Data(index QModelIndex_ITF, role int) *QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVariantFromPointer(C.QAbstractListModel_Data(ptr.Pointer(), PointerFromQModelIndex(index), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -4760,7 +4760,7 @@ func (ptr *QAbstractListModel) Data(index QModelIndex_ITF, role int) *QVariant {
 func (ptr *QAbstractListModel) DataDefault(index QModelIndex_ITF, role int) *QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVariantFromPointer(C.QAbstractListModel_DataDefault(ptr.Pointer(), PointerFromQModelIndex(index), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -4778,7 +4778,7 @@ func callbackQAbstractListModel_Parent(ptr unsafe.Pointer, index unsafe.Pointer)
 func (ptr *QAbstractListModel) Parent(index QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QAbstractListModel_Parent(ptr.Pointer(), PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -4787,7 +4787,7 @@ func (ptr *QAbstractListModel) Parent(index QModelIndex_ITF) *QModelIndex {
 func (ptr *QAbstractListModel) ParentDefault(index QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QAbstractListModel_ParentDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -5030,7 +5030,7 @@ func (ptr *QAbstractProxyModel) DisconnectData() {
 func (ptr *QAbstractProxyModel) Data(proxyIndex QModelIndex_ITF, role int) *QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVariantFromPointer(C.QAbstractProxyModel_Data(ptr.Pointer(), PointerFromQModelIndex(proxyIndex), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -5039,7 +5039,7 @@ func (ptr *QAbstractProxyModel) Data(proxyIndex QModelIndex_ITF, role int) *QVar
 func (ptr *QAbstractProxyModel) DataDefault(proxyIndex QModelIndex_ITF, role int) *QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVariantFromPointer(C.QAbstractProxyModel_DataDefault(ptr.Pointer(), PointerFromQModelIndex(proxyIndex), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -5079,7 +5079,7 @@ func (ptr *QAbstractProxyModel) DisconnectMapFromSource() {
 func (ptr *QAbstractProxyModel) MapFromSource(sourceIndex QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QAbstractProxyModel_MapFromSource(ptr.Pointer(), PointerFromQModelIndex(sourceIndex)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -5119,7 +5119,7 @@ func (ptr *QAbstractProxyModel) DisconnectMapSelectionFromSource() {
 func (ptr *QAbstractProxyModel) MapSelectionFromSource(sourceSelection QItemSelection_ITF) *QItemSelection {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQItemSelectionFromPointer(C.QAbstractProxyModel_MapSelectionFromSource(ptr.Pointer(), PointerFromQItemSelection(sourceSelection)))
-		runtime.SetFinalizer(tmpValue, (*QItemSelection).DestroyQItemSelection)
+		qt.SetFinalizer(tmpValue, (*QItemSelection).DestroyQItemSelection)
 		return tmpValue
 	}
 	return nil
@@ -5128,7 +5128,7 @@ func (ptr *QAbstractProxyModel) MapSelectionFromSource(sourceSelection QItemSele
 func (ptr *QAbstractProxyModel) MapSelectionFromSourceDefault(sourceSelection QItemSelection_ITF) *QItemSelection {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQItemSelectionFromPointer(C.QAbstractProxyModel_MapSelectionFromSourceDefault(ptr.Pointer(), PointerFromQItemSelection(sourceSelection)))
-		runtime.SetFinalizer(tmpValue, (*QItemSelection).DestroyQItemSelection)
+		qt.SetFinalizer(tmpValue, (*QItemSelection).DestroyQItemSelection)
 		return tmpValue
 	}
 	return nil
@@ -5168,7 +5168,7 @@ func (ptr *QAbstractProxyModel) DisconnectMapSelectionToSource() {
 func (ptr *QAbstractProxyModel) MapSelectionToSource(proxySelection QItemSelection_ITF) *QItemSelection {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQItemSelectionFromPointer(C.QAbstractProxyModel_MapSelectionToSource(ptr.Pointer(), PointerFromQItemSelection(proxySelection)))
-		runtime.SetFinalizer(tmpValue, (*QItemSelection).DestroyQItemSelection)
+		qt.SetFinalizer(tmpValue, (*QItemSelection).DestroyQItemSelection)
 		return tmpValue
 	}
 	return nil
@@ -5177,7 +5177,7 @@ func (ptr *QAbstractProxyModel) MapSelectionToSource(proxySelection QItemSelecti
 func (ptr *QAbstractProxyModel) MapSelectionToSourceDefault(proxySelection QItemSelection_ITF) *QItemSelection {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQItemSelectionFromPointer(C.QAbstractProxyModel_MapSelectionToSourceDefault(ptr.Pointer(), PointerFromQItemSelection(proxySelection)))
-		runtime.SetFinalizer(tmpValue, (*QItemSelection).DestroyQItemSelection)
+		qt.SetFinalizer(tmpValue, (*QItemSelection).DestroyQItemSelection)
 		return tmpValue
 	}
 	return nil
@@ -5217,7 +5217,7 @@ func (ptr *QAbstractProxyModel) DisconnectMapToSource() {
 func (ptr *QAbstractProxyModel) MapToSource(proxyIndex QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QAbstractProxyModel_MapToSource(ptr.Pointer(), PointerFromQModelIndex(proxyIndex)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -5434,7 +5434,7 @@ func (ptr *QAbstractProxyModel) DestroyQAbstractProxyModel() {
 	if ptr.Pointer() != nil {
 		C.QAbstractProxyModel_DestroyQAbstractProxyModel(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5442,7 +5442,7 @@ func (ptr *QAbstractProxyModel) DestroyQAbstractProxyModelDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractProxyModel_DestroyQAbstractProxyModelDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5481,7 +5481,7 @@ func callbackQAbstractProxyModel_Index(ptr unsafe.Pointer, row C.int, column C.i
 func (ptr *QAbstractProxyModel) Index(row int, column int, parent QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QAbstractProxyModel_Index(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), PointerFromQModelIndex(parent)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -5490,7 +5490,7 @@ func (ptr *QAbstractProxyModel) Index(row int, column int, parent QModelIndex_IT
 func (ptr *QAbstractProxyModel) IndexDefault(row int, column int, parent QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QAbstractProxyModel_IndexDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), PointerFromQModelIndex(parent)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -5508,7 +5508,7 @@ func callbackQAbstractProxyModel_Parent(ptr unsafe.Pointer, index unsafe.Pointer
 func (ptr *QAbstractProxyModel) Parent(index QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QAbstractProxyModel_Parent(ptr.Pointer(), PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -5517,7 +5517,7 @@ func (ptr *QAbstractProxyModel) Parent(index QModelIndex_ITF) *QModelIndex {
 func (ptr *QAbstractProxyModel) ParentDefault(index QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QAbstractProxyModel_ParentDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -5836,7 +5836,7 @@ func (ptr *QAbstractState) DestroyQAbstractState() {
 	if ptr.Pointer() != nil {
 		C.QAbstractState_DestroyQAbstractState(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5844,7 +5844,7 @@ func (ptr *QAbstractState) DestroyQAbstractStateDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractState_DestroyQAbstractStateDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5928,7 +5928,7 @@ func (ptr *QAbstractTableModel) DisconnectIndex() {
 func (ptr *QAbstractTableModel) Index(row int, column int, parent QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QAbstractTableModel_Index(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), PointerFromQModelIndex(parent)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -5937,7 +5937,7 @@ func (ptr *QAbstractTableModel) Index(row int, column int, parent QModelIndex_IT
 func (ptr *QAbstractTableModel) IndexDefault(row int, column int, parent QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QAbstractTableModel_IndexDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), PointerFromQModelIndex(parent)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -5978,7 +5978,7 @@ func (ptr *QAbstractTableModel) DestroyQAbstractTableModel() {
 	if ptr.Pointer() != nil {
 		C.QAbstractTableModel_DestroyQAbstractTableModel(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5986,7 +5986,7 @@ func (ptr *QAbstractTableModel) DestroyQAbstractTableModelDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractTableModel_DestroyQAbstractTableModelDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6025,7 +6025,7 @@ func callbackQAbstractTableModel_Data(ptr unsafe.Pointer, index unsafe.Pointer, 
 func (ptr *QAbstractTableModel) Data(index QModelIndex_ITF, role int) *QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVariantFromPointer(C.QAbstractTableModel_Data(ptr.Pointer(), PointerFromQModelIndex(index), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -6034,7 +6034,7 @@ func (ptr *QAbstractTableModel) Data(index QModelIndex_ITF, role int) *QVariant 
 func (ptr *QAbstractTableModel) DataDefault(index QModelIndex_ITF, role int) *QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVariantFromPointer(C.QAbstractTableModel_DataDefault(ptr.Pointer(), PointerFromQModelIndex(index), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -6052,7 +6052,7 @@ func callbackQAbstractTableModel_Parent(ptr unsafe.Pointer, index unsafe.Pointer
 func (ptr *QAbstractTableModel) Parent(index QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QAbstractTableModel_Parent(ptr.Pointer(), PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -6061,7 +6061,7 @@ func (ptr *QAbstractTableModel) Parent(index QModelIndex_ITF) *QModelIndex {
 func (ptr *QAbstractTableModel) ParentDefault(index QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QAbstractTableModel_ParentDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -6461,7 +6461,7 @@ func (ptr *QAbstractTransition) DestroyQAbstractTransition() {
 	if ptr.Pointer() != nil {
 		C.QAbstractTransition_DestroyQAbstractTransition(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6469,7 +6469,7 @@ func (ptr *QAbstractTransition) DestroyQAbstractTransitionDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractTransition_DestroyQAbstractTransitionDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6677,7 +6677,7 @@ func (ptr *QAnimationGroup) DestroyQAnimationGroup() {
 	if ptr.Pointer() != nil {
 		C.QAnimationGroup_DestroyQAnimationGroup(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6685,7 +6685,7 @@ func (ptr *QAnimationGroup) DestroyQAnimationGroupDefault() {
 	if ptr.Pointer() != nil {
 		C.QAnimationGroup_DestroyQAnimationGroupDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6777,7 +6777,7 @@ func (ptr *QArgument) DestroyQArgument() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6824,7 +6824,7 @@ func (ptr *QArrayData) DestroyQArrayData() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6871,7 +6871,7 @@ func (ptr *QArrayDataPointer) DestroyQArrayDataPointer() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6918,7 +6918,7 @@ func (ptr *QAssociativeIterable) DestroyQAssociativeIterable() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6932,7 +6932,7 @@ func (ptr *QAssociativeIterable) Size() int {
 func (ptr *QAssociativeIterable) Value(key QVariant_ITF) *QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVariantFromPointer(C.QAssociativeIterable_Value(ptr.Pointer(), PointerFromQVariant(key)))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -6982,7 +6982,7 @@ func (ptr *QAtomicInt) DestroyQAtomicInt() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7030,7 +7030,7 @@ func (ptr *QAtomicInteger) DestroyQAtomicInteger() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7077,7 +7077,7 @@ func (ptr *QAtomicOps) DestroyQAtomicOps() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7125,7 +7125,7 @@ func (ptr *QAtomicPointer) DestroyQAtomicPointer() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7172,7 +7172,7 @@ func (ptr *QAtomicTraits) DestroyQAtomicTraits() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7219,7 +7219,7 @@ func (ptr *QBEInteger) DestroyQBEInteger() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7266,7 +7266,7 @@ func (ptr *QBasicAtomicInteger) DestroyQBasicAtomicInteger() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7313,7 +7313,7 @@ func (ptr *QBasicAtomicPointer) DestroyQBasicAtomicPointer() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7360,7 +7360,7 @@ func (ptr *QBasicMutex) DestroyQBasicMutex() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7410,7 +7410,7 @@ func NewQBasicTimerFromPointer(ptr unsafe.Pointer) (n *QBasicTimer) {
 }
 func NewQBasicTimer() *QBasicTimer {
 	tmpValue := NewQBasicTimerFromPointer(C.QBasicTimer_NewQBasicTimer())
-	runtime.SetFinalizer(tmpValue, (*QBasicTimer).DestroyQBasicTimer)
+	qt.SetFinalizer(tmpValue, (*QBasicTimer).DestroyQBasicTimer)
 	return tmpValue
 }
 
@@ -7451,7 +7451,7 @@ func (ptr *QBasicTimer) DestroyQBasicTimer() {
 		C.QBasicTimer_DestroyQBasicTimer(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7498,7 +7498,7 @@ func (ptr *QBigEndianStorageType) DestroyQBigEndianStorageType() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7545,31 +7545,31 @@ func (ptr *QBitArray) DestroyQBitArray() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func NewQBitArray() *QBitArray {
 	tmpValue := NewQBitArrayFromPointer(C.QBitArray_NewQBitArray())
-	runtime.SetFinalizer(tmpValue, (*QBitArray).DestroyQBitArray)
+	qt.SetFinalizer(tmpValue, (*QBitArray).DestroyQBitArray)
 	return tmpValue
 }
 
 func NewQBitArray2(size int, value bool) *QBitArray {
 	tmpValue := NewQBitArrayFromPointer(C.QBitArray_NewQBitArray2(C.int(int32(size)), C.char(int8(qt.GoBoolToInt(value)))))
-	runtime.SetFinalizer(tmpValue, (*QBitArray).DestroyQBitArray)
+	qt.SetFinalizer(tmpValue, (*QBitArray).DestroyQBitArray)
 	return tmpValue
 }
 
 func NewQBitArray3(other QBitArray_ITF) *QBitArray {
 	tmpValue := NewQBitArrayFromPointer(C.QBitArray_NewQBitArray3(PointerFromQBitArray(other)))
-	runtime.SetFinalizer(tmpValue, (*QBitArray).DestroyQBitArray)
+	qt.SetFinalizer(tmpValue, (*QBitArray).DestroyQBitArray)
 	return tmpValue
 }
 
 func NewQBitArray4(other QBitArray_ITF) *QBitArray {
 	tmpValue := NewQBitArrayFromPointer(C.QBitArray_NewQBitArray4(PointerFromQBitArray(other)))
-	runtime.SetFinalizer(tmpValue, (*QBitArray).DestroyQBitArray)
+	qt.SetFinalizer(tmpValue, (*QBitArray).DestroyQBitArray)
 	return tmpValue
 }
 
@@ -7748,7 +7748,7 @@ func NewQBuffer2(byteArray QByteArray_ITF, parent QObject_ITF) *QBuffer {
 func (ptr *QBuffer) Buffer() *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QBuffer_Buffer(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -7944,7 +7944,7 @@ func (ptr *QBuffer) DestroyQBuffer() {
 	if ptr.Pointer() != nil {
 		C.QBuffer_DestroyQBuffer(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7952,7 +7952,7 @@ func (ptr *QBuffer) DestroyQBufferDefault() {
 	if ptr.Pointer() != nil {
 		C.QBuffer_DestroyQBufferDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -8007,7 +8007,7 @@ const (
 
 func NewQByteArray() *QByteArray {
 	tmpValue := NewQByteArrayFromPointer(C.QByteArray_NewQByteArray())
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
@@ -8018,7 +8018,7 @@ func NewQByteArray2(data string, size int) *QByteArray {
 		defer C.free(unsafe.Pointer(dataC))
 	}
 	tmpValue := NewQByteArrayFromPointer(C.QByteArray_NewQByteArray2(dataC, C.int(int32(size))))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
@@ -8029,20 +8029,20 @@ func NewQByteArray3(size int, ch string) *QByteArray {
 		defer C.free(unsafe.Pointer(chC))
 	}
 	tmpValue := NewQByteArrayFromPointer(C.QByteArray_NewQByteArray3(C.int(int32(size)), chC))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
 func NewQByteArray4(other QByteArray_ITF) *QByteArray {
 	tmpValue := NewQByteArrayFromPointer(C.QByteArray_NewQByteArray4(PointerFromQByteArray(other)))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
 func (ptr *QByteArray) Append(ba QByteArray_ITF) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_Append(ptr.Pointer(), PointerFromQByteArray(ba)))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8056,7 +8056,7 @@ func (ptr *QByteArray) Append2(ch string) *QByteArray {
 			defer C.free(unsafe.Pointer(chC))
 		}
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_Append2(ptr.Pointer(), chC))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8070,7 +8070,7 @@ func (ptr *QByteArray) Append3(count int, ch string) *QByteArray {
 			defer C.free(unsafe.Pointer(chC))
 		}
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_Append3(ptr.Pointer(), C.int(int32(count)), chC))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8084,7 +8084,7 @@ func (ptr *QByteArray) Append4(str string) *QByteArray {
 			defer C.free(unsafe.Pointer(strC))
 		}
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_Append4(ptr.Pointer(), strC))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8098,7 +8098,7 @@ func (ptr *QByteArray) Append5(str string, l int) *QByteArray {
 			defer C.free(unsafe.Pointer(strC))
 		}
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_Append5(ptr.Pointer(), strC, C.int(int32(l))))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8112,7 +8112,7 @@ func (ptr *QByteArray) Append6(str string) *QByteArray {
 			defer C.free(unsafe.Pointer(strC))
 		}
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_Append6(ptr.Pointer(), C.struct_QtCore_PackedString{data: strC, len: C.longlong(len(str))}))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8148,7 +8148,7 @@ func (ptr *QByteArray) Chop(n int) {
 func (ptr *QByteArray) Chopped(l int) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_Chopped(ptr.Pointer(), C.int(int32(l))))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8308,7 +8308,7 @@ func (ptr *QByteArray) Fill(ch string, size int) *QByteArray {
 			defer C.free(unsafe.Pointer(chC))
 		}
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_Fill(ptr.Pointer(), chC, C.int(int32(size))))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8316,37 +8316,37 @@ func (ptr *QByteArray) Fill(ch string, size int) *QByteArray {
 
 func QByteArray_FromBase64(base64 QByteArray_ITF) *QByteArray {
 	tmpValue := NewQByteArrayFromPointer(C.QByteArray_QByteArray_FromBase64(PointerFromQByteArray(base64)))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
 func (ptr *QByteArray) FromBase64(base64 QByteArray_ITF) *QByteArray {
 	tmpValue := NewQByteArrayFromPointer(C.QByteArray_QByteArray_FromBase64(PointerFromQByteArray(base64)))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
 func QByteArray_FromBase642(base64 QByteArray_ITF, options QByteArray__Base64Option) *QByteArray {
 	tmpValue := NewQByteArrayFromPointer(C.QByteArray_QByteArray_FromBase642(PointerFromQByteArray(base64), C.longlong(options)))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
 func (ptr *QByteArray) FromBase642(base64 QByteArray_ITF, options QByteArray__Base64Option) *QByteArray {
 	tmpValue := NewQByteArrayFromPointer(C.QByteArray_QByteArray_FromBase642(PointerFromQByteArray(base64), C.longlong(options)))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
 func QByteArray_FromHex(hexEncoded QByteArray_ITF) *QByteArray {
 	tmpValue := NewQByteArrayFromPointer(C.QByteArray_QByteArray_FromHex(PointerFromQByteArray(hexEncoded)))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
 func (ptr *QByteArray) FromHex(hexEncoded QByteArray_ITF) *QByteArray {
 	tmpValue := NewQByteArrayFromPointer(C.QByteArray_QByteArray_FromHex(PointerFromQByteArray(hexEncoded)))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
@@ -8357,7 +8357,7 @@ func QByteArray_FromPercentEncoding(input QByteArray_ITF, percent string) *QByte
 		defer C.free(unsafe.Pointer(percentC))
 	}
 	tmpValue := NewQByteArrayFromPointer(C.QByteArray_QByteArray_FromPercentEncoding(PointerFromQByteArray(input), percentC))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
@@ -8368,7 +8368,7 @@ func (ptr *QByteArray) FromPercentEncoding(input QByteArray_ITF, percent string)
 		defer C.free(unsafe.Pointer(percentC))
 	}
 	tmpValue := NewQByteArrayFromPointer(C.QByteArray_QByteArray_FromPercentEncoding(PointerFromQByteArray(input), percentC))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
@@ -8378,7 +8378,7 @@ func QByteArray_FromRawData(data []byte, size int) *QByteArray {
 		dataC = (*C.char)(unsafe.Pointer(&data[0]))
 	}
 	tmpValue := NewQByteArrayFromPointer(C.QByteArray_QByteArray_FromRawData(dataC, C.int(int32(size))))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
@@ -8388,7 +8388,7 @@ func (ptr *QByteArray) FromRawData(data []byte, size int) *QByteArray {
 		dataC = (*C.char)(unsafe.Pointer(&data[0]))
 	}
 	tmpValue := NewQByteArrayFromPointer(C.QByteArray_QByteArray_FromRawData(dataC, C.int(int32(size))))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
@@ -8445,7 +8445,7 @@ func (ptr *QByteArray) IndexOf4(str string, from int) int {
 func (ptr *QByteArray) Insert(i int, ba QByteArray_ITF) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_Insert(ptr.Pointer(), C.int(int32(i)), PointerFromQByteArray(ba)))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8459,7 +8459,7 @@ func (ptr *QByteArray) Insert2(i int, ch string) *QByteArray {
 			defer C.free(unsafe.Pointer(chC))
 		}
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_Insert2(ptr.Pointer(), C.int(int32(i)), chC))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8473,7 +8473,7 @@ func (ptr *QByteArray) Insert3(i int, count int, ch string) *QByteArray {
 			defer C.free(unsafe.Pointer(chC))
 		}
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_Insert3(ptr.Pointer(), C.int(int32(i)), C.int(int32(count)), chC))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8487,7 +8487,7 @@ func (ptr *QByteArray) Insert4(i int, str string) *QByteArray {
 			defer C.free(unsafe.Pointer(strC))
 		}
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_Insert4(ptr.Pointer(), C.int(int32(i)), strC))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8501,7 +8501,7 @@ func (ptr *QByteArray) Insert5(i int, str string, l int) *QByteArray {
 			defer C.free(unsafe.Pointer(strC))
 		}
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_Insert5(ptr.Pointer(), C.int(int32(i)), strC, C.int(int32(l))))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8515,7 +8515,7 @@ func (ptr *QByteArray) Insert6(i int, str string) *QByteArray {
 			defer C.free(unsafe.Pointer(strC))
 		}
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_Insert6(ptr.Pointer(), C.int(int32(i)), C.struct_QtCore_PackedString{data: strC, len: C.longlong(len(str))}))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8595,7 +8595,7 @@ func (ptr *QByteArray) LastIndexOf4(str string, from int) int {
 func (ptr *QByteArray) Left(l int) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_Left(ptr.Pointer(), C.int(int32(l))))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8609,7 +8609,7 @@ func (ptr *QByteArray) LeftJustified(width int, fill string, truncate bool) *QBy
 			defer C.free(unsafe.Pointer(fillC))
 		}
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_LeftJustified(ptr.Pointer(), C.int(int32(width)), fillC, C.char(int8(qt.GoBoolToInt(truncate)))))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8625,7 +8625,7 @@ func (ptr *QByteArray) Length() int {
 func (ptr *QByteArray) Mid(pos int, l int) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_Mid(ptr.Pointer(), C.int(int32(pos)), C.int(int32(l))))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8633,49 +8633,49 @@ func (ptr *QByteArray) Mid(pos int, l int) *QByteArray {
 
 func QByteArray_Number(n int, base int) *QByteArray {
 	tmpValue := NewQByteArrayFromPointer(C.QByteArray_QByteArray_Number(C.int(int32(n)), C.int(int32(base))))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
 func (ptr *QByteArray) Number(n int, base int) *QByteArray {
 	tmpValue := NewQByteArrayFromPointer(C.QByteArray_QByteArray_Number(C.int(int32(n)), C.int(int32(base))))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
 func QByteArray_Number2(n uint, base int) *QByteArray {
 	tmpValue := NewQByteArrayFromPointer(C.QByteArray_QByteArray_Number2(C.uint(uint32(n)), C.int(int32(base))))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
 func (ptr *QByteArray) Number2(n uint, base int) *QByteArray {
 	tmpValue := NewQByteArrayFromPointer(C.QByteArray_QByteArray_Number2(C.uint(uint32(n)), C.int(int32(base))))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
 func QByteArray_Number3(n int64, base int) *QByteArray {
 	tmpValue := NewQByteArrayFromPointer(C.QByteArray_QByteArray_Number3(C.longlong(n), C.int(int32(base))))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
 func (ptr *QByteArray) Number3(n int64, base int) *QByteArray {
 	tmpValue := NewQByteArrayFromPointer(C.QByteArray_QByteArray_Number3(C.longlong(n), C.int(int32(base))))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
 func QByteArray_Number4(n uint64, base int) *QByteArray {
 	tmpValue := NewQByteArrayFromPointer(C.QByteArray_QByteArray_Number4(C.ulonglong(n), C.int(int32(base))))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
 func (ptr *QByteArray) Number4(n uint64, base int) *QByteArray {
 	tmpValue := NewQByteArrayFromPointer(C.QByteArray_QByteArray_Number4(C.ulonglong(n), C.int(int32(base))))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
@@ -8686,7 +8686,7 @@ func QByteArray_Number5(n float64, ff string, prec int) *QByteArray {
 		defer C.free(unsafe.Pointer(ffC))
 	}
 	tmpValue := NewQByteArrayFromPointer(C.QByteArray_QByteArray_Number5(C.double(n), ffC, C.int(int32(prec))))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
@@ -8697,14 +8697,14 @@ func (ptr *QByteArray) Number5(n float64, ff string, prec int) *QByteArray {
 		defer C.free(unsafe.Pointer(ffC))
 	}
 	tmpValue := NewQByteArrayFromPointer(C.QByteArray_QByteArray_Number5(C.double(n), ffC, C.int(int32(prec))))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
 func (ptr *QByteArray) Prepend(ba QByteArray_ITF) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_Prepend(ptr.Pointer(), PointerFromQByteArray(ba)))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8718,7 +8718,7 @@ func (ptr *QByteArray) Prepend2(ch string) *QByteArray {
 			defer C.free(unsafe.Pointer(chC))
 		}
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_Prepend2(ptr.Pointer(), chC))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8732,7 +8732,7 @@ func (ptr *QByteArray) Prepend3(count int, ch string) *QByteArray {
 			defer C.free(unsafe.Pointer(chC))
 		}
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_Prepend3(ptr.Pointer(), C.int(int32(count)), chC))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8746,7 +8746,7 @@ func (ptr *QByteArray) Prepend4(str string) *QByteArray {
 			defer C.free(unsafe.Pointer(strC))
 		}
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_Prepend4(ptr.Pointer(), strC))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8760,7 +8760,7 @@ func (ptr *QByteArray) Prepend5(str string, l int) *QByteArray {
 			defer C.free(unsafe.Pointer(strC))
 		}
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_Prepend5(ptr.Pointer(), strC, C.int(int32(l))))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8825,7 +8825,7 @@ func (ptr *QByteArray) Push_front3(str string) {
 func (ptr *QByteArray) Remove(pos int, l int) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_Remove(ptr.Pointer(), C.int(int32(pos)), C.int(int32(l))))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8834,7 +8834,7 @@ func (ptr *QByteArray) Remove(pos int, l int) *QByteArray {
 func (ptr *QByteArray) Repeated(times int) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_Repeated(ptr.Pointer(), C.int(int32(times))))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8843,7 +8843,7 @@ func (ptr *QByteArray) Repeated(times int) *QByteArray {
 func (ptr *QByteArray) Replace(pos int, l int, after QByteArray_ITF) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_Replace(ptr.Pointer(), C.int(int32(pos)), C.int(int32(l)), PointerFromQByteArray(after)))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8857,7 +8857,7 @@ func (ptr *QByteArray) Replace2(pos int, l int, after string) *QByteArray {
 			defer C.free(unsafe.Pointer(afterC))
 		}
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_Replace2(ptr.Pointer(), C.int(int32(pos)), C.int(int32(l)), afterC))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8871,7 +8871,7 @@ func (ptr *QByteArray) Replace3(pos int, l int, after string, alen int) *QByteAr
 			defer C.free(unsafe.Pointer(afterC))
 		}
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_Replace3(ptr.Pointer(), C.int(int32(pos)), C.int(int32(l)), afterC, C.int(int32(alen))))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8890,7 +8890,7 @@ func (ptr *QByteArray) Replace4(before string, after string) *QByteArray {
 			defer C.free(unsafe.Pointer(afterC))
 		}
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_Replace4(ptr.Pointer(), beforeC, afterC))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8904,7 +8904,7 @@ func (ptr *QByteArray) Replace5(before string, after QByteArray_ITF) *QByteArray
 			defer C.free(unsafe.Pointer(beforeC))
 		}
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_Replace5(ptr.Pointer(), beforeC, PointerFromQByteArray(after)))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8923,7 +8923,7 @@ func (ptr *QByteArray) Replace6(before string, after string) *QByteArray {
 			defer C.free(unsafe.Pointer(afterC))
 		}
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_Replace6(ptr.Pointer(), beforeC, afterC))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8942,7 +8942,7 @@ func (ptr *QByteArray) Replace7(before string, bsize int, after string, asize in
 			defer C.free(unsafe.Pointer(afterC))
 		}
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_Replace7(ptr.Pointer(), beforeC, C.int(int32(bsize)), afterC, C.int(int32(asize))))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8951,7 +8951,7 @@ func (ptr *QByteArray) Replace7(before string, bsize int, after string, asize in
 func (ptr *QByteArray) Replace8(before QByteArray_ITF, after QByteArray_ITF) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_Replace8(ptr.Pointer(), PointerFromQByteArray(before), PointerFromQByteArray(after)))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8965,7 +8965,7 @@ func (ptr *QByteArray) Replace9(before QByteArray_ITF, after string) *QByteArray
 			defer C.free(unsafe.Pointer(afterC))
 		}
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_Replace9(ptr.Pointer(), PointerFromQByteArray(before), afterC))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8979,7 +8979,7 @@ func (ptr *QByteArray) Replace10(before string, after QByteArray_ITF) *QByteArra
 			defer C.free(unsafe.Pointer(beforeC))
 		}
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_Replace10(ptr.Pointer(), beforeC, PointerFromQByteArray(after)))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8998,7 +8998,7 @@ func (ptr *QByteArray) Replace11(before string, after string) *QByteArray {
 			defer C.free(unsafe.Pointer(afterC))
 		}
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_Replace11(ptr.Pointer(), beforeC, afterC))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -9017,7 +9017,7 @@ func (ptr *QByteArray) Replace12(before string, after string) *QByteArray {
 			defer C.free(unsafe.Pointer(afterC))
 		}
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_Replace12(ptr.Pointer(), C.struct_QtCore_PackedString{data: beforeC, len: C.longlong(len(before))}, afterC))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -9036,7 +9036,7 @@ func (ptr *QByteArray) Replace13(before string, after string) *QByteArray {
 			defer C.free(unsafe.Pointer(afterC))
 		}
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_Replace13(ptr.Pointer(), beforeC, C.struct_QtCore_PackedString{data: afterC, len: C.longlong(len(after))}))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -9050,7 +9050,7 @@ func (ptr *QByteArray) Replace14(before string, after QByteArray_ITF) *QByteArra
 			defer C.free(unsafe.Pointer(beforeC))
 		}
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_Replace14(ptr.Pointer(), C.struct_QtCore_PackedString{data: beforeC, len: C.longlong(len(before))}, PointerFromQByteArray(after)))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -9071,7 +9071,7 @@ func (ptr *QByteArray) Resize(size int) {
 func (ptr *QByteArray) Right(l int) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_Right(ptr.Pointer(), C.int(int32(l))))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -9085,7 +9085,7 @@ func (ptr *QByteArray) RightJustified(width int, fill string, truncate bool) *QB
 			defer C.free(unsafe.Pointer(fillC))
 		}
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_RightJustified(ptr.Pointer(), C.int(int32(width)), fillC, C.char(int8(qt.GoBoolToInt(truncate)))))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -9094,7 +9094,7 @@ func (ptr *QByteArray) RightJustified(width int, fill string, truncate bool) *QB
 func (ptr *QByteArray) SetNum(n int, base int) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_SetNum(ptr.Pointer(), C.int(int32(n)), C.int(int32(base))))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -9103,7 +9103,7 @@ func (ptr *QByteArray) SetNum(n int, base int) *QByteArray {
 func (ptr *QByteArray) SetNum2(n int16, base int) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_SetNum2(ptr.Pointer(), C.short(n), C.int(int32(base))))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -9112,7 +9112,7 @@ func (ptr *QByteArray) SetNum2(n int16, base int) *QByteArray {
 func (ptr *QByteArray) SetNum3(n uint16, base int) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_SetNum3(ptr.Pointer(), C.ushort(n), C.int(int32(base))))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -9121,7 +9121,7 @@ func (ptr *QByteArray) SetNum3(n uint16, base int) *QByteArray {
 func (ptr *QByteArray) SetNum4(n uint, base int) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_SetNum4(ptr.Pointer(), C.uint(uint32(n)), C.int(int32(base))))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -9130,7 +9130,7 @@ func (ptr *QByteArray) SetNum4(n uint, base int) *QByteArray {
 func (ptr *QByteArray) SetNum5(n int64, base int) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_SetNum5(ptr.Pointer(), C.longlong(n), C.int(int32(base))))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -9139,7 +9139,7 @@ func (ptr *QByteArray) SetNum5(n int64, base int) *QByteArray {
 func (ptr *QByteArray) SetNum6(n uint64, base int) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_SetNum6(ptr.Pointer(), C.ulonglong(n), C.int(int32(base))))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -9153,7 +9153,7 @@ func (ptr *QByteArray) SetNum7(n float32, ff string, prec int) *QByteArray {
 			defer C.free(unsafe.Pointer(ffC))
 		}
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_SetNum7(ptr.Pointer(), C.float(n), ffC, C.int(int32(prec))))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -9167,7 +9167,7 @@ func (ptr *QByteArray) SetNum8(n float64, ff string, prec int) *QByteArray {
 			defer C.free(unsafe.Pointer(ffC))
 		}
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_SetNum8(ptr.Pointer(), C.double(n), ffC, C.int(int32(prec))))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -9180,7 +9180,7 @@ func (ptr *QByteArray) SetRawData(data []byte, size uint) *QByteArray {
 			dataC = (*C.char)(unsafe.Pointer(&data[0]))
 		}
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_SetRawData(ptr.Pointer(), dataC, C.uint(uint32(size))))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -9195,7 +9195,7 @@ func (ptr *QByteArray) Shrink_to_fit() {
 func (ptr *QByteArray) Simplified() *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_Simplified(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -9273,7 +9273,7 @@ func (ptr *QByteArray) Swap(other QByteArray_ITF) {
 func (ptr *QByteArray) ToBase64() *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_ToBase64(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -9282,7 +9282,7 @@ func (ptr *QByteArray) ToBase64() *QByteArray {
 func (ptr *QByteArray) ToBase642(options QByteArray__Base64Option) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_ToBase642(ptr.Pointer(), C.longlong(options)))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -9315,7 +9315,7 @@ func (ptr *QByteArray) ToFloat(ok *bool) float32 {
 func (ptr *QByteArray) ToHex() *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_ToHex(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -9329,7 +9329,7 @@ func (ptr *QByteArray) ToHex2(separator string) *QByteArray {
 			defer C.free(unsafe.Pointer(separatorC))
 		}
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_ToHex2(ptr.Pointer(), separatorC))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -9374,7 +9374,7 @@ func (ptr *QByteArray) ToLongLong(ok *bool, base int) int64 {
 func (ptr *QByteArray) ToLower() *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_ToLower(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -9388,7 +9388,7 @@ func (ptr *QByteArray) ToPercentEncoding(exclude QByteArray_ITF, include QByteAr
 			defer C.free(unsafe.Pointer(percentC))
 		}
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_ToPercentEncoding(ptr.Pointer(), PointerFromQByteArray(exclude), PointerFromQByteArray(include), percentC))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -9457,7 +9457,7 @@ func (ptr *QByteArray) ToUShort(ok *bool, base int) uint16 {
 func (ptr *QByteArray) ToUpper() *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_ToUpper(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -9466,7 +9466,7 @@ func (ptr *QByteArray) ToUpper() *QByteArray {
 func (ptr *QByteArray) Trimmed() *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_Trimmed(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -9483,14 +9483,14 @@ func (ptr *QByteArray) DestroyQByteArray() {
 		C.QByteArray_DestroyQByteArray(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QByteArray) __split_atList(i int) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray___split_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -9549,7 +9549,7 @@ func (ptr *QByteArrayList) DestroyQByteArrayList() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -9568,7 +9568,7 @@ func (ptr *QByteArrayList) IndexOf(needle string, from int) int {
 func (ptr *QByteArrayList) Join() *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QByteArrayList_Join(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -9577,7 +9577,7 @@ func (ptr *QByteArrayList) Join() *QByteArray {
 func (ptr *QByteArrayList) Join2(separator QByteArray_ITF) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QByteArrayList_Join2(ptr.Pointer(), PointerFromQByteArray(separator)))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -9591,7 +9591,7 @@ func (ptr *QByteArrayList) Join3(separator string) *QByteArray {
 			defer C.free(unsafe.Pointer(separatorC))
 		}
 		tmpValue := NewQByteArrayFromPointer(C.QByteArrayList_Join3(ptr.Pointer(), separatorC))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -9636,13 +9636,13 @@ func NewQByteArrayMatcherFromPointer(ptr unsafe.Pointer) (n *QByteArrayMatcher) 
 }
 func NewQByteArrayMatcher() *QByteArrayMatcher {
 	tmpValue := NewQByteArrayMatcherFromPointer(C.QByteArrayMatcher_NewQByteArrayMatcher())
-	runtime.SetFinalizer(tmpValue, (*QByteArrayMatcher).DestroyQByteArrayMatcher)
+	qt.SetFinalizer(tmpValue, (*QByteArrayMatcher).DestroyQByteArrayMatcher)
 	return tmpValue
 }
 
 func NewQByteArrayMatcher2(pattern QByteArray_ITF) *QByteArrayMatcher {
 	tmpValue := NewQByteArrayMatcherFromPointer(C.QByteArrayMatcher_NewQByteArrayMatcher2(PointerFromQByteArray(pattern)))
-	runtime.SetFinalizer(tmpValue, (*QByteArrayMatcher).DestroyQByteArrayMatcher)
+	qt.SetFinalizer(tmpValue, (*QByteArrayMatcher).DestroyQByteArrayMatcher)
 	return tmpValue
 }
 
@@ -9653,13 +9653,13 @@ func NewQByteArrayMatcher3(pattern string, length int) *QByteArrayMatcher {
 		defer C.free(unsafe.Pointer(patternC))
 	}
 	tmpValue := NewQByteArrayMatcherFromPointer(C.QByteArrayMatcher_NewQByteArrayMatcher3(patternC, C.int(int32(length))))
-	runtime.SetFinalizer(tmpValue, (*QByteArrayMatcher).DestroyQByteArrayMatcher)
+	qt.SetFinalizer(tmpValue, (*QByteArrayMatcher).DestroyQByteArrayMatcher)
 	return tmpValue
 }
 
 func NewQByteArrayMatcher4(other QByteArrayMatcher_ITF) *QByteArrayMatcher {
 	tmpValue := NewQByteArrayMatcherFromPointer(C.QByteArrayMatcher_NewQByteArrayMatcher4(PointerFromQByteArrayMatcher(other)))
-	runtime.SetFinalizer(tmpValue, (*QByteArrayMatcher).DestroyQByteArrayMatcher)
+	qt.SetFinalizer(tmpValue, (*QByteArrayMatcher).DestroyQByteArrayMatcher)
 	return tmpValue
 }
 
@@ -9685,7 +9685,7 @@ func (ptr *QByteArrayMatcher) IndexIn2(str string, l int, from int) int {
 func (ptr *QByteArrayMatcher) Pattern() *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QByteArrayMatcher_Pattern(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -9702,7 +9702,7 @@ func (ptr *QByteArrayMatcher) DestroyQByteArrayMatcher() {
 		C.QByteArrayMatcher_DestroyQByteArrayMatcher(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -9749,7 +9749,7 @@ func (ptr *QByteRef) DestroyQByteRef() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -9830,13 +9830,13 @@ func NewQCborArrayFromPointer(ptr unsafe.Pointer) (n *QCborArray) {
 }
 func NewQCborArray() *QCborArray {
 	tmpValue := NewQCborArrayFromPointer(C.QCborArray_NewQCborArray())
-	runtime.SetFinalizer(tmpValue, (*QCborArray).DestroyQCborArray)
+	qt.SetFinalizer(tmpValue, (*QCborArray).DestroyQCborArray)
 	return tmpValue
 }
 
 func NewQCborArray2(other QCborArray_ITF) *QCborArray {
 	tmpValue := NewQCborArrayFromPointer(C.QCborArray_NewQCborArray2(PointerFromQCborArray(other)))
-	runtime.SetFinalizer(tmpValue, (*QCborArray).DestroyQCborArray)
+	qt.SetFinalizer(tmpValue, (*QCborArray).DestroyQCborArray)
 	return tmpValue
 }
 
@@ -9888,13 +9888,13 @@ func (ptr *QCborArray) First() *QCborValue {
 
 func QCborArray_FromJsonArray(array QJsonArray_ITF) *QCborArray {
 	tmpValue := NewQCborArrayFromPointer(C.QCborArray_QCborArray_FromJsonArray(PointerFromQJsonArray(array)))
-	runtime.SetFinalizer(tmpValue, (*QCborArray).DestroyQCborArray)
+	qt.SetFinalizer(tmpValue, (*QCborArray).DestroyQCborArray)
 	return tmpValue
 }
 
 func (ptr *QCborArray) FromJsonArray(array QJsonArray_ITF) *QCborArray {
 	tmpValue := NewQCborArrayFromPointer(C.QCborArray_QCborArray_FromJsonArray(PointerFromQJsonArray(array)))
-	runtime.SetFinalizer(tmpValue, (*QCborArray).DestroyQCborArray)
+	qt.SetFinalizer(tmpValue, (*QCborArray).DestroyQCborArray)
 	return tmpValue
 }
 
@@ -9902,7 +9902,7 @@ func QCborArray_FromStringList(list []string) *QCborArray {
 	listC := C.CString(strings.Join(list, "¡¦!"))
 	defer C.free(unsafe.Pointer(listC))
 	tmpValue := NewQCborArrayFromPointer(C.QCborArray_QCborArray_FromStringList(C.struct_QtCore_PackedString{data: listC, len: C.longlong(len(strings.Join(list, "¡¦!")))}))
-	runtime.SetFinalizer(tmpValue, (*QCborArray).DestroyQCborArray)
+	qt.SetFinalizer(tmpValue, (*QCborArray).DestroyQCborArray)
 	return tmpValue
 }
 
@@ -9910,7 +9910,7 @@ func (ptr *QCborArray) FromStringList(list []string) *QCborArray {
 	listC := C.CString(strings.Join(list, "¡¦!"))
 	defer C.free(unsafe.Pointer(listC))
 	tmpValue := NewQCborArrayFromPointer(C.QCborArray_QCborArray_FromStringList(C.struct_QtCore_PackedString{data: listC, len: C.longlong(len(strings.Join(list, "¡¦!")))}))
-	runtime.SetFinalizer(tmpValue, (*QCborArray).DestroyQCborArray)
+	qt.SetFinalizer(tmpValue, (*QCborArray).DestroyQCborArray)
 	return tmpValue
 }
 
@@ -9922,7 +9922,7 @@ func QCborArray_FromVariantList(list []*QVariant) *QCborArray {
 		}
 		return tmpList.Pointer()
 	}()))
-	runtime.SetFinalizer(tmpValue, (*QCborArray).DestroyQCborArray)
+	qt.SetFinalizer(tmpValue, (*QCborArray).DestroyQCborArray)
 	return tmpValue
 }
 
@@ -9934,7 +9934,7 @@ func (ptr *QCborArray) FromVariantList(list []*QVariant) *QCborArray {
 		}
 		return tmpList.Pointer()
 	}()))
-	runtime.SetFinalizer(tmpValue, (*QCborArray).DestroyQCborArray)
+	qt.SetFinalizer(tmpValue, (*QCborArray).DestroyQCborArray)
 	return tmpValue
 }
 
@@ -10030,7 +10030,7 @@ func (ptr *QCborArray) ToCborValue() *QCborValue {
 func (ptr *QCborArray) ToJsonArray() *QJsonArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQJsonArrayFromPointer(C.QCborArray_ToJsonArray(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QJsonArray).DestroyQJsonArray)
+		qt.SetFinalizer(tmpValue, (*QJsonArray).DestroyQJsonArray)
 		return tmpValue
 	}
 	return nil
@@ -10055,14 +10055,14 @@ func (ptr *QCborArray) DestroyQCborArray() {
 		C.QCborArray_DestroyQCborArray(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QCborArray) __fromVariantList_list_atList(i int) *QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVariantFromPointer(C.QCborArray___fromVariantList_list_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -10081,7 +10081,7 @@ func (ptr *QCborArray) __fromVariantList_list_newList() unsafe.Pointer {
 func (ptr *QCborArray) __toVariantList_atList(i int) *QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVariantFromPointer(C.QCborArray___toVariantList_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -10140,7 +10140,7 @@ func (ptr *QCborError) DestroyQCborError() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -10212,13 +10212,13 @@ func NewQCborMapFromPointer(ptr unsafe.Pointer) (n *QCborMap) {
 }
 func NewQCborMap() *QCborMap {
 	tmpValue := NewQCborMapFromPointer(C.QCborMap_NewQCborMap())
-	runtime.SetFinalizer(tmpValue, (*QCborMap).DestroyQCborMap)
+	qt.SetFinalizer(tmpValue, (*QCborMap).DestroyQCborMap)
 	return tmpValue
 }
 
 func NewQCborMap2(other QCborMap_ITF) *QCborMap {
 	tmpValue := NewQCborMapFromPointer(C.QCborMap_NewQCborMap2(PointerFromQCborMap(other)))
-	runtime.SetFinalizer(tmpValue, (*QCborMap).DestroyQCborMap)
+	qt.SetFinalizer(tmpValue, (*QCborMap).DestroyQCborMap)
 	return tmpValue
 }
 
@@ -10277,13 +10277,13 @@ func (ptr *QCborMap) Empty() bool {
 
 func QCborMap_FromJsonObject(obj QJsonObject_ITF) *QCborMap {
 	tmpValue := NewQCborMapFromPointer(C.QCborMap_QCborMap_FromJsonObject(PointerFromQJsonObject(obj)))
-	runtime.SetFinalizer(tmpValue, (*QCborMap).DestroyQCborMap)
+	qt.SetFinalizer(tmpValue, (*QCborMap).DestroyQCborMap)
 	return tmpValue
 }
 
 func (ptr *QCborMap) FromJsonObject(obj QJsonObject_ITF) *QCborMap {
 	tmpValue := NewQCborMapFromPointer(C.QCborMap_QCborMap_FromJsonObject(PointerFromQJsonObject(obj)))
-	runtime.SetFinalizer(tmpValue, (*QCborMap).DestroyQCborMap)
+	qt.SetFinalizer(tmpValue, (*QCborMap).DestroyQCborMap)
 	return tmpValue
 }
 
@@ -10295,7 +10295,7 @@ func QCborMap_FromVariantHash(hash map[string]*QVariant) *QCborMap {
 		}
 		return tmpList.Pointer()
 	}()))
-	runtime.SetFinalizer(tmpValue, (*QCborMap).DestroyQCborMap)
+	qt.SetFinalizer(tmpValue, (*QCborMap).DestroyQCborMap)
 	return tmpValue
 }
 
@@ -10307,7 +10307,7 @@ func (ptr *QCborMap) FromVariantHash(hash map[string]*QVariant) *QCborMap {
 		}
 		return tmpList.Pointer()
 	}()))
-	runtime.SetFinalizer(tmpValue, (*QCborMap).DestroyQCborMap)
+	qt.SetFinalizer(tmpValue, (*QCborMap).DestroyQCborMap)
 	return tmpValue
 }
 
@@ -10410,7 +10410,7 @@ func (ptr *QCborMap) ToCborValue() *QCborValue {
 func (ptr *QCborMap) ToJsonObject() *QJsonObject {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQJsonObjectFromPointer(C.QCborMap_ToJsonObject(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QJsonObject).DestroyQJsonObject)
+		qt.SetFinalizer(tmpValue, (*QJsonObject).DestroyQJsonObject)
 		return tmpValue
 	}
 	return nil
@@ -10482,7 +10482,7 @@ func (ptr *QCborMap) DestroyQCborMap() {
 		C.QCborMap_DestroyQCborMap(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -10494,7 +10494,7 @@ func (ptr *QCborMap) __fromVariantHash_hash_atList(v string, i int) *QVariant {
 			defer C.free(unsafe.Pointer(vC))
 		}
 		tmpValue := NewQVariantFromPointer(C.QCborMap___fromVariantHash_hash_atList(ptr.Pointer(), C.struct_QtCore_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -10554,7 +10554,7 @@ func (ptr *QCborMap) __toVariantHash_atList(v string, i int) *QVariant {
 			defer C.free(unsafe.Pointer(vC))
 		}
 		tmpValue := NewQVariantFromPointer(C.QCborMap___toVariantHash_atList(ptr.Pointer(), C.struct_QtCore_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -10597,7 +10597,7 @@ func (ptr *QCborMap) __toVariantMap_atList(v string, i int) *QVariant {
 			defer C.free(unsafe.Pointer(vC))
 		}
 		tmpValue := NewQVariantFromPointer(C.QCborMap___toVariantMap_atList(ptr.Pointer(), C.struct_QtCore_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -10763,7 +10763,7 @@ func (ptr *QCborParserError) DestroyQCborParserError() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -11028,7 +11028,7 @@ func (ptr *QCborValueRef) DestroyQCborValueRef() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -11075,7 +11075,7 @@ func (ptr *QChar) DestroyQChar() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -11384,13 +11384,13 @@ const (
 
 func NewQChar() *QChar {
 	tmpValue := NewQCharFromPointer(C.QChar_NewQChar())
-	runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+	qt.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 	return tmpValue
 }
 
 func NewQChar2(code uint16) *QChar {
 	tmpValue := NewQCharFromPointer(C.QChar_NewQChar2(C.ushort(code)))
-	runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+	qt.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 	return tmpValue
 }
 
@@ -11406,37 +11406,37 @@ func NewQChar3(cell string, row string) *QChar {
 		defer C.free(unsafe.Pointer(rowC))
 	}
 	tmpValue := NewQCharFromPointer(C.QChar_NewQChar3(cellC, rowC))
-	runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+	qt.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 	return tmpValue
 }
 
 func NewQChar4(code int16) *QChar {
 	tmpValue := NewQCharFromPointer(C.QChar_NewQChar4(C.short(code)))
-	runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+	qt.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 	return tmpValue
 }
 
 func NewQChar5(code uint) *QChar {
 	tmpValue := NewQCharFromPointer(C.QChar_NewQChar5(C.uint(uint32(code))))
-	runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+	qt.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 	return tmpValue
 }
 
 func NewQChar6(code int) *QChar {
 	tmpValue := NewQCharFromPointer(C.QChar_NewQChar6(C.int(int32(code))))
-	runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+	qt.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 	return tmpValue
 }
 
 func NewQChar7(ch QChar__SpecialCharacter) *QChar {
 	tmpValue := NewQCharFromPointer(C.QChar_NewQChar7(C.longlong(ch)))
-	runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+	qt.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 	return tmpValue
 }
 
 func NewQChar8(ch QLatin1Char_ITF) *QChar {
 	tmpValue := NewQCharFromPointer(C.QChar_NewQChar8(PointerFromQLatin1Char(ch)))
-	runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+	qt.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 	return tmpValue
 }
 
@@ -11447,7 +11447,7 @@ func NewQChar11(ch string) *QChar {
 		defer C.free(unsafe.Pointer(chC))
 	}
 	tmpValue := NewQCharFromPointer(C.QChar_NewQChar11(chC))
-	runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+	qt.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 	return tmpValue
 }
 
@@ -11458,7 +11458,7 @@ func NewQChar12(ch string) *QChar {
 		defer C.free(unsafe.Pointer(chC))
 	}
 	tmpValue := NewQCharFromPointer(C.QChar_NewQChar12(chC))
-	runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+	qt.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 	return tmpValue
 }
 
@@ -11559,7 +11559,7 @@ func QChar_FromLatin1(c string) *QChar {
 		defer C.free(unsafe.Pointer(cC))
 	}
 	tmpValue := NewQCharFromPointer(C.QChar_QChar_FromLatin1(cC))
-	runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+	qt.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 	return tmpValue
 }
 
@@ -11570,7 +11570,7 @@ func (ptr *QChar) FromLatin1(c string) *QChar {
 		defer C.free(unsafe.Pointer(cC))
 	}
 	tmpValue := NewQCharFromPointer(C.QChar_QChar_FromLatin1(cC))
-	runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+	qt.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 	return tmpValue
 }
 
@@ -11870,7 +11870,7 @@ func (ptr *QChar) LowSurrogate(ucs4 uint) uint16 {
 func (ptr *QChar) MirroredChar() *QChar {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQCharFromPointer(C.QChar_MirroredChar(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+		qt.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 		return tmpValue
 	}
 	return nil
@@ -11933,7 +11933,7 @@ func (ptr *QChar) SurrogateToUcs42(high QChar_ITF, low QChar_ITF) uint {
 func (ptr *QChar) ToCaseFolded() *QChar {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQCharFromPointer(C.QChar_ToCaseFolded(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+		qt.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 		return tmpValue
 	}
 	return nil
@@ -11957,7 +11957,7 @@ func (ptr *QChar) ToLatin1() string {
 func (ptr *QChar) ToLower() *QChar {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQCharFromPointer(C.QChar_ToLower(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+		qt.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 		return tmpValue
 	}
 	return nil
@@ -11974,7 +11974,7 @@ func (ptr *QChar) ToLower2(ucs4 uint) uint {
 func (ptr *QChar) ToTitleCase() *QChar {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQCharFromPointer(C.QChar_ToTitleCase(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+		qt.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 		return tmpValue
 	}
 	return nil
@@ -11991,7 +11991,7 @@ func (ptr *QChar) ToTitleCase2(ucs4 uint) uint {
 func (ptr *QChar) ToUpper() *QChar {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQCharFromPointer(C.QChar_ToUpper(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+		qt.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 		return tmpValue
 	}
 	return nil
@@ -12079,13 +12079,13 @@ func (ptr *QChildEvent) DestroyQChildEvent() {
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func NewQChildEvent(ty QEvent__Type, child QObject_ITF) *QChildEvent {
 	tmpValue := NewQChildEventFromPointer(C.QChildEvent_NewQChildEvent(C.longlong(ty), PointerFromQObject(child)))
-	runtime.SetFinalizer(tmpValue, (*QChildEvent).DestroyQChildEvent)
+	qt.SetFinalizer(tmpValue, (*QChildEvent).DestroyQChildEvent)
 	return tmpValue
 }
 
@@ -12160,19 +12160,19 @@ func NewQCollatorFromPointer(ptr unsafe.Pointer) (n *QCollator) {
 }
 func NewQCollator(locale QLocale_ITF) *QCollator {
 	tmpValue := NewQCollatorFromPointer(C.QCollator_NewQCollator(PointerFromQLocale(locale)))
-	runtime.SetFinalizer(tmpValue, (*QCollator).DestroyQCollator)
+	qt.SetFinalizer(tmpValue, (*QCollator).DestroyQCollator)
 	return tmpValue
 }
 
 func NewQCollator2(other QCollator_ITF) *QCollator {
 	tmpValue := NewQCollatorFromPointer(C.QCollator_NewQCollator2(PointerFromQCollator(other)))
-	runtime.SetFinalizer(tmpValue, (*QCollator).DestroyQCollator)
+	qt.SetFinalizer(tmpValue, (*QCollator).DestroyQCollator)
 	return tmpValue
 }
 
 func NewQCollator3(other QCollator_ITF) *QCollator {
 	tmpValue := NewQCollatorFromPointer(C.QCollator_NewQCollator3(PointerFromQCollator(other)))
-	runtime.SetFinalizer(tmpValue, (*QCollator).DestroyQCollator)
+	qt.SetFinalizer(tmpValue, (*QCollator).DestroyQCollator)
 	return tmpValue
 }
 
@@ -12224,7 +12224,7 @@ func (ptr *QCollator) IgnorePunctuation() bool {
 func (ptr *QCollator) Locale() *QLocale {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQLocaleFromPointer(C.QCollator_Locale(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QLocale).DestroyQLocale)
+		qt.SetFinalizer(tmpValue, (*QLocale).DestroyQLocale)
 		return tmpValue
 	}
 	return nil
@@ -12269,7 +12269,7 @@ func (ptr *QCollator) SortKey(stri string) *QCollatorSortKey {
 			defer C.free(unsafe.Pointer(striC))
 		}
 		tmpValue := NewQCollatorSortKeyFromPointer(C.QCollator_SortKey(ptr.Pointer(), C.struct_QtCore_PackedString{data: striC, len: C.longlong(len(stri))}))
-		runtime.SetFinalizer(tmpValue, (*QCollatorSortKey).DestroyQCollatorSortKey)
+		qt.SetFinalizer(tmpValue, (*QCollatorSortKey).DestroyQCollatorSortKey)
 		return tmpValue
 	}
 	return nil
@@ -12286,7 +12286,7 @@ func (ptr *QCollator) DestroyQCollator() {
 		C.QCollator_DestroyQCollator(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -12329,7 +12329,7 @@ func NewQCollatorSortKeyFromPointer(ptr unsafe.Pointer) (n *QCollatorSortKey) {
 }
 func NewQCollatorSortKey(other QCollatorSortKey_ITF) *QCollatorSortKey {
 	tmpValue := NewQCollatorSortKeyFromPointer(C.QCollatorSortKey_NewQCollatorSortKey(PointerFromQCollatorSortKey(other)))
-	runtime.SetFinalizer(tmpValue, (*QCollatorSortKey).DestroyQCollatorSortKey)
+	qt.SetFinalizer(tmpValue, (*QCollatorSortKey).DestroyQCollatorSortKey)
 	return tmpValue
 }
 
@@ -12351,7 +12351,7 @@ func (ptr *QCollatorSortKey) DestroyQCollatorSortKey() {
 		C.QCollatorSortKey_DestroyQCollatorSortKey(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -12409,7 +12409,7 @@ func NewQCommandLineOption(name string) *QCommandLineOption {
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	tmpValue := NewQCommandLineOptionFromPointer(C.QCommandLineOption_NewQCommandLineOption(C.struct_QtCore_PackedString{data: nameC, len: C.longlong(len(name))}))
-	runtime.SetFinalizer(tmpValue, (*QCommandLineOption).DestroyQCommandLineOption)
+	qt.SetFinalizer(tmpValue, (*QCommandLineOption).DestroyQCommandLineOption)
 	return tmpValue
 }
 
@@ -12417,7 +12417,7 @@ func NewQCommandLineOption2(names []string) *QCommandLineOption {
 	namesC := C.CString(strings.Join(names, "¡¦!"))
 	defer C.free(unsafe.Pointer(namesC))
 	tmpValue := NewQCommandLineOptionFromPointer(C.QCommandLineOption_NewQCommandLineOption2(C.struct_QtCore_PackedString{data: namesC, len: C.longlong(len(strings.Join(names, "¡¦!")))}))
-	runtime.SetFinalizer(tmpValue, (*QCommandLineOption).DestroyQCommandLineOption)
+	qt.SetFinalizer(tmpValue, (*QCommandLineOption).DestroyQCommandLineOption)
 	return tmpValue
 }
 
@@ -12443,7 +12443,7 @@ func NewQCommandLineOption3(name string, description string, valueName string, d
 		defer C.free(unsafe.Pointer(defaultValueC))
 	}
 	tmpValue := NewQCommandLineOptionFromPointer(C.QCommandLineOption_NewQCommandLineOption3(C.struct_QtCore_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtCore_PackedString{data: descriptionC, len: C.longlong(len(description))}, C.struct_QtCore_PackedString{data: valueNameC, len: C.longlong(len(valueName))}, C.struct_QtCore_PackedString{data: defaultValueC, len: C.longlong(len(defaultValue))}))
-	runtime.SetFinalizer(tmpValue, (*QCommandLineOption).DestroyQCommandLineOption)
+	qt.SetFinalizer(tmpValue, (*QCommandLineOption).DestroyQCommandLineOption)
 	return tmpValue
 }
 
@@ -12466,13 +12466,13 @@ func NewQCommandLineOption4(names []string, description string, valueName string
 		defer C.free(unsafe.Pointer(defaultValueC))
 	}
 	tmpValue := NewQCommandLineOptionFromPointer(C.QCommandLineOption_NewQCommandLineOption4(C.struct_QtCore_PackedString{data: namesC, len: C.longlong(len(strings.Join(names, "¡¦!")))}, C.struct_QtCore_PackedString{data: descriptionC, len: C.longlong(len(description))}, C.struct_QtCore_PackedString{data: valueNameC, len: C.longlong(len(valueName))}, C.struct_QtCore_PackedString{data: defaultValueC, len: C.longlong(len(defaultValue))}))
-	runtime.SetFinalizer(tmpValue, (*QCommandLineOption).DestroyQCommandLineOption)
+	qt.SetFinalizer(tmpValue, (*QCommandLineOption).DestroyQCommandLineOption)
 	return tmpValue
 }
 
 func NewQCommandLineOption5(other QCommandLineOption_ITF) *QCommandLineOption {
 	tmpValue := NewQCommandLineOptionFromPointer(C.QCommandLineOption_NewQCommandLineOption5(PointerFromQCommandLineOption(other)))
-	runtime.SetFinalizer(tmpValue, (*QCommandLineOption).DestroyQCommandLineOption)
+	qt.SetFinalizer(tmpValue, (*QCommandLineOption).DestroyQCommandLineOption)
 	return tmpValue
 }
 
@@ -12569,7 +12569,7 @@ func (ptr *QCommandLineOption) DestroyQCommandLineOption() {
 		C.QCommandLineOption_DestroyQCommandLineOption(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -12631,14 +12631,14 @@ const (
 
 func NewQCommandLineParser() *QCommandLineParser {
 	tmpValue := NewQCommandLineParserFromPointer(C.QCommandLineParser_NewQCommandLineParser())
-	runtime.SetFinalizer(tmpValue, (*QCommandLineParser).DestroyQCommandLineParser)
+	qt.SetFinalizer(tmpValue, (*QCommandLineParser).DestroyQCommandLineParser)
 	return tmpValue
 }
 
 func (ptr *QCommandLineParser) AddHelpOption() *QCommandLineOption {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQCommandLineOptionFromPointer(C.QCommandLineParser_AddHelpOption(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QCommandLineOption).DestroyQCommandLineOption)
+		qt.SetFinalizer(tmpValue, (*QCommandLineOption).DestroyQCommandLineOption)
 		return tmpValue
 	}
 	return nil
@@ -12688,7 +12688,7 @@ func (ptr *QCommandLineParser) AddPositionalArgument(name string, description st
 func (ptr *QCommandLineParser) AddVersionOption() *QCommandLineOption {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQCommandLineOptionFromPointer(C.QCommandLineParser_AddVersionOption(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QCommandLineOption).DestroyQCommandLineOption)
+		qt.SetFinalizer(tmpValue, (*QCommandLineOption).DestroyQCommandLineOption)
 		return tmpValue
 	}
 	return nil
@@ -12862,14 +12862,14 @@ func (ptr *QCommandLineParser) DestroyQCommandLineParser() {
 		C.QCommandLineParser_DestroyQCommandLineParser(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QCommandLineParser) __addOptions_options_atList(i int) *QCommandLineOption {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQCommandLineOptionFromPointer(C.QCommandLineParser___addOptions_options_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QCommandLineOption).DestroyQCommandLineOption)
+		qt.SetFinalizer(tmpValue, (*QCommandLineOption).DestroyQCommandLineOption)
 		return tmpValue
 	}
 	return nil
@@ -13016,7 +13016,7 @@ func (ptr *QConcatenateTablesProxyModel) DisconnectData() {
 func (ptr *QConcatenateTablesProxyModel) Data(index QModelIndex_ITF, role int) *QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVariantFromPointer(C.QConcatenateTablesProxyModel_Data(ptr.Pointer(), PointerFromQModelIndex(index), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -13025,7 +13025,7 @@ func (ptr *QConcatenateTablesProxyModel) Data(index QModelIndex_ITF, role int) *
 func (ptr *QConcatenateTablesProxyModel) DataDefault(index QModelIndex_ITF, role int) *QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVariantFromPointer(C.QConcatenateTablesProxyModel_DataDefault(ptr.Pointer(), PointerFromQModelIndex(index), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -13065,7 +13065,7 @@ func (ptr *QConcatenateTablesProxyModel) DisconnectIndex() {
 func (ptr *QConcatenateTablesProxyModel) Index(row int, column int, parent QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QConcatenateTablesProxyModel_Index(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), PointerFromQModelIndex(parent)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -13074,7 +13074,7 @@ func (ptr *QConcatenateTablesProxyModel) Index(row int, column int, parent QMode
 func (ptr *QConcatenateTablesProxyModel) IndexDefault(row int, column int, parent QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QConcatenateTablesProxyModel_IndexDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), PointerFromQModelIndex(parent)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -13083,7 +13083,7 @@ func (ptr *QConcatenateTablesProxyModel) IndexDefault(row int, column int, paren
 func (ptr *QConcatenateTablesProxyModel) MapFromSource(sourceIndex QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QConcatenateTablesProxyModel_MapFromSource(ptr.Pointer(), PointerFromQModelIndex(sourceIndex)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -13092,7 +13092,7 @@ func (ptr *QConcatenateTablesProxyModel) MapFromSource(sourceIndex QModelIndex_I
 func (ptr *QConcatenateTablesProxyModel) MapToSource(proxyIndex QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QConcatenateTablesProxyModel_MapToSource(ptr.Pointer(), PointerFromQModelIndex(proxyIndex)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -13132,7 +13132,7 @@ func (ptr *QConcatenateTablesProxyModel) DisconnectParent() {
 func (ptr *QConcatenateTablesProxyModel) Parent(index QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QConcatenateTablesProxyModel_Parent(ptr.Pointer(), PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -13141,7 +13141,7 @@ func (ptr *QConcatenateTablesProxyModel) Parent(index QModelIndex_ITF) *QModelIn
 func (ptr *QConcatenateTablesProxyModel) ParentDefault(index QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QConcatenateTablesProxyModel_ParentDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -13233,7 +13233,7 @@ func (ptr *QConcatenateTablesProxyModel) DestroyQConcatenateTablesProxyModel() {
 	if ptr.Pointer() != nil {
 		C.QConcatenateTablesProxyModel_DestroyQConcatenateTablesProxyModel(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -13241,7 +13241,7 @@ func (ptr *QConcatenateTablesProxyModel) DestroyQConcatenateTablesProxyModelDefa
 	if ptr.Pointer() != nil {
 		C.QConcatenateTablesProxyModel_DestroyQConcatenateTablesProxyModelDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -13326,7 +13326,7 @@ func (ptr *QContiguousCacheData) DestroyQContiguousCacheData() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -13373,7 +13373,7 @@ func (ptr *QContiguousCacheTypedData) DestroyQContiguousCacheTypedData() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -14123,7 +14123,7 @@ func (ptr *QCoreApplication) DestroyQCoreApplication() {
 	if ptr.Pointer() != nil {
 		C.QCoreApplication_DestroyQCoreApplication(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -14131,7 +14131,7 @@ func (ptr *QCoreApplication) DestroyQCoreApplicationDefault() {
 	if ptr.Pointer() != nil {
 		C.QCoreApplication_DestroyQCoreApplicationDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -14201,7 +14201,7 @@ const (
 
 func NewQCryptographicHash(method QCryptographicHash__Algorithm) *QCryptographicHash {
 	tmpValue := NewQCryptographicHashFromPointer(C.QCryptographicHash_NewQCryptographicHash(C.longlong(method)))
-	runtime.SetFinalizer(tmpValue, (*QCryptographicHash).DestroyQCryptographicHash)
+	qt.SetFinalizer(tmpValue, (*QCryptographicHash).DestroyQCryptographicHash)
 	return tmpValue
 }
 
@@ -14230,13 +14230,13 @@ func (ptr *QCryptographicHash) AddData3(device QIODevice_ITF) bool {
 
 func QCryptographicHash_Hash(data QByteArray_ITF, method QCryptographicHash__Algorithm) *QByteArray {
 	tmpValue := NewQByteArrayFromPointer(C.QCryptographicHash_QCryptographicHash_Hash(PointerFromQByteArray(data), C.longlong(method)))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
 func (ptr *QCryptographicHash) Hash(data QByteArray_ITF, method QCryptographicHash__Algorithm) *QByteArray {
 	tmpValue := NewQByteArrayFromPointer(C.QCryptographicHash_QCryptographicHash_Hash(PointerFromQByteArray(data), C.longlong(method)))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
@@ -14257,7 +14257,7 @@ func (ptr *QCryptographicHash) Reset() {
 func (ptr *QCryptographicHash) Result() *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QCryptographicHash_Result(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -14268,7 +14268,7 @@ func (ptr *QCryptographicHash) DestroyQCryptographicHash() {
 		C.QCryptographicHash_DestroyQCryptographicHash(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -14379,25 +14379,25 @@ const (
 
 func NewQDataStream() *QDataStream {
 	tmpValue := NewQDataStreamFromPointer(C.QDataStream_NewQDataStream())
-	runtime.SetFinalizer(tmpValue, (*QDataStream).DestroyQDataStream)
+	qt.SetFinalizer(tmpValue, (*QDataStream).DestroyQDataStream)
 	return tmpValue
 }
 
 func NewQDataStream2(d QIODevice_ITF) *QDataStream {
 	tmpValue := NewQDataStreamFromPointer(C.QDataStream_NewQDataStream2(PointerFromQIODevice(d)))
-	runtime.SetFinalizer(tmpValue, (*QDataStream).DestroyQDataStream)
+	qt.SetFinalizer(tmpValue, (*QDataStream).DestroyQDataStream)
 	return tmpValue
 }
 
 func NewQDataStream3(a QByteArray_ITF, mode QIODevice__OpenModeFlag) *QDataStream {
 	tmpValue := NewQDataStreamFromPointer(C.QDataStream_NewQDataStream3(PointerFromQByteArray(a), C.longlong(mode)))
-	runtime.SetFinalizer(tmpValue, (*QDataStream).DestroyQDataStream)
+	qt.SetFinalizer(tmpValue, (*QDataStream).DestroyQDataStream)
 	return tmpValue
 }
 
 func NewQDataStream4(a QByteArray_ITF) *QDataStream {
 	tmpValue := NewQDataStreamFromPointer(C.QDataStream_NewQDataStream4(PointerFromQByteArray(a)))
-	runtime.SetFinalizer(tmpValue, (*QDataStream).DestroyQDataStream)
+	qt.SetFinalizer(tmpValue, (*QDataStream).DestroyQDataStream)
 	return tmpValue
 }
 
@@ -14542,7 +14542,7 @@ func (ptr *QDataStream) DestroyQDataStream() {
 		C.QDataStream_DestroyQDataStream(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -14589,7 +14589,7 @@ func (ptr *QDate) DestroyQDate() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -14604,20 +14604,20 @@ const (
 
 func NewQDate2() *QDate {
 	tmpValue := NewQDateFromPointer(C.QDate_NewQDate2())
-	runtime.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
+	qt.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
 	return tmpValue
 }
 
 func NewQDate3(y int, m int, d int) *QDate {
 	tmpValue := NewQDateFromPointer(C.QDate_NewQDate3(C.int(int32(y)), C.int(int32(m)), C.int(int32(d))))
-	runtime.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
+	qt.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
 	return tmpValue
 }
 
 func (ptr *QDate) AddDays(ndays int64) *QDate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDateFromPointer(C.QDate_AddDays(ptr.Pointer(), C.longlong(ndays)))
-		runtime.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
+		qt.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
 		return tmpValue
 	}
 	return nil
@@ -14626,7 +14626,7 @@ func (ptr *QDate) AddDays(ndays int64) *QDate {
 func (ptr *QDate) AddMonths(nmonths int) *QDate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDateFromPointer(C.QDate_AddMonths(ptr.Pointer(), C.int(int32(nmonths))))
-		runtime.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
+		qt.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
 		return tmpValue
 	}
 	return nil
@@ -14635,7 +14635,7 @@ func (ptr *QDate) AddMonths(nmonths int) *QDate {
 func (ptr *QDate) AddYears(nyears int) *QDate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDateFromPointer(C.QDate_AddYears(ptr.Pointer(), C.int(int32(nyears))))
-		runtime.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
+		qt.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
 		return tmpValue
 	}
 	return nil
@@ -14643,13 +14643,13 @@ func (ptr *QDate) AddYears(nyears int) *QDate {
 
 func QDate_CurrentDate() *QDate {
 	tmpValue := NewQDateFromPointer(C.QDate_QDate_CurrentDate())
-	runtime.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
+	qt.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
 	return tmpValue
 }
 
 func (ptr *QDate) CurrentDate() *QDate {
 	tmpValue := NewQDateFromPointer(C.QDate_QDate_CurrentDate())
-	runtime.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
+	qt.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
 	return tmpValue
 }
 
@@ -14697,13 +14697,13 @@ func (ptr *QDate) DaysTo(d QDate_ITF) int64 {
 
 func QDate_FromJulianDay(jd int64) *QDate {
 	tmpValue := NewQDateFromPointer(C.QDate_QDate_FromJulianDay(C.longlong(jd)))
-	runtime.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
+	qt.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
 	return tmpValue
 }
 
 func (ptr *QDate) FromJulianDay(jd int64) *QDate {
 	tmpValue := NewQDateFromPointer(C.QDate_QDate_FromJulianDay(C.longlong(jd)))
-	runtime.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
+	qt.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
 	return tmpValue
 }
 
@@ -14714,7 +14714,7 @@ func QDate_FromString(stri string, format Qt__DateFormat) *QDate {
 		defer C.free(unsafe.Pointer(striC))
 	}
 	tmpValue := NewQDateFromPointer(C.QDate_QDate_FromString(C.struct_QtCore_PackedString{data: striC, len: C.longlong(len(stri))}, C.longlong(format)))
-	runtime.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
+	qt.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
 	return tmpValue
 }
 
@@ -14725,7 +14725,7 @@ func (ptr *QDate) FromString(stri string, format Qt__DateFormat) *QDate {
 		defer C.free(unsafe.Pointer(striC))
 	}
 	tmpValue := NewQDateFromPointer(C.QDate_QDate_FromString(C.struct_QtCore_PackedString{data: striC, len: C.longlong(len(stri))}, C.longlong(format)))
-	runtime.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
+	qt.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
 	return tmpValue
 }
 
@@ -14741,7 +14741,7 @@ func QDate_FromString2(stri string, format string) *QDate {
 		defer C.free(unsafe.Pointer(formatC))
 	}
 	tmpValue := NewQDateFromPointer(C.QDate_QDate_FromString2(C.struct_QtCore_PackedString{data: striC, len: C.longlong(len(stri))}, C.struct_QtCore_PackedString{data: formatC, len: C.longlong(len(format))}))
-	runtime.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
+	qt.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
 	return tmpValue
 }
 
@@ -14757,7 +14757,7 @@ func (ptr *QDate) FromString2(stri string, format string) *QDate {
 		defer C.free(unsafe.Pointer(formatC))
 	}
 	tmpValue := NewQDateFromPointer(C.QDate_QDate_FromString2(C.struct_QtCore_PackedString{data: striC, len: C.longlong(len(stri))}, C.struct_QtCore_PackedString{data: formatC, len: C.longlong(len(format))}))
-	runtime.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
+	qt.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
 	return tmpValue
 }
 
@@ -14897,50 +14897,50 @@ func NewQDateTimeFromPointer(ptr unsafe.Pointer) (n *QDateTime) {
 }
 func NewQDateTime() *QDateTime {
 	tmpValue := NewQDateTimeFromPointer(C.QDateTime_NewQDateTime())
-	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+	qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 	return tmpValue
 }
 
 func NewQDateTime2(date QDate_ITF) *QDateTime {
 	tmpValue := NewQDateTimeFromPointer(C.QDateTime_NewQDateTime2(PointerFromQDate(date)))
-	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+	qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 	return tmpValue
 }
 
 func NewQDateTime3(date QDate_ITF, ti QTime_ITF, spec Qt__TimeSpec) *QDateTime {
 	tmpValue := NewQDateTimeFromPointer(C.QDateTime_NewQDateTime3(PointerFromQDate(date), PointerFromQTime(ti), C.longlong(spec)))
-	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+	qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 	return tmpValue
 }
 
 func NewQDateTime4(date QDate_ITF, ti QTime_ITF, spec Qt__TimeSpec, offsetSeconds int) *QDateTime {
 	tmpValue := NewQDateTimeFromPointer(C.QDateTime_NewQDateTime4(PointerFromQDate(date), PointerFromQTime(ti), C.longlong(spec), C.int(int32(offsetSeconds))))
-	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+	qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 	return tmpValue
 }
 
 func NewQDateTime5(date QDate_ITF, ti QTime_ITF, timeZone QTimeZone_ITF) *QDateTime {
 	tmpValue := NewQDateTimeFromPointer(C.QDateTime_NewQDateTime5(PointerFromQDate(date), PointerFromQTime(ti), PointerFromQTimeZone(timeZone)))
-	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+	qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 	return tmpValue
 }
 
 func NewQDateTime6(other QDateTime_ITF) *QDateTime {
 	tmpValue := NewQDateTimeFromPointer(C.QDateTime_NewQDateTime6(PointerFromQDateTime(other)))
-	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+	qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 	return tmpValue
 }
 
 func NewQDateTime7(other QDateTime_ITF) *QDateTime {
 	tmpValue := NewQDateTimeFromPointer(C.QDateTime_NewQDateTime7(PointerFromQDateTime(other)))
-	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+	qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 	return tmpValue
 }
 
 func (ptr *QDateTime) AddDays(ndays int64) *QDateTime {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDateTimeFromPointer(C.QDateTime_AddDays(ptr.Pointer(), C.longlong(ndays)))
-		runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+		qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 		return tmpValue
 	}
 	return nil
@@ -14949,7 +14949,7 @@ func (ptr *QDateTime) AddDays(ndays int64) *QDateTime {
 func (ptr *QDateTime) AddMSecs(msecs int64) *QDateTime {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDateTimeFromPointer(C.QDateTime_AddMSecs(ptr.Pointer(), C.longlong(msecs)))
-		runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+		qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 		return tmpValue
 	}
 	return nil
@@ -14958,7 +14958,7 @@ func (ptr *QDateTime) AddMSecs(msecs int64) *QDateTime {
 func (ptr *QDateTime) AddMonths(nmonths int) *QDateTime {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDateTimeFromPointer(C.QDateTime_AddMonths(ptr.Pointer(), C.int(int32(nmonths))))
-		runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+		qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 		return tmpValue
 	}
 	return nil
@@ -14967,7 +14967,7 @@ func (ptr *QDateTime) AddMonths(nmonths int) *QDateTime {
 func (ptr *QDateTime) AddSecs(s int64) *QDateTime {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDateTimeFromPointer(C.QDateTime_AddSecs(ptr.Pointer(), C.longlong(s)))
-		runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+		qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 		return tmpValue
 	}
 	return nil
@@ -14976,7 +14976,7 @@ func (ptr *QDateTime) AddSecs(s int64) *QDateTime {
 func (ptr *QDateTime) AddYears(nyears int) *QDateTime {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDateTimeFromPointer(C.QDateTime_AddYears(ptr.Pointer(), C.int(int32(nyears))))
-		runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+		qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 		return tmpValue
 	}
 	return nil
@@ -14984,25 +14984,25 @@ func (ptr *QDateTime) AddYears(nyears int) *QDateTime {
 
 func QDateTime_CurrentDateTime() *QDateTime {
 	tmpValue := NewQDateTimeFromPointer(C.QDateTime_QDateTime_CurrentDateTime())
-	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+	qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 	return tmpValue
 }
 
 func (ptr *QDateTime) CurrentDateTime() *QDateTime {
 	tmpValue := NewQDateTimeFromPointer(C.QDateTime_QDateTime_CurrentDateTime())
-	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+	qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 	return tmpValue
 }
 
 func QDateTime_CurrentDateTimeUtc() *QDateTime {
 	tmpValue := NewQDateTimeFromPointer(C.QDateTime_QDateTime_CurrentDateTimeUtc())
-	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+	qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 	return tmpValue
 }
 
 func (ptr *QDateTime) CurrentDateTimeUtc() *QDateTime {
 	tmpValue := NewQDateTimeFromPointer(C.QDateTime_QDateTime_CurrentDateTimeUtc())
-	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+	qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 	return tmpValue
 }
 
@@ -15025,7 +15025,7 @@ func (ptr *QDateTime) CurrentSecsSinceEpoch() int64 {
 func (ptr *QDateTime) Date() *QDate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDateFromPointer(C.QDateTime_Date(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
+		qt.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
 		return tmpValue
 	}
 	return nil
@@ -15040,61 +15040,61 @@ func (ptr *QDateTime) DaysTo(other QDateTime_ITF) int64 {
 
 func QDateTime_FromMSecsSinceEpoch(msecs int64) *QDateTime {
 	tmpValue := NewQDateTimeFromPointer(C.QDateTime_QDateTime_FromMSecsSinceEpoch(C.longlong(msecs)))
-	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+	qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 	return tmpValue
 }
 
 func (ptr *QDateTime) FromMSecsSinceEpoch(msecs int64) *QDateTime {
 	tmpValue := NewQDateTimeFromPointer(C.QDateTime_QDateTime_FromMSecsSinceEpoch(C.longlong(msecs)))
-	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+	qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 	return tmpValue
 }
 
 func QDateTime_FromMSecsSinceEpoch2(msecs int64, spec Qt__TimeSpec, offsetSeconds int) *QDateTime {
 	tmpValue := NewQDateTimeFromPointer(C.QDateTime_QDateTime_FromMSecsSinceEpoch2(C.longlong(msecs), C.longlong(spec), C.int(int32(offsetSeconds))))
-	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+	qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 	return tmpValue
 }
 
 func (ptr *QDateTime) FromMSecsSinceEpoch2(msecs int64, spec Qt__TimeSpec, offsetSeconds int) *QDateTime {
 	tmpValue := NewQDateTimeFromPointer(C.QDateTime_QDateTime_FromMSecsSinceEpoch2(C.longlong(msecs), C.longlong(spec), C.int(int32(offsetSeconds))))
-	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+	qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 	return tmpValue
 }
 
 func QDateTime_FromMSecsSinceEpoch3(msecs int64, timeZone QTimeZone_ITF) *QDateTime {
 	tmpValue := NewQDateTimeFromPointer(C.QDateTime_QDateTime_FromMSecsSinceEpoch3(C.longlong(msecs), PointerFromQTimeZone(timeZone)))
-	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+	qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 	return tmpValue
 }
 
 func (ptr *QDateTime) FromMSecsSinceEpoch3(msecs int64, timeZone QTimeZone_ITF) *QDateTime {
 	tmpValue := NewQDateTimeFromPointer(C.QDateTime_QDateTime_FromMSecsSinceEpoch3(C.longlong(msecs), PointerFromQTimeZone(timeZone)))
-	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+	qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 	return tmpValue
 }
 
 func QDateTime_FromSecsSinceEpoch(secs int64, spec Qt__TimeSpec, offsetSeconds int) *QDateTime {
 	tmpValue := NewQDateTimeFromPointer(C.QDateTime_QDateTime_FromSecsSinceEpoch(C.longlong(secs), C.longlong(spec), C.int(int32(offsetSeconds))))
-	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+	qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 	return tmpValue
 }
 
 func (ptr *QDateTime) FromSecsSinceEpoch(secs int64, spec Qt__TimeSpec, offsetSeconds int) *QDateTime {
 	tmpValue := NewQDateTimeFromPointer(C.QDateTime_QDateTime_FromSecsSinceEpoch(C.longlong(secs), C.longlong(spec), C.int(int32(offsetSeconds))))
-	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+	qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 	return tmpValue
 }
 
 func QDateTime_FromSecsSinceEpoch2(secs int64, timeZone QTimeZone_ITF) *QDateTime {
 	tmpValue := NewQDateTimeFromPointer(C.QDateTime_QDateTime_FromSecsSinceEpoch2(C.longlong(secs), PointerFromQTimeZone(timeZone)))
-	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+	qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 	return tmpValue
 }
 
 func (ptr *QDateTime) FromSecsSinceEpoch2(secs int64, timeZone QTimeZone_ITF) *QDateTime {
 	tmpValue := NewQDateTimeFromPointer(C.QDateTime_QDateTime_FromSecsSinceEpoch2(C.longlong(secs), PointerFromQTimeZone(timeZone)))
-	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+	qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 	return tmpValue
 }
 
@@ -15105,7 +15105,7 @@ func QDateTime_FromString(stri string, format Qt__DateFormat) *QDateTime {
 		defer C.free(unsafe.Pointer(striC))
 	}
 	tmpValue := NewQDateTimeFromPointer(C.QDateTime_QDateTime_FromString(C.struct_QtCore_PackedString{data: striC, len: C.longlong(len(stri))}, C.longlong(format)))
-	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+	qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 	return tmpValue
 }
 
@@ -15116,7 +15116,7 @@ func (ptr *QDateTime) FromString(stri string, format Qt__DateFormat) *QDateTime 
 		defer C.free(unsafe.Pointer(striC))
 	}
 	tmpValue := NewQDateTimeFromPointer(C.QDateTime_QDateTime_FromString(C.struct_QtCore_PackedString{data: striC, len: C.longlong(len(stri))}, C.longlong(format)))
-	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+	qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 	return tmpValue
 }
 
@@ -15132,7 +15132,7 @@ func QDateTime_FromString2(stri string, format string) *QDateTime {
 		defer C.free(unsafe.Pointer(formatC))
 	}
 	tmpValue := NewQDateTimeFromPointer(C.QDateTime_QDateTime_FromString2(C.struct_QtCore_PackedString{data: striC, len: C.longlong(len(stri))}, C.struct_QtCore_PackedString{data: formatC, len: C.longlong(len(format))}))
-	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+	qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 	return tmpValue
 }
 
@@ -15148,7 +15148,7 @@ func (ptr *QDateTime) FromString2(stri string, format string) *QDateTime {
 		defer C.free(unsafe.Pointer(formatC))
 	}
 	tmpValue := NewQDateTimeFromPointer(C.QDateTime_QDateTime_FromString2(C.struct_QtCore_PackedString{data: striC, len: C.longlong(len(stri))}, C.struct_QtCore_PackedString{data: formatC, len: C.longlong(len(format))}))
-	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+	qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 	return tmpValue
 }
 
@@ -15245,7 +15245,7 @@ func (ptr *QDateTime) Swap(other QDateTime_ITF) {
 func (ptr *QDateTime) Time() *QTime {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQTimeFromPointer(C.QDateTime_Time(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
+		qt.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
 		return tmpValue
 	}
 	return nil
@@ -15261,7 +15261,7 @@ func (ptr *QDateTime) TimeSpec() Qt__TimeSpec {
 func (ptr *QDateTime) TimeZone() *QTimeZone {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQTimeZoneFromPointer(C.QDateTime_TimeZone(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QTimeZone).DestroyQTimeZone)
+		qt.SetFinalizer(tmpValue, (*QTimeZone).DestroyQTimeZone)
 		return tmpValue
 	}
 	return nil
@@ -15277,7 +15277,7 @@ func (ptr *QDateTime) TimeZoneAbbreviation() string {
 func (ptr *QDateTime) ToLocalTime() *QDateTime {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDateTimeFromPointer(C.QDateTime_ToLocalTime(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+		qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 		return tmpValue
 	}
 	return nil
@@ -15293,7 +15293,7 @@ func (ptr *QDateTime) ToMSecsSinceEpoch() int64 {
 func (ptr *QDateTime) ToOffsetFromUtc(offsetSeconds int) *QDateTime {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDateTimeFromPointer(C.QDateTime_ToOffsetFromUtc(ptr.Pointer(), C.int(int32(offsetSeconds))))
-		runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+		qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 		return tmpValue
 	}
 	return nil
@@ -15335,7 +15335,7 @@ func (ptr *QDateTime) ToString3(format QStringView_ITF) string {
 func (ptr *QDateTime) ToTimeSpec(spec Qt__TimeSpec) *QDateTime {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDateTimeFromPointer(C.QDateTime_ToTimeSpec(ptr.Pointer(), C.longlong(spec)))
-		runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+		qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 		return tmpValue
 	}
 	return nil
@@ -15344,7 +15344,7 @@ func (ptr *QDateTime) ToTimeSpec(spec Qt__TimeSpec) *QDateTime {
 func (ptr *QDateTime) ToTimeZone(timeZone QTimeZone_ITF) *QDateTime {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDateTimeFromPointer(C.QDateTime_ToTimeZone(ptr.Pointer(), PointerFromQTimeZone(timeZone)))
-		runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+		qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 		return tmpValue
 	}
 	return nil
@@ -15353,7 +15353,7 @@ func (ptr *QDateTime) ToTimeZone(timeZone QTimeZone_ITF) *QDateTime {
 func (ptr *QDateTime) ToUTC() *QDateTime {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDateTimeFromPointer(C.QDateTime_ToUTC(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+		qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 		return tmpValue
 	}
 	return nil
@@ -15364,7 +15364,7 @@ func (ptr *QDateTime) DestroyQDateTime() {
 		C.QDateTime_DestroyQDateTime(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -15411,7 +15411,7 @@ func (ptr *QDeadlineTimer) DestroyQDeadlineTimer() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -15425,19 +15425,19 @@ const (
 
 func NewQDeadlineTimer(timerType Qt__TimerType) *QDeadlineTimer {
 	tmpValue := NewQDeadlineTimerFromPointer(C.QDeadlineTimer_NewQDeadlineTimer(C.longlong(timerType)))
-	runtime.SetFinalizer(tmpValue, (*QDeadlineTimer).DestroyQDeadlineTimer)
+	qt.SetFinalizer(tmpValue, (*QDeadlineTimer).DestroyQDeadlineTimer)
 	return tmpValue
 }
 
 func NewQDeadlineTimer2(vqd QDeadlineTimer__ForeverConstant, timerType Qt__TimerType) *QDeadlineTimer {
 	tmpValue := NewQDeadlineTimerFromPointer(C.QDeadlineTimer_NewQDeadlineTimer2(C.longlong(vqd), C.longlong(timerType)))
-	runtime.SetFinalizer(tmpValue, (*QDeadlineTimer).DestroyQDeadlineTimer)
+	qt.SetFinalizer(tmpValue, (*QDeadlineTimer).DestroyQDeadlineTimer)
 	return tmpValue
 }
 
 func NewQDeadlineTimer3(msecs int64, ty Qt__TimerType) *QDeadlineTimer {
 	tmpValue := NewQDeadlineTimerFromPointer(C.QDeadlineTimer_NewQDeadlineTimer3(C.longlong(msecs), C.longlong(ty)))
-	runtime.SetFinalizer(tmpValue, (*QDeadlineTimer).DestroyQDeadlineTimer)
+	qt.SetFinalizer(tmpValue, (*QDeadlineTimer).DestroyQDeadlineTimer)
 	return tmpValue
 }
 
@@ -15576,7 +15576,7 @@ const (
 
 func NewQDebug(device QIODevice_ITF) *QDebug {
 	tmpValue := NewQDebugFromPointer(C.QDebug_NewQDebug(PointerFromQIODevice(device)))
-	runtime.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
+	qt.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
 	return tmpValue
 }
 
@@ -15587,13 +15587,13 @@ func NewQDebug2(stri string) *QDebug {
 		defer C.free(unsafe.Pointer(striC))
 	}
 	tmpValue := NewQDebugFromPointer(C.QDebug_NewQDebug2(C.struct_QtCore_PackedString{data: striC, len: C.longlong(len(stri))}))
-	runtime.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
+	qt.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
 	return tmpValue
 }
 
 func NewQDebug4(o QDebug_ITF) *QDebug {
 	tmpValue := NewQDebugFromPointer(C.QDebug_NewQDebug4(PointerFromQDebug(o)))
-	runtime.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
+	qt.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
 	return tmpValue
 }
 
@@ -15612,7 +15612,7 @@ func (ptr *QDebug) MaybeQuote(c string) *QDebug {
 			defer C.free(unsafe.Pointer(cC))
 		}
 		tmpValue := NewQDebugFromPointer(C.QDebug_MaybeQuote(ptr.Pointer(), cC))
-		runtime.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
+		qt.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
 		return tmpValue
 	}
 	return nil
@@ -15621,7 +15621,7 @@ func (ptr *QDebug) MaybeQuote(c string) *QDebug {
 func (ptr *QDebug) MaybeSpace() *QDebug {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDebugFromPointer(C.QDebug_MaybeSpace(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
+		qt.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
 		return tmpValue
 	}
 	return nil
@@ -15630,7 +15630,7 @@ func (ptr *QDebug) MaybeSpace() *QDebug {
 func (ptr *QDebug) Noquote() *QDebug {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDebugFromPointer(C.QDebug_Noquote(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
+		qt.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
 		return tmpValue
 	}
 	return nil
@@ -15639,7 +15639,7 @@ func (ptr *QDebug) Noquote() *QDebug {
 func (ptr *QDebug) Nospace() *QDebug {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDebugFromPointer(C.QDebug_Nospace(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
+		qt.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
 		return tmpValue
 	}
 	return nil
@@ -15648,7 +15648,7 @@ func (ptr *QDebug) Nospace() *QDebug {
 func (ptr *QDebug) Quote() *QDebug {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDebugFromPointer(C.QDebug_Quote(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
+		qt.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
 		return tmpValue
 	}
 	return nil
@@ -15657,7 +15657,7 @@ func (ptr *QDebug) Quote() *QDebug {
 func (ptr *QDebug) ResetFormat() *QDebug {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDebugFromPointer(C.QDebug_ResetFormat(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
+		qt.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
 		return tmpValue
 	}
 	return nil
@@ -15678,7 +15678,7 @@ func (ptr *QDebug) SetVerbosity(verbosityLevel int) {
 func (ptr *QDebug) Space() *QDebug {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDebugFromPointer(C.QDebug_Space(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
+		qt.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
 		return tmpValue
 	}
 	return nil
@@ -15693,7 +15693,7 @@ func (ptr *QDebug) Swap(other QDebug_ITF) {
 func (ptr *QDebug) Verbosity(verbosityLevel int) *QDebug {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDebugFromPointer(C.QDebug_Verbosity(ptr.Pointer(), C.int(int32(verbosityLevel))))
-		runtime.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
+		qt.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
 		return tmpValue
 	}
 	return nil
@@ -15711,7 +15711,7 @@ func (ptr *QDebug) DestroyQDebug() {
 		C.QDebug_DestroyQDebug(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -15754,7 +15754,7 @@ func NewQDebugStateSaverFromPointer(ptr unsafe.Pointer) (n *QDebugStateSaver) {
 }
 func NewQDebugStateSaver(dbg QDebug_ITF) *QDebugStateSaver {
 	tmpValue := NewQDebugStateSaverFromPointer(C.QDebugStateSaver_NewQDebugStateSaver(PointerFromQDebug(dbg)))
-	runtime.SetFinalizer(tmpValue, (*QDebugStateSaver).DestroyQDebugStateSaver)
+	qt.SetFinalizer(tmpValue, (*QDebugStateSaver).DestroyQDebugStateSaver)
 	return tmpValue
 }
 
@@ -15763,7 +15763,7 @@ func (ptr *QDebugStateSaver) DestroyQDebugStateSaver() {
 		C.QDebugStateSaver_DestroyQDebugStateSaver(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -15812,13 +15812,13 @@ func (ptr *QDeferredDeleteEvent) DestroyQDeferredDeleteEvent() {
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func NewQDeferredDeleteEvent() *QDeferredDeleteEvent {
 	tmpValue := NewQDeferredDeleteEventFromPointer(C.QDeferredDeleteEvent_NewQDeferredDeleteEvent())
-	runtime.SetFinalizer(tmpValue, (*QDeferredDeleteEvent).DestroyQDeferredDeleteEvent)
+	qt.SetFinalizer(tmpValue, (*QDeferredDeleteEvent).DestroyQDeferredDeleteEvent)
 	return tmpValue
 }
 
@@ -15915,7 +15915,7 @@ const (
 
 func NewQDir(dir QDir_ITF) *QDir {
 	tmpValue := NewQDirFromPointer(C.QDir_NewQDir(PointerFromQDir(dir)))
-	runtime.SetFinalizer(tmpValue, (*QDir).DestroyQDir)
+	qt.SetFinalizer(tmpValue, (*QDir).DestroyQDir)
 	return tmpValue
 }
 
@@ -15926,7 +15926,7 @@ func NewQDir2(path string) *QDir {
 		defer C.free(unsafe.Pointer(pathC))
 	}
 	tmpValue := NewQDirFromPointer(C.QDir_NewQDir2(C.struct_QtCore_PackedString{data: pathC, len: C.longlong(len(path))}))
-	runtime.SetFinalizer(tmpValue, (*QDir).DestroyQDir)
+	qt.SetFinalizer(tmpValue, (*QDir).DestroyQDir)
 	return tmpValue
 }
 
@@ -15942,7 +15942,7 @@ func NewQDir3(path string, nameFilter string, sort QDir__SortFlag, filters QDir_
 		defer C.free(unsafe.Pointer(nameFilterC))
 	}
 	tmpValue := NewQDirFromPointer(C.QDir_NewQDir3(C.struct_QtCore_PackedString{data: pathC, len: C.longlong(len(path))}, C.struct_QtCore_PackedString{data: nameFilterC, len: C.longlong(len(nameFilter))}, C.longlong(sort), C.longlong(filters)))
-	runtime.SetFinalizer(tmpValue, (*QDir).DestroyQDir)
+	qt.SetFinalizer(tmpValue, (*QDir).DestroyQDir)
 	return tmpValue
 }
 
@@ -16046,13 +16046,13 @@ func (ptr *QDir) Count() uint {
 
 func QDir_Current() *QDir {
 	tmpValue := NewQDirFromPointer(C.QDir_QDir_Current())
-	runtime.SetFinalizer(tmpValue, (*QDir).DestroyQDir)
+	qt.SetFinalizer(tmpValue, (*QDir).DestroyQDir)
 	return tmpValue
 }
 
 func (ptr *QDir) Current() *QDir {
 	tmpValue := NewQDirFromPointer(C.QDir_QDir_Current())
-	runtime.SetFinalizer(tmpValue, (*QDir).DestroyQDir)
+	qt.SetFinalizer(tmpValue, (*QDir).DestroyQDir)
 	return tmpValue
 }
 
@@ -16197,13 +16197,13 @@ func (ptr *QDir) FromNativeSeparators(pathName string) string {
 
 func QDir_Home() *QDir {
 	tmpValue := NewQDirFromPointer(C.QDir_QDir_Home())
-	runtime.SetFinalizer(tmpValue, (*QDir).DestroyQDir)
+	qt.SetFinalizer(tmpValue, (*QDir).DestroyQDir)
 	return tmpValue
 }
 
 func (ptr *QDir) Home() *QDir {
 	tmpValue := NewQDirFromPointer(C.QDir_QDir_Home())
-	runtime.SetFinalizer(tmpValue, (*QDir).DestroyQDir)
+	qt.SetFinalizer(tmpValue, (*QDir).DestroyQDir)
 	return tmpValue
 }
 
@@ -16288,13 +16288,13 @@ func (ptr *QDir) IsRoot() bool {
 
 func QDir_ListSeparator() *QChar {
 	tmpValue := NewQCharFromPointer(C.QDir_QDir_ListSeparator())
-	runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+	qt.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 	return tmpValue
 }
 
 func (ptr *QDir) ListSeparator() *QChar {
 	tmpValue := NewQCharFromPointer(C.QDir_QDir_ListSeparator())
-	runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+	qt.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 	return tmpValue
 }
 
@@ -16473,13 +16473,13 @@ func (ptr *QDir) Rmpath(dirPath string) bool {
 
 func QDir_Root() *QDir {
 	tmpValue := NewQDirFromPointer(C.QDir_QDir_Root())
-	runtime.SetFinalizer(tmpValue, (*QDir).DestroyQDir)
+	qt.SetFinalizer(tmpValue, (*QDir).DestroyQDir)
 	return tmpValue
 }
 
 func (ptr *QDir) Root() *QDir {
 	tmpValue := NewQDirFromPointer(C.QDir_QDir_Root())
-	runtime.SetFinalizer(tmpValue, (*QDir).DestroyQDir)
+	qt.SetFinalizer(tmpValue, (*QDir).DestroyQDir)
 	return tmpValue
 }
 
@@ -16511,13 +16511,13 @@ func (ptr *QDir) SearchPaths(prefix string) []string {
 
 func QDir_Separator() *QChar {
 	tmpValue := NewQCharFromPointer(C.QDir_QDir_Separator())
-	runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+	qt.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 	return tmpValue
 }
 
 func (ptr *QDir) Separator() *QChar {
 	tmpValue := NewQCharFromPointer(C.QDir_QDir_Separator())
-	runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+	qt.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 	return tmpValue
 }
 
@@ -16607,13 +16607,13 @@ func (ptr *QDir) Swap(other QDir_ITF) {
 
 func QDir_Temp() *QDir {
 	tmpValue := NewQDirFromPointer(C.QDir_QDir_Temp())
-	runtime.SetFinalizer(tmpValue, (*QDir).DestroyQDir)
+	qt.SetFinalizer(tmpValue, (*QDir).DestroyQDir)
 	return tmpValue
 }
 
 func (ptr *QDir) Temp() *QDir {
 	tmpValue := NewQDirFromPointer(C.QDir_QDir_Temp())
-	runtime.SetFinalizer(tmpValue, (*QDir).DestroyQDir)
+	qt.SetFinalizer(tmpValue, (*QDir).DestroyQDir)
 	return tmpValue
 }
 
@@ -16648,14 +16648,14 @@ func (ptr *QDir) DestroyQDir() {
 		C.QDir_DestroyQDir(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QDir) __drives_atList(i int) *QFileInfo {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQFileInfoFromPointer(C.QDir___drives_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QFileInfo).DestroyQFileInfo)
+		qt.SetFinalizer(tmpValue, (*QFileInfo).DestroyQFileInfo)
 		return tmpValue
 	}
 	return nil
@@ -16674,7 +16674,7 @@ func (ptr *QDir) __drives_newList() unsafe.Pointer {
 func (ptr *QDir) __entryInfoList_atList(i int) *QFileInfo {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQFileInfoFromPointer(C.QDir___entryInfoList_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QFileInfo).DestroyQFileInfo)
+		qt.SetFinalizer(tmpValue, (*QFileInfo).DestroyQFileInfo)
 		return tmpValue
 	}
 	return nil
@@ -16693,7 +16693,7 @@ func (ptr *QDir) __entryInfoList_newList() unsafe.Pointer {
 func (ptr *QDir) __entryInfoList_atList2(i int) *QFileInfo {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQFileInfoFromPointer(C.QDir___entryInfoList_atList2(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QFileInfo).DestroyQFileInfo)
+		qt.SetFinalizer(tmpValue, (*QFileInfo).DestroyQFileInfo)
 		return tmpValue
 	}
 	return nil
@@ -16802,20 +16802,20 @@ func (ptr *QDynamicPropertyChangeEvent) DestroyQDynamicPropertyChangeEvent() {
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func NewQDynamicPropertyChangeEvent(name QByteArray_ITF) *QDynamicPropertyChangeEvent {
 	tmpValue := NewQDynamicPropertyChangeEventFromPointer(C.QDynamicPropertyChangeEvent_NewQDynamicPropertyChangeEvent(PointerFromQByteArray(name)))
-	runtime.SetFinalizer(tmpValue, (*QDynamicPropertyChangeEvent).DestroyQDynamicPropertyChangeEvent)
+	qt.SetFinalizer(tmpValue, (*QDynamicPropertyChangeEvent).DestroyQDynamicPropertyChangeEvent)
 	return tmpValue
 }
 
 func (ptr *QDynamicPropertyChangeEvent) PropertyName() *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QDynamicPropertyChangeEvent_PropertyName(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -16917,19 +16917,19 @@ const (
 
 func NewQEasingCurve(ty QEasingCurve__Type) *QEasingCurve {
 	tmpValue := NewQEasingCurveFromPointer(C.QEasingCurve_NewQEasingCurve(C.longlong(ty)))
-	runtime.SetFinalizer(tmpValue, (*QEasingCurve).DestroyQEasingCurve)
+	qt.SetFinalizer(tmpValue, (*QEasingCurve).DestroyQEasingCurve)
 	return tmpValue
 }
 
 func NewQEasingCurve2(other QEasingCurve_ITF) *QEasingCurve {
 	tmpValue := NewQEasingCurveFromPointer(C.QEasingCurve_NewQEasingCurve2(PointerFromQEasingCurve(other)))
-	runtime.SetFinalizer(tmpValue, (*QEasingCurve).DestroyQEasingCurve)
+	qt.SetFinalizer(tmpValue, (*QEasingCurve).DestroyQEasingCurve)
 	return tmpValue
 }
 
 func NewQEasingCurve3(other QEasingCurve_ITF) *QEasingCurve {
 	tmpValue := NewQEasingCurveFromPointer(C.QEasingCurve_NewQEasingCurve3(PointerFromQEasingCurve(other)))
-	runtime.SetFinalizer(tmpValue, (*QEasingCurve).DestroyQEasingCurve)
+	qt.SetFinalizer(tmpValue, (*QEasingCurve).DestroyQEasingCurve)
 	return tmpValue
 }
 
@@ -17029,14 +17029,14 @@ func (ptr *QEasingCurve) DestroyQEasingCurve() {
 		C.QEasingCurve_DestroyQEasingCurve(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QEasingCurve) __cubicBezierSpline_atList(i int) *QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQPointFFromPointer(C.QEasingCurve___cubicBezierSpline_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -17055,7 +17055,7 @@ func (ptr *QEasingCurve) __cubicBezierSpline_newList() unsafe.Pointer {
 func (ptr *QEasingCurve) __toCubicSpline_atList(i int) *QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQPointFFromPointer(C.QEasingCurve___toCubicSpline_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -17114,7 +17114,7 @@ func (ptr *QElapsedTimer) DestroyQElapsedTimer() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -17132,7 +17132,7 @@ const (
 
 func NewQElapsedTimer() *QElapsedTimer {
 	tmpValue := NewQElapsedTimerFromPointer(C.QElapsedTimer_NewQElapsedTimer())
-	runtime.SetFinalizer(tmpValue, (*QElapsedTimer).DestroyQElapsedTimer)
+	qt.SetFinalizer(tmpValue, (*QElapsedTimer).DestroyQElapsedTimer)
 	return tmpValue
 }
 
@@ -17263,7 +17263,7 @@ func (ptr *QEnableSharedFromThis) DestroyQEnableSharedFromThis() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -17488,7 +17488,7 @@ const (
 
 func NewQEvent(ty QEvent__Type) *QEvent {
 	tmpValue := NewQEventFromPointer(C.QEvent_NewQEvent(C.longlong(ty)))
-	runtime.SetFinalizer(tmpValue, (*QEvent).DestroyQEvent)
+	qt.SetFinalizer(tmpValue, (*QEvent).DestroyQEvent)
 	return tmpValue
 }
 
@@ -17574,7 +17574,7 @@ func (ptr *QEvent) DestroyQEvent() {
 	if ptr.Pointer() != nil {
 		C.QEvent_DestroyQEvent(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -17582,7 +17582,7 @@ func (ptr *QEvent) DestroyQEventDefault() {
 	if ptr.Pointer() != nil {
 		C.QEvent_DestroyQEventDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -17764,7 +17764,7 @@ func (ptr *QEventLoop) DestroyQEventLoop() {
 	if ptr.Pointer() != nil {
 		C.QEventLoop_DestroyQEventLoop(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -17772,7 +17772,7 @@ func (ptr *QEventLoop) DestroyQEventLoopDefault() {
 	if ptr.Pointer() != nil {
 		C.QEventLoop_DestroyQEventLoopDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -17815,19 +17815,19 @@ func NewQEventLoopLockerFromPointer(ptr unsafe.Pointer) (n *QEventLoopLocker) {
 }
 func NewQEventLoopLocker() *QEventLoopLocker {
 	tmpValue := NewQEventLoopLockerFromPointer(C.QEventLoopLocker_NewQEventLoopLocker())
-	runtime.SetFinalizer(tmpValue, (*QEventLoopLocker).DestroyQEventLoopLocker)
+	qt.SetFinalizer(tmpValue, (*QEventLoopLocker).DestroyQEventLoopLocker)
 	return tmpValue
 }
 
 func NewQEventLoopLocker2(loop QEventLoop_ITF) *QEventLoopLocker {
 	tmpValue := NewQEventLoopLockerFromPointer(C.QEventLoopLocker_NewQEventLoopLocker2(PointerFromQEventLoop(loop)))
-	runtime.SetFinalizer(tmpValue, (*QEventLoopLocker).DestroyQEventLoopLocker)
+	qt.SetFinalizer(tmpValue, (*QEventLoopLocker).DestroyQEventLoopLocker)
 	return tmpValue
 }
 
 func NewQEventLoopLocker3(thread QThread_ITF) *QEventLoopLocker {
 	tmpValue := NewQEventLoopLockerFromPointer(C.QEventLoopLocker_NewQEventLoopLocker3(PointerFromQThread(thread)))
-	runtime.SetFinalizer(tmpValue, (*QEventLoopLocker).DestroyQEventLoopLocker)
+	qt.SetFinalizer(tmpValue, (*QEventLoopLocker).DestroyQEventLoopLocker)
 	return tmpValue
 }
 
@@ -17836,7 +17836,7 @@ func (ptr *QEventLoopLocker) DestroyQEventLoopLocker() {
 		C.QEventLoopLocker_DestroyQEventLoopLocker(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -18047,7 +18047,7 @@ func (ptr *QEventTransition) DestroyQEventTransition() {
 	if ptr.Pointer() != nil {
 		C.QEventTransition_DestroyQEventTransition(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -18055,7 +18055,7 @@ func (ptr *QEventTransition) DestroyQEventTransitionDefault() {
 	if ptr.Pointer() != nil {
 		C.QEventTransition_DestroyQEventTransitionDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -18103,7 +18103,7 @@ func (ptr *QException) DestroyQException() {
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -18188,7 +18188,7 @@ func (ptr *QFactoryInterface) DestroyQFactoryInterface() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -18345,7 +18345,7 @@ func QFile_EncodeName(fileName string) *QByteArray {
 		defer C.free(unsafe.Pointer(fileNameC))
 	}
 	tmpValue := NewQByteArrayFromPointer(C.QFile_QFile_EncodeName(C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
@@ -18356,7 +18356,7 @@ func (ptr *QFile) EncodeName(fileName string) *QByteArray {
 		defer C.free(unsafe.Pointer(fileNameC))
 	}
 	tmpValue := NewQByteArrayFromPointer(C.QFile_QFile_EncodeName(C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
@@ -18622,7 +18622,7 @@ func (ptr *QFile) DestroyQFile() {
 	if ptr.Pointer() != nil {
 		C.QFile_DestroyQFile(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -18630,7 +18630,7 @@ func (ptr *QFile) DestroyQFileDefault() {
 	if ptr.Pointer() != nil {
 		C.QFile_DestroyQFileDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -18799,7 +18799,7 @@ func (ptr *QFileDevice) FileNameDefault() string {
 func (ptr *QFileDevice) FileTime(ti QFileDevice__FileTime) *QDateTime {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDateTimeFromPointer(C.QFileDevice_FileTime(ptr.Pointer(), C.longlong(ti)))
-		runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+		qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 		return tmpValue
 	}
 	return nil
@@ -19140,7 +19140,7 @@ func (ptr *QFileDevice) DestroyQFileDevice() {
 	if ptr.Pointer() != nil {
 		C.QFileDevice_DestroyQFileDevice(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -19148,7 +19148,7 @@ func (ptr *QFileDevice) DestroyQFileDeviceDefault() {
 	if ptr.Pointer() != nil {
 		C.QFileDevice_DestroyQFileDeviceDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -19191,7 +19191,7 @@ func NewQFileInfoFromPointer(ptr unsafe.Pointer) (n *QFileInfo) {
 }
 func NewQFileInfo2() *QFileInfo {
 	tmpValue := NewQFileInfoFromPointer(C.QFileInfo_NewQFileInfo2())
-	runtime.SetFinalizer(tmpValue, (*QFileInfo).DestroyQFileInfo)
+	qt.SetFinalizer(tmpValue, (*QFileInfo).DestroyQFileInfo)
 	return tmpValue
 }
 
@@ -19202,13 +19202,13 @@ func NewQFileInfo3(file string) *QFileInfo {
 		defer C.free(unsafe.Pointer(fileC))
 	}
 	tmpValue := NewQFileInfoFromPointer(C.QFileInfo_NewQFileInfo3(C.struct_QtCore_PackedString{data: fileC, len: C.longlong(len(file))}))
-	runtime.SetFinalizer(tmpValue, (*QFileInfo).DestroyQFileInfo)
+	qt.SetFinalizer(tmpValue, (*QFileInfo).DestroyQFileInfo)
 	return tmpValue
 }
 
 func NewQFileInfo4(file QFile_ITF) *QFileInfo {
 	tmpValue := NewQFileInfoFromPointer(C.QFileInfo_NewQFileInfo4(PointerFromQFile(file)))
-	runtime.SetFinalizer(tmpValue, (*QFileInfo).DestroyQFileInfo)
+	qt.SetFinalizer(tmpValue, (*QFileInfo).DestroyQFileInfo)
 	return tmpValue
 }
 
@@ -19219,20 +19219,20 @@ func NewQFileInfo5(dir QDir_ITF, file string) *QFileInfo {
 		defer C.free(unsafe.Pointer(fileC))
 	}
 	tmpValue := NewQFileInfoFromPointer(C.QFileInfo_NewQFileInfo5(PointerFromQDir(dir), C.struct_QtCore_PackedString{data: fileC, len: C.longlong(len(file))}))
-	runtime.SetFinalizer(tmpValue, (*QFileInfo).DestroyQFileInfo)
+	qt.SetFinalizer(tmpValue, (*QFileInfo).DestroyQFileInfo)
 	return tmpValue
 }
 
 func NewQFileInfo6(fileinfo QFileInfo_ITF) *QFileInfo {
 	tmpValue := NewQFileInfoFromPointer(C.QFileInfo_NewQFileInfo6(PointerFromQFileInfo(fileinfo)))
-	runtime.SetFinalizer(tmpValue, (*QFileInfo).DestroyQFileInfo)
+	qt.SetFinalizer(tmpValue, (*QFileInfo).DestroyQFileInfo)
 	return tmpValue
 }
 
 func (ptr *QFileInfo) AbsoluteDir() *QDir {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDirFromPointer(C.QFileInfo_AbsoluteDir(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QDir).DestroyQDir)
+		qt.SetFinalizer(tmpValue, (*QDir).DestroyQDir)
 		return tmpValue
 	}
 	return nil
@@ -19262,7 +19262,7 @@ func (ptr *QFileInfo) BaseName() string {
 func (ptr *QFileInfo) BirthTime() *QDateTime {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDateTimeFromPointer(C.QFileInfo_BirthTime(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+		qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 		return tmpValue
 	}
 	return nil
@@ -19313,7 +19313,7 @@ func (ptr *QFileInfo) CompleteSuffix() string {
 func (ptr *QFileInfo) Dir() *QDir {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDirFromPointer(C.QFileInfo_Dir(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QDir).DestroyQDir)
+		qt.SetFinalizer(tmpValue, (*QDir).DestroyQDir)
 		return tmpValue
 	}
 	return nil
@@ -19459,7 +19459,7 @@ func (ptr *QFileInfo) IsWritable() bool {
 func (ptr *QFileInfo) LastModified() *QDateTime {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDateTimeFromPointer(C.QFileInfo_LastModified(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+		qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 		return tmpValue
 	}
 	return nil
@@ -19468,7 +19468,7 @@ func (ptr *QFileInfo) LastModified() *QDateTime {
 func (ptr *QFileInfo) LastRead() *QDateTime {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDateTimeFromPointer(C.QFileInfo_LastRead(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+		qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 		return tmpValue
 	}
 	return nil
@@ -19484,7 +19484,7 @@ func (ptr *QFileInfo) MakeAbsolute() bool {
 func (ptr *QFileInfo) MetadataChangeTime() *QDateTime {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDateTimeFromPointer(C.QFileInfo_MetadataChangeTime(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+		qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 		return tmpValue
 	}
 	return nil
@@ -19583,7 +19583,7 @@ func (ptr *QFileInfo) DestroyQFileInfo() {
 		C.QFileInfo_DestroyQFileInfo(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -19662,7 +19662,7 @@ func (ptr *QFileSelector) Select(filePath string) string {
 func (ptr *QFileSelector) Select2(filePath QUrl_ITF) *QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQUrlFromPointer(C.QFileSelector_Select2(ptr.Pointer(), PointerFromQUrl(filePath)))
-		runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -19711,7 +19711,7 @@ func (ptr *QFileSelector) DestroyQFileSelector() {
 	if ptr.Pointer() != nil {
 		C.QFileSelector_DestroyQFileSelector(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -19719,7 +19719,7 @@ func (ptr *QFileSelector) DestroyQFileSelectorDefault() {
 	if ptr.Pointer() != nil {
 		C.QFileSelector_DestroyQFileSelectorDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -19938,7 +19938,7 @@ func (ptr *QFileSystemWatcher) DestroyQFileSystemWatcher() {
 	if ptr.Pointer() != nil {
 		C.QFileSystemWatcher_DestroyQFileSystemWatcher(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -19946,7 +19946,7 @@ func (ptr *QFileSystemWatcher) DestroyQFileSystemWatcherDefault() {
 	if ptr.Pointer() != nil {
 		C.QFileSystemWatcher_DestroyQFileSystemWatcherDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -20117,7 +20117,7 @@ func (ptr *QFinalState) DestroyQFinalState() {
 	if ptr.Pointer() != nil {
 		C.QFinalState_DestroyQFinalState(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -20125,7 +20125,7 @@ func (ptr *QFinalState) DestroyQFinalStateDefault() {
 	if ptr.Pointer() != nil {
 		C.QFinalState_DestroyQFinalStateDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -20172,31 +20172,31 @@ func (ptr *QFlag) DestroyQFlag() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func NewQFlag(value int) *QFlag {
 	tmpValue := NewQFlagFromPointer(C.QFlag_NewQFlag(C.int(int32(value))))
-	runtime.SetFinalizer(tmpValue, (*QFlag).DestroyQFlag)
+	qt.SetFinalizer(tmpValue, (*QFlag).DestroyQFlag)
 	return tmpValue
 }
 
 func NewQFlag2(value uint) *QFlag {
 	tmpValue := NewQFlagFromPointer(C.QFlag_NewQFlag2(C.uint(uint32(value))))
-	runtime.SetFinalizer(tmpValue, (*QFlag).DestroyQFlag)
+	qt.SetFinalizer(tmpValue, (*QFlag).DestroyQFlag)
 	return tmpValue
 }
 
 func NewQFlag3(value int16) *QFlag {
 	tmpValue := NewQFlagFromPointer(C.QFlag_NewQFlag3(C.short(value)))
-	runtime.SetFinalizer(tmpValue, (*QFlag).DestroyQFlag)
+	qt.SetFinalizer(tmpValue, (*QFlag).DestroyQFlag)
 	return tmpValue
 }
 
 func NewQFlag4(value uint16) *QFlag {
 	tmpValue := NewQFlagFromPointer(C.QFlag_NewQFlag4(C.ushort(value)))
-	runtime.SetFinalizer(tmpValue, (*QFlag).DestroyQFlag)
+	qt.SetFinalizer(tmpValue, (*QFlag).DestroyQFlag)
 	return tmpValue
 }
 
@@ -20243,7 +20243,7 @@ func (ptr *QFlags) DestroyQFlags() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -20329,7 +20329,7 @@ func (ptr *QFutureInterface) DestroyQFutureInterface() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -20418,7 +20418,7 @@ func (ptr *QFutureInterfaceBase) DestroyQFutureInterfaceBase() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -20465,7 +20465,7 @@ func (ptr *QFutureIterator) DestroyQFutureIterator() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -20628,7 +20628,7 @@ func (ptr *QGenericArgument) DestroyQGenericArgument() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -20639,7 +20639,7 @@ func NewQGenericArgument(name string, data unsafe.Pointer) *QGenericArgument {
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	tmpValue := NewQGenericArgumentFromPointer(C.QGenericArgument_NewQGenericArgument(nameC, data))
-	runtime.SetFinalizer(tmpValue, (*QGenericArgument).DestroyQGenericArgument)
+	qt.SetFinalizer(tmpValue, (*QGenericArgument).DestroyQGenericArgument)
 	return tmpValue
 }
 
@@ -20700,7 +20700,7 @@ func (ptr *QGenericAtomicOps) DestroyQGenericAtomicOps() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -20748,7 +20748,7 @@ func (ptr *QGenericReturnArgument) DestroyQGenericReturnArgument() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -20759,7 +20759,7 @@ func NewQGenericReturnArgument(name string, data unsafe.Pointer) *QGenericReturn
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	tmpValue := NewQGenericReturnArgumentFromPointer(C.QGenericReturnArgument_NewQGenericReturnArgument(nameC, data))
-	runtime.SetFinalizer(tmpValue, (*QGenericReturnArgument).DestroyQGenericReturnArgument)
+	qt.SetFinalizer(tmpValue, (*QGenericReturnArgument).DestroyQGenericReturnArgument)
 	return tmpValue
 }
 
@@ -20806,7 +20806,7 @@ func (ptr *QGlobalStatic) DestroyQGlobalStatic() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -20891,7 +20891,7 @@ func (ptr *QHashData) DestroyQHashData() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -20938,7 +20938,7 @@ func (ptr *QHashIterator) DestroyQHashIterator() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -20985,7 +20985,7 @@ func (ptr *QHashNode) DestroyQHashNode() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -21323,7 +21323,7 @@ func (ptr *QHistoryState) DestroyQHistoryState() {
 	if ptr.Pointer() != nil {
 		C.QHistoryState_DestroyQHistoryState(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -21331,7 +21331,7 @@ func (ptr *QHistoryState) DestroyQHistoryStateDefault() {
 	if ptr.Pointer() != nil {
 		C.QHistoryState_DestroyQHistoryStateDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -21976,7 +21976,7 @@ func (ptr *QIODevice) Peek(data string, maxSize int64) int64 {
 func (ptr *QIODevice) Peek2(maxSize int64) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QIODevice_Peek2(ptr.Pointer(), C.longlong(maxSize)))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -22053,7 +22053,7 @@ func (ptr *QIODevice) Read(data []byte, maxSize int64) int64 {
 func (ptr *QIODevice) Read2(maxSize int64) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QIODevice_Read2(ptr.Pointer(), C.longlong(maxSize)))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -22062,7 +22062,7 @@ func (ptr *QIODevice) Read2(maxSize int64) *QByteArray {
 func (ptr *QIODevice) ReadAll() *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QIODevice_ReadAll(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -22178,7 +22178,7 @@ func (ptr *QIODevice) ReadLine(data []byte, maxSize int64) int64 {
 func (ptr *QIODevice) ReadLine2(maxSize int64) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QIODevice_ReadLine2(ptr.Pointer(), C.longlong(maxSize)))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -22681,7 +22681,7 @@ func (ptr *QIODevice) DestroyQIODevice() {
 	if ptr.Pointer() != nil {
 		C.QIODevice_DestroyQIODevice(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -22689,7 +22689,7 @@ func (ptr *QIODevice) DestroyQIODeviceDefault() {
 	if ptr.Pointer() != nil {
 		C.QIODevice_DestroyQIODeviceDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -22818,7 +22818,7 @@ func (ptr *QIdentityProxyModel) DisconnectIndex() {
 func (ptr *QIdentityProxyModel) Index(row int, column int, parent QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QIdentityProxyModel_Index(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), PointerFromQModelIndex(parent)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -22827,7 +22827,7 @@ func (ptr *QIdentityProxyModel) Index(row int, column int, parent QModelIndex_IT
 func (ptr *QIdentityProxyModel) IndexDefault(row int, column int, parent QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QIdentityProxyModel_IndexDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), PointerFromQModelIndex(parent)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -22867,7 +22867,7 @@ func (ptr *QIdentityProxyModel) DisconnectMapFromSource() {
 func (ptr *QIdentityProxyModel) MapFromSource(sourceIndex QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QIdentityProxyModel_MapFromSource(ptr.Pointer(), PointerFromQModelIndex(sourceIndex)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -22876,7 +22876,7 @@ func (ptr *QIdentityProxyModel) MapFromSource(sourceIndex QModelIndex_ITF) *QMod
 func (ptr *QIdentityProxyModel) MapFromSourceDefault(sourceIndex QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QIdentityProxyModel_MapFromSourceDefault(ptr.Pointer(), PointerFromQModelIndex(sourceIndex)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -22916,7 +22916,7 @@ func (ptr *QIdentityProxyModel) DisconnectMapToSource() {
 func (ptr *QIdentityProxyModel) MapToSource(proxyIndex QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QIdentityProxyModel_MapToSource(ptr.Pointer(), PointerFromQModelIndex(proxyIndex)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -22925,7 +22925,7 @@ func (ptr *QIdentityProxyModel) MapToSource(proxyIndex QModelIndex_ITF) *QModelI
 func (ptr *QIdentityProxyModel) MapToSourceDefault(proxyIndex QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QIdentityProxyModel_MapToSourceDefault(ptr.Pointer(), PointerFromQModelIndex(proxyIndex)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -22965,7 +22965,7 @@ func (ptr *QIdentityProxyModel) DisconnectParent() {
 func (ptr *QIdentityProxyModel) Parent(child QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QIdentityProxyModel_Parent(ptr.Pointer(), PointerFromQModelIndex(child)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -22974,7 +22974,7 @@ func (ptr *QIdentityProxyModel) Parent(child QModelIndex_ITF) *QModelIndex {
 func (ptr *QIdentityProxyModel) ParentDefault(child QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QIdentityProxyModel_ParentDefault(ptr.Pointer(), PointerFromQModelIndex(child)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -23060,7 +23060,7 @@ func (ptr *QIdentityProxyModel) DestroyQIdentityProxyModel() {
 	if ptr.Pointer() != nil {
 		C.QIdentityProxyModel_DestroyQIdentityProxyModel(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -23068,7 +23068,7 @@ func (ptr *QIdentityProxyModel) DestroyQIdentityProxyModelDefault() {
 	if ptr.Pointer() != nil {
 		C.QIdentityProxyModel_DestroyQIdentityProxyModelDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -23115,7 +23115,7 @@ func (ptr *QIncompatibleFlag) DestroyQIncompatibleFlag() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -23162,7 +23162,7 @@ func (ptr *QInternal) DestroyQInternal() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -23209,19 +23209,19 @@ func (ptr *QItemSelection) DestroyQItemSelection() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func NewQItemSelection() *QItemSelection {
 	tmpValue := NewQItemSelectionFromPointer(C.QItemSelection_NewQItemSelection())
-	runtime.SetFinalizer(tmpValue, (*QItemSelection).DestroyQItemSelection)
+	qt.SetFinalizer(tmpValue, (*QItemSelection).DestroyQItemSelection)
 	return tmpValue
 }
 
 func NewQItemSelection2(topLeft QModelIndex_ITF, bottomRight QModelIndex_ITF) *QItemSelection {
 	tmpValue := NewQItemSelectionFromPointer(C.QItemSelection_NewQItemSelection2(PointerFromQModelIndex(topLeft), PointerFromQModelIndex(bottomRight)))
-	runtime.SetFinalizer(tmpValue, (*QItemSelection).DestroyQItemSelection)
+	qt.SetFinalizer(tmpValue, (*QItemSelection).DestroyQItemSelection)
 	return tmpValue
 }
 
@@ -23269,7 +23269,7 @@ func (ptr *QItemSelection) Split(ran QItemSelectionRange_ITF, other QItemSelecti
 func (ptr *QItemSelection) __indexes_atList(i int) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QItemSelection___indexes_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -23577,7 +23577,7 @@ func (ptr *QItemSelectionModel) CurrentColumnChanged(current QModelIndex_ITF, pr
 func (ptr *QItemSelectionModel) CurrentIndex() *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QItemSelectionModel_CurrentIndex(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -23900,7 +23900,7 @@ func (ptr *QItemSelectionModel) SelectedRows(column int) []*QModelIndex {
 func (ptr *QItemSelectionModel) Selection() *QItemSelection {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQItemSelectionFromPointer(C.QItemSelectionModel_Selection(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QItemSelection).DestroyQItemSelection)
+		qt.SetFinalizer(tmpValue, (*QItemSelection).DestroyQItemSelection)
 		return tmpValue
 	}
 	return nil
@@ -24030,7 +24030,7 @@ func (ptr *QItemSelectionModel) DestroyQItemSelectionModel() {
 	if ptr.Pointer() != nil {
 		C.QItemSelectionModel_DestroyQItemSelectionModel(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -24038,14 +24038,14 @@ func (ptr *QItemSelectionModel) DestroyQItemSelectionModelDefault() {
 	if ptr.Pointer() != nil {
 		C.QItemSelectionModel_DestroyQItemSelectionModelDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QItemSelectionModel) __selectedColumns_atList(i int) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QItemSelectionModel___selectedColumns_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -24064,7 +24064,7 @@ func (ptr *QItemSelectionModel) __selectedColumns_newList() unsafe.Pointer {
 func (ptr *QItemSelectionModel) __selectedIndexes_atList(i int) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QItemSelectionModel___selectedIndexes_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -24083,7 +24083,7 @@ func (ptr *QItemSelectionModel) __selectedIndexes_newList() unsafe.Pointer {
 func (ptr *QItemSelectionModel) __selectedRows_atList(i int) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QItemSelectionModel___selectedRows_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -24142,31 +24142,31 @@ func (ptr *QItemSelectionRange) DestroyQItemSelectionRange() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func NewQItemSelectionRange() *QItemSelectionRange {
 	tmpValue := NewQItemSelectionRangeFromPointer(C.QItemSelectionRange_NewQItemSelectionRange())
-	runtime.SetFinalizer(tmpValue, (*QItemSelectionRange).DestroyQItemSelectionRange)
+	qt.SetFinalizer(tmpValue, (*QItemSelectionRange).DestroyQItemSelectionRange)
 	return tmpValue
 }
 
 func NewQItemSelectionRange2(other QItemSelectionRange_ITF) *QItemSelectionRange {
 	tmpValue := NewQItemSelectionRangeFromPointer(C.QItemSelectionRange_NewQItemSelectionRange2(PointerFromQItemSelectionRange(other)))
-	runtime.SetFinalizer(tmpValue, (*QItemSelectionRange).DestroyQItemSelectionRange)
+	qt.SetFinalizer(tmpValue, (*QItemSelectionRange).DestroyQItemSelectionRange)
 	return tmpValue
 }
 
 func NewQItemSelectionRange4(topLeft QModelIndex_ITF, bottomRight QModelIndex_ITF) *QItemSelectionRange {
 	tmpValue := NewQItemSelectionRangeFromPointer(C.QItemSelectionRange_NewQItemSelectionRange4(PointerFromQModelIndex(topLeft), PointerFromQModelIndex(bottomRight)))
-	runtime.SetFinalizer(tmpValue, (*QItemSelectionRange).DestroyQItemSelectionRange)
+	qt.SetFinalizer(tmpValue, (*QItemSelectionRange).DestroyQItemSelectionRange)
 	return tmpValue
 }
 
 func NewQItemSelectionRange5(index QModelIndex_ITF) *QItemSelectionRange {
 	tmpValue := NewQItemSelectionRangeFromPointer(C.QItemSelectionRange_NewQItemSelectionRange5(PointerFromQModelIndex(index)))
-	runtime.SetFinalizer(tmpValue, (*QItemSelectionRange).DestroyQItemSelectionRange)
+	qt.SetFinalizer(tmpValue, (*QItemSelectionRange).DestroyQItemSelectionRange)
 	return tmpValue
 }
 
@@ -24222,7 +24222,7 @@ func (ptr *QItemSelectionRange) Indexes() []*QModelIndex {
 func (ptr *QItemSelectionRange) Intersected(other QItemSelectionRange_ITF) *QItemSelectionRange {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQItemSelectionRangeFromPointer(C.QItemSelectionRange_Intersected(ptr.Pointer(), PointerFromQItemSelectionRange(other)))
-		runtime.SetFinalizer(tmpValue, (*QItemSelectionRange).DestroyQItemSelectionRange)
+		qt.SetFinalizer(tmpValue, (*QItemSelectionRange).DestroyQItemSelectionRange)
 		return tmpValue
 	}
 	return nil
@@ -24270,7 +24270,7 @@ func (ptr *QItemSelectionRange) Model() *QAbstractItemModel {
 func (ptr *QItemSelectionRange) Parent() *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QItemSelectionRange_Parent(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -24313,7 +24313,7 @@ func (ptr *QItemSelectionRange) Width() int {
 func (ptr *QItemSelectionRange) __indexes_atList(i int) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QItemSelectionRange___indexes_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -24368,19 +24368,19 @@ func NewQJsonArrayFromPointer(ptr unsafe.Pointer) (n *QJsonArray) {
 }
 func NewQJsonArray() *QJsonArray {
 	tmpValue := NewQJsonArrayFromPointer(C.QJsonArray_NewQJsonArray())
-	runtime.SetFinalizer(tmpValue, (*QJsonArray).DestroyQJsonArray)
+	qt.SetFinalizer(tmpValue, (*QJsonArray).DestroyQJsonArray)
 	return tmpValue
 }
 
 func NewQJsonArray3(other QJsonArray_ITF) *QJsonArray {
 	tmpValue := NewQJsonArrayFromPointer(C.QJsonArray_NewQJsonArray3(PointerFromQJsonArray(other)))
-	runtime.SetFinalizer(tmpValue, (*QJsonArray).DestroyQJsonArray)
+	qt.SetFinalizer(tmpValue, (*QJsonArray).DestroyQJsonArray)
 	return tmpValue
 }
 
 func NewQJsonArray4(other QJsonArray_ITF) *QJsonArray {
 	tmpValue := NewQJsonArrayFromPointer(C.QJsonArray_NewQJsonArray4(PointerFromQJsonArray(other)))
-	runtime.SetFinalizer(tmpValue, (*QJsonArray).DestroyQJsonArray)
+	qt.SetFinalizer(tmpValue, (*QJsonArray).DestroyQJsonArray)
 	return tmpValue
 }
 
@@ -24393,7 +24393,7 @@ func (ptr *QJsonArray) Append(value QJsonValue_ITF) {
 func (ptr *QJsonArray) At(i int) *QJsonValue {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQJsonValueFromPointer(C.QJsonArray_At(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
+		qt.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
 		return tmpValue
 	}
 	return nil
@@ -24423,7 +24423,7 @@ func (ptr *QJsonArray) Empty() bool {
 func (ptr *QJsonArray) First() *QJsonValue {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQJsonValueFromPointer(C.QJsonArray_First(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
+		qt.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
 		return tmpValue
 	}
 	return nil
@@ -24433,7 +24433,7 @@ func QJsonArray_FromStringList(list []string) *QJsonArray {
 	listC := C.CString(strings.Join(list, "¡¦!"))
 	defer C.free(unsafe.Pointer(listC))
 	tmpValue := NewQJsonArrayFromPointer(C.QJsonArray_QJsonArray_FromStringList(C.struct_QtCore_PackedString{data: listC, len: C.longlong(len(strings.Join(list, "¡¦!")))}))
-	runtime.SetFinalizer(tmpValue, (*QJsonArray).DestroyQJsonArray)
+	qt.SetFinalizer(tmpValue, (*QJsonArray).DestroyQJsonArray)
 	return tmpValue
 }
 
@@ -24441,7 +24441,7 @@ func (ptr *QJsonArray) FromStringList(list []string) *QJsonArray {
 	listC := C.CString(strings.Join(list, "¡¦!"))
 	defer C.free(unsafe.Pointer(listC))
 	tmpValue := NewQJsonArrayFromPointer(C.QJsonArray_QJsonArray_FromStringList(C.struct_QtCore_PackedString{data: listC, len: C.longlong(len(strings.Join(list, "¡¦!")))}))
-	runtime.SetFinalizer(tmpValue, (*QJsonArray).DestroyQJsonArray)
+	qt.SetFinalizer(tmpValue, (*QJsonArray).DestroyQJsonArray)
 	return tmpValue
 }
 
@@ -24453,7 +24453,7 @@ func QJsonArray_FromVariantList(list []*QVariant) *QJsonArray {
 		}
 		return tmpList.Pointer()
 	}()))
-	runtime.SetFinalizer(tmpValue, (*QJsonArray).DestroyQJsonArray)
+	qt.SetFinalizer(tmpValue, (*QJsonArray).DestroyQJsonArray)
 	return tmpValue
 }
 
@@ -24465,7 +24465,7 @@ func (ptr *QJsonArray) FromVariantList(list []*QVariant) *QJsonArray {
 		}
 		return tmpList.Pointer()
 	}()))
-	runtime.SetFinalizer(tmpValue, (*QJsonArray).DestroyQJsonArray)
+	qt.SetFinalizer(tmpValue, (*QJsonArray).DestroyQJsonArray)
 	return tmpValue
 }
 
@@ -24485,7 +24485,7 @@ func (ptr *QJsonArray) IsEmpty() bool {
 func (ptr *QJsonArray) Last() *QJsonValue {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQJsonValueFromPointer(C.QJsonArray_Last(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
+		qt.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
 		return tmpValue
 	}
 	return nil
@@ -24561,7 +24561,7 @@ func (ptr *QJsonArray) Swap(other QJsonArray_ITF) {
 func (ptr *QJsonArray) TakeAt(i int) *QJsonValue {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQJsonValueFromPointer(C.QJsonArray_TakeAt(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
+		qt.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
 		return tmpValue
 	}
 	return nil
@@ -24586,14 +24586,14 @@ func (ptr *QJsonArray) DestroyQJsonArray() {
 		C.QJsonArray_DestroyQJsonArray(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QJsonArray) __fromVariantList_list_atList(i int) *QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVariantFromPointer(C.QJsonArray___fromVariantList_list_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -24612,7 +24612,7 @@ func (ptr *QJsonArray) __fromVariantList_list_newList() unsafe.Pointer {
 func (ptr *QJsonArray) __toVariantList_atList(i int) *QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVariantFromPointer(C.QJsonArray___toVariantList_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -24686,38 +24686,38 @@ const (
 
 func NewQJsonDocument() *QJsonDocument {
 	tmpValue := NewQJsonDocumentFromPointer(C.QJsonDocument_NewQJsonDocument())
-	runtime.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
+	qt.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
 	return tmpValue
 }
 
 func NewQJsonDocument2(object QJsonObject_ITF) *QJsonDocument {
 	tmpValue := NewQJsonDocumentFromPointer(C.QJsonDocument_NewQJsonDocument2(PointerFromQJsonObject(object)))
-	runtime.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
+	qt.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
 	return tmpValue
 }
 
 func NewQJsonDocument3(array QJsonArray_ITF) *QJsonDocument {
 	tmpValue := NewQJsonDocumentFromPointer(C.QJsonDocument_NewQJsonDocument3(PointerFromQJsonArray(array)))
-	runtime.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
+	qt.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
 	return tmpValue
 }
 
 func NewQJsonDocument4(other QJsonDocument_ITF) *QJsonDocument {
 	tmpValue := NewQJsonDocumentFromPointer(C.QJsonDocument_NewQJsonDocument4(PointerFromQJsonDocument(other)))
-	runtime.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
+	qt.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
 	return tmpValue
 }
 
 func NewQJsonDocument5(other QJsonDocument_ITF) *QJsonDocument {
 	tmpValue := NewQJsonDocumentFromPointer(C.QJsonDocument_NewQJsonDocument5(PointerFromQJsonDocument(other)))
-	runtime.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
+	qt.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
 	return tmpValue
 }
 
 func (ptr *QJsonDocument) Array() *QJsonArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQJsonArrayFromPointer(C.QJsonDocument_Array(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QJsonArray).DestroyQJsonArray)
+		qt.SetFinalizer(tmpValue, (*QJsonArray).DestroyQJsonArray)
 		return tmpValue
 	}
 	return nil
@@ -24725,25 +24725,25 @@ func (ptr *QJsonDocument) Array() *QJsonArray {
 
 func QJsonDocument_FromBinaryData(data QByteArray_ITF, validation QJsonDocument__DataValidation) *QJsonDocument {
 	tmpValue := NewQJsonDocumentFromPointer(C.QJsonDocument_QJsonDocument_FromBinaryData(PointerFromQByteArray(data), C.longlong(validation)))
-	runtime.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
+	qt.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
 	return tmpValue
 }
 
 func (ptr *QJsonDocument) FromBinaryData(data QByteArray_ITF, validation QJsonDocument__DataValidation) *QJsonDocument {
 	tmpValue := NewQJsonDocumentFromPointer(C.QJsonDocument_QJsonDocument_FromBinaryData(PointerFromQByteArray(data), C.longlong(validation)))
-	runtime.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
+	qt.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
 	return tmpValue
 }
 
 func QJsonDocument_FromJson(json QByteArray_ITF, error QJsonParseError_ITF) *QJsonDocument {
 	tmpValue := NewQJsonDocumentFromPointer(C.QJsonDocument_QJsonDocument_FromJson(PointerFromQByteArray(json), PointerFromQJsonParseError(error)))
-	runtime.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
+	qt.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
 	return tmpValue
 }
 
 func (ptr *QJsonDocument) FromJson(json QByteArray_ITF, error QJsonParseError_ITF) *QJsonDocument {
 	tmpValue := NewQJsonDocumentFromPointer(C.QJsonDocument_QJsonDocument_FromJson(PointerFromQByteArray(json), PointerFromQJsonParseError(error)))
-	runtime.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
+	qt.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
 	return tmpValue
 }
 
@@ -24753,7 +24753,7 @@ func QJsonDocument_FromRawData(data []byte, size int, validation QJsonDocument__
 		dataC = (*C.char)(unsafe.Pointer(&data[0]))
 	}
 	tmpValue := NewQJsonDocumentFromPointer(C.QJsonDocument_QJsonDocument_FromRawData(dataC, C.int(int32(size)), C.longlong(validation)))
-	runtime.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
+	qt.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
 	return tmpValue
 }
 
@@ -24763,19 +24763,19 @@ func (ptr *QJsonDocument) FromRawData(data []byte, size int, validation QJsonDoc
 		dataC = (*C.char)(unsafe.Pointer(&data[0]))
 	}
 	tmpValue := NewQJsonDocumentFromPointer(C.QJsonDocument_QJsonDocument_FromRawData(dataC, C.int(int32(size)), C.longlong(validation)))
-	runtime.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
+	qt.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
 	return tmpValue
 }
 
 func QJsonDocument_FromVariant(variant QVariant_ITF) *QJsonDocument {
 	tmpValue := NewQJsonDocumentFromPointer(C.QJsonDocument_QJsonDocument_FromVariant(PointerFromQVariant(variant)))
-	runtime.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
+	qt.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
 	return tmpValue
 }
 
 func (ptr *QJsonDocument) FromVariant(variant QVariant_ITF) *QJsonDocument {
 	tmpValue := NewQJsonDocumentFromPointer(C.QJsonDocument_QJsonDocument_FromVariant(PointerFromQVariant(variant)))
-	runtime.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
+	qt.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
 	return tmpValue
 }
 
@@ -24810,7 +24810,7 @@ func (ptr *QJsonDocument) IsObject() bool {
 func (ptr *QJsonDocument) Object() *QJsonObject {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQJsonObjectFromPointer(C.QJsonDocument_Object(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QJsonObject).DestroyQJsonObject)
+		qt.SetFinalizer(tmpValue, (*QJsonObject).DestroyQJsonObject)
 		return tmpValue
 	}
 	return nil
@@ -24844,7 +24844,7 @@ func (ptr *QJsonDocument) Swap(other QJsonDocument_ITF) {
 func (ptr *QJsonDocument) ToBinaryData() *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QJsonDocument_ToBinaryData(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -24853,7 +24853,7 @@ func (ptr *QJsonDocument) ToBinaryData() *QByteArray {
 func (ptr *QJsonDocument) ToJson() *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QJsonDocument_ToJson(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -24862,7 +24862,7 @@ func (ptr *QJsonDocument) ToJson() *QByteArray {
 func (ptr *QJsonDocument) ToJson2(format QJsonDocument__JsonFormat) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QJsonDocument_ToJson2(ptr.Pointer(), C.longlong(format)))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -24871,7 +24871,7 @@ func (ptr *QJsonDocument) ToJson2(format QJsonDocument__JsonFormat) *QByteArray 
 func (ptr *QJsonDocument) ToVariant() *QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVariantFromPointer(C.QJsonDocument_ToVariant(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -24882,7 +24882,7 @@ func (ptr *QJsonDocument) DestroyQJsonDocument() {
 		C.QJsonDocument_DestroyQJsonDocument(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -24925,19 +24925,19 @@ func NewQJsonObjectFromPointer(ptr unsafe.Pointer) (n *QJsonObject) {
 }
 func NewQJsonObject() *QJsonObject {
 	tmpValue := NewQJsonObjectFromPointer(C.QJsonObject_NewQJsonObject())
-	runtime.SetFinalizer(tmpValue, (*QJsonObject).DestroyQJsonObject)
+	qt.SetFinalizer(tmpValue, (*QJsonObject).DestroyQJsonObject)
 	return tmpValue
 }
 
 func NewQJsonObject3(other QJsonObject_ITF) *QJsonObject {
 	tmpValue := NewQJsonObjectFromPointer(C.QJsonObject_NewQJsonObject3(PointerFromQJsonObject(other)))
-	runtime.SetFinalizer(tmpValue, (*QJsonObject).DestroyQJsonObject)
+	qt.SetFinalizer(tmpValue, (*QJsonObject).DestroyQJsonObject)
 	return tmpValue
 }
 
 func NewQJsonObject4(other QJsonObject_ITF) *QJsonObject {
 	tmpValue := NewQJsonObjectFromPointer(C.QJsonObject_NewQJsonObject4(PointerFromQJsonObject(other)))
-	runtime.SetFinalizer(tmpValue, (*QJsonObject).DestroyQJsonObject)
+	qt.SetFinalizer(tmpValue, (*QJsonObject).DestroyQJsonObject)
 	return tmpValue
 }
 
@@ -24982,7 +24982,7 @@ func QJsonObject_FromVariantHash(hash map[string]*QVariant) *QJsonObject {
 		}
 		return tmpList.Pointer()
 	}()))
-	runtime.SetFinalizer(tmpValue, (*QJsonObject).DestroyQJsonObject)
+	qt.SetFinalizer(tmpValue, (*QJsonObject).DestroyQJsonObject)
 	return tmpValue
 }
 
@@ -24994,7 +24994,7 @@ func (ptr *QJsonObject) FromVariantHash(hash map[string]*QVariant) *QJsonObject 
 		}
 		return tmpList.Pointer()
 	}()))
-	runtime.SetFinalizer(tmpValue, (*QJsonObject).DestroyQJsonObject)
+	qt.SetFinalizer(tmpValue, (*QJsonObject).DestroyQJsonObject)
 	return tmpValue
 }
 
@@ -25051,7 +25051,7 @@ func (ptr *QJsonObject) Take(key string) *QJsonValue {
 			defer C.free(unsafe.Pointer(keyC))
 		}
 		tmpValue := NewQJsonValueFromPointer(C.QJsonObject_Take(ptr.Pointer(), C.struct_QtCore_PackedString{data: keyC, len: C.longlong(len(key))}))
-		runtime.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
+		qt.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
 		return tmpValue
 	}
 	return nil
@@ -25093,7 +25093,7 @@ func (ptr *QJsonObject) Value(key string) *QJsonValue {
 			defer C.free(unsafe.Pointer(keyC))
 		}
 		tmpValue := NewQJsonValueFromPointer(C.QJsonObject_Value(ptr.Pointer(), C.struct_QtCore_PackedString{data: keyC, len: C.longlong(len(key))}))
-		runtime.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
+		qt.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
 		return tmpValue
 	}
 	return nil
@@ -25102,7 +25102,7 @@ func (ptr *QJsonObject) Value(key string) *QJsonValue {
 func (ptr *QJsonObject) Value2(key QLatin1String_ITF) *QJsonValue {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQJsonValueFromPointer(C.QJsonObject_Value2(ptr.Pointer(), PointerFromQLatin1String(key)))
-		runtime.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
+		qt.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
 		return tmpValue
 	}
 	return nil
@@ -25113,7 +25113,7 @@ func (ptr *QJsonObject) DestroyQJsonObject() {
 		C.QJsonObject_DestroyQJsonObject(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -25125,7 +25125,7 @@ func (ptr *QJsonObject) __fromVariantHash_hash_atList(v string, i int) *QVariant
 			defer C.free(unsafe.Pointer(vC))
 		}
 		tmpValue := NewQVariantFromPointer(C.QJsonObject___fromVariantHash_hash_atList(ptr.Pointer(), C.struct_QtCore_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -25168,7 +25168,7 @@ func (ptr *QJsonObject) __toVariantHash_atList(v string, i int) *QVariant {
 			defer C.free(unsafe.Pointer(vC))
 		}
 		tmpValue := NewQVariantFromPointer(C.QJsonObject___toVariantHash_atList(ptr.Pointer(), C.struct_QtCore_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -25211,7 +25211,7 @@ func (ptr *QJsonObject) __toVariantMap_atList(v string, i int) *QVariant {
 			defer C.free(unsafe.Pointer(vC))
 		}
 		tmpValue := NewQVariantFromPointer(C.QJsonObject___toVariantMap_atList(ptr.Pointer(), C.struct_QtCore_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -25377,7 +25377,7 @@ func (ptr *QJsonParseError) DestroyQJsonParseError() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -25490,31 +25490,31 @@ const (
 
 func NewQJsonValue(ty QJsonValue__Type) *QJsonValue {
 	tmpValue := NewQJsonValueFromPointer(C.QJsonValue_NewQJsonValue(C.longlong(ty)))
-	runtime.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
+	qt.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
 	return tmpValue
 }
 
 func NewQJsonValue2(b bool) *QJsonValue {
 	tmpValue := NewQJsonValueFromPointer(C.QJsonValue_NewQJsonValue2(C.char(int8(qt.GoBoolToInt(b)))))
-	runtime.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
+	qt.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
 	return tmpValue
 }
 
 func NewQJsonValue3(n float64) *QJsonValue {
 	tmpValue := NewQJsonValueFromPointer(C.QJsonValue_NewQJsonValue3(C.double(n)))
-	runtime.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
+	qt.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
 	return tmpValue
 }
 
 func NewQJsonValue4(n int) *QJsonValue {
 	tmpValue := NewQJsonValueFromPointer(C.QJsonValue_NewQJsonValue4(C.int(int32(n))))
-	runtime.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
+	qt.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
 	return tmpValue
 }
 
 func NewQJsonValue5(n int64) *QJsonValue {
 	tmpValue := NewQJsonValueFromPointer(C.QJsonValue_NewQJsonValue5(C.longlong(n)))
-	runtime.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
+	qt.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
 	return tmpValue
 }
 
@@ -25525,13 +25525,13 @@ func NewQJsonValue6(s string) *QJsonValue {
 		defer C.free(unsafe.Pointer(sC))
 	}
 	tmpValue := NewQJsonValueFromPointer(C.QJsonValue_NewQJsonValue6(C.struct_QtCore_PackedString{data: sC, len: C.longlong(len(s))}))
-	runtime.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
+	qt.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
 	return tmpValue
 }
 
 func NewQJsonValue7(s QLatin1String_ITF) *QJsonValue {
 	tmpValue := NewQJsonValueFromPointer(C.QJsonValue_NewQJsonValue7(PointerFromQLatin1String(s)))
-	runtime.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
+	qt.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
 	return tmpValue
 }
 
@@ -25542,43 +25542,43 @@ func NewQJsonValue8(s string) *QJsonValue {
 		defer C.free(unsafe.Pointer(sC))
 	}
 	tmpValue := NewQJsonValueFromPointer(C.QJsonValue_NewQJsonValue8(sC))
-	runtime.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
+	qt.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
 	return tmpValue
 }
 
 func NewQJsonValue9(a QJsonArray_ITF) *QJsonValue {
 	tmpValue := NewQJsonValueFromPointer(C.QJsonValue_NewQJsonValue9(PointerFromQJsonArray(a)))
-	runtime.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
+	qt.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
 	return tmpValue
 }
 
 func NewQJsonValue10(o QJsonObject_ITF) *QJsonValue {
 	tmpValue := NewQJsonValueFromPointer(C.QJsonValue_NewQJsonValue10(PointerFromQJsonObject(o)))
-	runtime.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
+	qt.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
 	return tmpValue
 }
 
 func NewQJsonValue11(other QJsonValue_ITF) *QJsonValue {
 	tmpValue := NewQJsonValueFromPointer(C.QJsonValue_NewQJsonValue11(PointerFromQJsonValue(other)))
-	runtime.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
+	qt.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
 	return tmpValue
 }
 
 func NewQJsonValue12(other QJsonValue_ITF) *QJsonValue {
 	tmpValue := NewQJsonValueFromPointer(C.QJsonValue_NewQJsonValue12(PointerFromQJsonValue(other)))
-	runtime.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
+	qt.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
 	return tmpValue
 }
 
 func QJsonValue_FromVariant(variant QVariant_ITF) *QJsonValue {
 	tmpValue := NewQJsonValueFromPointer(C.QJsonValue_QJsonValue_FromVariant(PointerFromQVariant(variant)))
-	runtime.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
+	qt.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
 	return tmpValue
 }
 
 func (ptr *QJsonValue) FromVariant(variant QVariant_ITF) *QJsonValue {
 	tmpValue := NewQJsonValueFromPointer(C.QJsonValue_QJsonValue_FromVariant(PointerFromQVariant(variant)))
-	runtime.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
+	qt.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
 	return tmpValue
 }
 
@@ -25640,7 +25640,7 @@ func (ptr *QJsonValue) Swap(other QJsonValue_ITF) {
 func (ptr *QJsonValue) ToArray(defaultValue QJsonArray_ITF) *QJsonArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQJsonArrayFromPointer(C.QJsonValue_ToArray(ptr.Pointer(), PointerFromQJsonArray(defaultValue)))
-		runtime.SetFinalizer(tmpValue, (*QJsonArray).DestroyQJsonArray)
+		qt.SetFinalizer(tmpValue, (*QJsonArray).DestroyQJsonArray)
 		return tmpValue
 	}
 	return nil
@@ -25649,7 +25649,7 @@ func (ptr *QJsonValue) ToArray(defaultValue QJsonArray_ITF) *QJsonArray {
 func (ptr *QJsonValue) ToArray2() *QJsonArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQJsonArrayFromPointer(C.QJsonValue_ToArray2(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QJsonArray).DestroyQJsonArray)
+		qt.SetFinalizer(tmpValue, (*QJsonArray).DestroyQJsonArray)
 		return tmpValue
 	}
 	return nil
@@ -25679,7 +25679,7 @@ func (ptr *QJsonValue) ToInt(defaultValue int) int {
 func (ptr *QJsonValue) ToObject(defaultValue QJsonObject_ITF) *QJsonObject {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQJsonObjectFromPointer(C.QJsonValue_ToObject(ptr.Pointer(), PointerFromQJsonObject(defaultValue)))
-		runtime.SetFinalizer(tmpValue, (*QJsonObject).DestroyQJsonObject)
+		qt.SetFinalizer(tmpValue, (*QJsonObject).DestroyQJsonObject)
 		return tmpValue
 	}
 	return nil
@@ -25688,7 +25688,7 @@ func (ptr *QJsonValue) ToObject(defaultValue QJsonObject_ITF) *QJsonObject {
 func (ptr *QJsonValue) ToObject2() *QJsonObject {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQJsonObjectFromPointer(C.QJsonValue_ToObject2(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QJsonObject).DestroyQJsonObject)
+		qt.SetFinalizer(tmpValue, (*QJsonObject).DestroyQJsonObject)
 		return tmpValue
 	}
 	return nil
@@ -25716,7 +25716,7 @@ func (ptr *QJsonValue) ToString2(defaultValue string) string {
 func (ptr *QJsonValue) ToVariant() *QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVariantFromPointer(C.QJsonValue_ToVariant(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -25734,7 +25734,7 @@ func (ptr *QJsonValue) DestroyQJsonValue() {
 		C.QJsonValue_DestroyQJsonValue(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -25781,7 +25781,7 @@ func (ptr *QJsonValuePtr) DestroyQJsonValuePtr() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -25828,7 +25828,7 @@ func (ptr *QJsonValueRefPtr) DestroyQJsonValueRefPtr() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -25875,7 +25875,7 @@ func (ptr *QKeyValueIterator) DestroyQKeyValueIterator() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -25922,7 +25922,7 @@ func (ptr *QLEInteger) DestroyQLEInteger() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -25969,7 +25969,7 @@ func (ptr *QLatin1Char) DestroyQLatin1Char() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -25980,7 +25980,7 @@ func NewQLatin1Char(c string) *QLatin1Char {
 		defer C.free(unsafe.Pointer(cC))
 	}
 	tmpValue := NewQLatin1CharFromPointer(C.QLatin1Char_NewQLatin1Char(cC))
-	runtime.SetFinalizer(tmpValue, (*QLatin1Char).DestroyQLatin1Char)
+	qt.SetFinalizer(tmpValue, (*QLatin1Char).DestroyQLatin1Char)
 	return tmpValue
 }
 
@@ -26041,13 +26041,13 @@ func (ptr *QLatin1String) DestroyQLatin1String() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func NewQLatin1String() *QLatin1String {
 	tmpValue := NewQLatin1StringFromPointer(C.QLatin1String_NewQLatin1String())
-	runtime.SetFinalizer(tmpValue, (*QLatin1String).DestroyQLatin1String)
+	qt.SetFinalizer(tmpValue, (*QLatin1String).DestroyQLatin1String)
 	return tmpValue
 }
 
@@ -26058,7 +26058,7 @@ func NewQLatin1String2(str string) *QLatin1String {
 		defer C.free(unsafe.Pointer(strC))
 	}
 	tmpValue := NewQLatin1StringFromPointer(C.QLatin1String_NewQLatin1String2(strC))
-	runtime.SetFinalizer(tmpValue, (*QLatin1String).DestroyQLatin1String)
+	qt.SetFinalizer(tmpValue, (*QLatin1String).DestroyQLatin1String)
 	return tmpValue
 }
 
@@ -26074,7 +26074,7 @@ func NewQLatin1String3(first string, last string) *QLatin1String {
 		defer C.free(unsafe.Pointer(lastC))
 	}
 	tmpValue := NewQLatin1StringFromPointer(C.QLatin1String_NewQLatin1String3(firstC, lastC))
-	runtime.SetFinalizer(tmpValue, (*QLatin1String).DestroyQLatin1String)
+	qt.SetFinalizer(tmpValue, (*QLatin1String).DestroyQLatin1String)
 	return tmpValue
 }
 
@@ -26085,13 +26085,13 @@ func NewQLatin1String4(str string, size int) *QLatin1String {
 		defer C.free(unsafe.Pointer(strC))
 	}
 	tmpValue := NewQLatin1StringFromPointer(C.QLatin1String_NewQLatin1String4(strC, C.int(int32(size))))
-	runtime.SetFinalizer(tmpValue, (*QLatin1String).DestroyQLatin1String)
+	qt.SetFinalizer(tmpValue, (*QLatin1String).DestroyQLatin1String)
 	return tmpValue
 }
 
 func NewQLatin1String5(str QByteArray_ITF) *QLatin1String {
 	tmpValue := NewQLatin1StringFromPointer(C.QLatin1String_NewQLatin1String5(PointerFromQByteArray(str)))
-	runtime.SetFinalizer(tmpValue, (*QLatin1String).DestroyQLatin1String)
+	qt.SetFinalizer(tmpValue, (*QLatin1String).DestroyQLatin1String)
 	return tmpValue
 }
 
@@ -26104,7 +26104,7 @@ func (ptr *QLatin1String) Chop(length int) {
 func (ptr *QLatin1String) Chopped(length int) *QLatin1String {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQLatin1StringFromPointer(C.QLatin1String_Chopped(ptr.Pointer(), C.int(int32(length))))
-		runtime.SetFinalizer(tmpValue, (*QLatin1String).DestroyQLatin1String)
+		qt.SetFinalizer(tmpValue, (*QLatin1String).DestroyQLatin1String)
 		return tmpValue
 	}
 	return nil
@@ -26169,7 +26169,7 @@ func (ptr *QLatin1String) Latin1() string {
 func (ptr *QLatin1String) Left(length int) *QLatin1String {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQLatin1StringFromPointer(C.QLatin1String_Left(ptr.Pointer(), C.int(int32(length))))
-		runtime.SetFinalizer(tmpValue, (*QLatin1String).DestroyQLatin1String)
+		qt.SetFinalizer(tmpValue, (*QLatin1String).DestroyQLatin1String)
 		return tmpValue
 	}
 	return nil
@@ -26178,7 +26178,7 @@ func (ptr *QLatin1String) Left(length int) *QLatin1String {
 func (ptr *QLatin1String) Mid(start int) *QLatin1String {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQLatin1StringFromPointer(C.QLatin1String_Mid(ptr.Pointer(), C.int(int32(start))))
-		runtime.SetFinalizer(tmpValue, (*QLatin1String).DestroyQLatin1String)
+		qt.SetFinalizer(tmpValue, (*QLatin1String).DestroyQLatin1String)
 		return tmpValue
 	}
 	return nil
@@ -26187,7 +26187,7 @@ func (ptr *QLatin1String) Mid(start int) *QLatin1String {
 func (ptr *QLatin1String) Mid2(start int, length int) *QLatin1String {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQLatin1StringFromPointer(C.QLatin1String_Mid2(ptr.Pointer(), C.int(int32(start)), C.int(int32(length))))
-		runtime.SetFinalizer(tmpValue, (*QLatin1String).DestroyQLatin1String)
+		qt.SetFinalizer(tmpValue, (*QLatin1String).DestroyQLatin1String)
 		return tmpValue
 	}
 	return nil
@@ -26196,7 +26196,7 @@ func (ptr *QLatin1String) Mid2(start int, length int) *QLatin1String {
 func (ptr *QLatin1String) Right(length int) *QLatin1String {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQLatin1StringFromPointer(C.QLatin1String_Right(ptr.Pointer(), C.int(int32(length))))
-		runtime.SetFinalizer(tmpValue, (*QLatin1String).DestroyQLatin1String)
+		qt.SetFinalizer(tmpValue, (*QLatin1String).DestroyQLatin1String)
 		return tmpValue
 	}
 	return nil
@@ -26240,7 +26240,7 @@ func (ptr *QLatin1String) StartsWith4(ch QChar_ITF, cs Qt__CaseSensitivity) bool
 func (ptr *QLatin1String) Trimmed() *QLatin1String {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQLatin1StringFromPointer(C.QLatin1String_Trimmed(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QLatin1String).DestroyQLatin1String)
+		qt.SetFinalizer(tmpValue, (*QLatin1String).DestroyQLatin1String)
 		return tmpValue
 	}
 	return nil
@@ -26494,7 +26494,7 @@ func (ptr *QLibrary) DestroyQLibrary() {
 	if ptr.Pointer() != nil {
 		C.QLibrary_DestroyQLibrary(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -26502,7 +26502,7 @@ func (ptr *QLibrary) DestroyQLibraryDefault() {
 	if ptr.Pointer() != nil {
 		C.QLibrary_DestroyQLibraryDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -26549,7 +26549,7 @@ func (ptr *QLibraryInfo) DestroyQLibraryInfo() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -26593,13 +26593,13 @@ func (ptr *QLibraryInfo) Location(loc QLibraryInfo__LibraryLocation) string {
 
 func QLibraryInfo_Version() *QVersionNumber {
 	tmpValue := NewQVersionNumberFromPointer(C.QLibraryInfo_QLibraryInfo_Version())
-	runtime.SetFinalizer(tmpValue, (*QVersionNumber).DestroyQVersionNumber)
+	qt.SetFinalizer(tmpValue, (*QVersionNumber).DestroyQVersionNumber)
 	return tmpValue
 }
 
 func (ptr *QLibraryInfo) Version() *QVersionNumber {
 	tmpValue := NewQVersionNumberFromPointer(C.QLibraryInfo_QLibraryInfo_Version())
-	runtime.SetFinalizer(tmpValue, (*QVersionNumber).DestroyQVersionNumber)
+	qt.SetFinalizer(tmpValue, (*QVersionNumber).DestroyQVersionNumber)
 	return tmpValue
 }
 
@@ -26646,32 +26646,32 @@ func (ptr *QLine) DestroyQLine() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func NewQLine() *QLine {
 	tmpValue := NewQLineFromPointer(C.QLine_NewQLine())
-	runtime.SetFinalizer(tmpValue, (*QLine).DestroyQLine)
+	qt.SetFinalizer(tmpValue, (*QLine).DestroyQLine)
 	return tmpValue
 }
 
 func NewQLine2(p1 QPoint_ITF, p2 QPoint_ITF) *QLine {
 	tmpValue := NewQLineFromPointer(C.QLine_NewQLine2(PointerFromQPoint(p1), PointerFromQPoint(p2)))
-	runtime.SetFinalizer(tmpValue, (*QLine).DestroyQLine)
+	qt.SetFinalizer(tmpValue, (*QLine).DestroyQLine)
 	return tmpValue
 }
 
 func NewQLine3(x1 int, y1 int, x2 int, y2 int) *QLine {
 	tmpValue := NewQLineFromPointer(C.QLine_NewQLine3(C.int(int32(x1)), C.int(int32(y1)), C.int(int32(x2)), C.int(int32(y2))))
-	runtime.SetFinalizer(tmpValue, (*QLine).DestroyQLine)
+	qt.SetFinalizer(tmpValue, (*QLine).DestroyQLine)
 	return tmpValue
 }
 
 func (ptr *QLine) Center() *QPoint {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQPointFromPointer(C.QLine_Center(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QPoint).DestroyQPoint)
+		qt.SetFinalizer(tmpValue, (*QPoint).DestroyQPoint)
 		return tmpValue
 	}
 	return nil
@@ -26701,7 +26701,7 @@ func (ptr *QLine) IsNull() bool {
 func (ptr *QLine) P1() *QPoint {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQPointFromPointer(C.QLine_P1(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QPoint).DestroyQPoint)
+		qt.SetFinalizer(tmpValue, (*QPoint).DestroyQPoint)
 		return tmpValue
 	}
 	return nil
@@ -26710,7 +26710,7 @@ func (ptr *QLine) P1() *QPoint {
 func (ptr *QLine) P2() *QPoint {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQPointFromPointer(C.QLine_P2(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QPoint).DestroyQPoint)
+		qt.SetFinalizer(tmpValue, (*QPoint).DestroyQPoint)
 		return tmpValue
 	}
 	return nil
@@ -26755,7 +26755,7 @@ func (ptr *QLine) Translate2(dx int, dy int) {
 func (ptr *QLine) Translated(offset QPoint_ITF) *QLine {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQLineFromPointer(C.QLine_Translated(ptr.Pointer(), PointerFromQPoint(offset)))
-		runtime.SetFinalizer(tmpValue, (*QLine).DestroyQLine)
+		qt.SetFinalizer(tmpValue, (*QLine).DestroyQLine)
 		return tmpValue
 	}
 	return nil
@@ -26764,7 +26764,7 @@ func (ptr *QLine) Translated(offset QPoint_ITF) *QLine {
 func (ptr *QLine) Translated2(dx int, dy int) *QLine {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQLineFromPointer(C.QLine_Translated2(ptr.Pointer(), C.int(int32(dx)), C.int(int32(dy))))
-		runtime.SetFinalizer(tmpValue, (*QLine).DestroyQLine)
+		qt.SetFinalizer(tmpValue, (*QLine).DestroyQLine)
 		return tmpValue
 	}
 	return nil
@@ -26841,7 +26841,7 @@ func (ptr *QLineF) DestroyQLineF() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -26857,25 +26857,25 @@ const (
 
 func NewQLineF() *QLineF {
 	tmpValue := NewQLineFFromPointer(C.QLineF_NewQLineF())
-	runtime.SetFinalizer(tmpValue, (*QLineF).DestroyQLineF)
+	qt.SetFinalizer(tmpValue, (*QLineF).DestroyQLineF)
 	return tmpValue
 }
 
 func NewQLineF2(p1 QPointF_ITF, p2 QPointF_ITF) *QLineF {
 	tmpValue := NewQLineFFromPointer(C.QLineF_NewQLineF2(PointerFromQPointF(p1), PointerFromQPointF(p2)))
-	runtime.SetFinalizer(tmpValue, (*QLineF).DestroyQLineF)
+	qt.SetFinalizer(tmpValue, (*QLineF).DestroyQLineF)
 	return tmpValue
 }
 
 func NewQLineF3(x1 float64, y1 float64, x2 float64, y2 float64) *QLineF {
 	tmpValue := NewQLineFFromPointer(C.QLineF_NewQLineF3(C.double(x1), C.double(y1), C.double(x2), C.double(y2)))
-	runtime.SetFinalizer(tmpValue, (*QLineF).DestroyQLineF)
+	qt.SetFinalizer(tmpValue, (*QLineF).DestroyQLineF)
 	return tmpValue
 }
 
 func NewQLineF4(line QLine_ITF) *QLineF {
 	tmpValue := NewQLineFFromPointer(C.QLineF_NewQLineF4(PointerFromQLine(line)))
-	runtime.SetFinalizer(tmpValue, (*QLineF).DestroyQLineF)
+	qt.SetFinalizer(tmpValue, (*QLineF).DestroyQLineF)
 	return tmpValue
 }
 
@@ -26896,7 +26896,7 @@ func (ptr *QLineF) AngleTo(line QLineF_ITF) float64 {
 func (ptr *QLineF) Center() *QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQPointFFromPointer(C.QLineF_Center(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -26918,13 +26918,13 @@ func (ptr *QLineF) Dy() float64 {
 
 func QLineF_FromPolar(length float64, angle float64) *QLineF {
 	tmpValue := NewQLineFFromPointer(C.QLineF_QLineF_FromPolar(C.double(length), C.double(angle)))
-	runtime.SetFinalizer(tmpValue, (*QLineF).DestroyQLineF)
+	qt.SetFinalizer(tmpValue, (*QLineF).DestroyQLineF)
 	return tmpValue
 }
 
 func (ptr *QLineF) FromPolar(length float64, angle float64) *QLineF {
 	tmpValue := NewQLineFFromPointer(C.QLineF_QLineF_FromPolar(C.double(length), C.double(angle)))
-	runtime.SetFinalizer(tmpValue, (*QLineF).DestroyQLineF)
+	qt.SetFinalizer(tmpValue, (*QLineF).DestroyQLineF)
 	return tmpValue
 }
 
@@ -26952,7 +26952,7 @@ func (ptr *QLineF) Length() float64 {
 func (ptr *QLineF) NormalVector() *QLineF {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQLineFFromPointer(C.QLineF_NormalVector(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QLineF).DestroyQLineF)
+		qt.SetFinalizer(tmpValue, (*QLineF).DestroyQLineF)
 		return tmpValue
 	}
 	return nil
@@ -26961,7 +26961,7 @@ func (ptr *QLineF) NormalVector() *QLineF {
 func (ptr *QLineF) P1() *QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQPointFFromPointer(C.QLineF_P1(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -26970,7 +26970,7 @@ func (ptr *QLineF) P1() *QPointF {
 func (ptr *QLineF) P2() *QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQPointFFromPointer(C.QLineF_P2(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -26979,7 +26979,7 @@ func (ptr *QLineF) P2() *QPointF {
 func (ptr *QLineF) PointAt(t float64) *QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQPointFFromPointer(C.QLineF_PointAt(ptr.Pointer(), C.double(t)))
-		runtime.SetFinalizer(tmpValue, (*QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -27024,7 +27024,7 @@ func (ptr *QLineF) SetPoints(p1 QPointF_ITF, p2 QPointF_ITF) {
 func (ptr *QLineF) ToLine() *QLine {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQLineFromPointer(C.QLineF_ToLine(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QLine).DestroyQLine)
+		qt.SetFinalizer(tmpValue, (*QLine).DestroyQLine)
 		return tmpValue
 	}
 	return nil
@@ -27045,7 +27045,7 @@ func (ptr *QLineF) Translate2(dx float64, dy float64) {
 func (ptr *QLineF) Translated(offset QPointF_ITF) *QLineF {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQLineFFromPointer(C.QLineF_Translated(ptr.Pointer(), PointerFromQPointF(offset)))
-		runtime.SetFinalizer(tmpValue, (*QLineF).DestroyQLineF)
+		qt.SetFinalizer(tmpValue, (*QLineF).DestroyQLineF)
 		return tmpValue
 	}
 	return nil
@@ -27054,7 +27054,7 @@ func (ptr *QLineF) Translated(offset QPointF_ITF) *QLineF {
 func (ptr *QLineF) Translated2(dx float64, dy float64) *QLineF {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQLineFFromPointer(C.QLineF_Translated2(ptr.Pointer(), C.double(dx), C.double(dy)))
-		runtime.SetFinalizer(tmpValue, (*QLineF).DestroyQLineF)
+		qt.SetFinalizer(tmpValue, (*QLineF).DestroyQLineF)
 		return tmpValue
 	}
 	return nil
@@ -27063,7 +27063,7 @@ func (ptr *QLineF) Translated2(dx float64, dy float64) *QLineF {
 func (ptr *QLineF) UnitVector() *QLineF {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQLineFFromPointer(C.QLineF_UnitVector(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QLineF).DestroyQLineF)
+		qt.SetFinalizer(tmpValue, (*QLineF).DestroyQLineF)
 		return tmpValue
 	}
 	return nil
@@ -27178,7 +27178,7 @@ func (ptr *QLinkedListIterator) DestroyQLinkedListIterator() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -27225,7 +27225,7 @@ func (ptr *QLinkedListNode) DestroyQLinkedListNode() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -27272,7 +27272,7 @@ func (ptr *QListData) DestroyQListData() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -27319,7 +27319,7 @@ func (ptr *QListIterator) DestroyQListIterator() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -27366,7 +27366,7 @@ func (ptr *QListSpecialMethods) DestroyQListSpecialMethods() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -27413,7 +27413,7 @@ func (ptr *QLittleEndianStorageType) DestroyQLittleEndianStorageType() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -28349,7 +28349,7 @@ var (
 
 func NewQLocale() *QLocale {
 	tmpValue := NewQLocaleFromPointer(C.QLocale_NewQLocale())
-	runtime.SetFinalizer(tmpValue, (*QLocale).DestroyQLocale)
+	qt.SetFinalizer(tmpValue, (*QLocale).DestroyQLocale)
 	return tmpValue
 }
 
@@ -28360,25 +28360,25 @@ func NewQLocale2(name string) *QLocale {
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	tmpValue := NewQLocaleFromPointer(C.QLocale_NewQLocale2(C.struct_QtCore_PackedString{data: nameC, len: C.longlong(len(name))}))
-	runtime.SetFinalizer(tmpValue, (*QLocale).DestroyQLocale)
+	qt.SetFinalizer(tmpValue, (*QLocale).DestroyQLocale)
 	return tmpValue
 }
 
 func NewQLocale3(language QLocale__Language, country QLocale__Country) *QLocale {
 	tmpValue := NewQLocaleFromPointer(C.QLocale_NewQLocale3(C.longlong(language), C.longlong(country)))
-	runtime.SetFinalizer(tmpValue, (*QLocale).DestroyQLocale)
+	qt.SetFinalizer(tmpValue, (*QLocale).DestroyQLocale)
 	return tmpValue
 }
 
 func NewQLocale4(language QLocale__Language, scri QLocale__Script, country QLocale__Country) *QLocale {
 	tmpValue := NewQLocaleFromPointer(C.QLocale_NewQLocale4(C.longlong(language), C.longlong(scri), C.longlong(country)))
-	runtime.SetFinalizer(tmpValue, (*QLocale).DestroyQLocale)
+	qt.SetFinalizer(tmpValue, (*QLocale).DestroyQLocale)
 	return tmpValue
 }
 
 func NewQLocale5(other QLocale_ITF) *QLocale {
 	tmpValue := NewQLocaleFromPointer(C.QLocale_NewQLocale5(PointerFromQLocale(other)))
-	runtime.SetFinalizer(tmpValue, (*QLocale).DestroyQLocale)
+	qt.SetFinalizer(tmpValue, (*QLocale).DestroyQLocale)
 	return tmpValue
 }
 
@@ -28398,13 +28398,13 @@ func (ptr *QLocale) Bcp47Name() string {
 
 func QLocale_C() *QLocale {
 	tmpValue := NewQLocaleFromPointer(C.QLocale_QLocale_C())
-	runtime.SetFinalizer(tmpValue, (*QLocale).DestroyQLocale)
+	qt.SetFinalizer(tmpValue, (*QLocale).DestroyQLocale)
 	return tmpValue
 }
 
 func (ptr *QLocale) C() *QLocale {
 	tmpValue := NewQLocaleFromPointer(C.QLocale_QLocale_C())
-	runtime.SetFinalizer(tmpValue, (*QLocale).DestroyQLocale)
+	qt.SetFinalizer(tmpValue, (*QLocale).DestroyQLocale)
 	return tmpValue
 }
 
@@ -28463,7 +28463,7 @@ func (ptr *QLocale) DayName(day int, ty QLocale__FormatType) string {
 func (ptr *QLocale) DecimalPoint() *QChar {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQCharFromPointer(C.QLocale_DecimalPoint(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+		qt.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 		return tmpValue
 	}
 	return nil
@@ -28472,7 +28472,7 @@ func (ptr *QLocale) DecimalPoint() *QChar {
 func (ptr *QLocale) Exponential() *QChar {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQCharFromPointer(C.QLocale_Exponential(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+		qt.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 		return tmpValue
 	}
 	return nil
@@ -28495,7 +28495,7 @@ func (ptr *QLocale) FormattedDataSize2(bytes int64, precision int, format QLocal
 func (ptr *QLocale) GroupSeparator() *QChar {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQCharFromPointer(C.QLocale_GroupSeparator(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+		qt.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 		return tmpValue
 	}
 	return nil
@@ -28576,7 +28576,7 @@ func (ptr *QLocale) NativeLanguageName() string {
 func (ptr *QLocale) NegativeSign() *QChar {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQCharFromPointer(C.QLocale_NegativeSign(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+		qt.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 		return tmpValue
 	}
 	return nil
@@ -28592,7 +28592,7 @@ func (ptr *QLocale) NumberOptions() QLocale__NumberOption {
 func (ptr *QLocale) Percent() *QChar {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQCharFromPointer(C.QLocale_Percent(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+		qt.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 		return tmpValue
 	}
 	return nil
@@ -28608,7 +28608,7 @@ func (ptr *QLocale) PmText() string {
 func (ptr *QLocale) PositiveSign() *QChar {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQCharFromPointer(C.QLocale_PositiveSign(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+		qt.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 		return tmpValue
 	}
 	return nil
@@ -28684,13 +28684,13 @@ func (ptr *QLocale) Swap(other QLocale_ITF) {
 
 func QLocale_System() *QLocale {
 	tmpValue := NewQLocaleFromPointer(C.QLocale_QLocale_System())
-	runtime.SetFinalizer(tmpValue, (*QLocale).DestroyQLocale)
+	qt.SetFinalizer(tmpValue, (*QLocale).DestroyQLocale)
 	return tmpValue
 }
 
 func (ptr *QLocale) System() *QLocale {
 	tmpValue := NewQLocaleFromPointer(C.QLocale_QLocale_System())
-	runtime.SetFinalizer(tmpValue, (*QLocale).DestroyQLocale)
+	qt.SetFinalizer(tmpValue, (*QLocale).DestroyQLocale)
 	return tmpValue
 }
 
@@ -28836,7 +28836,7 @@ func (ptr *QLocale) ToDate(stri string, format QLocale__FormatType) *QDate {
 			defer C.free(unsafe.Pointer(striC))
 		}
 		tmpValue := NewQDateFromPointer(C.QLocale_ToDate(ptr.Pointer(), C.struct_QtCore_PackedString{data: striC, len: C.longlong(len(stri))}, C.longlong(format)))
-		runtime.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
+		qt.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
 		return tmpValue
 	}
 	return nil
@@ -28855,7 +28855,7 @@ func (ptr *QLocale) ToDate2(stri string, format string) *QDate {
 			defer C.free(unsafe.Pointer(formatC))
 		}
 		tmpValue := NewQDateFromPointer(C.QLocale_ToDate2(ptr.Pointer(), C.struct_QtCore_PackedString{data: striC, len: C.longlong(len(stri))}, C.struct_QtCore_PackedString{data: formatC, len: C.longlong(len(format))}))
-		runtime.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
+		qt.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
 		return tmpValue
 	}
 	return nil
@@ -28869,7 +28869,7 @@ func (ptr *QLocale) ToDateTime(stri string, format QLocale__FormatType) *QDateTi
 			defer C.free(unsafe.Pointer(striC))
 		}
 		tmpValue := NewQDateTimeFromPointer(C.QLocale_ToDateTime(ptr.Pointer(), C.struct_QtCore_PackedString{data: striC, len: C.longlong(len(stri))}, C.longlong(format)))
-		runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+		qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 		return tmpValue
 	}
 	return nil
@@ -28888,7 +28888,7 @@ func (ptr *QLocale) ToDateTime2(stri string, format string) *QDateTime {
 			defer C.free(unsafe.Pointer(formatC))
 		}
 		tmpValue := NewQDateTimeFromPointer(C.QLocale_ToDateTime2(ptr.Pointer(), C.struct_QtCore_PackedString{data: striC, len: C.longlong(len(stri))}, C.struct_QtCore_PackedString{data: formatC, len: C.longlong(len(format))}))
-		runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+		qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 		return tmpValue
 	}
 	return nil
@@ -29318,7 +29318,7 @@ func (ptr *QLocale) ToTime(stri string, format QLocale__FormatType) *QTime {
 			defer C.free(unsafe.Pointer(striC))
 		}
 		tmpValue := NewQTimeFromPointer(C.QLocale_ToTime(ptr.Pointer(), C.struct_QtCore_PackedString{data: striC, len: C.longlong(len(stri))}, C.longlong(format)))
-		runtime.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
+		qt.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
 		return tmpValue
 	}
 	return nil
@@ -29337,7 +29337,7 @@ func (ptr *QLocale) ToTime2(stri string, format string) *QTime {
 			defer C.free(unsafe.Pointer(formatC))
 		}
 		tmpValue := NewQTimeFromPointer(C.QLocale_ToTime2(ptr.Pointer(), C.struct_QtCore_PackedString{data: striC, len: C.longlong(len(stri))}, C.struct_QtCore_PackedString{data: formatC, len: C.longlong(len(format))}))
-		runtime.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
+		qt.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
 		return tmpValue
 	}
 	return nil
@@ -29543,7 +29543,7 @@ func (ptr *QLocale) Weekdays() []Qt__DayOfWeek {
 func (ptr *QLocale) ZeroDigit() *QChar {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQCharFromPointer(C.QLocale_ZeroDigit(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+		qt.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 		return tmpValue
 	}
 	return nil
@@ -29554,14 +29554,14 @@ func (ptr *QLocale) DestroyQLocale() {
 		C.QLocale_DestroyQLocale(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QLocale) __matchingLocales_atList(i int) *QLocale {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQLocaleFromPointer(C.QLocale___matchingLocales_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QLocale).DestroyQLocale)
+		qt.SetFinalizer(tmpValue, (*QLocale).DestroyQLocale)
 		return tmpValue
 	}
 	return nil
@@ -29650,7 +29650,7 @@ func NewQLockFile(fileName string) *QLockFile {
 		defer C.free(unsafe.Pointer(fileNameC))
 	}
 	tmpValue := NewQLockFileFromPointer(C.QLockFile_NewQLockFile(C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}))
-	runtime.SetFinalizer(tmpValue, (*QLockFile).DestroyQLockFile)
+	qt.SetFinalizer(tmpValue, (*QLockFile).DestroyQLockFile)
 	return tmpValue
 }
 
@@ -29730,7 +29730,7 @@ func (ptr *QLockFile) DestroyQLockFile() {
 		C.QLockFile_DestroyQLockFile(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -29778,7 +29778,7 @@ func NewQLoggingCategory2(category string) *QLoggingCategory {
 		defer C.free(unsafe.Pointer(categoryC))
 	}
 	tmpValue := NewQLoggingCategoryFromPointer(C.QLoggingCategory_NewQLoggingCategory2(categoryC))
-	runtime.SetFinalizer(tmpValue, (*QLoggingCategory).DestroyQLoggingCategory)
+	qt.SetFinalizer(tmpValue, (*QLoggingCategory).DestroyQLoggingCategory)
 	return tmpValue
 }
 
@@ -29848,7 +29848,7 @@ func (ptr *QLoggingCategory) DestroyQLoggingCategory() {
 		C.QLoggingCategory_DestroyQLoggingCategory(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -29933,7 +29933,7 @@ func (ptr *QMapData) DestroyQMapData() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -29980,7 +29980,7 @@ func (ptr *QMapDataBase) DestroyQMapDataBase() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -30027,7 +30027,7 @@ func (ptr *QMapIterator) DestroyQMapIterator() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -30074,7 +30074,7 @@ func (ptr *QMapNode) DestroyQMapNode() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -30121,7 +30121,7 @@ func (ptr *QMapNodeBase) DestroyQMapNodeBase() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -30168,19 +30168,19 @@ func (ptr *QMargins) DestroyQMargins() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func NewQMargins() *QMargins {
 	tmpValue := NewQMarginsFromPointer(C.QMargins_NewQMargins())
-	runtime.SetFinalizer(tmpValue, (*QMargins).DestroyQMargins)
+	qt.SetFinalizer(tmpValue, (*QMargins).DestroyQMargins)
 	return tmpValue
 }
 
 func NewQMargins2(left int, top int, right int, bottom int) *QMargins {
 	tmpValue := NewQMarginsFromPointer(C.QMargins_NewQMargins2(C.int(int32(left)), C.int(int32(top)), C.int(int32(right)), C.int(int32(bottom))))
-	runtime.SetFinalizer(tmpValue, (*QMargins).DestroyQMargins)
+	qt.SetFinalizer(tmpValue, (*QMargins).DestroyQMargins)
 	return tmpValue
 }
 
@@ -30286,25 +30286,25 @@ func (ptr *QMarginsF) DestroyQMarginsF() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func NewQMarginsF() *QMarginsF {
 	tmpValue := NewQMarginsFFromPointer(C.QMarginsF_NewQMarginsF())
-	runtime.SetFinalizer(tmpValue, (*QMarginsF).DestroyQMarginsF)
+	qt.SetFinalizer(tmpValue, (*QMarginsF).DestroyQMarginsF)
 	return tmpValue
 }
 
 func NewQMarginsF2(left float64, top float64, right float64, bottom float64) *QMarginsF {
 	tmpValue := NewQMarginsFFromPointer(C.QMarginsF_NewQMarginsF2(C.double(left), C.double(top), C.double(right), C.double(bottom)))
-	runtime.SetFinalizer(tmpValue, (*QMarginsF).DestroyQMarginsF)
+	qt.SetFinalizer(tmpValue, (*QMarginsF).DestroyQMarginsF)
 	return tmpValue
 }
 
 func NewQMarginsF3(margins QMargins_ITF) *QMarginsF {
 	tmpValue := NewQMarginsFFromPointer(C.QMarginsF_NewQMarginsF3(PointerFromQMargins(margins)))
-	runtime.SetFinalizer(tmpValue, (*QMarginsF).DestroyQMarginsF)
+	qt.SetFinalizer(tmpValue, (*QMarginsF).DestroyQMarginsF)
 	return tmpValue
 }
 
@@ -30363,7 +30363,7 @@ func (ptr *QMarginsF) SetTop(Top float64) {
 func (ptr *QMarginsF) ToMargins() *QMargins {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQMarginsFromPointer(C.QMarginsF_ToMargins(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QMargins).DestroyQMargins)
+		qt.SetFinalizer(tmpValue, (*QMargins).DestroyQMargins)
 		return tmpValue
 	}
 	return nil
@@ -30415,7 +30415,7 @@ func NewQMessageAuthenticationCodeFromPointer(ptr unsafe.Pointer) (n *QMessageAu
 }
 func NewQMessageAuthenticationCode(method QCryptographicHash__Algorithm, key QByteArray_ITF) *QMessageAuthenticationCode {
 	tmpValue := NewQMessageAuthenticationCodeFromPointer(C.QMessageAuthenticationCode_NewQMessageAuthenticationCode(C.longlong(method), PointerFromQByteArray(key)))
-	runtime.SetFinalizer(tmpValue, (*QMessageAuthenticationCode).DestroyQMessageAuthenticationCode)
+	qt.SetFinalizer(tmpValue, (*QMessageAuthenticationCode).DestroyQMessageAuthenticationCode)
 	return tmpValue
 }
 
@@ -30444,13 +30444,13 @@ func (ptr *QMessageAuthenticationCode) AddData3(device QIODevice_ITF) bool {
 
 func QMessageAuthenticationCode_Hash(message QByteArray_ITF, key QByteArray_ITF, method QCryptographicHash__Algorithm) *QByteArray {
 	tmpValue := NewQByteArrayFromPointer(C.QMessageAuthenticationCode_QMessageAuthenticationCode_Hash(PointerFromQByteArray(message), PointerFromQByteArray(key), C.longlong(method)))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
 func (ptr *QMessageAuthenticationCode) Hash(message QByteArray_ITF, key QByteArray_ITF, method QCryptographicHash__Algorithm) *QByteArray {
 	tmpValue := NewQByteArrayFromPointer(C.QMessageAuthenticationCode_QMessageAuthenticationCode_Hash(PointerFromQByteArray(message), PointerFromQByteArray(key), C.longlong(method)))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
@@ -30463,7 +30463,7 @@ func (ptr *QMessageAuthenticationCode) Reset() {
 func (ptr *QMessageAuthenticationCode) Result() *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QMessageAuthenticationCode_Result(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -30480,7 +30480,7 @@ func (ptr *QMessageAuthenticationCode) DestroyQMessageAuthenticationCode() {
 		C.QMessageAuthenticationCode_DestroyQMessageAuthenticationCode(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -30527,7 +30527,7 @@ func (ptr *QMessageLogContext) DestroyQMessageLogContext() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -30574,13 +30574,13 @@ func (ptr *QMessageLogger) DestroyQMessageLogger() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func NewQMessageLogger2() *QMessageLogger {
 	tmpValue := NewQMessageLoggerFromPointer(C.QMessageLogger_NewQMessageLogger2())
-	runtime.SetFinalizer(tmpValue, (*QMessageLogger).DestroyQMessageLogger)
+	qt.SetFinalizer(tmpValue, (*QMessageLogger).DestroyQMessageLogger)
 	return tmpValue
 }
 
@@ -30596,7 +30596,7 @@ func NewQMessageLogger3(file string, line int, function string) *QMessageLogger 
 		defer C.free(unsafe.Pointer(functionC))
 	}
 	tmpValue := NewQMessageLoggerFromPointer(C.QMessageLogger_NewQMessageLogger3(fileC, C.int(int32(line)), functionC))
-	runtime.SetFinalizer(tmpValue, (*QMessageLogger).DestroyQMessageLogger)
+	qt.SetFinalizer(tmpValue, (*QMessageLogger).DestroyQMessageLogger)
 	return tmpValue
 }
 
@@ -30617,14 +30617,14 @@ func NewQMessageLogger4(file string, line int, function string, category string)
 		defer C.free(unsafe.Pointer(categoryC))
 	}
 	tmpValue := NewQMessageLoggerFromPointer(C.QMessageLogger_NewQMessageLogger4(fileC, C.int(int32(line)), functionC, categoryC))
-	runtime.SetFinalizer(tmpValue, (*QMessageLogger).DestroyQMessageLogger)
+	qt.SetFinalizer(tmpValue, (*QMessageLogger).DestroyQMessageLogger)
 	return tmpValue
 }
 
 func (ptr *QMessageLogger) Critical4() *QDebug {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDebugFromPointer(C.QMessageLogger_Critical4(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
+		qt.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
 		return tmpValue
 	}
 	return nil
@@ -30633,7 +30633,7 @@ func (ptr *QMessageLogger) Critical4() *QDebug {
 func (ptr *QMessageLogger) Critical5(cat QLoggingCategory_ITF) *QDebug {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDebugFromPointer(C.QMessageLogger_Critical5(ptr.Pointer(), PointerFromQLoggingCategory(cat)))
-		runtime.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
+		qt.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
 		return tmpValue
 	}
 	return nil
@@ -30642,7 +30642,7 @@ func (ptr *QMessageLogger) Critical5(cat QLoggingCategory_ITF) *QDebug {
 func (ptr *QMessageLogger) Debug4() *QDebug {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDebugFromPointer(C.QMessageLogger_Debug4(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
+		qt.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
 		return tmpValue
 	}
 	return nil
@@ -30651,7 +30651,7 @@ func (ptr *QMessageLogger) Debug4() *QDebug {
 func (ptr *QMessageLogger) Debug5(cat QLoggingCategory_ITF) *QDebug {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDebugFromPointer(C.QMessageLogger_Debug5(ptr.Pointer(), PointerFromQLoggingCategory(cat)))
-		runtime.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
+		qt.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
 		return tmpValue
 	}
 	return nil
@@ -30660,7 +30660,7 @@ func (ptr *QMessageLogger) Debug5(cat QLoggingCategory_ITF) *QDebug {
 func (ptr *QMessageLogger) Info4() *QDebug {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDebugFromPointer(C.QMessageLogger_Info4(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
+		qt.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
 		return tmpValue
 	}
 	return nil
@@ -30669,7 +30669,7 @@ func (ptr *QMessageLogger) Info4() *QDebug {
 func (ptr *QMessageLogger) Info5(cat QLoggingCategory_ITF) *QDebug {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDebugFromPointer(C.QMessageLogger_Info5(ptr.Pointer(), PointerFromQLoggingCategory(cat)))
-		runtime.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
+		qt.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
 		return tmpValue
 	}
 	return nil
@@ -30678,7 +30678,7 @@ func (ptr *QMessageLogger) Info5(cat QLoggingCategory_ITF) *QDebug {
 func (ptr *QMessageLogger) Warning4() *QDebug {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDebugFromPointer(C.QMessageLogger_Warning4(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
+		qt.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
 		return tmpValue
 	}
 	return nil
@@ -30687,7 +30687,7 @@ func (ptr *QMessageLogger) Warning4() *QDebug {
 func (ptr *QMessageLogger) Warning5(cat QLoggingCategory_ITF) *QDebug {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDebugFromPointer(C.QMessageLogger_Warning5(ptr.Pointer(), PointerFromQLoggingCategory(cat)))
-		runtime.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
+		qt.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
 		return tmpValue
 	}
 	return nil
@@ -30736,7 +30736,7 @@ func (ptr *QMetaClassInfo) DestroyQMetaClassInfo() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -30797,7 +30797,7 @@ func (ptr *QMetaEnum) DestroyQMetaEnum() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -30908,7 +30908,7 @@ func (ptr *QMetaEnum) ValueToKey(value int) string {
 func (ptr *QMetaEnum) ValueToKeys(value int) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QMetaEnum_ValueToKeys(ptr.Pointer(), C.int(int32(value))))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -30957,7 +30957,7 @@ func (ptr *QMetaMethod) DestroyQMetaMethod() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -31048,7 +31048,7 @@ func (ptr *QMetaMethod) MethodIndex() int {
 func (ptr *QMetaMethod) MethodSignature() *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QMetaMethod_MethodSignature(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -31064,7 +31064,7 @@ func (ptr *QMetaMethod) MethodType() QMetaMethod__MethodType {
 func (ptr *QMetaMethod) Name() *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QMetaMethod_Name(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -31143,7 +31143,7 @@ func (ptr *QMetaMethod) TypeName() string {
 func (ptr *QMetaMethod) __parameterNames_atList(i int) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QMetaMethod___parameterNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -31162,7 +31162,7 @@ func (ptr *QMetaMethod) __parameterNames_newList() unsafe.Pointer {
 func (ptr *QMetaMethod) __parameterTypes_atList(i int) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QMetaMethod___parameterTypes_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -31221,7 +31221,7 @@ func (ptr *QMetaObject) DestroyQMetaObject() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -31293,7 +31293,7 @@ func (ptr *QMetaObject) ConnectSlotsByName(object QObject_ITF) {
 func (ptr *QMetaObject) Constructor(index int) *QMetaMethod {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQMetaMethodFromPointer(C.QMetaObject_Constructor(ptr.Pointer(), C.int(int32(index))))
-		runtime.SetFinalizer(tmpValue, (*QMetaMethod).DestroyQMetaMethod)
+		qt.SetFinalizer(tmpValue, (*QMetaMethod).DestroyQMetaMethod)
 		return tmpValue
 	}
 	return nil
@@ -31486,7 +31486,7 @@ func (ptr *QMetaObject) InvokeMethod4(obj QObject_ITF, member string, val0 QGene
 func (ptr *QMetaObject) Method(index int) *QMetaMethod {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQMetaMethodFromPointer(C.QMetaObject_Method(ptr.Pointer(), C.int(int32(index))))
-		runtime.SetFinalizer(tmpValue, (*QMetaMethod).DestroyQMetaMethod)
+		qt.SetFinalizer(tmpValue, (*QMetaMethod).DestroyQMetaMethod)
 		return tmpValue
 	}
 	return nil
@@ -31524,7 +31524,7 @@ func QMetaObject_NormalizedSignature(method string) *QByteArray {
 		defer C.free(unsafe.Pointer(methodC))
 	}
 	tmpValue := NewQByteArrayFromPointer(C.QMetaObject_QMetaObject_NormalizedSignature(methodC))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
@@ -31535,7 +31535,7 @@ func (ptr *QMetaObject) NormalizedSignature(method string) *QByteArray {
 		defer C.free(unsafe.Pointer(methodC))
 	}
 	tmpValue := NewQByteArrayFromPointer(C.QMetaObject_QMetaObject_NormalizedSignature(methodC))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
@@ -31546,7 +31546,7 @@ func QMetaObject_NormalizedType(ty string) *QByteArray {
 		defer C.free(unsafe.Pointer(tyC))
 	}
 	tmpValue := NewQByteArrayFromPointer(C.QMetaObject_QMetaObject_NormalizedType(tyC))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
@@ -31557,7 +31557,7 @@ func (ptr *QMetaObject) NormalizedType(ty string) *QByteArray {
 		defer C.free(unsafe.Pointer(tyC))
 	}
 	tmpValue := NewQByteArrayFromPointer(C.QMetaObject_QMetaObject_NormalizedType(tyC))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
@@ -31625,7 +31625,7 @@ func (ptr *QMetaProperty) DestroyQMetaProperty() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -31730,7 +31730,7 @@ func (ptr *QMetaProperty) Name() string {
 func (ptr *QMetaProperty) NotifySignal() *QMetaMethod {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQMetaMethodFromPointer(C.QMetaProperty_NotifySignal(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QMetaMethod).DestroyQMetaMethod)
+		qt.SetFinalizer(tmpValue, (*QMetaMethod).DestroyQMetaMethod)
 		return tmpValue
 	}
 	return nil
@@ -31753,7 +31753,7 @@ func (ptr *QMetaProperty) PropertyIndex() int {
 func (ptr *QMetaProperty) Read(object QObject_ITF) *QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVariantFromPointer(C.QMetaProperty_Read(ptr.Pointer(), PointerFromQObject(object)))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -31762,7 +31762,7 @@ func (ptr *QMetaProperty) Read(object QObject_ITF) *QVariant {
 func (ptr *QMetaProperty) ReadOnGadget(gadget unsafe.Pointer) *QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVariantFromPointer(C.QMetaProperty_ReadOnGadget(ptr.Pointer(), gadget))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -31972,7 +31972,7 @@ const (
 
 func NewQMetaType(typeId int) *QMetaType {
 	tmpValue := NewQMetaTypeFromPointer(C.QMetaType_NewQMetaType(C.int(int32(typeId))))
-	runtime.SetFinalizer(tmpValue, (*QMetaType).DestroyQMetaType)
+	qt.SetFinalizer(tmpValue, (*QMetaType).DestroyQMetaType)
 	return tmpValue
 }
 
@@ -32195,7 +32195,7 @@ func (ptr *QMetaType) DestroyQMetaType() {
 		C.QMetaType_DestroyQMetaType(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -32254,7 +32254,7 @@ func (ptr *QMimeData) Clear() {
 func (ptr *QMimeData) ColorData() *QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVariantFromPointer(C.QMimeData_ColorData(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -32268,7 +32268,7 @@ func (ptr *QMimeData) Data(mimeType string) *QByteArray {
 			defer C.free(unsafe.Pointer(mimeTypeC))
 		}
 		tmpValue := NewQByteArrayFromPointer(C.QMimeData_Data(ptr.Pointer(), C.struct_QtCore_PackedString{data: mimeTypeC, len: C.longlong(len(mimeType))}))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -32420,7 +32420,7 @@ func (ptr *QMimeData) Html() string {
 func (ptr *QMimeData) ImageData() *QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVariantFromPointer(C.QMimeData_ImageData(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -32476,7 +32476,7 @@ func (ptr *QMimeData) RetrieveData(mimeType string, ty QVariant__Type) *QVariant
 			defer C.free(unsafe.Pointer(mimeTypeC))
 		}
 		tmpValue := NewQVariantFromPointer(C.QMimeData_RetrieveData(ptr.Pointer(), C.struct_QtCore_PackedString{data: mimeTypeC, len: C.longlong(len(mimeType))}, C.longlong(ty)))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -32490,7 +32490,7 @@ func (ptr *QMimeData) RetrieveDataDefault(mimeType string, ty QVariant__Type) *Q
 			defer C.free(unsafe.Pointer(mimeTypeC))
 		}
 		tmpValue := NewQVariantFromPointer(C.QMimeData_RetrieveDataDefault(ptr.Pointer(), C.struct_QtCore_PackedString{data: mimeTypeC, len: C.longlong(len(mimeType))}, C.longlong(ty)))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -32609,7 +32609,7 @@ func (ptr *QMimeData) DestroyQMimeData() {
 	if ptr.Pointer() != nil {
 		C.QMimeData_DestroyQMimeData(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -32617,14 +32617,14 @@ func (ptr *QMimeData) DestroyQMimeDataDefault() {
 	if ptr.Pointer() != nil {
 		C.QMimeData_DestroyQMimeDataDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QMimeData) __setUrls_urls_atList(i int) *QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQUrlFromPointer(C.QMimeData___setUrls_urls_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -32643,7 +32643,7 @@ func (ptr *QMimeData) __setUrls_urls_newList() unsafe.Pointer {
 func (ptr *QMimeData) __urls_atList(i int) *QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQUrlFromPointer(C.QMimeData___urls_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -32709,7 +32709,7 @@ const (
 
 func NewQMimeDatabase2() *QMimeDatabase {
 	tmpValue := NewQMimeDatabaseFromPointer(C.QMimeDatabase_NewQMimeDatabase2())
-	runtime.SetFinalizer(tmpValue, (*QMimeDatabase).DestroyQMimeDatabase)
+	qt.SetFinalizer(tmpValue, (*QMimeDatabase).DestroyQMimeDatabase)
 	return tmpValue
 }
 
@@ -32730,7 +32730,7 @@ func (ptr *QMimeDatabase) AllMimeTypes() []*QMimeType {
 func (ptr *QMimeDatabase) MimeTypeForData(data QByteArray_ITF) *QMimeType {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQMimeTypeFromPointer(C.QMimeDatabase_MimeTypeForData(ptr.Pointer(), PointerFromQByteArray(data)))
-		runtime.SetFinalizer(tmpValue, (*QMimeType).DestroyQMimeType)
+		qt.SetFinalizer(tmpValue, (*QMimeType).DestroyQMimeType)
 		return tmpValue
 	}
 	return nil
@@ -32739,7 +32739,7 @@ func (ptr *QMimeDatabase) MimeTypeForData(data QByteArray_ITF) *QMimeType {
 func (ptr *QMimeDatabase) MimeTypeForData2(device QIODevice_ITF) *QMimeType {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQMimeTypeFromPointer(C.QMimeDatabase_MimeTypeForData2(ptr.Pointer(), PointerFromQIODevice(device)))
-		runtime.SetFinalizer(tmpValue, (*QMimeType).DestroyQMimeType)
+		qt.SetFinalizer(tmpValue, (*QMimeType).DestroyQMimeType)
 		return tmpValue
 	}
 	return nil
@@ -32748,7 +32748,7 @@ func (ptr *QMimeDatabase) MimeTypeForData2(device QIODevice_ITF) *QMimeType {
 func (ptr *QMimeDatabase) MimeTypeForFile(fileInfo QFileInfo_ITF, mode QMimeDatabase__MatchMode) *QMimeType {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQMimeTypeFromPointer(C.QMimeDatabase_MimeTypeForFile(ptr.Pointer(), PointerFromQFileInfo(fileInfo), C.longlong(mode)))
-		runtime.SetFinalizer(tmpValue, (*QMimeType).DestroyQMimeType)
+		qt.SetFinalizer(tmpValue, (*QMimeType).DestroyQMimeType)
 		return tmpValue
 	}
 	return nil
@@ -32762,7 +32762,7 @@ func (ptr *QMimeDatabase) MimeTypeForFile2(fileName string, mode QMimeDatabase__
 			defer C.free(unsafe.Pointer(fileNameC))
 		}
 		tmpValue := NewQMimeTypeFromPointer(C.QMimeDatabase_MimeTypeForFile2(ptr.Pointer(), C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, C.longlong(mode)))
-		runtime.SetFinalizer(tmpValue, (*QMimeType).DestroyQMimeType)
+		qt.SetFinalizer(tmpValue, (*QMimeType).DestroyQMimeType)
 		return tmpValue
 	}
 	return nil
@@ -32776,7 +32776,7 @@ func (ptr *QMimeDatabase) MimeTypeForFileNameAndData(fileName string, device QIO
 			defer C.free(unsafe.Pointer(fileNameC))
 		}
 		tmpValue := NewQMimeTypeFromPointer(C.QMimeDatabase_MimeTypeForFileNameAndData(ptr.Pointer(), C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, PointerFromQIODevice(device)))
-		runtime.SetFinalizer(tmpValue, (*QMimeType).DestroyQMimeType)
+		qt.SetFinalizer(tmpValue, (*QMimeType).DestroyQMimeType)
 		return tmpValue
 	}
 	return nil
@@ -32790,7 +32790,7 @@ func (ptr *QMimeDatabase) MimeTypeForFileNameAndData2(fileName string, data QByt
 			defer C.free(unsafe.Pointer(fileNameC))
 		}
 		tmpValue := NewQMimeTypeFromPointer(C.QMimeDatabase_MimeTypeForFileNameAndData2(ptr.Pointer(), C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, PointerFromQByteArray(data)))
-		runtime.SetFinalizer(tmpValue, (*QMimeType).DestroyQMimeType)
+		qt.SetFinalizer(tmpValue, (*QMimeType).DestroyQMimeType)
 		return tmpValue
 	}
 	return nil
@@ -32804,7 +32804,7 @@ func (ptr *QMimeDatabase) MimeTypeForName(nameOrAlias string) *QMimeType {
 			defer C.free(unsafe.Pointer(nameOrAliasC))
 		}
 		tmpValue := NewQMimeTypeFromPointer(C.QMimeDatabase_MimeTypeForName(ptr.Pointer(), C.struct_QtCore_PackedString{data: nameOrAliasC, len: C.longlong(len(nameOrAlias))}))
-		runtime.SetFinalizer(tmpValue, (*QMimeType).DestroyQMimeType)
+		qt.SetFinalizer(tmpValue, (*QMimeType).DestroyQMimeType)
 		return tmpValue
 	}
 	return nil
@@ -32813,7 +32813,7 @@ func (ptr *QMimeDatabase) MimeTypeForName(nameOrAlias string) *QMimeType {
 func (ptr *QMimeDatabase) MimeTypeForUrl(url QUrl_ITF) *QMimeType {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQMimeTypeFromPointer(C.QMimeDatabase_MimeTypeForUrl(ptr.Pointer(), PointerFromQUrl(url)))
-		runtime.SetFinalizer(tmpValue, (*QMimeType).DestroyQMimeType)
+		qt.SetFinalizer(tmpValue, (*QMimeType).DestroyQMimeType)
 		return tmpValue
 	}
 	return nil
@@ -32855,14 +32855,14 @@ func (ptr *QMimeDatabase) DestroyQMimeDatabase() {
 		C.QMimeDatabase_DestroyQMimeDatabase(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QMimeDatabase) __allMimeTypes_atList(i int) *QMimeType {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQMimeTypeFromPointer(C.QMimeDatabase___allMimeTypes_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QMimeType).DestroyQMimeType)
+		qt.SetFinalizer(tmpValue, (*QMimeType).DestroyQMimeType)
 		return tmpValue
 	}
 	return nil
@@ -32881,7 +32881,7 @@ func (ptr *QMimeDatabase) __allMimeTypes_newList() unsafe.Pointer {
 func (ptr *QMimeDatabase) __mimeTypesForFileName_atList(i int) *QMimeType {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQMimeTypeFromPointer(C.QMimeDatabase___mimeTypesForFileName_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QMimeType).DestroyQMimeType)
+		qt.SetFinalizer(tmpValue, (*QMimeType).DestroyQMimeType)
 		return tmpValue
 	}
 	return nil
@@ -32936,13 +32936,13 @@ func NewQMimeTypeFromPointer(ptr unsafe.Pointer) (n *QMimeType) {
 }
 func NewQMimeType() *QMimeType {
 	tmpValue := NewQMimeTypeFromPointer(C.QMimeType_NewQMimeType())
-	runtime.SetFinalizer(tmpValue, (*QMimeType).DestroyQMimeType)
+	qt.SetFinalizer(tmpValue, (*QMimeType).DestroyQMimeType)
 	return tmpValue
 }
 
 func NewQMimeType2(other QMimeType_ITF) *QMimeType {
 	tmpValue := NewQMimeTypeFromPointer(C.QMimeType_NewQMimeType2(PointerFromQMimeType(other)))
-	runtime.SetFinalizer(tmpValue, (*QMimeType).DestroyQMimeType)
+	qt.SetFinalizer(tmpValue, (*QMimeType).DestroyQMimeType)
 	return tmpValue
 }
 
@@ -33060,7 +33060,7 @@ func (ptr *QMimeType) DestroyQMimeType() {
 		C.QMimeType_DestroyQMimeType(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -33107,13 +33107,13 @@ func (ptr *QModelIndex) DestroyQModelIndex() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func NewQModelIndex() *QModelIndex {
 	tmpValue := NewQModelIndexFromPointer(C.QModelIndex_NewQModelIndex())
-	runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+	qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 	return tmpValue
 }
 
@@ -33127,7 +33127,7 @@ func (ptr *QModelIndex) Column() int {
 func (ptr *QModelIndex) Data(role int) *QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVariantFromPointer(C.QModelIndex_Data(ptr.Pointer(), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -33175,7 +33175,7 @@ func (ptr *QModelIndex) Model() *QAbstractItemModel {
 func (ptr *QModelIndex) Parent() *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QModelIndex_Parent(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -33191,7 +33191,7 @@ func (ptr *QModelIndex) Row() int {
 func (ptr *QModelIndex) Sibling(row int, column int) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QModelIndex_Sibling(ptr.Pointer(), C.int(int32(row)), C.int(int32(column))))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -33200,7 +33200,7 @@ func (ptr *QModelIndex) Sibling(row int, column int) *QModelIndex {
 func (ptr *QModelIndex) SiblingAtColumn(column int) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QModelIndex_SiblingAtColumn(ptr.Pointer(), C.int(int32(column))))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -33209,7 +33209,7 @@ func (ptr *QModelIndex) SiblingAtColumn(column int) *QModelIndex {
 func (ptr *QModelIndex) SiblingAtRow(row int) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QModelIndex_SiblingAtRow(ptr.Pointer(), C.int(int32(row))))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -33259,7 +33259,7 @@ func (ptr *QMultiHash) DestroyQMultiHash() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -33307,7 +33307,7 @@ func (ptr *QMultiMap) DestroyQMultiMap() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -33354,7 +33354,7 @@ func (ptr *QMutableHashIterator) DestroyQMutableHashIterator() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -33401,7 +33401,7 @@ func (ptr *QMutableLinkedListIterator) DestroyQMutableLinkedListIterator() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -33448,7 +33448,7 @@ func (ptr *QMutableListIterator) DestroyQMutableListIterator() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -33495,7 +33495,7 @@ func (ptr *QMutableMapIterator) DestroyQMutableMapIterator() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -33542,7 +33542,7 @@ func (ptr *QMutableSetIterator) DestroyQMutableSetIterator() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -33589,7 +33589,7 @@ func (ptr *QMutableVectorIterator) DestroyQMutableVectorIterator() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -33643,7 +33643,7 @@ const (
 
 func NewQMutex(mode QMutex__RecursionMode) *QMutex {
 	tmpValue := NewQMutexFromPointer(C.QMutex_NewQMutex(C.longlong(mode)))
-	runtime.SetFinalizer(tmpValue, (*QMutex).DestroyQMutex)
+	qt.SetFinalizer(tmpValue, (*QMutex).DestroyQMutex)
 	return tmpValue
 }
 
@@ -33678,7 +33678,7 @@ func (ptr *QMutex) DestroyQMutex() {
 		C.QMutex_DestroyQMutex(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -33721,7 +33721,7 @@ func NewQMutexLockerFromPointer(ptr unsafe.Pointer) (n *QMutexLocker) {
 }
 func NewQMutexLocker(mutex QMutex_ITF) *QMutexLocker {
 	tmpValue := NewQMutexLockerFromPointer(C.QMutexLocker_NewQMutexLocker(PointerFromQMutex(mutex)))
-	runtime.SetFinalizer(tmpValue, (*QMutexLocker).DestroyQMutexLocker)
+	qt.SetFinalizer(tmpValue, (*QMutexLocker).DestroyQMutexLocker)
 	return tmpValue
 }
 
@@ -33749,7 +33749,7 @@ func (ptr *QMutexLocker) DestroyQMutexLocker() {
 		C.QMutexLocker_DestroyQMutexLocker(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -33796,7 +33796,7 @@ func (ptr *QNoDebug) DestroyQNoDebug() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -33838,7 +33838,7 @@ func NewQObjectFromPointer(ptr unsafe.Pointer) (n *QObject) {
 	return
 }
 
-func (ptr *QObject) ConnectSignal(f, a interface{}, t Qt__ConnectionType) {
+func (ptr *QObject) ConnectSignal(f interface{}, a interface{}, t Qt__ConnectionType) {
 	fn := strings.TrimSuffix(strings.Split(runtime.FuncForPC(reflect.ValueOf(f).Pointer()).Name(), ".Connect")[1], "-fm")
 	qt.RegisterConnectionType(ptr.Pointer(), strings.ToLower(fn[:1])+fn[1:], int64(t))
 	reflect.ValueOf(f).Call([]reflect.Value{reflect.ValueOf(a)})
@@ -34036,14 +34036,14 @@ func (ptr *QObject) DisconnectDeleteLater() {
 func (ptr *QObject) DeleteLater() {
 	if ptr.Pointer() != nil {
 		C.QObject_DeleteLater(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QObject) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QObject_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -34517,7 +34517,7 @@ func (ptr *QObject) Property(name string) *QVariant {
 			defer C.free(unsafe.Pointer(nameC))
 		}
 		tmpValue := NewQVariantFromPointer(C.QObject_Property(ptr.Pointer(), nameC))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -34719,7 +34719,7 @@ func (ptr *QObject) DestroyQObject() {
 	if ptr.Pointer() != nil {
 		C.QObject_DestroyQObject(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -34727,7 +34727,7 @@ func (ptr *QObject) DestroyQObjectDefault() {
 	if ptr.Pointer() != nil {
 		C.QObject_DestroyQObjectDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -34746,7 +34746,7 @@ func (ptr *QObject) InvokeMethod(name string, arg QVariant_ITF) *QVariant {
 func (ptr *QObject) ToVariant() *QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVariantFromPointer(C.QObject_ToVariant(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -34776,7 +34776,7 @@ func (ptr *QObject) __children_newList() unsafe.Pointer {
 func (ptr *QObject) __dynamicPropertyNames_atList(i int) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QObject___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -35008,7 +35008,7 @@ func (ptr *QObjectCleanupHandler) DestroyQObjectCleanupHandler() {
 	if ptr.Pointer() != nil {
 		C.QObjectCleanupHandler_DestroyQObjectCleanupHandler(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -35016,7 +35016,7 @@ func (ptr *QObjectCleanupHandler) DestroyQObjectCleanupHandlerDefault() {
 	if ptr.Pointer() != nil {
 		C.QObjectCleanupHandler_DestroyQObjectCleanupHandlerDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -35105,7 +35105,7 @@ func (ptr *QObjectData) DestroyQObjectData() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -35194,7 +35194,7 @@ func (ptr *QObjectUserData) DestroyQObjectUserData() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -35241,7 +35241,7 @@ func (ptr *QOperatingSystemVersion) DestroyQOperatingSystemVersion() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -35261,19 +35261,19 @@ const (
 
 func NewQOperatingSystemVersion2(osType QOperatingSystemVersion__OSType, vmajor int, vminor int, vmicro int) *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_NewQOperatingSystemVersion2(C.longlong(osType), C.int(int32(vmajor)), C.int(int32(vminor)), C.int(int32(vmicro))))
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
 func QOperatingSystemVersion_Current() *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_Current())
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
 func (ptr *QOperatingSystemVersion) Current() *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_Current())
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
@@ -35329,247 +35329,247 @@ func (ptr *QOperatingSystemVersion) Type() QOperatingSystemVersion__OSType {
 
 func QOperatingSystemVersion_Windows7() *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_Windows7())
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
 func (ptr *QOperatingSystemVersion) Windows7() *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_Windows7())
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
 func QOperatingSystemVersion_Windows8() *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_Windows8())
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
 func (ptr *QOperatingSystemVersion) Windows8() *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_Windows8())
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
 func QOperatingSystemVersion_Windows8_1() *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_Windows8_1())
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
 func (ptr *QOperatingSystemVersion) Windows8_1() *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_Windows8_1())
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
 func QOperatingSystemVersion_Windows10() *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_Windows10())
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
 func (ptr *QOperatingSystemVersion) Windows10() *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_Windows10())
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
 func QOperatingSystemVersion_OSXMavericks() *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_OSXMavericks())
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
 func (ptr *QOperatingSystemVersion) OSXMavericks() *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_OSXMavericks())
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
 func QOperatingSystemVersion_OSXYosemite() *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_OSXYosemite())
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
 func (ptr *QOperatingSystemVersion) OSXYosemite() *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_OSXYosemite())
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
 func QOperatingSystemVersion_OSXElCapitan() *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_OSXElCapitan())
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
 func (ptr *QOperatingSystemVersion) OSXElCapitan() *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_OSXElCapitan())
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
 func QOperatingSystemVersion_MacOSSierra() *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_MacOSSierra())
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
 func (ptr *QOperatingSystemVersion) MacOSSierra() *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_MacOSSierra())
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
 func QOperatingSystemVersion_MacOSHighSierra() *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_MacOSHighSierra())
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
 func (ptr *QOperatingSystemVersion) MacOSHighSierra() *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_MacOSHighSierra())
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
 func QOperatingSystemVersion_MacOSMojave() *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_MacOSMojave())
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
 func (ptr *QOperatingSystemVersion) MacOSMojave() *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_MacOSMojave())
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
 func QOperatingSystemVersion_AndroidJellyBean() *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_AndroidJellyBean())
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
 func (ptr *QOperatingSystemVersion) AndroidJellyBean() *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_AndroidJellyBean())
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
 func QOperatingSystemVersion_AndroidJellyBean_MR1() *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_AndroidJellyBean_MR1())
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
 func (ptr *QOperatingSystemVersion) AndroidJellyBean_MR1() *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_AndroidJellyBean_MR1())
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
 func QOperatingSystemVersion_AndroidJellyBean_MR2() *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_AndroidJellyBean_MR2())
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
 func (ptr *QOperatingSystemVersion) AndroidJellyBean_MR2() *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_AndroidJellyBean_MR2())
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
 func QOperatingSystemVersion_AndroidKitKat() *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_AndroidKitKat())
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
 func (ptr *QOperatingSystemVersion) AndroidKitKat() *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_AndroidKitKat())
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
 func QOperatingSystemVersion_AndroidLollipop() *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_AndroidLollipop())
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
 func (ptr *QOperatingSystemVersion) AndroidLollipop() *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_AndroidLollipop())
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
 func QOperatingSystemVersion_AndroidLollipop_MR1() *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_AndroidLollipop_MR1())
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
 func (ptr *QOperatingSystemVersion) AndroidLollipop_MR1() *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_AndroidLollipop_MR1())
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
 func QOperatingSystemVersion_AndroidMarshmallow() *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_AndroidMarshmallow())
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
 func (ptr *QOperatingSystemVersion) AndroidMarshmallow() *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_AndroidMarshmallow())
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
 func QOperatingSystemVersion_AndroidNougat() *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_AndroidNougat())
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
 func (ptr *QOperatingSystemVersion) AndroidNougat() *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_AndroidNougat())
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
 func QOperatingSystemVersion_AndroidNougat_MR1() *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_AndroidNougat_MR1())
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
 func (ptr *QOperatingSystemVersion) AndroidNougat_MR1() *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_AndroidNougat_MR1())
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
 func QOperatingSystemVersion_AndroidOreo() *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_AndroidOreo())
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
 func (ptr *QOperatingSystemVersion) AndroidOreo() *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_AndroidOreo())
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
 func NewQOperatingSystemVersion(other QOperatingSystemVersion_ITF) *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_NewQOperatingSystemVersion(PointerFromQOperatingSystemVersion(other)))
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	qt.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
 
@@ -35616,7 +35616,7 @@ func (ptr *QPair) DestroyQPair() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -35789,7 +35789,7 @@ func (ptr *QParallelAnimationGroup) DestroyQParallelAnimationGroup() {
 	if ptr.Pointer() != nil {
 		C.QParallelAnimationGroup_DestroyQParallelAnimationGroup(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -35797,7 +35797,7 @@ func (ptr *QParallelAnimationGroup) DestroyQParallelAnimationGroupDefault() {
 	if ptr.Pointer() != nil {
 		C.QParallelAnimationGroup_DestroyQParallelAnimationGroupDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -35984,7 +35984,7 @@ func (ptr *QPauseAnimation) DestroyQPauseAnimation() {
 	if ptr.Pointer() != nil {
 		C.QPauseAnimation_DestroyQPauseAnimation(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -35992,7 +35992,7 @@ func (ptr *QPauseAnimation) DestroyQPauseAnimationDefault() {
 	if ptr.Pointer() != nil {
 		C.QPauseAnimation_DestroyQPauseAnimationDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -36039,25 +36039,25 @@ func (ptr *QPersistentModelIndex) DestroyQPersistentModelIndex() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func NewQPersistentModelIndex2(index QModelIndex_ITF) *QPersistentModelIndex {
 	tmpValue := NewQPersistentModelIndexFromPointer(C.QPersistentModelIndex_NewQPersistentModelIndex2(PointerFromQModelIndex(index)))
-	runtime.SetFinalizer(tmpValue, (*QPersistentModelIndex).DestroyQPersistentModelIndex)
+	qt.SetFinalizer(tmpValue, (*QPersistentModelIndex).DestroyQPersistentModelIndex)
 	return tmpValue
 }
 
 func NewQPersistentModelIndex3(other QPersistentModelIndex_ITF) *QPersistentModelIndex {
 	tmpValue := NewQPersistentModelIndexFromPointer(C.QPersistentModelIndex_NewQPersistentModelIndex3(PointerFromQPersistentModelIndex(other)))
-	runtime.SetFinalizer(tmpValue, (*QPersistentModelIndex).DestroyQPersistentModelIndex)
+	qt.SetFinalizer(tmpValue, (*QPersistentModelIndex).DestroyQPersistentModelIndex)
 	return tmpValue
 }
 
 func NewQPersistentModelIndex4(other QPersistentModelIndex_ITF) *QPersistentModelIndex {
 	tmpValue := NewQPersistentModelIndexFromPointer(C.QPersistentModelIndex_NewQPersistentModelIndex4(PointerFromQPersistentModelIndex(other)))
-	runtime.SetFinalizer(tmpValue, (*QPersistentModelIndex).DestroyQPersistentModelIndex)
+	qt.SetFinalizer(tmpValue, (*QPersistentModelIndex).DestroyQPersistentModelIndex)
 	return tmpValue
 }
 
@@ -36071,7 +36071,7 @@ func (ptr *QPersistentModelIndex) Column() int {
 func (ptr *QPersistentModelIndex) Data(role int) *QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVariantFromPointer(C.QPersistentModelIndex_Data(ptr.Pointer(), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -36105,7 +36105,7 @@ func (ptr *QPersistentModelIndex) Model() *QAbstractItemModel {
 func (ptr *QPersistentModelIndex) Parent() *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QPersistentModelIndex_Parent(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -36121,7 +36121,7 @@ func (ptr *QPersistentModelIndex) Row() int {
 func (ptr *QPersistentModelIndex) Sibling(row int, column int) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QPersistentModelIndex_Sibling(ptr.Pointer(), C.int(int32(row)), C.int(int32(column))))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -36241,7 +36241,7 @@ func (ptr *QPluginLoader) LoadHints() QLibrary__LoadHint {
 func (ptr *QPluginLoader) MetaData() *QJsonObject {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQJsonObjectFromPointer(C.QPluginLoader_MetaData(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QJsonObject).DestroyQJsonObject)
+		qt.SetFinalizer(tmpValue, (*QJsonObject).DestroyQJsonObject)
 		return tmpValue
 	}
 	return nil
@@ -36328,7 +36328,7 @@ func (ptr *QPluginLoader) DestroyQPluginLoader() {
 	if ptr.Pointer() != nil {
 		C.QPluginLoader_DestroyQPluginLoader(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -36336,7 +36336,7 @@ func (ptr *QPluginLoader) DestroyQPluginLoaderDefault() {
 	if ptr.Pointer() != nil {
 		C.QPluginLoader_DestroyQPluginLoaderDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -36414,19 +36414,19 @@ func (ptr *QPoint) DestroyQPoint() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func NewQPoint() *QPoint {
 	tmpValue := NewQPointFromPointer(C.QPoint_NewQPoint())
-	runtime.SetFinalizer(tmpValue, (*QPoint).DestroyQPoint)
+	qt.SetFinalizer(tmpValue, (*QPoint).DestroyQPoint)
 	return tmpValue
 }
 
 func NewQPoint2(xpos int, ypos int) *QPoint {
 	tmpValue := NewQPointFromPointer(C.QPoint_NewQPoint2(C.int(int32(xpos)), C.int(int32(ypos))))
-	runtime.SetFinalizer(tmpValue, (*QPoint).DestroyQPoint)
+	qt.SetFinalizer(tmpValue, (*QPoint).DestroyQPoint)
 	return tmpValue
 }
 
@@ -36535,25 +36535,25 @@ func (ptr *QPointF) DestroyQPointF() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func NewQPointF() *QPointF {
 	tmpValue := NewQPointFFromPointer(C.QPointF_NewQPointF())
-	runtime.SetFinalizer(tmpValue, (*QPointF).DestroyQPointF)
+	qt.SetFinalizer(tmpValue, (*QPointF).DestroyQPointF)
 	return tmpValue
 }
 
 func NewQPointF2(point QPoint_ITF) *QPointF {
 	tmpValue := NewQPointFFromPointer(C.QPointF_NewQPointF2(PointerFromQPoint(point)))
-	runtime.SetFinalizer(tmpValue, (*QPointF).DestroyQPointF)
+	qt.SetFinalizer(tmpValue, (*QPointF).DestroyQPointF)
 	return tmpValue
 }
 
 func NewQPointF3(xpos float64, ypos float64) *QPointF {
 	tmpValue := NewQPointFFromPointer(C.QPointF_NewQPointF3(C.double(xpos), C.double(ypos)))
-	runtime.SetFinalizer(tmpValue, (*QPointF).DestroyQPointF)
+	qt.SetFinalizer(tmpValue, (*QPointF).DestroyQPointF)
 	return tmpValue
 }
 
@@ -36608,7 +36608,7 @@ func (ptr *QPointF) SetY(y float64) {
 func (ptr *QPointF) ToPoint() *QPoint {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQPointFromPointer(C.QPointF_ToPoint(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QPoint).DestroyQPoint)
+		qt.SetFinalizer(tmpValue, (*QPoint).DestroyQPoint)
 		return tmpValue
 	}
 	return nil
@@ -37010,7 +37010,7 @@ func (ptr *QProcess) ProcessChannelMode() QProcess__ProcessChannelMode {
 func (ptr *QProcess) ProcessEnvironment() *QProcessEnvironment {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQProcessEnvironmentFromPointer(C.QProcess_ProcessEnvironment(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QProcessEnvironment).DestroyQProcessEnvironment)
+		qt.SetFinalizer(tmpValue, (*QProcessEnvironment).DestroyQProcessEnvironment)
 		return tmpValue
 	}
 	return nil
@@ -37033,7 +37033,7 @@ func (ptr *QProcess) Program() string {
 func (ptr *QProcess) ReadAllStandardError() *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QProcess_ReadAllStandardError(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -37042,7 +37042,7 @@ func (ptr *QProcess) ReadAllStandardError() *QByteArray {
 func (ptr *QProcess) ReadAllStandardOutput() *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QProcess_ReadAllStandardOutput(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -37664,7 +37664,7 @@ func (ptr *QProcess) DestroyQProcess() {
 	if ptr.Pointer() != nil {
 		C.QProcess_DestroyQProcess(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -37672,7 +37672,7 @@ func (ptr *QProcess) DestroyQProcessDefault() {
 	if ptr.Pointer() != nil {
 		C.QProcess_DestroyQProcessDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -37715,13 +37715,13 @@ func NewQProcessEnvironmentFromPointer(ptr unsafe.Pointer) (n *QProcessEnvironme
 }
 func NewQProcessEnvironment() *QProcessEnvironment {
 	tmpValue := NewQProcessEnvironmentFromPointer(C.QProcessEnvironment_NewQProcessEnvironment())
-	runtime.SetFinalizer(tmpValue, (*QProcessEnvironment).DestroyQProcessEnvironment)
+	qt.SetFinalizer(tmpValue, (*QProcessEnvironment).DestroyQProcessEnvironment)
 	return tmpValue
 }
 
 func NewQProcessEnvironment2(other QProcessEnvironment_ITF) *QProcessEnvironment {
 	tmpValue := NewQProcessEnvironmentFromPointer(C.QProcessEnvironment_NewQProcessEnvironment2(PointerFromQProcessEnvironment(other)))
-	runtime.SetFinalizer(tmpValue, (*QProcessEnvironment).DestroyQProcessEnvironment)
+	qt.SetFinalizer(tmpValue, (*QProcessEnvironment).DestroyQProcessEnvironment)
 	return tmpValue
 }
 
@@ -37798,13 +37798,13 @@ func (ptr *QProcessEnvironment) Swap(other QProcessEnvironment_ITF) {
 
 func QProcessEnvironment_SystemEnvironment() *QProcessEnvironment {
 	tmpValue := NewQProcessEnvironmentFromPointer(C.QProcessEnvironment_QProcessEnvironment_SystemEnvironment())
-	runtime.SetFinalizer(tmpValue, (*QProcessEnvironment).DestroyQProcessEnvironment)
+	qt.SetFinalizer(tmpValue, (*QProcessEnvironment).DestroyQProcessEnvironment)
 	return tmpValue
 }
 
 func (ptr *QProcessEnvironment) SystemEnvironment() *QProcessEnvironment {
 	tmpValue := NewQProcessEnvironmentFromPointer(C.QProcessEnvironment_QProcessEnvironment_SystemEnvironment())
-	runtime.SetFinalizer(tmpValue, (*QProcessEnvironment).DestroyQProcessEnvironment)
+	qt.SetFinalizer(tmpValue, (*QProcessEnvironment).DestroyQProcessEnvironment)
 	return tmpValue
 }
 
@@ -37837,7 +37837,7 @@ func (ptr *QProcessEnvironment) DestroyQProcessEnvironment() {
 		C.QProcessEnvironment_DestroyQProcessEnvironment(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -37898,7 +37898,7 @@ func NewQPropertyAnimation2(target QObject_ITF, propertyName QByteArray_ITF, par
 func (ptr *QPropertyAnimation) PropertyName() *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QPropertyAnimation_PropertyName(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -37962,7 +37962,7 @@ func (ptr *QPropertyAnimation) DestroyQPropertyAnimation() {
 	if ptr.Pointer() != nil {
 		C.QPropertyAnimation_DestroyQPropertyAnimation(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -37970,7 +37970,7 @@ func (ptr *QPropertyAnimation) DestroyQPropertyAnimationDefault() {
 	if ptr.Pointer() != nil {
 		C.QPropertyAnimation_DestroyQPropertyAnimationDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -38017,7 +38017,7 @@ func (ptr *QQueue) DestroyQQueue() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -38064,25 +38064,25 @@ func (ptr *QRandomGenerator) DestroyQRandomGenerator() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func NewQRandomGenerator(seedValue uint) *QRandomGenerator {
 	tmpValue := NewQRandomGeneratorFromPointer(C.QRandomGenerator_NewQRandomGenerator(C.uint(uint32(seedValue))))
-	runtime.SetFinalizer(tmpValue, (*QRandomGenerator).DestroyQRandomGenerator)
+	qt.SetFinalizer(tmpValue, (*QRandomGenerator).DestroyQRandomGenerator)
 	return tmpValue
 }
 
 func NewQRandomGenerator5(begin uint, end uint) *QRandomGenerator {
 	tmpValue := NewQRandomGeneratorFromPointer(C.QRandomGenerator_NewQRandomGenerator5(C.uint(uint32(begin)), C.uint(uint32(end))))
-	runtime.SetFinalizer(tmpValue, (*QRandomGenerator).DestroyQRandomGenerator)
+	qt.SetFinalizer(tmpValue, (*QRandomGenerator).DestroyQRandomGenerator)
 	return tmpValue
 }
 
 func NewQRandomGenerator6(other QRandomGenerator_ITF) *QRandomGenerator {
 	tmpValue := NewQRandomGeneratorFromPointer(C.QRandomGenerator_NewQRandomGenerator6(PointerFromQRandomGenerator(other)))
-	runtime.SetFinalizer(tmpValue, (*QRandomGenerator).DestroyQRandomGenerator)
+	qt.SetFinalizer(tmpValue, (*QRandomGenerator).DestroyQRandomGenerator)
 	return tmpValue
 }
 
@@ -38158,13 +38158,13 @@ func (ptr *QRandomGenerator) Global() *QRandomGenerator {
 
 func QRandomGenerator_SecurelySeeded() *QRandomGenerator {
 	tmpValue := NewQRandomGeneratorFromPointer(C.QRandomGenerator_QRandomGenerator_SecurelySeeded())
-	runtime.SetFinalizer(tmpValue, (*QRandomGenerator).DestroyQRandomGenerator)
+	qt.SetFinalizer(tmpValue, (*QRandomGenerator).DestroyQRandomGenerator)
 	return tmpValue
 }
 
 func (ptr *QRandomGenerator) SecurelySeeded() *QRandomGenerator {
 	tmpValue := NewQRandomGeneratorFromPointer(C.QRandomGenerator_QRandomGenerator_SecurelySeeded())
-	runtime.SetFinalizer(tmpValue, (*QRandomGenerator).DestroyQRandomGenerator)
+	qt.SetFinalizer(tmpValue, (*QRandomGenerator).DestroyQRandomGenerator)
 	return tmpValue
 }
 
@@ -38226,7 +38226,7 @@ func (ptr *QRandomGenerator64) DestroyQRandomGenerator64() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -38276,7 +38276,7 @@ func NewQReadLockerFromPointer(ptr unsafe.Pointer) (n *QReadLocker) {
 }
 func NewQReadLocker(lock QReadWriteLock_ITF) *QReadLocker {
 	tmpValue := NewQReadLockerFromPointer(C.QReadLocker_NewQReadLocker(PointerFromQReadWriteLock(lock)))
-	runtime.SetFinalizer(tmpValue, (*QReadLocker).DestroyQReadLocker)
+	qt.SetFinalizer(tmpValue, (*QReadLocker).DestroyQReadLocker)
 	return tmpValue
 }
 
@@ -38304,7 +38304,7 @@ func (ptr *QReadLocker) DestroyQReadLocker() {
 		C.QReadLocker_DestroyQReadLocker(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -38357,7 +38357,7 @@ const (
 
 func NewQReadWriteLock(recursionMode QReadWriteLock__RecursionMode) *QReadWriteLock {
 	tmpValue := NewQReadWriteLockFromPointer(C.QReadWriteLock_NewQReadWriteLock(C.longlong(recursionMode)))
-	runtime.SetFinalizer(tmpValue, (*QReadWriteLock).DestroyQReadWriteLock)
+	qt.SetFinalizer(tmpValue, (*QReadWriteLock).DestroyQReadWriteLock)
 	return tmpValue
 }
 
@@ -38412,7 +38412,7 @@ func (ptr *QReadWriteLock) DestroyQReadWriteLock() {
 		C.QReadWriteLock_DestroyQReadWriteLock(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -38459,31 +38459,31 @@ func (ptr *QRect) DestroyQRect() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func NewQRect() *QRect {
 	tmpValue := NewQRectFromPointer(C.QRect_NewQRect())
-	runtime.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
+	qt.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
 	return tmpValue
 }
 
 func NewQRect2(topLeft QPoint_ITF, bottomRight QPoint_ITF) *QRect {
 	tmpValue := NewQRectFromPointer(C.QRect_NewQRect2(PointerFromQPoint(topLeft), PointerFromQPoint(bottomRight)))
-	runtime.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
+	qt.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
 	return tmpValue
 }
 
 func NewQRect3(topLeft QPoint_ITF, size QSize_ITF) *QRect {
 	tmpValue := NewQRectFromPointer(C.QRect_NewQRect3(PointerFromQPoint(topLeft), PointerFromQSize(size)))
-	runtime.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
+	qt.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
 	return tmpValue
 }
 
 func NewQRect4(x int, y int, width int, height int) *QRect {
 	tmpValue := NewQRectFromPointer(C.QRect_NewQRect4(C.int(int32(x)), C.int(int32(y)), C.int(int32(width)), C.int(int32(height))))
-	runtime.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
+	qt.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
 	return tmpValue
 }
 
@@ -38496,7 +38496,7 @@ func (ptr *QRect) Adjust(dx1 int, dy1 int, dx2 int, dy2 int) {
 func (ptr *QRect) Adjusted(dx1 int, dy1 int, dx2 int, dy2 int) *QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQRectFromPointer(C.QRect_Adjusted(ptr.Pointer(), C.int(int32(dx1)), C.int(int32(dy1)), C.int(int32(dx2)), C.int(int32(dy2))))
-		runtime.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -38512,7 +38512,7 @@ func (ptr *QRect) Bottom() int {
 func (ptr *QRect) BottomLeft() *QPoint {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQPointFromPointer(C.QRect_BottomLeft(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QPoint).DestroyQPoint)
+		qt.SetFinalizer(tmpValue, (*QPoint).DestroyQPoint)
 		return tmpValue
 	}
 	return nil
@@ -38521,7 +38521,7 @@ func (ptr *QRect) BottomLeft() *QPoint {
 func (ptr *QRect) BottomRight() *QPoint {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQPointFromPointer(C.QRect_BottomRight(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QPoint).DestroyQPoint)
+		qt.SetFinalizer(tmpValue, (*QPoint).DestroyQPoint)
 		return tmpValue
 	}
 	return nil
@@ -38530,7 +38530,7 @@ func (ptr *QRect) BottomRight() *QPoint {
 func (ptr *QRect) Center() *QPoint {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQPointFromPointer(C.QRect_Center(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QPoint).DestroyQPoint)
+		qt.SetFinalizer(tmpValue, (*QPoint).DestroyQPoint)
 		return tmpValue
 	}
 	return nil
@@ -38586,7 +38586,7 @@ func (ptr *QRect) Height() int {
 func (ptr *QRect) Intersected(rectangle QRect_ITF) *QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQRectFromPointer(C.QRect_Intersected(ptr.Pointer(), PointerFromQRect(rectangle)))
-		runtime.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -38630,7 +38630,7 @@ func (ptr *QRect) Left() int {
 func (ptr *QRect) MarginsAdded(margins QMargins_ITF) *QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQRectFromPointer(C.QRect_MarginsAdded(ptr.Pointer(), PointerFromQMargins(margins)))
-		runtime.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -38639,7 +38639,7 @@ func (ptr *QRect) MarginsAdded(margins QMargins_ITF) *QRect {
 func (ptr *QRect) MarginsRemoved(margins QMargins_ITF) *QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQRectFromPointer(C.QRect_MarginsRemoved(ptr.Pointer(), PointerFromQMargins(margins)))
-		runtime.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -38714,7 +38714,7 @@ func (ptr *QRect) MoveTopRight(position QPoint_ITF) {
 func (ptr *QRect) Normalized() *QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQRectFromPointer(C.QRect_Normalized(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -38820,7 +38820,7 @@ func (ptr *QRect) SetY(y int) {
 func (ptr *QRect) Size() *QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSizeFromPointer(C.QRect_Size(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -38836,7 +38836,7 @@ func (ptr *QRect) Top() int {
 func (ptr *QRect) TopLeft() *QPoint {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQPointFromPointer(C.QRect_TopLeft(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QPoint).DestroyQPoint)
+		qt.SetFinalizer(tmpValue, (*QPoint).DestroyQPoint)
 		return tmpValue
 	}
 	return nil
@@ -38845,7 +38845,7 @@ func (ptr *QRect) TopLeft() *QPoint {
 func (ptr *QRect) TopRight() *QPoint {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQPointFromPointer(C.QRect_TopRight(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QPoint).DestroyQPoint)
+		qt.SetFinalizer(tmpValue, (*QPoint).DestroyQPoint)
 		return tmpValue
 	}
 	return nil
@@ -38866,7 +38866,7 @@ func (ptr *QRect) Translate2(offset QPoint_ITF) {
 func (ptr *QRect) Translated(dx int, dy int) *QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQRectFromPointer(C.QRect_Translated(ptr.Pointer(), C.int(int32(dx)), C.int(int32(dy))))
-		runtime.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -38875,7 +38875,7 @@ func (ptr *QRect) Translated(dx int, dy int) *QRect {
 func (ptr *QRect) Translated2(offset QPoint_ITF) *QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQRectFromPointer(C.QRect_Translated2(ptr.Pointer(), PointerFromQPoint(offset)))
-		runtime.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -38884,7 +38884,7 @@ func (ptr *QRect) Translated2(offset QPoint_ITF) *QRect {
 func (ptr *QRect) Transposed() *QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQRectFromPointer(C.QRect_Transposed(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -38893,7 +38893,7 @@ func (ptr *QRect) Transposed() *QRect {
 func (ptr *QRect) United(rectangle QRect_ITF) *QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQRectFromPointer(C.QRect_United(ptr.Pointer(), PointerFromQRect(rectangle)))
-		runtime.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -38963,37 +38963,37 @@ func (ptr *QRectF) DestroyQRectF() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func NewQRectF() *QRectF {
 	tmpValue := NewQRectFFromPointer(C.QRectF_NewQRectF())
-	runtime.SetFinalizer(tmpValue, (*QRectF).DestroyQRectF)
+	qt.SetFinalizer(tmpValue, (*QRectF).DestroyQRectF)
 	return tmpValue
 }
 
 func NewQRectF2(topLeft QPointF_ITF, size QSizeF_ITF) *QRectF {
 	tmpValue := NewQRectFFromPointer(C.QRectF_NewQRectF2(PointerFromQPointF(topLeft), PointerFromQSizeF(size)))
-	runtime.SetFinalizer(tmpValue, (*QRectF).DestroyQRectF)
+	qt.SetFinalizer(tmpValue, (*QRectF).DestroyQRectF)
 	return tmpValue
 }
 
 func NewQRectF3(topLeft QPointF_ITF, bottomRight QPointF_ITF) *QRectF {
 	tmpValue := NewQRectFFromPointer(C.QRectF_NewQRectF3(PointerFromQPointF(topLeft), PointerFromQPointF(bottomRight)))
-	runtime.SetFinalizer(tmpValue, (*QRectF).DestroyQRectF)
+	qt.SetFinalizer(tmpValue, (*QRectF).DestroyQRectF)
 	return tmpValue
 }
 
 func NewQRectF4(x float64, y float64, width float64, height float64) *QRectF {
 	tmpValue := NewQRectFFromPointer(C.QRectF_NewQRectF4(C.double(x), C.double(y), C.double(width), C.double(height)))
-	runtime.SetFinalizer(tmpValue, (*QRectF).DestroyQRectF)
+	qt.SetFinalizer(tmpValue, (*QRectF).DestroyQRectF)
 	return tmpValue
 }
 
 func NewQRectF5(rectangle QRect_ITF) *QRectF {
 	tmpValue := NewQRectFFromPointer(C.QRectF_NewQRectF5(PointerFromQRect(rectangle)))
-	runtime.SetFinalizer(tmpValue, (*QRectF).DestroyQRectF)
+	qt.SetFinalizer(tmpValue, (*QRectF).DestroyQRectF)
 	return tmpValue
 }
 
@@ -39006,7 +39006,7 @@ func (ptr *QRectF) Adjust(dx1 float64, dy1 float64, dx2 float64, dy2 float64) {
 func (ptr *QRectF) Adjusted(dx1 float64, dy1 float64, dx2 float64, dy2 float64) *QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQRectFFromPointer(C.QRectF_Adjusted(ptr.Pointer(), C.double(dx1), C.double(dy1), C.double(dx2), C.double(dy2)))
-		runtime.SetFinalizer(tmpValue, (*QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -39022,7 +39022,7 @@ func (ptr *QRectF) Bottom() float64 {
 func (ptr *QRectF) BottomLeft() *QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQPointFFromPointer(C.QRectF_BottomLeft(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -39031,7 +39031,7 @@ func (ptr *QRectF) BottomLeft() *QPointF {
 func (ptr *QRectF) BottomRight() *QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQPointFFromPointer(C.QRectF_BottomRight(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -39040,7 +39040,7 @@ func (ptr *QRectF) BottomRight() *QPointF {
 func (ptr *QRectF) Center() *QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQPointFFromPointer(C.QRectF_Center(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -39089,7 +39089,7 @@ func (ptr *QRectF) Height() float64 {
 func (ptr *QRectF) Intersected(rectangle QRectF_ITF) *QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQRectFFromPointer(C.QRectF_Intersected(ptr.Pointer(), PointerFromQRectF(rectangle)))
-		runtime.SetFinalizer(tmpValue, (*QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -39133,7 +39133,7 @@ func (ptr *QRectF) Left() float64 {
 func (ptr *QRectF) MarginsAdded(margins QMarginsF_ITF) *QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQRectFFromPointer(C.QRectF_MarginsAdded(ptr.Pointer(), PointerFromQMarginsF(margins)))
-		runtime.SetFinalizer(tmpValue, (*QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -39142,7 +39142,7 @@ func (ptr *QRectF) MarginsAdded(margins QMarginsF_ITF) *QRectF {
 func (ptr *QRectF) MarginsRemoved(margins QMarginsF_ITF) *QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQRectFFromPointer(C.QRectF_MarginsRemoved(ptr.Pointer(), PointerFromQMarginsF(margins)))
-		runtime.SetFinalizer(tmpValue, (*QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -39217,7 +39217,7 @@ func (ptr *QRectF) MoveTopRight(position QPointF_ITF) {
 func (ptr *QRectF) Normalized() *QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQRectFFromPointer(C.QRectF_Normalized(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -39323,7 +39323,7 @@ func (ptr *QRectF) SetY(y float64) {
 func (ptr *QRectF) Size() *QSizeF {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSizeFFromPointer(C.QRectF_Size(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QSizeF).DestroyQSizeF)
+		qt.SetFinalizer(tmpValue, (*QSizeF).DestroyQSizeF)
 		return tmpValue
 	}
 	return nil
@@ -39332,7 +39332,7 @@ func (ptr *QRectF) Size() *QSizeF {
 func (ptr *QRectF) ToAlignedRect() *QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQRectFromPointer(C.QRectF_ToAlignedRect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -39341,7 +39341,7 @@ func (ptr *QRectF) ToAlignedRect() *QRect {
 func (ptr *QRectF) ToRect() *QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQRectFromPointer(C.QRectF_ToRect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -39357,7 +39357,7 @@ func (ptr *QRectF) Top() float64 {
 func (ptr *QRectF) TopLeft() *QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQPointFFromPointer(C.QRectF_TopLeft(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -39366,7 +39366,7 @@ func (ptr *QRectF) TopLeft() *QPointF {
 func (ptr *QRectF) TopRight() *QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQPointFFromPointer(C.QRectF_TopRight(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -39387,7 +39387,7 @@ func (ptr *QRectF) Translate2(offset QPointF_ITF) {
 func (ptr *QRectF) Translated(dx float64, dy float64) *QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQRectFFromPointer(C.QRectF_Translated(ptr.Pointer(), C.double(dx), C.double(dy)))
-		runtime.SetFinalizer(tmpValue, (*QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -39396,7 +39396,7 @@ func (ptr *QRectF) Translated(dx float64, dy float64) *QRectF {
 func (ptr *QRectF) Translated2(offset QPointF_ITF) *QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQRectFFromPointer(C.QRectF_Translated2(ptr.Pointer(), PointerFromQPointF(offset)))
-		runtime.SetFinalizer(tmpValue, (*QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -39405,7 +39405,7 @@ func (ptr *QRectF) Translated2(offset QPointF_ITF) *QRectF {
 func (ptr *QRectF) Transposed() *QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQRectFFromPointer(C.QRectF_Transposed(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -39414,7 +39414,7 @@ func (ptr *QRectF) Transposed() *QRectF {
 func (ptr *QRectF) United(rectangle QRectF_ITF) *QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQRectFFromPointer(C.QRectF_United(ptr.Pointer(), PointerFromQRectF(rectangle)))
-		runtime.SetFinalizer(tmpValue, (*QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -39504,7 +39504,7 @@ const (
 
 func NewQRegExp() *QRegExp {
 	tmpValue := NewQRegExpFromPointer(C.QRegExp_NewQRegExp())
-	runtime.SetFinalizer(tmpValue, (*QRegExp).DestroyQRegExp)
+	qt.SetFinalizer(tmpValue, (*QRegExp).DestroyQRegExp)
 	return tmpValue
 }
 
@@ -39515,13 +39515,13 @@ func NewQRegExp2(pattern string, cs Qt__CaseSensitivity, syntax QRegExp__Pattern
 		defer C.free(unsafe.Pointer(patternC))
 	}
 	tmpValue := NewQRegExpFromPointer(C.QRegExp_NewQRegExp2(C.struct_QtCore_PackedString{data: patternC, len: C.longlong(len(pattern))}, C.longlong(cs), C.longlong(syntax)))
-	runtime.SetFinalizer(tmpValue, (*QRegExp).DestroyQRegExp)
+	qt.SetFinalizer(tmpValue, (*QRegExp).DestroyQRegExp)
 	return tmpValue
 }
 
 func NewQRegExp3(rx QRegExp_ITF) *QRegExp {
 	tmpValue := NewQRegExpFromPointer(C.QRegExp_NewQRegExp3(PointerFromQRegExp(rx)))
-	runtime.SetFinalizer(tmpValue, (*QRegExp).DestroyQRegExp)
+	qt.SetFinalizer(tmpValue, (*QRegExp).DestroyQRegExp)
 	return tmpValue
 }
 
@@ -39703,7 +39703,7 @@ func (ptr *QRegExp) DestroyQRegExp() {
 		C.QRegExp_DestroyQRegExp(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -39785,7 +39785,7 @@ const (
 
 func NewQRegularExpression() *QRegularExpression {
 	tmpValue := NewQRegularExpressionFromPointer(C.QRegularExpression_NewQRegularExpression())
-	runtime.SetFinalizer(tmpValue, (*QRegularExpression).DestroyQRegularExpression)
+	qt.SetFinalizer(tmpValue, (*QRegularExpression).DestroyQRegularExpression)
 	return tmpValue
 }
 
@@ -39796,13 +39796,13 @@ func NewQRegularExpression2(pattern string, options QRegularExpression__PatternO
 		defer C.free(unsafe.Pointer(patternC))
 	}
 	tmpValue := NewQRegularExpressionFromPointer(C.QRegularExpression_NewQRegularExpression2(C.struct_QtCore_PackedString{data: patternC, len: C.longlong(len(pattern))}, C.longlong(options)))
-	runtime.SetFinalizer(tmpValue, (*QRegularExpression).DestroyQRegularExpression)
+	qt.SetFinalizer(tmpValue, (*QRegularExpression).DestroyQRegularExpression)
 	return tmpValue
 }
 
 func NewQRegularExpression3(re QRegularExpression_ITF) *QRegularExpression {
 	tmpValue := NewQRegularExpressionFromPointer(C.QRegularExpression_NewQRegularExpression3(PointerFromQRegularExpression(re)))
-	runtime.SetFinalizer(tmpValue, (*QRegularExpression).DestroyQRegularExpression)
+	qt.SetFinalizer(tmpValue, (*QRegularExpression).DestroyQRegularExpression)
 	return tmpValue
 }
 
@@ -39890,7 +39890,7 @@ func (ptr *QRegularExpression) Match(subject string, offset int, matchType QRegu
 			defer C.free(unsafe.Pointer(subjectC))
 		}
 		tmpValue := NewQRegularExpressionMatchFromPointer(C.QRegularExpression_Match(ptr.Pointer(), C.struct_QtCore_PackedString{data: subjectC, len: C.longlong(len(subject))}, C.int(int32(offset)), C.longlong(matchType), C.longlong(matchOptions)))
-		runtime.SetFinalizer(tmpValue, (*QRegularExpressionMatch).DestroyQRegularExpressionMatch)
+		qt.SetFinalizer(tmpValue, (*QRegularExpressionMatch).DestroyQRegularExpressionMatch)
 		return tmpValue
 	}
 	return nil
@@ -39899,7 +39899,7 @@ func (ptr *QRegularExpression) Match(subject string, offset int, matchType QRegu
 func (ptr *QRegularExpression) Match2(subjectRef QStringRef_ITF, offset int, matchType QRegularExpression__MatchType, matchOptions QRegularExpression__MatchOption) *QRegularExpressionMatch {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQRegularExpressionMatchFromPointer(C.QRegularExpression_Match2(ptr.Pointer(), PointerFromQStringRef(subjectRef), C.int(int32(offset)), C.longlong(matchType), C.longlong(matchOptions)))
-		runtime.SetFinalizer(tmpValue, (*QRegularExpressionMatch).DestroyQRegularExpressionMatch)
+		qt.SetFinalizer(tmpValue, (*QRegularExpressionMatch).DestroyQRegularExpressionMatch)
 		return tmpValue
 	}
 	return nil
@@ -39985,7 +39985,7 @@ func (ptr *QRegularExpression) DestroyQRegularExpression() {
 		C.QRegularExpression_DestroyQRegularExpression(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -40028,13 +40028,13 @@ func NewQRegularExpressionMatchFromPointer(ptr unsafe.Pointer) (n *QRegularExpre
 }
 func NewQRegularExpressionMatch() *QRegularExpressionMatch {
 	tmpValue := NewQRegularExpressionMatchFromPointer(C.QRegularExpressionMatch_NewQRegularExpressionMatch())
-	runtime.SetFinalizer(tmpValue, (*QRegularExpressionMatch).DestroyQRegularExpressionMatch)
+	qt.SetFinalizer(tmpValue, (*QRegularExpressionMatch).DestroyQRegularExpressionMatch)
 	return tmpValue
 }
 
 func NewQRegularExpressionMatch2(match QRegularExpressionMatch_ITF) *QRegularExpressionMatch {
 	tmpValue := NewQRegularExpressionMatchFromPointer(C.QRegularExpressionMatch_NewQRegularExpressionMatch2(PointerFromQRegularExpressionMatch(match)))
-	runtime.SetFinalizer(tmpValue, (*QRegularExpressionMatch).DestroyQRegularExpressionMatch)
+	qt.SetFinalizer(tmpValue, (*QRegularExpressionMatch).DestroyQRegularExpressionMatch)
 	return tmpValue
 }
 
@@ -40119,7 +40119,7 @@ func (ptr *QRegularExpressionMatch) CapturedLength3(name QStringView_ITF) int {
 func (ptr *QRegularExpressionMatch) CapturedRef(nth int) *QStringRef {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStringRefFromPointer(C.QRegularExpressionMatch_CapturedRef(ptr.Pointer(), C.int(int32(nth))))
-		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
 	}
 	return nil
@@ -40133,7 +40133,7 @@ func (ptr *QRegularExpressionMatch) CapturedRef2(name string) *QStringRef {
 			defer C.free(unsafe.Pointer(nameC))
 		}
 		tmpValue := NewQStringRefFromPointer(C.QRegularExpressionMatch_CapturedRef2(ptr.Pointer(), C.struct_QtCore_PackedString{data: nameC, len: C.longlong(len(name))}))
-		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
 	}
 	return nil
@@ -40142,7 +40142,7 @@ func (ptr *QRegularExpressionMatch) CapturedRef2(name string) *QStringRef {
 func (ptr *QRegularExpressionMatch) CapturedRef3(name QStringView_ITF) *QStringRef {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStringRefFromPointer(C.QRegularExpressionMatch_CapturedRef3(ptr.Pointer(), PointerFromQStringView(name)))
-		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
 	}
 	return nil
@@ -40184,7 +40184,7 @@ func (ptr *QRegularExpressionMatch) CapturedTexts() []string {
 func (ptr *QRegularExpressionMatch) CapturedView(nth int) *QStringView {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStringViewFromPointer(C.QRegularExpressionMatch_CapturedView(ptr.Pointer(), C.int(int32(nth))))
-		runtime.SetFinalizer(tmpValue, (*QStringView).DestroyQStringView)
+		qt.SetFinalizer(tmpValue, (*QStringView).DestroyQStringView)
 		return tmpValue
 	}
 	return nil
@@ -40193,7 +40193,7 @@ func (ptr *QRegularExpressionMatch) CapturedView(nth int) *QStringView {
 func (ptr *QRegularExpressionMatch) CapturedView2(name QStringView_ITF) *QStringView {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStringViewFromPointer(C.QRegularExpressionMatch_CapturedView2(ptr.Pointer(), PointerFromQStringView(name)))
-		runtime.SetFinalizer(tmpValue, (*QStringView).DestroyQStringView)
+		qt.SetFinalizer(tmpValue, (*QStringView).DestroyQStringView)
 		return tmpValue
 	}
 	return nil
@@ -40244,7 +40244,7 @@ func (ptr *QRegularExpressionMatch) MatchType() QRegularExpression__MatchType {
 func (ptr *QRegularExpressionMatch) RegularExpression() *QRegularExpression {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQRegularExpressionFromPointer(C.QRegularExpressionMatch_RegularExpression(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QRegularExpression).DestroyQRegularExpression)
+		qt.SetFinalizer(tmpValue, (*QRegularExpression).DestroyQRegularExpression)
 		return tmpValue
 	}
 	return nil
@@ -40261,7 +40261,7 @@ func (ptr *QRegularExpressionMatch) DestroyQRegularExpressionMatch() {
 		C.QRegularExpressionMatch_DestroyQRegularExpressionMatch(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -40358,7 +40358,7 @@ func NewQResource(file string, locale QLocale_ITF) *QResource {
 		defer C.free(unsafe.Pointer(fileC))
 	}
 	tmpValue := NewQResourceFromPointer(C.QResource_NewQResource(C.struct_QtCore_PackedString{data: fileC, len: C.longlong(len(file))}, PointerFromQLocale(locale)))
-	runtime.SetFinalizer(tmpValue, (*QResource).DestroyQResource)
+	qt.SetFinalizer(tmpValue, (*QResource).DestroyQResource)
 	return tmpValue
 }
 
@@ -40428,7 +40428,7 @@ func (ptr *QResource) IsValid() bool {
 func (ptr *QResource) LastModified() *QDateTime {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDateTimeFromPointer(C.QResource_LastModified(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+		qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 		return tmpValue
 	}
 	return nil
@@ -40437,7 +40437,7 @@ func (ptr *QResource) LastModified() *QDateTime {
 func (ptr *QResource) Locale() *QLocale {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQLocaleFromPointer(C.QResource_Locale(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QLocale).DestroyQLocale)
+		qt.SetFinalizer(tmpValue, (*QLocale).DestroyQLocale)
 		return tmpValue
 	}
 	return nil
@@ -40584,7 +40584,7 @@ func (ptr *QResource) DestroyQResource() {
 		C.QResource_DestroyQResource(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -40632,7 +40632,7 @@ func (ptr *QReturnArgument) DestroyQReturnArgument() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -40915,7 +40915,7 @@ func (ptr *QSaveFile) DestroyQSaveFile() {
 	if ptr.Pointer() != nil {
 		C.QSaveFile_DestroyQSaveFile(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -40923,7 +40923,7 @@ func (ptr *QSaveFile) DestroyQSaveFileDefault() {
 	if ptr.Pointer() != nil {
 		C.QSaveFile_DestroyQSaveFileDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -40970,7 +40970,7 @@ func (ptr *QScopeGuard) DestroyQScopeGuard() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -41018,7 +41018,7 @@ func (ptr *QScopedArrayPointer) DestroyQScopedArrayPointer() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -41103,7 +41103,7 @@ func (ptr *QScopedPointerArrayDeleter) DestroyQScopedPointerArrayDeleter() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -41150,7 +41150,7 @@ func (ptr *QScopedPointerDeleter) DestroyQScopedPointerDeleter() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -41197,7 +41197,7 @@ func (ptr *QScopedPointerObjectDeleteLater) DestroyQScopedPointerObjectDeleteLat
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -41244,7 +41244,7 @@ func (ptr *QScopedPointerPodDeleter) DestroyQScopedPointerPodDeleter() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -41325,7 +41325,7 @@ func NewQSemaphoreFromPointer(ptr unsafe.Pointer) (n *QSemaphore) {
 }
 func NewQSemaphore(n int) *QSemaphore {
 	tmpValue := NewQSemaphoreFromPointer(C.QSemaphore_NewQSemaphore(C.int(int32(n))))
-	runtime.SetFinalizer(tmpValue, (*QSemaphore).DestroyQSemaphore)
+	qt.SetFinalizer(tmpValue, (*QSemaphore).DestroyQSemaphore)
 	return tmpValue
 }
 
@@ -41367,7 +41367,7 @@ func (ptr *QSemaphore) DestroyQSemaphore() {
 		C.QSemaphore_DestroyQSemaphore(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -41410,19 +41410,19 @@ func NewQSemaphoreReleaserFromPointer(ptr unsafe.Pointer) (n *QSemaphoreReleaser
 }
 func NewQSemaphoreReleaser() *QSemaphoreReleaser {
 	tmpValue := NewQSemaphoreReleaserFromPointer(C.QSemaphoreReleaser_NewQSemaphoreReleaser())
-	runtime.SetFinalizer(tmpValue, (*QSemaphoreReleaser).DestroyQSemaphoreReleaser)
+	qt.SetFinalizer(tmpValue, (*QSemaphoreReleaser).DestroyQSemaphoreReleaser)
 	return tmpValue
 }
 
 func NewQSemaphoreReleaser2(sem QSemaphore_ITF, n int) *QSemaphoreReleaser {
 	tmpValue := NewQSemaphoreReleaserFromPointer(C.QSemaphoreReleaser_NewQSemaphoreReleaser2(PointerFromQSemaphore(sem), C.int(int32(n))))
-	runtime.SetFinalizer(tmpValue, (*QSemaphoreReleaser).DestroyQSemaphoreReleaser)
+	qt.SetFinalizer(tmpValue, (*QSemaphoreReleaser).DestroyQSemaphoreReleaser)
 	return tmpValue
 }
 
 func NewQSemaphoreReleaser3(sem QSemaphore_ITF, n int) *QSemaphoreReleaser {
 	tmpValue := NewQSemaphoreReleaserFromPointer(C.QSemaphoreReleaser_NewQSemaphoreReleaser3(PointerFromQSemaphore(sem), C.int(int32(n))))
-	runtime.SetFinalizer(tmpValue, (*QSemaphoreReleaser).DestroyQSemaphoreReleaser)
+	qt.SetFinalizer(tmpValue, (*QSemaphoreReleaser).DestroyQSemaphoreReleaser)
 	return tmpValue
 }
 
@@ -41451,7 +41451,7 @@ func (ptr *QSemaphoreReleaser) DestroyQSemaphoreReleaser() {
 		C.QSemaphoreReleaser_DestroyQSemaphoreReleaser(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -41697,7 +41697,7 @@ func (ptr *QSequentialAnimationGroup) DestroyQSequentialAnimationGroup() {
 	if ptr.Pointer() != nil {
 		C.QSequentialAnimationGroup_DestroyQSequentialAnimationGroup(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -41705,7 +41705,7 @@ func (ptr *QSequentialAnimationGroup) DestroyQSequentialAnimationGroupDefault() 
 	if ptr.Pointer() != nil {
 		C.QSequentialAnimationGroup_DestroyQSequentialAnimationGroupDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -41752,14 +41752,14 @@ func (ptr *QSequentialIterable) DestroyQSequentialIterable() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QSequentialIterable) At(idx int) *QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVariantFromPointer(C.QSequentialIterable_At(ptr.Pointer(), C.int(int32(idx))))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -41822,7 +41822,7 @@ func (ptr *QSet) DestroyQSet() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -41869,7 +41869,7 @@ func (ptr *QSetIterator) DestroyQSetIterator() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -42309,7 +42309,7 @@ func (ptr *QSettings) Value(key string, defaultValue QVariant_ITF) *QVariant {
 			defer C.free(unsafe.Pointer(keyC))
 		}
 		tmpValue := NewQVariantFromPointer(C.QSettings_Value(ptr.Pointer(), C.struct_QtCore_PackedString{data: keyC, len: C.longlong(len(key))}, PointerFromQVariant(defaultValue)))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -42350,7 +42350,7 @@ func (ptr *QSettings) DestroyQSettings() {
 	if ptr.Pointer() != nil {
 		C.QSettings_DestroyQSettings(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -42358,7 +42358,7 @@ func (ptr *QSettings) DestroyQSettingsDefault() {
 	if ptr.Pointer() != nil {
 		C.QSettings_DestroyQSettingsDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -42405,19 +42405,19 @@ func (ptr *QSharedData) DestroyQSharedData() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func NewQSharedData() *QSharedData {
 	tmpValue := NewQSharedDataFromPointer(C.QSharedData_NewQSharedData())
-	runtime.SetFinalizer(tmpValue, (*QSharedData).DestroyQSharedData)
+	qt.SetFinalizer(tmpValue, (*QSharedData).DestroyQSharedData)
 	return tmpValue
 }
 
 func NewQSharedData2(vqs QSharedData_ITF) *QSharedData {
 	tmpValue := NewQSharedDataFromPointer(C.QSharedData_NewQSharedData2(PointerFromQSharedData(vqs)))
-	runtime.SetFinalizer(tmpValue, (*QSharedData).DestroyQSharedData)
+	qt.SetFinalizer(tmpValue, (*QSharedData).DestroyQSharedData)
 	return tmpValue
 }
 
@@ -42699,7 +42699,7 @@ func (ptr *QSharedMemory) DestroyQSharedMemory() {
 	if ptr.Pointer() != nil {
 		C.QSharedMemory_DestroyQSharedMemory(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -42707,7 +42707,7 @@ func (ptr *QSharedMemory) DestroyQSharedMemoryDefault() {
 	if ptr.Pointer() != nil {
 		C.QSharedMemory_DestroyQSharedMemoryDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -42788,13 +42788,13 @@ func NewQSignalBlockerFromPointer(ptr unsafe.Pointer) (n *QSignalBlocker) {
 }
 func NewQSignalBlocker(object QObject_ITF) *QSignalBlocker {
 	tmpValue := NewQSignalBlockerFromPointer(C.QSignalBlocker_NewQSignalBlocker(PointerFromQObject(object)))
-	runtime.SetFinalizer(tmpValue, (*QSignalBlocker).DestroyQSignalBlocker)
+	qt.SetFinalizer(tmpValue, (*QSignalBlocker).DestroyQSignalBlocker)
 	return tmpValue
 }
 
 func NewQSignalBlocker2(object QObject_ITF) *QSignalBlocker {
 	tmpValue := NewQSignalBlockerFromPointer(C.QSignalBlocker_NewQSignalBlocker2(PointerFromQObject(object)))
-	runtime.SetFinalizer(tmpValue, (*QSignalBlocker).DestroyQSignalBlocker)
+	qt.SetFinalizer(tmpValue, (*QSignalBlocker).DestroyQSignalBlocker)
 	return tmpValue
 }
 
@@ -42815,7 +42815,7 @@ func (ptr *QSignalBlocker) DestroyQSignalBlocker() {
 		C.QSignalBlocker_DestroyQSignalBlocker(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -43065,7 +43065,7 @@ func (ptr *QSignalTransition) SetSignal(sign QByteArray_ITF) {
 func (ptr *QSignalTransition) Signal() *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QSignalTransition_Signal(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -43140,7 +43140,7 @@ func (ptr *QSignalTransition) DestroyQSignalTransition() {
 	if ptr.Pointer() != nil {
 		C.QSignalTransition_DestroyQSignalTransition(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -43148,7 +43148,7 @@ func (ptr *QSignalTransition) DestroyQSignalTransitionDefault() {
 	if ptr.Pointer() != nil {
 		C.QSignalTransition_DestroyQSignalTransitionDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -43195,26 +43195,26 @@ func (ptr *QSize) DestroyQSize() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func NewQSize() *QSize {
 	tmpValue := NewQSizeFromPointer(C.QSize_NewQSize())
-	runtime.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
+	qt.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
 	return tmpValue
 }
 
 func NewQSize2(width int, height int) *QSize {
 	tmpValue := NewQSizeFromPointer(C.QSize_NewQSize2(C.int(int32(width)), C.int(int32(height))))
-	runtime.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
+	qt.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
 	return tmpValue
 }
 
 func (ptr *QSize) BoundedTo(otherSize QSize_ITF) *QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSizeFromPointer(C.QSize_BoundedTo(ptr.Pointer(), PointerFromQSize(otherSize)))
-		runtime.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -43223,7 +43223,7 @@ func (ptr *QSize) BoundedTo(otherSize QSize_ITF) *QSize {
 func (ptr *QSize) ExpandedTo(otherSize QSize_ITF) *QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSizeFromPointer(C.QSize_ExpandedTo(ptr.Pointer(), PointerFromQSize(otherSize)))
-		runtime.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -43286,7 +43286,7 @@ func (ptr *QSize) Scale2(size QSize_ITF, mode Qt__AspectRatioMode) {
 func (ptr *QSize) Scaled(width int, height int, mode Qt__AspectRatioMode) *QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSizeFromPointer(C.QSize_Scaled(ptr.Pointer(), C.int(int32(width)), C.int(int32(height)), C.longlong(mode)))
-		runtime.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -43295,7 +43295,7 @@ func (ptr *QSize) Scaled(width int, height int, mode Qt__AspectRatioMode) *QSize
 func (ptr *QSize) Scaled2(s QSize_ITF, mode Qt__AspectRatioMode) *QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSizeFromPointer(C.QSize_Scaled2(ptr.Pointer(), PointerFromQSize(s), C.longlong(mode)))
-		runtime.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -43322,7 +43322,7 @@ func (ptr *QSize) Transpose() {
 func (ptr *QSize) Transposed() *QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSizeFromPointer(C.QSize_Transposed(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -43378,32 +43378,32 @@ func (ptr *QSizeF) DestroyQSizeF() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func NewQSizeF() *QSizeF {
 	tmpValue := NewQSizeFFromPointer(C.QSizeF_NewQSizeF())
-	runtime.SetFinalizer(tmpValue, (*QSizeF).DestroyQSizeF)
+	qt.SetFinalizer(tmpValue, (*QSizeF).DestroyQSizeF)
 	return tmpValue
 }
 
 func NewQSizeF2(size QSize_ITF) *QSizeF {
 	tmpValue := NewQSizeFFromPointer(C.QSizeF_NewQSizeF2(PointerFromQSize(size)))
-	runtime.SetFinalizer(tmpValue, (*QSizeF).DestroyQSizeF)
+	qt.SetFinalizer(tmpValue, (*QSizeF).DestroyQSizeF)
 	return tmpValue
 }
 
 func NewQSizeF3(width float64, height float64) *QSizeF {
 	tmpValue := NewQSizeFFromPointer(C.QSizeF_NewQSizeF3(C.double(width), C.double(height)))
-	runtime.SetFinalizer(tmpValue, (*QSizeF).DestroyQSizeF)
+	qt.SetFinalizer(tmpValue, (*QSizeF).DestroyQSizeF)
 	return tmpValue
 }
 
 func (ptr *QSizeF) BoundedTo(otherSize QSizeF_ITF) *QSizeF {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSizeFFromPointer(C.QSizeF_BoundedTo(ptr.Pointer(), PointerFromQSizeF(otherSize)))
-		runtime.SetFinalizer(tmpValue, (*QSizeF).DestroyQSizeF)
+		qt.SetFinalizer(tmpValue, (*QSizeF).DestroyQSizeF)
 		return tmpValue
 	}
 	return nil
@@ -43412,7 +43412,7 @@ func (ptr *QSizeF) BoundedTo(otherSize QSizeF_ITF) *QSizeF {
 func (ptr *QSizeF) ExpandedTo(otherSize QSizeF_ITF) *QSizeF {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSizeFFromPointer(C.QSizeF_ExpandedTo(ptr.Pointer(), PointerFromQSizeF(otherSize)))
-		runtime.SetFinalizer(tmpValue, (*QSizeF).DestroyQSizeF)
+		qt.SetFinalizer(tmpValue, (*QSizeF).DestroyQSizeF)
 		return tmpValue
 	}
 	return nil
@@ -43475,7 +43475,7 @@ func (ptr *QSizeF) Scale2(size QSizeF_ITF, mode Qt__AspectRatioMode) {
 func (ptr *QSizeF) Scaled(width float64, height float64, mode Qt__AspectRatioMode) *QSizeF {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSizeFFromPointer(C.QSizeF_Scaled(ptr.Pointer(), C.double(width), C.double(height), C.longlong(mode)))
-		runtime.SetFinalizer(tmpValue, (*QSizeF).DestroyQSizeF)
+		qt.SetFinalizer(tmpValue, (*QSizeF).DestroyQSizeF)
 		return tmpValue
 	}
 	return nil
@@ -43484,7 +43484,7 @@ func (ptr *QSizeF) Scaled(width float64, height float64, mode Qt__AspectRatioMod
 func (ptr *QSizeF) Scaled2(s QSizeF_ITF, mode Qt__AspectRatioMode) *QSizeF {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSizeFFromPointer(C.QSizeF_Scaled2(ptr.Pointer(), PointerFromQSizeF(s), C.longlong(mode)))
-		runtime.SetFinalizer(tmpValue, (*QSizeF).DestroyQSizeF)
+		qt.SetFinalizer(tmpValue, (*QSizeF).DestroyQSizeF)
 		return tmpValue
 	}
 	return nil
@@ -43505,7 +43505,7 @@ func (ptr *QSizeF) SetWidth(width float64) {
 func (ptr *QSizeF) ToSize() *QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSizeFromPointer(C.QSizeF_ToSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -43520,7 +43520,7 @@ func (ptr *QSizeF) Transpose() {
 func (ptr *QSizeF) Transposed() *QSizeF {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSizeFFromPointer(C.QSizeF_Transposed(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QSizeF).DestroyQSizeF)
+		qt.SetFinalizer(tmpValue, (*QSizeF).DestroyQSizeF)
 		return tmpValue
 	}
 	return nil
@@ -43708,7 +43708,7 @@ func (ptr *QSocketNotifier) DestroyQSocketNotifier() {
 	if ptr.Pointer() != nil {
 		C.QSocketNotifier_DestroyQSocketNotifier(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -43716,7 +43716,7 @@ func (ptr *QSocketNotifier) DestroyQSocketNotifierDefault() {
 	if ptr.Pointer() != nil {
 		C.QSocketNotifier_DestroyQSocketNotifierDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -43925,7 +43925,7 @@ func (ptr *QSortFilterProxyModel) FilterKeyColumn() int {
 func (ptr *QSortFilterProxyModel) FilterRegExp() *QRegExp {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQRegExpFromPointer(C.QSortFilterProxyModel_FilterRegExp(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QRegExp).DestroyQRegExp)
+		qt.SetFinalizer(tmpValue, (*QRegExp).DestroyQRegExp)
 		return tmpValue
 	}
 	return nil
@@ -43934,7 +43934,7 @@ func (ptr *QSortFilterProxyModel) FilterRegExp() *QRegExp {
 func (ptr *QSortFilterProxyModel) FilterRegularExpression() *QRegularExpression {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQRegularExpressionFromPointer(C.QSortFilterProxyModel_FilterRegularExpression(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QRegularExpression).DestroyQRegularExpression)
+		qt.SetFinalizer(tmpValue, (*QRegularExpression).DestroyQRegularExpression)
 		return tmpValue
 	}
 	return nil
@@ -43981,7 +43981,7 @@ func (ptr *QSortFilterProxyModel) DisconnectIndex() {
 func (ptr *QSortFilterProxyModel) Index(row int, column int, parent QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QSortFilterProxyModel_Index(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), PointerFromQModelIndex(parent)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -43990,7 +43990,7 @@ func (ptr *QSortFilterProxyModel) Index(row int, column int, parent QModelIndex_
 func (ptr *QSortFilterProxyModel) IndexDefault(row int, column int, parent QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QSortFilterProxyModel_IndexDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), PointerFromQModelIndex(parent)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -44138,7 +44138,7 @@ func (ptr *QSortFilterProxyModel) DisconnectMapFromSource() {
 func (ptr *QSortFilterProxyModel) MapFromSource(sourceIndex QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QSortFilterProxyModel_MapFromSource(ptr.Pointer(), PointerFromQModelIndex(sourceIndex)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -44147,7 +44147,7 @@ func (ptr *QSortFilterProxyModel) MapFromSource(sourceIndex QModelIndex_ITF) *QM
 func (ptr *QSortFilterProxyModel) MapFromSourceDefault(sourceIndex QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QSortFilterProxyModel_MapFromSourceDefault(ptr.Pointer(), PointerFromQModelIndex(sourceIndex)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -44187,7 +44187,7 @@ func (ptr *QSortFilterProxyModel) DisconnectMapToSource() {
 func (ptr *QSortFilterProxyModel) MapToSource(proxyIndex QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QSortFilterProxyModel_MapToSource(ptr.Pointer(), PointerFromQModelIndex(proxyIndex)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -44196,7 +44196,7 @@ func (ptr *QSortFilterProxyModel) MapToSource(proxyIndex QModelIndex_ITF) *QMode
 func (ptr *QSortFilterProxyModel) MapToSourceDefault(proxyIndex QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QSortFilterProxyModel_MapToSourceDefault(ptr.Pointer(), PointerFromQModelIndex(proxyIndex)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -44236,7 +44236,7 @@ func (ptr *QSortFilterProxyModel) DisconnectParent() {
 func (ptr *QSortFilterProxyModel) Parent(child QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QSortFilterProxyModel_Parent(ptr.Pointer(), PointerFromQModelIndex(child)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -44245,7 +44245,7 @@ func (ptr *QSortFilterProxyModel) Parent(child QModelIndex_ITF) *QModelIndex {
 func (ptr *QSortFilterProxyModel) ParentDefault(child QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QSortFilterProxyModel_ParentDefault(ptr.Pointer(), PointerFromQModelIndex(child)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -44705,7 +44705,7 @@ func (ptr *QSortFilterProxyModel) DestroyQSortFilterProxyModel() {
 	if ptr.Pointer() != nil {
 		C.QSortFilterProxyModel_DestroyQSortFilterProxyModel(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -44713,7 +44713,7 @@ func (ptr *QSortFilterProxyModel) DestroyQSortFilterProxyModelDefault() {
 	if ptr.Pointer() != nil {
 		C.QSortFilterProxyModel_DestroyQSortFilterProxyModelDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -44760,7 +44760,7 @@ func (ptr *QSpecialInteger) DestroyQSpecialInteger() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -44808,7 +44808,7 @@ func (ptr *QStack) DestroyQStack() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -44855,7 +44855,7 @@ func (ptr *QStandardPaths) DestroyQStandardPaths() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -45460,7 +45460,7 @@ func (ptr *QState) DestroyQState() {
 	if ptr.Pointer() != nil {
 		C.QState_DestroyQState(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -45468,7 +45468,7 @@ func (ptr *QState) DestroyQStateDefault() {
 	if ptr.Pointer() != nil {
 		C.QState_DestroyQStateDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -45951,7 +45951,7 @@ func (ptr *QStateMachine) DestroyQStateMachine() {
 	if ptr.Pointer() != nil {
 		C.QStateMachine_DestroyQStateMachine(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -45959,7 +45959,7 @@ func (ptr *QStateMachine) DestroyQStateMachineDefault() {
 	if ptr.Pointer() != nil {
 		C.QStateMachine_DestroyQStateMachineDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -46027,7 +46027,7 @@ func (ptr *QStaticByteArrayData) DestroyQStaticByteArrayData() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -46074,7 +46074,7 @@ func (ptr *QStaticByteArrayMatcher) DestroyQStaticByteArrayMatcher() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -46121,7 +46121,7 @@ func (ptr *QStaticPlugin) DestroyQStaticPlugin() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -46139,7 +46139,7 @@ func (ptr *QStaticPlugin) Instance() *QObject {
 func (ptr *QStaticPlugin) MetaData() *QJsonObject {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQJsonObjectFromPointer(C.QStaticPlugin_MetaData(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QJsonObject).DestroyQJsonObject)
+		qt.SetFinalizer(tmpValue, (*QJsonObject).DestroyQJsonObject)
 		return tmpValue
 	}
 	return nil
@@ -46195,7 +46195,7 @@ func (ptr *QStaticStringData) DestroyQStaticStringData() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -46238,7 +46238,7 @@ func NewQStorageInfoFromPointer(ptr unsafe.Pointer) (n *QStorageInfo) {
 }
 func NewQStorageInfo() *QStorageInfo {
 	tmpValue := NewQStorageInfoFromPointer(C.QStorageInfo_NewQStorageInfo())
-	runtime.SetFinalizer(tmpValue, (*QStorageInfo).DestroyQStorageInfo)
+	qt.SetFinalizer(tmpValue, (*QStorageInfo).DestroyQStorageInfo)
 	return tmpValue
 }
 
@@ -46249,19 +46249,19 @@ func NewQStorageInfo2(path string) *QStorageInfo {
 		defer C.free(unsafe.Pointer(pathC))
 	}
 	tmpValue := NewQStorageInfoFromPointer(C.QStorageInfo_NewQStorageInfo2(C.struct_QtCore_PackedString{data: pathC, len: C.longlong(len(path))}))
-	runtime.SetFinalizer(tmpValue, (*QStorageInfo).DestroyQStorageInfo)
+	qt.SetFinalizer(tmpValue, (*QStorageInfo).DestroyQStorageInfo)
 	return tmpValue
 }
 
 func NewQStorageInfo3(dir QDir_ITF) *QStorageInfo {
 	tmpValue := NewQStorageInfoFromPointer(C.QStorageInfo_NewQStorageInfo3(PointerFromQDir(dir)))
-	runtime.SetFinalizer(tmpValue, (*QStorageInfo).DestroyQStorageInfo)
+	qt.SetFinalizer(tmpValue, (*QStorageInfo).DestroyQStorageInfo)
 	return tmpValue
 }
 
 func NewQStorageInfo4(other QStorageInfo_ITF) *QStorageInfo {
 	tmpValue := NewQStorageInfoFromPointer(C.QStorageInfo_NewQStorageInfo4(PointerFromQStorageInfo(other)))
-	runtime.SetFinalizer(tmpValue, (*QStorageInfo).DestroyQStorageInfo)
+	qt.SetFinalizer(tmpValue, (*QStorageInfo).DestroyQStorageInfo)
 	return tmpValue
 }
 
@@ -46296,7 +46296,7 @@ func (ptr *QStorageInfo) BytesTotal() int64 {
 func (ptr *QStorageInfo) Device() *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QStorageInfo_Device(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -46312,7 +46312,7 @@ func (ptr *QStorageInfo) DisplayName() string {
 func (ptr *QStorageInfo) FileSystemType() *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QStorageInfo_FileSystemType(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -46383,13 +46383,13 @@ func (ptr *QStorageInfo) Refresh() {
 
 func QStorageInfo_Root() *QStorageInfo {
 	tmpValue := NewQStorageInfoFromPointer(C.QStorageInfo_QStorageInfo_Root())
-	runtime.SetFinalizer(tmpValue, (*QStorageInfo).DestroyQStorageInfo)
+	qt.SetFinalizer(tmpValue, (*QStorageInfo).DestroyQStorageInfo)
 	return tmpValue
 }
 
 func (ptr *QStorageInfo) Root() *QStorageInfo {
 	tmpValue := NewQStorageInfoFromPointer(C.QStorageInfo_QStorageInfo_Root())
-	runtime.SetFinalizer(tmpValue, (*QStorageInfo).DestroyQStorageInfo)
+	qt.SetFinalizer(tmpValue, (*QStorageInfo).DestroyQStorageInfo)
 	return tmpValue
 }
 
@@ -46414,7 +46414,7 @@ func (ptr *QStorageInfo) SetPath(path string) {
 func (ptr *QStorageInfo) Subvolume() *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QStorageInfo_Subvolume(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -46431,14 +46431,14 @@ func (ptr *QStorageInfo) DestroyQStorageInfo() {
 		C.QStorageInfo_DestroyQStorageInfo(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QStorageInfo) __mountedVolumes_atList(i int) *QStorageInfo {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStorageInfoFromPointer(C.QStorageInfo___mountedVolumes_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QStorageInfo).DestroyQStorageInfo)
+		qt.SetFinalizer(tmpValue, (*QStorageInfo).DestroyQStorageInfo)
 		return tmpValue
 	}
 	return nil
@@ -46567,7 +46567,7 @@ func (ptr *QStringBuilderCommon) DestroyQStringBuilderCommon() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -46614,7 +46614,7 @@ func (ptr *QStringList) DestroyQStringList() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -46708,7 +46708,7 @@ func (ptr *QStringListModel) DisconnectData() {
 func (ptr *QStringListModel) Data(index QModelIndex_ITF, role int) *QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVariantFromPointer(C.QStringListModel_Data(ptr.Pointer(), PointerFromQModelIndex(index), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -46717,7 +46717,7 @@ func (ptr *QStringListModel) Data(index QModelIndex_ITF, role int) *QVariant {
 func (ptr *QStringListModel) DataDefault(index QModelIndex_ITF, role int) *QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVariantFromPointer(C.QStringListModel_DataDefault(ptr.Pointer(), PointerFromQModelIndex(index), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -46822,7 +46822,7 @@ func NewQStringMatcherFromPointer(ptr unsafe.Pointer) (n *QStringMatcher) {
 }
 func NewQStringMatcher() *QStringMatcher {
 	tmpValue := NewQStringMatcherFromPointer(C.QStringMatcher_NewQStringMatcher())
-	runtime.SetFinalizer(tmpValue, (*QStringMatcher).DestroyQStringMatcher)
+	qt.SetFinalizer(tmpValue, (*QStringMatcher).DestroyQStringMatcher)
 	return tmpValue
 }
 
@@ -46833,19 +46833,19 @@ func NewQStringMatcher2(pattern string, cs Qt__CaseSensitivity) *QStringMatcher 
 		defer C.free(unsafe.Pointer(patternC))
 	}
 	tmpValue := NewQStringMatcherFromPointer(C.QStringMatcher_NewQStringMatcher2(C.struct_QtCore_PackedString{data: patternC, len: C.longlong(len(pattern))}, C.longlong(cs)))
-	runtime.SetFinalizer(tmpValue, (*QStringMatcher).DestroyQStringMatcher)
+	qt.SetFinalizer(tmpValue, (*QStringMatcher).DestroyQStringMatcher)
 	return tmpValue
 }
 
 func NewQStringMatcher3(uc QChar_ITF, length int, cs Qt__CaseSensitivity) *QStringMatcher {
 	tmpValue := NewQStringMatcherFromPointer(C.QStringMatcher_NewQStringMatcher3(PointerFromQChar(uc), C.int(int32(length)), C.longlong(cs)))
-	runtime.SetFinalizer(tmpValue, (*QStringMatcher).DestroyQStringMatcher)
+	qt.SetFinalizer(tmpValue, (*QStringMatcher).DestroyQStringMatcher)
 	return tmpValue
 }
 
 func NewQStringMatcher4(other QStringMatcher_ITF) *QStringMatcher {
 	tmpValue := NewQStringMatcherFromPointer(C.QStringMatcher_NewQStringMatcher4(PointerFromQStringMatcher(other)))
-	runtime.SetFinalizer(tmpValue, (*QStringMatcher).DestroyQStringMatcher)
+	qt.SetFinalizer(tmpValue, (*QStringMatcher).DestroyQStringMatcher)
 	return tmpValue
 }
 
@@ -46904,7 +46904,7 @@ func (ptr *QStringMatcher) DestroyQStringMatcher() {
 		C.QStringMatcher_DestroyQStringMatcher(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -46947,7 +46947,7 @@ func NewQStringRefFromPointer(ptr unsafe.Pointer) (n *QStringRef) {
 }
 func NewQStringRef() *QStringRef {
 	tmpValue := NewQStringRefFromPointer(C.QStringRef_NewQStringRef())
-	runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+	qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 	return tmpValue
 }
 
@@ -46958,7 +46958,7 @@ func NewQStringRef2(stri string, position int, length int) *QStringRef {
 		defer C.free(unsafe.Pointer(striC))
 	}
 	tmpValue := NewQStringRefFromPointer(C.QStringRef_NewQStringRef2(C.struct_QtCore_PackedString{data: striC, len: C.longlong(len(stri))}, C.int(int32(position)), C.int(int32(length))))
-	runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+	qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 	return tmpValue
 }
 
@@ -46969,13 +46969,13 @@ func NewQStringRef3(stri string) *QStringRef {
 		defer C.free(unsafe.Pointer(striC))
 	}
 	tmpValue := NewQStringRefFromPointer(C.QStringRef_NewQStringRef3(C.struct_QtCore_PackedString{data: striC, len: C.longlong(len(stri))}))
-	runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+	qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 	return tmpValue
 }
 
 func NewQStringRef4(other QStringRef_ITF) *QStringRef {
 	tmpValue := NewQStringRefFromPointer(C.QStringRef_NewQStringRef4(PointerFromQStringRef(other)))
-	runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+	qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 	return tmpValue
 }
 
@@ -46987,7 +46987,7 @@ func (ptr *QStringRef) AppendTo(stri string) *QStringRef {
 			defer C.free(unsafe.Pointer(striC))
 		}
 		tmpValue := NewQStringRefFromPointer(C.QStringRef_AppendTo(ptr.Pointer(), C.struct_QtCore_PackedString{data: striC, len: C.longlong(len(stri))}))
-		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
 	}
 	return nil
@@ -46996,7 +46996,7 @@ func (ptr *QStringRef) AppendTo(stri string) *QStringRef {
 func (ptr *QStringRef) At(position int) *QChar {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQCharFromPointer(C.QStringRef_At(ptr.Pointer(), C.int(int32(position))))
-		runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+		qt.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 		return tmpValue
 	}
 	return nil
@@ -47005,7 +47005,7 @@ func (ptr *QStringRef) At(position int) *QChar {
 func (ptr *QStringRef) Back() *QChar {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQCharFromPointer(C.QStringRef_Back(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+		qt.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 		return tmpValue
 	}
 	return nil
@@ -47020,7 +47020,7 @@ func (ptr *QStringRef) Chop(n int) {
 func (ptr *QStringRef) Chopped(l int) *QStringRef {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStringRefFromPointer(C.QStringRef_Chopped(ptr.Pointer(), C.int(int32(l))))
-		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
 	}
 	return nil
@@ -47222,7 +47222,7 @@ func (ptr *QStringRef) EndsWith5(str QStringRef_ITF, cs Qt__CaseSensitivity) boo
 func (ptr *QStringRef) Front() *QChar {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQCharFromPointer(C.QStringRef_Front(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+		qt.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 		return tmpValue
 	}
 	return nil
@@ -47318,7 +47318,7 @@ func (ptr *QStringRef) LastIndexOf4(str QStringRef_ITF, from int, cs Qt__CaseSen
 func (ptr *QStringRef) Left(n int) *QStringRef {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStringRefFromPointer(C.QStringRef_Left(ptr.Pointer(), C.int(int32(n))))
-		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
 	}
 	return nil
@@ -47379,7 +47379,7 @@ func (ptr *QStringRef) LocaleAwareCompare4(s1 QStringRef_ITF, s2 QStringRef_ITF)
 func (ptr *QStringRef) Mid(position int, n int) *QStringRef {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStringRefFromPointer(C.QStringRef_Mid(ptr.Pointer(), C.int(int32(position)), C.int(int32(n))))
-		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
 	}
 	return nil
@@ -47395,7 +47395,7 @@ func (ptr *QStringRef) Position() int {
 func (ptr *QStringRef) Right(n int) *QStringRef {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStringRefFromPointer(C.QStringRef_Right(ptr.Pointer(), C.int(int32(n))))
-		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
 	}
 	return nil
@@ -47527,7 +47527,7 @@ func (ptr *QStringRef) ToInt(ok *bool, base int) int {
 func (ptr *QStringRef) ToLatin1() *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QStringRef_ToLatin1(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -47536,7 +47536,7 @@ func (ptr *QStringRef) ToLatin1() *QByteArray {
 func (ptr *QStringRef) ToLocal8Bit() *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QStringRef_ToLocal8Bit(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -47650,7 +47650,7 @@ func (ptr *QStringRef) ToUcs4() []uint {
 func (ptr *QStringRef) ToUtf8() *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QStringRef_ToUtf8(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -47659,7 +47659,7 @@ func (ptr *QStringRef) ToUtf8() *QByteArray {
 func (ptr *QStringRef) Trimmed() *QStringRef {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStringRefFromPointer(C.QStringRef_Trimmed(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
 	}
 	return nil
@@ -47683,14 +47683,14 @@ func (ptr *QStringRef) DestroyQStringRef() {
 		C.QStringRef_DestroyQStringRef(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QStringRef) __split_atList(i int) *QStringRef {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStringRefFromPointer(C.QStringRef___split_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
 	}
 	return nil
@@ -47709,7 +47709,7 @@ func (ptr *QStringRef) __split_newList() unsafe.Pointer {
 func (ptr *QStringRef) __split_atList2(i int) *QStringRef {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStringRefFromPointer(C.QStringRef___split_atList2(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
 	}
 	return nil
@@ -47785,13 +47785,13 @@ func (ptr *QStringView) DestroyQStringView() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func NewQStringView() *QStringView {
 	tmpValue := NewQStringViewFromPointer(C.QStringView_NewQStringView())
-	runtime.SetFinalizer(tmpValue, (*QStringView).DestroyQStringView)
+	qt.SetFinalizer(tmpValue, (*QStringView).DestroyQStringView)
 	return tmpValue
 }
 
@@ -47802,20 +47802,20 @@ func NewQStringView7(str string) *QStringView {
 		defer C.free(unsafe.Pointer(strC))
 	}
 	tmpValue := NewQStringViewFromPointer(C.QStringView_NewQStringView7(C.struct_QtCore_PackedString{data: strC, len: C.longlong(len(str))}))
-	runtime.SetFinalizer(tmpValue, (*QStringView).DestroyQStringView)
+	qt.SetFinalizer(tmpValue, (*QStringView).DestroyQStringView)
 	return tmpValue
 }
 
 func NewQStringView8(str QStringRef_ITF) *QStringView {
 	tmpValue := NewQStringViewFromPointer(C.QStringView_NewQStringView8(PointerFromQStringRef(str)))
-	runtime.SetFinalizer(tmpValue, (*QStringView).DestroyQStringView)
+	qt.SetFinalizer(tmpValue, (*QStringView).DestroyQStringView)
 	return tmpValue
 }
 
 func (ptr *QStringView) Back() *QChar {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQCharFromPointer(C.QStringView_Back(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+		qt.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 		return tmpValue
 	}
 	return nil
@@ -47866,7 +47866,7 @@ func (ptr *QStringView) EndsWith4(ch QChar_ITF, cs Qt__CaseSensitivity) bool {
 func (ptr *QStringView) First() *QChar {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQCharFromPointer(C.QStringView_First(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+		qt.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 		return tmpValue
 	}
 	return nil
@@ -47875,7 +47875,7 @@ func (ptr *QStringView) First() *QChar {
 func (ptr *QStringView) Front() *QChar {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQCharFromPointer(C.QStringView_Front(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+		qt.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 		return tmpValue
 	}
 	return nil
@@ -47905,7 +47905,7 @@ func (ptr *QStringView) IsRightToLeft() bool {
 func (ptr *QStringView) Last() *QChar {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQCharFromPointer(C.QStringView_Last(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+		qt.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 		return tmpValue
 	}
 	return nil
@@ -47949,7 +47949,7 @@ func (ptr *QStringView) StartsWith4(ch QChar_ITF, cs Qt__CaseSensitivity) bool {
 func (ptr *QStringView) ToLatin1() *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QStringView_ToLatin1(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -47958,7 +47958,7 @@ func (ptr *QStringView) ToLatin1() *QByteArray {
 func (ptr *QStringView) ToLocal8Bit() *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QStringView_ToLocal8Bit(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -47988,7 +47988,7 @@ func (ptr *QStringView) ToUcs4() []uint {
 func (ptr *QStringView) ToUtf8() *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QStringView_ToUtf8(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -47997,7 +47997,7 @@ func (ptr *QStringView) ToUtf8() *QByteArray {
 func (ptr *QStringView) Trimmed() *QStringView {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStringViewFromPointer(C.QStringView_Trimmed(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QStringView).DestroyQStringView)
+		qt.SetFinalizer(tmpValue, (*QStringView).DestroyQStringView)
 		return tmpValue
 	}
 	return nil
@@ -48080,7 +48080,7 @@ func (ptr *QSysInfo) DestroyQSysInfo() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -48103,13 +48103,13 @@ const (
 
 func QSysInfo_BootUniqueId() *QByteArray {
 	tmpValue := NewQByteArrayFromPointer(C.QSysInfo_QSysInfo_BootUniqueId())
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
 func (ptr *QSysInfo) BootUniqueId() *QByteArray {
 	tmpValue := NewQByteArrayFromPointer(C.QSysInfo_QSysInfo_BootUniqueId())
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
@@ -48163,13 +48163,13 @@ func (ptr *QSysInfo) MachineHostName() string {
 
 func QSysInfo_MachineUniqueId() *QByteArray {
 	tmpValue := NewQByteArrayFromPointer(C.QSysInfo_QSysInfo_MachineUniqueId())
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
 func (ptr *QSysInfo) MachineUniqueId() *QByteArray {
 	tmpValue := NewQByteArrayFromPointer(C.QSysInfo_QSysInfo_MachineUniqueId())
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
@@ -48265,7 +48265,7 @@ func NewQSystemSemaphore(key string, initialValue int, mode QSystemSemaphore__Ac
 		defer C.free(unsafe.Pointer(keyC))
 	}
 	tmpValue := NewQSystemSemaphoreFromPointer(C.QSystemSemaphore_NewQSystemSemaphore(C.struct_QtCore_PackedString{data: keyC, len: C.longlong(len(key))}, C.int(int32(initialValue)), C.longlong(mode)))
-	runtime.SetFinalizer(tmpValue, (*QSystemSemaphore).DestroyQSystemSemaphore)
+	qt.SetFinalizer(tmpValue, (*QSystemSemaphore).DestroyQSystemSemaphore)
 	return tmpValue
 }
 
@@ -48320,7 +48320,7 @@ func (ptr *QSystemSemaphore) DestroyQSystemSemaphore() {
 		C.QSystemSemaphore_DestroyQSystemSemaphore(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -48363,7 +48363,7 @@ func NewQTemporaryDirFromPointer(ptr unsafe.Pointer) (n *QTemporaryDir) {
 }
 func NewQTemporaryDir() *QTemporaryDir {
 	tmpValue := NewQTemporaryDirFromPointer(C.QTemporaryDir_NewQTemporaryDir())
-	runtime.SetFinalizer(tmpValue, (*QTemporaryDir).DestroyQTemporaryDir)
+	qt.SetFinalizer(tmpValue, (*QTemporaryDir).DestroyQTemporaryDir)
 	return tmpValue
 }
 
@@ -48374,7 +48374,7 @@ func NewQTemporaryDir2(templatePath string) *QTemporaryDir {
 		defer C.free(unsafe.Pointer(templatePathC))
 	}
 	tmpValue := NewQTemporaryDirFromPointer(C.QTemporaryDir_NewQTemporaryDir2(C.struct_QtCore_PackedString{data: templatePathC, len: C.longlong(len(templatePath))}))
-	runtime.SetFinalizer(tmpValue, (*QTemporaryDir).DestroyQTemporaryDir)
+	qt.SetFinalizer(tmpValue, (*QTemporaryDir).DestroyQTemporaryDir)
 	return tmpValue
 }
 
@@ -48436,7 +48436,7 @@ func (ptr *QTemporaryDir) DestroyQTemporaryDir() {
 		C.QTemporaryDir_DestroyQTemporaryDir(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -48635,7 +48635,7 @@ func (ptr *QTemporaryFile) DestroyQTemporaryFile() {
 	if ptr.Pointer() != nil {
 		C.QTemporaryFile_DestroyQTemporaryFile(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -48643,7 +48643,7 @@ func (ptr *QTemporaryFile) DestroyQTemporaryFileDefault() {
 	if ptr.Pointer() != nil {
 		C.QTemporaryFile_DestroyQTemporaryFileDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -48711,13 +48711,13 @@ const (
 
 func NewQTextBoundaryFinder() *QTextBoundaryFinder {
 	tmpValue := NewQTextBoundaryFinderFromPointer(C.QTextBoundaryFinder_NewQTextBoundaryFinder())
-	runtime.SetFinalizer(tmpValue, (*QTextBoundaryFinder).DestroyQTextBoundaryFinder)
+	qt.SetFinalizer(tmpValue, (*QTextBoundaryFinder).DestroyQTextBoundaryFinder)
 	return tmpValue
 }
 
 func NewQTextBoundaryFinder2(other QTextBoundaryFinder_ITF) *QTextBoundaryFinder {
 	tmpValue := NewQTextBoundaryFinderFromPointer(C.QTextBoundaryFinder_NewQTextBoundaryFinder2(PointerFromQTextBoundaryFinder(other)))
-	runtime.SetFinalizer(tmpValue, (*QTextBoundaryFinder).DestroyQTextBoundaryFinder)
+	qt.SetFinalizer(tmpValue, (*QTextBoundaryFinder).DestroyQTextBoundaryFinder)
 	return tmpValue
 }
 
@@ -48728,7 +48728,7 @@ func NewQTextBoundaryFinder3(ty QTextBoundaryFinder__BoundaryType, stri string) 
 		defer C.free(unsafe.Pointer(striC))
 	}
 	tmpValue := NewQTextBoundaryFinderFromPointer(C.QTextBoundaryFinder_NewQTextBoundaryFinder3(C.longlong(ty), C.struct_QtCore_PackedString{data: striC, len: C.longlong(len(stri))}))
-	runtime.SetFinalizer(tmpValue, (*QTextBoundaryFinder).DestroyQTextBoundaryFinder)
+	qt.SetFinalizer(tmpValue, (*QTextBoundaryFinder).DestroyQTextBoundaryFinder)
 	return tmpValue
 }
 
@@ -48811,7 +48811,7 @@ func (ptr *QTextBoundaryFinder) DestroyQTextBoundaryFinder() {
 		C.QTextBoundaryFinder_DestroyQTextBoundaryFinder(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -49087,7 +49087,7 @@ func (ptr *QTextCodec) FromUnicode(str string) *QByteArray {
 			defer C.free(unsafe.Pointer(strC))
 		}
 		tmpValue := NewQByteArrayFromPointer(C.QTextCodec_FromUnicode(ptr.Pointer(), C.struct_QtCore_PackedString{data: strC, len: C.longlong(len(str))}))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -49096,7 +49096,7 @@ func (ptr *QTextCodec) FromUnicode(str string) *QByteArray {
 func (ptr *QTextCodec) FromUnicode2(str QStringView_ITF) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QTextCodec_FromUnicode2(ptr.Pointer(), PointerFromQStringView(str)))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -49188,7 +49188,7 @@ func (ptr *QTextCodec) DisconnectName() {
 func (ptr *QTextCodec) Name() *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QTextCodec_Name(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -49256,7 +49256,7 @@ func (ptr *QTextCodec) DestroyQTextCodec() {
 	if ptr.Pointer() != nil {
 		C.QTextCodec_DestroyQTextCodec(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -49264,14 +49264,14 @@ func (ptr *QTextCodec) DestroyQTextCodecDefault() {
 	if ptr.Pointer() != nil {
 		C.QTextCodec_DestroyQTextCodecDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QTextCodec) __aliases_atList(i int) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QTextCodec___aliases_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -49290,7 +49290,7 @@ func (ptr *QTextCodec) __aliases_newList() unsafe.Pointer {
 func (ptr *QTextCodec) __availableCodecs_atList(i int) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QTextCodec___availableCodecs_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -49362,13 +49362,13 @@ func NewQTextDecoderFromPointer(ptr unsafe.Pointer) (n *QTextDecoder) {
 }
 func NewQTextDecoder2(codec QTextCodec_ITF) *QTextDecoder {
 	tmpValue := NewQTextDecoderFromPointer(C.QTextDecoder_NewQTextDecoder2(PointerFromQTextCodec(codec)))
-	runtime.SetFinalizer(tmpValue, (*QTextDecoder).DestroyQTextDecoder)
+	qt.SetFinalizer(tmpValue, (*QTextDecoder).DestroyQTextDecoder)
 	return tmpValue
 }
 
 func NewQTextDecoder3(codec QTextCodec_ITF, flags QTextCodec__ConversionFlag) *QTextDecoder {
 	tmpValue := NewQTextDecoderFromPointer(C.QTextDecoder_NewQTextDecoder3(PointerFromQTextCodec(codec), C.longlong(flags)))
-	runtime.SetFinalizer(tmpValue, (*QTextDecoder).DestroyQTextDecoder)
+	qt.SetFinalizer(tmpValue, (*QTextDecoder).DestroyQTextDecoder)
 	return tmpValue
 }
 
@@ -49412,7 +49412,7 @@ func (ptr *QTextDecoder) DestroyQTextDecoder() {
 		C.QTextDecoder_DestroyQTextDecoder(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -49455,13 +49455,13 @@ func NewQTextEncoderFromPointer(ptr unsafe.Pointer) (n *QTextEncoder) {
 }
 func NewQTextEncoder2(codec QTextCodec_ITF) *QTextEncoder {
 	tmpValue := NewQTextEncoderFromPointer(C.QTextEncoder_NewQTextEncoder2(PointerFromQTextCodec(codec)))
-	runtime.SetFinalizer(tmpValue, (*QTextEncoder).DestroyQTextEncoder)
+	qt.SetFinalizer(tmpValue, (*QTextEncoder).DestroyQTextEncoder)
 	return tmpValue
 }
 
 func NewQTextEncoder3(codec QTextCodec_ITF, flags QTextCodec__ConversionFlag) *QTextEncoder {
 	tmpValue := NewQTextEncoderFromPointer(C.QTextEncoder_NewQTextEncoder3(PointerFromQTextCodec(codec), C.longlong(flags)))
-	runtime.SetFinalizer(tmpValue, (*QTextEncoder).DestroyQTextEncoder)
+	qt.SetFinalizer(tmpValue, (*QTextEncoder).DestroyQTextEncoder)
 	return tmpValue
 }
 
@@ -49473,7 +49473,7 @@ func (ptr *QTextEncoder) FromUnicode(str string) *QByteArray {
 			defer C.free(unsafe.Pointer(strC))
 		}
 		tmpValue := NewQByteArrayFromPointer(C.QTextEncoder_FromUnicode(ptr.Pointer(), C.struct_QtCore_PackedString{data: strC, len: C.longlong(len(str))}))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -49482,7 +49482,7 @@ func (ptr *QTextEncoder) FromUnicode(str string) *QByteArray {
 func (ptr *QTextEncoder) FromUnicode2(str QStringView_ITF) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QTextEncoder_FromUnicode2(ptr.Pointer(), PointerFromQStringView(str)))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -49491,7 +49491,7 @@ func (ptr *QTextEncoder) FromUnicode2(str QStringView_ITF) *QByteArray {
 func (ptr *QTextEncoder) FromUnicode3(uc QChar_ITF, l int) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QTextEncoder_FromUnicode3(ptr.Pointer(), PointerFromQChar(uc), C.int(int32(l))))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -49502,7 +49502,7 @@ func (ptr *QTextEncoder) DestroyQTextEncoder() {
 		C.QTextEncoder_DestroyQTextEncoder(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -49590,13 +49590,13 @@ const (
 
 func NewQTextStream() *QTextStream {
 	tmpValue := NewQTextStreamFromPointer(C.QTextStream_NewQTextStream())
-	runtime.SetFinalizer(tmpValue, (*QTextStream).DestroyQTextStream)
+	qt.SetFinalizer(tmpValue, (*QTextStream).DestroyQTextStream)
 	return tmpValue
 }
 
 func NewQTextStream2(device QIODevice_ITF) *QTextStream {
 	tmpValue := NewQTextStreamFromPointer(C.QTextStream_NewQTextStream2(PointerFromQIODevice(device)))
-	runtime.SetFinalizer(tmpValue, (*QTextStream).DestroyQTextStream)
+	qt.SetFinalizer(tmpValue, (*QTextStream).DestroyQTextStream)
 	return tmpValue
 }
 
@@ -49607,19 +49607,19 @@ func NewQTextStream4(stri string, openMode QIODevice__OpenModeFlag) *QTextStream
 		defer C.free(unsafe.Pointer(striC))
 	}
 	tmpValue := NewQTextStreamFromPointer(C.QTextStream_NewQTextStream4(C.struct_QtCore_PackedString{data: striC, len: C.longlong(len(stri))}, C.longlong(openMode)))
-	runtime.SetFinalizer(tmpValue, (*QTextStream).DestroyQTextStream)
+	qt.SetFinalizer(tmpValue, (*QTextStream).DestroyQTextStream)
 	return tmpValue
 }
 
 func NewQTextStream5(array QByteArray_ITF, openMode QIODevice__OpenModeFlag) *QTextStream {
 	tmpValue := NewQTextStreamFromPointer(C.QTextStream_NewQTextStream5(PointerFromQByteArray(array), C.longlong(openMode)))
-	runtime.SetFinalizer(tmpValue, (*QTextStream).DestroyQTextStream)
+	qt.SetFinalizer(tmpValue, (*QTextStream).DestroyQTextStream)
 	return tmpValue
 }
 
 func NewQTextStream6(array QByteArray_ITF, openMode QIODevice__OpenModeFlag) *QTextStream {
 	tmpValue := NewQTextStreamFromPointer(C.QTextStream_NewQTextStream6(PointerFromQByteArray(array), C.longlong(openMode)))
-	runtime.SetFinalizer(tmpValue, (*QTextStream).DestroyQTextStream)
+	qt.SetFinalizer(tmpValue, (*QTextStream).DestroyQTextStream)
 	return tmpValue
 }
 
@@ -49692,7 +49692,7 @@ func (ptr *QTextStream) IntegerBase() int {
 func (ptr *QTextStream) Locale() *QLocale {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQLocaleFromPointer(C.QTextStream_Locale(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QLocale).DestroyQLocale)
+		qt.SetFinalizer(tmpValue, (*QLocale).DestroyQLocale)
 		return tmpValue
 	}
 	return nil
@@ -49708,7 +49708,7 @@ func (ptr *QTextStream) NumberFlags() QTextStream__NumberFlag {
 func (ptr *QTextStream) PadChar() *QChar {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQCharFromPointer(C.QTextStream_PadChar(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+		qt.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 		return tmpValue
 	}
 	return nil
@@ -49942,7 +49942,7 @@ func (ptr *QTextStream) DestroyQTextStream() {
 	if ptr.Pointer() != nil {
 		C.QTextStream_DestroyQTextStream(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -49950,7 +49950,7 @@ func (ptr *QTextStream) DestroyQTextStreamDefault() {
 	if ptr.Pointer() != nil {
 		C.QTextStream_DestroyQTextStreamDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -49997,7 +49997,7 @@ func (ptr *QTextStreamManipulator) DestroyQTextStreamManipulator() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -50499,7 +50499,7 @@ func (ptr *QThread) DestroyQThread() {
 	if ptr.Pointer() != nil {
 		C.QThread_DestroyQThread(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -50507,7 +50507,7 @@ func (ptr *QThread) DestroyQThreadDefault() {
 	if ptr.Pointer() != nil {
 		C.QThread_DestroyQThreadDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -50699,7 +50699,7 @@ func (ptr *QThreadPool) DestroyQThreadPool() {
 	if ptr.Pointer() != nil {
 		C.QThreadPool_DestroyQThreadPool(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -50707,7 +50707,7 @@ func (ptr *QThreadPool) DestroyQThreadPoolDefault() {
 	if ptr.Pointer() != nil {
 		C.QThreadPool_DestroyQThreadPoolDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -50792,7 +50792,7 @@ func (ptr *QThreadStorageData) DestroyQThreadStorageData() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -50839,26 +50839,26 @@ func (ptr *QTime) DestroyQTime() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func NewQTime2() *QTime {
 	tmpValue := NewQTimeFromPointer(C.QTime_NewQTime2())
-	runtime.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
+	qt.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
 	return tmpValue
 }
 
 func NewQTime3(h int, m int, s int, ms int) *QTime {
 	tmpValue := NewQTimeFromPointer(C.QTime_NewQTime3(C.int(int32(h)), C.int(int32(m)), C.int(int32(s)), C.int(int32(ms))))
-	runtime.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
+	qt.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
 	return tmpValue
 }
 
 func (ptr *QTime) AddMSecs(ms int) *QTime {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQTimeFromPointer(C.QTime_AddMSecs(ptr.Pointer(), C.int(int32(ms))))
-		runtime.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
+		qt.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
 		return tmpValue
 	}
 	return nil
@@ -50867,7 +50867,7 @@ func (ptr *QTime) AddMSecs(ms int) *QTime {
 func (ptr *QTime) AddSecs(s int) *QTime {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQTimeFromPointer(C.QTime_AddSecs(ptr.Pointer(), C.int(int32(s))))
-		runtime.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
+		qt.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
 		return tmpValue
 	}
 	return nil
@@ -50875,13 +50875,13 @@ func (ptr *QTime) AddSecs(s int) *QTime {
 
 func QTime_CurrentTime() *QTime {
 	tmpValue := NewQTimeFromPointer(C.QTime_QTime_CurrentTime())
-	runtime.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
+	qt.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
 	return tmpValue
 }
 
 func (ptr *QTime) CurrentTime() *QTime {
 	tmpValue := NewQTimeFromPointer(C.QTime_QTime_CurrentTime())
-	runtime.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
+	qt.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
 	return tmpValue
 }
 
@@ -50894,13 +50894,13 @@ func (ptr *QTime) Elapsed() int {
 
 func QTime_FromMSecsSinceStartOfDay(msecs int) *QTime {
 	tmpValue := NewQTimeFromPointer(C.QTime_QTime_FromMSecsSinceStartOfDay(C.int(int32(msecs))))
-	runtime.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
+	qt.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
 	return tmpValue
 }
 
 func (ptr *QTime) FromMSecsSinceStartOfDay(msecs int) *QTime {
 	tmpValue := NewQTimeFromPointer(C.QTime_QTime_FromMSecsSinceStartOfDay(C.int(int32(msecs))))
-	runtime.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
+	qt.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
 	return tmpValue
 }
 
@@ -50911,7 +50911,7 @@ func QTime_FromString(stri string, format Qt__DateFormat) *QTime {
 		defer C.free(unsafe.Pointer(striC))
 	}
 	tmpValue := NewQTimeFromPointer(C.QTime_QTime_FromString(C.struct_QtCore_PackedString{data: striC, len: C.longlong(len(stri))}, C.longlong(format)))
-	runtime.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
+	qt.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
 	return tmpValue
 }
 
@@ -50922,7 +50922,7 @@ func (ptr *QTime) FromString(stri string, format Qt__DateFormat) *QTime {
 		defer C.free(unsafe.Pointer(striC))
 	}
 	tmpValue := NewQTimeFromPointer(C.QTime_QTime_FromString(C.struct_QtCore_PackedString{data: striC, len: C.longlong(len(stri))}, C.longlong(format)))
-	runtime.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
+	qt.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
 	return tmpValue
 }
 
@@ -50938,7 +50938,7 @@ func QTime_FromString2(stri string, format string) *QTime {
 		defer C.free(unsafe.Pointer(formatC))
 	}
 	tmpValue := NewQTimeFromPointer(C.QTime_QTime_FromString2(C.struct_QtCore_PackedString{data: striC, len: C.longlong(len(stri))}, C.struct_QtCore_PackedString{data: formatC, len: C.longlong(len(format))}))
-	runtime.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
+	qt.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
 	return tmpValue
 }
 
@@ -50954,7 +50954,7 @@ func (ptr *QTime) FromString2(stri string, format string) *QTime {
 		defer C.free(unsafe.Pointer(formatC))
 	}
 	tmpValue := NewQTimeFromPointer(C.QTime_QTime_FromString2(C.struct_QtCore_PackedString{data: striC, len: C.longlong(len(stri))}, C.struct_QtCore_PackedString{data: formatC, len: C.longlong(len(format))}))
-	runtime.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
+	qt.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
 	return tmpValue
 }
 
@@ -51199,7 +51199,7 @@ func (ptr *QTimeLine) Duration() int {
 func (ptr *QTimeLine) EasingCurve() *QEasingCurve {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQEasingCurveFromPointer(C.QTimeLine_EasingCurve(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QEasingCurve).DestroyQEasingCurve)
+		qt.SetFinalizer(tmpValue, (*QEasingCurve).DestroyQEasingCurve)
 		return tmpValue
 	}
 	return nil
@@ -51775,7 +51775,7 @@ func (ptr *QTimeLine) DestroyQTimeLine() {
 	if ptr.Pointer() != nil {
 		C.QTimeLine_DestroyQTimeLine(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -51783,7 +51783,7 @@ func (ptr *QTimeLine) DestroyQTimeLineDefault() {
 	if ptr.Pointer() != nil {
 		C.QTimeLine_DestroyQTimeLineDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -51848,19 +51848,19 @@ const (
 
 func NewQTimeZone() *QTimeZone {
 	tmpValue := NewQTimeZoneFromPointer(C.QTimeZone_NewQTimeZone())
-	runtime.SetFinalizer(tmpValue, (*QTimeZone).DestroyQTimeZone)
+	qt.SetFinalizer(tmpValue, (*QTimeZone).DestroyQTimeZone)
 	return tmpValue
 }
 
 func NewQTimeZone2(ianaId QByteArray_ITF) *QTimeZone {
 	tmpValue := NewQTimeZoneFromPointer(C.QTimeZone_NewQTimeZone2(PointerFromQByteArray(ianaId)))
-	runtime.SetFinalizer(tmpValue, (*QTimeZone).DestroyQTimeZone)
+	qt.SetFinalizer(tmpValue, (*QTimeZone).DestroyQTimeZone)
 	return tmpValue
 }
 
 func NewQTimeZone3(offsetSeconds int) *QTimeZone {
 	tmpValue := NewQTimeZoneFromPointer(C.QTimeZone_NewQTimeZone3(C.int(int32(offsetSeconds))))
-	runtime.SetFinalizer(tmpValue, (*QTimeZone).DestroyQTimeZone)
+	qt.SetFinalizer(tmpValue, (*QTimeZone).DestroyQTimeZone)
 	return tmpValue
 }
 
@@ -51881,13 +51881,13 @@ func NewQTimeZone4(ianaId QByteArray_ITF, offsetSeconds int, name string, abbrev
 		defer C.free(unsafe.Pointer(commentC))
 	}
 	tmpValue := NewQTimeZoneFromPointer(C.QTimeZone_NewQTimeZone4(PointerFromQByteArray(ianaId), C.int(int32(offsetSeconds)), C.struct_QtCore_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtCore_PackedString{data: abbreviationC, len: C.longlong(len(abbreviation))}, C.longlong(country), C.struct_QtCore_PackedString{data: commentC, len: C.longlong(len(comment))}))
-	runtime.SetFinalizer(tmpValue, (*QTimeZone).DestroyQTimeZone)
+	qt.SetFinalizer(tmpValue, (*QTimeZone).DestroyQTimeZone)
 	return tmpValue
 }
 
 func NewQTimeZone5(other QTimeZone_ITF) *QTimeZone {
 	tmpValue := NewQTimeZoneFromPointer(C.QTimeZone_NewQTimeZone5(PointerFromQTimeZone(other)))
-	runtime.SetFinalizer(tmpValue, (*QTimeZone).DestroyQTimeZone)
+	qt.SetFinalizer(tmpValue, (*QTimeZone).DestroyQTimeZone)
 	return tmpValue
 }
 
@@ -52015,20 +52015,20 @@ func (ptr *QTimeZone) HasTransitions() bool {
 
 func QTimeZone_IanaIdToWindowsId(ianaId QByteArray_ITF) *QByteArray {
 	tmpValue := NewQByteArrayFromPointer(C.QTimeZone_QTimeZone_IanaIdToWindowsId(PointerFromQByteArray(ianaId)))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
 func (ptr *QTimeZone) IanaIdToWindowsId(ianaId QByteArray_ITF) *QByteArray {
 	tmpValue := NewQByteArrayFromPointer(C.QTimeZone_QTimeZone_IanaIdToWindowsId(PointerFromQByteArray(ianaId)))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
 func (ptr *QTimeZone) Id() *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QTimeZone_Id(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -52078,61 +52078,61 @@ func (ptr *QTimeZone) Swap(other QTimeZone_ITF) {
 
 func QTimeZone_SystemTimeZone() *QTimeZone {
 	tmpValue := NewQTimeZoneFromPointer(C.QTimeZone_QTimeZone_SystemTimeZone())
-	runtime.SetFinalizer(tmpValue, (*QTimeZone).DestroyQTimeZone)
+	qt.SetFinalizer(tmpValue, (*QTimeZone).DestroyQTimeZone)
 	return tmpValue
 }
 
 func (ptr *QTimeZone) SystemTimeZone() *QTimeZone {
 	tmpValue := NewQTimeZoneFromPointer(C.QTimeZone_QTimeZone_SystemTimeZone())
-	runtime.SetFinalizer(tmpValue, (*QTimeZone).DestroyQTimeZone)
+	qt.SetFinalizer(tmpValue, (*QTimeZone).DestroyQTimeZone)
 	return tmpValue
 }
 
 func QTimeZone_SystemTimeZoneId() *QByteArray {
 	tmpValue := NewQByteArrayFromPointer(C.QTimeZone_QTimeZone_SystemTimeZoneId())
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
 func (ptr *QTimeZone) SystemTimeZoneId() *QByteArray {
 	tmpValue := NewQByteArrayFromPointer(C.QTimeZone_QTimeZone_SystemTimeZoneId())
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
 func QTimeZone_Utc() *QTimeZone {
 	tmpValue := NewQTimeZoneFromPointer(C.QTimeZone_QTimeZone_Utc())
-	runtime.SetFinalizer(tmpValue, (*QTimeZone).DestroyQTimeZone)
+	qt.SetFinalizer(tmpValue, (*QTimeZone).DestroyQTimeZone)
 	return tmpValue
 }
 
 func (ptr *QTimeZone) Utc() *QTimeZone {
 	tmpValue := NewQTimeZoneFromPointer(C.QTimeZone_QTimeZone_Utc())
-	runtime.SetFinalizer(tmpValue, (*QTimeZone).DestroyQTimeZone)
+	qt.SetFinalizer(tmpValue, (*QTimeZone).DestroyQTimeZone)
 	return tmpValue
 }
 
 func QTimeZone_WindowsIdToDefaultIanaId(windowsId QByteArray_ITF) *QByteArray {
 	tmpValue := NewQByteArrayFromPointer(C.QTimeZone_QTimeZone_WindowsIdToDefaultIanaId(PointerFromQByteArray(windowsId)))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
 func (ptr *QTimeZone) WindowsIdToDefaultIanaId(windowsId QByteArray_ITF) *QByteArray {
 	tmpValue := NewQByteArrayFromPointer(C.QTimeZone_QTimeZone_WindowsIdToDefaultIanaId(PointerFromQByteArray(windowsId)))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
 func QTimeZone_WindowsIdToDefaultIanaId2(windowsId QByteArray_ITF, country QLocale__Country) *QByteArray {
 	tmpValue := NewQByteArrayFromPointer(C.QTimeZone_QTimeZone_WindowsIdToDefaultIanaId2(PointerFromQByteArray(windowsId), C.longlong(country)))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
 func (ptr *QTimeZone) WindowsIdToDefaultIanaId2(windowsId QByteArray_ITF, country QLocale__Country) *QByteArray {
 	tmpValue := NewQByteArrayFromPointer(C.QTimeZone_QTimeZone_WindowsIdToDefaultIanaId2(PointerFromQByteArray(windowsId), C.longlong(country)))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
@@ -52185,14 +52185,14 @@ func (ptr *QTimeZone) DestroyQTimeZone() {
 		C.QTimeZone_DestroyQTimeZone(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QTimeZone) __availableTimeZoneIds_atList(i int) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QTimeZone___availableTimeZoneIds_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -52211,7 +52211,7 @@ func (ptr *QTimeZone) __availableTimeZoneIds_newList() unsafe.Pointer {
 func (ptr *QTimeZone) __availableTimeZoneIds_atList2(i int) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QTimeZone___availableTimeZoneIds_atList2(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -52230,7 +52230,7 @@ func (ptr *QTimeZone) __availableTimeZoneIds_newList2() unsafe.Pointer {
 func (ptr *QTimeZone) __availableTimeZoneIds_atList3(i int) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QTimeZone___availableTimeZoneIds_atList3(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -52249,7 +52249,7 @@ func (ptr *QTimeZone) __availableTimeZoneIds_newList3() unsafe.Pointer {
 func (ptr *QTimeZone) __windowsIdToIanaIds_atList(i int) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QTimeZone___windowsIdToIanaIds_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -52268,7 +52268,7 @@ func (ptr *QTimeZone) __windowsIdToIanaIds_newList() unsafe.Pointer {
 func (ptr *QTimeZone) __windowsIdToIanaIds_atList2(i int) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QTimeZone___windowsIdToIanaIds_atList2(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -52624,7 +52624,7 @@ func (ptr *QTimer) DestroyQTimer() {
 	if ptr.Pointer() != nil {
 		C.QTimer_DestroyQTimer(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -52632,7 +52632,7 @@ func (ptr *QTimer) DestroyQTimerDefault() {
 	if ptr.Pointer() != nil {
 		C.QTimer_DestroyQTimerDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -52681,13 +52681,13 @@ func (ptr *QTimerEvent) DestroyQTimerEvent() {
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func NewQTimerEvent(timerId int) *QTimerEvent {
 	tmpValue := NewQTimerEventFromPointer(C.QTimerEvent_NewQTimerEvent(C.int(int32(timerId))))
-	runtime.SetFinalizer(tmpValue, (*QTimerEvent).DestroyQTimerEvent)
+	qt.SetFinalizer(tmpValue, (*QTimerEvent).DestroyQTimerEvent)
 	return tmpValue
 }
 
@@ -52971,7 +52971,7 @@ func (ptr *QTranslator) DestroyQTranslator() {
 	if ptr.Pointer() != nil {
 		C.QTranslator_DestroyQTranslator(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -52979,7 +52979,7 @@ func (ptr *QTranslator) DestroyQTranslatorDefault() {
 	if ptr.Pointer() != nil {
 		C.QTranslator_DestroyQTranslatorDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -53108,7 +53108,7 @@ func (ptr *QTransposeProxyModel) DisconnectIndex() {
 func (ptr *QTransposeProxyModel) Index(row int, column int, parent QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QTransposeProxyModel_Index(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), PointerFromQModelIndex(parent)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -53117,7 +53117,7 @@ func (ptr *QTransposeProxyModel) Index(row int, column int, parent QModelIndex_I
 func (ptr *QTransposeProxyModel) IndexDefault(row int, column int, parent QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QTransposeProxyModel_IndexDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), PointerFromQModelIndex(parent)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -53157,7 +53157,7 @@ func (ptr *QTransposeProxyModel) DisconnectMapFromSource() {
 func (ptr *QTransposeProxyModel) MapFromSource(sourceIndex QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QTransposeProxyModel_MapFromSource(ptr.Pointer(), PointerFromQModelIndex(sourceIndex)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -53166,7 +53166,7 @@ func (ptr *QTransposeProxyModel) MapFromSource(sourceIndex QModelIndex_ITF) *QMo
 func (ptr *QTransposeProxyModel) MapFromSourceDefault(sourceIndex QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QTransposeProxyModel_MapFromSourceDefault(ptr.Pointer(), PointerFromQModelIndex(sourceIndex)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -53206,7 +53206,7 @@ func (ptr *QTransposeProxyModel) DisconnectMapToSource() {
 func (ptr *QTransposeProxyModel) MapToSource(proxyIndex QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QTransposeProxyModel_MapToSource(ptr.Pointer(), PointerFromQModelIndex(proxyIndex)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -53215,7 +53215,7 @@ func (ptr *QTransposeProxyModel) MapToSource(proxyIndex QModelIndex_ITF) *QModel
 func (ptr *QTransposeProxyModel) MapToSourceDefault(proxyIndex QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QTransposeProxyModel_MapToSourceDefault(ptr.Pointer(), PointerFromQModelIndex(proxyIndex)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -53255,7 +53255,7 @@ func (ptr *QTransposeProxyModel) DisconnectParent() {
 func (ptr *QTransposeProxyModel) Parent(index QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QTransposeProxyModel_Parent(ptr.Pointer(), PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -53264,7 +53264,7 @@ func (ptr *QTransposeProxyModel) Parent(index QModelIndex_ITF) *QModelIndex {
 func (ptr *QTransposeProxyModel) ParentDefault(index QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QTransposeProxyModel_ParentDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -53350,7 +53350,7 @@ func (ptr *QTransposeProxyModel) DestroyQTransposeProxyModel() {
 	if ptr.Pointer() != nil {
 		C.QTransposeProxyModel_DestroyQTransposeProxyModel(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -53358,7 +53358,7 @@ func (ptr *QTransposeProxyModel) DestroyQTransposeProxyModelDefault() {
 	if ptr.Pointer() != nil {
 		C.QTransposeProxyModel_DestroyQTransposeProxyModelDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -53406,7 +53406,7 @@ func (ptr *QTypedArrayData) DestroyQTypedArrayData() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -53455,7 +53455,7 @@ func (ptr *QUnhandledException) DestroyQUnhandledException() {
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -53553,13 +53553,13 @@ const (
 
 func NewQUrl() *QUrl {
 	tmpValue := NewQUrlFromPointer(C.QUrl_NewQUrl())
-	runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
+	qt.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
 	return tmpValue
 }
 
 func NewQUrl2(other QUrl_ITF) *QUrl {
 	tmpValue := NewQUrlFromPointer(C.QUrl_NewQUrl2(PointerFromQUrl(other)))
-	runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
+	qt.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
 	return tmpValue
 }
 
@@ -53570,20 +53570,20 @@ func NewQUrl3(url string, parsingMode QUrl__ParsingMode) *QUrl {
 		defer C.free(unsafe.Pointer(urlC))
 	}
 	tmpValue := NewQUrlFromPointer(C.QUrl_NewQUrl3(C.struct_QtCore_PackedString{data: urlC, len: C.longlong(len(url))}, C.longlong(parsingMode)))
-	runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
+	qt.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
 	return tmpValue
 }
 
 func NewQUrl4(other QUrl_ITF) *QUrl {
 	tmpValue := NewQUrlFromPointer(C.QUrl_NewQUrl4(PointerFromQUrl(other)))
-	runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
+	qt.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
 	return tmpValue
 }
 
 func (ptr *QUrl) Adjusted(options QUrl__UrlFormattingOption) *QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQUrlFromPointer(C.QUrl_Adjusted(ptr.Pointer(), C.longlong(options)))
-		runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -53633,13 +53633,13 @@ func (ptr *QUrl) FromAce(domain QByteArray_ITF) string {
 
 func QUrl_FromEncoded(input QByteArray_ITF, parsingMode QUrl__ParsingMode) *QUrl {
 	tmpValue := NewQUrlFromPointer(C.QUrl_QUrl_FromEncoded(PointerFromQByteArray(input), C.longlong(parsingMode)))
-	runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
+	qt.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
 	return tmpValue
 }
 
 func (ptr *QUrl) FromEncoded(input QByteArray_ITF, parsingMode QUrl__ParsingMode) *QUrl {
 	tmpValue := NewQUrlFromPointer(C.QUrl_QUrl_FromEncoded(PointerFromQByteArray(input), C.longlong(parsingMode)))
-	runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
+	qt.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
 	return tmpValue
 }
 
@@ -53650,7 +53650,7 @@ func QUrl_FromLocalFile(localFile string) *QUrl {
 		defer C.free(unsafe.Pointer(localFileC))
 	}
 	tmpValue := NewQUrlFromPointer(C.QUrl_QUrl_FromLocalFile(C.struct_QtCore_PackedString{data: localFileC, len: C.longlong(len(localFile))}))
-	runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
+	qt.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
 	return tmpValue
 }
 
@@ -53661,7 +53661,7 @@ func (ptr *QUrl) FromLocalFile(localFile string) *QUrl {
 		defer C.free(unsafe.Pointer(localFileC))
 	}
 	tmpValue := NewQUrlFromPointer(C.QUrl_QUrl_FromLocalFile(C.struct_QtCore_PackedString{data: localFileC, len: C.longlong(len(localFile))}))
-	runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
+	qt.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
 	return tmpValue
 }
 
@@ -53706,7 +53706,7 @@ func QUrl_FromUserInput(userInput string) *QUrl {
 		defer C.free(unsafe.Pointer(userInputC))
 	}
 	tmpValue := NewQUrlFromPointer(C.QUrl_QUrl_FromUserInput(C.struct_QtCore_PackedString{data: userInputC, len: C.longlong(len(userInput))}))
-	runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
+	qt.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
 	return tmpValue
 }
 
@@ -53717,7 +53717,7 @@ func (ptr *QUrl) FromUserInput(userInput string) *QUrl {
 		defer C.free(unsafe.Pointer(userInputC))
 	}
 	tmpValue := NewQUrlFromPointer(C.QUrl_QUrl_FromUserInput(C.struct_QtCore_PackedString{data: userInputC, len: C.longlong(len(userInput))}))
-	runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
+	qt.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
 	return tmpValue
 }
 
@@ -53733,7 +53733,7 @@ func QUrl_FromUserInput2(userInput string, workingDirectory string, options QUrl
 		defer C.free(unsafe.Pointer(workingDirectoryC))
 	}
 	tmpValue := NewQUrlFromPointer(C.QUrl_QUrl_FromUserInput2(C.struct_QtCore_PackedString{data: userInputC, len: C.longlong(len(userInput))}, C.struct_QtCore_PackedString{data: workingDirectoryC, len: C.longlong(len(workingDirectory))}, C.longlong(options)))
-	runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
+	qt.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
 	return tmpValue
 }
 
@@ -53749,7 +53749,7 @@ func (ptr *QUrl) FromUserInput2(userInput string, workingDirectory string, optio
 		defer C.free(unsafe.Pointer(workingDirectoryC))
 	}
 	tmpValue := NewQUrlFromPointer(C.QUrl_QUrl_FromUserInput2(C.struct_QtCore_PackedString{data: userInputC, len: C.longlong(len(userInput))}, C.struct_QtCore_PackedString{data: workingDirectoryC, len: C.longlong(len(workingDirectory))}, C.longlong(options)))
-	runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
+	qt.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
 	return tmpValue
 }
 
@@ -53855,7 +53855,7 @@ func (ptr *QUrl) Query(options QUrl__ComponentFormattingOption) string {
 func (ptr *QUrl) Resolved(relative QUrl_ITF) *QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQUrlFromPointer(C.QUrl_Resolved(ptr.Pointer(), PointerFromQUrl(relative)))
-		runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -54015,7 +54015,7 @@ func QUrl_ToAce(domain string) *QByteArray {
 		defer C.free(unsafe.Pointer(domainC))
 	}
 	tmpValue := NewQByteArrayFromPointer(C.QUrl_QUrl_ToAce(C.struct_QtCore_PackedString{data: domainC, len: C.longlong(len(domain))}))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
@@ -54026,7 +54026,7 @@ func (ptr *QUrl) ToAce(domain string) *QByteArray {
 		defer C.free(unsafe.Pointer(domainC))
 	}
 	tmpValue := NewQByteArrayFromPointer(C.QUrl_QUrl_ToAce(C.struct_QtCore_PackedString{data: domainC, len: C.longlong(len(domain))}))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
@@ -54040,7 +54040,7 @@ func (ptr *QUrl) ToDisplayString(options QUrl__UrlFormattingOption) string {
 func (ptr *QUrl) ToEncoded(options QUrl__UrlFormattingOption) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QUrl_ToEncoded(ptr.Pointer(), C.longlong(options)))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -54060,7 +54060,7 @@ func QUrl_ToPercentEncoding(input string, exclude QByteArray_ITF, include QByteA
 		defer C.free(unsafe.Pointer(inputC))
 	}
 	tmpValue := NewQByteArrayFromPointer(C.QUrl_QUrl_ToPercentEncoding(C.struct_QtCore_PackedString{data: inputC, len: C.longlong(len(input))}, PointerFromQByteArray(exclude), PointerFromQByteArray(include)))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
@@ -54071,7 +54071,7 @@ func (ptr *QUrl) ToPercentEncoding(input string, exclude QByteArray_ITF, include
 		defer C.free(unsafe.Pointer(inputC))
 	}
 	tmpValue := NewQByteArrayFromPointer(C.QUrl_QUrl_ToPercentEncoding(C.struct_QtCore_PackedString{data: inputC, len: C.longlong(len(input))}, PointerFromQByteArray(exclude), PointerFromQByteArray(include)))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
@@ -54135,14 +54135,14 @@ func (ptr *QUrl) DestroyQUrl() {
 		C.QUrl_DestroyQUrl(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QUrl) __allEncodedQueryItemValues_atList(i int) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QUrl___allEncodedQueryItemValues_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -54161,7 +54161,7 @@ func (ptr *QUrl) __allEncodedQueryItemValues_newList() unsafe.Pointer {
 func (ptr *QUrl) __fromStringList_atList(i int) *QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQUrlFromPointer(C.QUrl___fromStringList_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -54180,7 +54180,7 @@ func (ptr *QUrl) __fromStringList_newList() unsafe.Pointer {
 func (ptr *QUrl) __toStringList_urls_atList(i int) *QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQUrlFromPointer(C.QUrl___toStringList_urls_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -54235,13 +54235,13 @@ func NewQUrlQueryFromPointer(ptr unsafe.Pointer) (n *QUrlQuery) {
 }
 func NewQUrlQuery() *QUrlQuery {
 	tmpValue := NewQUrlQueryFromPointer(C.QUrlQuery_NewQUrlQuery())
-	runtime.SetFinalizer(tmpValue, (*QUrlQuery).DestroyQUrlQuery)
+	qt.SetFinalizer(tmpValue, (*QUrlQuery).DestroyQUrlQuery)
 	return tmpValue
 }
 
 func NewQUrlQuery2(url QUrl_ITF) *QUrlQuery {
 	tmpValue := NewQUrlQueryFromPointer(C.QUrlQuery_NewQUrlQuery2(PointerFromQUrl(url)))
-	runtime.SetFinalizer(tmpValue, (*QUrlQuery).DestroyQUrlQuery)
+	qt.SetFinalizer(tmpValue, (*QUrlQuery).DestroyQUrlQuery)
 	return tmpValue
 }
 
@@ -54252,13 +54252,13 @@ func NewQUrlQuery3(queryString string) *QUrlQuery {
 		defer C.free(unsafe.Pointer(queryStringC))
 	}
 	tmpValue := NewQUrlQueryFromPointer(C.QUrlQuery_NewQUrlQuery3(C.struct_QtCore_PackedString{data: queryStringC, len: C.longlong(len(queryString))}))
-	runtime.SetFinalizer(tmpValue, (*QUrlQuery).DestroyQUrlQuery)
+	qt.SetFinalizer(tmpValue, (*QUrlQuery).DestroyQUrlQuery)
 	return tmpValue
 }
 
 func NewQUrlQuery5(other QUrlQuery_ITF) *QUrlQuery {
 	tmpValue := NewQUrlQueryFromPointer(C.QUrlQuery_NewQUrlQuery5(PointerFromQUrlQuery(other)))
-	runtime.SetFinalizer(tmpValue, (*QUrlQuery).DestroyQUrlQuery)
+	qt.SetFinalizer(tmpValue, (*QUrlQuery).DestroyQUrlQuery)
 	return tmpValue
 }
 
@@ -54298,25 +54298,25 @@ func (ptr *QUrlQuery) Clear() {
 
 func QUrlQuery_DefaultQueryPairDelimiter() *QChar {
 	tmpValue := NewQCharFromPointer(C.QUrlQuery_QUrlQuery_DefaultQueryPairDelimiter())
-	runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+	qt.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 	return tmpValue
 }
 
 func (ptr *QUrlQuery) DefaultQueryPairDelimiter() *QChar {
 	tmpValue := NewQCharFromPointer(C.QUrlQuery_QUrlQuery_DefaultQueryPairDelimiter())
-	runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+	qt.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 	return tmpValue
 }
 
 func QUrlQuery_DefaultQueryValueDelimiter() *QChar {
 	tmpValue := NewQCharFromPointer(C.QUrlQuery_QUrlQuery_DefaultQueryValueDelimiter())
-	runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+	qt.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 	return tmpValue
 }
 
 func (ptr *QUrlQuery) DefaultQueryValueDelimiter() *QChar {
 	tmpValue := NewQCharFromPointer(C.QUrlQuery_QUrlQuery_DefaultQueryValueDelimiter())
-	runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+	qt.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 	return tmpValue
 }
 
@@ -54361,7 +54361,7 @@ func (ptr *QUrlQuery) QueryItemValue(key string, encoding QUrl__ComponentFormatt
 func (ptr *QUrlQuery) QueryPairDelimiter() *QChar {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQCharFromPointer(C.QUrlQuery_QueryPairDelimiter(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+		qt.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 		return tmpValue
 	}
 	return nil
@@ -54370,7 +54370,7 @@ func (ptr *QUrlQuery) QueryPairDelimiter() *QChar {
 func (ptr *QUrlQuery) QueryValueDelimiter() *QChar {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQCharFromPointer(C.QUrlQuery_QueryValueDelimiter(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+		qt.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 		return tmpValue
 	}
 	return nil
@@ -54433,7 +54433,7 @@ func (ptr *QUrlQuery) DestroyQUrlQuery() {
 		C.QUrlQuery_DestroyQUrlQuery(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -54480,7 +54480,7 @@ func (ptr *QUrlTwoFlags) DestroyQUrlTwoFlags() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -54527,7 +54527,7 @@ func (ptr *QUuid) DestroyQUuid() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -54569,7 +54569,7 @@ const (
 
 func NewQUuid2() *QUuid {
 	tmpValue := NewQUuidFromPointer(C.QUuid_NewQUuid2())
-	runtime.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
+	qt.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
 	return tmpValue
 }
 
@@ -54615,7 +54615,7 @@ func NewQUuid3(l uint, w1 uint16, w2 uint16, b1 string, b2 string, b3 string, b4
 		defer C.free(unsafe.Pointer(b8C))
 	}
 	tmpValue := NewQUuidFromPointer(C.QUuid_NewQUuid3(C.uint(uint32(l)), C.ushort(w1), C.ushort(w2), b1C, b2C, b3C, b4C, b5C, b6C, b7C, b8C))
-	runtime.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
+	qt.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
 	return tmpValue
 }
 
@@ -54626,37 +54626,37 @@ func NewQUuid4(text string) *QUuid {
 		defer C.free(unsafe.Pointer(textC))
 	}
 	tmpValue := NewQUuidFromPointer(C.QUuid_NewQUuid4(C.struct_QtCore_PackedString{data: textC, len: C.longlong(len(text))}))
-	runtime.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
+	qt.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
 	return tmpValue
 }
 
 func NewQUuid(text QByteArray_ITF) *QUuid {
 	tmpValue := NewQUuidFromPointer(C.QUuid_NewQUuid(PointerFromQByteArray(text)))
-	runtime.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
+	qt.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
 	return tmpValue
 }
 
 func QUuid_CreateUuid() *QUuid {
 	tmpValue := NewQUuidFromPointer(C.QUuid_QUuid_CreateUuid())
-	runtime.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
+	qt.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
 	return tmpValue
 }
 
 func (ptr *QUuid) CreateUuid() *QUuid {
 	tmpValue := NewQUuidFromPointer(C.QUuid_QUuid_CreateUuid())
-	runtime.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
+	qt.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
 	return tmpValue
 }
 
 func QUuid_CreateUuidV3(ns QUuid_ITF, baseData QByteArray_ITF) *QUuid {
 	tmpValue := NewQUuidFromPointer(C.QUuid_QUuid_CreateUuidV3(PointerFromQUuid(ns), PointerFromQByteArray(baseData)))
-	runtime.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
+	qt.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
 	return tmpValue
 }
 
 func (ptr *QUuid) CreateUuidV3(ns QUuid_ITF, baseData QByteArray_ITF) *QUuid {
 	tmpValue := NewQUuidFromPointer(C.QUuid_QUuid_CreateUuidV3(PointerFromQUuid(ns), PointerFromQByteArray(baseData)))
-	runtime.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
+	qt.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
 	return tmpValue
 }
 
@@ -54667,7 +54667,7 @@ func QUuid_CreateUuidV32(ns QUuid_ITF, baseData string) *QUuid {
 		defer C.free(unsafe.Pointer(baseDataC))
 	}
 	tmpValue := NewQUuidFromPointer(C.QUuid_QUuid_CreateUuidV32(PointerFromQUuid(ns), C.struct_QtCore_PackedString{data: baseDataC, len: C.longlong(len(baseData))}))
-	runtime.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
+	qt.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
 	return tmpValue
 }
 
@@ -54678,19 +54678,19 @@ func (ptr *QUuid) CreateUuidV32(ns QUuid_ITF, baseData string) *QUuid {
 		defer C.free(unsafe.Pointer(baseDataC))
 	}
 	tmpValue := NewQUuidFromPointer(C.QUuid_QUuid_CreateUuidV32(PointerFromQUuid(ns), C.struct_QtCore_PackedString{data: baseDataC, len: C.longlong(len(baseData))}))
-	runtime.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
+	qt.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
 	return tmpValue
 }
 
 func QUuid_CreateUuidV5(ns QUuid_ITF, baseData QByteArray_ITF) *QUuid {
 	tmpValue := NewQUuidFromPointer(C.QUuid_QUuid_CreateUuidV5(PointerFromQUuid(ns), PointerFromQByteArray(baseData)))
-	runtime.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
+	qt.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
 	return tmpValue
 }
 
 func (ptr *QUuid) CreateUuidV5(ns QUuid_ITF, baseData QByteArray_ITF) *QUuid {
 	tmpValue := NewQUuidFromPointer(C.QUuid_QUuid_CreateUuidV5(PointerFromQUuid(ns), PointerFromQByteArray(baseData)))
-	runtime.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
+	qt.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
 	return tmpValue
 }
 
@@ -54701,7 +54701,7 @@ func QUuid_CreateUuidV52(ns QUuid_ITF, baseData string) *QUuid {
 		defer C.free(unsafe.Pointer(baseDataC))
 	}
 	tmpValue := NewQUuidFromPointer(C.QUuid_QUuid_CreateUuidV52(PointerFromQUuid(ns), C.struct_QtCore_PackedString{data: baseDataC, len: C.longlong(len(baseData))}))
-	runtime.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
+	qt.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
 	return tmpValue
 }
 
@@ -54712,43 +54712,43 @@ func (ptr *QUuid) CreateUuidV52(ns QUuid_ITF, baseData string) *QUuid {
 		defer C.free(unsafe.Pointer(baseDataC))
 	}
 	tmpValue := NewQUuidFromPointer(C.QUuid_QUuid_CreateUuidV52(PointerFromQUuid(ns), C.struct_QtCore_PackedString{data: baseDataC, len: C.longlong(len(baseData))}))
-	runtime.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
+	qt.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
 	return tmpValue
 }
 
 func QUuid_FromRfc4122(bytes QByteArray_ITF) *QUuid {
 	tmpValue := NewQUuidFromPointer(C.QUuid_QUuid_FromRfc4122(PointerFromQByteArray(bytes)))
-	runtime.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
+	qt.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
 	return tmpValue
 }
 
 func (ptr *QUuid) FromRfc4122(bytes QByteArray_ITF) *QUuid {
 	tmpValue := NewQUuidFromPointer(C.QUuid_QUuid_FromRfc4122(PointerFromQByteArray(bytes)))
-	runtime.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
+	qt.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
 	return tmpValue
 }
 
 func QUuid_FromString(text QStringView_ITF) *QUuid {
 	tmpValue := NewQUuidFromPointer(C.QUuid_QUuid_FromString(PointerFromQStringView(text)))
-	runtime.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
+	qt.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
 	return tmpValue
 }
 
 func (ptr *QUuid) FromString(text QStringView_ITF) *QUuid {
 	tmpValue := NewQUuidFromPointer(C.QUuid_QUuid_FromString(PointerFromQStringView(text)))
-	runtime.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
+	qt.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
 	return tmpValue
 }
 
 func QUuid_FromString2(text QLatin1String_ITF) *QUuid {
 	tmpValue := NewQUuidFromPointer(C.QUuid_QUuid_FromString2(PointerFromQLatin1String(text)))
-	runtime.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
+	qt.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
 	return tmpValue
 }
 
 func (ptr *QUuid) FromString2(text QLatin1String_ITF) *QUuid {
 	tmpValue := NewQUuidFromPointer(C.QUuid_QUuid_FromString2(PointerFromQLatin1String(text)))
-	runtime.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
+	qt.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
 	return tmpValue
 }
 
@@ -54762,7 +54762,7 @@ func (ptr *QUuid) IsNull() bool {
 func (ptr *QUuid) ToByteArray() *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QUuid_ToByteArray(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -54771,7 +54771,7 @@ func (ptr *QUuid) ToByteArray() *QByteArray {
 func (ptr *QUuid) ToByteArray2(mode QUuid__StringFormat) *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QUuid_ToByteArray2(ptr.Pointer(), C.longlong(mode)))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -54780,7 +54780,7 @@ func (ptr *QUuid) ToByteArray2(mode QUuid__StringFormat) *QByteArray {
 func (ptr *QUuid) ToRfc4122() *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QUuid_ToRfc4122(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -55075,98 +55075,98 @@ func isZero(v reflect.Value) bool {
 		panic(&reflect.ValueError{"reflect.Value.IsZero", v.Kind()})
 	}
 }
-func (v *QVariant) ToInterface() interface{} {
-	switch v.Type() {
+func (ptr *QVariant) ToInterface() interface{} {
+	switch ptr.Type() {
 	case QVariant__Bool:
-		return v.ToBool()
+		return ptr.ToBool()
 	case QVariant__Int:
-		return v.ToInt(nil)
+		return ptr.ToInt(nil)
 	case QVariant__UInt:
-		return v.ToUInt(nil)
+		return ptr.ToUInt(nil)
 	case QVariant__LongLong:
-		return v.ToLongLong(nil)
+		return ptr.ToLongLong(nil)
 	case QVariant__ULongLong:
-		return v.ToULongLong(nil)
+		return ptr.ToULongLong(nil)
 	case QVariant__Double:
-		return v.ToDouble(nil)
+		return ptr.ToDouble(nil)
 	case QVariant__Char:
-		return v.ToChar()
+		return ptr.ToChar()
 	case QVariant__Map:
-		return v.ToMap()
+		return ptr.ToMap()
 	case QVariant__List:
-		return v.ToList()
+		return ptr.ToList()
 	case QVariant__String:
-		return v.ToString()
+		return ptr.ToString()
 	case QVariant__StringList:
-		return v.ToStringList()
+		return ptr.ToStringList()
 	case QVariant__ByteArray:
-		return v.ToByteArray()
+		return ptr.ToByteArray()
 	case QVariant__BitArray:
-		return v.ToBitArray()
+		return ptr.ToBitArray()
 	case QVariant__Date:
-		return v.ToDate()
+		return ptr.ToDate()
 	case QVariant__Time:
-		return v.ToTime()
+		return ptr.ToTime()
 	case QVariant__DateTime:
-		return v.ToDateTime()
+		return ptr.ToDateTime()
 	case QVariant__Url:
-		return v.ToUrl()
+		return ptr.ToUrl()
 	case QVariant__Locale:
-		return v.ToLocale()
+		return ptr.ToLocale()
 	case QVariant__Rect:
-		return v.ToRect()
+		return ptr.ToRect()
 	case QVariant__RectF:
-		return v.ToRectF()
+		return ptr.ToRectF()
 	case QVariant__Size:
-		return v.ToSize()
+		return ptr.ToSize()
 	case QVariant__SizeF:
-		return v.ToSizeF()
+		return ptr.ToSizeF()
 	case QVariant__Line:
-		return v.ToLine()
+		return ptr.ToLine()
 	case QVariant__LineF:
-		return v.ToLineF()
+		return ptr.ToLineF()
 	case QVariant__Point:
-		return v.ToPoint()
+		return ptr.ToPoint()
 	case QVariant__PointF:
-		return v.ToPointF()
+		return ptr.ToPointF()
 	case QVariant__RegExp:
-		return v.ToRegExp()
+		return ptr.ToRegExp()
 	case QVariant__RegularExpression:
-		return v.ToRegularExpression()
+		return ptr.ToRegularExpression()
 	case QVariant__Hash:
-		return v.ToHash()
+		return ptr.ToHash()
 	case QVariant__EasingCurve:
-		return v.ToEasingCurve()
+		return ptr.ToEasingCurve()
 	case QVariant__Uuid:
-		return v.ToUuid()
+		return ptr.ToUuid()
 	case QVariant__ModelIndex:
-		return v.ToModelIndex()
+		return ptr.ToModelIndex()
 	case QVariant__PersistentModelIndex:
-		return v.ToPersistentModelIndex()
+		return ptr.ToPersistentModelIndex()
 	case QVariant__Font:
-		return v.ToFont()
+		return ptr.ToFont()
 	case QVariant__Brush:
-		return v.ToBrush()
+		return ptr.ToBrush()
 	case QVariant__Color:
-		return v.ToColor()
+		return ptr.ToColor()
 	case QVariant__Image:
-		return v.ToImage()
+		return ptr.ToImage()
 	case QVariant__Icon:
-		return v.ToIcon()
+		return ptr.ToIcon()
 
 	}
-	return v
+	return ptr
 }
 
-func (src *QVariant) ToGoType(dst interface{}) {
+func (ptr *QVariant) ToGoType(dst interface{}) {
 	v := reflect.ValueOf(dst)
 	if v.Kind() == reflect.Ptr {
 		v = v.Elem()
 	}
 
-	switch src.Type() {
+	switch ptr.Type() {
 	case QVariant__List:
-		d := src.ToList()
+		d := ptr.ToList()
 
 		switch v.Kind() {
 		case reflect.Slice:
@@ -55189,7 +55189,7 @@ func (src *QVariant) ToGoType(dst interface{}) {
 		}
 
 	case QVariant__Map:
-		d := src.ToMap()
+		d := ptr.ToMap()
 
 		if v.Kind() == reflect.Struct {
 			for k, val := range d {
@@ -55239,7 +55239,7 @@ func (src *QVariant) ToGoType(dst interface{}) {
 		}
 
 	default:
-		v.Set(reflect.ValueOf(src.ToInterface()).Convert(v.Type()))
+		v.Set(reflect.ValueOf(ptr.ToInterface()).Convert(v.Type()))
 	}
 }
 
@@ -55312,67 +55312,67 @@ const (
 
 func NewQVariant() *QVariant {
 	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant())
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func NewQVariant2(ty QVariant__Type) *QVariant {
 	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant2(C.longlong(ty)))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func NewQVariant3(typeId int, copy unsafe.Pointer) *QVariant {
 	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant3(C.int(int32(typeId)), copy))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func NewQVariant4(s QDataStream_ITF) *QVariant {
 	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant4(PointerFromQDataStream(s)))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func NewQVariant5(val int) *QVariant {
 	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant5(C.int(int32(val))))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func NewQVariant6(val uint) *QVariant {
 	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant6(C.uint(uint32(val))))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func NewQVariant7(val int64) *QVariant {
 	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant7(C.longlong(val)))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func NewQVariant8(val uint64) *QVariant {
 	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant8(C.ulonglong(val)))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func NewQVariant9(val bool) *QVariant {
 	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant9(C.char(int8(qt.GoBoolToInt(val)))))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func NewQVariant10(val float64) *QVariant {
 	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant10(C.double(val)))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func NewQVariant11(val float32) *QVariant {
 	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant11(C.float(val)))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
@@ -55383,19 +55383,19 @@ func NewQVariant12(val string) *QVariant {
 		defer C.free(unsafe.Pointer(valC))
 	}
 	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant12(valC))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func NewQVariant13(val QByteArray_ITF) *QVariant {
 	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant13(PointerFromQByteArray(val)))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func NewQVariant14(val QBitArray_ITF) *QVariant {
 	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant14(PointerFromQBitArray(val)))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
@@ -55406,13 +55406,13 @@ func NewQVariant15(val string) *QVariant {
 		defer C.free(unsafe.Pointer(valC))
 	}
 	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant15(C.struct_QtCore_PackedString{data: valC, len: C.longlong(len(val))}))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func NewQVariant16(val QLatin1String_ITF) *QVariant {
 	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant16(PointerFromQLatin1String(val)))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
@@ -55420,31 +55420,31 @@ func NewQVariant17(val []string) *QVariant {
 	valC := C.CString(strings.Join(val, "¡¦!"))
 	defer C.free(unsafe.Pointer(valC))
 	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant17(C.struct_QtCore_PackedString{data: valC, len: C.longlong(len(strings.Join(val, "¡¦!")))}))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func NewQVariant18(c QChar_ITF) *QVariant {
 	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant18(PointerFromQChar(c)))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func NewQVariant19(val QDate_ITF) *QVariant {
 	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant19(PointerFromQDate(val)))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func NewQVariant20(val QTime_ITF) *QVariant {
 	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant20(PointerFromQTime(val)))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func NewQVariant21(val QDateTime_ITF) *QVariant {
 	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant21(PointerFromQDateTime(val)))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
@@ -55456,7 +55456,7 @@ func NewQVariant22(val []*QVariant) *QVariant {
 		}
 		return tmpList.Pointer()
 	}()))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
@@ -55468,7 +55468,7 @@ func NewQVariant23(val map[string]*QVariant) *QVariant {
 		}
 		return tmpList.Pointer()
 	}()))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
@@ -55480,133 +55480,133 @@ func NewQVariant24(val map[string]*QVariant) *QVariant {
 		}
 		return tmpList.Pointer()
 	}()))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func NewQVariant25(val QSize_ITF) *QVariant {
 	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant25(PointerFromQSize(val)))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func NewQVariant26(val QSizeF_ITF) *QVariant {
 	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant26(PointerFromQSizeF(val)))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func NewQVariant27(val QPoint_ITF) *QVariant {
 	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant27(PointerFromQPoint(val)))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func NewQVariant28(val QPointF_ITF) *QVariant {
 	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant28(PointerFromQPointF(val)))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func NewQVariant29(val QLine_ITF) *QVariant {
 	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant29(PointerFromQLine(val)))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func NewQVariant30(val QLineF_ITF) *QVariant {
 	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant30(PointerFromQLineF(val)))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func NewQVariant31(val QRect_ITF) *QVariant {
 	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant31(PointerFromQRect(val)))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func NewQVariant32(val QRectF_ITF) *QVariant {
 	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant32(PointerFromQRectF(val)))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func NewQVariant33(l QLocale_ITF) *QVariant {
 	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant33(PointerFromQLocale(l)))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func NewQVariant34(regExp QRegExp_ITF) *QVariant {
 	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant34(PointerFromQRegExp(regExp)))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func NewQVariant35(re QRegularExpression_ITF) *QVariant {
 	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant35(PointerFromQRegularExpression(re)))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func NewQVariant36(val QUrl_ITF) *QVariant {
 	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant36(PointerFromQUrl(val)))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func NewQVariant37(val QEasingCurve_ITF) *QVariant {
 	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant37(PointerFromQEasingCurve(val)))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func NewQVariant38(val QUuid_ITF) *QVariant {
 	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant38(PointerFromQUuid(val)))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func NewQVariant39(val QJsonValue_ITF) *QVariant {
 	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant39(PointerFromQJsonValue(val)))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func NewQVariant40(val QJsonObject_ITF) *QVariant {
 	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant40(PointerFromQJsonObject(val)))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func NewQVariant41(val QJsonArray_ITF) *QVariant {
 	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant41(PointerFromQJsonArray(val)))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func NewQVariant42(val QJsonDocument_ITF) *QVariant {
 	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant42(PointerFromQJsonDocument(val)))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func NewQVariant43(val QModelIndex_ITF) *QVariant {
 	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant43(PointerFromQModelIndex(val)))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func NewQVariant44(val QPersistentModelIndex_ITF) *QVariant {
 	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant44(PointerFromQPersistentModelIndex(val)))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func NewQVariant45(other QVariant_ITF) *QVariant {
 	tmpValue := NewQVariantFromPointer(C.QVariant_NewQVariant45(PointerFromQVariant(other)))
-	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
 
@@ -55671,7 +55671,7 @@ func (ptr *QVariant) Swap(other QVariant_ITF) {
 func (ptr *QVariant) ToBitArray() *QBitArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQBitArrayFromPointer(C.QVariant_ToBitArray(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QBitArray).DestroyQBitArray)
+		qt.SetFinalizer(tmpValue, (*QBitArray).DestroyQBitArray)
 		return tmpValue
 	}
 	return nil
@@ -55687,7 +55687,7 @@ func (ptr *QVariant) ToBool() bool {
 func (ptr *QVariant) ToByteArray() *QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQByteArrayFromPointer(C.QVariant_ToByteArray(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -55696,7 +55696,7 @@ func (ptr *QVariant) ToByteArray() *QByteArray {
 func (ptr *QVariant) ToChar() *QChar {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQCharFromPointer(C.QVariant_ToChar(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+		qt.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 		return tmpValue
 	}
 	return nil
@@ -55705,7 +55705,7 @@ func (ptr *QVariant) ToChar() *QChar {
 func (ptr *QVariant) ToDate() *QDate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDateFromPointer(C.QVariant_ToDate(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
+		qt.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
 		return tmpValue
 	}
 	return nil
@@ -55714,7 +55714,7 @@ func (ptr *QVariant) ToDate() *QDate {
 func (ptr *QVariant) ToDateTime() *QDateTime {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDateTimeFromPointer(C.QVariant_ToDateTime(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+		qt.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 		return tmpValue
 	}
 	return nil
@@ -55735,7 +55735,7 @@ func (ptr *QVariant) ToDouble(ok *bool) float64 {
 func (ptr *QVariant) ToEasingCurve() *QEasingCurve {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQEasingCurveFromPointer(C.QVariant_ToEasingCurve(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QEasingCurve).DestroyQEasingCurve)
+		qt.SetFinalizer(tmpValue, (*QEasingCurve).DestroyQEasingCurve)
 		return tmpValue
 	}
 	return nil
@@ -55782,7 +55782,7 @@ func (ptr *QVariant) ToInt(ok *bool) int {
 func (ptr *QVariant) ToJsonArray() *QJsonArray {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQJsonArrayFromPointer(C.QVariant_ToJsonArray(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QJsonArray).DestroyQJsonArray)
+		qt.SetFinalizer(tmpValue, (*QJsonArray).DestroyQJsonArray)
 		return tmpValue
 	}
 	return nil
@@ -55791,7 +55791,7 @@ func (ptr *QVariant) ToJsonArray() *QJsonArray {
 func (ptr *QVariant) ToJsonDocument() *QJsonDocument {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQJsonDocumentFromPointer(C.QVariant_ToJsonDocument(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
+		qt.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
 		return tmpValue
 	}
 	return nil
@@ -55800,7 +55800,7 @@ func (ptr *QVariant) ToJsonDocument() *QJsonDocument {
 func (ptr *QVariant) ToJsonObject() *QJsonObject {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQJsonObjectFromPointer(C.QVariant_ToJsonObject(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QJsonObject).DestroyQJsonObject)
+		qt.SetFinalizer(tmpValue, (*QJsonObject).DestroyQJsonObject)
 		return tmpValue
 	}
 	return nil
@@ -55809,7 +55809,7 @@ func (ptr *QVariant) ToJsonObject() *QJsonObject {
 func (ptr *QVariant) ToJsonValue() *QJsonValue {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQJsonValueFromPointer(C.QVariant_ToJsonValue(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
+		qt.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
 		return tmpValue
 	}
 	return nil
@@ -55818,7 +55818,7 @@ func (ptr *QVariant) ToJsonValue() *QJsonValue {
 func (ptr *QVariant) ToLine() *QLine {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQLineFromPointer(C.QVariant_ToLine(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QLine).DestroyQLine)
+		qt.SetFinalizer(tmpValue, (*QLine).DestroyQLine)
 		return tmpValue
 	}
 	return nil
@@ -55827,7 +55827,7 @@ func (ptr *QVariant) ToLine() *QLine {
 func (ptr *QVariant) ToLineF() *QLineF {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQLineFFromPointer(C.QVariant_ToLineF(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QLineF).DestroyQLineF)
+		qt.SetFinalizer(tmpValue, (*QLineF).DestroyQLineF)
 		return tmpValue
 	}
 	return nil
@@ -55850,7 +55850,7 @@ func (ptr *QVariant) ToList() []*QVariant {
 func (ptr *QVariant) ToLocale() *QLocale {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQLocaleFromPointer(C.QVariant_ToLocale(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QLocale).DestroyQLocale)
+		qt.SetFinalizer(tmpValue, (*QLocale).DestroyQLocale)
 		return tmpValue
 	}
 	return nil
@@ -55885,7 +55885,7 @@ func (ptr *QVariant) ToMap() map[string]*QVariant {
 func (ptr *QVariant) ToModelIndex() *QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModelIndexFromPointer(C.QVariant_ToModelIndex(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -55894,7 +55894,7 @@ func (ptr *QVariant) ToModelIndex() *QModelIndex {
 func (ptr *QVariant) ToPersistentModelIndex() *QPersistentModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQPersistentModelIndexFromPointer(C.QVariant_ToPersistentModelIndex(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QPersistentModelIndex).DestroyQPersistentModelIndex)
+		qt.SetFinalizer(tmpValue, (*QPersistentModelIndex).DestroyQPersistentModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -55903,7 +55903,7 @@ func (ptr *QVariant) ToPersistentModelIndex() *QPersistentModelIndex {
 func (ptr *QVariant) ToPoint() *QPoint {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQPointFromPointer(C.QVariant_ToPoint(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QPoint).DestroyQPoint)
+		qt.SetFinalizer(tmpValue, (*QPoint).DestroyQPoint)
 		return tmpValue
 	}
 	return nil
@@ -55912,7 +55912,7 @@ func (ptr *QVariant) ToPoint() *QPoint {
 func (ptr *QVariant) ToPointF() *QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQPointFFromPointer(C.QVariant_ToPointF(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -55933,7 +55933,7 @@ func (ptr *QVariant) ToReal(ok *bool) float64 {
 func (ptr *QVariant) ToRect() *QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQRectFromPointer(C.QVariant_ToRect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -55942,7 +55942,7 @@ func (ptr *QVariant) ToRect() *QRect {
 func (ptr *QVariant) ToRectF() *QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQRectFFromPointer(C.QVariant_ToRectF(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -55951,7 +55951,7 @@ func (ptr *QVariant) ToRectF() *QRectF {
 func (ptr *QVariant) ToRegExp() *QRegExp {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQRegExpFromPointer(C.QVariant_ToRegExp(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QRegExp).DestroyQRegExp)
+		qt.SetFinalizer(tmpValue, (*QRegExp).DestroyQRegExp)
 		return tmpValue
 	}
 	return nil
@@ -55960,7 +55960,7 @@ func (ptr *QVariant) ToRegExp() *QRegExp {
 func (ptr *QVariant) ToRegularExpression() *QRegularExpression {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQRegularExpressionFromPointer(C.QVariant_ToRegularExpression(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QRegularExpression).DestroyQRegularExpression)
+		qt.SetFinalizer(tmpValue, (*QRegularExpression).DestroyQRegularExpression)
 		return tmpValue
 	}
 	return nil
@@ -55969,7 +55969,7 @@ func (ptr *QVariant) ToRegularExpression() *QRegularExpression {
 func (ptr *QVariant) ToSize() *QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSizeFromPointer(C.QVariant_ToSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -55978,7 +55978,7 @@ func (ptr *QVariant) ToSize() *QSize {
 func (ptr *QVariant) ToSizeF() *QSizeF {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSizeFFromPointer(C.QVariant_ToSizeF(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QSizeF).DestroyQSizeF)
+		qt.SetFinalizer(tmpValue, (*QSizeF).DestroyQSizeF)
 		return tmpValue
 	}
 	return nil
@@ -56001,7 +56001,7 @@ func (ptr *QVariant) ToStringList() []string {
 func (ptr *QVariant) ToTime() *QTime {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQTimeFromPointer(C.QVariant_ToTime(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
+		qt.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
 		return tmpValue
 	}
 	return nil
@@ -56034,7 +56034,7 @@ func (ptr *QVariant) ToULongLong(ok *bool) uint64 {
 func (ptr *QVariant) ToUrl() *QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQUrlFromPointer(C.QVariant_ToUrl(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -56043,7 +56043,7 @@ func (ptr *QVariant) ToUrl() *QUrl {
 func (ptr *QVariant) ToUuid() *QUuid {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQUuidFromPointer(C.QVariant_ToUuid(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
+		qt.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
 		return tmpValue
 	}
 	return nil
@@ -56083,7 +56083,7 @@ func (ptr *QVariant) DestroyQVariant() {
 		C.QVariant_DestroyQVariant(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -56136,7 +56136,7 @@ func (ptr *QVariant) ToBrush() unsafe.Pointer {
 func (ptr *QVariant) __QVariant_val_atList22(i int) *QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVariantFromPointer(C.QVariant___QVariant_val_atList22(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -56160,7 +56160,7 @@ func (ptr *QVariant) __QVariant_val_atList23(v string, i int) *QVariant {
 			defer C.free(unsafe.Pointer(vC))
 		}
 		tmpValue := NewQVariantFromPointer(C.QVariant___QVariant_val_atList23(ptr.Pointer(), C.struct_QtCore_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -56203,7 +56203,7 @@ func (ptr *QVariant) __QVariant_val_atList24(v string, i int) *QVariant {
 			defer C.free(unsafe.Pointer(vC))
 		}
 		tmpValue := NewQVariantFromPointer(C.QVariant___QVariant_val_atList24(ptr.Pointer(), C.struct_QtCore_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -56246,7 +56246,7 @@ func (ptr *QVariant) __toHash_atList(v string, i int) *QVariant {
 			defer C.free(unsafe.Pointer(vC))
 		}
 		tmpValue := NewQVariantFromPointer(C.QVariant___toHash_atList(ptr.Pointer(), C.struct_QtCore_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -56284,7 +56284,7 @@ func (ptr *QVariant) __toHash_keyList() []string {
 func (ptr *QVariant) __toList_atList(i int) *QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVariantFromPointer(C.QVariant___toList_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -56308,7 +56308,7 @@ func (ptr *QVariant) __toMap_atList(v string, i int) *QVariant {
 			defer C.free(unsafe.Pointer(vC))
 		}
 		tmpValue := NewQVariantFromPointer(C.QVariant___toMap_atList(ptr.Pointer(), C.struct_QtCore_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -56480,7 +56480,7 @@ func NewQVariantAnimation(parent QObject_ITF) *QVariantAnimation {
 func (ptr *QVariantAnimation) CurrentValue() *QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVariantFromPointer(C.QVariantAnimation_CurrentValue(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -56534,7 +56534,7 @@ func (ptr *QVariantAnimation) DurationDefault() int {
 func (ptr *QVariantAnimation) EasingCurve() *QEasingCurve {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQEasingCurveFromPointer(C.QVariantAnimation_EasingCurve(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QEasingCurve).DestroyQEasingCurve)
+		qt.SetFinalizer(tmpValue, (*QEasingCurve).DestroyQEasingCurve)
 		return tmpValue
 	}
 	return nil
@@ -56543,7 +56543,7 @@ func (ptr *QVariantAnimation) EasingCurve() *QEasingCurve {
 func (ptr *QVariantAnimation) EndValue() *QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVariantFromPointer(C.QVariantAnimation_EndValue(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -56583,7 +56583,7 @@ func (ptr *QVariantAnimation) DisconnectInterpolated() {
 func (ptr *QVariantAnimation) Interpolated(from QVariant_ITF, to QVariant_ITF, progress float64) *QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVariantFromPointer(C.QVariantAnimation_Interpolated(ptr.Pointer(), PointerFromQVariant(from), PointerFromQVariant(to), C.double(progress)))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -56592,7 +56592,7 @@ func (ptr *QVariantAnimation) Interpolated(from QVariant_ITF, to QVariant_ITF, p
 func (ptr *QVariantAnimation) InterpolatedDefault(from QVariant_ITF, to QVariant_ITF, progress float64) *QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVariantFromPointer(C.QVariantAnimation_InterpolatedDefault(ptr.Pointer(), PointerFromQVariant(from), PointerFromQVariant(to), C.double(progress)))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -56601,7 +56601,7 @@ func (ptr *QVariantAnimation) InterpolatedDefault(from QVariant_ITF, to QVariant
 func (ptr *QVariantAnimation) KeyValueAt(step float64) *QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVariantFromPointer(C.QVariantAnimation_KeyValueAt(ptr.Pointer(), C.double(step)))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -56640,7 +56640,7 @@ func (ptr *QVariantAnimation) SetStartValue(value QVariant_ITF) {
 func (ptr *QVariantAnimation) StartValue() *QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVariantFromPointer(C.QVariantAnimation_StartValue(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -56807,7 +56807,7 @@ func (ptr *QVariantAnimation) DestroyQVariantAnimation() {
 	if ptr.Pointer() != nil {
 		C.QVariantAnimation_DestroyQVariantAnimation(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -56815,7 +56815,7 @@ func (ptr *QVariantAnimation) DestroyQVariantAnimationDefault() {
 	if ptr.Pointer() != nil {
 		C.QVariantAnimation_DestroyQVariantAnimationDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -56900,7 +56900,7 @@ func (ptr *QVectorIterator) DestroyQVectorIterator() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -56947,13 +56947,13 @@ func (ptr *QVersionNumber) DestroyQVersionNumber() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func NewQVersionNumber() *QVersionNumber {
 	tmpValue := NewQVersionNumberFromPointer(C.QVersionNumber_NewQVersionNumber())
-	runtime.SetFinalizer(tmpValue, (*QVersionNumber).DestroyQVersionNumber)
+	qt.SetFinalizer(tmpValue, (*QVersionNumber).DestroyQVersionNumber)
 	return tmpValue
 }
 
@@ -56965,7 +56965,7 @@ func NewQVersionNumber2(seg []int) *QVersionNumber {
 		}
 		return tmpList.Pointer()
 	}()))
-	runtime.SetFinalizer(tmpValue, (*QVersionNumber).DestroyQVersionNumber)
+	qt.SetFinalizer(tmpValue, (*QVersionNumber).DestroyQVersionNumber)
 	return tmpValue
 }
 
@@ -56977,37 +56977,37 @@ func NewQVersionNumber3(seg []int) *QVersionNumber {
 		}
 		return tmpList.Pointer()
 	}()))
-	runtime.SetFinalizer(tmpValue, (*QVersionNumber).DestroyQVersionNumber)
+	qt.SetFinalizer(tmpValue, (*QVersionNumber).DestroyQVersionNumber)
 	return tmpValue
 }
 
 func NewQVersionNumber5(maj int) *QVersionNumber {
 	tmpValue := NewQVersionNumberFromPointer(C.QVersionNumber_NewQVersionNumber5(C.int(int32(maj))))
-	runtime.SetFinalizer(tmpValue, (*QVersionNumber).DestroyQVersionNumber)
+	qt.SetFinalizer(tmpValue, (*QVersionNumber).DestroyQVersionNumber)
 	return tmpValue
 }
 
 func NewQVersionNumber6(maj int, min int) *QVersionNumber {
 	tmpValue := NewQVersionNumberFromPointer(C.QVersionNumber_NewQVersionNumber6(C.int(int32(maj)), C.int(int32(min))))
-	runtime.SetFinalizer(tmpValue, (*QVersionNumber).DestroyQVersionNumber)
+	qt.SetFinalizer(tmpValue, (*QVersionNumber).DestroyQVersionNumber)
 	return tmpValue
 }
 
 func NewQVersionNumber7(maj int, min int, mic int) *QVersionNumber {
 	tmpValue := NewQVersionNumberFromPointer(C.QVersionNumber_NewQVersionNumber7(C.int(int32(maj)), C.int(int32(min)), C.int(int32(mic))))
-	runtime.SetFinalizer(tmpValue, (*QVersionNumber).DestroyQVersionNumber)
+	qt.SetFinalizer(tmpValue, (*QVersionNumber).DestroyQVersionNumber)
 	return tmpValue
 }
 
 func QVersionNumber_CommonPrefix(v1 QVersionNumber_ITF, v2 QVersionNumber_ITF) *QVersionNumber {
 	tmpValue := NewQVersionNumberFromPointer(C.QVersionNumber_QVersionNumber_CommonPrefix(PointerFromQVersionNumber(v1), PointerFromQVersionNumber(v2)))
-	runtime.SetFinalizer(tmpValue, (*QVersionNumber).DestroyQVersionNumber)
+	qt.SetFinalizer(tmpValue, (*QVersionNumber).DestroyQVersionNumber)
 	return tmpValue
 }
 
 func (ptr *QVersionNumber) CommonPrefix(v1 QVersionNumber_ITF, v2 QVersionNumber_ITF) *QVersionNumber {
 	tmpValue := NewQVersionNumberFromPointer(C.QVersionNumber_QVersionNumber_CommonPrefix(PointerFromQVersionNumber(v1), PointerFromQVersionNumber(v2)))
-	runtime.SetFinalizer(tmpValue, (*QVersionNumber).DestroyQVersionNumber)
+	qt.SetFinalizer(tmpValue, (*QVersionNumber).DestroyQVersionNumber)
 	return tmpValue
 }
 
@@ -57026,7 +57026,7 @@ func QVersionNumber_FromString(stri string, suffixIndex int) *QVersionNumber {
 		defer C.free(unsafe.Pointer(striC))
 	}
 	tmpValue := NewQVersionNumberFromPointer(C.QVersionNumber_QVersionNumber_FromString(C.struct_QtCore_PackedString{data: striC, len: C.longlong(len(stri))}, C.int(int32(suffixIndex))))
-	runtime.SetFinalizer(tmpValue, (*QVersionNumber).DestroyQVersionNumber)
+	qt.SetFinalizer(tmpValue, (*QVersionNumber).DestroyQVersionNumber)
 	return tmpValue
 }
 
@@ -57037,31 +57037,31 @@ func (ptr *QVersionNumber) FromString(stri string, suffixIndex int) *QVersionNum
 		defer C.free(unsafe.Pointer(striC))
 	}
 	tmpValue := NewQVersionNumberFromPointer(C.QVersionNumber_QVersionNumber_FromString(C.struct_QtCore_PackedString{data: striC, len: C.longlong(len(stri))}, C.int(int32(suffixIndex))))
-	runtime.SetFinalizer(tmpValue, (*QVersionNumber).DestroyQVersionNumber)
+	qt.SetFinalizer(tmpValue, (*QVersionNumber).DestroyQVersionNumber)
 	return tmpValue
 }
 
 func QVersionNumber_FromString2(stri QLatin1String_ITF, suffixIndex int) *QVersionNumber {
 	tmpValue := NewQVersionNumberFromPointer(C.QVersionNumber_QVersionNumber_FromString2(PointerFromQLatin1String(stri), C.int(int32(suffixIndex))))
-	runtime.SetFinalizer(tmpValue, (*QVersionNumber).DestroyQVersionNumber)
+	qt.SetFinalizer(tmpValue, (*QVersionNumber).DestroyQVersionNumber)
 	return tmpValue
 }
 
 func (ptr *QVersionNumber) FromString2(stri QLatin1String_ITF, suffixIndex int) *QVersionNumber {
 	tmpValue := NewQVersionNumberFromPointer(C.QVersionNumber_QVersionNumber_FromString2(PointerFromQLatin1String(stri), C.int(int32(suffixIndex))))
-	runtime.SetFinalizer(tmpValue, (*QVersionNumber).DestroyQVersionNumber)
+	qt.SetFinalizer(tmpValue, (*QVersionNumber).DestroyQVersionNumber)
 	return tmpValue
 }
 
 func QVersionNumber_FromString3(stri QStringView_ITF, suffixIndex int) *QVersionNumber {
 	tmpValue := NewQVersionNumberFromPointer(C.QVersionNumber_QVersionNumber_FromString3(PointerFromQStringView(stri), C.int(int32(suffixIndex))))
-	runtime.SetFinalizer(tmpValue, (*QVersionNumber).DestroyQVersionNumber)
+	qt.SetFinalizer(tmpValue, (*QVersionNumber).DestroyQVersionNumber)
 	return tmpValue
 }
 
 func (ptr *QVersionNumber) FromString3(stri QStringView_ITF, suffixIndex int) *QVersionNumber {
 	tmpValue := NewQVersionNumberFromPointer(C.QVersionNumber_QVersionNumber_FromString3(PointerFromQStringView(stri), C.int(int32(suffixIndex))))
-	runtime.SetFinalizer(tmpValue, (*QVersionNumber).DestroyQVersionNumber)
+	qt.SetFinalizer(tmpValue, (*QVersionNumber).DestroyQVersionNumber)
 	return tmpValue
 }
 
@@ -57110,7 +57110,7 @@ func (ptr *QVersionNumber) MinorVersion() int {
 func (ptr *QVersionNumber) Normalized() *QVersionNumber {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVersionNumberFromPointer(C.QVersionNumber_Normalized(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QVersionNumber).DestroyQVersionNumber)
+		qt.SetFinalizer(tmpValue, (*QVersionNumber).DestroyQVersionNumber)
 		return tmpValue
 	}
 	return nil
@@ -57241,7 +57241,7 @@ func NewQWaitConditionFromPointer(ptr unsafe.Pointer) (n *QWaitCondition) {
 }
 func NewQWaitCondition() *QWaitCondition {
 	tmpValue := NewQWaitConditionFromPointer(C.QWaitCondition_NewQWaitCondition())
-	runtime.SetFinalizer(tmpValue, (*QWaitCondition).DestroyQWaitCondition)
+	qt.SetFinalizer(tmpValue, (*QWaitCondition).DestroyQWaitCondition)
 	return tmpValue
 }
 
@@ -57288,7 +57288,7 @@ func (ptr *QWaitCondition) DestroyQWaitCondition() {
 		C.QWaitCondition_DestroyQWaitCondition(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -57408,7 +57408,7 @@ func NewQWriteLockerFromPointer(ptr unsafe.Pointer) (n *QWriteLocker) {
 }
 func NewQWriteLocker(lock QReadWriteLock_ITF) *QWriteLocker {
 	tmpValue := NewQWriteLockerFromPointer(C.QWriteLocker_NewQWriteLocker(PointerFromQReadWriteLock(lock)))
-	runtime.SetFinalizer(tmpValue, (*QWriteLocker).DestroyQWriteLocker)
+	qt.SetFinalizer(tmpValue, (*QWriteLocker).DestroyQWriteLocker)
 	return tmpValue
 }
 
@@ -57436,7 +57436,7 @@ func (ptr *QWriteLocker) DestroyQWriteLocker() {
 		C.QWriteLocker_DestroyQWriteLocker(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -57479,7 +57479,7 @@ func NewQXmlStreamAttributeFromPointer(ptr unsafe.Pointer) (n *QXmlStreamAttribu
 }
 func NewQXmlStreamAttribute() *QXmlStreamAttribute {
 	tmpValue := NewQXmlStreamAttributeFromPointer(C.QXmlStreamAttribute_NewQXmlStreamAttribute())
-	runtime.SetFinalizer(tmpValue, (*QXmlStreamAttribute).DestroyQXmlStreamAttribute)
+	qt.SetFinalizer(tmpValue, (*QXmlStreamAttribute).DestroyQXmlStreamAttribute)
 	return tmpValue
 }
 
@@ -57495,7 +57495,7 @@ func NewQXmlStreamAttribute2(qualifiedName string, value string) *QXmlStreamAttr
 		defer C.free(unsafe.Pointer(valueC))
 	}
 	tmpValue := NewQXmlStreamAttributeFromPointer(C.QXmlStreamAttribute_NewQXmlStreamAttribute2(C.struct_QtCore_PackedString{data: qualifiedNameC, len: C.longlong(len(qualifiedName))}, C.struct_QtCore_PackedString{data: valueC, len: C.longlong(len(value))}))
-	runtime.SetFinalizer(tmpValue, (*QXmlStreamAttribute).DestroyQXmlStreamAttribute)
+	qt.SetFinalizer(tmpValue, (*QXmlStreamAttribute).DestroyQXmlStreamAttribute)
 	return tmpValue
 }
 
@@ -57516,13 +57516,13 @@ func NewQXmlStreamAttribute3(namespaceUri string, name string, value string) *QX
 		defer C.free(unsafe.Pointer(valueC))
 	}
 	tmpValue := NewQXmlStreamAttributeFromPointer(C.QXmlStreamAttribute_NewQXmlStreamAttribute3(C.struct_QtCore_PackedString{data: namespaceUriC, len: C.longlong(len(namespaceUri))}, C.struct_QtCore_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtCore_PackedString{data: valueC, len: C.longlong(len(value))}))
-	runtime.SetFinalizer(tmpValue, (*QXmlStreamAttribute).DestroyQXmlStreamAttribute)
+	qt.SetFinalizer(tmpValue, (*QXmlStreamAttribute).DestroyQXmlStreamAttribute)
 	return tmpValue
 }
 
 func NewQXmlStreamAttribute4(other QXmlStreamAttribute_ITF) *QXmlStreamAttribute {
 	tmpValue := NewQXmlStreamAttributeFromPointer(C.QXmlStreamAttribute_NewQXmlStreamAttribute4(PointerFromQXmlStreamAttribute(other)))
-	runtime.SetFinalizer(tmpValue, (*QXmlStreamAttribute).DestroyQXmlStreamAttribute)
+	qt.SetFinalizer(tmpValue, (*QXmlStreamAttribute).DestroyQXmlStreamAttribute)
 	return tmpValue
 }
 
@@ -57536,7 +57536,7 @@ func (ptr *QXmlStreamAttribute) IsDefault() bool {
 func (ptr *QXmlStreamAttribute) Name() *QStringRef {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStringRefFromPointer(C.QXmlStreamAttribute_Name(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
 	}
 	return nil
@@ -57545,7 +57545,7 @@ func (ptr *QXmlStreamAttribute) Name() *QStringRef {
 func (ptr *QXmlStreamAttribute) NamespaceUri() *QStringRef {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStringRefFromPointer(C.QXmlStreamAttribute_NamespaceUri(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
 	}
 	return nil
@@ -57554,7 +57554,7 @@ func (ptr *QXmlStreamAttribute) NamespaceUri() *QStringRef {
 func (ptr *QXmlStreamAttribute) Prefix() *QStringRef {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStringRefFromPointer(C.QXmlStreamAttribute_Prefix(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
 	}
 	return nil
@@ -57563,7 +57563,7 @@ func (ptr *QXmlStreamAttribute) Prefix() *QStringRef {
 func (ptr *QXmlStreamAttribute) QualifiedName() *QStringRef {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStringRefFromPointer(C.QXmlStreamAttribute_QualifiedName(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
 	}
 	return nil
@@ -57572,7 +57572,7 @@ func (ptr *QXmlStreamAttribute) QualifiedName() *QStringRef {
 func (ptr *QXmlStreamAttribute) Value() *QStringRef {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStringRefFromPointer(C.QXmlStreamAttribute_Value(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
 	}
 	return nil
@@ -57583,7 +57583,7 @@ func (ptr *QXmlStreamAttribute) DestroyQXmlStreamAttribute() {
 		C.QXmlStreamAttribute_DestroyQXmlStreamAttribute(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -57631,13 +57631,13 @@ func (ptr *QXmlStreamAttributes) DestroyQXmlStreamAttributes() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func NewQXmlStreamAttributes() *QXmlStreamAttributes {
 	tmpValue := NewQXmlStreamAttributesFromPointer(C.QXmlStreamAttributes_NewQXmlStreamAttributes())
-	runtime.SetFinalizer(tmpValue, (*QXmlStreamAttributes).DestroyQXmlStreamAttributes)
+	qt.SetFinalizer(tmpValue, (*QXmlStreamAttributes).DestroyQXmlStreamAttributes)
 	return tmpValue
 }
 
@@ -57727,7 +57727,7 @@ func (ptr *QXmlStreamAttributes) Value(namespaceUri string, name string) *QStrin
 			defer C.free(unsafe.Pointer(nameC))
 		}
 		tmpValue := NewQStringRefFromPointer(C.QXmlStreamAttributes_Value(ptr.Pointer(), C.struct_QtCore_PackedString{data: namespaceUriC, len: C.longlong(len(namespaceUri))}, C.struct_QtCore_PackedString{data: nameC, len: C.longlong(len(name))}))
-		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
 	}
 	return nil
@@ -57741,7 +57741,7 @@ func (ptr *QXmlStreamAttributes) Value2(namespaceUri string, name QLatin1String_
 			defer C.free(unsafe.Pointer(namespaceUriC))
 		}
 		tmpValue := NewQStringRefFromPointer(C.QXmlStreamAttributes_Value2(ptr.Pointer(), C.struct_QtCore_PackedString{data: namespaceUriC, len: C.longlong(len(namespaceUri))}, PointerFromQLatin1String(name)))
-		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
 	}
 	return nil
@@ -57750,7 +57750,7 @@ func (ptr *QXmlStreamAttributes) Value2(namespaceUri string, name QLatin1String_
 func (ptr *QXmlStreamAttributes) Value3(namespaceUri QLatin1String_ITF, name QLatin1String_ITF) *QStringRef {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStringRefFromPointer(C.QXmlStreamAttributes_Value3(ptr.Pointer(), PointerFromQLatin1String(namespaceUri), PointerFromQLatin1String(name)))
-		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
 	}
 	return nil
@@ -57764,7 +57764,7 @@ func (ptr *QXmlStreamAttributes) Value4(qualifiedName string) *QStringRef {
 			defer C.free(unsafe.Pointer(qualifiedNameC))
 		}
 		tmpValue := NewQStringRefFromPointer(C.QXmlStreamAttributes_Value4(ptr.Pointer(), C.struct_QtCore_PackedString{data: qualifiedNameC, len: C.longlong(len(qualifiedName))}))
-		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
 	}
 	return nil
@@ -57773,7 +57773,7 @@ func (ptr *QXmlStreamAttributes) Value4(qualifiedName string) *QStringRef {
 func (ptr *QXmlStreamAttributes) Value5(qualifiedName QLatin1String_ITF) *QStringRef {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStringRefFromPointer(C.QXmlStreamAttributes_Value5(ptr.Pointer(), PointerFromQLatin1String(qualifiedName)))
-		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
 	}
 	return nil
@@ -57818,20 +57818,20 @@ func NewQXmlStreamEntityDeclarationFromPointer(ptr unsafe.Pointer) (n *QXmlStrea
 }
 func NewQXmlStreamEntityDeclaration() *QXmlStreamEntityDeclaration {
 	tmpValue := NewQXmlStreamEntityDeclarationFromPointer(C.QXmlStreamEntityDeclaration_NewQXmlStreamEntityDeclaration())
-	runtime.SetFinalizer(tmpValue, (*QXmlStreamEntityDeclaration).DestroyQXmlStreamEntityDeclaration)
+	qt.SetFinalizer(tmpValue, (*QXmlStreamEntityDeclaration).DestroyQXmlStreamEntityDeclaration)
 	return tmpValue
 }
 
 func NewQXmlStreamEntityDeclaration2(other QXmlStreamEntityDeclaration_ITF) *QXmlStreamEntityDeclaration {
 	tmpValue := NewQXmlStreamEntityDeclarationFromPointer(C.QXmlStreamEntityDeclaration_NewQXmlStreamEntityDeclaration2(PointerFromQXmlStreamEntityDeclaration(other)))
-	runtime.SetFinalizer(tmpValue, (*QXmlStreamEntityDeclaration).DestroyQXmlStreamEntityDeclaration)
+	qt.SetFinalizer(tmpValue, (*QXmlStreamEntityDeclaration).DestroyQXmlStreamEntityDeclaration)
 	return tmpValue
 }
 
 func (ptr *QXmlStreamEntityDeclaration) Name() *QStringRef {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStringRefFromPointer(C.QXmlStreamEntityDeclaration_Name(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
 	}
 	return nil
@@ -57840,7 +57840,7 @@ func (ptr *QXmlStreamEntityDeclaration) Name() *QStringRef {
 func (ptr *QXmlStreamEntityDeclaration) NotationName() *QStringRef {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStringRefFromPointer(C.QXmlStreamEntityDeclaration_NotationName(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
 	}
 	return nil
@@ -57849,7 +57849,7 @@ func (ptr *QXmlStreamEntityDeclaration) NotationName() *QStringRef {
 func (ptr *QXmlStreamEntityDeclaration) PublicId() *QStringRef {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStringRefFromPointer(C.QXmlStreamEntityDeclaration_PublicId(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
 	}
 	return nil
@@ -57858,7 +57858,7 @@ func (ptr *QXmlStreamEntityDeclaration) PublicId() *QStringRef {
 func (ptr *QXmlStreamEntityDeclaration) SystemId() *QStringRef {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStringRefFromPointer(C.QXmlStreamEntityDeclaration_SystemId(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
 	}
 	return nil
@@ -57867,7 +57867,7 @@ func (ptr *QXmlStreamEntityDeclaration) SystemId() *QStringRef {
 func (ptr *QXmlStreamEntityDeclaration) Value() *QStringRef {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStringRefFromPointer(C.QXmlStreamEntityDeclaration_Value(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
 	}
 	return nil
@@ -57878,7 +57878,7 @@ func (ptr *QXmlStreamEntityDeclaration) DestroyQXmlStreamEntityDeclaration() {
 		C.QXmlStreamEntityDeclaration_DestroyQXmlStreamEntityDeclaration(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -58060,13 +58060,13 @@ func NewQXmlStreamNamespaceDeclarationFromPointer(ptr unsafe.Pointer) (n *QXmlSt
 }
 func NewQXmlStreamNamespaceDeclaration() *QXmlStreamNamespaceDeclaration {
 	tmpValue := NewQXmlStreamNamespaceDeclarationFromPointer(C.QXmlStreamNamespaceDeclaration_NewQXmlStreamNamespaceDeclaration())
-	runtime.SetFinalizer(tmpValue, (*QXmlStreamNamespaceDeclaration).DestroyQXmlStreamNamespaceDeclaration)
+	qt.SetFinalizer(tmpValue, (*QXmlStreamNamespaceDeclaration).DestroyQXmlStreamNamespaceDeclaration)
 	return tmpValue
 }
 
 func NewQXmlStreamNamespaceDeclaration2(other QXmlStreamNamespaceDeclaration_ITF) *QXmlStreamNamespaceDeclaration {
 	tmpValue := NewQXmlStreamNamespaceDeclarationFromPointer(C.QXmlStreamNamespaceDeclaration_NewQXmlStreamNamespaceDeclaration2(PointerFromQXmlStreamNamespaceDeclaration(other)))
-	runtime.SetFinalizer(tmpValue, (*QXmlStreamNamespaceDeclaration).DestroyQXmlStreamNamespaceDeclaration)
+	qt.SetFinalizer(tmpValue, (*QXmlStreamNamespaceDeclaration).DestroyQXmlStreamNamespaceDeclaration)
 	return tmpValue
 }
 
@@ -58082,14 +58082,14 @@ func NewQXmlStreamNamespaceDeclaration4(prefix string, namespaceUri string) *QXm
 		defer C.free(unsafe.Pointer(namespaceUriC))
 	}
 	tmpValue := NewQXmlStreamNamespaceDeclarationFromPointer(C.QXmlStreamNamespaceDeclaration_NewQXmlStreamNamespaceDeclaration4(C.struct_QtCore_PackedString{data: prefixC, len: C.longlong(len(prefix))}, C.struct_QtCore_PackedString{data: namespaceUriC, len: C.longlong(len(namespaceUri))}))
-	runtime.SetFinalizer(tmpValue, (*QXmlStreamNamespaceDeclaration).DestroyQXmlStreamNamespaceDeclaration)
+	qt.SetFinalizer(tmpValue, (*QXmlStreamNamespaceDeclaration).DestroyQXmlStreamNamespaceDeclaration)
 	return tmpValue
 }
 
 func (ptr *QXmlStreamNamespaceDeclaration) NamespaceUri() *QStringRef {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStringRefFromPointer(C.QXmlStreamNamespaceDeclaration_NamespaceUri(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
 	}
 	return nil
@@ -58098,7 +58098,7 @@ func (ptr *QXmlStreamNamespaceDeclaration) NamespaceUri() *QStringRef {
 func (ptr *QXmlStreamNamespaceDeclaration) Prefix() *QStringRef {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStringRefFromPointer(C.QXmlStreamNamespaceDeclaration_Prefix(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
 	}
 	return nil
@@ -58109,7 +58109,7 @@ func (ptr *QXmlStreamNamespaceDeclaration) DestroyQXmlStreamNamespaceDeclaration
 		C.QXmlStreamNamespaceDeclaration_DestroyQXmlStreamNamespaceDeclaration(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -58152,20 +58152,20 @@ func NewQXmlStreamNotationDeclarationFromPointer(ptr unsafe.Pointer) (n *QXmlStr
 }
 func NewQXmlStreamNotationDeclaration() *QXmlStreamNotationDeclaration {
 	tmpValue := NewQXmlStreamNotationDeclarationFromPointer(C.QXmlStreamNotationDeclaration_NewQXmlStreamNotationDeclaration())
-	runtime.SetFinalizer(tmpValue, (*QXmlStreamNotationDeclaration).DestroyQXmlStreamNotationDeclaration)
+	qt.SetFinalizer(tmpValue, (*QXmlStreamNotationDeclaration).DestroyQXmlStreamNotationDeclaration)
 	return tmpValue
 }
 
 func NewQXmlStreamNotationDeclaration2(other QXmlStreamNotationDeclaration_ITF) *QXmlStreamNotationDeclaration {
 	tmpValue := NewQXmlStreamNotationDeclarationFromPointer(C.QXmlStreamNotationDeclaration_NewQXmlStreamNotationDeclaration2(PointerFromQXmlStreamNotationDeclaration(other)))
-	runtime.SetFinalizer(tmpValue, (*QXmlStreamNotationDeclaration).DestroyQXmlStreamNotationDeclaration)
+	qt.SetFinalizer(tmpValue, (*QXmlStreamNotationDeclaration).DestroyQXmlStreamNotationDeclaration)
 	return tmpValue
 }
 
 func (ptr *QXmlStreamNotationDeclaration) Name() *QStringRef {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStringRefFromPointer(C.QXmlStreamNotationDeclaration_Name(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
 	}
 	return nil
@@ -58174,7 +58174,7 @@ func (ptr *QXmlStreamNotationDeclaration) Name() *QStringRef {
 func (ptr *QXmlStreamNotationDeclaration) PublicId() *QStringRef {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStringRefFromPointer(C.QXmlStreamNotationDeclaration_PublicId(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
 	}
 	return nil
@@ -58183,7 +58183,7 @@ func (ptr *QXmlStreamNotationDeclaration) PublicId() *QStringRef {
 func (ptr *QXmlStreamNotationDeclaration) SystemId() *QStringRef {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStringRefFromPointer(C.QXmlStreamNotationDeclaration_SystemId(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
 	}
 	return nil
@@ -58194,7 +58194,7 @@ func (ptr *QXmlStreamNotationDeclaration) DestroyQXmlStreamNotationDeclaration()
 		C.QXmlStreamNotationDeclaration_DestroyQXmlStreamNotationDeclaration(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -58278,19 +58278,19 @@ const (
 
 func NewQXmlStreamReader() *QXmlStreamReader {
 	tmpValue := NewQXmlStreamReaderFromPointer(C.QXmlStreamReader_NewQXmlStreamReader())
-	runtime.SetFinalizer(tmpValue, (*QXmlStreamReader).DestroyQXmlStreamReader)
+	qt.SetFinalizer(tmpValue, (*QXmlStreamReader).DestroyQXmlStreamReader)
 	return tmpValue
 }
 
 func NewQXmlStreamReader2(device QIODevice_ITF) *QXmlStreamReader {
 	tmpValue := NewQXmlStreamReaderFromPointer(C.QXmlStreamReader_NewQXmlStreamReader2(PointerFromQIODevice(device)))
-	runtime.SetFinalizer(tmpValue, (*QXmlStreamReader).DestroyQXmlStreamReader)
+	qt.SetFinalizer(tmpValue, (*QXmlStreamReader).DestroyQXmlStreamReader)
 	return tmpValue
 }
 
 func NewQXmlStreamReader3(data QByteArray_ITF) *QXmlStreamReader {
 	tmpValue := NewQXmlStreamReaderFromPointer(C.QXmlStreamReader_NewQXmlStreamReader3(PointerFromQByteArray(data)))
-	runtime.SetFinalizer(tmpValue, (*QXmlStreamReader).DestroyQXmlStreamReader)
+	qt.SetFinalizer(tmpValue, (*QXmlStreamReader).DestroyQXmlStreamReader)
 	return tmpValue
 }
 
@@ -58301,7 +58301,7 @@ func NewQXmlStreamReader4(data string) *QXmlStreamReader {
 		defer C.free(unsafe.Pointer(dataC))
 	}
 	tmpValue := NewQXmlStreamReaderFromPointer(C.QXmlStreamReader_NewQXmlStreamReader4(C.struct_QtCore_PackedString{data: dataC, len: C.longlong(len(data))}))
-	runtime.SetFinalizer(tmpValue, (*QXmlStreamReader).DestroyQXmlStreamReader)
+	qt.SetFinalizer(tmpValue, (*QXmlStreamReader).DestroyQXmlStreamReader)
 	return tmpValue
 }
 
@@ -58312,7 +58312,7 @@ func NewQXmlStreamReader5(data string) *QXmlStreamReader {
 		defer C.free(unsafe.Pointer(dataC))
 	}
 	tmpValue := NewQXmlStreamReaderFromPointer(C.QXmlStreamReader_NewQXmlStreamReader5(dataC))
-	runtime.SetFinalizer(tmpValue, (*QXmlStreamReader).DestroyQXmlStreamReader)
+	qt.SetFinalizer(tmpValue, (*QXmlStreamReader).DestroyQXmlStreamReader)
 	return tmpValue
 }
 
@@ -58391,7 +58391,7 @@ func (ptr *QXmlStreamReader) Device() *QIODevice {
 func (ptr *QXmlStreamReader) DocumentEncoding() *QStringRef {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStringRefFromPointer(C.QXmlStreamReader_DocumentEncoding(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
 	}
 	return nil
@@ -58400,7 +58400,7 @@ func (ptr *QXmlStreamReader) DocumentEncoding() *QStringRef {
 func (ptr *QXmlStreamReader) DocumentVersion() *QStringRef {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStringRefFromPointer(C.QXmlStreamReader_DocumentVersion(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
 	}
 	return nil
@@ -58409,7 +58409,7 @@ func (ptr *QXmlStreamReader) DocumentVersion() *QStringRef {
 func (ptr *QXmlStreamReader) DtdName() *QStringRef {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStringRefFromPointer(C.QXmlStreamReader_DtdName(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
 	}
 	return nil
@@ -58418,7 +58418,7 @@ func (ptr *QXmlStreamReader) DtdName() *QStringRef {
 func (ptr *QXmlStreamReader) DtdPublicId() *QStringRef {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStringRefFromPointer(C.QXmlStreamReader_DtdPublicId(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
 	}
 	return nil
@@ -58427,7 +58427,7 @@ func (ptr *QXmlStreamReader) DtdPublicId() *QStringRef {
 func (ptr *QXmlStreamReader) DtdSystemId() *QStringRef {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStringRefFromPointer(C.QXmlStreamReader_DtdSystemId(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
 	}
 	return nil
@@ -58555,7 +58555,7 @@ func (ptr *QXmlStreamReader) LineNumber() int64 {
 func (ptr *QXmlStreamReader) Name() *QStringRef {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStringRefFromPointer(C.QXmlStreamReader_Name(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
 	}
 	return nil
@@ -58571,7 +58571,7 @@ func (ptr *QXmlStreamReader) NamespaceProcessing() bool {
 func (ptr *QXmlStreamReader) NamespaceUri() *QStringRef {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStringRefFromPointer(C.QXmlStreamReader_NamespaceUri(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
 	}
 	return nil
@@ -58580,7 +58580,7 @@ func (ptr *QXmlStreamReader) NamespaceUri() *QStringRef {
 func (ptr *QXmlStreamReader) Prefix() *QStringRef {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStringRefFromPointer(C.QXmlStreamReader_Prefix(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
 	}
 	return nil
@@ -58589,7 +58589,7 @@ func (ptr *QXmlStreamReader) Prefix() *QStringRef {
 func (ptr *QXmlStreamReader) ProcessingInstructionData() *QStringRef {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStringRefFromPointer(C.QXmlStreamReader_ProcessingInstructionData(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
 	}
 	return nil
@@ -58598,7 +58598,7 @@ func (ptr *QXmlStreamReader) ProcessingInstructionData() *QStringRef {
 func (ptr *QXmlStreamReader) ProcessingInstructionTarget() *QStringRef {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStringRefFromPointer(C.QXmlStreamReader_ProcessingInstructionTarget(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
 	}
 	return nil
@@ -58607,7 +58607,7 @@ func (ptr *QXmlStreamReader) ProcessingInstructionTarget() *QStringRef {
 func (ptr *QXmlStreamReader) QualifiedName() *QStringRef {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStringRefFromPointer(C.QXmlStreamReader_QualifiedName(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
 	}
 	return nil
@@ -58672,7 +58672,7 @@ func (ptr *QXmlStreamReader) SkipCurrentElement() {
 func (ptr *QXmlStreamReader) Text() *QStringRef {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStringRefFromPointer(C.QXmlStreamReader_Text(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		qt.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
 	}
 	return nil
@@ -58697,7 +58697,7 @@ func (ptr *QXmlStreamReader) DestroyQXmlStreamReader() {
 		C.QXmlStreamReader_DestroyQXmlStreamReader(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -58740,19 +58740,19 @@ func NewQXmlStreamWriterFromPointer(ptr unsafe.Pointer) (n *QXmlStreamWriter) {
 }
 func NewQXmlStreamWriter() *QXmlStreamWriter {
 	tmpValue := NewQXmlStreamWriterFromPointer(C.QXmlStreamWriter_NewQXmlStreamWriter())
-	runtime.SetFinalizer(tmpValue, (*QXmlStreamWriter).DestroyQXmlStreamWriter)
+	qt.SetFinalizer(tmpValue, (*QXmlStreamWriter).DestroyQXmlStreamWriter)
 	return tmpValue
 }
 
 func NewQXmlStreamWriter2(device QIODevice_ITF) *QXmlStreamWriter {
 	tmpValue := NewQXmlStreamWriterFromPointer(C.QXmlStreamWriter_NewQXmlStreamWriter2(PointerFromQIODevice(device)))
-	runtime.SetFinalizer(tmpValue, (*QXmlStreamWriter).DestroyQXmlStreamWriter)
+	qt.SetFinalizer(tmpValue, (*QXmlStreamWriter).DestroyQXmlStreamWriter)
 	return tmpValue
 }
 
 func NewQXmlStreamWriter3(array QByteArray_ITF) *QXmlStreamWriter {
 	tmpValue := NewQXmlStreamWriterFromPointer(C.QXmlStreamWriter_NewQXmlStreamWriter3(PointerFromQByteArray(array)))
-	runtime.SetFinalizer(tmpValue, (*QXmlStreamWriter).DestroyQXmlStreamWriter)
+	qt.SetFinalizer(tmpValue, (*QXmlStreamWriter).DestroyQXmlStreamWriter)
 	return tmpValue
 }
 
@@ -58763,7 +58763,7 @@ func NewQXmlStreamWriter4(stri string) *QXmlStreamWriter {
 		defer C.free(unsafe.Pointer(striC))
 	}
 	tmpValue := NewQXmlStreamWriterFromPointer(C.QXmlStreamWriter_NewQXmlStreamWriter4(C.struct_QtCore_PackedString{data: striC, len: C.longlong(len(stri))}))
-	runtime.SetFinalizer(tmpValue, (*QXmlStreamWriter).DestroyQXmlStreamWriter)
+	qt.SetFinalizer(tmpValue, (*QXmlStreamWriter).DestroyQXmlStreamWriter)
 	return tmpValue
 }
 
@@ -59130,7 +59130,7 @@ func (ptr *QXmlStreamWriter) DestroyQXmlStreamWriter() {
 		C.QXmlStreamWriter_DestroyQXmlStreamWriter(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -59177,7 +59177,7 @@ func (ptr *Qt) DestroyQt() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -61025,7 +61025,7 @@ func (ptr *QtGlobal) DestroyQtGlobal() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -61154,7 +61154,7 @@ func QtGlobal_qgetenv(varName string) *QByteArray {
 		defer C.free(unsafe.Pointer(varNameC))
 	}
 	tmpValue := NewQByteArrayFromPointer(C.QtGlobal_QtGlobal_qgetenv(varNameC))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
@@ -61165,7 +61165,7 @@ func (ptr *QtGlobal) qgetenv(varName string) *QByteArray {
 		defer C.free(unsafe.Pointer(varNameC))
 	}
 	tmpValue := NewQByteArrayFromPointer(C.QtGlobal_QtGlobal_qgetenv(varNameC))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
@@ -61248,7 +61248,7 @@ func (ptr *qfloat16) Destroyqfloat16() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 

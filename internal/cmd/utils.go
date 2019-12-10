@@ -74,7 +74,7 @@ func GetImports(path, target, tagsCustom string, level int, onlyDirect bool) []s
 				}
 				stdImport[len(stdImport)-1] = "github.com/therecipe/qt/internal/binding/runtime"
 
-				cmd := utils.GoList(fmt.Sprintf("{{if not .Standard}}{{if eq .ImportPath \"%v\"}}{{else}}{{range .Imports}}{{if eq . \"github.com/therecipe/qt/qml\" \"github.com/therecipe/qt/quick\"}}{{.}}{{end}}{{end}}{{end}}{{end}}", strings.Join(stdImport, "\" \"")), "-deps")
+				cmd := utils.GoList(fmt.Sprintf("{{if not .Standard}}{{if eq .ImportPath \"%v\"}}{{else}}{{range .Imports}}{{if eq . \"github.com/therecipe/qt/qml\" \"github.com/therecipe/qt/quick\"}}{{.}}{{end}}{{end}}{{end}}{{end}}", strings.Join(stdImport, "\" \"")), "-deps", utils.BuildTags(tags))
 				if !utils.UseGOMOD(path) || (utils.UseGOMOD(path) && !strings.Contains(strings.Replace(path, "\\", "/", -1), "/vendor/")) {
 					cmd.Dir = path
 				} else if utils.UseGOMOD(path) && strings.Contains(strings.Replace(path, "\\", "/", -1), "/vendor/") {

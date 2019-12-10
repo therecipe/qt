@@ -5,6 +5,7 @@ import (
 	"encoding/hex"
 	"fmt"
 	"os"
+	"strconv"
 	"strings"
 	"sync"
 
@@ -246,6 +247,16 @@ func (c *Class) HasCallbackFunctionsBesideTheDestructor() bool {
 func (c *Class) IsSupported() bool {
 	if c == nil {
 		return false
+	}
+
+	if strings.Contains(c.Since, ".") {
+		version := strings.TrimPrefix(c.Since, "Qt")
+		vmaj, _ := strconv.Atoi(string(version[0]))
+		vmin, _ := strconv.Atoi(strings.Replace(version[1:], ".", "", -1))
+		if vmaj*1e3+vmin*10 > utils.QT_VERSION_NUM() {
+			c.Access = "unsupported_isApiVersionBlockedClass"
+			return false
+		}
 	}
 
 	switch c.Name {

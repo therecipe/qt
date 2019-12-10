@@ -242,6 +242,9 @@ func createProject(module, path, target string, mode int, libs []string) {
 	bb := new(bytes.Buffer)
 	defer bb.Reset()
 	for _, o := range out {
+		if !cmd.ImportsQmlOrQuick() && (o == "qml" || o == "quick") && !strings.Contains(strings.Replace(path, "\\", "/", -1), "internal/binding/runtime") {
+			continue
+		}
 		fmt.Fprintf(bb, "qtHaveModule(%[1]v) { QT+=%[1]v }\n", o)
 		if o == "quickcontrols2" && utils.QT_GEN_QUICK_EXTRAS() {
 			fmt.Fprintf(bb, "qtHaveModule(qml-private) { QT+=qml-private }\n", o)
@@ -362,7 +365,7 @@ func createMakefile(module, path, target string, mode int) {
 	if utils.QT_DEBUG_QML() {
 		cmd.Args = append(cmd.Args, []string{"CONFIG+=debug", "CONFIG+=declarative_debug", "CONFIG+=qml_debug"}...)
 	} else {
-		cmd.Args = append(cmd.Args, "CONFIG+=release")
+		cmd.Args = append(cmd.Args, "CONFIG+=release", "CONFIG-=declarative_debug", "CONFIG-=qml_debug")
 	}
 
 	if utils.QT_FELGO() && (module == "Felgo" || module == "build_static" || mode == MOC) {

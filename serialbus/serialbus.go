@@ -11,7 +11,6 @@ import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/network"
-	"runtime"
 	"strings"
 	"unsafe"
 )
@@ -150,7 +149,7 @@ func (ptr *QCanBus) Plugins() []string {
 func (ptr *QCanBus) __availableDevices_atList(i int) *QCanBusDeviceInfo {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQCanBusDeviceInfoFromPointer(C.QCanBus___availableDevices_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QCanBusDeviceInfo).DestroyQCanBusDeviceInfo)
+		qt.SetFinalizer(tmpValue, (*QCanBusDeviceInfo).DestroyQCanBusDeviceInfo)
 		return tmpValue
 	}
 	return nil
@@ -190,7 +189,7 @@ func (ptr *QCanBus) __children_newList() unsafe.Pointer {
 func (ptr *QCanBus) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QCanBus___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -326,7 +325,7 @@ func callbackQCanBus_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QCanBus) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QCanBus_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -579,7 +578,7 @@ func (ptr *QCanBusDevice) ConfigurationKeys() []int {
 func (ptr *QCanBusDevice) ConfigurationParameter(key int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QCanBusDevice_ConfigurationParameter(ptr.Pointer(), C.int(int32(key))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -1134,7 +1133,7 @@ func (ptr *QCanBusDevice) __children_newList() unsafe.Pointer {
 func (ptr *QCanBusDevice) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QCanBusDevice___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -1270,7 +1269,7 @@ func callbackQCanBusDevice_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QCanBusDevice) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QCanBusDevice_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1505,7 +1504,7 @@ func (ptr *QCanBusFactory) DestroyQCanBusFactory() {
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1606,7 +1605,7 @@ func (ptr *QCanBusFactoryV2) DestroyQCanBusFactoryV2() {
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1727,7 +1726,7 @@ func (ptr *QCanBusFactoryV2) CreateDevice(interfaceName string, errorMessage str
 func (ptr *QCanBusFactoryV2) __availableDevices_atList(i int) *QCanBusDeviceInfo {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQCanBusDeviceInfoFromPointer(C.QCanBusFactoryV2___availableDevices_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QCanBusDeviceInfo).DestroyQCanBusDeviceInfo)
+		qt.SetFinalizer(tmpValue, (*QCanBusDeviceInfo).DestroyQCanBusDeviceInfo)
 		return tmpValue
 	}
 	return nil
@@ -1786,7 +1785,7 @@ func (ptr *QCanBusFrame) DestroyQCanBusFrame() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1823,13 +1822,13 @@ var (
 
 func NewQCanBusFrame(ty QCanBusFrame__FrameType) *QCanBusFrame {
 	tmpValue := NewQCanBusFrameFromPointer(C.QCanBusFrame_NewQCanBusFrame(C.longlong(ty)))
-	runtime.SetFinalizer(tmpValue, (*QCanBusFrame).DestroyQCanBusFrame)
+	qt.SetFinalizer(tmpValue, (*QCanBusFrame).DestroyQCanBusFrame)
 	return tmpValue
 }
 
 func NewQCanBusFrame2(identifier uint, data core.QByteArray_ITF) *QCanBusFrame {
 	tmpValue := NewQCanBusFrameFromPointer(C.QCanBusFrame_NewQCanBusFrame2(C.uint(uint32(identifier)), core.PointerFromQByteArray(data)))
-	runtime.SetFinalizer(tmpValue, (*QCanBusFrame).DestroyQCanBusFrame)
+	qt.SetFinalizer(tmpValue, (*QCanBusFrame).DestroyQCanBusFrame)
 	return tmpValue
 }
 
@@ -1899,7 +1898,7 @@ func (ptr *QCanBusFrame) IsValid() bool {
 func (ptr *QCanBusFrame) Payload() *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QCanBusFrame_Payload(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -2299,7 +2298,7 @@ func (ptr *QModbusDataUnit) DestroyQModbusDataUnit() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2317,19 +2316,19 @@ const (
 
 func NewQModbusDataUnit() *QModbusDataUnit {
 	tmpValue := NewQModbusDataUnitFromPointer(C.QModbusDataUnit_NewQModbusDataUnit())
-	runtime.SetFinalizer(tmpValue, (*QModbusDataUnit).DestroyQModbusDataUnit)
+	qt.SetFinalizer(tmpValue, (*QModbusDataUnit).DestroyQModbusDataUnit)
 	return tmpValue
 }
 
 func NewQModbusDataUnit2(ty QModbusDataUnit__RegisterType) *QModbusDataUnit {
 	tmpValue := NewQModbusDataUnitFromPointer(C.QModbusDataUnit_NewQModbusDataUnit2(C.longlong(ty)))
-	runtime.SetFinalizer(tmpValue, (*QModbusDataUnit).DestroyQModbusDataUnit)
+	qt.SetFinalizer(tmpValue, (*QModbusDataUnit).DestroyQModbusDataUnit)
 	return tmpValue
 }
 
 func NewQModbusDataUnit3(ty QModbusDataUnit__RegisterType, address int, size uint16) *QModbusDataUnit {
 	tmpValue := NewQModbusDataUnitFromPointer(C.QModbusDataUnit_NewQModbusDataUnit3(C.longlong(ty), C.int(int32(address)), C.ushort(size)))
-	runtime.SetFinalizer(tmpValue, (*QModbusDataUnit).DestroyQModbusDataUnit)
+	qt.SetFinalizer(tmpValue, (*QModbusDataUnit).DestroyQModbusDataUnit)
 	return tmpValue
 }
 
@@ -2341,7 +2340,7 @@ func NewQModbusDataUnit4(ty QModbusDataUnit__RegisterType, address int, data []u
 		}
 		return tmpList.Pointer()
 	}()))
-	runtime.SetFinalizer(tmpValue, (*QModbusDataUnit).DestroyQModbusDataUnit)
+	qt.SetFinalizer(tmpValue, (*QModbusDataUnit).DestroyQModbusDataUnit)
 	return tmpValue
 }
 
@@ -2650,7 +2649,7 @@ func (ptr *QModbusDevice) ConnectDevice() bool {
 func (ptr *QModbusDevice) ConnectionParameter(parameter int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QModbusDevice_ConnectionParameter(ptr.Pointer(), C.int(int32(parameter))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -2859,7 +2858,7 @@ func (ptr *QModbusDevice) DestroyQModbusDevice() {
 	if ptr.Pointer() != nil {
 		C.QModbusDevice_DestroyQModbusDevice(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2867,7 +2866,7 @@ func (ptr *QModbusDevice) DestroyQModbusDeviceDefault() {
 	if ptr.Pointer() != nil {
 		C.QModbusDevice_DestroyQModbusDeviceDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2895,7 +2894,7 @@ func (ptr *QModbusDevice) __children_newList() unsafe.Pointer {
 func (ptr *QModbusDevice) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QModbusDevice___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -3031,7 +3030,7 @@ func callbackQModbusDevice_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QModbusDevice) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QModbusDevice_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3172,7 +3171,7 @@ func (ptr *QModbusDeviceIdentification) DestroyQModbusDeviceIdentification() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3219,7 +3218,7 @@ const (
 
 func NewQModbusDeviceIdentification() *QModbusDeviceIdentification {
 	tmpValue := NewQModbusDeviceIdentificationFromPointer(C.QModbusDeviceIdentification_NewQModbusDeviceIdentification())
-	runtime.SetFinalizer(tmpValue, (*QModbusDeviceIdentification).DestroyQModbusDeviceIdentification)
+	qt.SetFinalizer(tmpValue, (*QModbusDeviceIdentification).DestroyQModbusDeviceIdentification)
 	return tmpValue
 }
 
@@ -3239,13 +3238,13 @@ func (ptr *QModbusDeviceIdentification) Contains(objectId uint) bool {
 
 func QModbusDeviceIdentification_FromByteArray(ba core.QByteArray_ITF) *QModbusDeviceIdentification {
 	tmpValue := NewQModbusDeviceIdentificationFromPointer(C.QModbusDeviceIdentification_QModbusDeviceIdentification_FromByteArray(core.PointerFromQByteArray(ba)))
-	runtime.SetFinalizer(tmpValue, (*QModbusDeviceIdentification).DestroyQModbusDeviceIdentification)
+	qt.SetFinalizer(tmpValue, (*QModbusDeviceIdentification).DestroyQModbusDeviceIdentification)
 	return tmpValue
 }
 
 func (ptr *QModbusDeviceIdentification) FromByteArray(ba core.QByteArray_ITF) *QModbusDeviceIdentification {
 	tmpValue := NewQModbusDeviceIdentificationFromPointer(C.QModbusDeviceIdentification_QModbusDeviceIdentification_FromByteArray(core.PointerFromQByteArray(ba)))
-	runtime.SetFinalizer(tmpValue, (*QModbusDeviceIdentification).DestroyQModbusDeviceIdentification)
+	qt.SetFinalizer(tmpValue, (*QModbusDeviceIdentification).DestroyQModbusDeviceIdentification)
 	return tmpValue
 }
 
@@ -3292,7 +3291,7 @@ func (ptr *QModbusDeviceIdentification) SetConformityLevel(level QModbusDeviceId
 func (ptr *QModbusDeviceIdentification) Value(objectId uint) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QModbusDeviceIdentification_Value(ptr.Pointer(), C.uint(uint32(objectId))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -3318,7 +3317,7 @@ func (ptr *QModbusDeviceIdentification) __objectIds_newList() unsafe.Pointer {
 func (ptr *QModbusDeviceIdentification) __m_objects_atList(v int, i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QModbusDeviceIdentification___m_objects_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -3351,7 +3350,7 @@ func (ptr *QModbusDeviceIdentification) __m_objects_keyList() []int {
 func (ptr *QModbusDeviceIdentification) __setM_objects__atList(v int, i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QModbusDeviceIdentification___setM_objects__atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -3460,7 +3459,7 @@ func (ptr *QModbusExceptionResponse) DestroyQModbusExceptionResponse() {
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3581,7 +3580,7 @@ func NewQModbusPdu3(other QModbusPdu_ITF) *QModbusPdu {
 func (ptr *QModbusPdu) Data() *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QModbusPdu_Data(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -3713,7 +3712,7 @@ func (ptr *QModbusPdu) DestroyQModbusPdu() {
 	if ptr.Pointer() != nil {
 		C.QModbusPdu_DestroyQModbusPdu(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3721,7 +3720,7 @@ func (ptr *QModbusPdu) DestroyQModbusPduDefault() {
 	if ptr.Pointer() != nil {
 		C.QModbusPdu_DestroyQModbusPduDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3915,7 +3914,7 @@ func (ptr *QModbusReply) IsFinished() bool {
 func (ptr *QModbusReply) RawResult() *QModbusResponse {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModbusResponseFromPointer(C.QModbusReply_RawResult(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QModbusResponse).DestroyQModbusResponse)
+		qt.SetFinalizer(tmpValue, (*QModbusResponse).DestroyQModbusResponse)
 		return tmpValue
 	}
 	return nil
@@ -3924,7 +3923,7 @@ func (ptr *QModbusReply) RawResult() *QModbusResponse {
 func (ptr *QModbusReply) Result() *QModbusDataUnit {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModbusDataUnitFromPointer(C.QModbusReply_Result(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QModbusDataUnit).DestroyQModbusDataUnit)
+		qt.SetFinalizer(tmpValue, (*QModbusDataUnit).DestroyQModbusDataUnit)
 		return tmpValue
 	}
 	return nil
@@ -3968,7 +3967,7 @@ func (ptr *QModbusReply) __children_newList() unsafe.Pointer {
 func (ptr *QModbusReply) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QModbusReply___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -4104,7 +4103,7 @@ func callbackQModbusReply_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QModbusReply) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QModbusReply_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4247,7 +4246,7 @@ func (ptr *QModbusRequest) DestroyQModbusRequest() {
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4324,7 +4323,7 @@ func (ptr *QModbusResponse) DestroyQModbusResponse() {
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4685,7 +4684,7 @@ func (ptr *QModbusRtuSerialSlave) DestroyQModbusRtuSerialSlave() {
 	if ptr.Pointer() != nil {
 		C.QModbusRtuSerialSlave_DestroyQModbusRtuSerialSlave(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4693,7 +4692,7 @@ func (ptr *QModbusRtuSerialSlave) DestroyQModbusRtuSerialSlaveDefault() {
 	if ptr.Pointer() != nil {
 		C.QModbusRtuSerialSlave_DestroyQModbusRtuSerialSlaveDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4849,7 +4848,7 @@ func (ptr *QModbusServer) DisconnectProcessPrivateRequest() {
 func (ptr *QModbusServer) ProcessPrivateRequest(request QModbusPdu_ITF) *QModbusResponse {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModbusResponseFromPointer(C.QModbusServer_ProcessPrivateRequest(ptr.Pointer(), PointerFromQModbusPdu(request)))
-		runtime.SetFinalizer(tmpValue, (*QModbusResponse).DestroyQModbusResponse)
+		qt.SetFinalizer(tmpValue, (*QModbusResponse).DestroyQModbusResponse)
 		return tmpValue
 	}
 	return nil
@@ -4858,7 +4857,7 @@ func (ptr *QModbusServer) ProcessPrivateRequest(request QModbusPdu_ITF) *QModbus
 func (ptr *QModbusServer) ProcessPrivateRequestDefault(request QModbusPdu_ITF) *QModbusResponse {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModbusResponseFromPointer(C.QModbusServer_ProcessPrivateRequestDefault(ptr.Pointer(), PointerFromQModbusPdu(request)))
-		runtime.SetFinalizer(tmpValue, (*QModbusResponse).DestroyQModbusResponse)
+		qt.SetFinalizer(tmpValue, (*QModbusResponse).DestroyQModbusResponse)
 		return tmpValue
 	}
 	return nil
@@ -4898,7 +4897,7 @@ func (ptr *QModbusServer) DisconnectProcessRequest() {
 func (ptr *QModbusServer) ProcessRequest(request QModbusPdu_ITF) *QModbusResponse {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModbusResponseFromPointer(C.QModbusServer_ProcessRequest(ptr.Pointer(), PointerFromQModbusPdu(request)))
-		runtime.SetFinalizer(tmpValue, (*QModbusResponse).DestroyQModbusResponse)
+		qt.SetFinalizer(tmpValue, (*QModbusResponse).DestroyQModbusResponse)
 		return tmpValue
 	}
 	return nil
@@ -4907,7 +4906,7 @@ func (ptr *QModbusServer) ProcessRequest(request QModbusPdu_ITF) *QModbusRespons
 func (ptr *QModbusServer) ProcessRequestDefault(request QModbusPdu_ITF) *QModbusResponse {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQModbusResponseFromPointer(C.QModbusServer_ProcessRequestDefault(ptr.Pointer(), PointerFromQModbusPdu(request)))
-		runtime.SetFinalizer(tmpValue, (*QModbusResponse).DestroyQModbusResponse)
+		qt.SetFinalizer(tmpValue, (*QModbusResponse).DestroyQModbusResponse)
 		return tmpValue
 	}
 	return nil
@@ -5109,7 +5108,7 @@ func (ptr *QModbusServer) DisconnectValue() {
 func (ptr *QModbusServer) Value(option int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QModbusServer_Value(ptr.Pointer(), C.int(int32(option))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -5118,7 +5117,7 @@ func (ptr *QModbusServer) Value(option int) *core.QVariant {
 func (ptr *QModbusServer) ValueDefault(option int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QModbusServer_ValueDefault(ptr.Pointer(), C.int(int32(option))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -5382,7 +5381,7 @@ func (ptr *QModbusTcpClient) DestroyQModbusTcpClient() {
 	if ptr.Pointer() != nil {
 		C.QModbusTcpClient_DestroyQModbusTcpClient(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5390,7 +5389,7 @@ func (ptr *QModbusTcpClient) DestroyQModbusTcpClientDefault() {
 	if ptr.Pointer() != nil {
 		C.QModbusTcpClient_DestroyQModbusTcpClientDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5438,7 +5437,7 @@ func (ptr *QModbusTcpConnectionObserver) DestroyQModbusTcpConnectionObserver() {
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5695,7 +5694,7 @@ func (ptr *QModbusTcpServer) DestroyQModbusTcpServer() {
 	if ptr.Pointer() != nil {
 		C.QModbusTcpServer_DestroyQModbusTcpServer(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5703,7 +5702,7 @@ func (ptr *QModbusTcpServer) DestroyQModbusTcpServerDefault() {
 	if ptr.Pointer() != nil {
 		C.QModbusTcpServer_DestroyQModbusTcpServerDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 

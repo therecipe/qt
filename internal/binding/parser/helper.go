@@ -248,6 +248,10 @@ func ShouldBuildForTargetM(module, target string) bool {
 	return shouldBuildForTarget(module, target, true)
 }
 func shouldBuildForTarget(module, target string, min bool) bool {
+	if module == "internal/binding/runtime" {
+		return true
+	}
+
 	if State.Minimal == true || min {
 		for _, m := range cmd.GetQtStdImports() {
 			if strings.ToLower(module) == strings.ToLower(m) ||

@@ -10,7 +10,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"runtime"
 	"strings"
 	"unsafe"
 )
@@ -178,7 +177,7 @@ func (ptr *QInAppProduct) __children_newList() unsafe.Pointer {
 func (ptr *QInAppProduct) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QInAppProduct___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -314,7 +313,7 @@ func callbackQInAppProduct_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QInAppProduct) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QInAppProduct_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -667,7 +666,7 @@ func (ptr *QInAppStore) DestroyQInAppStore() {
 	if ptr.Pointer() != nil {
 		C.QInAppStore_DestroyQInAppStore(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -675,7 +674,7 @@ func (ptr *QInAppStore) DestroyQInAppStoreDefault() {
 	if ptr.Pointer() != nil {
 		C.QInAppStore_DestroyQInAppStoreDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -703,7 +702,7 @@ func (ptr *QInAppStore) __children_newList() unsafe.Pointer {
 func (ptr *QInAppStore) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QInAppStore___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -839,7 +838,7 @@ func callbackQInAppStore_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QInAppStore) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QInAppStore_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1278,7 +1277,7 @@ func (ptr *QInAppTransaction) DisconnectTimestamp() {
 func (ptr *QInAppTransaction) Timestamp() *core.QDateTime {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQDateTimeFromPointer(C.QInAppTransaction_Timestamp(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
+		qt.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
 		return tmpValue
 	}
 	return nil
@@ -1287,7 +1286,7 @@ func (ptr *QInAppTransaction) Timestamp() *core.QDateTime {
 func (ptr *QInAppTransaction) TimestampDefault() *core.QDateTime {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQDateTimeFromPointer(C.QInAppTransaction_TimestampDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
+		qt.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
 		return tmpValue
 	}
 	return nil
@@ -1317,7 +1316,7 @@ func (ptr *QInAppTransaction) __children_newList() unsafe.Pointer {
 func (ptr *QInAppTransaction) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QInAppTransaction___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -1453,7 +1452,7 @@ func callbackQInAppTransaction_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QInAppTransaction) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QInAppTransaction_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 

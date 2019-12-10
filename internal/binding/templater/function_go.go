@@ -20,7 +20,7 @@ func goFunction(function *parser.Function) string {
 }
 
 func goFunctionHeader(function *parser.Function) string {
-	return fmt.Sprintf("func %v %v(%v)%v",
+	return fmt.Sprintf("func %v %v(%v) %v",
 		func() string {
 			if function.Static || function.Meta == parser.CONSTRUCTOR || function.SignalMode == parser.CALLBACK {
 				return ""
@@ -193,7 +193,7 @@ func goFunctionBody(function *parser.Function) string {
 							fmt.Fprint(bb, "tmpValue.DestroyQAndroidJniObject()\n")
 						} else {
 							class.HasFinalizer = true
-							fmt.Fprintf(bb, "runtime.SetFinalizer(tmpValue, (%v).Destroy%v)\n",
+							fmt.Fprintf(bb, "qt.SetFinalizer(tmpValue, (%v).Destroy%v)\n",
 								func() string {
 									if function.TemplateModeJNI != "" {
 										return fmt.Sprintf("*%v", parser.CleanValue(function.Output))
@@ -240,7 +240,7 @@ func goFunctionBody(function *parser.Function) string {
 
 					fmt.Fprintf(bb, "tmpValue := %v\n", body)
 
-					if class.Name != "SailfishApp" {
+					if class.Name != "SailfishApp" && function.Fullname != "QWidget::style" && function.Fullname != "QApplication::style" { //TODO: blacklist other functions returning singletons as well?
 						fmt.Fprintf(bb, "if !qt.ExistsSignal(tmpValue.Pointer(), \"destroyed\") {\ntmpValue.ConnectDestroyed(func(%v){ tmpValue.SetPointer(nil) })\n}\n",
 							func() string {
 								if class.Module == "QtCore" {
@@ -262,7 +262,7 @@ func goFunctionBody(function *parser.Function) string {
 					if function.Meta == parser.CONSTRUCTOR && utils.QT_API_NUM(utils.QT_VERSION()) >= 5050 {
 						if class.IsSubClassOf("QJSEngine") {
 							fmt.Fprintln(bb, "Z_initEngine(tmpValue)")
-						} else if class.IsSubClassOf("QQuickView") {
+						} else if class.IsSubClassOf("QQuickView") || class.IsSubClassOf("QQuickWidget") {
 							fmt.Fprintln(bb, "qml.Z_initEngine(tmpValue.Engine())")
 						}
 					}
@@ -681,7 +681,7 @@ func goFunctionBody(function *parser.Function) string {
 			fmt.Fprint(bb, "\nptr.SetPointer(nil)")
 		}
 		if class.HasFinalizer {
-			fmt.Fprint(bb, "\nruntime.SetFinalizer(ptr, nil)")
+			fmt.Fprint(bb, "\nqt.SetFinalizer(ptr, nil)")
 		}
 	}
 

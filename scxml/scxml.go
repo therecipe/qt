@@ -10,7 +10,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"runtime"
 	"strings"
 	"unsafe"
 )
@@ -74,7 +73,7 @@ func NewQScxmlCompilerFromPointer(ptr unsafe.Pointer) (n *QScxmlCompiler) {
 }
 func NewQScxmlCompiler(reader core.QXmlStreamReader_ITF) *QScxmlCompiler {
 	tmpValue := NewQScxmlCompilerFromPointer(C.QScxmlCompiler_NewQScxmlCompiler(core.PointerFromQXmlStreamReader(reader)))
-	runtime.SetFinalizer(tmpValue, (*QScxmlCompiler).DestroyQScxmlCompiler)
+	qt.SetFinalizer(tmpValue, (*QScxmlCompiler).DestroyQScxmlCompiler)
 	return tmpValue
 }
 
@@ -126,14 +125,14 @@ func (ptr *QScxmlCompiler) DestroyQScxmlCompiler() {
 		C.QScxmlCompiler_DestroyQScxmlCompiler(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QScxmlCompiler) __errors_atList(i int) *QScxmlError {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQScxmlErrorFromPointer(C.QScxmlCompiler___errors_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QScxmlError).DestroyQScxmlError)
+		qt.SetFinalizer(tmpValue, (*QScxmlError).DestroyQScxmlError)
 		return tmpValue
 	}
 	return nil
@@ -301,7 +300,7 @@ func (ptr *QScxmlCppDataModel) ScxmlProperty(name string) *core.QVariant {
 			defer C.free(unsafe.Pointer(nameC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QScxmlCppDataModel_ScxmlProperty(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))}))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -315,7 +314,7 @@ func (ptr *QScxmlCppDataModel) ScxmlPropertyDefault(name string) *core.QVariant 
 			defer C.free(unsafe.Pointer(nameC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QScxmlCppDataModel_ScxmlPropertyDefault(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))}))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -584,7 +583,7 @@ func (ptr *QScxmlDataModel) ScxmlProperty(name string) *core.QVariant {
 			defer C.free(unsafe.Pointer(nameC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QScxmlDataModel_ScxmlProperty(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))}))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -754,7 +753,7 @@ func (ptr *QScxmlDataModel) __setup_initialDataValues_atList(v string, i int) *c
 			defer C.free(unsafe.Pointer(vC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QScxmlDataModel___setup_initialDataValues_atList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -835,7 +834,7 @@ func (ptr *QScxmlDataModel) __children_newList() unsafe.Pointer {
 func (ptr *QScxmlDataModel) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QScxmlDataModel___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -971,7 +970,7 @@ func callbackQScxmlDataModel_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QScxmlDataModel) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QScxmlDataModel_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1309,7 +1308,7 @@ func (ptr *QScxmlEcmaScriptDataModel) ScxmlProperty(name string) *core.QVariant 
 			defer C.free(unsafe.Pointer(nameC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QScxmlEcmaScriptDataModel_ScxmlProperty(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))}))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -1323,7 +1322,7 @@ func (ptr *QScxmlEcmaScriptDataModel) ScxmlPropertyDefault(name string) *core.QV
 			defer C.free(unsafe.Pointer(nameC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QScxmlEcmaScriptDataModel_ScxmlPropertyDefault(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))}))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -1547,7 +1546,7 @@ func NewQScxmlErrorFromPointer(ptr unsafe.Pointer) (n *QScxmlError) {
 }
 func NewQScxmlError() *QScxmlError {
 	tmpValue := NewQScxmlErrorFromPointer(C.QScxmlError_NewQScxmlError())
-	runtime.SetFinalizer(tmpValue, (*QScxmlError).DestroyQScxmlError)
+	qt.SetFinalizer(tmpValue, (*QScxmlError).DestroyQScxmlError)
 	return tmpValue
 }
 
@@ -1563,13 +1562,13 @@ func NewQScxmlError2(fileName string, line int, column int, description string) 
 		defer C.free(unsafe.Pointer(descriptionC))
 	}
 	tmpValue := NewQScxmlErrorFromPointer(C.QScxmlError_NewQScxmlError2(C.struct_QtScxml_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, C.int(int32(line)), C.int(int32(column)), C.struct_QtScxml_PackedString{data: descriptionC, len: C.longlong(len(description))}))
-	runtime.SetFinalizer(tmpValue, (*QScxmlError).DestroyQScxmlError)
+	qt.SetFinalizer(tmpValue, (*QScxmlError).DestroyQScxmlError)
 	return tmpValue
 }
 
 func NewQScxmlError3(other QScxmlError_ITF) *QScxmlError {
 	tmpValue := NewQScxmlErrorFromPointer(C.QScxmlError_NewQScxmlError3(PointerFromQScxmlError(other)))
-	runtime.SetFinalizer(tmpValue, (*QScxmlError).DestroyQScxmlError)
+	qt.SetFinalizer(tmpValue, (*QScxmlError).DestroyQScxmlError)
 	return tmpValue
 }
 
@@ -1620,7 +1619,7 @@ func (ptr *QScxmlError) DestroyQScxmlError() {
 		C.QScxmlError_DestroyQScxmlError(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1674,13 +1673,13 @@ const (
 
 func NewQScxmlEvent() *QScxmlEvent {
 	tmpValue := NewQScxmlEventFromPointer(C.QScxmlEvent_NewQScxmlEvent())
-	runtime.SetFinalizer(tmpValue, (*QScxmlEvent).DestroyQScxmlEvent)
+	qt.SetFinalizer(tmpValue, (*QScxmlEvent).DestroyQScxmlEvent)
 	return tmpValue
 }
 
 func NewQScxmlEvent2(other QScxmlEvent_ITF) *QScxmlEvent {
 	tmpValue := NewQScxmlEventFromPointer(C.QScxmlEvent_NewQScxmlEvent2(PointerFromQScxmlEvent(other)))
-	runtime.SetFinalizer(tmpValue, (*QScxmlEvent).DestroyQScxmlEvent)
+	qt.SetFinalizer(tmpValue, (*QScxmlEvent).DestroyQScxmlEvent)
 	return tmpValue
 }
 
@@ -1693,7 +1692,7 @@ func (ptr *QScxmlEvent) Clear() {
 func (ptr *QScxmlEvent) Data() *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QScxmlEvent_Data(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -1858,7 +1857,7 @@ func (ptr *QScxmlEvent) DestroyQScxmlEvent() {
 		C.QScxmlEvent_DestroyQScxmlEvent(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2088,7 +2087,7 @@ func (ptr *QScxmlInvokableService) __children_newList() unsafe.Pointer {
 func (ptr *QScxmlInvokableService) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QScxmlInvokableService___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -2224,7 +2223,7 @@ func callbackQScxmlInvokableService_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QScxmlInvokableService) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QScxmlInvokableService_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2443,7 +2442,7 @@ func (ptr *QScxmlInvokableServiceFactory) __children_newList() unsafe.Pointer {
 func (ptr *QScxmlInvokableServiceFactory) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QScxmlInvokableServiceFactory___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -2579,7 +2578,7 @@ func callbackQScxmlInvokableServiceFactory_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QScxmlInvokableServiceFactory) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QScxmlInvokableServiceFactory_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2817,7 +2816,7 @@ func (ptr *QScxmlNullDataModel) ScxmlProperty(name string) *core.QVariant {
 			defer C.free(unsafe.Pointer(nameC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QScxmlNullDataModel_ScxmlProperty(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))}))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -2831,7 +2830,7 @@ func (ptr *QScxmlNullDataModel) ScxmlPropertyDefault(name string) *core.QVariant
 			defer C.free(unsafe.Pointer(nameC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QScxmlNullDataModel_ScxmlPropertyDefault(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))}))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -3051,7 +3050,7 @@ func (ptr *QScxmlNullDataModel) DestroyQScxmlNullDataModel() {
 	if ptr.Pointer() != nil {
 		C.QScxmlNullDataModel_DestroyQScxmlNullDataModel(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3059,7 +3058,7 @@ func (ptr *QScxmlNullDataModel) DestroyQScxmlNullDataModelDefault() {
 	if ptr.Pointer() != nil {
 		C.QScxmlNullDataModel_DestroyQScxmlNullDataModelDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3844,7 +3843,7 @@ func (ptr *QScxmlStateMachine) __initialValues_atList(v string, i int) *core.QVa
 			defer C.free(unsafe.Pointer(vC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QScxmlStateMachine___initialValues_atList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -3887,7 +3886,7 @@ func (ptr *QScxmlStateMachine) __initialValuesChanged_initialValues_atList(v str
 			defer C.free(unsafe.Pointer(vC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QScxmlStateMachine___initialValuesChanged_initialValues_atList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -3967,7 +3966,7 @@ func (ptr *QScxmlStateMachine) __invokedServicesChanged_invokedServices_newList(
 func (ptr *QScxmlStateMachine) __parseErrors_atList(i int) *QScxmlError {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQScxmlErrorFromPointer(C.QScxmlStateMachine___parseErrors_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QScxmlError).DestroyQScxmlError)
+		qt.SetFinalizer(tmpValue, (*QScxmlError).DestroyQScxmlError)
 		return tmpValue
 	}
 	return nil
@@ -3991,7 +3990,7 @@ func (ptr *QScxmlStateMachine) __setInitialValues_initialValues_atList(v string,
 			defer C.free(unsafe.Pointer(vC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QScxmlStateMachine___setInitialValues_initialValues_atList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -4116,7 +4115,7 @@ func (ptr *QScxmlStateMachine) __children_newList() unsafe.Pointer {
 func (ptr *QScxmlStateMachine) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QScxmlStateMachine___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -4252,7 +4251,7 @@ func callbackQScxmlStateMachine_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QScxmlStateMachine) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 

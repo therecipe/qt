@@ -9,7 +9,6 @@ package quickcontrols2
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"runtime"
 	"strings"
 	"unsafe"
 )
@@ -77,7 +76,7 @@ func (ptr *QQuickStyle) DestroyQQuickStyle() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 

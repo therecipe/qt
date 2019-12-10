@@ -11,7 +11,6 @@ import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
-	"runtime"
 	"strings"
 	"unsafe"
 )
@@ -338,7 +337,7 @@ func (ptr *QAbstractButton) HitButtonDefault(pos core.QPoint_ITF) bool {
 func (ptr *QAbstractButton) Icon() *gui.QIcon {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQIconFromPointer(C.QAbstractButton_Icon(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+		qt.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
 		return tmpValue
 	}
 	return nil
@@ -347,7 +346,7 @@ func (ptr *QAbstractButton) Icon() *gui.QIcon {
 func (ptr *QAbstractButton) IconSize() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QAbstractButton_IconSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -681,7 +680,7 @@ func (ptr *QAbstractButton) SetText(text string) {
 func (ptr *QAbstractButton) Shortcut() *gui.QKeySequence {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQKeySequenceFromPointer(C.QAbstractButton_Shortcut(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QKeySequence).DestroyQKeySequence)
+		qt.SetFinalizer(tmpValue, (*gui.QKeySequence).DestroyQKeySequence)
 		return tmpValue
 	}
 	return nil
@@ -812,7 +811,7 @@ func (ptr *QAbstractButton) DestroyQAbstractButton() {
 	if ptr.Pointer() != nil {
 		C.QAbstractButton_DestroyQAbstractButton(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -820,7 +819,7 @@ func (ptr *QAbstractButton) DestroyQAbstractButtonDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractButton_DestroyQAbstractButtonDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -869,7 +868,7 @@ func NewQAbstractGraphicsShapeItem(parent QGraphicsItem_ITF) *QAbstractGraphicsS
 func (ptr *QAbstractGraphicsShapeItem) Brush() *gui.QBrush {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQBrushFromPointer(C.QAbstractGraphicsShapeItem_Brush(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
+		qt.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
 		return tmpValue
 	}
 	return nil
@@ -878,7 +877,7 @@ func (ptr *QAbstractGraphicsShapeItem) Brush() *gui.QBrush {
 func (ptr *QAbstractGraphicsShapeItem) Pen() *gui.QPen {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPenFromPointer(C.QAbstractGraphicsShapeItem_Pen(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QPen).DestroyQPen)
+		qt.SetFinalizer(tmpValue, (*gui.QPen).DestroyQPen)
 		return tmpValue
 	}
 	return nil
@@ -931,7 +930,7 @@ func (ptr *QAbstractGraphicsShapeItem) DestroyQAbstractGraphicsShapeItem() {
 	if ptr.Pointer() != nil {
 		C.QAbstractGraphicsShapeItem_DestroyQAbstractGraphicsShapeItem(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -939,7 +938,7 @@ func (ptr *QAbstractGraphicsShapeItem) DestroyQAbstractGraphicsShapeItemDefault(
 	if ptr.Pointer() != nil {
 		C.QAbstractGraphicsShapeItem_DestroyQAbstractGraphicsShapeItemDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -955,7 +954,7 @@ func callbackQAbstractGraphicsShapeItem_BoundingRect(ptr unsafe.Pointer) unsafe.
 func (ptr *QAbstractGraphicsShapeItem) BoundingRect() *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QAbstractGraphicsShapeItem_BoundingRect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -964,7 +963,7 @@ func (ptr *QAbstractGraphicsShapeItem) BoundingRect() *core.QRectF {
 func (ptr *QAbstractGraphicsShapeItem) BoundingRectDefault() *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QAbstractGraphicsShapeItem_BoundingRectDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -1472,7 +1471,7 @@ func (ptr *QAbstractItemDelegate) DisconnectSizeHint() {
 func (ptr *QAbstractItemDelegate) SizeHint(option QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QAbstractItemDelegate_SizeHint(ptr.Pointer(), PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -1596,7 +1595,7 @@ func (ptr *QAbstractItemDelegate) DestroyQAbstractItemDelegate() {
 	if ptr.Pointer() != nil {
 		C.QAbstractItemDelegate_DestroyQAbstractItemDelegate(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1604,7 +1603,7 @@ func (ptr *QAbstractItemDelegate) DestroyQAbstractItemDelegateDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractItemDelegate_DestroyQAbstractItemDelegateDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1649,7 +1648,7 @@ func (ptr *QAbstractItemDelegate) __children_newList() unsafe.Pointer {
 func (ptr *QAbstractItemDelegate) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QAbstractItemDelegate___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -1785,7 +1784,7 @@ func callbackQAbstractItemDelegate_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QAbstractItemDelegate) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractItemDelegate_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2315,7 +2314,7 @@ func (ptr *QAbstractItemView) CurrentChangedDefault(current core.QModelIndex_ITF
 func (ptr *QAbstractItemView) CurrentIndex() *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QAbstractItemView_CurrentIndex(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -2400,7 +2399,7 @@ func (ptr *QAbstractItemView) DefaultDropAction() core.Qt__DropAction {
 func (ptr *QAbstractItemView) DirtyRegionOffset() *core.QPoint {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFromPointer(C.QAbstractItemView_DirtyRegionOffset(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
+		qt.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
 		return tmpValue
 	}
 	return nil
@@ -2713,7 +2712,7 @@ func (ptr *QAbstractItemView) HorizontalScrollMode() QAbstractItemView__ScrollMo
 func (ptr *QAbstractItemView) IconSize() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QAbstractItemView_IconSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -2793,7 +2792,7 @@ func (ptr *QAbstractItemView) DisconnectIndexAt() {
 func (ptr *QAbstractItemView) IndexAt(point core.QPoint_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QAbstractItemView_IndexAt(ptr.Pointer(), core.PointerFromQPoint(point)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -2997,7 +2996,7 @@ func (ptr *QAbstractItemView) DisconnectMoveCursor() {
 func (ptr *QAbstractItemView) MoveCursor(cursorAction QAbstractItemView__CursorAction, modifiers core.Qt__KeyboardModifier) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QAbstractItemView_MoveCursor(ptr.Pointer(), C.longlong(cursorAction), C.longlong(modifiers)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -3107,7 +3106,7 @@ func (ptr *QAbstractItemView) ResetVerticalScrollMode() {
 func (ptr *QAbstractItemView) RootIndex() *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QAbstractItemView_RootIndex(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -3955,7 +3954,7 @@ func (ptr *QAbstractItemView) SizeHintForColumnDefault(column int) int {
 func (ptr *QAbstractItemView) SizeHintForIndex(index core.QModelIndex_ITF) *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QAbstractItemView_SizeHintForIndex(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -4235,7 +4234,7 @@ func (ptr *QAbstractItemView) DisconnectViewOptions() {
 func (ptr *QAbstractItemView) ViewOptions() *QStyleOptionViewItem {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStyleOptionViewItemFromPointer(C.QAbstractItemView_ViewOptions(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QStyleOptionViewItem).DestroyQStyleOptionViewItem)
+		qt.SetFinalizer(tmpValue, (*QStyleOptionViewItem).DestroyQStyleOptionViewItem)
 		return tmpValue
 	}
 	return nil
@@ -4244,7 +4243,7 @@ func (ptr *QAbstractItemView) ViewOptions() *QStyleOptionViewItem {
 func (ptr *QAbstractItemView) ViewOptionsDefault() *QStyleOptionViewItem {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStyleOptionViewItemFromPointer(C.QAbstractItemView_ViewOptionsDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QStyleOptionViewItem).DestroyQStyleOptionViewItem)
+		qt.SetFinalizer(tmpValue, (*QStyleOptionViewItem).DestroyQStyleOptionViewItem)
 		return tmpValue
 	}
 	return nil
@@ -4324,7 +4323,7 @@ func (ptr *QAbstractItemView) DisconnectVisualRect() {
 func (ptr *QAbstractItemView) VisualRect(index core.QModelIndex_ITF) *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QAbstractItemView_VisualRect(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -4364,7 +4363,7 @@ func (ptr *QAbstractItemView) DisconnectVisualRegionForSelection() {
 func (ptr *QAbstractItemView) VisualRegionForSelection(selection core.QItemSelection_ITF) *gui.QRegion {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQRegionFromPointer(C.QAbstractItemView_VisualRegionForSelection(ptr.Pointer(), core.PointerFromQItemSelection(selection)))
-		runtime.SetFinalizer(tmpValue, (*gui.QRegion).DestroyQRegion)
+		qt.SetFinalizer(tmpValue, (*gui.QRegion).DestroyQRegion)
 		return tmpValue
 	}
 	return nil
@@ -4405,7 +4404,7 @@ func (ptr *QAbstractItemView) DestroyQAbstractItemView() {
 	if ptr.Pointer() != nil {
 		C.QAbstractItemView_DestroyQAbstractItemView(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4413,7 +4412,7 @@ func (ptr *QAbstractItemView) DestroyQAbstractItemViewDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractItemView_DestroyQAbstractItemViewDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4437,7 +4436,7 @@ func (ptr *QAbstractItemView) __dataChanged_roles_newList() unsafe.Pointer {
 func (ptr *QAbstractItemView) __selectedIndexes_atList(i int) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QAbstractItemView___selectedIndexes_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -4548,7 +4547,7 @@ func (ptr *QAbstractScrollArea) HorizontalScrollBarPolicy() core.Qt__ScrollBarPo
 func (ptr *QAbstractScrollArea) MaximumViewportSize() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QAbstractScrollArea_MaximumViewportSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -4792,7 +4791,7 @@ func (ptr *QAbstractScrollArea) ViewportEventDefault(event core.QEvent_ITF) bool
 func (ptr *QAbstractScrollArea) ViewportMargins() *core.QMargins {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQMarginsFromPointer(C.QAbstractScrollArea_ViewportMargins(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QMargins).DestroyQMargins)
+		qt.SetFinalizer(tmpValue, (*core.QMargins).DestroyQMargins)
 		return tmpValue
 	}
 	return nil
@@ -4832,7 +4831,7 @@ func (ptr *QAbstractScrollArea) DisconnectViewportSizeHint() {
 func (ptr *QAbstractScrollArea) ViewportSizeHint() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QAbstractScrollArea_ViewportSizeHint(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -4841,7 +4840,7 @@ func (ptr *QAbstractScrollArea) ViewportSizeHint() *core.QSize {
 func (ptr *QAbstractScrollArea) ViewportSizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QAbstractScrollArea_ViewportSizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -4882,7 +4881,7 @@ func (ptr *QAbstractScrollArea) DestroyQAbstractScrollArea() {
 	if ptr.Pointer() != nil {
 		C.QAbstractScrollArea_DestroyQAbstractScrollArea(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4890,7 +4889,7 @@ func (ptr *QAbstractScrollArea) DestroyQAbstractScrollAreaDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractScrollArea_DestroyQAbstractScrollAreaDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5585,7 +5584,7 @@ func (ptr *QAbstractSlider) DestroyQAbstractSlider() {
 	if ptr.Pointer() != nil {
 		C.QAbstractSlider_DestroyQAbstractSlider(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5593,7 +5592,7 @@ func (ptr *QAbstractSlider) DestroyQAbstractSliderDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractSlider_DestroyQAbstractSliderDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6303,7 +6302,7 @@ func (ptr *QAbstractSpinBox) DestroyQAbstractSpinBox() {
 	if ptr.Pointer() != nil {
 		C.QAbstractSpinBox_DestroyQAbstractSpinBox(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6311,7 +6310,7 @@ func (ptr *QAbstractSpinBox) DestroyQAbstractSpinBoxDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractSpinBox_DestroyQAbstractSpinBoxDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6448,7 +6447,7 @@ func (ptr *QAccessibleWidget) DisconnectBackgroundColor() {
 func (ptr *QAccessibleWidget) BackgroundColor() *gui.QColor {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQColorFromPointer(C.QAccessibleWidget_BackgroundColor(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+		qt.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
 	return nil
@@ -6457,7 +6456,7 @@ func (ptr *QAccessibleWidget) BackgroundColor() *gui.QColor {
 func (ptr *QAccessibleWidget) BackgroundColorDefault() *gui.QColor {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQColorFromPointer(C.QAccessibleWidget_BackgroundColorDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+		qt.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
 	return nil
@@ -6685,7 +6684,7 @@ func (ptr *QAccessibleWidget) DisconnectForegroundColor() {
 func (ptr *QAccessibleWidget) ForegroundColor() *gui.QColor {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQColorFromPointer(C.QAccessibleWidget_ForegroundColor(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+		qt.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
 	return nil
@@ -6694,7 +6693,7 @@ func (ptr *QAccessibleWidget) ForegroundColor() *gui.QColor {
 func (ptr *QAccessibleWidget) ForegroundColorDefault() *gui.QColor {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQColorFromPointer(C.QAccessibleWidget_ForegroundColorDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+		qt.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
 	return nil
@@ -6981,7 +6980,7 @@ func (ptr *QAccessibleWidget) DisconnectRect() {
 func (ptr *QAccessibleWidget) Rect() *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QAccessibleWidget_Rect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -6990,7 +6989,7 @@ func (ptr *QAccessibleWidget) Rect() *core.QRect {
 func (ptr *QAccessibleWidget) RectDefault() *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QAccessibleWidget_RectDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -7186,7 +7185,7 @@ func (ptr *QAccessibleWidget) DestroyQAccessibleWidget() {
 	if ptr.Pointer() != nil {
 		C.QAccessibleWidget_DestroyQAccessibleWidget(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7194,7 +7193,7 @@ func (ptr *QAccessibleWidget) DestroyQAccessibleWidgetDefault() {
 	if ptr.Pointer() != nil {
 		C.QAccessibleWidget_DestroyQAccessibleWidgetDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7552,7 +7551,7 @@ func (ptr *QAction) Changed() {
 func (ptr *QAction) Data() *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QAction_Data(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -7577,7 +7576,7 @@ func (ptr *QAction) EventDefault(e core.QEvent_ITF) bool {
 func (ptr *QAction) Font() *gui.QFont {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQFontFromPointer(C.QAction_Font(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
+		qt.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 		return tmpValue
 	}
 	return nil
@@ -7669,7 +7668,7 @@ func (ptr *QAction) Hovered() {
 func (ptr *QAction) Icon() *gui.QIcon {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQIconFromPointer(C.QAction_Icon(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+		qt.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
 		return tmpValue
 	}
 	return nil
@@ -8099,7 +8098,7 @@ func (ptr *QAction) SetWhatsThis(what string) {
 func (ptr *QAction) Shortcut() *gui.QKeySequence {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQKeySequenceFromPointer(C.QAction_Shortcut(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QKeySequence).DestroyQKeySequence)
+		qt.SetFinalizer(tmpValue, (*gui.QKeySequence).DestroyQKeySequence)
 		return tmpValue
 	}
 	return nil
@@ -8362,7 +8361,7 @@ func (ptr *QAction) DestroyQAction() {
 	if ptr.Pointer() != nil {
 		C.QAction_DestroyQAction(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -8370,7 +8369,7 @@ func (ptr *QAction) DestroyQActionDefault() {
 	if ptr.Pointer() != nil {
 		C.QAction_DestroyQActionDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -8419,7 +8418,7 @@ func (ptr *QAction) __associatedWidgets_newList() unsafe.Pointer {
 func (ptr *QAction) __setShortcuts_shortcuts_atList(i int) *gui.QKeySequence {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQKeySequenceFromPointer(C.QAction___setShortcuts_shortcuts_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*gui.QKeySequence).DestroyQKeySequence)
+		qt.SetFinalizer(tmpValue, (*gui.QKeySequence).DestroyQKeySequence)
 		return tmpValue
 	}
 	return nil
@@ -8438,7 +8437,7 @@ func (ptr *QAction) __setShortcuts_shortcuts_newList() unsafe.Pointer {
 func (ptr *QAction) __shortcuts_atList(i int) *gui.QKeySequence {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQKeySequenceFromPointer(C.QAction___shortcuts_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*gui.QKeySequence).DestroyQKeySequence)
+		qt.SetFinalizer(tmpValue, (*gui.QKeySequence).DestroyQKeySequence)
 		return tmpValue
 	}
 	return nil
@@ -8478,7 +8477,7 @@ func (ptr *QAction) __children_newList() unsafe.Pointer {
 func (ptr *QAction) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QAction___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8614,7 +8613,7 @@ func callbackQAction_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QAction) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QAction_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -9124,7 +9123,7 @@ func (ptr *QActionGroup) DestroyQActionGroup() {
 	if ptr.Pointer() != nil {
 		C.QActionGroup_DestroyQActionGroup(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -9132,7 +9131,7 @@ func (ptr *QActionGroup) DestroyQActionGroupDefault() {
 	if ptr.Pointer() != nil {
 		C.QActionGroup_DestroyQActionGroupDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -9181,7 +9180,7 @@ func (ptr *QActionGroup) __children_newList() unsafe.Pointer {
 func (ptr *QActionGroup) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QActionGroup___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -9317,7 +9316,7 @@ func callbackQActionGroup_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QActionGroup) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QActionGroup_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -9794,25 +9793,25 @@ func (ptr *QApplication) FocusWidget() *QWidget {
 
 func QApplication_Font() *gui.QFont {
 	tmpValue := gui.NewQFontFromPointer(C.QApplication_QApplication_Font())
-	runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
+	qt.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 	return tmpValue
 }
 
 func (ptr *QApplication) Font() *gui.QFont {
 	tmpValue := gui.NewQFontFromPointer(C.QApplication_QApplication_Font())
-	runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
+	qt.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 	return tmpValue
 }
 
 func QApplication_Font2(widget QWidget_ITF) *gui.QFont {
 	tmpValue := gui.NewQFontFromPointer(C.QApplication_QApplication_Font2(PointerFromQWidget(widget)))
-	runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
+	qt.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 	return tmpValue
 }
 
 func (ptr *QApplication) Font2(widget QWidget_ITF) *gui.QFont {
 	tmpValue := gui.NewQFontFromPointer(C.QApplication_QApplication_Font2(PointerFromQWidget(widget)))
-	runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
+	qt.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 	return tmpValue
 }
 
@@ -9823,7 +9822,7 @@ func QApplication_Font3(className string) *gui.QFont {
 		defer C.free(unsafe.Pointer(classNameC))
 	}
 	tmpValue := gui.NewQFontFromPointer(C.QApplication_QApplication_Font3(classNameC))
-	runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
+	qt.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 	return tmpValue
 }
 
@@ -9834,31 +9833,31 @@ func (ptr *QApplication) Font3(className string) *gui.QFont {
 		defer C.free(unsafe.Pointer(classNameC))
 	}
 	tmpValue := gui.NewQFontFromPointer(C.QApplication_QApplication_Font3(classNameC))
-	runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
+	qt.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 	return tmpValue
 }
 
 func QApplication_FontMetrics() *gui.QFontMetrics {
 	tmpValue := gui.NewQFontMetricsFromPointer(C.QApplication_QApplication_FontMetrics())
-	runtime.SetFinalizer(tmpValue, (*gui.QFontMetrics).DestroyQFontMetrics)
+	qt.SetFinalizer(tmpValue, (*gui.QFontMetrics).DestroyQFontMetrics)
 	return tmpValue
 }
 
 func (ptr *QApplication) FontMetrics() *gui.QFontMetrics {
 	tmpValue := gui.NewQFontMetricsFromPointer(C.QApplication_QApplication_FontMetrics())
-	runtime.SetFinalizer(tmpValue, (*gui.QFontMetrics).DestroyQFontMetrics)
+	qt.SetFinalizer(tmpValue, (*gui.QFontMetrics).DestroyQFontMetrics)
 	return tmpValue
 }
 
 func QApplication_GlobalStrut() *core.QSize {
 	tmpValue := core.NewQSizeFromPointer(C.QApplication_QApplication_GlobalStrut())
-	runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+	qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 	return tmpValue
 }
 
 func (ptr *QApplication) GlobalStrut() *core.QSize {
 	tmpValue := core.NewQSizeFromPointer(C.QApplication_QApplication_GlobalStrut())
-	runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+	qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 	return tmpValue
 }
 
@@ -9888,13 +9887,13 @@ func (ptr *QApplication) NavigationMode() core.Qt__NavigationMode {
 
 func QApplication_Palette(widget QWidget_ITF) *gui.QPalette {
 	tmpValue := gui.NewQPaletteFromPointer(C.QApplication_QApplication_Palette(PointerFromQWidget(widget)))
-	runtime.SetFinalizer(tmpValue, (*gui.QPalette).DestroyQPalette)
+	qt.SetFinalizer(tmpValue, (*gui.QPalette).DestroyQPalette)
 	return tmpValue
 }
 
 func (ptr *QApplication) Palette(widget QWidget_ITF) *gui.QPalette {
 	tmpValue := gui.NewQPaletteFromPointer(C.QApplication_QApplication_Palette(PointerFromQWidget(widget)))
-	runtime.SetFinalizer(tmpValue, (*gui.QPalette).DestroyQPalette)
+	qt.SetFinalizer(tmpValue, (*gui.QPalette).DestroyQPalette)
 	return tmpValue
 }
 
@@ -9905,7 +9904,7 @@ func QApplication_Palette2(className string) *gui.QPalette {
 		defer C.free(unsafe.Pointer(classNameC))
 	}
 	tmpValue := gui.NewQPaletteFromPointer(C.QApplication_QApplication_Palette2(classNameC))
-	runtime.SetFinalizer(tmpValue, (*gui.QPalette).DestroyQPalette)
+	qt.SetFinalizer(tmpValue, (*gui.QPalette).DestroyQPalette)
 	return tmpValue
 }
 
@@ -9916,7 +9915,7 @@ func (ptr *QApplication) Palette2(className string) *gui.QPalette {
 		defer C.free(unsafe.Pointer(classNameC))
 	}
 	tmpValue := gui.NewQPaletteFromPointer(C.QApplication_QApplication_Palette2(classNameC))
-	runtime.SetFinalizer(tmpValue, (*gui.QPalette).DestroyQPalette)
+	qt.SetFinalizer(tmpValue, (*gui.QPalette).DestroyQPalette)
 	return tmpValue
 }
 
@@ -10192,17 +10191,11 @@ func (ptr *QApplication) StartDragTime() int {
 
 func QApplication_Style() *QStyle {
 	tmpValue := NewQStyleFromPointer(C.QApplication_QApplication_Style())
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
 	return tmpValue
 }
 
 func (ptr *QApplication) Style() *QStyle {
 	tmpValue := NewQStyleFromPointer(C.QApplication_QApplication_Style())
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
 	return tmpValue
 }
 
@@ -10309,13 +10302,13 @@ func (ptr *QApplication) WidgetAt2(x int, y int) *QWidget {
 
 func QApplication_WindowIcon() *gui.QIcon {
 	tmpValue := gui.NewQIconFromPointer(C.QApplication_QApplication_WindowIcon())
-	runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+	qt.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
 	return tmpValue
 }
 
 func (ptr *QApplication) WindowIcon() *gui.QIcon {
 	tmpValue := gui.NewQIconFromPointer(C.QApplication_QApplication_WindowIcon())
-	runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+	qt.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
 	return tmpValue
 }
 
@@ -10354,7 +10347,7 @@ func (ptr *QApplication) DestroyQApplication() {
 	if ptr.Pointer() != nil {
 		C.QApplication_DestroyQApplication(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -10362,7 +10355,7 @@ func (ptr *QApplication) DestroyQApplicationDefault() {
 	if ptr.Pointer() != nil {
 		C.QApplication_DestroyQApplicationDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -10453,7 +10446,7 @@ func (ptr *QApplication) __children_newList() unsafe.Pointer {
 func (ptr *QApplication) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QApplication___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -10756,7 +10749,7 @@ func callbackQApplication_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QApplication) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QApplication_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -11170,7 +11163,7 @@ func (ptr *QBoxLayout) DisconnectSizeHint() {
 func (ptr *QBoxLayout) SizeHint() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QBoxLayout_SizeHint(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -11179,7 +11172,7 @@ func (ptr *QBoxLayout) SizeHint() *core.QSize {
 func (ptr *QBoxLayout) SizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QBoxLayout_SizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -11272,7 +11265,7 @@ func (ptr *QBoxLayout) DestroyQBoxLayout() {
 	if ptr.Pointer() != nil {
 		C.QBoxLayout_DestroyQBoxLayout(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -11280,7 +11273,7 @@ func (ptr *QBoxLayout) DestroyQBoxLayoutDefault() {
 	if ptr.Pointer() != nil {
 		C.QBoxLayout_DestroyQBoxLayoutDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -11766,7 +11759,7 @@ func (ptr *QButtonGroup) DestroyQButtonGroup() {
 	if ptr.Pointer() != nil {
 		C.QButtonGroup_DestroyQButtonGroup(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -11774,7 +11767,7 @@ func (ptr *QButtonGroup) DestroyQButtonGroupDefault() {
 	if ptr.Pointer() != nil {
 		C.QButtonGroup_DestroyQButtonGroupDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -11823,7 +11816,7 @@ func (ptr *QButtonGroup) __children_newList() unsafe.Pointer {
 func (ptr *QButtonGroup) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QButtonGroup___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -11959,7 +11952,7 @@ func callbackQButtonGroup_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QButtonGroup) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QButtonGroup_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -12277,7 +12270,7 @@ func (ptr *QCalendarWidget) DateTextFormat() map[*core.QDate]*gui.QTextCharForma
 func (ptr *QCalendarWidget) DateTextFormat2(date core.QDate_ITF) *gui.QTextCharFormat {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQTextCharFormatFromPointer(C.QCalendarWidget_DateTextFormat2(ptr.Pointer(), core.PointerFromQDate(date)))
-		runtime.SetFinalizer(tmpValue, (*gui.QTextCharFormat).DestroyQTextCharFormat)
+		qt.SetFinalizer(tmpValue, (*gui.QTextCharFormat).DestroyQTextCharFormat)
 		return tmpValue
 	}
 	return nil
@@ -12293,7 +12286,7 @@ func (ptr *QCalendarWidget) FirstDayOfWeek() core.Qt__DayOfWeek {
 func (ptr *QCalendarWidget) HeaderTextFormat() *gui.QTextCharFormat {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQTextCharFormatFromPointer(C.QCalendarWidget_HeaderTextFormat(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QTextCharFormat).DestroyQTextCharFormat)
+		qt.SetFinalizer(tmpValue, (*gui.QTextCharFormat).DestroyQTextCharFormat)
 		return tmpValue
 	}
 	return nil
@@ -12330,7 +12323,7 @@ func (ptr *QCalendarWidget) IsNavigationBarVisible() bool {
 func (ptr *QCalendarWidget) MaximumDate() *core.QDate {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQDateFromPointer(C.QCalendarWidget_MaximumDate(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QDate).DestroyQDate)
+		qt.SetFinalizer(tmpValue, (*core.QDate).DestroyQDate)
 		return tmpValue
 	}
 	return nil
@@ -12339,7 +12332,7 @@ func (ptr *QCalendarWidget) MaximumDate() *core.QDate {
 func (ptr *QCalendarWidget) MinimumDate() *core.QDate {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQDateFromPointer(C.QCalendarWidget_MinimumDate(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QDate).DestroyQDate)
+		qt.SetFinalizer(tmpValue, (*core.QDate).DestroyQDate)
 		return tmpValue
 	}
 	return nil
@@ -12398,7 +12391,7 @@ func (ptr *QCalendarWidget) PaintCellDefault(painter gui.QPainter_ITF, rect core
 func (ptr *QCalendarWidget) SelectedDate() *core.QDate {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQDateFromPointer(C.QCalendarWidget_SelectedDate(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QDate).DestroyQDate)
+		qt.SetFinalizer(tmpValue, (*core.QDate).DestroyQDate)
 		return tmpValue
 	}
 	return nil
@@ -13012,7 +13005,7 @@ func (ptr *QCalendarWidget) VerticalHeaderFormat() QCalendarWidget__VerticalHead
 func (ptr *QCalendarWidget) WeekdayTextFormat(dayOfWeek core.Qt__DayOfWeek) *gui.QTextCharFormat {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQTextCharFormatFromPointer(C.QCalendarWidget_WeekdayTextFormat(ptr.Pointer(), C.longlong(dayOfWeek)))
-		runtime.SetFinalizer(tmpValue, (*gui.QTextCharFormat).DestroyQTextCharFormat)
+		qt.SetFinalizer(tmpValue, (*gui.QTextCharFormat).DestroyQTextCharFormat)
 		return tmpValue
 	}
 	return nil
@@ -13060,7 +13053,7 @@ func (ptr *QCalendarWidget) DestroyQCalendarWidget() {
 	if ptr.Pointer() != nil {
 		C.QCalendarWidget_DestroyQCalendarWidget(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -13068,14 +13061,14 @@ func (ptr *QCalendarWidget) DestroyQCalendarWidgetDefault() {
 	if ptr.Pointer() != nil {
 		C.QCalendarWidget_DestroyQCalendarWidgetDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QCalendarWidget) __dateTextFormat_atList(v core.QDate_ITF, i int) *gui.QTextCharFormat {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQTextCharFormatFromPointer(C.QCalendarWidget___dateTextFormat_atList(ptr.Pointer(), core.PointerFromQDate(v), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*gui.QTextCharFormat).DestroyQTextCharFormat)
+		qt.SetFinalizer(tmpValue, (*gui.QTextCharFormat).DestroyQTextCharFormat)
 		return tmpValue
 	}
 	return nil
@@ -13108,7 +13101,7 @@ func (ptr *QCalendarWidget) __dateTextFormat_keyList() []*core.QDate {
 func (ptr *QCalendarWidget) ____dateTextFormat_keyList_atList(i int) *core.QDate {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQDateFromPointer(C.QCalendarWidget_____dateTextFormat_keyList_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QDate).DestroyQDate)
+		qt.SetFinalizer(tmpValue, (*core.QDate).DestroyQDate)
 		return tmpValue
 	}
 	return nil
@@ -13333,7 +13326,7 @@ func (ptr *QCheckBox) DestroyQCheckBox() {
 	if ptr.Pointer() != nil {
 		C.QCheckBox_DestroyQCheckBox(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -13341,7 +13334,7 @@ func (ptr *QCheckBox) DestroyQCheckBoxDefault() {
 	if ptr.Pointer() != nil {
 		C.QCheckBox_DestroyQCheckBoxDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -13453,7 +13446,7 @@ func (ptr *QColorDialog) ColorSelected(color gui.QColor_ITF) {
 func (ptr *QColorDialog) CurrentColor() *gui.QColor {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQColorFromPointer(C.QColorDialog_CurrentColor(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+		qt.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
 	return nil
@@ -13501,13 +13494,13 @@ func (ptr *QColorDialog) CurrentColorChanged(color gui.QColor_ITF) {
 
 func QColorDialog_CustomColor(index int) *gui.QColor {
 	tmpValue := gui.NewQColorFromPointer(C.QColorDialog_QColorDialog_CustomColor(C.int(int32(index))))
-	runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+	qt.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 	return tmpValue
 }
 
 func (ptr *QColorDialog) CustomColor(index int) *gui.QColor {
 	tmpValue := gui.NewQColorFromPointer(C.QColorDialog_QColorDialog_CustomColor(C.int(int32(index))))
-	runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+	qt.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 	return tmpValue
 }
 
@@ -13569,7 +13562,7 @@ func QColorDialog_GetColor(initial gui.QColor_ITF, parent QWidget_ITF, title str
 		defer C.free(unsafe.Pointer(titleC))
 	}
 	tmpValue := gui.NewQColorFromPointer(C.QColorDialog_QColorDialog_GetColor(gui.PointerFromQColor(initial), PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.longlong(options)))
-	runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+	qt.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 	return tmpValue
 }
 
@@ -13580,7 +13573,7 @@ func (ptr *QColorDialog) GetColor(initial gui.QColor_ITF, parent QWidget_ITF, ti
 		defer C.free(unsafe.Pointer(titleC))
 	}
 	tmpValue := gui.NewQColorFromPointer(C.QColorDialog_QColorDialog_GetColor(gui.PointerFromQColor(initial), PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.longlong(options)))
-	runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+	qt.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 	return tmpValue
 }
 
@@ -13605,7 +13598,7 @@ func (ptr *QColorDialog) Options() QColorDialog__ColorDialogOption {
 func (ptr *QColorDialog) SelectedColor() *gui.QColor {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQColorFromPointer(C.QColorDialog_SelectedColor(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+		qt.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
 	return nil
@@ -13647,13 +13640,13 @@ func (ptr *QColorDialog) SetStandardColor(index int, color gui.QColor_ITF) {
 
 func QColorDialog_StandardColor(index int) *gui.QColor {
 	tmpValue := gui.NewQColorFromPointer(C.QColorDialog_QColorDialog_StandardColor(C.int(int32(index))))
-	runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+	qt.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 	return tmpValue
 }
 
 func (ptr *QColorDialog) StandardColor(index int) *gui.QColor {
 	tmpValue := gui.NewQColorFromPointer(C.QColorDialog_QColorDialog_StandardColor(C.int(int32(index))))
-	runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+	qt.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 	return tmpValue
 }
 
@@ -13699,7 +13692,7 @@ func (ptr *QColorDialog) DestroyQColorDialog() {
 	if ptr.Pointer() != nil {
 		C.QColorDialog_DestroyQColorDialog(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -13707,7 +13700,7 @@ func (ptr *QColorDialog) DestroyQColorDialogDefault() {
 	if ptr.Pointer() != nil {
 		C.QColorDialog_DestroyQColorDialogDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -13761,14 +13754,14 @@ const (
 
 func NewQColormap(colormap QColormap_ITF) *QColormap {
 	tmpValue := NewQColormapFromPointer(C.QColormap_NewQColormap(PointerFromQColormap(colormap)))
-	runtime.SetFinalizer(tmpValue, (*QColormap).DestroyQColormap)
+	qt.SetFinalizer(tmpValue, (*QColormap).DestroyQColormap)
 	return tmpValue
 }
 
 func (ptr *QColormap) ColorAt(pixel uint) *gui.QColor {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQColorFromPointer(C.QColormap_ColorAt(ptr.Pointer(), C.uint(uint32(pixel))))
-		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+		qt.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
 	return nil
@@ -13797,13 +13790,13 @@ func (ptr *QColormap) Depth() int {
 
 func QColormap_Instance(screen int) *QColormap {
 	tmpValue := NewQColormapFromPointer(C.QColormap_QColormap_Instance(C.int(int32(screen))))
-	runtime.SetFinalizer(tmpValue, (*QColormap).DestroyQColormap)
+	qt.SetFinalizer(tmpValue, (*QColormap).DestroyQColormap)
 	return tmpValue
 }
 
 func (ptr *QColormap) Instance(screen int) *QColormap {
 	tmpValue := NewQColormapFromPointer(C.QColormap_QColormap_Instance(C.int(int32(screen))))
-	runtime.SetFinalizer(tmpValue, (*QColormap).DestroyQColormap)
+	qt.SetFinalizer(tmpValue, (*QColormap).DestroyQColormap)
 	return tmpValue
 }
 
@@ -13833,14 +13826,14 @@ func (ptr *QColormap) DestroyQColormap() {
 		C.QColormap_DestroyQColormap(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QColormap) __colormap_atList(i int) *gui.QColor {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQColorFromPointer(C.QColormap___colormap_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+		qt.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
 	return nil
@@ -14091,7 +14084,7 @@ func (ptr *QColumnView) DisconnectIndexAt() {
 func (ptr *QColumnView) IndexAt(point core.QPoint_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QColumnView_IndexAt(ptr.Pointer(), core.PointerFromQPoint(point)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -14100,7 +14093,7 @@ func (ptr *QColumnView) IndexAt(point core.QPoint_ITF) *core.QModelIndex {
 func (ptr *QColumnView) IndexAtDefault(point core.QPoint_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QColumnView_IndexAtDefault(ptr.Pointer(), core.PointerFromQPoint(point)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -14191,7 +14184,7 @@ func (ptr *QColumnView) DisconnectMoveCursor() {
 func (ptr *QColumnView) MoveCursor(cursorAction QAbstractItemView__CursorAction, modifiers core.Qt__KeyboardModifier) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QColumnView_MoveCursor(ptr.Pointer(), C.longlong(cursorAction), C.longlong(modifiers)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -14200,7 +14193,7 @@ func (ptr *QColumnView) MoveCursor(cursorAction QAbstractItemView__CursorAction,
 func (ptr *QColumnView) MoveCursorDefault(cursorAction QAbstractItemView__CursorAction, modifiers core.Qt__KeyboardModifier) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QColumnView_MoveCursorDefault(ptr.Pointer(), C.longlong(cursorAction), C.longlong(modifiers)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -14582,7 +14575,7 @@ func (ptr *QColumnView) DisconnectVisualRect() {
 func (ptr *QColumnView) VisualRect(index core.QModelIndex_ITF) *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QColumnView_VisualRect(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -14591,7 +14584,7 @@ func (ptr *QColumnView) VisualRect(index core.QModelIndex_ITF) *core.QRect {
 func (ptr *QColumnView) VisualRectDefault(index core.QModelIndex_ITF) *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QColumnView_VisualRectDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -14631,7 +14624,7 @@ func (ptr *QColumnView) DisconnectVisualRegionForSelection() {
 func (ptr *QColumnView) VisualRegionForSelection(selection core.QItemSelection_ITF) *gui.QRegion {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQRegionFromPointer(C.QColumnView_VisualRegionForSelection(ptr.Pointer(), core.PointerFromQItemSelection(selection)))
-		runtime.SetFinalizer(tmpValue, (*gui.QRegion).DestroyQRegion)
+		qt.SetFinalizer(tmpValue, (*gui.QRegion).DestroyQRegion)
 		return tmpValue
 	}
 	return nil
@@ -14640,7 +14633,7 @@ func (ptr *QColumnView) VisualRegionForSelection(selection core.QItemSelection_I
 func (ptr *QColumnView) VisualRegionForSelectionDefault(selection core.QItemSelection_ITF) *gui.QRegion {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQRegionFromPointer(C.QColumnView_VisualRegionForSelectionDefault(ptr.Pointer(), core.PointerFromQItemSelection(selection)))
-		runtime.SetFinalizer(tmpValue, (*gui.QRegion).DestroyQRegion)
+		qt.SetFinalizer(tmpValue, (*gui.QRegion).DestroyQRegion)
 		return tmpValue
 	}
 	return nil
@@ -14681,7 +14674,7 @@ func (ptr *QColumnView) DestroyQColumnView() {
 	if ptr.Pointer() != nil {
 		C.QColumnView_DestroyQColumnView(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -14689,7 +14682,7 @@ func (ptr *QColumnView) DestroyQColumnViewDefault() {
 	if ptr.Pointer() != nil {
 		C.QColumnView_DestroyQColumnViewDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -15021,7 +15014,7 @@ func (ptr *QComboBox) Count() int {
 func (ptr *QComboBox) CurrentData(role int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QComboBox_CurrentData(ptr.Pointer(), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -15335,7 +15328,7 @@ func (ptr *QComboBox) Highlighted2(text string) {
 func (ptr *QComboBox) IconSize() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QComboBox_IconSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -15400,7 +15393,7 @@ func (ptr *QComboBox) IsEditable() bool {
 func (ptr *QComboBox) ItemData(index int, role int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QComboBox_ItemData(ptr.Pointer(), C.int(int32(index)), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -15420,7 +15413,7 @@ func (ptr *QComboBox) ItemDelegate() *QAbstractItemDelegate {
 func (ptr *QComboBox) ItemIcon(index int) *gui.QIcon {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQIconFromPointer(C.QComboBox_ItemIcon(ptr.Pointer(), C.int(int32(index))))
-		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+		qt.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
 		return tmpValue
 	}
 	return nil
@@ -15492,7 +15485,7 @@ func (ptr *QComboBox) RemoveItem(index int) {
 func (ptr *QComboBox) RootModelIndex() *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QComboBox_RootModelIndex(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -15879,7 +15872,7 @@ func (ptr *QComboBox) DestroyQComboBox() {
 	if ptr.Pointer() != nil {
 		C.QComboBox_DestroyQComboBox(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -15887,7 +15880,7 @@ func (ptr *QComboBox) DestroyQComboBoxDefault() {
 	if ptr.Pointer() != nil {
 		C.QComboBox_DestroyQComboBoxDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -16021,7 +16014,7 @@ func (ptr *QCommandLinkButton) DestroyQCommandLinkButton() {
 	if ptr.Pointer() != nil {
 		C.QCommandLinkButton_DestroyQCommandLinkButton(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -16029,7 +16022,7 @@ func (ptr *QCommandLinkButton) DestroyQCommandLinkButtonDefault() {
 	if ptr.Pointer() != nil {
 		C.QCommandLinkButton_DestroyQCommandLinkButtonDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -16242,7 +16235,7 @@ func (ptr *QCommonStyle) DisconnectGeneratedIconPixmap() {
 func (ptr *QCommonStyle) GeneratedIconPixmap(iconMode gui.QIcon__Mode, pixmap gui.QPixmap_ITF, opt QStyleOption_ITF) *gui.QPixmap {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPixmapFromPointer(C.QCommonStyle_GeneratedIconPixmap(ptr.Pointer(), C.longlong(iconMode), gui.PointerFromQPixmap(pixmap), PointerFromQStyleOption(opt)))
-		runtime.SetFinalizer(tmpValue, (*gui.QPixmap).DestroyQPixmap)
+		qt.SetFinalizer(tmpValue, (*gui.QPixmap).DestroyQPixmap)
 		return tmpValue
 	}
 	return nil
@@ -16251,7 +16244,7 @@ func (ptr *QCommonStyle) GeneratedIconPixmap(iconMode gui.QIcon__Mode, pixmap gu
 func (ptr *QCommonStyle) GeneratedIconPixmapDefault(iconMode gui.QIcon__Mode, pixmap gui.QPixmap_ITF, opt QStyleOption_ITF) *gui.QPixmap {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPixmapFromPointer(C.QCommonStyle_GeneratedIconPixmapDefault(ptr.Pointer(), C.longlong(iconMode), gui.PointerFromQPixmap(pixmap), PointerFromQStyleOption(opt)))
-		runtime.SetFinalizer(tmpValue, (*gui.QPixmap).DestroyQPixmap)
+		qt.SetFinalizer(tmpValue, (*gui.QPixmap).DestroyQPixmap)
 		return tmpValue
 	}
 	return nil
@@ -16426,7 +16419,7 @@ func (ptr *QCommonStyle) DisconnectSizeFromContents() {
 func (ptr *QCommonStyle) SizeFromContents(ct QStyle__ContentsType, opt QStyleOption_ITF, csz core.QSize_ITF, widget QWidget_ITF) *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QCommonStyle_SizeFromContents(ptr.Pointer(), C.longlong(ct), PointerFromQStyleOption(opt), core.PointerFromQSize(csz), PointerFromQWidget(widget)))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -16435,7 +16428,7 @@ func (ptr *QCommonStyle) SizeFromContents(ct QStyle__ContentsType, opt QStyleOpt
 func (ptr *QCommonStyle) SizeFromContentsDefault(ct QStyle__ContentsType, opt QStyleOption_ITF, csz core.QSize_ITF, widget QWidget_ITF) *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QCommonStyle_SizeFromContentsDefault(ptr.Pointer(), C.longlong(ct), PointerFromQStyleOption(opt), core.PointerFromQSize(csz), PointerFromQWidget(widget)))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -16475,7 +16468,7 @@ func (ptr *QCommonStyle) DisconnectStandardPixmap() {
 func (ptr *QCommonStyle) StandardPixmap(sp QStyle__StandardPixmap, option QStyleOption_ITF, widget QWidget_ITF) *gui.QPixmap {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPixmapFromPointer(C.QCommonStyle_StandardPixmap(ptr.Pointer(), C.longlong(sp), PointerFromQStyleOption(option), PointerFromQWidget(widget)))
-		runtime.SetFinalizer(tmpValue, (*gui.QPixmap).DestroyQPixmap)
+		qt.SetFinalizer(tmpValue, (*gui.QPixmap).DestroyQPixmap)
 		return tmpValue
 	}
 	return nil
@@ -16484,7 +16477,7 @@ func (ptr *QCommonStyle) StandardPixmap(sp QStyle__StandardPixmap, option QStyle
 func (ptr *QCommonStyle) StandardPixmapDefault(sp QStyle__StandardPixmap, option QStyleOption_ITF, widget QWidget_ITF) *gui.QPixmap {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPixmapFromPointer(C.QCommonStyle_StandardPixmapDefault(ptr.Pointer(), C.longlong(sp), PointerFromQStyleOption(option), PointerFromQWidget(widget)))
-		runtime.SetFinalizer(tmpValue, (*gui.QPixmap).DestroyQPixmap)
+		qt.SetFinalizer(tmpValue, (*gui.QPixmap).DestroyQPixmap)
 		return tmpValue
 	}
 	return nil
@@ -16569,7 +16562,7 @@ func (ptr *QCommonStyle) DisconnectSubControlRect() {
 func (ptr *QCommonStyle) SubControlRect(cc QStyle__ComplexControl, opt QStyleOptionComplex_ITF, sc QStyle__SubControl, widget QWidget_ITF) *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QCommonStyle_SubControlRect(ptr.Pointer(), C.longlong(cc), PointerFromQStyleOptionComplex(opt), C.longlong(sc), PointerFromQWidget(widget)))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -16578,7 +16571,7 @@ func (ptr *QCommonStyle) SubControlRect(cc QStyle__ComplexControl, opt QStyleOpt
 func (ptr *QCommonStyle) SubControlRectDefault(cc QStyle__ComplexControl, opt QStyleOptionComplex_ITF, sc QStyle__SubControl, widget QWidget_ITF) *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QCommonStyle_SubControlRectDefault(ptr.Pointer(), C.longlong(cc), PointerFromQStyleOptionComplex(opt), C.longlong(sc), PointerFromQWidget(widget)))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -16618,7 +16611,7 @@ func (ptr *QCommonStyle) DisconnectSubElementRect() {
 func (ptr *QCommonStyle) SubElementRect(sr QStyle__SubElement, opt QStyleOption_ITF, widget QWidget_ITF) *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QCommonStyle_SubElementRect(ptr.Pointer(), C.longlong(sr), PointerFromQStyleOption(opt), PointerFromQWidget(widget)))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -16627,7 +16620,7 @@ func (ptr *QCommonStyle) SubElementRect(sr QStyle__SubElement, opt QStyleOption_
 func (ptr *QCommonStyle) SubElementRectDefault(sr QStyle__SubElement, opt QStyleOption_ITF, widget QWidget_ITF) *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QCommonStyle_SubElementRectDefault(ptr.Pointer(), C.longlong(sr), PointerFromQStyleOption(opt), PointerFromQWidget(widget)))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -16668,7 +16661,7 @@ func (ptr *QCommonStyle) DestroyQCommonStyle() {
 	if ptr.Pointer() != nil {
 		C.QCommonStyle_DestroyQCommonStyle(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -16676,7 +16669,7 @@ func (ptr *QCommonStyle) DestroyQCommonStyleDefault() {
 	if ptr.Pointer() != nil {
 		C.QCommonStyle_DestroyQCommonStyleDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -16692,7 +16685,7 @@ func callbackQCommonStyle_StandardIcon(ptr unsafe.Pointer, standardIcon C.longlo
 func (ptr *QCommonStyle) StandardIcon(standardIcon QStyle__StandardPixmap, option QStyleOption_ITF, widget QWidget_ITF) *gui.QIcon {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQIconFromPointer(C.QCommonStyle_StandardIcon(ptr.Pointer(), C.longlong(standardIcon), PointerFromQStyleOption(option), PointerFromQWidget(widget)))
-		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+		qt.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
 		return tmpValue
 	}
 	return nil
@@ -16701,7 +16694,7 @@ func (ptr *QCommonStyle) StandardIcon(standardIcon QStyle__StandardPixmap, optio
 func (ptr *QCommonStyle) StandardIconDefault(standardIcon QStyle__StandardPixmap, option QStyleOption_ITF, widget QWidget_ITF) *gui.QIcon {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQIconFromPointer(C.QCommonStyle_StandardIconDefault(ptr.Pointer(), C.longlong(standardIcon), PointerFromQStyleOption(option), PointerFromQWidget(widget)))
-		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+		qt.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
 		return tmpValue
 	}
 	return nil
@@ -16983,7 +16976,7 @@ func (ptr *QCompleter) CurrentCompletion() string {
 func (ptr *QCompleter) CurrentIndex() *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QCompleter_CurrentIndex(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -17474,7 +17467,7 @@ func (ptr *QCompleter) DestroyQCompleter() {
 	if ptr.Pointer() != nil {
 		C.QCompleter_DestroyQCompleter(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -17482,7 +17475,7 @@ func (ptr *QCompleter) DestroyQCompleterDefault() {
 	if ptr.Pointer() != nil {
 		C.QCompleter_DestroyQCompleterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -17510,7 +17503,7 @@ func (ptr *QCompleter) __children_newList() unsafe.Pointer {
 func (ptr *QCompleter) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QCompleter___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -17646,7 +17639,7 @@ func callbackQCompleter_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QCompleter) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QCompleter_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -17847,7 +17840,7 @@ func (ptr *QDataWidgetMapper) ItemDelegate() *QAbstractItemDelegate {
 func (ptr *QDataWidgetMapper) MappedPropertyName(widget QWidget_ITF) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QDataWidgetMapper_MappedPropertyName(ptr.Pointer(), PointerFromQWidget(widget)))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -17941,7 +17934,7 @@ func (ptr *QDataWidgetMapper) RevertDefault() {
 func (ptr *QDataWidgetMapper) RootIndex() *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QDataWidgetMapper_RootIndex(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -18322,7 +18315,7 @@ func (ptr *QDataWidgetMapper) DestroyQDataWidgetMapper() {
 	if ptr.Pointer() != nil {
 		C.QDataWidgetMapper_DestroyQDataWidgetMapper(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -18330,7 +18323,7 @@ func (ptr *QDataWidgetMapper) DestroyQDataWidgetMapperDefault() {
 	if ptr.Pointer() != nil {
 		C.QDataWidgetMapper_DestroyQDataWidgetMapperDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -18358,7 +18351,7 @@ func (ptr *QDataWidgetMapper) __children_newList() unsafe.Pointer {
 func (ptr *QDataWidgetMapper) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QDataWidgetMapper___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -18494,7 +18487,7 @@ func callbackQDataWidgetMapper_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QDataWidgetMapper) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QDataWidgetMapper_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -18681,7 +18674,7 @@ func (ptr *QDateEdit) DestroyQDateEdit() {
 	if ptr.Pointer() != nil {
 		C.QDateEdit_DestroyQDateEdit(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -18689,7 +18682,7 @@ func (ptr *QDateEdit) DestroyQDateEditDefault() {
 	if ptr.Pointer() != nil {
 		C.QDateEdit_DestroyQDateEditDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -18894,7 +18887,7 @@ func (ptr *QDateTimeEdit) CurrentSectionIndex() int {
 func (ptr *QDateTimeEdit) Date() *core.QDate {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQDateFromPointer(C.QDateTimeEdit_Date(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QDate).DestroyQDate)
+		qt.SetFinalizer(tmpValue, (*core.QDate).DestroyQDate)
 		return tmpValue
 	}
 	return nil
@@ -18943,7 +18936,7 @@ func (ptr *QDateTimeEdit) DateChanged(date core.QDate_ITF) {
 func (ptr *QDateTimeEdit) DateTime() *core.QDateTime {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQDateTimeFromPointer(C.QDateTimeEdit_DateTime(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
+		qt.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
 		return tmpValue
 	}
 	return nil
@@ -19028,7 +19021,7 @@ func (ptr *QDateTimeEdit) DateTimeFromText(text string) *core.QDateTime {
 			defer C.free(unsafe.Pointer(textC))
 		}
 		tmpValue := core.NewQDateTimeFromPointer(C.QDateTimeEdit_DateTimeFromText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}))
-		runtime.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
+		qt.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
 		return tmpValue
 	}
 	return nil
@@ -19042,7 +19035,7 @@ func (ptr *QDateTimeEdit) DateTimeFromTextDefault(text string) *core.QDateTime {
 			defer C.free(unsafe.Pointer(textC))
 		}
 		tmpValue := core.NewQDateTimeFromPointer(C.QDateTimeEdit_DateTimeFromTextDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}))
-		runtime.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
+		qt.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
 		return tmpValue
 	}
 	return nil
@@ -19065,7 +19058,7 @@ func (ptr *QDateTimeEdit) DisplayedSections() QDateTimeEdit__Section {
 func (ptr *QDateTimeEdit) MaximumDate() *core.QDate {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQDateFromPointer(C.QDateTimeEdit_MaximumDate(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QDate).DestroyQDate)
+		qt.SetFinalizer(tmpValue, (*core.QDate).DestroyQDate)
 		return tmpValue
 	}
 	return nil
@@ -19074,7 +19067,7 @@ func (ptr *QDateTimeEdit) MaximumDate() *core.QDate {
 func (ptr *QDateTimeEdit) MaximumDateTime() *core.QDateTime {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQDateTimeFromPointer(C.QDateTimeEdit_MaximumDateTime(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
+		qt.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
 		return tmpValue
 	}
 	return nil
@@ -19083,7 +19076,7 @@ func (ptr *QDateTimeEdit) MaximumDateTime() *core.QDateTime {
 func (ptr *QDateTimeEdit) MaximumTime() *core.QTime {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQTimeFromPointer(C.QDateTimeEdit_MaximumTime(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QTime).DestroyQTime)
+		qt.SetFinalizer(tmpValue, (*core.QTime).DestroyQTime)
 		return tmpValue
 	}
 	return nil
@@ -19092,7 +19085,7 @@ func (ptr *QDateTimeEdit) MaximumTime() *core.QTime {
 func (ptr *QDateTimeEdit) MinimumDate() *core.QDate {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQDateFromPointer(C.QDateTimeEdit_MinimumDate(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QDate).DestroyQDate)
+		qt.SetFinalizer(tmpValue, (*core.QDate).DestroyQDate)
 		return tmpValue
 	}
 	return nil
@@ -19101,7 +19094,7 @@ func (ptr *QDateTimeEdit) MinimumDate() *core.QDate {
 func (ptr *QDateTimeEdit) MinimumDateTime() *core.QDateTime {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQDateTimeFromPointer(C.QDateTimeEdit_MinimumDateTime(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
+		qt.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
 		return tmpValue
 	}
 	return nil
@@ -19110,7 +19103,7 @@ func (ptr *QDateTimeEdit) MinimumDateTime() *core.QDateTime {
 func (ptr *QDateTimeEdit) MinimumTime() *core.QTime {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQTimeFromPointer(C.QDateTimeEdit_MinimumTime(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QTime).DestroyQTime)
+		qt.SetFinalizer(tmpValue, (*core.QTime).DestroyQTime)
 		return tmpValue
 	}
 	return nil
@@ -19416,7 +19409,7 @@ func (ptr *QDateTimeEdit) TextFromDateTimeDefault(dateTime core.QDateTime_ITF) s
 func (ptr *QDateTimeEdit) Time() *core.QTime {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQTimeFromPointer(C.QDateTimeEdit_Time(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QTime).DestroyQTime)
+		qt.SetFinalizer(tmpValue, (*core.QTime).DestroyQTime)
 		return tmpValue
 	}
 	return nil
@@ -19504,7 +19497,7 @@ func (ptr *QDateTimeEdit) DestroyQDateTimeEdit() {
 	if ptr.Pointer() != nil {
 		C.QDateTimeEdit_DestroyQDateTimeEdit(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -19512,7 +19505,7 @@ func (ptr *QDateTimeEdit) DestroyQDateTimeEditDefault() {
 	if ptr.Pointer() != nil {
 		C.QDateTimeEdit_DestroyQDateTimeEditDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -19565,7 +19558,7 @@ func NewQDesktopWidget() *QDesktopWidget {
 func (ptr *QDesktopWidget) AvailableGeometry(screen int) *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QDesktopWidget_AvailableGeometry(ptr.Pointer(), C.int(int32(screen))))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -19574,7 +19567,7 @@ func (ptr *QDesktopWidget) AvailableGeometry(screen int) *core.QRect {
 func (ptr *QDesktopWidget) AvailableGeometry2(widget QWidget_ITF) *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QDesktopWidget_AvailableGeometry2(ptr.Pointer(), PointerFromQWidget(widget)))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -19742,7 +19735,7 @@ func (ptr *QDesktopWidget) ScreenCountChanged(newCount int) {
 func (ptr *QDesktopWidget) ScreenGeometry(screen int) *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QDesktopWidget_ScreenGeometry(ptr.Pointer(), C.int(int32(screen))))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -19751,7 +19744,7 @@ func (ptr *QDesktopWidget) ScreenGeometry(screen int) *core.QRect {
 func (ptr *QDesktopWidget) ScreenGeometry2(widget QWidget_ITF) *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QDesktopWidget_ScreenGeometry2(ptr.Pointer(), PointerFromQWidget(widget)))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -19846,7 +19839,7 @@ func (ptr *QDesktopWidget) DestroyQDesktopWidget() {
 	if ptr.Pointer() != nil {
 		C.QDesktopWidget_DestroyQDesktopWidget(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -19854,7 +19847,7 @@ func (ptr *QDesktopWidget) DestroyQDesktopWidgetDefault() {
 	if ptr.Pointer() != nil {
 		C.QDesktopWidget_DestroyQDesktopWidgetDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -20065,7 +20058,7 @@ func (ptr *QDial) DestroyQDial() {
 	if ptr.Pointer() != nil {
 		C.QDial_DestroyQDial(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -20073,7 +20066,7 @@ func (ptr *QDial) DestroyQDialDefault() {
 	if ptr.Pointer() != nil {
 		C.QDial_DestroyQDialDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -20580,7 +20573,7 @@ func (ptr *QDialog) DestroyQDialog() {
 	if ptr.Pointer() != nil {
 		C.QDialog_DestroyQDialog(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -20588,7 +20581,7 @@ func (ptr *QDialog) DestroyQDialogDefault() {
 	if ptr.Pointer() != nil {
 		C.QDialog_DestroyQDialogDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -21039,7 +21032,7 @@ func (ptr *QDialogButtonBox) DestroyQDialogButtonBox() {
 	if ptr.Pointer() != nil {
 		C.QDialogButtonBox_DestroyQDialogButtonBox(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -21047,7 +21040,7 @@ func (ptr *QDialogButtonBox) DestroyQDialogButtonBoxDefault() {
 	if ptr.Pointer() != nil {
 		C.QDialogButtonBox_DestroyQDialogButtonBoxDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -21218,7 +21211,7 @@ func (ptr *QDirModel) DisconnectData() {
 func (ptr *QDirModel) Data(index core.QModelIndex_ITF, role int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QDirModel_Data(ptr.Pointer(), core.PointerFromQModelIndex(index), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -21227,7 +21220,7 @@ func (ptr *QDirModel) Data(index core.QModelIndex_ITF, role int) *core.QVariant 
 func (ptr *QDirModel) DataDefault(index core.QModelIndex_ITF, role int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QDirModel_DataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -21252,7 +21245,7 @@ func (ptr *QDirModel) DropMimeDataDefault(data core.QMimeData_ITF, action core.Q
 func (ptr *QDirModel) FileIcon(index core.QModelIndex_ITF) *gui.QIcon {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQIconFromPointer(C.QDirModel_FileIcon(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+		qt.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
 		return tmpValue
 	}
 	return nil
@@ -21261,7 +21254,7 @@ func (ptr *QDirModel) FileIcon(index core.QModelIndex_ITF) *gui.QIcon {
 func (ptr *QDirModel) FileInfo(index core.QModelIndex_ITF) *core.QFileInfo {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQFileInfoFromPointer(C.QDirModel_FileInfo(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QFileInfo).DestroyQFileInfo)
+		qt.SetFinalizer(tmpValue, (*core.QFileInfo).DestroyQFileInfo)
 		return tmpValue
 	}
 	return nil
@@ -21332,7 +21325,7 @@ func callbackQDirModel_HeaderData(ptr unsafe.Pointer, section C.int, orientation
 func (ptr *QDirModel) HeaderDataDefault(section int, orientation core.Qt__Orientation, role int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QDirModel_HeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -21379,7 +21372,7 @@ func (ptr *QDirModel) DisconnectIndex() {
 func (ptr *QDirModel) Index(row int, column int, parent core.QModelIndex_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QDirModel_Index(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -21388,7 +21381,7 @@ func (ptr *QDirModel) Index(row int, column int, parent core.QModelIndex_ITF) *c
 func (ptr *QDirModel) IndexDefault(row int, column int, parent core.QModelIndex_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QDirModel_IndexDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -21402,7 +21395,7 @@ func (ptr *QDirModel) Index2(path string, column int) *core.QModelIndex {
 			defer C.free(unsafe.Pointer(pathC))
 		}
 		tmpValue := core.NewQModelIndexFromPointer(C.QDirModel_Index2(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: pathC, len: C.longlong(len(path))}, C.int(int32(column))))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -21494,7 +21487,7 @@ func (ptr *QDirModel) Mkdir(parent core.QModelIndex_ITF, name string) *core.QMod
 			defer C.free(unsafe.Pointer(nameC))
 		}
 		tmpValue := core.NewQModelIndexFromPointer(C.QDirModel_Mkdir(ptr.Pointer(), core.PointerFromQModelIndex(parent), C.struct_QtWidgets_PackedString{data: nameC, len: C.longlong(len(name))}))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -21541,7 +21534,7 @@ func (ptr *QDirModel) DisconnectParent() {
 func (ptr *QDirModel) Parent(child core.QModelIndex_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QDirModel_Parent(ptr.Pointer(), core.PointerFromQModelIndex(child)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -21550,7 +21543,7 @@ func (ptr *QDirModel) Parent(child core.QModelIndex_ITF) *core.QModelIndex {
 func (ptr *QDirModel) ParentDefault(child core.QModelIndex_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QDirModel_ParentDefault(ptr.Pointer(), core.PointerFromQModelIndex(child)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -21798,7 +21791,7 @@ func (ptr *QDirModel) DestroyQDirModel() {
 	if ptr.Pointer() != nil {
 		C.QDirModel_DestroyQDirModel(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -21806,14 +21799,14 @@ func (ptr *QDirModel) DestroyQDirModelDefault() {
 	if ptr.Pointer() != nil {
 		C.QDirModel_DestroyQDirModelDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QDirModel) __mimeData_indexes_atList(i int) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QDirModel___mimeData_indexes_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -21832,7 +21825,7 @@ func (ptr *QDirModel) __mimeData_indexes_newList() unsafe.Pointer {
 func (ptr *QDirModel) __changePersistentIndexList_from_atList(i int) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QDirModel___changePersistentIndexList_from_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -21851,7 +21844,7 @@ func (ptr *QDirModel) __changePersistentIndexList_from_newList() unsafe.Pointer 
 func (ptr *QDirModel) __changePersistentIndexList_to_atList(i int) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QDirModel___changePersistentIndexList_to_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -21887,7 +21880,7 @@ func (ptr *QDirModel) __dataChanged_roles_newList() unsafe.Pointer {
 func (ptr *QDirModel) __itemData_atList(v int, i int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QDirModel___itemData_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -21920,7 +21913,7 @@ func (ptr *QDirModel) __itemData_keyList() []int {
 func (ptr *QDirModel) __layoutAboutToBeChanged_parents_atList(i int) *core.QPersistentModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPersistentModelIndexFromPointer(C.QDirModel___layoutAboutToBeChanged_parents_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QPersistentModelIndex).DestroyQPersistentModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QPersistentModelIndex).DestroyQPersistentModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -21939,7 +21932,7 @@ func (ptr *QDirModel) __layoutAboutToBeChanged_parents_newList() unsafe.Pointer 
 func (ptr *QDirModel) __layoutChanged_parents_atList(i int) *core.QPersistentModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPersistentModelIndexFromPointer(C.QDirModel___layoutChanged_parents_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QPersistentModelIndex).DestroyQPersistentModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QPersistentModelIndex).DestroyQPersistentModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -21958,7 +21951,7 @@ func (ptr *QDirModel) __layoutChanged_parents_newList() unsafe.Pointer {
 func (ptr *QDirModel) __match_atList(i int) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QDirModel___match_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -21977,7 +21970,7 @@ func (ptr *QDirModel) __match_newList() unsafe.Pointer {
 func (ptr *QDirModel) __persistentIndexList_atList(i int) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QDirModel___persistentIndexList_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -21996,7 +21989,7 @@ func (ptr *QDirModel) __persistentIndexList_newList() unsafe.Pointer {
 func (ptr *QDirModel) __roleNames_atList(v int, i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QDirModel___roleNames_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -22029,7 +22022,7 @@ func (ptr *QDirModel) __roleNames_keyList() []int {
 func (ptr *QDirModel) __setItemData_roles_atList(v int, i int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QDirModel___setItemData_roles_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -22168,7 +22161,7 @@ func (ptr *QDirModel) __children_newList() unsafe.Pointer {
 func (ptr *QDirModel) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QDirModel___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -22259,7 +22252,7 @@ func callbackQDirModel_Buddy(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Po
 func (ptr *QDirModel) BuddyDefault(index core.QModelIndex_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QDirModel_BuddyDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -22772,7 +22765,7 @@ func callbackQDirModel_Sibling(ptr unsafe.Pointer, row C.int, column C.int, inde
 func (ptr *QDirModel) SiblingDefault(row int, column int, index core.QModelIndex_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QDirModel_SiblingDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -22790,7 +22783,7 @@ func callbackQDirModel_Span(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Poi
 func (ptr *QDirModel) SpanDefault(index core.QModelIndex_ITF) *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QDirModel_SpanDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -22885,7 +22878,7 @@ func callbackQDirModel_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QDirModel) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QDirModel_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -23389,7 +23382,7 @@ func (ptr *QDockWidget) DestroyQDockWidget() {
 	if ptr.Pointer() != nil {
 		C.QDockWidget_DestroyQDockWidget(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -23397,7 +23390,7 @@ func (ptr *QDockWidget) DestroyQDockWidgetDefault() {
 	if ptr.Pointer() != nil {
 		C.QDockWidget_DestroyQDockWidgetDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -23832,7 +23825,7 @@ func (ptr *QDoubleSpinBox) DestroyQDoubleSpinBox() {
 	if ptr.Pointer() != nil {
 		C.QDoubleSpinBox_DestroyQDoubleSpinBox(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -23840,7 +23833,7 @@ func (ptr *QDoubleSpinBox) DestroyQDoubleSpinBoxDefault() {
 	if ptr.Pointer() != nil {
 		C.QDoubleSpinBox_DestroyQDoubleSpinBoxDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -24100,7 +24093,7 @@ func (ptr *QErrorMessage) DestroyQErrorMessage() {
 	if ptr.Pointer() != nil {
 		C.QErrorMessage_DestroyQErrorMessage(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -24108,7 +24101,7 @@ func (ptr *QErrorMessage) DestroyQErrorMessageDefault() {
 	if ptr.Pointer() != nil {
 		C.QErrorMessage_DestroyQErrorMessageDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -24391,7 +24384,7 @@ func (ptr *QFileDialog) DefaultSuffix() string {
 func (ptr *QFileDialog) Directory() *core.QDir {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQDirFromPointer(C.QFileDialog_Directory(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QDir).DestroyQDir)
+		qt.SetFinalizer(tmpValue, (*core.QDir).DestroyQDir)
 		return tmpValue
 	}
 	return nil
@@ -24445,7 +24438,7 @@ func (ptr *QFileDialog) DirectoryEntered(directory string) {
 func (ptr *QFileDialog) DirectoryUrl() *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QFileDialog_DirectoryUrl(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -24717,7 +24710,7 @@ func QFileDialog_GetExistingDirectoryUrl(parent QWidget_ITF, caption string, dir
 	supportedSchemesC := C.CString(strings.Join(supportedSchemes, "¡¦!"))
 	defer C.free(unsafe.Pointer(supportedSchemesC))
 	tmpValue := core.NewQUrlFromPointer(C.QFileDialog_QFileDialog_GetExistingDirectoryUrl(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, core.PointerFromQUrl(dir), C.longlong(options), C.struct_QtWidgets_PackedString{data: supportedSchemesC, len: C.longlong(len(strings.Join(supportedSchemes, "¡¦!")))}))
-	runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+	qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 	return tmpValue
 }
 
@@ -24730,7 +24723,7 @@ func (ptr *QFileDialog) GetExistingDirectoryUrl(parent QWidget_ITF, caption stri
 	supportedSchemesC := C.CString(strings.Join(supportedSchemes, "¡¦!"))
 	defer C.free(unsafe.Pointer(supportedSchemesC))
 	tmpValue := core.NewQUrlFromPointer(C.QFileDialog_QFileDialog_GetExistingDirectoryUrl(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, core.PointerFromQUrl(dir), C.longlong(options), C.struct_QtWidgets_PackedString{data: supportedSchemesC, len: C.longlong(len(strings.Join(supportedSchemes, "¡¦!")))}))
-	runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+	qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 	return tmpValue
 }
 
@@ -24849,7 +24842,7 @@ func QFileDialog_GetOpenFileUrl(parent QWidget_ITF, caption string, dir core.QUr
 	supportedSchemesC := C.CString(strings.Join(supportedSchemes, "¡¦!"))
 	defer C.free(unsafe.Pointer(supportedSchemesC))
 	tmpValue := core.NewQUrlFromPointer(C.QFileDialog_QFileDialog_GetOpenFileUrl(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, core.PointerFromQUrl(dir), C.struct_QtWidgets_PackedString{data: filterC, len: C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{data: selectedFilterC, len: C.longlong(len(selectedFilter))}, C.longlong(options), C.struct_QtWidgets_PackedString{data: supportedSchemesC, len: C.longlong(len(strings.Join(supportedSchemes, "¡¦!")))}))
-	runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+	qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 	return tmpValue
 }
 
@@ -24872,7 +24865,7 @@ func (ptr *QFileDialog) GetOpenFileUrl(parent QWidget_ITF, caption string, dir c
 	supportedSchemesC := C.CString(strings.Join(supportedSchemes, "¡¦!"))
 	defer C.free(unsafe.Pointer(supportedSchemesC))
 	tmpValue := core.NewQUrlFromPointer(C.QFileDialog_QFileDialog_GetOpenFileUrl(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, core.PointerFromQUrl(dir), C.struct_QtWidgets_PackedString{data: filterC, len: C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{data: selectedFilterC, len: C.longlong(len(selectedFilter))}, C.longlong(options), C.struct_QtWidgets_PackedString{data: supportedSchemesC, len: C.longlong(len(strings.Join(supportedSchemes, "¡¦!")))}))
-	runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+	qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 	return tmpValue
 }
 
@@ -24999,7 +24992,7 @@ func QFileDialog_GetSaveFileUrl(parent QWidget_ITF, caption string, dir core.QUr
 	supportedSchemesC := C.CString(strings.Join(supportedSchemes, "¡¦!"))
 	defer C.free(unsafe.Pointer(supportedSchemesC))
 	tmpValue := core.NewQUrlFromPointer(C.QFileDialog_QFileDialog_GetSaveFileUrl(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, core.PointerFromQUrl(dir), C.struct_QtWidgets_PackedString{data: filterC, len: C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{data: selectedFilterC, len: C.longlong(len(selectedFilter))}, C.longlong(options), C.struct_QtWidgets_PackedString{data: supportedSchemesC, len: C.longlong(len(strings.Join(supportedSchemes, "¡¦!")))}))
-	runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+	qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 	return tmpValue
 }
 
@@ -25022,7 +25015,7 @@ func (ptr *QFileDialog) GetSaveFileUrl(parent QWidget_ITF, caption string, dir c
 	supportedSchemesC := C.CString(strings.Join(supportedSchemes, "¡¦!"))
 	defer C.free(unsafe.Pointer(supportedSchemesC))
 	tmpValue := core.NewQUrlFromPointer(C.QFileDialog_QFileDialog_GetSaveFileUrl(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, core.PointerFromQUrl(dir), C.struct_QtWidgets_PackedString{data: filterC, len: C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{data: selectedFilterC, len: C.longlong(len(selectedFilter))}, C.longlong(options), C.struct_QtWidgets_PackedString{data: supportedSchemesC, len: C.longlong(len(strings.Join(supportedSchemes, "¡¦!")))}))
-	runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+	qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 	return tmpValue
 }
 
@@ -25132,7 +25125,7 @@ func (ptr *QFileDialog) RestoreState(state core.QByteArray_ITF) bool {
 func (ptr *QFileDialog) SaveState() *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QFileDialog_SaveState(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -25553,7 +25546,7 @@ func (ptr *QFileDialog) DestroyQFileDialog() {
 	if ptr.Pointer() != nil {
 		C.QFileDialog_DestroyQFileDialog(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -25561,14 +25554,14 @@ func (ptr *QFileDialog) DestroyQFileDialogDefault() {
 	if ptr.Pointer() != nil {
 		C.QFileDialog_DestroyQFileDialogDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QFileDialog) __getOpenFileUrls_atList(i int) *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QFileDialog___getOpenFileUrls_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -25587,7 +25580,7 @@ func (ptr *QFileDialog) __getOpenFileUrls_newList() unsafe.Pointer {
 func (ptr *QFileDialog) __selectedUrls_atList(i int) *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QFileDialog___selectedUrls_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -25606,7 +25599,7 @@ func (ptr *QFileDialog) __selectedUrls_newList() unsafe.Pointer {
 func (ptr *QFileDialog) __setSidebarUrls_urls_atList(i int) *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QFileDialog___setSidebarUrls_urls_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -25625,7 +25618,7 @@ func (ptr *QFileDialog) __setSidebarUrls_urls_newList() unsafe.Pointer {
 func (ptr *QFileDialog) __sidebarUrls_atList(i int) *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QFileDialog___sidebarUrls_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -25644,7 +25637,7 @@ func (ptr *QFileDialog) __sidebarUrls_newList() unsafe.Pointer {
 func (ptr *QFileDialog) __urlsSelected_urls_atList(i int) *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QFileDialog___urlsSelected_urls_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -25758,7 +25751,7 @@ func (ptr *QFileIconProvider) DisconnectIcon() {
 func (ptr *QFileIconProvider) Icon(ty QFileIconProvider__IconType) *gui.QIcon {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQIconFromPointer(C.QFileIconProvider_Icon(ptr.Pointer(), C.longlong(ty)))
-		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+		qt.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
 		return tmpValue
 	}
 	return nil
@@ -25767,7 +25760,7 @@ func (ptr *QFileIconProvider) Icon(ty QFileIconProvider__IconType) *gui.QIcon {
 func (ptr *QFileIconProvider) IconDefault(ty QFileIconProvider__IconType) *gui.QIcon {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQIconFromPointer(C.QFileIconProvider_IconDefault(ptr.Pointer(), C.longlong(ty)))
-		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+		qt.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
 		return tmpValue
 	}
 	return nil
@@ -25807,7 +25800,7 @@ func (ptr *QFileIconProvider) DisconnectIcon2() {
 func (ptr *QFileIconProvider) Icon2(info core.QFileInfo_ITF) *gui.QIcon {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQIconFromPointer(C.QFileIconProvider_Icon2(ptr.Pointer(), core.PointerFromQFileInfo(info)))
-		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+		qt.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
 		return tmpValue
 	}
 	return nil
@@ -25816,7 +25809,7 @@ func (ptr *QFileIconProvider) Icon2(info core.QFileInfo_ITF) *gui.QIcon {
 func (ptr *QFileIconProvider) Icon2Default(info core.QFileInfo_ITF) *gui.QIcon {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQIconFromPointer(C.QFileIconProvider_Icon2Default(ptr.Pointer(), core.PointerFromQFileInfo(info)))
-		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+		qt.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
 		return tmpValue
 	}
 	return nil
@@ -25916,7 +25909,7 @@ func (ptr *QFileIconProvider) DestroyQFileIconProvider() {
 	if ptr.Pointer() != nil {
 		C.QFileIconProvider_DestroyQFileIconProvider(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -25924,7 +25917,7 @@ func (ptr *QFileIconProvider) DestroyQFileIconProviderDefault() {
 	if ptr.Pointer() != nil {
 		C.QFileIconProvider_DestroyQFileIconProviderDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -26081,7 +26074,7 @@ func (ptr *QFileSystemModel) DisconnectData() {
 func (ptr *QFileSystemModel) Data(index core.QModelIndex_ITF, role int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QFileSystemModel_Data(ptr.Pointer(), core.PointerFromQModelIndex(index), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -26090,7 +26083,7 @@ func (ptr *QFileSystemModel) Data(index core.QModelIndex_ITF, role int) *core.QV
 func (ptr *QFileSystemModel) DataDefault(index core.QModelIndex_ITF, role int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QFileSystemModel_DataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -26191,7 +26184,7 @@ func (ptr *QFileSystemModel) FetchMoreDefault(parent core.QModelIndex_ITF) {
 func (ptr *QFileSystemModel) FileIcon(index core.QModelIndex_ITF) *gui.QIcon {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQIconFromPointer(C.QFileSystemModel_FileIcon(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+		qt.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
 		return tmpValue
 	}
 	return nil
@@ -26200,7 +26193,7 @@ func (ptr *QFileSystemModel) FileIcon(index core.QModelIndex_ITF) *gui.QIcon {
 func (ptr *QFileSystemModel) FileInfo(index core.QModelIndex_ITF) *core.QFileInfo {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQFileInfoFromPointer(C.QFileSystemModel_FileInfo(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QFileInfo).DestroyQFileInfo)
+		qt.SetFinalizer(tmpValue, (*core.QFileInfo).DestroyQFileInfo)
 		return tmpValue
 	}
 	return nil
@@ -26326,7 +26319,7 @@ func callbackQFileSystemModel_HeaderData(ptr unsafe.Pointer, section C.int, orie
 func (ptr *QFileSystemModel) HeaderDataDefault(section int, orientation core.Qt__Orientation, role int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QFileSystemModel_HeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -26373,7 +26366,7 @@ func (ptr *QFileSystemModel) DisconnectIndex() {
 func (ptr *QFileSystemModel) Index(row int, column int, parent core.QModelIndex_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QFileSystemModel_Index(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -26382,7 +26375,7 @@ func (ptr *QFileSystemModel) Index(row int, column int, parent core.QModelIndex_
 func (ptr *QFileSystemModel) IndexDefault(row int, column int, parent core.QModelIndex_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QFileSystemModel_IndexDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -26396,7 +26389,7 @@ func (ptr *QFileSystemModel) Index2(path string, column int) *core.QModelIndex {
 			defer C.free(unsafe.Pointer(pathC))
 		}
 		tmpValue := core.NewQModelIndexFromPointer(C.QFileSystemModel_Index2(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: pathC, len: C.longlong(len(path))}, C.int(int32(column))))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -26419,7 +26412,7 @@ func (ptr *QFileSystemModel) IsReadOnly() bool {
 func (ptr *QFileSystemModel) LastModified(index core.QModelIndex_ITF) *core.QDateTime {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQDateTimeFromPointer(C.QFileSystemModel_LastModified(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
+		qt.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
 		return tmpValue
 	}
 	return nil
@@ -26490,7 +26483,7 @@ func (ptr *QFileSystemModel) Mkdir(parent core.QModelIndex_ITF, name string) *co
 			defer C.free(unsafe.Pointer(nameC))
 		}
 		tmpValue := core.NewQModelIndexFromPointer(C.QFileSystemModel_Mkdir(ptr.Pointer(), core.PointerFromQModelIndex(parent), C.struct_QtWidgets_PackedString{data: nameC, len: C.longlong(len(name))}))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -26499,7 +26492,7 @@ func (ptr *QFileSystemModel) Mkdir(parent core.QModelIndex_ITF, name string) *co
 func (ptr *QFileSystemModel) MyComputer(role int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QFileSystemModel_MyComputer(ptr.Pointer(), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -26553,7 +26546,7 @@ func (ptr *QFileSystemModel) DisconnectParent() {
 func (ptr *QFileSystemModel) Parent(index core.QModelIndex_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QFileSystemModel_Parent(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -26562,7 +26555,7 @@ func (ptr *QFileSystemModel) Parent(index core.QModelIndex_ITF) *core.QModelInde
 func (ptr *QFileSystemModel) ParentDefault(index core.QModelIndex_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QFileSystemModel_ParentDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -26592,7 +26585,7 @@ func (ptr *QFileSystemModel) Rmdir(index core.QModelIndex_ITF) bool {
 func (ptr *QFileSystemModel) RootDirectory() *core.QDir {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQDirFromPointer(C.QFileSystemModel_RootDirectory(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QDir).DestroyQDir)
+		qt.SetFinalizer(tmpValue, (*core.QDir).DestroyQDir)
 		return tmpValue
 	}
 	return nil
@@ -26757,7 +26750,7 @@ func (ptr *QFileSystemModel) SetRootPath(newPath string) *core.QModelIndex {
 			defer C.free(unsafe.Pointer(newPathC))
 		}
 		tmpValue := core.NewQModelIndexFromPointer(C.QFileSystemModel_SetRootPath(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: newPathC, len: C.longlong(len(newPath))}))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -26775,7 +26768,7 @@ func callbackQFileSystemModel_Sibling(ptr unsafe.Pointer, row C.int, column C.in
 func (ptr *QFileSystemModel) SiblingDefault(row int, column int, idx core.QModelIndex_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QFileSystemModel_SiblingDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(idx)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -26876,7 +26869,7 @@ func (ptr *QFileSystemModel) DestroyQFileSystemModel() {
 	if ptr.Pointer() != nil {
 		C.QFileSystemModel_DestroyQFileSystemModel(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -26884,14 +26877,14 @@ func (ptr *QFileSystemModel) DestroyQFileSystemModelDefault() {
 	if ptr.Pointer() != nil {
 		C.QFileSystemModel_DestroyQFileSystemModelDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QFileSystemModel) __mimeData_indexes_atList(i int) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QFileSystemModel___mimeData_indexes_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -26910,7 +26903,7 @@ func (ptr *QFileSystemModel) __mimeData_indexes_newList() unsafe.Pointer {
 func (ptr *QFileSystemModel) __changePersistentIndexList_from_atList(i int) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QFileSystemModel___changePersistentIndexList_from_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -26929,7 +26922,7 @@ func (ptr *QFileSystemModel) __changePersistentIndexList_from_newList() unsafe.P
 func (ptr *QFileSystemModel) __changePersistentIndexList_to_atList(i int) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QFileSystemModel___changePersistentIndexList_to_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -26965,7 +26958,7 @@ func (ptr *QFileSystemModel) __dataChanged_roles_newList() unsafe.Pointer {
 func (ptr *QFileSystemModel) __itemData_atList(v int, i int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QFileSystemModel___itemData_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -26998,7 +26991,7 @@ func (ptr *QFileSystemModel) __itemData_keyList() []int {
 func (ptr *QFileSystemModel) __layoutAboutToBeChanged_parents_atList(i int) *core.QPersistentModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPersistentModelIndexFromPointer(C.QFileSystemModel___layoutAboutToBeChanged_parents_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QPersistentModelIndex).DestroyQPersistentModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QPersistentModelIndex).DestroyQPersistentModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -27017,7 +27010,7 @@ func (ptr *QFileSystemModel) __layoutAboutToBeChanged_parents_newList() unsafe.P
 func (ptr *QFileSystemModel) __layoutChanged_parents_atList(i int) *core.QPersistentModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPersistentModelIndexFromPointer(C.QFileSystemModel___layoutChanged_parents_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QPersistentModelIndex).DestroyQPersistentModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QPersistentModelIndex).DestroyQPersistentModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -27036,7 +27029,7 @@ func (ptr *QFileSystemModel) __layoutChanged_parents_newList() unsafe.Pointer {
 func (ptr *QFileSystemModel) __match_atList(i int) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QFileSystemModel___match_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -27055,7 +27048,7 @@ func (ptr *QFileSystemModel) __match_newList() unsafe.Pointer {
 func (ptr *QFileSystemModel) __persistentIndexList_atList(i int) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QFileSystemModel___persistentIndexList_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -27074,7 +27067,7 @@ func (ptr *QFileSystemModel) __persistentIndexList_newList() unsafe.Pointer {
 func (ptr *QFileSystemModel) __roleNames_atList(v int, i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QFileSystemModel___roleNames_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -27107,7 +27100,7 @@ func (ptr *QFileSystemModel) __roleNames_keyList() []int {
 func (ptr *QFileSystemModel) __setItemData_roles_atList(v int, i int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QFileSystemModel___setItemData_roles_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -27246,7 +27239,7 @@ func (ptr *QFileSystemModel) __children_newList() unsafe.Pointer {
 func (ptr *QFileSystemModel) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QFileSystemModel___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -27337,7 +27330,7 @@ func callbackQFileSystemModel_Buddy(ptr unsafe.Pointer, index unsafe.Pointer) un
 func (ptr *QFileSystemModel) BuddyDefault(index core.QModelIndex_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QFileSystemModel_BuddyDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -27819,7 +27812,7 @@ func callbackQFileSystemModel_Span(ptr unsafe.Pointer, index unsafe.Pointer) uns
 func (ptr *QFileSystemModel) SpanDefault(index core.QModelIndex_ITF) *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QFileSystemModel_SpanDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -27914,7 +27907,7 @@ func callbackQFileSystemModel_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QFileSystemModel) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QFileSystemModel_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -28085,7 +28078,7 @@ func (ptr *QFocusFrame) DestroyQFocusFrame() {
 	if ptr.Pointer() != nil {
 		C.QFocusFrame_DestroyQFocusFrame(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -28093,7 +28086,7 @@ func (ptr *QFocusFrame) DestroyQFocusFrameDefault() {
 	if ptr.Pointer() != nil {
 		C.QFocusFrame_DestroyQFocusFrameDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -28159,7 +28152,7 @@ func NewQFontComboBox(parent QWidget_ITF) *QFontComboBox {
 func (ptr *QFontComboBox) CurrentFont() *gui.QFont {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQFontFromPointer(C.QFontComboBox_CurrentFont(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
+		qt.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 		return tmpValue
 	}
 	return nil
@@ -28302,7 +28295,7 @@ func (ptr *QFontComboBox) DestroyQFontComboBox() {
 	if ptr.Pointer() != nil {
 		C.QFontComboBox_DestroyQFontComboBox(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -28310,7 +28303,7 @@ func (ptr *QFontComboBox) DestroyQFontComboBoxDefault() {
 	if ptr.Pointer() != nil {
 		C.QFontComboBox_DestroyQFontComboBoxDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -28385,7 +28378,7 @@ func NewQFontDialog2(initial gui.QFont_ITF, parent QWidget_ITF) *QFontDialog {
 func (ptr *QFontDialog) CurrentFont() *gui.QFont {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQFontFromPointer(C.QFontDialog_CurrentFont(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
+		qt.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 		return tmpValue
 	}
 	return nil
@@ -28526,7 +28519,7 @@ func QFontDialog_GetFont(ok *bool, initial gui.QFont_ITF, parent QWidget_ITF, ti
 		defer C.free(unsafe.Pointer(titleC))
 	}
 	tmpValue := gui.NewQFontFromPointer(C.QFontDialog_QFontDialog_GetFont(&okC, gui.PointerFromQFont(initial), PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.longlong(options)))
-	runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
+	qt.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 	return tmpValue
 }
 
@@ -28542,7 +28535,7 @@ func (ptr *QFontDialog) GetFont(ok *bool, initial gui.QFont_ITF, parent QWidget_
 		defer C.free(unsafe.Pointer(titleC))
 	}
 	tmpValue := gui.NewQFontFromPointer(C.QFontDialog_QFontDialog_GetFont(&okC, gui.PointerFromQFont(initial), PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.longlong(options)))
-	runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
+	qt.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 	return tmpValue
 }
 
@@ -28553,7 +28546,7 @@ func QFontDialog_GetFont2(ok *bool, parent QWidget_ITF) *gui.QFont {
 		defer func() { *ok = int8(okC) != 0 }()
 	}
 	tmpValue := gui.NewQFontFromPointer(C.QFontDialog_QFontDialog_GetFont2(&okC, PointerFromQWidget(parent)))
-	runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
+	qt.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 	return tmpValue
 }
 
@@ -28564,7 +28557,7 @@ func (ptr *QFontDialog) GetFont2(ok *bool, parent QWidget_ITF) *gui.QFont {
 		defer func() { *ok = int8(okC) != 0 }()
 	}
 	tmpValue := gui.NewQFontFromPointer(C.QFontDialog_QFontDialog_GetFont2(&okC, PointerFromQWidget(parent)))
-	runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
+	qt.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 	return tmpValue
 }
 
@@ -28589,7 +28582,7 @@ func (ptr *QFontDialog) Options() QFontDialog__FontDialogOption {
 func (ptr *QFontDialog) SelectedFont() *gui.QFont {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQFontFromPointer(C.QFontDialog_SelectedFont(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
+		qt.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 		return tmpValue
 	}
 	return nil
@@ -29047,7 +29040,7 @@ func (ptr *QFormLayout) DisconnectSizeHint() {
 func (ptr *QFormLayout) SizeHint() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QFormLayout_SizeHint(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -29056,7 +29049,7 @@ func (ptr *QFormLayout) SizeHint() *core.QSize {
 func (ptr *QFormLayout) SizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QFormLayout_SizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -29149,7 +29142,7 @@ func (ptr *QFormLayout) DestroyQFormLayout() {
 	if ptr.Pointer() != nil {
 		C.QFormLayout_DestroyQFormLayout(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -29157,7 +29150,7 @@ func (ptr *QFormLayout) DestroyQFormLayoutDefault() {
 	if ptr.Pointer() != nil {
 		C.QFormLayout_DestroyQFormLayoutDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -29244,7 +29237,7 @@ func NewQFrame(parent QWidget_ITF, ff core.Qt__WindowType) *QFrame {
 func (ptr *QFrame) FrameRect() *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QFrame_FrameRect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -29369,7 +29362,7 @@ func (ptr *QFrame) DestroyQFrame() {
 	if ptr.Pointer() != nil {
 		C.QFrame_DestroyQFrame(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -29377,7 +29370,7 @@ func (ptr *QFrame) DestroyQFrameDefault() {
 	if ptr.Pointer() != nil {
 		C.QFrame_DestroyQFrameDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -29461,7 +29454,7 @@ func (ptr *QGesture) HasHotSpot() bool {
 func (ptr *QGesture) HotSpot() *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QGesture_HotSpot(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -29527,7 +29520,7 @@ func (ptr *QGesture) DestroyQGesture() {
 	if ptr.Pointer() != nil {
 		C.QGesture_DestroyQGesture(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -29535,7 +29528,7 @@ func (ptr *QGesture) DestroyQGestureDefault() {
 	if ptr.Pointer() != nil {
 		C.QGesture_DestroyQGestureDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -29563,7 +29556,7 @@ func (ptr *QGesture) __children_newList() unsafe.Pointer {
 func (ptr *QGesture) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QGesture___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -29699,7 +29692,7 @@ func callbackQGesture_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QGesture) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QGesture_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -29843,7 +29836,7 @@ func NewQGestureEvent(gestures []*QGesture) *QGestureEvent {
 		}
 		return tmpList.Pointer()
 	}()))
-	runtime.SetFinalizer(tmpValue, (*QGestureEvent).DestroyQGestureEvent)
+	qt.SetFinalizer(tmpValue, (*QGestureEvent).DestroyQGestureEvent)
 	return tmpValue
 }
 
@@ -29941,7 +29934,7 @@ func (ptr *QGestureEvent) IsAccepted2(gestureType core.Qt__GestureType) bool {
 func (ptr *QGestureEvent) MapToGraphicsScene(gesturePoint core.QPointF_ITF) *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QGestureEvent_MapToGraphicsScene(ptr.Pointer(), core.PointerFromQPointF(gesturePoint)))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -30005,7 +29998,7 @@ func (ptr *QGestureEvent) DestroyQGestureEvent() {
 	if ptr.Pointer() != nil {
 		C.QGestureEvent_DestroyQGestureEvent(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -30013,7 +30006,7 @@ func (ptr *QGestureEvent) DestroyQGestureEventDefault() {
 	if ptr.Pointer() != nil {
 		C.QGestureEvent_DestroyQGestureEventDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -30700,7 +30693,7 @@ func (ptr *QGraphicsAnchor) DestroyQGraphicsAnchor() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsAnchor_DestroyQGraphicsAnchor(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -30708,7 +30701,7 @@ func (ptr *QGraphicsAnchor) DestroyQGraphicsAnchorDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsAnchor_DestroyQGraphicsAnchorDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -30736,7 +30729,7 @@ func (ptr *QGraphicsAnchor) __children_newList() unsafe.Pointer {
 func (ptr *QGraphicsAnchor) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QGraphicsAnchor___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -30872,7 +30865,7 @@ func callbackQGraphicsAnchor_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QGraphicsAnchor) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsAnchor_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -31238,7 +31231,7 @@ func (ptr *QGraphicsAnchorLayout) DisconnectSizeHint() {
 func (ptr *QGraphicsAnchorLayout) SizeHint(which core.Qt__SizeHint, constraint core.QSizeF_ITF) *core.QSizeF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFFromPointer(C.QGraphicsAnchorLayout_SizeHint(ptr.Pointer(), C.longlong(which), core.PointerFromQSizeF(constraint)))
-		runtime.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
+		qt.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
 		return tmpValue
 	}
 	return nil
@@ -31247,7 +31240,7 @@ func (ptr *QGraphicsAnchorLayout) SizeHint(which core.Qt__SizeHint, constraint c
 func (ptr *QGraphicsAnchorLayout) SizeHintDefault(which core.Qt__SizeHint, constraint core.QSizeF_ITF) *core.QSizeF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFFromPointer(C.QGraphicsAnchorLayout_SizeHintDefault(ptr.Pointer(), C.longlong(which), core.PointerFromQSizeF(constraint)))
-		runtime.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
+		qt.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
 		return tmpValue
 	}
 	return nil
@@ -31295,7 +31288,7 @@ func (ptr *QGraphicsAnchorLayout) DestroyQGraphicsAnchorLayout() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsAnchorLayout_DestroyQGraphicsAnchorLayout(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -31303,7 +31296,7 @@ func (ptr *QGraphicsAnchorLayout) DestroyQGraphicsAnchorLayoutDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsAnchorLayout_DestroyQGraphicsAnchorLayoutDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -31622,7 +31615,7 @@ func (ptr *QGraphicsBlurEffect) DestroyQGraphicsBlurEffect() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsBlurEffect_DestroyQGraphicsBlurEffect(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -31630,7 +31623,7 @@ func (ptr *QGraphicsBlurEffect) DestroyQGraphicsBlurEffectDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsBlurEffect_DestroyQGraphicsBlurEffectDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -31683,7 +31676,7 @@ func NewQGraphicsColorizeEffect(parent core.QObject_ITF) *QGraphicsColorizeEffec
 func (ptr *QGraphicsColorizeEffect) Color() *gui.QColor {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQColorFromPointer(C.QGraphicsColorizeEffect_Color(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+		qt.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
 	return nil
@@ -31940,7 +31933,7 @@ func (ptr *QGraphicsColorizeEffect) DestroyQGraphicsColorizeEffect() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsColorizeEffect_DestroyQGraphicsColorizeEffect(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -31948,7 +31941,7 @@ func (ptr *QGraphicsColorizeEffect) DestroyQGraphicsColorizeEffectDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsColorizeEffect_DestroyQGraphicsColorizeEffectDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -32048,7 +32041,7 @@ func (ptr *QGraphicsDropShadowEffect) BlurRadiusChanged(blurRadius float64) {
 func (ptr *QGraphicsDropShadowEffect) Color() *gui.QColor {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQColorFromPointer(C.QGraphicsDropShadowEffect_Color(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+		qt.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
 	return nil
@@ -32140,7 +32133,7 @@ func (ptr *QGraphicsDropShadowEffect) DrawDefault(painter gui.QPainter_ITF) {
 func (ptr *QGraphicsDropShadowEffect) Offset() *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QGraphicsDropShadowEffect_Offset(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -32536,7 +32529,7 @@ func (ptr *QGraphicsDropShadowEffect) DestroyQGraphicsDropShadowEffect() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsDropShadowEffect_DestroyQGraphicsDropShadowEffect(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -32544,7 +32537,7 @@ func (ptr *QGraphicsDropShadowEffect) DestroyQGraphicsDropShadowEffectDefault() 
 	if ptr.Pointer() != nil {
 		C.QGraphicsDropShadowEffect_DestroyQGraphicsDropShadowEffectDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -32619,7 +32612,7 @@ func NewQGraphicsEffect(parent core.QObject_ITF) *QGraphicsEffect {
 func (ptr *QGraphicsEffect) BoundingRect() *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsEffect_BoundingRect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -32659,7 +32652,7 @@ func (ptr *QGraphicsEffect) DisconnectBoundingRectFor() {
 func (ptr *QGraphicsEffect) BoundingRectFor(rect core.QRectF_ITF) *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsEffect_BoundingRectFor(ptr.Pointer(), core.PointerFromQRectF(rect)))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -32668,7 +32661,7 @@ func (ptr *QGraphicsEffect) BoundingRectFor(rect core.QRectF_ITF) *core.QRectF {
 func (ptr *QGraphicsEffect) BoundingRectForDefault(rect core.QRectF_ITF) *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsEffect_BoundingRectForDefault(ptr.Pointer(), core.PointerFromQRectF(rect)))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -32809,7 +32802,7 @@ func (ptr *QGraphicsEffect) SetEnabledDefault(enable bool) {
 func (ptr *QGraphicsEffect) SourceBoundingRect(system core.Qt__CoordinateSystem) *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsEffect_SourceBoundingRect(ptr.Pointer(), C.longlong(system)))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -32868,7 +32861,7 @@ func (ptr *QGraphicsEffect) SourceIsPixmap() bool {
 func (ptr *QGraphicsEffect) SourcePixmap(system core.Qt__CoordinateSystem, offset core.QPoint_ITF, mode QGraphicsEffect__PixmapPadMode) *gui.QPixmap {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPixmapFromPointer(C.QGraphicsEffect_SourcePixmap(ptr.Pointer(), C.longlong(system), core.PointerFromQPoint(offset), C.longlong(mode)))
-		runtime.SetFinalizer(tmpValue, (*gui.QPixmap).DestroyQPixmap)
+		qt.SetFinalizer(tmpValue, (*gui.QPixmap).DestroyQPixmap)
 		return tmpValue
 	}
 	return nil
@@ -32958,7 +32951,7 @@ func (ptr *QGraphicsEffect) DestroyQGraphicsEffect() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsEffect_DestroyQGraphicsEffect(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -32966,7 +32959,7 @@ func (ptr *QGraphicsEffect) DestroyQGraphicsEffectDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsEffect_DestroyQGraphicsEffectDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -32994,7 +32987,7 @@ func (ptr *QGraphicsEffect) __children_newList() unsafe.Pointer {
 func (ptr *QGraphicsEffect) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QGraphicsEffect___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -33130,7 +33123,7 @@ func callbackQGraphicsEffect_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QGraphicsEffect) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsEffect_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -33321,7 +33314,7 @@ func (ptr *QGraphicsEllipseItem) DisconnectBoundingRect() {
 func (ptr *QGraphicsEllipseItem) BoundingRect() *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsEllipseItem_BoundingRect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -33330,7 +33323,7 @@ func (ptr *QGraphicsEllipseItem) BoundingRect() *core.QRectF {
 func (ptr *QGraphicsEllipseItem) BoundingRectDefault() *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsEllipseItem_BoundingRectDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -33382,7 +33375,7 @@ func (ptr *QGraphicsEllipseItem) PaintDefault(painter gui.QPainter_ITF, option Q
 func (ptr *QGraphicsEllipseItem) Rect() *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsEllipseItem_Rect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -33461,7 +33454,7 @@ func (ptr *QGraphicsEllipseItem) DestroyQGraphicsEllipseItem() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsEllipseItem_DestroyQGraphicsEllipseItem(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -33469,7 +33462,7 @@ func (ptr *QGraphicsEllipseItem) DestroyQGraphicsEllipseItemDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsEllipseItem_DestroyQGraphicsEllipseItemDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -33875,7 +33868,7 @@ func (ptr *QGraphicsGridLayout) DisconnectSizeHint() {
 func (ptr *QGraphicsGridLayout) SizeHint(which core.Qt__SizeHint, constraint core.QSizeF_ITF) *core.QSizeF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFFromPointer(C.QGraphicsGridLayout_SizeHint(ptr.Pointer(), C.longlong(which), core.PointerFromQSizeF(constraint)))
-		runtime.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
+		qt.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
 		return tmpValue
 	}
 	return nil
@@ -33884,7 +33877,7 @@ func (ptr *QGraphicsGridLayout) SizeHint(which core.Qt__SizeHint, constraint cor
 func (ptr *QGraphicsGridLayout) SizeHintDefault(which core.Qt__SizeHint, constraint core.QSizeF_ITF) *core.QSizeF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFFromPointer(C.QGraphicsGridLayout_SizeHintDefault(ptr.Pointer(), C.longlong(which), core.PointerFromQSizeF(constraint)))
-		runtime.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
+		qt.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
 		return tmpValue
 	}
 	return nil
@@ -33932,7 +33925,7 @@ func (ptr *QGraphicsGridLayout) DestroyQGraphicsGridLayout() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsGridLayout_DestroyQGraphicsGridLayout(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -33940,7 +33933,7 @@ func (ptr *QGraphicsGridLayout) DestroyQGraphicsGridLayoutDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsGridLayout_DestroyQGraphicsGridLayoutDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -34188,7 +34181,7 @@ func (ptr *QGraphicsItem) DisconnectBoundingRect() {
 func (ptr *QGraphicsItem) BoundingRect() *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsItem_BoundingRect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -34197,7 +34190,7 @@ func (ptr *QGraphicsItem) BoundingRect() *core.QRectF {
 func (ptr *QGraphicsItem) BoundingRegion(itemToDeviceTransform gui.QTransform_ITF) *gui.QRegion {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQRegionFromPointer(C.QGraphicsItem_BoundingRegion(ptr.Pointer(), gui.PointerFromQTransform(itemToDeviceTransform)))
-		runtime.SetFinalizer(tmpValue, (*gui.QRegion).DestroyQRegion)
+		qt.SetFinalizer(tmpValue, (*gui.QRegion).DestroyQRegion)
 		return tmpValue
 	}
 	return nil
@@ -34234,7 +34227,7 @@ func (ptr *QGraphicsItem) ChildItems() []*QGraphicsItem {
 func (ptr *QGraphicsItem) ChildrenBoundingRect() *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsItem_ChildrenBoundingRect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -34249,7 +34242,7 @@ func (ptr *QGraphicsItem) ClearFocus() {
 func (ptr *QGraphicsItem) ClipPath() *gui.QPainterPath {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPainterPathFromPointer(C.QGraphicsItem_ClipPath(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QPainterPath).DestroyQPainterPath)
+		qt.SetFinalizer(tmpValue, (*gui.QPainterPath).DestroyQPainterPath)
 		return tmpValue
 	}
 	return nil
@@ -34457,7 +34450,7 @@ func (ptr *QGraphicsItem) ContextMenuEventDefault(event QGraphicsSceneContextMen
 func (ptr *QGraphicsItem) Cursor() *gui.QCursor {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQCursorFromPointer(C.QGraphicsItem_Cursor(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QCursor).DestroyQCursor)
+		qt.SetFinalizer(tmpValue, (*gui.QCursor).DestroyQCursor)
 		return tmpValue
 	}
 	return nil
@@ -34466,7 +34459,7 @@ func (ptr *QGraphicsItem) Cursor() *gui.QCursor {
 func (ptr *QGraphicsItem) Data(key int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QGraphicsItem_Data(ptr.Pointer(), C.int(int32(key))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -34475,7 +34468,7 @@ func (ptr *QGraphicsItem) Data(key int) *core.QVariant {
 func (ptr *QGraphicsItem) DeviceTransform(viewportTransform gui.QTransform_ITF) *gui.QTransform {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQTransformFromPointer(C.QGraphicsItem_DeviceTransform(ptr.Pointer(), gui.PointerFromQTransform(viewportTransform)))
-		runtime.SetFinalizer(tmpValue, (*gui.QTransform).DestroyQTransform)
+		qt.SetFinalizer(tmpValue, (*gui.QTransform).DestroyQTransform)
 		return tmpValue
 	}
 	return nil
@@ -35049,7 +35042,7 @@ func (ptr *QGraphicsItem) DisconnectInputMethodQuery() {
 func (ptr *QGraphicsItem) InputMethodQuery(query core.Qt__InputMethodQuery) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QGraphicsItem_InputMethodQuery(ptr.Pointer(), C.longlong(query)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -35058,7 +35051,7 @@ func (ptr *QGraphicsItem) InputMethodQuery(query core.Qt__InputMethodQuery) *cor
 func (ptr *QGraphicsItem) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QGraphicsItem_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -35240,7 +35233,7 @@ func (ptr *QGraphicsItem) DisconnectItemChange() {
 func (ptr *QGraphicsItem) ItemChange(change QGraphicsItem__GraphicsItemChange, value core.QVariant_ITF) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QGraphicsItem_ItemChange(ptr.Pointer(), C.longlong(change), core.PointerFromQVariant(value)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -35249,7 +35242,7 @@ func (ptr *QGraphicsItem) ItemChange(change QGraphicsItem__GraphicsItemChange, v
 func (ptr *QGraphicsItem) ItemChangeDefault(change QGraphicsItem__GraphicsItemChange, value core.QVariant_ITF) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QGraphicsItem_ItemChangeDefault(ptr.Pointer(), C.longlong(change), core.PointerFromQVariant(value)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -35263,7 +35256,7 @@ func (ptr *QGraphicsItem) ItemTransform(other QGraphicsItem_ITF, ok *bool) *gui.
 			defer func() { *ok = int8(okC) != 0 }()
 		}
 		tmpValue := gui.NewQTransformFromPointer(C.QGraphicsItem_ItemTransform(ptr.Pointer(), PointerFromQGraphicsItem(other), &okC))
-		runtime.SetFinalizer(tmpValue, (*gui.QTransform).DestroyQTransform)
+		qt.SetFinalizer(tmpValue, (*gui.QTransform).DestroyQTransform)
 		return tmpValue
 	}
 	return nil
@@ -35358,7 +35351,7 @@ func (ptr *QGraphicsItem) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
 func (ptr *QGraphicsItem) MapFromItem(item QGraphicsItem_ITF, point core.QPointF_ITF) *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QGraphicsItem_MapFromItem(ptr.Pointer(), PointerFromQGraphicsItem(item), core.PointerFromQPointF(point)))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -35367,7 +35360,7 @@ func (ptr *QGraphicsItem) MapFromItem(item QGraphicsItem_ITF, point core.QPointF
 func (ptr *QGraphicsItem) MapFromItem2(item QGraphicsItem_ITF, rect core.QRectF_ITF) *gui.QPolygonF {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPolygonFFromPointer(C.QGraphicsItem_MapFromItem2(ptr.Pointer(), PointerFromQGraphicsItem(item), core.PointerFromQRectF(rect)))
-		runtime.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
+		qt.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
 		return tmpValue
 	}
 	return nil
@@ -35376,7 +35369,7 @@ func (ptr *QGraphicsItem) MapFromItem2(item QGraphicsItem_ITF, rect core.QRectF_
 func (ptr *QGraphicsItem) MapFromItem3(item QGraphicsItem_ITF, polygon gui.QPolygonF_ITF) *gui.QPolygonF {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPolygonFFromPointer(C.QGraphicsItem_MapFromItem3(ptr.Pointer(), PointerFromQGraphicsItem(item), gui.PointerFromQPolygonF(polygon)))
-		runtime.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
+		qt.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
 		return tmpValue
 	}
 	return nil
@@ -35385,7 +35378,7 @@ func (ptr *QGraphicsItem) MapFromItem3(item QGraphicsItem_ITF, polygon gui.QPoly
 func (ptr *QGraphicsItem) MapFromItem4(item QGraphicsItem_ITF, path gui.QPainterPath_ITF) *gui.QPainterPath {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPainterPathFromPointer(C.QGraphicsItem_MapFromItem4(ptr.Pointer(), PointerFromQGraphicsItem(item), gui.PointerFromQPainterPath(path)))
-		runtime.SetFinalizer(tmpValue, (*gui.QPainterPath).DestroyQPainterPath)
+		qt.SetFinalizer(tmpValue, (*gui.QPainterPath).DestroyQPainterPath)
 		return tmpValue
 	}
 	return nil
@@ -35394,7 +35387,7 @@ func (ptr *QGraphicsItem) MapFromItem4(item QGraphicsItem_ITF, path gui.QPainter
 func (ptr *QGraphicsItem) MapFromItem5(item QGraphicsItem_ITF, x float64, y float64) *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QGraphicsItem_MapFromItem5(ptr.Pointer(), PointerFromQGraphicsItem(item), C.double(x), C.double(y)))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -35403,7 +35396,7 @@ func (ptr *QGraphicsItem) MapFromItem5(item QGraphicsItem_ITF, x float64, y floa
 func (ptr *QGraphicsItem) MapFromItem6(item QGraphicsItem_ITF, x float64, y float64, w float64, h float64) *gui.QPolygonF {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPolygonFFromPointer(C.QGraphicsItem_MapFromItem6(ptr.Pointer(), PointerFromQGraphicsItem(item), C.double(x), C.double(y), C.double(w), C.double(h)))
-		runtime.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
+		qt.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
 		return tmpValue
 	}
 	return nil
@@ -35412,7 +35405,7 @@ func (ptr *QGraphicsItem) MapFromItem6(item QGraphicsItem_ITF, x float64, y floa
 func (ptr *QGraphicsItem) MapFromParent(point core.QPointF_ITF) *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QGraphicsItem_MapFromParent(ptr.Pointer(), core.PointerFromQPointF(point)))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -35421,7 +35414,7 @@ func (ptr *QGraphicsItem) MapFromParent(point core.QPointF_ITF) *core.QPointF {
 func (ptr *QGraphicsItem) MapFromParent2(rect core.QRectF_ITF) *gui.QPolygonF {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPolygonFFromPointer(C.QGraphicsItem_MapFromParent2(ptr.Pointer(), core.PointerFromQRectF(rect)))
-		runtime.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
+		qt.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
 		return tmpValue
 	}
 	return nil
@@ -35430,7 +35423,7 @@ func (ptr *QGraphicsItem) MapFromParent2(rect core.QRectF_ITF) *gui.QPolygonF {
 func (ptr *QGraphicsItem) MapFromParent3(polygon gui.QPolygonF_ITF) *gui.QPolygonF {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPolygonFFromPointer(C.QGraphicsItem_MapFromParent3(ptr.Pointer(), gui.PointerFromQPolygonF(polygon)))
-		runtime.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
+		qt.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
 		return tmpValue
 	}
 	return nil
@@ -35439,7 +35432,7 @@ func (ptr *QGraphicsItem) MapFromParent3(polygon gui.QPolygonF_ITF) *gui.QPolygo
 func (ptr *QGraphicsItem) MapFromParent4(path gui.QPainterPath_ITF) *gui.QPainterPath {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPainterPathFromPointer(C.QGraphicsItem_MapFromParent4(ptr.Pointer(), gui.PointerFromQPainterPath(path)))
-		runtime.SetFinalizer(tmpValue, (*gui.QPainterPath).DestroyQPainterPath)
+		qt.SetFinalizer(tmpValue, (*gui.QPainterPath).DestroyQPainterPath)
 		return tmpValue
 	}
 	return nil
@@ -35448,7 +35441,7 @@ func (ptr *QGraphicsItem) MapFromParent4(path gui.QPainterPath_ITF) *gui.QPainte
 func (ptr *QGraphicsItem) MapFromParent5(x float64, y float64) *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QGraphicsItem_MapFromParent5(ptr.Pointer(), C.double(x), C.double(y)))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -35457,7 +35450,7 @@ func (ptr *QGraphicsItem) MapFromParent5(x float64, y float64) *core.QPointF {
 func (ptr *QGraphicsItem) MapFromParent6(x float64, y float64, w float64, h float64) *gui.QPolygonF {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPolygonFFromPointer(C.QGraphicsItem_MapFromParent6(ptr.Pointer(), C.double(x), C.double(y), C.double(w), C.double(h)))
-		runtime.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
+		qt.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
 		return tmpValue
 	}
 	return nil
@@ -35466,7 +35459,7 @@ func (ptr *QGraphicsItem) MapFromParent6(x float64, y float64, w float64, h floa
 func (ptr *QGraphicsItem) MapFromScene(point core.QPointF_ITF) *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QGraphicsItem_MapFromScene(ptr.Pointer(), core.PointerFromQPointF(point)))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -35475,7 +35468,7 @@ func (ptr *QGraphicsItem) MapFromScene(point core.QPointF_ITF) *core.QPointF {
 func (ptr *QGraphicsItem) MapFromScene2(rect core.QRectF_ITF) *gui.QPolygonF {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPolygonFFromPointer(C.QGraphicsItem_MapFromScene2(ptr.Pointer(), core.PointerFromQRectF(rect)))
-		runtime.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
+		qt.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
 		return tmpValue
 	}
 	return nil
@@ -35484,7 +35477,7 @@ func (ptr *QGraphicsItem) MapFromScene2(rect core.QRectF_ITF) *gui.QPolygonF {
 func (ptr *QGraphicsItem) MapFromScene3(polygon gui.QPolygonF_ITF) *gui.QPolygonF {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPolygonFFromPointer(C.QGraphicsItem_MapFromScene3(ptr.Pointer(), gui.PointerFromQPolygonF(polygon)))
-		runtime.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
+		qt.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
 		return tmpValue
 	}
 	return nil
@@ -35493,7 +35486,7 @@ func (ptr *QGraphicsItem) MapFromScene3(polygon gui.QPolygonF_ITF) *gui.QPolygon
 func (ptr *QGraphicsItem) MapFromScene4(path gui.QPainterPath_ITF) *gui.QPainterPath {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPainterPathFromPointer(C.QGraphicsItem_MapFromScene4(ptr.Pointer(), gui.PointerFromQPainterPath(path)))
-		runtime.SetFinalizer(tmpValue, (*gui.QPainterPath).DestroyQPainterPath)
+		qt.SetFinalizer(tmpValue, (*gui.QPainterPath).DestroyQPainterPath)
 		return tmpValue
 	}
 	return nil
@@ -35502,7 +35495,7 @@ func (ptr *QGraphicsItem) MapFromScene4(path gui.QPainterPath_ITF) *gui.QPainter
 func (ptr *QGraphicsItem) MapFromScene5(x float64, y float64) *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QGraphicsItem_MapFromScene5(ptr.Pointer(), C.double(x), C.double(y)))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -35511,7 +35504,7 @@ func (ptr *QGraphicsItem) MapFromScene5(x float64, y float64) *core.QPointF {
 func (ptr *QGraphicsItem) MapFromScene6(x float64, y float64, w float64, h float64) *gui.QPolygonF {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPolygonFFromPointer(C.QGraphicsItem_MapFromScene6(ptr.Pointer(), C.double(x), C.double(y), C.double(w), C.double(h)))
-		runtime.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
+		qt.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
 		return tmpValue
 	}
 	return nil
@@ -35520,7 +35513,7 @@ func (ptr *QGraphicsItem) MapFromScene6(x float64, y float64, w float64, h float
 func (ptr *QGraphicsItem) MapRectFromItem(item QGraphicsItem_ITF, rect core.QRectF_ITF) *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsItem_MapRectFromItem(ptr.Pointer(), PointerFromQGraphicsItem(item), core.PointerFromQRectF(rect)))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -35529,7 +35522,7 @@ func (ptr *QGraphicsItem) MapRectFromItem(item QGraphicsItem_ITF, rect core.QRec
 func (ptr *QGraphicsItem) MapRectFromItem2(item QGraphicsItem_ITF, x float64, y float64, w float64, h float64) *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsItem_MapRectFromItem2(ptr.Pointer(), PointerFromQGraphicsItem(item), C.double(x), C.double(y), C.double(w), C.double(h)))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -35538,7 +35531,7 @@ func (ptr *QGraphicsItem) MapRectFromItem2(item QGraphicsItem_ITF, x float64, y 
 func (ptr *QGraphicsItem) MapRectFromParent(rect core.QRectF_ITF) *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsItem_MapRectFromParent(ptr.Pointer(), core.PointerFromQRectF(rect)))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -35547,7 +35540,7 @@ func (ptr *QGraphicsItem) MapRectFromParent(rect core.QRectF_ITF) *core.QRectF {
 func (ptr *QGraphicsItem) MapRectFromParent2(x float64, y float64, w float64, h float64) *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsItem_MapRectFromParent2(ptr.Pointer(), C.double(x), C.double(y), C.double(w), C.double(h)))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -35556,7 +35549,7 @@ func (ptr *QGraphicsItem) MapRectFromParent2(x float64, y float64, w float64, h 
 func (ptr *QGraphicsItem) MapRectFromScene(rect core.QRectF_ITF) *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsItem_MapRectFromScene(ptr.Pointer(), core.PointerFromQRectF(rect)))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -35565,7 +35558,7 @@ func (ptr *QGraphicsItem) MapRectFromScene(rect core.QRectF_ITF) *core.QRectF {
 func (ptr *QGraphicsItem) MapRectFromScene2(x float64, y float64, w float64, h float64) *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsItem_MapRectFromScene2(ptr.Pointer(), C.double(x), C.double(y), C.double(w), C.double(h)))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -35574,7 +35567,7 @@ func (ptr *QGraphicsItem) MapRectFromScene2(x float64, y float64, w float64, h f
 func (ptr *QGraphicsItem) MapRectToItem(item QGraphicsItem_ITF, rect core.QRectF_ITF) *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsItem_MapRectToItem(ptr.Pointer(), PointerFromQGraphicsItem(item), core.PointerFromQRectF(rect)))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -35583,7 +35576,7 @@ func (ptr *QGraphicsItem) MapRectToItem(item QGraphicsItem_ITF, rect core.QRectF
 func (ptr *QGraphicsItem) MapRectToItem2(item QGraphicsItem_ITF, x float64, y float64, w float64, h float64) *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsItem_MapRectToItem2(ptr.Pointer(), PointerFromQGraphicsItem(item), C.double(x), C.double(y), C.double(w), C.double(h)))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -35592,7 +35585,7 @@ func (ptr *QGraphicsItem) MapRectToItem2(item QGraphicsItem_ITF, x float64, y fl
 func (ptr *QGraphicsItem) MapRectToParent(rect core.QRectF_ITF) *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsItem_MapRectToParent(ptr.Pointer(), core.PointerFromQRectF(rect)))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -35601,7 +35594,7 @@ func (ptr *QGraphicsItem) MapRectToParent(rect core.QRectF_ITF) *core.QRectF {
 func (ptr *QGraphicsItem) MapRectToParent2(x float64, y float64, w float64, h float64) *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsItem_MapRectToParent2(ptr.Pointer(), C.double(x), C.double(y), C.double(w), C.double(h)))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -35610,7 +35603,7 @@ func (ptr *QGraphicsItem) MapRectToParent2(x float64, y float64, w float64, h fl
 func (ptr *QGraphicsItem) MapRectToScene(rect core.QRectF_ITF) *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsItem_MapRectToScene(ptr.Pointer(), core.PointerFromQRectF(rect)))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -35619,7 +35612,7 @@ func (ptr *QGraphicsItem) MapRectToScene(rect core.QRectF_ITF) *core.QRectF {
 func (ptr *QGraphicsItem) MapRectToScene2(x float64, y float64, w float64, h float64) *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsItem_MapRectToScene2(ptr.Pointer(), C.double(x), C.double(y), C.double(w), C.double(h)))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -35628,7 +35621,7 @@ func (ptr *QGraphicsItem) MapRectToScene2(x float64, y float64, w float64, h flo
 func (ptr *QGraphicsItem) MapToItem(item QGraphicsItem_ITF, point core.QPointF_ITF) *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QGraphicsItem_MapToItem(ptr.Pointer(), PointerFromQGraphicsItem(item), core.PointerFromQPointF(point)))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -35637,7 +35630,7 @@ func (ptr *QGraphicsItem) MapToItem(item QGraphicsItem_ITF, point core.QPointF_I
 func (ptr *QGraphicsItem) MapToItem2(item QGraphicsItem_ITF, rect core.QRectF_ITF) *gui.QPolygonF {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPolygonFFromPointer(C.QGraphicsItem_MapToItem2(ptr.Pointer(), PointerFromQGraphicsItem(item), core.PointerFromQRectF(rect)))
-		runtime.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
+		qt.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
 		return tmpValue
 	}
 	return nil
@@ -35646,7 +35639,7 @@ func (ptr *QGraphicsItem) MapToItem2(item QGraphicsItem_ITF, rect core.QRectF_IT
 func (ptr *QGraphicsItem) MapToItem3(item QGraphicsItem_ITF, polygon gui.QPolygonF_ITF) *gui.QPolygonF {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPolygonFFromPointer(C.QGraphicsItem_MapToItem3(ptr.Pointer(), PointerFromQGraphicsItem(item), gui.PointerFromQPolygonF(polygon)))
-		runtime.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
+		qt.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
 		return tmpValue
 	}
 	return nil
@@ -35655,7 +35648,7 @@ func (ptr *QGraphicsItem) MapToItem3(item QGraphicsItem_ITF, polygon gui.QPolygo
 func (ptr *QGraphicsItem) MapToItem4(item QGraphicsItem_ITF, path gui.QPainterPath_ITF) *gui.QPainterPath {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPainterPathFromPointer(C.QGraphicsItem_MapToItem4(ptr.Pointer(), PointerFromQGraphicsItem(item), gui.PointerFromQPainterPath(path)))
-		runtime.SetFinalizer(tmpValue, (*gui.QPainterPath).DestroyQPainterPath)
+		qt.SetFinalizer(tmpValue, (*gui.QPainterPath).DestroyQPainterPath)
 		return tmpValue
 	}
 	return nil
@@ -35664,7 +35657,7 @@ func (ptr *QGraphicsItem) MapToItem4(item QGraphicsItem_ITF, path gui.QPainterPa
 func (ptr *QGraphicsItem) MapToItem5(item QGraphicsItem_ITF, x float64, y float64) *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QGraphicsItem_MapToItem5(ptr.Pointer(), PointerFromQGraphicsItem(item), C.double(x), C.double(y)))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -35673,7 +35666,7 @@ func (ptr *QGraphicsItem) MapToItem5(item QGraphicsItem_ITF, x float64, y float6
 func (ptr *QGraphicsItem) MapToItem6(item QGraphicsItem_ITF, x float64, y float64, w float64, h float64) *gui.QPolygonF {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPolygonFFromPointer(C.QGraphicsItem_MapToItem6(ptr.Pointer(), PointerFromQGraphicsItem(item), C.double(x), C.double(y), C.double(w), C.double(h)))
-		runtime.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
+		qt.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
 		return tmpValue
 	}
 	return nil
@@ -35682,7 +35675,7 @@ func (ptr *QGraphicsItem) MapToItem6(item QGraphicsItem_ITF, x float64, y float6
 func (ptr *QGraphicsItem) MapToParent(point core.QPointF_ITF) *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QGraphicsItem_MapToParent(ptr.Pointer(), core.PointerFromQPointF(point)))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -35691,7 +35684,7 @@ func (ptr *QGraphicsItem) MapToParent(point core.QPointF_ITF) *core.QPointF {
 func (ptr *QGraphicsItem) MapToParent2(rect core.QRectF_ITF) *gui.QPolygonF {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPolygonFFromPointer(C.QGraphicsItem_MapToParent2(ptr.Pointer(), core.PointerFromQRectF(rect)))
-		runtime.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
+		qt.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
 		return tmpValue
 	}
 	return nil
@@ -35700,7 +35693,7 @@ func (ptr *QGraphicsItem) MapToParent2(rect core.QRectF_ITF) *gui.QPolygonF {
 func (ptr *QGraphicsItem) MapToParent3(polygon gui.QPolygonF_ITF) *gui.QPolygonF {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPolygonFFromPointer(C.QGraphicsItem_MapToParent3(ptr.Pointer(), gui.PointerFromQPolygonF(polygon)))
-		runtime.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
+		qt.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
 		return tmpValue
 	}
 	return nil
@@ -35709,7 +35702,7 @@ func (ptr *QGraphicsItem) MapToParent3(polygon gui.QPolygonF_ITF) *gui.QPolygonF
 func (ptr *QGraphicsItem) MapToParent4(path gui.QPainterPath_ITF) *gui.QPainterPath {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPainterPathFromPointer(C.QGraphicsItem_MapToParent4(ptr.Pointer(), gui.PointerFromQPainterPath(path)))
-		runtime.SetFinalizer(tmpValue, (*gui.QPainterPath).DestroyQPainterPath)
+		qt.SetFinalizer(tmpValue, (*gui.QPainterPath).DestroyQPainterPath)
 		return tmpValue
 	}
 	return nil
@@ -35718,7 +35711,7 @@ func (ptr *QGraphicsItem) MapToParent4(path gui.QPainterPath_ITF) *gui.QPainterP
 func (ptr *QGraphicsItem) MapToParent5(x float64, y float64) *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QGraphicsItem_MapToParent5(ptr.Pointer(), C.double(x), C.double(y)))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -35727,7 +35720,7 @@ func (ptr *QGraphicsItem) MapToParent5(x float64, y float64) *core.QPointF {
 func (ptr *QGraphicsItem) MapToParent6(x float64, y float64, w float64, h float64) *gui.QPolygonF {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPolygonFFromPointer(C.QGraphicsItem_MapToParent6(ptr.Pointer(), C.double(x), C.double(y), C.double(w), C.double(h)))
-		runtime.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
+		qt.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
 		return tmpValue
 	}
 	return nil
@@ -35736,7 +35729,7 @@ func (ptr *QGraphicsItem) MapToParent6(x float64, y float64, w float64, h float6
 func (ptr *QGraphicsItem) MapToScene(point core.QPointF_ITF) *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QGraphicsItem_MapToScene(ptr.Pointer(), core.PointerFromQPointF(point)))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -35745,7 +35738,7 @@ func (ptr *QGraphicsItem) MapToScene(point core.QPointF_ITF) *core.QPointF {
 func (ptr *QGraphicsItem) MapToScene2(rect core.QRectF_ITF) *gui.QPolygonF {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPolygonFFromPointer(C.QGraphicsItem_MapToScene2(ptr.Pointer(), core.PointerFromQRectF(rect)))
-		runtime.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
+		qt.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
 		return tmpValue
 	}
 	return nil
@@ -35754,7 +35747,7 @@ func (ptr *QGraphicsItem) MapToScene2(rect core.QRectF_ITF) *gui.QPolygonF {
 func (ptr *QGraphicsItem) MapToScene3(polygon gui.QPolygonF_ITF) *gui.QPolygonF {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPolygonFFromPointer(C.QGraphicsItem_MapToScene3(ptr.Pointer(), gui.PointerFromQPolygonF(polygon)))
-		runtime.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
+		qt.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
 		return tmpValue
 	}
 	return nil
@@ -35763,7 +35756,7 @@ func (ptr *QGraphicsItem) MapToScene3(polygon gui.QPolygonF_ITF) *gui.QPolygonF 
 func (ptr *QGraphicsItem) MapToScene4(path gui.QPainterPath_ITF) *gui.QPainterPath {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPainterPathFromPointer(C.QGraphicsItem_MapToScene4(ptr.Pointer(), gui.PointerFromQPainterPath(path)))
-		runtime.SetFinalizer(tmpValue, (*gui.QPainterPath).DestroyQPainterPath)
+		qt.SetFinalizer(tmpValue, (*gui.QPainterPath).DestroyQPainterPath)
 		return tmpValue
 	}
 	return nil
@@ -35772,7 +35765,7 @@ func (ptr *QGraphicsItem) MapToScene4(path gui.QPainterPath_ITF) *gui.QPainterPa
 func (ptr *QGraphicsItem) MapToScene5(x float64, y float64) *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QGraphicsItem_MapToScene5(ptr.Pointer(), C.double(x), C.double(y)))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -35781,7 +35774,7 @@ func (ptr *QGraphicsItem) MapToScene5(x float64, y float64) *core.QPointF {
 func (ptr *QGraphicsItem) MapToScene6(x float64, y float64, w float64, h float64) *gui.QPolygonF {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPolygonFFromPointer(C.QGraphicsItem_MapToScene6(ptr.Pointer(), C.double(x), C.double(y), C.double(w), C.double(h)))
-		runtime.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
+		qt.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
 		return tmpValue
 	}
 	return nil
@@ -36006,7 +35999,7 @@ func (ptr *QGraphicsItem) DisconnectOpaqueArea() {
 func (ptr *QGraphicsItem) OpaqueArea() *gui.QPainterPath {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPainterPathFromPointer(C.QGraphicsItem_OpaqueArea(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QPainterPath).DestroyQPainterPath)
+		qt.SetFinalizer(tmpValue, (*gui.QPainterPath).DestroyQPainterPath)
 		return tmpValue
 	}
 	return nil
@@ -36015,7 +36008,7 @@ func (ptr *QGraphicsItem) OpaqueArea() *gui.QPainterPath {
 func (ptr *QGraphicsItem) OpaqueAreaDefault() *gui.QPainterPath {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPainterPathFromPointer(C.QGraphicsItem_OpaqueAreaDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QPainterPath).DestroyQPainterPath)
+		qt.SetFinalizer(tmpValue, (*gui.QPainterPath).DestroyQPainterPath)
 		return tmpValue
 	}
 	return nil
@@ -36103,7 +36096,7 @@ func (ptr *QGraphicsItem) ParentWidget() *QGraphicsWidget {
 func (ptr *QGraphicsItem) Pos() *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QGraphicsItem_Pos(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -36155,7 +36148,7 @@ func (ptr *QGraphicsItem) Scene() *QGraphicsScene {
 func (ptr *QGraphicsItem) SceneBoundingRect() *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsItem_SceneBoundingRect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -36254,7 +36247,7 @@ func (ptr *QGraphicsItem) SceneEventFilterDefault(watched QGraphicsItem_ITF, eve
 func (ptr *QGraphicsItem) ScenePos() *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QGraphicsItem_ScenePos(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -36263,7 +36256,7 @@ func (ptr *QGraphicsItem) ScenePos() *core.QPointF {
 func (ptr *QGraphicsItem) SceneTransform() *gui.QTransform {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQTransformFromPointer(C.QGraphicsItem_SceneTransform(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QTransform).DestroyQTransform)
+		qt.SetFinalizer(tmpValue, (*gui.QTransform).DestroyQTransform)
 		return tmpValue
 	}
 	return nil
@@ -36530,7 +36523,7 @@ func (ptr *QGraphicsItem) DisconnectShape() {
 func (ptr *QGraphicsItem) Shape() *gui.QPainterPath {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPainterPathFromPointer(C.QGraphicsItem_Shape(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QPainterPath).DestroyQPainterPath)
+		qt.SetFinalizer(tmpValue, (*gui.QPainterPath).DestroyQPainterPath)
 		return tmpValue
 	}
 	return nil
@@ -36539,7 +36532,7 @@ func (ptr *QGraphicsItem) Shape() *gui.QPainterPath {
 func (ptr *QGraphicsItem) ShapeDefault() *gui.QPainterPath {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPainterPathFromPointer(C.QGraphicsItem_ShapeDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QPainterPath).DestroyQPainterPath)
+		qt.SetFinalizer(tmpValue, (*gui.QPainterPath).DestroyQPainterPath)
 		return tmpValue
 	}
 	return nil
@@ -36607,7 +36600,7 @@ func (ptr *QGraphicsItem) TopLevelWidget() *QGraphicsWidget {
 func (ptr *QGraphicsItem) Transform() *gui.QTransform {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQTransformFromPointer(C.QGraphicsItem_Transform(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QTransform).DestroyQTransform)
+		qt.SetFinalizer(tmpValue, (*gui.QTransform).DestroyQTransform)
 		return tmpValue
 	}
 	return nil
@@ -36616,7 +36609,7 @@ func (ptr *QGraphicsItem) Transform() *gui.QTransform {
 func (ptr *QGraphicsItem) TransformOriginPoint() *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QGraphicsItem_TransformOriginPoint(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -36821,7 +36814,7 @@ func (ptr *QGraphicsItem) DestroyQGraphicsItem() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsItem_DestroyQGraphicsItem(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -36829,7 +36822,7 @@ func (ptr *QGraphicsItem) DestroyQGraphicsItemDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsItem_DestroyQGraphicsItemDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -37088,7 +37081,7 @@ func (ptr *QGraphicsItemAnimation) Item() *QGraphicsItem {
 func (ptr *QGraphicsItemAnimation) MatrixAt(step float64) *gui.QMatrix {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQMatrixFromPointer(C.QGraphicsItemAnimation_MatrixAt(ptr.Pointer(), C.double(step)))
-		runtime.SetFinalizer(tmpValue, (*gui.QMatrix).DestroyQMatrix)
+		qt.SetFinalizer(tmpValue, (*gui.QMatrix).DestroyQMatrix)
 		return tmpValue
 	}
 	return nil
@@ -37097,7 +37090,7 @@ func (ptr *QGraphicsItemAnimation) MatrixAt(step float64) *gui.QMatrix {
 func (ptr *QGraphicsItemAnimation) PosAt(step float64) *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QGraphicsItemAnimation_PosAt(ptr.Pointer(), C.double(step)))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -37269,7 +37262,7 @@ func (ptr *QGraphicsItemAnimation) DestroyQGraphicsItemAnimation() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsItemAnimation_DestroyQGraphicsItemAnimation(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -37277,7 +37270,7 @@ func (ptr *QGraphicsItemAnimation) DestroyQGraphicsItemAnimationDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsItemAnimation_DestroyQGraphicsItemAnimationDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -37305,7 +37298,7 @@ func (ptr *QGraphicsItemAnimation) __children_newList() unsafe.Pointer {
 func (ptr *QGraphicsItemAnimation) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QGraphicsItemAnimation___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -37441,7 +37434,7 @@ func callbackQGraphicsItemAnimation_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QGraphicsItemAnimation) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsItemAnimation_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -37630,7 +37623,7 @@ func (ptr *QGraphicsItemGroup) DisconnectBoundingRect() {
 func (ptr *QGraphicsItemGroup) BoundingRect() *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsItemGroup_BoundingRect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -37639,7 +37632,7 @@ func (ptr *QGraphicsItemGroup) BoundingRect() *core.QRectF {
 func (ptr *QGraphicsItemGroup) BoundingRectDefault() *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsItemGroup_BoundingRectDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -37729,7 +37722,7 @@ func (ptr *QGraphicsItemGroup) DestroyQGraphicsItemGroup() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsItemGroup_DestroyQGraphicsItemGroup(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -37737,7 +37730,7 @@ func (ptr *QGraphicsItemGroup) DestroyQGraphicsItemGroupDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsItemGroup_DestroyQGraphicsItemGroupDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -38063,7 +38056,7 @@ func callbackQGraphicsLayout_SizeHint(ptr unsafe.Pointer, which C.longlong, cons
 func (ptr *QGraphicsLayout) SizeHint(which core.Qt__SizeHint, constraint core.QSizeF_ITF) *core.QSizeF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFFromPointer(C.QGraphicsLayout_SizeHint(ptr.Pointer(), C.longlong(which), core.PointerFromQSizeF(constraint)))
-		runtime.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
+		qt.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
 		return tmpValue
 	}
 	return nil
@@ -38072,7 +38065,7 @@ func (ptr *QGraphicsLayout) SizeHint(which core.Qt__SizeHint, constraint core.QS
 func (ptr *QGraphicsLayout) SizeHintDefault(which core.Qt__SizeHint, constraint core.QSizeF_ITF) *core.QSizeF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFFromPointer(C.QGraphicsLayout_SizeHintDefault(ptr.Pointer(), C.longlong(which), core.PointerFromQSizeF(constraint)))
-		runtime.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
+		qt.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
 		return tmpValue
 	}
 	return nil
@@ -38122,7 +38115,7 @@ func NewQGraphicsLayoutItem(parent QGraphicsLayoutItem_ITF, isLayout bool) *QGra
 func (ptr *QGraphicsLayoutItem) ContentsRect() *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsLayoutItem_ContentsRect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -38131,7 +38124,7 @@ func (ptr *QGraphicsLayoutItem) ContentsRect() *core.QRectF {
 func (ptr *QGraphicsLayoutItem) EffectiveSizeHint(which core.Qt__SizeHint, constraint core.QSizeF_ITF) *core.QSizeF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFFromPointer(C.QGraphicsLayoutItem_EffectiveSizeHint(ptr.Pointer(), C.longlong(which), core.PointerFromQSizeF(constraint)))
-		runtime.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
+		qt.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
 		return tmpValue
 	}
 	return nil
@@ -38140,7 +38133,7 @@ func (ptr *QGraphicsLayoutItem) EffectiveSizeHint(which core.Qt__SizeHint, const
 func (ptr *QGraphicsLayoutItem) Geometry() *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsLayoutItem_Geometry(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -38213,7 +38206,7 @@ func (ptr *QGraphicsLayoutItem) MaximumHeight() float64 {
 func (ptr *QGraphicsLayoutItem) MaximumSize() *core.QSizeF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFFromPointer(C.QGraphicsLayoutItem_MaximumSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
+		qt.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
 		return tmpValue
 	}
 	return nil
@@ -38236,7 +38229,7 @@ func (ptr *QGraphicsLayoutItem) MinimumHeight() float64 {
 func (ptr *QGraphicsLayoutItem) MinimumSize() *core.QSizeF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFFromPointer(C.QGraphicsLayoutItem_MinimumSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
+		qt.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
 		return tmpValue
 	}
 	return nil
@@ -38273,7 +38266,7 @@ func (ptr *QGraphicsLayoutItem) PreferredHeight() float64 {
 func (ptr *QGraphicsLayoutItem) PreferredSize() *core.QSizeF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFFromPointer(C.QGraphicsLayoutItem_PreferredSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
+		qt.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
 		return tmpValue
 	}
 	return nil
@@ -38465,7 +38458,7 @@ func (ptr *QGraphicsLayoutItem) DisconnectSizeHint() {
 func (ptr *QGraphicsLayoutItem) SizeHint(which core.Qt__SizeHint, constraint core.QSizeF_ITF) *core.QSizeF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFFromPointer(C.QGraphicsLayoutItem_SizeHint(ptr.Pointer(), C.longlong(which), core.PointerFromQSizeF(constraint)))
-		runtime.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
+		qt.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
 		return tmpValue
 	}
 	return nil
@@ -38474,7 +38467,7 @@ func (ptr *QGraphicsLayoutItem) SizeHint(which core.Qt__SizeHint, constraint cor
 func (ptr *QGraphicsLayoutItem) SizePolicy() *QSizePolicy {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSizePolicyFromPointer(C.QGraphicsLayoutItem_SizePolicy(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QSizePolicy).DestroyQSizePolicy)
+		qt.SetFinalizer(tmpValue, (*QSizePolicy).DestroyQSizePolicy)
 		return tmpValue
 	}
 	return nil
@@ -38558,7 +38551,7 @@ func (ptr *QGraphicsLayoutItem) DestroyQGraphicsLayoutItem() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsLayoutItem_DestroyQGraphicsLayoutItem(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -38566,7 +38559,7 @@ func (ptr *QGraphicsLayoutItem) DestroyQGraphicsLayoutItemDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsLayoutItem_DestroyQGraphicsLayoutItemDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -38663,7 +38656,7 @@ func (ptr *QGraphicsLineItem) DisconnectBoundingRect() {
 func (ptr *QGraphicsLineItem) BoundingRect() *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsLineItem_BoundingRect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -38672,7 +38665,7 @@ func (ptr *QGraphicsLineItem) BoundingRect() *core.QRectF {
 func (ptr *QGraphicsLineItem) BoundingRectDefault() *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsLineItem_BoundingRectDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -38681,7 +38674,7 @@ func (ptr *QGraphicsLineItem) BoundingRectDefault() *core.QRectF {
 func (ptr *QGraphicsLineItem) Line() *core.QLineF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQLineFFromPointer(C.QGraphicsLineItem_Line(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QLineF).DestroyQLineF)
+		qt.SetFinalizer(tmpValue, (*core.QLineF).DestroyQLineF)
 		return tmpValue
 	}
 	return nil
@@ -38733,7 +38726,7 @@ func (ptr *QGraphicsLineItem) PaintDefault(painter gui.QPainter_ITF, option QSty
 func (ptr *QGraphicsLineItem) Pen() *gui.QPen {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPenFromPointer(C.QGraphicsLineItem_Pen(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QPen).DestroyQPen)
+		qt.SetFinalizer(tmpValue, (*gui.QPen).DestroyQPen)
 		return tmpValue
 	}
 	return nil
@@ -38792,7 +38785,7 @@ func (ptr *QGraphicsLineItem) DestroyQGraphicsLineItem() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsLineItem_DestroyQGraphicsLineItem(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -38800,7 +38793,7 @@ func (ptr *QGraphicsLineItem) DestroyQGraphicsLineItemDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsLineItem_DestroyQGraphicsLineItemDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -39098,7 +39091,7 @@ func (ptr *QGraphicsLinearLayout) DisconnectSizeHint() {
 func (ptr *QGraphicsLinearLayout) SizeHint(which core.Qt__SizeHint, constraint core.QSizeF_ITF) *core.QSizeF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFFromPointer(C.QGraphicsLinearLayout_SizeHint(ptr.Pointer(), C.longlong(which), core.PointerFromQSizeF(constraint)))
-		runtime.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
+		qt.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
 		return tmpValue
 	}
 	return nil
@@ -39107,7 +39100,7 @@ func (ptr *QGraphicsLinearLayout) SizeHint(which core.Qt__SizeHint, constraint c
 func (ptr *QGraphicsLinearLayout) SizeHintDefault(which core.Qt__SizeHint, constraint core.QSizeF_ITF) *core.QSizeF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFFromPointer(C.QGraphicsLinearLayout_SizeHintDefault(ptr.Pointer(), C.longlong(which), core.PointerFromQSizeF(constraint)))
-		runtime.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
+		qt.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
 		return tmpValue
 	}
 	return nil
@@ -39162,7 +39155,7 @@ func (ptr *QGraphicsLinearLayout) DestroyQGraphicsLinearLayout() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsLinearLayout_DestroyQGraphicsLinearLayout(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -39170,7 +39163,7 @@ func (ptr *QGraphicsLinearLayout) DestroyQGraphicsLinearLayoutDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsLinearLayout_DestroyQGraphicsLinearLayoutDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -39718,7 +39711,7 @@ func (ptr *QGraphicsObject) DestroyQGraphicsObject() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsObject_DestroyQGraphicsObject(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -39726,7 +39719,7 @@ func (ptr *QGraphicsObject) DestroyQGraphicsObjectDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsObject_DestroyQGraphicsObjectDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -39789,7 +39782,7 @@ func (ptr *QGraphicsObject) SetVisible(visible bool) {
 func (ptr *QGraphicsObject) Pos() *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QGraphicsObject_Pos(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -39869,7 +39862,7 @@ func (ptr *QGraphicsObject) SetScale(scale float64) {
 func (ptr *QGraphicsObject) TransformOriginPoint() *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QGraphicsObject_TransformOriginPoint(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -39922,7 +39915,7 @@ func (ptr *QGraphicsObject) __children_newList() unsafe.Pointer {
 func (ptr *QGraphicsObject) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QGraphicsObject___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -40076,14 +40069,14 @@ func callbackQGraphicsObject_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QGraphicsObject) DeleteLater() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsObject_DeleteLater(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QGraphicsObject) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsObject_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -40203,7 +40196,7 @@ func callbackQGraphicsObject_BoundingRect(ptr unsafe.Pointer) unsafe.Pointer {
 func (ptr *QGraphicsObject) BoundingRect() *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsObject_BoundingRect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -40212,7 +40205,7 @@ func (ptr *QGraphicsObject) BoundingRect() *core.QRectF {
 func (ptr *QGraphicsObject) BoundingRectDefault() *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsObject_BoundingRectDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -40378,7 +40371,7 @@ func (ptr *QGraphicsOpacityEffect) OpacityChanged(opacity float64) {
 func (ptr *QGraphicsOpacityEffect) OpacityMask() *gui.QBrush {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQBrushFromPointer(C.QGraphicsOpacityEffect_OpacityMask(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
+		qt.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
 		return tmpValue
 	}
 	return nil
@@ -40545,7 +40538,7 @@ func (ptr *QGraphicsOpacityEffect) DestroyQGraphicsOpacityEffect() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsOpacityEffect_DestroyQGraphicsOpacityEffect(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -40553,7 +40546,7 @@ func (ptr *QGraphicsOpacityEffect) DestroyQGraphicsOpacityEffectDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsOpacityEffect_DestroyQGraphicsOpacityEffectDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -40646,7 +40639,7 @@ func (ptr *QGraphicsPathItem) DisconnectBoundingRect() {
 func (ptr *QGraphicsPathItem) BoundingRect() *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsPathItem_BoundingRect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -40655,7 +40648,7 @@ func (ptr *QGraphicsPathItem) BoundingRect() *core.QRectF {
 func (ptr *QGraphicsPathItem) BoundingRectDefault() *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsPathItem_BoundingRectDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -40707,7 +40700,7 @@ func (ptr *QGraphicsPathItem) PaintDefault(painter gui.QPainter_ITF, option QSty
 func (ptr *QGraphicsPathItem) Path() *gui.QPainterPath {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPainterPathFromPointer(C.QGraphicsPathItem_Path(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QPainterPath).DestroyQPainterPath)
+		qt.SetFinalizer(tmpValue, (*gui.QPainterPath).DestroyQPainterPath)
 		return tmpValue
 	}
 	return nil
@@ -40754,7 +40747,7 @@ func (ptr *QGraphicsPathItem) DestroyQGraphicsPathItem() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsPathItem_DestroyQGraphicsPathItem(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -40762,7 +40755,7 @@ func (ptr *QGraphicsPathItem) DestroyQGraphicsPathItemDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsPathItem_DestroyQGraphicsPathItemDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -40865,7 +40858,7 @@ func (ptr *QGraphicsPixmapItem) DisconnectBoundingRect() {
 func (ptr *QGraphicsPixmapItem) BoundingRect() *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsPixmapItem_BoundingRect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -40874,7 +40867,7 @@ func (ptr *QGraphicsPixmapItem) BoundingRect() *core.QRectF {
 func (ptr *QGraphicsPixmapItem) BoundingRectDefault() *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsPixmapItem_BoundingRectDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -40883,7 +40876,7 @@ func (ptr *QGraphicsPixmapItem) BoundingRectDefault() *core.QRectF {
 func (ptr *QGraphicsPixmapItem) Offset() *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QGraphicsPixmapItem_Offset(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -40935,7 +40928,7 @@ func (ptr *QGraphicsPixmapItem) PaintDefault(painter gui.QPainter_ITF, option QS
 func (ptr *QGraphicsPixmapItem) Pixmap() *gui.QPixmap {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPixmapFromPointer(C.QGraphicsPixmapItem_Pixmap(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QPixmap).DestroyQPixmap)
+		qt.SetFinalizer(tmpValue, (*gui.QPixmap).DestroyQPixmap)
 		return tmpValue
 	}
 	return nil
@@ -41020,7 +41013,7 @@ func (ptr *QGraphicsPixmapItem) DestroyQGraphicsPixmapItem() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsPixmapItem_DestroyQGraphicsPixmapItem(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -41028,7 +41021,7 @@ func (ptr *QGraphicsPixmapItem) DestroyQGraphicsPixmapItemDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsPixmapItem_DestroyQGraphicsPixmapItemDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -41121,7 +41114,7 @@ func (ptr *QGraphicsPolygonItem) DisconnectBoundingRect() {
 func (ptr *QGraphicsPolygonItem) BoundingRect() *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsPolygonItem_BoundingRect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -41130,7 +41123,7 @@ func (ptr *QGraphicsPolygonItem) BoundingRect() *core.QRectF {
 func (ptr *QGraphicsPolygonItem) BoundingRectDefault() *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsPolygonItem_BoundingRectDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -41189,7 +41182,7 @@ func (ptr *QGraphicsPolygonItem) PaintDefault(painter gui.QPainter_ITF, option Q
 func (ptr *QGraphicsPolygonItem) Polygon() *gui.QPolygonF {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPolygonFFromPointer(C.QGraphicsPolygonItem_Polygon(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
+		qt.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
 		return tmpValue
 	}
 	return nil
@@ -41242,7 +41235,7 @@ func (ptr *QGraphicsPolygonItem) DestroyQGraphicsPolygonItem() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsPolygonItem_DestroyQGraphicsPolygonItem(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -41250,7 +41243,7 @@ func (ptr *QGraphicsPolygonItem) DestroyQGraphicsPolygonItemDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsPolygonItem_DestroyQGraphicsPolygonItemDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -41382,7 +41375,7 @@ func (ptr *QGraphicsProxyWidget) SetWidget(widget QWidget_ITF) {
 func (ptr *QGraphicsProxyWidget) SubWidgetRect(widget QWidget_ITF) *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsProxyWidget_SubWidgetRect(ptr.Pointer(), PointerFromQWidget(widget)))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -41434,7 +41427,7 @@ func (ptr *QGraphicsProxyWidget) DestroyQGraphicsProxyWidget() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsProxyWidget_DestroyQGraphicsProxyWidget(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -41442,7 +41435,7 @@ func (ptr *QGraphicsProxyWidget) DestroyQGraphicsProxyWidgetDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsProxyWidget_DestroyQGraphicsProxyWidgetDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -41539,7 +41532,7 @@ func (ptr *QGraphicsRectItem) DisconnectBoundingRect() {
 func (ptr *QGraphicsRectItem) BoundingRect() *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsRectItem_BoundingRect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -41548,7 +41541,7 @@ func (ptr *QGraphicsRectItem) BoundingRect() *core.QRectF {
 func (ptr *QGraphicsRectItem) BoundingRectDefault() *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsRectItem_BoundingRectDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -41600,7 +41593,7 @@ func (ptr *QGraphicsRectItem) PaintDefault(painter gui.QPainter_ITF, option QSty
 func (ptr *QGraphicsRectItem) Rect() *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsRectItem_Rect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -41653,7 +41646,7 @@ func (ptr *QGraphicsRectItem) DestroyQGraphicsRectItem() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsRectItem_DestroyQGraphicsRectItem(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -41661,7 +41654,7 @@ func (ptr *QGraphicsRectItem) DestroyQGraphicsRectItemDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsRectItem_DestroyQGraphicsRectItemDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -41804,7 +41797,7 @@ func (ptr *QGraphicsRotation) ApplyToDefault(matrix gui.QMatrix4x4_ITF) {
 func (ptr *QGraphicsRotation) Axis() *gui.QVector3D {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQVector3DFromPointer(C.QGraphicsRotation_Axis(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QVector3D).DestroyQVector3D)
+		qt.SetFinalizer(tmpValue, (*gui.QVector3D).DestroyQVector3D)
 		return tmpValue
 	}
 	return nil
@@ -41853,7 +41846,7 @@ func (ptr *QGraphicsRotation) AxisChanged() {
 func (ptr *QGraphicsRotation) Origin() *gui.QVector3D {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQVector3DFromPointer(C.QGraphicsRotation_Origin(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QVector3D).DestroyQVector3D)
+		qt.SetFinalizer(tmpValue, (*gui.QVector3D).DestroyQVector3D)
 		return tmpValue
 	}
 	return nil
@@ -41958,7 +41951,7 @@ func (ptr *QGraphicsRotation) DestroyQGraphicsRotation() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsRotation_DestroyQGraphicsRotation(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -41966,7 +41959,7 @@ func (ptr *QGraphicsRotation) DestroyQGraphicsRotationDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsRotation_DestroyQGraphicsRotationDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -42062,7 +42055,7 @@ func (ptr *QGraphicsScale) ApplyToDefault(matrix gui.QMatrix4x4_ITF) {
 func (ptr *QGraphicsScale) Origin() *gui.QVector3D {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQVector3DFromPointer(C.QGraphicsScale_Origin(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QVector3D).DestroyQVector3D)
+		qt.SetFinalizer(tmpValue, (*gui.QVector3D).DestroyQVector3D)
 		return tmpValue
 	}
 	return nil
@@ -42348,7 +42341,7 @@ func (ptr *QGraphicsScale) DestroyQGraphicsScale() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsScale_DestroyQGraphicsScale(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -42356,7 +42349,7 @@ func (ptr *QGraphicsScale) DestroyQGraphicsScaleDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsScale_DestroyQGraphicsScaleDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -42615,7 +42608,7 @@ func (ptr *QGraphicsScene) AdvanceDefault() {
 func (ptr *QGraphicsScene) BackgroundBrush() *gui.QBrush {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQBrushFromPointer(C.QGraphicsScene_BackgroundBrush(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
+		qt.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
 		return tmpValue
 	}
 	return nil
@@ -43327,7 +43320,7 @@ func (ptr *QGraphicsScene) FocusOutEventDefault(focusEvent gui.QFocusEvent_ITF) 
 func (ptr *QGraphicsScene) Font() *gui.QFont {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQFontFromPointer(C.QGraphicsScene_Font(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
+		qt.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 		return tmpValue
 	}
 	return nil
@@ -43336,7 +43329,7 @@ func (ptr *QGraphicsScene) Font() *gui.QFont {
 func (ptr *QGraphicsScene) ForegroundBrush() *gui.QBrush {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQBrushFromPointer(C.QGraphicsScene_ForegroundBrush(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
+		qt.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
 		return tmpValue
 	}
 	return nil
@@ -43476,7 +43469,7 @@ func (ptr *QGraphicsScene) DisconnectInputMethodQuery() {
 func (ptr *QGraphicsScene) InputMethodQuery(query core.Qt__InputMethodQuery) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QGraphicsScene_InputMethodQuery(ptr.Pointer(), C.longlong(query)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -43485,7 +43478,7 @@ func (ptr *QGraphicsScene) InputMethodQuery(query core.Qt__InputMethodQuery) *co
 func (ptr *QGraphicsScene) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QGraphicsScene_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -43662,7 +43655,7 @@ func (ptr *QGraphicsScene) Items7(x float64, y float64, w float64, h float64, mo
 func (ptr *QGraphicsScene) ItemsBoundingRect() *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsScene_ItemsBoundingRect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -43943,7 +43936,7 @@ func (ptr *QGraphicsScene) MouseReleaseEventDefault(mouseEvent QGraphicsSceneMou
 func (ptr *QGraphicsScene) Palette() *gui.QPalette {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPaletteFromPointer(C.QGraphicsScene_Palette(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QPalette).DestroyQPalette)
+		qt.SetFinalizer(tmpValue, (*gui.QPalette).DestroyQPalette)
 		return tmpValue
 	}
 	return nil
@@ -43964,7 +43957,7 @@ func (ptr *QGraphicsScene) Render(painter gui.QPainter_ITF, target core.QRectF_I
 func (ptr *QGraphicsScene) SceneRect() *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsScene_SceneRect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -44027,7 +44020,7 @@ func (ptr *QGraphicsScene) SelectedItems() []*QGraphicsItem {
 func (ptr *QGraphicsScene) SelectionArea() *gui.QPainterPath {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPainterPathFromPointer(C.QGraphicsScene_SelectionArea(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QPainterPath).DestroyQPainterPath)
+		qt.SetFinalizer(tmpValue, (*gui.QPainterPath).DestroyQPainterPath)
 		return tmpValue
 	}
 	return nil
@@ -44366,7 +44359,7 @@ func (ptr *QGraphicsScene) DestroyQGraphicsScene() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsScene_DestroyQGraphicsScene(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -44374,14 +44367,14 @@ func (ptr *QGraphicsScene) DestroyQGraphicsSceneDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsScene_DestroyQGraphicsSceneDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QGraphicsScene) __changed_region_atList(i int) *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsScene___changed_region_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -44595,7 +44588,7 @@ func (ptr *QGraphicsScene) __children_newList() unsafe.Pointer {
 func (ptr *QGraphicsScene) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QGraphicsScene___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -44731,7 +44724,7 @@ func callbackQGraphicsScene_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QGraphicsScene) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsScene_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -44856,7 +44849,7 @@ func (ptr *QGraphicsSceneContextMenuEvent) Modifiers() core.Qt__KeyboardModifier
 func (ptr *QGraphicsSceneContextMenuEvent) Pos() *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QGraphicsSceneContextMenuEvent_Pos(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -44872,7 +44865,7 @@ func (ptr *QGraphicsSceneContextMenuEvent) Reason() QGraphicsSceneContextMenuEve
 func (ptr *QGraphicsSceneContextMenuEvent) ScenePos() *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QGraphicsSceneContextMenuEvent_ScenePos(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -44881,7 +44874,7 @@ func (ptr *QGraphicsSceneContextMenuEvent) ScenePos() *core.QPointF {
 func (ptr *QGraphicsSceneContextMenuEvent) ScreenPos() *core.QPoint {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFromPointer(C.QGraphicsSceneContextMenuEvent_ScreenPos(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
+		qt.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
 		return tmpValue
 	}
 	return nil
@@ -44922,7 +44915,7 @@ func (ptr *QGraphicsSceneContextMenuEvent) DestroyQGraphicsSceneContextMenuEvent
 	if ptr.Pointer() != nil {
 		C.QGraphicsSceneContextMenuEvent_DestroyQGraphicsSceneContextMenuEvent(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -44930,7 +44923,7 @@ func (ptr *QGraphicsSceneContextMenuEvent) DestroyQGraphicsSceneContextMenuEvent
 	if ptr.Pointer() != nil {
 		C.QGraphicsSceneContextMenuEvent_DestroyQGraphicsSceneContextMenuEventDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -45013,7 +45006,7 @@ func (ptr *QGraphicsSceneDragDropEvent) Modifiers() core.Qt__KeyboardModifier {
 func (ptr *QGraphicsSceneDragDropEvent) Pos() *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QGraphicsSceneDragDropEvent_Pos(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -45036,7 +45029,7 @@ func (ptr *QGraphicsSceneDragDropEvent) ProposedAction() core.Qt__DropAction {
 func (ptr *QGraphicsSceneDragDropEvent) ScenePos() *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QGraphicsSceneDragDropEvent_ScenePos(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -45045,7 +45038,7 @@ func (ptr *QGraphicsSceneDragDropEvent) ScenePos() *core.QPointF {
 func (ptr *QGraphicsSceneDragDropEvent) ScreenPos() *core.QPoint {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFromPointer(C.QGraphicsSceneDragDropEvent_ScreenPos(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
+		qt.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
 		return tmpValue
 	}
 	return nil
@@ -45103,7 +45096,7 @@ func (ptr *QGraphicsSceneDragDropEvent) DestroyQGraphicsSceneDragDropEvent() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsSceneDragDropEvent_DestroyQGraphicsSceneDragDropEvent(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -45111,7 +45104,7 @@ func (ptr *QGraphicsSceneDragDropEvent) DestroyQGraphicsSceneDragDropEventDefaul
 	if ptr.Pointer() != nil {
 		C.QGraphicsSceneDragDropEvent_DestroyQGraphicsSceneDragDropEventDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -45250,7 +45243,7 @@ func NewQGraphicsSceneHelpEventFromPointer(ptr unsafe.Pointer) (n *QGraphicsScen
 func (ptr *QGraphicsSceneHelpEvent) ScenePos() *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QGraphicsSceneHelpEvent_ScenePos(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -45259,7 +45252,7 @@ func (ptr *QGraphicsSceneHelpEvent) ScenePos() *core.QPointF {
 func (ptr *QGraphicsSceneHelpEvent) ScreenPos() *core.QPoint {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFromPointer(C.QGraphicsSceneHelpEvent_ScreenPos(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
+		qt.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
 		return tmpValue
 	}
 	return nil
@@ -45300,7 +45293,7 @@ func (ptr *QGraphicsSceneHelpEvent) DestroyQGraphicsSceneHelpEvent() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsSceneHelpEvent_DestroyQGraphicsSceneHelpEvent(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -45308,7 +45301,7 @@ func (ptr *QGraphicsSceneHelpEvent) DestroyQGraphicsSceneHelpEventDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsSceneHelpEvent_DestroyQGraphicsSceneHelpEventDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -45353,7 +45346,7 @@ func NewQGraphicsSceneHoverEventFromPointer(ptr unsafe.Pointer) (n *QGraphicsSce
 func (ptr *QGraphicsSceneHoverEvent) LastPos() *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QGraphicsSceneHoverEvent_LastPos(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -45362,7 +45355,7 @@ func (ptr *QGraphicsSceneHoverEvent) LastPos() *core.QPointF {
 func (ptr *QGraphicsSceneHoverEvent) LastScenePos() *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QGraphicsSceneHoverEvent_LastScenePos(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -45371,7 +45364,7 @@ func (ptr *QGraphicsSceneHoverEvent) LastScenePos() *core.QPointF {
 func (ptr *QGraphicsSceneHoverEvent) LastScreenPos() *core.QPoint {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFromPointer(C.QGraphicsSceneHoverEvent_LastScreenPos(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
+		qt.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
 		return tmpValue
 	}
 	return nil
@@ -45387,7 +45380,7 @@ func (ptr *QGraphicsSceneHoverEvent) Modifiers() core.Qt__KeyboardModifier {
 func (ptr *QGraphicsSceneHoverEvent) Pos() *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QGraphicsSceneHoverEvent_Pos(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -45396,7 +45389,7 @@ func (ptr *QGraphicsSceneHoverEvent) Pos() *core.QPointF {
 func (ptr *QGraphicsSceneHoverEvent) ScenePos() *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QGraphicsSceneHoverEvent_ScenePos(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -45405,7 +45398,7 @@ func (ptr *QGraphicsSceneHoverEvent) ScenePos() *core.QPointF {
 func (ptr *QGraphicsSceneHoverEvent) ScreenPos() *core.QPoint {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFromPointer(C.QGraphicsSceneHoverEvent_ScreenPos(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
+		qt.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
 		return tmpValue
 	}
 	return nil
@@ -45446,7 +45439,7 @@ func (ptr *QGraphicsSceneHoverEvent) DestroyQGraphicsSceneHoverEvent() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsSceneHoverEvent_DestroyQGraphicsSceneHoverEvent(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -45454,7 +45447,7 @@ func (ptr *QGraphicsSceneHoverEvent) DestroyQGraphicsSceneHoverEventDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsSceneHoverEvent_DestroyQGraphicsSceneHoverEventDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -45506,7 +45499,7 @@ func (ptr *QGraphicsSceneMouseEvent) Button() core.Qt__MouseButton {
 func (ptr *QGraphicsSceneMouseEvent) ButtonDownPos(button core.Qt__MouseButton) *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QGraphicsSceneMouseEvent_ButtonDownPos(ptr.Pointer(), C.longlong(button)))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -45515,7 +45508,7 @@ func (ptr *QGraphicsSceneMouseEvent) ButtonDownPos(button core.Qt__MouseButton) 
 func (ptr *QGraphicsSceneMouseEvent) ButtonDownScenePos(button core.Qt__MouseButton) *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QGraphicsSceneMouseEvent_ButtonDownScenePos(ptr.Pointer(), C.longlong(button)))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -45524,7 +45517,7 @@ func (ptr *QGraphicsSceneMouseEvent) ButtonDownScenePos(button core.Qt__MouseBut
 func (ptr *QGraphicsSceneMouseEvent) ButtonDownScreenPos(button core.Qt__MouseButton) *core.QPoint {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFromPointer(C.QGraphicsSceneMouseEvent_ButtonDownScreenPos(ptr.Pointer(), C.longlong(button)))
-		runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
+		qt.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
 		return tmpValue
 	}
 	return nil
@@ -45547,7 +45540,7 @@ func (ptr *QGraphicsSceneMouseEvent) Flags() core.Qt__MouseEventFlag {
 func (ptr *QGraphicsSceneMouseEvent) LastPos() *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QGraphicsSceneMouseEvent_LastPos(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -45556,7 +45549,7 @@ func (ptr *QGraphicsSceneMouseEvent) LastPos() *core.QPointF {
 func (ptr *QGraphicsSceneMouseEvent) LastScenePos() *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QGraphicsSceneMouseEvent_LastScenePos(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -45565,7 +45558,7 @@ func (ptr *QGraphicsSceneMouseEvent) LastScenePos() *core.QPointF {
 func (ptr *QGraphicsSceneMouseEvent) LastScreenPos() *core.QPoint {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFromPointer(C.QGraphicsSceneMouseEvent_LastScreenPos(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
+		qt.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
 		return tmpValue
 	}
 	return nil
@@ -45581,7 +45574,7 @@ func (ptr *QGraphicsSceneMouseEvent) Modifiers() core.Qt__KeyboardModifier {
 func (ptr *QGraphicsSceneMouseEvent) Pos() *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QGraphicsSceneMouseEvent_Pos(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -45590,7 +45583,7 @@ func (ptr *QGraphicsSceneMouseEvent) Pos() *core.QPointF {
 func (ptr *QGraphicsSceneMouseEvent) ScenePos() *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QGraphicsSceneMouseEvent_ScenePos(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -45599,7 +45592,7 @@ func (ptr *QGraphicsSceneMouseEvent) ScenePos() *core.QPointF {
 func (ptr *QGraphicsSceneMouseEvent) ScreenPos() *core.QPoint {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFromPointer(C.QGraphicsSceneMouseEvent_ScreenPos(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
+		qt.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
 		return tmpValue
 	}
 	return nil
@@ -45647,7 +45640,7 @@ func (ptr *QGraphicsSceneMouseEvent) DestroyQGraphicsSceneMouseEvent() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsSceneMouseEvent_DestroyQGraphicsSceneMouseEvent(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -45655,7 +45648,7 @@ func (ptr *QGraphicsSceneMouseEvent) DestroyQGraphicsSceneMouseEventDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsSceneMouseEvent_DestroyQGraphicsSceneMouseEventDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -45699,14 +45692,14 @@ func NewQGraphicsSceneMoveEventFromPointer(ptr unsafe.Pointer) (n *QGraphicsScen
 }
 func NewQGraphicsSceneMoveEvent2() *QGraphicsSceneMoveEvent {
 	tmpValue := NewQGraphicsSceneMoveEventFromPointer(C.QGraphicsSceneMoveEvent_NewQGraphicsSceneMoveEvent2())
-	runtime.SetFinalizer(tmpValue, (*QGraphicsSceneMoveEvent).DestroyQGraphicsSceneMoveEvent)
+	qt.SetFinalizer(tmpValue, (*QGraphicsSceneMoveEvent).DestroyQGraphicsSceneMoveEvent)
 	return tmpValue
 }
 
 func (ptr *QGraphicsSceneMoveEvent) NewPos() *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QGraphicsSceneMoveEvent_NewPos(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -45715,7 +45708,7 @@ func (ptr *QGraphicsSceneMoveEvent) NewPos() *core.QPointF {
 func (ptr *QGraphicsSceneMoveEvent) OldPos() *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QGraphicsSceneMoveEvent_OldPos(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -45756,7 +45749,7 @@ func (ptr *QGraphicsSceneMoveEvent) DestroyQGraphicsSceneMoveEvent() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsSceneMoveEvent_DestroyQGraphicsSceneMoveEvent(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -45764,7 +45757,7 @@ func (ptr *QGraphicsSceneMoveEvent) DestroyQGraphicsSceneMoveEventDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsSceneMoveEvent_DestroyQGraphicsSceneMoveEventDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -45808,14 +45801,14 @@ func NewQGraphicsSceneResizeEventFromPointer(ptr unsafe.Pointer) (n *QGraphicsSc
 }
 func NewQGraphicsSceneResizeEvent2() *QGraphicsSceneResizeEvent {
 	tmpValue := NewQGraphicsSceneResizeEventFromPointer(C.QGraphicsSceneResizeEvent_NewQGraphicsSceneResizeEvent2())
-	runtime.SetFinalizer(tmpValue, (*QGraphicsSceneResizeEvent).DestroyQGraphicsSceneResizeEvent)
+	qt.SetFinalizer(tmpValue, (*QGraphicsSceneResizeEvent).DestroyQGraphicsSceneResizeEvent)
 	return tmpValue
 }
 
 func (ptr *QGraphicsSceneResizeEvent) NewSize() *core.QSizeF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFFromPointer(C.QGraphicsSceneResizeEvent_NewSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
+		qt.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
 		return tmpValue
 	}
 	return nil
@@ -45824,7 +45817,7 @@ func (ptr *QGraphicsSceneResizeEvent) NewSize() *core.QSizeF {
 func (ptr *QGraphicsSceneResizeEvent) OldSize() *core.QSizeF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFFromPointer(C.QGraphicsSceneResizeEvent_OldSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
+		qt.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
 		return tmpValue
 	}
 	return nil
@@ -45865,7 +45858,7 @@ func (ptr *QGraphicsSceneResizeEvent) DestroyQGraphicsSceneResizeEvent() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsSceneResizeEvent_DestroyQGraphicsSceneResizeEvent(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -45873,7 +45866,7 @@ func (ptr *QGraphicsSceneResizeEvent) DestroyQGraphicsSceneResizeEventDefault() 
 	if ptr.Pointer() != nil {
 		C.QGraphicsSceneResizeEvent_DestroyQGraphicsSceneResizeEventDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -45946,7 +45939,7 @@ func (ptr *QGraphicsSceneWheelEvent) Orientation() core.Qt__Orientation {
 func (ptr *QGraphicsSceneWheelEvent) Pos() *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QGraphicsSceneWheelEvent_Pos(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -45955,7 +45948,7 @@ func (ptr *QGraphicsSceneWheelEvent) Pos() *core.QPointF {
 func (ptr *QGraphicsSceneWheelEvent) ScenePos() *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QGraphicsSceneWheelEvent_ScenePos(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -45964,7 +45957,7 @@ func (ptr *QGraphicsSceneWheelEvent) ScenePos() *core.QPointF {
 func (ptr *QGraphicsSceneWheelEvent) ScreenPos() *core.QPoint {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFromPointer(C.QGraphicsSceneWheelEvent_ScreenPos(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
+		qt.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
 		return tmpValue
 	}
 	return nil
@@ -46005,7 +45998,7 @@ func (ptr *QGraphicsSceneWheelEvent) DestroyQGraphicsSceneWheelEvent() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsSceneWheelEvent_DestroyQGraphicsSceneWheelEvent(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -46013,7 +46006,7 @@ func (ptr *QGraphicsSceneWheelEvent) DestroyQGraphicsSceneWheelEventDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsSceneWheelEvent_DestroyQGraphicsSceneWheelEventDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -46111,7 +46104,7 @@ func (ptr *QGraphicsSimpleTextItem) DisconnectBoundingRect() {
 func (ptr *QGraphicsSimpleTextItem) BoundingRect() *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsSimpleTextItem_BoundingRect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -46120,7 +46113,7 @@ func (ptr *QGraphicsSimpleTextItem) BoundingRect() *core.QRectF {
 func (ptr *QGraphicsSimpleTextItem) BoundingRectDefault() *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsSimpleTextItem_BoundingRectDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -46129,7 +46122,7 @@ func (ptr *QGraphicsSimpleTextItem) BoundingRectDefault() *core.QRectF {
 func (ptr *QGraphicsSimpleTextItem) Font() *gui.QFont {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQFontFromPointer(C.QGraphicsSimpleTextItem_Font(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
+		qt.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 		return tmpValue
 	}
 	return nil
@@ -46237,7 +46230,7 @@ func (ptr *QGraphicsSimpleTextItem) DestroyQGraphicsSimpleTextItem() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsSimpleTextItem_DestroyQGraphicsSimpleTextItem(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -46245,7 +46238,7 @@ func (ptr *QGraphicsSimpleTextItem) DestroyQGraphicsSimpleTextItemDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsSimpleTextItem_DestroyQGraphicsSimpleTextItemDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -46357,7 +46350,7 @@ func (ptr *QGraphicsTextItem) DisconnectBoundingRect() {
 func (ptr *QGraphicsTextItem) BoundingRect() *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsTextItem_BoundingRect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -46366,7 +46359,7 @@ func (ptr *QGraphicsTextItem) BoundingRect() *core.QRectF {
 func (ptr *QGraphicsTextItem) BoundingRectDefault() *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsTextItem_BoundingRectDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -46375,7 +46368,7 @@ func (ptr *QGraphicsTextItem) BoundingRectDefault() *core.QRectF {
 func (ptr *QGraphicsTextItem) DefaultTextColor() *gui.QColor {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQColorFromPointer(C.QGraphicsTextItem_DefaultTextColor(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+		qt.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
 	return nil
@@ -46395,7 +46388,7 @@ func (ptr *QGraphicsTextItem) Document() *gui.QTextDocument {
 func (ptr *QGraphicsTextItem) Font() *gui.QFont {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQFontFromPointer(C.QGraphicsTextItem_Font(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
+		qt.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 		return tmpValue
 	}
 	return nil
@@ -46621,7 +46614,7 @@ func (ptr *QGraphicsTextItem) TabChangesFocus() bool {
 func (ptr *QGraphicsTextItem) TextCursor() *gui.QTextCursor {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQTextCursorFromPointer(C.QGraphicsTextItem_TextCursor(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QTextCursor).DestroyQTextCursor)
+		qt.SetFinalizer(tmpValue, (*gui.QTextCursor).DestroyQTextCursor)
 		return tmpValue
 	}
 	return nil
@@ -46690,7 +46683,7 @@ func (ptr *QGraphicsTextItem) DestroyQGraphicsTextItem() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsTextItem_DestroyQGraphicsTextItem(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -46698,7 +46691,7 @@ func (ptr *QGraphicsTextItem) DestroyQGraphicsTextItemDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsTextItem_DestroyQGraphicsTextItemDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -46862,7 +46855,7 @@ func (ptr *QGraphicsTransform) DestroyQGraphicsTransform() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsTransform_DestroyQGraphicsTransform(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -46870,7 +46863,7 @@ func (ptr *QGraphicsTransform) DestroyQGraphicsTransformDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsTransform_DestroyQGraphicsTransformDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -46898,7 +46891,7 @@ func (ptr *QGraphicsTransform) __children_newList() unsafe.Pointer {
 func (ptr *QGraphicsTransform) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QGraphicsTransform___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -47034,7 +47027,7 @@ func callbackQGraphicsTransform_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QGraphicsTransform) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsTransform_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -47249,7 +47242,7 @@ func (ptr *QGraphicsView) Alignment() core.Qt__AlignmentFlag {
 func (ptr *QGraphicsView) BackgroundBrush() *gui.QBrush {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQBrushFromPointer(C.QGraphicsView_BackgroundBrush(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
+		qt.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
 		return tmpValue
 	}
 	return nil
@@ -47412,7 +47405,7 @@ func (ptr *QGraphicsView) FitInView3(item QGraphicsItem_ITF, aspectRatioMode cor
 func (ptr *QGraphicsView) ForegroundBrush() *gui.QBrush {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQBrushFromPointer(C.QGraphicsView_ForegroundBrush(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
+		qt.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
 		return tmpValue
 	}
 	return nil
@@ -47590,7 +47583,7 @@ func (ptr *QGraphicsView) Items7(path gui.QPainterPath_ITF, mode core.Qt__ItemSe
 func (ptr *QGraphicsView) MapFromScene(point core.QPointF_ITF) *core.QPoint {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFromPointer(C.QGraphicsView_MapFromScene(ptr.Pointer(), core.PointerFromQPointF(point)))
-		runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
+		qt.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
 		return tmpValue
 	}
 	return nil
@@ -47599,7 +47592,7 @@ func (ptr *QGraphicsView) MapFromScene(point core.QPointF_ITF) *core.QPoint {
 func (ptr *QGraphicsView) MapFromScene2(rect core.QRectF_ITF) *gui.QPolygon {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPolygonFromPointer(C.QGraphicsView_MapFromScene2(ptr.Pointer(), core.PointerFromQRectF(rect)))
-		runtime.SetFinalizer(tmpValue, (*gui.QPolygon).DestroyQPolygon)
+		qt.SetFinalizer(tmpValue, (*gui.QPolygon).DestroyQPolygon)
 		return tmpValue
 	}
 	return nil
@@ -47608,7 +47601,7 @@ func (ptr *QGraphicsView) MapFromScene2(rect core.QRectF_ITF) *gui.QPolygon {
 func (ptr *QGraphicsView) MapFromScene3(polygon gui.QPolygonF_ITF) *gui.QPolygon {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPolygonFromPointer(C.QGraphicsView_MapFromScene3(ptr.Pointer(), gui.PointerFromQPolygonF(polygon)))
-		runtime.SetFinalizer(tmpValue, (*gui.QPolygon).DestroyQPolygon)
+		qt.SetFinalizer(tmpValue, (*gui.QPolygon).DestroyQPolygon)
 		return tmpValue
 	}
 	return nil
@@ -47617,7 +47610,7 @@ func (ptr *QGraphicsView) MapFromScene3(polygon gui.QPolygonF_ITF) *gui.QPolygon
 func (ptr *QGraphicsView) MapFromScene4(path gui.QPainterPath_ITF) *gui.QPainterPath {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPainterPathFromPointer(C.QGraphicsView_MapFromScene4(ptr.Pointer(), gui.PointerFromQPainterPath(path)))
-		runtime.SetFinalizer(tmpValue, (*gui.QPainterPath).DestroyQPainterPath)
+		qt.SetFinalizer(tmpValue, (*gui.QPainterPath).DestroyQPainterPath)
 		return tmpValue
 	}
 	return nil
@@ -47626,7 +47619,7 @@ func (ptr *QGraphicsView) MapFromScene4(path gui.QPainterPath_ITF) *gui.QPainter
 func (ptr *QGraphicsView) MapFromScene5(x float64, y float64) *core.QPoint {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFromPointer(C.QGraphicsView_MapFromScene5(ptr.Pointer(), C.double(x), C.double(y)))
-		runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
+		qt.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
 		return tmpValue
 	}
 	return nil
@@ -47635,7 +47628,7 @@ func (ptr *QGraphicsView) MapFromScene5(x float64, y float64) *core.QPoint {
 func (ptr *QGraphicsView) MapFromScene6(x float64, y float64, w float64, h float64) *gui.QPolygon {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPolygonFromPointer(C.QGraphicsView_MapFromScene6(ptr.Pointer(), C.double(x), C.double(y), C.double(w), C.double(h)))
-		runtime.SetFinalizer(tmpValue, (*gui.QPolygon).DestroyQPolygon)
+		qt.SetFinalizer(tmpValue, (*gui.QPolygon).DestroyQPolygon)
 		return tmpValue
 	}
 	return nil
@@ -47644,7 +47637,7 @@ func (ptr *QGraphicsView) MapFromScene6(x float64, y float64, w float64, h float
 func (ptr *QGraphicsView) MapToScene(point core.QPoint_ITF) *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QGraphicsView_MapToScene(ptr.Pointer(), core.PointerFromQPoint(point)))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -47653,7 +47646,7 @@ func (ptr *QGraphicsView) MapToScene(point core.QPoint_ITF) *core.QPointF {
 func (ptr *QGraphicsView) MapToScene2(rect core.QRect_ITF) *gui.QPolygonF {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPolygonFFromPointer(C.QGraphicsView_MapToScene2(ptr.Pointer(), core.PointerFromQRect(rect)))
-		runtime.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
+		qt.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
 		return tmpValue
 	}
 	return nil
@@ -47662,7 +47655,7 @@ func (ptr *QGraphicsView) MapToScene2(rect core.QRect_ITF) *gui.QPolygonF {
 func (ptr *QGraphicsView) MapToScene3(polygon gui.QPolygon_ITF) *gui.QPolygonF {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPolygonFFromPointer(C.QGraphicsView_MapToScene3(ptr.Pointer(), gui.PointerFromQPolygon(polygon)))
-		runtime.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
+		qt.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
 		return tmpValue
 	}
 	return nil
@@ -47671,7 +47664,7 @@ func (ptr *QGraphicsView) MapToScene3(polygon gui.QPolygon_ITF) *gui.QPolygonF {
 func (ptr *QGraphicsView) MapToScene4(path gui.QPainterPath_ITF) *gui.QPainterPath {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPainterPathFromPointer(C.QGraphicsView_MapToScene4(ptr.Pointer(), gui.PointerFromQPainterPath(path)))
-		runtime.SetFinalizer(tmpValue, (*gui.QPainterPath).DestroyQPainterPath)
+		qt.SetFinalizer(tmpValue, (*gui.QPainterPath).DestroyQPainterPath)
 		return tmpValue
 	}
 	return nil
@@ -47680,7 +47673,7 @@ func (ptr *QGraphicsView) MapToScene4(path gui.QPainterPath_ITF) *gui.QPainterPa
 func (ptr *QGraphicsView) MapToScene5(x int, y int) *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QGraphicsView_MapToScene5(ptr.Pointer(), C.int(int32(x)), C.int(int32(y))))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -47689,7 +47682,7 @@ func (ptr *QGraphicsView) MapToScene5(x int, y int) *core.QPointF {
 func (ptr *QGraphicsView) MapToScene6(x int, y int, w int, h int) *gui.QPolygonF {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPolygonFFromPointer(C.QGraphicsView_MapToScene6(ptr.Pointer(), C.int(int32(x)), C.int(int32(y)), C.int(int32(w)), C.int(int32(h))))
-		runtime.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
+		qt.SetFinalizer(tmpValue, (*gui.QPolygonF).DestroyQPolygonF)
 		return tmpValue
 	}
 	return nil
@@ -47698,7 +47691,7 @@ func (ptr *QGraphicsView) MapToScene6(x int, y int, w int, h int) *gui.QPolygonF
 func (ptr *QGraphicsView) Matrix() *gui.QMatrix {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQMatrixFromPointer(C.QGraphicsView_Matrix(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QMatrix).DestroyQMatrix)
+		qt.SetFinalizer(tmpValue, (*gui.QMatrix).DestroyQMatrix)
 		return tmpValue
 	}
 	return nil
@@ -47760,15 +47753,15 @@ func callbackQGraphicsView_RubberBandChanged(ptr unsafe.Pointer, rubberBandRect 
 	if signal := qt.GetSignal(ptr, "rubberBandChanged"); signal != nil {
 		(*(*func(*core.QRect, *core.QPointF, *core.QPointF))(signal))(func() *core.QRect {
 			tmpValue := core.NewQRectFromPointer(rubberBandRect)
-			runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+			qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 			return tmpValue
 		}(), func() *core.QPointF {
 			tmpValue := core.NewQPointFFromPointer(fromScenePoint)
-			runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+			qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 			return tmpValue
 		}(), func() *core.QPointF {
 			tmpValue := core.NewQPointFFromPointer(toScenePoint)
-			runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+			qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 			return tmpValue
 		}())
 	}
@@ -47810,7 +47803,7 @@ func (ptr *QGraphicsView) RubberBandChanged(rubberBandRect core.QRect_ITF, fromS
 func (ptr *QGraphicsView) RubberBandRect() *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QGraphicsView_RubberBandRect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -47843,7 +47836,7 @@ func (ptr *QGraphicsView) Scene() *QGraphicsScene {
 func (ptr *QGraphicsView) SceneRect() *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsView_SceneRect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -48015,7 +48008,7 @@ func (ptr *QGraphicsView) Shear(sh float64, sv float64) {
 func (ptr *QGraphicsView) Transform() *gui.QTransform {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQTransformFromPointer(C.QGraphicsView_Transform(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QTransform).DestroyQTransform)
+		qt.SetFinalizer(tmpValue, (*gui.QTransform).DestroyQTransform)
 		return tmpValue
 	}
 	return nil
@@ -48149,7 +48142,7 @@ func (ptr *QGraphicsView) UpdateSceneRectDefault(rect core.QRectF_ITF) {
 func (ptr *QGraphicsView) ViewportTransform() *gui.QTransform {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQTransformFromPointer(C.QGraphicsView_ViewportTransform(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QTransform).DestroyQTransform)
+		qt.SetFinalizer(tmpValue, (*gui.QTransform).DestroyQTransform)
 		return tmpValue
 	}
 	return nil
@@ -48197,7 +48190,7 @@ func (ptr *QGraphicsView) DestroyQGraphicsView() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_DestroyQGraphicsView(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -48205,7 +48198,7 @@ func (ptr *QGraphicsView) DestroyQGraphicsViewDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_DestroyQGraphicsViewDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -48331,7 +48324,7 @@ func (ptr *QGraphicsView) __items_newList7() unsafe.Pointer {
 func (ptr *QGraphicsView) __updateScene_rects_atList(i int) *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsView___updateScene_rects_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -48484,7 +48477,7 @@ func (ptr *QGraphicsWidget) DisconnectBoundingRect() {
 func (ptr *QGraphicsWidget) BoundingRect() *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsWidget_BoundingRect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -48493,7 +48486,7 @@ func (ptr *QGraphicsWidget) BoundingRect() *core.QRectF {
 func (ptr *QGraphicsWidget) BoundingRectDefault() *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsWidget_BoundingRectDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -48696,7 +48689,7 @@ func (ptr *QGraphicsWidget) FocusWidget() *QGraphicsWidget {
 func (ptr *QGraphicsWidget) Font() *gui.QFont {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQFontFromPointer(C.QGraphicsWidget_Font(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
+		qt.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 		return tmpValue
 	}
 	return nil
@@ -49138,7 +49131,7 @@ func (ptr *QGraphicsWidget) PaintWindowFrameDefault(painter gui.QPainter_ITF, op
 func (ptr *QGraphicsWidget) Palette() *gui.QPalette {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPaletteFromPointer(C.QGraphicsWidget_Palette(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QPalette).DestroyQPalette)
+		qt.SetFinalizer(tmpValue, (*gui.QPalette).DestroyQPalette)
 		return tmpValue
 	}
 	return nil
@@ -49190,7 +49183,7 @@ func (ptr *QGraphicsWidget) PolishEventDefault() {
 func (ptr *QGraphicsWidget) Rect() *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsWidget_Rect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -49412,7 +49405,7 @@ func (ptr *QGraphicsWidget) ShowEventDefault(event gui.QShowEvent_ITF) {
 func (ptr *QGraphicsWidget) Size() *core.QSizeF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFFromPointer(C.QGraphicsWidget_Size(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
+		qt.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
 		return tmpValue
 	}
 	return nil
@@ -49452,7 +49445,7 @@ func (ptr *QGraphicsWidget) DisconnectSizeHint() {
 func (ptr *QGraphicsWidget) SizeHint(which core.Qt__SizeHint, constraint core.QSizeF_ITF) *core.QSizeF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFFromPointer(C.QGraphicsWidget_SizeHint(ptr.Pointer(), C.longlong(which), core.PointerFromQSizeF(constraint)))
-		runtime.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
+		qt.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
 		return tmpValue
 	}
 	return nil
@@ -49461,7 +49454,7 @@ func (ptr *QGraphicsWidget) SizeHint(which core.Qt__SizeHint, constraint core.QS
 func (ptr *QGraphicsWidget) SizeHintDefault(which core.Qt__SizeHint, constraint core.QSizeF_ITF) *core.QSizeF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFFromPointer(C.QGraphicsWidget_SizeHintDefault(ptr.Pointer(), C.longlong(which), core.PointerFromQSizeF(constraint)))
-		runtime.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
+		qt.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
 		return tmpValue
 	}
 	return nil
@@ -49638,7 +49631,7 @@ func (ptr *QGraphicsWidget) WindowFrameEventDefault(event core.QEvent_ITF) bool 
 func (ptr *QGraphicsWidget) WindowFrameGeometry() *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsWidget_WindowFrameGeometry(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -49647,7 +49640,7 @@ func (ptr *QGraphicsWidget) WindowFrameGeometry() *core.QRectF {
 func (ptr *QGraphicsWidget) WindowFrameRect() *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsWidget_WindowFrameRect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -49747,7 +49740,7 @@ func (ptr *QGraphicsWidget) DestroyQGraphicsWidget() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsWidget_DestroyQGraphicsWidget(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -49755,14 +49748,14 @@ func (ptr *QGraphicsWidget) DestroyQGraphicsWidgetDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsWidget_DestroyQGraphicsWidgetDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QGraphicsWidget) MinimumSize() *core.QSizeF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFFromPointer(C.QGraphicsWidget_MinimumSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
+		qt.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
 		return tmpValue
 	}
 	return nil
@@ -49777,7 +49770,7 @@ func (ptr *QGraphicsWidget) SetMinimumSize(minimumSize core.QSizeF_ITF) {
 func (ptr *QGraphicsWidget) PreferredSize() *core.QSizeF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFFromPointer(C.QGraphicsWidget_PreferredSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
+		qt.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
 		return tmpValue
 	}
 	return nil
@@ -49792,7 +49785,7 @@ func (ptr *QGraphicsWidget) SetPreferredSize(preferredSize core.QSizeF_ITF) {
 func (ptr *QGraphicsWidget) MaximumSize() *core.QSizeF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFFromPointer(C.QGraphicsWidget_MaximumSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
+		qt.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
 		return tmpValue
 	}
 	return nil
@@ -49807,7 +49800,7 @@ func (ptr *QGraphicsWidget) SetMaximumSize(maximumSize core.QSizeF_ITF) {
 func (ptr *QGraphicsWidget) SizePolicy() *QSizePolicy {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSizePolicyFromPointer(C.QGraphicsWidget_SizePolicy(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QSizePolicy).DestroyQSizePolicy)
+		qt.SetFinalizer(tmpValue, (*QSizePolicy).DestroyQSizePolicy)
 		return tmpValue
 	}
 	return nil
@@ -49822,7 +49815,7 @@ func (ptr *QGraphicsWidget) SetSizePolicy(sizePolicy QSizePolicy_ITF) {
 func (ptr *QGraphicsWidget) Geometry() *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QGraphicsWidget_Geometry(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -50021,7 +50014,7 @@ func (ptr *QGridLayout) AddWidget3(widget QWidget_ITF, fromRow int, fromColumn i
 func (ptr *QGridLayout) CellRect(row int, column int) *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QGridLayout_CellRect(ptr.Pointer(), C.int(int32(row)), C.int(int32(column))))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -50262,7 +50255,7 @@ func (ptr *QGridLayout) DisconnectSizeHint() {
 func (ptr *QGridLayout) SizeHint() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QGridLayout_SizeHint(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -50271,7 +50264,7 @@ func (ptr *QGridLayout) SizeHint() *core.QSize {
 func (ptr *QGridLayout) SizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QGridLayout_SizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -50364,7 +50357,7 @@ func (ptr *QGridLayout) DestroyQGridLayout() {
 	if ptr.Pointer() != nil {
 		C.QGridLayout_DestroyQGridLayout(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -50372,7 +50365,7 @@ func (ptr *QGridLayout) DestroyQGridLayoutDefault() {
 	if ptr.Pointer() != nil {
 		C.QGridLayout_DestroyQGridLayoutDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -50663,7 +50656,7 @@ func (ptr *QGroupBox) DestroyQGroupBox() {
 	if ptr.Pointer() != nil {
 		C.QGroupBox_DestroyQGroupBox(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -50671,7 +50664,7 @@ func (ptr *QGroupBox) DestroyQGroupBoxDefault() {
 	if ptr.Pointer() != nil {
 		C.QGroupBox_DestroyQGroupBoxDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -50764,7 +50757,7 @@ func (ptr *QHBoxLayout) DestroyQHBoxLayout() {
 	if ptr.Pointer() != nil {
 		C.QHBoxLayout_DestroyQHBoxLayout(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -50772,7 +50765,7 @@ func (ptr *QHBoxLayout) DestroyQHBoxLayoutDefault() {
 	if ptr.Pointer() != nil {
 		C.QHBoxLayout_DestroyQHBoxLayoutDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -51314,7 +51307,7 @@ func (ptr *QHeaderView) RestoreState(state core.QByteArray_ITF) bool {
 func (ptr *QHeaderView) SaveState() *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QHeaderView_SaveState(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -51695,7 +51688,7 @@ func (ptr *QHeaderView) DisconnectSectionSizeFromContents() {
 func (ptr *QHeaderView) SectionSizeFromContents(logicalIndex int) *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QHeaderView_SectionSizeFromContents(ptr.Pointer(), C.int(int32(logicalIndex))))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -51704,7 +51697,7 @@ func (ptr *QHeaderView) SectionSizeFromContents(logicalIndex int) *core.QSize {
 func (ptr *QHeaderView) SectionSizeFromContentsDefault(logicalIndex int) *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QHeaderView_SectionSizeFromContentsDefault(ptr.Pointer(), C.int(int32(logicalIndex))))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -52323,7 +52316,7 @@ func (ptr *QHeaderView) DestroyQHeaderView() {
 	if ptr.Pointer() != nil {
 		C.QHeaderView_DestroyQHeaderView(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -52331,7 +52324,7 @@ func (ptr *QHeaderView) DestroyQHeaderViewDefault() {
 	if ptr.Pointer() != nil {
 		C.QHeaderView_DestroyQHeaderViewDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -52347,7 +52340,7 @@ func callbackQHeaderView_IndexAt(ptr unsafe.Pointer, point unsafe.Pointer) unsaf
 func (ptr *QHeaderView) IndexAt(point core.QPoint_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QHeaderView_IndexAt(ptr.Pointer(), core.PointerFromQPoint(point)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -52356,7 +52349,7 @@ func (ptr *QHeaderView) IndexAt(point core.QPoint_ITF) *core.QModelIndex {
 func (ptr *QHeaderView) IndexAtDefault(point core.QPoint_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QHeaderView_IndexAtDefault(ptr.Pointer(), core.PointerFromQPoint(point)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -52397,7 +52390,7 @@ func callbackQHeaderView_MoveCursor(ptr unsafe.Pointer, cursorAction C.longlong,
 func (ptr *QHeaderView) MoveCursor(cursorAction QAbstractItemView__CursorAction, modifiers core.Qt__KeyboardModifier) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QHeaderView_MoveCursor(ptr.Pointer(), C.longlong(cursorAction), C.longlong(modifiers)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -52406,7 +52399,7 @@ func (ptr *QHeaderView) MoveCursor(cursorAction QAbstractItemView__CursorAction,
 func (ptr *QHeaderView) MoveCursorDefault(cursorAction QAbstractItemView__CursorAction, modifiers core.Qt__KeyboardModifier) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QHeaderView_MoveCursorDefault(ptr.Pointer(), C.longlong(cursorAction), C.longlong(modifiers)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -52445,7 +52438,7 @@ func callbackQHeaderView_VisualRect(ptr unsafe.Pointer, index unsafe.Pointer) un
 func (ptr *QHeaderView) VisualRect(index core.QModelIndex_ITF) *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QHeaderView_VisualRect(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -52454,7 +52447,7 @@ func (ptr *QHeaderView) VisualRect(index core.QModelIndex_ITF) *core.QRect {
 func (ptr *QHeaderView) VisualRectDefault(index core.QModelIndex_ITF) *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QHeaderView_VisualRectDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -52472,7 +52465,7 @@ func callbackQHeaderView_VisualRegionForSelection(ptr unsafe.Pointer, selection 
 func (ptr *QHeaderView) VisualRegionForSelection(selection core.QItemSelection_ITF) *gui.QRegion {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQRegionFromPointer(C.QHeaderView_VisualRegionForSelection(ptr.Pointer(), core.PointerFromQItemSelection(selection)))
-		runtime.SetFinalizer(tmpValue, (*gui.QRegion).DestroyQRegion)
+		qt.SetFinalizer(tmpValue, (*gui.QRegion).DestroyQRegion)
 		return tmpValue
 	}
 	return nil
@@ -52481,7 +52474,7 @@ func (ptr *QHeaderView) VisualRegionForSelection(selection core.QItemSelection_I
 func (ptr *QHeaderView) VisualRegionForSelectionDefault(selection core.QItemSelection_ITF) *gui.QRegion {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQRegionFromPointer(C.QHeaderView_VisualRegionForSelectionDefault(ptr.Pointer(), core.PointerFromQItemSelection(selection)))
-		runtime.SetFinalizer(tmpValue, (*gui.QRegion).DestroyQRegion)
+		qt.SetFinalizer(tmpValue, (*gui.QRegion).DestroyQRegion)
 		return tmpValue
 	}
 	return nil
@@ -53426,7 +53419,7 @@ func (ptr *QInputDialog) DestroyQInputDialog() {
 	if ptr.Pointer() != nil {
 		C.QInputDialog_DestroyQInputDialog(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -53434,7 +53427,7 @@ func (ptr *QInputDialog) DestroyQInputDialogDefault() {
 	if ptr.Pointer() != nil {
 		C.QInputDialog_DestroyQInputDialogDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -53775,7 +53768,7 @@ func (ptr *QItemDelegate) DisconnectSizeHint() {
 func (ptr *QItemDelegate) SizeHint(option QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QItemDelegate_SizeHint(ptr.Pointer(), PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -53784,7 +53777,7 @@ func (ptr *QItemDelegate) SizeHint(option QStyleOptionViewItem_ITF, index core.Q
 func (ptr *QItemDelegate) SizeHintDefault(option QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QItemDelegate_SizeHintDefault(ptr.Pointer(), PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -53825,7 +53818,7 @@ func (ptr *QItemDelegate) DestroyQItemDelegate() {
 	if ptr.Pointer() != nil {
 		C.QItemDelegate_DestroyQItemDelegate(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -53833,7 +53826,7 @@ func (ptr *QItemDelegate) DestroyQItemDelegateDefault() {
 	if ptr.Pointer() != nil {
 		C.QItemDelegate_DestroyQItemDelegateDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -53882,7 +53875,7 @@ func (ptr *QItemEditorCreator) DestroyQItemEditorCreator() {
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -54000,7 +53993,7 @@ func (ptr *QItemEditorCreatorBase) DisconnectValuePropertyName() {
 func (ptr *QItemEditorCreatorBase) ValuePropertyName() *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QItemEditorCreatorBase_ValuePropertyName(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -54041,7 +54034,7 @@ func (ptr *QItemEditorCreatorBase) DestroyQItemEditorCreatorBase() {
 	if ptr.Pointer() != nil {
 		C.QItemEditorCreatorBase_DestroyQItemEditorCreatorBase(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -54049,7 +54042,7 @@ func (ptr *QItemEditorCreatorBase) DestroyQItemEditorCreatorBaseDefault() {
 	if ptr.Pointer() != nil {
 		C.QItemEditorCreatorBase_DestroyQItemEditorCreatorBaseDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -54203,7 +54196,7 @@ func (ptr *QItemEditorFactory) DisconnectValuePropertyName() {
 func (ptr *QItemEditorFactory) ValuePropertyName(userType int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QItemEditorFactory_ValuePropertyName(ptr.Pointer(), C.int(int32(userType))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -54212,7 +54205,7 @@ func (ptr *QItemEditorFactory) ValuePropertyName(userType int) *core.QByteArray 
 func (ptr *QItemEditorFactory) ValuePropertyNameDefault(userType int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QItemEditorFactory_ValuePropertyNameDefault(ptr.Pointer(), C.int(int32(userType))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -54253,7 +54246,7 @@ func (ptr *QItemEditorFactory) DestroyQItemEditorFactory() {
 	if ptr.Pointer() != nil {
 		C.QItemEditorFactory_DestroyQItemEditorFactory(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -54261,7 +54254,7 @@ func (ptr *QItemEditorFactory) DestroyQItemEditorFactoryDefault() {
 	if ptr.Pointer() != nil {
 		C.QItemEditorFactory_DestroyQItemEditorFactoryDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -54507,7 +54500,7 @@ func (ptr *QKeyEventTransition) DestroyQKeyEventTransition() {
 	if ptr.Pointer() != nil {
 		C.QKeyEventTransition_DestroyQKeyEventTransition(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -54515,7 +54508,7 @@ func (ptr *QKeyEventTransition) DestroyQKeyEventTransitionDefault() {
 	if ptr.Pointer() != nil {
 		C.QKeyEventTransition_DestroyQKeyEventTransitionDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -54606,7 +54599,7 @@ func (ptr *QKeyEventTransition) __children_newList() unsafe.Pointer {
 func (ptr *QKeyEventTransition) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QKeyEventTransition___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -54782,7 +54775,7 @@ func callbackQKeyEventTransition_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QKeyEventTransition) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QKeyEventTransition_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -55004,7 +54997,7 @@ func (ptr *QKeySequenceEdit) EditingFinished() {
 func (ptr *QKeySequenceEdit) KeySequence() *gui.QKeySequence {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQKeySequenceFromPointer(C.QKeySequenceEdit_KeySequence(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QKeySequence).DestroyQKeySequence)
+		qt.SetFinalizer(tmpValue, (*gui.QKeySequence).DestroyQKeySequence)
 		return tmpValue
 	}
 	return nil
@@ -55128,7 +55121,7 @@ func (ptr *QKeySequenceEdit) DestroyQKeySequenceEdit() {
 	if ptr.Pointer() != nil {
 		C.QKeySequenceEdit_DestroyQKeySequenceEdit(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -55136,7 +55129,7 @@ func (ptr *QKeySequenceEdit) DestroyQKeySequenceEditDefault() {
 	if ptr.Pointer() != nil {
 		C.QKeySequenceEdit_DestroyQKeySequenceEditDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -55719,7 +55712,7 @@ func (ptr *QLCDNumber) DestroyQLCDNumber() {
 	if ptr.Pointer() != nil {
 		C.QLCDNumber_DestroyQLCDNumber(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -55727,7 +55720,7 @@ func (ptr *QLCDNumber) DestroyQLCDNumberDefault() {
 	if ptr.Pointer() != nil {
 		C.QLCDNumber_DestroyQLCDNumberDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -56406,7 +56399,7 @@ func (ptr *QLabel) DestroyQLabel() {
 	if ptr.Pointer() != nil {
 		C.QLabel_DestroyQLabel(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -56414,7 +56407,7 @@ func (ptr *QLabel) DestroyQLabelDefault() {
 	if ptr.Pointer() != nil {
 		C.QLabel_DestroyQLabelDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -56553,7 +56546,7 @@ func (ptr *QLayout) AddWidget(w QWidget_ITF) {
 func (ptr *QLayout) AlignmentRect(r core.QRect_ITF) *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QLayout_AlignmentRect(ptr.Pointer(), core.PointerFromQRect(r)))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -56604,20 +56597,20 @@ func (ptr *QLayout) ChildEventDefault(e core.QChildEvent_ITF) {
 
 func QLayout_ClosestAcceptableSize(widget QWidget_ITF, size core.QSize_ITF) *core.QSize {
 	tmpValue := core.NewQSizeFromPointer(C.QLayout_QLayout_ClosestAcceptableSize(PointerFromQWidget(widget), core.PointerFromQSize(size)))
-	runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+	qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 	return tmpValue
 }
 
 func (ptr *QLayout) ClosestAcceptableSize(widget QWidget_ITF, size core.QSize_ITF) *core.QSize {
 	tmpValue := core.NewQSizeFromPointer(C.QLayout_QLayout_ClosestAcceptableSize(PointerFromQWidget(widget), core.PointerFromQSize(size)))
-	runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+	qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 	return tmpValue
 }
 
 func (ptr *QLayout) ContentsMargins() *core.QMargins {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQMarginsFromPointer(C.QLayout_ContentsMargins(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QMargins).DestroyQMargins)
+		qt.SetFinalizer(tmpValue, (*core.QMargins).DestroyQMargins)
 		return tmpValue
 	}
 	return nil
@@ -56626,7 +56619,7 @@ func (ptr *QLayout) ContentsMargins() *core.QMargins {
 func (ptr *QLayout) ContentsRect() *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QLayout_ContentsRect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -56749,7 +56742,7 @@ func (ptr *QLayout) DisconnectGeometry() {
 func (ptr *QLayout) Geometry() *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QLayout_Geometry(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -56758,7 +56751,7 @@ func (ptr *QLayout) Geometry() *core.QRect {
 func (ptr *QLayout) GeometryDefault() *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QLayout_GeometryDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -56946,7 +56939,7 @@ func (ptr *QLayout) DisconnectMaximumSize() {
 func (ptr *QLayout) MaximumSize() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QLayout_MaximumSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -56955,7 +56948,7 @@ func (ptr *QLayout) MaximumSize() *core.QSize {
 func (ptr *QLayout) MaximumSizeDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QLayout_MaximumSizeDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -57006,7 +56999,7 @@ func (ptr *QLayout) DisconnectMinimumSize() {
 func (ptr *QLayout) MinimumSize() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QLayout_MinimumSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -57015,7 +57008,7 @@ func (ptr *QLayout) MinimumSize() *core.QSize {
 func (ptr *QLayout) MinimumSizeDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QLayout_MinimumSizeDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -57226,7 +57219,7 @@ func (ptr *QLayout) __children_newList() unsafe.Pointer {
 func (ptr *QLayout) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QLayout___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -57359,14 +57352,14 @@ func callbackQLayout_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QLayout) DeleteLater() {
 	if ptr.Pointer() != nil {
 		C.QLayout_DeleteLater(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QLayout) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QLayout_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -57509,7 +57502,7 @@ func callbackQLayout_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 func (ptr *QLayout) SizeHint() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QLayout_SizeHint(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -57518,7 +57511,7 @@ func (ptr *QLayout) SizeHint() *core.QSize {
 func (ptr *QLayout) SizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QLayout_SizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -57689,7 +57682,7 @@ func (ptr *QLayoutItem) DisconnectGeometry() {
 func (ptr *QLayoutItem) Geometry() *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QLayoutItem_Geometry(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -57953,7 +57946,7 @@ func (ptr *QLayoutItem) DisconnectMaximumSize() {
 func (ptr *QLayoutItem) MaximumSize() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QLayoutItem_MaximumSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -58038,7 +58031,7 @@ func (ptr *QLayoutItem) DisconnectMinimumSize() {
 func (ptr *QLayoutItem) MinimumSize() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QLayoutItem_MinimumSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -58120,7 +58113,7 @@ func (ptr *QLayoutItem) DisconnectSizeHint() {
 func (ptr *QLayoutItem) SizeHint() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QLayoutItem_SizeHint(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -58259,7 +58252,7 @@ func (ptr *QLayoutItem) DestroyQLayoutItem() {
 	if ptr.Pointer() != nil {
 		C.QLayoutItem_DestroyQLayoutItem(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -58267,7 +58260,7 @@ func (ptr *QLayoutItem) DestroyQLayoutItemDefault() {
 	if ptr.Pointer() != nil {
 		C.QLayoutItem_DestroyQLayoutItemDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -58565,7 +58558,7 @@ func (ptr *QLineEdit) CursorPositionChanged(oldPos int, newPos int) {
 func (ptr *QLineEdit) CursorRect() *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QLineEdit_CursorRect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -59353,7 +59346,7 @@ func (ptr *QLineEdit) TextEdited(text string) {
 func (ptr *QLineEdit) TextMargins() *core.QMargins {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQMarginsFromPointer(C.QLineEdit_TextMargins(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QMargins).DestroyQMargins)
+		qt.SetFinalizer(tmpValue, (*core.QMargins).DestroyQMargins)
 		return tmpValue
 	}
 	return nil
@@ -59448,7 +59441,7 @@ func (ptr *QLineEdit) DestroyQLineEdit() {
 	if ptr.Pointer() != nil {
 		C.QLineEdit_DestroyQLineEdit(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -59456,7 +59449,7 @@ func (ptr *QLineEdit) DestroyQLineEditDefault() {
 	if ptr.Pointer() != nil {
 		C.QLineEdit_DestroyQLineEditDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -59688,7 +59681,7 @@ func (ptr *QListView) Flow() QListView__Flow {
 func (ptr *QListView) GridSize() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QListView_GridSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -59773,7 +59766,7 @@ func (ptr *QListView) DisconnectIndexAt() {
 func (ptr *QListView) IndexAt(p core.QPoint_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QListView_IndexAt(ptr.Pointer(), core.PointerFromQPoint(p)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -59782,7 +59775,7 @@ func (ptr *QListView) IndexAt(p core.QPoint_ITF) *core.QModelIndex {
 func (ptr *QListView) IndexAtDefault(p core.QPoint_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QListView_IndexAtDefault(ptr.Pointer(), core.PointerFromQPoint(p)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -59909,7 +59902,7 @@ func (ptr *QListView) DisconnectMoveCursor() {
 func (ptr *QListView) MoveCursor(cursorAction QAbstractItemView__CursorAction, modifiers core.Qt__KeyboardModifier) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QListView_MoveCursor(ptr.Pointer(), C.longlong(cursorAction), C.longlong(modifiers)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -59918,7 +59911,7 @@ func (ptr *QListView) MoveCursor(cursorAction QAbstractItemView__CursorAction, m
 func (ptr *QListView) MoveCursorDefault(cursorAction QAbstractItemView__CursorAction, modifiers core.Qt__KeyboardModifier) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QListView_MoveCursorDefault(ptr.Pointer(), C.longlong(cursorAction), C.longlong(modifiers)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -59934,7 +59927,7 @@ func (ptr *QListView) Movement() QListView__Movement {
 func (ptr *QListView) RectForIndex(index core.QModelIndex_ITF) *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QListView_RectForIndex(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -60401,7 +60394,7 @@ func (ptr *QListView) DisconnectVisualRect() {
 func (ptr *QListView) VisualRect(index core.QModelIndex_ITF) *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QListView_VisualRect(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -60410,7 +60403,7 @@ func (ptr *QListView) VisualRect(index core.QModelIndex_ITF) *core.QRect {
 func (ptr *QListView) VisualRectDefault(index core.QModelIndex_ITF) *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QListView_VisualRectDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -60450,7 +60443,7 @@ func (ptr *QListView) DisconnectVisualRegionForSelection() {
 func (ptr *QListView) VisualRegionForSelection(selection core.QItemSelection_ITF) *gui.QRegion {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQRegionFromPointer(C.QListView_VisualRegionForSelection(ptr.Pointer(), core.PointerFromQItemSelection(selection)))
-		runtime.SetFinalizer(tmpValue, (*gui.QRegion).DestroyQRegion)
+		qt.SetFinalizer(tmpValue, (*gui.QRegion).DestroyQRegion)
 		return tmpValue
 	}
 	return nil
@@ -60459,7 +60452,7 @@ func (ptr *QListView) VisualRegionForSelection(selection core.QItemSelection_ITF
 func (ptr *QListView) VisualRegionForSelectionDefault(selection core.QItemSelection_ITF) *gui.QRegion {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQRegionFromPointer(C.QListView_VisualRegionForSelectionDefault(ptr.Pointer(), core.PointerFromQItemSelection(selection)))
-		runtime.SetFinalizer(tmpValue, (*gui.QRegion).DestroyQRegion)
+		qt.SetFinalizer(tmpValue, (*gui.QRegion).DestroyQRegion)
 		return tmpValue
 	}
 	return nil
@@ -60507,7 +60500,7 @@ func (ptr *QListView) DestroyQListView() {
 	if ptr.Pointer() != nil {
 		C.QListView_DestroyQListView(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -60515,14 +60508,14 @@ func (ptr *QListView) DestroyQListViewDefault() {
 	if ptr.Pointer() != nil {
 		C.QListView_DestroyQListViewDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QListView) __indexesMoved_indexes_atList(i int) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QListView___indexesMoved_indexes_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -60877,7 +60870,7 @@ func (ptr *QListWidget) FindItems(text string, flags core.Qt__MatchFlag) []*QLis
 func (ptr *QListWidget) IndexFromItem(item QListWidgetItem_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QListWidget_IndexFromItem(ptr.Pointer(), PointerFromQListWidgetItem(item)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -61553,7 +61546,7 @@ func (ptr *QListWidget) TakeItem(row int) *QListWidgetItem {
 func (ptr *QListWidget) VisualItemRect(item QListWidgetItem_ITF) *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QListWidget_VisualItemRect(ptr.Pointer(), PointerFromQListWidgetItem(item)))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -61594,7 +61587,7 @@ func (ptr *QListWidget) DestroyQListWidget() {
 	if ptr.Pointer() != nil {
 		C.QListWidget_DestroyQListWidget(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -61602,7 +61595,7 @@ func (ptr *QListWidget) DestroyQListWidgetDefault() {
 	if ptr.Pointer() != nil {
 		C.QListWidget_DestroyQListWidgetDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -61750,7 +61743,7 @@ func NewQListWidgetItem4(other QListWidgetItem_ITF) *QListWidgetItem {
 func (ptr *QListWidgetItem) Background() *gui.QBrush {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQBrushFromPointer(C.QListWidgetItem_Background(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
+		qt.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
 		return tmpValue
 	}
 	return nil
@@ -61842,7 +61835,7 @@ func (ptr *QListWidgetItem) DisconnectData() {
 func (ptr *QListWidgetItem) Data(role int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QListWidgetItem_Data(ptr.Pointer(), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -61851,7 +61844,7 @@ func (ptr *QListWidgetItem) Data(role int) *core.QVariant {
 func (ptr *QListWidgetItem) DataDefault(role int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QListWidgetItem_DataDefault(ptr.Pointer(), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -61867,7 +61860,7 @@ func (ptr *QListWidgetItem) Flags() core.Qt__ItemFlag {
 func (ptr *QListWidgetItem) Font() *gui.QFont {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQFontFromPointer(C.QListWidgetItem_Font(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
+		qt.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 		return tmpValue
 	}
 	return nil
@@ -61876,7 +61869,7 @@ func (ptr *QListWidgetItem) Font() *gui.QFont {
 func (ptr *QListWidgetItem) Foreground() *gui.QBrush {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQBrushFromPointer(C.QListWidgetItem_Foreground(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
+		qt.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
 		return tmpValue
 	}
 	return nil
@@ -61885,7 +61878,7 @@ func (ptr *QListWidgetItem) Foreground() *gui.QBrush {
 func (ptr *QListWidgetItem) Icon() *gui.QIcon {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQIconFromPointer(C.QListWidgetItem_Icon(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+		qt.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
 		return tmpValue
 	}
 	return nil
@@ -62109,7 +62102,7 @@ func (ptr *QListWidgetItem) SetWhatsThis(whatsThis string) {
 func (ptr *QListWidgetItem) SizeHint() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QListWidgetItem_SizeHint(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -62235,7 +62228,7 @@ func (ptr *QListWidgetItem) DestroyQListWidgetItem() {
 	if ptr.Pointer() != nil {
 		C.QListWidgetItem_DestroyQListWidgetItem(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -62243,7 +62236,7 @@ func (ptr *QListWidgetItem) DestroyQListWidgetItemDefault() {
 	if ptr.Pointer() != nil {
 		C.QListWidgetItem_DestroyQListWidgetItemDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -62482,7 +62475,7 @@ func (ptr *QMainWindow) DocumentMode() bool {
 func (ptr *QMainWindow) IconSize() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QMainWindow_IconSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -62629,7 +62622,7 @@ func (ptr *QMainWindow) RestoreState(state core.QByteArray_ITF, version int) boo
 func (ptr *QMainWindow) SaveState(version int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QMainWindow_SaveState(ptr.Pointer(), C.int(int32(version))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -63035,7 +63028,7 @@ func (ptr *QMainWindow) DestroyQMainWindow() {
 	if ptr.Pointer() != nil {
 		C.QMainWindow_DestroyQMainWindow(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -63043,7 +63036,7 @@ func (ptr *QMainWindow) DestroyQMainWindowDefault() {
 	if ptr.Pointer() != nil {
 		C.QMainWindow_DestroyQMainWindowDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -63298,7 +63291,7 @@ func (ptr *QMdiArea) AddSubWindow(widget QWidget_ITF, windowFlags core.Qt__Windo
 func (ptr *QMdiArea) Background() *gui.QBrush {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQBrushFromPointer(C.QMdiArea_Background(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
+		qt.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
 		return tmpValue
 	}
 	return nil
@@ -63771,7 +63764,7 @@ func (ptr *QMdiArea) DestroyQMdiArea() {
 	if ptr.Pointer() != nil {
 		C.QMdiArea_DestroyQMdiArea(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -63779,7 +63772,7 @@ func (ptr *QMdiArea) DestroyQMdiAreaDefault() {
 	if ptr.Pointer() != nil {
 		C.QMdiArea_DestroyQMdiAreaDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -64154,7 +64147,7 @@ func (ptr *QMdiSubWindow) DestroyQMdiSubWindow() {
 	if ptr.Pointer() != nil {
 		C.QMdiSubWindow_DestroyQMdiSubWindow(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -64162,7 +64155,7 @@ func (ptr *QMdiSubWindow) DestroyQMdiSubWindowDefault() {
 	if ptr.Pointer() != nil {
 		C.QMdiSubWindow_DestroyQMdiSubWindowDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -64319,7 +64312,7 @@ func (ptr *QMenu) ActionAt(pt core.QPoint_ITF) *QAction {
 func (ptr *QMenu) ActionGeometry(act QAction_ITF) *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QMenu_ActionGeometry(ptr.Pointer(), PointerFromQAction(act)))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -64619,7 +64612,7 @@ func (ptr *QMenu) Hovered(action QAction_ITF) {
 func (ptr *QMenu) Icon() *gui.QIcon {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQIconFromPointer(C.QMenu_Icon(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+		qt.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
 		return tmpValue
 	}
 	return nil
@@ -64884,7 +64877,7 @@ func (ptr *QMenu) DestroyQMenu() {
 	if ptr.Pointer() != nil {
 		C.QMenu_DestroyQMenu(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -64892,7 +64885,7 @@ func (ptr *QMenu) DestroyQMenuDefault() {
 	if ptr.Pointer() != nil {
 		C.QMenu_DestroyQMenuDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -64977,7 +64970,7 @@ func (ptr *QMenuBar) ActionAt(pt core.QPoint_ITF) *QAction {
 func (ptr *QMenuBar) ActionGeometry(act QAction_ITF) *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QMenuBar_ActionGeometry(ptr.Pointer(), PointerFromQAction(act)))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -65283,7 +65276,7 @@ func (ptr *QMenuBar) DestroyQMenuBar() {
 	if ptr.Pointer() != nil {
 		C.QMenuBar_DestroyQMenuBar(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -65291,7 +65284,7 @@ func (ptr *QMenuBar) DestroyQMenuBarDefault() {
 	if ptr.Pointer() != nil {
 		C.QMenuBar_DestroyQMenuBarDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -65664,7 +65657,7 @@ func (ptr *QMessageBox) Icon() QMessageBox__Icon {
 func (ptr *QMessageBox) IconPixmap() *gui.QPixmap {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPixmapFromPointer(C.QMessageBox_IconPixmap(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QPixmap).DestroyQPixmap)
+		qt.SetFinalizer(tmpValue, (*gui.QPixmap).DestroyQPixmap)
 		return tmpValue
 	}
 	return nil
@@ -65952,7 +65945,7 @@ func (ptr *QMessageBox) DestroyQMessageBox() {
 	if ptr.Pointer() != nil {
 		C.QMessageBox_DestroyQMessageBox(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -65960,7 +65953,7 @@ func (ptr *QMessageBox) DestroyQMessageBoxDefault() {
 	if ptr.Pointer() != nil {
 		C.QMessageBox_DestroyQMessageBoxDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -66065,7 +66058,7 @@ func (ptr *QMouseEventTransition) EventTestDefault(event core.QEvent_ITF) bool {
 func (ptr *QMouseEventTransition) HitTestPath() *gui.QPainterPath {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPainterPathFromPointer(C.QMouseEventTransition_HitTestPath(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QPainterPath).DestroyQPainterPath)
+		qt.SetFinalizer(tmpValue, (*gui.QPainterPath).DestroyQPainterPath)
 		return tmpValue
 	}
 	return nil
@@ -66146,7 +66139,7 @@ func (ptr *QMouseEventTransition) DestroyQMouseEventTransition() {
 	if ptr.Pointer() != nil {
 		C.QMouseEventTransition_DestroyQMouseEventTransition(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -66154,7 +66147,7 @@ func (ptr *QMouseEventTransition) DestroyQMouseEventTransitionDefault() {
 	if ptr.Pointer() != nil {
 		C.QMouseEventTransition_DestroyQMouseEventTransitionDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -66245,7 +66238,7 @@ func (ptr *QMouseEventTransition) __children_newList() unsafe.Pointer {
 func (ptr *QMouseEventTransition) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QMouseEventTransition___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -66421,7 +66414,7 @@ func callbackQMouseEventTransition_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QMouseEventTransition) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QMouseEventTransition_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -66666,7 +66659,7 @@ func (ptr *QOpenGLWidget) DoneCurrent() {
 func (ptr *QOpenGLWidget) Format() *gui.QSurfaceFormat {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQSurfaceFormatFromPointer(C.QOpenGLWidget_Format(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QSurfaceFormat).DestroyQSurfaceFormat)
+		qt.SetFinalizer(tmpValue, (*gui.QSurfaceFormat).DestroyQSurfaceFormat)
 		return tmpValue
 	}
 	return nil
@@ -66715,7 +66708,7 @@ func (ptr *QOpenGLWidget) FrameSwapped() {
 func (ptr *QOpenGLWidget) GrabFramebuffer() *gui.QImage {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQImageFromPointer(C.QOpenGLWidget_GrabFramebuffer(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QImage).DestroyQImage)
+		qt.SetFinalizer(tmpValue, (*gui.QImage).DestroyQImage)
 		return tmpValue
 	}
 	return nil
@@ -66970,7 +66963,7 @@ func (ptr *QOpenGLWidget) DestroyQOpenGLWidget() {
 	if ptr.Pointer() != nil {
 		C.QOpenGLWidget_DestroyQOpenGLWidget(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -66978,7 +66971,7 @@ func (ptr *QOpenGLWidget) DestroyQOpenGLWidgetDefault() {
 	if ptr.Pointer() != nil {
 		C.QOpenGLWidget_DestroyQOpenGLWidgetDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -67030,7 +67023,7 @@ func (ptr *QPanGesture) Acceleration() float64 {
 func (ptr *QPanGesture) Delta() *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QPanGesture_Delta(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -67039,7 +67032,7 @@ func (ptr *QPanGesture) Delta() *core.QPointF {
 func (ptr *QPanGesture) LastOffset() *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QPanGesture_LastOffset(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -67048,7 +67041,7 @@ func (ptr *QPanGesture) LastOffset() *core.QPointF {
 func (ptr *QPanGesture) Offset() *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QPanGesture_Offset(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -67107,7 +67100,7 @@ func (ptr *QPanGesture) DestroyQPanGesture() {
 	if ptr.Pointer() != nil {
 		C.QPanGesture_DestroyQPanGesture(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -67115,7 +67108,7 @@ func (ptr *QPanGesture) DestroyQPanGestureDefault() {
 	if ptr.Pointer() != nil {
 		C.QPanGesture_DestroyQPanGestureDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -67171,7 +67164,7 @@ const (
 func (ptr *QPinchGesture) CenterPoint() *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QPinchGesture_CenterPoint(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -67187,7 +67180,7 @@ func (ptr *QPinchGesture) ChangeFlags() QPinchGesture__ChangeFlag {
 func (ptr *QPinchGesture) LastCenterPoint() *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QPinchGesture_LastCenterPoint(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -67290,7 +67283,7 @@ func (ptr *QPinchGesture) SetTotalScaleFactor(value float64) {
 func (ptr *QPinchGesture) StartCenterPoint() *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QPinchGesture_StartCenterPoint(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -67352,7 +67345,7 @@ func (ptr *QPinchGesture) DestroyQPinchGesture() {
 	if ptr.Pointer() != nil {
 		C.QPinchGesture_DestroyQPinchGesture(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -67360,7 +67353,7 @@ func (ptr *QPinchGesture) DestroyQPinchGestureDefault() {
 	if ptr.Pointer() != nil {
 		C.QPinchGesture_DestroyQPinchGestureDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -67444,7 +67437,7 @@ func (ptr *QPlainTextDocumentLayout) DisconnectBlockBoundingRect() {
 func (ptr *QPlainTextDocumentLayout) BlockBoundingRect(block gui.QTextBlock_ITF) *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QPlainTextDocumentLayout_BlockBoundingRect(ptr.Pointer(), gui.PointerFromQTextBlock(block)))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -67453,7 +67446,7 @@ func (ptr *QPlainTextDocumentLayout) BlockBoundingRect(block gui.QTextBlock_ITF)
 func (ptr *QPlainTextDocumentLayout) BlockBoundingRectDefault(block gui.QTextBlock_ITF) *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QPlainTextDocumentLayout_BlockBoundingRectDefault(ptr.Pointer(), gui.PointerFromQTextBlock(block)))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -67543,7 +67536,7 @@ func (ptr *QPlainTextDocumentLayout) DisconnectDocumentSize() {
 func (ptr *QPlainTextDocumentLayout) DocumentSize() *core.QSizeF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFFromPointer(C.QPlainTextDocumentLayout_DocumentSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
+		qt.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
 		return tmpValue
 	}
 	return nil
@@ -67552,7 +67545,7 @@ func (ptr *QPlainTextDocumentLayout) DocumentSize() *core.QSizeF {
 func (ptr *QPlainTextDocumentLayout) DocumentSizeDefault() *core.QSizeF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFFromPointer(C.QPlainTextDocumentLayout_DocumentSizeDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
+		qt.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
 		return tmpValue
 	}
 	return nil
@@ -67598,7 +67591,7 @@ func (ptr *QPlainTextDocumentLayout) DisconnectFrameBoundingRect() {
 func (ptr *QPlainTextDocumentLayout) FrameBoundingRect(vqt gui.QTextFrame_ITF) *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QPlainTextDocumentLayout_FrameBoundingRect(ptr.Pointer(), gui.PointerFromQTextFrame(vqt)))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -67607,7 +67600,7 @@ func (ptr *QPlainTextDocumentLayout) FrameBoundingRect(vqt gui.QTextFrame_ITF) *
 func (ptr *QPlainTextDocumentLayout) FrameBoundingRectDefault(vqt gui.QTextFrame_ITF) *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QPlainTextDocumentLayout_FrameBoundingRectDefault(ptr.Pointer(), gui.PointerFromQTextFrame(vqt)))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -67750,7 +67743,7 @@ func (ptr *QPlainTextDocumentLayout) DestroyQPlainTextDocumentLayout() {
 	if ptr.Pointer() != nil {
 		C.QPlainTextDocumentLayout_DestroyQPlainTextDocumentLayout(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -67758,7 +67751,7 @@ func (ptr *QPlainTextDocumentLayout) DestroyQPlainTextDocumentLayoutDefault() {
 	if ptr.Pointer() != nil {
 		C.QPlainTextDocumentLayout_DestroyQPlainTextDocumentLayoutDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -67786,7 +67779,7 @@ func (ptr *QPlainTextDocumentLayout) __children_newList() unsafe.Pointer {
 func (ptr *QPlainTextDocumentLayout) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QPlainTextDocumentLayout___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -67878,13 +67871,13 @@ func callbackQPlainTextDocumentLayout_DrawInlineObject(ptr unsafe.Pointer, paint
 	if signal := qt.GetSignal(ptr, "drawInlineObject"); signal != nil {
 		(*(*func(*gui.QPainter, *core.QRectF, *gui.QTextInlineObject, int, *gui.QTextFormat))(signal))(gui.NewQPainterFromPointer(painter), core.NewQRectFFromPointer(rect), func() *gui.QTextInlineObject {
 			tmpValue := gui.NewQTextInlineObjectFromPointer(object)
-			runtime.SetFinalizer(tmpValue, (*gui.QTextInlineObject).DestroyQTextInlineObject)
+			qt.SetFinalizer(tmpValue, (*gui.QTextInlineObject).DestroyQTextInlineObject)
 			return tmpValue
 		}(), int(int32(posInDocument)), gui.NewQTextFormatFromPointer(format))
 	} else {
 		NewQPlainTextDocumentLayoutFromPointer(ptr).DrawInlineObjectDefault(gui.NewQPainterFromPointer(painter), core.NewQRectFFromPointer(rect), func() *gui.QTextInlineObject {
 			tmpValue := gui.NewQTextInlineObjectFromPointer(object)
-			runtime.SetFinalizer(tmpValue, (*gui.QTextInlineObject).DestroyQTextInlineObject)
+			qt.SetFinalizer(tmpValue, (*gui.QTextInlineObject).DestroyQTextInlineObject)
 			return tmpValue
 		}(), int(int32(posInDocument)), gui.NewQTextFormatFromPointer(format))
 	}
@@ -67909,13 +67902,13 @@ func callbackQPlainTextDocumentLayout_PositionInlineObject(ptr unsafe.Pointer, i
 	if signal := qt.GetSignal(ptr, "positionInlineObject"); signal != nil {
 		(*(*func(*gui.QTextInlineObject, int, *gui.QTextFormat))(signal))(func() *gui.QTextInlineObject {
 			tmpValue := gui.NewQTextInlineObjectFromPointer(item)
-			runtime.SetFinalizer(tmpValue, (*gui.QTextInlineObject).DestroyQTextInlineObject)
+			qt.SetFinalizer(tmpValue, (*gui.QTextInlineObject).DestroyQTextInlineObject)
 			return tmpValue
 		}(), int(int32(posInDocument)), gui.NewQTextFormatFromPointer(format))
 	} else {
 		NewQPlainTextDocumentLayoutFromPointer(ptr).PositionInlineObjectDefault(func() *gui.QTextInlineObject {
 			tmpValue := gui.NewQTextInlineObjectFromPointer(item)
-			runtime.SetFinalizer(tmpValue, (*gui.QTextInlineObject).DestroyQTextInlineObject)
+			qt.SetFinalizer(tmpValue, (*gui.QTextInlineObject).DestroyQTextInlineObject)
 			return tmpValue
 		}(), int(int32(posInDocument)), gui.NewQTextFormatFromPointer(format))
 	}
@@ -67932,13 +67925,13 @@ func callbackQPlainTextDocumentLayout_ResizeInlineObject(ptr unsafe.Pointer, ite
 	if signal := qt.GetSignal(ptr, "resizeInlineObject"); signal != nil {
 		(*(*func(*gui.QTextInlineObject, int, *gui.QTextFormat))(signal))(func() *gui.QTextInlineObject {
 			tmpValue := gui.NewQTextInlineObjectFromPointer(item)
-			runtime.SetFinalizer(tmpValue, (*gui.QTextInlineObject).DestroyQTextInlineObject)
+			qt.SetFinalizer(tmpValue, (*gui.QTextInlineObject).DestroyQTextInlineObject)
 			return tmpValue
 		}(), int(int32(posInDocument)), gui.NewQTextFormatFromPointer(format))
 	} else {
 		NewQPlainTextDocumentLayoutFromPointer(ptr).ResizeInlineObjectDefault(func() *gui.QTextInlineObject {
 			tmpValue := gui.NewQTextInlineObjectFromPointer(item)
-			runtime.SetFinalizer(tmpValue, (*gui.QTextInlineObject).DestroyQTextInlineObject)
+			qt.SetFinalizer(tmpValue, (*gui.QTextInlineObject).DestroyQTextInlineObject)
 			return tmpValue
 		}(), int(int32(posInDocument)), gui.NewQTextFormatFromPointer(format))
 	}
@@ -68023,7 +68016,7 @@ func callbackQPlainTextDocumentLayout_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QPlainTextDocumentLayout) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QPlainTextDocumentLayout_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -68313,7 +68306,7 @@ func (ptr *QPlainTextEdit) BackgroundVisible() bool {
 func (ptr *QPlainTextEdit) BlockBoundingGeometry(block gui.QTextBlock_ITF) *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QPlainTextEdit_BlockBoundingGeometry(ptr.Pointer(), gui.PointerFromQTextBlock(block)))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -68322,7 +68315,7 @@ func (ptr *QPlainTextEdit) BlockBoundingGeometry(block gui.QTextBlock_ITF) *core
 func (ptr *QPlainTextEdit) BlockBoundingRect(block gui.QTextBlock_ITF) *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QPlainTextEdit_BlockBoundingRect(ptr.Pointer(), gui.PointerFromQTextBlock(block)))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -68523,7 +68516,7 @@ func (ptr *QPlainTextEdit) ClearDefault() {
 func (ptr *QPlainTextEdit) ContentOffset() *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QPlainTextEdit_ContentOffset(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -68690,7 +68683,7 @@ func (ptr *QPlainTextEdit) CreateStandardContextMenu2(position core.QPoint_ITF) 
 func (ptr *QPlainTextEdit) CurrentCharFormat() *gui.QTextCharFormat {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQTextCharFormatFromPointer(C.QPlainTextEdit_CurrentCharFormat(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QTextCharFormat).DestroyQTextCharFormat)
+		qt.SetFinalizer(tmpValue, (*gui.QTextCharFormat).DestroyQTextCharFormat)
 		return tmpValue
 	}
 	return nil
@@ -68699,7 +68692,7 @@ func (ptr *QPlainTextEdit) CurrentCharFormat() *gui.QTextCharFormat {
 func (ptr *QPlainTextEdit) CursorForPosition(pos core.QPoint_ITF) *gui.QTextCursor {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQTextCursorFromPointer(C.QPlainTextEdit_CursorForPosition(ptr.Pointer(), core.PointerFromQPoint(pos)))
-		runtime.SetFinalizer(tmpValue, (*gui.QTextCursor).DestroyQTextCursor)
+		qt.SetFinalizer(tmpValue, (*gui.QTextCursor).DestroyQTextCursor)
 		return tmpValue
 	}
 	return nil
@@ -68748,7 +68741,7 @@ func (ptr *QPlainTextEdit) CursorPositionChanged() {
 func (ptr *QPlainTextEdit) CursorRect(cursor gui.QTextCursor_ITF) *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QPlainTextEdit_CursorRect(ptr.Pointer(), gui.PointerFromQTextCursor(cursor)))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -68757,7 +68750,7 @@ func (ptr *QPlainTextEdit) CursorRect(cursor gui.QTextCursor_ITF) *core.QRect {
 func (ptr *QPlainTextEdit) CursorRect2() *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QPlainTextEdit_CursorRect2(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -68866,7 +68859,7 @@ func (ptr *QPlainTextEdit) Find3(exp core.QRegularExpression_ITF, options gui.QT
 func (ptr *QPlainTextEdit) FirstVisibleBlock() *gui.QTextBlock {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQTextBlockFromPointer(C.QPlainTextEdit_FirstVisibleBlock(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QTextBlock).DestroyQTextBlock)
+		qt.SetFinalizer(tmpValue, (*gui.QTextBlock).DestroyQTextBlock)
 		return tmpValue
 	}
 	return nil
@@ -69023,7 +69016,7 @@ func (ptr *QPlainTextEdit) DisconnectLoadResource() {
 func (ptr *QPlainTextEdit) LoadResource(ty int, name core.QUrl_ITF) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QPlainTextEdit_LoadResource(ptr.Pointer(), C.int(int32(ty)), core.PointerFromQUrl(name)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -69032,7 +69025,7 @@ func (ptr *QPlainTextEdit) LoadResource(ty int, name core.QUrl_ITF) *core.QVaria
 func (ptr *QPlainTextEdit) LoadResourceDefault(ty int, name core.QUrl_ITF) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QPlainTextEdit_LoadResourceDefault(ptr.Pointer(), C.int(int32(ty)), core.PointerFromQUrl(name)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -69561,7 +69554,7 @@ func (ptr *QPlainTextEdit) TextChanged() {
 func (ptr *QPlainTextEdit) TextCursor() *gui.QTextCursor {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQTextCursorFromPointer(C.QPlainTextEdit_TextCursor(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QTextCursor).DestroyQTextCursor)
+		qt.SetFinalizer(tmpValue, (*gui.QTextCursor).DestroyQTextCursor)
 		return tmpValue
 	}
 	return nil
@@ -69832,7 +69825,7 @@ func (ptr *QPlainTextEdit) DestroyQPlainTextEdit() {
 	if ptr.Pointer() != nil {
 		C.QPlainTextEdit_DestroyQPlainTextEdit(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -69840,7 +69833,7 @@ func (ptr *QPlainTextEdit) DestroyQPlainTextEditDefault() {
 	if ptr.Pointer() != nil {
 		C.QPlainTextEdit_DestroyQPlainTextEditDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -70389,7 +70382,7 @@ func (ptr *QProgressBar) DestroyQProgressBar() {
 	if ptr.Pointer() != nil {
 		C.QProgressBar_DestroyQProgressBar(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -70397,7 +70390,7 @@ func (ptr *QProgressBar) DestroyQProgressBarDefault() {
 	if ptr.Pointer() != nil {
 		C.QProgressBar_DestroyQProgressBarDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -71087,7 +71080,7 @@ func (ptr *QProgressDialog) DestroyQProgressDialog() {
 	if ptr.Pointer() != nil {
 		C.QProgressDialog_DestroyQProgressDialog(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -71095,7 +71088,7 @@ func (ptr *QProgressDialog) DestroyQProgressDialogDefault() {
 	if ptr.Pointer() != nil {
 		C.QProgressDialog_DestroyQProgressDialogDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -71209,7 +71202,7 @@ func (ptr *QProxyStyle) DisconnectStandardIcon() {
 func (ptr *QProxyStyle) StandardIcon(standardIcon QStyle__StandardPixmap, option QStyleOption_ITF, widget QWidget_ITF) *gui.QIcon {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQIconFromPointer(C.QProxyStyle_StandardIcon(ptr.Pointer(), C.longlong(standardIcon), PointerFromQStyleOption(option), PointerFromQWidget(widget)))
-		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+		qt.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
 		return tmpValue
 	}
 	return nil
@@ -71218,7 +71211,7 @@ func (ptr *QProxyStyle) StandardIcon(standardIcon QStyle__StandardPixmap, option
 func (ptr *QProxyStyle) StandardIconDefault(standardIcon QStyle__StandardPixmap, option QStyleOption_ITF, widget QWidget_ITF) *gui.QIcon {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQIconFromPointer(C.QProxyStyle_StandardIconDefault(ptr.Pointer(), C.longlong(standardIcon), PointerFromQStyleOption(option), PointerFromQWidget(widget)))
-		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+		qt.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
 		return tmpValue
 	}
 	return nil
@@ -71259,7 +71252,7 @@ func (ptr *QProxyStyle) DestroyQProxyStyle() {
 	if ptr.Pointer() != nil {
 		C.QProxyStyle_DestroyQProxyStyle(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -71267,7 +71260,7 @@ func (ptr *QProxyStyle) DestroyQProxyStyleDefault() {
 	if ptr.Pointer() != nil {
 		C.QProxyStyle_DestroyQProxyStyleDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -71526,7 +71519,7 @@ func (ptr *QPushButton) DestroyQPushButton() {
 	if ptr.Pointer() != nil {
 		C.QPushButton_DestroyQPushButton(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -71534,7 +71527,7 @@ func (ptr *QPushButton) DestroyQPushButtonDefault() {
 	if ptr.Pointer() != nil {
 		C.QPushButton_DestroyQPushButtonDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -71681,7 +71674,7 @@ func (ptr *QRadioButton) DestroyQRadioButton() {
 	if ptr.Pointer() != nil {
 		C.QRadioButton_DestroyQRadioButton(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -71689,7 +71682,7 @@ func (ptr *QRadioButton) DestroyQRadioButtonDefault() {
 	if ptr.Pointer() != nil {
 		C.QRadioButton_DestroyQRadioButtonDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -71797,7 +71790,7 @@ func (ptr *QRubberBand) DestroyQRubberBand() {
 	if ptr.Pointer() != nil {
 		C.QRubberBand_DestroyQRubberBand(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -71805,7 +71798,7 @@ func (ptr *QRubberBand) DestroyQRubberBandDefault() {
 	if ptr.Pointer() != nil {
 		C.QRubberBand_DestroyQRubberBandDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -71956,7 +71949,7 @@ func (ptr *QScrollArea) DestroyQScrollArea() {
 	if ptr.Pointer() != nil {
 		C.QScrollArea_DestroyQScrollArea(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -71964,7 +71957,7 @@ func (ptr *QScrollArea) DestroyQScrollAreaDefault() {
 	if ptr.Pointer() != nil {
 		C.QScrollArea_DestroyQScrollAreaDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -72063,7 +72056,7 @@ func (ptr *QScrollBar) DestroyQScrollBar() {
 	if ptr.Pointer() != nil {
 		C.QScrollBar_DestroyQScrollBar(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -72071,7 +72064,7 @@ func (ptr *QScrollBar) DestroyQScrollBarDefault() {
 	if ptr.Pointer() != nil {
 		C.QScrollBar_DestroyQScrollBarDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -72257,7 +72250,7 @@ func (ptr *QScroller) EnsureVisible2Default(rect core.QRectF_ITF, xmargin float6
 func (ptr *QScroller) FinalPosition() *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QScroller_FinalPosition(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -72297,7 +72290,7 @@ func (ptr *QScroller) HasScroller(target core.QObject_ITF) bool {
 func (ptr *QScroller) PixelPerMeter() *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QScroller_PixelPerMeter(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -72467,7 +72460,7 @@ func (ptr *QScroller) Scroller2(target core.QObject_ITF) *QScroller {
 func (ptr *QScroller) ScrollerProperties() *QScrollerProperties {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQScrollerPropertiesFromPointer(C.QScroller_ScrollerProperties(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QScrollerProperties).DestroyQScrollerProperties)
+		qt.SetFinalizer(tmpValue, (*QScrollerProperties).DestroyQScrollerProperties)
 		return tmpValue
 	}
 	return nil
@@ -72667,7 +72660,7 @@ func (ptr *QScroller) UngrabGesture(target core.QObject_ITF) {
 func (ptr *QScroller) Velocity() *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QScroller_Velocity(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -72752,7 +72745,7 @@ func (ptr *QScroller) __children_newList() unsafe.Pointer {
 func (ptr *QScroller) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QScroller___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -72888,7 +72881,7 @@ func callbackQScroller_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QScroller) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QScroller_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -73075,20 +73068,20 @@ const (
 
 func NewQScrollerProperties() *QScrollerProperties {
 	tmpValue := NewQScrollerPropertiesFromPointer(C.QScrollerProperties_NewQScrollerProperties())
-	runtime.SetFinalizer(tmpValue, (*QScrollerProperties).DestroyQScrollerProperties)
+	qt.SetFinalizer(tmpValue, (*QScrollerProperties).DestroyQScrollerProperties)
 	return tmpValue
 }
 
 func NewQScrollerProperties2(sp QScrollerProperties_ITF) *QScrollerProperties {
 	tmpValue := NewQScrollerPropertiesFromPointer(C.QScrollerProperties_NewQScrollerProperties2(PointerFromQScrollerProperties(sp)))
-	runtime.SetFinalizer(tmpValue, (*QScrollerProperties).DestroyQScrollerProperties)
+	qt.SetFinalizer(tmpValue, (*QScrollerProperties).DestroyQScrollerProperties)
 	return tmpValue
 }
 
 func (ptr *QScrollerProperties) ScrollMetric(metric QScrollerProperties__ScrollMetric) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QScrollerProperties_ScrollMetric(ptr.Pointer(), C.longlong(metric)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -73151,7 +73144,7 @@ func (ptr *QScrollerProperties) DestroyQScrollerProperties() {
 	if ptr.Pointer() != nil {
 		C.QScrollerProperties_DestroyQScrollerProperties(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -73159,7 +73152,7 @@ func (ptr *QScrollerProperties) DestroyQScrollerPropertiesDefault() {
 	if ptr.Pointer() != nil {
 		C.QScrollerProperties_DestroyQScrollerPropertiesDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -73338,7 +73331,7 @@ func (ptr *QShortcut) IsEnabled() bool {
 func (ptr *QShortcut) Key() *gui.QKeySequence {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQKeySequenceFromPointer(C.QShortcut_Key(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QKeySequence).DestroyQKeySequence)
+		qt.SetFinalizer(tmpValue, (*gui.QKeySequence).DestroyQKeySequence)
 		return tmpValue
 	}
 	return nil
@@ -73432,7 +73425,7 @@ func (ptr *QShortcut) DestroyQShortcut() {
 	if ptr.Pointer() != nil {
 		C.QShortcut_DestroyQShortcut(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -73440,7 +73433,7 @@ func (ptr *QShortcut) DestroyQShortcutDefault() {
 	if ptr.Pointer() != nil {
 		C.QShortcut_DestroyQShortcutDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -73468,7 +73461,7 @@ func (ptr *QShortcut) __children_newList() unsafe.Pointer {
 func (ptr *QShortcut) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QShortcut___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -73604,7 +73597,7 @@ func callbackQShortcut_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QShortcut) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QShortcut_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -73826,7 +73819,7 @@ func (ptr *QSizeGrip) DestroyQSizeGrip() {
 	if ptr.Pointer() != nil {
 		C.QSizeGrip_DestroyQSizeGrip(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -73834,7 +73827,7 @@ func (ptr *QSizeGrip) DestroyQSizeGripDefault() {
 	if ptr.Pointer() != nil {
 		C.QSizeGrip_DestroyQSizeGripDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -73881,7 +73874,7 @@ func (ptr *QSizePolicy) DestroyQSizePolicy() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -73934,13 +73927,13 @@ const (
 
 func NewQSizePolicy() *QSizePolicy {
 	tmpValue := NewQSizePolicyFromPointer(C.QSizePolicy_NewQSizePolicy())
-	runtime.SetFinalizer(tmpValue, (*QSizePolicy).DestroyQSizePolicy)
+	qt.SetFinalizer(tmpValue, (*QSizePolicy).DestroyQSizePolicy)
 	return tmpValue
 }
 
 func NewQSizePolicy2(horizontal QSizePolicy__Policy, vertical QSizePolicy__Policy, ty QSizePolicy__ControlType) *QSizePolicy {
 	tmpValue := NewQSizePolicyFromPointer(C.QSizePolicy_NewQSizePolicy2(C.longlong(horizontal), C.longlong(vertical), C.longlong(ty)))
-	runtime.SetFinalizer(tmpValue, (*QSizePolicy).DestroyQSizePolicy)
+	qt.SetFinalizer(tmpValue, (*QSizePolicy).DestroyQSizePolicy)
 	return tmpValue
 }
 
@@ -74050,7 +74043,7 @@ func (ptr *QSizePolicy) Transpose() {
 func (ptr *QSizePolicy) Transposed() *QSizePolicy {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSizePolicyFromPointer(C.QSizePolicy_Transposed(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QSizePolicy).DestroyQSizePolicy)
+		qt.SetFinalizer(tmpValue, (*QSizePolicy).DestroyQSizePolicy)
 		return tmpValue
 	}
 	return nil
@@ -74205,7 +74198,7 @@ func (ptr *QSlider) DestroyQSlider() {
 	if ptr.Pointer() != nil {
 		C.QSlider_DestroyQSlider(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -74213,7 +74206,7 @@ func (ptr *QSlider) DestroyQSliderDefault() {
 	if ptr.Pointer() != nil {
 		C.QSlider_DestroyQSliderDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -74344,7 +74337,7 @@ func (ptr *QSpacerItem) DisconnectGeometry() {
 func (ptr *QSpacerItem) Geometry() *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QSpacerItem_Geometry(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -74353,7 +74346,7 @@ func (ptr *QSpacerItem) Geometry() *core.QRect {
 func (ptr *QSpacerItem) GeometryDefault() *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QSpacerItem_GeometryDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -74438,7 +74431,7 @@ func (ptr *QSpacerItem) DisconnectMaximumSize() {
 func (ptr *QSpacerItem) MaximumSize() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QSpacerItem_MaximumSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -74447,7 +74440,7 @@ func (ptr *QSpacerItem) MaximumSize() *core.QSize {
 func (ptr *QSpacerItem) MaximumSizeDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QSpacerItem_MaximumSizeDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -74487,7 +74480,7 @@ func (ptr *QSpacerItem) DisconnectMinimumSize() {
 func (ptr *QSpacerItem) MinimumSize() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QSpacerItem_MinimumSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -74496,7 +74489,7 @@ func (ptr *QSpacerItem) MinimumSize() *core.QSize {
 func (ptr *QSpacerItem) MinimumSizeDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QSpacerItem_MinimumSizeDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -74579,7 +74572,7 @@ func (ptr *QSpacerItem) DisconnectSizeHint() {
 func (ptr *QSpacerItem) SizeHint() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QSpacerItem_SizeHint(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -74588,7 +74581,7 @@ func (ptr *QSpacerItem) SizeHint() *core.QSize {
 func (ptr *QSpacerItem) SizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QSpacerItem_SizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -74597,7 +74590,7 @@ func (ptr *QSpacerItem) SizeHintDefault() *core.QSize {
 func (ptr *QSpacerItem) SizePolicy() *QSizePolicy {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSizePolicyFromPointer(C.QSpacerItem_SizePolicy(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QSizePolicy).DestroyQSizePolicy)
+		qt.SetFinalizer(tmpValue, (*QSizePolicy).DestroyQSizePolicy)
 		return tmpValue
 	}
 	return nil
@@ -74638,7 +74631,7 @@ func (ptr *QSpacerItem) DestroyQSpacerItem() {
 	if ptr.Pointer() != nil {
 		C.QSpacerItem_DestroyQSpacerItem(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -74646,7 +74639,7 @@ func (ptr *QSpacerItem) DestroyQSpacerItemDefault() {
 	if ptr.Pointer() != nil {
 		C.QSpacerItem_DestroyQSpacerItemDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -75081,7 +75074,7 @@ func (ptr *QSpinBox) DestroyQSpinBox() {
 	if ptr.Pointer() != nil {
 		C.QSpinBox_DestroyQSpinBox(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -75089,7 +75082,7 @@ func (ptr *QSpinBox) DestroyQSpinBoxDefault() {
 	if ptr.Pointer() != nil {
 		C.QSpinBox_DestroyQSpinBoxDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -75294,7 +75287,7 @@ func (ptr *QSplashScreen) MessageChanged(message string) {
 func (ptr *QSplashScreen) Pixmap() *gui.QPixmap {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPixmapFromPointer(C.QSplashScreen_Pixmap(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QPixmap).DestroyQPixmap)
+		qt.SetFinalizer(tmpValue, (*gui.QPixmap).DestroyQPixmap)
 		return tmpValue
 	}
 	return nil
@@ -75400,7 +75393,7 @@ func (ptr *QSplashScreen) DestroyQSplashScreen() {
 	if ptr.Pointer() != nil {
 		C.QSplashScreen_DestroyQSplashScreen(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -75408,7 +75401,7 @@ func (ptr *QSplashScreen) DestroyQSplashScreenDefault() {
 	if ptr.Pointer() != nil {
 		C.QSplashScreen_DestroyQSplashScreenDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -75637,7 +75630,7 @@ func (ptr *QSplitter) RestoreState(state core.QByteArray_ITF) bool {
 func (ptr *QSplitter) SaveState() *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QSplitter_SaveState(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -75797,7 +75790,7 @@ func (ptr *QSplitter) DestroyQSplitter() {
 	if ptr.Pointer() != nil {
 		C.QSplitter_DestroyQSplitter(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -75805,7 +75798,7 @@ func (ptr *QSplitter) DestroyQSplitterDefault() {
 	if ptr.Pointer() != nil {
 		C.QSplitter_DestroyQSplitterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -75968,7 +75961,7 @@ func (ptr *QSplitterHandle) DestroyQSplitterHandle() {
 	if ptr.Pointer() != nil {
 		C.QSplitterHandle_DestroyQSplitterHandle(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -75976,7 +75969,7 @@ func (ptr *QSplitterHandle) DestroyQSplitterHandleDefault() {
 	if ptr.Pointer() != nil {
 		C.QSplitterHandle_DestroyQSplitterHandleDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -76383,7 +76376,7 @@ func (ptr *QStackedLayout) DisconnectSizeHint() {
 func (ptr *QStackedLayout) SizeHint() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QStackedLayout_SizeHint(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -76392,7 +76385,7 @@ func (ptr *QStackedLayout) SizeHint() *core.QSize {
 func (ptr *QStackedLayout) SizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QStackedLayout_SizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -76536,7 +76529,7 @@ func (ptr *QStackedLayout) DestroyQStackedLayout() {
 	if ptr.Pointer() != nil {
 		C.QStackedLayout_DestroyQStackedLayout(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -76544,7 +76537,7 @@ func (ptr *QStackedLayout) DestroyQStackedLayoutDefault() {
 	if ptr.Pointer() != nil {
 		C.QStackedLayout_DestroyQStackedLayoutDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -76858,7 +76851,7 @@ func (ptr *QStackedWidget) DestroyQStackedWidget() {
 	if ptr.Pointer() != nil {
 		C.QStackedWidget_DestroyQStackedWidget(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -76866,7 +76859,7 @@ func (ptr *QStackedWidget) DestroyQStackedWidgetDefault() {
 	if ptr.Pointer() != nil {
 		C.QStackedWidget_DestroyQStackedWidgetDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -76915,7 +76908,7 @@ func (ptr *QStandardItemEditorCreator) DestroyQStandardItemEditorCreator() {
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -77205,7 +77198,7 @@ func (ptr *QStatusBar) DestroyQStatusBar() {
 	if ptr.Pointer() != nil {
 		C.QStatusBar_DestroyQStatusBar(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -77213,7 +77206,7 @@ func (ptr *QStatusBar) DestroyQStatusBarDefault() {
 	if ptr.Pointer() != nil {
 		C.QStatusBar_DestroyQStatusBarDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -77904,13 +77897,13 @@ func NewQStyle2() *QStyle {
 
 func QStyle_AlignedRect(direction core.Qt__LayoutDirection, alignment core.Qt__AlignmentFlag, size core.QSize_ITF, rectangle core.QRect_ITF) *core.QRect {
 	tmpValue := core.NewQRectFromPointer(C.QStyle_QStyle_AlignedRect(C.longlong(direction), C.longlong(alignment), core.PointerFromQSize(size), core.PointerFromQRect(rectangle)))
-	runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+	qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 	return tmpValue
 }
 
 func (ptr *QStyle) AlignedRect(direction core.Qt__LayoutDirection, alignment core.Qt__AlignmentFlag, size core.QSize_ITF, rectangle core.QRect_ITF) *core.QRect {
 	tmpValue := core.NewQRectFromPointer(C.QStyle_QStyle_AlignedRect(C.longlong(direction), C.longlong(alignment), core.PointerFromQSize(size), core.PointerFromQRect(rectangle)))
-	runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+	qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 	return tmpValue
 }
 
@@ -78159,7 +78152,7 @@ func (ptr *QStyle) DisconnectGeneratedIconPixmap() {
 func (ptr *QStyle) GeneratedIconPixmap(iconMode gui.QIcon__Mode, pixmap gui.QPixmap_ITF, option QStyleOption_ITF) *gui.QPixmap {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPixmapFromPointer(C.QStyle_GeneratedIconPixmap(ptr.Pointer(), C.longlong(iconMode), gui.PointerFromQPixmap(pixmap), PointerFromQStyleOption(option)))
-		runtime.SetFinalizer(tmpValue, (*gui.QPixmap).DestroyQPixmap)
+		qt.SetFinalizer(tmpValue, (*gui.QPixmap).DestroyQPixmap)
 		return tmpValue
 	}
 	return nil
@@ -78237,7 +78230,7 @@ func (ptr *QStyle) DisconnectItemPixmapRect() {
 func (ptr *QStyle) ItemPixmapRect(rectangle core.QRect_ITF, alignment int, pixmap gui.QPixmap_ITF) *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QStyle_ItemPixmapRect(ptr.Pointer(), core.PointerFromQRect(rectangle), C.int(int32(alignment)), gui.PointerFromQPixmap(pixmap)))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -78246,7 +78239,7 @@ func (ptr *QStyle) ItemPixmapRect(rectangle core.QRect_ITF, alignment int, pixma
 func (ptr *QStyle) ItemPixmapRectDefault(rectangle core.QRect_ITF, alignment int, pixmap gui.QPixmap_ITF) *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QStyle_ItemPixmapRectDefault(ptr.Pointer(), core.PointerFromQRect(rectangle), C.int(int32(alignment)), gui.PointerFromQPixmap(pixmap)))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -78291,7 +78284,7 @@ func (ptr *QStyle) ItemTextRect(metrics gui.QFontMetrics_ITF, rectangle core.QRe
 			defer C.free(unsafe.Pointer(textC))
 		}
 		tmpValue := core.NewQRectFromPointer(C.QStyle_ItemTextRect(ptr.Pointer(), gui.PointerFromQFontMetrics(metrics), core.PointerFromQRect(rectangle), C.int(int32(alignment)), C.char(int8(qt.GoBoolToInt(enabled))), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -78305,7 +78298,7 @@ func (ptr *QStyle) ItemTextRectDefault(metrics gui.QFontMetrics_ITF, rectangle c
 			defer C.free(unsafe.Pointer(textC))
 		}
 		tmpValue := core.NewQRectFromPointer(C.QStyle_ItemTextRectDefault(ptr.Pointer(), gui.PointerFromQFontMetrics(metrics), core.PointerFromQRect(rectangle), C.int(int32(alignment)), C.char(int8(qt.GoBoolToInt(enabled))), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -78561,7 +78554,7 @@ func (ptr *QStyle) DisconnectSizeFromContents() {
 func (ptr *QStyle) SizeFromContents(ty QStyle__ContentsType, option QStyleOption_ITF, contentsSize core.QSize_ITF, widget QWidget_ITF) *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QStyle_SizeFromContents(ptr.Pointer(), C.longlong(ty), PointerFromQStyleOption(option), core.PointerFromQSize(contentsSize), PointerFromQWidget(widget)))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -78617,7 +78610,7 @@ func (ptr *QStyle) DisconnectStandardIcon() {
 func (ptr *QStyle) StandardIcon(standardIcon QStyle__StandardPixmap, option QStyleOption_ITF, widget QWidget_ITF) *gui.QIcon {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQIconFromPointer(C.QStyle_StandardIcon(ptr.Pointer(), C.longlong(standardIcon), PointerFromQStyleOption(option), PointerFromQWidget(widget)))
-		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+		qt.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
 		return tmpValue
 	}
 	return nil
@@ -78657,7 +78650,7 @@ func (ptr *QStyle) DisconnectStandardPalette() {
 func (ptr *QStyle) StandardPalette() *gui.QPalette {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPaletteFromPointer(C.QStyle_StandardPalette(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QPalette).DestroyQPalette)
+		qt.SetFinalizer(tmpValue, (*gui.QPalette).DestroyQPalette)
 		return tmpValue
 	}
 	return nil
@@ -78666,7 +78659,7 @@ func (ptr *QStyle) StandardPalette() *gui.QPalette {
 func (ptr *QStyle) StandardPaletteDefault() *gui.QPalette {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPaletteFromPointer(C.QStyle_StandardPaletteDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QPalette).DestroyQPalette)
+		qt.SetFinalizer(tmpValue, (*gui.QPalette).DestroyQPalette)
 		return tmpValue
 	}
 	return nil
@@ -78744,7 +78737,7 @@ func (ptr *QStyle) DisconnectSubControlRect() {
 func (ptr *QStyle) SubControlRect(control QStyle__ComplexControl, option QStyleOptionComplex_ITF, subControl QStyle__SubControl, widget QWidget_ITF) *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QStyle_SubControlRect(ptr.Pointer(), C.longlong(control), PointerFromQStyleOptionComplex(option), C.longlong(subControl), PointerFromQWidget(widget)))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -78784,7 +78777,7 @@ func (ptr *QStyle) DisconnectSubElementRect() {
 func (ptr *QStyle) SubElementRect(element QStyle__SubElement, option QStyleOption_ITF, widget QWidget_ITF) *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QStyle_SubElementRect(ptr.Pointer(), C.longlong(element), PointerFromQStyleOption(option), PointerFromQWidget(widget)))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -78886,25 +78879,25 @@ func (ptr *QStyle) VisualAlignment(direction core.Qt__LayoutDirection, alignment
 
 func QStyle_VisualPos(direction core.Qt__LayoutDirection, boundingRectangle core.QRect_ITF, logicalPosition core.QPoint_ITF) *core.QPoint {
 	tmpValue := core.NewQPointFromPointer(C.QStyle_QStyle_VisualPos(C.longlong(direction), core.PointerFromQRect(boundingRectangle), core.PointerFromQPoint(logicalPosition)))
-	runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
+	qt.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
 	return tmpValue
 }
 
 func (ptr *QStyle) VisualPos(direction core.Qt__LayoutDirection, boundingRectangle core.QRect_ITF, logicalPosition core.QPoint_ITF) *core.QPoint {
 	tmpValue := core.NewQPointFromPointer(C.QStyle_QStyle_VisualPos(C.longlong(direction), core.PointerFromQRect(boundingRectangle), core.PointerFromQPoint(logicalPosition)))
-	runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
+	qt.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
 	return tmpValue
 }
 
 func QStyle_VisualRect(direction core.Qt__LayoutDirection, boundingRectangle core.QRect_ITF, logicalRectangle core.QRect_ITF) *core.QRect {
 	tmpValue := core.NewQRectFromPointer(C.QStyle_QStyle_VisualRect(C.longlong(direction), core.PointerFromQRect(boundingRectangle), core.PointerFromQRect(logicalRectangle)))
-	runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+	qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 	return tmpValue
 }
 
 func (ptr *QStyle) VisualRect(direction core.Qt__LayoutDirection, boundingRectangle core.QRect_ITF, logicalRectangle core.QRect_ITF) *core.QRect {
 	tmpValue := core.NewQRectFromPointer(C.QStyle_QStyle_VisualRect(C.longlong(direction), core.PointerFromQRect(boundingRectangle), core.PointerFromQRect(logicalRectangle)))
-	runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+	qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 	return tmpValue
 }
 
@@ -78943,7 +78936,7 @@ func (ptr *QStyle) DestroyQStyle() {
 	if ptr.Pointer() != nil {
 		C.QStyle_DestroyQStyle(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -78951,7 +78944,7 @@ func (ptr *QStyle) DestroyQStyleDefault() {
 	if ptr.Pointer() != nil {
 		C.QStyle_DestroyQStyleDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -78989,7 +78982,7 @@ func (ptr *QStyle) DisconnectStandardPixmap() {
 func (ptr *QStyle) StandardPixmap(standardIcon QStyle__StandardPixmap, option QStyleOption_ITF, widget QWidget_ITF) *gui.QPixmap {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPixmapFromPointer(C.QStyle_StandardPixmap(ptr.Pointer(), C.longlong(standardIcon), PointerFromQStyleOption(option), PointerFromQWidget(widget)))
-		runtime.SetFinalizer(tmpValue, (*gui.QPixmap).DestroyQPixmap)
+		qt.SetFinalizer(tmpValue, (*gui.QPixmap).DestroyQPixmap)
 		return tmpValue
 	}
 	return nil
@@ -79019,7 +79012,7 @@ func (ptr *QStyle) __children_newList() unsafe.Pointer {
 func (ptr *QStyle) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QStyle___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -79155,7 +79148,7 @@ func callbackQStyle_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QStyle) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QStyle_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -79296,7 +79289,7 @@ func (ptr *QStyleFactory) DestroyQStyleFactory() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -79377,7 +79370,7 @@ func (ptr *QStyleHintReturn) DestroyQStyleHintReturn() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -79409,7 +79402,7 @@ var (
 
 func NewQStyleHintReturn(version int, ty int) *QStyleHintReturn {
 	tmpValue := NewQStyleHintReturnFromPointer(C.QStyleHintReturn_NewQStyleHintReturn(C.int(int32(version)), C.int(int32(ty))))
-	runtime.SetFinalizer(tmpValue, (*QStyleHintReturn).DestroyQStyleHintReturn)
+	qt.SetFinalizer(tmpValue, (*QStyleHintReturn).DestroyQStyleHintReturn)
 	return tmpValue
 }
 
@@ -79496,7 +79489,7 @@ var (
 
 func NewQStyleHintReturnMask() *QStyleHintReturnMask {
 	tmpValue := NewQStyleHintReturnMaskFromPointer(C.QStyleHintReturnMask_NewQStyleHintReturnMask())
-	runtime.SetFinalizer(tmpValue, (*QStyleHintReturnMask).DestroyQStyleHintReturnMask)
+	qt.SetFinalizer(tmpValue, (*QStyleHintReturnMask).DestroyQStyleHintReturnMask)
 	return tmpValue
 }
 
@@ -79505,14 +79498,14 @@ func (ptr *QStyleHintReturnMask) DestroyQStyleHintReturnMask() {
 		C.QStyleHintReturnMask_DestroyQStyleHintReturnMask(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QStyleHintReturnMask) Region() *gui.QRegion {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQRegionFromPointer(C.QStyleHintReturnMask_Region(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QRegion).DestroyQRegion)
+		qt.SetFinalizer(tmpValue, (*gui.QRegion).DestroyQRegion)
 		return tmpValue
 	}
 	return nil
@@ -79581,7 +79574,7 @@ var (
 
 func NewQStyleHintReturnVariant() *QStyleHintReturnVariant {
 	tmpValue := NewQStyleHintReturnVariantFromPointer(C.QStyleHintReturnVariant_NewQStyleHintReturnVariant())
-	runtime.SetFinalizer(tmpValue, (*QStyleHintReturnVariant).DestroyQStyleHintReturnVariant)
+	qt.SetFinalizer(tmpValue, (*QStyleHintReturnVariant).DestroyQStyleHintReturnVariant)
 	return tmpValue
 }
 
@@ -79590,14 +79583,14 @@ func (ptr *QStyleHintReturnVariant) DestroyQStyleHintReturnVariant() {
 		C.QStyleHintReturnVariant_DestroyQStyleHintReturnVariant(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QStyleHintReturnVariant) Variant() *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QStyleHintReturnVariant_Variant(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -79698,13 +79691,13 @@ var (
 
 func NewQStyleOption(version int, ty int) *QStyleOption {
 	tmpValue := NewQStyleOptionFromPointer(C.QStyleOption_NewQStyleOption(C.int(int32(version)), C.int(int32(ty))))
-	runtime.SetFinalizer(tmpValue, (*QStyleOption).DestroyQStyleOption)
+	qt.SetFinalizer(tmpValue, (*QStyleOption).DestroyQStyleOption)
 	return tmpValue
 }
 
 func NewQStyleOption2(other QStyleOption_ITF) *QStyleOption {
 	tmpValue := NewQStyleOptionFromPointer(C.QStyleOption_NewQStyleOption2(PointerFromQStyleOption(other)))
-	runtime.SetFinalizer(tmpValue, (*QStyleOption).DestroyQStyleOption)
+	qt.SetFinalizer(tmpValue, (*QStyleOption).DestroyQStyleOption)
 	return tmpValue
 }
 
@@ -79719,7 +79712,7 @@ func (ptr *QStyleOption) DestroyQStyleOption() {
 		C.QStyleOption_DestroyQStyleOption(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -79778,7 +79771,7 @@ func (ptr *QStyleOption) SetDirection(vqt core.Qt__LayoutDirection) {
 func (ptr *QStyleOption) Rect() *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QStyleOption_Rect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -79793,7 +79786,7 @@ func (ptr *QStyleOption) SetRect(vqr core.QRect_ITF) {
 func (ptr *QStyleOption) FontMetrics() *gui.QFontMetrics {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQFontMetricsFromPointer(C.QStyleOption_FontMetrics(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QFontMetrics).DestroyQFontMetrics)
+		qt.SetFinalizer(tmpValue, (*gui.QFontMetrics).DestroyQFontMetrics)
 		return tmpValue
 	}
 	return nil
@@ -79808,7 +79801,7 @@ func (ptr *QStyleOption) SetFontMetrics(vqf gui.QFontMetrics_ITF) {
 func (ptr *QStyleOption) Palette() *gui.QPalette {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPaletteFromPointer(C.QStyleOption_Palette(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QPalette).DestroyQPalette)
+		qt.SetFinalizer(tmpValue, (*gui.QPalette).DestroyQPalette)
 		return tmpValue
 	}
 	return nil
@@ -79881,7 +79874,7 @@ func (ptr *QStyleOptionButton) DestroyQStyleOptionButton() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -79916,13 +79909,13 @@ const (
 
 func NewQStyleOptionButton() *QStyleOptionButton {
 	tmpValue := NewQStyleOptionButtonFromPointer(C.QStyleOptionButton_NewQStyleOptionButton())
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionButton).DestroyQStyleOptionButton)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionButton).DestroyQStyleOptionButton)
 	return tmpValue
 }
 
 func NewQStyleOptionButton2(other QStyleOptionButton_ITF) *QStyleOptionButton {
 	tmpValue := NewQStyleOptionButtonFromPointer(C.QStyleOptionButton_NewQStyleOptionButton2(PointerFromQStyleOptionButton(other)))
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionButton).DestroyQStyleOptionButton)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionButton).DestroyQStyleOptionButton)
 	return tmpValue
 }
 
@@ -79960,7 +79953,7 @@ func (ptr *QStyleOptionButton) SetText(vqs string) {
 func (ptr *QStyleOptionButton) Icon() *gui.QIcon {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQIconFromPointer(C.QStyleOptionButton_Icon(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+		qt.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
 		return tmpValue
 	}
 	return nil
@@ -79975,7 +79968,7 @@ func (ptr *QStyleOptionButton) SetIcon(vqi gui.QIcon_ITF) {
 func (ptr *QStyleOptionButton) IconSize() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QStyleOptionButton_IconSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -80031,7 +80024,7 @@ func (ptr *QStyleOptionComboBox) DestroyQStyleOptionComboBox() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -80053,13 +80046,13 @@ var (
 
 func NewQStyleOptionComboBox() *QStyleOptionComboBox {
 	tmpValue := NewQStyleOptionComboBoxFromPointer(C.QStyleOptionComboBox_NewQStyleOptionComboBox())
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionComboBox).DestroyQStyleOptionComboBox)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionComboBox).DestroyQStyleOptionComboBox)
 	return tmpValue
 }
 
 func NewQStyleOptionComboBox2(other QStyleOptionComboBox_ITF) *QStyleOptionComboBox {
 	tmpValue := NewQStyleOptionComboBoxFromPointer(C.QStyleOptionComboBox_NewQStyleOptionComboBox2(PointerFromQStyleOptionComboBox(other)))
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionComboBox).DestroyQStyleOptionComboBox)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionComboBox).DestroyQStyleOptionComboBox)
 	return tmpValue
 }
 
@@ -80079,7 +80072,7 @@ func (ptr *QStyleOptionComboBox) SetEditable(vbo bool) {
 func (ptr *QStyleOptionComboBox) PopupRect() *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QStyleOptionComboBox_PopupRect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -80125,7 +80118,7 @@ func (ptr *QStyleOptionComboBox) SetCurrentText(vqs string) {
 func (ptr *QStyleOptionComboBox) CurrentIcon() *gui.QIcon {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQIconFromPointer(C.QStyleOptionComboBox_CurrentIcon(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+		qt.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
 		return tmpValue
 	}
 	return nil
@@ -80140,7 +80133,7 @@ func (ptr *QStyleOptionComboBox) SetCurrentIcon(vqi gui.QIcon_ITF) {
 func (ptr *QStyleOptionComboBox) IconSize() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QStyleOptionComboBox_IconSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -80196,7 +80189,7 @@ func (ptr *QStyleOptionComplex) DestroyQStyleOptionComplex() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -80218,13 +80211,13 @@ var (
 
 func NewQStyleOptionComplex(version int, ty int) *QStyleOptionComplex {
 	tmpValue := NewQStyleOptionComplexFromPointer(C.QStyleOptionComplex_NewQStyleOptionComplex(C.int(int32(version)), C.int(int32(ty))))
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionComplex).DestroyQStyleOptionComplex)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionComplex).DestroyQStyleOptionComplex)
 	return tmpValue
 }
 
 func NewQStyleOptionComplex2(other QStyleOptionComplex_ITF) *QStyleOptionComplex {
 	tmpValue := NewQStyleOptionComplexFromPointer(C.QStyleOptionComplex_NewQStyleOptionComplex2(PointerFromQStyleOptionComplex(other)))
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionComplex).DestroyQStyleOptionComplex)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionComplex).DestroyQStyleOptionComplex)
 	return tmpValue
 }
 
@@ -80298,7 +80291,7 @@ func (ptr *QStyleOptionDockWidget) DestroyQStyleOptionDockWidget() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -80320,13 +80313,13 @@ var (
 
 func NewQStyleOptionDockWidget() *QStyleOptionDockWidget {
 	tmpValue := NewQStyleOptionDockWidgetFromPointer(C.QStyleOptionDockWidget_NewQStyleOptionDockWidget())
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionDockWidget).DestroyQStyleOptionDockWidget)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionDockWidget).DestroyQStyleOptionDockWidget)
 	return tmpValue
 }
 
 func NewQStyleOptionDockWidget2(other QStyleOptionDockWidget_ITF) *QStyleOptionDockWidget {
 	tmpValue := NewQStyleOptionDockWidgetFromPointer(C.QStyleOptionDockWidget_NewQStyleOptionDockWidget2(PointerFromQStyleOptionDockWidget(other)))
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionDockWidget).DestroyQStyleOptionDockWidget)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionDockWidget).DestroyQStyleOptionDockWidget)
 	return tmpValue
 }
 
@@ -80431,7 +80424,7 @@ func (ptr *QStyleOptionFocusRect) DestroyQStyleOptionFocusRect() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -80453,20 +80446,20 @@ var (
 
 func NewQStyleOptionFocusRect() *QStyleOptionFocusRect {
 	tmpValue := NewQStyleOptionFocusRectFromPointer(C.QStyleOptionFocusRect_NewQStyleOptionFocusRect())
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionFocusRect).DestroyQStyleOptionFocusRect)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionFocusRect).DestroyQStyleOptionFocusRect)
 	return tmpValue
 }
 
 func NewQStyleOptionFocusRect2(other QStyleOptionFocusRect_ITF) *QStyleOptionFocusRect {
 	tmpValue := NewQStyleOptionFocusRectFromPointer(C.QStyleOptionFocusRect_NewQStyleOptionFocusRect2(PointerFromQStyleOptionFocusRect(other)))
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionFocusRect).DestroyQStyleOptionFocusRect)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionFocusRect).DestroyQStyleOptionFocusRect)
 	return tmpValue
 }
 
 func (ptr *QStyleOptionFocusRect) BackgroundColor() *gui.QColor {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQColorFromPointer(C.QStyleOptionFocusRect_BackgroundColor(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+		qt.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
 	return nil
@@ -80522,7 +80515,7 @@ func (ptr *QStyleOptionFrame) DestroyQStyleOptionFrame() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -80554,13 +80547,13 @@ const (
 
 func NewQStyleOptionFrame() *QStyleOptionFrame {
 	tmpValue := NewQStyleOptionFrameFromPointer(C.QStyleOptionFrame_NewQStyleOptionFrame())
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionFrame).DestroyQStyleOptionFrame)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionFrame).DestroyQStyleOptionFrame)
 	return tmpValue
 }
 
 func NewQStyleOptionFrame2(other QStyleOptionFrame_ITF) *QStyleOptionFrame {
 	tmpValue := NewQStyleOptionFrameFromPointer(C.QStyleOptionFrame_NewQStyleOptionFrame2(PointerFromQStyleOptionFrame(other)))
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionFrame).DestroyQStyleOptionFrame)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionFrame).DestroyQStyleOptionFrame)
 	return tmpValue
 }
 
@@ -80660,7 +80653,7 @@ func (ptr *QStyleOptionGraphicsItem) DestroyQStyleOptionGraphicsItem() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -80682,13 +80675,13 @@ var (
 
 func NewQStyleOptionGraphicsItem() *QStyleOptionGraphicsItem {
 	tmpValue := NewQStyleOptionGraphicsItemFromPointer(C.QStyleOptionGraphicsItem_NewQStyleOptionGraphicsItem())
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionGraphicsItem).DestroyQStyleOptionGraphicsItem)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionGraphicsItem).DestroyQStyleOptionGraphicsItem)
 	return tmpValue
 }
 
 func NewQStyleOptionGraphicsItem2(other QStyleOptionGraphicsItem_ITF) *QStyleOptionGraphicsItem {
 	tmpValue := NewQStyleOptionGraphicsItemFromPointer(C.QStyleOptionGraphicsItem_NewQStyleOptionGraphicsItem2(PointerFromQStyleOptionGraphicsItem(other)))
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionGraphicsItem).DestroyQStyleOptionGraphicsItem)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionGraphicsItem).DestroyQStyleOptionGraphicsItem)
 	return tmpValue
 }
 
@@ -80703,7 +80696,7 @@ func (ptr *QStyleOptionGraphicsItem) LevelOfDetailFromTransform(worldTransform g
 func (ptr *QStyleOptionGraphicsItem) ExposedRect() *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QStyleOptionGraphicsItem_ExposedRect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -80759,7 +80752,7 @@ func (ptr *QStyleOptionGroupBox) DestroyQStyleOptionGroupBox() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -80781,13 +80774,13 @@ var (
 
 func NewQStyleOptionGroupBox() *QStyleOptionGroupBox {
 	tmpValue := NewQStyleOptionGroupBoxFromPointer(C.QStyleOptionGroupBox_NewQStyleOptionGroupBox())
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionGroupBox).DestroyQStyleOptionGroupBox)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionGroupBox).DestroyQStyleOptionGroupBox)
 	return tmpValue
 }
 
 func NewQStyleOptionGroupBox2(other QStyleOptionGroupBox_ITF) *QStyleOptionGroupBox {
 	tmpValue := NewQStyleOptionGroupBoxFromPointer(C.QStyleOptionGroupBox_NewQStyleOptionGroupBox2(PointerFromQStyleOptionGroupBox(other)))
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionGroupBox).DestroyQStyleOptionGroupBox)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionGroupBox).DestroyQStyleOptionGroupBox)
 	return tmpValue
 }
 
@@ -80838,7 +80831,7 @@ func (ptr *QStyleOptionGroupBox) SetTextAlignment(vqt core.Qt__AlignmentFlag) {
 func (ptr *QStyleOptionGroupBox) TextColor() *gui.QColor {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQColorFromPointer(C.QStyleOptionGroupBox_TextColor(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+		qt.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
 	return nil
@@ -80920,7 +80913,7 @@ func (ptr *QStyleOptionHeader) DestroyQStyleOptionHeader() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -80974,13 +80967,13 @@ const (
 
 func NewQStyleOptionHeader() *QStyleOptionHeader {
 	tmpValue := NewQStyleOptionHeaderFromPointer(C.QStyleOptionHeader_NewQStyleOptionHeader())
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionHeader).DestroyQStyleOptionHeader)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionHeader).DestroyQStyleOptionHeader)
 	return tmpValue
 }
 
 func NewQStyleOptionHeader2(other QStyleOptionHeader_ITF) *QStyleOptionHeader {
 	tmpValue := NewQStyleOptionHeaderFromPointer(C.QStyleOptionHeader_NewQStyleOptionHeader2(PointerFromQStyleOptionHeader(other)))
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionHeader).DestroyQStyleOptionHeader)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionHeader).DestroyQStyleOptionHeader)
 	return tmpValue
 }
 
@@ -81031,7 +81024,7 @@ func (ptr *QStyleOptionHeader) SetTextAlignment(vqt core.Qt__AlignmentFlag) {
 func (ptr *QStyleOptionHeader) Icon() *gui.QIcon {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQIconFromPointer(C.QStyleOptionHeader_Icon(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+		qt.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
 		return tmpValue
 	}
 	return nil
@@ -81152,7 +81145,7 @@ func (ptr *QStyleOptionMenuItem) DestroyQStyleOptionMenuItem() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -81199,13 +81192,13 @@ const (
 
 func NewQStyleOptionMenuItem() *QStyleOptionMenuItem {
 	tmpValue := NewQStyleOptionMenuItemFromPointer(C.QStyleOptionMenuItem_NewQStyleOptionMenuItem())
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionMenuItem).DestroyQStyleOptionMenuItem)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionMenuItem).DestroyQStyleOptionMenuItem)
 	return tmpValue
 }
 
 func NewQStyleOptionMenuItem2(other QStyleOptionMenuItem_ITF) *QStyleOptionMenuItem {
 	tmpValue := NewQStyleOptionMenuItemFromPointer(C.QStyleOptionMenuItem_NewQStyleOptionMenuItem2(PointerFromQStyleOptionMenuItem(other)))
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionMenuItem).DestroyQStyleOptionMenuItem)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionMenuItem).DestroyQStyleOptionMenuItem)
 	return tmpValue
 }
 
@@ -81264,7 +81257,7 @@ func (ptr *QStyleOptionMenuItem) SetMenuHasCheckableItems(vbo bool) {
 func (ptr *QStyleOptionMenuItem) MenuRect() *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QStyleOptionMenuItem_MenuRect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -81297,7 +81290,7 @@ func (ptr *QStyleOptionMenuItem) SetText(vqs string) {
 func (ptr *QStyleOptionMenuItem) Icon() *gui.QIcon {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQIconFromPointer(C.QStyleOptionMenuItem_Icon(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+		qt.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
 		return tmpValue
 	}
 	return nil
@@ -81338,7 +81331,7 @@ func (ptr *QStyleOptionMenuItem) SetTabWidth(vin int) {
 func (ptr *QStyleOptionMenuItem) Font() *gui.QFont {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQFontFromPointer(C.QStyleOptionMenuItem_Font(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
+		qt.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 		return tmpValue
 	}
 	return nil
@@ -81394,7 +81387,7 @@ func (ptr *QStyleOptionProgressBar) DestroyQStyleOptionProgressBar() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -81416,13 +81409,13 @@ var (
 
 func NewQStyleOptionProgressBar() *QStyleOptionProgressBar {
 	tmpValue := NewQStyleOptionProgressBarFromPointer(C.QStyleOptionProgressBar_NewQStyleOptionProgressBar())
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionProgressBar).DestroyQStyleOptionProgressBar)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionProgressBar).DestroyQStyleOptionProgressBar)
 	return tmpValue
 }
 
 func NewQStyleOptionProgressBar2(other QStyleOptionProgressBar_ITF) *QStyleOptionProgressBar {
 	tmpValue := NewQStyleOptionProgressBarFromPointer(C.QStyleOptionProgressBar_NewQStyleOptionProgressBar2(PointerFromQStyleOptionProgressBar(other)))
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionProgressBar).DestroyQStyleOptionProgressBar)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionProgressBar).DestroyQStyleOptionProgressBar)
 	return tmpValue
 }
 
@@ -81579,7 +81572,7 @@ func (ptr *QStyleOptionRubberBand) DestroyQStyleOptionRubberBand() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -81601,13 +81594,13 @@ var (
 
 func NewQStyleOptionRubberBand() *QStyleOptionRubberBand {
 	tmpValue := NewQStyleOptionRubberBandFromPointer(C.QStyleOptionRubberBand_NewQStyleOptionRubberBand())
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionRubberBand).DestroyQStyleOptionRubberBand)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionRubberBand).DestroyQStyleOptionRubberBand)
 	return tmpValue
 }
 
 func NewQStyleOptionRubberBand2(other QStyleOptionRubberBand_ITF) *QStyleOptionRubberBand {
 	tmpValue := NewQStyleOptionRubberBandFromPointer(C.QStyleOptionRubberBand_NewQStyleOptionRubberBand2(PointerFromQStyleOptionRubberBand(other)))
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionRubberBand).DestroyQStyleOptionRubberBand)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionRubberBand).DestroyQStyleOptionRubberBand)
 	return tmpValue
 }
 
@@ -81681,7 +81674,7 @@ func (ptr *QStyleOptionSizeGrip) DestroyQStyleOptionSizeGrip() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -81703,13 +81696,13 @@ var (
 
 func NewQStyleOptionSizeGrip() *QStyleOptionSizeGrip {
 	tmpValue := NewQStyleOptionSizeGripFromPointer(C.QStyleOptionSizeGrip_NewQStyleOptionSizeGrip())
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionSizeGrip).DestroyQStyleOptionSizeGrip)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionSizeGrip).DestroyQStyleOptionSizeGrip)
 	return tmpValue
 }
 
 func NewQStyleOptionSizeGrip2(other QStyleOptionSizeGrip_ITF) *QStyleOptionSizeGrip {
 	tmpValue := NewQStyleOptionSizeGripFromPointer(C.QStyleOptionSizeGrip_NewQStyleOptionSizeGrip2(PointerFromQStyleOptionSizeGrip(other)))
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionSizeGrip).DestroyQStyleOptionSizeGrip)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionSizeGrip).DestroyQStyleOptionSizeGrip)
 	return tmpValue
 }
 
@@ -81770,7 +81763,7 @@ func (ptr *QStyleOptionSlider) DestroyQStyleOptionSlider() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -81792,13 +81785,13 @@ var (
 
 func NewQStyleOptionSlider() *QStyleOptionSlider {
 	tmpValue := NewQStyleOptionSliderFromPointer(C.QStyleOptionSlider_NewQStyleOptionSlider())
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionSlider).DestroyQStyleOptionSlider)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionSlider).DestroyQStyleOptionSlider)
 	return tmpValue
 }
 
 func NewQStyleOptionSlider2(other QStyleOptionSlider_ITF) *QStyleOptionSlider {
 	tmpValue := NewQStyleOptionSliderFromPointer(C.QStyleOptionSlider_NewQStyleOptionSlider2(PointerFromQStyleOptionSlider(other)))
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionSlider).DestroyQStyleOptionSlider)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionSlider).DestroyQStyleOptionSlider)
 	return tmpValue
 }
 
@@ -82002,7 +81995,7 @@ func (ptr *QStyleOptionSpinBox) DestroyQStyleOptionSpinBox() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -82024,13 +82017,13 @@ var (
 
 func NewQStyleOptionSpinBox() *QStyleOptionSpinBox {
 	tmpValue := NewQStyleOptionSpinBoxFromPointer(C.QStyleOptionSpinBox_NewQStyleOptionSpinBox())
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionSpinBox).DestroyQStyleOptionSpinBox)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionSpinBox).DestroyQStyleOptionSpinBox)
 	return tmpValue
 }
 
 func NewQStyleOptionSpinBox2(other QStyleOptionSpinBox_ITF) *QStyleOptionSpinBox {
 	tmpValue := NewQStyleOptionSpinBoxFromPointer(C.QStyleOptionSpinBox_NewQStyleOptionSpinBox2(PointerFromQStyleOptionSpinBox(other)))
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionSpinBox).DestroyQStyleOptionSpinBox)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionSpinBox).DestroyQStyleOptionSpinBox)
 	return tmpValue
 }
 
@@ -82117,7 +82110,7 @@ func (ptr *QStyleOptionTab) DestroyQStyleOptionTab() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -82179,13 +82172,13 @@ const (
 
 func NewQStyleOptionTab() *QStyleOptionTab {
 	tmpValue := NewQStyleOptionTabFromPointer(C.QStyleOptionTab_NewQStyleOptionTab())
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionTab).DestroyQStyleOptionTab)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionTab).DestroyQStyleOptionTab)
 	return tmpValue
 }
 
 func NewQStyleOptionTab2(other QStyleOptionTab_ITF) *QStyleOptionTab {
 	tmpValue := NewQStyleOptionTabFromPointer(C.QStyleOptionTab_NewQStyleOptionTab2(PointerFromQStyleOptionTab(other)))
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionTab).DestroyQStyleOptionTab)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionTab).DestroyQStyleOptionTab)
 	return tmpValue
 }
 
@@ -82223,7 +82216,7 @@ func (ptr *QStyleOptionTab) SetText(vqs string) {
 func (ptr *QStyleOptionTab) Icon() *gui.QIcon {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQIconFromPointer(C.QStyleOptionTab_Icon(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+		qt.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
 		return tmpValue
 	}
 	return nil
@@ -82290,7 +82283,7 @@ func (ptr *QStyleOptionTab) SetCornerWidgets(vqs QStyleOptionTab__CornerWidget) 
 func (ptr *QStyleOptionTab) IconSize() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QStyleOptionTab_IconSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -82318,7 +82311,7 @@ func (ptr *QStyleOptionTab) SetDocumentMode(vbo bool) {
 func (ptr *QStyleOptionTab) LeftButtonSize() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QStyleOptionTab_LeftButtonSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -82333,7 +82326,7 @@ func (ptr *QStyleOptionTab) SetLeftButtonSize(vqs core.QSize_ITF) {
 func (ptr *QStyleOptionTab) RightButtonSize() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QStyleOptionTab_RightButtonSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -82389,7 +82382,7 @@ func (ptr *QStyleOptionTabBarBase) DestroyQStyleOptionTabBarBase() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -82411,13 +82404,13 @@ var (
 
 func NewQStyleOptionTabBarBase() *QStyleOptionTabBarBase {
 	tmpValue := NewQStyleOptionTabBarBaseFromPointer(C.QStyleOptionTabBarBase_NewQStyleOptionTabBarBase())
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionTabBarBase).DestroyQStyleOptionTabBarBase)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionTabBarBase).DestroyQStyleOptionTabBarBase)
 	return tmpValue
 }
 
 func NewQStyleOptionTabBarBase2(other QStyleOptionTabBarBase_ITF) *QStyleOptionTabBarBase {
 	tmpValue := NewQStyleOptionTabBarBaseFromPointer(C.QStyleOptionTabBarBase_NewQStyleOptionTabBarBase2(PointerFromQStyleOptionTabBarBase(other)))
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionTabBarBase).DestroyQStyleOptionTabBarBase)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionTabBarBase).DestroyQStyleOptionTabBarBase)
 	return tmpValue
 }
 
@@ -82437,7 +82430,7 @@ func (ptr *QStyleOptionTabBarBase) SetShape(vqt QTabBar__Shape) {
 func (ptr *QStyleOptionTabBarBase) TabBarRect() *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QStyleOptionTabBarBase_TabBarRect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -82452,7 +82445,7 @@ func (ptr *QStyleOptionTabBarBase) SetTabBarRect(vqr core.QRect_ITF) {
 func (ptr *QStyleOptionTabBarBase) SelectedTabRect() *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QStyleOptionTabBarBase_SelectedTabRect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -82521,7 +82514,7 @@ func (ptr *QStyleOptionTabWidgetFrame) DestroyQStyleOptionTabWidgetFrame() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -82543,13 +82536,13 @@ var (
 
 func NewQStyleOptionTabWidgetFrame() *QStyleOptionTabWidgetFrame {
 	tmpValue := NewQStyleOptionTabWidgetFrameFromPointer(C.QStyleOptionTabWidgetFrame_NewQStyleOptionTabWidgetFrame())
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionTabWidgetFrame).DestroyQStyleOptionTabWidgetFrame)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionTabWidgetFrame).DestroyQStyleOptionTabWidgetFrame)
 	return tmpValue
 }
 
 func NewQStyleOptionTabWidgetFrame2(other QStyleOptionTabWidgetFrame_ITF) *QStyleOptionTabWidgetFrame {
 	tmpValue := NewQStyleOptionTabWidgetFrameFromPointer(C.QStyleOptionTabWidgetFrame_NewQStyleOptionTabWidgetFrame2(PointerFromQStyleOptionTabWidgetFrame(other)))
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionTabWidgetFrame).DestroyQStyleOptionTabWidgetFrame)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionTabWidgetFrame).DestroyQStyleOptionTabWidgetFrame)
 	return tmpValue
 }
 
@@ -82595,7 +82588,7 @@ func (ptr *QStyleOptionTabWidgetFrame) SetShape(vqt QTabBar__Shape) {
 func (ptr *QStyleOptionTabWidgetFrame) TabBarSize() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QStyleOptionTabWidgetFrame_TabBarSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -82610,7 +82603,7 @@ func (ptr *QStyleOptionTabWidgetFrame) SetTabBarSize(vqs core.QSize_ITF) {
 func (ptr *QStyleOptionTabWidgetFrame) RightCornerWidgetSize() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QStyleOptionTabWidgetFrame_RightCornerWidgetSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -82625,7 +82618,7 @@ func (ptr *QStyleOptionTabWidgetFrame) SetRightCornerWidgetSize(vqs core.QSize_I
 func (ptr *QStyleOptionTabWidgetFrame) LeftCornerWidgetSize() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QStyleOptionTabWidgetFrame_LeftCornerWidgetSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -82640,7 +82633,7 @@ func (ptr *QStyleOptionTabWidgetFrame) SetLeftCornerWidgetSize(vqs core.QSize_IT
 func (ptr *QStyleOptionTabWidgetFrame) TabBarRect() *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QStyleOptionTabWidgetFrame_TabBarRect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -82655,7 +82648,7 @@ func (ptr *QStyleOptionTabWidgetFrame) SetTabBarRect(vqr core.QRect_ITF) {
 func (ptr *QStyleOptionTabWidgetFrame) SelectedTabRect() *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QStyleOptionTabWidgetFrame_SelectedTabRect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -82711,7 +82704,7 @@ func (ptr *QStyleOptionTitleBar) DestroyQStyleOptionTitleBar() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -82733,13 +82726,13 @@ var (
 
 func NewQStyleOptionTitleBar() *QStyleOptionTitleBar {
 	tmpValue := NewQStyleOptionTitleBarFromPointer(C.QStyleOptionTitleBar_NewQStyleOptionTitleBar())
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionTitleBar).DestroyQStyleOptionTitleBar)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionTitleBar).DestroyQStyleOptionTitleBar)
 	return tmpValue
 }
 
 func NewQStyleOptionTitleBar2(other QStyleOptionTitleBar_ITF) *QStyleOptionTitleBar {
 	tmpValue := NewQStyleOptionTitleBarFromPointer(C.QStyleOptionTitleBar_NewQStyleOptionTitleBar2(PointerFromQStyleOptionTitleBar(other)))
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionTitleBar).DestroyQStyleOptionTitleBar)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionTitleBar).DestroyQStyleOptionTitleBar)
 	return tmpValue
 }
 
@@ -82764,7 +82757,7 @@ func (ptr *QStyleOptionTitleBar) SetText(vqs string) {
 func (ptr *QStyleOptionTitleBar) Icon() *gui.QIcon {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQIconFromPointer(C.QStyleOptionTitleBar_Icon(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+		qt.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
 		return tmpValue
 	}
 	return nil
@@ -82846,7 +82839,7 @@ func (ptr *QStyleOptionToolBar) DestroyQStyleOptionToolBar() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -82888,13 +82881,13 @@ const (
 
 func NewQStyleOptionToolBar() *QStyleOptionToolBar {
 	tmpValue := NewQStyleOptionToolBarFromPointer(C.QStyleOptionToolBar_NewQStyleOptionToolBar())
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionToolBar).DestroyQStyleOptionToolBar)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionToolBar).DestroyQStyleOptionToolBar)
 	return tmpValue
 }
 
 func NewQStyleOptionToolBar2(other QStyleOptionToolBar_ITF) *QStyleOptionToolBar {
 	tmpValue := NewQStyleOptionToolBarFromPointer(C.QStyleOptionToolBar_NewQStyleOptionToolBar2(PointerFromQStyleOptionToolBar(other)))
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionToolBar).DestroyQStyleOptionToolBar)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionToolBar).DestroyQStyleOptionToolBar)
 	return tmpValue
 }
 
@@ -83020,7 +83013,7 @@ func (ptr *QStyleOptionToolBox) DestroyQStyleOptionToolBox() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -83063,13 +83056,13 @@ const (
 
 func NewQStyleOptionToolBox() *QStyleOptionToolBox {
 	tmpValue := NewQStyleOptionToolBoxFromPointer(C.QStyleOptionToolBox_NewQStyleOptionToolBox())
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionToolBox).DestroyQStyleOptionToolBox)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionToolBox).DestroyQStyleOptionToolBox)
 	return tmpValue
 }
 
 func NewQStyleOptionToolBox2(other QStyleOptionToolBox_ITF) *QStyleOptionToolBox {
 	tmpValue := NewQStyleOptionToolBoxFromPointer(C.QStyleOptionToolBox_NewQStyleOptionToolBox2(PointerFromQStyleOptionToolBox(other)))
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionToolBox).DestroyQStyleOptionToolBox)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionToolBox).DestroyQStyleOptionToolBox)
 	return tmpValue
 }
 
@@ -83094,7 +83087,7 @@ func (ptr *QStyleOptionToolBox) SetText(vqs string) {
 func (ptr *QStyleOptionToolBox) Icon() *gui.QIcon {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQIconFromPointer(C.QStyleOptionToolBox_Icon(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+		qt.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
 		return tmpValue
 	}
 	return nil
@@ -83163,7 +83156,7 @@ func (ptr *QStyleOptionToolButton) DestroyQStyleOptionToolButton() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -83198,13 +83191,13 @@ const (
 
 func NewQStyleOptionToolButton() *QStyleOptionToolButton {
 	tmpValue := NewQStyleOptionToolButtonFromPointer(C.QStyleOptionToolButton_NewQStyleOptionToolButton())
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionToolButton).DestroyQStyleOptionToolButton)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionToolButton).DestroyQStyleOptionToolButton)
 	return tmpValue
 }
 
 func NewQStyleOptionToolButton2(other QStyleOptionToolButton_ITF) *QStyleOptionToolButton {
 	tmpValue := NewQStyleOptionToolButtonFromPointer(C.QStyleOptionToolButton_NewQStyleOptionToolButton2(PointerFromQStyleOptionToolButton(other)))
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionToolButton).DestroyQStyleOptionToolButton)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionToolButton).DestroyQStyleOptionToolButton)
 	return tmpValue
 }
 
@@ -83224,7 +83217,7 @@ func (ptr *QStyleOptionToolButton) SetFeatures(vqs QStyleOptionToolButton__ToolB
 func (ptr *QStyleOptionToolButton) Icon() *gui.QIcon {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQIconFromPointer(C.QStyleOptionToolButton_Icon(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+		qt.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
 		return tmpValue
 	}
 	return nil
@@ -83239,7 +83232,7 @@ func (ptr *QStyleOptionToolButton) SetIcon(vqi gui.QIcon_ITF) {
 func (ptr *QStyleOptionToolButton) IconSize() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QStyleOptionToolButton_IconSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -83298,7 +83291,7 @@ func (ptr *QStyleOptionToolButton) SetToolButtonStyle(vqt core.Qt__ToolButtonSty
 func (ptr *QStyleOptionToolButton) Pos() *core.QPoint {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFromPointer(C.QStyleOptionToolButton_Pos(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
+		qt.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
 		return tmpValue
 	}
 	return nil
@@ -83313,7 +83306,7 @@ func (ptr *QStyleOptionToolButton) SetPos(vqp core.QPoint_ITF) {
 func (ptr *QStyleOptionToolButton) Font() *gui.QFont {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQFontFromPointer(C.QStyleOptionToolButton_Font(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
+		qt.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 		return tmpValue
 	}
 	return nil
@@ -83369,7 +83362,7 @@ func (ptr *QStyleOptionViewItem) DestroyQStyleOptionViewItem() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -83427,13 +83420,13 @@ const (
 
 func NewQStyleOptionViewItem() *QStyleOptionViewItem {
 	tmpValue := NewQStyleOptionViewItemFromPointer(C.QStyleOptionViewItem_NewQStyleOptionViewItem())
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionViewItem).DestroyQStyleOptionViewItem)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionViewItem).DestroyQStyleOptionViewItem)
 	return tmpValue
 }
 
 func NewQStyleOptionViewItem2(other QStyleOptionViewItem_ITF) *QStyleOptionViewItem {
 	tmpValue := NewQStyleOptionViewItemFromPointer(C.QStyleOptionViewItem_NewQStyleOptionViewItem2(PointerFromQStyleOptionViewItem(other)))
-	runtime.SetFinalizer(tmpValue, (*QStyleOptionViewItem).DestroyQStyleOptionViewItem)
+	qt.SetFinalizer(tmpValue, (*QStyleOptionViewItem).DestroyQStyleOptionViewItem)
 	return tmpValue
 }
 
@@ -83492,7 +83485,7 @@ func (ptr *QStyleOptionViewItem) SetDecorationPosition(vqs QStyleOptionViewItem_
 func (ptr *QStyleOptionViewItem) DecorationSize() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QStyleOptionViewItem_DecorationSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -83507,7 +83500,7 @@ func (ptr *QStyleOptionViewItem) SetDecorationSize(vqs core.QSize_ITF) {
 func (ptr *QStyleOptionViewItem) Font() *gui.QFont {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQFontFromPointer(C.QStyleOptionViewItem_Font(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
+		qt.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 		return tmpValue
 	}
 	return nil
@@ -83548,7 +83541,7 @@ func (ptr *QStyleOptionViewItem) SetFeatures(vqs QStyleOptionViewItem__ViewItemF
 func (ptr *QStyleOptionViewItem) Index() *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QStyleOptionViewItem_Index(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -83576,7 +83569,7 @@ func (ptr *QStyleOptionViewItem) SetCheckState(vqt core.Qt__CheckState) {
 func (ptr *QStyleOptionViewItem) Icon() *gui.QIcon {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQIconFromPointer(C.QStyleOptionViewItem_Icon(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+		qt.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
 		return tmpValue
 	}
 	return nil
@@ -83622,7 +83615,7 @@ func (ptr *QStyleOptionViewItem) SetViewItemPosition(vqs QStyleOptionViewItem__V
 func (ptr *QStyleOptionViewItem) BackgroundBrush() *gui.QBrush {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQBrushFromPointer(C.QStyleOptionViewItem_BackgroundBrush(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
+		qt.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
 		return tmpValue
 	}
 	return nil
@@ -83678,25 +83671,25 @@ func (ptr *QStylePainter) DestroyQStylePainter() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func NewQStylePainter() *QStylePainter {
 	tmpValue := NewQStylePainterFromPointer(C.QStylePainter_NewQStylePainter())
-	runtime.SetFinalizer(tmpValue, (*QStylePainter).DestroyQStylePainter)
+	qt.SetFinalizer(tmpValue, (*QStylePainter).DestroyQStylePainter)
 	return tmpValue
 }
 
 func NewQStylePainter2(widget QWidget_ITF) *QStylePainter {
 	tmpValue := NewQStylePainterFromPointer(C.QStylePainter_NewQStylePainter2(PointerFromQWidget(widget)))
-	runtime.SetFinalizer(tmpValue, (*QStylePainter).DestroyQStylePainter)
+	qt.SetFinalizer(tmpValue, (*QStylePainter).DestroyQStylePainter)
 	return tmpValue
 }
 
 func NewQStylePainter3(pd gui.QPaintDevice_ITF, widget QWidget_ITF) *QStylePainter {
 	tmpValue := NewQStylePainterFromPointer(C.QStylePainter_NewQStylePainter3(gui.PointerFromQPaintDevice(pd), PointerFromQWidget(widget)))
-	runtime.SetFinalizer(tmpValue, (*QStylePainter).DestroyQStylePainter)
+	qt.SetFinalizer(tmpValue, (*QStylePainter).DestroyQStylePainter)
 	return tmpValue
 }
 
@@ -83763,7 +83756,7 @@ func (ptr *QStylePainter) Style() *QStyle {
 func (ptr *QStylePainter) __drawLines_lines_atList2(i int) *core.QLineF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQLineFFromPointer(C.QStylePainter___drawLines_lines_atList2(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QLineF).DestroyQLineF)
+		qt.SetFinalizer(tmpValue, (*core.QLineF).DestroyQLineF)
 		return tmpValue
 	}
 	return nil
@@ -83782,7 +83775,7 @@ func (ptr *QStylePainter) __drawLines_lines_newList2() unsafe.Pointer {
 func (ptr *QStylePainter) __drawLines_pointPairs_atList4(i int) *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QStylePainter___drawLines_pointPairs_atList4(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -83801,7 +83794,7 @@ func (ptr *QStylePainter) __drawLines_pointPairs_newList4() unsafe.Pointer {
 func (ptr *QStylePainter) __drawLines_lines_atList6(i int) *core.QLine {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQLineFromPointer(C.QStylePainter___drawLines_lines_atList6(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QLine).DestroyQLine)
+		qt.SetFinalizer(tmpValue, (*core.QLine).DestroyQLine)
 		return tmpValue
 	}
 	return nil
@@ -83820,7 +83813,7 @@ func (ptr *QStylePainter) __drawLines_lines_newList6() unsafe.Pointer {
 func (ptr *QStylePainter) __drawLines_pointPairs_atList8(i int) *core.QPoint {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFromPointer(C.QStylePainter___drawLines_pointPairs_atList8(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
+		qt.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
 		return tmpValue
 	}
 	return nil
@@ -83839,7 +83832,7 @@ func (ptr *QStylePainter) __drawLines_pointPairs_newList8() unsafe.Pointer {
 func (ptr *QStylePainter) __drawRects_rectangles_atList2(i int) *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QStylePainter___drawRects_rectangles_atList2(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -83858,7 +83851,7 @@ func (ptr *QStylePainter) __drawRects_rectangles_newList2() unsafe.Pointer {
 func (ptr *QStylePainter) __drawRects_rectangles_atList4(i int) *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QStylePainter___drawRects_rectangles_atList4(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -84002,7 +83995,7 @@ func (ptr *QStylePlugin) DestroyQStylePlugin() {
 	if ptr.Pointer() != nil {
 		C.QStylePlugin_DestroyQStylePlugin(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -84010,7 +84003,7 @@ func (ptr *QStylePlugin) DestroyQStylePluginDefault() {
 	if ptr.Pointer() != nil {
 		C.QStylePlugin_DestroyQStylePluginDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -84038,7 +84031,7 @@ func (ptr *QStylePlugin) __children_newList() unsafe.Pointer {
 func (ptr *QStylePlugin) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QStylePlugin___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -84174,7 +84167,7 @@ func callbackQStylePlugin_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QStylePlugin) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QStylePlugin_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -84497,7 +84490,7 @@ func (ptr *QStyledItemDelegate) DisconnectSizeHint() {
 func (ptr *QStyledItemDelegate) SizeHint(option QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QStyledItemDelegate_SizeHint(ptr.Pointer(), PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -84506,7 +84499,7 @@ func (ptr *QStyledItemDelegate) SizeHint(option QStyleOptionViewItem_ITF, index 
 func (ptr *QStyledItemDelegate) SizeHintDefault(option QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QStyledItemDelegate_SizeHintDefault(ptr.Pointer(), PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -84547,7 +84540,7 @@ func (ptr *QStyledItemDelegate) DestroyQStyledItemDelegate() {
 	if ptr.Pointer() != nil {
 		C.QStyledItemDelegate_DestroyQStyledItemDelegate(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -84555,7 +84548,7 @@ func (ptr *QStyledItemDelegate) DestroyQStyledItemDelegateDefault() {
 	if ptr.Pointer() != nil {
 		C.QStyledItemDelegate_DestroyQStyledItemDelegateDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -84672,7 +84665,7 @@ func (ptr *QSwipeGesture) DestroyQSwipeGesture() {
 	if ptr.Pointer() != nil {
 		C.QSwipeGesture_DestroyQSwipeGesture(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -84680,7 +84673,7 @@ func (ptr *QSwipeGesture) DestroyQSwipeGestureDefault() {
 	if ptr.Pointer() != nil {
 		C.QSwipeGesture_DestroyQSwipeGestureDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -84832,7 +84825,7 @@ func (ptr *QSystemTrayIcon) EventDefault(e core.QEvent_ITF) bool {
 func (ptr *QSystemTrayIcon) Geometry() *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QSystemTrayIcon_Geometry(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -84884,7 +84877,7 @@ func (ptr *QSystemTrayIcon) HideDefault() {
 func (ptr *QSystemTrayIcon) Icon() *gui.QIcon {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQIconFromPointer(C.QSystemTrayIcon_Icon(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+		qt.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
 		return tmpValue
 	}
 	return nil
@@ -85230,7 +85223,7 @@ func (ptr *QSystemTrayIcon) DestroyQSystemTrayIcon() {
 	if ptr.Pointer() != nil {
 		C.QSystemTrayIcon_DestroyQSystemTrayIcon(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -85238,7 +85231,7 @@ func (ptr *QSystemTrayIcon) DestroyQSystemTrayIconDefault() {
 	if ptr.Pointer() != nil {
 		C.QSystemTrayIcon_DestroyQSystemTrayIconDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -85266,7 +85259,7 @@ func (ptr *QSystemTrayIcon) __children_newList() unsafe.Pointer {
 func (ptr *QSystemTrayIcon) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QSystemTrayIcon___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -85402,7 +85395,7 @@ func callbackQSystemTrayIcon_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QSystemTrayIcon) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QSystemTrayIcon_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -85695,7 +85688,7 @@ func (ptr *QTabBar) Expanding() bool {
 func (ptr *QTabBar) IconSize() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QTabBar_IconSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -85779,7 +85772,7 @@ func (ptr *QTabBar) DisconnectMinimumTabSizeHint() {
 func (ptr *QTabBar) MinimumTabSizeHint(index int) *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QTabBar_MinimumTabSizeHint(ptr.Pointer(), C.int(int32(index))))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -85788,7 +85781,7 @@ func (ptr *QTabBar) MinimumTabSizeHint(index int) *core.QSize {
 func (ptr *QTabBar) MinimumTabSizeHintDefault(index int) *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QTabBar_MinimumTabSizeHintDefault(ptr.Pointer(), C.int(int32(index))))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -86150,7 +86143,7 @@ func (ptr *QTabBar) TabCloseRequested(index int) {
 func (ptr *QTabBar) TabData(index int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QTabBar_TabData(ptr.Pointer(), C.int(int32(index))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -86159,7 +86152,7 @@ func (ptr *QTabBar) TabData(index int) *core.QVariant {
 func (ptr *QTabBar) TabIcon(index int) *gui.QIcon {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQIconFromPointer(C.QTabBar_TabIcon(ptr.Pointer(), C.int(int32(index))))
-		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+		qt.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
 		return tmpValue
 	}
 	return nil
@@ -86294,7 +86287,7 @@ func (ptr *QTabBar) TabMoved(from int, to int) {
 func (ptr *QTabBar) TabRect(index int) *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QTabBar_TabRect(ptr.Pointer(), C.int(int32(index))))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -86377,7 +86370,7 @@ func (ptr *QTabBar) DisconnectTabSizeHint() {
 func (ptr *QTabBar) TabSizeHint(index int) *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QTabBar_TabSizeHint(ptr.Pointer(), C.int(int32(index))))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -86386,7 +86379,7 @@ func (ptr *QTabBar) TabSizeHint(index int) *core.QSize {
 func (ptr *QTabBar) TabSizeHintDefault(index int) *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QTabBar_TabSizeHintDefault(ptr.Pointer(), C.int(int32(index))))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -86402,7 +86395,7 @@ func (ptr *QTabBar) TabText(index int) string {
 func (ptr *QTabBar) TabTextColor(index int) *gui.QColor {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQColorFromPointer(C.QTabBar_TabTextColor(ptr.Pointer(), C.int(int32(index))))
-		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+		qt.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
 	return nil
@@ -86471,7 +86464,7 @@ func (ptr *QTabBar) DestroyQTabBar() {
 	if ptr.Pointer() != nil {
 		C.QTabBar_DestroyQTabBar(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -86479,7 +86472,7 @@ func (ptr *QTabBar) DestroyQTabBarDefault() {
 	if ptr.Pointer() != nil {
 		C.QTabBar_DestroyQTabBarDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -86673,7 +86666,7 @@ func (ptr *QTabWidget) ElideMode() core.Qt__TextElideMode {
 func (ptr *QTabWidget) IconSize() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QTabWidget_IconSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -87074,7 +87067,7 @@ func (ptr *QTabWidget) TabCloseRequested(index int) {
 func (ptr *QTabWidget) TabIcon(index int) *gui.QIcon {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQIconFromPointer(C.QTabWidget_TabIcon(ptr.Pointer(), C.int(int32(index))))
-		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+		qt.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
 		return tmpValue
 	}
 	return nil
@@ -87261,7 +87254,7 @@ func (ptr *QTabWidget) DestroyQTabWidget() {
 	if ptr.Pointer() != nil {
 		C.QTabWidget_DestroyQTabWidget(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -87269,7 +87262,7 @@ func (ptr *QTabWidget) DestroyQTabWidgetDefault() {
 	if ptr.Pointer() != nil {
 		C.QTabWidget_DestroyQTabWidgetDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -87708,7 +87701,7 @@ func (ptr *QTableView) DisconnectIndexAt() {
 func (ptr *QTableView) IndexAt(pos core.QPoint_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QTableView_IndexAt(ptr.Pointer(), core.PointerFromQPoint(pos)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -87717,7 +87710,7 @@ func (ptr *QTableView) IndexAt(pos core.QPoint_ITF) *core.QModelIndex {
 func (ptr *QTableView) IndexAtDefault(pos core.QPoint_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QTableView_IndexAtDefault(ptr.Pointer(), core.PointerFromQPoint(pos)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -87830,7 +87823,7 @@ func (ptr *QTableView) DisconnectMoveCursor() {
 func (ptr *QTableView) MoveCursor(cursorAction QAbstractItemView__CursorAction, modifiers core.Qt__KeyboardModifier) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QTableView_MoveCursor(ptr.Pointer(), C.longlong(cursorAction), C.longlong(modifiers)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -87839,7 +87832,7 @@ func (ptr *QTableView) MoveCursor(cursorAction QAbstractItemView__CursorAction, 
 func (ptr *QTableView) MoveCursorDefault(cursorAction QAbstractItemView__CursorAction, modifiers core.Qt__KeyboardModifier) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QTableView_MoveCursorDefault(ptr.Pointer(), C.longlong(cursorAction), C.longlong(modifiers)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -88775,7 +88768,7 @@ func (ptr *QTableView) DestroyQTableView() {
 	if ptr.Pointer() != nil {
 		C.QTableView_DestroyQTableView(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -88783,7 +88776,7 @@ func (ptr *QTableView) DestroyQTableViewDefault() {
 	if ptr.Pointer() != nil {
 		C.QTableView_DestroyQTableViewDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -88820,7 +88813,7 @@ func callbackQTableView_VisualRect(ptr unsafe.Pointer, index unsafe.Pointer) uns
 func (ptr *QTableView) VisualRect(index core.QModelIndex_ITF) *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QTableView_VisualRect(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -88829,7 +88822,7 @@ func (ptr *QTableView) VisualRect(index core.QModelIndex_ITF) *core.QRect {
 func (ptr *QTableView) VisualRectDefault(index core.QModelIndex_ITF) *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QTableView_VisualRectDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -88847,7 +88840,7 @@ func callbackQTableView_VisualRegionForSelection(ptr unsafe.Pointer, selection u
 func (ptr *QTableView) VisualRegionForSelection(selection core.QItemSelection_ITF) *gui.QRegion {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQRegionFromPointer(C.QTableView_VisualRegionForSelection(ptr.Pointer(), core.PointerFromQItemSelection(selection)))
-		runtime.SetFinalizer(tmpValue, (*gui.QRegion).DestroyQRegion)
+		qt.SetFinalizer(tmpValue, (*gui.QRegion).DestroyQRegion)
 		return tmpValue
 	}
 	return nil
@@ -88856,7 +88849,7 @@ func (ptr *QTableView) VisualRegionForSelection(selection core.QItemSelection_IT
 func (ptr *QTableView) VisualRegionForSelectionDefault(selection core.QItemSelection_ITF) *gui.QRegion {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQRegionFromPointer(C.QTableView_VisualRegionForSelectionDefault(ptr.Pointer(), core.PointerFromQItemSelection(selection)))
-		runtime.SetFinalizer(tmpValue, (*gui.QRegion).DestroyQRegion)
+		qt.SetFinalizer(tmpValue, (*gui.QRegion).DestroyQRegion)
 		return tmpValue
 	}
 	return nil
@@ -89454,7 +89447,7 @@ func (ptr *QTableWidget) HorizontalHeaderItem(column int) *QTableWidgetItem {
 func (ptr *QTableWidget) IndexFromItem(item QTableWidgetItem_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QTableWidget_IndexFromItem(ptr.Pointer(), PointerFromQTableWidgetItem(item)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -90367,7 +90360,7 @@ func (ptr *QTableWidget) VisualColumn(logicalColumn int) int {
 func (ptr *QTableWidget) VisualItemRect(item QTableWidgetItem_ITF) *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QTableWidget_VisualItemRect(ptr.Pointer(), PointerFromQTableWidgetItem(item)))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -90415,7 +90408,7 @@ func (ptr *QTableWidget) DestroyQTableWidget() {
 	if ptr.Pointer() != nil {
 		C.QTableWidget_DestroyQTableWidget(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -90423,7 +90416,7 @@ func (ptr *QTableWidget) DestroyQTableWidgetDefault() {
 	if ptr.Pointer() != nil {
 		C.QTableWidget_DestroyQTableWidgetDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -90498,7 +90491,7 @@ func (ptr *QTableWidget) __selectedItems_newList() unsafe.Pointer {
 func (ptr *QTableWidget) __selectedRanges_atList(i int) *QTableWidgetSelectionRange {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQTableWidgetSelectionRangeFromPointer(C.QTableWidget___selectedRanges_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QTableWidgetSelectionRange).DestroyQTableWidgetSelectionRange)
+		qt.SetFinalizer(tmpValue, (*QTableWidgetSelectionRange).DestroyQTableWidgetSelectionRange)
 		return tmpValue
 	}
 	return nil
@@ -90590,7 +90583,7 @@ func NewQTableWidgetItem4(other QTableWidgetItem_ITF) *QTableWidgetItem {
 func (ptr *QTableWidgetItem) Background() *gui.QBrush {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQBrushFromPointer(C.QTableWidgetItem_Background(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
+		qt.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
 		return tmpValue
 	}
 	return nil
@@ -90689,7 +90682,7 @@ func (ptr *QTableWidgetItem) DisconnectData() {
 func (ptr *QTableWidgetItem) Data(role int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QTableWidgetItem_Data(ptr.Pointer(), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -90698,7 +90691,7 @@ func (ptr *QTableWidgetItem) Data(role int) *core.QVariant {
 func (ptr *QTableWidgetItem) DataDefault(role int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QTableWidgetItem_DataDefault(ptr.Pointer(), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -90714,7 +90707,7 @@ func (ptr *QTableWidgetItem) Flags() core.Qt__ItemFlag {
 func (ptr *QTableWidgetItem) Font() *gui.QFont {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQFontFromPointer(C.QTableWidgetItem_Font(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
+		qt.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 		return tmpValue
 	}
 	return nil
@@ -90723,7 +90716,7 @@ func (ptr *QTableWidgetItem) Font() *gui.QFont {
 func (ptr *QTableWidgetItem) Foreground() *gui.QBrush {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQBrushFromPointer(C.QTableWidgetItem_Foreground(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
+		qt.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
 		return tmpValue
 	}
 	return nil
@@ -90732,7 +90725,7 @@ func (ptr *QTableWidgetItem) Foreground() *gui.QBrush {
 func (ptr *QTableWidgetItem) Icon() *gui.QIcon {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQIconFromPointer(C.QTableWidgetItem_Icon(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+		qt.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
 		return tmpValue
 	}
 	return nil
@@ -90939,7 +90932,7 @@ func (ptr *QTableWidgetItem) SetWhatsThis(whatsThis string) {
 func (ptr *QTableWidgetItem) SizeHint() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QTableWidgetItem_SizeHint(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -91076,7 +91069,7 @@ func (ptr *QTableWidgetItem) DestroyQTableWidgetItem() {
 	if ptr.Pointer() != nil {
 		C.QTableWidgetItem_DestroyQTableWidgetItem(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -91084,7 +91077,7 @@ func (ptr *QTableWidgetItem) DestroyQTableWidgetItemDefault() {
 	if ptr.Pointer() != nil {
 		C.QTableWidgetItem_DestroyQTableWidgetItemDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -91135,19 +91128,19 @@ func NewQTableWidgetSelectionRangeFromPointer(ptr unsafe.Pointer) (n *QTableWidg
 }
 func NewQTableWidgetSelectionRange() *QTableWidgetSelectionRange {
 	tmpValue := NewQTableWidgetSelectionRangeFromPointer(C.QTableWidgetSelectionRange_NewQTableWidgetSelectionRange())
-	runtime.SetFinalizer(tmpValue, (*QTableWidgetSelectionRange).DestroyQTableWidgetSelectionRange)
+	qt.SetFinalizer(tmpValue, (*QTableWidgetSelectionRange).DestroyQTableWidgetSelectionRange)
 	return tmpValue
 }
 
 func NewQTableWidgetSelectionRange2(top int, left int, bottom int, right int) *QTableWidgetSelectionRange {
 	tmpValue := NewQTableWidgetSelectionRangeFromPointer(C.QTableWidgetSelectionRange_NewQTableWidgetSelectionRange2(C.int(int32(top)), C.int(int32(left)), C.int(int32(bottom)), C.int(int32(right))))
-	runtime.SetFinalizer(tmpValue, (*QTableWidgetSelectionRange).DestroyQTableWidgetSelectionRange)
+	qt.SetFinalizer(tmpValue, (*QTableWidgetSelectionRange).DestroyQTableWidgetSelectionRange)
 	return tmpValue
 }
 
 func NewQTableWidgetSelectionRange3(other QTableWidgetSelectionRange_ITF) *QTableWidgetSelectionRange {
 	tmpValue := NewQTableWidgetSelectionRangeFromPointer(C.QTableWidgetSelectionRange_NewQTableWidgetSelectionRange3(PointerFromQTableWidgetSelectionRange(other)))
-	runtime.SetFinalizer(tmpValue, (*QTableWidgetSelectionRange).DestroyQTableWidgetSelectionRange)
+	qt.SetFinalizer(tmpValue, (*QTableWidgetSelectionRange).DestroyQTableWidgetSelectionRange)
 	return tmpValue
 }
 
@@ -91198,7 +91191,7 @@ func (ptr *QTableWidgetSelectionRange) DestroyQTableWidgetSelectionRange() {
 		C.QTableWidgetSelectionRange_DestroyQTableWidgetSelectionRange(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -91243,7 +91236,7 @@ func NewQTapAndHoldGestureFromPointer(ptr unsafe.Pointer) (n *QTapAndHoldGesture
 func (ptr *QTapAndHoldGesture) Position() *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QTapAndHoldGesture_Position(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -91306,7 +91299,7 @@ func (ptr *QTapAndHoldGesture) DestroyQTapAndHoldGesture() {
 	if ptr.Pointer() != nil {
 		C.QTapAndHoldGesture_DestroyQTapAndHoldGesture(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -91314,7 +91307,7 @@ func (ptr *QTapAndHoldGesture) DestroyQTapAndHoldGestureDefault() {
 	if ptr.Pointer() != nil {
 		C.QTapAndHoldGesture_DestroyQTapAndHoldGestureDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -91359,7 +91352,7 @@ func NewQTapGestureFromPointer(ptr unsafe.Pointer) (n *QTapGesture) {
 func (ptr *QTapGesture) Position() *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QTapGesture_Position(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -91406,7 +91399,7 @@ func (ptr *QTapGesture) DestroyQTapGesture() {
 	if ptr.Pointer() != nil {
 		C.QTapGesture_DestroyQTapGesture(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -91414,7 +91407,7 @@ func (ptr *QTapGesture) DestroyQTapGestureDefault() {
 	if ptr.Pointer() != nil {
 		C.QTapGesture_DestroyQTapGestureDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -91825,7 +91818,7 @@ func (ptr *QTextBrowser) HistoryTitle(i int) string {
 func (ptr *QTextBrowser) HistoryUrl(i int) *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QTextBrowser_HistoryUrl(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -92018,7 +92011,7 @@ func (ptr *QTextBrowser) SetSourceDefault(name core.QUrl_ITF) {
 func (ptr *QTextBrowser) Source() *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QTextBrowser_Source(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -92508,7 +92501,7 @@ func (ptr *QTextEdit) CreateStandardContextMenu2(position core.QPoint_ITF) *QMen
 func (ptr *QTextEdit) CurrentCharFormat() *gui.QTextCharFormat {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQTextCharFormatFromPointer(C.QTextEdit_CurrentCharFormat(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QTextCharFormat).DestroyQTextCharFormat)
+		qt.SetFinalizer(tmpValue, (*gui.QTextCharFormat).DestroyQTextCharFormat)
 		return tmpValue
 	}
 	return nil
@@ -92557,7 +92550,7 @@ func (ptr *QTextEdit) CurrentCharFormatChanged(ff gui.QTextCharFormat_ITF) {
 func (ptr *QTextEdit) CurrentFont() *gui.QFont {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQFontFromPointer(C.QTextEdit_CurrentFont(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
+		qt.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 		return tmpValue
 	}
 	return nil
@@ -92566,7 +92559,7 @@ func (ptr *QTextEdit) CurrentFont() *gui.QFont {
 func (ptr *QTextEdit) CursorForPosition(pos core.QPoint_ITF) *gui.QTextCursor {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQTextCursorFromPointer(C.QTextEdit_CursorForPosition(ptr.Pointer(), core.PointerFromQPoint(pos)))
-		runtime.SetFinalizer(tmpValue, (*gui.QTextCursor).DestroyQTextCursor)
+		qt.SetFinalizer(tmpValue, (*gui.QTextCursor).DestroyQTextCursor)
 		return tmpValue
 	}
 	return nil
@@ -92615,7 +92608,7 @@ func (ptr *QTextEdit) CursorPositionChanged() {
 func (ptr *QTextEdit) CursorRect(cursor gui.QTextCursor_ITF) *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QTextEdit_CursorRect(ptr.Pointer(), gui.PointerFromQTextCursor(cursor)))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -92624,7 +92617,7 @@ func (ptr *QTextEdit) CursorRect(cursor gui.QTextCursor_ITF) *core.QRect {
 func (ptr *QTextEdit) CursorRect2() *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QTextEdit_CursorRect2(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -92976,7 +92969,7 @@ func (ptr *QTextEdit) DisconnectLoadResource() {
 func (ptr *QTextEdit) LoadResource(ty int, name core.QUrl_ITF) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QTextEdit_LoadResource(ptr.Pointer(), C.int(int32(ty)), core.PointerFromQUrl(name)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -92985,7 +92978,7 @@ func (ptr *QTextEdit) LoadResource(ty int, name core.QUrl_ITF) *core.QVariant {
 func (ptr *QTextEdit) LoadResourceDefault(ty int, name core.QUrl_ITF) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QTextEdit_LoadResourceDefault(ptr.Pointer(), C.int(int32(ty)), core.PointerFromQUrl(name)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -93983,7 +93976,7 @@ func (ptr *QTextEdit) TabStopWidth() int {
 func (ptr *QTextEdit) TextBackgroundColor() *gui.QColor {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQColorFromPointer(C.QTextEdit_TextBackgroundColor(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+		qt.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
 	return nil
@@ -94032,7 +94025,7 @@ func (ptr *QTextEdit) TextChanged() {
 func (ptr *QTextEdit) TextColor() *gui.QColor {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQColorFromPointer(C.QTextEdit_TextColor(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+		qt.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
 	return nil
@@ -94041,7 +94034,7 @@ func (ptr *QTextEdit) TextColor() *gui.QColor {
 func (ptr *QTextEdit) TextCursor() *gui.QTextCursor {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQTextCursorFromPointer(C.QTextEdit_TextCursor(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QTextCursor).DestroyQTextCursor)
+		qt.SetFinalizer(tmpValue, (*gui.QTextCursor).DestroyQTextCursor)
 		return tmpValue
 	}
 	return nil
@@ -94279,7 +94272,7 @@ func (ptr *QTextEdit) DestroyQTextEdit() {
 	if ptr.Pointer() != nil {
 		C.QTextEdit_DestroyQTextEdit(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -94287,7 +94280,7 @@ func (ptr *QTextEdit) DestroyQTextEditDefault() {
 	if ptr.Pointer() != nil {
 		C.QTextEdit_DestroyQTextEditDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -94334,19 +94327,19 @@ func (ptr *QTileRules) DestroyQTileRules() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func NewQTileRules(horizontalRule core.Qt__TileRule, verticalRule core.Qt__TileRule) *QTileRules {
 	tmpValue := NewQTileRulesFromPointer(C.QTileRules_NewQTileRules(C.longlong(horizontalRule), C.longlong(verticalRule)))
-	runtime.SetFinalizer(tmpValue, (*QTileRules).DestroyQTileRules)
+	qt.SetFinalizer(tmpValue, (*QTileRules).DestroyQTileRules)
 	return tmpValue
 }
 
 func NewQTileRules2(rule core.Qt__TileRule) *QTileRules {
 	tmpValue := NewQTileRulesFromPointer(C.QTileRules_NewQTileRules2(C.longlong(rule)))
-	runtime.SetFinalizer(tmpValue, (*QTileRules).DestroyQTileRules)
+	qt.SetFinalizer(tmpValue, (*QTileRules).DestroyQTileRules)
 	return tmpValue
 }
 
@@ -94439,7 +94432,7 @@ func (ptr *QTimeEdit) DestroyQTimeEdit() {
 	if ptr.Pointer() != nil {
 		C.QTimeEdit_DestroyQTimeEdit(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -94447,7 +94440,7 @@ func (ptr *QTimeEdit) DestroyQTimeEditDefault() {
 	if ptr.Pointer() != nil {
 		C.QTimeEdit_DestroyQTimeEditDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -94724,7 +94717,7 @@ func (ptr *QToolBar) Clear() {
 func (ptr *QToolBar) IconSize() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QToolBar_IconSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -95201,7 +95194,7 @@ func (ptr *QToolBar) DestroyQToolBar() {
 	if ptr.Pointer() != nil {
 		C.QToolBar_DestroyQToolBar(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -95209,7 +95202,7 @@ func (ptr *QToolBar) DestroyQToolBarDefault() {
 	if ptr.Pointer() != nil {
 		C.QToolBar_DestroyQToolBarDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -95389,7 +95382,7 @@ func (ptr *QToolBox) IsItemEnabled(index int) bool {
 func (ptr *QToolBox) ItemIcon(index int) *gui.QIcon {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQIconFromPointer(C.QToolBox_ItemIcon(ptr.Pointer(), C.int(int32(index))))
-		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+		qt.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
 		return tmpValue
 	}
 	return nil
@@ -95667,7 +95660,7 @@ func (ptr *QToolBox) DestroyQToolBox() {
 	if ptr.Pointer() != nil {
 		C.QToolBox_DestroyQToolBox(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -95675,7 +95668,7 @@ func (ptr *QToolBox) DestroyQToolBoxDefault() {
 	if ptr.Pointer() != nil {
 		C.QToolBox_DestroyQToolBoxDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -96063,7 +96056,7 @@ func (ptr *QToolButton) DestroyQToolButton() {
 	if ptr.Pointer() != nil {
 		C.QToolButton_DestroyQToolButton(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -96071,7 +96064,7 @@ func (ptr *QToolButton) DestroyQToolButtonDefault() {
 	if ptr.Pointer() != nil {
 		C.QToolButton_DestroyQToolButtonDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -96118,19 +96111,19 @@ func (ptr *QToolTip) DestroyQToolTip() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func QToolTip_Font() *gui.QFont {
 	tmpValue := gui.NewQFontFromPointer(C.QToolTip_QToolTip_Font())
-	runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
+	qt.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 	return tmpValue
 }
 
 func (ptr *QToolTip) Font() *gui.QFont {
 	tmpValue := gui.NewQFontFromPointer(C.QToolTip_QToolTip_Font())
-	runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
+	qt.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 	return tmpValue
 }
 
@@ -96152,13 +96145,13 @@ func (ptr *QToolTip) IsVisible() bool {
 
 func QToolTip_Palette() *gui.QPalette {
 	tmpValue := gui.NewQPaletteFromPointer(C.QToolTip_QToolTip_Palette())
-	runtime.SetFinalizer(tmpValue, (*gui.QPalette).DestroyQPalette)
+	qt.SetFinalizer(tmpValue, (*gui.QPalette).DestroyQPalette)
 	return tmpValue
 }
 
 func (ptr *QToolTip) Palette() *gui.QPalette {
 	tmpValue := gui.NewQPaletteFromPointer(C.QToolTip_QToolTip_Palette())
-	runtime.SetFinalizer(tmpValue, (*gui.QPalette).DestroyQPalette)
+	qt.SetFinalizer(tmpValue, (*gui.QPalette).DestroyQPalette)
 	return tmpValue
 }
 
@@ -97108,7 +97101,7 @@ func (ptr *QTreeView) Indentation() int {
 func (ptr *QTreeView) IndexAbove(index core.QModelIndex_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QTreeView_IndexAbove(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -97148,7 +97141,7 @@ func (ptr *QTreeView) DisconnectIndexAt() {
 func (ptr *QTreeView) IndexAt(point core.QPoint_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QTreeView_IndexAt(ptr.Pointer(), core.PointerFromQPoint(point)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -97157,7 +97150,7 @@ func (ptr *QTreeView) IndexAt(point core.QPoint_ITF) *core.QModelIndex {
 func (ptr *QTreeView) IndexAtDefault(point core.QPoint_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QTreeView_IndexAtDefault(ptr.Pointer(), core.PointerFromQPoint(point)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -97166,7 +97159,7 @@ func (ptr *QTreeView) IndexAtDefault(point core.QPoint_ITF) *core.QModelIndex {
 func (ptr *QTreeView) IndexBelow(index core.QModelIndex_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QTreeView_IndexBelow(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -97314,7 +97307,7 @@ func (ptr *QTreeView) DisconnectMoveCursor() {
 func (ptr *QTreeView) MoveCursor(cursorAction QAbstractItemView__CursorAction, modifiers core.Qt__KeyboardModifier) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QTreeView_MoveCursor(ptr.Pointer(), C.longlong(cursorAction), C.longlong(modifiers)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -97323,7 +97316,7 @@ func (ptr *QTreeView) MoveCursor(cursorAction QAbstractItemView__CursorAction, m
 func (ptr *QTreeView) MoveCursorDefault(cursorAction QAbstractItemView__CursorAction, modifiers core.Qt__KeyboardModifier) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QTreeView_MoveCursorDefault(ptr.Pointer(), C.longlong(cursorAction), C.longlong(modifiers)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -98109,7 +98102,7 @@ func (ptr *QTreeView) DisconnectVisualRect() {
 func (ptr *QTreeView) VisualRect(index core.QModelIndex_ITF) *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QTreeView_VisualRect(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -98118,7 +98111,7 @@ func (ptr *QTreeView) VisualRect(index core.QModelIndex_ITF) *core.QRect {
 func (ptr *QTreeView) VisualRectDefault(index core.QModelIndex_ITF) *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QTreeView_VisualRectDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -98158,7 +98151,7 @@ func (ptr *QTreeView) DisconnectVisualRegionForSelection() {
 func (ptr *QTreeView) VisualRegionForSelection(selection core.QItemSelection_ITF) *gui.QRegion {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQRegionFromPointer(C.QTreeView_VisualRegionForSelection(ptr.Pointer(), core.PointerFromQItemSelection(selection)))
-		runtime.SetFinalizer(tmpValue, (*gui.QRegion).DestroyQRegion)
+		qt.SetFinalizer(tmpValue, (*gui.QRegion).DestroyQRegion)
 		return tmpValue
 	}
 	return nil
@@ -98167,7 +98160,7 @@ func (ptr *QTreeView) VisualRegionForSelection(selection core.QItemSelection_ITF
 func (ptr *QTreeView) VisualRegionForSelectionDefault(selection core.QItemSelection_ITF) *gui.QRegion {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQRegionFromPointer(C.QTreeView_VisualRegionForSelectionDefault(ptr.Pointer(), core.PointerFromQItemSelection(selection)))
-		runtime.SetFinalizer(tmpValue, (*gui.QRegion).DestroyQRegion)
+		qt.SetFinalizer(tmpValue, (*gui.QRegion).DestroyQRegion)
 		return tmpValue
 	}
 	return nil
@@ -98215,7 +98208,7 @@ func (ptr *QTreeView) DestroyQTreeView() {
 	if ptr.Pointer() != nil {
 		C.QTreeView_DestroyQTreeView(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -98223,7 +98216,7 @@ func (ptr *QTreeView) DestroyQTreeViewDefault() {
 	if ptr.Pointer() != nil {
 		C.QTreeView_DestroyQTreeViewDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -98567,7 +98560,7 @@ func (ptr *QTreeWidget) HeaderItem() *QTreeWidgetItem {
 func (ptr *QTreeWidget) IndexFromItem(item QTreeWidgetItem_ITF, column int) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QTreeWidget_IndexFromItem(ptr.Pointer(), PointerFromQTreeWidgetItem(item), C.int(int32(column))))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -99349,7 +99342,7 @@ func (ptr *QTreeWidget) TopLevelItemCount() int {
 func (ptr *QTreeWidget) VisualItemRect(item QTreeWidgetItem_ITF) *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QTreeWidget_VisualItemRect(ptr.Pointer(), PointerFromQTreeWidgetItem(item)))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -99390,7 +99383,7 @@ func (ptr *QTreeWidget) DestroyQTreeWidget() {
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_DestroyQTreeWidget(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -99398,7 +99391,7 @@ func (ptr *QTreeWidget) DestroyQTreeWidgetDefault() {
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_DestroyQTreeWidgetDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -99624,7 +99617,7 @@ func (ptr *QTreeWidgetItem) AddChildren(children []*QTreeWidgetItem) {
 func (ptr *QTreeWidgetItem) Background(column int) *gui.QBrush {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQBrushFromPointer(C.QTreeWidgetItem_Background(ptr.Pointer(), C.int(int32(column))))
-		runtime.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
+		qt.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
 		return tmpValue
 	}
 	return nil
@@ -99744,7 +99737,7 @@ func (ptr *QTreeWidgetItem) DisconnectData() {
 func (ptr *QTreeWidgetItem) Data(column int, role int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QTreeWidgetItem_Data(ptr.Pointer(), C.int(int32(column)), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -99753,7 +99746,7 @@ func (ptr *QTreeWidgetItem) Data(column int, role int) *core.QVariant {
 func (ptr *QTreeWidgetItem) DataDefault(column int, role int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QTreeWidgetItem_DataDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -99775,7 +99768,7 @@ func (ptr *QTreeWidgetItem) Flags() core.Qt__ItemFlag {
 func (ptr *QTreeWidgetItem) Font(column int) *gui.QFont {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQFontFromPointer(C.QTreeWidgetItem_Font(ptr.Pointer(), C.int(int32(column))))
-		runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
+		qt.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 		return tmpValue
 	}
 	return nil
@@ -99784,7 +99777,7 @@ func (ptr *QTreeWidgetItem) Font(column int) *gui.QFont {
 func (ptr *QTreeWidgetItem) Foreground(column int) *gui.QBrush {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQBrushFromPointer(C.QTreeWidgetItem_Foreground(ptr.Pointer(), C.int(int32(column))))
-		runtime.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
+		qt.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
 		return tmpValue
 	}
 	return nil
@@ -99793,7 +99786,7 @@ func (ptr *QTreeWidgetItem) Foreground(column int) *gui.QBrush {
 func (ptr *QTreeWidgetItem) Icon(column int) *gui.QIcon {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQIconFromPointer(C.QTreeWidgetItem_Icon(ptr.Pointer(), C.int(int32(column))))
-		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+		qt.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
 		return tmpValue
 	}
 	return nil
@@ -100089,7 +100082,7 @@ func (ptr *QTreeWidgetItem) SetWhatsThis(column int, whatsThis string) {
 func (ptr *QTreeWidgetItem) SizeHint(column int) *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QTreeWidgetItem_SizeHint(ptr.Pointer(), C.int(int32(column))))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -100253,7 +100246,7 @@ func (ptr *QTreeWidgetItem) DestroyQTreeWidgetItem() {
 	if ptr.Pointer() != nil {
 		C.QTreeWidgetItem_DestroyQTreeWidgetItem(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -100261,7 +100254,7 @@ func (ptr *QTreeWidgetItem) DestroyQTreeWidgetItemDefault() {
 	if ptr.Pointer() != nil {
 		C.QTreeWidgetItem_DestroyQTreeWidgetItemDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -101342,7 +101335,7 @@ func (ptr *QUndoGroup) DestroyQUndoGroup() {
 	if ptr.Pointer() != nil {
 		C.QUndoGroup_DestroyQUndoGroup(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -101350,7 +101343,7 @@ func (ptr *QUndoGroup) DestroyQUndoGroupDefault() {
 	if ptr.Pointer() != nil {
 		C.QUndoGroup_DestroyQUndoGroupDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -101399,7 +101392,7 @@ func (ptr *QUndoGroup) __children_newList() unsafe.Pointer {
 func (ptr *QUndoGroup) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QUndoGroup___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -101535,7 +101528,7 @@ func callbackQUndoGroup_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QUndoGroup) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QUndoGroup_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -102373,7 +102366,7 @@ func (ptr *QUndoStack) DestroyQUndoStack() {
 	if ptr.Pointer() != nil {
 		C.QUndoStack_DestroyQUndoStack(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -102381,7 +102374,7 @@ func (ptr *QUndoStack) DestroyQUndoStackDefault() {
 	if ptr.Pointer() != nil {
 		C.QUndoStack_DestroyQUndoStackDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -102409,7 +102402,7 @@ func (ptr *QUndoStack) __children_newList() unsafe.Pointer {
 func (ptr *QUndoStack) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QUndoStack___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -102545,7 +102538,7 @@ func callbackQUndoStack_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QUndoStack) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QUndoStack_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -102708,7 +102701,7 @@ func NewQUndoView3(group QUndoGroup_ITF, parent QWidget_ITF) *QUndoView {
 func (ptr *QUndoView) CleanIcon() *gui.QIcon {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQIconFromPointer(C.QUndoView_CleanIcon(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+		qt.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
 		return tmpValue
 	}
 	return nil
@@ -102881,7 +102874,7 @@ func (ptr *QUndoView) DestroyQUndoView() {
 	if ptr.Pointer() != nil {
 		C.QUndoView_DestroyQUndoView(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -102889,7 +102882,7 @@ func (ptr *QUndoView) DestroyQUndoViewDefault() {
 	if ptr.Pointer() != nil {
 		C.QUndoView_DestroyQUndoViewDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -102982,7 +102975,7 @@ func (ptr *QVBoxLayout) DestroyQVBoxLayout() {
 	if ptr.Pointer() != nil {
 		C.QVBoxLayout_DestroyQVBoxLayout(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -102990,7 +102983,7 @@ func (ptr *QVBoxLayout) DestroyQVBoxLayoutDefault() {
 	if ptr.Pointer() != nil {
 		C.QVBoxLayout_DestroyQVBoxLayoutDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -103037,7 +103030,7 @@ func (ptr *QWhatsThis) DestroyQWhatsThis() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -103299,7 +103292,7 @@ func (ptr *QWidget) BackingStore() *gui.QBackingStore {
 func (ptr *QWidget) BaseSize() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QWidget_BaseSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -103373,7 +103366,7 @@ func (ptr *QWidget) ChildAt2(p core.QPoint_ITF) *QWidget {
 func (ptr *QWidget) ChildrenRect() *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QWidget_ChildrenRect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -103382,7 +103375,7 @@ func (ptr *QWidget) ChildrenRect() *core.QRect {
 func (ptr *QWidget) ChildrenRegion() *gui.QRegion {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQRegionFromPointer(C.QWidget_ChildrenRegion(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QRegion).DestroyQRegion)
+		qt.SetFinalizer(tmpValue, (*gui.QRegion).DestroyQRegion)
 		return tmpValue
 	}
 	return nil
@@ -103491,7 +103484,7 @@ func (ptr *QWidget) CloseEventDefault(event gui.QCloseEvent_ITF) {
 func (ptr *QWidget) ContentsMargins() *core.QMargins {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQMarginsFromPointer(C.QWidget_ContentsMargins(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QMargins).DestroyQMargins)
+		qt.SetFinalizer(tmpValue, (*core.QMargins).DestroyQMargins)
 		return tmpValue
 	}
 	return nil
@@ -103500,7 +103493,7 @@ func (ptr *QWidget) ContentsMargins() *core.QMargins {
 func (ptr *QWidget) ContentsRect() *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QWidget_ContentsRect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -103581,7 +103574,7 @@ func (ptr *QWidget) CreateWindowContainer(window gui.QWindow_ITF, parent QWidget
 func (ptr *QWidget) Cursor() *gui.QCursor {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQCursorFromPointer(C.QWidget_Cursor(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QCursor).DestroyQCursor)
+		qt.SetFinalizer(tmpValue, (*gui.QCursor).DestroyQCursor)
 		return tmpValue
 	}
 	return nil
@@ -104106,7 +104099,7 @@ func (ptr *QWidget) Font() *gui.QFont {
 func (ptr *QWidget) FontInfo() *gui.QFontInfo {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQFontInfoFromPointer(C.QWidget_FontInfo(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QFontInfo).DestroyQFontInfo)
+		qt.SetFinalizer(tmpValue, (*gui.QFontInfo).DestroyQFontInfo)
 		return tmpValue
 	}
 	return nil
@@ -104115,7 +104108,7 @@ func (ptr *QWidget) FontInfo() *gui.QFontInfo {
 func (ptr *QWidget) FontMetrics() *gui.QFontMetrics {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQFontMetricsFromPointer(C.QWidget_FontMetrics(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QFontMetrics).DestroyQFontMetrics)
+		qt.SetFinalizer(tmpValue, (*gui.QFontMetrics).DestroyQFontMetrics)
 		return tmpValue
 	}
 	return nil
@@ -104131,7 +104124,7 @@ func (ptr *QWidget) ForegroundRole() gui.QPalette__ColorRole {
 func (ptr *QWidget) FrameGeometry() *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QWidget_FrameGeometry(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -104140,7 +104133,7 @@ func (ptr *QWidget) FrameGeometry() *core.QRect {
 func (ptr *QWidget) FrameSize() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QWidget_FrameSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -104162,7 +104155,7 @@ func (ptr *QWidget) GetContentsMargins(left int, top int, right int, bottom int)
 func (ptr *QWidget) Grab(rectangle core.QRect_ITF) *gui.QPixmap {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPixmapFromPointer(C.QWidget_Grab(ptr.Pointer(), core.PointerFromQRect(rectangle)))
-		runtime.SetFinalizer(tmpValue, (*gui.QPixmap).DestroyQPixmap)
+		qt.SetFinalizer(tmpValue, (*gui.QPixmap).DestroyQPixmap)
 		return tmpValue
 	}
 	return nil
@@ -104559,7 +104552,7 @@ func (ptr *QWidget) DisconnectInputMethodQuery() {
 func (ptr *QWidget) InputMethodQuery(query core.Qt__InputMethodQuery) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QWidget_InputMethodQuery(ptr.Pointer(), C.longlong(query)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -104568,7 +104561,7 @@ func (ptr *QWidget) InputMethodQuery(query core.Qt__InputMethodQuery) *core.QVar
 func (ptr *QWidget) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QWidget_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -104849,7 +104842,7 @@ func (ptr *QWidget) LeaveEventDefault(event core.QEvent_ITF) {
 func (ptr *QWidget) Locale() *core.QLocale {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQLocaleFromPointer(C.QWidget_Locale(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QLocale).DestroyQLocale)
+		qt.SetFinalizer(tmpValue, (*core.QLocale).DestroyQLocale)
 		return tmpValue
 	}
 	return nil
@@ -104901,7 +104894,7 @@ func (ptr *QWidget) LowerDefault() {
 func (ptr *QWidget) MapFrom(parent QWidget_ITF, pos core.QPoint_ITF) *core.QPoint {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFromPointer(C.QWidget_MapFrom(ptr.Pointer(), PointerFromQWidget(parent), core.PointerFromQPoint(pos)))
-		runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
+		qt.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
 		return tmpValue
 	}
 	return nil
@@ -104910,7 +104903,7 @@ func (ptr *QWidget) MapFrom(parent QWidget_ITF, pos core.QPoint_ITF) *core.QPoin
 func (ptr *QWidget) MapFromGlobal(pos core.QPoint_ITF) *core.QPoint {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFromPointer(C.QWidget_MapFromGlobal(ptr.Pointer(), core.PointerFromQPoint(pos)))
-		runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
+		qt.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
 		return tmpValue
 	}
 	return nil
@@ -104919,7 +104912,7 @@ func (ptr *QWidget) MapFromGlobal(pos core.QPoint_ITF) *core.QPoint {
 func (ptr *QWidget) MapFromParent(pos core.QPoint_ITF) *core.QPoint {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFromPointer(C.QWidget_MapFromParent(ptr.Pointer(), core.PointerFromQPoint(pos)))
-		runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
+		qt.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
 		return tmpValue
 	}
 	return nil
@@ -104928,7 +104921,7 @@ func (ptr *QWidget) MapFromParent(pos core.QPoint_ITF) *core.QPoint {
 func (ptr *QWidget) MapTo(parent QWidget_ITF, pos core.QPoint_ITF) *core.QPoint {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFromPointer(C.QWidget_MapTo(ptr.Pointer(), PointerFromQWidget(parent), core.PointerFromQPoint(pos)))
-		runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
+		qt.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
 		return tmpValue
 	}
 	return nil
@@ -104937,7 +104930,7 @@ func (ptr *QWidget) MapTo(parent QWidget_ITF, pos core.QPoint_ITF) *core.QPoint 
 func (ptr *QWidget) MapToGlobal(pos core.QPoint_ITF) *core.QPoint {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFromPointer(C.QWidget_MapToGlobal(ptr.Pointer(), core.PointerFromQPoint(pos)))
-		runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
+		qt.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
 		return tmpValue
 	}
 	return nil
@@ -104946,7 +104939,7 @@ func (ptr *QWidget) MapToGlobal(pos core.QPoint_ITF) *core.QPoint {
 func (ptr *QWidget) MapToParent(pos core.QPoint_ITF) *core.QPoint {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFromPointer(C.QWidget_MapToParent(ptr.Pointer(), core.PointerFromQPoint(pos)))
-		runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
+		qt.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
 		return tmpValue
 	}
 	return nil
@@ -104955,7 +104948,7 @@ func (ptr *QWidget) MapToParent(pos core.QPoint_ITF) *core.QPoint {
 func (ptr *QWidget) Mask() *gui.QRegion {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQRegionFromPointer(C.QWidget_Mask(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QRegion).DestroyQRegion)
+		qt.SetFinalizer(tmpValue, (*gui.QRegion).DestroyQRegion)
 		return tmpValue
 	}
 	return nil
@@ -104971,7 +104964,7 @@ func (ptr *QWidget) MaximumHeight() int {
 func (ptr *QWidget) MaximumSize() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QWidget_MaximumSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -105039,7 +105032,7 @@ func (ptr *QWidget) MinimumHeight() int {
 func (ptr *QWidget) MinimumSize() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QWidget_MinimumSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -105079,7 +105072,7 @@ func (ptr *QWidget) DisconnectMinimumSizeHint() {
 func (ptr *QWidget) MinimumSizeHint() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QWidget_MinimumSizeHint(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -105088,7 +105081,7 @@ func (ptr *QWidget) MinimumSizeHint() *core.QSize {
 func (ptr *QWidget) MinimumSizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QWidget_MinimumSizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -105429,7 +105422,7 @@ func (ptr *QWidget) NextInFocusChain() *QWidget {
 func (ptr *QWidget) NormalGeometry() *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QWidget_NormalGeometry(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -105550,7 +105543,7 @@ func (ptr *QWidget) ParentWidget() *QWidget {
 func (ptr *QWidget) Pos() *core.QPoint {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFromPointer(C.QWidget_Pos(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
+		qt.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
 		return tmpValue
 	}
 	return nil
@@ -105613,7 +105606,7 @@ func (ptr *QWidget) RaiseDefault() {
 func (ptr *QWidget) Rect() *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QWidget_Rect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -105781,7 +105774,7 @@ func (ptr *QWidget) RestoreGeometry(geometry core.QByteArray_ITF) bool {
 func (ptr *QWidget) SaveGeometry() *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QWidget_SaveGeometry(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -106868,7 +106861,7 @@ func (ptr *QWidget) ShowNormalDefault() {
 func (ptr *QWidget) Size() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QWidget_Size(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -106908,7 +106901,7 @@ func (ptr *QWidget) DisconnectSizeHint() {
 func (ptr *QWidget) SizeHint() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QWidget_SizeHint(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -106917,7 +106910,7 @@ func (ptr *QWidget) SizeHint() *core.QSize {
 func (ptr *QWidget) SizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QWidget_SizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -106926,7 +106919,7 @@ func (ptr *QWidget) SizeHintDefault() *core.QSize {
 func (ptr *QWidget) SizeIncrement() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QWidget_SizeIncrement(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -106935,7 +106928,7 @@ func (ptr *QWidget) SizeIncrement() *core.QSize {
 func (ptr *QWidget) SizePolicy() *QSizePolicy {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSizePolicyFromPointer(C.QWidget_SizePolicy(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QSizePolicy).DestroyQSizePolicy)
+		qt.SetFinalizer(tmpValue, (*QSizePolicy).DestroyQSizePolicy)
 		return tmpValue
 	}
 	return nil
@@ -106957,9 +106950,6 @@ func (ptr *QWidget) StatusTip() string {
 func (ptr *QWidget) Style() *QStyle {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQStyleFromPointer(C.QWidget_Style(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
 		return tmpValue
 	}
 	return nil
@@ -107187,7 +107177,7 @@ func (ptr *QWidget) UpdatesEnabled() bool {
 func (ptr *QWidget) VisibleRegion() *gui.QRegion {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQRegionFromPointer(C.QWidget_VisibleRegion(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QRegion).DestroyQRegion)
+		qt.SetFinalizer(tmpValue, (*gui.QRegion).DestroyQRegion)
 		return tmpValue
 	}
 	return nil
@@ -107296,7 +107286,7 @@ func (ptr *QWidget) WindowHandle() *gui.QWindow {
 func (ptr *QWidget) WindowIcon() *gui.QIcon {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQIconFromPointer(C.QWidget_WindowIcon(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+		qt.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
 		return tmpValue
 	}
 	return nil
@@ -107485,7 +107475,7 @@ func (ptr *QWidget) DestroyQWidget() {
 	if ptr.Pointer() != nil {
 		C.QWidget_DestroyQWidget(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -107493,7 +107483,7 @@ func (ptr *QWidget) DestroyQWidgetDefault() {
 	if ptr.Pointer() != nil {
 		C.QWidget_DestroyQWidgetDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -107584,7 +107574,7 @@ func (ptr *QWidget) __children_newList() unsafe.Pointer {
 func (ptr *QWidget) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QWidget___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -107738,14 +107728,14 @@ func callbackQWidget_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QWidget) DeleteLater() {
 	if ptr.Pointer() != nil {
 		C.QWidget_DeleteLater(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QWidget) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QWidget_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -108078,7 +108068,7 @@ func (ptr *QWidgetAction) DestroyQWidgetAction() {
 	if ptr.Pointer() != nil {
 		C.QWidgetAction_DestroyQWidgetAction(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -108086,7 +108076,7 @@ func (ptr *QWidgetAction) DestroyQWidgetActionDefault() {
 	if ptr.Pointer() != nil {
 		C.QWidgetAction_DestroyQWidgetActionDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -108232,7 +108222,7 @@ func (ptr *QWidgetItem) DisconnectGeometry() {
 func (ptr *QWidgetItem) Geometry() *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QWidgetItem_Geometry(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -108241,7 +108231,7 @@ func (ptr *QWidgetItem) Geometry() *core.QRect {
 func (ptr *QWidgetItem) GeometryDefault() *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QWidgetItem_GeometryDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -108326,7 +108316,7 @@ func (ptr *QWidgetItem) DisconnectMaximumSize() {
 func (ptr *QWidgetItem) MaximumSize() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QWidgetItem_MaximumSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -108335,7 +108325,7 @@ func (ptr *QWidgetItem) MaximumSize() *core.QSize {
 func (ptr *QWidgetItem) MaximumSizeDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QWidgetItem_MaximumSizeDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -108375,7 +108365,7 @@ func (ptr *QWidgetItem) DisconnectMinimumSize() {
 func (ptr *QWidgetItem) MinimumSize() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QWidgetItem_MinimumSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -108384,7 +108374,7 @@ func (ptr *QWidgetItem) MinimumSize() *core.QSize {
 func (ptr *QWidgetItem) MinimumSizeDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QWidgetItem_MinimumSizeDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -108467,7 +108457,7 @@ func (ptr *QWidgetItem) DisconnectSizeHint() {
 func (ptr *QWidgetItem) SizeHint() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QWidgetItem_SizeHint(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -108476,7 +108466,7 @@ func (ptr *QWidgetItem) SizeHint() *core.QSize {
 func (ptr *QWidgetItem) SizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QWidgetItem_SizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -108517,7 +108507,7 @@ func (ptr *QWidgetItem) DestroyQWidgetItem() {
 	if ptr.Pointer() != nil {
 		C.QWidgetItem_DestroyQWidgetItem(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -108525,7 +108515,7 @@ func (ptr *QWidgetItem) DestroyQWidgetItemDefault() {
 	if ptr.Pointer() != nil {
 		C.QWidgetItem_DestroyQWidgetItemDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -108904,7 +108894,7 @@ func (ptr *QWizard) Field(name string) *core.QVariant {
 			defer C.free(unsafe.Pointer(nameC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QWizard_Field(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: nameC, len: C.longlong(len(name))}))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -109203,7 +109193,7 @@ func (ptr *QWizard) PageRemoved(id int) {
 func (ptr *QWizard) Pixmap(which QWizard__WizardPixmap) *gui.QPixmap {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPixmapFromPointer(C.QWizard_Pixmap(ptr.Pointer(), C.longlong(which)))
-		runtime.SetFinalizer(tmpValue, (*gui.QPixmap).DestroyQPixmap)
+		qt.SetFinalizer(tmpValue, (*gui.QPixmap).DestroyQPixmap)
 		return tmpValue
 	}
 	return nil
@@ -109501,7 +109491,7 @@ func (ptr *QWizard) DestroyQWizard() {
 	if ptr.Pointer() != nil {
 		C.QWizard_DestroyQWizard(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -109509,7 +109499,7 @@ func (ptr *QWizard) DestroyQWizardDefault() {
 	if ptr.Pointer() != nil {
 		C.QWizard_DestroyQWizardDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -109691,7 +109681,7 @@ func (ptr *QWizardPage) Field(name string) *core.QVariant {
 			defer C.free(unsafe.Pointer(nameC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QWizardPage_Field(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: nameC, len: C.longlong(len(name))}))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -109847,7 +109837,7 @@ func (ptr *QWizardPage) NextIdDefault() int {
 func (ptr *QWizardPage) Pixmap(which QWizard__WizardPixmap) *gui.QPixmap {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPixmapFromPointer(C.QWizardPage_Pixmap(ptr.Pointer(), C.longlong(which)))
-		runtime.SetFinalizer(tmpValue, (*gui.QPixmap).DestroyQPixmap)
+		qt.SetFinalizer(tmpValue, (*gui.QPixmap).DestroyQPixmap)
 		return tmpValue
 	}
 	return nil
@@ -110041,7 +110031,7 @@ func (ptr *QWizardPage) DestroyQWizardPage() {
 	if ptr.Pointer() != nil {
 		C.QWizardPage_DestroyQWizardPage(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -110049,7 +110039,7 @@ func (ptr *QWizardPage) DestroyQWizardPageDefault() {
 	if ptr.Pointer() != nil {
 		C.QWizardPage_DestroyQWizardPageDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 

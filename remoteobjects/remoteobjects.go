@@ -10,7 +10,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"runtime"
 	"strings"
 	"unsafe"
 )
@@ -78,7 +77,7 @@ func (ptr *DataEntries) DestroyDataEntries() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -125,7 +124,7 @@ func (ptr *IndexValuePair) DestroyIndexValuePair() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -172,7 +171,7 @@ func (ptr *ModelIndex) DestroyModelIndex() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -251,7 +250,7 @@ func (ptr *QAbstractItemModelReplica) __availableRoles_newList() unsafe.Pointer 
 func (ptr *QAbstractItemModelReplica) __roleNames_atList(v int, i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QAbstractItemModelReplica___roleNames_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -301,7 +300,7 @@ func (ptr *QAbstractItemModelReplica) ____roleNames_keyList_newList() unsafe.Poi
 func (ptr *QAbstractItemModelReplica) __changePersistentIndexList_from_atList(i int) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QAbstractItemModelReplica___changePersistentIndexList_from_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -320,7 +319,7 @@ func (ptr *QAbstractItemModelReplica) __changePersistentIndexList_from_newList()
 func (ptr *QAbstractItemModelReplica) __changePersistentIndexList_to_atList(i int) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QAbstractItemModelReplica___changePersistentIndexList_to_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -356,7 +355,7 @@ func (ptr *QAbstractItemModelReplica) __dataChanged_roles_newList() unsafe.Point
 func (ptr *QAbstractItemModelReplica) __itemData_atList(v int, i int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QAbstractItemModelReplica___itemData_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -389,7 +388,7 @@ func (ptr *QAbstractItemModelReplica) __itemData_keyList() []int {
 func (ptr *QAbstractItemModelReplica) __layoutAboutToBeChanged_parents_atList(i int) *core.QPersistentModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPersistentModelIndexFromPointer(C.QAbstractItemModelReplica___layoutAboutToBeChanged_parents_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QPersistentModelIndex).DestroyQPersistentModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QPersistentModelIndex).DestroyQPersistentModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -408,7 +407,7 @@ func (ptr *QAbstractItemModelReplica) __layoutAboutToBeChanged_parents_newList()
 func (ptr *QAbstractItemModelReplica) __layoutChanged_parents_atList(i int) *core.QPersistentModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPersistentModelIndexFromPointer(C.QAbstractItemModelReplica___layoutChanged_parents_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QPersistentModelIndex).DestroyQPersistentModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QPersistentModelIndex).DestroyQPersistentModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -427,7 +426,7 @@ func (ptr *QAbstractItemModelReplica) __layoutChanged_parents_newList() unsafe.P
 func (ptr *QAbstractItemModelReplica) __match_atList(i int) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QAbstractItemModelReplica___match_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -446,7 +445,7 @@ func (ptr *QAbstractItemModelReplica) __match_newList() unsafe.Pointer {
 func (ptr *QAbstractItemModelReplica) __mimeData_indexes_atList(i int) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QAbstractItemModelReplica___mimeData_indexes_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -465,7 +464,7 @@ func (ptr *QAbstractItemModelReplica) __mimeData_indexes_newList() unsafe.Pointe
 func (ptr *QAbstractItemModelReplica) __persistentIndexList_atList(i int) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QAbstractItemModelReplica___persistentIndexList_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -484,7 +483,7 @@ func (ptr *QAbstractItemModelReplica) __persistentIndexList_newList() unsafe.Poi
 func (ptr *QAbstractItemModelReplica) __setItemData_roles_atList(v int, i int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QAbstractItemModelReplica___setItemData_roles_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -606,7 +605,7 @@ func (ptr *QAbstractItemModelReplica) __children_newList() unsafe.Pointer {
 func (ptr *QAbstractItemModelReplica) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QAbstractItemModelReplica___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -697,7 +696,7 @@ func callbackQAbstractItemModelReplica_Buddy(ptr unsafe.Pointer, index unsafe.Po
 func (ptr *QAbstractItemModelReplica) BuddyDefault(index core.QModelIndex_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QAbstractItemModelReplica_BuddyDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -818,7 +817,7 @@ func callbackQAbstractItemModelReplica_Data(ptr unsafe.Pointer, index unsafe.Poi
 func (ptr *QAbstractItemModelReplica) Data(index core.QModelIndex_ITF, role int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QAbstractItemModelReplica_Data(ptr.Pointer(), core.PointerFromQModelIndex(index), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -827,7 +826,7 @@ func (ptr *QAbstractItemModelReplica) Data(index core.QModelIndex_ITF, role int)
 func (ptr *QAbstractItemModelReplica) DataDefault(index core.QModelIndex_ITF, role int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QAbstractItemModelReplica_DataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -923,7 +922,7 @@ func callbackQAbstractItemModelReplica_HeaderData(ptr unsafe.Pointer, section C.
 func (ptr *QAbstractItemModelReplica) HeaderDataDefault(section int, orientation core.Qt__Orientation, role int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QAbstractItemModelReplica_HeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -949,7 +948,7 @@ func callbackQAbstractItemModelReplica_Index(ptr unsafe.Pointer, row C.int, colu
 func (ptr *QAbstractItemModelReplica) Index(row int, column int, parent core.QModelIndex_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QAbstractItemModelReplica_Index(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -958,7 +957,7 @@ func (ptr *QAbstractItemModelReplica) Index(row int, column int, parent core.QMo
 func (ptr *QAbstractItemModelReplica) IndexDefault(row int, column int, parent core.QModelIndex_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QAbstractItemModelReplica_IndexDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -1213,7 +1212,7 @@ func callbackQAbstractItemModelReplica_Parent(ptr unsafe.Pointer, index unsafe.P
 func (ptr *QAbstractItemModelReplica) Parent(index core.QModelIndex_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QAbstractItemModelReplica_Parent(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -1222,7 +1221,7 @@ func (ptr *QAbstractItemModelReplica) Parent(index core.QModelIndex_ITF) *core.Q
 func (ptr *QAbstractItemModelReplica) ParentDefault(index core.QModelIndex_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QAbstractItemModelReplica_ParentDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -1476,7 +1475,7 @@ func callbackQAbstractItemModelReplica_Sibling(ptr unsafe.Pointer, row C.int, co
 func (ptr *QAbstractItemModelReplica) SiblingDefault(row int, column int, index core.QModelIndex_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QAbstractItemModelReplica_SiblingDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -1509,7 +1508,7 @@ func callbackQAbstractItemModelReplica_Span(ptr unsafe.Pointer, index unsafe.Poi
 func (ptr *QAbstractItemModelReplica) SpanDefault(index core.QModelIndex_ITF) *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QAbstractItemModelReplica_SpanDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -1620,7 +1619,7 @@ func callbackQAbstractItemModelReplica_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QAbstractItemModelReplica) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractItemModelReplica_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1800,7 +1799,7 @@ func (ptr *QMetaTypeId) DestroyQMetaTypeId() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2047,7 +2046,7 @@ func (ptr *QRemoteObjectAbstractPersistedStore) SaveProperties(repName string, r
 func (ptr *QRemoteObjectAbstractPersistedStore) __restoreProperties_atList(i int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QRemoteObjectAbstractPersistedStore___restoreProperties_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -2066,7 +2065,7 @@ func (ptr *QRemoteObjectAbstractPersistedStore) __restoreProperties_newList() un
 func (ptr *QRemoteObjectAbstractPersistedStore) __saveProperties_values_atList(i int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QRemoteObjectAbstractPersistedStore___saveProperties_values_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -2106,7 +2105,7 @@ func (ptr *QRemoteObjectAbstractPersistedStore) __children_newList() unsafe.Poin
 func (ptr *QRemoteObjectAbstractPersistedStore) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QRemoteObjectAbstractPersistedStore___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -2242,7 +2241,7 @@ func callbackQRemoteObjectAbstractPersistedStore_DeleteLater(ptr unsafe.Pointer)
 func (ptr *QRemoteObjectAbstractPersistedStore) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QRemoteObjectAbstractPersistedStore_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2414,7 +2413,7 @@ func (ptr *QRemoteObjectDynamicReplica) DestroyQRemoteObjectDynamicReplica() {
 	if ptr.Pointer() != nil {
 		C.QRemoteObjectDynamicReplica_DestroyQRemoteObjectDynamicReplica(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2422,7 +2421,7 @@ func (ptr *QRemoteObjectDynamicReplica) DestroyQRemoteObjectDynamicReplicaDefaul
 	if ptr.Pointer() != nil {
 		C.QRemoteObjectDynamicReplica_DestroyQRemoteObjectDynamicReplicaDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2522,7 +2521,7 @@ func (ptr *QRemoteObjectHost) DisconnectHostUrl() {
 func (ptr *QRemoteObjectHost) HostUrl() *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QRemoteObjectHost_HostUrl(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -2531,7 +2530,7 @@ func (ptr *QRemoteObjectHost) HostUrl() *core.QUrl {
 func (ptr *QRemoteObjectHost) HostUrlDefault() *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QRemoteObjectHost_HostUrlDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -2884,7 +2883,7 @@ func (ptr *QRemoteObjectNode) Registry() *QRemoteObjectRegistry {
 func (ptr *QRemoteObjectNode) RegistryUrl() *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QRemoteObjectNode_RegistryUrl(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -3042,7 +3041,7 @@ func (ptr *QRemoteObjectNode) __acquireModel_rolesHint_newList() unsafe.Pointer 
 func (ptr *QRemoteObjectNode) __persistProperties_props_atList(i int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QRemoteObjectNode___persistProperties_props_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -3061,7 +3060,7 @@ func (ptr *QRemoteObjectNode) __persistProperties_props_newList() unsafe.Pointer
 func (ptr *QRemoteObjectNode) __retrieveProperties_atList(i int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QRemoteObjectNode___retrieveProperties_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -3101,7 +3100,7 @@ func (ptr *QRemoteObjectNode) __children_newList() unsafe.Pointer {
 func (ptr *QRemoteObjectNode) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QRemoteObjectNode___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -3237,7 +3236,7 @@ func callbackQRemoteObjectNode_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QRemoteObjectNode) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QRemoteObjectNode_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3363,7 +3362,7 @@ func (ptr *QRemoteObjectPendingCall) DestroyQRemoteObjectPendingCall() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3432,7 +3431,7 @@ func (ptr *QRemoteObjectPendingCallWatcher) __children_newList() unsafe.Pointer 
 func (ptr *QRemoteObjectPendingCallWatcher) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QRemoteObjectPendingCallWatcher___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -3586,14 +3585,14 @@ func callbackQRemoteObjectPendingCallWatcher_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QRemoteObjectPendingCallWatcher) DeleteLater() {
 	if ptr.Pointer() != nil {
 		C.QRemoteObjectPendingCallWatcher_DeleteLater(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QRemoteObjectPendingCallWatcher) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QRemoteObjectPendingCallWatcher_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3768,7 +3767,7 @@ func (ptr *QRemoteObjectPendingReply) DestroyQRemoteObjectPendingReply() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3846,7 +3845,7 @@ func (ptr *QRemoteObjectRegistry) DestroyQRemoteObjectRegistry() {
 	if ptr.Pointer() != nil {
 		C.QRemoteObjectRegistry_DestroyQRemoteObjectRegistry(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3854,7 +3853,7 @@ func (ptr *QRemoteObjectRegistry) DestroyQRemoteObjectRegistryDefault() {
 	if ptr.Pointer() != nil {
 		C.QRemoteObjectRegistry_DestroyQRemoteObjectRegistryDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4120,7 +4119,7 @@ func (ptr *QRemoteObjectReplica) WaitForSource(timeout int) bool {
 func (ptr *QRemoteObjectReplica) __persistProperties_props_atList(i int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QRemoteObjectReplica___persistProperties_props_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -4139,7 +4138,7 @@ func (ptr *QRemoteObjectReplica) __persistProperties_props_newList() unsafe.Poin
 func (ptr *QRemoteObjectReplica) __retrieveProperties_atList(i int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QRemoteObjectReplica___retrieveProperties_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -4158,7 +4157,7 @@ func (ptr *QRemoteObjectReplica) __retrieveProperties_newList() unsafe.Pointer {
 func (ptr *QRemoteObjectReplica) __send_args_atList(i int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QRemoteObjectReplica___send_args_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -4177,7 +4176,7 @@ func (ptr *QRemoteObjectReplica) __send_args_newList() unsafe.Pointer {
 func (ptr *QRemoteObjectReplica) __sendWithReply_args_atList(i int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QRemoteObjectReplica___sendWithReply_args_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -4196,7 +4195,7 @@ func (ptr *QRemoteObjectReplica) __sendWithReply_args_newList() unsafe.Pointer {
 func (ptr *QRemoteObjectReplica) __setProperties_properties_atList(i int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QRemoteObjectReplica___setProperties_properties_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -4236,7 +4235,7 @@ func (ptr *QRemoteObjectReplica) __children_newList() unsafe.Pointer {
 func (ptr *QRemoteObjectReplica) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QRemoteObjectReplica___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -4372,7 +4371,7 @@ func callbackQRemoteObjectReplica_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QRemoteObjectReplica) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QRemoteObjectReplica_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4668,7 +4667,7 @@ func (ptr *QRemoteObjectSourceLocationInfo) DestroyQRemoteObjectSourceLocationIn
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4715,7 +4714,7 @@ func (ptr *QTypeInfo) DestroyQTypeInfo() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4762,7 +4761,7 @@ func (ptr *QtROClientFactory) DestroyQtROClientFactory() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4809,7 +4808,7 @@ func (ptr *QtROServerFactory) DestroyQtROServerFactory() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4856,7 +4855,7 @@ func (ptr *SourceApiMap) DestroySourceApiMap() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 

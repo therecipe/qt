@@ -9,7 +9,6 @@ package webview
 import "C"
 import (
 	"github.com/therecipe/qt"
-	"runtime"
 	"strings"
 	"unsafe"
 )
@@ -77,7 +76,7 @@ func (ptr *QtWebView) DestroyQtWebView() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 

@@ -507,3 +507,7 @@ func GOVERSION_NUM() int {
 func QT_RESOURCES_BIG() bool {
 	return os.Getenv("QT_RESOURCES_BIG") == "true"
 }
+
+func QT_GEN_TSD() bool {
+	return os.Getenv("QT_GEN_TSD") == "true"
+}

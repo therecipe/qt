@@ -15,7 +15,6 @@ import (
 	"github.com/therecipe/qt/printsupport"
 	"github.com/therecipe/qt/webchannel"
 	"github.com/therecipe/qt/widgets"
-	"runtime"
 	"strings"
 	"unsafe"
 )
@@ -83,7 +82,7 @@ func (ptr *CertificateErrorController) DestroyCertificateErrorController() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -130,7 +129,7 @@ func (ptr *ClientCertSelectController) DestroyClientCertSelectController() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -177,7 +176,7 @@ func (ptr *CommandLinePrefStoreQt) DestroyCommandLinePrefStoreQt() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -263,7 +262,7 @@ func (ptr *ProxyConfigServiceQt) DestroyProxyConfigServiceQt() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1200,7 +1199,7 @@ func (ptr *QQuickWebEngineProfile) __children_newList() unsafe.Pointer {
 func (ptr *QQuickWebEngineProfile) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QQuickWebEngineProfile___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -1336,7 +1335,7 @@ func callbackQQuickWebEngineProfile_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QQuickWebEngineProfile) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1748,7 +1747,7 @@ func (ptr *QQuickWebEngineScript) SourceCodeChanged(code string) {
 func (ptr *QQuickWebEngineScript) SourceUrl() *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QQuickWebEngineScript_SourceUrl(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -1872,7 +1871,7 @@ func (ptr *QQuickWebEngineScript) __children_newList() unsafe.Pointer {
 func (ptr *QQuickWebEngineScript) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QQuickWebEngineScript___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -2008,7 +2007,7 @@ func callbackQQuickWebEngineScript_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QQuickWebEngineScript) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineScript_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2149,7 +2148,7 @@ func (ptr *QWebEngineCallback) DestroyQWebEngineCallback() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2196,7 +2195,7 @@ func (ptr *QWebEngineCertificateError) DestroyQWebEngineCertificateError() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2246,7 +2245,7 @@ func (ptr *QWebEngineCertificateError) IsOverridable() bool {
 func (ptr *QWebEngineCertificateError) Url() *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QWebEngineCertificateError_Url(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -2295,13 +2294,13 @@ func (ptr *QWebEngineClientCertificateSelection) DestroyQWebEngineClientCertific
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func NewQWebEngineClientCertificateSelection(vqw QWebEngineClientCertificateSelection_ITF) *QWebEngineClientCertificateSelection {
 	tmpValue := NewQWebEngineClientCertificateSelectionFromPointer(C.QWebEngineClientCertificateSelection_NewQWebEngineClientCertificateSelection(PointerFromQWebEngineClientCertificateSelection(vqw)))
-	runtime.SetFinalizer(tmpValue, (*QWebEngineClientCertificateSelection).DestroyQWebEngineClientCertificateSelection)
+	qt.SetFinalizer(tmpValue, (*QWebEngineClientCertificateSelection).DestroyQWebEngineClientCertificateSelection)
 	return tmpValue
 }
 
@@ -2322,7 +2321,7 @@ func (ptr *QWebEngineClientCertificateSelection) Certificates() []*network.QSslC
 func (ptr *QWebEngineClientCertificateSelection) Host() *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QWebEngineClientCertificateSelection_Host(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -2343,7 +2342,7 @@ func (ptr *QWebEngineClientCertificateSelection) SelectNone() {
 func (ptr *QWebEngineClientCertificateSelection) __certificates_atList(i int) *network.QSslCertificate {
 	if ptr.Pointer() != nil {
 		tmpValue := network.NewQSslCertificateFromPointer(C.QWebEngineClientCertificateSelection___certificates_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*network.QSslCertificate).DestroyQSslCertificate)
+		qt.SetFinalizer(tmpValue, (*network.QSslCertificate).DestroyQSslCertificate)
 		return tmpValue
 	}
 	return nil
@@ -2402,7 +2401,7 @@ func (ptr *QWebEngineClientCertificateStore) DestroyQWebEngineClientCertificateS
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2441,7 +2440,7 @@ func (ptr *QWebEngineClientCertificateStore) Remove(certificate network.QSslCert
 func (ptr *QWebEngineClientCertificateStore) __certificates_atList(i int) *network.QSslCertificate {
 	if ptr.Pointer() != nil {
 		tmpValue := network.NewQSslCertificateFromPointer(C.QWebEngineClientCertificateStore___certificates_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*network.QSslCertificate).DestroyQSslCertificate)
+		qt.SetFinalizer(tmpValue, (*network.QSslCertificate).DestroyQSslCertificate)
 		return tmpValue
 	}
 	return nil
@@ -2500,7 +2499,7 @@ func (ptr *QWebEngineContextMenuData) DestroyQWebEngineContextMenuData() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2688,7 +2687,7 @@ func (ptr *QWebEngineCookieStore) DestroyQWebEngineCookieStore() {
 	if ptr.Pointer() != nil {
 		C.QWebEngineCookieStore_DestroyQWebEngineCookieStore(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2696,7 +2695,7 @@ func (ptr *QWebEngineCookieStore) DestroyQWebEngineCookieStoreDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebEngineCookieStore_DestroyQWebEngineCookieStoreDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2724,7 +2723,7 @@ func (ptr *QWebEngineCookieStore) __children_newList() unsafe.Pointer {
 func (ptr *QWebEngineCookieStore) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QWebEngineCookieStore___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -2860,7 +2859,7 @@ func callbackQWebEngineCookieStore_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QWebEngineCookieStore) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebEngineCookieStore_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3007,13 +3006,13 @@ const (
 
 func NewQWebEngineHttpRequest(url core.QUrl_ITF, method QWebEngineHttpRequest__Method) *QWebEngineHttpRequest {
 	tmpValue := NewQWebEngineHttpRequestFromPointer(C.QWebEngineHttpRequest_NewQWebEngineHttpRequest(core.PointerFromQUrl(url), C.longlong(method)))
-	runtime.SetFinalizer(tmpValue, (*QWebEngineHttpRequest).DestroyQWebEngineHttpRequest)
+	qt.SetFinalizer(tmpValue, (*QWebEngineHttpRequest).DestroyQWebEngineHttpRequest)
 	return tmpValue
 }
 
 func NewQWebEngineHttpRequest2(other QWebEngineHttpRequest_ITF) *QWebEngineHttpRequest {
 	tmpValue := NewQWebEngineHttpRequestFromPointer(C.QWebEngineHttpRequest_NewQWebEngineHttpRequest2(PointerFromQWebEngineHttpRequest(other)))
-	runtime.SetFinalizer(tmpValue, (*QWebEngineHttpRequest).DestroyQWebEngineHttpRequest)
+	qt.SetFinalizer(tmpValue, (*QWebEngineHttpRequest).DestroyQWebEngineHttpRequest)
 	return tmpValue
 }
 
@@ -3027,7 +3026,7 @@ func (ptr *QWebEngineHttpRequest) HasHeader(headerName core.QByteArray_ITF) bool
 func (ptr *QWebEngineHttpRequest) Header(headerName core.QByteArray_ITF) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QWebEngineHttpRequest_Header(ptr.Pointer(), core.PointerFromQByteArray(headerName)))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -3057,7 +3056,7 @@ func (ptr *QWebEngineHttpRequest) Method() QWebEngineHttpRequest__Method {
 func (ptr *QWebEngineHttpRequest) PostData() *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QWebEngineHttpRequest_PostData(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -3071,7 +3070,7 @@ func QWebEngineHttpRequest_PostRequest(url core.QUrl_ITF, postData map[string]st
 		}
 		return tmpList.Pointer()
 	}()))
-	runtime.SetFinalizer(tmpValue, (*QWebEngineHttpRequest).DestroyQWebEngineHttpRequest)
+	qt.SetFinalizer(tmpValue, (*QWebEngineHttpRequest).DestroyQWebEngineHttpRequest)
 	return tmpValue
 }
 
@@ -3083,7 +3082,7 @@ func (ptr *QWebEngineHttpRequest) PostRequest(url core.QUrl_ITF, postData map[st
 		}
 		return tmpList.Pointer()
 	}()))
-	runtime.SetFinalizer(tmpValue, (*QWebEngineHttpRequest).DestroyQWebEngineHttpRequest)
+	qt.SetFinalizer(tmpValue, (*QWebEngineHttpRequest).DestroyQWebEngineHttpRequest)
 	return tmpValue
 }
 
@@ -3126,7 +3125,7 @@ func (ptr *QWebEngineHttpRequest) UnsetHeader(key core.QByteArray_ITF) {
 func (ptr *QWebEngineHttpRequest) Url() *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QWebEngineHttpRequest_Url(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -3137,14 +3136,14 @@ func (ptr *QWebEngineHttpRequest) DestroyQWebEngineHttpRequest() {
 		C.QWebEngineHttpRequest_DestroyQWebEngineHttpRequest(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QWebEngineHttpRequest) __headers_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QWebEngineHttpRequest___headers_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -3403,7 +3402,7 @@ func (ptr *QWebEngineNotification) Direction() core.Qt__LayoutDirection {
 func (ptr *QWebEngineNotification) Icon() *gui.QImage {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQImageFromPointer(C.QWebEngineNotification_Icon(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QImage).DestroyQImage)
+		qt.SetFinalizer(tmpValue, (*gui.QImage).DestroyQImage)
 		return tmpValue
 	}
 	return nil
@@ -3433,7 +3432,7 @@ func (ptr *QWebEngineNotification) Message() string {
 func (ptr *QWebEngineNotification) Origin() *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QWebEngineNotification_Origin(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -3520,7 +3519,7 @@ func (ptr *QWebEngineNotification) __children_newList() unsafe.Pointer {
 func (ptr *QWebEngineNotification) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QWebEngineNotification___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -3656,7 +3655,7 @@ func callbackQWebEngineNotification_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QWebEngineNotification) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebEngineNotification_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4078,7 +4077,7 @@ func (ptr *QWebEnginePage) AuthenticationRequired(requestUrl core.QUrl_ITF, auth
 func (ptr *QWebEnginePage) BackgroundColor() *gui.QColor {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQColorFromPointer(C.QWebEnginePage_BackgroundColor(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+		qt.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
 	return nil
@@ -4186,7 +4185,7 @@ func (ptr *QWebEnginePage) ChooseFilesDefault(mode QWebEnginePage__FileSelection
 func (ptr *QWebEnginePage) ContentsSize() *core.QSizeF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFFromPointer(C.QWebEnginePage_ContentsSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
+		qt.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
 		return tmpValue
 	}
 	return nil
@@ -4471,7 +4470,7 @@ func (ptr *QWebEnginePage) HasSelection() bool {
 func (ptr *QWebEnginePage) Icon() *gui.QIcon {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQIconFromPointer(C.QWebEnginePage_Icon(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+		qt.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
 		return tmpValue
 	}
 	return nil
@@ -4520,7 +4519,7 @@ func (ptr *QWebEnginePage) IconChanged(icon gui.QIcon_ITF) {
 func (ptr *QWebEnginePage) IconUrl() *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QWebEnginePage_IconUrl(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -5242,7 +5241,7 @@ func (ptr *QWebEnginePage) ReplaceMisspelledWord(replacement string) {
 func (ptr *QWebEnginePage) RequestedUrl() *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QWebEnginePage_RequestedUrl(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -5273,7 +5272,7 @@ func (ptr *QWebEnginePage) RunJavaScript2(scriptSource string, worldId uint) {
 func (ptr *QWebEnginePage) ScrollPosition() *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QWebEnginePage_ScrollPosition(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -5324,7 +5323,7 @@ func callbackQWebEnginePage_SelectClientCertificate(ptr unsafe.Pointer, clientCe
 	if signal := qt.GetSignal(ptr, "selectClientCertificate"); signal != nil {
 		(*(*func(*QWebEngineClientCertificateSelection))(signal))(func() *QWebEngineClientCertificateSelection {
 			tmpValue := NewQWebEngineClientCertificateSelectionFromPointer(clientCertSelection)
-			runtime.SetFinalizer(tmpValue, (*QWebEngineClientCertificateSelection).DestroyQWebEngineClientCertificateSelection)
+			qt.SetFinalizer(tmpValue, (*QWebEngineClientCertificateSelection).DestroyQWebEngineClientCertificateSelection)
 			return tmpValue
 		}())
 	}
@@ -5631,7 +5630,7 @@ func (ptr *QWebEnginePage) TriggerActionDefault(action QWebEnginePage__WebAction
 func (ptr *QWebEnginePage) Url() *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QWebEnginePage_Url(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -5781,7 +5780,7 @@ func (ptr *QWebEnginePage) DestroyQWebEnginePage() {
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_DestroyQWebEnginePage(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5789,7 +5788,7 @@ func (ptr *QWebEnginePage) DestroyQWebEnginePageDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_DestroyQWebEnginePageDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5817,7 +5816,7 @@ func (ptr *QWebEnginePage) __children_newList() unsafe.Pointer {
 func (ptr *QWebEnginePage) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QWebEnginePage___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -5953,7 +5952,7 @@ func callbackQWebEnginePage_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QWebEnginePage) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6488,7 +6487,7 @@ func (ptr *QWebEngineProfile) DestroyQWebEngineProfile() {
 	if ptr.Pointer() != nil {
 		C.QWebEngineProfile_DestroyQWebEngineProfile(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6496,14 +6495,14 @@ func (ptr *QWebEngineProfile) DestroyQWebEngineProfileDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebEngineProfile_DestroyQWebEngineProfileDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QWebEngineProfile) __clearVisitedLinks_urls_atList(i int) *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QWebEngineProfile___clearVisitedLinks_urls_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -6543,7 +6542,7 @@ func (ptr *QWebEngineProfile) __children_newList() unsafe.Pointer {
 func (ptr *QWebEngineProfile) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QWebEngineProfile___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -6679,7 +6678,7 @@ func callbackQWebEngineProfile_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QWebEngineProfile) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebEngineProfile_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6804,7 +6803,7 @@ func (ptr *QWebEngineQuotaRequest) DestroyQWebEngineQuotaRequest() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6817,7 +6816,7 @@ func (ptr *QWebEngineQuotaRequest) Accept() {
 func (ptr *QWebEngineQuotaRequest) Origin() *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QWebEngineQuotaRequest_Origin(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -6879,7 +6878,7 @@ func (ptr *QWebEngineRegisterProtocolHandlerRequest) DestroyQWebEngineRegisterPr
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6892,7 +6891,7 @@ func (ptr *QWebEngineRegisterProtocolHandlerRequest) Accept() {
 func (ptr *QWebEngineRegisterProtocolHandlerRequest) Origin() *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QWebEngineRegisterProtocolHandlerRequest_Origin(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -6954,7 +6953,7 @@ func (ptr *QWebEngineScript) DestroyQWebEngineScript() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7021,7 +7020,7 @@ func (ptr *QWebEngineScriptCollection) DestroyQWebEngineScriptCollection() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7138,7 +7137,7 @@ const (
 
 func NewQWebEngineSettings2(parentSettings QWebEngineSettings_ITF) *QWebEngineSettings {
 	tmpValue := NewQWebEngineSettingsFromPointer(C.QWebEngineSettings_NewQWebEngineSettings2(PointerFromQWebEngineSettings(parentSettings)))
-	runtime.SetFinalizer(tmpValue, (*QWebEngineSettings).DestroyQWebEngineSettings)
+	qt.SetFinalizer(tmpValue, (*QWebEngineSettings).DestroyQWebEngineSettings)
 	return tmpValue
 }
 
@@ -7262,7 +7261,7 @@ func (ptr *QWebEngineSettings) DestroyQWebEngineSettings() {
 		C.QWebEngineSettings_DestroyQWebEngineSettings(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7309,7 +7308,7 @@ func (ptr *QWebEngineUrlRequestInfo) DestroyQWebEngineUrlRequestInfo() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7361,7 +7360,7 @@ func (ptr *QWebEngineUrlRequestInfo) Block(shouldBlock bool) {
 func (ptr *QWebEngineUrlRequestInfo) FirstPartyUrl() *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QWebEngineUrlRequestInfo_FirstPartyUrl(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -7383,7 +7382,7 @@ func (ptr *QWebEngineUrlRequestInfo) Redirect(url core.QUrl_ITF) {
 func (ptr *QWebEngineUrlRequestInfo) RequestMethod() *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QWebEngineUrlRequestInfo_RequestMethod(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -7392,7 +7391,7 @@ func (ptr *QWebEngineUrlRequestInfo) RequestMethod() *core.QByteArray {
 func (ptr *QWebEngineUrlRequestInfo) RequestUrl() *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QWebEngineUrlRequestInfo_RequestUrl(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -7517,7 +7516,7 @@ func (ptr *QWebEngineUrlRequestInterceptor) __children_newList() unsafe.Pointer 
 func (ptr *QWebEngineUrlRequestInterceptor) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QWebEngineUrlRequestInterceptor___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -7653,7 +7652,7 @@ func callbackQWebEngineUrlRequestInterceptor_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QWebEngineUrlRequestInterceptor) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlRequestInterceptor_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7812,7 +7811,7 @@ func (ptr *QWebEngineUrlRequestJob) Fail(r QWebEngineUrlRequestJob__Error) {
 func (ptr *QWebEngineUrlRequestJob) Initiator() *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QWebEngineUrlRequestJob_Initiator(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -7847,7 +7846,7 @@ func (ptr *QWebEngineUrlRequestJob) RequestHeaders() map[*core.QByteArray]*core.
 func (ptr *QWebEngineUrlRequestJob) RequestMethod() *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QWebEngineUrlRequestJob_RequestMethod(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -7856,7 +7855,7 @@ func (ptr *QWebEngineUrlRequestJob) RequestMethod() *core.QByteArray {
 func (ptr *QWebEngineUrlRequestJob) RequestUrl() *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QWebEngineUrlRequestJob_RequestUrl(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -7865,7 +7864,7 @@ func (ptr *QWebEngineUrlRequestJob) RequestUrl() *core.QUrl {
 func (ptr *QWebEngineUrlRequestJob) __requestHeaders_atList(v core.QByteArray_ITF, i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QWebEngineUrlRequestJob___requestHeaders_atList(ptr.Pointer(), core.PointerFromQByteArray(v), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -7898,7 +7897,7 @@ func (ptr *QWebEngineUrlRequestJob) __requestHeaders_keyList() []*core.QByteArra
 func (ptr *QWebEngineUrlRequestJob) ____requestHeaders_keyList_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QWebEngineUrlRequestJob_____requestHeaders_keyList_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -7938,7 +7937,7 @@ func (ptr *QWebEngineUrlRequestJob) __children_newList() unsafe.Pointer {
 func (ptr *QWebEngineUrlRequestJob) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QWebEngineUrlRequestJob___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8074,7 +8073,7 @@ func callbackQWebEngineUrlRequestJob_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QWebEngineUrlRequestJob) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlRequestJob_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -8245,25 +8244,25 @@ const (
 
 func NewQWebEngineUrlScheme() *QWebEngineUrlScheme {
 	tmpValue := NewQWebEngineUrlSchemeFromPointer(C.QWebEngineUrlScheme_NewQWebEngineUrlScheme())
-	runtime.SetFinalizer(tmpValue, (*QWebEngineUrlScheme).DestroyQWebEngineUrlScheme)
+	qt.SetFinalizer(tmpValue, (*QWebEngineUrlScheme).DestroyQWebEngineUrlScheme)
 	return tmpValue
 }
 
 func NewQWebEngineUrlScheme2(name core.QByteArray_ITF) *QWebEngineUrlScheme {
 	tmpValue := NewQWebEngineUrlSchemeFromPointer(C.QWebEngineUrlScheme_NewQWebEngineUrlScheme2(core.PointerFromQByteArray(name)))
-	runtime.SetFinalizer(tmpValue, (*QWebEngineUrlScheme).DestroyQWebEngineUrlScheme)
+	qt.SetFinalizer(tmpValue, (*QWebEngineUrlScheme).DestroyQWebEngineUrlScheme)
 	return tmpValue
 }
 
 func NewQWebEngineUrlScheme3(that QWebEngineUrlScheme_ITF) *QWebEngineUrlScheme {
 	tmpValue := NewQWebEngineUrlSchemeFromPointer(C.QWebEngineUrlScheme_NewQWebEngineUrlScheme3(PointerFromQWebEngineUrlScheme(that)))
-	runtime.SetFinalizer(tmpValue, (*QWebEngineUrlScheme).DestroyQWebEngineUrlScheme)
+	qt.SetFinalizer(tmpValue, (*QWebEngineUrlScheme).DestroyQWebEngineUrlScheme)
 	return tmpValue
 }
 
 func NewQWebEngineUrlScheme4(that QWebEngineUrlScheme_ITF) *QWebEngineUrlScheme {
 	tmpValue := NewQWebEngineUrlSchemeFromPointer(C.QWebEngineUrlScheme_NewQWebEngineUrlScheme4(PointerFromQWebEngineUrlScheme(that)))
-	runtime.SetFinalizer(tmpValue, (*QWebEngineUrlScheme).DestroyQWebEngineUrlScheme)
+	qt.SetFinalizer(tmpValue, (*QWebEngineUrlScheme).DestroyQWebEngineUrlScheme)
 	return tmpValue
 }
 
@@ -8284,7 +8283,7 @@ func (ptr *QWebEngineUrlScheme) Flags() QWebEngineUrlScheme__Flag {
 func (ptr *QWebEngineUrlScheme) Name() *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QWebEngineUrlScheme_Name(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8300,13 +8299,13 @@ func (ptr *QWebEngineUrlScheme) RegisterScheme(scheme QWebEngineUrlScheme_ITF) {
 
 func QWebEngineUrlScheme_SchemeByName(name core.QByteArray_ITF) *QWebEngineUrlScheme {
 	tmpValue := NewQWebEngineUrlSchemeFromPointer(C.QWebEngineUrlScheme_QWebEngineUrlScheme_SchemeByName(core.PointerFromQByteArray(name)))
-	runtime.SetFinalizer(tmpValue, (*QWebEngineUrlScheme).DestroyQWebEngineUrlScheme)
+	qt.SetFinalizer(tmpValue, (*QWebEngineUrlScheme).DestroyQWebEngineUrlScheme)
 	return tmpValue
 }
 
 func (ptr *QWebEngineUrlScheme) SchemeByName(name core.QByteArray_ITF) *QWebEngineUrlScheme {
 	tmpValue := NewQWebEngineUrlSchemeFromPointer(C.QWebEngineUrlScheme_QWebEngineUrlScheme_SchemeByName(core.PointerFromQByteArray(name)))
-	runtime.SetFinalizer(tmpValue, (*QWebEngineUrlScheme).DestroyQWebEngineUrlScheme)
+	qt.SetFinalizer(tmpValue, (*QWebEngineUrlScheme).DestroyQWebEngineUrlScheme)
 	return tmpValue
 }
 
@@ -8339,7 +8338,7 @@ func (ptr *QWebEngineUrlScheme) DestroyQWebEngineUrlScheme() {
 		C.QWebEngineUrlScheme_DestroyQWebEngineUrlScheme(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -8460,7 +8459,7 @@ func (ptr *QWebEngineUrlSchemeHandler) DestroyQWebEngineUrlSchemeHandler() {
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlSchemeHandler_DestroyQWebEngineUrlSchemeHandler(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -8468,7 +8467,7 @@ func (ptr *QWebEngineUrlSchemeHandler) DestroyQWebEngineUrlSchemeHandlerDefault(
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlSchemeHandler_DestroyQWebEngineUrlSchemeHandlerDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -8496,7 +8495,7 @@ func (ptr *QWebEngineUrlSchemeHandler) __children_newList() unsafe.Pointer {
 func (ptr *QWebEngineUrlSchemeHandler) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QWebEngineUrlSchemeHandler___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8632,7 +8631,7 @@ func callbackQWebEngineUrlSchemeHandler_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QWebEngineUrlSchemeHandler) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlSchemeHandler_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -8978,7 +8977,7 @@ func (ptr *QWebEngineView) HideEventDefault(vqh gui.QHideEvent_ITF) {
 func (ptr *QWebEngineView) Icon() *gui.QIcon {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQIconFromPointer(C.QWebEngineView_Icon(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+		qt.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
 		return tmpValue
 	}
 	return nil
@@ -9027,7 +9026,7 @@ func (ptr *QWebEngineView) IconChanged(vqi gui.QIcon_ITF) {
 func (ptr *QWebEngineView) IconUrl() *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QWebEngineView_IconUrl(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -9396,7 +9395,7 @@ func callbackQWebEngineView_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 func (ptr *QWebEngineView) SizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QWebEngineView_SizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -9528,7 +9527,7 @@ func (ptr *QWebEngineView) Tr(s string, c string, n int) string {
 func (ptr *QWebEngineView) Url() *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QWebEngineView_Url(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -9616,7 +9615,7 @@ func (ptr *QWebEngineView) DestroyQWebEngineView() {
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_DestroyQWebEngineView(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -9624,7 +9623,7 @@ func (ptr *QWebEngineView) DestroyQWebEngineViewDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_DestroyQWebEngineViewDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -9715,7 +9714,7 @@ func (ptr *QWebEngineView) __children_newList() unsafe.Pointer {
 func (ptr *QWebEngineView) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QWebEngineView___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -10013,7 +10012,7 @@ func callbackQWebEngineView_InputMethodQuery(ptr unsafe.Pointer, query C.longlon
 func (ptr *QWebEngineView) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QWebEngineView_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -10107,7 +10106,7 @@ func callbackQWebEngineView_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 func (ptr *QWebEngineView) MinimumSizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QWebEngineView_MinimumSizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -10628,7 +10627,7 @@ func callbackQWebEngineView_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QWebEngineView) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -10737,7 +10736,7 @@ func (ptr *QtWebEngine) DestroyQtWebEngine() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -10792,7 +10791,7 @@ func (ptr *RenderViewObserverQt) DestroyRenderViewObserverQt() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -10839,7 +10838,7 @@ func (ptr *ServiceQt) DestroyServiceQt() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -10886,7 +10885,7 @@ func (ptr *UserResourceController) DestroyUserResourceController() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -10933,7 +10932,7 @@ func (ptr *UserScriptData) DestroyUserScriptData() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -10980,7 +10979,7 @@ func (ptr *WebEngineError) DestroyWebEngineError() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -11027,7 +11026,7 @@ func (ptr *WebEngineLibraryInfo) DestroyWebEngineLibraryInfo() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -11074,7 +11073,7 @@ func (ptr *WebEventFactory) DestroyWebEventFactory() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 

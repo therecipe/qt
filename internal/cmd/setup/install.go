@@ -53,7 +53,7 @@ func Install(target string, docker, vagrant, failfast bool) {
 
 	env, tags, _, _ := cmd.BuildEnv(target, "", "")
 	var failed []string
-	for _, module := range parser.GetLibs() {
+	for _, module := range append(parser.GetLibs(), "internal/binding/runtime") {
 		if !parser.ShouldBuildForTarget(module, target) {
 			utils.Log.Debugf("skipping installation of %v for %v", module, target)
 			continue

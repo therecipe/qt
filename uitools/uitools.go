@@ -11,7 +11,6 @@ import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/widgets"
-	"runtime"
 	"strings"
 	"unsafe"
 )
@@ -432,7 +431,7 @@ func (ptr *QUiLoader) SetWorkingDirectory(dir core.QDir_ITF) {
 func (ptr *QUiLoader) WorkingDirectory() *core.QDir {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQDirFromPointer(C.QUiLoader_WorkingDirectory(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QDir).DestroyQDir)
+		qt.SetFinalizer(tmpValue, (*core.QDir).DestroyQDir)
 		return tmpValue
 	}
 	return nil
@@ -473,7 +472,7 @@ func (ptr *QUiLoader) DestroyQUiLoader() {
 	if ptr.Pointer() != nil {
 		C.QUiLoader_DestroyQUiLoader(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -481,7 +480,7 @@ func (ptr *QUiLoader) DestroyQUiLoaderDefault() {
 	if ptr.Pointer() != nil {
 		C.QUiLoader_DestroyQUiLoaderDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -509,7 +508,7 @@ func (ptr *QUiLoader) __children_newList() unsafe.Pointer {
 func (ptr *QUiLoader) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QUiLoader___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -645,7 +644,7 @@ func callbackQUiLoader_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QUiLoader) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QUiLoader_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 

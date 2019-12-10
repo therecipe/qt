@@ -1,5 +1,5 @@
 // +build js,wasm
-// +build go1.12,!go1.13,!go1.14
+// +build go1.12,!go1.13,!go1.14,!go1.15
 
 package qt
 

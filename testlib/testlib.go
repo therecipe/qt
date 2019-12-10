@@ -11,7 +11,6 @@ import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/widgets"
-	"runtime"
 	"strings"
 	"unsafe"
 )
@@ -79,7 +78,7 @@ func (ptr *QAbstractItemModelTester) DestroyQAbstractItemModelTester() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -95,13 +94,13 @@ const (
 
 func NewQAbstractItemModelTester(model core.QAbstractItemModel_ITF, parent core.QObject_ITF) *QAbstractItemModelTester {
 	tmpValue := NewQAbstractItemModelTesterFromPointer(C.QAbstractItemModelTester_NewQAbstractItemModelTester(core.PointerFromQAbstractItemModel(model), core.PointerFromQObject(parent)))
-	runtime.SetFinalizer(tmpValue, (*QAbstractItemModelTester).DestroyQAbstractItemModelTester)
+	qt.SetFinalizer(tmpValue, (*QAbstractItemModelTester).DestroyQAbstractItemModelTester)
 	return tmpValue
 }
 
 func NewQAbstractItemModelTester2(model core.QAbstractItemModel_ITF, mode QAbstractItemModelTester__FailureReportingMode, parent core.QObject_ITF) *QAbstractItemModelTester {
 	tmpValue := NewQAbstractItemModelTesterFromPointer(C.QAbstractItemModelTester_NewQAbstractItemModelTester2(core.PointerFromQAbstractItemModel(model), C.longlong(mode), core.PointerFromQObject(parent)))
-	runtime.SetFinalizer(tmpValue, (*QAbstractItemModelTester).DestroyQAbstractItemModelTester)
+	qt.SetFinalizer(tmpValue, (*QAbstractItemModelTester).DestroyQAbstractItemModelTester)
 	return tmpValue
 }
 
@@ -159,7 +158,7 @@ func (ptr *QEventSizeOfChecker) DestroyQEventSizeOfChecker() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -224,7 +223,7 @@ func (ptr *QSignalSpy) IsValid() bool {
 func (ptr *QSignalSpy) Signal() *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QSignalSpy_Signal(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -295,7 +294,7 @@ func (ptr *QSignalSpy) __children_newList() unsafe.Pointer {
 func (ptr *QSignalSpy) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QSignalSpy___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -431,7 +430,7 @@ func callbackQSignalSpy_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QSignalSpy) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QSignalSpy_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -572,7 +571,7 @@ func (ptr *QSpontaneKeyEvent) DestroyQSpontaneKeyEvent() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -619,7 +618,7 @@ func (ptr *QTest) DestroyQTest() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -776,7 +775,7 @@ func (ptr *QTestData) DestroyQTestData() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -824,7 +823,7 @@ func (ptr *QTestDelayEvent) DestroyQTestDelayEvent() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -871,7 +870,7 @@ func (ptr *QTestEvent) DestroyQTestEvent() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -914,13 +913,13 @@ func NewQTestEventListFromPointer(ptr unsafe.Pointer) (n *QTestEventList) {
 }
 func NewQTestEventList() *QTestEventList {
 	tmpValue := NewQTestEventListFromPointer(C.QTestEventList_NewQTestEventList())
-	runtime.SetFinalizer(tmpValue, (*QTestEventList).DestroyQTestEventList)
+	qt.SetFinalizer(tmpValue, (*QTestEventList).DestroyQTestEventList)
 	return tmpValue
 }
 
 func NewQTestEventList2(other QTestEventList_ITF) *QTestEventList {
 	tmpValue := NewQTestEventListFromPointer(C.QTestEventList_NewQTestEventList2(PointerFromQTestEventList(other)))
-	runtime.SetFinalizer(tmpValue, (*QTestEventList).DestroyQTestEventList)
+	qt.SetFinalizer(tmpValue, (*QTestEventList).DestroyQTestEventList)
 	return tmpValue
 }
 
@@ -1039,7 +1038,7 @@ func (ptr *QTestEventList) DestroyQTestEventList() {
 		C.QTestEventList_DestroyQTestEventList(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1086,7 +1085,7 @@ func (ptr *QTestEventLoop) DestroyQTestEventLoop() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1134,7 +1133,7 @@ func (ptr *QTestKeyClicksEvent) DestroyQTestKeyClicksEvent() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1182,7 +1181,7 @@ func (ptr *QTestKeyEvent) DestroyQTestKeyEvent() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1230,7 +1229,7 @@ func (ptr *QTestMouseEvent) DestroyQTestMouseEvent() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 

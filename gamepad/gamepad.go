@@ -10,7 +10,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"runtime"
 	"strings"
 	"unsafe"
 )
@@ -1328,7 +1327,7 @@ func (ptr *QGamepad) __children_newList() unsafe.Pointer {
 func (ptr *QGamepad) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QGamepad___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -1464,7 +1463,7 @@ func callbackQGamepad_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QGamepad) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QGamepad_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3346,7 +3345,7 @@ func (ptr *QGamepadKeyNavigation) __children_newList() unsafe.Pointer {
 func (ptr *QGamepadKeyNavigation) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QGamepadKeyNavigation___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -3482,7 +3481,7 @@ func callbackQGamepadKeyNavigation_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QGamepadKeyNavigation) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QGamepadKeyNavigation_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3884,7 +3883,7 @@ func (ptr *QGamepadManager) __children_newList() unsafe.Pointer {
 func (ptr *QGamepadManager) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QGamepadManager___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -4020,7 +4019,7 @@ func callbackQGamepadManager_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QGamepadManager) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QGamepadManager_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 

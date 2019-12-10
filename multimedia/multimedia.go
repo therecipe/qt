@@ -13,7 +13,6 @@ import (
 	"github.com/therecipe/qt/gui"
 	"github.com/therecipe/qt/network"
 	"github.com/therecipe/qt/widgets"
-	"runtime"
 	"strings"
 	"unsafe"
 )
@@ -354,7 +353,7 @@ func (ptr *AVFCameraInfo) DestroyAVFCameraInfo() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -713,7 +712,7 @@ func (ptr *AVFConfigurationLock) DestroyAVFConfigurationLock() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1234,7 +1233,7 @@ func (ptr *AVFObjectDeleter) DestroyAVFObjectDeleter() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1281,7 +1280,7 @@ func (ptr *AVFScopedPointer) DestroyAVFScopedPointer() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1376,7 +1375,7 @@ func (ptr *AVFStorageLocation) DestroyAVFStorageLocation() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1501,7 +1500,7 @@ func (ptr *AVFVideoOutput) DestroyAVFVideoOutput() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1630,7 +1629,7 @@ func (ptr *AVFVideoWidgetControl) DestroyAVFVideoWidgetControl() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1719,7 +1718,7 @@ func (ptr *AndroidCamcorderProfile) DestroyAndroidCamcorderProfile() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1805,7 +1804,7 @@ func (ptr *AndroidMediaMetadataRetriever) DestroyAndroidMediaMetadataRetriever()
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1930,7 +1929,7 @@ func (ptr *AndroidMultimediaUtils) DestroyAndroidMultimediaUtils() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2094,7 +2093,7 @@ func (ptr *AsyncCallback) DestroyAsyncCallback() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2414,7 +2413,7 @@ func (ptr *AudioInterface) DestroyAudioInterface() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2501,7 +2500,7 @@ func (ptr *AudioSampleGrabberCallback) DestroyAudioSampleGrabberCallback() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3292,7 +3291,7 @@ func (ptr *BbMediaStorageLocation) DestroyBbMediaStorageLocation() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4365,7 +4364,7 @@ func (ptr *CoreAudioBufferList) DestroyCoreAudioBufferList() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4685,7 +4684,7 @@ func (ptr *CoreAudioPacketFeeder) DestroyCoreAudioPacketFeeder() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4771,7 +4770,7 @@ func (ptr *CoreAudioRingBuffer) DestroyCoreAudioRingBuffer() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4857,7 +4856,7 @@ func (ptr *CoreAudioUtils) DestroyCoreAudioUtils() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4904,7 +4903,7 @@ func (ptr *D3DPresentEngine) DestroyD3DPresentEngine() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5389,7 +5388,7 @@ func (ptr *DirectShowBaseFilter) DestroyDirectShowBaseFilter() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5670,7 +5669,7 @@ func (ptr *DirectShowEvrVideoWindowControl) DestroyDirectShowEvrVideoWindowContr
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5756,7 +5755,7 @@ func (ptr *DirectShowIOSource) DestroyDirectShowIOSource() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5804,7 +5803,7 @@ func (ptr *DirectShowInputPin) DestroyDirectShowInputPin() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5851,7 +5850,7 @@ func (ptr *DirectShowMediaType) DestroyDirectShowMediaType() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5898,7 +5897,7 @@ func (ptr *DirectShowMediaTypeEnum) DestroyDirectShowMediaTypeEnum() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5985,7 +5984,7 @@ func (ptr *DirectShowOutputPin) DestroyDirectShowOutputPin() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6032,7 +6031,7 @@ func (ptr *DirectShowPin) DestroyDirectShowPin() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6079,7 +6078,7 @@ func (ptr *DirectShowPinEnum) DestroyDirectShowPinEnum() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6245,7 +6244,7 @@ func (ptr *DirectShowVideoBuffer) DestroyDirectShowVideoBuffer() {
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6487,7 +6486,7 @@ func (ptr *MFAbstractActivate) DestroyMFAbstractActivate() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6729,7 +6728,7 @@ func (ptr *MFEvrVideoWindowControl) DestroyMFEvrVideoWindowControl() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6971,7 +6970,7 @@ func (ptr *MFTransform) DestroyMFTransform() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7255,7 +7254,7 @@ func (ptr *MmRendererMetaData) DestroyMmRendererMetaData() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7685,7 +7684,7 @@ func (ptr *QAbstractAudioDeviceInfo) DisconnectPreferredFormat() {
 func (ptr *QAbstractAudioDeviceInfo) PreferredFormat() *QAudioFormat {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQAudioFormatFromPointer(C.QAbstractAudioDeviceInfo_PreferredFormat(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QAudioFormat).DestroyQAudioFormat)
+		qt.SetFinalizer(tmpValue, (*QAudioFormat).DestroyQAudioFormat)
 		return tmpValue
 	}
 	return nil
@@ -8124,7 +8123,7 @@ func (ptr *QAbstractAudioDeviceInfo) __children_newList() unsafe.Pointer {
 func (ptr *QAbstractAudioDeviceInfo) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QAbstractAudioDeviceInfo___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8260,7 +8259,7 @@ func callbackQAbstractAudioDeviceInfo_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QAbstractAudioDeviceInfo) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractAudioDeviceInfo_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -8623,7 +8622,7 @@ func (ptr *QAbstractAudioInput) DisconnectFormat() {
 func (ptr *QAbstractAudioInput) Format() *QAudioFormat {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQAudioFormatFromPointer(C.QAbstractAudioInput_Format(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QAudioFormat).DestroyQAudioFormat)
+		qt.SetFinalizer(tmpValue, (*QAudioFormat).DestroyQAudioFormat)
 		return tmpValue
 	}
 	return nil
@@ -9215,7 +9214,7 @@ func (ptr *QAbstractAudioInput) __children_newList() unsafe.Pointer {
 func (ptr *QAbstractAudioInput) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QAbstractAudioInput___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -9351,7 +9350,7 @@ func callbackQAbstractAudioInput_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QAbstractAudioInput) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractAudioInput_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -9714,7 +9713,7 @@ func (ptr *QAbstractAudioOutput) DisconnectFormat() {
 func (ptr *QAbstractAudioOutput) Format() *QAudioFormat {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQAudioFormatFromPointer(C.QAbstractAudioOutput_Format(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QAudioFormat).DestroyQAudioFormat)
+		qt.SetFinalizer(tmpValue, (*QAudioFormat).DestroyQAudioFormat)
 		return tmpValue
 	}
 	return nil
@@ -10394,7 +10393,7 @@ func (ptr *QAbstractAudioOutput) __children_newList() unsafe.Pointer {
 func (ptr *QAbstractAudioOutput) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QAbstractAudioOutput___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -10530,7 +10529,7 @@ func callbackQAbstractAudioOutput_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QAbstractAudioOutput) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractAudioOutput_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -10880,7 +10879,7 @@ func (ptr *QAbstractVideoBuffer) DisconnectHandle() {
 func (ptr *QAbstractVideoBuffer) Handle() *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QAbstractVideoBuffer_Handle(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -10889,7 +10888,7 @@ func (ptr *QAbstractVideoBuffer) Handle() *core.QVariant {
 func (ptr *QAbstractVideoBuffer) HandleDefault() *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QAbstractVideoBuffer_HandleDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -11092,7 +11091,7 @@ func (ptr *QAbstractVideoBuffer) DestroyQAbstractVideoBuffer() {
 	if ptr.Pointer() != nil {
 		C.QAbstractVideoBuffer_DestroyQAbstractVideoBuffer(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -11100,7 +11099,7 @@ func (ptr *QAbstractVideoBuffer) DestroyQAbstractVideoBufferDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractVideoBuffer_DestroyQAbstractVideoBufferDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -11265,7 +11264,7 @@ func (ptr *QAbstractVideoFilter) __children_newList() unsafe.Pointer {
 func (ptr *QAbstractVideoFilter) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QAbstractVideoFilter___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -11401,7 +11400,7 @@ func callbackQAbstractVideoFilter_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QAbstractVideoFilter) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractVideoFilter_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -11660,7 +11659,7 @@ func (ptr *QAbstractVideoSurface) IsFormatSupportedDefault(format QVideoSurfaceF
 func (ptr *QAbstractVideoSurface) NativeResolution() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QAbstractVideoSurface_NativeResolution(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -11740,7 +11739,7 @@ func (ptr *QAbstractVideoSurface) DisconnectNearestFormat() {
 func (ptr *QAbstractVideoSurface) NearestFormat(format QVideoSurfaceFormat_ITF) *QVideoSurfaceFormat {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVideoSurfaceFormatFromPointer(C.QAbstractVideoSurface_NearestFormat(ptr.Pointer(), PointerFromQVideoSurfaceFormat(format)))
-		runtime.SetFinalizer(tmpValue, (*QVideoSurfaceFormat).DestroyQVideoSurfaceFormat)
+		qt.SetFinalizer(tmpValue, (*QVideoSurfaceFormat).DestroyQVideoSurfaceFormat)
 		return tmpValue
 	}
 	return nil
@@ -11749,7 +11748,7 @@ func (ptr *QAbstractVideoSurface) NearestFormat(format QVideoSurfaceFormat_ITF) 
 func (ptr *QAbstractVideoSurface) NearestFormatDefault(format QVideoSurfaceFormat_ITF) *QVideoSurfaceFormat {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVideoSurfaceFormatFromPointer(C.QAbstractVideoSurface_NearestFormatDefault(ptr.Pointer(), PointerFromQVideoSurfaceFormat(format)))
-		runtime.SetFinalizer(tmpValue, (*QVideoSurfaceFormat).DestroyQVideoSurfaceFormat)
+		qt.SetFinalizer(tmpValue, (*QVideoSurfaceFormat).DestroyQVideoSurfaceFormat)
 		return tmpValue
 	}
 	return nil
@@ -11993,7 +11992,7 @@ func (ptr *QAbstractVideoSurface) SupportedPixelFormats(ty QAbstractVideoBuffer_
 func (ptr *QAbstractVideoSurface) SurfaceFormat() *QVideoSurfaceFormat {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVideoSurfaceFormatFromPointer(C.QAbstractVideoSurface_SurfaceFormat(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QVideoSurfaceFormat).DestroyQVideoSurfaceFormat)
+		qt.SetFinalizer(tmpValue, (*QVideoSurfaceFormat).DestroyQVideoSurfaceFormat)
 		return tmpValue
 	}
 	return nil
@@ -12074,7 +12073,7 @@ func (ptr *QAbstractVideoSurface) DestroyQAbstractVideoSurface() {
 	if ptr.Pointer() != nil {
 		C.QAbstractVideoSurface_DestroyQAbstractVideoSurface(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -12082,7 +12081,7 @@ func (ptr *QAbstractVideoSurface) DestroyQAbstractVideoSurfaceDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractVideoSurface_DestroyQAbstractVideoSurfaceDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -12127,7 +12126,7 @@ func (ptr *QAbstractVideoSurface) __children_newList() unsafe.Pointer {
 func (ptr *QAbstractVideoSurface) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QAbstractVideoSurface___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -12263,7 +12262,7 @@ func callbackQAbstractVideoSurface_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QAbstractVideoSurface) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractVideoSurface_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -13664,7 +13663,7 @@ func (ptr *QAndroidSGVideoNode) DestroyQAndroidSGVideoNode() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -13711,7 +13710,7 @@ func (ptr *QAndroidSGVideoNodeFactoryPlugin) DestroyQAndroidSGVideoNodeFactoryPl
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -13953,7 +13952,7 @@ func (ptr *QAudio) DestroyQAudio() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -14066,19 +14065,19 @@ func NewQAudioBufferFromPointer(ptr unsafe.Pointer) (n *QAudioBuffer) {
 }
 func NewQAudioBuffer() *QAudioBuffer {
 	tmpValue := NewQAudioBufferFromPointer(C.QAudioBuffer_NewQAudioBuffer())
-	runtime.SetFinalizer(tmpValue, (*QAudioBuffer).DestroyQAudioBuffer)
+	qt.SetFinalizer(tmpValue, (*QAudioBuffer).DestroyQAudioBuffer)
 	return tmpValue
 }
 
 func NewQAudioBuffer2(data core.QByteArray_ITF, format QAudioFormat_ITF, startTime int64) *QAudioBuffer {
 	tmpValue := NewQAudioBufferFromPointer(C.QAudioBuffer_NewQAudioBuffer2(core.PointerFromQByteArray(data), PointerFromQAudioFormat(format), C.longlong(startTime)))
-	runtime.SetFinalizer(tmpValue, (*QAudioBuffer).DestroyQAudioBuffer)
+	qt.SetFinalizer(tmpValue, (*QAudioBuffer).DestroyQAudioBuffer)
 	return tmpValue
 }
 
 func NewQAudioBuffer3(numFrames int, format QAudioFormat_ITF, startTime int64) *QAudioBuffer {
 	tmpValue := NewQAudioBufferFromPointer(C.QAudioBuffer_NewQAudioBuffer3(C.int(int32(numFrames)), PointerFromQAudioFormat(format), C.longlong(startTime)))
-	runtime.SetFinalizer(tmpValue, (*QAudioBuffer).DestroyQAudioBuffer)
+	qt.SetFinalizer(tmpValue, (*QAudioBuffer).DestroyQAudioBuffer)
 	return tmpValue
 }
 
@@ -14120,7 +14119,7 @@ func (ptr *QAudioBuffer) Duration() int64 {
 func (ptr *QAudioBuffer) Format() *QAudioFormat {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQAudioFormatFromPointer(C.QAudioBuffer_Format(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QAudioFormat).DestroyQAudioFormat)
+		qt.SetFinalizer(tmpValue, (*QAudioFormat).DestroyQAudioFormat)
 		return tmpValue
 	}
 	return nil
@@ -14159,7 +14158,7 @@ func (ptr *QAudioBuffer) DestroyQAudioBuffer() {
 		C.QAudioBuffer_DestroyQAudioBuffer(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -14234,7 +14233,7 @@ func NewQAudioDecoder(parent core.QObject_ITF) *QAudioDecoder {
 func (ptr *QAudioDecoder) AudioFormat() *QAudioFormat {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQAudioFormatFromPointer(C.QAudioDecoder_AudioFormat(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QAudioFormat).DestroyQAudioFormat)
+		qt.SetFinalizer(tmpValue, (*QAudioFormat).DestroyQAudioFormat)
 		return tmpValue
 	}
 	return nil
@@ -14580,7 +14579,7 @@ func (ptr *QAudioDecoder) PositionChanged(position int64) {
 func (ptr *QAudioDecoder) Read() *QAudioBuffer {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQAudioBufferFromPointer(C.QAudioDecoder_Read(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QAudioBuffer).DestroyQAudioBuffer)
+		qt.SetFinalizer(tmpValue, (*QAudioBuffer).DestroyQAudioBuffer)
 		return tmpValue
 	}
 	return nil
@@ -14835,7 +14834,7 @@ func (ptr *QAudioDecoder) DestroyQAudioDecoder() {
 	if ptr.Pointer() != nil {
 		C.QAudioDecoder_DestroyQAudioDecoder(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -14843,7 +14842,7 @@ func (ptr *QAudioDecoder) DestroyQAudioDecoderDefault() {
 	if ptr.Pointer() != nil {
 		C.QAudioDecoder_DestroyQAudioDecoderDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -14927,7 +14926,7 @@ func (ptr *QAudioDecoderControl) DisconnectAudioFormat() {
 func (ptr *QAudioDecoderControl) AudioFormat() *QAudioFormat {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQAudioFormatFromPointer(C.QAudioDecoderControl_AudioFormat(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QAudioFormat).DestroyQAudioFormat)
+		qt.SetFinalizer(tmpValue, (*QAudioFormat).DestroyQAudioFormat)
 		return tmpValue
 	}
 	return nil
@@ -15366,7 +15365,7 @@ func (ptr *QAudioDecoderControl) DisconnectRead() {
 func (ptr *QAudioDecoderControl) Read() *QAudioBuffer {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQAudioBufferFromPointer(C.QAudioDecoderControl_Read(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QAudioBuffer).DestroyQAudioBuffer)
+		qt.SetFinalizer(tmpValue, (*QAudioBuffer).DestroyQAudioBuffer)
 		return tmpValue
 	}
 	return nil
@@ -15791,7 +15790,7 @@ func (ptr *QAudioDecoderControl) DestroyQAudioDecoderControl() {
 	if ptr.Pointer() != nil {
 		C.QAudioDecoderControl_DestroyQAudioDecoderControl(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -15799,7 +15798,7 @@ func (ptr *QAudioDecoderControl) DestroyQAudioDecoderControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QAudioDecoderControl_DestroyQAudioDecoderControlDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -15842,13 +15841,13 @@ func NewQAudioDeviceInfoFromPointer(ptr unsafe.Pointer) (n *QAudioDeviceInfo) {
 }
 func NewQAudioDeviceInfo() *QAudioDeviceInfo {
 	tmpValue := NewQAudioDeviceInfoFromPointer(C.QAudioDeviceInfo_NewQAudioDeviceInfo())
-	runtime.SetFinalizer(tmpValue, (*QAudioDeviceInfo).DestroyQAudioDeviceInfo)
+	qt.SetFinalizer(tmpValue, (*QAudioDeviceInfo).DestroyQAudioDeviceInfo)
 	return tmpValue
 }
 
 func NewQAudioDeviceInfo2(other QAudioDeviceInfo_ITF) *QAudioDeviceInfo {
 	tmpValue := NewQAudioDeviceInfoFromPointer(C.QAudioDeviceInfo_NewQAudioDeviceInfo2(PointerFromQAudioDeviceInfo(other)))
-	runtime.SetFinalizer(tmpValue, (*QAudioDeviceInfo).DestroyQAudioDeviceInfo)
+	qt.SetFinalizer(tmpValue, (*QAudioDeviceInfo).DestroyQAudioDeviceInfo)
 	return tmpValue
 }
 
@@ -15876,25 +15875,25 @@ func (ptr *QAudioDeviceInfo) AvailableDevices(mode QAudio__Mode) []*QAudioDevice
 
 func QAudioDeviceInfo_DefaultInputDevice() *QAudioDeviceInfo {
 	tmpValue := NewQAudioDeviceInfoFromPointer(C.QAudioDeviceInfo_QAudioDeviceInfo_DefaultInputDevice())
-	runtime.SetFinalizer(tmpValue, (*QAudioDeviceInfo).DestroyQAudioDeviceInfo)
+	qt.SetFinalizer(tmpValue, (*QAudioDeviceInfo).DestroyQAudioDeviceInfo)
 	return tmpValue
 }
 
 func (ptr *QAudioDeviceInfo) DefaultInputDevice() *QAudioDeviceInfo {
 	tmpValue := NewQAudioDeviceInfoFromPointer(C.QAudioDeviceInfo_QAudioDeviceInfo_DefaultInputDevice())
-	runtime.SetFinalizer(tmpValue, (*QAudioDeviceInfo).DestroyQAudioDeviceInfo)
+	qt.SetFinalizer(tmpValue, (*QAudioDeviceInfo).DestroyQAudioDeviceInfo)
 	return tmpValue
 }
 
 func QAudioDeviceInfo_DefaultOutputDevice() *QAudioDeviceInfo {
 	tmpValue := NewQAudioDeviceInfoFromPointer(C.QAudioDeviceInfo_QAudioDeviceInfo_DefaultOutputDevice())
-	runtime.SetFinalizer(tmpValue, (*QAudioDeviceInfo).DestroyQAudioDeviceInfo)
+	qt.SetFinalizer(tmpValue, (*QAudioDeviceInfo).DestroyQAudioDeviceInfo)
 	return tmpValue
 }
 
 func (ptr *QAudioDeviceInfo) DefaultOutputDevice() *QAudioDeviceInfo {
 	tmpValue := NewQAudioDeviceInfoFromPointer(C.QAudioDeviceInfo_QAudioDeviceInfo_DefaultOutputDevice())
-	runtime.SetFinalizer(tmpValue, (*QAudioDeviceInfo).DestroyQAudioDeviceInfo)
+	qt.SetFinalizer(tmpValue, (*QAudioDeviceInfo).DestroyQAudioDeviceInfo)
 	return tmpValue
 }
 
@@ -15922,7 +15921,7 @@ func (ptr *QAudioDeviceInfo) IsNull() bool {
 func (ptr *QAudioDeviceInfo) NearestFormat(settings QAudioFormat_ITF) *QAudioFormat {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQAudioFormatFromPointer(C.QAudioDeviceInfo_NearestFormat(ptr.Pointer(), PointerFromQAudioFormat(settings)))
-		runtime.SetFinalizer(tmpValue, (*QAudioFormat).DestroyQAudioFormat)
+		qt.SetFinalizer(tmpValue, (*QAudioFormat).DestroyQAudioFormat)
 		return tmpValue
 	}
 	return nil
@@ -15931,7 +15930,7 @@ func (ptr *QAudioDeviceInfo) NearestFormat(settings QAudioFormat_ITF) *QAudioFor
 func (ptr *QAudioDeviceInfo) PreferredFormat() *QAudioFormat {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQAudioFormatFromPointer(C.QAudioDeviceInfo_PreferredFormat(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QAudioFormat).DestroyQAudioFormat)
+		qt.SetFinalizer(tmpValue, (*QAudioFormat).DestroyQAudioFormat)
 		return tmpValue
 	}
 	return nil
@@ -16019,14 +16018,14 @@ func (ptr *QAudioDeviceInfo) DestroyQAudioDeviceInfo() {
 		C.QAudioDeviceInfo_DestroyQAudioDeviceInfo(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QAudioDeviceInfo) __availableDevices_atList(i int) *QAudioDeviceInfo {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQAudioDeviceInfoFromPointer(C.QAudioDeviceInfo___availableDevices_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QAudioDeviceInfo).DestroyQAudioDeviceInfo)
+		qt.SetFinalizer(tmpValue, (*QAudioDeviceInfo).DestroyQAudioDeviceInfo)
 		return tmpValue
 	}
 	return nil
@@ -16166,13 +16165,13 @@ func NewQAudioEncoderSettingsFromPointer(ptr unsafe.Pointer) (n *QAudioEncoderSe
 }
 func NewQAudioEncoderSettings() *QAudioEncoderSettings {
 	tmpValue := NewQAudioEncoderSettingsFromPointer(C.QAudioEncoderSettings_NewQAudioEncoderSettings())
-	runtime.SetFinalizer(tmpValue, (*QAudioEncoderSettings).DestroyQAudioEncoderSettings)
+	qt.SetFinalizer(tmpValue, (*QAudioEncoderSettings).DestroyQAudioEncoderSettings)
 	return tmpValue
 }
 
 func NewQAudioEncoderSettings2(other QAudioEncoderSettings_ITF) *QAudioEncoderSettings {
 	tmpValue := NewQAudioEncoderSettingsFromPointer(C.QAudioEncoderSettings_NewQAudioEncoderSettings2(PointerFromQAudioEncoderSettings(other)))
-	runtime.SetFinalizer(tmpValue, (*QAudioEncoderSettings).DestroyQAudioEncoderSettings)
+	qt.SetFinalizer(tmpValue, (*QAudioEncoderSettings).DestroyQAudioEncoderSettings)
 	return tmpValue
 }
 
@@ -16212,7 +16211,7 @@ func (ptr *QAudioEncoderSettings) EncodingOption(option string) *core.QVariant {
 			defer C.free(unsafe.Pointer(optionC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QAudioEncoderSettings_EncodingOption(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: optionC, len: C.longlong(len(option))}))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -16322,7 +16321,7 @@ func (ptr *QAudioEncoderSettings) DestroyQAudioEncoderSettings() {
 		C.QAudioEncoderSettings_DestroyQAudioEncoderSettings(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -16334,7 +16333,7 @@ func (ptr *QAudioEncoderSettings) __encodingOptions_atList(v string, i int) *cor
 			defer C.free(unsafe.Pointer(vC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QAudioEncoderSettings___encodingOptions_atList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -16377,7 +16376,7 @@ func (ptr *QAudioEncoderSettings) __setEncodingOptions_options_atList(v string, 
 			defer C.free(unsafe.Pointer(vC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QAudioEncoderSettings___setEncodingOptions_options_atList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -16536,7 +16535,7 @@ func (ptr *QAudioEncoderSettingsControl) DisconnectAudioSettings() {
 func (ptr *QAudioEncoderSettingsControl) AudioSettings() *QAudioEncoderSettings {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQAudioEncoderSettingsFromPointer(C.QAudioEncoderSettingsControl_AudioSettings(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QAudioEncoderSettings).DestroyQAudioEncoderSettings)
+		qt.SetFinalizer(tmpValue, (*QAudioEncoderSettings).DestroyQAudioEncoderSettings)
 		return tmpValue
 	}
 	return nil
@@ -16760,7 +16759,7 @@ func (ptr *QAudioEncoderSettingsControl) DestroyQAudioEncoderSettingsControl() {
 	if ptr.Pointer() != nil {
 		C.QAudioEncoderSettingsControl_DestroyQAudioEncoderSettingsControl(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -16768,7 +16767,7 @@ func (ptr *QAudioEncoderSettingsControl) DestroyQAudioEncoderSettingsControlDefa
 	if ptr.Pointer() != nil {
 		C.QAudioEncoderSettingsControl_DestroyQAudioEncoderSettingsControlDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -16849,13 +16848,13 @@ const (
 
 func NewQAudioFormat() *QAudioFormat {
 	tmpValue := NewQAudioFormatFromPointer(C.QAudioFormat_NewQAudioFormat())
-	runtime.SetFinalizer(tmpValue, (*QAudioFormat).DestroyQAudioFormat)
+	qt.SetFinalizer(tmpValue, (*QAudioFormat).DestroyQAudioFormat)
 	return tmpValue
 }
 
 func NewQAudioFormat2(other QAudioFormat_ITF) *QAudioFormat {
 	tmpValue := NewQAudioFormatFromPointer(C.QAudioFormat_NewQAudioFormat2(PointerFromQAudioFormat(other)))
-	runtime.SetFinalizer(tmpValue, (*QAudioFormat).DestroyQAudioFormat)
+	qt.SetFinalizer(tmpValue, (*QAudioFormat).DestroyQAudioFormat)
 	return tmpValue
 }
 
@@ -17003,7 +17002,7 @@ func (ptr *QAudioFormat) DestroyQAudioFormat() {
 		C.QAudioFormat_DestroyQAudioFormat(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -17092,7 +17091,7 @@ func (ptr *QAudioInput) Error() QAudio__Error {
 func (ptr *QAudioInput) Format() *QAudioFormat {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQAudioFormatFromPointer(C.QAudioInput_Format(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QAudioFormat).DestroyQAudioFormat)
+		qt.SetFinalizer(tmpValue, (*QAudioFormat).DestroyQAudioFormat)
 		return tmpValue
 	}
 	return nil
@@ -17267,7 +17266,7 @@ func (ptr *QAudioInput) DestroyQAudioInput() {
 	if ptr.Pointer() != nil {
 		C.QAudioInput_DestroyQAudioInput(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -17275,7 +17274,7 @@ func (ptr *QAudioInput) DestroyQAudioInputDefault() {
 	if ptr.Pointer() != nil {
 		C.QAudioInput_DestroyQAudioInputDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -17303,7 +17302,7 @@ func (ptr *QAudioInput) __children_newList() unsafe.Pointer {
 func (ptr *QAudioInput) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QAudioInput___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -17439,7 +17438,7 @@ func callbackQAudioInput_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QAudioInput) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QAudioInput_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -17859,7 +17858,7 @@ func (ptr *QAudioInputSelectorControl) DestroyQAudioInputSelectorControl() {
 	if ptr.Pointer() != nil {
 		C.QAudioInputSelectorControl_DestroyQAudioInputSelectorControl(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -17867,7 +17866,7 @@ func (ptr *QAudioInputSelectorControl) DestroyQAudioInputSelectorControlDefault(
 	if ptr.Pointer() != nil {
 		C.QAudioInputSelectorControl_DestroyQAudioInputSelectorControlDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -17985,7 +17984,7 @@ func (ptr *QAudioOutput) Error() QAudio__Error {
 func (ptr *QAudioOutput) Format() *QAudioFormat {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQAudioFormatFromPointer(C.QAudioOutput_Format(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QAudioFormat).DestroyQAudioFormat)
+		qt.SetFinalizer(tmpValue, (*QAudioFormat).DestroyQAudioFormat)
 		return tmpValue
 	}
 	return nil
@@ -18171,7 +18170,7 @@ func (ptr *QAudioOutput) DestroyQAudioOutput() {
 	if ptr.Pointer() != nil {
 		C.QAudioOutput_DestroyQAudioOutput(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -18179,7 +18178,7 @@ func (ptr *QAudioOutput) DestroyQAudioOutputDefault() {
 	if ptr.Pointer() != nil {
 		C.QAudioOutput_DestroyQAudioOutputDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -18207,7 +18206,7 @@ func (ptr *QAudioOutput) __children_newList() unsafe.Pointer {
 func (ptr *QAudioOutput) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QAudioOutput___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -18343,7 +18342,7 @@ func callbackQAudioOutput_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QAudioOutput) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QAudioOutput_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -18763,7 +18762,7 @@ func (ptr *QAudioOutputSelectorControl) DestroyQAudioOutputSelectorControl() {
 	if ptr.Pointer() != nil {
 		C.QAudioOutputSelectorControl_DestroyQAudioOutputSelectorControl(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -18771,7 +18770,7 @@ func (ptr *QAudioOutputSelectorControl) DestroyQAudioOutputSelectorControlDefaul
 	if ptr.Pointer() != nil {
 		C.QAudioOutputSelectorControl_DestroyQAudioOutputSelectorControlDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -18979,7 +18978,7 @@ func (ptr *QAudioProbe) DestroyQAudioProbe() {
 	if ptr.Pointer() != nil {
 		C.QAudioProbe_DestroyQAudioProbe(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -18987,7 +18986,7 @@ func (ptr *QAudioProbe) DestroyQAudioProbeDefault() {
 	if ptr.Pointer() != nil {
 		C.QAudioProbe_DestroyQAudioProbeDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -19015,7 +19014,7 @@ func (ptr *QAudioProbe) __children_newList() unsafe.Pointer {
 func (ptr *QAudioProbe) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QAudioProbe___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -19151,7 +19150,7 @@ func callbackQAudioProbe_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QAudioProbe) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QAudioProbe_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -19501,7 +19500,7 @@ func (ptr *QAudioRecorder) DestroyQAudioRecorder() {
 	if ptr.Pointer() != nil {
 		C.QAudioRecorder_DestroyQAudioRecorder(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -19509,7 +19508,7 @@ func (ptr *QAudioRecorder) DestroyQAudioRecorderDefault() {
 	if ptr.Pointer() != nil {
 		C.QAudioRecorder_DestroyQAudioRecorderDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -19765,7 +19764,7 @@ func (ptr *QAudioRoleControl) DestroyQAudioRoleControl() {
 	if ptr.Pointer() != nil {
 		C.QAudioRoleControl_DestroyQAudioRoleControl(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -19773,7 +19772,7 @@ func (ptr *QAudioRoleControl) DestroyQAudioRoleControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QAudioRoleControl_DestroyQAudioRoleControlDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -19837,14 +19836,14 @@ func (ptr *QAudioSystemFactoryInterface) DestroyQAudioSystemFactoryInterface() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QAudioSystemFactoryInterface) __availableDevices_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QAudioSystemFactoryInterface___availableDevices_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -20127,7 +20126,7 @@ func (ptr *QAudioSystemPlugin) DestroyQAudioSystemPlugin() {
 	if ptr.Pointer() != nil {
 		C.QAudioSystemPlugin_DestroyQAudioSystemPlugin(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -20135,7 +20134,7 @@ func (ptr *QAudioSystemPlugin) DestroyQAudioSystemPluginDefault() {
 	if ptr.Pointer() != nil {
 		C.QAudioSystemPlugin_DestroyQAudioSystemPluginDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -20163,7 +20162,7 @@ func (ptr *QAudioSystemPlugin) __children_newList() unsafe.Pointer {
 func (ptr *QAudioSystemPlugin) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QAudioSystemPlugin___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -20317,14 +20316,14 @@ func callbackQAudioSystemPlugin_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QAudioSystemPlugin) DeleteLater() {
 	if ptr.Pointer() != nil {
 		C.QAudioSystemPlugin_DeleteLater(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QAudioSystemPlugin) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QAudioSystemPlugin_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -21490,7 +21489,7 @@ func (ptr *QCamera) Unlock2Default(locks QCamera__LockType) {
 func (ptr *QCamera) ViewfinderSettings() *QCameraViewfinderSettings {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQCameraViewfinderSettingsFromPointer(C.QCamera_ViewfinderSettings(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QCameraViewfinderSettings).DestroyQCameraViewfinderSettings)
+		qt.SetFinalizer(tmpValue, (*QCameraViewfinderSettings).DestroyQCameraViewfinderSettings)
 		return tmpValue
 	}
 	return nil
@@ -21531,7 +21530,7 @@ func (ptr *QCamera) DestroyQCamera() {
 	if ptr.Pointer() != nil {
 		C.QCamera_DestroyQCamera(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -21539,14 +21538,14 @@ func (ptr *QCamera) DestroyQCameraDefault() {
 	if ptr.Pointer() != nil {
 		C.QCamera_DestroyQCameraDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QCamera) __availableDevices_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QCamera___availableDevices_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -21582,7 +21581,7 @@ func (ptr *QCamera) __supportedViewfinderPixelFormats_newList() unsafe.Pointer {
 func (ptr *QCamera) __supportedViewfinderResolutions_atList(i int) *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QCamera___supportedViewfinderResolutions_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -21601,7 +21600,7 @@ func (ptr *QCamera) __supportedViewfinderResolutions_newList() unsafe.Pointer {
 func (ptr *QCamera) __supportedViewfinderSettings_atList(i int) *QCameraViewfinderSettings {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQCameraViewfinderSettingsFromPointer(C.QCamera___supportedViewfinderSettings_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QCameraViewfinderSettings).DestroyQCameraViewfinderSettings)
+		qt.SetFinalizer(tmpValue, (*QCameraViewfinderSettings).DestroyQCameraViewfinderSettings)
 		return tmpValue
 	}
 	return nil
@@ -21869,7 +21868,7 @@ func (ptr *QCameraCaptureBufferFormatControl) DestroyQCameraCaptureBufferFormatC
 	if ptr.Pointer() != nil {
 		C.QCameraCaptureBufferFormatControl_DestroyQCameraCaptureBufferFormatControl(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -21877,7 +21876,7 @@ func (ptr *QCameraCaptureBufferFormatControl) DestroyQCameraCaptureBufferFormatC
 	if ptr.Pointer() != nil {
 		C.QCameraCaptureBufferFormatControl_DestroyQCameraCaptureBufferFormatControlDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -22131,7 +22130,7 @@ func (ptr *QCameraCaptureDestinationControl) DestroyQCameraCaptureDestinationCon
 	if ptr.Pointer() != nil {
 		C.QCameraCaptureDestinationControl_DestroyQCameraCaptureDestinationControl(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -22139,7 +22138,7 @@ func (ptr *QCameraCaptureDestinationControl) DestroyQCameraCaptureDestinationCon
 	if ptr.Pointer() != nil {
 		C.QCameraCaptureDestinationControl_DestroyQCameraCaptureDestinationControlDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -22664,7 +22663,7 @@ func (ptr *QCameraControl) DestroyQCameraControl() {
 	if ptr.Pointer() != nil {
 		C.QCameraControl_DestroyQCameraControl(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -22672,7 +22671,7 @@ func (ptr *QCameraControl) DestroyQCameraControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QCameraControl_DestroyQCameraControlDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -23595,7 +23594,7 @@ func (ptr *QCameraExposure) ShutterSpeedRangeChanged() {
 func (ptr *QCameraExposure) SpotMeteringPoint() *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QCameraExposure_SpotMeteringPoint(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -23733,7 +23732,7 @@ func (ptr *QCameraExposure) __children_newList() unsafe.Pointer {
 func (ptr *QCameraExposure) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QCameraExposure___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -23869,7 +23868,7 @@ func callbackQCameraExposure_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QCameraExposure) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QCameraExposure_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -24066,7 +24065,7 @@ func (ptr *QCameraExposureControl) DisconnectActualValue() {
 func (ptr *QCameraExposureControl) ActualValue(parameter QCameraExposureControl__ExposureParameter) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QCameraExposureControl_ActualValue(ptr.Pointer(), C.longlong(parameter)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -24224,7 +24223,7 @@ func (ptr *QCameraExposureControl) DisconnectRequestedValue() {
 func (ptr *QCameraExposureControl) RequestedValue(parameter QCameraExposureControl__ExposureParameter) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QCameraExposureControl_RequestedValue(ptr.Pointer(), C.longlong(parameter)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -24407,7 +24406,7 @@ func (ptr *QCameraExposureControl) DestroyQCameraExposureControl() {
 	if ptr.Pointer() != nil {
 		C.QCameraExposureControl_DestroyQCameraExposureControl(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -24415,14 +24414,14 @@ func (ptr *QCameraExposureControl) DestroyQCameraExposureControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QCameraExposureControl_DestroyQCameraExposureControlDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QCameraExposureControl) __supportedParameterRange_atList(i int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QCameraExposureControl___supportedParameterRange_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -24731,7 +24730,7 @@ func (ptr *QCameraFeedbackControl) DestroyQCameraFeedbackControl() {
 	if ptr.Pointer() != nil {
 		C.QCameraFeedbackControl_DestroyQCameraFeedbackControl(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -24739,7 +24738,7 @@ func (ptr *QCameraFeedbackControl) DestroyQCameraFeedbackControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QCameraFeedbackControl_DestroyQCameraFeedbackControlDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -25014,7 +25013,7 @@ func (ptr *QCameraFlashControl) DestroyQCameraFlashControl() {
 	if ptr.Pointer() != nil {
 		C.QCameraFlashControl_DestroyQCameraFlashControl(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -25022,7 +25021,7 @@ func (ptr *QCameraFlashControl) DestroyQCameraFlashControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QCameraFlashControl_DestroyQCameraFlashControlDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -25092,7 +25091,7 @@ const (
 func (ptr *QCameraFocus) CustomFocusPoint() *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QCameraFocus_CustomFocusPoint(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -25409,7 +25408,7 @@ func (ptr *QCameraFocus) __children_newList() unsafe.Pointer {
 func (ptr *QCameraFocus) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QCameraFocus___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -25545,7 +25544,7 @@ func callbackQCameraFocus_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QCameraFocus) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QCameraFocus_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -25716,7 +25715,7 @@ func (ptr *QCameraFocusControl) DisconnectCustomFocusPoint() {
 func (ptr *QCameraFocusControl) CustomFocusPoint() *core.QPointF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPointFFromPointer(C.QCameraFocusControl_CustomFocusPoint(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		qt.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
@@ -26177,7 +26176,7 @@ func (ptr *QCameraFocusControl) DestroyQCameraFocusControl() {
 	if ptr.Pointer() != nil {
 		C.QCameraFocusControl_DestroyQCameraFocusControl(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -26185,7 +26184,7 @@ func (ptr *QCameraFocusControl) DestroyQCameraFocusControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QCameraFocusControl_DestroyQCameraFocusControlDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -26240,14 +26239,14 @@ const (
 
 func NewQCameraFocusZone(other QCameraFocusZone_ITF) *QCameraFocusZone {
 	tmpValue := NewQCameraFocusZoneFromPointer(C.QCameraFocusZone_NewQCameraFocusZone(PointerFromQCameraFocusZone(other)))
-	runtime.SetFinalizer(tmpValue, (*QCameraFocusZone).DestroyQCameraFocusZone)
+	qt.SetFinalizer(tmpValue, (*QCameraFocusZone).DestroyQCameraFocusZone)
 	return tmpValue
 }
 
 func (ptr *QCameraFocusZone) Area() *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QCameraFocusZone_Area(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -26272,7 +26271,7 @@ func (ptr *QCameraFocusZone) DestroyQCameraFocusZone() {
 		C.QCameraFocusZone_DestroyQCameraFocusZone(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -26558,7 +26557,7 @@ func (ptr *QCameraImageCapture) CaptureDestinationChanged(destination QCameraIma
 func (ptr *QCameraImageCapture) EncodingSettings() *QImageEncoderSettings {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQImageEncoderSettingsFromPointer(C.QCameraImageCapture_EncodingSettings(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QImageEncoderSettings).DestroyQImageEncoderSettings)
+		qt.SetFinalizer(tmpValue, (*QImageEncoderSettings).DestroyQImageEncoderSettings)
 		return tmpValue
 	}
 	return nil
@@ -27097,7 +27096,7 @@ func (ptr *QCameraImageCapture) DestroyQCameraImageCapture() {
 	if ptr.Pointer() != nil {
 		C.QCameraImageCapture_DestroyQCameraImageCapture(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -27105,7 +27104,7 @@ func (ptr *QCameraImageCapture) DestroyQCameraImageCaptureDefault() {
 	if ptr.Pointer() != nil {
 		C.QCameraImageCapture_DestroyQCameraImageCaptureDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -27129,7 +27128,7 @@ func (ptr *QCameraImageCapture) __supportedBufferFormats_newList() unsafe.Pointe
 func (ptr *QCameraImageCapture) __supportedResolutions_atList(i int) *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QCameraImageCapture___supportedResolutions_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -27169,7 +27168,7 @@ func (ptr *QCameraImageCapture) __children_newList() unsafe.Pointer {
 func (ptr *QCameraImageCapture) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QCameraImageCapture___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -27323,14 +27322,14 @@ func callbackQCameraImageCapture_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QCameraImageCapture) DeleteLater() {
 	if ptr.Pointer() != nil {
 		C.QCameraImageCapture_DeleteLater(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QCameraImageCapture) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QCameraImageCapture_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -28028,7 +28027,7 @@ func (ptr *QCameraImageCaptureControl) DestroyQCameraImageCaptureControl() {
 	if ptr.Pointer() != nil {
 		C.QCameraImageCaptureControl_DestroyQCameraImageCaptureControl(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -28036,7 +28035,7 @@ func (ptr *QCameraImageCaptureControl) DestroyQCameraImageCaptureControlDefault(
 	if ptr.Pointer() != nil {
 		C.QCameraImageCaptureControl_DestroyQCameraImageCaptureControlDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -28262,7 +28261,7 @@ func (ptr *QCameraImageProcessing) __children_newList() unsafe.Pointer {
 func (ptr *QCameraImageProcessing) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QCameraImageProcessing___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -28398,7 +28397,7 @@ func callbackQCameraImageProcessing_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QCameraImageProcessing) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QCameraImageProcessing_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -28674,7 +28673,7 @@ func (ptr *QCameraImageProcessingControl) DisconnectParameter() {
 func (ptr *QCameraImageProcessingControl) Parameter(parameter QCameraImageProcessingControl__ProcessingParameter) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QCameraImageProcessingControl_Parameter(ptr.Pointer(), C.longlong(parameter)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -28751,7 +28750,7 @@ func (ptr *QCameraImageProcessingControl) DestroyQCameraImageProcessingControl()
 	if ptr.Pointer() != nil {
 		C.QCameraImageProcessingControl_DestroyQCameraImageProcessingControl(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -28759,7 +28758,7 @@ func (ptr *QCameraImageProcessingControl) DestroyQCameraImageProcessingControlDe
 	if ptr.Pointer() != nil {
 		C.QCameraImageProcessingControl_DestroyQCameraImageProcessingControlDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -28802,19 +28801,19 @@ func NewQCameraInfoFromPointer(ptr unsafe.Pointer) (n *QCameraInfo) {
 }
 func NewQCameraInfo(name core.QByteArray_ITF) *QCameraInfo {
 	tmpValue := NewQCameraInfoFromPointer(C.QCameraInfo_NewQCameraInfo(core.PointerFromQByteArray(name)))
-	runtime.SetFinalizer(tmpValue, (*QCameraInfo).DestroyQCameraInfo)
+	qt.SetFinalizer(tmpValue, (*QCameraInfo).DestroyQCameraInfo)
 	return tmpValue
 }
 
 func NewQCameraInfo2(camera QCamera_ITF) *QCameraInfo {
 	tmpValue := NewQCameraInfoFromPointer(C.QCameraInfo_NewQCameraInfo2(PointerFromQCamera(camera)))
-	runtime.SetFinalizer(tmpValue, (*QCameraInfo).DestroyQCameraInfo)
+	qt.SetFinalizer(tmpValue, (*QCameraInfo).DestroyQCameraInfo)
 	return tmpValue
 }
 
 func NewQCameraInfo3(other QCameraInfo_ITF) *QCameraInfo {
 	tmpValue := NewQCameraInfoFromPointer(C.QCameraInfo_NewQCameraInfo3(PointerFromQCameraInfo(other)))
-	runtime.SetFinalizer(tmpValue, (*QCameraInfo).DestroyQCameraInfo)
+	qt.SetFinalizer(tmpValue, (*QCameraInfo).DestroyQCameraInfo)
 	return tmpValue
 }
 
@@ -28842,13 +28841,13 @@ func (ptr *QCameraInfo) AvailableCameras(position QCamera__Position) []*QCameraI
 
 func QCameraInfo_DefaultCamera() *QCameraInfo {
 	tmpValue := NewQCameraInfoFromPointer(C.QCameraInfo_QCameraInfo_DefaultCamera())
-	runtime.SetFinalizer(tmpValue, (*QCameraInfo).DestroyQCameraInfo)
+	qt.SetFinalizer(tmpValue, (*QCameraInfo).DestroyQCameraInfo)
 	return tmpValue
 }
 
 func (ptr *QCameraInfo) DefaultCamera() *QCameraInfo {
 	tmpValue := NewQCameraInfoFromPointer(C.QCameraInfo_QCameraInfo_DefaultCamera())
-	runtime.SetFinalizer(tmpValue, (*QCameraInfo).DestroyQCameraInfo)
+	qt.SetFinalizer(tmpValue, (*QCameraInfo).DestroyQCameraInfo)
 	return tmpValue
 }
 
@@ -28892,14 +28891,14 @@ func (ptr *QCameraInfo) DestroyQCameraInfo() {
 		C.QCameraInfo_DestroyQCameraInfo(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QCameraInfo) __availableCameras_atList(i int) *QCameraInfo {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQCameraInfoFromPointer(C.QCameraInfo___availableCameras_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QCameraInfo).DestroyQCameraInfo)
+		qt.SetFinalizer(tmpValue, (*QCameraInfo).DestroyQCameraInfo)
 		return tmpValue
 	}
 	return nil
@@ -29082,7 +29081,7 @@ func (ptr *QCameraInfoControl) DestroyQCameraInfoControl() {
 	if ptr.Pointer() != nil {
 		C.QCameraInfoControl_DestroyQCameraInfoControl(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -29090,7 +29089,7 @@ func (ptr *QCameraInfoControl) DestroyQCameraInfoControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QCameraInfoControl_DestroyQCameraInfoControlDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -29363,7 +29362,7 @@ func (ptr *QCameraLocksControl) DestroyQCameraLocksControl() {
 	if ptr.Pointer() != nil {
 		C.QCameraLocksControl_DestroyQCameraLocksControl(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -29371,7 +29370,7 @@ func (ptr *QCameraLocksControl) DestroyQCameraLocksControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QCameraLocksControl_DestroyQCameraLocksControlDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -29414,13 +29413,13 @@ func NewQCameraViewfinderSettingsFromPointer(ptr unsafe.Pointer) (n *QCameraView
 }
 func NewQCameraViewfinderSettings() *QCameraViewfinderSettings {
 	tmpValue := NewQCameraViewfinderSettingsFromPointer(C.QCameraViewfinderSettings_NewQCameraViewfinderSettings())
-	runtime.SetFinalizer(tmpValue, (*QCameraViewfinderSettings).DestroyQCameraViewfinderSettings)
+	qt.SetFinalizer(tmpValue, (*QCameraViewfinderSettings).DestroyQCameraViewfinderSettings)
 	return tmpValue
 }
 
 func NewQCameraViewfinderSettings2(other QCameraViewfinderSettings_ITF) *QCameraViewfinderSettings {
 	tmpValue := NewQCameraViewfinderSettingsFromPointer(C.QCameraViewfinderSettings_NewQCameraViewfinderSettings2(PointerFromQCameraViewfinderSettings(other)))
-	runtime.SetFinalizer(tmpValue, (*QCameraViewfinderSettings).DestroyQCameraViewfinderSettings)
+	qt.SetFinalizer(tmpValue, (*QCameraViewfinderSettings).DestroyQCameraViewfinderSettings)
 	return tmpValue
 }
 
@@ -29448,7 +29447,7 @@ func (ptr *QCameraViewfinderSettings) MinimumFrameRate() float64 {
 func (ptr *QCameraViewfinderSettings) PixelAspectRatio() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QCameraViewfinderSettings_PixelAspectRatio(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -29464,7 +29463,7 @@ func (ptr *QCameraViewfinderSettings) PixelFormat() QVideoFrame__PixelFormat {
 func (ptr *QCameraViewfinderSettings) Resolution() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QCameraViewfinderSettings_Resolution(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -29523,7 +29522,7 @@ func (ptr *QCameraViewfinderSettings) DestroyQCameraViewfinderSettings() {
 		C.QCameraViewfinderSettings_DestroyQCameraViewfinderSettings(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -29695,7 +29694,7 @@ func (ptr *QCameraViewfinderSettingsControl) DisconnectViewfinderParameter() {
 func (ptr *QCameraViewfinderSettingsControl) ViewfinderParameter(parameter QCameraViewfinderSettingsControl__ViewfinderParameter) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QCameraViewfinderSettingsControl_ViewfinderParameter(ptr.Pointer(), C.longlong(parameter)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -29736,7 +29735,7 @@ func (ptr *QCameraViewfinderSettingsControl) DestroyQCameraViewfinderSettingsCon
 	if ptr.Pointer() != nil {
 		C.QCameraViewfinderSettingsControl_DestroyQCameraViewfinderSettingsControl(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -29744,7 +29743,7 @@ func (ptr *QCameraViewfinderSettingsControl) DestroyQCameraViewfinderSettingsCon
 	if ptr.Pointer() != nil {
 		C.QCameraViewfinderSettingsControl_DestroyQCameraViewfinderSettingsControlDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -29921,7 +29920,7 @@ func (ptr *QCameraViewfinderSettingsControl2) DisconnectViewfinderSettings() {
 func (ptr *QCameraViewfinderSettingsControl2) ViewfinderSettings() *QCameraViewfinderSettings {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQCameraViewfinderSettingsFromPointer(C.QCameraViewfinderSettingsControl2_ViewfinderSettings(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QCameraViewfinderSettings).DestroyQCameraViewfinderSettings)
+		qt.SetFinalizer(tmpValue, (*QCameraViewfinderSettings).DestroyQCameraViewfinderSettings)
 		return tmpValue
 	}
 	return nil
@@ -29962,7 +29961,7 @@ func (ptr *QCameraViewfinderSettingsControl2) DestroyQCameraViewfinderSettingsCo
 	if ptr.Pointer() != nil {
 		C.QCameraViewfinderSettingsControl2_DestroyQCameraViewfinderSettingsControl2(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -29970,14 +29969,14 @@ func (ptr *QCameraViewfinderSettingsControl2) DestroyQCameraViewfinderSettingsCo
 	if ptr.Pointer() != nil {
 		C.QCameraViewfinderSettingsControl2_DestroyQCameraViewfinderSettingsControl2Default(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QCameraViewfinderSettingsControl2) __supportedViewfinderSettings_atList(i int) *QCameraViewfinderSettings {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQCameraViewfinderSettingsFromPointer(C.QCameraViewfinderSettingsControl2___supportedViewfinderSettings_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QCameraViewfinderSettings).DestroyQCameraViewfinderSettings)
+		qt.SetFinalizer(tmpValue, (*QCameraViewfinderSettings).DestroyQCameraViewfinderSettings)
 		return tmpValue
 	}
 	return nil
@@ -30578,7 +30577,7 @@ func (ptr *QCameraZoomControl) DestroyQCameraZoomControl() {
 	if ptr.Pointer() != nil {
 		C.QCameraZoomControl_DestroyQCameraZoomControl(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -30586,7 +30585,7 @@ func (ptr *QCameraZoomControl) DestroyQCameraZoomControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QCameraZoomControl_DestroyQCameraZoomControlDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -30835,7 +30834,7 @@ func (ptr *QCustomAudioRoleControl) DestroyQCustomAudioRoleControl() {
 	if ptr.Pointer() != nil {
 		C.QCustomAudioRoleControl_DestroyQCustomAudioRoleControl(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -30843,7 +30842,7 @@ func (ptr *QCustomAudioRoleControl) DestroyQCustomAudioRoleControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QCustomAudioRoleControl_DestroyQCustomAudioRoleControlDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -31325,7 +31324,7 @@ func (ptr *QGstreamerElementFactory) DestroyQGstreamerElementFactory() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -31772,7 +31771,7 @@ func (ptr *QGstreamerVideoInput) DestroyQGstreamerVideoInput() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -31900,7 +31899,7 @@ func (ptr *QImageEncoderControl) DisconnectImageSettings() {
 func (ptr *QImageEncoderControl) ImageSettings() *QImageEncoderSettings {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQImageEncoderSettingsFromPointer(C.QImageEncoderControl_ImageSettings(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QImageEncoderSettings).DestroyQImageEncoderSettings)
+		qt.SetFinalizer(tmpValue, (*QImageEncoderSettings).DestroyQImageEncoderSettings)
 		return tmpValue
 	}
 	return nil
@@ -32080,7 +32079,7 @@ func (ptr *QImageEncoderControl) DestroyQImageEncoderControl() {
 	if ptr.Pointer() != nil {
 		C.QImageEncoderControl_DestroyQImageEncoderControl(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -32088,14 +32087,14 @@ func (ptr *QImageEncoderControl) DestroyQImageEncoderControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QImageEncoderControl_DestroyQImageEncoderControlDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QImageEncoderControl) __supportedResolutions_atList(i int) *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QImageEncoderControl___supportedResolutions_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -32150,13 +32149,13 @@ func NewQImageEncoderSettingsFromPointer(ptr unsafe.Pointer) (n *QImageEncoderSe
 }
 func NewQImageEncoderSettings() *QImageEncoderSettings {
 	tmpValue := NewQImageEncoderSettingsFromPointer(C.QImageEncoderSettings_NewQImageEncoderSettings())
-	runtime.SetFinalizer(tmpValue, (*QImageEncoderSettings).DestroyQImageEncoderSettings)
+	qt.SetFinalizer(tmpValue, (*QImageEncoderSettings).DestroyQImageEncoderSettings)
 	return tmpValue
 }
 
 func NewQImageEncoderSettings2(other QImageEncoderSettings_ITF) *QImageEncoderSettings {
 	tmpValue := NewQImageEncoderSettingsFromPointer(C.QImageEncoderSettings_NewQImageEncoderSettings2(PointerFromQImageEncoderSettings(other)))
-	runtime.SetFinalizer(tmpValue, (*QImageEncoderSettings).DestroyQImageEncoderSettings)
+	qt.SetFinalizer(tmpValue, (*QImageEncoderSettings).DestroyQImageEncoderSettings)
 	return tmpValue
 }
 
@@ -32175,7 +32174,7 @@ func (ptr *QImageEncoderSettings) EncodingOption(option string) *core.QVariant {
 			defer C.free(unsafe.Pointer(optionC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QImageEncoderSettings_EncodingOption(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: optionC, len: C.longlong(len(option))}))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -32212,7 +32211,7 @@ func (ptr *QImageEncoderSettings) Quality() QMultimedia__EncodingQuality {
 func (ptr *QImageEncoderSettings) Resolution() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QImageEncoderSettings_Resolution(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -32275,7 +32274,7 @@ func (ptr *QImageEncoderSettings) DestroyQImageEncoderSettings() {
 		C.QImageEncoderSettings_DestroyQImageEncoderSettings(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -32287,7 +32286,7 @@ func (ptr *QImageEncoderSettings) __encodingOptions_atList(v string, i int) *cor
 			defer C.free(unsafe.Pointer(vC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QImageEncoderSettings___encodingOptions_atList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -32330,7 +32329,7 @@ func (ptr *QImageEncoderSettings) __setEncodingOptions_options_atList(v string, 
 			defer C.free(unsafe.Pointer(vC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QImageEncoderSettings___setEncodingOptions_options_atList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -32609,7 +32608,7 @@ func (ptr *QMediaAudioProbeControl) DestroyQMediaAudioProbeControl() {
 	if ptr.Pointer() != nil {
 		C.QMediaAudioProbeControl_DestroyQMediaAudioProbeControl(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -32617,7 +32616,7 @@ func (ptr *QMediaAudioProbeControl) DestroyQMediaAudioProbeControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QMediaAudioProbeControl_DestroyQMediaAudioProbeControlDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -32780,7 +32779,7 @@ func (ptr *QMediaAvailabilityControl) DestroyQMediaAvailabilityControl() {
 	if ptr.Pointer() != nil {
 		C.QMediaAvailabilityControl_DestroyQMediaAvailabilityControl(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -32788,7 +32787,7 @@ func (ptr *QMediaAvailabilityControl) DestroyQMediaAvailabilityControlDefault() 
 	if ptr.Pointer() != nil {
 		C.QMediaAvailabilityControl_DestroyQMediaAvailabilityControlDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -33199,7 +33198,7 @@ func (ptr *QMediaContainerControl) DestroyQMediaContainerControl() {
 	if ptr.Pointer() != nil {
 		C.QMediaContainerControl_DestroyQMediaContainerControl(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -33207,7 +33206,7 @@ func (ptr *QMediaContainerControl) DestroyQMediaContainerControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QMediaContainerControl_DestroyQMediaContainerControlDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -33250,38 +33249,38 @@ func NewQMediaContentFromPointer(ptr unsafe.Pointer) (n *QMediaContent) {
 }
 func NewQMediaContent() *QMediaContent {
 	tmpValue := NewQMediaContentFromPointer(C.QMediaContent_NewQMediaContent())
-	runtime.SetFinalizer(tmpValue, (*QMediaContent).DestroyQMediaContent)
+	qt.SetFinalizer(tmpValue, (*QMediaContent).DestroyQMediaContent)
 	return tmpValue
 }
 
 func NewQMediaContent2(url core.QUrl_ITF) *QMediaContent {
 	tmpValue := NewQMediaContentFromPointer(C.QMediaContent_NewQMediaContent2(core.PointerFromQUrl(url)))
-	runtime.SetFinalizer(tmpValue, (*QMediaContent).DestroyQMediaContent)
+	qt.SetFinalizer(tmpValue, (*QMediaContent).DestroyQMediaContent)
 	return tmpValue
 }
 
 func NewQMediaContent3(request network.QNetworkRequest_ITF) *QMediaContent {
 	tmpValue := NewQMediaContentFromPointer(C.QMediaContent_NewQMediaContent3(network.PointerFromQNetworkRequest(request)))
-	runtime.SetFinalizer(tmpValue, (*QMediaContent).DestroyQMediaContent)
+	qt.SetFinalizer(tmpValue, (*QMediaContent).DestroyQMediaContent)
 	return tmpValue
 }
 
 func NewQMediaContent6(other QMediaContent_ITF) *QMediaContent {
 	tmpValue := NewQMediaContentFromPointer(C.QMediaContent_NewQMediaContent6(PointerFromQMediaContent(other)))
-	runtime.SetFinalizer(tmpValue, (*QMediaContent).DestroyQMediaContent)
+	qt.SetFinalizer(tmpValue, (*QMediaContent).DestroyQMediaContent)
 	return tmpValue
 }
 
 func NewQMediaContent7(playlist QMediaPlaylist_ITF, contentUrl core.QUrl_ITF, takeOwnership bool) *QMediaContent {
 	tmpValue := NewQMediaContentFromPointer(C.QMediaContent_NewQMediaContent7(PointerFromQMediaPlaylist(playlist), core.PointerFromQUrl(contentUrl), C.char(int8(qt.GoBoolToInt(takeOwnership)))))
-	runtime.SetFinalizer(tmpValue, (*QMediaContent).DestroyQMediaContent)
+	qt.SetFinalizer(tmpValue, (*QMediaContent).DestroyQMediaContent)
 	return tmpValue
 }
 
 func (ptr *QMediaContent) CanonicalRequest() *network.QNetworkRequest {
 	if ptr.Pointer() != nil {
 		tmpValue := network.NewQNetworkRequestFromPointer(C.QMediaContent_CanonicalRequest(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*network.QNetworkRequest).DestroyQNetworkRequest)
+		qt.SetFinalizer(tmpValue, (*network.QNetworkRequest).DestroyQNetworkRequest)
 		return tmpValue
 	}
 	return nil
@@ -33290,7 +33289,7 @@ func (ptr *QMediaContent) CanonicalRequest() *network.QNetworkRequest {
 func (ptr *QMediaContent) CanonicalUrl() *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QMediaContent_CanonicalUrl(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -33319,14 +33318,14 @@ func (ptr *QMediaContent) DestroyQMediaContent() {
 		C.QMediaContent_DestroyQMediaContent(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QMediaContent) __QMediaContent_resources_atList4(i int) *QMediaResource {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQMediaResourceFromPointer(C.QMediaContent___QMediaContent_resources_atList4(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QMediaResource).DestroyQMediaResource)
+		qt.SetFinalizer(tmpValue, (*QMediaResource).DestroyQMediaResource)
 		return tmpValue
 	}
 	return nil
@@ -33345,7 +33344,7 @@ func (ptr *QMediaContent) __QMediaContent_resources_newList4() unsafe.Pointer {
 func (ptr *QMediaContent) __resources_atList(i int) *QMediaResource {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQMediaResourceFromPointer(C.QMediaContent___resources_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QMediaResource).DestroyQMediaResource)
+		qt.SetFinalizer(tmpValue, (*QMediaResource).DestroyQMediaResource)
 		return tmpValue
 	}
 	return nil
@@ -33442,7 +33441,7 @@ func (ptr *QMediaControl) DestroyQMediaControl() {
 	if ptr.Pointer() != nil {
 		C.QMediaControl_DestroyQMediaControl(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -33450,7 +33449,7 @@ func (ptr *QMediaControl) DestroyQMediaControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QMediaControl_DestroyQMediaControlDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -33478,7 +33477,7 @@ func (ptr *QMediaControl) __children_newList() unsafe.Pointer {
 func (ptr *QMediaControl) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QMediaControl___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -33614,7 +33613,7 @@ func callbackQMediaControl_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QMediaControl) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QMediaControl_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -33948,7 +33947,7 @@ func (ptr *QMediaGaplessPlaybackControl) DisconnectNextMedia() {
 func (ptr *QMediaGaplessPlaybackControl) NextMedia() *QMediaContent {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQMediaContentFromPointer(C.QMediaGaplessPlaybackControl_NextMedia(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QMediaContent).DestroyQMediaContent)
+		qt.SetFinalizer(tmpValue, (*QMediaContent).DestroyQMediaContent)
 		return tmpValue
 	}
 	return nil
@@ -34101,7 +34100,7 @@ func (ptr *QMediaGaplessPlaybackControl) DestroyQMediaGaplessPlaybackControl() {
 	if ptr.Pointer() != nil {
 		C.QMediaGaplessPlaybackControl_DestroyQMediaGaplessPlaybackControl(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -34109,7 +34108,7 @@ func (ptr *QMediaGaplessPlaybackControl) DestroyQMediaGaplessPlaybackControlDefa
 	if ptr.Pointer() != nil {
 		C.QMediaGaplessPlaybackControl_DestroyQMediaGaplessPlaybackControlDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -34226,7 +34225,7 @@ func (ptr *QMediaNetworkAccessControl) DisconnectCurrentConfiguration() {
 func (ptr *QMediaNetworkAccessControl) CurrentConfiguration() *network.QNetworkConfiguration {
 	if ptr.Pointer() != nil {
 		tmpValue := network.NewQNetworkConfigurationFromPointer(C.QMediaNetworkAccessControl_CurrentConfiguration(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*network.QNetworkConfiguration).DestroyQNetworkConfiguration)
+		qt.SetFinalizer(tmpValue, (*network.QNetworkConfiguration).DestroyQNetworkConfiguration)
 		return tmpValue
 	}
 	return nil
@@ -34316,7 +34315,7 @@ func (ptr *QMediaNetworkAccessControl) DestroyQMediaNetworkAccessControl() {
 	if ptr.Pointer() != nil {
 		C.QMediaNetworkAccessControl_DestroyQMediaNetworkAccessControl(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -34324,14 +34323,14 @@ func (ptr *QMediaNetworkAccessControl) DestroyQMediaNetworkAccessControlDefault(
 	if ptr.Pointer() != nil {
 		C.QMediaNetworkAccessControl_DestroyQMediaNetworkAccessControlDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QMediaNetworkAccessControl) __setConfigurations_configurations_atList(i int) *network.QNetworkConfiguration {
 	if ptr.Pointer() != nil {
 		tmpValue := network.NewQNetworkConfigurationFromPointer(C.QMediaNetworkAccessControl___setConfigurations_configurations_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*network.QNetworkConfiguration).DestroyQNetworkConfiguration)
+		qt.SetFinalizer(tmpValue, (*network.QNetworkConfiguration).DestroyQNetworkConfiguration)
 		return tmpValue
 	}
 	return nil
@@ -34636,7 +34635,7 @@ func (ptr *QMediaObject) MetaData(key string) *core.QVariant {
 			defer C.free(unsafe.Pointer(keyC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QMediaObject_MetaData(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: keyC, len: C.longlong(len(key))}))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -34957,7 +34956,7 @@ func (ptr *QMediaObject) DestroyQMediaObject() {
 	if ptr.Pointer() != nil {
 		C.QMediaObject_DestroyQMediaObject(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -34965,7 +34964,7 @@ func (ptr *QMediaObject) DestroyQMediaObjectDefault() {
 	if ptr.Pointer() != nil {
 		C.QMediaObject_DestroyQMediaObjectDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -34993,7 +34992,7 @@ func (ptr *QMediaObject) __children_newList() unsafe.Pointer {
 func (ptr *QMediaObject) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QMediaObject___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -35129,7 +35128,7 @@ func callbackQMediaObject_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QMediaObject) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QMediaObject_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -35461,7 +35460,7 @@ func (ptr *QMediaPlayer) BufferStatusChanged(percentFilled int) {
 func (ptr *QMediaPlayer) CurrentMedia() *QMediaContent {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQMediaContentFromPointer(C.QMediaPlayer_CurrentMedia(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QMediaContent).DestroyQMediaContent)
+		qt.SetFinalizer(tmpValue, (*QMediaContent).DestroyQMediaContent)
 		return tmpValue
 	}
 	return nil
@@ -35510,7 +35509,7 @@ func (ptr *QMediaPlayer) CurrentMediaChanged(media QMediaContent_ITF) {
 func (ptr *QMediaPlayer) CurrentNetworkConfiguration() *network.QNetworkConfiguration {
 	if ptr.Pointer() != nil {
 		tmpValue := network.NewQNetworkConfigurationFromPointer(C.QMediaPlayer_CurrentNetworkConfiguration(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*network.QNetworkConfiguration).DestroyQNetworkConfiguration)
+		qt.SetFinalizer(tmpValue, (*network.QNetworkConfiguration).DestroyQNetworkConfiguration)
 		return tmpValue
 	}
 	return nil
@@ -35722,7 +35721,7 @@ func (ptr *QMediaPlayer) IsVideoAvailable() bool {
 func (ptr *QMediaPlayer) Media() *QMediaContent {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQMediaContentFromPointer(C.QMediaPlayer_Media(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QMediaContent).DestroyQMediaContent)
+		qt.SetFinalizer(tmpValue, (*QMediaContent).DestroyQMediaContent)
 		return tmpValue
 	}
 	return nil
@@ -36726,7 +36725,7 @@ func (ptr *QMediaPlayer) DestroyQMediaPlayer() {
 	if ptr.Pointer() != nil {
 		C.QMediaPlayer_DestroyQMediaPlayer(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -36734,14 +36733,14 @@ func (ptr *QMediaPlayer) DestroyQMediaPlayerDefault() {
 	if ptr.Pointer() != nil {
 		C.QMediaPlayer_DestroyQMediaPlayerDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QMediaPlayer) __setNetworkConfigurations_configurations_atList(i int) *network.QNetworkConfiguration {
 	if ptr.Pointer() != nil {
 		tmpValue := network.NewQNetworkConfigurationFromPointer(C.QMediaPlayer___setNetworkConfigurations_configurations_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*network.QNetworkConfiguration).DestroyQNetworkConfiguration)
+		qt.SetFinalizer(tmpValue, (*network.QNetworkConfiguration).DestroyQNetworkConfiguration)
 		return tmpValue
 	}
 	return nil
@@ -36894,7 +36893,7 @@ func (ptr *QMediaPlayerControl) DisconnectAvailablePlaybackRanges() {
 func (ptr *QMediaPlayerControl) AvailablePlaybackRanges() *QMediaTimeRange {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQMediaTimeRangeFromPointer(C.QMediaPlayerControl_AvailablePlaybackRanges(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QMediaTimeRange).DestroyQMediaTimeRange)
+		qt.SetFinalizer(tmpValue, (*QMediaTimeRange).DestroyQMediaTimeRange)
 		return tmpValue
 	}
 	return nil
@@ -37327,7 +37326,7 @@ func (ptr *QMediaPlayerControl) DisconnectMedia() {
 func (ptr *QMediaPlayerControl) Media() *QMediaContent {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQMediaContentFromPointer(C.QMediaPlayerControl_Media(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QMediaContent).DestroyQMediaContent)
+		qt.SetFinalizer(tmpValue, (*QMediaContent).DestroyQMediaContent)
 		return tmpValue
 	}
 	return nil
@@ -38248,7 +38247,7 @@ func (ptr *QMediaPlayerControl) DestroyQMediaPlayerControl() {
 	if ptr.Pointer() != nil {
 		C.QMediaPlayerControl_DestroyQMediaPlayerControl(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -38256,7 +38255,7 @@ func (ptr *QMediaPlayerControl) DestroyQMediaPlayerControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QMediaPlayerControl_DestroyQMediaPlayerControlDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -38411,7 +38410,7 @@ func (ptr *QMediaPlaylist) CurrentIndexChanged(position int) {
 func (ptr *QMediaPlaylist) CurrentMedia() *QMediaContent {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQMediaContentFromPointer(C.QMediaPlaylist_CurrentMedia(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QMediaContent).DestroyQMediaContent)
+		qt.SetFinalizer(tmpValue, (*QMediaContent).DestroyQMediaContent)
 		return tmpValue
 	}
 	return nil
@@ -38621,7 +38620,7 @@ func (ptr *QMediaPlaylist) Loaded() {
 func (ptr *QMediaPlaylist) Media(index int) *QMediaContent {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQMediaContentFromPointer(C.QMediaPlaylist_Media(ptr.Pointer(), C.int(int32(index))))
-		runtime.SetFinalizer(tmpValue, (*QMediaContent).DestroyQMediaContent)
+		qt.SetFinalizer(tmpValue, (*QMediaContent).DestroyQMediaContent)
 		return tmpValue
 	}
 	return nil
@@ -39206,7 +39205,7 @@ func (ptr *QMediaPlaylist) DestroyQMediaPlaylist() {
 	if ptr.Pointer() != nil {
 		C.QMediaPlaylist_DestroyQMediaPlaylist(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -39214,14 +39213,14 @@ func (ptr *QMediaPlaylist) DestroyQMediaPlaylistDefault() {
 	if ptr.Pointer() != nil {
 		C.QMediaPlaylist_DestroyQMediaPlaylistDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QMediaPlaylist) __addMedia_items_atList2(i int) *QMediaContent {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQMediaContentFromPointer(C.QMediaPlaylist___addMedia_items_atList2(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QMediaContent).DestroyQMediaContent)
+		qt.SetFinalizer(tmpValue, (*QMediaContent).DestroyQMediaContent)
 		return tmpValue
 	}
 	return nil
@@ -39240,7 +39239,7 @@ func (ptr *QMediaPlaylist) __addMedia_items_newList2() unsafe.Pointer {
 func (ptr *QMediaPlaylist) __insertMedia_items_atList2(i int) *QMediaContent {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQMediaContentFromPointer(C.QMediaPlaylist___insertMedia_items_atList2(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QMediaContent).DestroyQMediaContent)
+		qt.SetFinalizer(tmpValue, (*QMediaContent).DestroyQMediaContent)
 		return tmpValue
 	}
 	return nil
@@ -39280,7 +39279,7 @@ func (ptr *QMediaPlaylist) __children_newList() unsafe.Pointer {
 func (ptr *QMediaPlaylist) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QMediaPlaylist___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -39434,14 +39433,14 @@ func callbackQMediaPlaylist_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QMediaPlaylist) DeleteLater() {
 	if ptr.Pointer() != nil {
 		C.QMediaPlaylist_DeleteLater(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QMediaPlaylist) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QMediaPlaylist_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -39684,7 +39683,7 @@ func NewQMediaRecorder(mediaObject QMediaObject_ITF, parent core.QObject_ITF) *Q
 func (ptr *QMediaRecorder) ActualLocation() *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QMediaRecorder_ActualLocation(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -39745,7 +39744,7 @@ func (ptr *QMediaRecorder) AudioCodecDescription(codec string) string {
 func (ptr *QMediaRecorder) AudioSettings() *QAudioEncoderSettings {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQAudioEncoderSettingsFromPointer(C.QMediaRecorder_AudioSettings(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QAudioEncoderSettings).DestroyQAudioEncoderSettings)
+		qt.SetFinalizer(tmpValue, (*QAudioEncoderSettings).DestroyQAudioEncoderSettings)
 		return tmpValue
 	}
 	return nil
@@ -40054,7 +40053,7 @@ func (ptr *QMediaRecorder) MetaData(key string) *core.QVariant {
 			defer C.free(unsafe.Pointer(keyC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QMediaRecorder_MetaData(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: keyC, len: C.longlong(len(key))}))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -40268,7 +40267,7 @@ func (ptr *QMediaRecorder) MutedChanged(muted bool) {
 func (ptr *QMediaRecorder) OutputLocation() *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QMediaRecorder_OutputLocation(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -40728,7 +40727,7 @@ func (ptr *QMediaRecorder) VideoCodecDescription(codec string) string {
 func (ptr *QMediaRecorder) VideoSettings() *QVideoEncoderSettings {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVideoEncoderSettingsFromPointer(C.QMediaRecorder_VideoSettings(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QVideoEncoderSettings).DestroyQVideoEncoderSettings)
+		qt.SetFinalizer(tmpValue, (*QVideoEncoderSettings).DestroyQVideoEncoderSettings)
 		return tmpValue
 	}
 	return nil
@@ -40816,7 +40815,7 @@ func (ptr *QMediaRecorder) DestroyQMediaRecorder() {
 	if ptr.Pointer() != nil {
 		C.QMediaRecorder_DestroyQMediaRecorder(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -40824,7 +40823,7 @@ func (ptr *QMediaRecorder) DestroyQMediaRecorderDefault() {
 	if ptr.Pointer() != nil {
 		C.QMediaRecorder_DestroyQMediaRecorderDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -40865,7 +40864,7 @@ func (ptr *QMediaRecorder) __supportedFrameRates_newList() unsafe.Pointer {
 func (ptr *QMediaRecorder) __supportedResolutions_atList(i int) *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QMediaRecorder___supportedResolutions_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -40905,7 +40904,7 @@ func (ptr *QMediaRecorder) __children_newList() unsafe.Pointer {
 func (ptr *QMediaRecorder) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QMediaRecorder___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -41059,14 +41058,14 @@ func callbackQMediaRecorder_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QMediaRecorder) DeleteLater() {
 	if ptr.Pointer() != nil {
 		C.QMediaRecorder_DeleteLater(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QMediaRecorder) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QMediaRecorder_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -41577,7 +41576,7 @@ func (ptr *QMediaRecorderControl) DisconnectOutputLocation() {
 func (ptr *QMediaRecorderControl) OutputLocation() *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QMediaRecorderControl_OutputLocation(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -41998,7 +41997,7 @@ func (ptr *QMediaRecorderControl) DestroyQMediaRecorderControl() {
 	if ptr.Pointer() != nil {
 		C.QMediaRecorderControl_DestroyQMediaRecorderControl(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -42006,7 +42005,7 @@ func (ptr *QMediaRecorderControl) DestroyQMediaRecorderControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QMediaRecorderControl_DestroyQMediaRecorderControlDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -42049,7 +42048,7 @@ func NewQMediaResourceFromPointer(ptr unsafe.Pointer) (n *QMediaResource) {
 }
 func NewQMediaResource() *QMediaResource {
 	tmpValue := NewQMediaResourceFromPointer(C.QMediaResource_NewQMediaResource())
-	runtime.SetFinalizer(tmpValue, (*QMediaResource).DestroyQMediaResource)
+	qt.SetFinalizer(tmpValue, (*QMediaResource).DestroyQMediaResource)
 	return tmpValue
 }
 
@@ -42060,7 +42059,7 @@ func NewQMediaResource2(url core.QUrl_ITF, mimeType string) *QMediaResource {
 		defer C.free(unsafe.Pointer(mimeTypeC))
 	}
 	tmpValue := NewQMediaResourceFromPointer(C.QMediaResource_NewQMediaResource2(core.PointerFromQUrl(url), C.struct_QtMultimedia_PackedString{data: mimeTypeC, len: C.longlong(len(mimeType))}))
-	runtime.SetFinalizer(tmpValue, (*QMediaResource).DestroyQMediaResource)
+	qt.SetFinalizer(tmpValue, (*QMediaResource).DestroyQMediaResource)
 	return tmpValue
 }
 
@@ -42071,13 +42070,13 @@ func NewQMediaResource3(request network.QNetworkRequest_ITF, mimeType string) *Q
 		defer C.free(unsafe.Pointer(mimeTypeC))
 	}
 	tmpValue := NewQMediaResourceFromPointer(C.QMediaResource_NewQMediaResource3(network.PointerFromQNetworkRequest(request), C.struct_QtMultimedia_PackedString{data: mimeTypeC, len: C.longlong(len(mimeType))}))
-	runtime.SetFinalizer(tmpValue, (*QMediaResource).DestroyQMediaResource)
+	qt.SetFinalizer(tmpValue, (*QMediaResource).DestroyQMediaResource)
 	return tmpValue
 }
 
 func NewQMediaResource4(other QMediaResource_ITF) *QMediaResource {
 	tmpValue := NewQMediaResourceFromPointer(C.QMediaResource_NewQMediaResource4(PointerFromQMediaResource(other)))
-	runtime.SetFinalizer(tmpValue, (*QMediaResource).DestroyQMediaResource)
+	qt.SetFinalizer(tmpValue, (*QMediaResource).DestroyQMediaResource)
 	return tmpValue
 }
 
@@ -42133,7 +42132,7 @@ func (ptr *QMediaResource) MimeType() string {
 func (ptr *QMediaResource) Request() *network.QNetworkRequest {
 	if ptr.Pointer() != nil {
 		tmpValue := network.NewQNetworkRequestFromPointer(C.QMediaResource_Request(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*network.QNetworkRequest).DestroyQNetworkRequest)
+		qt.SetFinalizer(tmpValue, (*network.QNetworkRequest).DestroyQNetworkRequest)
 		return tmpValue
 	}
 	return nil
@@ -42142,7 +42141,7 @@ func (ptr *QMediaResource) Request() *network.QNetworkRequest {
 func (ptr *QMediaResource) Resolution() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QMediaResource_Resolution(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -42233,7 +42232,7 @@ func (ptr *QMediaResource) SetVideoCodec(codec string) {
 func (ptr *QMediaResource) Url() *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QMediaResource_Url(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -42258,14 +42257,14 @@ func (ptr *QMediaResource) DestroyQMediaResource() {
 		C.QMediaResource_DestroyQMediaResource(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QMediaResource) __values_atList(v int, i int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QMediaResource___values_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -42298,7 +42297,7 @@ func (ptr *QMediaResource) __values_keyList() []int {
 func (ptr *QMediaResource) __setValues__atList(v int, i int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QMediaResource___setValues__atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -42537,7 +42536,7 @@ func (ptr *QMediaService) DestroyQMediaService() {
 	if ptr.Pointer() != nil {
 		C.QMediaService_DestroyQMediaService(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -42545,7 +42544,7 @@ func (ptr *QMediaService) DestroyQMediaServiceDefault() {
 	if ptr.Pointer() != nil {
 		C.QMediaService_DestroyQMediaServiceDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -42573,7 +42572,7 @@ func (ptr *QMediaService) __children_newList() unsafe.Pointer {
 func (ptr *QMediaService) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QMediaService___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -42709,7 +42708,7 @@ func callbackQMediaService_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QMediaService) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QMediaService_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -43038,7 +43037,7 @@ func (ptr *QMediaServiceDefaultDeviceInterface) DisconnectDefaultDevice() {
 func (ptr *QMediaServiceDefaultDeviceInterface) DefaultDevice(service core.QByteArray_ITF) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QMediaServiceDefaultDeviceInterface_DefaultDevice(ptr.Pointer(), core.PointerFromQByteArray(service)))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -43079,7 +43078,7 @@ func (ptr *QMediaServiceDefaultDeviceInterface) DestroyQMediaServiceDefaultDevic
 	if ptr.Pointer() != nil {
 		C.QMediaServiceDefaultDeviceInterface_DestroyQMediaServiceDefaultDeviceInterface(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -43087,7 +43086,7 @@ func (ptr *QMediaServiceDefaultDeviceInterface) DestroyQMediaServiceDefaultDevic
 	if ptr.Pointer() != nil {
 		C.QMediaServiceDefaultDeviceInterface_DestroyQMediaServiceDefaultDeviceInterfaceDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -43217,7 +43216,7 @@ func (ptr *QMediaServiceProviderFactoryInterface) DestroyQMediaServiceProviderFa
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -43370,7 +43369,7 @@ func (ptr *QMediaServiceProviderPlugin) __children_newList() unsafe.Pointer {
 func (ptr *QMediaServiceProviderPlugin) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QMediaServiceProviderPlugin___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -43524,14 +43523,14 @@ func callbackQMediaServiceProviderPlugin_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QMediaServiceProviderPlugin) DeleteLater() {
 	if ptr.Pointer() != nil {
 		C.QMediaServiceProviderPlugin_DeleteLater(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QMediaServiceProviderPlugin) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QMediaServiceProviderPlugin_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -43831,7 +43830,7 @@ func (ptr *QMediaServiceSupportedDevicesInterface) DestroyQMediaServiceSupported
 	if ptr.Pointer() != nil {
 		C.QMediaServiceSupportedDevicesInterface_DestroyQMediaServiceSupportedDevicesInterface(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -43839,14 +43838,14 @@ func (ptr *QMediaServiceSupportedDevicesInterface) DestroyQMediaServiceSupported
 	if ptr.Pointer() != nil {
 		C.QMediaServiceSupportedDevicesInterface_DestroyQMediaServiceSupportedDevicesInterfaceDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QMediaServiceSupportedDevicesInterface) __devices_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QMediaServiceSupportedDevicesInterface___devices_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -44205,7 +44204,7 @@ func (ptr *QMediaStreamsControl) MetaData(streamNumber int, key string) *core.QV
 			defer C.free(unsafe.Pointer(keyC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QMediaStreamsControl_MetaData(ptr.Pointer(), C.int(int32(streamNumber)), C.struct_QtMultimedia_PackedString{data: keyC, len: C.longlong(len(key))}))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -44398,7 +44397,7 @@ func (ptr *QMediaStreamsControl) DestroyQMediaStreamsControl() {
 	if ptr.Pointer() != nil {
 		C.QMediaStreamsControl_DestroyQMediaStreamsControl(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -44406,7 +44405,7 @@ func (ptr *QMediaStreamsControl) DestroyQMediaStreamsControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QMediaStreamsControl_DestroyQMediaStreamsControlDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -44453,25 +44452,25 @@ func (ptr *QMediaTimeInterval) DestroyQMediaTimeInterval() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func NewQMediaTimeInterval() *QMediaTimeInterval {
 	tmpValue := NewQMediaTimeIntervalFromPointer(C.QMediaTimeInterval_NewQMediaTimeInterval())
-	runtime.SetFinalizer(tmpValue, (*QMediaTimeInterval).DestroyQMediaTimeInterval)
+	qt.SetFinalizer(tmpValue, (*QMediaTimeInterval).DestroyQMediaTimeInterval)
 	return tmpValue
 }
 
 func NewQMediaTimeInterval2(start int64, end int64) *QMediaTimeInterval {
 	tmpValue := NewQMediaTimeIntervalFromPointer(C.QMediaTimeInterval_NewQMediaTimeInterval2(C.longlong(start), C.longlong(end)))
-	runtime.SetFinalizer(tmpValue, (*QMediaTimeInterval).DestroyQMediaTimeInterval)
+	qt.SetFinalizer(tmpValue, (*QMediaTimeInterval).DestroyQMediaTimeInterval)
 	return tmpValue
 }
 
 func NewQMediaTimeInterval3(other QMediaTimeInterval_ITF) *QMediaTimeInterval {
 	tmpValue := NewQMediaTimeIntervalFromPointer(C.QMediaTimeInterval_NewQMediaTimeInterval3(PointerFromQMediaTimeInterval(other)))
-	runtime.SetFinalizer(tmpValue, (*QMediaTimeInterval).DestroyQMediaTimeInterval)
+	qt.SetFinalizer(tmpValue, (*QMediaTimeInterval).DestroyQMediaTimeInterval)
 	return tmpValue
 }
 
@@ -44499,7 +44498,7 @@ func (ptr *QMediaTimeInterval) IsNormal() bool {
 func (ptr *QMediaTimeInterval) Normalized() *QMediaTimeInterval {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQMediaTimeIntervalFromPointer(C.QMediaTimeInterval_Normalized(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QMediaTimeInterval).DestroyQMediaTimeInterval)
+		qt.SetFinalizer(tmpValue, (*QMediaTimeInterval).DestroyQMediaTimeInterval)
 		return tmpValue
 	}
 	return nil
@@ -44515,7 +44514,7 @@ func (ptr *QMediaTimeInterval) Start() int64 {
 func (ptr *QMediaTimeInterval) Translated(offset int64) *QMediaTimeInterval {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQMediaTimeIntervalFromPointer(C.QMediaTimeInterval_Translated(ptr.Pointer(), C.longlong(offset)))
-		runtime.SetFinalizer(tmpValue, (*QMediaTimeInterval).DestroyQMediaTimeInterval)
+		qt.SetFinalizer(tmpValue, (*QMediaTimeInterval).DestroyQMediaTimeInterval)
 		return tmpValue
 	}
 	return nil
@@ -44560,25 +44559,25 @@ func NewQMediaTimeRangeFromPointer(ptr unsafe.Pointer) (n *QMediaTimeRange) {
 }
 func NewQMediaTimeRange() *QMediaTimeRange {
 	tmpValue := NewQMediaTimeRangeFromPointer(C.QMediaTimeRange_NewQMediaTimeRange())
-	runtime.SetFinalizer(tmpValue, (*QMediaTimeRange).DestroyQMediaTimeRange)
+	qt.SetFinalizer(tmpValue, (*QMediaTimeRange).DestroyQMediaTimeRange)
 	return tmpValue
 }
 
 func NewQMediaTimeRange2(start int64, end int64) *QMediaTimeRange {
 	tmpValue := NewQMediaTimeRangeFromPointer(C.QMediaTimeRange_NewQMediaTimeRange2(C.longlong(start), C.longlong(end)))
-	runtime.SetFinalizer(tmpValue, (*QMediaTimeRange).DestroyQMediaTimeRange)
+	qt.SetFinalizer(tmpValue, (*QMediaTimeRange).DestroyQMediaTimeRange)
 	return tmpValue
 }
 
 func NewQMediaTimeRange3(interval QMediaTimeInterval_ITF) *QMediaTimeRange {
 	tmpValue := NewQMediaTimeRangeFromPointer(C.QMediaTimeRange_NewQMediaTimeRange3(PointerFromQMediaTimeInterval(interval)))
-	runtime.SetFinalizer(tmpValue, (*QMediaTimeRange).DestroyQMediaTimeRange)
+	qt.SetFinalizer(tmpValue, (*QMediaTimeRange).DestroyQMediaTimeRange)
 	return tmpValue
 }
 
 func NewQMediaTimeRange4(ran QMediaTimeRange_ITF) *QMediaTimeRange {
 	tmpValue := NewQMediaTimeRangeFromPointer(C.QMediaTimeRange_NewQMediaTimeRange4(PointerFromQMediaTimeRange(ran)))
-	runtime.SetFinalizer(tmpValue, (*QMediaTimeRange).DestroyQMediaTimeRange)
+	qt.SetFinalizer(tmpValue, (*QMediaTimeRange).DestroyQMediaTimeRange)
 	return tmpValue
 }
 
@@ -44678,14 +44677,14 @@ func (ptr *QMediaTimeRange) DestroyQMediaTimeRange() {
 		C.QMediaTimeRange_DestroyQMediaTimeRange(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QMediaTimeRange) __intervals_atList(i int) *QMediaTimeInterval {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQMediaTimeIntervalFromPointer(C.QMediaTimeRange___intervals_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QMediaTimeInterval).DestroyQMediaTimeInterval)
+		qt.SetFinalizer(tmpValue, (*QMediaTimeInterval).DestroyQMediaTimeInterval)
 		return tmpValue
 	}
 	return nil
@@ -44862,7 +44861,7 @@ func (ptr *QMediaVideoProbeControl) DestroyQMediaVideoProbeControl() {
 	if ptr.Pointer() != nil {
 		C.QMediaVideoProbeControl_DestroyQMediaVideoProbeControl(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -44870,7 +44869,7 @@ func (ptr *QMediaVideoProbeControl) DestroyQMediaVideoProbeControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QMediaVideoProbeControl_DestroyQMediaVideoProbeControlDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -45036,7 +45035,7 @@ func (ptr *QMetaDataReaderControl) MetaData(key string) *core.QVariant {
 			defer C.free(unsafe.Pointer(keyC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QMetaDataReaderControl_MetaData(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: keyC, len: C.longlong(len(key))}))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -45202,7 +45201,7 @@ func (ptr *QMetaDataReaderControl) DestroyQMetaDataReaderControl() {
 	if ptr.Pointer() != nil {
 		C.QMetaDataReaderControl_DestroyQMetaDataReaderControl(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -45210,7 +45209,7 @@ func (ptr *QMetaDataReaderControl) DestroyQMetaDataReaderControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QMetaDataReaderControl_DestroyQMetaDataReaderControlDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -45414,7 +45413,7 @@ func (ptr *QMetaDataWriterControl) MetaData(key string) *core.QVariant {
 			defer C.free(unsafe.Pointer(keyC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QMetaDataWriterControl_MetaData(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: keyC, len: C.longlong(len(key))}))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -45661,7 +45660,7 @@ func (ptr *QMetaDataWriterControl) DestroyQMetaDataWriterControl() {
 	if ptr.Pointer() != nil {
 		C.QMetaDataWriterControl_DestroyQMetaDataWriterControl(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -45669,7 +45668,7 @@ func (ptr *QMetaDataWriterControl) DestroyQMetaDataWriterControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QMetaDataWriterControl_DestroyQMetaDataWriterControlDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -45716,7 +45715,7 @@ func (ptr *QMultimedia) DestroyQMultimedia() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -45925,7 +45924,7 @@ func (ptr *QOpenSLESEngine) DestroyQOpenSLESEngine() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -46818,7 +46817,7 @@ func (ptr *QRadioData) DestroyQRadioData() {
 	if ptr.Pointer() != nil {
 		C.QRadioData_DestroyQRadioData(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -46826,7 +46825,7 @@ func (ptr *QRadioData) DestroyQRadioDataDefault() {
 	if ptr.Pointer() != nil {
 		C.QRadioData_DestroyQRadioDataDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -46854,7 +46853,7 @@ func (ptr *QRadioData) __children_newList() unsafe.Pointer {
 func (ptr *QRadioData) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QRadioData___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -47008,14 +47007,14 @@ func callbackQRadioData_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QRadioData) DeleteLater() {
 	if ptr.Pointer() != nil {
 		C.QRadioData_DeleteLater(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QRadioData) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QRadioData_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -47872,7 +47871,7 @@ func (ptr *QRadioDataControl) DestroyQRadioDataControl() {
 	if ptr.Pointer() != nil {
 		C.QRadioDataControl_DestroyQRadioDataControl(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -47880,7 +47879,7 @@ func (ptr *QRadioDataControl) DestroyQRadioDataControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QRadioDataControl_DestroyQRadioDataControlDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -49007,7 +49006,7 @@ func (ptr *QRadioTuner) DestroyQRadioTuner() {
 	if ptr.Pointer() != nil {
 		C.QRadioTuner_DestroyQRadioTuner(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -49015,7 +49014,7 @@ func (ptr *QRadioTuner) DestroyQRadioTunerDefault() {
 	if ptr.Pointer() != nil {
 		C.QRadioTuner_DestroyQRadioTunerDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -50474,7 +50473,7 @@ func (ptr *QRadioTunerControl) DestroyQRadioTunerControl() {
 	if ptr.Pointer() != nil {
 		C.QRadioTunerControl_DestroyQRadioTunerControl(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -50482,7 +50481,7 @@ func (ptr *QRadioTunerControl) DestroyQRadioTunerControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QRadioTunerControl_DestroyQRadioTunerControlDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -50529,7 +50528,7 @@ func (ptr *QSGVideoMaterial_EGL) DestroyQSGVideoMaterial_EGL() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -50576,7 +50575,7 @@ func (ptr *QSGVideoNodeFactory_EGL) DestroyQSGVideoNodeFactory_EGL() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -50623,7 +50622,7 @@ func (ptr *QSGVideoNode_EGL) DestroyQSGVideoNode_EGL() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -50670,7 +50669,7 @@ func (ptr *QSGVivanteVideoMaterial) DestroyQSGVivanteVideoMaterial() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -50717,7 +50716,7 @@ func (ptr *QSGVivanteVideoMaterialShader) DestroyQSGVivanteVideoMaterialShader()
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -50764,7 +50763,7 @@ func (ptr *QSGVivanteVideoNode) DestroyQSGVivanteVideoNode() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -51040,7 +51039,7 @@ func (ptr *QSound) DestroyQSound() {
 	if ptr.Pointer() != nil {
 		C.QSound_DestroyQSound(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -51048,7 +51047,7 @@ func (ptr *QSound) DestroyQSoundDefault() {
 	if ptr.Pointer() != nil {
 		C.QSound_DestroyQSoundDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -51076,7 +51075,7 @@ func (ptr *QSound) __children_newList() unsafe.Pointer {
 func (ptr *QSound) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QSound___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -51212,7 +51211,7 @@ func callbackQSound_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QSound) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QSound_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -51747,7 +51746,7 @@ func (ptr *QSoundEffect) SetVolume(volume float64) {
 func (ptr *QSoundEffect) Source() *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QSoundEffect_Source(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -51973,7 +51972,7 @@ func (ptr *QSoundEffect) DestroyQSoundEffect() {
 	if ptr.Pointer() != nil {
 		C.QSoundEffect_DestroyQSoundEffect(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -51981,7 +51980,7 @@ func (ptr *QSoundEffect) DestroyQSoundEffectDefault() {
 	if ptr.Pointer() != nil {
 		C.QSoundEffect_DestroyQSoundEffectDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -52009,7 +52008,7 @@ func (ptr *QSoundEffect) __children_newList() unsafe.Pointer {
 func (ptr *QSoundEffect) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QSoundEffect___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -52145,7 +52144,7 @@ func callbackQSoundEffect_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QSoundEffect) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QSoundEffect_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -52677,7 +52676,7 @@ func (ptr *QVideoDeviceSelectorControl) DestroyQVideoDeviceSelectorControl() {
 	if ptr.Pointer() != nil {
 		C.QVideoDeviceSelectorControl_DestroyQVideoDeviceSelectorControl(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -52685,7 +52684,7 @@ func (ptr *QVideoDeviceSelectorControl) DestroyQVideoDeviceSelectorControlDefaul
 	if ptr.Pointer() != nil {
 		C.QVideoDeviceSelectorControl_DestroyQVideoDeviceSelectorControlDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -52728,13 +52727,13 @@ func NewQVideoEncoderSettingsFromPointer(ptr unsafe.Pointer) (n *QVideoEncoderSe
 }
 func NewQVideoEncoderSettings() *QVideoEncoderSettings {
 	tmpValue := NewQVideoEncoderSettingsFromPointer(C.QVideoEncoderSettings_NewQVideoEncoderSettings())
-	runtime.SetFinalizer(tmpValue, (*QVideoEncoderSettings).DestroyQVideoEncoderSettings)
+	qt.SetFinalizer(tmpValue, (*QVideoEncoderSettings).DestroyQVideoEncoderSettings)
 	return tmpValue
 }
 
 func NewQVideoEncoderSettings2(other QVideoEncoderSettings_ITF) *QVideoEncoderSettings {
 	tmpValue := NewQVideoEncoderSettingsFromPointer(C.QVideoEncoderSettings_NewQVideoEncoderSettings2(PointerFromQVideoEncoderSettings(other)))
-	runtime.SetFinalizer(tmpValue, (*QVideoEncoderSettings).DestroyQVideoEncoderSettings)
+	qt.SetFinalizer(tmpValue, (*QVideoEncoderSettings).DestroyQVideoEncoderSettings)
 	return tmpValue
 }
 
@@ -52767,7 +52766,7 @@ func (ptr *QVideoEncoderSettings) EncodingOption(option string) *core.QVariant {
 			defer C.free(unsafe.Pointer(optionC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QVideoEncoderSettings_EncodingOption(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: optionC, len: C.longlong(len(option))}))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -52811,7 +52810,7 @@ func (ptr *QVideoEncoderSettings) Quality() QMultimedia__EncodingQuality {
 func (ptr *QVideoEncoderSettings) Resolution() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QVideoEncoderSettings_Resolution(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -52892,7 +52891,7 @@ func (ptr *QVideoEncoderSettings) DestroyQVideoEncoderSettings() {
 		C.QVideoEncoderSettings_DestroyQVideoEncoderSettings(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -52904,7 +52903,7 @@ func (ptr *QVideoEncoderSettings) __encodingOptions_atList(v string, i int) *cor
 			defer C.free(unsafe.Pointer(vC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QVideoEncoderSettings___encodingOptions_atList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -52947,7 +52946,7 @@ func (ptr *QVideoEncoderSettings) __setEncodingOptions_options_atList(v string, 
 			defer C.free(unsafe.Pointer(vC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QVideoEncoderSettings___setEncodingOptions_options_atList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -53353,7 +53352,7 @@ func (ptr *QVideoEncoderSettingsControl) DisconnectVideoSettings() {
 func (ptr *QVideoEncoderSettingsControl) VideoSettings() *QVideoEncoderSettings {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVideoEncoderSettingsFromPointer(C.QVideoEncoderSettingsControl_VideoSettings(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QVideoEncoderSettings).DestroyQVideoEncoderSettings)
+		qt.SetFinalizer(tmpValue, (*QVideoEncoderSettings).DestroyQVideoEncoderSettings)
 		return tmpValue
 	}
 	return nil
@@ -53394,7 +53393,7 @@ func (ptr *QVideoEncoderSettingsControl) DestroyQVideoEncoderSettingsControl() {
 	if ptr.Pointer() != nil {
 		C.QVideoEncoderSettingsControl_DestroyQVideoEncoderSettingsControl(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -53402,7 +53401,7 @@ func (ptr *QVideoEncoderSettingsControl) DestroyQVideoEncoderSettingsControlDefa
 	if ptr.Pointer() != nil {
 		C.QVideoEncoderSettingsControl_DestroyQVideoEncoderSettingsControlDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -53426,7 +53425,7 @@ func (ptr *QVideoEncoderSettingsControl) __supportedFrameRates_newList() unsafe.
 func (ptr *QVideoEncoderSettingsControl) __supportedResolutions_atList(i int) *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QVideoEncoderSettingsControl___supportedResolutions_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -53486,7 +53485,7 @@ func (ptr *QVideoFilterRunnable) DestroyQVideoFilterRunnable() {
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -53532,7 +53531,7 @@ func (ptr *QVideoFilterRunnable) DisconnectRun() {
 func (ptr *QVideoFilterRunnable) Run(input QVideoFrame_ITF, surfaceFormat QVideoSurfaceFormat_ITF, flags QVideoFilterRunnable__RunFlag) *QVideoFrame {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVideoFrameFromPointer(C.QVideoFilterRunnable_Run(ptr.Pointer(), PointerFromQVideoFrame(input), PointerFromQVideoSurfaceFormat(surfaceFormat), C.longlong(flags)))
-		runtime.SetFinalizer(tmpValue, (*QVideoFrame).DestroyQVideoFrame)
+		qt.SetFinalizer(tmpValue, (*QVideoFrame).DestroyQVideoFrame)
 		return tmpValue
 	}
 	return nil
@@ -53631,31 +53630,31 @@ const (
 
 func NewQVideoFrame() *QVideoFrame {
 	tmpValue := NewQVideoFrameFromPointer(C.QVideoFrame_NewQVideoFrame())
-	runtime.SetFinalizer(tmpValue, (*QVideoFrame).DestroyQVideoFrame)
+	qt.SetFinalizer(tmpValue, (*QVideoFrame).DestroyQVideoFrame)
 	return tmpValue
 }
 
 func NewQVideoFrame2(buffer QAbstractVideoBuffer_ITF, size core.QSize_ITF, format QVideoFrame__PixelFormat) *QVideoFrame {
 	tmpValue := NewQVideoFrameFromPointer(C.QVideoFrame_NewQVideoFrame2(PointerFromQAbstractVideoBuffer(buffer), core.PointerFromQSize(size), C.longlong(format)))
-	runtime.SetFinalizer(tmpValue, (*QVideoFrame).DestroyQVideoFrame)
+	qt.SetFinalizer(tmpValue, (*QVideoFrame).DestroyQVideoFrame)
 	return tmpValue
 }
 
 func NewQVideoFrame3(bytes int, size core.QSize_ITF, bytesPerLine int, format QVideoFrame__PixelFormat) *QVideoFrame {
 	tmpValue := NewQVideoFrameFromPointer(C.QVideoFrame_NewQVideoFrame3(C.int(int32(bytes)), core.PointerFromQSize(size), C.int(int32(bytesPerLine)), C.longlong(format)))
-	runtime.SetFinalizer(tmpValue, (*QVideoFrame).DestroyQVideoFrame)
+	qt.SetFinalizer(tmpValue, (*QVideoFrame).DestroyQVideoFrame)
 	return tmpValue
 }
 
 func NewQVideoFrame4(image gui.QImage_ITF) *QVideoFrame {
 	tmpValue := NewQVideoFrameFromPointer(C.QVideoFrame_NewQVideoFrame4(gui.PointerFromQImage(image)))
-	runtime.SetFinalizer(tmpValue, (*QVideoFrame).DestroyQVideoFrame)
+	qt.SetFinalizer(tmpValue, (*QVideoFrame).DestroyQVideoFrame)
 	return tmpValue
 }
 
 func NewQVideoFrame5(other QVideoFrame_ITF) *QVideoFrame {
 	tmpValue := NewQVideoFrameFromPointer(C.QVideoFrame_NewQVideoFrame5(PointerFromQVideoFrame(other)))
-	runtime.SetFinalizer(tmpValue, (*QVideoFrame).DestroyQVideoFrame)
+	qt.SetFinalizer(tmpValue, (*QVideoFrame).DestroyQVideoFrame)
 	return tmpValue
 }
 
@@ -53739,7 +53738,7 @@ func (ptr *QVideoFrame) FieldType() QVideoFrame__FieldType {
 func (ptr *QVideoFrame) Handle() *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QVideoFrame_Handle(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -53824,7 +53823,7 @@ func (ptr *QVideoFrame) MetaData(key string) *core.QVariant {
 			defer C.free(unsafe.Pointer(keyC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QVideoFrame_MetaData(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: keyC, len: C.longlong(len(key))}))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -53884,7 +53883,7 @@ func (ptr *QVideoFrame) SetStartTime(ti int64) {
 func (ptr *QVideoFrame) Size() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QVideoFrame_Size(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -53915,7 +53914,7 @@ func (ptr *QVideoFrame) DestroyQVideoFrame() {
 		C.QVideoFrame_DestroyQVideoFrame(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -53927,7 +53926,7 @@ func (ptr *QVideoFrame) __availableMetaData_atList(v string, i int) *core.QVaria
 			defer C.free(unsafe.Pointer(vC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QVideoFrame___availableMetaData_atList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -54166,7 +54165,7 @@ func (ptr *QVideoProbe) DestroyQVideoProbe() {
 	if ptr.Pointer() != nil {
 		C.QVideoProbe_DestroyQVideoProbe(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -54174,7 +54173,7 @@ func (ptr *QVideoProbe) DestroyQVideoProbeDefault() {
 	if ptr.Pointer() != nil {
 		C.QVideoProbe_DestroyQVideoProbeDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -54202,7 +54201,7 @@ func (ptr *QVideoProbe) __children_newList() unsafe.Pointer {
 func (ptr *QVideoProbe) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QVideoProbe___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -54338,7 +54337,7 @@ func callbackQVideoProbe_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QVideoProbe) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QVideoProbe_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -54595,7 +54594,7 @@ func (ptr *QVideoRendererControl) DestroyQVideoRendererControl() {
 	if ptr.Pointer() != nil {
 		C.QVideoRendererControl_DestroyQVideoRendererControl(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -54603,7 +54602,7 @@ func (ptr *QVideoRendererControl) DestroyQVideoRendererControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QVideoRendererControl_DestroyQVideoRendererControlDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -54669,19 +54668,19 @@ const (
 
 func NewQVideoSurfaceFormat() *QVideoSurfaceFormat {
 	tmpValue := NewQVideoSurfaceFormatFromPointer(C.QVideoSurfaceFormat_NewQVideoSurfaceFormat())
-	runtime.SetFinalizer(tmpValue, (*QVideoSurfaceFormat).DestroyQVideoSurfaceFormat)
+	qt.SetFinalizer(tmpValue, (*QVideoSurfaceFormat).DestroyQVideoSurfaceFormat)
 	return tmpValue
 }
 
 func NewQVideoSurfaceFormat2(size core.QSize_ITF, format QVideoFrame__PixelFormat, ty QAbstractVideoBuffer__HandleType) *QVideoSurfaceFormat {
 	tmpValue := NewQVideoSurfaceFormatFromPointer(C.QVideoSurfaceFormat_NewQVideoSurfaceFormat2(core.PointerFromQSize(size), C.longlong(format), C.longlong(ty)))
-	runtime.SetFinalizer(tmpValue, (*QVideoSurfaceFormat).DestroyQVideoSurfaceFormat)
+	qt.SetFinalizer(tmpValue, (*QVideoSurfaceFormat).DestroyQVideoSurfaceFormat)
 	return tmpValue
 }
 
 func NewQVideoSurfaceFormat3(other QVideoSurfaceFormat_ITF) *QVideoSurfaceFormat {
 	tmpValue := NewQVideoSurfaceFormatFromPointer(C.QVideoSurfaceFormat_NewQVideoSurfaceFormat3(PointerFromQVideoSurfaceFormat(other)))
-	runtime.SetFinalizer(tmpValue, (*QVideoSurfaceFormat).DestroyQVideoSurfaceFormat)
+	qt.SetFinalizer(tmpValue, (*QVideoSurfaceFormat).DestroyQVideoSurfaceFormat)
 	return tmpValue
 }
 
@@ -54702,7 +54701,7 @@ func (ptr *QVideoSurfaceFormat) FrameRate() float64 {
 func (ptr *QVideoSurfaceFormat) FrameSize() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QVideoSurfaceFormat_FrameSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -54739,7 +54738,7 @@ func (ptr *QVideoSurfaceFormat) IsValid() bool {
 func (ptr *QVideoSurfaceFormat) PixelAspectRatio() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QVideoSurfaceFormat_PixelAspectRatio(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -54760,7 +54759,7 @@ func (ptr *QVideoSurfaceFormat) Property(name string) *core.QVariant {
 			defer C.free(unsafe.Pointer(nameC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QVideoSurfaceFormat_Property(ptr.Pointer(), nameC))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -54855,7 +54854,7 @@ func (ptr *QVideoSurfaceFormat) SetYCbCrColorSpace(space QVideoSurfaceFormat__YC
 func (ptr *QVideoSurfaceFormat) SizeHint() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QVideoSurfaceFormat_SizeHint(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -54864,7 +54863,7 @@ func (ptr *QVideoSurfaceFormat) SizeHint() *core.QSize {
 func (ptr *QVideoSurfaceFormat) Viewport() *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QVideoSurfaceFormat_Viewport(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -54882,14 +54881,14 @@ func (ptr *QVideoSurfaceFormat) DestroyQVideoSurfaceFormat() {
 		C.QVideoSurfaceFormat_DestroyQVideoSurfaceFormat(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QVideoSurfaceFormat) __propertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QVideoSurfaceFormat___propertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -55801,7 +55800,7 @@ func (ptr *QVideoWidget) DisconnectSizeHint() {
 func (ptr *QVideoWidget) SizeHint() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QVideoWidget_SizeHint(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -55810,7 +55809,7 @@ func (ptr *QVideoWidget) SizeHint() *core.QSize {
 func (ptr *QVideoWidget) SizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QVideoWidget_SizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -55851,7 +55850,7 @@ func (ptr *QVideoWidget) DestroyQVideoWidget() {
 	if ptr.Pointer() != nil {
 		C.QVideoWidget_DestroyQVideoWidget(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -55859,7 +55858,7 @@ func (ptr *QVideoWidget) DestroyQVideoWidgetDefault() {
 	if ptr.Pointer() != nil {
 		C.QVideoWidget_DestroyQVideoWidgetDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -55950,7 +55949,7 @@ func (ptr *QVideoWidget) __children_newList() unsafe.Pointer {
 func (ptr *QVideoWidget) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QVideoWidget___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -56435,7 +56434,7 @@ func callbackQVideoWidget_InputMethodQuery(ptr unsafe.Pointer, query C.longlong)
 func (ptr *QVideoWidget) InputMethodQuery(query core.Qt__InputMethodQuery) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QVideoWidget_InputMethodQuery(ptr.Pointer(), C.longlong(query)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -56444,7 +56443,7 @@ func (ptr *QVideoWidget) InputMethodQuery(query core.Qt__InputMethodQuery) *core
 func (ptr *QVideoWidget) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QVideoWidget_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -56569,7 +56568,7 @@ func callbackQVideoWidget_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 func (ptr *QVideoWidget) MinimumSizeHint() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QVideoWidget_MinimumSizeHint(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -56578,7 +56577,7 @@ func (ptr *QVideoWidget) MinimumSizeHint() *core.QSize {
 func (ptr *QVideoWidget) MinimumSizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QVideoWidget_MinimumSizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -57239,14 +57238,14 @@ func callbackQVideoWidget_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QVideoWidget) DeleteLater() {
 	if ptr.Pointer() != nil {
 		C.QVideoWidget_DeleteLater(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QVideoWidget) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QVideoWidget_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -57690,7 +57689,7 @@ func (ptr *QVideoWindowControl) DisconnectDisplayRect() {
 func (ptr *QVideoWindowControl) DisplayRect() *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QVideoWindowControl_DisplayRect(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		qt.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -57886,7 +57885,7 @@ func (ptr *QVideoWindowControl) DisconnectNativeSize() {
 func (ptr *QVideoWindowControl) NativeSize() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QVideoWindowControl_NativeSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -58407,7 +58406,7 @@ func (ptr *QVideoWindowControl) DestroyQVideoWindowControl() {
 	if ptr.Pointer() != nil {
 		C.QVideoWindowControl_DestroyQVideoWindowControl(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -58415,7 +58414,7 @@ func (ptr *QVideoWindowControl) DestroyQVideoWindowControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QVideoWindowControl_DestroyQVideoWindowControlDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -59644,7 +59643,7 @@ func (ptr *ResourcePolicyImpl) DestroyResourcePolicyImpl() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -59730,7 +59729,7 @@ func (ptr *ResourcePolicyPlugin) DestroyResourcePolicyPlugin() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -59777,7 +59776,7 @@ func (ptr *RingBuffer) DestroyRingBuffer() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -59824,7 +59823,7 @@ func (ptr *SampleGrabberCallback) DestroySampleGrabberCallback() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -59871,7 +59870,7 @@ func (ptr *SamplePool) DestroySamplePool() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -59918,7 +59917,7 @@ func (ptr *Scheduler) DestroyScheduler() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 

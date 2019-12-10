@@ -10,7 +10,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"runtime"
 	"strings"
 	"unsafe"
 )
@@ -526,7 +525,7 @@ func (ptr *QVirtualKeyboardAbstractInputMethod) DisconnectSelectionListData() {
 func (ptr *QVirtualKeyboardAbstractInputMethod) SelectionListData(ty QVirtualKeyboardSelectionListModel__Type, index int, role QVirtualKeyboardSelectionListModel__Role) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QVirtualKeyboardAbstractInputMethod_SelectionListData(ptr.Pointer(), C.longlong(ty), C.int(int32(index)), C.longlong(role)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -535,7 +534,7 @@ func (ptr *QVirtualKeyboardAbstractInputMethod) SelectionListData(ty QVirtualKey
 func (ptr *QVirtualKeyboardAbstractInputMethod) SelectionListDataDefault(ty QVirtualKeyboardSelectionListModel__Type, index int, role QVirtualKeyboardSelectionListModel__Role) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QVirtualKeyboardAbstractInputMethod_SelectionListDataDefault(ptr.Pointer(), C.longlong(ty), C.int(int32(index)), C.longlong(role)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -1094,7 +1093,7 @@ func (ptr *QVirtualKeyboardAbstractInputMethod) DestroyQVirtualKeyboardAbstractI
 	if ptr.Pointer() != nil {
 		C.QVirtualKeyboardAbstractInputMethod_DestroyQVirtualKeyboardAbstractInputMethod(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1102,7 +1101,7 @@ func (ptr *QVirtualKeyboardAbstractInputMethod) DestroyQVirtualKeyboardAbstractI
 	if ptr.Pointer() != nil {
 		C.QVirtualKeyboardAbstractInputMethod_DestroyQVirtualKeyboardAbstractInputMethodDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1165,7 +1164,7 @@ func (ptr *QVirtualKeyboardAbstractInputMethod) __traceBegin_traceCaptureDeviceI
 			defer C.free(unsafe.Pointer(vC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QVirtualKeyboardAbstractInputMethod___traceBegin_traceCaptureDeviceInfo_atList(ptr.Pointer(), C.struct_QtVirtualKeyboard_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -1208,7 +1207,7 @@ func (ptr *QVirtualKeyboardAbstractInputMethod) __traceBegin_traceScreenInfo_atL
 			defer C.free(unsafe.Pointer(vC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QVirtualKeyboardAbstractInputMethod___traceBegin_traceScreenInfo_atList(ptr.Pointer(), C.struct_QtVirtualKeyboard_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -1311,7 +1310,7 @@ func (ptr *QVirtualKeyboardAbstractInputMethod) __children_newList() unsafe.Poin
 func (ptr *QVirtualKeyboardAbstractInputMethod) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QVirtualKeyboardAbstractInputMethod___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -1447,7 +1446,7 @@ func callbackQVirtualKeyboardAbstractInputMethod_DeleteLater(ptr unsafe.Pointer)
 func (ptr *QVirtualKeyboardAbstractInputMethod) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QVirtualKeyboardAbstractInputMethod_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1661,7 +1660,7 @@ func (ptr *QVirtualKeyboardExtensionPlugin) __children_newList() unsafe.Pointer 
 func (ptr *QVirtualKeyboardExtensionPlugin) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QVirtualKeyboardExtensionPlugin___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -1797,7 +1796,7 @@ func callbackQVirtualKeyboardExtensionPlugin_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QVirtualKeyboardExtensionPlugin) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QVirtualKeyboardExtensionPlugin_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2030,7 +2029,7 @@ func (ptr *QVirtualKeyboardInputContext) AnchorRectIntersectsClipRectChanged() {
 func (ptr *QVirtualKeyboardInputContext) AnchorRectangle() *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QVirtualKeyboardInputContext_AnchorRectangle(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -2276,7 +2275,7 @@ func (ptr *QVirtualKeyboardInputContext) CursorRectIntersectsClipRectChanged() {
 func (ptr *QVirtualKeyboardInputContext) CursorRectangle() *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QVirtualKeyboardInputContext_CursorRectangle(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -2823,7 +2822,7 @@ func (ptr *QVirtualKeyboardInputContext) __children_newList() unsafe.Pointer {
 func (ptr *QVirtualKeyboardInputContext) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QVirtualKeyboardInputContext___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -2959,7 +2958,7 @@ func callbackQVirtualKeyboardInputContext_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QVirtualKeyboardInputContext) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QVirtualKeyboardInputContext_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3818,7 +3817,7 @@ func (ptr *QVirtualKeyboardInputEngine) __traceBegin_traceCaptureDeviceInfo_atLi
 			defer C.free(unsafe.Pointer(vC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QVirtualKeyboardInputEngine___traceBegin_traceCaptureDeviceInfo_atList(ptr.Pointer(), C.struct_QtVirtualKeyboard_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -3861,7 +3860,7 @@ func (ptr *QVirtualKeyboardInputEngine) __traceBegin_traceScreenInfo_atList(v st
 			defer C.free(unsafe.Pointer(vC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QVirtualKeyboardInputEngine___traceBegin_traceScreenInfo_atList(ptr.Pointer(), C.struct_QtVirtualKeyboard_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -3964,7 +3963,7 @@ func (ptr *QVirtualKeyboardInputEngine) __children_newList() unsafe.Pointer {
 func (ptr *QVirtualKeyboardInputEngine) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QVirtualKeyboardInputEngine___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -4100,7 +4099,7 @@ func callbackQVirtualKeyboardInputEngine_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QVirtualKeyboardInputEngine) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QVirtualKeyboardInputEngine_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4360,7 +4359,7 @@ func (ptr *QVirtualKeyboardSelectionListModel) SelectItem(index int) {
 func (ptr *QVirtualKeyboardSelectionListModel) __roleNames_atList(v int, i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QVirtualKeyboardSelectionListModel___roleNames_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -4444,7 +4443,7 @@ func (ptr *QVirtualKeyboardSelectionListModel) ____setItemData_roles_keyList_new
 func (ptr *QVirtualKeyboardSelectionListModel) __changePersistentIndexList_from_atList(i int) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QVirtualKeyboardSelectionListModel___changePersistentIndexList_from_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -4463,7 +4462,7 @@ func (ptr *QVirtualKeyboardSelectionListModel) __changePersistentIndexList_from_
 func (ptr *QVirtualKeyboardSelectionListModel) __changePersistentIndexList_to_atList(i int) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QVirtualKeyboardSelectionListModel___changePersistentIndexList_to_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -4499,7 +4498,7 @@ func (ptr *QVirtualKeyboardSelectionListModel) __dataChanged_roles_newList() uns
 func (ptr *QVirtualKeyboardSelectionListModel) __itemData_atList(v int, i int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QVirtualKeyboardSelectionListModel___itemData_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -4532,7 +4531,7 @@ func (ptr *QVirtualKeyboardSelectionListModel) __itemData_keyList() []int {
 func (ptr *QVirtualKeyboardSelectionListModel) __layoutAboutToBeChanged_parents_atList(i int) *core.QPersistentModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPersistentModelIndexFromPointer(C.QVirtualKeyboardSelectionListModel___layoutAboutToBeChanged_parents_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QPersistentModelIndex).DestroyQPersistentModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QPersistentModelIndex).DestroyQPersistentModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -4551,7 +4550,7 @@ func (ptr *QVirtualKeyboardSelectionListModel) __layoutAboutToBeChanged_parents_
 func (ptr *QVirtualKeyboardSelectionListModel) __layoutChanged_parents_atList(i int) *core.QPersistentModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQPersistentModelIndexFromPointer(C.QVirtualKeyboardSelectionListModel___layoutChanged_parents_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QPersistentModelIndex).DestroyQPersistentModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QPersistentModelIndex).DestroyQPersistentModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -4570,7 +4569,7 @@ func (ptr *QVirtualKeyboardSelectionListModel) __layoutChanged_parents_newList()
 func (ptr *QVirtualKeyboardSelectionListModel) __match_atList(i int) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QVirtualKeyboardSelectionListModel___match_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -4589,7 +4588,7 @@ func (ptr *QVirtualKeyboardSelectionListModel) __match_newList() unsafe.Pointer 
 func (ptr *QVirtualKeyboardSelectionListModel) __mimeData_indexes_atList(i int) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QVirtualKeyboardSelectionListModel___mimeData_indexes_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -4608,7 +4607,7 @@ func (ptr *QVirtualKeyboardSelectionListModel) __mimeData_indexes_newList() unsa
 func (ptr *QVirtualKeyboardSelectionListModel) __persistentIndexList_atList(i int) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QVirtualKeyboardSelectionListModel___persistentIndexList_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -4627,7 +4626,7 @@ func (ptr *QVirtualKeyboardSelectionListModel) __persistentIndexList_newList() u
 func (ptr *QVirtualKeyboardSelectionListModel) __setItemData_roles_atList(v int, i int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QVirtualKeyboardSelectionListModel___setItemData_roles_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -4715,7 +4714,7 @@ func (ptr *QVirtualKeyboardSelectionListModel) __children_newList() unsafe.Point
 func (ptr *QVirtualKeyboardSelectionListModel) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QVirtualKeyboardSelectionListModel___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -4838,7 +4837,7 @@ func callbackQVirtualKeyboardSelectionListModel_Index(ptr unsafe.Pointer, row C.
 func (ptr *QVirtualKeyboardSelectionListModel) IndexDefault(row int, column int, parent core.QModelIndex_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QVirtualKeyboardSelectionListModel_IndexDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -4856,7 +4855,7 @@ func callbackQVirtualKeyboardSelectionListModel_Sibling(ptr unsafe.Pointer, row 
 func (ptr *QVirtualKeyboardSelectionListModel) SiblingDefault(row int, column int, idx core.QModelIndex_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QVirtualKeyboardSelectionListModel_SiblingDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(idx)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -4874,7 +4873,7 @@ func callbackQVirtualKeyboardSelectionListModel_Buddy(ptr unsafe.Pointer, index 
 func (ptr *QVirtualKeyboardSelectionListModel) BuddyDefault(index core.QModelIndex_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QVirtualKeyboardSelectionListModel_BuddyDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -4988,7 +4987,7 @@ func callbackQVirtualKeyboardSelectionListModel_Data(ptr unsafe.Pointer, index u
 func (ptr *QVirtualKeyboardSelectionListModel) DataDefault(index core.QModelIndex_ITF, role int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QVirtualKeyboardSelectionListModel_DataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -5052,7 +5051,7 @@ func callbackQVirtualKeyboardSelectionListModel_HeaderData(ptr unsafe.Pointer, s
 func (ptr *QVirtualKeyboardSelectionListModel) HeaderDataDefault(section int, orientation core.Qt__Orientation, role int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QVirtualKeyboardSelectionListModel_HeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), C.int(int32(role))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -5315,7 +5314,7 @@ func callbackQVirtualKeyboardSelectionListModel_Parent(ptr unsafe.Pointer, index
 func (ptr *QVirtualKeyboardSelectionListModel) ParentDefault(index core.QModelIndex_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQModelIndexFromPointer(C.QVirtualKeyboardSelectionListModel_ParentDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		qt.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -5577,7 +5576,7 @@ func callbackQVirtualKeyboardSelectionListModel_Span(ptr unsafe.Pointer, index u
 func (ptr *QVirtualKeyboardSelectionListModel) SpanDefault(index core.QModelIndex_ITF) *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QVirtualKeyboardSelectionListModel_SpanDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -5688,7 +5687,7 @@ func callbackQVirtualKeyboardSelectionListModel_DeleteLater(ptr unsafe.Pointer) 
 func (ptr *QVirtualKeyboardSelectionListModel) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QVirtualKeyboardSelectionListModel_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6192,7 +6191,7 @@ func (ptr *QVirtualKeyboardTrace) TraceIdChanged(traceId int) {
 func (ptr *QVirtualKeyboardTrace) __channelData_atList(i int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QVirtualKeyboardTrace___channelData_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -6211,7 +6210,7 @@ func (ptr *QVirtualKeyboardTrace) __channelData_newList() unsafe.Pointer {
 func (ptr *QVirtualKeyboardTrace) __points_atList(i int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QVirtualKeyboardTrace___points_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -6251,7 +6250,7 @@ func (ptr *QVirtualKeyboardTrace) __children_newList() unsafe.Pointer {
 func (ptr *QVirtualKeyboardTrace) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QVirtualKeyboardTrace___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -6387,7 +6386,7 @@ func callbackQVirtualKeyboardTrace_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QVirtualKeyboardTrace) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QVirtualKeyboardTrace_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 

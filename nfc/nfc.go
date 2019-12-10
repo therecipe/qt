@@ -10,7 +10,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"runtime"
 	"strings"
 	"unsafe"
 )
@@ -74,13 +73,13 @@ func NewQNdefFilterFromPointer(ptr unsafe.Pointer) (n *QNdefFilter) {
 }
 func NewQNdefFilter() *QNdefFilter {
 	tmpValue := NewQNdefFilterFromPointer(C.QNdefFilter_NewQNdefFilter())
-	runtime.SetFinalizer(tmpValue, (*QNdefFilter).DestroyQNdefFilter)
+	qt.SetFinalizer(tmpValue, (*QNdefFilter).DestroyQNdefFilter)
 	return tmpValue
 }
 
 func NewQNdefFilter2(other QNdefFilter_ITF) *QNdefFilter {
 	tmpValue := NewQNdefFilterFromPointer(C.QNdefFilter_NewQNdefFilter2(PointerFromQNdefFilter(other)))
-	runtime.SetFinalizer(tmpValue, (*QNdefFilter).DestroyQNdefFilter)
+	qt.SetFinalizer(tmpValue, (*QNdefFilter).DestroyQNdefFilter)
 	return tmpValue
 }
 
@@ -121,7 +120,7 @@ func (ptr *QNdefFilter) DestroyQNdefFilter() {
 		C.QNdefFilter_DestroyQNdefFilter(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -168,25 +167,25 @@ func (ptr *QNdefMessage) DestroyQNdefMessage() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func NewQNdefMessage() *QNdefMessage {
 	tmpValue := NewQNdefMessageFromPointer(C.QNdefMessage_NewQNdefMessage())
-	runtime.SetFinalizer(tmpValue, (*QNdefMessage).DestroyQNdefMessage)
+	qt.SetFinalizer(tmpValue, (*QNdefMessage).DestroyQNdefMessage)
 	return tmpValue
 }
 
 func NewQNdefMessage2(record QNdefRecord_ITF) *QNdefMessage {
 	tmpValue := NewQNdefMessageFromPointer(C.QNdefMessage_NewQNdefMessage2(PointerFromQNdefRecord(record)))
-	runtime.SetFinalizer(tmpValue, (*QNdefMessage).DestroyQNdefMessage)
+	qt.SetFinalizer(tmpValue, (*QNdefMessage).DestroyQNdefMessage)
 	return tmpValue
 }
 
 func NewQNdefMessage3(message QNdefMessage_ITF) *QNdefMessage {
 	tmpValue := NewQNdefMessageFromPointer(C.QNdefMessage_NewQNdefMessage3(PointerFromQNdefMessage(message)))
-	runtime.SetFinalizer(tmpValue, (*QNdefMessage).DestroyQNdefMessage)
+	qt.SetFinalizer(tmpValue, (*QNdefMessage).DestroyQNdefMessage)
 	return tmpValue
 }
 
@@ -198,26 +197,26 @@ func NewQNdefMessage4(records []*QNdefRecord) *QNdefMessage {
 		}
 		return tmpList.Pointer()
 	}()))
-	runtime.SetFinalizer(tmpValue, (*QNdefMessage).DestroyQNdefMessage)
+	qt.SetFinalizer(tmpValue, (*QNdefMessage).DestroyQNdefMessage)
 	return tmpValue
 }
 
 func QNdefMessage_FromByteArray(message core.QByteArray_ITF) *QNdefMessage {
 	tmpValue := NewQNdefMessageFromPointer(C.QNdefMessage_QNdefMessage_FromByteArray(core.PointerFromQByteArray(message)))
-	runtime.SetFinalizer(tmpValue, (*QNdefMessage).DestroyQNdefMessage)
+	qt.SetFinalizer(tmpValue, (*QNdefMessage).DestroyQNdefMessage)
 	return tmpValue
 }
 
 func (ptr *QNdefMessage) FromByteArray(message core.QByteArray_ITF) *QNdefMessage {
 	tmpValue := NewQNdefMessageFromPointer(C.QNdefMessage_QNdefMessage_FromByteArray(core.PointerFromQByteArray(message)))
-	runtime.SetFinalizer(tmpValue, (*QNdefMessage).DestroyQNdefMessage)
+	qt.SetFinalizer(tmpValue, (*QNdefMessage).DestroyQNdefMessage)
 	return tmpValue
 }
 
 func (ptr *QNdefMessage) ToByteArray() *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QNdefMessage_ToByteArray(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -226,7 +225,7 @@ func (ptr *QNdefMessage) ToByteArray() *core.QByteArray {
 func (ptr *QNdefMessage) __QNdefMessage_records_atList4(i int) *QNdefRecord {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQNdefRecordFromPointer(C.QNdefMessage___QNdefMessage_records_atList4(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QNdefRecord).DestroyQNdefRecord)
+		qt.SetFinalizer(tmpValue, (*QNdefRecord).DestroyQNdefRecord)
 		return tmpValue
 	}
 	return nil
@@ -286,7 +285,7 @@ func (ptr *QNdefNfcIconRecord) DestroyQNdefNfcIconRecord() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -342,19 +341,19 @@ const (
 
 func NewQNdefNfcSmartPosterRecord() *QNdefNfcSmartPosterRecord {
 	tmpValue := NewQNdefNfcSmartPosterRecordFromPointer(C.QNdefNfcSmartPosterRecord_NewQNdefNfcSmartPosterRecord())
-	runtime.SetFinalizer(tmpValue, (*QNdefNfcSmartPosterRecord).DestroyQNdefNfcSmartPosterRecord)
+	qt.SetFinalizer(tmpValue, (*QNdefNfcSmartPosterRecord).DestroyQNdefNfcSmartPosterRecord)
 	return tmpValue
 }
 
 func NewQNdefNfcSmartPosterRecord2(other QNdefRecord_ITF) *QNdefNfcSmartPosterRecord {
 	tmpValue := NewQNdefNfcSmartPosterRecordFromPointer(C.QNdefNfcSmartPosterRecord_NewQNdefNfcSmartPosterRecord2(PointerFromQNdefRecord(other)))
-	runtime.SetFinalizer(tmpValue, (*QNdefNfcSmartPosterRecord).DestroyQNdefNfcSmartPosterRecord)
+	qt.SetFinalizer(tmpValue, (*QNdefNfcSmartPosterRecord).DestroyQNdefNfcSmartPosterRecord)
 	return tmpValue
 }
 
 func NewQNdefNfcSmartPosterRecord3(other QNdefNfcSmartPosterRecord_ITF) *QNdefNfcSmartPosterRecord {
 	tmpValue := NewQNdefNfcSmartPosterRecordFromPointer(C.QNdefNfcSmartPosterRecord_NewQNdefNfcSmartPosterRecord3(PointerFromQNdefNfcSmartPosterRecord(other)))
-	runtime.SetFinalizer(tmpValue, (*QNdefNfcSmartPosterRecord).DestroyQNdefNfcSmartPosterRecord)
+	qt.SetFinalizer(tmpValue, (*QNdefNfcSmartPosterRecord).DestroyQNdefNfcSmartPosterRecord)
 	return tmpValue
 }
 
@@ -444,7 +443,7 @@ func (ptr *QNdefNfcSmartPosterRecord) HasTypeInfo() bool {
 func (ptr *QNdefNfcSmartPosterRecord) Icon(mimetype core.QByteArray_ITF) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QNdefNfcSmartPosterRecord_Icon(ptr.Pointer(), core.PointerFromQByteArray(mimetype)))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -460,7 +459,7 @@ func (ptr *QNdefNfcSmartPosterRecord) IconCount() int {
 func (ptr *QNdefNfcSmartPosterRecord) IconRecord(index int) *QNdefNfcIconRecord {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQNdefNfcIconRecordFromPointer(C.QNdefNfcSmartPosterRecord_IconRecord(ptr.Pointer(), C.int(int32(index))))
-		runtime.SetFinalizer(tmpValue, (*QNdefNfcIconRecord).DestroyQNdefNfcIconRecord)
+		qt.SetFinalizer(tmpValue, (*QNdefNfcIconRecord).DestroyQNdefNfcIconRecord)
 		return tmpValue
 	}
 	return nil
@@ -596,7 +595,7 @@ func (ptr *QNdefNfcSmartPosterRecord) TitleCount() int {
 func (ptr *QNdefNfcSmartPosterRecord) TitleRecord(index int) *QNdefNfcTextRecord {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQNdefNfcTextRecordFromPointer(C.QNdefNfcSmartPosterRecord_TitleRecord(ptr.Pointer(), C.int(int32(index))))
-		runtime.SetFinalizer(tmpValue, (*QNdefNfcTextRecord).DestroyQNdefNfcTextRecord)
+		qt.SetFinalizer(tmpValue, (*QNdefNfcTextRecord).DestroyQNdefNfcTextRecord)
 		return tmpValue
 	}
 	return nil
@@ -605,7 +604,7 @@ func (ptr *QNdefNfcSmartPosterRecord) TitleRecord(index int) *QNdefNfcTextRecord
 func (ptr *QNdefNfcSmartPosterRecord) TypeInfo() *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QNdefNfcSmartPosterRecord_TypeInfo(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -614,7 +613,7 @@ func (ptr *QNdefNfcSmartPosterRecord) TypeInfo() *core.QByteArray {
 func (ptr *QNdefNfcSmartPosterRecord) Uri() *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QNdefNfcSmartPosterRecord_Uri(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -623,7 +622,7 @@ func (ptr *QNdefNfcSmartPosterRecord) Uri() *core.QUrl {
 func (ptr *QNdefNfcSmartPosterRecord) UriRecord() *QNdefNfcUriRecord {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQNdefNfcUriRecordFromPointer(C.QNdefNfcSmartPosterRecord_UriRecord(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QNdefNfcUriRecord).DestroyQNdefNfcUriRecord)
+		qt.SetFinalizer(tmpValue, (*QNdefNfcUriRecord).DestroyQNdefNfcUriRecord)
 		return tmpValue
 	}
 	return nil
@@ -634,14 +633,14 @@ func (ptr *QNdefNfcSmartPosterRecord) DestroyQNdefNfcSmartPosterRecord() {
 		C.QNdefNfcSmartPosterRecord_DestroyQNdefNfcSmartPosterRecord(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QNdefNfcSmartPosterRecord) __iconRecords_atList(i int) *QNdefNfcIconRecord {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQNdefNfcIconRecordFromPointer(C.QNdefNfcSmartPosterRecord___iconRecords_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QNdefNfcIconRecord).DestroyQNdefNfcIconRecord)
+		qt.SetFinalizer(tmpValue, (*QNdefNfcIconRecord).DestroyQNdefNfcIconRecord)
 		return tmpValue
 	}
 	return nil
@@ -660,7 +659,7 @@ func (ptr *QNdefNfcSmartPosterRecord) __iconRecords_newList() unsafe.Pointer {
 func (ptr *QNdefNfcSmartPosterRecord) __setIcons_icons_atList(i int) *QNdefNfcIconRecord {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQNdefNfcIconRecordFromPointer(C.QNdefNfcSmartPosterRecord___setIcons_icons_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QNdefNfcIconRecord).DestroyQNdefNfcIconRecord)
+		qt.SetFinalizer(tmpValue, (*QNdefNfcIconRecord).DestroyQNdefNfcIconRecord)
 		return tmpValue
 	}
 	return nil
@@ -679,7 +678,7 @@ func (ptr *QNdefNfcSmartPosterRecord) __setIcons_icons_newList() unsafe.Pointer 
 func (ptr *QNdefNfcSmartPosterRecord) __setTitles_titles_atList(i int) *QNdefNfcTextRecord {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQNdefNfcTextRecordFromPointer(C.QNdefNfcSmartPosterRecord___setTitles_titles_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QNdefNfcTextRecord).DestroyQNdefNfcTextRecord)
+		qt.SetFinalizer(tmpValue, (*QNdefNfcTextRecord).DestroyQNdefNfcTextRecord)
 		return tmpValue
 	}
 	return nil
@@ -698,7 +697,7 @@ func (ptr *QNdefNfcSmartPosterRecord) __setTitles_titles_newList() unsafe.Pointe
 func (ptr *QNdefNfcSmartPosterRecord) __titleRecords_atList(i int) *QNdefNfcTextRecord {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQNdefNfcTextRecordFromPointer(C.QNdefNfcSmartPosterRecord___titleRecords_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QNdefNfcTextRecord).DestroyQNdefNfcTextRecord)
+		qt.SetFinalizer(tmpValue, (*QNdefNfcTextRecord).DestroyQNdefNfcTextRecord)
 		return tmpValue
 	}
 	return nil
@@ -758,7 +757,7 @@ func (ptr *QNdefNfcTextRecord) DestroyQNdefNfcTextRecord() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -773,13 +772,13 @@ const (
 
 func NewQNdefNfcTextRecord() *QNdefNfcTextRecord {
 	tmpValue := NewQNdefNfcTextRecordFromPointer(C.QNdefNfcTextRecord_NewQNdefNfcTextRecord())
-	runtime.SetFinalizer(tmpValue, (*QNdefNfcTextRecord).DestroyQNdefNfcTextRecord)
+	qt.SetFinalizer(tmpValue, (*QNdefNfcTextRecord).DestroyQNdefNfcTextRecord)
 	return tmpValue
 }
 
 func NewQNdefNfcTextRecord2(other QNdefRecord_ITF) *QNdefNfcTextRecord {
 	tmpValue := NewQNdefNfcTextRecordFromPointer(C.QNdefNfcTextRecord_NewQNdefNfcTextRecord2(PointerFromQNdefRecord(other)))
-	runtime.SetFinalizer(tmpValue, (*QNdefNfcTextRecord).DestroyQNdefNfcTextRecord)
+	qt.SetFinalizer(tmpValue, (*QNdefNfcTextRecord).DestroyQNdefNfcTextRecord)
 	return tmpValue
 }
 
@@ -876,19 +875,19 @@ func (ptr *QNdefNfcUriRecord) DestroyQNdefNfcUriRecord() {
 
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func NewQNdefNfcUriRecord() *QNdefNfcUriRecord {
 	tmpValue := NewQNdefNfcUriRecordFromPointer(C.QNdefNfcUriRecord_NewQNdefNfcUriRecord())
-	runtime.SetFinalizer(tmpValue, (*QNdefNfcUriRecord).DestroyQNdefNfcUriRecord)
+	qt.SetFinalizer(tmpValue, (*QNdefNfcUriRecord).DestroyQNdefNfcUriRecord)
 	return tmpValue
 }
 
 func NewQNdefNfcUriRecord2(other QNdefRecord_ITF) *QNdefNfcUriRecord {
 	tmpValue := NewQNdefNfcUriRecordFromPointer(C.QNdefNfcUriRecord_NewQNdefNfcUriRecord2(PointerFromQNdefRecord(other)))
-	runtime.SetFinalizer(tmpValue, (*QNdefNfcUriRecord).DestroyQNdefNfcUriRecord)
+	qt.SetFinalizer(tmpValue, (*QNdefNfcUriRecord).DestroyQNdefNfcUriRecord)
 	return tmpValue
 }
 
@@ -901,7 +900,7 @@ func (ptr *QNdefNfcUriRecord) SetUri(uri core.QUrl_ITF) {
 func (ptr *QNdefNfcUriRecord) Uri() *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QNdefNfcUriRecord_Uri(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -960,20 +959,20 @@ const (
 
 func NewQNdefRecord() *QNdefRecord {
 	tmpValue := NewQNdefRecordFromPointer(C.QNdefRecord_NewQNdefRecord())
-	runtime.SetFinalizer(tmpValue, (*QNdefRecord).DestroyQNdefRecord)
+	qt.SetFinalizer(tmpValue, (*QNdefRecord).DestroyQNdefRecord)
 	return tmpValue
 }
 
 func NewQNdefRecord2(other QNdefRecord_ITF) *QNdefRecord {
 	tmpValue := NewQNdefRecordFromPointer(C.QNdefRecord_NewQNdefRecord2(PointerFromQNdefRecord(other)))
-	runtime.SetFinalizer(tmpValue, (*QNdefRecord).DestroyQNdefRecord)
+	qt.SetFinalizer(tmpValue, (*QNdefRecord).DestroyQNdefRecord)
 	return tmpValue
 }
 
 func (ptr *QNdefRecord) Id() *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QNdefRecord_Id(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -989,7 +988,7 @@ func (ptr *QNdefRecord) IsEmpty() bool {
 func (ptr *QNdefRecord) Payload() *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QNdefRecord_Payload(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -1022,7 +1021,7 @@ func (ptr *QNdefRecord) SetTypeNameFormat(typeNameFormat QNdefRecord__TypeNameFo
 func (ptr *QNdefRecord) Type() *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QNdefRecord_Type(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -1040,7 +1039,7 @@ func (ptr *QNdefRecord) DestroyQNdefRecord() {
 		C.QNdefRecord_DestroyQNdefRecord(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1311,7 +1310,7 @@ func (ptr *QNearFieldManager) DestroyQNearFieldManager() {
 	if ptr.Pointer() != nil {
 		C.QNearFieldManager_DestroyQNearFieldManager(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1319,7 +1318,7 @@ func (ptr *QNearFieldManager) DestroyQNearFieldManagerDefault() {
 	if ptr.Pointer() != nil {
 		C.QNearFieldManager_DestroyQNearFieldManagerDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1347,7 +1346,7 @@ func (ptr *QNearFieldManager) __children_newList() unsafe.Pointer {
 func (ptr *QNearFieldManager) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QNearFieldManager___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -1483,7 +1482,7 @@ func callbackQNearFieldManager_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QNearFieldManager) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QNearFieldManager_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1837,7 +1836,7 @@ func (ptr *QNearFieldShareManager) DestroyQNearFieldShareManager() {
 	if ptr.Pointer() != nil {
 		C.QNearFieldShareManager_DestroyQNearFieldShareManager(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1845,7 +1844,7 @@ func (ptr *QNearFieldShareManager) DestroyQNearFieldShareManagerDefault() {
 	if ptr.Pointer() != nil {
 		C.QNearFieldShareManager_DestroyQNearFieldShareManagerDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1873,7 +1872,7 @@ func (ptr *QNearFieldShareManager) __children_newList() unsafe.Pointer {
 func (ptr *QNearFieldShareManager) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QNearFieldShareManager___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -2009,7 +2008,7 @@ func callbackQNearFieldShareManager_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QNearFieldShareManager) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QNearFieldShareManager_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2307,7 +2306,7 @@ func (ptr *QNearFieldShareTarget) DestroyQNearFieldShareTarget() {
 	if ptr.Pointer() != nil {
 		C.QNearFieldShareTarget_DestroyQNearFieldShareTarget(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2315,14 +2314,14 @@ func (ptr *QNearFieldShareTarget) DestroyQNearFieldShareTargetDefault() {
 	if ptr.Pointer() != nil {
 		C.QNearFieldShareTarget_DestroyQNearFieldShareTargetDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QNearFieldShareTarget) __share_files_atList2(i int) *core.QFileInfo {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQFileInfoFromPointer(C.QNearFieldShareTarget___share_files_atList2(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QFileInfo).DestroyQFileInfo)
+		qt.SetFinalizer(tmpValue, (*core.QFileInfo).DestroyQFileInfo)
 		return tmpValue
 	}
 	return nil
@@ -2362,7 +2361,7 @@ func (ptr *QNearFieldShareTarget) __children_newList() unsafe.Pointer {
 func (ptr *QNearFieldShareTarget) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QNearFieldShareTarget___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -2498,7 +2497,7 @@ func callbackQNearFieldShareTarget_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QNearFieldShareTarget) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QNearFieldShareTarget_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2994,7 +2993,7 @@ func (ptr *QNearFieldTarget) DisconnectUid() {
 func (ptr *QNearFieldTarget) Uid() *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QNearFieldTarget_Uid(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -3034,7 +3033,7 @@ func (ptr *QNearFieldTarget) DisconnectUrl() {
 func (ptr *QNearFieldTarget) Url() *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QNearFieldTarget_Url(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -3043,7 +3042,7 @@ func (ptr *QNearFieldTarget) Url() *core.QUrl {
 func (ptr *QNearFieldTarget) UrlDefault() *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QNearFieldTarget_UrlDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -3084,7 +3083,7 @@ func (ptr *QNearFieldTarget) DestroyQNearFieldTarget() {
 	if ptr.Pointer() != nil {
 		C.QNearFieldTarget_DestroyQNearFieldTarget(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3092,14 +3091,14 @@ func (ptr *QNearFieldTarget) DestroyQNearFieldTargetDefault() {
 	if ptr.Pointer() != nil {
 		C.QNearFieldTarget_DestroyQNearFieldTargetDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QNearFieldTarget) __sendCommands_commands_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QNearFieldTarget___sendCommands_commands_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -3118,7 +3117,7 @@ func (ptr *QNearFieldTarget) __sendCommands_commands_newList() unsafe.Pointer {
 func (ptr *QNearFieldTarget) __writeNdefMessages_messages_atList(i int) *QNdefMessage {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQNdefMessageFromPointer(C.QNearFieldTarget___writeNdefMessages_messages_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QNdefMessage).DestroyQNdefMessage)
+		qt.SetFinalizer(tmpValue, (*QNdefMessage).DestroyQNdefMessage)
 		return tmpValue
 	}
 	return nil
@@ -3158,7 +3157,7 @@ func (ptr *QNearFieldTarget) __children_newList() unsafe.Pointer {
 func (ptr *QNearFieldTarget) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QNearFieldTarget___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -3294,7 +3293,7 @@ func callbackQNearFieldTarget_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QNearFieldTarget) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QNearFieldTarget_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3463,7 +3462,7 @@ func NewQQmlNdefRecord2(record QNdefRecord_ITF, parent core.QObject_ITF) *QQmlNd
 func (ptr *QQmlNdefRecord) Record() *QNdefRecord {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQNdefRecordFromPointer(C.QQmlNdefRecord_Record(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QNdefRecord).DestroyQNdefRecord)
+		qt.SetFinalizer(tmpValue, (*QNdefRecord).DestroyQNdefRecord)
 		return tmpValue
 	}
 	return nil
@@ -3661,7 +3660,7 @@ func (ptr *QQmlNdefRecord) DestroyQQmlNdefRecord() {
 	if ptr.Pointer() != nil {
 		C.QQmlNdefRecord_DestroyQQmlNdefRecord(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3669,7 +3668,7 @@ func (ptr *QQmlNdefRecord) DestroyQQmlNdefRecordDefault() {
 	if ptr.Pointer() != nil {
 		C.QQmlNdefRecord_DestroyQQmlNdefRecordDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3697,7 +3696,7 @@ func (ptr *QQmlNdefRecord) __children_newList() unsafe.Pointer {
 func (ptr *QQmlNdefRecord) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QQmlNdefRecord___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -3833,7 +3832,7 @@ func callbackQQmlNdefRecord_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QQmlNdefRecord) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QQmlNdefRecord_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 

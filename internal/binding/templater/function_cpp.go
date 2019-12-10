@@ -240,6 +240,11 @@ func cppFunctionBodyWithGuards(function *parser.Function) string {
 
 		case function.Name == "qmlRegisterType" && function.TemplateModeGo != "":
 			{
+				if c, ok := function.Class(); ok && c.Module == parser.MOC {
+					if c.IsSubClassOf("QSyntaxHighlighter") { //TODO: check for default constructors instead
+						return fmt.Sprint("#ifdef QT_QML_LIB\n\treturn 0;\n#endif")
+					}
+				}
 				return fmt.Sprintf("#ifdef QT_QML_LIB\n%v%v\n#endif", cppFunctionBody(function), cppFunctionBodyFailed(function))
 			}
 		}

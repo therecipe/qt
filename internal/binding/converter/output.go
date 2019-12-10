@@ -312,9 +312,9 @@ func cgoOutput(name, value string, f *parser.Function, p string) string {
 				if _, ok := parser.State.ClassMap[f.ClassName()].WeakLink[parser.State.ClassMap[value].Module]; ok {
 					return cgoout //TODO: this might leak memory
 				}
-				return fmt.Sprintf("func()*%[3]v.%[1]v{ tmpValue:=%[2]v; runtime.SetFinalizer(tmpValue, (*%[3]v.%[1]v).Destroy%[1]v); return tmpValue; }()", strings.Title(value), cgoout, m)
+				return fmt.Sprintf("func()*%[3]v.%[1]v{ tmpValue:=%[2]v; qt.SetFinalizer(tmpValue, (*%[3]v.%[1]v).Destroy%[1]v); return tmpValue; }()", strings.Title(value), cgoout, m)
 			}
-			return fmt.Sprintf("func()*%[1]v{ tmpValue:=%[2]v; runtime.SetFinalizer(tmpValue, (*%[1]v).Destroy%[1]v); return tmpValue; }()", strings.Title(value), cgoout)
+			return fmt.Sprintf("func()*%[1]v{ tmpValue:=%[2]v; qt.SetFinalizer(tmpValue, (*%[1]v).Destroy%[1]v); return tmpValue; }()", strings.Title(value), cgoout)
 		}
 	}
 	return _cgoOutput(name, value, f, p)

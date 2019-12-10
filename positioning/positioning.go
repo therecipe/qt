@@ -10,7 +10,6 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"runtime"
 	"strings"
 	"unsafe"
 )
@@ -113,13 +112,13 @@ func NewQGeoAddressFromPointer(ptr unsafe.Pointer) (n *QGeoAddress) {
 }
 func NewQGeoAddress() *QGeoAddress {
 	tmpValue := NewQGeoAddressFromPointer(C.QGeoAddress_NewQGeoAddress())
-	runtime.SetFinalizer(tmpValue, (*QGeoAddress).DestroyQGeoAddress)
+	qt.SetFinalizer(tmpValue, (*QGeoAddress).DestroyQGeoAddress)
 	return tmpValue
 }
 
 func NewQGeoAddress2(other QGeoAddress_ITF) *QGeoAddress {
 	tmpValue := NewQGeoAddressFromPointer(C.QGeoAddress_NewQGeoAddress2(PointerFromQGeoAddress(other)))
-	runtime.SetFinalizer(tmpValue, (*QGeoAddress).DestroyQGeoAddress)
+	qt.SetFinalizer(tmpValue, (*QGeoAddress).DestroyQGeoAddress)
 	return tmpValue
 }
 
@@ -310,7 +309,7 @@ func (ptr *QGeoAddress) DestroyQGeoAddress() {
 		C.QGeoAddress_DestroyQGeoAddress(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -358,20 +357,20 @@ func NewQGeoAreaMonitorInfo(name string) *QGeoAreaMonitorInfo {
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	tmpValue := NewQGeoAreaMonitorInfoFromPointer(C.QGeoAreaMonitorInfo_NewQGeoAreaMonitorInfo(C.struct_QtPositioning_PackedString{data: nameC, len: C.longlong(len(name))}))
-	runtime.SetFinalizer(tmpValue, (*QGeoAreaMonitorInfo).DestroyQGeoAreaMonitorInfo)
+	qt.SetFinalizer(tmpValue, (*QGeoAreaMonitorInfo).DestroyQGeoAreaMonitorInfo)
 	return tmpValue
 }
 
 func NewQGeoAreaMonitorInfo2(other QGeoAreaMonitorInfo_ITF) *QGeoAreaMonitorInfo {
 	tmpValue := NewQGeoAreaMonitorInfoFromPointer(C.QGeoAreaMonitorInfo_NewQGeoAreaMonitorInfo2(PointerFromQGeoAreaMonitorInfo(other)))
-	runtime.SetFinalizer(tmpValue, (*QGeoAreaMonitorInfo).DestroyQGeoAreaMonitorInfo)
+	qt.SetFinalizer(tmpValue, (*QGeoAreaMonitorInfo).DestroyQGeoAreaMonitorInfo)
 	return tmpValue
 }
 
 func (ptr *QGeoAreaMonitorInfo) Area() *QGeoShape {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQGeoShapeFromPointer(C.QGeoAreaMonitorInfo_Area(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QGeoShape).DestroyQGeoShape)
+		qt.SetFinalizer(tmpValue, (*QGeoShape).DestroyQGeoShape)
 		return tmpValue
 	}
 	return nil
@@ -380,7 +379,7 @@ func (ptr *QGeoAreaMonitorInfo) Area() *QGeoShape {
 func (ptr *QGeoAreaMonitorInfo) Expiration() *core.QDateTime {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQDateTimeFromPointer(C.QGeoAreaMonitorInfo_Expiration(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
+		qt.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
 		return tmpValue
 	}
 	return nil
@@ -474,7 +473,7 @@ func (ptr *QGeoAreaMonitorInfo) DestroyQGeoAreaMonitorInfo() {
 		C.QGeoAreaMonitorInfo_DestroyQGeoAreaMonitorInfo(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -486,7 +485,7 @@ func (ptr *QGeoAreaMonitorInfo) __notificationParameters_atList(v string, i int)
 			defer C.free(unsafe.Pointer(vC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QGeoAreaMonitorInfo___notificationParameters_atList(ptr.Pointer(), C.struct_QtPositioning_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -529,7 +528,7 @@ func (ptr *QGeoAreaMonitorInfo) __setNotificationParameters_parameters_atList(v 
 			defer C.free(unsafe.Pointer(vC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QGeoAreaMonitorInfo___setNotificationParameters_parameters_atList(ptr.Pointer(), C.struct_QtPositioning_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -1332,7 +1331,7 @@ func (ptr *QGeoAreaMonitorSource) DestroyQGeoAreaMonitorSource() {
 	if ptr.Pointer() != nil {
 		C.QGeoAreaMonitorSource_DestroyQGeoAreaMonitorSource(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1340,14 +1339,14 @@ func (ptr *QGeoAreaMonitorSource) DestroyQGeoAreaMonitorSourceDefault() {
 	if ptr.Pointer() != nil {
 		C.QGeoAreaMonitorSource_DestroyQGeoAreaMonitorSourceDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QGeoAreaMonitorSource) __activeMonitors_atList(i int) *QGeoAreaMonitorInfo {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQGeoAreaMonitorInfoFromPointer(C.QGeoAreaMonitorSource___activeMonitors_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QGeoAreaMonitorInfo).DestroyQGeoAreaMonitorInfo)
+		qt.SetFinalizer(tmpValue, (*QGeoAreaMonitorInfo).DestroyQGeoAreaMonitorInfo)
 		return tmpValue
 	}
 	return nil
@@ -1366,7 +1365,7 @@ func (ptr *QGeoAreaMonitorSource) __activeMonitors_newList() unsafe.Pointer {
 func (ptr *QGeoAreaMonitorSource) __activeMonitors_atList2(i int) *QGeoAreaMonitorInfo {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQGeoAreaMonitorInfoFromPointer(C.QGeoAreaMonitorSource___activeMonitors_atList2(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QGeoAreaMonitorInfo).DestroyQGeoAreaMonitorInfo)
+		qt.SetFinalizer(tmpValue, (*QGeoAreaMonitorInfo).DestroyQGeoAreaMonitorInfo)
 		return tmpValue
 	}
 	return nil
@@ -1406,7 +1405,7 @@ func (ptr *QGeoAreaMonitorSource) __children_newList() unsafe.Pointer {
 func (ptr *QGeoAreaMonitorSource) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QGeoAreaMonitorSource___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -1542,7 +1541,7 @@ func callbackQGeoAreaMonitorSource_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QGeoAreaMonitorSource) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QGeoAreaMonitorSource_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1680,25 +1679,25 @@ func NewQGeoCircleFromPointer(ptr unsafe.Pointer) (n *QGeoCircle) {
 }
 func NewQGeoCircle() *QGeoCircle {
 	tmpValue := NewQGeoCircleFromPointer(C.QGeoCircle_NewQGeoCircle())
-	runtime.SetFinalizer(tmpValue, (*QGeoCircle).DestroyQGeoCircle)
+	qt.SetFinalizer(tmpValue, (*QGeoCircle).DestroyQGeoCircle)
 	return tmpValue
 }
 
 func NewQGeoCircle2(center QGeoCoordinate_ITF, radius float64) *QGeoCircle {
 	tmpValue := NewQGeoCircleFromPointer(C.QGeoCircle_NewQGeoCircle2(PointerFromQGeoCoordinate(center), C.double(radius)))
-	runtime.SetFinalizer(tmpValue, (*QGeoCircle).DestroyQGeoCircle)
+	qt.SetFinalizer(tmpValue, (*QGeoCircle).DestroyQGeoCircle)
 	return tmpValue
 }
 
 func NewQGeoCircle3(other QGeoCircle_ITF) *QGeoCircle {
 	tmpValue := NewQGeoCircleFromPointer(C.QGeoCircle_NewQGeoCircle3(PointerFromQGeoCircle(other)))
-	runtime.SetFinalizer(tmpValue, (*QGeoCircle).DestroyQGeoCircle)
+	qt.SetFinalizer(tmpValue, (*QGeoCircle).DestroyQGeoCircle)
 	return tmpValue
 }
 
 func NewQGeoCircle4(other QGeoShape_ITF) *QGeoCircle {
 	tmpValue := NewQGeoCircleFromPointer(C.QGeoCircle_NewQGeoCircle4(PointerFromQGeoShape(other)))
-	runtime.SetFinalizer(tmpValue, (*QGeoCircle).DestroyQGeoCircle)
+	qt.SetFinalizer(tmpValue, (*QGeoCircle).DestroyQGeoCircle)
 	return tmpValue
 }
 
@@ -1736,7 +1735,7 @@ func (ptr *QGeoCircle) Translate(degreesLatitude float64, degreesLongitude float
 func (ptr *QGeoCircle) Translated(degreesLatitude float64, degreesLongitude float64) *QGeoCircle {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQGeoCircleFromPointer(C.QGeoCircle_Translated(ptr.Pointer(), C.double(degreesLatitude), C.double(degreesLongitude)))
-		runtime.SetFinalizer(tmpValue, (*QGeoCircle).DestroyQGeoCircle)
+		qt.SetFinalizer(tmpValue, (*QGeoCircle).DestroyQGeoCircle)
 		return tmpValue
 	}
 	return nil
@@ -1747,7 +1746,7 @@ func (ptr *QGeoCircle) DestroyQGeoCircle() {
 		C.QGeoCircle_DestroyQGeoCircle(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1814,25 +1813,25 @@ const (
 
 func NewQGeoCoordinate() *QGeoCoordinate {
 	tmpValue := NewQGeoCoordinateFromPointer(C.QGeoCoordinate_NewQGeoCoordinate())
-	runtime.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
+	qt.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
 	return tmpValue
 }
 
 func NewQGeoCoordinate2(latitude float64, longitude float64) *QGeoCoordinate {
 	tmpValue := NewQGeoCoordinateFromPointer(C.QGeoCoordinate_NewQGeoCoordinate2(C.double(latitude), C.double(longitude)))
-	runtime.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
+	qt.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
 	return tmpValue
 }
 
 func NewQGeoCoordinate3(latitude float64, longitude float64, altitude float64) *QGeoCoordinate {
 	tmpValue := NewQGeoCoordinateFromPointer(C.QGeoCoordinate_NewQGeoCoordinate3(C.double(latitude), C.double(longitude), C.double(altitude)))
-	runtime.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
+	qt.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
 	return tmpValue
 }
 
 func NewQGeoCoordinate4(other QGeoCoordinate_ITF) *QGeoCoordinate {
 	tmpValue := NewQGeoCoordinateFromPointer(C.QGeoCoordinate_NewQGeoCoordinate4(PointerFromQGeoCoordinate(other)))
-	runtime.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
+	qt.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
 	return tmpValue
 }
 
@@ -1846,7 +1845,7 @@ func (ptr *QGeoCoordinate) Altitude() float64 {
 func (ptr *QGeoCoordinate) AtDistanceAndAzimuth(distance float64, azimuth float64, distanceUp float64) *QGeoCoordinate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQGeoCoordinateFromPointer(C.QGeoCoordinate_AtDistanceAndAzimuth(ptr.Pointer(), C.double(distance), C.double(azimuth), C.double(distanceUp)))
-		runtime.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
+		qt.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
 		return tmpValue
 	}
 	return nil
@@ -1924,7 +1923,7 @@ func (ptr *QGeoCoordinate) DestroyQGeoCoordinate() {
 		C.QGeoCoordinate_DestroyQGeoCoordinate(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2006,7 +2005,7 @@ func NewQGeoPathFromPointer(ptr unsafe.Pointer) (n *QGeoPath) {
 }
 func NewQGeoPath() *QGeoPath {
 	tmpValue := NewQGeoPathFromPointer(C.QGeoPath_NewQGeoPath())
-	runtime.SetFinalizer(tmpValue, (*QGeoPath).DestroyQGeoPath)
+	qt.SetFinalizer(tmpValue, (*QGeoPath).DestroyQGeoPath)
 	return tmpValue
 }
 
@@ -2018,19 +2017,19 @@ func NewQGeoPath2(path []*QGeoCoordinate, width float64) *QGeoPath {
 		}
 		return tmpList.Pointer()
 	}(), C.double(width)))
-	runtime.SetFinalizer(tmpValue, (*QGeoPath).DestroyQGeoPath)
+	qt.SetFinalizer(tmpValue, (*QGeoPath).DestroyQGeoPath)
 	return tmpValue
 }
 
 func NewQGeoPath3(other QGeoPath_ITF) *QGeoPath {
 	tmpValue := NewQGeoPathFromPointer(C.QGeoPath_NewQGeoPath3(PointerFromQGeoPath(other)))
-	runtime.SetFinalizer(tmpValue, (*QGeoPath).DestroyQGeoPath)
+	qt.SetFinalizer(tmpValue, (*QGeoPath).DestroyQGeoPath)
 	return tmpValue
 }
 
 func NewQGeoPath4(other QGeoShape_ITF) *QGeoPath {
 	tmpValue := NewQGeoPathFromPointer(C.QGeoPath_NewQGeoPath4(PointerFromQGeoShape(other)))
-	runtime.SetFinalizer(tmpValue, (*QGeoPath).DestroyQGeoPath)
+	qt.SetFinalizer(tmpValue, (*QGeoPath).DestroyQGeoPath)
 	return tmpValue
 }
 
@@ -2056,7 +2055,7 @@ func (ptr *QGeoPath) ContainsCoordinate(coordinate QGeoCoordinate_ITF) bool {
 func (ptr *QGeoPath) CoordinateAt(index int) *QGeoCoordinate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQGeoCoordinateFromPointer(C.QGeoPath_CoordinateAt(ptr.Pointer(), C.int(int32(index))))
-		runtime.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
+		qt.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
 		return tmpValue
 	}
 	return nil
@@ -2141,7 +2140,7 @@ func (ptr *QGeoPath) Translate(degreesLatitude float64, degreesLongitude float64
 func (ptr *QGeoPath) Translated(degreesLatitude float64, degreesLongitude float64) *QGeoPath {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQGeoPathFromPointer(C.QGeoPath_Translated(ptr.Pointer(), C.double(degreesLatitude), C.double(degreesLongitude)))
-		runtime.SetFinalizer(tmpValue, (*QGeoPath).DestroyQGeoPath)
+		qt.SetFinalizer(tmpValue, (*QGeoPath).DestroyQGeoPath)
 		return tmpValue
 	}
 	return nil
@@ -2159,14 +2158,14 @@ func (ptr *QGeoPath) DestroyQGeoPath() {
 		C.QGeoPath_DestroyQGeoPath(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QGeoPath) __QGeoPath_path_atList2(i int) *QGeoCoordinate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQGeoCoordinateFromPointer(C.QGeoPath___QGeoPath_path_atList2(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
+		qt.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
 		return tmpValue
 	}
 	return nil
@@ -2185,7 +2184,7 @@ func (ptr *QGeoPath) __QGeoPath_path_newList2() unsafe.Pointer {
 func (ptr *QGeoPath) __path_atList(i int) *QGeoCoordinate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQGeoCoordinateFromPointer(C.QGeoPath___path_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
+		qt.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
 		return tmpValue
 	}
 	return nil
@@ -2204,7 +2203,7 @@ func (ptr *QGeoPath) __path_newList() unsafe.Pointer {
 func (ptr *QGeoPath) __setPath_path_atList(i int) *QGeoCoordinate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQGeoCoordinateFromPointer(C.QGeoPath___setPath_path_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
+		qt.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
 		return tmpValue
 	}
 	return nil
@@ -2223,7 +2222,7 @@ func (ptr *QGeoPath) __setPath_path_newList() unsafe.Pointer {
 func (ptr *QGeoPath) __setVariantPath_path_atList(i int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QGeoPath___setVariantPath_path_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -2242,7 +2241,7 @@ func (ptr *QGeoPath) __setVariantPath_path_newList() unsafe.Pointer {
 func (ptr *QGeoPath) __variantPath_atList(i int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QGeoPath___variantPath_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -2298,7 +2297,7 @@ func NewQGeoPolygonFromPointer(ptr unsafe.Pointer) (n *QGeoPolygon) {
 }
 func NewQGeoPolygon() *QGeoPolygon {
 	tmpValue := NewQGeoPolygonFromPointer(C.QGeoPolygon_NewQGeoPolygon())
-	runtime.SetFinalizer(tmpValue, (*QGeoPolygon).DestroyQGeoPolygon)
+	qt.SetFinalizer(tmpValue, (*QGeoPolygon).DestroyQGeoPolygon)
 	return tmpValue
 }
 
@@ -2310,19 +2309,19 @@ func NewQGeoPolygon2(path []*QGeoCoordinate) *QGeoPolygon {
 		}
 		return tmpList.Pointer()
 	}()))
-	runtime.SetFinalizer(tmpValue, (*QGeoPolygon).DestroyQGeoPolygon)
+	qt.SetFinalizer(tmpValue, (*QGeoPolygon).DestroyQGeoPolygon)
 	return tmpValue
 }
 
 func NewQGeoPolygon3(other QGeoPolygon_ITF) *QGeoPolygon {
 	tmpValue := NewQGeoPolygonFromPointer(C.QGeoPolygon_NewQGeoPolygon3(PointerFromQGeoPolygon(other)))
-	runtime.SetFinalizer(tmpValue, (*QGeoPolygon).DestroyQGeoPolygon)
+	qt.SetFinalizer(tmpValue, (*QGeoPolygon).DestroyQGeoPolygon)
 	return tmpValue
 }
 
 func NewQGeoPolygon4(other QGeoShape_ITF) *QGeoPolygon {
 	tmpValue := NewQGeoPolygonFromPointer(C.QGeoPolygon_NewQGeoPolygon4(PointerFromQGeoShape(other)))
-	runtime.SetFinalizer(tmpValue, (*QGeoPolygon).DestroyQGeoPolygon)
+	qt.SetFinalizer(tmpValue, (*QGeoPolygon).DestroyQGeoPolygon)
 	return tmpValue
 }
 
@@ -2360,7 +2359,7 @@ func (ptr *QGeoPolygon) ContainsCoordinate(coordinate QGeoCoordinate_ITF) bool {
 func (ptr *QGeoPolygon) CoordinateAt(index int) *QGeoCoordinate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQGeoCoordinateFromPointer(C.QGeoPolygon_CoordinateAt(ptr.Pointer(), C.int(int32(index))))
-		runtime.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
+		qt.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
 		return tmpValue
 	}
 	return nil
@@ -2506,7 +2505,7 @@ func (ptr *QGeoPolygon) Translate(degreesLatitude float64, degreesLongitude floa
 func (ptr *QGeoPolygon) Translated(degreesLatitude float64, degreesLongitude float64) *QGeoPolygon {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQGeoPolygonFromPointer(C.QGeoPolygon_Translated(ptr.Pointer(), C.double(degreesLatitude), C.double(degreesLongitude)))
-		runtime.SetFinalizer(tmpValue, (*QGeoPolygon).DestroyQGeoPolygon)
+		qt.SetFinalizer(tmpValue, (*QGeoPolygon).DestroyQGeoPolygon)
 		return tmpValue
 	}
 	return nil
@@ -2517,14 +2516,14 @@ func (ptr *QGeoPolygon) DestroyQGeoPolygon() {
 		C.QGeoPolygon_DestroyQGeoPolygon(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QGeoPolygon) __QGeoPolygon_path_atList2(i int) *QGeoCoordinate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQGeoCoordinateFromPointer(C.QGeoPolygon___QGeoPolygon_path_atList2(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
+		qt.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
 		return tmpValue
 	}
 	return nil
@@ -2543,7 +2542,7 @@ func (ptr *QGeoPolygon) __QGeoPolygon_path_newList2() unsafe.Pointer {
 func (ptr *QGeoPolygon) __addHole_holePath_atList2(i int) *QGeoCoordinate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQGeoCoordinateFromPointer(C.QGeoPolygon___addHole_holePath_atList2(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
+		qt.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
 		return tmpValue
 	}
 	return nil
@@ -2562,7 +2561,7 @@ func (ptr *QGeoPolygon) __addHole_holePath_newList2() unsafe.Pointer {
 func (ptr *QGeoPolygon) __hole_atList(i int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QGeoPolygon___hole_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -2581,7 +2580,7 @@ func (ptr *QGeoPolygon) __hole_newList() unsafe.Pointer {
 func (ptr *QGeoPolygon) __holePath_atList(i int) *QGeoCoordinate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQGeoCoordinateFromPointer(C.QGeoPolygon___holePath_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
+		qt.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
 		return tmpValue
 	}
 	return nil
@@ -2600,7 +2599,7 @@ func (ptr *QGeoPolygon) __holePath_newList() unsafe.Pointer {
 func (ptr *QGeoPolygon) __path_atList(i int) *QGeoCoordinate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQGeoCoordinateFromPointer(C.QGeoPolygon___path_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
+		qt.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
 		return tmpValue
 	}
 	return nil
@@ -2619,7 +2618,7 @@ func (ptr *QGeoPolygon) __path_newList() unsafe.Pointer {
 func (ptr *QGeoPolygon) __perimeter_atList(i int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QGeoPolygon___perimeter_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -2638,7 +2637,7 @@ func (ptr *QGeoPolygon) __perimeter_newList() unsafe.Pointer {
 func (ptr *QGeoPolygon) __setPath_path_atList(i int) *QGeoCoordinate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQGeoCoordinateFromPointer(C.QGeoPolygon___setPath_path_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
+		qt.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
 		return tmpValue
 	}
 	return nil
@@ -2657,7 +2656,7 @@ func (ptr *QGeoPolygon) __setPath_path_newList() unsafe.Pointer {
 func (ptr *QGeoPolygon) __setPerimeter_path_atList(i int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QGeoPolygon___setPerimeter_path_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -2726,19 +2725,19 @@ const (
 
 func NewQGeoPositionInfo() *QGeoPositionInfo {
 	tmpValue := NewQGeoPositionInfoFromPointer(C.QGeoPositionInfo_NewQGeoPositionInfo())
-	runtime.SetFinalizer(tmpValue, (*QGeoPositionInfo).DestroyQGeoPositionInfo)
+	qt.SetFinalizer(tmpValue, (*QGeoPositionInfo).DestroyQGeoPositionInfo)
 	return tmpValue
 }
 
 func NewQGeoPositionInfo2(coordinate QGeoCoordinate_ITF, timestamp core.QDateTime_ITF) *QGeoPositionInfo {
 	tmpValue := NewQGeoPositionInfoFromPointer(C.QGeoPositionInfo_NewQGeoPositionInfo2(PointerFromQGeoCoordinate(coordinate), core.PointerFromQDateTime(timestamp)))
-	runtime.SetFinalizer(tmpValue, (*QGeoPositionInfo).DestroyQGeoPositionInfo)
+	qt.SetFinalizer(tmpValue, (*QGeoPositionInfo).DestroyQGeoPositionInfo)
 	return tmpValue
 }
 
 func NewQGeoPositionInfo3(other QGeoPositionInfo_ITF) *QGeoPositionInfo {
 	tmpValue := NewQGeoPositionInfoFromPointer(C.QGeoPositionInfo_NewQGeoPositionInfo3(PointerFromQGeoPositionInfo(other)))
-	runtime.SetFinalizer(tmpValue, (*QGeoPositionInfo).DestroyQGeoPositionInfo)
+	qt.SetFinalizer(tmpValue, (*QGeoPositionInfo).DestroyQGeoPositionInfo)
 	return tmpValue
 }
 
@@ -2752,7 +2751,7 @@ func (ptr *QGeoPositionInfo) Attribute(attribute QGeoPositionInfo__Attribute) fl
 func (ptr *QGeoPositionInfo) Coordinate() *QGeoCoordinate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQGeoCoordinateFromPointer(C.QGeoPositionInfo_Coordinate(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
+		qt.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
 		return tmpValue
 	}
 	return nil
@@ -2799,7 +2798,7 @@ func (ptr *QGeoPositionInfo) SetTimestamp(timestamp core.QDateTime_ITF) {
 func (ptr *QGeoPositionInfo) Timestamp() *core.QDateTime {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQDateTimeFromPointer(C.QGeoPositionInfo_Timestamp(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
+		qt.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
 		return tmpValue
 	}
 	return nil
@@ -2810,7 +2809,7 @@ func (ptr *QGeoPositionInfo) DestroyQGeoPositionInfo() {
 		C.QGeoPositionInfo_DestroyQGeoPositionInfo(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3045,7 +3044,7 @@ func (ptr *QGeoPositionInfoSource) DisconnectLastKnownPosition() {
 func (ptr *QGeoPositionInfoSource) LastKnownPosition(fromSatellitePositioningMethodsOnly bool) *QGeoPositionInfo {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQGeoPositionInfoFromPointer(C.QGeoPositionInfoSource_LastKnownPosition(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(fromSatellitePositioningMethodsOnly)))))
-		runtime.SetFinalizer(tmpValue, (*QGeoPositionInfo).DestroyQGeoPositionInfo)
+		qt.SetFinalizer(tmpValue, (*QGeoPositionInfo).DestroyQGeoPositionInfo)
 		return tmpValue
 	}
 	return nil
@@ -3497,7 +3496,7 @@ func (ptr *QGeoPositionInfoSource) DestroyQGeoPositionInfoSource() {
 	if ptr.Pointer() != nil {
 		C.QGeoPositionInfoSource_DestroyQGeoPositionInfoSource(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3505,7 +3504,7 @@ func (ptr *QGeoPositionInfoSource) DestroyQGeoPositionInfoSourceDefault() {
 	if ptr.Pointer() != nil {
 		C.QGeoPositionInfoSource_DestroyQGeoPositionInfoSourceDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3533,7 +3532,7 @@ func (ptr *QGeoPositionInfoSource) __children_newList() unsafe.Pointer {
 func (ptr *QGeoPositionInfoSource) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QGeoPositionInfoSource___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -3669,7 +3668,7 @@ func callbackQGeoPositionInfoSource_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QGeoPositionInfoSource) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QGeoPositionInfoSource_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4016,19 +4015,19 @@ func NewQGeoRectangleFromPointer(ptr unsafe.Pointer) (n *QGeoRectangle) {
 }
 func NewQGeoRectangle() *QGeoRectangle {
 	tmpValue := NewQGeoRectangleFromPointer(C.QGeoRectangle_NewQGeoRectangle())
-	runtime.SetFinalizer(tmpValue, (*QGeoRectangle).DestroyQGeoRectangle)
+	qt.SetFinalizer(tmpValue, (*QGeoRectangle).DestroyQGeoRectangle)
 	return tmpValue
 }
 
 func NewQGeoRectangle2(center QGeoCoordinate_ITF, degreesWidth float64, degreesHeight float64) *QGeoRectangle {
 	tmpValue := NewQGeoRectangleFromPointer(C.QGeoRectangle_NewQGeoRectangle2(PointerFromQGeoCoordinate(center), C.double(degreesWidth), C.double(degreesHeight)))
-	runtime.SetFinalizer(tmpValue, (*QGeoRectangle).DestroyQGeoRectangle)
+	qt.SetFinalizer(tmpValue, (*QGeoRectangle).DestroyQGeoRectangle)
 	return tmpValue
 }
 
 func NewQGeoRectangle3(topLeft QGeoCoordinate_ITF, bottomRight QGeoCoordinate_ITF) *QGeoRectangle {
 	tmpValue := NewQGeoRectangleFromPointer(C.QGeoRectangle_NewQGeoRectangle3(PointerFromQGeoCoordinate(topLeft), PointerFromQGeoCoordinate(bottomRight)))
-	runtime.SetFinalizer(tmpValue, (*QGeoRectangle).DestroyQGeoRectangle)
+	qt.SetFinalizer(tmpValue, (*QGeoRectangle).DestroyQGeoRectangle)
 	return tmpValue
 }
 
@@ -4040,26 +4039,26 @@ func NewQGeoRectangle4(coordinates []*QGeoCoordinate) *QGeoRectangle {
 		}
 		return tmpList.Pointer()
 	}()))
-	runtime.SetFinalizer(tmpValue, (*QGeoRectangle).DestroyQGeoRectangle)
+	qt.SetFinalizer(tmpValue, (*QGeoRectangle).DestroyQGeoRectangle)
 	return tmpValue
 }
 
 func NewQGeoRectangle5(other QGeoRectangle_ITF) *QGeoRectangle {
 	tmpValue := NewQGeoRectangleFromPointer(C.QGeoRectangle_NewQGeoRectangle5(PointerFromQGeoRectangle(other)))
-	runtime.SetFinalizer(tmpValue, (*QGeoRectangle).DestroyQGeoRectangle)
+	qt.SetFinalizer(tmpValue, (*QGeoRectangle).DestroyQGeoRectangle)
 	return tmpValue
 }
 
 func NewQGeoRectangle6(other QGeoShape_ITF) *QGeoRectangle {
 	tmpValue := NewQGeoRectangleFromPointer(C.QGeoRectangle_NewQGeoRectangle6(PointerFromQGeoShape(other)))
-	runtime.SetFinalizer(tmpValue, (*QGeoRectangle).DestroyQGeoRectangle)
+	qt.SetFinalizer(tmpValue, (*QGeoRectangle).DestroyQGeoRectangle)
 	return tmpValue
 }
 
 func (ptr *QGeoRectangle) BottomLeft() *QGeoCoordinate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQGeoCoordinateFromPointer(C.QGeoRectangle_BottomLeft(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
+		qt.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
 		return tmpValue
 	}
 	return nil
@@ -4068,7 +4067,7 @@ func (ptr *QGeoRectangle) BottomLeft() *QGeoCoordinate {
 func (ptr *QGeoRectangle) BottomRight() *QGeoCoordinate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQGeoCoordinateFromPointer(C.QGeoRectangle_BottomRight(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
+		qt.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
 		return tmpValue
 	}
 	return nil
@@ -4146,7 +4145,7 @@ func (ptr *QGeoRectangle) SetWidth(degreesWidth float64) {
 func (ptr *QGeoRectangle) TopLeft() *QGeoCoordinate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQGeoCoordinateFromPointer(C.QGeoRectangle_TopLeft(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
+		qt.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
 		return tmpValue
 	}
 	return nil
@@ -4155,7 +4154,7 @@ func (ptr *QGeoRectangle) TopLeft() *QGeoCoordinate {
 func (ptr *QGeoRectangle) TopRight() *QGeoCoordinate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQGeoCoordinateFromPointer(C.QGeoRectangle_TopRight(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
+		qt.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
 		return tmpValue
 	}
 	return nil
@@ -4170,7 +4169,7 @@ func (ptr *QGeoRectangle) Translate(degreesLatitude float64, degreesLongitude fl
 func (ptr *QGeoRectangle) Translated(degreesLatitude float64, degreesLongitude float64) *QGeoRectangle {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQGeoRectangleFromPointer(C.QGeoRectangle_Translated(ptr.Pointer(), C.double(degreesLatitude), C.double(degreesLongitude)))
-		runtime.SetFinalizer(tmpValue, (*QGeoRectangle).DestroyQGeoRectangle)
+		qt.SetFinalizer(tmpValue, (*QGeoRectangle).DestroyQGeoRectangle)
 		return tmpValue
 	}
 	return nil
@@ -4179,7 +4178,7 @@ func (ptr *QGeoRectangle) Translated(degreesLatitude float64, degreesLongitude f
 func (ptr *QGeoRectangle) United(rectangle QGeoRectangle_ITF) *QGeoRectangle {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQGeoRectangleFromPointer(C.QGeoRectangle_United(ptr.Pointer(), PointerFromQGeoRectangle(rectangle)))
-		runtime.SetFinalizer(tmpValue, (*QGeoRectangle).DestroyQGeoRectangle)
+		qt.SetFinalizer(tmpValue, (*QGeoRectangle).DestroyQGeoRectangle)
 		return tmpValue
 	}
 	return nil
@@ -4197,14 +4196,14 @@ func (ptr *QGeoRectangle) DestroyQGeoRectangle() {
 		C.QGeoRectangle_DestroyQGeoRectangle(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QGeoRectangle) __QGeoRectangle_coordinates_atList4(i int) *QGeoCoordinate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQGeoCoordinateFromPointer(C.QGeoRectangle___QGeoRectangle_coordinates_atList4(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
+		qt.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
 		return tmpValue
 	}
 	return nil
@@ -4279,13 +4278,13 @@ const (
 
 func NewQGeoSatelliteInfo() *QGeoSatelliteInfo {
 	tmpValue := NewQGeoSatelliteInfoFromPointer(C.QGeoSatelliteInfo_NewQGeoSatelliteInfo())
-	runtime.SetFinalizer(tmpValue, (*QGeoSatelliteInfo).DestroyQGeoSatelliteInfo)
+	qt.SetFinalizer(tmpValue, (*QGeoSatelliteInfo).DestroyQGeoSatelliteInfo)
 	return tmpValue
 }
 
 func NewQGeoSatelliteInfo2(other QGeoSatelliteInfo_ITF) *QGeoSatelliteInfo {
 	tmpValue := NewQGeoSatelliteInfoFromPointer(C.QGeoSatelliteInfo_NewQGeoSatelliteInfo2(PointerFromQGeoSatelliteInfo(other)))
-	runtime.SetFinalizer(tmpValue, (*QGeoSatelliteInfo).DestroyQGeoSatelliteInfo)
+	qt.SetFinalizer(tmpValue, (*QGeoSatelliteInfo).DestroyQGeoSatelliteInfo)
 	return tmpValue
 }
 
@@ -4359,7 +4358,7 @@ func (ptr *QGeoSatelliteInfo) DestroyQGeoSatelliteInfo() {
 		C.QGeoSatelliteInfo_DestroyQGeoSatelliteInfo(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4933,7 +4932,7 @@ func (ptr *QGeoSatelliteInfoSource) DestroyQGeoSatelliteInfoSource() {
 	if ptr.Pointer() != nil {
 		C.QGeoSatelliteInfoSource_DestroyQGeoSatelliteInfoSource(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4941,14 +4940,14 @@ func (ptr *QGeoSatelliteInfoSource) DestroyQGeoSatelliteInfoSourceDefault() {
 	if ptr.Pointer() != nil {
 		C.QGeoSatelliteInfoSource_DestroyQGeoSatelliteInfoSourceDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QGeoSatelliteInfoSource) __satellitesInUseUpdated_satellites_atList(i int) *QGeoSatelliteInfo {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQGeoSatelliteInfoFromPointer(C.QGeoSatelliteInfoSource___satellitesInUseUpdated_satellites_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QGeoSatelliteInfo).DestroyQGeoSatelliteInfo)
+		qt.SetFinalizer(tmpValue, (*QGeoSatelliteInfo).DestroyQGeoSatelliteInfo)
 		return tmpValue
 	}
 	return nil
@@ -4967,7 +4966,7 @@ func (ptr *QGeoSatelliteInfoSource) __satellitesInUseUpdated_satellites_newList(
 func (ptr *QGeoSatelliteInfoSource) __satellitesInViewUpdated_satellites_atList(i int) *QGeoSatelliteInfo {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQGeoSatelliteInfoFromPointer(C.QGeoSatelliteInfoSource___satellitesInViewUpdated_satellites_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QGeoSatelliteInfo).DestroyQGeoSatelliteInfo)
+		qt.SetFinalizer(tmpValue, (*QGeoSatelliteInfo).DestroyQGeoSatelliteInfo)
 		return tmpValue
 	}
 	return nil
@@ -5007,7 +5006,7 @@ func (ptr *QGeoSatelliteInfoSource) __children_newList() unsafe.Pointer {
 func (ptr *QGeoSatelliteInfoSource) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QGeoSatelliteInfoSource___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -5143,7 +5142,7 @@ func callbackQGeoSatelliteInfoSource_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QGeoSatelliteInfoSource) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QGeoSatelliteInfoSource_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5293,20 +5292,20 @@ const (
 
 func NewQGeoShape() *QGeoShape {
 	tmpValue := NewQGeoShapeFromPointer(C.QGeoShape_NewQGeoShape())
-	runtime.SetFinalizer(tmpValue, (*QGeoShape).DestroyQGeoShape)
+	qt.SetFinalizer(tmpValue, (*QGeoShape).DestroyQGeoShape)
 	return tmpValue
 }
 
 func NewQGeoShape2(other QGeoShape_ITF) *QGeoShape {
 	tmpValue := NewQGeoShapeFromPointer(C.QGeoShape_NewQGeoShape2(PointerFromQGeoShape(other)))
-	runtime.SetFinalizer(tmpValue, (*QGeoShape).DestroyQGeoShape)
+	qt.SetFinalizer(tmpValue, (*QGeoShape).DestroyQGeoShape)
 	return tmpValue
 }
 
 func (ptr *QGeoShape) BoundingGeoRectangle() *QGeoRectangle {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQGeoRectangleFromPointer(C.QGeoShape_BoundingGeoRectangle(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QGeoRectangle).DestroyQGeoRectangle)
+		qt.SetFinalizer(tmpValue, (*QGeoRectangle).DestroyQGeoRectangle)
 		return tmpValue
 	}
 	return nil
@@ -5315,7 +5314,7 @@ func (ptr *QGeoShape) BoundingGeoRectangle() *QGeoRectangle {
 func (ptr *QGeoShape) Center() *QGeoCoordinate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQGeoCoordinateFromPointer(C.QGeoShape_Center(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
+		qt.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
 		return tmpValue
 	}
 	return nil
@@ -5361,7 +5360,7 @@ func (ptr *QGeoShape) DestroyQGeoShape() {
 		C.QGeoShape_DestroyQGeoShape(ptr.Pointer())
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5511,7 +5510,7 @@ func (ptr *QNmeaPositionInfoSource) DisconnectLastKnownPosition() {
 func (ptr *QNmeaPositionInfoSource) LastKnownPosition(fromSatellitePositioningMethodsOnly bool) *QGeoPositionInfo {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQGeoPositionInfoFromPointer(C.QNmeaPositionInfoSource_LastKnownPosition(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(fromSatellitePositioningMethodsOnly)))))
-		runtime.SetFinalizer(tmpValue, (*QGeoPositionInfo).DestroyQGeoPositionInfo)
+		qt.SetFinalizer(tmpValue, (*QGeoPositionInfo).DestroyQGeoPositionInfo)
 		return tmpValue
 	}
 	return nil
@@ -5520,7 +5519,7 @@ func (ptr *QNmeaPositionInfoSource) LastKnownPosition(fromSatellitePositioningMe
 func (ptr *QNmeaPositionInfoSource) LastKnownPositionDefault(fromSatellitePositioningMethodsOnly bool) *QGeoPositionInfo {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQGeoPositionInfoFromPointer(C.QNmeaPositionInfoSource_LastKnownPositionDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(fromSatellitePositioningMethodsOnly)))))
-		runtime.SetFinalizer(tmpValue, (*QGeoPositionInfo).DestroyQGeoPositionInfo)
+		qt.SetFinalizer(tmpValue, (*QGeoPositionInfo).DestroyQGeoPositionInfo)
 		return tmpValue
 	}
 	return nil
@@ -5871,7 +5870,7 @@ func (ptr *QNmeaPositionInfoSource) DestroyQNmeaPositionInfoSource() {
 	if ptr.Pointer() != nil {
 		C.QNmeaPositionInfoSource_DestroyQNmeaPositionInfoSource(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5879,7 +5878,7 @@ func (ptr *QNmeaPositionInfoSource) DestroyQNmeaPositionInfoSourceDefault() {
 	if ptr.Pointer() != nil {
 		C.QNmeaPositionInfoSource_DestroyQNmeaPositionInfoSourceDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		qt.SetFinalizer(ptr, nil)
 	}
 }
 
