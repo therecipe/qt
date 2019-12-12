@@ -677,11 +677,11 @@ func goFunctionBody(function *parser.Function) string {
 		if !UseJs() && !class.HasCallbackFunctions() { //TODO: free c ptr in js/wasm ?
 			fmt.Fprint(bb, "\nC.free(ptr.Pointer())")
 		}
-		if function.Name != "deleteLater" {
-			fmt.Fprint(bb, "\nptr.SetPointer(nil)")
-		}
 		if class.HasFinalizer {
 			fmt.Fprint(bb, "\nqt.SetFinalizer(ptr, nil)")
+		}
+		if function.Name != "deleteLater" {
+			fmt.Fprint(bb, "\nptr.SetPointer(nil)")
 		}
 	}
 

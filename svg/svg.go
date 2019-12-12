@@ -1377,16 +1377,16 @@ func (ptr *QSvgGenerator) DisconnectDestroyQSvgGenerator() {
 func (ptr *QSvgGenerator) DestroyQSvgGenerator() {
 	if ptr.Pointer() != nil {
 		C.QSvgGenerator_DestroyQSvgGenerator(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QSvgGenerator) DestroyQSvgGeneratorDefault() {
 	if ptr.Pointer() != nil {
 		C.QSvgGenerator_DestroyQSvgGeneratorDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -1434,8 +1434,8 @@ func (ptr *QSvgIOHandler) DestroyQSvgIOHandler() {
 
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -1483,8 +1483,8 @@ func (ptr *QSvgIconEngine) DestroyQSvgIconEngine() {
 
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -2027,16 +2027,16 @@ func (ptr *QSvgRenderer) DisconnectDestroyQSvgRenderer() {
 func (ptr *QSvgRenderer) DestroyQSvgRenderer() {
 	if ptr.Pointer() != nil {
 		C.QSvgRenderer_DestroyQSvgRenderer(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QSvgRenderer) DestroyQSvgRendererDefault() {
 	if ptr.Pointer() != nil {
 		C.QSvgRenderer_DestroyQSvgRendererDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -2531,16 +2531,16 @@ func (ptr *QSvgWidget) DisconnectDestroyQSvgWidget() {
 func (ptr *QSvgWidget) DestroyQSvgWidget() {
 	if ptr.Pointer() != nil {
 		C.QSvgWidget_DestroyQSvgWidget(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QSvgWidget) DestroyQSvgWidgetDefault() {
 	if ptr.Pointer() != nil {
 		C.QSvgWidget_DestroyQSvgWidgetDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 

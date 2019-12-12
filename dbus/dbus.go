@@ -76,8 +76,8 @@ func (ptr *QDBus) DestroyQDBus() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -185,16 +185,16 @@ func (ptr *QDBusAbstractAdaptor) DisconnectDestroyQDBusAbstractAdaptor() {
 func (ptr *QDBusAbstractAdaptor) DestroyQDBusAbstractAdaptor() {
 	if ptr.Pointer() != nil {
 		C.QDBusAbstractAdaptor_DestroyQDBusAbstractAdaptor(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QDBusAbstractAdaptor) DestroyQDBusAbstractAdaptorDefault() {
 	if ptr.Pointer() != nil {
 		C.QDBusAbstractAdaptor_DestroyQDBusAbstractAdaptorDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -711,16 +711,16 @@ func (ptr *QDBusAbstractInterface) DisconnectDestroyQDBusAbstractInterface() {
 func (ptr *QDBusAbstractInterface) DestroyQDBusAbstractInterface() {
 	if ptr.Pointer() != nil {
 		C.QDBusAbstractInterface_DestroyQDBusAbstractInterface(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QDBusAbstractInterface) DestroyQDBusAbstractInterfaceDefault() {
 	if ptr.Pointer() != nil {
 		C.QDBusAbstractInterface_DestroyQDBusAbstractInterfaceDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -1566,8 +1566,8 @@ func (ptr *QDBusArgument) DestroyQDBusArgument() {
 	if ptr.Pointer() != nil {
 		C.QDBusArgument_DestroyQDBusArgument(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -2217,8 +2217,8 @@ func (ptr *QDBusConnection) DestroyQDBusConnection() {
 	if ptr.Pointer() != nil {
 		C.QDBusConnection_DestroyQDBusConnection(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -2530,8 +2530,8 @@ func (ptr *QDBusContext) DestroyQDBusContext() {
 	if ptr.Pointer() != nil {
 		C.QDBusContext_DestroyQDBusContext(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -2577,8 +2577,8 @@ func (ptr *QDBusError) DestroyQDBusError() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -2754,16 +2754,16 @@ func (ptr *QDBusInterface) DisconnectDestroyQDBusInterface() {
 func (ptr *QDBusInterface) DestroyQDBusInterface() {
 	if ptr.Pointer() != nil {
 		C.QDBusInterface_DestroyQDBusInterface(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QDBusInterface) DestroyQDBusInterfaceDefault() {
 	if ptr.Pointer() != nil {
 		C.QDBusInterface_DestroyQDBusInterfaceDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -3245,8 +3245,8 @@ func (ptr *QDBusMessage) DestroyQDBusMessage() {
 	if ptr.Pointer() != nil {
 		C.QDBusMessage_DestroyQDBusMessage(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -3349,8 +3349,8 @@ func (ptr *QDBusObjectPath) DestroyQDBusObjectPath() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -3489,8 +3489,8 @@ func (ptr *QDBusPendingCall) DestroyQDBusPendingCall() {
 	if ptr.Pointer() != nil {
 		C.QDBusPendingCall_DestroyQDBusPendingCall(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -3630,16 +3630,16 @@ func (ptr *QDBusPendingCallWatcher) DisconnectDestroyQDBusPendingCallWatcher() {
 func (ptr *QDBusPendingCallWatcher) DestroyQDBusPendingCallWatcher() {
 	if ptr.Pointer() != nil {
 		C.QDBusPendingCallWatcher_DestroyQDBusPendingCallWatcher(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QDBusPendingCallWatcher) DestroyQDBusPendingCallWatcherDefault() {
 	if ptr.Pointer() != nil {
 		C.QDBusPendingCallWatcher_DestroyQDBusPendingCallWatcherDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -4002,8 +4002,8 @@ func (ptr *QDBusPendingReply) DestroyQDBusPendingReply() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -4050,8 +4050,8 @@ func (ptr *QDBusPendingReplyData) DestroyQDBusPendingReplyData() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -4097,8 +4097,8 @@ func (ptr *QDBusReply) DestroyQDBusReply() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -4262,16 +4262,16 @@ func (ptr *QDBusServer) DisconnectDestroyQDBusServer() {
 func (ptr *QDBusServer) DestroyQDBusServer() {
 	if ptr.Pointer() != nil {
 		C.QDBusServer_DestroyQDBusServer(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QDBusServer) DestroyQDBusServerDefault() {
 	if ptr.Pointer() != nil {
 		C.QDBusServer_DestroyQDBusServerDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -4848,16 +4848,16 @@ func (ptr *QDBusServiceWatcher) DisconnectDestroyQDBusServiceWatcher() {
 func (ptr *QDBusServiceWatcher) DestroyQDBusServiceWatcher() {
 	if ptr.Pointer() != nil {
 		C.QDBusServiceWatcher_DestroyQDBusServiceWatcher(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QDBusServiceWatcher) DestroyQDBusServiceWatcherDefault() {
 	if ptr.Pointer() != nil {
 		C.QDBusServiceWatcher_DestroyQDBusServiceWatcherDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -5161,8 +5161,8 @@ func (ptr *QDBusSignature) DestroyQDBusSignature() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -5317,8 +5317,8 @@ func (ptr *QDBusUnixFileDescriptor) DestroyQDBusUnixFileDescriptor() {
 	if ptr.Pointer() != nil {
 		C.QDBusUnixFileDescriptor_DestroyQDBusUnixFileDescriptor(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -5364,8 +5364,8 @@ func (ptr *QDBusVariant) DestroyQDBusVariant() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -5564,16 +5564,16 @@ func (ptr *QDBusVirtualObject) DisconnectDestroyQDBusVirtualObject() {
 func (ptr *QDBusVirtualObject) DestroyQDBusVirtualObject() {
 	if ptr.Pointer() != nil {
 		C.QDBusVirtualObject_DestroyQDBusVirtualObject(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QDBusVirtualObject) DestroyQDBusVirtualObjectDefault() {
 	if ptr.Pointer() != nil {
 		C.QDBusVirtualObject_DestroyQDBusVirtualObjectDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -5877,8 +5877,8 @@ func (ptr *QMetaTypeId2) DestroyQMetaTypeId2() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 

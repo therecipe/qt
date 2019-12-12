@@ -191,16 +191,16 @@ func (ptr *QMaskGenerator) DisconnectDestroyQMaskGenerator() {
 func (ptr *QMaskGenerator) DestroyQMaskGenerator() {
 	if ptr.Pointer() != nil {
 		C.QMaskGenerator_DestroyQMaskGenerator(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QMaskGenerator) DestroyQMaskGeneratorDefault() {
 	if ptr.Pointer() != nil {
 		C.QMaskGenerator_DestroyQMaskGeneratorDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -1723,16 +1723,16 @@ func (ptr *QWebSocket) DisconnectDestroyQWebSocket() {
 func (ptr *QWebSocket) DestroyQWebSocket() {
 	if ptr.Pointer() != nil {
 		C.QWebSocket_DestroyQWebSocket(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QWebSocket) DestroyQWebSocketDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebSocket_DestroyQWebSocketDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -2122,8 +2122,8 @@ func (ptr *QWebSocketCorsAuthenticator) DestroyQWebSocketCorsAuthenticator() {
 	if ptr.Pointer() != nil {
 		C.QWebSocketCorsAuthenticator_DestroyQWebSocketCorsAuthenticator(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -2169,8 +2169,8 @@ func (ptr *QWebSocketProtocol) DestroyQWebSocketProtocol() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -2857,16 +2857,16 @@ func (ptr *QWebSocketServer) DisconnectDestroyQWebSocketServer() {
 func (ptr *QWebSocketServer) DestroyQWebSocketServer() {
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_DestroyQWebSocketServer(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QWebSocketServer) DestroyQWebSocketServerDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_DestroyQWebSocketServerDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -3206,8 +3206,8 @@ func (ptr *QtWebSocketsDeclarativeModule) DestroyQtWebSocketsDeclarativeModule()
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 

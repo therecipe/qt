@@ -124,8 +124,8 @@ func (ptr *QScxmlCompiler) DestroyQScxmlCompiler() {
 	if ptr.Pointer() != nil {
 		C.QScxmlCompiler_DestroyQScxmlCompiler(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -1618,8 +1618,8 @@ func (ptr *QScxmlError) DestroyQScxmlError() {
 	if ptr.Pointer() != nil {
 		C.QScxmlError_DestroyQScxmlError(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -1856,8 +1856,8 @@ func (ptr *QScxmlEvent) DestroyQScxmlEvent() {
 	if ptr.Pointer() != nil {
 		C.QScxmlEvent_DestroyQScxmlEvent(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -3049,16 +3049,16 @@ func (ptr *QScxmlNullDataModel) DisconnectDestroyQScxmlNullDataModel() {
 func (ptr *QScxmlNullDataModel) DestroyQScxmlNullDataModel() {
 	if ptr.Pointer() != nil {
 		C.QScxmlNullDataModel_DestroyQScxmlNullDataModel(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QScxmlNullDataModel) DestroyQScxmlNullDataModelDefault() {
 	if ptr.Pointer() != nil {
 		C.QScxmlNullDataModel_DestroyQScxmlNullDataModelDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 

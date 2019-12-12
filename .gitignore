@@ -15,6 +15,7 @@ Mfile*
 */*_string.go
 */cgo_*
 */minimal_*
+*/*.d.ts
 
 /internal/binding/dump/*
 /internal/binding/runtime/moc*

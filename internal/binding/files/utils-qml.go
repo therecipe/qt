@@ -196,6 +196,12 @@ func (ptr *QJSEngine) fromJsToRef(tofi reflect.Type, jsval *QJSValue) reflect.Va
 	}
 
 	switch {
+	case tofi.Kind() == reflect.UnsafePointer:
+		return reflect.ValueOf(unsafe.Pointer(uintptr(jsval.ToVariant().ToULongLong(nil))))
+
+	case tofi.Kind() == reflect.Uintptr:
+		return reflect.ValueOf(uintptr(jsval.ToVariant().ToULongLong(nil)))
+
 	case tofi.Kind() == reflect.Func:
 		return reflect.MakeFunc(tofi, func(args []reflect.Value) []reflect.Value {
 			input := make([]*QJSValue, len(args))
@@ -255,6 +261,11 @@ func (ptr *QJSEngine) fromJsToRef(tofi reflect.Type, jsval *QJSValue) reflect.Va
 				}
 			}
 		}
+
+		if tofi.String() == "core.QVariant" && jsval.IsUndefined() {
+			return reflect.ValueOf(core.NewQVariant())
+		}
+
 		//TODO: use ptr_itf instead ?
 		//TODO: use *FromPointer instead
 		//TODO: make SetPointer work as backup, for classes that don't support *FromPointer -> needs manual registration like for *FromPointer

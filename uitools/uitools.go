@@ -471,16 +471,16 @@ func (ptr *QUiLoader) DisconnectDestroyQUiLoader() {
 func (ptr *QUiLoader) DestroyQUiLoader() {
 	if ptr.Pointer() != nil {
 		C.QUiLoader_DestroyQUiLoader(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QUiLoader) DestroyQUiLoaderDefault() {
 	if ptr.Pointer() != nil {
 		C.QUiLoader_DestroyQUiLoaderDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 

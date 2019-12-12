@@ -146,8 +146,8 @@ func (ptr *QCompressedHelpInfo) DestroyQCompressedHelpInfo() {
 	if ptr.Pointer() != nil {
 		C.QCompressedHelpInfo_DestroyQCompressedHelpInfo(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -243,8 +243,8 @@ func (ptr *QHelpContentItem) DestroyQHelpContentItem() {
 	if ptr.Pointer() != nil {
 		C.QHelpContentItem_DestroyQHelpContentItem(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -663,16 +663,16 @@ func (ptr *QHelpContentModel) DisconnectDestroyQHelpContentModel() {
 func (ptr *QHelpContentModel) DestroyQHelpContentModel() {
 	if ptr.Pointer() != nil {
 		C.QHelpContentModel_DestroyQHelpContentModel(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QHelpContentModel) DestroyQHelpContentModelDefault() {
 	if ptr.Pointer() != nil {
 		C.QHelpContentModel_DestroyQHelpContentModelDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -4472,16 +4472,16 @@ func (ptr *QHelpEngine) DisconnectDestroyQHelpEngine() {
 func (ptr *QHelpEngine) DestroyQHelpEngine() {
 	if ptr.Pointer() != nil {
 		C.QHelpEngine_DestroyQHelpEngine(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QHelpEngine) DestroyQHelpEngineDefault() {
 	if ptr.Pointer() != nil {
 		C.QHelpEngine_DestroyQHelpEngineDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -5010,16 +5010,16 @@ func (ptr *QHelpEngineCore) DisconnectDestroyQHelpEngineCore() {
 func (ptr *QHelpEngineCore) DestroyQHelpEngineCore() {
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_DestroyQHelpEngineCore(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QHelpEngineCore) DestroyQHelpEngineCoreDefault() {
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_DestroyQHelpEngineCoreDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -5568,8 +5568,8 @@ func (ptr *QHelpFilterData) DestroyQHelpFilterData() {
 	if ptr.Pointer() != nil {
 		C.QHelpFilterData_DestroyQHelpFilterData(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -6238,8 +6238,8 @@ func (ptr *QHelpGlobal) DestroyQHelpGlobal() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -10701,16 +10701,16 @@ func (ptr *QHelpSearchEngine) DisconnectDestroyQHelpSearchEngine() {
 func (ptr *QHelpSearchEngine) DestroyQHelpSearchEngine() {
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_DestroyQHelpSearchEngine(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QHelpSearchEngine) DestroyQHelpSearchEngineDefault() {
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_DestroyQHelpSearchEngineDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -11071,8 +11071,8 @@ func (ptr *QHelpSearchQuery) DestroyQHelpSearchQuery() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -11232,16 +11232,16 @@ func (ptr *QHelpSearchQueryWidget) DisconnectDestroyQHelpSearchQueryWidget() {
 func (ptr *QHelpSearchQueryWidget) DestroyQHelpSearchQueryWidget() {
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_DestroyQHelpSearchQueryWidget(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) DestroyQHelpSearchQueryWidgetDefault() {
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_DestroyQHelpSearchQueryWidgetDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -12596,8 +12596,8 @@ func (ptr *QHelpSearchResult) DestroyQHelpSearchResult() {
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResult_DestroyQHelpSearchResult(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -12722,16 +12722,16 @@ func (ptr *QHelpSearchResultWidget) DisconnectDestroyQHelpSearchResultWidget() {
 func (ptr *QHelpSearchResultWidget) DestroyQHelpSearchResultWidget() {
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_DestroyQHelpSearchResultWidget(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) DestroyQHelpSearchResultWidgetDefault() {
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_DestroyQHelpSearchResultWidgetDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 

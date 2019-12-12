@@ -665,16 +665,16 @@ func (ptr *QInAppStore) DisconnectDestroyQInAppStore() {
 func (ptr *QInAppStore) DestroyQInAppStore() {
 	if ptr.Pointer() != nil {
 		C.QInAppStore_DestroyQInAppStore(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QInAppStore) DestroyQInAppStoreDefault() {
 	if ptr.Pointer() != nil {
 		C.QInAppStore_DestroyQInAppStoreDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 

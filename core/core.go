@@ -795,16 +795,16 @@ func (ptr *QAbstractAnimation) DisconnectDestroyQAbstractAnimation() {
 func (ptr *QAbstractAnimation) DestroyQAbstractAnimation() {
 	if ptr.Pointer() != nil {
 		C.QAbstractAnimation_DestroyQAbstractAnimation(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QAbstractAnimation) DestroyQAbstractAnimationDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractAnimation_DestroyQAbstractAnimationDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -850,8 +850,8 @@ func (ptr *QAbstractConcatenable) DestroyQAbstractConcatenable() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -1461,16 +1461,16 @@ func (ptr *QAbstractEventDispatcher) DisconnectDestroyQAbstractEventDispatcher()
 func (ptr *QAbstractEventDispatcher) DestroyQAbstractEventDispatcher() {
 	if ptr.Pointer() != nil {
 		C.QAbstractEventDispatcher_DestroyQAbstractEventDispatcher(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QAbstractEventDispatcher) DestroyQAbstractEventDispatcherDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractEventDispatcher_DestroyQAbstractEventDispatcherDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -4142,16 +4142,16 @@ func (ptr *QAbstractItemModel) DisconnectDestroyQAbstractItemModel() {
 func (ptr *QAbstractItemModel) DestroyQAbstractItemModel() {
 	if ptr.Pointer() != nil {
 		C.QAbstractItemModel_DestroyQAbstractItemModel(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QAbstractItemModel) DestroyQAbstractItemModelDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractItemModel_DestroyQAbstractItemModelDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -4703,16 +4703,16 @@ func (ptr *QAbstractListModel) DisconnectDestroyQAbstractListModel() {
 func (ptr *QAbstractListModel) DestroyQAbstractListModel() {
 	if ptr.Pointer() != nil {
 		C.QAbstractListModel_DestroyQAbstractListModel(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QAbstractListModel) DestroyQAbstractListModelDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractListModel_DestroyQAbstractListModelDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -5433,16 +5433,16 @@ func (ptr *QAbstractProxyModel) DisconnectDestroyQAbstractProxyModel() {
 func (ptr *QAbstractProxyModel) DestroyQAbstractProxyModel() {
 	if ptr.Pointer() != nil {
 		C.QAbstractProxyModel_DestroyQAbstractProxyModel(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QAbstractProxyModel) DestroyQAbstractProxyModelDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractProxyModel_DestroyQAbstractProxyModelDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -5835,16 +5835,16 @@ func (ptr *QAbstractState) DisconnectDestroyQAbstractState() {
 func (ptr *QAbstractState) DestroyQAbstractState() {
 	if ptr.Pointer() != nil {
 		C.QAbstractState_DestroyQAbstractState(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QAbstractState) DestroyQAbstractStateDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractState_DestroyQAbstractStateDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -5977,16 +5977,16 @@ func (ptr *QAbstractTableModel) DisconnectDestroyQAbstractTableModel() {
 func (ptr *QAbstractTableModel) DestroyQAbstractTableModel() {
 	if ptr.Pointer() != nil {
 		C.QAbstractTableModel_DestroyQAbstractTableModel(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QAbstractTableModel) DestroyQAbstractTableModelDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractTableModel_DestroyQAbstractTableModelDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -6460,16 +6460,16 @@ func (ptr *QAbstractTransition) DisconnectDestroyQAbstractTransition() {
 func (ptr *QAbstractTransition) DestroyQAbstractTransition() {
 	if ptr.Pointer() != nil {
 		C.QAbstractTransition_DestroyQAbstractTransition(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QAbstractTransition) DestroyQAbstractTransitionDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractTransition_DestroyQAbstractTransitionDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -6676,16 +6676,16 @@ func (ptr *QAnimationGroup) DisconnectDestroyQAnimationGroup() {
 func (ptr *QAnimationGroup) DestroyQAnimationGroup() {
 	if ptr.Pointer() != nil {
 		C.QAnimationGroup_DestroyQAnimationGroup(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QAnimationGroup) DestroyQAnimationGroupDefault() {
 	if ptr.Pointer() != nil {
 		C.QAnimationGroup_DestroyQAnimationGroupDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -6776,8 +6776,8 @@ func (ptr *QArgument) DestroyQArgument() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -6823,8 +6823,8 @@ func (ptr *QArrayData) DestroyQArrayData() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -6870,8 +6870,8 @@ func (ptr *QArrayDataPointer) DestroyQArrayDataPointer() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -6917,8 +6917,8 @@ func (ptr *QAssociativeIterable) DestroyQAssociativeIterable() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -6981,8 +6981,8 @@ func (ptr *QAtomicInt) DestroyQAtomicInt() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -7029,8 +7029,8 @@ func (ptr *QAtomicInteger) DestroyQAtomicInteger() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -7076,8 +7076,8 @@ func (ptr *QAtomicOps) DestroyQAtomicOps() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -7124,8 +7124,8 @@ func (ptr *QAtomicPointer) DestroyQAtomicPointer() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -7171,8 +7171,8 @@ func (ptr *QAtomicTraits) DestroyQAtomicTraits() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -7218,8 +7218,8 @@ func (ptr *QBEInteger) DestroyQBEInteger() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -7265,8 +7265,8 @@ func (ptr *QBasicAtomicInteger) DestroyQBasicAtomicInteger() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -7312,8 +7312,8 @@ func (ptr *QBasicAtomicPointer) DestroyQBasicAtomicPointer() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -7359,8 +7359,8 @@ func (ptr *QBasicMutex) DestroyQBasicMutex() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -7450,8 +7450,8 @@ func (ptr *QBasicTimer) DestroyQBasicTimer() {
 	if ptr.Pointer() != nil {
 		C.QBasicTimer_DestroyQBasicTimer(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -7497,8 +7497,8 @@ func (ptr *QBigEndianStorageType) DestroyQBigEndianStorageType() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -7544,8 +7544,8 @@ func (ptr *QBitArray) DestroyQBitArray() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -7943,16 +7943,16 @@ func (ptr *QBuffer) DisconnectDestroyQBuffer() {
 func (ptr *QBuffer) DestroyQBuffer() {
 	if ptr.Pointer() != nil {
 		C.QBuffer_DestroyQBuffer(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QBuffer) DestroyQBufferDefault() {
 	if ptr.Pointer() != nil {
 		C.QBuffer_DestroyQBufferDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -9482,8 +9482,8 @@ func (ptr *QByteArray) DestroyQByteArray() {
 	if ptr.Pointer() != nil {
 		C.QByteArray_DestroyQByteArray(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -9548,8 +9548,8 @@ func (ptr *QByteArrayList) DestroyQByteArrayList() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -9701,8 +9701,8 @@ func (ptr *QByteArrayMatcher) DestroyQByteArrayMatcher() {
 	if ptr.Pointer() != nil {
 		C.QByteArrayMatcher_DestroyQByteArrayMatcher(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -9748,8 +9748,8 @@ func (ptr *QByteRef) DestroyQByteRef() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -10054,8 +10054,8 @@ func (ptr *QCborArray) DestroyQCborArray() {
 	if ptr.Pointer() != nil {
 		C.QCborArray_DestroyQCborArray(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -10139,8 +10139,8 @@ func (ptr *QCborError) DestroyQCborError() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -10481,8 +10481,8 @@ func (ptr *QCborMap) DestroyQCborMap() {
 	if ptr.Pointer() != nil {
 		C.QCborMap_DestroyQCborMap(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -10762,8 +10762,8 @@ func (ptr *QCborParserError) DestroyQCborParserError() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -11027,8 +11027,8 @@ func (ptr *QCborValueRef) DestroyQCborValueRef() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -11074,8 +11074,8 @@ func (ptr *QChar) DestroyQChar() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -12078,8 +12078,8 @@ func (ptr *QChildEvent) DestroyQChildEvent() {
 
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -12285,8 +12285,8 @@ func (ptr *QCollator) DestroyQCollator() {
 	if ptr.Pointer() != nil {
 		C.QCollator_DestroyQCollator(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -12350,8 +12350,8 @@ func (ptr *QCollatorSortKey) DestroyQCollatorSortKey() {
 	if ptr.Pointer() != nil {
 		C.QCollatorSortKey_DestroyQCollatorSortKey(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -12568,8 +12568,8 @@ func (ptr *QCommandLineOption) DestroyQCommandLineOption() {
 	if ptr.Pointer() != nil {
 		C.QCommandLineOption_DestroyQCommandLineOption(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -12861,8 +12861,8 @@ func (ptr *QCommandLineParser) DestroyQCommandLineParser() {
 	if ptr.Pointer() != nil {
 		C.QCommandLineParser_DestroyQCommandLineParser(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -13232,16 +13232,16 @@ func (ptr *QConcatenateTablesProxyModel) DisconnectDestroyQConcatenateTablesProx
 func (ptr *QConcatenateTablesProxyModel) DestroyQConcatenateTablesProxyModel() {
 	if ptr.Pointer() != nil {
 		C.QConcatenateTablesProxyModel_DestroyQConcatenateTablesProxyModel(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QConcatenateTablesProxyModel) DestroyQConcatenateTablesProxyModelDefault() {
 	if ptr.Pointer() != nil {
 		C.QConcatenateTablesProxyModel_DestroyQConcatenateTablesProxyModelDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -13325,8 +13325,8 @@ func (ptr *QContiguousCacheData) DestroyQContiguousCacheData() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -13372,8 +13372,8 @@ func (ptr *QContiguousCacheTypedData) DestroyQContiguousCacheTypedData() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -14122,16 +14122,16 @@ func (ptr *QCoreApplication) DisconnectDestroyQCoreApplication() {
 func (ptr *QCoreApplication) DestroyQCoreApplication() {
 	if ptr.Pointer() != nil {
 		C.QCoreApplication_DestroyQCoreApplication(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QCoreApplication) DestroyQCoreApplicationDefault() {
 	if ptr.Pointer() != nil {
 		C.QCoreApplication_DestroyQCoreApplicationDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -14267,8 +14267,8 @@ func (ptr *QCryptographicHash) DestroyQCryptographicHash() {
 	if ptr.Pointer() != nil {
 		C.QCryptographicHash_DestroyQCryptographicHash(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -14541,8 +14541,8 @@ func (ptr *QDataStream) DestroyQDataStream() {
 	if ptr.Pointer() != nil {
 		C.QDataStream_DestroyQDataStream(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -14588,8 +14588,8 @@ func (ptr *QDate) DestroyQDate() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -15363,8 +15363,8 @@ func (ptr *QDateTime) DestroyQDateTime() {
 	if ptr.Pointer() != nil {
 		C.QDateTime_DestroyQDateTime(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -15410,8 +15410,8 @@ func (ptr *QDeadlineTimer) DestroyQDeadlineTimer() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -15710,8 +15710,8 @@ func (ptr *QDebug) DestroyQDebug() {
 	if ptr.Pointer() != nil {
 		C.QDebug_DestroyQDebug(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -15762,8 +15762,8 @@ func (ptr *QDebugStateSaver) DestroyQDebugStateSaver() {
 	if ptr.Pointer() != nil {
 		C.QDebugStateSaver_DestroyQDebugStateSaver(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -15811,8 +15811,8 @@ func (ptr *QDeferredDeleteEvent) DestroyQDeferredDeleteEvent() {
 
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -16647,8 +16647,8 @@ func (ptr *QDir) DestroyQDir() {
 	if ptr.Pointer() != nil {
 		C.QDir_DestroyQDir(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -16801,8 +16801,8 @@ func (ptr *QDynamicPropertyChangeEvent) DestroyQDynamicPropertyChangeEvent() {
 
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -17028,8 +17028,8 @@ func (ptr *QEasingCurve) DestroyQEasingCurve() {
 	if ptr.Pointer() != nil {
 		C.QEasingCurve_DestroyQEasingCurve(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -17113,8 +17113,8 @@ func (ptr *QElapsedTimer) DestroyQElapsedTimer() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -17262,8 +17262,8 @@ func (ptr *QEnableSharedFromThis) DestroyQEnableSharedFromThis() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -17573,16 +17573,16 @@ func (ptr *QEvent) DisconnectDestroyQEvent() {
 func (ptr *QEvent) DestroyQEvent() {
 	if ptr.Pointer() != nil {
 		C.QEvent_DestroyQEvent(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QEvent) DestroyQEventDefault() {
 	if ptr.Pointer() != nil {
 		C.QEvent_DestroyQEventDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -17763,16 +17763,16 @@ func (ptr *QEventLoop) DisconnectDestroyQEventLoop() {
 func (ptr *QEventLoop) DestroyQEventLoop() {
 	if ptr.Pointer() != nil {
 		C.QEventLoop_DestroyQEventLoop(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QEventLoop) DestroyQEventLoopDefault() {
 	if ptr.Pointer() != nil {
 		C.QEventLoop_DestroyQEventLoopDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -17835,8 +17835,8 @@ func (ptr *QEventLoopLocker) DestroyQEventLoopLocker() {
 	if ptr.Pointer() != nil {
 		C.QEventLoopLocker_DestroyQEventLoopLocker(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -18046,16 +18046,16 @@ func (ptr *QEventTransition) DisconnectDestroyQEventTransition() {
 func (ptr *QEventTransition) DestroyQEventTransition() {
 	if ptr.Pointer() != nil {
 		C.QEventTransition_DestroyQEventTransition(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QEventTransition) DestroyQEventTransitionDefault() {
 	if ptr.Pointer() != nil {
 		C.QEventTransition_DestroyQEventTransitionDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -18102,8 +18102,8 @@ func (ptr *QException) DestroyQException() {
 
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -18187,8 +18187,8 @@ func (ptr *QFactoryInterface) DestroyQFactoryInterface() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -18621,16 +18621,16 @@ func (ptr *QFile) DisconnectDestroyQFile() {
 func (ptr *QFile) DestroyQFile() {
 	if ptr.Pointer() != nil {
 		C.QFile_DestroyQFile(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QFile) DestroyQFileDefault() {
 	if ptr.Pointer() != nil {
 		C.QFile_DestroyQFileDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -19139,16 +19139,16 @@ func (ptr *QFileDevice) DisconnectDestroyQFileDevice() {
 func (ptr *QFileDevice) DestroyQFileDevice() {
 	if ptr.Pointer() != nil {
 		C.QFileDevice_DestroyQFileDevice(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QFileDevice) DestroyQFileDeviceDefault() {
 	if ptr.Pointer() != nil {
 		C.QFileDevice_DestroyQFileDeviceDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -19582,8 +19582,8 @@ func (ptr *QFileInfo) DestroyQFileInfo() {
 	if ptr.Pointer() != nil {
 		C.QFileInfo_DestroyQFileInfo(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -19710,16 +19710,16 @@ func (ptr *QFileSelector) DisconnectDestroyQFileSelector() {
 func (ptr *QFileSelector) DestroyQFileSelector() {
 	if ptr.Pointer() != nil {
 		C.QFileSelector_DestroyQFileSelector(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QFileSelector) DestroyQFileSelectorDefault() {
 	if ptr.Pointer() != nil {
 		C.QFileSelector_DestroyQFileSelectorDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -19937,16 +19937,16 @@ func (ptr *QFileSystemWatcher) DisconnectDestroyQFileSystemWatcher() {
 func (ptr *QFileSystemWatcher) DestroyQFileSystemWatcher() {
 	if ptr.Pointer() != nil {
 		C.QFileSystemWatcher_DestroyQFileSystemWatcher(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QFileSystemWatcher) DestroyQFileSystemWatcherDefault() {
 	if ptr.Pointer() != nil {
 		C.QFileSystemWatcher_DestroyQFileSystemWatcherDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -20116,16 +20116,16 @@ func (ptr *QFinalState) DisconnectDestroyQFinalState() {
 func (ptr *QFinalState) DestroyQFinalState() {
 	if ptr.Pointer() != nil {
 		C.QFinalState_DestroyQFinalState(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QFinalState) DestroyQFinalStateDefault() {
 	if ptr.Pointer() != nil {
 		C.QFinalState_DestroyQFinalStateDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -20171,8 +20171,8 @@ func (ptr *QFlag) DestroyQFlag() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -20242,8 +20242,8 @@ func (ptr *QFlags) DestroyQFlags() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -20328,8 +20328,8 @@ func (ptr *QFutureInterface) DestroyQFutureInterface() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -20417,8 +20417,8 @@ func (ptr *QFutureInterfaceBase) DestroyQFutureInterfaceBase() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -20464,8 +20464,8 @@ func (ptr *QFutureIterator) DestroyQFutureIterator() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -20627,8 +20627,8 @@ func (ptr *QGenericArgument) DestroyQGenericArgument() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -20699,8 +20699,8 @@ func (ptr *QGenericAtomicOps) DestroyQGenericAtomicOps() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -20747,8 +20747,8 @@ func (ptr *QGenericReturnArgument) DestroyQGenericReturnArgument() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -20805,8 +20805,8 @@ func (ptr *QGlobalStatic) DestroyQGlobalStatic() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -20890,8 +20890,8 @@ func (ptr *QHashData) DestroyQHashData() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -20937,8 +20937,8 @@ func (ptr *QHashIterator) DestroyQHashIterator() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -20984,8 +20984,8 @@ func (ptr *QHashNode) DestroyQHashNode() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -21322,16 +21322,16 @@ func (ptr *QHistoryState) DisconnectDestroyQHistoryState() {
 func (ptr *QHistoryState) DestroyQHistoryState() {
 	if ptr.Pointer() != nil {
 		C.QHistoryState_DestroyQHistoryState(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QHistoryState) DestroyQHistoryStateDefault() {
 	if ptr.Pointer() != nil {
 		C.QHistoryState_DestroyQHistoryStateDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -22680,16 +22680,16 @@ func (ptr *QIODevice) DisconnectDestroyQIODevice() {
 func (ptr *QIODevice) DestroyQIODevice() {
 	if ptr.Pointer() != nil {
 		C.QIODevice_DestroyQIODevice(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QIODevice) DestroyQIODeviceDefault() {
 	if ptr.Pointer() != nil {
 		C.QIODevice_DestroyQIODeviceDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -23059,16 +23059,16 @@ func (ptr *QIdentityProxyModel) DisconnectDestroyQIdentityProxyModel() {
 func (ptr *QIdentityProxyModel) DestroyQIdentityProxyModel() {
 	if ptr.Pointer() != nil {
 		C.QIdentityProxyModel_DestroyQIdentityProxyModel(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QIdentityProxyModel) DestroyQIdentityProxyModelDefault() {
 	if ptr.Pointer() != nil {
 		C.QIdentityProxyModel_DestroyQIdentityProxyModelDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -23114,8 +23114,8 @@ func (ptr *QIncompatibleFlag) DestroyQIncompatibleFlag() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -23161,8 +23161,8 @@ func (ptr *QInternal) DestroyQInternal() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -23208,8 +23208,8 @@ func (ptr *QItemSelection) DestroyQItemSelection() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -24029,16 +24029,16 @@ func (ptr *QItemSelectionModel) DisconnectDestroyQItemSelectionModel() {
 func (ptr *QItemSelectionModel) DestroyQItemSelectionModel() {
 	if ptr.Pointer() != nil {
 		C.QItemSelectionModel_DestroyQItemSelectionModel(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QItemSelectionModel) DestroyQItemSelectionModelDefault() {
 	if ptr.Pointer() != nil {
 		C.QItemSelectionModel_DestroyQItemSelectionModelDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -24141,8 +24141,8 @@ func (ptr *QItemSelectionRange) DestroyQItemSelectionRange() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -24585,8 +24585,8 @@ func (ptr *QJsonArray) DestroyQJsonArray() {
 	if ptr.Pointer() != nil {
 		C.QJsonArray_DestroyQJsonArray(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -24881,8 +24881,8 @@ func (ptr *QJsonDocument) DestroyQJsonDocument() {
 	if ptr.Pointer() != nil {
 		C.QJsonDocument_DestroyQJsonDocument(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -25112,8 +25112,8 @@ func (ptr *QJsonObject) DestroyQJsonObject() {
 	if ptr.Pointer() != nil {
 		C.QJsonObject_DestroyQJsonObject(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -25376,8 +25376,8 @@ func (ptr *QJsonParseError) DestroyQJsonParseError() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -25733,8 +25733,8 @@ func (ptr *QJsonValue) DestroyQJsonValue() {
 	if ptr.Pointer() != nil {
 		C.QJsonValue_DestroyQJsonValue(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -25780,8 +25780,8 @@ func (ptr *QJsonValuePtr) DestroyQJsonValuePtr() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -25827,8 +25827,8 @@ func (ptr *QJsonValueRefPtr) DestroyQJsonValueRefPtr() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -25874,8 +25874,8 @@ func (ptr *QKeyValueIterator) DestroyQKeyValueIterator() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -25921,8 +25921,8 @@ func (ptr *QLEInteger) DestroyQLEInteger() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -25968,8 +25968,8 @@ func (ptr *QLatin1Char) DestroyQLatin1Char() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -26040,8 +26040,8 @@ func (ptr *QLatin1String) DestroyQLatin1String() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -26493,16 +26493,16 @@ func (ptr *QLibrary) DisconnectDestroyQLibrary() {
 func (ptr *QLibrary) DestroyQLibrary() {
 	if ptr.Pointer() != nil {
 		C.QLibrary_DestroyQLibrary(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QLibrary) DestroyQLibraryDefault() {
 	if ptr.Pointer() != nil {
 		C.QLibrary_DestroyQLibraryDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -26548,8 +26548,8 @@ func (ptr *QLibraryInfo) DestroyQLibraryInfo() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -26645,8 +26645,8 @@ func (ptr *QLine) DestroyQLine() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -26840,8 +26840,8 @@ func (ptr *QLineF) DestroyQLineF() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -27177,8 +27177,8 @@ func (ptr *QLinkedListIterator) DestroyQLinkedListIterator() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -27224,8 +27224,8 @@ func (ptr *QLinkedListNode) DestroyQLinkedListNode() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -27271,8 +27271,8 @@ func (ptr *QListData) DestroyQListData() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -27318,8 +27318,8 @@ func (ptr *QListIterator) DestroyQListIterator() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -27365,8 +27365,8 @@ func (ptr *QListSpecialMethods) DestroyQListSpecialMethods() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -27412,8 +27412,8 @@ func (ptr *QLittleEndianStorageType) DestroyQLittleEndianStorageType() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -29553,8 +29553,8 @@ func (ptr *QLocale) DestroyQLocale() {
 	if ptr.Pointer() != nil {
 		C.QLocale_DestroyQLocale(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -29729,8 +29729,8 @@ func (ptr *QLockFile) DestroyQLockFile() {
 	if ptr.Pointer() != nil {
 		C.QLockFile_DestroyQLockFile(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -29847,8 +29847,8 @@ func (ptr *QLoggingCategory) DestroyQLoggingCategory() {
 	if ptr.Pointer() != nil {
 		C.QLoggingCategory_DestroyQLoggingCategory(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -29932,8 +29932,8 @@ func (ptr *QMapData) DestroyQMapData() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -29979,8 +29979,8 @@ func (ptr *QMapDataBase) DestroyQMapDataBase() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -30026,8 +30026,8 @@ func (ptr *QMapIterator) DestroyQMapIterator() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -30073,8 +30073,8 @@ func (ptr *QMapNode) DestroyQMapNode() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -30120,8 +30120,8 @@ func (ptr *QMapNodeBase) DestroyQMapNodeBase() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -30167,8 +30167,8 @@ func (ptr *QMargins) DestroyQMargins() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -30285,8 +30285,8 @@ func (ptr *QMarginsF) DestroyQMarginsF() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -30479,8 +30479,8 @@ func (ptr *QMessageAuthenticationCode) DestroyQMessageAuthenticationCode() {
 	if ptr.Pointer() != nil {
 		C.QMessageAuthenticationCode_DestroyQMessageAuthenticationCode(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -30526,8 +30526,8 @@ func (ptr *QMessageLogContext) DestroyQMessageLogContext() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -30573,8 +30573,8 @@ func (ptr *QMessageLogger) DestroyQMessageLogger() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -30735,8 +30735,8 @@ func (ptr *QMetaClassInfo) DestroyQMetaClassInfo() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -30796,8 +30796,8 @@ func (ptr *QMetaEnum) DestroyQMetaEnum() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -30956,8 +30956,8 @@ func (ptr *QMetaMethod) DestroyQMetaMethod() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -31220,8 +31220,8 @@ func (ptr *QMetaObject) DestroyQMetaObject() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -31624,8 +31624,8 @@ func (ptr *QMetaProperty) DestroyQMetaProperty() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -32194,8 +32194,8 @@ func (ptr *QMetaType) DestroyQMetaType() {
 	if ptr.Pointer() != nil {
 		C.QMetaType_DestroyQMetaType(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -32608,16 +32608,16 @@ func (ptr *QMimeData) DisconnectDestroyQMimeData() {
 func (ptr *QMimeData) DestroyQMimeData() {
 	if ptr.Pointer() != nil {
 		C.QMimeData_DestroyQMimeData(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QMimeData) DestroyQMimeDataDefault() {
 	if ptr.Pointer() != nil {
 		C.QMimeData_DestroyQMimeDataDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -32854,8 +32854,8 @@ func (ptr *QMimeDatabase) DestroyQMimeDatabase() {
 	if ptr.Pointer() != nil {
 		C.QMimeDatabase_DestroyQMimeDatabase(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -33059,8 +33059,8 @@ func (ptr *QMimeType) DestroyQMimeType() {
 	if ptr.Pointer() != nil {
 		C.QMimeType_DestroyQMimeType(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -33106,8 +33106,8 @@ func (ptr *QModelIndex) DestroyQModelIndex() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -33258,8 +33258,8 @@ func (ptr *QMultiHash) DestroyQMultiHash() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -33306,8 +33306,8 @@ func (ptr *QMultiMap) DestroyQMultiMap() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -33353,8 +33353,8 @@ func (ptr *QMutableHashIterator) DestroyQMutableHashIterator() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -33400,8 +33400,8 @@ func (ptr *QMutableLinkedListIterator) DestroyQMutableLinkedListIterator() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -33447,8 +33447,8 @@ func (ptr *QMutableListIterator) DestroyQMutableListIterator() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -33494,8 +33494,8 @@ func (ptr *QMutableMapIterator) DestroyQMutableMapIterator() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -33541,8 +33541,8 @@ func (ptr *QMutableSetIterator) DestroyQMutableSetIterator() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -33588,8 +33588,8 @@ func (ptr *QMutableVectorIterator) DestroyQMutableVectorIterator() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -33677,8 +33677,8 @@ func (ptr *QMutex) DestroyQMutex() {
 	if ptr.Pointer() != nil {
 		C.QMutex_DestroyQMutex(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -33748,8 +33748,8 @@ func (ptr *QMutexLocker) DestroyQMutexLocker() {
 	if ptr.Pointer() != nil {
 		C.QMutexLocker_DestroyQMutexLocker(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -33795,8 +33795,8 @@ func (ptr *QNoDebug) DestroyQNoDebug() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -34718,16 +34718,16 @@ func (ptr *QObject) DisconnectDestroyQObject() {
 func (ptr *QObject) DestroyQObject() {
 	if ptr.Pointer() != nil {
 		C.QObject_DestroyQObject(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QObject) DestroyQObjectDefault() {
 	if ptr.Pointer() != nil {
 		C.QObject_DestroyQObjectDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -35007,16 +35007,16 @@ func (ptr *QObjectCleanupHandler) DisconnectDestroyQObjectCleanupHandler() {
 func (ptr *QObjectCleanupHandler) DestroyQObjectCleanupHandler() {
 	if ptr.Pointer() != nil {
 		C.QObjectCleanupHandler_DestroyQObjectCleanupHandler(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QObjectCleanupHandler) DestroyQObjectCleanupHandlerDefault() {
 	if ptr.Pointer() != nil {
 		C.QObjectCleanupHandler_DestroyQObjectCleanupHandlerDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -35104,8 +35104,8 @@ func (ptr *QObjectData) DestroyQObjectData() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -35193,8 +35193,8 @@ func (ptr *QObjectUserData) DestroyQObjectUserData() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -35240,8 +35240,8 @@ func (ptr *QOperatingSystemVersion) DestroyQOperatingSystemVersion() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -35615,8 +35615,8 @@ func (ptr *QPair) DestroyQPair() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -35788,16 +35788,16 @@ func (ptr *QParallelAnimationGroup) DisconnectDestroyQParallelAnimationGroup() {
 func (ptr *QParallelAnimationGroup) DestroyQParallelAnimationGroup() {
 	if ptr.Pointer() != nil {
 		C.QParallelAnimationGroup_DestroyQParallelAnimationGroup(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QParallelAnimationGroup) DestroyQParallelAnimationGroupDefault() {
 	if ptr.Pointer() != nil {
 		C.QParallelAnimationGroup_DestroyQParallelAnimationGroupDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -35983,16 +35983,16 @@ func (ptr *QPauseAnimation) DisconnectDestroyQPauseAnimation() {
 func (ptr *QPauseAnimation) DestroyQPauseAnimation() {
 	if ptr.Pointer() != nil {
 		C.QPauseAnimation_DestroyQPauseAnimation(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QPauseAnimation) DestroyQPauseAnimationDefault() {
 	if ptr.Pointer() != nil {
 		C.QPauseAnimation_DestroyQPauseAnimationDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -36038,8 +36038,8 @@ func (ptr *QPersistentModelIndex) DestroyQPersistentModelIndex() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -36327,16 +36327,16 @@ func (ptr *QPluginLoader) DisconnectDestroyQPluginLoader() {
 func (ptr *QPluginLoader) DestroyQPluginLoader() {
 	if ptr.Pointer() != nil {
 		C.QPluginLoader_DestroyQPluginLoader(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QPluginLoader) DestroyQPluginLoaderDefault() {
 	if ptr.Pointer() != nil {
 		C.QPluginLoader_DestroyQPluginLoaderDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -36413,8 +36413,8 @@ func (ptr *QPoint) DestroyQPoint() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -36534,8 +36534,8 @@ func (ptr *QPointF) DestroyQPointF() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -37663,16 +37663,16 @@ func (ptr *QProcess) DisconnectDestroyQProcess() {
 func (ptr *QProcess) DestroyQProcess() {
 	if ptr.Pointer() != nil {
 		C.QProcess_DestroyQProcess(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QProcess) DestroyQProcessDefault() {
 	if ptr.Pointer() != nil {
 		C.QProcess_DestroyQProcessDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -37836,8 +37836,8 @@ func (ptr *QProcessEnvironment) DestroyQProcessEnvironment() {
 	if ptr.Pointer() != nil {
 		C.QProcessEnvironment_DestroyQProcessEnvironment(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -37961,16 +37961,16 @@ func (ptr *QPropertyAnimation) DisconnectDestroyQPropertyAnimation() {
 func (ptr *QPropertyAnimation) DestroyQPropertyAnimation() {
 	if ptr.Pointer() != nil {
 		C.QPropertyAnimation_DestroyQPropertyAnimation(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QPropertyAnimation) DestroyQPropertyAnimationDefault() {
 	if ptr.Pointer() != nil {
 		C.QPropertyAnimation_DestroyQPropertyAnimationDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -38016,8 +38016,8 @@ func (ptr *QQueue) DestroyQQueue() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -38063,8 +38063,8 @@ func (ptr *QRandomGenerator) DestroyQRandomGenerator() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -38225,8 +38225,8 @@ func (ptr *QRandomGenerator64) DestroyQRandomGenerator64() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -38303,8 +38303,8 @@ func (ptr *QReadLocker) DestroyQReadLocker() {
 	if ptr.Pointer() != nil {
 		C.QReadLocker_DestroyQReadLocker(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -38411,8 +38411,8 @@ func (ptr *QReadWriteLock) DestroyQReadWriteLock() {
 	if ptr.Pointer() != nil {
 		C.QReadWriteLock_DestroyQReadWriteLock(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -38458,8 +38458,8 @@ func (ptr *QRect) DestroyQRect() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -38962,8 +38962,8 @@ func (ptr *QRectF) DestroyQRectF() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -39702,8 +39702,8 @@ func (ptr *QRegExp) DestroyQRegExp() {
 	if ptr.Pointer() != nil {
 		C.QRegExp_DestroyQRegExp(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -39984,8 +39984,8 @@ func (ptr *QRegularExpression) DestroyQRegularExpression() {
 	if ptr.Pointer() != nil {
 		C.QRegularExpression_DestroyQRegularExpression(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -40260,8 +40260,8 @@ func (ptr *QRegularExpressionMatch) DestroyQRegularExpressionMatch() {
 	if ptr.Pointer() != nil {
 		C.QRegularExpressionMatch_DestroyQRegularExpressionMatch(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -40583,8 +40583,8 @@ func (ptr *QResource) DestroyQResource() {
 	if ptr.Pointer() != nil {
 		C.QResource_DestroyQResource(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -40631,8 +40631,8 @@ func (ptr *QReturnArgument) DestroyQReturnArgument() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -40914,16 +40914,16 @@ func (ptr *QSaveFile) DisconnectDestroyQSaveFile() {
 func (ptr *QSaveFile) DestroyQSaveFile() {
 	if ptr.Pointer() != nil {
 		C.QSaveFile_DestroyQSaveFile(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QSaveFile) DestroyQSaveFileDefault() {
 	if ptr.Pointer() != nil {
 		C.QSaveFile_DestroyQSaveFileDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -40969,8 +40969,8 @@ func (ptr *QScopeGuard) DestroyQScopeGuard() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -41017,8 +41017,8 @@ func (ptr *QScopedArrayPointer) DestroyQScopedArrayPointer() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -41102,8 +41102,8 @@ func (ptr *QScopedPointerArrayDeleter) DestroyQScopedPointerArrayDeleter() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -41149,8 +41149,8 @@ func (ptr *QScopedPointerDeleter) DestroyQScopedPointerDeleter() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -41196,8 +41196,8 @@ func (ptr *QScopedPointerObjectDeleteLater) DestroyQScopedPointerObjectDeleteLat
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -41243,8 +41243,8 @@ func (ptr *QScopedPointerPodDeleter) DestroyQScopedPointerPodDeleter() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -41366,8 +41366,8 @@ func (ptr *QSemaphore) DestroyQSemaphore() {
 	if ptr.Pointer() != nil {
 		C.QSemaphore_DestroyQSemaphore(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -41450,8 +41450,8 @@ func (ptr *QSemaphoreReleaser) DestroyQSemaphoreReleaser() {
 	if ptr.Pointer() != nil {
 		C.QSemaphoreReleaser_DestroyQSemaphoreReleaser(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -41696,16 +41696,16 @@ func (ptr *QSequentialAnimationGroup) DisconnectDestroyQSequentialAnimationGroup
 func (ptr *QSequentialAnimationGroup) DestroyQSequentialAnimationGroup() {
 	if ptr.Pointer() != nil {
 		C.QSequentialAnimationGroup_DestroyQSequentialAnimationGroup(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QSequentialAnimationGroup) DestroyQSequentialAnimationGroupDefault() {
 	if ptr.Pointer() != nil {
 		C.QSequentialAnimationGroup_DestroyQSequentialAnimationGroupDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -41751,8 +41751,8 @@ func (ptr *QSequentialIterable) DestroyQSequentialIterable() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -41821,8 +41821,8 @@ func (ptr *QSet) DestroyQSet() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -41868,8 +41868,8 @@ func (ptr *QSetIterator) DestroyQSetIterator() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -42349,16 +42349,16 @@ func (ptr *QSettings) DisconnectDestroyQSettings() {
 func (ptr *QSettings) DestroyQSettings() {
 	if ptr.Pointer() != nil {
 		C.QSettings_DestroyQSettings(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QSettings) DestroyQSettingsDefault() {
 	if ptr.Pointer() != nil {
 		C.QSettings_DestroyQSettingsDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -42404,8 +42404,8 @@ func (ptr *QSharedData) DestroyQSharedData() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -42698,16 +42698,16 @@ func (ptr *QSharedMemory) DisconnectDestroyQSharedMemory() {
 func (ptr *QSharedMemory) DestroyQSharedMemory() {
 	if ptr.Pointer() != nil {
 		C.QSharedMemory_DestroyQSharedMemory(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QSharedMemory) DestroyQSharedMemoryDefault() {
 	if ptr.Pointer() != nil {
 		C.QSharedMemory_DestroyQSharedMemoryDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -42814,8 +42814,8 @@ func (ptr *QSignalBlocker) DestroyQSignalBlocker() {
 	if ptr.Pointer() != nil {
 		C.QSignalBlocker_DestroyQSignalBlocker(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -43139,16 +43139,16 @@ func (ptr *QSignalTransition) DisconnectDestroyQSignalTransition() {
 func (ptr *QSignalTransition) DestroyQSignalTransition() {
 	if ptr.Pointer() != nil {
 		C.QSignalTransition_DestroyQSignalTransition(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QSignalTransition) DestroyQSignalTransitionDefault() {
 	if ptr.Pointer() != nil {
 		C.QSignalTransition_DestroyQSignalTransitionDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -43194,8 +43194,8 @@ func (ptr *QSize) DestroyQSize() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -43377,8 +43377,8 @@ func (ptr *QSizeF) DestroyQSizeF() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -43707,16 +43707,16 @@ func (ptr *QSocketNotifier) DisconnectDestroyQSocketNotifier() {
 func (ptr *QSocketNotifier) DestroyQSocketNotifier() {
 	if ptr.Pointer() != nil {
 		C.QSocketNotifier_DestroyQSocketNotifier(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QSocketNotifier) DestroyQSocketNotifierDefault() {
 	if ptr.Pointer() != nil {
 		C.QSocketNotifier_DestroyQSocketNotifierDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -44704,16 +44704,16 @@ func (ptr *QSortFilterProxyModel) DisconnectDestroyQSortFilterProxyModel() {
 func (ptr *QSortFilterProxyModel) DestroyQSortFilterProxyModel() {
 	if ptr.Pointer() != nil {
 		C.QSortFilterProxyModel_DestroyQSortFilterProxyModel(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QSortFilterProxyModel) DestroyQSortFilterProxyModelDefault() {
 	if ptr.Pointer() != nil {
 		C.QSortFilterProxyModel_DestroyQSortFilterProxyModelDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -44759,8 +44759,8 @@ func (ptr *QSpecialInteger) DestroyQSpecialInteger() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -44807,8 +44807,8 @@ func (ptr *QStack) DestroyQStack() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -44854,8 +44854,8 @@ func (ptr *QStandardPaths) DestroyQStandardPaths() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -45459,16 +45459,16 @@ func (ptr *QState) DisconnectDestroyQState() {
 func (ptr *QState) DestroyQState() {
 	if ptr.Pointer() != nil {
 		C.QState_DestroyQState(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QState) DestroyQStateDefault() {
 	if ptr.Pointer() != nil {
 		C.QState_DestroyQStateDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -45950,16 +45950,16 @@ func (ptr *QStateMachine) DisconnectDestroyQStateMachine() {
 func (ptr *QStateMachine) DestroyQStateMachine() {
 	if ptr.Pointer() != nil {
 		C.QStateMachine_DestroyQStateMachine(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QStateMachine) DestroyQStateMachineDefault() {
 	if ptr.Pointer() != nil {
 		C.QStateMachine_DestroyQStateMachineDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -46026,8 +46026,8 @@ func (ptr *QStaticByteArrayData) DestroyQStaticByteArrayData() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -46073,8 +46073,8 @@ func (ptr *QStaticByteArrayMatcher) DestroyQStaticByteArrayMatcher() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -46120,8 +46120,8 @@ func (ptr *QStaticPlugin) DestroyQStaticPlugin() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -46194,8 +46194,8 @@ func (ptr *QStaticStringData) DestroyQStaticStringData() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -46430,8 +46430,8 @@ func (ptr *QStorageInfo) DestroyQStorageInfo() {
 	if ptr.Pointer() != nil {
 		C.QStorageInfo_DestroyQStorageInfo(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -46566,8 +46566,8 @@ func (ptr *QStringBuilderCommon) DestroyQStringBuilderCommon() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -46613,8 +46613,8 @@ func (ptr *QStringList) DestroyQStringList() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -46903,8 +46903,8 @@ func (ptr *QStringMatcher) DestroyQStringMatcher() {
 	if ptr.Pointer() != nil {
 		C.QStringMatcher_DestroyQStringMatcher(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -47682,8 +47682,8 @@ func (ptr *QStringRef) DestroyQStringRef() {
 	if ptr.Pointer() != nil {
 		C.QStringRef_DestroyQStringRef(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -47784,8 +47784,8 @@ func (ptr *QStringView) DestroyQStringView() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -48079,8 +48079,8 @@ func (ptr *QSysInfo) DestroyQSysInfo() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -48319,8 +48319,8 @@ func (ptr *QSystemSemaphore) DestroyQSystemSemaphore() {
 	if ptr.Pointer() != nil {
 		C.QSystemSemaphore_DestroyQSystemSemaphore(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -48435,8 +48435,8 @@ func (ptr *QTemporaryDir) DestroyQTemporaryDir() {
 	if ptr.Pointer() != nil {
 		C.QTemporaryDir_DestroyQTemporaryDir(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -48634,16 +48634,16 @@ func (ptr *QTemporaryFile) DisconnectDestroyQTemporaryFile() {
 func (ptr *QTemporaryFile) DestroyQTemporaryFile() {
 	if ptr.Pointer() != nil {
 		C.QTemporaryFile_DestroyQTemporaryFile(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QTemporaryFile) DestroyQTemporaryFileDefault() {
 	if ptr.Pointer() != nil {
 		C.QTemporaryFile_DestroyQTemporaryFileDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -48810,8 +48810,8 @@ func (ptr *QTextBoundaryFinder) DestroyQTextBoundaryFinder() {
 	if ptr.Pointer() != nil {
 		C.QTextBoundaryFinder_DestroyQTextBoundaryFinder(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -49255,16 +49255,16 @@ func (ptr *QTextCodec) DisconnectDestroyQTextCodec() {
 func (ptr *QTextCodec) DestroyQTextCodec() {
 	if ptr.Pointer() != nil {
 		C.QTextCodec_DestroyQTextCodec(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QTextCodec) DestroyQTextCodecDefault() {
 	if ptr.Pointer() != nil {
 		C.QTextCodec_DestroyQTextCodecDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -49411,8 +49411,8 @@ func (ptr *QTextDecoder) DestroyQTextDecoder() {
 	if ptr.Pointer() != nil {
 		C.QTextDecoder_DestroyQTextDecoder(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -49501,8 +49501,8 @@ func (ptr *QTextEncoder) DestroyQTextEncoder() {
 	if ptr.Pointer() != nil {
 		C.QTextEncoder_DestroyQTextEncoder(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -49941,16 +49941,16 @@ func (ptr *QTextStream) DisconnectDestroyQTextStream() {
 func (ptr *QTextStream) DestroyQTextStream() {
 	if ptr.Pointer() != nil {
 		C.QTextStream_DestroyQTextStream(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QTextStream) DestroyQTextStreamDefault() {
 	if ptr.Pointer() != nil {
 		C.QTextStream_DestroyQTextStreamDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -49996,8 +49996,8 @@ func (ptr *QTextStreamManipulator) DestroyQTextStreamManipulator() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -50498,16 +50498,16 @@ func (ptr *QThread) DisconnectDestroyQThread() {
 func (ptr *QThread) DestroyQThread() {
 	if ptr.Pointer() != nil {
 		C.QThread_DestroyQThread(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QThread) DestroyQThreadDefault() {
 	if ptr.Pointer() != nil {
 		C.QThread_DestroyQThreadDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -50698,16 +50698,16 @@ func (ptr *QThreadPool) DisconnectDestroyQThreadPool() {
 func (ptr *QThreadPool) DestroyQThreadPool() {
 	if ptr.Pointer() != nil {
 		C.QThreadPool_DestroyQThreadPool(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QThreadPool) DestroyQThreadPoolDefault() {
 	if ptr.Pointer() != nil {
 		C.QThreadPool_DestroyQThreadPoolDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -50791,8 +50791,8 @@ func (ptr *QThreadStorageData) DestroyQThreadStorageData() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -50838,8 +50838,8 @@ func (ptr *QTime) DestroyQTime() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -51774,16 +51774,16 @@ func (ptr *QTimeLine) DisconnectDestroyQTimeLine() {
 func (ptr *QTimeLine) DestroyQTimeLine() {
 	if ptr.Pointer() != nil {
 		C.QTimeLine_DestroyQTimeLine(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QTimeLine) DestroyQTimeLineDefault() {
 	if ptr.Pointer() != nil {
 		C.QTimeLine_DestroyQTimeLineDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -52184,8 +52184,8 @@ func (ptr *QTimeZone) DestroyQTimeZone() {
 	if ptr.Pointer() != nil {
 		C.QTimeZone_DestroyQTimeZone(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -52623,16 +52623,16 @@ func (ptr *QTimer) DisconnectDestroyQTimer() {
 func (ptr *QTimer) DestroyQTimer() {
 	if ptr.Pointer() != nil {
 		C.QTimer_DestroyQTimer(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QTimer) DestroyQTimerDefault() {
 	if ptr.Pointer() != nil {
 		C.QTimer_DestroyQTimerDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -52680,8 +52680,8 @@ func (ptr *QTimerEvent) DestroyQTimerEvent() {
 
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -52970,16 +52970,16 @@ func (ptr *QTranslator) DisconnectDestroyQTranslator() {
 func (ptr *QTranslator) DestroyQTranslator() {
 	if ptr.Pointer() != nil {
 		C.QTranslator_DestroyQTranslator(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QTranslator) DestroyQTranslatorDefault() {
 	if ptr.Pointer() != nil {
 		C.QTranslator_DestroyQTranslatorDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -53349,16 +53349,16 @@ func (ptr *QTransposeProxyModel) DisconnectDestroyQTransposeProxyModel() {
 func (ptr *QTransposeProxyModel) DestroyQTransposeProxyModel() {
 	if ptr.Pointer() != nil {
 		C.QTransposeProxyModel_DestroyQTransposeProxyModel(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QTransposeProxyModel) DestroyQTransposeProxyModelDefault() {
 	if ptr.Pointer() != nil {
 		C.QTransposeProxyModel_DestroyQTransposeProxyModelDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -53405,8 +53405,8 @@ func (ptr *QTypedArrayData) DestroyQTypedArrayData() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -53454,8 +53454,8 @@ func (ptr *QUnhandledException) DestroyQUnhandledException() {
 
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -54134,8 +54134,8 @@ func (ptr *QUrl) DestroyQUrl() {
 	if ptr.Pointer() != nil {
 		C.QUrl_DestroyQUrl(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -54432,8 +54432,8 @@ func (ptr *QUrlQuery) DestroyQUrlQuery() {
 	if ptr.Pointer() != nil {
 		C.QUrlQuery_DestroyQUrlQuery(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -54479,8 +54479,8 @@ func (ptr *QUrlTwoFlags) DestroyQUrlTwoFlags() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -54526,8 +54526,8 @@ func (ptr *QUuid) DestroyQUuid() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -56082,8 +56082,8 @@ func (ptr *QVariant) DestroyQVariant() {
 	if ptr.Pointer() != nil {
 		C.QVariant_DestroyQVariant(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -56806,16 +56806,16 @@ func (ptr *QVariantAnimation) DisconnectDestroyQVariantAnimation() {
 func (ptr *QVariantAnimation) DestroyQVariantAnimation() {
 	if ptr.Pointer() != nil {
 		C.QVariantAnimation_DestroyQVariantAnimation(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QVariantAnimation) DestroyQVariantAnimationDefault() {
 	if ptr.Pointer() != nil {
 		C.QVariantAnimation_DestroyQVariantAnimationDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -56899,8 +56899,8 @@ func (ptr *QVectorIterator) DestroyQVectorIterator() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -56946,8 +56946,8 @@ func (ptr *QVersionNumber) DestroyQVersionNumber() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -57287,8 +57287,8 @@ func (ptr *QWaitCondition) DestroyQWaitCondition() {
 	if ptr.Pointer() != nil {
 		C.QWaitCondition_DestroyQWaitCondition(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -57435,8 +57435,8 @@ func (ptr *QWriteLocker) DestroyQWriteLocker() {
 	if ptr.Pointer() != nil {
 		C.QWriteLocker_DestroyQWriteLocker(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -57582,8 +57582,8 @@ func (ptr *QXmlStreamAttribute) DestroyQXmlStreamAttribute() {
 	if ptr.Pointer() != nil {
 		C.QXmlStreamAttribute_DestroyQXmlStreamAttribute(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -57630,8 +57630,8 @@ func (ptr *QXmlStreamAttributes) DestroyQXmlStreamAttributes() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -57877,8 +57877,8 @@ func (ptr *QXmlStreamEntityDeclaration) DestroyQXmlStreamEntityDeclaration() {
 	if ptr.Pointer() != nil {
 		C.QXmlStreamEntityDeclaration_DestroyQXmlStreamEntityDeclaration(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -58108,8 +58108,8 @@ func (ptr *QXmlStreamNamespaceDeclaration) DestroyQXmlStreamNamespaceDeclaration
 	if ptr.Pointer() != nil {
 		C.QXmlStreamNamespaceDeclaration_DestroyQXmlStreamNamespaceDeclaration(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -58193,8 +58193,8 @@ func (ptr *QXmlStreamNotationDeclaration) DestroyQXmlStreamNotationDeclaration()
 	if ptr.Pointer() != nil {
 		C.QXmlStreamNotationDeclaration_DestroyQXmlStreamNotationDeclaration(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -58696,8 +58696,8 @@ func (ptr *QXmlStreamReader) DestroyQXmlStreamReader() {
 	if ptr.Pointer() != nil {
 		C.QXmlStreamReader_DestroyQXmlStreamReader(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -59129,8 +59129,8 @@ func (ptr *QXmlStreamWriter) DestroyQXmlStreamWriter() {
 	if ptr.Pointer() != nil {
 		C.QXmlStreamWriter_DestroyQXmlStreamWriter(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -59176,8 +59176,8 @@ func (ptr *Qt) DestroyQt() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -61024,8 +61024,8 @@ func (ptr *QtGlobal) DestroyQtGlobal() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -61247,8 +61247,8 @@ func (ptr *qfloat16) Destroyqfloat16() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -64129,6 +64129,7 @@ func init() {
 	qt.FuncMap["core.NewQVariant45"] = NewQVariant45
 	qt.FuncMap["core.QVariant_NameToType"] = QVariant_NameToType
 	qt.FuncMap["core.QVariant_TypeToName"] = QVariant_TypeToName
+	qt.FuncMap["core.NewQVariant1"] = NewQVariant1
 	qt.EnumMap["core.QVariant__Invalid"] = int64(QVariant__Invalid)
 	qt.EnumMap["core.QVariant__Bool"] = int64(QVariant__Bool)
 	qt.EnumMap["core.QVariant__Int"] = int64(QVariant__Int)

@@ -215,8 +215,8 @@ func New%vFromPointer(ptr unsafe.Pointer) (n *%[2]v) {
 func (ptr *%[1]v) Destroy%[1]v() {
 	if ptr != nil {
 		%v
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -232,8 +232,8 @@ func (ptr *%[1]v) Destroy%[1]v() {
 	if ptr != nil {
 		%v
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -914,10 +914,23 @@ default:
 						return pkg
 					}
 					return module
-				}()), converter.GoHeaderName(f)) //TODO: use setter and getter
+				}()), converter.GoHeaderName(f))
 				if !strings.Contains(out, "unsupported_") && strings.Contains(bb.String(), converter.GoHeaderName(f)+"(") {
 					bb.WriteString(out)
 				}
+			}
+		}
+
+		if c.Name == "QVariant" {
+			if parser.UseJs() {
+				if parser.UseWasm() {
+					//TODO:
+				} else {
+					fmt.Fprint(bb, "module.Set(\"NewQVariant1\", func(i interface{}) *js.Object { return qt.MakeWrapper(NewQVariant1(i)) })\n")
+				}
+			}
+			if cmd.ImportsQmlOrQuick() || mode == NONE {
+				fmt.Fprint(bb, "qt.FuncMap[\"core.NewQVariant1\"] = NewQVariant1\n")
 			}
 		}
 
@@ -939,7 +952,8 @@ default:
 					//TODO: same as for js ?
 				} else if parser.UseJs() {
 					fmt.Fprintf(bb, "module.Set(\"%v__%v\", int64(%v__%v))\n", strings.Split(e.Fullname, "::")[0], v.Name, strings.Split(e.Fullname, "::")[0], v.Name)
-				} else if cmd.ImportsQmlOrQuick() || mode == NONE {
+				}
+				if cmd.ImportsQmlOrQuick() || mode == NONE {
 					bb.WriteString(fmt.Sprintf("qt.EnumMap[\"%[1]v.%[2]v__%[3]v\"] = int64(%[2]v__%[3]v)\n", goModule(module), strings.Split(e.Fullname, "::")[0], v.Name))
 
 					if utils.QT_GEN_TSD() {
@@ -949,7 +963,7 @@ default:
 			}
 		}
 	}
-	if utils.QT_GEN_TSD() && mode == NONE {
+	if utils.QT_GEN_TSD() {
 		tsd.WriteString("}")
 	}
 

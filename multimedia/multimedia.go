@@ -352,8 +352,8 @@ func (ptr *AVFCameraInfo) DestroyAVFCameraInfo() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -711,8 +711,8 @@ func (ptr *AVFConfigurationLock) DestroyAVFConfigurationLock() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -1232,8 +1232,8 @@ func (ptr *AVFObjectDeleter) DestroyAVFObjectDeleter() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -1279,8 +1279,8 @@ func (ptr *AVFScopedPointer) DestroyAVFScopedPointer() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -1374,8 +1374,8 @@ func (ptr *AVFStorageLocation) DestroyAVFStorageLocation() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -1499,8 +1499,8 @@ func (ptr *AVFVideoOutput) DestroyAVFVideoOutput() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -1628,8 +1628,8 @@ func (ptr *AVFVideoWidgetControl) DestroyAVFVideoWidgetControl() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -1717,8 +1717,8 @@ func (ptr *AndroidCamcorderProfile) DestroyAndroidCamcorderProfile() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -1803,8 +1803,8 @@ func (ptr *AndroidMediaMetadataRetriever) DestroyAndroidMediaMetadataRetriever()
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -1928,8 +1928,8 @@ func (ptr *AndroidMultimediaUtils) DestroyAndroidMultimediaUtils() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -2092,8 +2092,8 @@ func (ptr *AsyncCallback) DestroyAsyncCallback() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -2412,8 +2412,8 @@ func (ptr *AudioInterface) DestroyAudioInterface() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -2499,8 +2499,8 @@ func (ptr *AudioSampleGrabberCallback) DestroyAudioSampleGrabberCallback() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -3290,8 +3290,8 @@ func (ptr *BbMediaStorageLocation) DestroyBbMediaStorageLocation() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -4363,8 +4363,8 @@ func (ptr *CoreAudioBufferList) DestroyCoreAudioBufferList() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -4683,8 +4683,8 @@ func (ptr *CoreAudioPacketFeeder) DestroyCoreAudioPacketFeeder() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -4769,8 +4769,8 @@ func (ptr *CoreAudioRingBuffer) DestroyCoreAudioRingBuffer() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -4855,8 +4855,8 @@ func (ptr *CoreAudioUtils) DestroyCoreAudioUtils() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -4902,8 +4902,8 @@ func (ptr *D3DPresentEngine) DestroyD3DPresentEngine() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -5387,8 +5387,8 @@ func (ptr *DirectShowBaseFilter) DestroyDirectShowBaseFilter() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -5668,8 +5668,8 @@ func (ptr *DirectShowEvrVideoWindowControl) DestroyDirectShowEvrVideoWindowContr
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -5754,8 +5754,8 @@ func (ptr *DirectShowIOSource) DestroyDirectShowIOSource() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -5802,8 +5802,8 @@ func (ptr *DirectShowInputPin) DestroyDirectShowInputPin() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -5849,8 +5849,8 @@ func (ptr *DirectShowMediaType) DestroyDirectShowMediaType() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -5896,8 +5896,8 @@ func (ptr *DirectShowMediaTypeEnum) DestroyDirectShowMediaTypeEnum() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -5983,8 +5983,8 @@ func (ptr *DirectShowOutputPin) DestroyDirectShowOutputPin() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -6030,8 +6030,8 @@ func (ptr *DirectShowPin) DestroyDirectShowPin() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -6077,8 +6077,8 @@ func (ptr *DirectShowPinEnum) DestroyDirectShowPinEnum() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -6243,8 +6243,8 @@ func (ptr *DirectShowVideoBuffer) DestroyDirectShowVideoBuffer() {
 
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -6485,8 +6485,8 @@ func (ptr *MFAbstractActivate) DestroyMFAbstractActivate() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -6727,8 +6727,8 @@ func (ptr *MFEvrVideoWindowControl) DestroyMFEvrVideoWindowControl() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -6969,8 +6969,8 @@ func (ptr *MFTransform) DestroyMFTransform() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -7253,8 +7253,8 @@ func (ptr *MmRendererMetaData) DestroyMmRendererMetaData() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -11090,16 +11090,16 @@ func (ptr *QAbstractVideoBuffer) DisconnectDestroyQAbstractVideoBuffer() {
 func (ptr *QAbstractVideoBuffer) DestroyQAbstractVideoBuffer() {
 	if ptr.Pointer() != nil {
 		C.QAbstractVideoBuffer_DestroyQAbstractVideoBuffer(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QAbstractVideoBuffer) DestroyQAbstractVideoBufferDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractVideoBuffer_DestroyQAbstractVideoBufferDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -12072,16 +12072,16 @@ func (ptr *QAbstractVideoSurface) DisconnectDestroyQAbstractVideoSurface() {
 func (ptr *QAbstractVideoSurface) DestroyQAbstractVideoSurface() {
 	if ptr.Pointer() != nil {
 		C.QAbstractVideoSurface_DestroyQAbstractVideoSurface(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QAbstractVideoSurface) DestroyQAbstractVideoSurfaceDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractVideoSurface_DestroyQAbstractVideoSurfaceDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -13662,8 +13662,8 @@ func (ptr *QAndroidSGVideoNode) DestroyQAndroidSGVideoNode() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -13709,8 +13709,8 @@ func (ptr *QAndroidSGVideoNodeFactoryPlugin) DestroyQAndroidSGVideoNodeFactoryPl
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -13951,8 +13951,8 @@ func (ptr *QAudio) DestroyQAudio() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -14157,8 +14157,8 @@ func (ptr *QAudioBuffer) DestroyQAudioBuffer() {
 	if ptr.Pointer() != nil {
 		C.QAudioBuffer_DestroyQAudioBuffer(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -14833,16 +14833,16 @@ func (ptr *QAudioDecoder) DisconnectDestroyQAudioDecoder() {
 func (ptr *QAudioDecoder) DestroyQAudioDecoder() {
 	if ptr.Pointer() != nil {
 		C.QAudioDecoder_DestroyQAudioDecoder(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QAudioDecoder) DestroyQAudioDecoderDefault() {
 	if ptr.Pointer() != nil {
 		C.QAudioDecoder_DestroyQAudioDecoderDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -15789,16 +15789,16 @@ func (ptr *QAudioDecoderControl) DisconnectDestroyQAudioDecoderControl() {
 func (ptr *QAudioDecoderControl) DestroyQAudioDecoderControl() {
 	if ptr.Pointer() != nil {
 		C.QAudioDecoderControl_DestroyQAudioDecoderControl(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QAudioDecoderControl) DestroyQAudioDecoderControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QAudioDecoderControl_DestroyQAudioDecoderControlDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -16017,8 +16017,8 @@ func (ptr *QAudioDeviceInfo) DestroyQAudioDeviceInfo() {
 	if ptr.Pointer() != nil {
 		C.QAudioDeviceInfo_DestroyQAudioDeviceInfo(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -16320,8 +16320,8 @@ func (ptr *QAudioEncoderSettings) DestroyQAudioEncoderSettings() {
 	if ptr.Pointer() != nil {
 		C.QAudioEncoderSettings_DestroyQAudioEncoderSettings(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -16758,16 +16758,16 @@ func (ptr *QAudioEncoderSettingsControl) DisconnectDestroyQAudioEncoderSettingsC
 func (ptr *QAudioEncoderSettingsControl) DestroyQAudioEncoderSettingsControl() {
 	if ptr.Pointer() != nil {
 		C.QAudioEncoderSettingsControl_DestroyQAudioEncoderSettingsControl(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QAudioEncoderSettingsControl) DestroyQAudioEncoderSettingsControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QAudioEncoderSettingsControl_DestroyQAudioEncoderSettingsControlDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -17001,8 +17001,8 @@ func (ptr *QAudioFormat) DestroyQAudioFormat() {
 	if ptr.Pointer() != nil {
 		C.QAudioFormat_DestroyQAudioFormat(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -17265,16 +17265,16 @@ func (ptr *QAudioInput) DisconnectDestroyQAudioInput() {
 func (ptr *QAudioInput) DestroyQAudioInput() {
 	if ptr.Pointer() != nil {
 		C.QAudioInput_DestroyQAudioInput(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QAudioInput) DestroyQAudioInputDefault() {
 	if ptr.Pointer() != nil {
 		C.QAudioInput_DestroyQAudioInputDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -17857,16 +17857,16 @@ func (ptr *QAudioInputSelectorControl) DisconnectDestroyQAudioInputSelectorContr
 func (ptr *QAudioInputSelectorControl) DestroyQAudioInputSelectorControl() {
 	if ptr.Pointer() != nil {
 		C.QAudioInputSelectorControl_DestroyQAudioInputSelectorControl(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QAudioInputSelectorControl) DestroyQAudioInputSelectorControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QAudioInputSelectorControl_DestroyQAudioInputSelectorControlDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -18169,16 +18169,16 @@ func (ptr *QAudioOutput) DisconnectDestroyQAudioOutput() {
 func (ptr *QAudioOutput) DestroyQAudioOutput() {
 	if ptr.Pointer() != nil {
 		C.QAudioOutput_DestroyQAudioOutput(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QAudioOutput) DestroyQAudioOutputDefault() {
 	if ptr.Pointer() != nil {
 		C.QAudioOutput_DestroyQAudioOutputDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -18761,16 +18761,16 @@ func (ptr *QAudioOutputSelectorControl) DisconnectDestroyQAudioOutputSelectorCon
 func (ptr *QAudioOutputSelectorControl) DestroyQAudioOutputSelectorControl() {
 	if ptr.Pointer() != nil {
 		C.QAudioOutputSelectorControl_DestroyQAudioOutputSelectorControl(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QAudioOutputSelectorControl) DestroyQAudioOutputSelectorControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QAudioOutputSelectorControl_DestroyQAudioOutputSelectorControlDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -18977,16 +18977,16 @@ func (ptr *QAudioProbe) DisconnectDestroyQAudioProbe() {
 func (ptr *QAudioProbe) DestroyQAudioProbe() {
 	if ptr.Pointer() != nil {
 		C.QAudioProbe_DestroyQAudioProbe(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QAudioProbe) DestroyQAudioProbeDefault() {
 	if ptr.Pointer() != nil {
 		C.QAudioProbe_DestroyQAudioProbeDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -19499,16 +19499,16 @@ func (ptr *QAudioRecorder) DisconnectDestroyQAudioRecorder() {
 func (ptr *QAudioRecorder) DestroyQAudioRecorder() {
 	if ptr.Pointer() != nil {
 		C.QAudioRecorder_DestroyQAudioRecorder(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QAudioRecorder) DestroyQAudioRecorderDefault() {
 	if ptr.Pointer() != nil {
 		C.QAudioRecorder_DestroyQAudioRecorderDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -19763,16 +19763,16 @@ func (ptr *QAudioRoleControl) DisconnectDestroyQAudioRoleControl() {
 func (ptr *QAudioRoleControl) DestroyQAudioRoleControl() {
 	if ptr.Pointer() != nil {
 		C.QAudioRoleControl_DestroyQAudioRoleControl(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QAudioRoleControl) DestroyQAudioRoleControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QAudioRoleControl_DestroyQAudioRoleControlDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -19835,8 +19835,8 @@ func (ptr *QAudioSystemFactoryInterface) DestroyQAudioSystemFactoryInterface() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -20125,16 +20125,16 @@ func (ptr *QAudioSystemPlugin) DisconnectDestroyQAudioSystemPlugin() {
 func (ptr *QAudioSystemPlugin) DestroyQAudioSystemPlugin() {
 	if ptr.Pointer() != nil {
 		C.QAudioSystemPlugin_DestroyQAudioSystemPlugin(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QAudioSystemPlugin) DestroyQAudioSystemPluginDefault() {
 	if ptr.Pointer() != nil {
 		C.QAudioSystemPlugin_DestroyQAudioSystemPluginDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -21529,16 +21529,16 @@ func (ptr *QCamera) DisconnectDestroyQCamera() {
 func (ptr *QCamera) DestroyQCamera() {
 	if ptr.Pointer() != nil {
 		C.QCamera_DestroyQCamera(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QCamera) DestroyQCameraDefault() {
 	if ptr.Pointer() != nil {
 		C.QCamera_DestroyQCameraDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -21867,16 +21867,16 @@ func (ptr *QCameraCaptureBufferFormatControl) DisconnectDestroyQCameraCaptureBuf
 func (ptr *QCameraCaptureBufferFormatControl) DestroyQCameraCaptureBufferFormatControl() {
 	if ptr.Pointer() != nil {
 		C.QCameraCaptureBufferFormatControl_DestroyQCameraCaptureBufferFormatControl(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QCameraCaptureBufferFormatControl) DestroyQCameraCaptureBufferFormatControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QCameraCaptureBufferFormatControl_DestroyQCameraCaptureBufferFormatControlDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -22129,16 +22129,16 @@ func (ptr *QCameraCaptureDestinationControl) DisconnectDestroyQCameraCaptureDest
 func (ptr *QCameraCaptureDestinationControl) DestroyQCameraCaptureDestinationControl() {
 	if ptr.Pointer() != nil {
 		C.QCameraCaptureDestinationControl_DestroyQCameraCaptureDestinationControl(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QCameraCaptureDestinationControl) DestroyQCameraCaptureDestinationControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QCameraCaptureDestinationControl_DestroyQCameraCaptureDestinationControlDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -22662,16 +22662,16 @@ func (ptr *QCameraControl) DisconnectDestroyQCameraControl() {
 func (ptr *QCameraControl) DestroyQCameraControl() {
 	if ptr.Pointer() != nil {
 		C.QCameraControl_DestroyQCameraControl(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QCameraControl) DestroyQCameraControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QCameraControl_DestroyQCameraControlDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -24405,16 +24405,16 @@ func (ptr *QCameraExposureControl) DisconnectDestroyQCameraExposureControl() {
 func (ptr *QCameraExposureControl) DestroyQCameraExposureControl() {
 	if ptr.Pointer() != nil {
 		C.QCameraExposureControl_DestroyQCameraExposureControl(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QCameraExposureControl) DestroyQCameraExposureControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QCameraExposureControl_DestroyQCameraExposureControlDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -24729,16 +24729,16 @@ func (ptr *QCameraFeedbackControl) DisconnectDestroyQCameraFeedbackControl() {
 func (ptr *QCameraFeedbackControl) DestroyQCameraFeedbackControl() {
 	if ptr.Pointer() != nil {
 		C.QCameraFeedbackControl_DestroyQCameraFeedbackControl(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QCameraFeedbackControl) DestroyQCameraFeedbackControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QCameraFeedbackControl_DestroyQCameraFeedbackControlDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -25012,16 +25012,16 @@ func (ptr *QCameraFlashControl) DisconnectDestroyQCameraFlashControl() {
 func (ptr *QCameraFlashControl) DestroyQCameraFlashControl() {
 	if ptr.Pointer() != nil {
 		C.QCameraFlashControl_DestroyQCameraFlashControl(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QCameraFlashControl) DestroyQCameraFlashControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QCameraFlashControl_DestroyQCameraFlashControlDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -26175,16 +26175,16 @@ func (ptr *QCameraFocusControl) DisconnectDestroyQCameraFocusControl() {
 func (ptr *QCameraFocusControl) DestroyQCameraFocusControl() {
 	if ptr.Pointer() != nil {
 		C.QCameraFocusControl_DestroyQCameraFocusControl(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QCameraFocusControl) DestroyQCameraFocusControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QCameraFocusControl_DestroyQCameraFocusControlDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -26270,8 +26270,8 @@ func (ptr *QCameraFocusZone) DestroyQCameraFocusZone() {
 	if ptr.Pointer() != nil {
 		C.QCameraFocusZone_DestroyQCameraFocusZone(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -27095,16 +27095,16 @@ func (ptr *QCameraImageCapture) DisconnectDestroyQCameraImageCapture() {
 func (ptr *QCameraImageCapture) DestroyQCameraImageCapture() {
 	if ptr.Pointer() != nil {
 		C.QCameraImageCapture_DestroyQCameraImageCapture(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QCameraImageCapture) DestroyQCameraImageCaptureDefault() {
 	if ptr.Pointer() != nil {
 		C.QCameraImageCapture_DestroyQCameraImageCaptureDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -28026,16 +28026,16 @@ func (ptr *QCameraImageCaptureControl) DisconnectDestroyQCameraImageCaptureContr
 func (ptr *QCameraImageCaptureControl) DestroyQCameraImageCaptureControl() {
 	if ptr.Pointer() != nil {
 		C.QCameraImageCaptureControl_DestroyQCameraImageCaptureControl(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QCameraImageCaptureControl) DestroyQCameraImageCaptureControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QCameraImageCaptureControl_DestroyQCameraImageCaptureControlDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -28749,16 +28749,16 @@ func (ptr *QCameraImageProcessingControl) DisconnectDestroyQCameraImageProcessin
 func (ptr *QCameraImageProcessingControl) DestroyQCameraImageProcessingControl() {
 	if ptr.Pointer() != nil {
 		C.QCameraImageProcessingControl_DestroyQCameraImageProcessingControl(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QCameraImageProcessingControl) DestroyQCameraImageProcessingControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QCameraImageProcessingControl_DestroyQCameraImageProcessingControlDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -28890,8 +28890,8 @@ func (ptr *QCameraInfo) DestroyQCameraInfo() {
 	if ptr.Pointer() != nil {
 		C.QCameraInfo_DestroyQCameraInfo(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -29080,16 +29080,16 @@ func (ptr *QCameraInfoControl) DisconnectDestroyQCameraInfoControl() {
 func (ptr *QCameraInfoControl) DestroyQCameraInfoControl() {
 	if ptr.Pointer() != nil {
 		C.QCameraInfoControl_DestroyQCameraInfoControl(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QCameraInfoControl) DestroyQCameraInfoControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QCameraInfoControl_DestroyQCameraInfoControlDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -29361,16 +29361,16 @@ func (ptr *QCameraLocksControl) DisconnectDestroyQCameraLocksControl() {
 func (ptr *QCameraLocksControl) DestroyQCameraLocksControl() {
 	if ptr.Pointer() != nil {
 		C.QCameraLocksControl_DestroyQCameraLocksControl(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QCameraLocksControl) DestroyQCameraLocksControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QCameraLocksControl_DestroyQCameraLocksControlDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -29521,8 +29521,8 @@ func (ptr *QCameraViewfinderSettings) DestroyQCameraViewfinderSettings() {
 	if ptr.Pointer() != nil {
 		C.QCameraViewfinderSettings_DestroyQCameraViewfinderSettings(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -29734,16 +29734,16 @@ func (ptr *QCameraViewfinderSettingsControl) DisconnectDestroyQCameraViewfinderS
 func (ptr *QCameraViewfinderSettingsControl) DestroyQCameraViewfinderSettingsControl() {
 	if ptr.Pointer() != nil {
 		C.QCameraViewfinderSettingsControl_DestroyQCameraViewfinderSettingsControl(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QCameraViewfinderSettingsControl) DestroyQCameraViewfinderSettingsControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QCameraViewfinderSettingsControl_DestroyQCameraViewfinderSettingsControlDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -29960,16 +29960,16 @@ func (ptr *QCameraViewfinderSettingsControl2) DisconnectDestroyQCameraViewfinder
 func (ptr *QCameraViewfinderSettingsControl2) DestroyQCameraViewfinderSettingsControl2() {
 	if ptr.Pointer() != nil {
 		C.QCameraViewfinderSettingsControl2_DestroyQCameraViewfinderSettingsControl2(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QCameraViewfinderSettingsControl2) DestroyQCameraViewfinderSettingsControl2Default() {
 	if ptr.Pointer() != nil {
 		C.QCameraViewfinderSettingsControl2_DestroyQCameraViewfinderSettingsControl2Default(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -30576,16 +30576,16 @@ func (ptr *QCameraZoomControl) DisconnectDestroyQCameraZoomControl() {
 func (ptr *QCameraZoomControl) DestroyQCameraZoomControl() {
 	if ptr.Pointer() != nil {
 		C.QCameraZoomControl_DestroyQCameraZoomControl(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QCameraZoomControl) DestroyQCameraZoomControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QCameraZoomControl_DestroyQCameraZoomControlDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -30833,16 +30833,16 @@ func (ptr *QCustomAudioRoleControl) DisconnectDestroyQCustomAudioRoleControl() {
 func (ptr *QCustomAudioRoleControl) DestroyQCustomAudioRoleControl() {
 	if ptr.Pointer() != nil {
 		C.QCustomAudioRoleControl_DestroyQCustomAudioRoleControl(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QCustomAudioRoleControl) DestroyQCustomAudioRoleControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QCustomAudioRoleControl_DestroyQCustomAudioRoleControlDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -31323,8 +31323,8 @@ func (ptr *QGstreamerElementFactory) DestroyQGstreamerElementFactory() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -31770,8 +31770,8 @@ func (ptr *QGstreamerVideoInput) DestroyQGstreamerVideoInput() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -32078,16 +32078,16 @@ func (ptr *QImageEncoderControl) DisconnectDestroyQImageEncoderControl() {
 func (ptr *QImageEncoderControl) DestroyQImageEncoderControl() {
 	if ptr.Pointer() != nil {
 		C.QImageEncoderControl_DestroyQImageEncoderControl(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QImageEncoderControl) DestroyQImageEncoderControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QImageEncoderControl_DestroyQImageEncoderControlDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -32273,8 +32273,8 @@ func (ptr *QImageEncoderSettings) DestroyQImageEncoderSettings() {
 	if ptr.Pointer() != nil {
 		C.QImageEncoderSettings_DestroyQImageEncoderSettings(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -32607,16 +32607,16 @@ func (ptr *QMediaAudioProbeControl) DisconnectDestroyQMediaAudioProbeControl() {
 func (ptr *QMediaAudioProbeControl) DestroyQMediaAudioProbeControl() {
 	if ptr.Pointer() != nil {
 		C.QMediaAudioProbeControl_DestroyQMediaAudioProbeControl(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QMediaAudioProbeControl) DestroyQMediaAudioProbeControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QMediaAudioProbeControl_DestroyQMediaAudioProbeControlDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -32778,16 +32778,16 @@ func (ptr *QMediaAvailabilityControl) DisconnectDestroyQMediaAvailabilityControl
 func (ptr *QMediaAvailabilityControl) DestroyQMediaAvailabilityControl() {
 	if ptr.Pointer() != nil {
 		C.QMediaAvailabilityControl_DestroyQMediaAvailabilityControl(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QMediaAvailabilityControl) DestroyQMediaAvailabilityControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QMediaAvailabilityControl_DestroyQMediaAvailabilityControlDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -33197,16 +33197,16 @@ func (ptr *QMediaContainerControl) DisconnectDestroyQMediaContainerControl() {
 func (ptr *QMediaContainerControl) DestroyQMediaContainerControl() {
 	if ptr.Pointer() != nil {
 		C.QMediaContainerControl_DestroyQMediaContainerControl(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QMediaContainerControl) DestroyQMediaContainerControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QMediaContainerControl_DestroyQMediaContainerControlDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -33317,8 +33317,8 @@ func (ptr *QMediaContent) DestroyQMediaContent() {
 	if ptr.Pointer() != nil {
 		C.QMediaContent_DestroyQMediaContent(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -33440,16 +33440,16 @@ func (ptr *QMediaControl) DisconnectDestroyQMediaControl() {
 func (ptr *QMediaControl) DestroyQMediaControl() {
 	if ptr.Pointer() != nil {
 		C.QMediaControl_DestroyQMediaControl(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QMediaControl) DestroyQMediaControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QMediaControl_DestroyQMediaControlDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -34099,16 +34099,16 @@ func (ptr *QMediaGaplessPlaybackControl) DisconnectDestroyQMediaGaplessPlaybackC
 func (ptr *QMediaGaplessPlaybackControl) DestroyQMediaGaplessPlaybackControl() {
 	if ptr.Pointer() != nil {
 		C.QMediaGaplessPlaybackControl_DestroyQMediaGaplessPlaybackControl(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QMediaGaplessPlaybackControl) DestroyQMediaGaplessPlaybackControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QMediaGaplessPlaybackControl_DestroyQMediaGaplessPlaybackControlDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -34314,16 +34314,16 @@ func (ptr *QMediaNetworkAccessControl) DisconnectDestroyQMediaNetworkAccessContr
 func (ptr *QMediaNetworkAccessControl) DestroyQMediaNetworkAccessControl() {
 	if ptr.Pointer() != nil {
 		C.QMediaNetworkAccessControl_DestroyQMediaNetworkAccessControl(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QMediaNetworkAccessControl) DestroyQMediaNetworkAccessControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QMediaNetworkAccessControl_DestroyQMediaNetworkAccessControlDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -34955,16 +34955,16 @@ func (ptr *QMediaObject) DisconnectDestroyQMediaObject() {
 func (ptr *QMediaObject) DestroyQMediaObject() {
 	if ptr.Pointer() != nil {
 		C.QMediaObject_DestroyQMediaObject(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QMediaObject) DestroyQMediaObjectDefault() {
 	if ptr.Pointer() != nil {
 		C.QMediaObject_DestroyQMediaObjectDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -36724,16 +36724,16 @@ func (ptr *QMediaPlayer) DisconnectDestroyQMediaPlayer() {
 func (ptr *QMediaPlayer) DestroyQMediaPlayer() {
 	if ptr.Pointer() != nil {
 		C.QMediaPlayer_DestroyQMediaPlayer(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QMediaPlayer) DestroyQMediaPlayerDefault() {
 	if ptr.Pointer() != nil {
 		C.QMediaPlayer_DestroyQMediaPlayerDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -38246,16 +38246,16 @@ func (ptr *QMediaPlayerControl) DisconnectDestroyQMediaPlayerControl() {
 func (ptr *QMediaPlayerControl) DestroyQMediaPlayerControl() {
 	if ptr.Pointer() != nil {
 		C.QMediaPlayerControl_DestroyQMediaPlayerControl(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QMediaPlayerControl) DestroyQMediaPlayerControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QMediaPlayerControl_DestroyQMediaPlayerControlDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -39204,16 +39204,16 @@ func (ptr *QMediaPlaylist) DisconnectDestroyQMediaPlaylist() {
 func (ptr *QMediaPlaylist) DestroyQMediaPlaylist() {
 	if ptr.Pointer() != nil {
 		C.QMediaPlaylist_DestroyQMediaPlaylist(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QMediaPlaylist) DestroyQMediaPlaylistDefault() {
 	if ptr.Pointer() != nil {
 		C.QMediaPlaylist_DestroyQMediaPlaylistDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -40814,16 +40814,16 @@ func (ptr *QMediaRecorder) DisconnectDestroyQMediaRecorder() {
 func (ptr *QMediaRecorder) DestroyQMediaRecorder() {
 	if ptr.Pointer() != nil {
 		C.QMediaRecorder_DestroyQMediaRecorder(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QMediaRecorder) DestroyQMediaRecorderDefault() {
 	if ptr.Pointer() != nil {
 		C.QMediaRecorder_DestroyQMediaRecorderDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -41996,16 +41996,16 @@ func (ptr *QMediaRecorderControl) DisconnectDestroyQMediaRecorderControl() {
 func (ptr *QMediaRecorderControl) DestroyQMediaRecorderControl() {
 	if ptr.Pointer() != nil {
 		C.QMediaRecorderControl_DestroyQMediaRecorderControl(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QMediaRecorderControl) DestroyQMediaRecorderControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QMediaRecorderControl_DestroyQMediaRecorderControlDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -42256,8 +42256,8 @@ func (ptr *QMediaResource) DestroyQMediaResource() {
 	if ptr.Pointer() != nil {
 		C.QMediaResource_DestroyQMediaResource(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -42535,16 +42535,16 @@ func (ptr *QMediaService) DisconnectDestroyQMediaService() {
 func (ptr *QMediaService) DestroyQMediaService() {
 	if ptr.Pointer() != nil {
 		C.QMediaService_DestroyQMediaService(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QMediaService) DestroyQMediaServiceDefault() {
 	if ptr.Pointer() != nil {
 		C.QMediaService_DestroyQMediaServiceDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -43077,16 +43077,16 @@ func (ptr *QMediaServiceDefaultDeviceInterface) DisconnectDestroyQMediaServiceDe
 func (ptr *QMediaServiceDefaultDeviceInterface) DestroyQMediaServiceDefaultDeviceInterface() {
 	if ptr.Pointer() != nil {
 		C.QMediaServiceDefaultDeviceInterface_DestroyQMediaServiceDefaultDeviceInterface(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QMediaServiceDefaultDeviceInterface) DestroyQMediaServiceDefaultDeviceInterfaceDefault() {
 	if ptr.Pointer() != nil {
 		C.QMediaServiceDefaultDeviceInterface_DestroyQMediaServiceDefaultDeviceInterfaceDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -43215,8 +43215,8 @@ func (ptr *QMediaServiceProviderFactoryInterface) DestroyQMediaServiceProviderFa
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -43829,16 +43829,16 @@ func (ptr *QMediaServiceSupportedDevicesInterface) DisconnectDestroyQMediaServic
 func (ptr *QMediaServiceSupportedDevicesInterface) DestroyQMediaServiceSupportedDevicesInterface() {
 	if ptr.Pointer() != nil {
 		C.QMediaServiceSupportedDevicesInterface_DestroyQMediaServiceSupportedDevicesInterface(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QMediaServiceSupportedDevicesInterface) DestroyQMediaServiceSupportedDevicesInterfaceDefault() {
 	if ptr.Pointer() != nil {
 		C.QMediaServiceSupportedDevicesInterface_DestroyQMediaServiceSupportedDevicesInterfaceDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -44396,16 +44396,16 @@ func (ptr *QMediaStreamsControl) DisconnectDestroyQMediaStreamsControl() {
 func (ptr *QMediaStreamsControl) DestroyQMediaStreamsControl() {
 	if ptr.Pointer() != nil {
 		C.QMediaStreamsControl_DestroyQMediaStreamsControl(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QMediaStreamsControl) DestroyQMediaStreamsControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QMediaStreamsControl_DestroyQMediaStreamsControlDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -44451,8 +44451,8 @@ func (ptr *QMediaTimeInterval) DestroyQMediaTimeInterval() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -44676,8 +44676,8 @@ func (ptr *QMediaTimeRange) DestroyQMediaTimeRange() {
 	if ptr.Pointer() != nil {
 		C.QMediaTimeRange_DestroyQMediaTimeRange(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -44860,16 +44860,16 @@ func (ptr *QMediaVideoProbeControl) DisconnectDestroyQMediaVideoProbeControl() {
 func (ptr *QMediaVideoProbeControl) DestroyQMediaVideoProbeControl() {
 	if ptr.Pointer() != nil {
 		C.QMediaVideoProbeControl_DestroyQMediaVideoProbeControl(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QMediaVideoProbeControl) DestroyQMediaVideoProbeControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QMediaVideoProbeControl_DestroyQMediaVideoProbeControlDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -45200,16 +45200,16 @@ func (ptr *QMetaDataReaderControl) DisconnectDestroyQMetaDataReaderControl() {
 func (ptr *QMetaDataReaderControl) DestroyQMetaDataReaderControl() {
 	if ptr.Pointer() != nil {
 		C.QMetaDataReaderControl_DestroyQMetaDataReaderControl(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QMetaDataReaderControl) DestroyQMetaDataReaderControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QMetaDataReaderControl_DestroyQMetaDataReaderControlDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -45659,16 +45659,16 @@ func (ptr *QMetaDataWriterControl) DisconnectDestroyQMetaDataWriterControl() {
 func (ptr *QMetaDataWriterControl) DestroyQMetaDataWriterControl() {
 	if ptr.Pointer() != nil {
 		C.QMetaDataWriterControl_DestroyQMetaDataWriterControl(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QMetaDataWriterControl) DestroyQMetaDataWriterControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QMetaDataWriterControl_DestroyQMetaDataWriterControlDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -45714,8 +45714,8 @@ func (ptr *QMultimedia) DestroyQMultimedia() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -45923,8 +45923,8 @@ func (ptr *QOpenSLESEngine) DestroyQOpenSLESEngine() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -46816,16 +46816,16 @@ func (ptr *QRadioData) DisconnectDestroyQRadioData() {
 func (ptr *QRadioData) DestroyQRadioData() {
 	if ptr.Pointer() != nil {
 		C.QRadioData_DestroyQRadioData(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QRadioData) DestroyQRadioDataDefault() {
 	if ptr.Pointer() != nil {
 		C.QRadioData_DestroyQRadioDataDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -47870,16 +47870,16 @@ func (ptr *QRadioDataControl) DisconnectDestroyQRadioDataControl() {
 func (ptr *QRadioDataControl) DestroyQRadioDataControl() {
 	if ptr.Pointer() != nil {
 		C.QRadioDataControl_DestroyQRadioDataControl(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QRadioDataControl) DestroyQRadioDataControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QRadioDataControl_DestroyQRadioDataControlDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -49005,16 +49005,16 @@ func (ptr *QRadioTuner) DisconnectDestroyQRadioTuner() {
 func (ptr *QRadioTuner) DestroyQRadioTuner() {
 	if ptr.Pointer() != nil {
 		C.QRadioTuner_DestroyQRadioTuner(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QRadioTuner) DestroyQRadioTunerDefault() {
 	if ptr.Pointer() != nil {
 		C.QRadioTuner_DestroyQRadioTunerDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -50472,16 +50472,16 @@ func (ptr *QRadioTunerControl) DisconnectDestroyQRadioTunerControl() {
 func (ptr *QRadioTunerControl) DestroyQRadioTunerControl() {
 	if ptr.Pointer() != nil {
 		C.QRadioTunerControl_DestroyQRadioTunerControl(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QRadioTunerControl) DestroyQRadioTunerControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QRadioTunerControl_DestroyQRadioTunerControlDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -50527,8 +50527,8 @@ func (ptr *QSGVideoMaterial_EGL) DestroyQSGVideoMaterial_EGL() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -50574,8 +50574,8 @@ func (ptr *QSGVideoNodeFactory_EGL) DestroyQSGVideoNodeFactory_EGL() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -50621,8 +50621,8 @@ func (ptr *QSGVideoNode_EGL) DestroyQSGVideoNode_EGL() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -50668,8 +50668,8 @@ func (ptr *QSGVivanteVideoMaterial) DestroyQSGVivanteVideoMaterial() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -50715,8 +50715,8 @@ func (ptr *QSGVivanteVideoMaterialShader) DestroyQSGVivanteVideoMaterialShader()
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -50762,8 +50762,8 @@ func (ptr *QSGVivanteVideoNode) DestroyQSGVivanteVideoNode() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -51038,16 +51038,16 @@ func (ptr *QSound) DisconnectDestroyQSound() {
 func (ptr *QSound) DestroyQSound() {
 	if ptr.Pointer() != nil {
 		C.QSound_DestroyQSound(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QSound) DestroyQSoundDefault() {
 	if ptr.Pointer() != nil {
 		C.QSound_DestroyQSoundDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -51971,16 +51971,16 @@ func (ptr *QSoundEffect) DisconnectDestroyQSoundEffect() {
 func (ptr *QSoundEffect) DestroyQSoundEffect() {
 	if ptr.Pointer() != nil {
 		C.QSoundEffect_DestroyQSoundEffect(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QSoundEffect) DestroyQSoundEffectDefault() {
 	if ptr.Pointer() != nil {
 		C.QSoundEffect_DestroyQSoundEffectDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -52675,16 +52675,16 @@ func (ptr *QVideoDeviceSelectorControl) DisconnectDestroyQVideoDeviceSelectorCon
 func (ptr *QVideoDeviceSelectorControl) DestroyQVideoDeviceSelectorControl() {
 	if ptr.Pointer() != nil {
 		C.QVideoDeviceSelectorControl_DestroyQVideoDeviceSelectorControl(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QVideoDeviceSelectorControl) DestroyQVideoDeviceSelectorControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QVideoDeviceSelectorControl_DestroyQVideoDeviceSelectorControlDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -52890,8 +52890,8 @@ func (ptr *QVideoEncoderSettings) DestroyQVideoEncoderSettings() {
 	if ptr.Pointer() != nil {
 		C.QVideoEncoderSettings_DestroyQVideoEncoderSettings(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -53392,16 +53392,16 @@ func (ptr *QVideoEncoderSettingsControl) DisconnectDestroyQVideoEncoderSettingsC
 func (ptr *QVideoEncoderSettingsControl) DestroyQVideoEncoderSettingsControl() {
 	if ptr.Pointer() != nil {
 		C.QVideoEncoderSettingsControl_DestroyQVideoEncoderSettingsControl(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QVideoEncoderSettingsControl) DestroyQVideoEncoderSettingsControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QVideoEncoderSettingsControl_DestroyQVideoEncoderSettingsControlDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -53484,8 +53484,8 @@ func (ptr *QVideoFilterRunnable) DestroyQVideoFilterRunnable() {
 
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -53913,8 +53913,8 @@ func (ptr *QVideoFrame) DestroyQVideoFrame() {
 	if ptr.Pointer() != nil {
 		C.QVideoFrame_DestroyQVideoFrame(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -54164,16 +54164,16 @@ func (ptr *QVideoProbe) DisconnectDestroyQVideoProbe() {
 func (ptr *QVideoProbe) DestroyQVideoProbe() {
 	if ptr.Pointer() != nil {
 		C.QVideoProbe_DestroyQVideoProbe(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QVideoProbe) DestroyQVideoProbeDefault() {
 	if ptr.Pointer() != nil {
 		C.QVideoProbe_DestroyQVideoProbeDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -54593,16 +54593,16 @@ func (ptr *QVideoRendererControl) DisconnectDestroyQVideoRendererControl() {
 func (ptr *QVideoRendererControl) DestroyQVideoRendererControl() {
 	if ptr.Pointer() != nil {
 		C.QVideoRendererControl_DestroyQVideoRendererControl(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QVideoRendererControl) DestroyQVideoRendererControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QVideoRendererControl_DestroyQVideoRendererControlDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -54880,8 +54880,8 @@ func (ptr *QVideoSurfaceFormat) DestroyQVideoSurfaceFormat() {
 	if ptr.Pointer() != nil {
 		C.QVideoSurfaceFormat_DestroyQVideoSurfaceFormat(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -55849,16 +55849,16 @@ func (ptr *QVideoWidget) DisconnectDestroyQVideoWidget() {
 func (ptr *QVideoWidget) DestroyQVideoWidget() {
 	if ptr.Pointer() != nil {
 		C.QVideoWidget_DestroyQVideoWidget(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QVideoWidget) DestroyQVideoWidgetDefault() {
 	if ptr.Pointer() != nil {
 		C.QVideoWidget_DestroyQVideoWidgetDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -58405,16 +58405,16 @@ func (ptr *QVideoWindowControl) DisconnectDestroyQVideoWindowControl() {
 func (ptr *QVideoWindowControl) DestroyQVideoWindowControl() {
 	if ptr.Pointer() != nil {
 		C.QVideoWindowControl_DestroyQVideoWindowControl(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QVideoWindowControl) DestroyQVideoWindowControlDefault() {
 	if ptr.Pointer() != nil {
 		C.QVideoWindowControl_DestroyQVideoWindowControlDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -59642,8 +59642,8 @@ func (ptr *ResourcePolicyImpl) DestroyResourcePolicyImpl() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -59728,8 +59728,8 @@ func (ptr *ResourcePolicyPlugin) DestroyResourcePolicyPlugin() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -59775,8 +59775,8 @@ func (ptr *RingBuffer) DestroyRingBuffer() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -59822,8 +59822,8 @@ func (ptr *SampleGrabberCallback) DestroySampleGrabberCallback() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -59869,8 +59869,8 @@ func (ptr *SamplePool) DestroySamplePool() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -59916,8 +59916,8 @@ func (ptr *Scheduler) DestroyScheduler() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 

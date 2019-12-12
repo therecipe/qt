@@ -1092,16 +1092,16 @@ func (ptr *QVirtualKeyboardAbstractInputMethod) DisconnectDestroyQVirtualKeyboar
 func (ptr *QVirtualKeyboardAbstractInputMethod) DestroyQVirtualKeyboardAbstractInputMethod() {
 	if ptr.Pointer() != nil {
 		C.QVirtualKeyboardAbstractInputMethod_DestroyQVirtualKeyboardAbstractInputMethod(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QVirtualKeyboardAbstractInputMethod) DestroyQVirtualKeyboardAbstractInputMethodDefault() {
 	if ptr.Pointer() != nil {
 		C.QVirtualKeyboardAbstractInputMethod_DestroyQVirtualKeyboardAbstractInputMethodDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 

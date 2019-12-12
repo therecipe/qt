@@ -1094,16 +1094,16 @@ func (ptr *QSerialPort) DisconnectDestroyQSerialPort() {
 func (ptr *QSerialPort) DestroyQSerialPort() {
 	if ptr.Pointer() != nil {
 		C.QSerialPort_DestroyQSerialPort(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QSerialPort) DestroyQSerialPortDefault() {
 	if ptr.Pointer() != nil {
 		C.QSerialPort_DestroyQSerialPortDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -1674,8 +1674,8 @@ func (ptr *QSerialPortInfo) DestroyQSerialPortInfo() {
 	if ptr.Pointer() != nil {
 		C.QSerialPortInfo_DestroyQSerialPortInfo(ptr.Pointer())
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 

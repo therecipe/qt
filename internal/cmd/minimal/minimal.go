@@ -21,9 +21,10 @@ import (
 )
 
 func Minimal(path, target, tags string, skipSetup bool) {
+	rootPath := path
 	defer func() {
 		if cmd.ImportsQmlOrQuick() { //TODO: and not deploying + reinstate on moc.moc with deploying ?
-			if pkg_path := utils.GoQtPkgPath("internal/binding/runtime"); !utils.ExistsFile(filepath.Join(pkg_path, templater.CgoFileNames(pkg_path, target, templater.MOC)[0])) {
+			if pkg_path := utils.GoQtPkgPath("internal/binding/runtime"); utils.QT_NOT_CACHED() || !utils.ExistsFile(filepath.Join(pkg_path, templater.CgoFileNames(pkg_path, target, templater.MOC)[0])) {
 				filepath.Walk(pkg_path, func(path string, info os.FileInfo, err error) error {
 					if strings.HasPrefix(info.Name(), "moc_cgo") || strings.HasPrefix(info.Name(), "rcc_cgo") { //rcc_cgo for static linux workaround
 						os.Remove(path)
@@ -127,10 +128,10 @@ func Minimal(path, target, tags string, skipSetup bool) {
 			}
 			if target == "js" || cmd.ImportsQmlOrQuick() { //TODO: wasm as well
 				filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
-					if err != nil || info.IsDir() {
+					if err != nil || info.IsDir() || strings.HasPrefix(path, filepath.Join(rootPath, "deploy")) {
 						return err
 					}
-					if filepath.Ext(path) == ".js" || filepath.Ext(path) == ".qml" {
+					if filepath.Ext(path) == ".js" || (filepath.Ext(path) == ".ts" && !strings.HasSuffix(path, ".d.ts")) || filepath.Ext(path) == ".qml" {
 						utils.Log.WithField("path", path).Debug("analyse js for minimal")
 						file := utils.Load(path)
 						fileMutex.Lock()

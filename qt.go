@@ -309,11 +309,13 @@ type ptr_itf interface {
 func SetFinalizer(ptr interface{}, f interface{}) {
 	finalizerMapMutex.Lock()
 	cPtr := ptr.(ptr_itf).Pointer()
-	if _, ok := finalizerMap[cPtr]; !ok || f == nil {
-		runtime.SetFinalizer(ptr, f)
+	if _, ok := finalizerMap[cPtr]; !ok || f == nil || cPtr == nil {
+		if cPtr != nil || (cPtr == nil && f == nil) {
+			runtime.SetFinalizer(ptr, f)
+		}
 		if f == nil {
 			delete(finalizerMap, cPtr)
-		} else {
+		} else if cPtr != nil {
 			finalizerMap[cPtr] = struct{}{}
 		}
 	} else {

@@ -76,8 +76,8 @@ func (ptr *DataEntries) DestroyDataEntries() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -123,8 +123,8 @@ func (ptr *IndexValuePair) DestroyIndexValuePair() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -170,8 +170,8 @@ func (ptr *ModelIndex) DestroyModelIndex() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -1798,8 +1798,8 @@ func (ptr *QMetaTypeId) DestroyQMetaTypeId() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -2412,16 +2412,16 @@ func (ptr *QRemoteObjectDynamicReplica) DisconnectDestroyQRemoteObjectDynamicRep
 func (ptr *QRemoteObjectDynamicReplica) DestroyQRemoteObjectDynamicReplica() {
 	if ptr.Pointer() != nil {
 		C.QRemoteObjectDynamicReplica_DestroyQRemoteObjectDynamicReplica(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QRemoteObjectDynamicReplica) DestroyQRemoteObjectDynamicReplicaDefault() {
 	if ptr.Pointer() != nil {
 		C.QRemoteObjectDynamicReplica_DestroyQRemoteObjectDynamicReplicaDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -3361,8 +3361,8 @@ func (ptr *QRemoteObjectPendingCall) DestroyQRemoteObjectPendingCall() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -3766,8 +3766,8 @@ func (ptr *QRemoteObjectPendingReply) DestroyQRemoteObjectPendingReply() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -3844,16 +3844,16 @@ func (ptr *QRemoteObjectRegistry) DisconnectDestroyQRemoteObjectRegistry() {
 func (ptr *QRemoteObjectRegistry) DestroyQRemoteObjectRegistry() {
 	if ptr.Pointer() != nil {
 		C.QRemoteObjectRegistry_DestroyQRemoteObjectRegistry(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QRemoteObjectRegistry) DestroyQRemoteObjectRegistryDefault() {
 	if ptr.Pointer() != nil {
 		C.QRemoteObjectRegistry_DestroyQRemoteObjectRegistryDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -4666,8 +4666,8 @@ func (ptr *QRemoteObjectSourceLocationInfo) DestroyQRemoteObjectSourceLocationIn
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -4713,8 +4713,8 @@ func (ptr *QTypeInfo) DestroyQTypeInfo() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -4760,8 +4760,8 @@ func (ptr *QtROClientFactory) DestroyQtROClientFactory() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -4807,8 +4807,8 @@ func (ptr *QtROServerFactory) DestroyQtROServerFactory() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
@@ -4854,8 +4854,8 @@ func (ptr *SourceApiMap) DestroySourceApiMap() {
 	if ptr != nil {
 
 		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
 		qt.SetFinalizer(ptr, nil)
+		ptr.SetPointer(nil)
 	}
 }
 
