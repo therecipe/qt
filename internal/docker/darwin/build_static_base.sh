@@ -47,7 +47,7 @@ go run ./patch_static_base.go
 
 du -sh ./$PREF
 
-QT_STATIC=true QT_QMAKE_DIR=$(pwd)/$PREF/${QT_VERSION}/clang_64/bin $(go env GOPATH)/bin/qtsetup -test=false
+#QT_STATIC=true QT_QMAKE_DIR=$(pwd)/$PREF/${QT_VERSION}/clang_64/bin $(go env GOPATH)/bin/qtsetup
 
 zip -r ${PREF}.zip $PREF && rm -rf $PREF
 
