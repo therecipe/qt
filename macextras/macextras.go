@@ -15,13 +15,16 @@ import (
 	"unsafe"
 )
 
+func cGoFreePacked(ptr unsafe.Pointer) { core.NewQByteArrayFromPointer(ptr).DestroyQByteArray() }
 func cGoUnpackString(s C.struct_QtMacExtras_PackedString) string {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		return C.GoString(s.data)
 	}
 	return C.GoStringN(s.data, C.int(s.len))
 }
 func cGoUnpackBytes(s C.struct_QtMacExtras_PackedString) []byte {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
 		return *(*[]byte)(unsafe.Pointer(&gs))
@@ -72,13 +75,12 @@ func NewQMacPasteboardMimeFromPointer(ptr unsafe.Pointer) (n *QMacPasteboardMime
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QMacPasteboardMime) DestroyQMacPasteboardMime() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -634,27 +636,6 @@ func (ptr *QMacToolBar) __findChildren_newList3() unsafe.Pointer {
 	return C.QMacToolBar___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QMacToolBar) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QMacToolBar___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QMacToolBar) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QMacToolBar___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QMacToolBar) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QMacToolBar___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQMacToolBar_ChildEvent
 func callbackQMacToolBar_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -711,8 +692,9 @@ func callbackQMacToolBar_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QMacToolBar) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QMacToolBar_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QMacToolBar_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -999,16 +981,18 @@ func (ptr *QMacToolBarItem) DisconnectDestroyQMacToolBarItem() {
 
 func (ptr *QMacToolBarItem) DestroyQMacToolBarItem() {
 	if ptr.Pointer() != nil {
-		C.QMacToolBarItem_DestroyQMacToolBarItem(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QMacToolBarItem_DestroyQMacToolBarItem(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QMacToolBarItem) DestroyQMacToolBarItemDefault() {
 	if ptr.Pointer() != nil {
-		C.QMacToolBarItem_DestroyQMacToolBarItemDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QMacToolBarItem_DestroyQMacToolBarItemDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -1095,27 +1079,6 @@ func (ptr *QMacToolBarItem) __findChildren_newList3() unsafe.Pointer {
 	return C.QMacToolBarItem___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QMacToolBarItem) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QMacToolBarItem___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QMacToolBarItem) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QMacToolBarItem___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QMacToolBarItem) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QMacToolBarItem___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQMacToolBarItem_ChildEvent
 func callbackQMacToolBarItem_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -1172,8 +1135,9 @@ func callbackQMacToolBarItem_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QMacToolBarItem) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QMacToolBarItem_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QMacToolBarItem_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 

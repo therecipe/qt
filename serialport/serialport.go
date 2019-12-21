@@ -15,13 +15,16 @@ import (
 	"unsafe"
 )
 
+func cGoFreePacked(ptr unsafe.Pointer) { core.NewQByteArrayFromPointer(ptr).DestroyQByteArray() }
 func cGoUnpackString(s C.struct_QtSerialPort_PackedString) string {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		return C.GoString(s.data)
 	}
 	return C.GoStringN(s.data, C.int(s.len))
 }
 func cGoUnpackBytes(s C.struct_QtSerialPort_PackedString) []byte {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
 		return *(*[]byte)(unsafe.Pointer(&gs))
@@ -1093,16 +1096,18 @@ func (ptr *QSerialPort) DisconnectDestroyQSerialPort() {
 
 func (ptr *QSerialPort) DestroyQSerialPort() {
 	if ptr.Pointer() != nil {
-		C.QSerialPort_DestroyQSerialPort(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QSerialPort_DestroyQSerialPort(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QSerialPort) DestroyQSerialPortDefault() {
 	if ptr.Pointer() != nil {
-		C.QSerialPort_DestroyQSerialPortDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QSerialPort_DestroyQSerialPortDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -1187,27 +1192,6 @@ func (ptr *QSerialPort) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QSerialPort) __findChildren_newList3() unsafe.Pointer {
 	return C.QSerialPort___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QSerialPort) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSerialPort___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSerialPort) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSerialPort___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QSerialPort) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QSerialPort___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQSerialPort_AboutToClose
@@ -1378,8 +1362,9 @@ func callbackQSerialPort_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QSerialPort) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QSerialPort_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QSerialPort_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -1672,9 +1657,10 @@ func (ptr *QSerialPortInfo) VendorIdentifier() uint16 {
 
 func (ptr *QSerialPortInfo) DestroyQSerialPortInfo() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QSerialPortInfo_DestroyQSerialPortInfo(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }

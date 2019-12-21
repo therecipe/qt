@@ -16,13 +16,16 @@ import (
 	"unsafe"
 )
 
+func cGoFreePacked(ptr unsafe.Pointer) { core.NewQByteArrayFromPointer(ptr).DestroyQByteArray() }
 func cGoUnpackString(s C.struct_QtSql_PackedString) string {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		return C.GoString(s.data)
 	}
 	return C.GoStringN(s.data, C.int(s.len))
 }
 func cGoUnpackBytes(s C.struct_QtSql_PackedString) []byte {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
 		return *(*[]byte)(unsafe.Pointer(&gs))
@@ -73,12 +76,11 @@ func NewQSqlFromPointer(ptr unsafe.Pointer) (n *QSql) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QSql) DestroyQSql() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -682,9 +684,10 @@ func (ptr *QSqlDatabase) UserName() string {
 
 func (ptr *QSqlDatabase) DestroyQSqlDatabase() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QSqlDatabase_DestroyQSqlDatabase(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -2063,16 +2066,18 @@ func (ptr *QSqlDriver) DisconnectDestroyQSqlDriver() {
 
 func (ptr *QSqlDriver) DestroyQSqlDriver() {
 	if ptr.Pointer() != nil {
-		C.QSqlDriver_DestroyQSqlDriver(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QSqlDriver_DestroyQSqlDriver(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QSqlDriver) DestroyQSqlDriverDefault() {
 	if ptr.Pointer() != nil {
-		C.QSqlDriver_DestroyQSqlDriverDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QSqlDriver_DestroyQSqlDriverDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -2159,27 +2164,6 @@ func (ptr *QSqlDriver) __findChildren_newList3() unsafe.Pointer {
 	return C.QSqlDriver___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QSqlDriver) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSqlDriver___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlDriver) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSqlDriver___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QSqlDriver) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QSqlDriver___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQSqlDriver_ChildEvent
 func callbackQSqlDriver_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -2236,8 +2220,9 @@ func callbackQSqlDriver_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QSqlDriver) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QSqlDriver_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QSqlDriver_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -2373,13 +2358,12 @@ func NewQSqlDriverCreatorFromPointer(ptr unsafe.Pointer) (n *QSqlDriverCreator) 
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QSqlDriverCreator) DestroyQSqlDriverCreator() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -2635,16 +2619,18 @@ func (ptr *QSqlDriverPlugin) DisconnectDestroyQSqlDriverPlugin() {
 
 func (ptr *QSqlDriverPlugin) DestroyQSqlDriverPlugin() {
 	if ptr.Pointer() != nil {
-		C.QSqlDriverPlugin_DestroyQSqlDriverPlugin(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QSqlDriverPlugin_DestroyQSqlDriverPlugin(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QSqlDriverPlugin) DestroyQSqlDriverPluginDefault() {
 	if ptr.Pointer() != nil {
-		C.QSqlDriverPlugin_DestroyQSqlDriverPluginDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QSqlDriverPlugin_DestroyQSqlDriverPluginDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -2731,27 +2717,6 @@ func (ptr *QSqlDriverPlugin) __findChildren_newList3() unsafe.Pointer {
 	return C.QSqlDriverPlugin___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QSqlDriverPlugin) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSqlDriverPlugin___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlDriverPlugin) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSqlDriverPlugin___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QSqlDriverPlugin) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QSqlDriverPlugin___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQSqlDriverPlugin_ChildEvent
 func callbackQSqlDriverPlugin_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -2808,8 +2773,9 @@ func callbackQSqlDriverPlugin_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QSqlDriverPlugin) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QSqlDriverPlugin_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QSqlDriverPlugin_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -3040,9 +3006,10 @@ func (ptr *QSqlError) Type() QSqlError__ErrorType {
 
 func (ptr *QSqlError) DestroyQSqlError() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QSqlError_DestroyQSqlError(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -3313,9 +3280,10 @@ func (ptr *QSqlField) Value() *core.QVariant {
 
 func (ptr *QSqlField) DestroyQSqlField() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QSqlField_DestroyQSqlField(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -3437,9 +3405,10 @@ func (ptr *QSqlIndex) SetName(name string) {
 
 func (ptr *QSqlIndex) DestroyQSqlIndex() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QSqlIndex_DestroyQSqlIndex(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -3877,9 +3846,10 @@ func (ptr *QSqlQuery) Value2(name string) *core.QVariant {
 
 func (ptr *QSqlQuery) DestroyQSqlQuery() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QSqlQuery_DestroyQSqlQuery(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -4493,16 +4463,18 @@ func (ptr *QSqlQueryModel) DisconnectDestroyQSqlQueryModel() {
 
 func (ptr *QSqlQueryModel) DestroyQSqlQueryModel() {
 	if ptr.Pointer() != nil {
-		C.QSqlQueryModel_DestroyQSqlQueryModel(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QSqlQueryModel_DestroyQSqlQueryModel(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QSqlQueryModel) DestroyQSqlQueryModelDefault() {
 	if ptr.Pointer() != nil {
-		C.QSqlQueryModel_DestroyQSqlQueryModelDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QSqlQueryModel_DestroyQSqlQueryModelDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -4921,27 +4893,6 @@ func (ptr *QSqlQueryModel) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QSqlQueryModel) __findChildren_newList3() unsafe.Pointer {
 	return C.QSqlQueryModel___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QSqlQueryModel) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSqlQueryModel___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlQueryModel) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSqlQueryModel___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QSqlQueryModel) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QSqlQueryModel___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQSqlQueryModel_DropMimeData
@@ -5655,8 +5606,9 @@ func callbackQSqlQueryModel_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QSqlQueryModel) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QSqlQueryModel_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QSqlQueryModel_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -6030,9 +5982,10 @@ func (ptr *QSqlRecord) Value2(name string) *core.QVariant {
 
 func (ptr *QSqlRecord) DestroyQSqlRecord() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QSqlRecord_DestroyQSqlRecord(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -6074,16 +6027,14 @@ func NewQSqlRelationFromPointer(ptr unsafe.Pointer) (n *QSqlRelation) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QSqlRelation) DestroyQSqlRelation() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
-
 func NewQSqlRelation() *QSqlRelation {
 	tmpValue := NewQSqlRelationFromPointer(C.QSqlRelation_NewQSqlRelation())
 	qt.SetFinalizer(tmpValue, (*QSqlRelation).DestroyQSqlRelation)
@@ -6259,16 +6210,18 @@ func (ptr *QSqlRelationalDelegate) DisconnectDestroyQSqlRelationalDelegate() {
 
 func (ptr *QSqlRelationalDelegate) DestroyQSqlRelationalDelegate() {
 	if ptr.Pointer() != nil {
-		C.QSqlRelationalDelegate_DestroyQSqlRelationalDelegate(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QSqlRelationalDelegate_DestroyQSqlRelationalDelegate(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QSqlRelationalDelegate) DestroyQSqlRelationalDelegateDefault() {
 	if ptr.Pointer() != nil {
-		C.QSqlRelationalDelegate_DestroyQSqlRelationalDelegateDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QSqlRelationalDelegate_DestroyQSqlRelationalDelegateDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -6353,27 +6306,6 @@ func (ptr *QSqlRelationalDelegate) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QSqlRelationalDelegate) __findChildren_newList3() unsafe.Pointer {
 	return C.QSqlRelationalDelegate___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QSqlRelationalDelegate) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSqlRelationalDelegate___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlRelationalDelegate) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSqlRelationalDelegate___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QSqlRelationalDelegate) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QSqlRelationalDelegate___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQSqlRelationalDelegate_DrawCheck
@@ -6647,8 +6579,9 @@ func callbackQSqlRelationalDelegate_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QSqlRelationalDelegate) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QSqlRelationalDelegate_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QSqlRelationalDelegate_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -7018,16 +6951,18 @@ func (ptr *QSqlRelationalTableModel) DisconnectDestroyQSqlRelationalTableModel()
 
 func (ptr *QSqlRelationalTableModel) DestroyQSqlRelationalTableModel() {
 	if ptr.Pointer() != nil {
-		C.QSqlRelationalTableModel_DestroyQSqlRelationalTableModel(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QSqlRelationalTableModel_DestroyQSqlRelationalTableModel(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QSqlRelationalTableModel) DestroyQSqlRelationalTableModelDefault() {
 	if ptr.Pointer() != nil {
-		C.QSqlRelationalTableModel_DestroyQSqlRelationalTableModelDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QSqlRelationalTableModel_DestroyQSqlRelationalTableModelDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -8354,16 +8289,18 @@ func (ptr *QSqlResult) DisconnectDestroyQSqlResult() {
 
 func (ptr *QSqlResult) DestroyQSqlResult() {
 	if ptr.Pointer() != nil {
-		C.QSqlResult_DestroyQSqlResult(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QSqlResult_DestroyQSqlResult(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QSqlResult) DestroyQSqlResultDefault() {
 	if ptr.Pointer() != nil {
-		C.QSqlResult_DestroyQSqlResultDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QSqlResult_DestroyQSqlResultDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -9371,16 +9308,18 @@ func (ptr *QSqlTableModel) DisconnectDestroyQSqlTableModel() {
 
 func (ptr *QSqlTableModel) DestroyQSqlTableModel() {
 	if ptr.Pointer() != nil {
-		C.QSqlTableModel_DestroyQSqlTableModel(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QSqlTableModel_DestroyQSqlTableModel(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QSqlTableModel) DestroyQSqlTableModelDefault() {
 	if ptr.Pointer() != nil {
-		C.QSqlTableModel_DestroyQSqlTableModelDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QSqlTableModel_DestroyQSqlTableModelDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

@@ -65,7 +65,7 @@ public:
 	bool event(QEvent * e) { return callbackQMaskGenerator_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMaskGenerator_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMaskGenerator_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWebSockets_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMaskGenerator_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtWebSockets_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMaskGenerator_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMaskGenerator_TimerEvent(this, event); };
 };
 
@@ -206,22 +206,6 @@ void* QMaskGenerator___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QMaskGenerator___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QMaskGenerator___qFindChildren_setList2(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QMaskGenerator___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 void QMaskGenerator_ChildEventDefault(void* ptr, void* event)
 {
 		static_cast<QMaskGenerator*>(ptr)->QMaskGenerator::childEvent(static_cast<QChildEvent*>(event));
@@ -275,7 +259,7 @@ public:
 	void Signal_BinaryFrameReceived(const QByteArray & frame, bool isLastFrame) { callbackQWebSocket_BinaryFrameReceived(this, const_cast<QByteArray*>(&frame), isLastFrame); };
 	void Signal_BinaryMessageReceived(const QByteArray & message) { callbackQWebSocket_BinaryMessageReceived(this, const_cast<QByteArray*>(&message)); };
 	void Signal_BytesWritten(qint64 bytes) { callbackQWebSocket_BytesWritten(this, bytes); };
-	void close(QWebSocketProtocol::CloseCode closeCode, const QString & reason) { QByteArray t7947e9 = reason.toUtf8(); QtWebSockets_PackedString reasonPacked = { const_cast<char*>(t7947e9.prepend("WHITESPACE").constData()+10), t7947e9.size()-10 };callbackQWebSocket_Close(this, closeCode, reasonPacked); };
+	void close(QWebSocketProtocol::CloseCode closeCode, const QString & reason) { QByteArray* t7947e9 = new QByteArray(reason.toUtf8()); QtWebSockets_PackedString reasonPacked = { const_cast<char*>(t7947e9->prepend("WHITESPACE").constData()+10), t7947e9->size()-10, t7947e9 };callbackQWebSocket_Close(this, closeCode, reasonPacked); };
 	void Signal_Connected() { callbackQWebSocket_Connected(this); };
 	void Signal_Disconnected() { callbackQWebSocket_Disconnected(this); };
 	void Signal_Error2(QAbstractSocket::SocketError error) { callbackQWebSocket_Error2(this, error); };
@@ -289,8 +273,8 @@ public:
 	void Signal_ReadChannelFinished() { callbackQWebSocket_ReadChannelFinished(this); };
 	void Signal_SslErrors(const QList<QSslError> & errors) { callbackQWebSocket_SslErrors(this, ({ QList<QSslError>* tmpValue570043 = new QList<QSslError>(errors); QtWebSockets_PackedList { tmpValue570043, tmpValue570043->size() }; })); };
 	void Signal_StateChanged(QAbstractSocket::SocketState state) { callbackQWebSocket_StateChanged(this, state); };
-	void Signal_TextFrameReceived(const QString & frame, bool isLastFrame) { QByteArray t39d88b = frame.toUtf8(); QtWebSockets_PackedString framePacked = { const_cast<char*>(t39d88b.prepend("WHITESPACE").constData()+10), t39d88b.size()-10 };callbackQWebSocket_TextFrameReceived(this, framePacked, isLastFrame); };
-	void Signal_TextMessageReceived(const QString & message) { QByteArray t6f9b9a = message.toUtf8(); QtWebSockets_PackedString messagePacked = { const_cast<char*>(t6f9b9a.prepend("WHITESPACE").constData()+10), t6f9b9a.size()-10 };callbackQWebSocket_TextMessageReceived(this, messagePacked); };
+	void Signal_TextFrameReceived(const QString & frame, bool isLastFrame) { QByteArray* t39d88b = new QByteArray(frame.toUtf8()); QtWebSockets_PackedString framePacked = { const_cast<char*>(t39d88b->prepend("WHITESPACE").constData()+10), t39d88b->size()-10, t39d88b };callbackQWebSocket_TextFrameReceived(this, framePacked, isLastFrame); };
+	void Signal_TextMessageReceived(const QString & message) { QByteArray* t6f9b9a = new QByteArray(message.toUtf8()); QtWebSockets_PackedString messagePacked = { const_cast<char*>(t6f9b9a->prepend("WHITESPACE").constData()+10), t6f9b9a->size()-10, t6f9b9a };callbackQWebSocket_TextMessageReceived(this, messagePacked); };
 	 ~MyQWebSocket() { callbackQWebSocket_DestroyQWebSocket(this); };
 	void childEvent(QChildEvent * event) { callbackQWebSocket_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQWebSocket_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -301,7 +285,7 @@ public:
 	bool event(QEvent * e) { return callbackQWebSocket_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQWebSocket_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebSocket_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWebSockets_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQWebSocket_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtWebSockets_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQWebSocket_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQWebSocket_TimerEvent(this, event); };
 };
 
@@ -444,7 +428,7 @@ long long QWebSocket_CloseCode(void* ptr)
 
 struct QtWebSockets_PackedString QWebSocket_CloseReason(void* ptr)
 {
-	return ({ QByteArray t003333 = static_cast<QWebSocket*>(ptr)->closeReason().toUtf8(); QtWebSockets_PackedString { const_cast<char*>(t003333.prepend("WHITESPACE").constData()+10), t003333.size()-10 }; });
+	return ({ QByteArray* t003333 = new QByteArray(static_cast<QWebSocket*>(ptr)->closeReason().toUtf8()); QtWebSockets_PackedString { const_cast<char*>(t003333->prepend("WHITESPACE").constData()+10), t003333->size()-10, t003333 }; });
 }
 
 void QWebSocket_ConnectConnected(void* ptr, long long t)
@@ -500,7 +484,7 @@ void QWebSocket_Error2(void* ptr, long long error)
 
 struct QtWebSockets_PackedString QWebSocket_ErrorString(void* ptr)
 {
-	return ({ QByteArray t67d61f = static_cast<QWebSocket*>(ptr)->errorString().toUtf8(); QtWebSockets_PackedString { const_cast<char*>(t67d61f.prepend("WHITESPACE").constData()+10), t67d61f.size()-10 }; });
+	return ({ QByteArray* t67d61f = new QByteArray(static_cast<QWebSocket*>(ptr)->errorString().toUtf8()); QtWebSockets_PackedString { const_cast<char*>(t67d61f->prepend("WHITESPACE").constData()+10), t67d61f->size()-10, t67d61f }; });
 }
 
 char QWebSocket_Flush(void* ptr)
@@ -565,7 +549,7 @@ void QWebSocket_Open2Default(void* ptr, void* request)
 
 struct QtWebSockets_PackedString QWebSocket_Origin(void* ptr)
 {
-	return ({ QByteArray t74f689 = static_cast<QWebSocket*>(ptr)->origin().toUtf8(); QtWebSockets_PackedString { const_cast<char*>(t74f689.prepend("WHITESPACE").constData()+10), t74f689.size()-10 }; });
+	return ({ QByteArray* t74f689 = new QByteArray(static_cast<QWebSocket*>(ptr)->origin().toUtf8()); QtWebSockets_PackedString { const_cast<char*>(t74f689->prepend("WHITESPACE").constData()+10), t74f689->size()-10, t74f689 }; });
 }
 
 long long QWebSocket_PauseMode(void* ptr)
@@ -580,7 +564,7 @@ void* QWebSocket_PeerAddress(void* ptr)
 
 struct QtWebSockets_PackedString QWebSocket_PeerName(void* ptr)
 {
-	return ({ QByteArray tc206d7 = static_cast<QWebSocket*>(ptr)->peerName().toUtf8(); QtWebSockets_PackedString { const_cast<char*>(tc206d7.prepend("WHITESPACE").constData()+10), tc206d7.size()-10 }; });
+	return ({ QByteArray* tc206d7 = new QByteArray(static_cast<QWebSocket*>(ptr)->peerName().toUtf8()); QtWebSockets_PackedString { const_cast<char*>(tc206d7->prepend("WHITESPACE").constData()+10), tc206d7->size()-10, tc206d7 }; });
 }
 
 unsigned short QWebSocket_PeerPort(void* ptr)
@@ -680,7 +664,7 @@ void* QWebSocket_RequestUrl(void* ptr)
 
 struct QtWebSockets_PackedString QWebSocket_ResourceName(void* ptr)
 {
-	return ({ QByteArray t1e5662 = static_cast<QWebSocket*>(ptr)->resourceName().toUtf8(); QtWebSockets_PackedString { const_cast<char*>(t1e5662.prepend("WHITESPACE").constData()+10), t1e5662.size()-10 }; });
+	return ({ QByteArray* t1e5662 = new QByteArray(static_cast<QWebSocket*>(ptr)->resourceName().toUtf8()); QtWebSockets_PackedString { const_cast<char*>(t1e5662->prepend("WHITESPACE").constData()+10), t1e5662->size()-10, t1e5662 }; });
 }
 
 void QWebSocket_Resume(void* ptr)
@@ -906,22 +890,6 @@ void* QWebSocket___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QWebSocket___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QWebSocket___qFindChildren_setList2(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QWebSocket___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 void QWebSocket_ChildEventDefault(void* ptr, void* event)
 {
 		static_cast<QWebSocket*>(ptr)->QWebSocket::childEvent(static_cast<QChildEvent*>(event));
@@ -990,7 +958,7 @@ char QWebSocketCorsAuthenticator_Allowed(void* ptr)
 
 struct QtWebSockets_PackedString QWebSocketCorsAuthenticator_Origin(void* ptr)
 {
-	return ({ QByteArray tde65a2 = static_cast<QWebSocketCorsAuthenticator*>(ptr)->origin().toUtf8(); QtWebSockets_PackedString { const_cast<char*>(tde65a2.prepend("WHITESPACE").constData()+10), tde65a2.size()-10 }; });
+	return ({ QByteArray* tde65a2 = new QByteArray(static_cast<QWebSocketCorsAuthenticator*>(ptr)->origin().toUtf8()); QtWebSockets_PackedString { const_cast<char*>(tde65a2->prepend("WHITESPACE").constData()+10), tde65a2->size()-10, tde65a2 }; });
 }
 
 void QWebSocketCorsAuthenticator_SetAllowed(void* ptr, char allowed)
@@ -1031,7 +999,7 @@ public:
 	bool event(QEvent * e) { return callbackQWebSocketServer_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQWebSocketServer_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebSocketServer_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWebSockets_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQWebSocketServer_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtWebSockets_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQWebSocketServer_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQWebSocketServer_TimerEvent(this, event); };
 };
 
@@ -1130,7 +1098,7 @@ long long QWebSocketServer_Error(void* ptr)
 
 struct QtWebSockets_PackedString QWebSocketServer_ErrorString(void* ptr)
 {
-	return ({ QByteArray t92e239 = static_cast<QWebSocketServer*>(ptr)->errorString().toUtf8(); QtWebSockets_PackedString { const_cast<char*>(t92e239.prepend("WHITESPACE").constData()+10), t92e239.size()-10 }; });
+	return ({ QByteArray* t92e239 = new QByteArray(static_cast<QWebSocketServer*>(ptr)->errorString().toUtf8()); QtWebSockets_PackedString { const_cast<char*>(t92e239->prepend("WHITESPACE").constData()+10), t92e239->size()-10, t92e239 }; });
 }
 
 void QWebSocketServer_HandleConnection(void* ptr, void* socket)
@@ -1270,7 +1238,7 @@ void QWebSocketServer_ServerError(void* ptr, long long closeCode)
 
 struct QtWebSockets_PackedString QWebSocketServer_ServerName(void* ptr)
 {
-	return ({ QByteArray tf9a582 = static_cast<QWebSocketServer*>(ptr)->serverName().toUtf8(); QtWebSockets_PackedString { const_cast<char*>(tf9a582.prepend("WHITESPACE").constData()+10), tf9a582.size()-10 }; });
+	return ({ QByteArray* tf9a582 = new QByteArray(static_cast<QWebSocketServer*>(ptr)->serverName().toUtf8()); QtWebSockets_PackedString { const_cast<char*>(tf9a582->prepend("WHITESPACE").constData()+10), tf9a582->size()-10, tf9a582 }; });
 }
 
 unsigned short QWebSocketServer_ServerPort(void* ptr)
@@ -1430,22 +1398,6 @@ void QWebSocketServer___findChildren_setList3(void* ptr, void* i)
 }
 
 void* QWebSocketServer___findChildren_newList3(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
-void* QWebSocketServer___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QWebSocketServer___qFindChildren_setList2(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QWebSocketServer___qFindChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();

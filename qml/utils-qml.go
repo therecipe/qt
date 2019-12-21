@@ -4,15 +4,20 @@ import (
 	"math"
 	"reflect"
 	"runtime"
-	"runtime/debug"
 	"strings"
+	"sync"
 	"unsafe"
 
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 )
 
-var Z_newEngineHelper func(p core.QObject_ITF) *core.QObject
+var (
+	Z_newEngineHelper func(p core.QObject_ITF) *core.QObject
+
+	finalizerMap      = make(map[unsafe.Pointer][]*core.QObject)
+	finalizerMapMutex sync.Mutex
+)
 
 type ptr_itf interface {
 	Pointer() unsafe.Pointer
@@ -20,15 +25,28 @@ type ptr_itf interface {
 
 func Z_initEngine(engine QJSEngine_ITF) {
 	ptr := engine.QJSEngine_PTR()
+	ptr.ConnectDestroyed(func(ptr *core.QObject) {
+		finalizerMapMutex.Lock()
+		pointers := finalizerMap[ptr.Pointer()]
+		delete(finalizerMap, ptr.Pointer())
+		finalizerMapMutex.Unlock()
+
+		for _, o := range pointers {
+			o.DestroyQObject()
+		}
+		runtime.GC()
+	})
 	if !ptr.GlobalObject().Property("___engineHelper").IsUndefined() || Z_newEngineHelper == nil {
 		return
 	}
 	ptr.GlobalObject().SetProperty("nil", NewQJSValue(QJSValue__UndefinedValue))
-	ptr.GlobalObject().SetProperty("___engineHelper", ptr.NewQObject(Z_newEngineHelper(engine)))
+	helper := Z_newEngineHelper(engine)
+	ptr.GlobalObject().SetProperty("___engineHelper", ptr.NewQObject(helper))
+	ptr.GlobalObject().SetProperty("___engineHelperPointer", ptr.NewGoType(helper.Pointer()))
 	ptr.GlobalObject().SetProperty("___factory_single_func", ptr.Evaluate(`
-(function(that, cn, fn) {
+(function(cn, fn) {
 	return function() {
-		var callArgs = [that, cn, fn];
+		var callArgs = [___engineHelperPointer, this.___pointer, cn, fn];
 		for (var i = 0; i < arguments.length; i++) { callArgs.push(arguments[i]) }
 		return ___engineHelper.wrapperFunction(callArgs);
 	};
@@ -38,7 +56,7 @@ func Z_initEngine(engine QJSEngine_ITF) {
 	ptr.GlobalObject().SetProperty("___factory_batch_funcs", ptr.Evaluate(`
 (function(that, cn, fns) {
 	fns.forEach(function(fn) {
-		that[fn] = ___factory_single_func(that, cn, fn, false);
+		that[fn] = ___factory_single_func(cn, fn);
 	})
 });
 `, "", 0))
@@ -46,7 +64,7 @@ func Z_initEngine(engine QJSEngine_ITF) {
 	ptr.GlobalObject().SetProperty("___factory_batch_global_funcs", ptr.Evaluate(`
 (function(that, pfx, fns) {
 	fns.forEach(function(fn) {
-		that[fn] = ___factory_single_func(___engineHelper, pfx+"."+fn, "", false);
+		that[fn] = ___factory_single_func(pfx+"."+fn, "");
 	})
 });
 `, "", 0))
@@ -94,7 +112,6 @@ func Z_initEngine(engine QJSEngine_ITF) {
 		}
 	}
 	qt.FuncMapMutex.Unlock()
-
 	for pfx, fns := range pref {
 		var jsv *QJSValue
 		if m := ptr.GlobalObject().Property(pfx); m.IsUndefined() {
@@ -103,31 +120,19 @@ func Z_initEngine(engine QJSEngine_ITF) {
 		} else {
 			jsv = m
 		}
-		v := core.NewQVariant1(fns)
-		sv := ptr.ToScriptValue(v)
-		v.DestroyQVariant()
-		ptr.GlobalObject().Property("___factory_batch_global_funcs").Call([]*QJSValue{jsv, NewQJSValue8(pfx), sv})
-		sv.DestroyQJSValue()
+		inp := ptr.NewGoType(fns)
+		ptr.GlobalObject().Property("___factory_batch_global_funcs").Call([]*QJSValue{jsv, NewQJSValue8(pfx), inp})
+		inp.DestroyQJSValue()
 	}
 }
 
 func Z_wrapperFunction(jsvals *QJSValue) *QJSValue {
-	//TODO: the underlying ptr might be freed randomly atm, maybe same issue as the wasm issue ?
-	debug.SetGCPercent(-1)
-	defer debug.SetGCPercent(100)
 
-	//
-
-	var (
-		m      reflect.Value
-		engine *QJSEngine
-	)
-
-	if cn, fn := jsvals.Property2(1).ToString(), jsvals.Property2(2).ToString(); fn == "" {
+	var m reflect.Value
+	if cn, fn := jsvals.Property2(2).ToString(), jsvals.Property2(3).ToString(); fn == "" {
 		v, _ := qt.GetFuncMap(cn)
 		m = reflect.ValueOf(v)
 
-		engine = QJSEngine_qjsEngine(jsvals.Property2(0).ToQObject())
 	} else {
 		var rt reflect.Type
 		if t, ok := qt.GetItfMap(cn + "_ITF"); ok {
@@ -140,18 +145,19 @@ func Z_wrapperFunction(jsvals *QJSValue) *QJSValue {
 		//TODO: use ptr_itf instead ?
 		//TODO: use *FromPointer instead
 		//TODO: make SetPointer work as backup, for classes that don't support *FromPointer -> needs manual registration like for *FromPointer
-		o := reflect.New(rt)
-		o.MethodByName("SetPointer").Call([]reflect.Value{reflect.ValueOf(unsafe.Pointer(uintptr(jsvals.Property2(0).Property("___pointer").ToVariant().ToULongLong(nil))))})
-		m = o.MethodByName(fn)
 
-		engine = QJSEngine_qjsEngine(jsvals.Property2(0).Property("___engineHelper").ToQObject())
+		o := reflect.New(rt)
+		o.MethodByName("SetPointer").Call([]reflect.Value{reflect.ValueOf(unsafe.Pointer(uintptr(jsvals.Property2(1).ToVariant().ToULongLong(nil))))})
+		m = o.MethodByName(fn)
 	}
 
 	//
 
+	engine := QJSEngine_qjsEngine(core.NewQObjectFromPointer(unsafe.Pointer(uintptr(jsvals.Property2(0).ToVariant().ToULongLong(nil)))))
+
 	input := make([]reflect.Value, m.Type().NumIn())
 	for i := 0; i < len(input); i++ {
-		input[i] = engine.fromJsToRef(m.Type().In(i), jsvals.Property2(uint(3+i)))
+		input[i] = engine.fromJsToRef(m.Type().In(i), jsvals.Property2(uint(4+i)))
 	}
 
 	//
@@ -162,13 +168,10 @@ func Z_wrapperFunction(jsvals *QJSValue) *QJSValue {
 	}
 
 	rret := engine.NewGoType(ret[0].Interface())
-
 	if reflect.TypeOf(ret[0].Interface()).Implements(reflect.TypeOf((*core.QObject_ITF)(nil)).Elem()) { //TODO: check for destroyed signal instead, or simply override the destructor instead ?
 		if qt.ExistsSignal(ret[0].Interface().(ptr_itf).Pointer(), "destroyed") {
-			engine.GlobalObject().Property("___connectDestroyed").Call([]*QJSValue{rret, jsvals.Property2(1), jsvals.Property2(2)}) //TODO: connect destroyed/destructor from go instead ?
+			engine.GlobalObject().Property("___connectDestroyed").Call([]*QJSValue{rret}) //TODO: connect destroyed/destructor from go instead ?
 		}
-	} else if reflect.TypeOf(ret[0].Interface()).Implements(reflect.TypeOf((*ptr_itf)(nil)).Elem()) {
-		qt.SetFinalizer(ret[0].Interface(), nil) //TODO: this leaks
 	}
 
 	return rret
@@ -331,7 +334,7 @@ func (ptr *QJSEngine) fromJsToRef(tofi reflect.Type, jsval *QJSValue) reflect.Va
 
 //TODO: NewQJSValue1
 
-func (ptr *QJSEngine) NewJSType(property *QJSValue, name string, i *QJSValue) { //TODO: support for js functions + rebuild QJSValues in wrapper function asap to work around the finalizer
+func (ptr *QJSEngine) NewJSType(property *QJSValue, name string, i *QJSValue) { //TODO: support for js functions
 	ptr.newGoType(property, name, i)
 }
 
@@ -434,15 +437,10 @@ func (ptr *QJSEngine) newGoType(property *QJSValue, name string, i ...interface{
 	}
 
 	var jsv *QJSValue
-
-	if v := core.NewQVariant1(i[0]); v.IsValid() {
-		if reflect.TypeOf(i[0]).Implements(reflect.TypeOf((*ptr_itf)(nil)).Elem()) {
-			jsv = ptr.NewObject()
-		} else {
-			jsv = ptr.ToScriptValue(v)
-		}
+	if reflect.TypeOf(i[0]).Implements(reflect.TypeOf((*ptr_itf)(nil)).Elem()) {
+		jsv = ptr.NewObject()
 	} else {
-		return NewQJSValue(QJSValue__UndefinedValue)
+		jsv = ptr.ToScriptValue(core.NewQVariant1(i[0]))
 	}
 
 	if rv.Type().String() == "*qml.QJSValue" {
@@ -466,11 +464,11 @@ func (ptr *QJSEngine) newGoType(property *QJSValue, name string, i ...interface{
 		}
 	}
 
-	if property == nil && reflect.TypeOf(i[0]).Implements(reflect.TypeOf((*ptr_itf)(nil)).Elem()) {
-		ptr.makeObjectWrapper(i[0], jsv)
-	}
-
-	if property != nil {
+	if property == nil {
+		if reflect.TypeOf(i[0]).Implements(reflect.TypeOf((*ptr_itf)(nil)).Elem()) {
+			ptr.makeObjectWrapper(i[0], jsv)
+		}
+	} else {
 		property.SetProperty(name, jsv)
 	}
 
@@ -517,7 +515,7 @@ func isZero(v reflect.Value) bool {
 
 func (ptr *QJSEngine) makeFuncWrapper(fn string) *QJSValue {
 
-	retV := ptr.GlobalObject().Property("___factory_single_func").Call([]*QJSValue{ptr.GlobalObject().Property("___engineHelper"), NewQJSValue8(fn), NewQJSValue8("")})
+	retV := ptr.GlobalObject().Property("___factory_single_func").Call([]*QJSValue{NewQJSValue8(fn), NewQJSValue8("")})
 
 	//TODO: allow creation of funcs in arbitrary module depth
 	var jsv *QJSValue
@@ -538,7 +536,6 @@ func (ptr *QJSEngine) makeFuncWrapper(fn string) *QJSValue {
 
 func (ptr *QJSEngine) makeObjectWrapper(in interface{}, jsv *QJSValue) {
 	jsv.SetProperty("___pointer", ptr.ToScriptValue(core.NewQVariant1(uint64(uintptr(in.(ptr_itf).Pointer()))))) //TODO: can be shortened once NewQVariant1 supports unsafe.Pointer
-	jsv.SetProperty("___engineHelper", ptr.GlobalObject().Property("___engineHelper"))
 
 	rv := reflect.ValueOf(in)
 
@@ -560,4 +557,14 @@ func (ptr *QJSEngine) makeObjectWrapper(in interface{}, jsv *QJSValue) {
 		fns[i] = rv.Type().Method(i).Name
 	}
 	ptr.GlobalObject().Property("___factory_batch_funcs").Call([]*QJSValue{jsv, NewQJSValue8(className), ptr.ToScriptValue(core.NewQVariant1(fns))})
+
+	if qt.HasFinalizer(in) {
+		buoy := core.NewQObject(nil)
+		buoy.ConnectDestroyed(func(*core.QObject) { runtime.KeepAlive(in) })
+		jsv.SetProperty("___buoy", ptr.NewQObject(buoy))
+
+		finalizerMapMutex.Lock()
+		finalizerMap[ptr.Pointer()] = append(finalizerMap[ptr.Pointer()], buoy)
+		finalizerMapMutex.Unlock()
+	}
 }

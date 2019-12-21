@@ -14,13 +14,16 @@ import (
 	"unsafe"
 )
 
+func cGoFreePacked(ptr unsafe.Pointer) { core.NewQByteArrayFromPointer(ptr).DestroyQByteArray() }
 func cGoUnpackString(s C.struct_QtRemoteObjects_PackedString) string {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		return C.GoString(s.data)
 	}
 	return C.GoStringN(s.data, C.int(s.len))
 }
 func cGoUnpackBytes(s C.struct_QtRemoteObjects_PackedString) []byte {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
 		return *(*[]byte)(unsafe.Pointer(&gs))
@@ -71,12 +74,11 @@ func NewDataEntriesFromPointer(ptr unsafe.Pointer) (n *DataEntries) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *DataEntries) DestroyDataEntries() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -118,12 +120,11 @@ func NewIndexValuePairFromPointer(ptr unsafe.Pointer) (n *IndexValuePair) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *IndexValuePair) DestroyIndexValuePair() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -165,12 +166,11 @@ func NewModelIndexFromPointer(ptr unsafe.Pointer) (n *ModelIndex) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *ModelIndex) DestroyModelIndex() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -661,27 +661,6 @@ func (ptr *QAbstractItemModelReplica) __findChildren_setList3(i core.QObject_ITF
 
 func (ptr *QAbstractItemModelReplica) __findChildren_newList3() unsafe.Pointer {
 	return C.QAbstractItemModelReplica___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QAbstractItemModelReplica) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QAbstractItemModelReplica___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QAbstractItemModelReplica) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractItemModelReplica___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QAbstractItemModelReplica) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QAbstractItemModelReplica___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQAbstractItemModelReplica_Buddy
@@ -1618,8 +1597,9 @@ func callbackQAbstractItemModelReplica_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QAbstractItemModelReplica) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QAbstractItemModelReplica_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QAbstractItemModelReplica_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -1793,12 +1773,11 @@ func NewQMetaTypeIdFromPointer(ptr unsafe.Pointer) (n *QMetaTypeId) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QMetaTypeId) DestroyQMetaTypeId() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -2163,27 +2142,6 @@ func (ptr *QRemoteObjectAbstractPersistedStore) __findChildren_newList3() unsafe
 	return C.QRemoteObjectAbstractPersistedStore___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QRemoteObjectAbstractPersistedStore) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QRemoteObjectAbstractPersistedStore___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QRemoteObjectAbstractPersistedStore) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QRemoteObjectAbstractPersistedStore___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QRemoteObjectAbstractPersistedStore) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QRemoteObjectAbstractPersistedStore___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQRemoteObjectAbstractPersistedStore_ChildEvent
 func callbackQRemoteObjectAbstractPersistedStore_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -2240,8 +2198,9 @@ func callbackQRemoteObjectAbstractPersistedStore_DeleteLater(ptr unsafe.Pointer)
 
 func (ptr *QRemoteObjectAbstractPersistedStore) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QRemoteObjectAbstractPersistedStore_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QRemoteObjectAbstractPersistedStore_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -2411,16 +2370,18 @@ func (ptr *QRemoteObjectDynamicReplica) DisconnectDestroyQRemoteObjectDynamicRep
 
 func (ptr *QRemoteObjectDynamicReplica) DestroyQRemoteObjectDynamicReplica() {
 	if ptr.Pointer() != nil {
-		C.QRemoteObjectDynamicReplica_DestroyQRemoteObjectDynamicReplica(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QRemoteObjectDynamicReplica_DestroyQRemoteObjectDynamicReplica(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QRemoteObjectDynamicReplica) DestroyQRemoteObjectDynamicReplicaDefault() {
 	if ptr.Pointer() != nil {
-		C.QRemoteObjectDynamicReplica_DestroyQRemoteObjectDynamicReplicaDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QRemoteObjectDynamicReplica_DestroyQRemoteObjectDynamicReplicaDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -3158,27 +3119,6 @@ func (ptr *QRemoteObjectNode) __findChildren_newList3() unsafe.Pointer {
 	return C.QRemoteObjectNode___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QRemoteObjectNode) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QRemoteObjectNode___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QRemoteObjectNode) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QRemoteObjectNode___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QRemoteObjectNode) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QRemoteObjectNode___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQRemoteObjectNode_ChildEvent
 func callbackQRemoteObjectNode_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -3235,8 +3175,9 @@ func callbackQRemoteObjectNode_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QRemoteObjectNode) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QRemoteObjectNode_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QRemoteObjectNode_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -3356,12 +3297,11 @@ func NewQRemoteObjectPendingCallFromPointer(ptr unsafe.Pointer) (n *QRemoteObjec
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QRemoteObjectPendingCall) DestroyQRemoteObjectPendingCall() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -3489,27 +3429,6 @@ func (ptr *QRemoteObjectPendingCallWatcher) __findChildren_newList3() unsafe.Poi
 	return C.QRemoteObjectPendingCallWatcher___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QRemoteObjectPendingCallWatcher) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QRemoteObjectPendingCallWatcher___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QRemoteObjectPendingCallWatcher) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QRemoteObjectPendingCallWatcher___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QRemoteObjectPendingCallWatcher) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QRemoteObjectPendingCallWatcher___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQRemoteObjectPendingCallWatcher_ChildEvent
 func callbackQRemoteObjectPendingCallWatcher_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -3584,15 +3503,17 @@ func callbackQRemoteObjectPendingCallWatcher_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QRemoteObjectPendingCallWatcher) DeleteLater() {
 	if ptr.Pointer() != nil {
-		C.QRemoteObjectPendingCallWatcher_DeleteLater(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QRemoteObjectPendingCallWatcher_DeleteLater(ptr.Pointer())
 	}
 }
 
 func (ptr *QRemoteObjectPendingCallWatcher) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QRemoteObjectPendingCallWatcher_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QRemoteObjectPendingCallWatcher_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -3761,12 +3682,11 @@ func NewQRemoteObjectPendingReplyFromPointer(ptr unsafe.Pointer) (n *QRemoteObje
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QRemoteObjectPendingReply) DestroyQRemoteObjectPendingReply() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -3843,16 +3763,18 @@ func (ptr *QRemoteObjectRegistry) DisconnectDestroyQRemoteObjectRegistry() {
 
 func (ptr *QRemoteObjectRegistry) DestroyQRemoteObjectRegistry() {
 	if ptr.Pointer() != nil {
-		C.QRemoteObjectRegistry_DestroyQRemoteObjectRegistry(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QRemoteObjectRegistry_DestroyQRemoteObjectRegistry(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QRemoteObjectRegistry) DestroyQRemoteObjectRegistryDefault() {
 	if ptr.Pointer() != nil {
-		C.QRemoteObjectRegistry_DestroyQRemoteObjectRegistryDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QRemoteObjectRegistry_DestroyQRemoteObjectRegistryDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -4293,27 +4215,6 @@ func (ptr *QRemoteObjectReplica) __findChildren_newList3() unsafe.Pointer {
 	return C.QRemoteObjectReplica___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QRemoteObjectReplica) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QRemoteObjectReplica___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QRemoteObjectReplica) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QRemoteObjectReplica___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QRemoteObjectReplica) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QRemoteObjectReplica___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQRemoteObjectReplica_ChildEvent
 func callbackQRemoteObjectReplica_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -4370,8 +4271,9 @@ func callbackQRemoteObjectReplica_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QRemoteObjectReplica) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QRemoteObjectReplica_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QRemoteObjectReplica_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -4661,12 +4563,11 @@ func NewQRemoteObjectSourceLocationInfoFromPointer(ptr unsafe.Pointer) (n *QRemo
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QRemoteObjectSourceLocationInfo) DestroyQRemoteObjectSourceLocationInfo() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -4708,12 +4609,11 @@ func NewQTypeInfoFromPointer(ptr unsafe.Pointer) (n *QTypeInfo) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QTypeInfo) DestroyQTypeInfo() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -4755,12 +4655,11 @@ func NewQtROClientFactoryFromPointer(ptr unsafe.Pointer) (n *QtROClientFactory) 
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QtROClientFactory) DestroyQtROClientFactory() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -4802,12 +4701,11 @@ func NewQtROServerFactoryFromPointer(ptr unsafe.Pointer) (n *QtROServerFactory) 
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QtROServerFactory) DestroyQtROServerFactory() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -4849,16 +4747,14 @@ func NewSourceApiMapFromPointer(ptr unsafe.Pointer) (n *SourceApiMap) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *SourceApiMap) DestroySourceApiMap() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
-
 func init() {
 	qt.ItfMap["remoteobjects.QAbstractItemModelReplica_ITF"] = QAbstractItemModelReplica{}
 	qt.ItfMap["remoteobjects.QMetaTypeId_ITF"] = QMetaTypeId{}

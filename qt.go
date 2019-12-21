@@ -14,28 +14,28 @@ var (
 
 	signals      = make(map[unsafe.Pointer]map[string]unsafe.Pointer)
 	signalsJNI   = make(map[string]map[string]unsafe.Pointer)
-	signalsMutex = new(sync.Mutex)
+	signalsMutex sync.Mutex
 
 	objects      = make(map[unsafe.Pointer]interface{})
-	objectsMutex = new(sync.Mutex)
+	objectsMutex sync.Mutex
 
 	objectsTemp      = make(map[unsafe.Pointer]unsafe.Pointer)
-	objectsTempMutex = new(sync.Mutex)
+	objectsTempMutex sync.Mutex
 
 	connectionTypes      = make(map[unsafe.Pointer]map[string]int64)
-	connectionTypesMutex = new(sync.Mutex)
+	connectionTypesMutex sync.Mutex
 
 	finalizerMap      = make(map[unsafe.Pointer]struct{})
-	finalizerMapMutex = new(sync.Mutex)
+	finalizerMapMutex sync.Mutex
 
 	//
 
 	FuncMap      = make(map[string]interface{})
-	FuncMapMutex = new(sync.Mutex)
+	FuncMapMutex sync.Mutex
 	ItfMap       = make(map[string]interface{})
-	itfMapMutex  = new(sync.Mutex)
+	itfMapMutex  sync.Mutex
 	EnumMap      = make(map[string]int64)
-	EnumMapMutex = new(sync.Mutex)
+	EnumMapMutex sync.Mutex
 )
 
 func init() { runtime.LockOSThread() }
@@ -322,4 +322,11 @@ func SetFinalizer(ptr interface{}, f interface{}) {
 		runtime.SetFinalizer(ptr, func(p ptr_itf) { p.SetPointer(nil) })
 	}
 	finalizerMapMutex.Unlock()
+}
+
+func HasFinalizer(ptr interface{}) (ok bool) {
+	finalizerMapMutex.Lock()
+	_, ok = finalizerMap[ptr.(ptr_itf).Pointer()]
+	finalizerMapMutex.Unlock()
+	return
 }

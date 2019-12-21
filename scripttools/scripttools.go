@@ -16,13 +16,16 @@ import (
 	"unsafe"
 )
 
+func cGoFreePacked(ptr unsafe.Pointer) { core.NewQByteArrayFromPointer(ptr).DestroyQByteArray() }
 func cGoUnpackString(s C.struct_QtScriptTools_PackedString) string {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		return C.GoString(s.data)
 	}
 	return C.GoStringN(s.data, C.int(s.len))
 }
 func cGoUnpackBytes(s C.struct_QtScriptTools_PackedString) []byte {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
 		return *(*[]byte)(unsafe.Pointer(&gs))
@@ -330,16 +333,18 @@ func (ptr *QScriptEngineDebugger) DisconnectDestroyQScriptEngineDebugger() {
 
 func (ptr *QScriptEngineDebugger) DestroyQScriptEngineDebugger() {
 	if ptr.Pointer() != nil {
-		C.QScriptEngineDebugger_DestroyQScriptEngineDebugger(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QScriptEngineDebugger_DestroyQScriptEngineDebugger(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QScriptEngineDebugger) DestroyQScriptEngineDebuggerDefault() {
 	if ptr.Pointer() != nil {
-		C.QScriptEngineDebugger_DestroyQScriptEngineDebuggerDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QScriptEngineDebugger_DestroyQScriptEngineDebuggerDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -426,27 +431,6 @@ func (ptr *QScriptEngineDebugger) __findChildren_newList3() unsafe.Pointer {
 	return C.QScriptEngineDebugger___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QScriptEngineDebugger) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QScriptEngineDebugger___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QScriptEngineDebugger) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScriptEngineDebugger___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QScriptEngineDebugger) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QScriptEngineDebugger___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQScriptEngineDebugger_ChildEvent
 func callbackQScriptEngineDebugger_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -503,8 +487,9 @@ func callbackQScriptEngineDebugger_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QScriptEngineDebugger) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QScriptEngineDebugger_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QScriptEngineDebugger_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 

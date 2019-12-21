@@ -12,7 +12,7 @@ int QSerialPort_QSerialPort_QRegisterMetaType();
 extern "C" {
 #endif
 
-struct QtSerialPort_PackedString { char* data; long long len; };
+struct QtSerialPort_PackedString { char* data; long long len; void* ptr; };
 struct QtSerialPort_PackedList { void* data; long long len; };
 void* QSerialPort_NewQSerialPort(void* parent);
 void* QSerialPort_NewQSerialPort2(struct QtSerialPort_PackedString name, void* parent);
@@ -101,9 +101,6 @@ void* QSerialPort___findChildren_newList(void* ptr);
 void* QSerialPort___findChildren_atList3(void* ptr, int i);
 void QSerialPort___findChildren_setList3(void* ptr, void* i);
 void* QSerialPort___findChildren_newList3(void* ptr);
-void* QSerialPort___qFindChildren_atList2(void* ptr, int i);
-void QSerialPort___qFindChildren_setList2(void* ptr, void* i);
-void* QSerialPort___qFindChildren_newList2(void* ptr);
 long long QSerialPort_PosDefault(void* ptr);
 char QSerialPort_ResetDefault(void* ptr);
 char QSerialPort_SeekDefault(void* ptr, long long pos);

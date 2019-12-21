@@ -1243,20 +1243,6 @@ func (ptr *QAndroidService) __findChildren_newList3() unsafe.Pointer {
 	return nil
 }
 
-func (ptr *QAndroidService) __qFindChildren_atList2(i int) *core.QObject {
-
-	return nil
-}
-
-func (ptr *QAndroidService) __qFindChildren_setList2(i core.QObject_ITF) {
-
-}
-
-func (ptr *QAndroidService) __qFindChildren_newList2() unsafe.Pointer {
-
-	return nil
-}
-
 func (ptr *QAndroidService) EventDefault(e core.QEvent_ITF) bool {
 
 	return false

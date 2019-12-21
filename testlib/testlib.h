@@ -12,7 +12,7 @@ int QSignalSpy_QSignalSpy_QRegisterMetaType();
 extern "C" {
 #endif
 
-struct QtTestLib_PackedString { char* data; long long len; };
+struct QtTestLib_PackedString { char* data; long long len; void* ptr; };
 struct QtTestLib_PackedList { void* data; long long len; };
 void* QAbstractItemModelTester_NewQAbstractItemModelTester(void* model, void* parent);
 void* QAbstractItemModelTester_NewQAbstractItemModelTester2(void* model, long long mode, void* parent);
@@ -39,9 +39,6 @@ void* QSignalSpy___findChildren_newList(void* ptr);
 void* QSignalSpy___findChildren_atList3(void* ptr, int i);
 void QSignalSpy___findChildren_setList3(void* ptr, void* i);
 void* QSignalSpy___findChildren_newList3(void* ptr);
-void* QSignalSpy___qFindChildren_atList2(void* ptr, int i);
-void QSignalSpy___qFindChildren_setList2(void* ptr, void* i);
-void* QSignalSpy___qFindChildren_newList2(void* ptr);
 void QSignalSpy_ChildEventDefault(void* ptr, void* event);
 void QSignalSpy_ConnectNotifyDefault(void* ptr, void* sign);
 void QSignalSpy_CustomEventDefault(void* ptr, void* event);

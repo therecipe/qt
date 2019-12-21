@@ -14,7 +14,7 @@ int QTextToSpeechPlugin_QTextToSpeechPlugin_QRegisterMetaType();
 extern "C" {
 #endif
 
-struct QtSpeech_PackedString { char* data; long long len; };
+struct QtSpeech_PackedString { char* data; long long len; void* ptr; };
 struct QtSpeech_PackedList { void* data; long long len; };
 void* QTextToSpeech_NewQTextToSpeech(void* parent);
 void* QTextToSpeech_NewQTextToSpeech2(struct QtSpeech_PackedString engine, void* parent);
@@ -81,9 +81,6 @@ void* QTextToSpeech___findChildren_newList(void* ptr);
 void* QTextToSpeech___findChildren_atList3(void* ptr, int i);
 void QTextToSpeech___findChildren_setList3(void* ptr, void* i);
 void* QTextToSpeech___findChildren_newList3(void* ptr);
-void* QTextToSpeech___qFindChildren_atList2(void* ptr, int i);
-void QTextToSpeech___qFindChildren_setList2(void* ptr, void* i);
-void* QTextToSpeech___qFindChildren_newList2(void* ptr);
 void QTextToSpeech_ChildEventDefault(void* ptr, void* event);
 void QTextToSpeech_ConnectNotifyDefault(void* ptr, void* sign);
 void QTextToSpeech_CustomEventDefault(void* ptr, void* event);
@@ -134,9 +131,6 @@ void* QTextToSpeechEngine___findChildren_newList(void* ptr);
 void* QTextToSpeechEngine___findChildren_atList3(void* ptr, int i);
 void QTextToSpeechEngine___findChildren_setList3(void* ptr, void* i);
 void* QTextToSpeechEngine___findChildren_newList3(void* ptr);
-void* QTextToSpeechEngine___qFindChildren_atList2(void* ptr, int i);
-void QTextToSpeechEngine___qFindChildren_setList2(void* ptr, void* i);
-void* QTextToSpeechEngine___qFindChildren_newList2(void* ptr);
 void QTextToSpeechEngine_ChildEventDefault(void* ptr, void* event);
 void QTextToSpeechEngine_ConnectNotifyDefault(void* ptr, void* sign);
 void QTextToSpeechEngine_CustomEventDefault(void* ptr, void* event);

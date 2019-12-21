@@ -14,7 +14,7 @@ int QMacToolBarItem_QMacToolBarItem_QRegisterMetaType();
 extern "C" {
 #endif
 
-struct QtMacExtras_PackedString { char* data; long long len; };
+struct QtMacExtras_PackedString { char* data; long long len; void* ptr; };
 struct QtMacExtras_PackedList { void* data; long long len; };
 char QMacPasteboardMime_CanConvert(void* ptr, struct QtMacExtras_PackedString mime, struct QtMacExtras_PackedString flav);
 struct QtMacExtras_PackedList QMacPasteboardMime_ConvertFromMime(void* ptr, struct QtMacExtras_PackedString mime, void* data, struct QtMacExtras_PackedString flav);
@@ -52,9 +52,6 @@ void* QMacToolBar___findChildren_newList(void* ptr);
 void* QMacToolBar___findChildren_atList3(void* ptr, int i);
 void QMacToolBar___findChildren_setList3(void* ptr, void* i);
 void* QMacToolBar___findChildren_newList3(void* ptr);
-void* QMacToolBar___qFindChildren_atList2(void* ptr, int i);
-void QMacToolBar___qFindChildren_setList2(void* ptr, void* i);
-void* QMacToolBar___qFindChildren_newList2(void* ptr);
 void QMacToolBar_ChildEventDefault(void* ptr, void* event);
 void QMacToolBar_ConnectNotifyDefault(void* ptr, void* sign);
 void QMacToolBar_CustomEventDefault(void* ptr, void* event);
@@ -90,9 +87,6 @@ void* QMacToolBarItem___findChildren_newList(void* ptr);
 void* QMacToolBarItem___findChildren_atList3(void* ptr, int i);
 void QMacToolBarItem___findChildren_setList3(void* ptr, void* i);
 void* QMacToolBarItem___findChildren_newList3(void* ptr);
-void* QMacToolBarItem___qFindChildren_atList2(void* ptr, int i);
-void QMacToolBarItem___qFindChildren_setList2(void* ptr, void* i);
-void* QMacToolBarItem___qFindChildren_newList2(void* ptr);
 void QMacToolBarItem_ChildEventDefault(void* ptr, void* event);
 void QMacToolBarItem_ConnectNotifyDefault(void* ptr, void* sign);
 void QMacToolBarItem_CustomEventDefault(void* ptr, void* event);

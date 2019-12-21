@@ -15,13 +15,16 @@ import (
 	"unsafe"
 )
 
+func cGoFreePacked(ptr unsafe.Pointer) { core.NewQByteArrayFromPointer(ptr).DestroyQByteArray() }
 func cGoUnpackString(s C.struct_QtDataVisualization_PackedString) string {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		return C.GoString(s.data)
 	}
 	return C.GoStringN(s.data, C.int(s.len))
 }
 func cGoUnpackBytes(s C.struct_QtDataVisualization_PackedString) []byte {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
 		return *(*[]byte)(unsafe.Pointer(&gs))
@@ -693,16 +696,18 @@ func (ptr *Q3DBars) DisconnectDestroyQ3DBars() {
 
 func (ptr *Q3DBars) DestroyQ3DBars() {
 	if ptr.Pointer() != nil {
-		C.Q3DBars_DestroyQ3DBars(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.Q3DBars_DestroyQ3DBars(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *Q3DBars) DestroyQ3DBarsDefault() {
 	if ptr.Pointer() != nil {
-		C.Q3DBars_DestroyQ3DBarsDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.Q3DBars_DestroyQ3DBarsDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -1376,16 +1381,18 @@ func (ptr *Q3DCamera) DisconnectDestroyQ3DCamera() {
 
 func (ptr *Q3DCamera) DestroyQ3DCamera() {
 	if ptr.Pointer() != nil {
-		C.Q3DCamera_DestroyQ3DCamera(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.Q3DCamera_DestroyQ3DCamera(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *Q3DCamera) DestroyQ3DCameraDefault() {
 	if ptr.Pointer() != nil {
-		C.Q3DCamera_DestroyQ3DCameraDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.Q3DCamera_DestroyQ3DCameraDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -2191,16 +2198,18 @@ func (ptr *Q3DObject) DisconnectDestroyQ3DObject() {
 
 func (ptr *Q3DObject) DestroyQ3DObject() {
 	if ptr.Pointer() != nil {
-		C.Q3DObject_DestroyQ3DObject(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.Q3DObject_DestroyQ3DObject(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *Q3DObject) DestroyQ3DObjectDefault() {
 	if ptr.Pointer() != nil {
-		C.Q3DObject_DestroyQ3DObjectDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.Q3DObject_DestroyQ3DObjectDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -3217,16 +3226,18 @@ func (ptr *Q3DScene) DisconnectDestroyQ3DScene() {
 
 func (ptr *Q3DScene) DestroyQ3DScene() {
 	if ptr.Pointer() != nil {
-		C.Q3DScene_DestroyQ3DScene(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.Q3DScene_DestroyQ3DScene(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *Q3DScene) DestroyQ3DSceneDefault() {
 	if ptr.Pointer() != nil {
-		C.Q3DScene_DestroyQ3DSceneDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.Q3DScene_DestroyQ3DSceneDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -5007,16 +5018,18 @@ func (ptr *Q3DTheme) DisconnectDestroyQ3DTheme() {
 
 func (ptr *Q3DTheme) DestroyQ3DTheme() {
 	if ptr.Pointer() != nil {
-		C.Q3DTheme_DestroyQ3DTheme(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.Q3DTheme_DestroyQ3DTheme(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *Q3DTheme) DestroyQ3DThemeDefault() {
 	if ptr.Pointer() != nil {
-		C.Q3DTheme_DestroyQ3DThemeDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.Q3DTheme_DestroyQ3DThemeDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -6398,16 +6411,18 @@ func (ptr *QAbstract3DInputHandler) DisconnectDestroyQAbstract3DInputHandler() {
 
 func (ptr *QAbstract3DInputHandler) DestroyQAbstract3DInputHandler() {
 	if ptr.Pointer() != nil {
-		C.QAbstract3DInputHandler_DestroyQAbstract3DInputHandler(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QAbstract3DInputHandler_DestroyQAbstract3DInputHandler(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QAbstract3DInputHandler) DestroyQAbstract3DInputHandlerDefault() {
 	if ptr.Pointer() != nil {
-		C.QAbstract3DInputHandler_DestroyQAbstract3DInputHandlerDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QAbstract3DInputHandler_DestroyQAbstract3DInputHandlerDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -7417,16 +7432,18 @@ func (ptr *QAbstract3DSeries) DisconnectDestroyQAbstract3DSeries() {
 
 func (ptr *QAbstract3DSeries) DestroyQAbstract3DSeries() {
 	if ptr.Pointer() != nil {
-		C.QAbstract3DSeries_DestroyQAbstract3DSeries(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QAbstract3DSeries_DestroyQAbstract3DSeries(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QAbstract3DSeries) DestroyQAbstract3DSeriesDefault() {
 	if ptr.Pointer() != nil {
-		C.QAbstract3DSeries_DestroyQAbstract3DSeriesDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QAbstract3DSeries_DestroyQAbstract3DSeriesDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -7783,16 +7800,18 @@ func (ptr *QBar3DSeries) DisconnectDestroyQBar3DSeries() {
 
 func (ptr *QBar3DSeries) DestroyQBar3DSeries() {
 	if ptr.Pointer() != nil {
-		C.QBar3DSeries_DestroyQBar3DSeries(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QBar3DSeries_DestroyQBar3DSeries(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QBar3DSeries) DestroyQBar3DSeriesDefault() {
 	if ptr.Pointer() != nil {
-		C.QBar3DSeries_DestroyQBar3DSeriesDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QBar3DSeries_DestroyQBar3DSeriesDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -7886,9 +7905,10 @@ func (ptr *QBarDataItem) Value() float32 {
 
 func (ptr *QBarDataItem) DestroyQBarDataItem() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QBarDataItem_DestroyQBarDataItem(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -9200,16 +9220,18 @@ func (ptr *QCustom3DItem) DisconnectDestroyQCustom3DItem() {
 
 func (ptr *QCustom3DItem) DestroyQCustom3DItem() {
 	if ptr.Pointer() != nil {
-		C.QCustom3DItem_DestroyQCustom3DItem(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QCustom3DItem_DestroyQCustom3DItem(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QCustom3DItem) DestroyQCustom3DItemDefault() {
 	if ptr.Pointer() != nil {
-		C.QCustom3DItem_DestroyQCustom3DItemDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QCustom3DItem_DestroyQCustom3DItemDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -9684,16 +9706,18 @@ func (ptr *QCustom3DLabel) DisconnectDestroyQCustom3DLabel() {
 
 func (ptr *QCustom3DLabel) DestroyQCustom3DLabel() {
 	if ptr.Pointer() != nil {
-		C.QCustom3DLabel_DestroyQCustom3DLabel(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QCustom3DLabel_DestroyQCustom3DLabel(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QCustom3DLabel) DestroyQCustom3DLabelDefault() {
 	if ptr.Pointer() != nil {
-		C.QCustom3DLabel_DestroyQCustom3DLabelDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QCustom3DLabel_DestroyQCustom3DLabelDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -10732,16 +10756,18 @@ func (ptr *QCustom3DVolume) DisconnectDestroyQCustom3DVolume() {
 
 func (ptr *QCustom3DVolume) DestroyQCustom3DVolume() {
 	if ptr.Pointer() != nil {
-		C.QCustom3DVolume_DestroyQCustom3DVolume(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QCustom3DVolume_DestroyQCustom3DVolume(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QCustom3DVolume) DestroyQCustom3DVolumeDefault() {
 	if ptr.Pointer() != nil {
-		C.QCustom3DVolume_DestroyQCustom3DVolumeDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QCustom3DVolume_DestroyQCustom3DVolumeDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -11220,16 +11246,18 @@ func (ptr *QHeightMapSurfaceDataProxy) DisconnectDestroyQHeightMapSurfaceDataPro
 
 func (ptr *QHeightMapSurfaceDataProxy) DestroyQHeightMapSurfaceDataProxy() {
 	if ptr.Pointer() != nil {
-		C.QHeightMapSurfaceDataProxy_DestroyQHeightMapSurfaceDataProxy(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QHeightMapSurfaceDataProxy_DestroyQHeightMapSurfaceDataProxy(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QHeightMapSurfaceDataProxy) DestroyQHeightMapSurfaceDataProxyDefault() {
 	if ptr.Pointer() != nil {
-		C.QHeightMapSurfaceDataProxy_DestroyQHeightMapSurfaceDataProxyDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QHeightMapSurfaceDataProxy_DestroyQHeightMapSurfaceDataProxyDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -12584,16 +12612,18 @@ func (ptr *QItemModelBarDataProxy) DisconnectDestroyQItemModelBarDataProxy() {
 
 func (ptr *QItemModelBarDataProxy) DestroyQItemModelBarDataProxy() {
 	if ptr.Pointer() != nil {
-		C.QItemModelBarDataProxy_DestroyQItemModelBarDataProxy(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QItemModelBarDataProxy_DestroyQItemModelBarDataProxy(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QItemModelBarDataProxy) DestroyQItemModelBarDataProxyDefault() {
 	if ptr.Pointer() != nil {
-		C.QItemModelBarDataProxy_DestroyQItemModelBarDataProxyDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QItemModelBarDataProxy_DestroyQItemModelBarDataProxyDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -13526,16 +13556,18 @@ func (ptr *QItemModelScatterDataProxy) DisconnectDestroyQItemModelScatterDataPro
 
 func (ptr *QItemModelScatterDataProxy) DestroyQItemModelScatterDataProxy() {
 	if ptr.Pointer() != nil {
-		C.QItemModelScatterDataProxy_DestroyQItemModelScatterDataProxy(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QItemModelScatterDataProxy_DestroyQItemModelScatterDataProxy(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QItemModelScatterDataProxy) DestroyQItemModelScatterDataProxyDefault() {
 	if ptr.Pointer() != nil {
-		C.QItemModelScatterDataProxy_DestroyQItemModelScatterDataProxyDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QItemModelScatterDataProxy_DestroyQItemModelScatterDataProxyDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -15086,16 +15118,18 @@ func (ptr *QItemModelSurfaceDataProxy) DisconnectDestroyQItemModelSurfaceDataPro
 
 func (ptr *QItemModelSurfaceDataProxy) DestroyQItemModelSurfaceDataProxy() {
 	if ptr.Pointer() != nil {
-		C.QItemModelSurfaceDataProxy_DestroyQItemModelSurfaceDataProxy(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QItemModelSurfaceDataProxy_DestroyQItemModelSurfaceDataProxy(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QItemModelSurfaceDataProxy) DestroyQItemModelSurfaceDataProxyDefault() {
 	if ptr.Pointer() != nil {
-		C.QItemModelSurfaceDataProxy_DestroyQItemModelSurfaceDataProxyDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QItemModelSurfaceDataProxy_DestroyQItemModelSurfaceDataProxyDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -15734,9 +15768,10 @@ func (ptr *QScatterDataItem) Z() float32 {
 
 func (ptr *QScatterDataItem) DestroyQScatterDataItem() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QScatterDataItem_DestroyQScatterDataItem(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -16633,16 +16668,18 @@ func (ptr *QSurface3DSeries) DisconnectDestroyQSurface3DSeries() {
 
 func (ptr *QSurface3DSeries) DestroyQSurface3DSeries() {
 	if ptr.Pointer() != nil {
-		C.QSurface3DSeries_DestroyQSurface3DSeries(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QSurface3DSeries_DestroyQSurface3DSeries(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QSurface3DSeries) DestroyQSurface3DSeriesDefault() {
 	if ptr.Pointer() != nil {
-		C.QSurface3DSeries_DestroyQSurface3DSeriesDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QSurface3DSeries_DestroyQSurface3DSeriesDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -16758,9 +16795,10 @@ func (ptr *QSurfaceDataItem) Z() float32 {
 
 func (ptr *QSurfaceDataItem) DestroyQSurfaceDataItem() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QSurfaceDataItem_DestroyQSurfaceDataItem(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -18208,16 +18246,18 @@ func (ptr *QValue3DAxisFormatter) DisconnectDestroyQValue3DAxisFormatter() {
 
 func (ptr *QValue3DAxisFormatter) DestroyQValue3DAxisFormatter() {
 	if ptr.Pointer() != nil {
-		C.QValue3DAxisFormatter_DestroyQValue3DAxisFormatter(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QValue3DAxisFormatter_DestroyQValue3DAxisFormatter(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QValue3DAxisFormatter) DestroyQValue3DAxisFormatterDefault() {
 	if ptr.Pointer() != nil {
-		C.QValue3DAxisFormatter_DestroyQValue3DAxisFormatterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QValue3DAxisFormatter_DestroyQValue3DAxisFormatterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

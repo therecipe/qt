@@ -14,13 +14,16 @@ import (
 	"unsafe"
 )
 
+func cGoFreePacked(ptr unsafe.Pointer) { core.NewQByteArrayFromPointer(ptr).DestroyQByteArray() }
 func cGoUnpackString(s C.struct_QtScxml_PackedString) string {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		return C.GoString(s.data)
 	}
 	return C.GoStringN(s.data, C.int(s.len))
 }
 func cGoUnpackBytes(s C.struct_QtScxml_PackedString) []byte {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
 		return *(*[]byte)(unsafe.Pointer(&gs))
@@ -122,9 +125,10 @@ func (ptr *QScxmlCompiler) SetFileName(fileName string) {
 
 func (ptr *QScxmlCompiler) DestroyQScxmlCompiler() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QScxmlCompiler_DestroyQScxmlCompiler(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -892,27 +896,6 @@ func (ptr *QScxmlDataModel) __findChildren_newList3() unsafe.Pointer {
 	return C.QScxmlDataModel___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QScxmlDataModel) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QScxmlDataModel___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QScxmlDataModel) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlDataModel___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QScxmlDataModel) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QScxmlDataModel___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQScxmlDataModel_ChildEvent
 func callbackQScxmlDataModel_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -969,8 +952,9 @@ func callbackQScxmlDataModel_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QScxmlDataModel) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QScxmlDataModel_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QScxmlDataModel_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -1616,9 +1600,10 @@ func (ptr *QScxmlError) ToString() string {
 
 func (ptr *QScxmlError) DestroyQScxmlError() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QScxmlError_DestroyQScxmlError(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -1854,9 +1839,10 @@ func (ptr *QScxmlEvent) SetSendId(sendid string) {
 
 func (ptr *QScxmlEvent) DestroyQScxmlEvent() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QScxmlEvent_DestroyQScxmlEvent(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -2145,27 +2131,6 @@ func (ptr *QScxmlInvokableService) __findChildren_newList3() unsafe.Pointer {
 	return C.QScxmlInvokableService___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QScxmlInvokableService) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QScxmlInvokableService___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QScxmlInvokableService) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlInvokableService___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QScxmlInvokableService) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QScxmlInvokableService___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQScxmlInvokableService_ChildEvent
 func callbackQScxmlInvokableService_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -2222,8 +2187,9 @@ func callbackQScxmlInvokableService_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QScxmlInvokableService) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QScxmlInvokableService_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QScxmlInvokableService_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -2500,27 +2466,6 @@ func (ptr *QScxmlInvokableServiceFactory) __findChildren_newList3() unsafe.Point
 	return C.QScxmlInvokableServiceFactory___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QScxmlInvokableServiceFactory) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QScxmlInvokableServiceFactory___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QScxmlInvokableServiceFactory) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlInvokableServiceFactory___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QScxmlInvokableServiceFactory) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QScxmlInvokableServiceFactory___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQScxmlInvokableServiceFactory_ChildEvent
 func callbackQScxmlInvokableServiceFactory_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -2577,8 +2522,9 @@ func callbackQScxmlInvokableServiceFactory_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QScxmlInvokableServiceFactory) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QScxmlInvokableServiceFactory_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QScxmlInvokableServiceFactory_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -3048,16 +2994,18 @@ func (ptr *QScxmlNullDataModel) DisconnectDestroyQScxmlNullDataModel() {
 
 func (ptr *QScxmlNullDataModel) DestroyQScxmlNullDataModel() {
 	if ptr.Pointer() != nil {
-		C.QScxmlNullDataModel_DestroyQScxmlNullDataModel(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QScxmlNullDataModel_DestroyQScxmlNullDataModel(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QScxmlNullDataModel) DestroyQScxmlNullDataModelDefault() {
 	if ptr.Pointer() != nil {
-		C.QScxmlNullDataModel_DestroyQScxmlNullDataModelDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QScxmlNullDataModel_DestroyQScxmlNullDataModelDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -4173,27 +4121,6 @@ func (ptr *QScxmlStateMachine) __findChildren_newList3() unsafe.Pointer {
 	return C.QScxmlStateMachine___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QScxmlStateMachine) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QScxmlStateMachine___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QScxmlStateMachine) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlStateMachine___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QScxmlStateMachine) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QScxmlStateMachine___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQScxmlStateMachine_ChildEvent
 func callbackQScxmlStateMachine_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -4250,8 +4177,9 @@ func callbackQScxmlStateMachine_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QScxmlStateMachine) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QScxmlStateMachine_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QScxmlStateMachine_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 

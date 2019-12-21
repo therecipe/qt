@@ -14,13 +14,16 @@ import (
 	"unsafe"
 )
 
+func cGoFreePacked(ptr unsafe.Pointer) { core.NewQByteArrayFromPointer(ptr).DestroyQByteArray() }
 func cGoUnpackString(s C.struct_QtWebChannel_PackedString) string {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		return C.GoString(s.data)
 	}
 	return C.GoStringN(s.data, C.int(s.len))
 }
 func cGoUnpackBytes(s C.struct_QtWebChannel_PackedString) []byte {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
 		return *(*[]byte)(unsafe.Pointer(&gs))
@@ -358,16 +361,18 @@ func (ptr *QWebChannel) DisconnectDestroyQWebChannel() {
 
 func (ptr *QWebChannel) DestroyQWebChannel() {
 	if ptr.Pointer() != nil {
-		C.QWebChannel_DestroyQWebChannel(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QWebChannel_DestroyQWebChannel(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QWebChannel) DestroyQWebChannelDefault() {
 	if ptr.Pointer() != nil {
-		C.QWebChannel_DestroyQWebChannelDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QWebChannel_DestroyQWebChannelDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -588,27 +593,6 @@ func (ptr *QWebChannel) __findChildren_newList3() unsafe.Pointer {
 	return C.QWebChannel___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QWebChannel) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QWebChannel___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QWebChannel) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QWebChannel___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QWebChannel) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QWebChannel___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQWebChannel_ChildEvent
 func callbackQWebChannel_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -665,8 +649,9 @@ func callbackQWebChannel_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QWebChannel) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QWebChannel_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QWebChannel_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -919,16 +904,18 @@ func (ptr *QWebChannelAbstractTransport) DisconnectDestroyQWebChannelAbstractTra
 
 func (ptr *QWebChannelAbstractTransport) DestroyQWebChannelAbstractTransport() {
 	if ptr.Pointer() != nil {
-		C.QWebChannelAbstractTransport_DestroyQWebChannelAbstractTransport(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QWebChannelAbstractTransport_DestroyQWebChannelAbstractTransport(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QWebChannelAbstractTransport) DestroyQWebChannelAbstractTransportDefault() {
 	if ptr.Pointer() != nil {
-		C.QWebChannelAbstractTransport_DestroyQWebChannelAbstractTransportDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QWebChannelAbstractTransport_DestroyQWebChannelAbstractTransportDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -1015,27 +1002,6 @@ func (ptr *QWebChannelAbstractTransport) __findChildren_newList3() unsafe.Pointe
 	return C.QWebChannelAbstractTransport___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QWebChannelAbstractTransport) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QWebChannelAbstractTransport___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QWebChannelAbstractTransport) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QWebChannelAbstractTransport___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QWebChannelAbstractTransport) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QWebChannelAbstractTransport___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQWebChannelAbstractTransport_ChildEvent
 func callbackQWebChannelAbstractTransport_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -1092,8 +1058,9 @@ func callbackQWebChannelAbstractTransport_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QWebChannelAbstractTransport) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QWebChannelAbstractTransport_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QWebChannelAbstractTransport_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 

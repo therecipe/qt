@@ -578,9 +578,7 @@ func CppOutput(name, value string, f *parser.Function) string {
 				}
 			}
 		}
-	}
 
-	if parser.UseJs() && f.SignalMode != parser.CALLBACK {
 		if isClass(parser.CleanValue(f.Output)) && !strings.Contains(cppType(f, f.Output), "emscripten::val") && f.BoundByEmscripten {
 			if !strings.Contains(out, "emscripten::val::global") {
 				if strings.Contains(out, "; new") {
@@ -695,19 +693,19 @@ func _cppOutput(name, value string, f *parser.Function) string {
 					if parser.UseJs() {
 						return "({ " + cppOutputPackingStringForJs(fmt.Sprintf("const_cast<char*>(%v)", name), fSizeVariable) + " })"
 					}
-					return fmt.Sprintf("%v_PackedString { const_cast<char*>(%v), %v }", strings.Title(parser.State.ClassMap[f.ClassName()].Module), name, fSizeVariable)
+					return fmt.Sprintf("%v_PackedString { const_cast<char*>(%v), %v, NULL }", strings.Title(parser.State.ClassMap[f.ClassName()].Module), name, fSizeVariable)
 				} else {
 					if parser.UseJs() {
 						return "({ " + cppOutputPackingStringForJs(name, fSizeVariable) + " })"
 					}
-					return fmt.Sprintf("%v_PackedString { %v, %v }", strings.Title(parser.State.ClassMap[f.ClassName()].Module), name, fSizeVariable)
+					return fmt.Sprintf("%v_PackedString { %v, %v, NULL }", strings.Title(parser.State.ClassMap[f.ClassName()].Module), name, fSizeVariable)
 				}
 			}
 
 			if parser.UseJs() {
 				return fmt.Sprintf("({ char t%v = %v; %v })", tHashName, name, cppOutputPackingStringForJs("&t"+tHashName, "-1"))
 			}
-			return fmt.Sprintf("({ char t%v = %v; %v_PackedString { &t%v, %v }; })", tHashName, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName, "-1")
+			return fmt.Sprintf("({ char t%v = %v; %v_PackedString { &t%v, %v, NULL }; })", tHashName, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName, "-1")
 		}
 
 	case "uchar", "quint8", "GLubyte":
@@ -722,24 +720,24 @@ func _cppOutput(name, value string, f *parser.Function) string {
 					if parser.UseJs() {
 						return fmt.Sprintf("({ char* t%v = static_cast<char*>(static_cast<void*>(const_cast<%v*>(%v))); %v })", tHashName, value, name, cppOutputPackingStringForJs("t"+tHashName, fSizeVariable))
 					}
-					return fmt.Sprintf("({ char* t%v = static_cast<char*>(static_cast<void*>(const_cast<%v*>(%v))); %v_PackedString { t%v, %v }; })", tHashName, value, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName, fSizeVariable)
+					return fmt.Sprintf("({ char* t%v = static_cast<char*>(static_cast<void*>(const_cast<%v*>(%v))); %v_PackedString { t%v, %v, NULL }; })", tHashName, value, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName, fSizeVariable)
 				}
 				if parser.UseJs() {
 					return fmt.Sprintf("({ char* t%v = static_cast<char*>(static_cast<void*>(%v)); %v })", tHashName, name, cppOutputPackingStringForJs("t"+tHashName, fSizeVariable))
 				}
-				return fmt.Sprintf("({ char* t%v = static_cast<char*>(static_cast<void*>(%v)); %v_PackedString { t%v, %v }; })", tHashName, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName, fSizeVariable)
+				return fmt.Sprintf("({ char* t%v = static_cast<char*>(static_cast<void*>(%v)); %v_PackedString { t%v, %v, NULL }; })", tHashName, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName, fSizeVariable)
 			}
 
 			if strings.Contains(vOld, "const") {
 				if parser.UseJs() {
 					return fmt.Sprintf("({ %v pret%v = %v; char* t%v = static_cast<char*>(static_cast<void*>(const_cast<%v*>(&pret%v))); %v })", vOld, tHashName, name, tHashName, value, tHashName, cppOutputPackingStringForJs("t"+tHashName, "-1"))
 				}
-				return fmt.Sprintf("({ %v pret%v = %v; char* t%v = static_cast<char*>(static_cast<void*>(const_cast<%v*>(&pret%v))); %v_PackedString { t%v, %v }; })", vOld, tHashName, name, tHashName, value, tHashName, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName, "-1")
+				return fmt.Sprintf("({ %v pret%v = %v; char* t%v = static_cast<char*>(static_cast<void*>(const_cast<%v*>(&pret%v))); %v_PackedString { t%v, %v, NULL }; })", vOld, tHashName, name, tHashName, value, tHashName, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName, "-1")
 			}
 			if parser.UseJs() {
 				return fmt.Sprintf("({ %v pret%v = %v; char* t%v = static_cast<char*>(static_cast<void*>(&pret%v)); %v })", vOld, tHashName, name, tHashName, tHashName, cppOutputPackingStringForJs("t"+tHashName, "-1"))
 			}
-			return fmt.Sprintf("({ %v pret%v = %v; char* t%v = static_cast<char*>(static_cast<void*>(&pret%v)); %v_PackedString { t%v, %v }; })", vOld, tHashName, name, tHashName, tHashName, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName, "-1")
+			return fmt.Sprintf("({ %v pret%v = %v; char* t%v = static_cast<char*>(static_cast<void*>(&pret%v)); %v_PackedString { t%v, %v, NULL }; })", vOld, tHashName, name, tHashName, tHashName, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName, "-1")
 		}
 
 	case "QString":
@@ -748,12 +746,12 @@ func _cppOutput(name, value string, f *parser.Function) string {
 				if parser.UseJs() {
 					return fmt.Sprintf("({ QByteArray t%v = %v->toUtf8(); %v })", tHashName, name, cppOutputPackingStringForJs("const_cast<char*>(t"+tHashName+".prepend(\"WHITESPACE\").constData()+10)", "t"+tHashName+".size()-10"))
 				}
-				return fmt.Sprintf("({ QByteArray t%v = %v->toUtf8(); %v_PackedString { const_cast<char*>(t%v.prepend(\"WHITESPACE\").constData()+10), t%v.size()-10 }; })", tHashName, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName, tHashName)
+				return fmt.Sprintf("({ QByteArray* t%v = new QByteArray(%v->toUtf8()); %v_PackedString { const_cast<char*>(t%v->prepend(\"WHITESPACE\").constData()+10), t%v->size()-10, t%v }; })", tHashName, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName, tHashName, tHashName)
 			}
 			if parser.UseJs() {
 				return fmt.Sprintf("({ QByteArray t%v = %v.toUtf8(); %v })", tHashName, name, cppOutputPackingStringForJs("const_cast<char*>(t"+tHashName+".prepend(\"WHITESPACE\").constData()+10)", "t"+tHashName+".size()-10"))
 			}
-			return fmt.Sprintf("({ QByteArray t%v = %v.toUtf8(); %v_PackedString { const_cast<char*>(t%v.prepend(\"WHITESPACE\").constData()+10), t%v.size()-10 }; })", tHashName, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName, tHashName)
+			return fmt.Sprintf("({ QByteArray* t%v = new QByteArray(%v.toUtf8()); %v_PackedString { const_cast<char*>(t%v->prepend(\"WHITESPACE\").constData()+10), t%v->size()-10, t%v }; })", tHashName, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName, tHashName, tHashName)
 		}
 
 	case "QStringList":
@@ -762,12 +760,12 @@ func _cppOutput(name, value string, f *parser.Function) string {
 				if parser.UseJs() {
 					return fmt.Sprintf("({ QByteArray t%v = %v->join(\"¡¦!\").toUtf8(); %v })", tHashName, name, cppOutputPackingStringForJs("const_cast<char*>(t"+tHashName+".prepend(\"WHITESPACE\").constData()+10)", "t"+tHashName+".size()-10"))
 				}
-				return fmt.Sprintf("({ QByteArray t%v = %v->join(\"¡¦!\").toUtf8(); %v_PackedString { const_cast<char*>(t%v.prepend(\"WHITESPACE\").constData()+10), t%v.size()-10 }; })", tHashName, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName, tHashName)
+				return fmt.Sprintf("({ QByteArray* t%v = new QByteArray(%v->join(\"¡¦!\").toUtf8()); %v_PackedString { const_cast<char*>(t%v->prepend(\"WHITESPACE\").constData()+10), t%v->size()-10, t%v }; })", tHashName, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName, tHashName, tHashName)
 			}
 			if parser.UseJs() {
 				return fmt.Sprintf("({ QByteArray t%v = %v.join(\"¡¦!\").toUtf8(); %v })", tHashName, name, cppOutputPackingStringForJs("const_cast<char*>(t"+tHashName+".prepend(\"WHITESPACE\").constData()+10)", "t"+tHashName+".size()-10"))
 			}
-			return fmt.Sprintf("({ QByteArray t%v = %v.join(\"¡¦!\").toUtf8(); %v_PackedString { const_cast<char*>(t%v.prepend(\"WHITESPACE\").constData()+10), t%v.size()-10 }; })", tHashName, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName, tHashName)
+			return fmt.Sprintf("({ QByteArray* t%v = new QByteArray(%v.join(\"¡¦!\").toUtf8()); %v_PackedString { const_cast<char*>(t%v->prepend(\"WHITESPACE\").constData()+10), t%v->size()-10, t%v }; })", tHashName, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName, tHashName, tHashName)
 		}
 
 	case
@@ -843,7 +841,9 @@ func _cppOutput(name, value string, f *parser.Function) string {
 			} else if strings.HasPrefix(f.ClassName(), "QVirtualKeyboard") ||
 				f.ClassName() == "QColorSpace" ||
 				f.Fullname == "QGuiApplication::highDpiScaleFactorRoundingPolicy" ||
-				f.Fullname == "QCanBusDevice::busStatus" {
+				f.Fullname == "QCanBusDevice::busStatus" ||
+				f.Fullname == "QTextBlockFormat::marker" ||
+				f.Fullname == "QActionGroup::exclusionPolicy" {
 				return fmt.Sprintf("static_cast<qint64>(%v)", name)
 			}
 			return name

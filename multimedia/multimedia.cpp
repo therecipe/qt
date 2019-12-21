@@ -178,7 +178,7 @@ public:
 	bool event(QEvent * e) { return callbackQAbstractAudioDeviceInfo_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAbstractAudioDeviceInfo_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractAudioDeviceInfo_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQAbstractAudioDeviceInfo_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQAbstractAudioDeviceInfo_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractAudioDeviceInfo_TimerEvent(this, event); };
 };
 
@@ -189,7 +189,7 @@ int QAbstractAudioDeviceInfo_QAbstractAudioDeviceInfo_QRegisterMetaType(){qRegis
 
 struct QtMultimedia_PackedString QAbstractAudioDeviceInfo_DeviceName(void* ptr)
 {
-	return ({ QByteArray tdecf08 = static_cast<QAbstractAudioDeviceInfo*>(ptr)->deviceName().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tdecf08.prepend("WHITESPACE").constData()+10), tdecf08.size()-10 }; });
+	return ({ QByteArray* tdecf08 = new QByteArray(static_cast<QAbstractAudioDeviceInfo*>(ptr)->deviceName().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(tdecf08->prepend("WHITESPACE").constData()+10), tdecf08->size()-10, tdecf08 }; });
 }
 
 char QAbstractAudioDeviceInfo_IsFormatSupported(void* ptr, void* format)
@@ -214,7 +214,7 @@ struct QtMultimedia_PackedList QAbstractAudioDeviceInfo_SupportedChannelCounts(v
 
 struct QtMultimedia_PackedString QAbstractAudioDeviceInfo_SupportedCodecs(void* ptr)
 {
-	return ({ QByteArray t6d2a0e = static_cast<QAbstractAudioDeviceInfo*>(ptr)->supportedCodecs().join("¡¦!").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t6d2a0e.prepend("WHITESPACE").constData()+10), t6d2a0e.size()-10 }; });
+	return ({ QByteArray* t6d2a0e = new QByteArray(static_cast<QAbstractAudioDeviceInfo*>(ptr)->supportedCodecs().join("¡¦!").toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t6d2a0e->prepend("WHITESPACE").constData()+10), t6d2a0e->size()-10, t6d2a0e }; });
 }
 
 struct QtMultimedia_PackedList QAbstractAudioDeviceInfo_SupportedSampleRates(void* ptr)
@@ -424,38 +424,6 @@ void* QAbstractAudioDeviceInfo___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QAbstractAudioDeviceInfo___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QAbstractAudioDeviceInfo___qFindChildren_setList2(void* ptr, void* i)
-{
-	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QAudioSystemPlugin*>(i));
-	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
-	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
-	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaServiceProviderPlugin*>(i));
-	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QRadioData*>(i));
-	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QVideoWidget*>(i));
-	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-	}
-}
-
-void* QAbstractAudioDeviceInfo___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 void QAbstractAudioDeviceInfo_ChildEventDefault(void* ptr, void* event)
 {
 		static_cast<QAbstractAudioDeviceInfo*>(ptr)->QAbstractAudioDeviceInfo::childEvent(static_cast<QChildEvent*>(event));
@@ -550,7 +518,7 @@ public:
 	bool event(QEvent * e) { return callbackQAbstractAudioInput_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAbstractAudioInput_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractAudioInput_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQAbstractAudioInput_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQAbstractAudioInput_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractAudioInput_TimerEvent(this, event); };
 };
 
@@ -808,38 +776,6 @@ void* QAbstractAudioInput___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QAbstractAudioInput___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QAbstractAudioInput___qFindChildren_setList2(void* ptr, void* i)
-{
-	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QAudioSystemPlugin*>(i));
-	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
-	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
-	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaServiceProviderPlugin*>(i));
-	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QRadioData*>(i));
-	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QVideoWidget*>(i));
-	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-	}
-}
-
-void* QAbstractAudioInput___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 void QAbstractAudioInput_ChildEventDefault(void* ptr, void* event)
 {
 		static_cast<QAbstractAudioInput*>(ptr)->QAbstractAudioInput::childEvent(static_cast<QChildEvent*>(event));
@@ -936,7 +872,7 @@ public:
 	bool event(QEvent * e) { return callbackQAbstractAudioOutput_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAbstractAudioOutput_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractAudioOutput_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQAbstractAudioOutput_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQAbstractAudioOutput_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractAudioOutput_TimerEvent(this, event); };
 };
 
@@ -1214,38 +1150,6 @@ void* QAbstractAudioOutput___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QAbstractAudioOutput___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QAbstractAudioOutput___qFindChildren_setList2(void* ptr, void* i)
-{
-	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QAudioSystemPlugin*>(i));
-	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
-	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
-	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaServiceProviderPlugin*>(i));
-	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QRadioData*>(i));
-	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QVideoWidget*>(i));
-	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-	}
-}
-
-void* QAbstractAudioOutput___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 void QAbstractAudioOutput_ChildEventDefault(void* ptr, void* event)
 {
 		static_cast<QAbstractAudioOutput*>(ptr)->QAbstractAudioOutput::childEvent(static_cast<QChildEvent*>(event));
@@ -1336,12 +1240,12 @@ void QAbstractPlanarVideoBuffer_DestroyQAbstractPlanarVideoBufferDefault(void* p
 
 struct QtMultimedia_PackedString QAbstractPlanarVideoBuffer_Map(void* ptr, long long mode, int numBytes, int bytesPerLine)
 {
-	return ({ char* t63420a = static_cast<char*>(static_cast<void*>(static_cast<QAbstractPlanarVideoBuffer*>(ptr)->map(static_cast<QAbstractVideoBuffer::MapMode>(mode), &numBytes, &bytesPerLine))); QtMultimedia_PackedString { t63420a, -1 }; });
+	return ({ char* t63420a = static_cast<char*>(static_cast<void*>(static_cast<QAbstractPlanarVideoBuffer*>(ptr)->map(static_cast<QAbstractVideoBuffer::MapMode>(mode), &numBytes, &bytesPerLine))); QtMultimedia_PackedString { t63420a, -1, NULL }; });
 }
 
 struct QtMultimedia_PackedString QAbstractPlanarVideoBuffer_MapDefault(void* ptr, long long mode, int numBytes, int bytesPerLine)
 {
-		return ({ char* tbdd456 = static_cast<char*>(static_cast<void*>(static_cast<QAbstractPlanarVideoBuffer*>(ptr)->QAbstractPlanarVideoBuffer::map(static_cast<QAbstractVideoBuffer::MapMode>(mode), &numBytes, &bytesPerLine))); QtMultimedia_PackedString { tbdd456, -1 }; });
+		return ({ char* tbdd456 = static_cast<char*>(static_cast<void*>(static_cast<QAbstractPlanarVideoBuffer*>(ptr)->QAbstractPlanarVideoBuffer::map(static_cast<QAbstractVideoBuffer::MapMode>(mode), &numBytes, &bytesPerLine))); QtMultimedia_PackedString { tbdd456, -1, NULL }; });
 }
 
 long long QAbstractPlanarVideoBuffer_MapMode(void* ptr)
@@ -1409,7 +1313,7 @@ long long QAbstractVideoBuffer_HandleType(void* ptr)
 
 struct QtMultimedia_PackedString QAbstractVideoBuffer_Map(void* ptr, long long mode, int numBytes, int bytesPerLine)
 {
-	return ({ char* t5cec49 = static_cast<char*>(static_cast<void*>(static_cast<QAbstractVideoBuffer*>(ptr)->map(static_cast<QAbstractVideoBuffer::MapMode>(mode), &numBytes, &bytesPerLine))); QtMultimedia_PackedString { t5cec49, -1 }; });
+	return ({ char* t5cec49 = static_cast<char*>(static_cast<void*>(static_cast<QAbstractVideoBuffer*>(ptr)->map(static_cast<QAbstractVideoBuffer::MapMode>(mode), &numBytes, &bytesPerLine))); QtMultimedia_PackedString { t5cec49, -1, NULL }; });
 }
 
 long long QAbstractVideoBuffer_MapMode(void* ptr)
@@ -1462,7 +1366,7 @@ public:
 	bool event(QEvent * e) { return callbackQAbstractVideoFilter_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAbstractVideoFilter_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractVideoFilter_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQAbstractVideoFilter_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQAbstractVideoFilter_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractVideoFilter_TimerEvent(this, event); };
 };
 
@@ -1660,38 +1564,6 @@ void* QAbstractVideoFilter___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QAbstractVideoFilter___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QAbstractVideoFilter___qFindChildren_setList2(void* ptr, void* i)
-{
-	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QAudioSystemPlugin*>(i));
-	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
-	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
-	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaServiceProviderPlugin*>(i));
-	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QRadioData*>(i));
-	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QVideoWidget*>(i));
-	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-	}
-}
-
-void* QAbstractVideoFilter___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 void QAbstractVideoFilter_ChildEventDefault(void* ptr, void* event)
 {
 		static_cast<QAbstractVideoFilter*>(ptr)->QAbstractVideoFilter::childEvent(static_cast<QChildEvent*>(event));
@@ -1777,7 +1649,7 @@ public:
 	bool event(QEvent * e) { return callbackQAbstractVideoSurface_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAbstractVideoSurface_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractVideoSurface_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQAbstractVideoSurface_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQAbstractVideoSurface_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractVideoSurface_TimerEvent(this, event); };
 };
 
@@ -2111,38 +1983,6 @@ void* QAbstractVideoSurface___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QAbstractVideoSurface___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QAbstractVideoSurface___qFindChildren_setList2(void* ptr, void* i)
-{
-	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QAudioSystemPlugin*>(i));
-	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
-	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
-	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaServiceProviderPlugin*>(i));
-	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QRadioData*>(i));
-	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QVideoWidget*>(i));
-	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-	}
-}
-
-void* QAbstractVideoSurface___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 void QAbstractVideoSurface_ChildEventDefault(void* ptr, void* event)
 {
 		static_cast<QAbstractVideoSurface*>(ptr)->QAbstractVideoSurface::childEvent(static_cast<QChildEvent*>(event));
@@ -2303,7 +2143,7 @@ public:
 	bool isAvailable() const { return callbackQMediaObject_IsAvailable(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	void Signal_MetaDataAvailableChanged(bool available) { callbackQMediaObject_MetaDataAvailableChanged(this, available); };
 	void Signal_MetaDataChanged() { callbackQMediaObject_MetaDataChanged(this); };
-	void Signal_MetaDataChanged2(const QString & key, const QVariant & value) { QByteArray ta62f22 = key.toUtf8(); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };callbackQMediaObject_MetaDataChanged2(this, keyPacked, const_cast<QVariant*>(&value)); };
+	void Signal_MetaDataChanged2(const QString & key, const QVariant & value) { QByteArray* ta62f22 = new QByteArray(key.toUtf8()); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22->prepend("WHITESPACE").constData()+10), ta62f22->size()-10, ta62f22 };callbackQMediaObject_MetaDataChanged2(this, keyPacked, const_cast<QVariant*>(&value)); };
 	void Signal_NotifyIntervalChanged(int milliseconds) { callbackQMediaObject_NotifyIntervalChanged(this, milliseconds); };
 	QMediaService * service() const { return static_cast<QMediaService*>(callbackQMediaObject_Service(const_cast<void*>(static_cast<const void*>(this)))); };
 	void unbind(QObject * object) { callbackQMediaObject_Unbind(this, object); };
@@ -2316,7 +2156,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaObject_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaObject_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaObject_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaObject_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaObject_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaObject_TimerEvent(this, event); };
 };
 
@@ -2455,7 +2295,7 @@ void QAudioDecoder_Error2(void* ptr, long long error)
 
 struct QtMultimedia_PackedString QAudioDecoder_ErrorString(void* ptr)
 {
-	return ({ QByteArray t574770 = static_cast<QAudioDecoder*>(ptr)->errorString().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t574770.prepend("WHITESPACE").constData()+10), t574770.size()-10 }; });
+	return ({ QByteArray* t574770 = new QByteArray(static_cast<QAudioDecoder*>(ptr)->errorString().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t574770->prepend("WHITESPACE").constData()+10), t574770->size()-10, t574770 }; });
 }
 
 void QAudioDecoder_ConnectFinished(void* ptr, long long t)
@@ -2555,7 +2395,7 @@ void* QAudioDecoder_SourceDevice(void* ptr)
 
 struct QtMultimedia_PackedString QAudioDecoder_SourceFilename(void* ptr)
 {
-	return ({ QByteArray t0d51d3 = static_cast<QAudioDecoder*>(ptr)->sourceFilename().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t0d51d3.prepend("WHITESPACE").constData()+10), t0d51d3.size()-10 }; });
+	return ({ QByteArray* t0d51d3 = new QByteArray(static_cast<QAudioDecoder*>(ptr)->sourceFilename().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t0d51d3->prepend("WHITESPACE").constData()+10), t0d51d3->size()-10, t0d51d3 }; });
 }
 
 void QAudioDecoder_Start(void* ptr)
@@ -2620,7 +2460,7 @@ public:
 	void Signal_BufferReady() { callbackQAudioDecoderControl_BufferReady(this); };
 	qint64 duration() const { return callbackQAudioDecoderControl_Duration(const_cast<void*>(static_cast<const void*>(this))); };
 	void Signal_DurationChanged(qint64 duration) { callbackQAudioDecoderControl_DurationChanged(this, duration); };
-	void Signal_Error(int error, const QString & errorString) { QByteArray tc8b6bd = errorString.toUtf8(); QtMultimedia_PackedString errorStringPacked = { const_cast<char*>(tc8b6bd.prepend("WHITESPACE").constData()+10), tc8b6bd.size()-10 };callbackQAudioDecoderControl_Error(this, error, errorStringPacked); };
+	void Signal_Error(int error, const QString & errorString) { QByteArray* tc8b6bd = new QByteArray(errorString.toUtf8()); QtMultimedia_PackedString errorStringPacked = { const_cast<char*>(tc8b6bd->prepend("WHITESPACE").constData()+10), tc8b6bd->size()-10, tc8b6bd };callbackQAudioDecoderControl_Error(this, error, errorStringPacked); };
 	void Signal_Finished() { callbackQAudioDecoderControl_Finished(this); };
 	void Signal_FormatChanged(const QAudioFormat & format) { callbackQAudioDecoderControl_FormatChanged(this, const_cast<QAudioFormat*>(&format)); };
 	qint64 position() const { return callbackQAudioDecoderControl_Position(const_cast<void*>(static_cast<const void*>(this))); };
@@ -2628,7 +2468,7 @@ public:
 	QAudioBuffer read() { return *static_cast<QAudioBuffer*>(callbackQAudioDecoderControl_Read(this)); };
 	void setAudioFormat(const QAudioFormat & format) { callbackQAudioDecoderControl_SetAudioFormat(this, const_cast<QAudioFormat*>(&format)); };
 	void setSourceDevice(QIODevice * device) { callbackQAudioDecoderControl_SetSourceDevice(this, device); };
-	void setSourceFilename(const QString & fileName) { QByteArray td83e09 = fileName.toUtf8(); QtMultimedia_PackedString fileNamePacked = { const_cast<char*>(td83e09.prepend("WHITESPACE").constData()+10), td83e09.size()-10 };callbackQAudioDecoderControl_SetSourceFilename(this, fileNamePacked); };
+	void setSourceFilename(const QString & fileName) { QByteArray* td83e09 = new QByteArray(fileName.toUtf8()); QtMultimedia_PackedString fileNamePacked = { const_cast<char*>(td83e09->prepend("WHITESPACE").constData()+10), td83e09->size()-10, td83e09 };callbackQAudioDecoderControl_SetSourceFilename(this, fileNamePacked); };
 	void Signal_SourceChanged() { callbackQAudioDecoderControl_SourceChanged(this); };
 	QIODevice * sourceDevice() const { return static_cast<QIODevice*>(callbackQAudioDecoderControl_SourceDevice(const_cast<void*>(static_cast<const void*>(this)))); };
 	QString sourceFilename() const { return ({ QtMultimedia_PackedString tempVal = callbackQAudioDecoderControl_SourceFilename(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
@@ -2646,7 +2486,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
@@ -2869,7 +2709,7 @@ void* QAudioDecoderControl_SourceDevice(void* ptr)
 
 struct QtMultimedia_PackedString QAudioDecoderControl_SourceFilename(void* ptr)
 {
-	return ({ QByteArray tcf9fb0 = static_cast<QAudioDecoderControl*>(ptr)->sourceFilename().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tcf9fb0.prepend("WHITESPACE").constData()+10), tcf9fb0.size()-10 }; });
+	return ({ QByteArray* tcf9fb0 = new QByteArray(static_cast<QAudioDecoderControl*>(ptr)->sourceFilename().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(tcf9fb0->prepend("WHITESPACE").constData()+10), tcf9fb0->size()-10, tcf9fb0 }; });
 }
 
 void QAudioDecoderControl_Start(void* ptr)
@@ -2942,7 +2782,7 @@ void* QAudioDeviceInfo_QAudioDeviceInfo_DefaultOutputDevice()
 
 struct QtMultimedia_PackedString QAudioDeviceInfo_DeviceName(void* ptr)
 {
-	return ({ QByteArray t7b618f = static_cast<QAudioDeviceInfo*>(ptr)->deviceName().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t7b618f.prepend("WHITESPACE").constData()+10), t7b618f.size()-10 }; });
+	return ({ QByteArray* t7b618f = new QByteArray(static_cast<QAudioDeviceInfo*>(ptr)->deviceName().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t7b618f->prepend("WHITESPACE").constData()+10), t7b618f->size()-10, t7b618f }; });
 }
 
 char QAudioDeviceInfo_IsFormatSupported(void* ptr, void* settings)
@@ -2977,7 +2817,7 @@ struct QtMultimedia_PackedList QAudioDeviceInfo_SupportedChannelCounts(void* ptr
 
 struct QtMultimedia_PackedString QAudioDeviceInfo_SupportedCodecs(void* ptr)
 {
-	return ({ QByteArray t91bb7c = static_cast<QAudioDeviceInfo*>(ptr)->supportedCodecs().join("¡¦!").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t91bb7c.prepend("WHITESPACE").constData()+10), t91bb7c.size()-10 }; });
+	return ({ QByteArray* t91bb7c = new QByteArray(static_cast<QAudioDeviceInfo*>(ptr)->supportedCodecs().join("¡¦!").toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t91bb7c->prepend("WHITESPACE").constData()+10), t91bb7c->size()-10, t91bb7c }; });
 }
 
 struct QtMultimedia_PackedList QAudioDeviceInfo_SupportedSampleRates(void* ptr)
@@ -3119,7 +2959,7 @@ int QAudioEncoderSettings_ChannelCount(void* ptr)
 
 struct QtMultimedia_PackedString QAudioEncoderSettings_Codec(void* ptr)
 {
-	return ({ QByteArray t4add78 = static_cast<QAudioEncoderSettings*>(ptr)->codec().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t4add78.prepend("WHITESPACE").constData()+10), t4add78.size()-10 }; });
+	return ({ QByteArray* t4add78 = new QByteArray(static_cast<QAudioEncoderSettings*>(ptr)->codec().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t4add78->prepend("WHITESPACE").constData()+10), t4add78->size()-10, t4add78 }; });
 }
 
 long long QAudioEncoderSettings_EncodingMode(void* ptr)
@@ -3241,7 +3081,7 @@ struct QtMultimedia_PackedList QAudioEncoderSettings___setEncodingOptions_option
 
 struct QtMultimedia_PackedString QAudioEncoderSettings_____encodingOptions_keyList_atList(void* ptr, int i)
 {
-	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
+	return ({ QByteArray* t94aa5e = new QByteArray(({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t94aa5e->prepend("WHITESPACE").constData()+10), t94aa5e->size()-10, t94aa5e }; });
 }
 
 void QAudioEncoderSettings_____encodingOptions_keyList_setList(void* ptr, struct QtMultimedia_PackedString i)
@@ -3257,7 +3097,7 @@ void* QAudioEncoderSettings_____encodingOptions_keyList_newList(void* ptr)
 
 struct QtMultimedia_PackedString QAudioEncoderSettings_____setEncodingOptions_options_keyList_atList(void* ptr, int i)
 {
-	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
+	return ({ QByteArray* t94aa5e = new QByteArray(({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t94aa5e->prepend("WHITESPACE").constData()+10), t94aa5e->size()-10, t94aa5e }; });
 }
 
 void QAudioEncoderSettings_____setEncodingOptions_options_keyList_setList(void* ptr, struct QtMultimedia_PackedString i)
@@ -3276,7 +3116,7 @@ class MyQAudioEncoderSettingsControl: public QAudioEncoderSettingsControl
 public:
 	MyQAudioEncoderSettingsControl(QObject *parent = Q_NULLPTR) : QAudioEncoderSettingsControl(parent) {QAudioEncoderSettingsControl_QAudioEncoderSettingsControl_QRegisterMetaType();};
 	QAudioEncoderSettings audioSettings() const { return *static_cast<QAudioEncoderSettings*>(callbackQAudioEncoderSettingsControl_AudioSettings(const_cast<void*>(static_cast<const void*>(this)))); };
-	QString codecDescription(const QString & codecName) const { QByteArray t06d49e = codecName.toUtf8(); QtMultimedia_PackedString codecNamePacked = { const_cast<char*>(t06d49e.prepend("WHITESPACE").constData()+10), t06d49e.size()-10 };return ({ QtMultimedia_PackedString tempVal = callbackQAudioEncoderSettingsControl_CodecDescription(const_cast<void*>(static_cast<const void*>(this)), codecNamePacked); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	QString codecDescription(const QString & codecName) const { QByteArray* t06d49e = new QByteArray(codecName.toUtf8()); QtMultimedia_PackedString codecNamePacked = { const_cast<char*>(t06d49e->prepend("WHITESPACE").constData()+10), t06d49e->size()-10, t06d49e };return ({ QtMultimedia_PackedString tempVal = callbackQAudioEncoderSettingsControl_CodecDescription(const_cast<void*>(static_cast<const void*>(this)), codecNamePacked); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	void setAudioSettings(const QAudioEncoderSettings & settings) { callbackQAudioEncoderSettingsControl_SetAudioSettings(this, const_cast<QAudioEncoderSettings*>(&settings)); };
 	QStringList supportedAudioCodecs() const { return ({ QtMultimedia_PackedString tempVal = callbackQAudioEncoderSettingsControl_SupportedAudioCodecs(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	QList<int> supportedSampleRates(const QAudioEncoderSettings & settings, bool * continuous) const { return ({ QList<int>* tmpP = static_cast<QList<int>*>(callbackQAudioEncoderSettingsControl_SupportedSampleRates(const_cast<void*>(static_cast<const void*>(this)), const_cast<QAudioEncoderSettings*>(&settings), reinterpret_cast<char*>(continuous))); QList<int> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
@@ -3290,7 +3130,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
@@ -3353,7 +3193,7 @@ void* QAudioEncoderSettingsControl_AudioSettings(void* ptr)
 
 struct QtMultimedia_PackedString QAudioEncoderSettingsControl_CodecDescription(void* ptr, struct QtMultimedia_PackedString codecName)
 {
-	return ({ QByteArray t3cf24d = static_cast<QAudioEncoderSettingsControl*>(ptr)->codecDescription(QString::fromUtf8(codecName.data, codecName.len)).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t3cf24d.prepend("WHITESPACE").constData()+10), t3cf24d.size()-10 }; });
+	return ({ QByteArray* t3cf24d = new QByteArray(static_cast<QAudioEncoderSettingsControl*>(ptr)->codecDescription(QString::fromUtf8(codecName.data, codecName.len)).toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t3cf24d->prepend("WHITESPACE").constData()+10), t3cf24d->size()-10, t3cf24d }; });
 }
 
 void QAudioEncoderSettingsControl_SetAudioSettings(void* ptr, void* settings)
@@ -3363,7 +3203,7 @@ void QAudioEncoderSettingsControl_SetAudioSettings(void* ptr, void* settings)
 
 struct QtMultimedia_PackedString QAudioEncoderSettingsControl_SupportedAudioCodecs(void* ptr)
 {
-	return ({ QByteArray t640ebe = static_cast<QAudioEncoderSettingsControl*>(ptr)->supportedAudioCodecs().join("¡¦!").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t640ebe.prepend("WHITESPACE").constData()+10), t640ebe.size()-10 }; });
+	return ({ QByteArray* t640ebe = new QByteArray(static_cast<QAudioEncoderSettingsControl*>(ptr)->supportedAudioCodecs().join("¡¦!").toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t640ebe->prepend("WHITESPACE").constData()+10), t640ebe->size()-10, t640ebe }; });
 }
 
 struct QtMultimedia_PackedList QAudioEncoderSettingsControl_SupportedSampleRates(void* ptr, void* settings, char* continuous)
@@ -3436,7 +3276,7 @@ int QAudioFormat_ChannelCount(void* ptr)
 
 struct QtMultimedia_PackedString QAudioFormat_Codec(void* ptr)
 {
-	return ({ QByteArray t6e9963 = static_cast<QAudioFormat*>(ptr)->codec().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t6e9963.prepend("WHITESPACE").constData()+10), t6e9963.size()-10 }; });
+	return ({ QByteArray* t6e9963 = new QByteArray(static_cast<QAudioFormat*>(ptr)->codec().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t6e9963->prepend("WHITESPACE").constData()+10), t6e9963->size()-10, t6e9963 }; });
 }
 
 long long QAudioFormat_DurationForBytes(void* ptr, int bytes)
@@ -3530,7 +3370,7 @@ public:
 	bool event(QEvent * e) { return callbackQAudioInput_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAudioInput_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAudioInput_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQAudioInput_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQAudioInput_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQAudioInput_TimerEvent(this, event); };
 };
 
@@ -3867,38 +3707,6 @@ void* QAudioInput___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QAudioInput___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QAudioInput___qFindChildren_setList2(void* ptr, void* i)
-{
-	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QAudioSystemPlugin*>(i));
-	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
-	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
-	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaServiceProviderPlugin*>(i));
-	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QRadioData*>(i));
-	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QVideoWidget*>(i));
-	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-	}
-}
-
-void* QAudioInput___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 void QAudioInput_ChildEventDefault(void* ptr, void* event)
 {
 		static_cast<QAudioInput*>(ptr)->QAudioInput::childEvent(static_cast<QChildEvent*>(event));
@@ -3964,11 +3772,11 @@ class MyQAudioInputSelectorControl: public QAudioInputSelectorControl
 {
 public:
 	QString activeInput() const { return ({ QtMultimedia_PackedString tempVal = callbackQAudioInputSelectorControl_ActiveInput(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
-	void Signal_ActiveInputChanged(const QString & name) { QByteArray t6ae999 = name.toUtf8(); QtMultimedia_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };callbackQAudioInputSelectorControl_ActiveInputChanged(this, namePacked); };
+	void Signal_ActiveInputChanged(const QString & name) { QByteArray* t6ae999 = new QByteArray(name.toUtf8()); QtMultimedia_PackedString namePacked = { const_cast<char*>(t6ae999->prepend("WHITESPACE").constData()+10), t6ae999->size()-10, t6ae999 };callbackQAudioInputSelectorControl_ActiveInputChanged(this, namePacked); };
 	void Signal_AvailableInputsChanged() { callbackQAudioInputSelectorControl_AvailableInputsChanged(this); };
 	QString defaultInput() const { return ({ QtMultimedia_PackedString tempVal = callbackQAudioInputSelectorControl_DefaultInput(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
-	QString inputDescription(const QString & name) const { QByteArray t6ae999 = name.toUtf8(); QtMultimedia_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };return ({ QtMultimedia_PackedString tempVal = callbackQAudioInputSelectorControl_InputDescription(const_cast<void*>(static_cast<const void*>(this)), namePacked); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
-	void setActiveInput(const QString & name) { QByteArray t6ae999 = name.toUtf8(); QtMultimedia_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };callbackQAudioInputSelectorControl_SetActiveInput(this, namePacked); };
+	QString inputDescription(const QString & name) const { QByteArray* t6ae999 = new QByteArray(name.toUtf8()); QtMultimedia_PackedString namePacked = { const_cast<char*>(t6ae999->prepend("WHITESPACE").constData()+10), t6ae999->size()-10, t6ae999 };return ({ QtMultimedia_PackedString tempVal = callbackQAudioInputSelectorControl_InputDescription(const_cast<void*>(static_cast<const void*>(this)), namePacked); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	void setActiveInput(const QString & name) { QByteArray* t6ae999 = new QByteArray(name.toUtf8()); QtMultimedia_PackedString namePacked = { const_cast<char*>(t6ae999->prepend("WHITESPACE").constData()+10), t6ae999->size()-10, t6ae999 };callbackQAudioInputSelectorControl_SetActiveInput(this, namePacked); };
 	 ~MyQAudioInputSelectorControl() { callbackQAudioInputSelectorControl_DestroyQAudioInputSelectorControl(this); };
 	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQMediaControl_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -3979,7 +3787,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
@@ -3990,7 +3798,7 @@ int QAudioInputSelectorControl_QAudioInputSelectorControl_QRegisterMetaType(){qR
 
 struct QtMultimedia_PackedString QAudioInputSelectorControl_ActiveInput(void* ptr)
 {
-	return ({ QByteArray t730771 = static_cast<QAudioInputSelectorControl*>(ptr)->activeInput().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t730771.prepend("WHITESPACE").constData()+10), t730771.size()-10 }; });
+	return ({ QByteArray* t730771 = new QByteArray(static_cast<QAudioInputSelectorControl*>(ptr)->activeInput().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t730771->prepend("WHITESPACE").constData()+10), t730771->size()-10, t730771 }; });
 }
 
 void QAudioInputSelectorControl_ConnectActiveInputChanged(void* ptr, long long t)
@@ -4025,12 +3833,12 @@ void QAudioInputSelectorControl_AvailableInputsChanged(void* ptr)
 
 struct QtMultimedia_PackedString QAudioInputSelectorControl_DefaultInput(void* ptr)
 {
-	return ({ QByteArray tdf7663 = static_cast<QAudioInputSelectorControl*>(ptr)->defaultInput().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tdf7663.prepend("WHITESPACE").constData()+10), tdf7663.size()-10 }; });
+	return ({ QByteArray* tdf7663 = new QByteArray(static_cast<QAudioInputSelectorControl*>(ptr)->defaultInput().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(tdf7663->prepend("WHITESPACE").constData()+10), tdf7663->size()-10, tdf7663 }; });
 }
 
 struct QtMultimedia_PackedString QAudioInputSelectorControl_InputDescription(void* ptr, struct QtMultimedia_PackedString name)
 {
-	return ({ QByteArray t5a41a5 = static_cast<QAudioInputSelectorControl*>(ptr)->inputDescription(QString::fromUtf8(name.data, name.len)).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t5a41a5.prepend("WHITESPACE").constData()+10), t5a41a5.size()-10 }; });
+	return ({ QByteArray* t5a41a5 = new QByteArray(static_cast<QAudioInputSelectorControl*>(ptr)->inputDescription(QString::fromUtf8(name.data, name.len)).toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t5a41a5->prepend("WHITESPACE").constData()+10), t5a41a5->size()-10, t5a41a5 }; });
 }
 
 void QAudioInputSelectorControl_SetActiveInput(void* ptr, struct QtMultimedia_PackedString name)
@@ -4051,7 +3859,7 @@ void QAudioInputSelectorControl_DestroyQAudioInputSelectorControlDefault(void* p
 
 struct QtMultimedia_PackedString QAudioInputSelectorControl___availableInputs_atList(void* ptr, int i)
 {
-	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
+	return ({ QByteArray* t94aa5e = new QByteArray(({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t94aa5e->prepend("WHITESPACE").constData()+10), t94aa5e->size()-10, t94aa5e }; });
 }
 
 void QAudioInputSelectorControl___availableInputs_setList(void* ptr, struct QtMultimedia_PackedString i)
@@ -4081,7 +3889,7 @@ public:
 	bool event(QEvent * e) { return callbackQAudioOutput_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAudioOutput_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAudioOutput_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQAudioOutput_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQAudioOutput_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQAudioOutput_TimerEvent(this, event); };
 };
 
@@ -4196,7 +4004,7 @@ int QAudioOutput_BytesFree(void* ptr)
 
 struct QtMultimedia_PackedString QAudioOutput_Category(void* ptr)
 {
-	return ({ QByteArray t5fbcba = static_cast<QAudioOutput*>(ptr)->category().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t5fbcba.prepend("WHITESPACE").constData()+10), t5fbcba.size()-10 }; });
+	return ({ QByteArray* t5fbcba = new QByteArray(static_cast<QAudioOutput*>(ptr)->category().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t5fbcba->prepend("WHITESPACE").constData()+10), t5fbcba->size()-10, t5fbcba }; });
 }
 
 long long QAudioOutput_ElapsedUSecs(void* ptr)
@@ -4428,38 +4236,6 @@ void* QAudioOutput___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QAudioOutput___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QAudioOutput___qFindChildren_setList2(void* ptr, void* i)
-{
-	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QAudioSystemPlugin*>(i));
-	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
-	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
-	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaServiceProviderPlugin*>(i));
-	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QRadioData*>(i));
-	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QVideoWidget*>(i));
-	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-	}
-}
-
-void* QAudioOutput___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 void QAudioOutput_ChildEventDefault(void* ptr, void* event)
 {
 		static_cast<QAudioOutput*>(ptr)->QAudioOutput::childEvent(static_cast<QChildEvent*>(event));
@@ -4525,11 +4301,11 @@ class MyQAudioOutputSelectorControl: public QAudioOutputSelectorControl
 {
 public:
 	QString activeOutput() const { return ({ QtMultimedia_PackedString tempVal = callbackQAudioOutputSelectorControl_ActiveOutput(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
-	void Signal_ActiveOutputChanged(const QString & name) { QByteArray t6ae999 = name.toUtf8(); QtMultimedia_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };callbackQAudioOutputSelectorControl_ActiveOutputChanged(this, namePacked); };
+	void Signal_ActiveOutputChanged(const QString & name) { QByteArray* t6ae999 = new QByteArray(name.toUtf8()); QtMultimedia_PackedString namePacked = { const_cast<char*>(t6ae999->prepend("WHITESPACE").constData()+10), t6ae999->size()-10, t6ae999 };callbackQAudioOutputSelectorControl_ActiveOutputChanged(this, namePacked); };
 	void Signal_AvailableOutputsChanged() { callbackQAudioOutputSelectorControl_AvailableOutputsChanged(this); };
 	QString defaultOutput() const { return ({ QtMultimedia_PackedString tempVal = callbackQAudioOutputSelectorControl_DefaultOutput(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
-	QString outputDescription(const QString & name) const { QByteArray t6ae999 = name.toUtf8(); QtMultimedia_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };return ({ QtMultimedia_PackedString tempVal = callbackQAudioOutputSelectorControl_OutputDescription(const_cast<void*>(static_cast<const void*>(this)), namePacked); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
-	void setActiveOutput(const QString & name) { QByteArray t6ae999 = name.toUtf8(); QtMultimedia_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };callbackQAudioOutputSelectorControl_SetActiveOutput(this, namePacked); };
+	QString outputDescription(const QString & name) const { QByteArray* t6ae999 = new QByteArray(name.toUtf8()); QtMultimedia_PackedString namePacked = { const_cast<char*>(t6ae999->prepend("WHITESPACE").constData()+10), t6ae999->size()-10, t6ae999 };return ({ QtMultimedia_PackedString tempVal = callbackQAudioOutputSelectorControl_OutputDescription(const_cast<void*>(static_cast<const void*>(this)), namePacked); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	void setActiveOutput(const QString & name) { QByteArray* t6ae999 = new QByteArray(name.toUtf8()); QtMultimedia_PackedString namePacked = { const_cast<char*>(t6ae999->prepend("WHITESPACE").constData()+10), t6ae999->size()-10, t6ae999 };callbackQAudioOutputSelectorControl_SetActiveOutput(this, namePacked); };
 	 ~MyQAudioOutputSelectorControl() { callbackQAudioOutputSelectorControl_DestroyQAudioOutputSelectorControl(this); };
 	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQMediaControl_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -4540,7 +4316,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
@@ -4551,7 +4327,7 @@ int QAudioOutputSelectorControl_QAudioOutputSelectorControl_QRegisterMetaType(){
 
 struct QtMultimedia_PackedString QAudioOutputSelectorControl_ActiveOutput(void* ptr)
 {
-	return ({ QByteArray t4c7caf = static_cast<QAudioOutputSelectorControl*>(ptr)->activeOutput().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t4c7caf.prepend("WHITESPACE").constData()+10), t4c7caf.size()-10 }; });
+	return ({ QByteArray* t4c7caf = new QByteArray(static_cast<QAudioOutputSelectorControl*>(ptr)->activeOutput().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t4c7caf->prepend("WHITESPACE").constData()+10), t4c7caf->size()-10, t4c7caf }; });
 }
 
 void QAudioOutputSelectorControl_ConnectActiveOutputChanged(void* ptr, long long t)
@@ -4586,12 +4362,12 @@ void QAudioOutputSelectorControl_AvailableOutputsChanged(void* ptr)
 
 struct QtMultimedia_PackedString QAudioOutputSelectorControl_DefaultOutput(void* ptr)
 {
-	return ({ QByteArray t3b7fff = static_cast<QAudioOutputSelectorControl*>(ptr)->defaultOutput().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t3b7fff.prepend("WHITESPACE").constData()+10), t3b7fff.size()-10 }; });
+	return ({ QByteArray* t3b7fff = new QByteArray(static_cast<QAudioOutputSelectorControl*>(ptr)->defaultOutput().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t3b7fff->prepend("WHITESPACE").constData()+10), t3b7fff->size()-10, t3b7fff }; });
 }
 
 struct QtMultimedia_PackedString QAudioOutputSelectorControl_OutputDescription(void* ptr, struct QtMultimedia_PackedString name)
 {
-	return ({ QByteArray tc4fcf0 = static_cast<QAudioOutputSelectorControl*>(ptr)->outputDescription(QString::fromUtf8(name.data, name.len)).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tc4fcf0.prepend("WHITESPACE").constData()+10), tc4fcf0.size()-10 }; });
+	return ({ QByteArray* tc4fcf0 = new QByteArray(static_cast<QAudioOutputSelectorControl*>(ptr)->outputDescription(QString::fromUtf8(name.data, name.len)).toUtf8()); QtMultimedia_PackedString { const_cast<char*>(tc4fcf0->prepend("WHITESPACE").constData()+10), tc4fcf0->size()-10, tc4fcf0 }; });
 }
 
 void QAudioOutputSelectorControl_SetActiveOutput(void* ptr, struct QtMultimedia_PackedString name)
@@ -4612,7 +4388,7 @@ void QAudioOutputSelectorControl_DestroyQAudioOutputSelectorControlDefault(void*
 
 struct QtMultimedia_PackedString QAudioOutputSelectorControl___availableOutputs_atList(void* ptr, int i)
 {
-	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
+	return ({ QByteArray* t94aa5e = new QByteArray(({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t94aa5e->prepend("WHITESPACE").constData()+10), t94aa5e->size()-10, t94aa5e }; });
 }
 
 void QAudioOutputSelectorControl___availableOutputs_setList(void* ptr, struct QtMultimedia_PackedString i)
@@ -4642,7 +4418,7 @@ public:
 	bool event(QEvent * e) { return callbackQAudioProbe_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAudioProbe_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAudioProbe_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQAudioProbe_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQAudioProbe_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQAudioProbe_TimerEvent(this, event); };
 };
 
@@ -4866,38 +4642,6 @@ void* QAudioProbe___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QAudioProbe___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QAudioProbe___qFindChildren_setList2(void* ptr, void* i)
-{
-	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QAudioSystemPlugin*>(i));
-	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
-	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
-	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaServiceProviderPlugin*>(i));
-	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QRadioData*>(i));
-	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QVideoWidget*>(i));
-	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-	}
-}
-
-void* QAudioProbe___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 void QAudioProbe_ChildEventDefault(void* ptr, void* event)
 {
 		static_cast<QAudioProbe*>(ptr)->QAudioProbe::childEvent(static_cast<QChildEvent*>(event));
@@ -4963,9 +4707,9 @@ class MyQAudioRecorder: public QAudioRecorder
 {
 public:
 	MyQAudioRecorder(QObject *parent = Q_NULLPTR) : QAudioRecorder(parent) {QAudioRecorder_QAudioRecorder_QRegisterMetaType();};
-	void Signal_AudioInputChanged(const QString & name) { QByteArray t6ae999 = name.toUtf8(); QtMultimedia_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };callbackQAudioRecorder_AudioInputChanged(this, namePacked); };
+	void Signal_AudioInputChanged(const QString & name) { QByteArray* t6ae999 = new QByteArray(name.toUtf8()); QtMultimedia_PackedString namePacked = { const_cast<char*>(t6ae999->prepend("WHITESPACE").constData()+10), t6ae999->size()-10, t6ae999 };callbackQAudioRecorder_AudioInputChanged(this, namePacked); };
 	void Signal_AvailableAudioInputsChanged() { callbackQAudioRecorder_AvailableAudioInputsChanged(this); };
-	void setAudioInput(const QString & name) { QByteArray t6ae999 = name.toUtf8(); QtMultimedia_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };callbackQAudioRecorder_SetAudioInput(this, namePacked); };
+	void setAudioInput(const QString & name) { QByteArray* t6ae999 = new QByteArray(name.toUtf8()); QtMultimedia_PackedString namePacked = { const_cast<char*>(t6ae999->prepend("WHITESPACE").constData()+10), t6ae999->size()-10, t6ae999 };callbackQAudioRecorder_SetAudioInput(this, namePacked); };
 	 ~MyQAudioRecorder() { callbackQAudioRecorder_DestroyQAudioRecorder(this); };
 	void Signal_ActualLocationChanged(const QUrl & location) { callbackQMediaRecorder_ActualLocationChanged(this, const_cast<QUrl*>(&location)); };
 	void Signal_AvailabilityChanged(bool available) { callbackQMediaRecorder_AvailabilityChanged(this, available); };
@@ -4975,7 +4719,7 @@ public:
 	QMediaObject * mediaObject() const { return static_cast<QMediaObject*>(callbackQMediaRecorder_MediaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_MetaDataAvailableChanged(bool available) { callbackQMediaRecorder_MetaDataAvailableChanged(this, available); };
 	void Signal_MetaDataChanged() { callbackQMediaRecorder_MetaDataChanged(this); };
-	void Signal_MetaDataChanged2(const QString & key, const QVariant & value) { QByteArray ta62f22 = key.toUtf8(); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };callbackQMediaRecorder_MetaDataChanged2(this, keyPacked, const_cast<QVariant*>(&value)); };
+	void Signal_MetaDataChanged2(const QString & key, const QVariant & value) { QByteArray* ta62f22 = new QByteArray(key.toUtf8()); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22->prepend("WHITESPACE").constData()+10), ta62f22->size()-10, ta62f22 };callbackQMediaRecorder_MetaDataChanged2(this, keyPacked, const_cast<QVariant*>(&value)); };
 	void Signal_MetaDataWritableChanged(bool writable) { callbackQMediaRecorder_MetaDataWritableChanged(this, writable); };
 	void Signal_MutedChanged(bool muted) { callbackQMediaRecorder_MutedChanged(this, muted); };
 	void pause() { callbackQMediaRecorder_Pause(this); };
@@ -4995,7 +4739,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaRecorder_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaRecorder_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaRecorder_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaRecorder_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaRecorder_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaRecorder_TimerEvent(this, event); };
 	bool setMediaObject(QMediaObject * object) { return callbackQMediaRecorder_SetMediaObject(this, object) != 0; };
 };
@@ -5054,7 +4798,7 @@ void* QAudioRecorder_NewQAudioRecorder(void* parent)
 
 struct QtMultimedia_PackedString QAudioRecorder_AudioInput(void* ptr)
 {
-	return ({ QByteArray t7b4459 = static_cast<QAudioRecorder*>(ptr)->audioInput().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t7b4459.prepend("WHITESPACE").constData()+10), t7b4459.size()-10 }; });
+	return ({ QByteArray* t7b4459 = new QByteArray(static_cast<QAudioRecorder*>(ptr)->audioInput().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t7b4459->prepend("WHITESPACE").constData()+10), t7b4459->size()-10, t7b4459 }; });
 }
 
 void QAudioRecorder_ConnectAudioInputChanged(void* ptr, long long t)
@@ -5074,12 +4818,12 @@ void QAudioRecorder_AudioInputChanged(void* ptr, struct QtMultimedia_PackedStrin
 
 struct QtMultimedia_PackedString QAudioRecorder_AudioInputDescription(void* ptr, struct QtMultimedia_PackedString name)
 {
-	return ({ QByteArray t8dc555 = static_cast<QAudioRecorder*>(ptr)->audioInputDescription(QString::fromUtf8(name.data, name.len)).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t8dc555.prepend("WHITESPACE").constData()+10), t8dc555.size()-10 }; });
+	return ({ QByteArray* t8dc555 = new QByteArray(static_cast<QAudioRecorder*>(ptr)->audioInputDescription(QString::fromUtf8(name.data, name.len)).toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t8dc555->prepend("WHITESPACE").constData()+10), t8dc555->size()-10, t8dc555 }; });
 }
 
 struct QtMultimedia_PackedString QAudioRecorder_AudioInputs(void* ptr)
 {
-	return ({ QByteArray tf48c37 = static_cast<QAudioRecorder*>(ptr)->audioInputs().join("¡¦!").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tf48c37.prepend("WHITESPACE").constData()+10), tf48c37.size()-10 }; });
+	return ({ QByteArray* tf48c37 = new QByteArray(static_cast<QAudioRecorder*>(ptr)->audioInputs().join("¡¦!").toUtf8()); QtMultimedia_PackedString { const_cast<char*>(tf48c37->prepend("WHITESPACE").constData()+10), tf48c37->size()-10, tf48c37 }; });
 }
 
 void QAudioRecorder_ConnectAvailableAudioInputsChanged(void* ptr, long long t)
@@ -5099,7 +4843,7 @@ void QAudioRecorder_AvailableAudioInputsChanged(void* ptr)
 
 struct QtMultimedia_PackedString QAudioRecorder_DefaultAudioInput(void* ptr)
 {
-	return ({ QByteArray tf2898e = static_cast<QAudioRecorder*>(ptr)->defaultAudioInput().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tf2898e.prepend("WHITESPACE").constData()+10), tf2898e.size()-10 }; });
+	return ({ QByteArray* tf2898e = new QByteArray(static_cast<QAudioRecorder*>(ptr)->defaultAudioInput().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(tf2898e->prepend("WHITESPACE").constData()+10), tf2898e->size()-10, tf2898e }; });
 }
 
 void QAudioRecorder_SetAudioInput(void* ptr, struct QtMultimedia_PackedString name)
@@ -5141,7 +4885,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
@@ -5300,7 +5044,7 @@ public:
 	bool event(QEvent * e) { return callbackQAudioSystemPlugin_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAudioSystemPlugin_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAudioSystemPlugin_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQAudioSystemPlugin_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQAudioSystemPlugin_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQAudioSystemPlugin_TimerEvent(this, event); };
 };
 
@@ -5452,38 +5196,6 @@ void QAudioSystemPlugin___findChildren_setList3(void* ptr, void* i)
 }
 
 void* QAudioSystemPlugin___findChildren_newList3(void* ptr)
-{
-	Q_UNUSED(ptr);
-		return new QList<QObject*>();
-}
-
-void* QAudioSystemPlugin___qFindChildren_atList2(void* ptr, int i)
-{
-		return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QAudioSystemPlugin___qFindChildren_setList2(void* ptr, void* i)
-{
-	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QAudioSystemPlugin*>(i));
-	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
-	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
-	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaServiceProviderPlugin*>(i));
-	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QRadioData*>(i));
-	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QVideoWidget*>(i));
-	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-	}
-}
-
-void* QAudioSystemPlugin___qFindChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
 		return new QList<QObject*>();
@@ -5643,7 +5355,7 @@ public:
 	bool isAvailable() const { return callbackQMediaObject_IsAvailable(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	void Signal_MetaDataAvailableChanged(bool available) { callbackQMediaObject_MetaDataAvailableChanged(this, available); };
 	void Signal_MetaDataChanged() { callbackQMediaObject_MetaDataChanged(this); };
-	void Signal_MetaDataChanged2(const QString & key, const QVariant & value) { QByteArray ta62f22 = key.toUtf8(); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };callbackQMediaObject_MetaDataChanged2(this, keyPacked, const_cast<QVariant*>(&value)); };
+	void Signal_MetaDataChanged2(const QString & key, const QVariant & value) { QByteArray* ta62f22 = new QByteArray(key.toUtf8()); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22->prepend("WHITESPACE").constData()+10), ta62f22->size()-10, ta62f22 };callbackQMediaObject_MetaDataChanged2(this, keyPacked, const_cast<QVariant*>(&value)); };
 	void Signal_NotifyIntervalChanged(int milliseconds) { callbackQMediaObject_NotifyIntervalChanged(this, milliseconds); };
 	QMediaService * service() const { return static_cast<QMediaService*>(callbackQMediaObject_Service(const_cast<void*>(static_cast<const void*>(this)))); };
 	void unbind(QObject * object) { callbackQMediaObject_Unbind(this, object); };
@@ -5656,7 +5368,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaObject_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaObject_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaObject_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaObject_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaObject_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaObject_TimerEvent(this, event); };
 };
 
@@ -5897,7 +5609,7 @@ void QCamera_Error2(void* ptr, long long value)
 
 struct QtMultimedia_PackedString QCamera_ErrorString(void* ptr)
 {
-	return ({ QByteArray t14c12c = static_cast<QCamera*>(ptr)->errorString().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t14c12c.prepend("WHITESPACE").constData()+10), t14c12c.size()-10 }; });
+	return ({ QByteArray* t14c12c = new QByteArray(static_cast<QCamera*>(ptr)->errorString().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t14c12c->prepend("WHITESPACE").constData()+10), t14c12c->size()-10, t14c12c }; });
 }
 
 void* QCamera_Exposure(void* ptr)
@@ -6266,7 +5978,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
@@ -6398,7 +6110,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
@@ -6503,7 +6215,7 @@ public:
 	bool canChangeProperty(QCameraControl::PropertyChangeType changeType, QCamera::Status status) const { return callbackQCameraControl_CanChangeProperty(const_cast<void*>(static_cast<const void*>(this)), changeType, status) != 0; };
 	QCamera::CaptureModes captureMode() const { return static_cast<QCamera::CaptureMode>(callbackQCameraControl_CaptureMode(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_CaptureModeChanged(QCamera::CaptureModes mode) { callbackQCameraControl_CaptureModeChanged(this, mode); };
-	void Signal_Error(int error, const QString & errorString) { QByteArray tc8b6bd = errorString.toUtf8(); QtMultimedia_PackedString errorStringPacked = { const_cast<char*>(tc8b6bd.prepend("WHITESPACE").constData()+10), tc8b6bd.size()-10 };callbackQCameraControl_Error(this, error, errorStringPacked); };
+	void Signal_Error(int error, const QString & errorString) { QByteArray* tc8b6bd = new QByteArray(errorString.toUtf8()); QtMultimedia_PackedString errorStringPacked = { const_cast<char*>(tc8b6bd->prepend("WHITESPACE").constData()+10), tc8b6bd->size()-10, tc8b6bd };callbackQCameraControl_Error(this, error, errorStringPacked); };
 	bool isCaptureModeSupported(QCamera::CaptureModes mode) const { return callbackQCameraControl_IsCaptureModeSupported(const_cast<void*>(static_cast<const void*>(this)), mode) != 0; };
 	void setCaptureMode(QCamera::CaptureModes mode) { callbackQCameraControl_SetCaptureMode(this, mode); };
 	void setState(QCamera::State state) { callbackQCameraControl_SetState(this, state); };
@@ -6521,7 +6233,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
@@ -6715,7 +6427,7 @@ public:
 	bool event(QEvent * e) { return callbackQCameraExposure_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQCameraExposure_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQCameraExposure_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQCameraExposure_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQCameraExposure_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQCameraExposure_TimerEvent(this, event); };
 };
 
@@ -7192,38 +6904,6 @@ void* QCameraExposure___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QCameraExposure___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QCameraExposure___qFindChildren_setList2(void* ptr, void* i)
-{
-	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QAudioSystemPlugin*>(i));
-	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
-	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
-	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaServiceProviderPlugin*>(i));
-	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QRadioData*>(i));
-	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QVideoWidget*>(i));
-	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-	}
-}
-
-void* QCameraExposure___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 void QCameraExposure_ChildEventDefault(void* ptr, void* event)
 {
 		static_cast<QCameraExposure*>(ptr)->QCameraExposure::childEvent(static_cast<QChildEvent*>(event));
@@ -7307,7 +6987,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
@@ -7468,7 +7148,7 @@ public:
 	bool isEventFeedbackLocked(QCameraFeedbackControl::EventType event) const { return callbackQCameraFeedbackControl_IsEventFeedbackLocked(const_cast<void*>(static_cast<const void*>(this)), event) != 0; };
 	void resetEventFeedback(QCameraFeedbackControl::EventType event) { callbackQCameraFeedbackControl_ResetEventFeedback(this, event); };
 	bool setEventFeedbackEnabled(QCameraFeedbackControl::EventType event, bool enabled) { return callbackQCameraFeedbackControl_SetEventFeedbackEnabled(this, event, enabled) != 0; };
-	bool setEventFeedbackSound(QCameraFeedbackControl::EventType event, const QString & filePath) { QByteArray t7df503 = filePath.toUtf8(); QtMultimedia_PackedString filePathPacked = { const_cast<char*>(t7df503.prepend("WHITESPACE").constData()+10), t7df503.size()-10 };return callbackQCameraFeedbackControl_SetEventFeedbackSound(this, event, filePathPacked) != 0; };
+	bool setEventFeedbackSound(QCameraFeedbackControl::EventType event, const QString & filePath) { QByteArray* t7df503 = new QByteArray(filePath.toUtf8()); QtMultimedia_PackedString filePathPacked = { const_cast<char*>(t7df503->prepend("WHITESPACE").constData()+10), t7df503->size()-10, t7df503 };return callbackQCameraFeedbackControl_SetEventFeedbackSound(this, event, filePathPacked) != 0; };
 	 ~MyQCameraFeedbackControl() { callbackQCameraFeedbackControl_DestroyQCameraFeedbackControl(this); };
 	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQMediaControl_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -7479,7 +7159,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
@@ -7590,7 +7270,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
@@ -7709,7 +7389,7 @@ public:
 	bool event(QEvent * e) { return callbackQCameraFocus_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQCameraFocus_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQCameraFocus_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQCameraFocus_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQCameraFocus_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQCameraFocus_TimerEvent(this, event); };
 };
 
@@ -7975,38 +7655,6 @@ void* QCameraFocus___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QCameraFocus___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QCameraFocus___qFindChildren_setList2(void* ptr, void* i)
-{
-	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QAudioSystemPlugin*>(i));
-	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
-	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
-	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaServiceProviderPlugin*>(i));
-	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QRadioData*>(i));
-	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QVideoWidget*>(i));
-	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-	}
-}
-
-void* QCameraFocus___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 void QCameraFocus_ChildEventDefault(void* ptr, void* event)
 {
 		static_cast<QCameraFocus*>(ptr)->QCameraFocus::childEvent(static_cast<QChildEvent*>(event));
@@ -8093,7 +7741,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
@@ -8247,14 +7895,14 @@ public:
 	MyQCameraImageCapture(QMediaObject *mediaObject, QObject *parent = Q_NULLPTR) : QCameraImageCapture(mediaObject, parent) {QCameraImageCapture_QCameraImageCapture_QRegisterMetaType();};
 	void Signal_BufferFormatChanged(QVideoFrame::PixelFormat format) { callbackQCameraImageCapture_BufferFormatChanged(this, format); };
 	void cancelCapture() { callbackQCameraImageCapture_CancelCapture(this); };
-	int capture(const QString & file) { QByteArray t971c41 = file.toUtf8(); QtMultimedia_PackedString filePacked = { const_cast<char*>(t971c41.prepend("WHITESPACE").constData()+10), t971c41.size()-10 };return callbackQCameraImageCapture_Capture(this, filePacked); };
+	int capture(const QString & file) { QByteArray* t971c41 = new QByteArray(file.toUtf8()); QtMultimedia_PackedString filePacked = { const_cast<char*>(t971c41->prepend("WHITESPACE").constData()+10), t971c41->size()-10, t971c41 };return callbackQCameraImageCapture_Capture(this, filePacked); };
 	void Signal_CaptureDestinationChanged(QCameraImageCapture::CaptureDestinations destination) { callbackQCameraImageCapture_CaptureDestinationChanged(this, destination); };
-	void Signal_Error2(int id, QCameraImageCapture::Error error, const QString & errorString) { QByteArray tc8b6bd = errorString.toUtf8(); QtMultimedia_PackedString errorStringPacked = { const_cast<char*>(tc8b6bd.prepend("WHITESPACE").constData()+10), tc8b6bd.size()-10 };callbackQCameraImageCapture_Error2(this, id, error, errorStringPacked); };
+	void Signal_Error2(int id, QCameraImageCapture::Error error, const QString & errorString) { QByteArray* tc8b6bd = new QByteArray(errorString.toUtf8()); QtMultimedia_PackedString errorStringPacked = { const_cast<char*>(tc8b6bd->prepend("WHITESPACE").constData()+10), tc8b6bd->size()-10, tc8b6bd };callbackQCameraImageCapture_Error2(this, id, error, errorStringPacked); };
 	void Signal_ImageAvailable(int id, const QVideoFrame & frame) { callbackQCameraImageCapture_ImageAvailable(this, id, const_cast<QVideoFrame*>(&frame)); };
 	void Signal_ImageCaptured(int id, const QImage & preview) { callbackQCameraImageCapture_ImageCaptured(this, id, const_cast<QImage*>(&preview)); };
 	void Signal_ImageExposed(int id) { callbackQCameraImageCapture_ImageExposed(this, id); };
-	void Signal_ImageMetadataAvailable(int id, const QString & key, const QVariant & value) { QByteArray ta62f22 = key.toUtf8(); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };callbackQCameraImageCapture_ImageMetadataAvailable(this, id, keyPacked, const_cast<QVariant*>(&value)); };
-	void Signal_ImageSaved(int id, const QString & fileName) { QByteArray td83e09 = fileName.toUtf8(); QtMultimedia_PackedString fileNamePacked = { const_cast<char*>(td83e09.prepend("WHITESPACE").constData()+10), td83e09.size()-10 };callbackQCameraImageCapture_ImageSaved(this, id, fileNamePacked); };
+	void Signal_ImageMetadataAvailable(int id, const QString & key, const QVariant & value) { QByteArray* ta62f22 = new QByteArray(key.toUtf8()); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22->prepend("WHITESPACE").constData()+10), ta62f22->size()-10, ta62f22 };callbackQCameraImageCapture_ImageMetadataAvailable(this, id, keyPacked, const_cast<QVariant*>(&value)); };
+	void Signal_ImageSaved(int id, const QString & fileName) { QByteArray* td83e09 = new QByteArray(fileName.toUtf8()); QtMultimedia_PackedString fileNamePacked = { const_cast<char*>(td83e09->prepend("WHITESPACE").constData()+10), td83e09->size()-10, td83e09 };callbackQCameraImageCapture_ImageSaved(this, id, fileNamePacked); };
 	QMediaObject * mediaObject() const { return static_cast<QMediaObject*>(callbackQCameraImageCapture_MediaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ReadyForCaptureChanged(bool ready) { callbackQCameraImageCapture_ReadyForCaptureChanged(this, ready); };
 	bool setMediaObject(QMediaObject * mediaObject) { return callbackQCameraImageCapture_SetMediaObject(this, mediaObject) != 0; };
@@ -8268,7 +7916,7 @@ public:
 	bool event(QEvent * e) { return callbackQCameraImageCapture_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQCameraImageCapture_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQCameraImageCapture_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQCameraImageCapture_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQCameraImageCapture_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQCameraImageCapture_TimerEvent(this, event); };
 };
 
@@ -8379,7 +8027,7 @@ void QCameraImageCapture_Error2(void* ptr, int id, long long error, struct QtMul
 
 struct QtMultimedia_PackedString QCameraImageCapture_ErrorString(void* ptr)
 {
-		return ({ QByteArray t5acece = static_cast<QCameraImageCapture*>(ptr)->errorString().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t5acece.prepend("WHITESPACE").constData()+10), t5acece.size()-10 }; });
+		return ({ QByteArray* t5acece = new QByteArray(static_cast<QCameraImageCapture*>(ptr)->errorString().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t5acece->prepend("WHITESPACE").constData()+10), t5acece->size()-10, t5acece }; });
 }
 
 void QCameraImageCapture_ConnectImageAvailable(void* ptr, long long t)
@@ -8414,7 +8062,7 @@ void QCameraImageCapture_ImageCaptured(void* ptr, int id, void* preview)
 
 struct QtMultimedia_PackedString QCameraImageCapture_ImageCodecDescription(void* ptr, struct QtMultimedia_PackedString codec)
 {
-		return ({ QByteArray tfe7bc0 = static_cast<QCameraImageCapture*>(ptr)->imageCodecDescription(QString::fromUtf8(codec.data, codec.len)).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tfe7bc0.prepend("WHITESPACE").constData()+10), tfe7bc0.size()-10 }; });
+		return ({ QByteArray* tfe7bc0 = new QByteArray(static_cast<QCameraImageCapture*>(ptr)->imageCodecDescription(QString::fromUtf8(codec.data, codec.len)).toUtf8()); QtMultimedia_PackedString { const_cast<char*>(tfe7bc0->prepend("WHITESPACE").constData()+10), tfe7bc0->size()-10, tfe7bc0 }; });
 }
 
 void QCameraImageCapture_ConnectImageExposed(void* ptr, long long t)
@@ -8534,7 +8182,7 @@ struct QtMultimedia_PackedList QCameraImageCapture_SupportedBufferFormats(void* 
 
 struct QtMultimedia_PackedString QCameraImageCapture_SupportedImageCodecs(void* ptr)
 {
-		return ({ QByteArray t52ceb4 = static_cast<QCameraImageCapture*>(ptr)->supportedImageCodecs().join("¡¦!").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t52ceb4.prepend("WHITESPACE").constData()+10), t52ceb4.size()-10 }; });
+		return ({ QByteArray* t52ceb4 = new QByteArray(static_cast<QCameraImageCapture*>(ptr)->supportedImageCodecs().join("¡¦!").toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t52ceb4->prepend("WHITESPACE").constData()+10), t52ceb4->size()-10, t52ceb4 }; });
 }
 
 struct QtMultimedia_PackedList QCameraImageCapture_SupportedResolutions(void* ptr, void* settings, char* continuous)
@@ -8697,38 +8345,6 @@ void* QCameraImageCapture___findChildren_newList3(void* ptr)
 		return new QList<QObject*>();
 }
 
-void* QCameraImageCapture___qFindChildren_atList2(void* ptr, int i)
-{
-		return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QCameraImageCapture___qFindChildren_setList2(void* ptr, void* i)
-{
-	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QAudioSystemPlugin*>(i));
-	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
-	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
-	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaServiceProviderPlugin*>(i));
-	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QRadioData*>(i));
-	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QVideoWidget*>(i));
-	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-	}
-}
-
-void* QCameraImageCapture___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-		return new QList<QObject*>();
-}
-
 void QCameraImageCapture_ChildEvent(void* ptr, void* event)
 {
 		static_cast<QCameraImageCapture*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
@@ -8856,14 +8472,14 @@ class MyQCameraImageCaptureControl: public QCameraImageCaptureControl
 public:
 	MyQCameraImageCaptureControl(QObject *parent = Q_NULLPTR) : QCameraImageCaptureControl(parent) {QCameraImageCaptureControl_QCameraImageCaptureControl_QRegisterMetaType();};
 	void cancelCapture() { callbackQCameraImageCaptureControl_CancelCapture(this); };
-	int capture(const QString & fileName) { QByteArray td83e09 = fileName.toUtf8(); QtMultimedia_PackedString fileNamePacked = { const_cast<char*>(td83e09.prepend("WHITESPACE").constData()+10), td83e09.size()-10 };return callbackQCameraImageCaptureControl_Capture(this, fileNamePacked); };
+	int capture(const QString & fileName) { QByteArray* td83e09 = new QByteArray(fileName.toUtf8()); QtMultimedia_PackedString fileNamePacked = { const_cast<char*>(td83e09->prepend("WHITESPACE").constData()+10), td83e09->size()-10, td83e09 };return callbackQCameraImageCaptureControl_Capture(this, fileNamePacked); };
 	QCameraImageCapture::DriveMode driveMode() const { return static_cast<QCameraImageCapture::DriveMode>(callbackQCameraImageCaptureControl_DriveMode(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_Error(int id, int error, const QString & errorString) { QByteArray tc8b6bd = errorString.toUtf8(); QtMultimedia_PackedString errorStringPacked = { const_cast<char*>(tc8b6bd.prepend("WHITESPACE").constData()+10), tc8b6bd.size()-10 };callbackQCameraImageCaptureControl_Error(this, id, error, errorStringPacked); };
+	void Signal_Error(int id, int error, const QString & errorString) { QByteArray* tc8b6bd = new QByteArray(errorString.toUtf8()); QtMultimedia_PackedString errorStringPacked = { const_cast<char*>(tc8b6bd->prepend("WHITESPACE").constData()+10), tc8b6bd->size()-10, tc8b6bd };callbackQCameraImageCaptureControl_Error(this, id, error, errorStringPacked); };
 	void Signal_ImageAvailable(int requestId, const QVideoFrame & buffer) { callbackQCameraImageCaptureControl_ImageAvailable(this, requestId, const_cast<QVideoFrame*>(&buffer)); };
 	void Signal_ImageCaptured(int requestId, const QImage & preview) { callbackQCameraImageCaptureControl_ImageCaptured(this, requestId, const_cast<QImage*>(&preview)); };
 	void Signal_ImageExposed(int requestId) { callbackQCameraImageCaptureControl_ImageExposed(this, requestId); };
-	void Signal_ImageMetadataAvailable(int id, const QString & key, const QVariant & value) { QByteArray ta62f22 = key.toUtf8(); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };callbackQCameraImageCaptureControl_ImageMetadataAvailable(this, id, keyPacked, const_cast<QVariant*>(&value)); };
-	void Signal_ImageSaved(int requestId, const QString & fileName) { QByteArray td83e09 = fileName.toUtf8(); QtMultimedia_PackedString fileNamePacked = { const_cast<char*>(td83e09.prepend("WHITESPACE").constData()+10), td83e09.size()-10 };callbackQCameraImageCaptureControl_ImageSaved(this, requestId, fileNamePacked); };
+	void Signal_ImageMetadataAvailable(int id, const QString & key, const QVariant & value) { QByteArray* ta62f22 = new QByteArray(key.toUtf8()); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22->prepend("WHITESPACE").constData()+10), ta62f22->size()-10, ta62f22 };callbackQCameraImageCaptureControl_ImageMetadataAvailable(this, id, keyPacked, const_cast<QVariant*>(&value)); };
+	void Signal_ImageSaved(int requestId, const QString & fileName) { QByteArray* td83e09 = new QByteArray(fileName.toUtf8()); QtMultimedia_PackedString fileNamePacked = { const_cast<char*>(td83e09->prepend("WHITESPACE").constData()+10), td83e09->size()-10, td83e09 };callbackQCameraImageCaptureControl_ImageSaved(this, requestId, fileNamePacked); };
 	bool isReadyForCapture() const { return callbackQCameraImageCaptureControl_IsReadyForCapture(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	void Signal_ReadyForCaptureChanged(bool ready) { callbackQCameraImageCaptureControl_ReadyForCaptureChanged(this, ready); };
 	void setDriveMode(QCameraImageCapture::DriveMode mode) { callbackQCameraImageCaptureControl_SetDriveMode(this, mode); };
@@ -8877,7 +8493,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
@@ -9086,7 +8702,7 @@ public:
 	bool event(QEvent * e) { return callbackQCameraImageProcessing_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQCameraImageProcessing_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQCameraImageProcessing_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQCameraImageProcessing_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQCameraImageProcessing_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQCameraImageProcessing_TimerEvent(this, event); };
 };
 
@@ -9302,38 +8918,6 @@ void* QCameraImageProcessing___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QCameraImageProcessing___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QCameraImageProcessing___qFindChildren_setList2(void* ptr, void* i)
-{
-	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QAudioSystemPlugin*>(i));
-	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
-	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
-	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaServiceProviderPlugin*>(i));
-	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QRadioData*>(i));
-	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QVideoWidget*>(i));
-	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-	}
-}
-
-void* QCameraImageProcessing___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 void QCameraImageProcessing_ChildEventDefault(void* ptr, void* event)
 {
 		static_cast<QCameraImageProcessing*>(ptr)->QCameraImageProcessing::childEvent(static_cast<QChildEvent*>(event));
@@ -9413,7 +8997,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
@@ -9528,12 +9112,12 @@ void* QCameraInfo_QCameraInfo_DefaultCamera()
 
 struct QtMultimedia_PackedString QCameraInfo_Description(void* ptr)
 {
-	return ({ QByteArray t58a341 = static_cast<QCameraInfo*>(ptr)->description().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t58a341.prepend("WHITESPACE").constData()+10), t58a341.size()-10 }; });
+	return ({ QByteArray* t58a341 = new QByteArray(static_cast<QCameraInfo*>(ptr)->description().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t58a341->prepend("WHITESPACE").constData()+10), t58a341->size()-10, t58a341 }; });
 }
 
 struct QtMultimedia_PackedString QCameraInfo_DeviceName(void* ptr)
 {
-	return ({ QByteArray tb7aa82 = static_cast<QCameraInfo*>(ptr)->deviceName().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tb7aa82.prepend("WHITESPACE").constData()+10), tb7aa82.size()-10 }; });
+	return ({ QByteArray* tb7aa82 = new QByteArray(static_cast<QCameraInfo*>(ptr)->deviceName().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(tb7aa82->prepend("WHITESPACE").constData()+10), tb7aa82->size()-10, tb7aa82 }; });
 }
 
 char QCameraInfo_IsNull(void* ptr)
@@ -9576,8 +9160,8 @@ class MyQCameraInfoControl: public QCameraInfoControl
 {
 public:
 	MyQCameraInfoControl(QObject *parent = Q_NULLPTR) : QCameraInfoControl(parent) {QCameraInfoControl_QCameraInfoControl_QRegisterMetaType();};
-	int cameraOrientation(const QString & deviceName) const { QByteArray t0f5a7b = deviceName.toUtf8(); QtMultimedia_PackedString deviceNamePacked = { const_cast<char*>(t0f5a7b.prepend("WHITESPACE").constData()+10), t0f5a7b.size()-10 };return callbackQCameraInfoControl_CameraOrientation(const_cast<void*>(static_cast<const void*>(this)), deviceNamePacked); };
-	QCamera::Position cameraPosition(const QString & deviceName) const { QByteArray t0f5a7b = deviceName.toUtf8(); QtMultimedia_PackedString deviceNamePacked = { const_cast<char*>(t0f5a7b.prepend("WHITESPACE").constData()+10), t0f5a7b.size()-10 };return static_cast<QCamera::Position>(callbackQCameraInfoControl_CameraPosition(const_cast<void*>(static_cast<const void*>(this)), deviceNamePacked)); };
+	int cameraOrientation(const QString & deviceName) const { QByteArray* t0f5a7b = new QByteArray(deviceName.toUtf8()); QtMultimedia_PackedString deviceNamePacked = { const_cast<char*>(t0f5a7b->prepend("WHITESPACE").constData()+10), t0f5a7b->size()-10, t0f5a7b };return callbackQCameraInfoControl_CameraOrientation(const_cast<void*>(static_cast<const void*>(this)), deviceNamePacked); };
+	QCamera::Position cameraPosition(const QString & deviceName) const { QByteArray* t0f5a7b = new QByteArray(deviceName.toUtf8()); QtMultimedia_PackedString deviceNamePacked = { const_cast<char*>(t0f5a7b->prepend("WHITESPACE").constData()+10), t0f5a7b->size()-10, t0f5a7b };return static_cast<QCamera::Position>(callbackQCameraInfoControl_CameraPosition(const_cast<void*>(static_cast<const void*>(this)), deviceNamePacked)); };
 	 ~MyQCameraInfoControl() { callbackQCameraInfoControl_DestroyQCameraInfoControl(this); };
 	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQMediaControl_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -9588,7 +9172,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
@@ -9684,7 +9268,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
@@ -9892,7 +9476,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
@@ -9991,7 +9575,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
@@ -10116,7 +9700,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
@@ -10313,8 +9897,8 @@ class MyQCustomAudioRoleControl: public QCustomAudioRoleControl
 public:
 	MyQCustomAudioRoleControl(QObject *parent = Q_NULLPTR) : QCustomAudioRoleControl(parent) {QCustomAudioRoleControl_QCustomAudioRoleControl_QRegisterMetaType();};
 	QString customAudioRole() const { return ({ QtMultimedia_PackedString tempVal = callbackQCustomAudioRoleControl_CustomAudioRole(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
-	void Signal_CustomAudioRoleChanged(const QString & role) { QByteArray t8dca46 = role.toUtf8(); QtMultimedia_PackedString rolePacked = { const_cast<char*>(t8dca46.prepend("WHITESPACE").constData()+10), t8dca46.size()-10 };callbackQCustomAudioRoleControl_CustomAudioRoleChanged(this, rolePacked); };
-	void setCustomAudioRole(const QString & role) { QByteArray t8dca46 = role.toUtf8(); QtMultimedia_PackedString rolePacked = { const_cast<char*>(t8dca46.prepend("WHITESPACE").constData()+10), t8dca46.size()-10 };callbackQCustomAudioRoleControl_SetCustomAudioRole(this, rolePacked); };
+	void Signal_CustomAudioRoleChanged(const QString & role) { QByteArray* t8dca46 = new QByteArray(role.toUtf8()); QtMultimedia_PackedString rolePacked = { const_cast<char*>(t8dca46->prepend("WHITESPACE").constData()+10), t8dca46->size()-10, t8dca46 };callbackQCustomAudioRoleControl_CustomAudioRoleChanged(this, rolePacked); };
+	void setCustomAudioRole(const QString & role) { QByteArray* t8dca46 = new QByteArray(role.toUtf8()); QtMultimedia_PackedString rolePacked = { const_cast<char*>(t8dca46->prepend("WHITESPACE").constData()+10), t8dca46->size()-10, t8dca46 };callbackQCustomAudioRoleControl_SetCustomAudioRole(this, rolePacked); };
 	QStringList supportedCustomAudioRoles() const { return ({ QtMultimedia_PackedString tempVal = callbackQCustomAudioRoleControl_SupportedCustomAudioRoles(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	 ~MyQCustomAudioRoleControl() { callbackQCustomAudioRoleControl_DestroyQCustomAudioRoleControl(this); };
 	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
@@ -10326,7 +9910,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
@@ -10384,7 +9968,7 @@ void* QCustomAudioRoleControl_NewQCustomAudioRoleControl(void* parent)
 
 struct QtMultimedia_PackedString QCustomAudioRoleControl_CustomAudioRole(void* ptr)
 {
-	return ({ QByteArray t6c015e = static_cast<QCustomAudioRoleControl*>(ptr)->customAudioRole().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t6c015e.prepend("WHITESPACE").constData()+10), t6c015e.size()-10 }; });
+	return ({ QByteArray* t6c015e = new QByteArray(static_cast<QCustomAudioRoleControl*>(ptr)->customAudioRole().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t6c015e->prepend("WHITESPACE").constData()+10), t6c015e->size()-10, t6c015e }; });
 }
 
 void QCustomAudioRoleControl_ConnectCustomAudioRoleChanged(void* ptr, long long t)
@@ -10409,7 +9993,7 @@ void QCustomAudioRoleControl_SetCustomAudioRole(void* ptr, struct QtMultimedia_P
 
 struct QtMultimedia_PackedString QCustomAudioRoleControl_SupportedCustomAudioRoles(void* ptr)
 {
-	return ({ QByteArray tdb048f = static_cast<QCustomAudioRoleControl*>(ptr)->supportedCustomAudioRoles().join("¡¦!").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tdb048f.prepend("WHITESPACE").constData()+10), tdb048f.size()-10 }; });
+	return ({ QByteArray* tdb048f = new QByteArray(static_cast<QCustomAudioRoleControl*>(ptr)->supportedCustomAudioRoles().join("¡¦!").toUtf8()); QtMultimedia_PackedString { const_cast<char*>(tdb048f->prepend("WHITESPACE").constData()+10), tdb048f->size()-10, tdb048f }; });
 }
 
 void QCustomAudioRoleControl_DestroyQCustomAudioRoleControl(void* ptr)
@@ -10427,7 +10011,7 @@ class MyQImageEncoderControl: public QImageEncoderControl
 {
 public:
 	MyQImageEncoderControl(QObject *parent = Q_NULLPTR) : QImageEncoderControl(parent) {QImageEncoderControl_QImageEncoderControl_QRegisterMetaType();};
-	QString imageCodecDescription(const QString & codec) const { QByteArray td061f6 = codec.toUtf8(); QtMultimedia_PackedString codecPacked = { const_cast<char*>(td061f6.prepend("WHITESPACE").constData()+10), td061f6.size()-10 };return ({ QtMultimedia_PackedString tempVal = callbackQImageEncoderControl_ImageCodecDescription(const_cast<void*>(static_cast<const void*>(this)), codecPacked); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	QString imageCodecDescription(const QString & codec) const { QByteArray* td061f6 = new QByteArray(codec.toUtf8()); QtMultimedia_PackedString codecPacked = { const_cast<char*>(td061f6->prepend("WHITESPACE").constData()+10), td061f6->size()-10, td061f6 };return ({ QtMultimedia_PackedString tempVal = callbackQImageEncoderControl_ImageCodecDescription(const_cast<void*>(static_cast<const void*>(this)), codecPacked); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	QImageEncoderSettings imageSettings() const { return *static_cast<QImageEncoderSettings*>(callbackQImageEncoderControl_ImageSettings(const_cast<void*>(static_cast<const void*>(this)))); };
 	void setImageSettings(const QImageEncoderSettings & settings) { callbackQImageEncoderControl_SetImageSettings(this, const_cast<QImageEncoderSettings*>(&settings)); };
 	QStringList supportedImageCodecs() const { return ({ QtMultimedia_PackedString tempVal = callbackQImageEncoderControl_SupportedImageCodecs(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
@@ -10442,7 +10026,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
@@ -10500,7 +10084,7 @@ void* QImageEncoderControl_NewQImageEncoderControl(void* parent)
 
 struct QtMultimedia_PackedString QImageEncoderControl_ImageCodecDescription(void* ptr, struct QtMultimedia_PackedString codec)
 {
-	return ({ QByteArray t4fa287 = static_cast<QImageEncoderControl*>(ptr)->imageCodecDescription(QString::fromUtf8(codec.data, codec.len)).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t4fa287.prepend("WHITESPACE").constData()+10), t4fa287.size()-10 }; });
+	return ({ QByteArray* t4fa287 = new QByteArray(static_cast<QImageEncoderControl*>(ptr)->imageCodecDescription(QString::fromUtf8(codec.data, codec.len)).toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t4fa287->prepend("WHITESPACE").constData()+10), t4fa287->size()-10, t4fa287 }; });
 }
 
 void* QImageEncoderControl_ImageSettings(void* ptr)
@@ -10515,7 +10099,7 @@ void QImageEncoderControl_SetImageSettings(void* ptr, void* settings)
 
 struct QtMultimedia_PackedString QImageEncoderControl_SupportedImageCodecs(void* ptr)
 {
-	return ({ QByteArray t0f36dd = static_cast<QImageEncoderControl*>(ptr)->supportedImageCodecs().join("¡¦!").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t0f36dd.prepend("WHITESPACE").constData()+10), t0f36dd.size()-10 }; });
+	return ({ QByteArray* t0f36dd = new QByteArray(static_cast<QImageEncoderControl*>(ptr)->supportedImageCodecs().join("¡¦!").toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t0f36dd->prepend("WHITESPACE").constData()+10), t0f36dd->size()-10, t0f36dd }; });
 }
 
 struct QtMultimedia_PackedList QImageEncoderControl_SupportedResolutions(void* ptr, void* settings, char* continuous)
@@ -10563,7 +10147,7 @@ void* QImageEncoderSettings_NewQImageEncoderSettings2(void* other)
 
 struct QtMultimedia_PackedString QImageEncoderSettings_Codec(void* ptr)
 {
-	return ({ QByteArray t008bcd = static_cast<QImageEncoderSettings*>(ptr)->codec().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t008bcd.prepend("WHITESPACE").constData()+10), t008bcd.size()-10 }; });
+	return ({ QByteArray* t008bcd = new QByteArray(static_cast<QImageEncoderSettings*>(ptr)->codec().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t008bcd->prepend("WHITESPACE").constData()+10), t008bcd->size()-10, t008bcd }; });
 }
 
 void* QImageEncoderSettings_EncodingOption(void* ptr, struct QtMultimedia_PackedString option)
@@ -10670,7 +10254,7 @@ struct QtMultimedia_PackedList QImageEncoderSettings___setEncodingOptions_option
 
 struct QtMultimedia_PackedString QImageEncoderSettings_____encodingOptions_keyList_atList(void* ptr, int i)
 {
-	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
+	return ({ QByteArray* t94aa5e = new QByteArray(({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t94aa5e->prepend("WHITESPACE").constData()+10), t94aa5e->size()-10, t94aa5e }; });
 }
 
 void QImageEncoderSettings_____encodingOptions_keyList_setList(void* ptr, struct QtMultimedia_PackedString i)
@@ -10686,7 +10270,7 @@ void* QImageEncoderSettings_____encodingOptions_keyList_newList(void* ptr)
 
 struct QtMultimedia_PackedString QImageEncoderSettings_____setEncodingOptions_options_keyList_atList(void* ptr, int i)
 {
-	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
+	return ({ QByteArray* t94aa5e = new QByteArray(({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t94aa5e->prepend("WHITESPACE").constData()+10), t94aa5e->size()-10, t94aa5e }; });
 }
 
 void QImageEncoderSettings_____setEncodingOptions_options_keyList_setList(void* ptr, struct QtMultimedia_PackedString i)
@@ -10716,7 +10300,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
@@ -10829,7 +10413,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
@@ -10979,9 +10563,9 @@ class MyQMediaContainerControl: public QMediaContainerControl
 {
 public:
 	MyQMediaContainerControl(QObject *parent = Q_NULLPTR) : QMediaContainerControl(parent) {QMediaContainerControl_QMediaContainerControl_QRegisterMetaType();};
-	QString containerDescription(const QString & formatMimeType) const { QByteArray tb6d52e = formatMimeType.toUtf8(); QtMultimedia_PackedString formatMimeTypePacked = { const_cast<char*>(tb6d52e.prepend("WHITESPACE").constData()+10), tb6d52e.size()-10 };return ({ QtMultimedia_PackedString tempVal = callbackQMediaContainerControl_ContainerDescription(const_cast<void*>(static_cast<const void*>(this)), formatMimeTypePacked); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	QString containerDescription(const QString & formatMimeType) const { QByteArray* tb6d52e = new QByteArray(formatMimeType.toUtf8()); QtMultimedia_PackedString formatMimeTypePacked = { const_cast<char*>(tb6d52e->prepend("WHITESPACE").constData()+10), tb6d52e->size()-10, tb6d52e };return ({ QtMultimedia_PackedString tempVal = callbackQMediaContainerControl_ContainerDescription(const_cast<void*>(static_cast<const void*>(this)), formatMimeTypePacked); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	QString containerFormat() const { return ({ QtMultimedia_PackedString tempVal = callbackQMediaContainerControl_ContainerFormat(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
-	void setContainerFormat(const QString & format) { QByteArray t785987 = format.toUtf8(); QtMultimedia_PackedString formatPacked = { const_cast<char*>(t785987.prepend("WHITESPACE").constData()+10), t785987.size()-10 };callbackQMediaContainerControl_SetContainerFormat(this, formatPacked); };
+	void setContainerFormat(const QString & format) { QByteArray* t785987 = new QByteArray(format.toUtf8()); QtMultimedia_PackedString formatPacked = { const_cast<char*>(t785987->prepend("WHITESPACE").constData()+10), t785987->size()-10, t785987 };callbackQMediaContainerControl_SetContainerFormat(this, formatPacked); };
 	QStringList supportedContainers() const { return ({ QtMultimedia_PackedString tempVal = callbackQMediaContainerControl_SupportedContainers(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	 ~MyQMediaContainerControl() { callbackQMediaContainerControl_DestroyQMediaContainerControl(this); };
 	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
@@ -10993,7 +10577,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
@@ -11051,12 +10635,12 @@ void* QMediaContainerControl_NewQMediaContainerControl(void* parent)
 
 struct QtMultimedia_PackedString QMediaContainerControl_ContainerDescription(void* ptr, struct QtMultimedia_PackedString formatMimeType)
 {
-	return ({ QByteArray t33fd01 = static_cast<QMediaContainerControl*>(ptr)->containerDescription(QString::fromUtf8(formatMimeType.data, formatMimeType.len)).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t33fd01.prepend("WHITESPACE").constData()+10), t33fd01.size()-10 }; });
+	return ({ QByteArray* t33fd01 = new QByteArray(static_cast<QMediaContainerControl*>(ptr)->containerDescription(QString::fromUtf8(formatMimeType.data, formatMimeType.len)).toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t33fd01->prepend("WHITESPACE").constData()+10), t33fd01->size()-10, t33fd01 }; });
 }
 
 struct QtMultimedia_PackedString QMediaContainerControl_ContainerFormat(void* ptr)
 {
-	return ({ QByteArray t46098d = static_cast<QMediaContainerControl*>(ptr)->containerFormat().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t46098d.prepend("WHITESPACE").constData()+10), t46098d.size()-10 }; });
+	return ({ QByteArray* t46098d = new QByteArray(static_cast<QMediaContainerControl*>(ptr)->containerFormat().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t46098d->prepend("WHITESPACE").constData()+10), t46098d->size()-10, t46098d }; });
 }
 
 void QMediaContainerControl_SetContainerFormat(void* ptr, struct QtMultimedia_PackedString format)
@@ -11066,7 +10650,7 @@ void QMediaContainerControl_SetContainerFormat(void* ptr, struct QtMultimedia_Pa
 
 struct QtMultimedia_PackedString QMediaContainerControl_SupportedContainers(void* ptr)
 {
-	return ({ QByteArray t36aec1 = static_cast<QMediaContainerControl*>(ptr)->supportedContainers().join("¡¦!").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t36aec1.prepend("WHITESPACE").constData()+10), t36aec1.size()-10 }; });
+	return ({ QByteArray* t36aec1 = new QByteArray(static_cast<QMediaContainerControl*>(ptr)->supportedContainers().join("¡¦!").toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t36aec1->prepend("WHITESPACE").constData()+10), t36aec1->size()-10, t36aec1 }; });
 }
 
 void QMediaContainerControl_DestroyQMediaContainerControl(void* ptr)
@@ -11177,7 +10761,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
@@ -11351,38 +10935,6 @@ void QMediaControl___findChildren_setList3(void* ptr, void* i)
 }
 
 void* QMediaControl___findChildren_newList3(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
-void* QMediaControl___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QMediaControl___qFindChildren_setList2(void* ptr, void* i)
-{
-	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QAudioSystemPlugin*>(i));
-	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
-	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
-	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaServiceProviderPlugin*>(i));
-	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QRadioData*>(i));
-	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QVideoWidget*>(i));
-	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-	}
-}
-
-void* QMediaControl___qFindChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();
@@ -12815,7 +12367,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
@@ -12968,7 +12520,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
@@ -13040,7 +12592,7 @@ public:
 	bool isAvailable() const { return callbackQMediaObject_IsAvailable(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	void Signal_MetaDataAvailableChanged(bool available) { callbackQMediaObject_MetaDataAvailableChanged(this, available); };
 	void Signal_MetaDataChanged() { callbackQMediaObject_MetaDataChanged(this); };
-	void Signal_MetaDataChanged2(const QString & key, const QVariant & value) { QByteArray ta62f22 = key.toUtf8(); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };callbackQMediaObject_MetaDataChanged2(this, keyPacked, const_cast<QVariant*>(&value)); };
+	void Signal_MetaDataChanged2(const QString & key, const QVariant & value) { QByteArray* ta62f22 = new QByteArray(key.toUtf8()); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22->prepend("WHITESPACE").constData()+10), ta62f22->size()-10, ta62f22 };callbackQMediaObject_MetaDataChanged2(this, keyPacked, const_cast<QVariant*>(&value)); };
 	void Signal_NotifyIntervalChanged(int milliseconds) { callbackQMediaObject_NotifyIntervalChanged(this, milliseconds); };
 	QMediaService * service() const { return static_cast<QMediaService*>(callbackQMediaObject_Service(const_cast<void*>(static_cast<const void*>(this)))); };
 	void unbind(QObject * object) { callbackQMediaObject_Unbind(this, object); };
@@ -13054,7 +12606,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaObject_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaObject_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaObject_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaObject_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaObject_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaObject_TimerEvent(this, event); };
 };
 
@@ -13168,7 +12720,7 @@ void QMediaObject_AvailabilityChanged2(void* ptr, long long availability)
 
 struct QtMultimedia_PackedString QMediaObject_AvailableMetaData(void* ptr)
 {
-	return ({ QByteArray t26e55a = static_cast<QMediaObject*>(ptr)->availableMetaData().join("¡¦!").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t26e55a.prepend("WHITESPACE").constData()+10), t26e55a.size()-10 }; });
+	return ({ QByteArray* t26e55a = new QByteArray(static_cast<QMediaObject*>(ptr)->availableMetaData().join("¡¦!").toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t26e55a->prepend("WHITESPACE").constData()+10), t26e55a->size()-10, t26e55a }; });
 }
 
 char QMediaObject_Bind(void* ptr, void* object)
@@ -13651,38 +13203,6 @@ void* QMediaObject___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QMediaObject___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QMediaObject___qFindChildren_setList2(void* ptr, void* i)
-{
-	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QAudioSystemPlugin*>(i));
-	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
-	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
-	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaServiceProviderPlugin*>(i));
-	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QRadioData*>(i));
-	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QVideoWidget*>(i));
-	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-	}
-}
-
-void* QMediaObject___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 void QMediaObject_ChildEventDefault(void* ptr, void* event)
 {
 	if (dynamic_cast<QRadioTuner*>(static_cast<QObject*>(ptr))) {
@@ -13907,7 +13427,7 @@ public:
 	QMultimedia::AvailabilityStatus availability() const { return static_cast<QMultimedia::AvailabilityStatus>(callbackQMediaObject_Availability(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_BufferStatusChanged(int percentFilled) { callbackQMediaPlayer_BufferStatusChanged(this, percentFilled); };
 	void Signal_CurrentMediaChanged(const QMediaContent & media) { callbackQMediaPlayer_CurrentMediaChanged(this, const_cast<QMediaContent*>(&media)); };
-	void Signal_CustomAudioRoleChanged(const QString & role) { QByteArray t8dca46 = role.toUtf8(); QtMultimedia_PackedString rolePacked = { const_cast<char*>(t8dca46.prepend("WHITESPACE").constData()+10), t8dca46.size()-10 };callbackQMediaPlayer_CustomAudioRoleChanged(this, rolePacked); };
+	void Signal_CustomAudioRoleChanged(const QString & role) { QByteArray* t8dca46 = new QByteArray(role.toUtf8()); QtMultimedia_PackedString rolePacked = { const_cast<char*>(t8dca46->prepend("WHITESPACE").constData()+10), t8dca46->size()-10, t8dca46 };callbackQMediaPlayer_CustomAudioRoleChanged(this, rolePacked); };
 	void Signal_DurationChanged(qint64 duration) { callbackQMediaPlayer_DurationChanged(this, duration); };
 	void Signal_Error2(QMediaPlayer::Error error) { callbackQMediaPlayer_Error2(this, error); };
 	void Signal_MediaChanged(const QMediaContent & media) { callbackQMediaPlayer_MediaChanged(this, const_cast<QMediaContent*>(&media)); };
@@ -13937,7 +13457,7 @@ public:
 	bool isAvailable() const { return callbackQMediaObject_IsAvailable(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	void Signal_MetaDataAvailableChanged(bool available) { callbackQMediaObject_MetaDataAvailableChanged(this, available); };
 	void Signal_MetaDataChanged() { callbackQMediaObject_MetaDataChanged(this); };
-	void Signal_MetaDataChanged2(const QString & key, const QVariant & value) { QByteArray ta62f22 = key.toUtf8(); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };callbackQMediaObject_MetaDataChanged2(this, keyPacked, const_cast<QVariant*>(&value)); };
+	void Signal_MetaDataChanged2(const QString & key, const QVariant & value) { QByteArray* ta62f22 = new QByteArray(key.toUtf8()); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22->prepend("WHITESPACE").constData()+10), ta62f22->size()-10, ta62f22 };callbackQMediaObject_MetaDataChanged2(this, keyPacked, const_cast<QVariant*>(&value)); };
 	void Signal_NotifyIntervalChanged(int milliseconds) { callbackQMediaObject_NotifyIntervalChanged(this, milliseconds); };
 	QMediaService * service() const { return static_cast<QMediaService*>(callbackQMediaObject_Service(const_cast<void*>(static_cast<const void*>(this)))); };
 	void unbind(QObject * object) { callbackQMediaObject_Unbind(this, object); };
@@ -13950,7 +13470,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaObject_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaObject_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaObject_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaObject_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaObject_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaObject_TimerEvent(this, event); };
 };
 
@@ -14089,7 +13609,7 @@ void* QMediaPlayer_CurrentNetworkConfiguration(void* ptr)
 
 struct QtMultimedia_PackedString QMediaPlayer_CustomAudioRole(void* ptr)
 {
-	return ({ QByteArray te887b0 = static_cast<QMediaPlayer*>(ptr)->customAudioRole().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(te887b0.prepend("WHITESPACE").constData()+10), te887b0.size()-10 }; });
+	return ({ QByteArray* te887b0 = new QByteArray(static_cast<QMediaPlayer*>(ptr)->customAudioRole().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(te887b0->prepend("WHITESPACE").constData()+10), te887b0->size()-10, te887b0 }; });
 }
 
 void QMediaPlayer_ConnectCustomAudioRoleChanged(void* ptr, long long t)
@@ -14150,7 +13670,7 @@ void QMediaPlayer_Error2(void* ptr, long long error)
 
 struct QtMultimedia_PackedString QMediaPlayer_ErrorString(void* ptr)
 {
-	return ({ QByteArray t55328b = static_cast<QMediaPlayer*>(ptr)->errorString().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t55328b.prepend("WHITESPACE").constData()+10), t55328b.size()-10 }; });
+	return ({ QByteArray* t55328b = new QByteArray(static_cast<QMediaPlayer*>(ptr)->errorString().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t55328b->prepend("WHITESPACE").constData()+10), t55328b->size()-10, t55328b }; });
 }
 
 long long QMediaPlayer_QMediaPlayer_HasSupport(struct QtMultimedia_PackedString mimeType, struct QtMultimedia_PackedString codecs, long long flags)
@@ -14462,7 +13982,7 @@ struct QtMultimedia_PackedList QMediaPlayer_SupportedAudioRoles(void* ptr)
 
 struct QtMultimedia_PackedString QMediaPlayer_SupportedCustomAudioRoles(void* ptr)
 {
-	return ({ QByteArray tb5c594 = static_cast<QMediaPlayer*>(ptr)->supportedCustomAudioRoles().join("¡¦!").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tb5c594.prepend("WHITESPACE").constData()+10), tb5c594.size()-10 }; });
+	return ({ QByteArray* tb5c594 = new QByteArray(static_cast<QMediaPlayer*>(ptr)->supportedCustomAudioRoles().join("¡¦!").toUtf8()); QtMultimedia_PackedString { const_cast<char*>(tb5c594->prepend("WHITESPACE").constData()+10), tb5c594->size()-10, tb5c594 }; });
 }
 
 void QMediaPlayer_ConnectVideoAvailableChanged(void* ptr, long long t)
@@ -14554,7 +14074,7 @@ public:
 	void Signal_BufferStatusChanged(int percentFilled) { callbackQMediaPlayerControl_BufferStatusChanged(this, percentFilled); };
 	qint64 duration() const { return callbackQMediaPlayerControl_Duration(const_cast<void*>(static_cast<const void*>(this))); };
 	void Signal_DurationChanged(qint64 duration) { callbackQMediaPlayerControl_DurationChanged(this, duration); };
-	void Signal_Error(int error, const QString & errorString) { QByteArray tc8b6bd = errorString.toUtf8(); QtMultimedia_PackedString errorStringPacked = { const_cast<char*>(tc8b6bd.prepend("WHITESPACE").constData()+10), tc8b6bd.size()-10 };callbackQMediaPlayerControl_Error(this, error, errorStringPacked); };
+	void Signal_Error(int error, const QString & errorString) { QByteArray* tc8b6bd = new QByteArray(errorString.toUtf8()); QtMultimedia_PackedString errorStringPacked = { const_cast<char*>(tc8b6bd->prepend("WHITESPACE").constData()+10), tc8b6bd->size()-10, tc8b6bd };callbackQMediaPlayerControl_Error(this, error, errorStringPacked); };
 	bool isAudioAvailable() const { return callbackQMediaPlayerControl_IsAudioAvailable(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	bool isMuted() const { return callbackQMediaPlayerControl_IsMuted(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	bool isSeekable() const { return callbackQMediaPlayerControl_IsSeekable(const_cast<void*>(static_cast<const void*>(this))) != 0; };
@@ -14593,7 +14113,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
@@ -15011,7 +14531,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaPlaylist_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaPlaylist_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaPlaylist_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaPlaylist_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaPlaylist_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaPlaylist_TimerEvent(this, event); };
 	bool setMediaObject(QMediaObject * object) { return callbackQMediaPlaylist_SetMediaObject(this, object) != 0; };
 };
@@ -15088,7 +14608,7 @@ long long QMediaPlaylist_Error(void* ptr)
 
 struct QtMultimedia_PackedString QMediaPlaylist_ErrorString(void* ptr)
 {
-		return ({ QByteArray t91ff89 = static_cast<QMediaPlaylist*>(ptr)->errorString().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t91ff89.prepend("WHITESPACE").constData()+10), t91ff89.size()-10 }; });
+		return ({ QByteArray* t91ff89 = new QByteArray(static_cast<QMediaPlaylist*>(ptr)->errorString().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t91ff89->prepend("WHITESPACE").constData()+10), t91ff89->size()-10, t91ff89 }; });
 }
 
 char QMediaPlaylist_InsertMedia(void* ptr, int pos, void* content)
@@ -15507,38 +15027,6 @@ void* QMediaPlaylist___findChildren_newList3(void* ptr)
 		return new QList<QObject*>();
 }
 
-void* QMediaPlaylist___qFindChildren_atList2(void* ptr, int i)
-{
-		return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QMediaPlaylist___qFindChildren_setList2(void* ptr, void* i)
-{
-	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QAudioSystemPlugin*>(i));
-	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
-	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
-	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaServiceProviderPlugin*>(i));
-	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QRadioData*>(i));
-	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QVideoWidget*>(i));
-	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-	}
-}
-
-void* QMediaPlaylist___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-		return new QList<QObject*>();
-}
-
 void QMediaPlaylist_ChildEvent(void* ptr, void* event)
 {
 		static_cast<QMediaPlaylist*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
@@ -15683,7 +15171,7 @@ public:
 	QMediaObject * mediaObject() const { return static_cast<QMediaObject*>(callbackQMediaRecorder_MediaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_MetaDataAvailableChanged(bool available) { callbackQMediaRecorder_MetaDataAvailableChanged(this, available); };
 	void Signal_MetaDataChanged() { callbackQMediaRecorder_MetaDataChanged(this); };
-	void Signal_MetaDataChanged2(const QString & key, const QVariant & value) { QByteArray ta62f22 = key.toUtf8(); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };callbackQMediaRecorder_MetaDataChanged2(this, keyPacked, const_cast<QVariant*>(&value)); };
+	void Signal_MetaDataChanged2(const QString & key, const QVariant & value) { QByteArray* ta62f22 = new QByteArray(key.toUtf8()); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22->prepend("WHITESPACE").constData()+10), ta62f22->size()-10, ta62f22 };callbackQMediaRecorder_MetaDataChanged2(this, keyPacked, const_cast<QVariant*>(&value)); };
 	void Signal_MetaDataWritableChanged(bool writable) { callbackQMediaRecorder_MetaDataWritableChanged(this, writable); };
 	void Signal_MutedChanged(bool muted) { callbackQMediaRecorder_MutedChanged(this, muted); };
 	void pause() { callbackQMediaRecorder_Pause(this); };
@@ -15704,7 +15192,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaRecorder_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaRecorder_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaRecorder_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaRecorder_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaRecorder_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaRecorder_TimerEvent(this, event); };
 	bool setMediaObject(QMediaObject * object) { return callbackQMediaRecorder_SetMediaObject(this, object) != 0; };
 };
@@ -15741,7 +15229,7 @@ void QMediaRecorder_ActualLocationChanged(void* ptr, void* location)
 
 struct QtMultimedia_PackedString QMediaRecorder_AudioCodecDescription(void* ptr, struct QtMultimedia_PackedString codec)
 {
-		return ({ QByteArray td24190 = static_cast<QMediaRecorder*>(ptr)->audioCodecDescription(QString::fromUtf8(codec.data, codec.len)).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(td24190.prepend("WHITESPACE").constData()+10), td24190.size()-10 }; });
+		return ({ QByteArray* td24190 = new QByteArray(static_cast<QMediaRecorder*>(ptr)->audioCodecDescription(QString::fromUtf8(codec.data, codec.len)).toUtf8()); QtMultimedia_PackedString { const_cast<char*>(td24190->prepend("WHITESPACE").constData()+10), td24190->size()-10, td24190 }; });
 }
 
 void* QMediaRecorder_AudioSettings(void* ptr)
@@ -15787,17 +15275,17 @@ void QMediaRecorder_AvailabilityChanged2(void* ptr, long long availability)
 
 struct QtMultimedia_PackedString QMediaRecorder_AvailableMetaData(void* ptr)
 {
-		return ({ QByteArray t148b06 = static_cast<QMediaRecorder*>(ptr)->availableMetaData().join("¡¦!").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t148b06.prepend("WHITESPACE").constData()+10), t148b06.size()-10 }; });
+		return ({ QByteArray* t148b06 = new QByteArray(static_cast<QMediaRecorder*>(ptr)->availableMetaData().join("¡¦!").toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t148b06->prepend("WHITESPACE").constData()+10), t148b06->size()-10, t148b06 }; });
 }
 
 struct QtMultimedia_PackedString QMediaRecorder_ContainerDescription(void* ptr, struct QtMultimedia_PackedString format)
 {
-		return ({ QByteArray td9023c = static_cast<QMediaRecorder*>(ptr)->containerDescription(QString::fromUtf8(format.data, format.len)).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(td9023c.prepend("WHITESPACE").constData()+10), td9023c.size()-10 }; });
+		return ({ QByteArray* td9023c = new QByteArray(static_cast<QMediaRecorder*>(ptr)->containerDescription(QString::fromUtf8(format.data, format.len)).toUtf8()); QtMultimedia_PackedString { const_cast<char*>(td9023c->prepend("WHITESPACE").constData()+10), td9023c->size()-10, td9023c }; });
 }
 
 struct QtMultimedia_PackedString QMediaRecorder_ContainerFormat(void* ptr)
 {
-		return ({ QByteArray tce675e = static_cast<QMediaRecorder*>(ptr)->containerFormat().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tce675e.prepend("WHITESPACE").constData()+10), tce675e.size()-10 }; });
+		return ({ QByteArray* tce675e = new QByteArray(static_cast<QMediaRecorder*>(ptr)->containerFormat().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(tce675e->prepend("WHITESPACE").constData()+10), tce675e->size()-10, tce675e }; });
 }
 
 long long QMediaRecorder_Duration(void* ptr)
@@ -15843,7 +15331,7 @@ void QMediaRecorder_Error2(void* ptr, long long error)
 
 struct QtMultimedia_PackedString QMediaRecorder_ErrorString(void* ptr)
 {
-		return ({ QByteArray t8975f0 = static_cast<QMediaRecorder*>(ptr)->errorString().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t8975f0.prepend("WHITESPACE").constData()+10), t8975f0.size()-10 }; });
+		return ({ QByteArray* t8975f0 = new QByteArray(static_cast<QMediaRecorder*>(ptr)->errorString().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t8975f0->prepend("WHITESPACE").constData()+10), t8975f0->size()-10, t8975f0 }; });
 }
 
 char QMediaRecorder_IsAvailable(void* ptr)
@@ -16109,7 +15597,7 @@ void QMediaRecorder_StopDefault(void* ptr)
 
 struct QtMultimedia_PackedString QMediaRecorder_SupportedAudioCodecs(void* ptr)
 {
-		return ({ QByteArray t489f71 = static_cast<QMediaRecorder*>(ptr)->supportedAudioCodecs().join("¡¦!").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t489f71.prepend("WHITESPACE").constData()+10), t489f71.size()-10 }; });
+		return ({ QByteArray* t489f71 = new QByteArray(static_cast<QMediaRecorder*>(ptr)->supportedAudioCodecs().join("¡¦!").toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t489f71->prepend("WHITESPACE").constData()+10), t489f71->size()-10, t489f71 }; });
 }
 
 struct QtMultimedia_PackedList QMediaRecorder_SupportedAudioSampleRates(void* ptr, void* settings, char* continuous)
@@ -16119,7 +15607,7 @@ struct QtMultimedia_PackedList QMediaRecorder_SupportedAudioSampleRates(void* pt
 
 struct QtMultimedia_PackedString QMediaRecorder_SupportedContainers(void* ptr)
 {
-		return ({ QByteArray t948956 = static_cast<QMediaRecorder*>(ptr)->supportedContainers().join("¡¦!").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t948956.prepend("WHITESPACE").constData()+10), t948956.size()-10 }; });
+		return ({ QByteArray* t948956 = new QByteArray(static_cast<QMediaRecorder*>(ptr)->supportedContainers().join("¡¦!").toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t948956->prepend("WHITESPACE").constData()+10), t948956->size()-10, t948956 }; });
 }
 
 struct QtMultimedia_PackedList QMediaRecorder_SupportedFrameRates(void* ptr, void* settings, char* continuous)
@@ -16134,12 +15622,12 @@ struct QtMultimedia_PackedList QMediaRecorder_SupportedResolutions(void* ptr, vo
 
 struct QtMultimedia_PackedString QMediaRecorder_SupportedVideoCodecs(void* ptr)
 {
-		return ({ QByteArray tb262ef = static_cast<QMediaRecorder*>(ptr)->supportedVideoCodecs().join("¡¦!").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tb262ef.prepend("WHITESPACE").constData()+10), tb262ef.size()-10 }; });
+		return ({ QByteArray* tb262ef = new QByteArray(static_cast<QMediaRecorder*>(ptr)->supportedVideoCodecs().join("¡¦!").toUtf8()); QtMultimedia_PackedString { const_cast<char*>(tb262ef->prepend("WHITESPACE").constData()+10), tb262ef->size()-10, tb262ef }; });
 }
 
 struct QtMultimedia_PackedString QMediaRecorder_VideoCodecDescription(void* ptr, struct QtMultimedia_PackedString codec)
 {
-		return ({ QByteArray td27d33 = static_cast<QMediaRecorder*>(ptr)->videoCodecDescription(QString::fromUtf8(codec.data, codec.len)).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(td27d33.prepend("WHITESPACE").constData()+10), td27d33.size()-10 }; });
+		return ({ QByteArray* td27d33 = new QByteArray(static_cast<QMediaRecorder*>(ptr)->videoCodecDescription(QString::fromUtf8(codec.data, codec.len)).toUtf8()); QtMultimedia_PackedString { const_cast<char*>(td27d33->prepend("WHITESPACE").constData()+10), td27d33->size()-10, td27d33 }; });
 }
 
 void* QMediaRecorder_VideoSettings(void* ptr)
@@ -16333,38 +15821,6 @@ void QMediaRecorder___findChildren_setList3(void* ptr, void* i)
 }
 
 void* QMediaRecorder___findChildren_newList3(void* ptr)
-{
-	Q_UNUSED(ptr);
-		return new QList<QObject*>();
-}
-
-void* QMediaRecorder___qFindChildren_atList2(void* ptr, int i)
-{
-		return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QMediaRecorder___qFindChildren_setList2(void* ptr, void* i)
-{
-	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QAudioSystemPlugin*>(i));
-	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
-	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
-	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaServiceProviderPlugin*>(i));
-	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QRadioData*>(i));
-	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QVideoWidget*>(i));
-	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-	}
-}
-
-void* QMediaRecorder___qFindChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
 		return new QList<QObject*>();
@@ -16566,7 +16022,7 @@ public:
 	void applySettings() { callbackQMediaRecorderControl_ApplySettings(this); };
 	qint64 duration() const { return callbackQMediaRecorderControl_Duration(const_cast<void*>(static_cast<const void*>(this))); };
 	void Signal_DurationChanged(qint64 duration) { callbackQMediaRecorderControl_DurationChanged(this, duration); };
-	void Signal_Error(int error, const QString & errorString) { QByteArray tc8b6bd = errorString.toUtf8(); QtMultimedia_PackedString errorStringPacked = { const_cast<char*>(tc8b6bd.prepend("WHITESPACE").constData()+10), tc8b6bd.size()-10 };callbackQMediaRecorderControl_Error(this, error, errorStringPacked); };
+	void Signal_Error(int error, const QString & errorString) { QByteArray* tc8b6bd = new QByteArray(errorString.toUtf8()); QtMultimedia_PackedString errorStringPacked = { const_cast<char*>(tc8b6bd->prepend("WHITESPACE").constData()+10), tc8b6bd->size()-10, tc8b6bd };callbackQMediaRecorderControl_Error(this, error, errorStringPacked); };
 	bool isMuted() const { return callbackQMediaRecorderControl_IsMuted(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	void Signal_MutedChanged(bool muted) { callbackQMediaRecorderControl_MutedChanged(this, muted); };
 	QUrl outputLocation() const { return *static_cast<QUrl*>(callbackQMediaRecorderControl_OutputLocation(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -16590,7 +16046,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
@@ -16848,7 +16304,7 @@ int QMediaResource_AudioBitRate(void* ptr)
 
 struct QtMultimedia_PackedString QMediaResource_AudioCodec(void* ptr)
 {
-	return ({ QByteArray t3ad21c = static_cast<QMediaResource*>(ptr)->audioCodec().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t3ad21c.prepend("WHITESPACE").constData()+10), t3ad21c.size()-10 }; });
+	return ({ QByteArray* t3ad21c = new QByteArray(static_cast<QMediaResource*>(ptr)->audioCodec().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t3ad21c->prepend("WHITESPACE").constData()+10), t3ad21c->size()-10, t3ad21c }; });
 }
 
 int QMediaResource_ChannelCount(void* ptr)
@@ -16868,12 +16324,12 @@ char QMediaResource_IsNull(void* ptr)
 
 struct QtMultimedia_PackedString QMediaResource_Language(void* ptr)
 {
-	return ({ QByteArray t69ac0c = static_cast<QMediaResource*>(ptr)->language().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t69ac0c.prepend("WHITESPACE").constData()+10), t69ac0c.size()-10 }; });
+	return ({ QByteArray* t69ac0c = new QByteArray(static_cast<QMediaResource*>(ptr)->language().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t69ac0c->prepend("WHITESPACE").constData()+10), t69ac0c->size()-10, t69ac0c }; });
 }
 
 struct QtMultimedia_PackedString QMediaResource_MimeType(void* ptr)
 {
-	return ({ QByteArray ta44245 = static_cast<QMediaResource*>(ptr)->mimeType().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(ta44245.prepend("WHITESPACE").constData()+10), ta44245.size()-10 }; });
+	return ({ QByteArray* ta44245 = new QByteArray(static_cast<QMediaResource*>(ptr)->mimeType().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(ta44245->prepend("WHITESPACE").constData()+10), ta44245->size()-10, ta44245 }; });
 }
 
 void* QMediaResource_Request(void* ptr)
@@ -16953,7 +16409,7 @@ int QMediaResource_VideoBitRate(void* ptr)
 
 struct QtMultimedia_PackedString QMediaResource_VideoCodec(void* ptr)
 {
-	return ({ QByteArray tfe661d = static_cast<QMediaResource*>(ptr)->videoCodec().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tfe661d.prepend("WHITESPACE").constData()+10), tfe661d.size()-10 }; });
+	return ({ QByteArray* tfe661d = new QByteArray(static_cast<QMediaResource*>(ptr)->videoCodec().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(tfe661d->prepend("WHITESPACE").constData()+10), tfe661d->size()-10, tfe661d }; });
 }
 
 void QMediaResource_DestroyQMediaResource(void* ptr)
@@ -17040,7 +16496,7 @@ class MyQMediaService: public QMediaService
 public:
 	MyQMediaService(QObject *parent) : QMediaService(parent) {QMediaService_QMediaService_QRegisterMetaType();};
 	void releaseControl(QMediaControl * control) { callbackQMediaService_ReleaseControl(this, control); };
-	QMediaControl * requestControl(const char * interfa) { QtMultimedia_PackedString interfaPacked = { const_cast<char*>(interfa), -1 };return static_cast<QMediaControl*>(callbackQMediaService_RequestControl(this, interfaPacked)); };
+	QMediaControl * requestControl(const char * interfa) { QtMultimedia_PackedString interfaPacked = { const_cast<char*>(interfa), -1, NULL };return static_cast<QMediaControl*>(callbackQMediaService_RequestControl(this, interfaPacked)); };
 	 ~MyQMediaService() { callbackQMediaService_DestroyQMediaService(this); };
 	void childEvent(QChildEvent * event) { callbackQMediaService_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQMediaService_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -17051,7 +16507,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaService_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaService_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaService_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaService_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaService_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaService_TimerEvent(this, event); };
 };
 
@@ -17245,38 +16701,6 @@ void* QMediaService___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QMediaService___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QMediaService___qFindChildren_setList2(void* ptr, void* i)
-{
-	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QAudioSystemPlugin*>(i));
-	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
-	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
-	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaServiceProviderPlugin*>(i));
-	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QRadioData*>(i));
-	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QVideoWidget*>(i));
-	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-	}
-}
-
-void* QMediaService___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 void QMediaService_ChildEventDefault(void* ptr, void* event)
 {
 		static_cast<QMediaService*>(ptr)->QMediaService::childEvent(static_cast<QChildEvent*>(event));
@@ -17425,7 +16849,7 @@ void QMediaServiceFeaturesInterface_DestroyQMediaServiceFeaturesInterfaceDefault
 class MyQMediaServiceProviderPlugin: public QMediaServiceProviderPlugin
 {
 public:
-	QMediaService * create(const QString & key) { QByteArray ta62f22 = key.toUtf8(); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };return static_cast<QMediaService*>(callbackQMediaServiceProviderPlugin_Create(this, keyPacked)); };
+	QMediaService * create(const QString & key) { QByteArray* ta62f22 = new QByteArray(key.toUtf8()); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22->prepend("WHITESPACE").constData()+10), ta62f22->size()-10, ta62f22 };return static_cast<QMediaService*>(callbackQMediaServiceProviderPlugin_Create(this, keyPacked)); };
 	void release(QMediaService * service) { callbackQMediaServiceProviderPlugin_Release(this, service); };
 	void childEvent(QChildEvent * event) { callbackQMediaServiceProviderPlugin_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQMediaServiceProviderPlugin_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -17436,7 +16860,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaServiceProviderPlugin_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaServiceProviderPlugin_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaServiceProviderPlugin_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaServiceProviderPlugin_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaServiceProviderPlugin_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaServiceProviderPlugin_TimerEvent(this, event); };
 };
 
@@ -17562,38 +16986,6 @@ void QMediaServiceProviderPlugin___findChildren_setList3(void* ptr, void* i)
 }
 
 void* QMediaServiceProviderPlugin___findChildren_newList3(void* ptr)
-{
-	Q_UNUSED(ptr);
-		return new QList<QObject*>();
-}
-
-void* QMediaServiceProviderPlugin___qFindChildren_atList2(void* ptr, int i)
-{
-		return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QMediaServiceProviderPlugin___qFindChildren_setList2(void* ptr, void* i)
-{
-	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QAudioSystemPlugin*>(i));
-	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
-	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
-	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaServiceProviderPlugin*>(i));
-	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QRadioData*>(i));
-	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QVideoWidget*>(i));
-	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-	}
-}
-
-void* QMediaServiceProviderPlugin___qFindChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
 		return new QList<QObject*>();
@@ -17736,7 +17128,7 @@ int QMediaServiceSupportedDevicesInterface_QMediaServiceSupportedDevicesInterfac
 
 struct QtMultimedia_PackedString QMediaServiceSupportedDevicesInterface_DeviceDescription(void* ptr, void* service, void* device)
 {
-	return ({ QByteArray tc3bd23 = static_cast<QMediaServiceSupportedDevicesInterface*>(ptr)->deviceDescription(*static_cast<QByteArray*>(service), *static_cast<QByteArray*>(device)).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tc3bd23.prepend("WHITESPACE").constData()+10), tc3bd23.size()-10 }; });
+	return ({ QByteArray* tc3bd23 = new QByteArray(static_cast<QMediaServiceSupportedDevicesInterface*>(ptr)->deviceDescription(*static_cast<QByteArray*>(service), *static_cast<QByteArray*>(device)).toUtf8()); QtMultimedia_PackedString { const_cast<char*>(tc3bd23->prepend("WHITESPACE").constData()+10), tc3bd23->size()-10, tc3bd23 }; });
 }
 
 struct QtMultimedia_PackedList QMediaServiceSupportedDevicesInterface_Devices(void* ptr, void* service)
@@ -17774,7 +17166,7 @@ void* QMediaServiceSupportedDevicesInterface___devices_newList(void* ptr)
 class MyQMediaServiceSupportedFormatsInterface: public QMediaServiceSupportedFormatsInterface
 {
 public:
-	QMultimedia::SupportEstimate hasSupport(const QString & mimeType, const QStringList & codecs) const { QByteArray t3313b8 = mimeType.toUtf8(); QtMultimedia_PackedString mimeTypePacked = { const_cast<char*>(t3313b8.prepend("WHITESPACE").constData()+10), t3313b8.size()-10 };QByteArray t7222c0 = codecs.join("¡¦!").toUtf8(); QtMultimedia_PackedString codecsPacked = { const_cast<char*>(t7222c0.prepend("WHITESPACE").constData()+10), t7222c0.size()-10 };return static_cast<QMultimedia::SupportEstimate>(callbackQMediaServiceSupportedFormatsInterface_HasSupport(const_cast<void*>(static_cast<const void*>(this)), mimeTypePacked, codecsPacked)); };
+	QMultimedia::SupportEstimate hasSupport(const QString & mimeType, const QStringList & codecs) const { QByteArray* t3313b8 = new QByteArray(mimeType.toUtf8()); QtMultimedia_PackedString mimeTypePacked = { const_cast<char*>(t3313b8->prepend("WHITESPACE").constData()+10), t3313b8->size()-10, t3313b8 };QByteArray* t7222c0 = new QByteArray(codecs.join("¡¦!").toUtf8()); QtMultimedia_PackedString codecsPacked = { const_cast<char*>(t7222c0->prepend("WHITESPACE").constData()+10), t7222c0->size()-10, t7222c0 };return static_cast<QMultimedia::SupportEstimate>(callbackQMediaServiceSupportedFormatsInterface_HasSupport(const_cast<void*>(static_cast<const void*>(this)), mimeTypePacked, codecsPacked)); };
 	QStringList supportedMimeTypes() const { return ({ QtMultimedia_PackedString tempVal = callbackQMediaServiceSupportedFormatsInterface_SupportedMimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	 ~MyQMediaServiceSupportedFormatsInterface() { callbackQMediaServiceSupportedFormatsInterface_DestroyQMediaServiceSupportedFormatsInterface(this); };
 };
@@ -17791,7 +17183,7 @@ long long QMediaServiceSupportedFormatsInterface_HasSupport(void* ptr, struct Qt
 
 struct QtMultimedia_PackedString QMediaServiceSupportedFormatsInterface_SupportedMimeTypes(void* ptr)
 {
-	return ({ QByteArray te6e5ca = static_cast<QMediaServiceSupportedFormatsInterface*>(ptr)->supportedMimeTypes().join("¡¦!").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(te6e5ca.prepend("WHITESPACE").constData()+10), te6e5ca.size()-10 }; });
+	return ({ QByteArray* te6e5ca = new QByteArray(static_cast<QMediaServiceSupportedFormatsInterface*>(ptr)->supportedMimeTypes().join("¡¦!").toUtf8()); QtMultimedia_PackedString { const_cast<char*>(te6e5ca->prepend("WHITESPACE").constData()+10), te6e5ca->size()-10, te6e5ca }; });
 }
 
 void QMediaServiceSupportedFormatsInterface_DestroyQMediaServiceSupportedFormatsInterface(void* ptr)
@@ -17811,7 +17203,7 @@ public:
 	MyQMediaStreamsControl(QObject *parent = Q_NULLPTR) : QMediaStreamsControl(parent) {QMediaStreamsControl_QMediaStreamsControl_QRegisterMetaType();};
 	void Signal_ActiveStreamsChanged() { callbackQMediaStreamsControl_ActiveStreamsChanged(this); };
 	bool isActive(int streamNumber) { return callbackQMediaStreamsControl_IsActive(this, streamNumber) != 0; };
-	QVariant metaData(int streamNumber, const QString & key) { QByteArray ta62f22 = key.toUtf8(); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };return *static_cast<QVariant*>(callbackQMediaStreamsControl_MetaData(this, streamNumber, keyPacked)); };
+	QVariant metaData(int streamNumber, const QString & key) { QByteArray* ta62f22 = new QByteArray(key.toUtf8()); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22->prepend("WHITESPACE").constData()+10), ta62f22->size()-10, ta62f22 };return *static_cast<QVariant*>(callbackQMediaStreamsControl_MetaData(this, streamNumber, keyPacked)); };
 	void setActive(int streamNumber, bool state) { callbackQMediaStreamsControl_SetActive(this, streamNumber, state); };
 	int streamCount() { return callbackQMediaStreamsControl_StreamCount(this); };
 	QMediaStreamsControl::StreamType streamType(int streamNumber) { return static_cast<QMediaStreamsControl::StreamType>(callbackQMediaStreamsControl_StreamType(this, streamNumber)); };
@@ -17826,7 +17218,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
@@ -18119,7 +17511,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
@@ -18222,10 +17614,10 @@ public:
 	MyQMetaDataReaderControl(QObject *parent = Q_NULLPTR) : QMetaDataReaderControl(parent) {QMetaDataReaderControl_QMetaDataReaderControl_QRegisterMetaType();};
 	QStringList availableMetaData() const { return ({ QtMultimedia_PackedString tempVal = callbackQMetaDataReaderControl_AvailableMetaData(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	bool isMetaDataAvailable() const { return callbackQMetaDataReaderControl_IsMetaDataAvailable(const_cast<void*>(static_cast<const void*>(this))) != 0; };
-	QVariant metaData(const QString & key) const { QByteArray ta62f22 = key.toUtf8(); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };return *static_cast<QVariant*>(callbackQMetaDataReaderControl_MetaData(const_cast<void*>(static_cast<const void*>(this)), keyPacked)); };
+	QVariant metaData(const QString & key) const { QByteArray* ta62f22 = new QByteArray(key.toUtf8()); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22->prepend("WHITESPACE").constData()+10), ta62f22->size()-10, ta62f22 };return *static_cast<QVariant*>(callbackQMetaDataReaderControl_MetaData(const_cast<void*>(static_cast<const void*>(this)), keyPacked)); };
 	void Signal_MetaDataAvailableChanged(bool available) { callbackQMetaDataReaderControl_MetaDataAvailableChanged(this, available); };
 	void Signal_MetaDataChanged() { callbackQMetaDataReaderControl_MetaDataChanged(this); };
-	void Signal_MetaDataChanged2(const QString & key, const QVariant & value) { QByteArray ta62f22 = key.toUtf8(); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };callbackQMetaDataReaderControl_MetaDataChanged2(this, keyPacked, const_cast<QVariant*>(&value)); };
+	void Signal_MetaDataChanged2(const QString & key, const QVariant & value) { QByteArray* ta62f22 = new QByteArray(key.toUtf8()); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22->prepend("WHITESPACE").constData()+10), ta62f22->size()-10, ta62f22 };callbackQMetaDataReaderControl_MetaDataChanged2(this, keyPacked, const_cast<QVariant*>(&value)); };
 	 ~MyQMetaDataReaderControl() { callbackQMetaDataReaderControl_DestroyQMetaDataReaderControl(this); };
 	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQMediaControl_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -18236,7 +17628,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
@@ -18294,7 +17686,7 @@ void* QMetaDataReaderControl_NewQMetaDataReaderControl(void* parent)
 
 struct QtMultimedia_PackedString QMetaDataReaderControl_AvailableMetaData(void* ptr)
 {
-	return ({ QByteArray tff69ae = static_cast<QMetaDataReaderControl*>(ptr)->availableMetaData().join("¡¦!").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tff69ae.prepend("WHITESPACE").constData()+10), tff69ae.size()-10 }; });
+	return ({ QByteArray* tff69ae = new QByteArray(static_cast<QMetaDataReaderControl*>(ptr)->availableMetaData().join("¡¦!").toUtf8()); QtMultimedia_PackedString { const_cast<char*>(tff69ae->prepend("WHITESPACE").constData()+10), tff69ae->size()-10, tff69ae }; });
 }
 
 char QMetaDataReaderControl_IsMetaDataAvailable(void* ptr)
@@ -18370,11 +17762,11 @@ public:
 	QStringList availableMetaData() const { return ({ QtMultimedia_PackedString tempVal = callbackQMetaDataWriterControl_AvailableMetaData(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	bool isMetaDataAvailable() const { return callbackQMetaDataWriterControl_IsMetaDataAvailable(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	bool isWritable() const { return callbackQMetaDataWriterControl_IsWritable(const_cast<void*>(static_cast<const void*>(this))) != 0; };
-	QVariant metaData(const QString & key) const { QByteArray ta62f22 = key.toUtf8(); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };return *static_cast<QVariant*>(callbackQMetaDataWriterControl_MetaData(const_cast<void*>(static_cast<const void*>(this)), keyPacked)); };
+	QVariant metaData(const QString & key) const { QByteArray* ta62f22 = new QByteArray(key.toUtf8()); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22->prepend("WHITESPACE").constData()+10), ta62f22->size()-10, ta62f22 };return *static_cast<QVariant*>(callbackQMetaDataWriterControl_MetaData(const_cast<void*>(static_cast<const void*>(this)), keyPacked)); };
 	void Signal_MetaDataAvailableChanged(bool available) { callbackQMetaDataWriterControl_MetaDataAvailableChanged(this, available); };
 	void Signal_MetaDataChanged() { callbackQMetaDataWriterControl_MetaDataChanged(this); };
-	void Signal_MetaDataChanged2(const QString & key, const QVariant & value) { QByteArray ta62f22 = key.toUtf8(); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };callbackQMetaDataWriterControl_MetaDataChanged2(this, keyPacked, const_cast<QVariant*>(&value)); };
-	void setMetaData(const QString & key, const QVariant & value) { QByteArray ta62f22 = key.toUtf8(); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };callbackQMetaDataWriterControl_SetMetaData(this, keyPacked, const_cast<QVariant*>(&value)); };
+	void Signal_MetaDataChanged2(const QString & key, const QVariant & value) { QByteArray* ta62f22 = new QByteArray(key.toUtf8()); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22->prepend("WHITESPACE").constData()+10), ta62f22->size()-10, ta62f22 };callbackQMetaDataWriterControl_MetaDataChanged2(this, keyPacked, const_cast<QVariant*>(&value)); };
+	void setMetaData(const QString & key, const QVariant & value) { QByteArray* ta62f22 = new QByteArray(key.toUtf8()); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22->prepend("WHITESPACE").constData()+10), ta62f22->size()-10, ta62f22 };callbackQMetaDataWriterControl_SetMetaData(this, keyPacked, const_cast<QVariant*>(&value)); };
 	void Signal_WritableChanged(bool writable) { callbackQMetaDataWriterControl_WritableChanged(this, writable); };
 	 ~MyQMetaDataWriterControl() { callbackQMetaDataWriterControl_DestroyQMetaDataWriterControl(this); };
 	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
@@ -18386,7 +17778,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
@@ -18444,7 +17836,7 @@ void* QMetaDataWriterControl_NewQMetaDataWriterControl(void* parent)
 
 struct QtMultimedia_PackedString QMetaDataWriterControl_AvailableMetaData(void* ptr)
 {
-	return ({ QByteArray te3166d = static_cast<QMetaDataWriterControl*>(ptr)->availableMetaData().join("¡¦!").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(te3166d.prepend("WHITESPACE").constData()+10), te3166d.size()-10 }; });
+	return ({ QByteArray* te3166d = new QByteArray(static_cast<QMetaDataWriterControl*>(ptr)->availableMetaData().join("¡¦!").toUtf8()); QtMultimedia_PackedString { const_cast<char*>(te3166d->prepend("WHITESPACE").constData()+10), te3166d->size()-10, te3166d }; });
 }
 
 char QMetaDataWriterControl_IsMetaDataAvailable(void* ptr)
@@ -18546,12 +17938,12 @@ public:
 	void Signal_Error2(QRadioData::Error error) { callbackQRadioData_Error2(this, error); };
 	QMediaObject * mediaObject() const { return static_cast<QMediaObject*>(callbackQRadioData_MediaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ProgramTypeChanged(QRadioData::ProgramType programType) { callbackQRadioData_ProgramTypeChanged(this, programType); };
-	void Signal_ProgramTypeNameChanged(QString programTypeName) { QByteArray t2400f1 = programTypeName.toUtf8(); QtMultimedia_PackedString programTypeNamePacked = { const_cast<char*>(t2400f1.prepend("WHITESPACE").constData()+10), t2400f1.size()-10 };callbackQRadioData_ProgramTypeNameChanged(this, programTypeNamePacked); };
-	void Signal_RadioTextChanged(QString radioText) { QByteArray t7ba492 = radioText.toUtf8(); QtMultimedia_PackedString radioTextPacked = { const_cast<char*>(t7ba492.prepend("WHITESPACE").constData()+10), t7ba492.size()-10 };callbackQRadioData_RadioTextChanged(this, radioTextPacked); };
+	void Signal_ProgramTypeNameChanged(QString programTypeName) { QByteArray* t2400f1 = new QByteArray(programTypeName.toUtf8()); QtMultimedia_PackedString programTypeNamePacked = { const_cast<char*>(t2400f1->prepend("WHITESPACE").constData()+10), t2400f1->size()-10, t2400f1 };callbackQRadioData_ProgramTypeNameChanged(this, programTypeNamePacked); };
+	void Signal_RadioTextChanged(QString radioText) { QByteArray* t7ba492 = new QByteArray(radioText.toUtf8()); QtMultimedia_PackedString radioTextPacked = { const_cast<char*>(t7ba492->prepend("WHITESPACE").constData()+10), t7ba492->size()-10, t7ba492 };callbackQRadioData_RadioTextChanged(this, radioTextPacked); };
 	void setAlternativeFrequenciesEnabled(bool enabled) { callbackQRadioData_SetAlternativeFrequenciesEnabled(this, enabled); };
 	bool setMediaObject(QMediaObject * mediaObject) { return callbackQRadioData_SetMediaObject(this, mediaObject) != 0; };
-	void Signal_StationIdChanged(QString stationId) { QByteArray t6518b0 = stationId.toUtf8(); QtMultimedia_PackedString stationIdPacked = { const_cast<char*>(t6518b0.prepend("WHITESPACE").constData()+10), t6518b0.size()-10 };callbackQRadioData_StationIdChanged(this, stationIdPacked); };
-	void Signal_StationNameChanged(QString stationName) { QByteArray t32b816 = stationName.toUtf8(); QtMultimedia_PackedString stationNamePacked = { const_cast<char*>(t32b816.prepend("WHITESPACE").constData()+10), t32b816.size()-10 };callbackQRadioData_StationNameChanged(this, stationNamePacked); };
+	void Signal_StationIdChanged(QString stationId) { QByteArray* t6518b0 = new QByteArray(stationId.toUtf8()); QtMultimedia_PackedString stationIdPacked = { const_cast<char*>(t6518b0->prepend("WHITESPACE").constData()+10), t6518b0->size()-10, t6518b0 };callbackQRadioData_StationIdChanged(this, stationIdPacked); };
+	void Signal_StationNameChanged(QString stationName) { QByteArray* t32b816 = new QByteArray(stationName.toUtf8()); QtMultimedia_PackedString stationNamePacked = { const_cast<char*>(t32b816->prepend("WHITESPACE").constData()+10), t32b816->size()-10, t32b816 };callbackQRadioData_StationNameChanged(this, stationNamePacked); };
 	 ~MyQRadioData() { callbackQRadioData_DestroyQRadioData(this); };
 	void childEvent(QChildEvent * event) { callbackQRadioData_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQRadioData_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -18562,7 +17954,7 @@ public:
 	bool event(QEvent * e) { return callbackQRadioData_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQRadioData_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQRadioData_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQRadioData_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQRadioData_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQRadioData_TimerEvent(this, event); };
 };
 
@@ -18619,7 +18011,7 @@ void QRadioData_Error2(void* ptr, long long error)
 
 struct QtMultimedia_PackedString QRadioData_ErrorString(void* ptr)
 {
-		return ({ QByteArray t763fe2 = static_cast<QRadioData*>(ptr)->errorString().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t763fe2.prepend("WHITESPACE").constData()+10), t763fe2.size()-10 }; });
+		return ({ QByteArray* t763fe2 = new QByteArray(static_cast<QRadioData*>(ptr)->errorString().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t763fe2->prepend("WHITESPACE").constData()+10), t763fe2->size()-10, t763fe2 }; });
 }
 
 char QRadioData_IsAlternativeFrequenciesEnabled(void* ptr)
@@ -18660,7 +18052,7 @@ void QRadioData_ProgramTypeChanged(void* ptr, long long programType)
 
 struct QtMultimedia_PackedString QRadioData_ProgramTypeName(void* ptr)
 {
-		return ({ QByteArray tf5ec6b = static_cast<QRadioData*>(ptr)->programTypeName().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tf5ec6b.prepend("WHITESPACE").constData()+10), tf5ec6b.size()-10 }; });
+		return ({ QByteArray* tf5ec6b = new QByteArray(static_cast<QRadioData*>(ptr)->programTypeName().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(tf5ec6b->prepend("WHITESPACE").constData()+10), tf5ec6b->size()-10, tf5ec6b }; });
 }
 
 void QRadioData_ConnectProgramTypeNameChanged(void* ptr, long long t)
@@ -18680,7 +18072,7 @@ void QRadioData_ProgramTypeNameChanged(void* ptr, struct QtMultimedia_PackedStri
 
 struct QtMultimedia_PackedString QRadioData_RadioText(void* ptr)
 {
-		return ({ QByteArray t809fb8 = static_cast<QRadioData*>(ptr)->radioText().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t809fb8.prepend("WHITESPACE").constData()+10), t809fb8.size()-10 }; });
+		return ({ QByteArray* t809fb8 = new QByteArray(static_cast<QRadioData*>(ptr)->radioText().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t809fb8->prepend("WHITESPACE").constData()+10), t809fb8->size()-10, t809fb8 }; });
 }
 
 void QRadioData_ConnectRadioTextChanged(void* ptr, long long t)
@@ -18720,7 +18112,7 @@ char QRadioData_SetMediaObjectDefault(void* ptr, void* mediaObject)
 
 struct QtMultimedia_PackedString QRadioData_StationId(void* ptr)
 {
-		return ({ QByteArray t645596 = static_cast<QRadioData*>(ptr)->stationId().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t645596.prepend("WHITESPACE").constData()+10), t645596.size()-10 }; });
+		return ({ QByteArray* t645596 = new QByteArray(static_cast<QRadioData*>(ptr)->stationId().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t645596->prepend("WHITESPACE").constData()+10), t645596->size()-10, t645596 }; });
 }
 
 void QRadioData_ConnectStationIdChanged(void* ptr, long long t)
@@ -18740,7 +18132,7 @@ void QRadioData_StationIdChanged(void* ptr, struct QtMultimedia_PackedString sta
 
 struct QtMultimedia_PackedString QRadioData_StationName(void* ptr)
 {
-		return ({ QByteArray t79f056 = static_cast<QRadioData*>(ptr)->stationName().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t79f056.prepend("WHITESPACE").constData()+10), t79f056.size()-10 }; });
+		return ({ QByteArray* t79f056 = new QByteArray(static_cast<QRadioData*>(ptr)->stationName().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t79f056->prepend("WHITESPACE").constData()+10), t79f056->size()-10, t79f056 }; });
 }
 
 void QRadioData_ConnectStationNameChanged(void* ptr, long long t)
@@ -18881,38 +18273,6 @@ void* QRadioData___findChildren_newList3(void* ptr)
 		return new QList<QObject*>();
 }
 
-void* QRadioData___qFindChildren_atList2(void* ptr, int i)
-{
-		return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QRadioData___qFindChildren_setList2(void* ptr, void* i)
-{
-	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QAudioSystemPlugin*>(i));
-	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
-	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
-	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaServiceProviderPlugin*>(i));
-	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QRadioData*>(i));
-	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QVideoWidget*>(i));
-	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-	}
-}
-
-void* QRadioData___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-		return new QList<QObject*>();
-}
-
 void QRadioData_ChildEvent(void* ptr, void* event)
 {
 		static_cast<QRadioData*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
@@ -19047,14 +18407,14 @@ public:
 	QRadioData::ProgramType programType() const { return static_cast<QRadioData::ProgramType>(callbackQRadioDataControl_ProgramType(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ProgramTypeChanged(QRadioData::ProgramType programType) { callbackQRadioDataControl_ProgramTypeChanged(this, programType); };
 	QString programTypeName() const { return ({ QtMultimedia_PackedString tempVal = callbackQRadioDataControl_ProgramTypeName(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
-	void Signal_ProgramTypeNameChanged(QString programTypeName) { QByteArray t2400f1 = programTypeName.toUtf8(); QtMultimedia_PackedString programTypeNamePacked = { const_cast<char*>(t2400f1.prepend("WHITESPACE").constData()+10), t2400f1.size()-10 };callbackQRadioDataControl_ProgramTypeNameChanged(this, programTypeNamePacked); };
+	void Signal_ProgramTypeNameChanged(QString programTypeName) { QByteArray* t2400f1 = new QByteArray(programTypeName.toUtf8()); QtMultimedia_PackedString programTypeNamePacked = { const_cast<char*>(t2400f1->prepend("WHITESPACE").constData()+10), t2400f1->size()-10, t2400f1 };callbackQRadioDataControl_ProgramTypeNameChanged(this, programTypeNamePacked); };
 	QString radioText() const { return ({ QtMultimedia_PackedString tempVal = callbackQRadioDataControl_RadioText(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
-	void Signal_RadioTextChanged(QString radioText) { QByteArray t7ba492 = radioText.toUtf8(); QtMultimedia_PackedString radioTextPacked = { const_cast<char*>(t7ba492.prepend("WHITESPACE").constData()+10), t7ba492.size()-10 };callbackQRadioDataControl_RadioTextChanged(this, radioTextPacked); };
+	void Signal_RadioTextChanged(QString radioText) { QByteArray* t7ba492 = new QByteArray(radioText.toUtf8()); QtMultimedia_PackedString radioTextPacked = { const_cast<char*>(t7ba492->prepend("WHITESPACE").constData()+10), t7ba492->size()-10, t7ba492 };callbackQRadioDataControl_RadioTextChanged(this, radioTextPacked); };
 	void setAlternativeFrequenciesEnabled(bool enabled) { callbackQRadioDataControl_SetAlternativeFrequenciesEnabled(this, enabled); };
 	QString stationId() const { return ({ QtMultimedia_PackedString tempVal = callbackQRadioDataControl_StationId(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
-	void Signal_StationIdChanged(QString stationId) { QByteArray t6518b0 = stationId.toUtf8(); QtMultimedia_PackedString stationIdPacked = { const_cast<char*>(t6518b0.prepend("WHITESPACE").constData()+10), t6518b0.size()-10 };callbackQRadioDataControl_StationIdChanged(this, stationIdPacked); };
+	void Signal_StationIdChanged(QString stationId) { QByteArray* t6518b0 = new QByteArray(stationId.toUtf8()); QtMultimedia_PackedString stationIdPacked = { const_cast<char*>(t6518b0->prepend("WHITESPACE").constData()+10), t6518b0->size()-10, t6518b0 };callbackQRadioDataControl_StationIdChanged(this, stationIdPacked); };
 	QString stationName() const { return ({ QtMultimedia_PackedString tempVal = callbackQRadioDataControl_StationName(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
-	void Signal_StationNameChanged(QString stationName) { QByteArray t32b816 = stationName.toUtf8(); QtMultimedia_PackedString stationNamePacked = { const_cast<char*>(t32b816.prepend("WHITESPACE").constData()+10), t32b816.size()-10 };callbackQRadioDataControl_StationNameChanged(this, stationNamePacked); };
+	void Signal_StationNameChanged(QString stationName) { QByteArray* t32b816 = new QByteArray(stationName.toUtf8()); QtMultimedia_PackedString stationNamePacked = { const_cast<char*>(t32b816->prepend("WHITESPACE").constData()+10), t32b816->size()-10, t32b816 };callbackQRadioDataControl_StationNameChanged(this, stationNamePacked); };
 	 ~MyQRadioDataControl() { callbackQRadioDataControl_DestroyQRadioDataControl(this); };
 	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQMediaControl_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -19065,7 +18425,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
@@ -19159,7 +18519,7 @@ void QRadioDataControl_Error2(void* ptr, long long error)
 
 struct QtMultimedia_PackedString QRadioDataControl_ErrorString(void* ptr)
 {
-	return ({ QByteArray tcfd03f = static_cast<QRadioDataControl*>(ptr)->errorString().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tcfd03f.prepend("WHITESPACE").constData()+10), tcfd03f.size()-10 }; });
+	return ({ QByteArray* tcfd03f = new QByteArray(static_cast<QRadioDataControl*>(ptr)->errorString().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(tcfd03f->prepend("WHITESPACE").constData()+10), tcfd03f->size()-10, tcfd03f }; });
 }
 
 char QRadioDataControl_IsAlternativeFrequenciesEnabled(void* ptr)
@@ -19190,7 +18550,7 @@ void QRadioDataControl_ProgramTypeChanged(void* ptr, long long programType)
 
 struct QtMultimedia_PackedString QRadioDataControl_ProgramTypeName(void* ptr)
 {
-	return ({ QByteArray tf82b2c = static_cast<QRadioDataControl*>(ptr)->programTypeName().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tf82b2c.prepend("WHITESPACE").constData()+10), tf82b2c.size()-10 }; });
+	return ({ QByteArray* tf82b2c = new QByteArray(static_cast<QRadioDataControl*>(ptr)->programTypeName().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(tf82b2c->prepend("WHITESPACE").constData()+10), tf82b2c->size()-10, tf82b2c }; });
 }
 
 void QRadioDataControl_ConnectProgramTypeNameChanged(void* ptr, long long t)
@@ -19210,7 +18570,7 @@ void QRadioDataControl_ProgramTypeNameChanged(void* ptr, struct QtMultimedia_Pac
 
 struct QtMultimedia_PackedString QRadioDataControl_RadioText(void* ptr)
 {
-	return ({ QByteArray t97ccf4 = static_cast<QRadioDataControl*>(ptr)->radioText().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t97ccf4.prepend("WHITESPACE").constData()+10), t97ccf4.size()-10 }; });
+	return ({ QByteArray* t97ccf4 = new QByteArray(static_cast<QRadioDataControl*>(ptr)->radioText().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t97ccf4->prepend("WHITESPACE").constData()+10), t97ccf4->size()-10, t97ccf4 }; });
 }
 
 void QRadioDataControl_ConnectRadioTextChanged(void* ptr, long long t)
@@ -19235,7 +18595,7 @@ void QRadioDataControl_SetAlternativeFrequenciesEnabled(void* ptr, char enabled)
 
 struct QtMultimedia_PackedString QRadioDataControl_StationId(void* ptr)
 {
-	return ({ QByteArray tbf44fc = static_cast<QRadioDataControl*>(ptr)->stationId().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tbf44fc.prepend("WHITESPACE").constData()+10), tbf44fc.size()-10 }; });
+	return ({ QByteArray* tbf44fc = new QByteArray(static_cast<QRadioDataControl*>(ptr)->stationId().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(tbf44fc->prepend("WHITESPACE").constData()+10), tbf44fc->size()-10, tbf44fc }; });
 }
 
 void QRadioDataControl_ConnectStationIdChanged(void* ptr, long long t)
@@ -19255,7 +18615,7 @@ void QRadioDataControl_StationIdChanged(void* ptr, struct QtMultimedia_PackedStr
 
 struct QtMultimedia_PackedString QRadioDataControl_StationName(void* ptr)
 {
-	return ({ QByteArray tb06572 = static_cast<QRadioDataControl*>(ptr)->stationName().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tb06572.prepend("WHITESPACE").constData()+10), tb06572.size()-10 }; });
+	return ({ QByteArray* tb06572 = new QByteArray(static_cast<QRadioDataControl*>(ptr)->stationName().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(tb06572->prepend("WHITESPACE").constData()+10), tb06572->size()-10, tb06572 }; });
 }
 
 void QRadioDataControl_ConnectStationNameChanged(void* ptr, long long t)
@@ -19306,7 +18666,7 @@ public:
 	void Signal_SignalStrengthChanged(int strength) { callbackQRadioTuner_SignalStrengthChanged(this, strength); };
 	void start() { callbackQRadioTuner_Start(this); };
 	void Signal_StateChanged(QRadioTuner::State state) { callbackQRadioTuner_StateChanged(this, state); };
-	void Signal_StationFound(int frequency, QString stationId) { QByteArray t6518b0 = stationId.toUtf8(); QtMultimedia_PackedString stationIdPacked = { const_cast<char*>(t6518b0.prepend("WHITESPACE").constData()+10), t6518b0.size()-10 };callbackQRadioTuner_StationFound(this, frequency, stationIdPacked); };
+	void Signal_StationFound(int frequency, QString stationId) { QByteArray* t6518b0 = new QByteArray(stationId.toUtf8()); QtMultimedia_PackedString stationIdPacked = { const_cast<char*>(t6518b0->prepend("WHITESPACE").constData()+10), t6518b0->size()-10, t6518b0 };callbackQRadioTuner_StationFound(this, frequency, stationIdPacked); };
 	void Signal_StereoStatusChanged(bool stereo) { callbackQRadioTuner_StereoStatusChanged(this, stereo); };
 	void stop() { callbackQRadioTuner_Stop(this); };
 	void Signal_VolumeChanged(int volume) { callbackQRadioTuner_VolumeChanged(this, volume); };
@@ -19317,7 +18677,7 @@ public:
 	bool isAvailable() const { return callbackQMediaObject_IsAvailable(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	void Signal_MetaDataAvailableChanged(bool available) { callbackQMediaObject_MetaDataAvailableChanged(this, available); };
 	void Signal_MetaDataChanged() { callbackQMediaObject_MetaDataChanged(this); };
-	void Signal_MetaDataChanged2(const QString & key, const QVariant & value) { QByteArray ta62f22 = key.toUtf8(); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };callbackQMediaObject_MetaDataChanged2(this, keyPacked, const_cast<QVariant*>(&value)); };
+	void Signal_MetaDataChanged2(const QString & key, const QVariant & value) { QByteArray* ta62f22 = new QByteArray(key.toUtf8()); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22->prepend("WHITESPACE").constData()+10), ta62f22->size()-10, ta62f22 };callbackQMediaObject_MetaDataChanged2(this, keyPacked, const_cast<QVariant*>(&value)); };
 	void Signal_NotifyIntervalChanged(int milliseconds) { callbackQMediaObject_NotifyIntervalChanged(this, milliseconds); };
 	QMediaService * service() const { return static_cast<QMediaService*>(callbackQMediaObject_Service(const_cast<void*>(static_cast<const void*>(this)))); };
 	void unbind(QObject * object) { callbackQMediaObject_Unbind(this, object); };
@@ -19330,7 +18690,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaObject_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaObject_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaObject_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaObject_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaObject_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaObject_TimerEvent(this, event); };
 };
 
@@ -19455,7 +18815,7 @@ void QRadioTuner_Error2(void* ptr, long long error)
 
 struct QtMultimedia_PackedString QRadioTuner_ErrorString(void* ptr)
 {
-	return ({ QByteArray t26ab64 = static_cast<QRadioTuner*>(ptr)->errorString().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t26ab64.prepend("WHITESPACE").constData()+10), t26ab64.size()-10 }; });
+	return ({ QByteArray* t26ab64 = new QByteArray(static_cast<QRadioTuner*>(ptr)->errorString().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t26ab64->prepend("WHITESPACE").constData()+10), t26ab64->size()-10, t26ab64 }; });
 }
 
 int QRadioTuner_Frequency(void* ptr)
@@ -19780,7 +19140,7 @@ public:
 	void start() { callbackQRadioTunerControl_Start(this); };
 	QRadioTuner::State state() const { return static_cast<QRadioTuner::State>(callbackQRadioTunerControl_State(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_StateChanged(QRadioTuner::State state) { callbackQRadioTunerControl_StateChanged(this, state); };
-	void Signal_StationFound(int frequency, QString stationId) { QByteArray t6518b0 = stationId.toUtf8(); QtMultimedia_PackedString stationIdPacked = { const_cast<char*>(t6518b0.prepend("WHITESPACE").constData()+10), t6518b0.size()-10 };callbackQRadioTunerControl_StationFound(this, frequency, stationIdPacked); };
+	void Signal_StationFound(int frequency, QString stationId) { QByteArray* t6518b0 = new QByteArray(stationId.toUtf8()); QtMultimedia_PackedString stationIdPacked = { const_cast<char*>(t6518b0->prepend("WHITESPACE").constData()+10), t6518b0->size()-10, t6518b0 };callbackQRadioTunerControl_StationFound(this, frequency, stationIdPacked); };
 	QRadioTuner::StereoMode stereoMode() const { return static_cast<QRadioTuner::StereoMode>(callbackQRadioTunerControl_StereoMode(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_StereoStatusChanged(bool stereo) { callbackQRadioTunerControl_StereoStatusChanged(this, stereo); };
 	void stop() { callbackQRadioTunerControl_Stop(this); };
@@ -19796,7 +19156,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
@@ -19869,7 +19229,7 @@ void QRadioTunerControl_Error2(void* ptr, long long error)
 
 struct QtMultimedia_PackedString QRadioTunerControl_ErrorString(void* ptr)
 {
-	return ({ QByteArray t29e878 = static_cast<QRadioTunerControl*>(ptr)->errorString().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t29e878.prepend("WHITESPACE").constData()+10), t29e878.size()-10 }; });
+	return ({ QByteArray* t29e878 = new QByteArray(static_cast<QRadioTunerControl*>(ptr)->errorString().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t29e878->prepend("WHITESPACE").constData()+10), t29e878->size()-10, t29e878 }; });
 }
 
 int QRadioTunerControl_Frequency(void* ptr)
@@ -20130,7 +19490,7 @@ public:
 	bool event(QEvent * e) { return callbackQSound_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSound_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSound_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSound_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQSound_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSound_TimerEvent(this, event); };
 };
 
@@ -20188,7 +19548,7 @@ void* QSound_NewQSound(struct QtMultimedia_PackedString filename, void* parent)
 
 struct QtMultimedia_PackedString QSound_FileName(void* ptr)
 {
-	return ({ QByteArray t54b0ee = static_cast<QSound*>(ptr)->fileName().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t54b0ee.prepend("WHITESPACE").constData()+10), t54b0ee.size()-10 }; });
+	return ({ QByteArray* t54b0ee = new QByteArray(static_cast<QSound*>(ptr)->fileName().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t54b0ee->prepend("WHITESPACE").constData()+10), t54b0ee->size()-10, t54b0ee }; });
 }
 
 char QSound_IsFinished(void* ptr)
@@ -20359,38 +19719,6 @@ void* QSound___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QSound___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QSound___qFindChildren_setList2(void* ptr, void* i)
-{
-	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QAudioSystemPlugin*>(i));
-	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
-	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
-	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaServiceProviderPlugin*>(i));
-	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QRadioData*>(i));
-	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QVideoWidget*>(i));
-	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-	}
-}
-
-void* QSound___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 void QSound_ChildEventDefault(void* ptr, void* event)
 {
 		static_cast<QSound*>(ptr)->QSound::childEvent(static_cast<QChildEvent*>(event));
@@ -20478,7 +19806,7 @@ public:
 	bool event(QEvent * e) { return callbackQSoundEffect_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSoundEffect_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSoundEffect_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSoundEffect_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQSoundEffect_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSoundEffect_TimerEvent(this, event); };
 };
 
@@ -20583,7 +19911,7 @@ void* QSoundEffect_NewQSoundEffect2(void* audioDevice, void* parent)
 
 struct QtMultimedia_PackedString QSoundEffect_Category(void* ptr)
 {
-	return ({ QByteArray t036c43 = static_cast<QSoundEffect*>(ptr)->category().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t036c43.prepend("WHITESPACE").constData()+10), t036c43.size()-10 }; });
+	return ({ QByteArray* t036c43 = new QByteArray(static_cast<QSoundEffect*>(ptr)->category().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t036c43->prepend("WHITESPACE").constData()+10), t036c43->size()-10, t036c43 }; });
 }
 
 void QSoundEffect_ConnectCategoryChanged(void* ptr, long long t)
@@ -20788,7 +20116,7 @@ void QSoundEffect_StopDefault(void* ptr)
 
 struct QtMultimedia_PackedString QSoundEffect_QSoundEffect_SupportedMimeTypes()
 {
-	return ({ QByteArray t9ca848 = QSoundEffect::supportedMimeTypes().join("¡¦!").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t9ca848.prepend("WHITESPACE").constData()+10), t9ca848.size()-10 }; });
+	return ({ QByteArray* t9ca848 = new QByteArray(QSoundEffect::supportedMimeTypes().join("¡¦!").toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t9ca848->prepend("WHITESPACE").constData()+10), t9ca848->size()-10, t9ca848 }; });
 }
 
 double QSoundEffect_Volume(void* ptr)
@@ -20934,38 +20262,6 @@ void* QSoundEffect___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QSoundEffect___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QSoundEffect___qFindChildren_setList2(void* ptr, void* i)
-{
-	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QAudioSystemPlugin*>(i));
-	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
-	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
-	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaServiceProviderPlugin*>(i));
-	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QRadioData*>(i));
-	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QVideoWidget*>(i));
-	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-	}
-}
-
-void* QSoundEffect___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 void QSoundEffect_ChildEventDefault(void* ptr, void* event)
 {
 		static_cast<QSoundEffect*>(ptr)->QSoundEffect::childEvent(static_cast<QChildEvent*>(event));
@@ -21038,7 +20334,7 @@ public:
 	void Signal_DevicesChanged() { callbackQVideoDeviceSelectorControl_DevicesChanged(this); };
 	int selectedDevice() const { return callbackQVideoDeviceSelectorControl_SelectedDevice(const_cast<void*>(static_cast<const void*>(this))); };
 	void Signal_SelectedDeviceChanged(int index) { callbackQVideoDeviceSelectorControl_SelectedDeviceChanged(this, index); };
-	void Signal_SelectedDeviceChanged2(const QString & name) { QByteArray t6ae999 = name.toUtf8(); QtMultimedia_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };callbackQVideoDeviceSelectorControl_SelectedDeviceChanged2(this, namePacked); };
+	void Signal_SelectedDeviceChanged2(const QString & name) { QByteArray* t6ae999 = new QByteArray(name.toUtf8()); QtMultimedia_PackedString namePacked = { const_cast<char*>(t6ae999->prepend("WHITESPACE").constData()+10), t6ae999->size()-10, t6ae999 };callbackQVideoDeviceSelectorControl_SelectedDeviceChanged2(this, namePacked); };
 	void setSelectedDevice(int index) { callbackQVideoDeviceSelectorControl_SetSelectedDevice(this, index); };
 	 ~MyQVideoDeviceSelectorControl() { callbackQVideoDeviceSelectorControl_DestroyQVideoDeviceSelectorControl(this); };
 	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
@@ -21050,7 +20346,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
@@ -21118,12 +20414,12 @@ int QVideoDeviceSelectorControl_DeviceCount(void* ptr)
 
 struct QtMultimedia_PackedString QVideoDeviceSelectorControl_DeviceDescription(void* ptr, int index)
 {
-	return ({ QByteArray t62636e = static_cast<QVideoDeviceSelectorControl*>(ptr)->deviceDescription(index).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t62636e.prepend("WHITESPACE").constData()+10), t62636e.size()-10 }; });
+	return ({ QByteArray* t62636e = new QByteArray(static_cast<QVideoDeviceSelectorControl*>(ptr)->deviceDescription(index).toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t62636e->prepend("WHITESPACE").constData()+10), t62636e->size()-10, t62636e }; });
 }
 
 struct QtMultimedia_PackedString QVideoDeviceSelectorControl_DeviceName(void* ptr, int index)
 {
-	return ({ QByteArray td80c77 = static_cast<QVideoDeviceSelectorControl*>(ptr)->deviceName(index).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(td80c77.prepend("WHITESPACE").constData()+10), td80c77.size()-10 }; });
+	return ({ QByteArray* td80c77 = new QByteArray(static_cast<QVideoDeviceSelectorControl*>(ptr)->deviceName(index).toUtf8()); QtMultimedia_PackedString { const_cast<char*>(td80c77->prepend("WHITESPACE").constData()+10), td80c77->size()-10, td80c77 }; });
 }
 
 void QVideoDeviceSelectorControl_ConnectDevicesChanged(void* ptr, long long t)
@@ -21210,7 +20506,7 @@ int QVideoEncoderSettings_BitRate(void* ptr)
 
 struct QtMultimedia_PackedString QVideoEncoderSettings_Codec(void* ptr)
 {
-	return ({ QByteArray t09ac64 = static_cast<QVideoEncoderSettings*>(ptr)->codec().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t09ac64.prepend("WHITESPACE").constData()+10), t09ac64.size()-10 }; });
+	return ({ QByteArray* t09ac64 = new QByteArray(static_cast<QVideoEncoderSettings*>(ptr)->codec().toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t09ac64->prepend("WHITESPACE").constData()+10), t09ac64->size()-10, t09ac64 }; });
 }
 
 long long QVideoEncoderSettings_EncodingMode(void* ptr)
@@ -21342,7 +20638,7 @@ struct QtMultimedia_PackedList QVideoEncoderSettings___setEncodingOptions_option
 
 struct QtMultimedia_PackedString QVideoEncoderSettings_____encodingOptions_keyList_atList(void* ptr, int i)
 {
-	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
+	return ({ QByteArray* t94aa5e = new QByteArray(({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t94aa5e->prepend("WHITESPACE").constData()+10), t94aa5e->size()-10, t94aa5e }; });
 }
 
 void QVideoEncoderSettings_____encodingOptions_keyList_setList(void* ptr, struct QtMultimedia_PackedString i)
@@ -21358,7 +20654,7 @@ void* QVideoEncoderSettings_____encodingOptions_keyList_newList(void* ptr)
 
 struct QtMultimedia_PackedString QVideoEncoderSettings_____setEncodingOptions_options_keyList_atList(void* ptr, int i)
 {
-	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
+	return ({ QByteArray* t94aa5e = new QByteArray(({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t94aa5e->prepend("WHITESPACE").constData()+10), t94aa5e->size()-10, t94aa5e }; });
 }
 
 void QVideoEncoderSettings_____setEncodingOptions_options_keyList_setList(void* ptr, struct QtMultimedia_PackedString i)
@@ -21380,7 +20676,7 @@ public:
 	QList<qreal> supportedFrameRates(const QVideoEncoderSettings & settings, bool * continuous) const { return ({ QList<qreal>* tmpP = static_cast<QList<qreal>*>(callbackQVideoEncoderSettingsControl_SupportedFrameRates(const_cast<void*>(static_cast<const void*>(this)), const_cast<QVideoEncoderSettings*>(&settings), reinterpret_cast<char*>(continuous))); QList<qreal> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
 	QList<QSize> supportedResolutions(const QVideoEncoderSettings & settings, bool * continuous) const { return ({ QList<QSize>* tmpP = static_cast<QList<QSize>*>(callbackQVideoEncoderSettingsControl_SupportedResolutions(const_cast<void*>(static_cast<const void*>(this)), const_cast<QVideoEncoderSettings*>(&settings), reinterpret_cast<char*>(continuous))); QList<QSize> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
 	QStringList supportedVideoCodecs() const { return ({ QtMultimedia_PackedString tempVal = callbackQVideoEncoderSettingsControl_SupportedVideoCodecs(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
-	QString videoCodecDescription(const QString & codec) const { QByteArray td061f6 = codec.toUtf8(); QtMultimedia_PackedString codecPacked = { const_cast<char*>(td061f6.prepend("WHITESPACE").constData()+10), td061f6.size()-10 };return ({ QtMultimedia_PackedString tempVal = callbackQVideoEncoderSettingsControl_VideoCodecDescription(const_cast<void*>(static_cast<const void*>(this)), codecPacked); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	QString videoCodecDescription(const QString & codec) const { QByteArray* td061f6 = new QByteArray(codec.toUtf8()); QtMultimedia_PackedString codecPacked = { const_cast<char*>(td061f6->prepend("WHITESPACE").constData()+10), td061f6->size()-10, td061f6 };return ({ QtMultimedia_PackedString tempVal = callbackQVideoEncoderSettingsControl_VideoCodecDescription(const_cast<void*>(static_cast<const void*>(this)), codecPacked); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	QVideoEncoderSettings videoSettings() const { return *static_cast<QVideoEncoderSettings*>(callbackQVideoEncoderSettingsControl_VideoSettings(const_cast<void*>(static_cast<const void*>(this)))); };
 	 ~MyQVideoEncoderSettingsControl() { callbackQVideoEncoderSettingsControl_DestroyQVideoEncoderSettingsControl(this); };
 	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
@@ -21392,7 +20688,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
@@ -21465,12 +20761,12 @@ struct QtMultimedia_PackedList QVideoEncoderSettingsControl_SupportedResolutions
 
 struct QtMultimedia_PackedString QVideoEncoderSettingsControl_SupportedVideoCodecs(void* ptr)
 {
-	return ({ QByteArray tf4a8d7 = static_cast<QVideoEncoderSettingsControl*>(ptr)->supportedVideoCodecs().join("¡¦!").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tf4a8d7.prepend("WHITESPACE").constData()+10), tf4a8d7.size()-10 }; });
+	return ({ QByteArray* tf4a8d7 = new QByteArray(static_cast<QVideoEncoderSettingsControl*>(ptr)->supportedVideoCodecs().join("¡¦!").toUtf8()); QtMultimedia_PackedString { const_cast<char*>(tf4a8d7->prepend("WHITESPACE").constData()+10), tf4a8d7->size()-10, tf4a8d7 }; });
 }
 
 struct QtMultimedia_PackedString QVideoEncoderSettingsControl_VideoCodecDescription(void* ptr, struct QtMultimedia_PackedString codec)
 {
-	return ({ QByteArray t82d9f2 = static_cast<QVideoEncoderSettingsControl*>(ptr)->videoCodecDescription(QString::fromUtf8(codec.data, codec.len)).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t82d9f2.prepend("WHITESPACE").constData()+10), t82d9f2.size()-10 }; });
+	return ({ QByteArray* t82d9f2 = new QByteArray(static_cast<QVideoEncoderSettingsControl*>(ptr)->videoCodecDescription(QString::fromUtf8(codec.data, codec.len)).toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t82d9f2->prepend("WHITESPACE").constData()+10), t82d9f2->size()-10, t82d9f2 }; });
 }
 
 void* QVideoEncoderSettingsControl_VideoSettings(void* ptr)
@@ -21570,22 +20866,22 @@ struct QtMultimedia_PackedList QVideoFrame_AvailableMetaData(void* ptr)
 
 struct QtMultimedia_PackedString QVideoFrame_Bits(void* ptr)
 {
-	return ({ char* t262dd0 = static_cast<char*>(static_cast<void*>(static_cast<QVideoFrame*>(ptr)->bits())); QtMultimedia_PackedString { t262dd0, static_cast<QVideoFrame*>(ptr)->mappedBytes() }; });
+	return ({ char* t262dd0 = static_cast<char*>(static_cast<void*>(static_cast<QVideoFrame*>(ptr)->bits())); QtMultimedia_PackedString { t262dd0, static_cast<QVideoFrame*>(ptr)->mappedBytes(), NULL }; });
 }
 
 struct QtMultimedia_PackedString QVideoFrame_Bits2(void* ptr, int plane)
 {
-	return ({ char* t8420e9 = static_cast<char*>(static_cast<void*>(static_cast<QVideoFrame*>(ptr)->bits(plane))); QtMultimedia_PackedString { t8420e9, -1 }; });
+	return ({ char* t8420e9 = static_cast<char*>(static_cast<void*>(static_cast<QVideoFrame*>(ptr)->bits(plane))); QtMultimedia_PackedString { t8420e9, -1, NULL }; });
 }
 
 struct QtMultimedia_PackedString QVideoFrame_Bits3(void* ptr)
 {
-	return ({ char* t262dd0 = static_cast<char*>(static_cast<void*>(const_cast<uchar*>(static_cast<QVideoFrame*>(ptr)->bits()))); QtMultimedia_PackedString { t262dd0, static_cast<QVideoFrame*>(ptr)->mappedBytes() }; });
+	return ({ char* t262dd0 = static_cast<char*>(static_cast<void*>(const_cast<uchar*>(static_cast<QVideoFrame*>(ptr)->bits()))); QtMultimedia_PackedString { t262dd0, static_cast<QVideoFrame*>(ptr)->mappedBytes(), NULL }; });
 }
 
 struct QtMultimedia_PackedString QVideoFrame_Bits4(void* ptr, int plane)
 {
-	return ({ char* t8420e9 = static_cast<char*>(static_cast<void*>(const_cast<uchar*>(static_cast<QVideoFrame*>(ptr)->bits(plane)))); QtMultimedia_PackedString { t8420e9, -1 }; });
+	return ({ char* t8420e9 = static_cast<char*>(static_cast<void*>(const_cast<uchar*>(static_cast<QVideoFrame*>(ptr)->bits(plane)))); QtMultimedia_PackedString { t8420e9, -1, NULL }; });
 }
 
 void* QVideoFrame_Buffer(void* ptr)
@@ -21756,7 +21052,7 @@ struct QtMultimedia_PackedList QVideoFrame___availableMetaData_keyList(void* ptr
 
 struct QtMultimedia_PackedString QVideoFrame_____availableMetaData_keyList_atList(void* ptr, int i)
 {
-	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
+	return ({ QByteArray* t94aa5e = new QByteArray(({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8()); QtMultimedia_PackedString { const_cast<char*>(t94aa5e->prepend("WHITESPACE").constData()+10), t94aa5e->size()-10, t94aa5e }; });
 }
 
 void QVideoFrame_____availableMetaData_keyList_setList(void* ptr, struct QtMultimedia_PackedString i)
@@ -21786,7 +21082,7 @@ public:
 	bool event(QEvent * e) { return callbackQVideoProbe_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQVideoProbe_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQVideoProbe_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQVideoProbe_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQVideoProbe_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQVideoProbe_TimerEvent(this, event); };
 };
 
@@ -22010,38 +21306,6 @@ void* QVideoProbe___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QVideoProbe___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QVideoProbe___qFindChildren_setList2(void* ptr, void* i)
-{
-	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QAudioSystemPlugin*>(i));
-	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
-	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
-	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaServiceProviderPlugin*>(i));
-	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QRadioData*>(i));
-	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QVideoWidget*>(i));
-	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-	}
-}
-
-void* QVideoProbe___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 void QVideoProbe_ChildEventDefault(void* ptr, void* event)
 {
 		static_cast<QVideoProbe*>(ptr)->QVideoProbe::childEvent(static_cast<QChildEvent*>(event));
@@ -22119,7 +21383,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
@@ -22420,10 +21684,10 @@ public:
 	void setEnabled(bool vbo) { callbackQVideoWidget_SetEnabled(this, vbo); };
 	void setFocus() { callbackQVideoWidget_SetFocus2(this); };
 	void setHidden(bool hidden) { callbackQVideoWidget_SetHidden(this, hidden); };
-	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtMultimedia_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQVideoWidget_SetStyleSheet(this, styleSheetPacked); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray* t728ae7 = new QByteArray(styleSheet.toUtf8()); QtMultimedia_PackedString styleSheetPacked = { const_cast<char*>(t728ae7->prepend("WHITESPACE").constData()+10), t728ae7->size()-10, t728ae7 };callbackQVideoWidget_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQVideoWidget_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQVideoWidget_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtMultimedia_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQVideoWidget_SetWindowTitle(this, vqsPacked); };
+	void setWindowTitle(const QString & vqs) { QByteArray* tda39a3 = new QByteArray(vqs.toUtf8()); QtMultimedia_PackedString vqsPacked = { const_cast<char*>(tda39a3->prepend("WHITESPACE").constData()+10), tda39a3->size()-10, tda39a3 };callbackQVideoWidget_SetWindowTitle(this, vqsPacked); };
 	void show() { callbackQVideoWidget_Show(this); };
 	void showFullScreen() { callbackQVideoWidget_ShowFullScreen(this); };
 	void showMaximized() { callbackQVideoWidget_ShowMaximized(this); };
@@ -22434,7 +21698,7 @@ public:
 	void updateMicroFocus() { callbackQVideoWidget_UpdateMicroFocus(this); };
 	void wheelEvent(QWheelEvent * event) { callbackQVideoWidget_WheelEvent(this, event); };
 	void Signal_WindowIconChanged(const QIcon & icon) { callbackQVideoWidget_WindowIconChanged(this, const_cast<QIcon*>(&icon)); };
-	void Signal_WindowTitleChanged(const QString & title) { QByteArray t3c6de1 = title.toUtf8(); QtMultimedia_PackedString titlePacked = { const_cast<char*>(t3c6de1.prepend("WHITESPACE").constData()+10), t3c6de1.size()-10 };callbackQVideoWidget_WindowTitleChanged(this, titlePacked); };
+	void Signal_WindowTitleChanged(const QString & title) { QByteArray* t3c6de1 = new QByteArray(title.toUtf8()); QtMultimedia_PackedString titlePacked = { const_cast<char*>(t3c6de1->prepend("WHITESPACE").constData()+10), t3c6de1->size()-10, t3c6de1 };callbackQVideoWidget_WindowTitleChanged(this, titlePacked); };
 	void childEvent(QChildEvent * event) { callbackQVideoWidget_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQVideoWidget_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQVideoWidget_CustomEvent(this, event); };
@@ -22443,7 +21707,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQVideoWidget_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQVideoWidget_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQVideoWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQVideoWidget_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQVideoWidget_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQVideoWidget_TimerEvent(this, event); };
 	bool setMediaObject(QMediaObject * object) { return callbackQVideoWidget_SetMediaObject(this, object) != 0; };
 };
@@ -22870,38 +22134,6 @@ void QVideoWidget___findChildren_setList3(void* ptr, void* i)
 }
 
 void* QVideoWidget___findChildren_newList3(void* ptr)
-{
-	Q_UNUSED(ptr);
-		return new QList<QObject*>();
-}
-
-void* QVideoWidget___qFindChildren_atList2(void* ptr, int i)
-{
-		return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QVideoWidget___qFindChildren_setList2(void* ptr, void* i)
-{
-	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QAudioSystemPlugin*>(i));
-	} else if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
-	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
-	} else if (dynamic_cast<QMediaServiceProviderPlugin*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaServiceProviderPlugin*>(i));
-	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QRadioData*>(i));
-	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QVideoWidget*>(i));
-	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-	}
-}
-
-void* QVideoWidget___qFindChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
 		return new QList<QObject*>();
@@ -23543,7 +22775,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
@@ -23590,7 +22822,7 @@ public:
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 

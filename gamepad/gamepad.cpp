@@ -66,7 +66,7 @@ public:
 	void Signal_ButtonYChanged(bool value) { callbackQGamepad_ButtonYChanged(this, value); };
 	void Signal_ConnectedChanged(bool value) { callbackQGamepad_ConnectedChanged(this, value); };
 	void Signal_DeviceIdChanged(int value) { callbackQGamepad_DeviceIdChanged(this, value); };
-	void Signal_NameChanged(QString value) { QByteArray tf32b67 = value.toUtf8(); QtGamepad_PackedString valuePacked = { const_cast<char*>(tf32b67.prepend("WHITESPACE").constData()+10), tf32b67.size()-10 };callbackQGamepad_NameChanged(this, valuePacked); };
+	void Signal_NameChanged(QString value) { QByteArray* tf32b67 = new QByteArray(value.toUtf8()); QtGamepad_PackedString valuePacked = { const_cast<char*>(tf32b67->prepend("WHITESPACE").constData()+10), tf32b67->size()-10, tf32b67 };callbackQGamepad_NameChanged(this, valuePacked); };
 	void setDeviceId(int number) { callbackQGamepad_SetDeviceId(this, number); };
 	void childEvent(QChildEvent * event) { callbackQGamepad_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQGamepad_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -77,7 +77,7 @@ public:
 	bool event(QEvent * e) { return callbackQGamepad_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQGamepad_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGamepad_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtGamepad_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQGamepad_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtGamepad_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQGamepad_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQGamepad_TimerEvent(this, event); };
 };
 
@@ -614,7 +614,7 @@ char QGamepad_IsConnected(void* ptr)
 
 struct QtGamepad_PackedString QGamepad_Name(void* ptr)
 {
-	return ({ QByteArray t4fe02c = static_cast<QGamepad*>(ptr)->name().toUtf8(); QtGamepad_PackedString { const_cast<char*>(t4fe02c.prepend("WHITESPACE").constData()+10), t4fe02c.size()-10 }; });
+	return ({ QByteArray* t4fe02c = new QByteArray(static_cast<QGamepad*>(ptr)->name().toUtf8()); QtGamepad_PackedString { const_cast<char*>(t4fe02c->prepend("WHITESPACE").constData()+10), t4fe02c->size()-10, t4fe02c }; });
 }
 
 void QGamepad_ConnectNameChanged(void* ptr, long long t)
@@ -701,22 +701,6 @@ void QGamepad___findChildren_setList3(void* ptr, void* i)
 }
 
 void* QGamepad___findChildren_newList3(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
-void* QGamepad___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QGamepad___qFindChildren_setList2(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QGamepad___qFindChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();
@@ -818,7 +802,7 @@ public:
 	bool event(QEvent * e) { return callbackQGamepadKeyNavigation_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQGamepadKeyNavigation_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGamepadKeyNavigation_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtGamepad_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQGamepadKeyNavigation_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtGamepad_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQGamepadKeyNavigation_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQGamepadKeyNavigation_TimerEvent(this, event); };
 };
 
@@ -1542,22 +1526,6 @@ void* QGamepadKeyNavigation___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QGamepadKeyNavigation___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QGamepadKeyNavigation___qFindChildren_setList2(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QGamepadKeyNavigation___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 void QGamepadKeyNavigation_ChildEventDefault(void* ptr, void* event)
 {
 		static_cast<QGamepadKeyNavigation*>(ptr)->QGamepadKeyNavigation::childEvent(static_cast<QChildEvent*>(event));
@@ -1609,7 +1577,7 @@ public:
 	void Signal_ConnectedGamepadsChanged() { callbackQGamepadManager_ConnectedGamepadsChanged(this); };
 	bool isConfigurationNeeded(int deviceId) const { return callbackQGamepadManager_IsConfigurationNeeded(const_cast<void*>(static_cast<const void*>(this)), deviceId) != 0; };
 	void resetConfiguration(int deviceId) { callbackQGamepadManager_ResetConfiguration(this, deviceId); };
-	void setSettingsFile(const QString & file) { QByteArray t971c41 = file.toUtf8(); QtGamepad_PackedString filePacked = { const_cast<char*>(t971c41.prepend("WHITESPACE").constData()+10), t971c41.size()-10 };callbackQGamepadManager_SetSettingsFile(this, filePacked); };
+	void setSettingsFile(const QString & file) { QByteArray* t971c41 = new QByteArray(file.toUtf8()); QtGamepad_PackedString filePacked = { const_cast<char*>(t971c41->prepend("WHITESPACE").constData()+10), t971c41->size()-10, t971c41 };callbackQGamepadManager_SetSettingsFile(this, filePacked); };
 	void childEvent(QChildEvent * event) { callbackQGamepadManager_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQGamepadManager_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQGamepadManager_CustomEvent(this, event); };
@@ -1619,7 +1587,7 @@ public:
 	bool event(QEvent * e) { return callbackQGamepadManager_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQGamepadManager_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGamepadManager_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtGamepad_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQGamepadManager_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtGamepad_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQGamepadManager_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQGamepadManager_TimerEvent(this, event); };
 };
 
@@ -1650,7 +1618,7 @@ void QGamepadManager_ConnectedGamepadsChanged(void* ptr)
 
 struct QtGamepad_PackedString QGamepadManager_GamepadName(void* ptr, int deviceId)
 {
-	return ({ QByteArray tb309b5 = static_cast<QGamepadManager*>(ptr)->gamepadName(deviceId).toUtf8(); QtGamepad_PackedString { const_cast<char*>(tb309b5.prepend("WHITESPACE").constData()+10), tb309b5.size()-10 }; });
+	return ({ QByteArray* tb309b5 = new QByteArray(static_cast<QGamepadManager*>(ptr)->gamepadName(deviceId).toUtf8()); QtGamepad_PackedString { const_cast<char*>(tb309b5->prepend("WHITESPACE").constData()+10), tb309b5->size()-10, tb309b5 }; });
 }
 
 void* QGamepadManager_QGamepadManager_Instance()
@@ -1770,22 +1738,6 @@ void QGamepadManager___findChildren_setList3(void* ptr, void* i)
 }
 
 void* QGamepadManager___findChildren_newList3(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
-void* QGamepadManager___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QGamepadManager___qFindChildren_setList2(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QGamepadManager___qFindChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();

@@ -315,9 +315,16 @@ func Minimal(path, target, tags string, skipSetup bool) {
 		}
 	}
 
+	if _, ok := parser.State.ClassMap["QObject"]; ok {
+		exportClass(parser.State.ClassMap["QObject"], files)
+		for _, fn := range []string{"setObjectName", "objectNameChanged"} {
+			exportFunction(parser.State.ClassMap["QObject"].GetFunction(fn), files)
+		}
+	}
+
 	if _, ok := parser.State.ClassMap["QJSValue"]; ok {
 		exportClass(parser.State.ClassMap["QJSValue"], files)
-		for _, fn := range []string{"property", "setProperty", "toQObject", "isCallable", "isNull", "isUndefined", "toString", "call", "toInt"} {
+		for _, fn := range []string{"property", "setProperty", "toQObject", "isCallable", "isNull", "isUndefined", "toString", "call", "toInt", "isString"} {
 			exportFunction(parser.State.ClassMap["QJSValue"].GetFunction(fn), files)
 		}
 	}

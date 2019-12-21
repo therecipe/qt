@@ -14,7 +14,7 @@ int QInAppTransaction_QInAppTransaction_QRegisterMetaType();
 extern "C" {
 #endif
 
-struct QtPurchasing_PackedString { char* data; long long len; };
+struct QtPurchasing_PackedString { char* data; long long len; void* ptr; };
 struct QtPurchasing_PackedList { void* data; long long len; };
 struct QtPurchasing_PackedString QInAppProduct_Description(void* ptr);
 struct QtPurchasing_PackedString QInAppProduct_Identifier(void* ptr);
@@ -34,9 +34,6 @@ void* QInAppProduct___findChildren_newList(void* ptr);
 void* QInAppProduct___findChildren_atList3(void* ptr, int i);
 void QInAppProduct___findChildren_setList3(void* ptr, void* i);
 void* QInAppProduct___findChildren_newList3(void* ptr);
-void* QInAppProduct___qFindChildren_atList2(void* ptr, int i);
-void QInAppProduct___qFindChildren_setList2(void* ptr, void* i);
-void* QInAppProduct___qFindChildren_newList2(void* ptr);
 void QInAppProduct_ChildEventDefault(void* ptr, void* event);
 void QInAppProduct_ConnectNotifyDefault(void* ptr, void* sign);
 void QInAppProduct_CustomEventDefault(void* ptr, void* event);
@@ -74,9 +71,6 @@ void* QInAppStore___findChildren_newList(void* ptr);
 void* QInAppStore___findChildren_atList3(void* ptr, int i);
 void QInAppStore___findChildren_setList3(void* ptr, void* i);
 void* QInAppStore___findChildren_newList3(void* ptr);
-void* QInAppStore___qFindChildren_atList2(void* ptr, int i);
-void QInAppStore___qFindChildren_setList2(void* ptr, void* i);
-void* QInAppStore___qFindChildren_newList2(void* ptr);
 void QInAppStore_ChildEventDefault(void* ptr, void* event);
 void QInAppStore_ConnectNotifyDefault(void* ptr, void* sign);
 void QInAppStore_CustomEventDefault(void* ptr, void* event);
@@ -111,9 +105,6 @@ void* QInAppTransaction___findChildren_newList(void* ptr);
 void* QInAppTransaction___findChildren_atList3(void* ptr, int i);
 void QInAppTransaction___findChildren_setList3(void* ptr, void* i);
 void* QInAppTransaction___findChildren_newList3(void* ptr);
-void* QInAppTransaction___qFindChildren_atList2(void* ptr, int i);
-void QInAppTransaction___qFindChildren_setList2(void* ptr, void* i);
-void* QInAppTransaction___qFindChildren_newList2(void* ptr);
 void QInAppTransaction_ChildEventDefault(void* ptr, void* event);
 void QInAppTransaction_ConnectNotifyDefault(void* ptr, void* sign);
 void QInAppTransaction_CustomEventDefault(void* ptr, void* event);

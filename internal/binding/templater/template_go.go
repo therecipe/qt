@@ -39,8 +39,13 @@ func GoTemplate(module string, stub bool, mode int, pkg, target, tags string) []
 	}
 
 	if !(UseStub(stub, module, mode) || UseJs()) {
-		fmt.Fprintf(bb, "func cGoUnpackString(s C.struct_%v_PackedString) string { if int(s.len) == -1 {\n return C.GoString(s.data)\n }\n return C.GoStringN(s.data, C.int(s.len)) }\n", strings.Title(module))
-		fmt.Fprintf(bb, "func cGoUnpackBytes(s C.struct_%v_PackedString) []byte { if int(s.len) == -1 {\n gs := C.GoString(s.data)\n return *(*[]byte)(unsafe.Pointer(&gs))\n }\n return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len)) }\n", strings.Title(module))
+		var m string
+		if module != "QtCore" {
+			m = "core."
+		}
+		fmt.Fprintf(bb, "func cGoFreePacked(ptr unsafe.Pointer) { %vNewQByteArrayFromPointer(ptr).DestroyQByteArray() }\n", m)
+		fmt.Fprintf(bb, "func cGoUnpackString(s C.struct_%v_PackedString) string { defer cGoFreePacked(s.ptr)\n if int(s.len) == -1 {\n return C.GoString(s.data)\n }\n return C.GoStringN(s.data, C.int(s.len)) }\n", strings.Title(module))
+		fmt.Fprintf(bb, "func cGoUnpackBytes(s C.struct_%v_PackedString) []byte { defer cGoFreePacked(s.ptr)\n if int(s.len) == -1 {\n gs := C.GoString(s.data)\n return *(*[]byte)(unsafe.Pointer(&gs))\n }\n return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len)) }\n", strings.Title(module))
 	}
 
 	if UseJs() {
@@ -210,40 +215,23 @@ func New%vFromPointer(ptr unsafe.Pointer) (n *%[2]v) {
 				if UseStub(stub, module, mode) {
 					fmt.Fprintf(bb, "\nfunc (ptr *%v) Destroy%v() {}\n\n", class.Name, strings.Title(class.Name))
 				} else if !class.IsSubClassOfQObject() {
-					if UseJs() { //TODO: free c ptr in js/wasm ?
-						fmt.Fprintf(bb, `
-func (ptr *%[1]v) Destroy%[1]v() {
-	if ptr != nil {
-		%v
-		qt.SetFinalizer(ptr, nil)
-		ptr.SetPointer(nil)
-	}
-}
-
-`, class.Name, func() string {
-							if class.HasCallbackFunctions() {
-								return "\nqt.DisconnectAllSignals(ptr.Pointer(), \"\")"
-							}
-							return ""
-						}())
-					} else {
-						fmt.Fprintf(bb, `
-func (ptr *%[1]v) Destroy%[1]v() {
-	if ptr != nil {
-		%v
-		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
-		ptr.SetPointer(nil)
-	}
-}
-
-`, class.Name, func() string {
-							if class.HasCallbackFunctions() {
-								return "\nqt.DisconnectAllSignals(ptr.Pointer(), \"\")"
-							}
-							return ""
-						}())
+					var ds string
+					if class.HasCallbackFunctions() {
+						ds = "\nqt.DisconnectAllSignals(ptr.Pointer(), \"\")"
 					}
+					var free string
+					if !UseJs() {
+						free = "C.free(ptr.Pointer())" //TODO: free c ptr in js/wasm ?
+					}
+					fmt.Fprintf(bb, `func (ptr *%[1]v) Destroy%[1]v() {
+						if ptr != nil {
+							qt.SetFinalizer(ptr, nil)
+							%v
+							%v
+							ptr.SetPointer(nil)
+						}
+					}
+					`, class.Name, ds, free)
 				}
 			}
 
@@ -744,7 +732,34 @@ default:
 		cTemplate(bb, class, goEnum, goFunction, "\n\n", true)
 	}
 
+	if module == "QtQml" {
+		fmt.Fprint(bb, "var (\n\thelper *core.QObject\n\thelperMutex sync.Mutex\n\thelperMap []string\n)\n")
+	}
+
 	fmt.Fprint(bb, "func init() {\n")
+
+	if module == "QtQml" {
+		var free string
+		if !UseJs() {
+			free = `C.QJSValue_DestroyQJSValue(unsafe.Pointer(uintptr(ptr)))
+			C.free(unsafe.Pointer(uintptr(ptr)))`
+		} else {
+			free = "qt.Module.Call(\"_QJSValue_DestroyQJSValue\", uintptr(ptr))"
+		}
+		fmt.Fprintf(bb, `
+	helper = core.NewQObject(nil)
+	helper.ConnectObjectNameChanged(func(pl string) {
+		for _, p := range strings.Split(pl, "|") {
+			ptr, err := strconv.ParseUint(p, 10, 64)
+			if err != nil || ptr == 0 {
+				return
+			}
+			%v
+		}
+	})
+`, free) //TODO: replace with generic run on main thread helper function
+	}
+
 	if UseJs() {
 		for _, l := range strings.Split(bb.String(), "\n") {
 			if strings.HasPrefix(l, "//export") {
@@ -944,6 +959,9 @@ default:
 		}
 
 		for _, e := range c.Enums {
+			if e.ClassName() == "QColorSpace" { //TODO: 5.14.0
+				continue
+			}
 			for _, v := range e.Values {
 				if v.Name == "ByteOrder" {
 					continue
@@ -1055,7 +1073,7 @@ import "C"
 	}
 
 	fmt.Fprint(bb, "import (\n")
-	for _, m := range append(parser.GetLibs(), "qt", "strings", "unsafe", "log", "runtime", "fmt", "errors", "js", "time", "hex", "reflect", "math") {
+	for _, m := range append(parser.GetLibs(), "qt", "strings", "unsafe", "log", "runtime", "fmt", "errors", "js", "time", "hex", "reflect", "math", "sync", "strconv") {
 		mlow := strings.ToLower(m)
 		if strings.Contains(inputString, fmt.Sprintf(" %v.", mlow)) ||
 			strings.Contains(inputString, fmt.Sprintf("\t%v.", mlow)) ||
@@ -1067,7 +1085,7 @@ import "C"
 			strings.Contains(inputString, fmt.Sprintf(")%v.", mlow)) ||
 			strings.Contains(inputString, fmt.Sprintf("std_%v.", mlow)) {
 			switch mlow {
-			case "strings", "unsafe", "log", "runtime", "fmt", "errors", "time", "reflect", "math":
+			case "strings", "unsafe", "log", "runtime", "fmt", "errors", "time", "reflect", "math", "sync", "strconv":
 				fmt.Fprintf(bb, "\"%v\"\n", mlow)
 
 			case "hex":
@@ -1090,7 +1108,9 @@ import "C"
 					fmt.Fprintf(bb, "\"github.com/therecipe/qt/%v\"\n", mlow)
 				}
 
-				fmt.Fprintf(tsdbb, "/// <reference path=\"%v.d.ts\" />\n", mlow)
+				if utils.QT_GEN_TSD() {
+					fmt.Fprintf(tsdbb, "/// <reference path=\"%v.d.ts\" />\n", mlow)
+				}
 
 				if mode == MOC {
 					parser.LibDeps[parser.MOC] = append(parser.LibDeps[parser.MOC], m)

@@ -54,6 +54,12 @@ func Check(target string, docker, vagrant bool) {
 		{"QT_DEBUG", fmt.Sprint(utils.QT_DEBUG())},
 		{"QT_QMAKE_DIR", utils.QT_QMAKE_DIR()},
 		{"QT_WEBKIT", fmt.Sprint(utils.QT_WEBKIT())},
+		{"QT_STATIC", fmt.Sprint(utils.QT_STATIC())},
+		{"QT_GEN_TSD", fmt.Sprint(utils.QT_GEN_TSD())},
+		{"QT_GEN_OPENGL", fmt.Sprint(utils.QT_GEN_OPENGL())},
+		{"QT_GEN_QUICK_EXTRAS", fmt.Sprint(utils.QT_GEN_QUICK_EXTRAS())},
+		{"QT_RESOURCES_BIG", fmt.Sprint(utils.QT_RESOURCES_BIG())},
+		{"QT_NOT_CACHED", fmt.Sprint(utils.QT_NOT_CACHED())},
 	}
 
 	if utils.CI() {

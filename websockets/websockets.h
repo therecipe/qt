@@ -14,7 +14,7 @@ int QWebSocketServer_QWebSocketServer_QRegisterMetaType();
 extern "C" {
 #endif
 
-struct QtWebSockets_PackedString { char* data; long long len; };
+struct QtWebSockets_PackedString { char* data; long long len; void* ptr; };
 struct QtWebSockets_PackedList { void* data; long long len; };
 void* QMaskGenerator_NewQMaskGenerator2(void* parent);
 unsigned int QMaskGenerator_NextMask(void* ptr);
@@ -33,9 +33,6 @@ void* QMaskGenerator___findChildren_newList(void* ptr);
 void* QMaskGenerator___findChildren_atList3(void* ptr, int i);
 void QMaskGenerator___findChildren_setList3(void* ptr, void* i);
 void* QMaskGenerator___findChildren_newList3(void* ptr);
-void* QMaskGenerator___qFindChildren_atList2(void* ptr, int i);
-void QMaskGenerator___qFindChildren_setList2(void* ptr, void* i);
-void* QMaskGenerator___qFindChildren_newList2(void* ptr);
 void QMaskGenerator_ChildEventDefault(void* ptr, void* event);
 void QMaskGenerator_ConnectNotifyDefault(void* ptr, void* sign);
 void QMaskGenerator_CustomEventDefault(void* ptr, void* event);
@@ -154,9 +151,6 @@ void* QWebSocket___findChildren_newList(void* ptr);
 void* QWebSocket___findChildren_atList3(void* ptr, int i);
 void QWebSocket___findChildren_setList3(void* ptr, void* i);
 void* QWebSocket___findChildren_newList3(void* ptr);
-void* QWebSocket___qFindChildren_atList2(void* ptr, int i);
-void QWebSocket___qFindChildren_setList2(void* ptr, void* i);
-void* QWebSocket___qFindChildren_newList2(void* ptr);
 void QWebSocket_ChildEventDefault(void* ptr, void* event);
 void QWebSocket_ConnectNotifyDefault(void* ptr, void* sign);
 void QWebSocket_CustomEventDefault(void* ptr, void* event);
@@ -243,9 +237,6 @@ void* QWebSocketServer___findChildren_newList(void* ptr);
 void* QWebSocketServer___findChildren_atList3(void* ptr, int i);
 void QWebSocketServer___findChildren_setList3(void* ptr, void* i);
 void* QWebSocketServer___findChildren_newList3(void* ptr);
-void* QWebSocketServer___qFindChildren_atList2(void* ptr, int i);
-void QWebSocketServer___qFindChildren_setList2(void* ptr, void* i);
-void* QWebSocketServer___qFindChildren_newList2(void* ptr);
 void QWebSocketServer_ChildEventDefault(void* ptr, void* event);
 void QWebSocketServer_ConnectNotifyDefault(void* ptr, void* sign);
 void QWebSocketServer_CustomEventDefault(void* ptr, void* event);

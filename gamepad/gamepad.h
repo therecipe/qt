@@ -14,7 +14,7 @@ int QGamepadManager_QGamepadManager_QRegisterMetaType();
 extern "C" {
 #endif
 
-struct QtGamepad_PackedString { char* data; long long len; };
+struct QtGamepad_PackedString { char* data; long long len; void* ptr; };
 struct QtGamepad_PackedList { void* data; long long len; };
 void* QGamepad_NewQGamepad(int deviceId, void* parent);
 double QGamepad_AxisLeftX(void* ptr);
@@ -131,9 +131,6 @@ void* QGamepad___findChildren_newList(void* ptr);
 void* QGamepad___findChildren_atList3(void* ptr, int i);
 void QGamepad___findChildren_setList3(void* ptr, void* i);
 void* QGamepad___findChildren_newList3(void* ptr);
-void* QGamepad___qFindChildren_atList2(void* ptr, int i);
-void QGamepad___qFindChildren_setList2(void* ptr, void* i);
-void* QGamepad___qFindChildren_newList2(void* ptr);
 void QGamepad_ChildEventDefault(void* ptr, void* event);
 void QGamepad_ConnectNotifyDefault(void* ptr, void* sign);
 void QGamepad_CustomEventDefault(void* ptr, void* event);
@@ -270,9 +267,6 @@ void* QGamepadKeyNavigation___findChildren_newList(void* ptr);
 void* QGamepadKeyNavigation___findChildren_atList3(void* ptr, int i);
 void QGamepadKeyNavigation___findChildren_setList3(void* ptr, void* i);
 void* QGamepadKeyNavigation___findChildren_newList3(void* ptr);
-void* QGamepadKeyNavigation___qFindChildren_atList2(void* ptr, int i);
-void QGamepadKeyNavigation___qFindChildren_setList2(void* ptr, void* i);
-void* QGamepadKeyNavigation___qFindChildren_newList2(void* ptr);
 void QGamepadKeyNavigation_ChildEventDefault(void* ptr, void* event);
 void QGamepadKeyNavigation_ConnectNotifyDefault(void* ptr, void* sign);
 void QGamepadKeyNavigation_CustomEventDefault(void* ptr, void* event);
@@ -310,9 +304,6 @@ void* QGamepadManager___findChildren_newList(void* ptr);
 void* QGamepadManager___findChildren_atList3(void* ptr, int i);
 void QGamepadManager___findChildren_setList3(void* ptr, void* i);
 void* QGamepadManager___findChildren_newList3(void* ptr);
-void* QGamepadManager___qFindChildren_atList2(void* ptr, int i);
-void QGamepadManager___qFindChildren_setList2(void* ptr, void* i);
-void* QGamepadManager___qFindChildren_newList2(void* ptr);
 void QGamepadManager_ChildEventDefault(void* ptr, void* event);
 void QGamepadManager_ConnectNotifyDefault(void* ptr, void* sign);
 void QGamepadManager_CustomEventDefault(void* ptr, void* event);

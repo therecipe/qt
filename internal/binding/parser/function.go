@@ -268,6 +268,14 @@ func (f *Function) IsJNIGeneric() bool {
 //TODO:
 func (f *Function) IsSupported() bool {
 
+	if utils.QT_API_NUM(utils.QT_VERSION()) >= 5140 { //TODO: 5.14.0
+		if f.Name == "setInitialProperties" || f.Fullname == "QRemoteObjectPendingCall::waitForFinished" ||
+			f.Fullname == "QActionGroup::setExclusionPolicy" {
+			f.Access = "unsupported_isBlockedFunction"
+			return false
+		}
+	}
+
 	if strings.Contains(f.Since, ".") {
 		version := strings.TrimPrefix(f.Since, "Qt")
 		vmaj, _ := strconv.Atoi(string(version[0]))
@@ -470,7 +478,7 @@ func (f *Function) IsSupported() bool {
 		strings.HasPrefix(genName, "QCustom3DVolume_textureData") || strings.HasPrefix(genName, "createTextureData") ||
 		strings.Contains(genName, "alternateSubjectNames") || strings.HasPrefix(genName, "fromVariantMap") ||
 		strings.HasPrefix(genName, "QScxmlDataModel") || strings.HasPrefix(genName, "readAllFrames") ||
-		strings.HasPrefix(genName, "manufacturerData") {
+		strings.HasPrefix(genName, "manufacturerData") || strings.HasPrefix(genName, "qFindChildren") {
 
 		if strings.HasPrefix(genName, "setTabs") || strings.HasPrefix(genName, "tabs") {
 			return !strings.HasPrefix(f.Name, "__")

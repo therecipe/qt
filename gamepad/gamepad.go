@@ -14,13 +14,16 @@ import (
 	"unsafe"
 )
 
+func cGoFreePacked(ptr unsafe.Pointer) { core.NewQByteArrayFromPointer(ptr).DestroyQByteArray() }
 func cGoUnpackString(s C.struct_QtGamepad_PackedString) string {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		return C.GoString(s.data)
 	}
 	return C.GoStringN(s.data, C.int(s.len))
 }
 func cGoUnpackBytes(s C.struct_QtGamepad_PackedString) []byte {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
 		return *(*[]byte)(unsafe.Pointer(&gs))
@@ -1385,27 +1388,6 @@ func (ptr *QGamepad) __findChildren_newList3() unsafe.Pointer {
 	return C.QGamepad___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QGamepad) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QGamepad___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QGamepad) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QGamepad___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QGamepad) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QGamepad___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQGamepad_ChildEvent
 func callbackQGamepad_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -1462,8 +1444,9 @@ func callbackQGamepad_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QGamepad) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QGamepad_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QGamepad_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -3403,27 +3386,6 @@ func (ptr *QGamepadKeyNavigation) __findChildren_newList3() unsafe.Pointer {
 	return C.QGamepadKeyNavigation___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QGamepadKeyNavigation) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QGamepadKeyNavigation___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QGamepadKeyNavigation) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QGamepadKeyNavigation___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QGamepadKeyNavigation) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QGamepadKeyNavigation___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQGamepadKeyNavigation_ChildEvent
 func callbackQGamepadKeyNavigation_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -3480,8 +3442,9 @@ func callbackQGamepadKeyNavigation_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QGamepadKeyNavigation) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QGamepadKeyNavigation_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QGamepadKeyNavigation_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -3941,27 +3904,6 @@ func (ptr *QGamepadManager) __findChildren_newList3() unsafe.Pointer {
 	return C.QGamepadManager___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QGamepadManager) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QGamepadManager___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QGamepadManager) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QGamepadManager___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QGamepadManager) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QGamepadManager___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQGamepadManager_ChildEvent
 func callbackQGamepadManager_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -4018,8 +3960,9 @@ func callbackQGamepadManager_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QGamepadManager) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QGamepadManager_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QGamepadManager_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 

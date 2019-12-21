@@ -15,13 +15,16 @@ import (
 	"unsafe"
 )
 
+func cGoFreePacked(ptr unsafe.Pointer) { core.NewQByteArrayFromPointer(ptr).DestroyQByteArray() }
 func cGoUnpackString(s C.struct_QtUiTools_PackedString) string {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		return C.GoString(s.data)
 	}
 	return C.GoStringN(s.data, C.int(s.len))
 }
 func cGoUnpackBytes(s C.struct_QtUiTools_PackedString) []byte {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
 		return *(*[]byte)(unsafe.Pointer(&gs))
@@ -470,16 +473,18 @@ func (ptr *QUiLoader) DisconnectDestroyQUiLoader() {
 
 func (ptr *QUiLoader) DestroyQUiLoader() {
 	if ptr.Pointer() != nil {
-		C.QUiLoader_DestroyQUiLoader(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QUiLoader_DestroyQUiLoader(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QUiLoader) DestroyQUiLoaderDefault() {
 	if ptr.Pointer() != nil {
-		C.QUiLoader_DestroyQUiLoaderDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QUiLoader_DestroyQUiLoaderDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -566,27 +571,6 @@ func (ptr *QUiLoader) __findChildren_newList3() unsafe.Pointer {
 	return C.QUiLoader___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QUiLoader) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QUiLoader___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QUiLoader) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QUiLoader___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QUiLoader) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QUiLoader___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQUiLoader_ChildEvent
 func callbackQUiLoader_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -643,8 +627,9 @@ func callbackQUiLoader_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QUiLoader) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QUiLoader_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QUiLoader_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 

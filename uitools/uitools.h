@@ -12,7 +12,7 @@ int QUiLoader_QUiLoader_QRegisterMetaType();
 extern "C" {
 #endif
 
-struct QtUiTools_PackedString { char* data; long long len; };
+struct QtUiTools_PackedString { char* data; long long len; void* ptr; };
 struct QtUiTools_PackedList { void* data; long long len; };
 void* QUiLoader_NewQUiLoader(void* parent);
 void QUiLoader_AddPluginPath(void* ptr, struct QtUiTools_PackedString path);
@@ -48,9 +48,6 @@ void* QUiLoader___findChildren_newList(void* ptr);
 void* QUiLoader___findChildren_atList3(void* ptr, int i);
 void QUiLoader___findChildren_setList3(void* ptr, void* i);
 void* QUiLoader___findChildren_newList3(void* ptr);
-void* QUiLoader___qFindChildren_atList2(void* ptr, int i);
-void QUiLoader___qFindChildren_setList2(void* ptr, void* i);
-void* QUiLoader___qFindChildren_newList2(void* ptr);
 void QUiLoader_ChildEventDefault(void* ptr, void* event);
 void QUiLoader_ConnectNotifyDefault(void* ptr, void* sign);
 void QUiLoader_CustomEventDefault(void* ptr, void* event);

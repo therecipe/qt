@@ -73,7 +73,7 @@ int QXmlStreamEntityResolver_QXmlStreamEntityResolver_QRegisterMetaType();
 extern "C" {
 #endif
 
-struct QtCore_PackedString { char* data; long long len; };
+struct QtCore_PackedString { char* data; long long len; void* ptr; };
 struct QtCore_PackedList { void* data; long long len; };
 void* QAbstractAnimation_NewQAbstractAnimation(void* parent);
 int QAbstractAnimation_CurrentLoop(void* ptr);
@@ -2372,12 +2372,6 @@ void* QObject___findChildren_newList2(void* ptr);
 void* QObject___findChildren_atList3(void* ptr, int i);
 void QObject___findChildren_setList3(void* ptr, void* i);
 void* QObject___findChildren_newList3(void* ptr);
-void* QObject___qFindChildren_atList(void* ptr, int i);
-void QObject___qFindChildren_setList(void* ptr, void* i);
-void* QObject___qFindChildren_newList(void* ptr);
-void* QObject___qFindChildren_atList2(void* ptr, int i);
-void QObject___qFindChildren_setList2(void* ptr, void* i);
-void* QObject___qFindChildren_newList2(void* ptr);
 void* QObjectCleanupHandler_NewQObjectCleanupHandler();
 void* QObjectCleanupHandler_Add(void* ptr, void* object);
 void QObjectCleanupHandler_Clear(void* ptr);

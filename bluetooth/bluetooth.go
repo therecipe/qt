@@ -16,13 +16,16 @@ import (
 	"unsafe"
 )
 
+func cGoFreePacked(ptr unsafe.Pointer) { core.NewQByteArrayFromPointer(ptr).DestroyQByteArray() }
 func cGoUnpackString(s C.struct_QtBluetooth_PackedString) string {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		return C.GoString(s.data)
 	}
 	return C.GoStringN(s.data, C.int(s.len))
 }
 func cGoUnpackBytes(s C.struct_QtBluetooth_PackedString) []byte {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
 		return *(*[]byte)(unsafe.Pointer(&gs))
@@ -73,12 +76,11 @@ func NewQBluetoothFromPointer(ptr unsafe.Pointer) (n *QBluetooth) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QBluetooth) DestroyQBluetooth() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -200,9 +202,10 @@ func (ptr *QBluetoothAddress) ToUInt64() uint64 {
 
 func (ptr *QBluetoothAddress) DestroyQBluetoothAddress() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QBluetoothAddress_DestroyQBluetoothAddress(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -726,16 +729,18 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) DisconnectDestroyQBluetoothDeviceDisc
 
 func (ptr *QBluetoothDeviceDiscoveryAgent) DestroyQBluetoothDeviceDiscoveryAgent() {
 	if ptr.Pointer() != nil {
-		C.QBluetoothDeviceDiscoveryAgent_DestroyQBluetoothDeviceDiscoveryAgent(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QBluetoothDeviceDiscoveryAgent_DestroyQBluetoothDeviceDiscoveryAgent(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QBluetoothDeviceDiscoveryAgent) DestroyQBluetoothDeviceDiscoveryAgentDefault() {
 	if ptr.Pointer() != nil {
-		C.QBluetoothDeviceDiscoveryAgent_DestroyQBluetoothDeviceDiscoveryAgentDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QBluetoothDeviceDiscoveryAgent_DestroyQBluetoothDeviceDiscoveryAgentDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -841,27 +846,6 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) __findChildren_newList3() unsafe.Poin
 	return C.QBluetoothDeviceDiscoveryAgent___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QBluetoothDeviceDiscoveryAgent) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QBluetoothDeviceDiscoveryAgent___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QBluetoothDeviceDiscoveryAgent) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QBluetoothDeviceDiscoveryAgent___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QBluetoothDeviceDiscoveryAgent) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QBluetoothDeviceDiscoveryAgent___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQBluetoothDeviceDiscoveryAgent_ChildEvent
 func callbackQBluetoothDeviceDiscoveryAgent_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -918,8 +902,9 @@ func callbackQBluetoothDeviceDiscoveryAgent_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QBluetoothDeviceDiscoveryAgent) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QBluetoothDeviceDiscoveryAgent_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QBluetoothDeviceDiscoveryAgent_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -1434,9 +1419,10 @@ func (ptr *QBluetoothDeviceInfo) SetServiceUuids2(uuids []*QBluetoothUuid) {
 
 func (ptr *QBluetoothDeviceInfo) DestroyQBluetoothDeviceInfo() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QBluetoothDeviceInfo_DestroyQBluetoothDeviceInfo(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -1616,9 +1602,10 @@ func (ptr *QBluetoothHostInfo) SetName(name string) {
 
 func (ptr *QBluetoothHostInfo) DestroyQBluetoothHostInfo() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QBluetoothHostInfo_DestroyQBluetoothHostInfo(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -2166,16 +2153,18 @@ func (ptr *QBluetoothLocalDevice) DisconnectDestroyQBluetoothLocalDevice() {
 
 func (ptr *QBluetoothLocalDevice) DestroyQBluetoothLocalDevice() {
 	if ptr.Pointer() != nil {
-		C.QBluetoothLocalDevice_DestroyQBluetoothLocalDevice(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QBluetoothLocalDevice_DestroyQBluetoothLocalDevice(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QBluetoothLocalDevice) DestroyQBluetoothLocalDeviceDefault() {
 	if ptr.Pointer() != nil {
-		C.QBluetoothLocalDevice_DestroyQBluetoothLocalDeviceDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QBluetoothLocalDevice_DestroyQBluetoothLocalDeviceDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -2300,27 +2289,6 @@ func (ptr *QBluetoothLocalDevice) __findChildren_newList3() unsafe.Pointer {
 	return C.QBluetoothLocalDevice___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QBluetoothLocalDevice) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QBluetoothLocalDevice___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QBluetoothLocalDevice) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QBluetoothLocalDevice___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QBluetoothLocalDevice) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QBluetoothLocalDevice___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQBluetoothLocalDevice_ChildEvent
 func callbackQBluetoothLocalDevice_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -2377,8 +2345,9 @@ func callbackQBluetoothLocalDevice_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QBluetoothLocalDevice) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QBluetoothLocalDevice_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QBluetoothLocalDevice_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -2757,16 +2726,18 @@ func (ptr *QBluetoothServer) DisconnectDestroyQBluetoothServer() {
 
 func (ptr *QBluetoothServer) DestroyQBluetoothServer() {
 	if ptr.Pointer() != nil {
-		C.QBluetoothServer_DestroyQBluetoothServer(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QBluetoothServer_DestroyQBluetoothServer(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QBluetoothServer) DestroyQBluetoothServerDefault() {
 	if ptr.Pointer() != nil {
-		C.QBluetoothServer_DestroyQBluetoothServerDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QBluetoothServer_DestroyQBluetoothServerDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -2853,27 +2824,6 @@ func (ptr *QBluetoothServer) __findChildren_newList3() unsafe.Pointer {
 	return C.QBluetoothServer___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QBluetoothServer) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QBluetoothServer___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QBluetoothServer) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QBluetoothServer___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QBluetoothServer) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QBluetoothServer___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQBluetoothServer_ChildEvent
 func callbackQBluetoothServer_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -2930,8 +2880,9 @@ func callbackQBluetoothServer_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QBluetoothServer) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QBluetoothServer_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QBluetoothServer_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -3510,16 +3461,18 @@ func (ptr *QBluetoothServiceDiscoveryAgent) DisconnectDestroyQBluetoothServiceDi
 
 func (ptr *QBluetoothServiceDiscoveryAgent) DestroyQBluetoothServiceDiscoveryAgent() {
 	if ptr.Pointer() != nil {
-		C.QBluetoothServiceDiscoveryAgent_DestroyQBluetoothServiceDiscoveryAgent(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QBluetoothServiceDiscoveryAgent_DestroyQBluetoothServiceDiscoveryAgent(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QBluetoothServiceDiscoveryAgent) DestroyQBluetoothServiceDiscoveryAgentDefault() {
 	if ptr.Pointer() != nil {
-		C.QBluetoothServiceDiscoveryAgent_DestroyQBluetoothServiceDiscoveryAgentDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QBluetoothServiceDiscoveryAgent_DestroyQBluetoothServiceDiscoveryAgentDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -3663,27 +3616,6 @@ func (ptr *QBluetoothServiceDiscoveryAgent) __findChildren_newList3() unsafe.Poi
 	return C.QBluetoothServiceDiscoveryAgent___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QBluetoothServiceDiscoveryAgent) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QBluetoothServiceDiscoveryAgent___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QBluetoothServiceDiscoveryAgent) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QBluetoothServiceDiscoveryAgent___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QBluetoothServiceDiscoveryAgent) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QBluetoothServiceDiscoveryAgent___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQBluetoothServiceDiscoveryAgent_ChildEvent
 func callbackQBluetoothServiceDiscoveryAgent_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -3740,8 +3672,9 @@ func callbackQBluetoothServiceDiscoveryAgent_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QBluetoothServiceDiscoveryAgent) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QBluetoothServiceDiscoveryAgent_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QBluetoothServiceDiscoveryAgent_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -4132,9 +4065,10 @@ func (ptr *QBluetoothServiceInfo) UnregisterService() bool {
 
 func (ptr *QBluetoothServiceInfo) DestroyQBluetoothServiceInfo() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QBluetoothServiceInfo_DestroyQBluetoothServiceInfo(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -4775,16 +4709,18 @@ func (ptr *QBluetoothSocket) DisconnectDestroyQBluetoothSocket() {
 
 func (ptr *QBluetoothSocket) DestroyQBluetoothSocket() {
 	if ptr.Pointer() != nil {
-		C.QBluetoothSocket_DestroyQBluetoothSocket(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QBluetoothSocket_DestroyQBluetoothSocket(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QBluetoothSocket) DestroyQBluetoothSocketDefault() {
 	if ptr.Pointer() != nil {
-		C.QBluetoothSocket_DestroyQBluetoothSocketDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QBluetoothSocket_DestroyQBluetoothSocketDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -4869,27 +4805,6 @@ func (ptr *QBluetoothSocket) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QBluetoothSocket) __findChildren_newList3() unsafe.Pointer {
 	return C.QBluetoothSocket___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QBluetoothSocket) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QBluetoothSocket___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QBluetoothSocket) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QBluetoothSocket___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QBluetoothSocket) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QBluetoothSocket___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQBluetoothSocket_AboutToClose
@@ -5144,8 +5059,9 @@ func callbackQBluetoothSocket_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QBluetoothSocket) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QBluetoothSocket_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QBluetoothSocket_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -5373,16 +5289,18 @@ func (ptr *QBluetoothTransferManager) DisconnectDestroyQBluetoothTransferManager
 
 func (ptr *QBluetoothTransferManager) DestroyQBluetoothTransferManager() {
 	if ptr.Pointer() != nil {
-		C.QBluetoothTransferManager_DestroyQBluetoothTransferManager(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QBluetoothTransferManager_DestroyQBluetoothTransferManager(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QBluetoothTransferManager) DestroyQBluetoothTransferManagerDefault() {
 	if ptr.Pointer() != nil {
-		C.QBluetoothTransferManager_DestroyQBluetoothTransferManagerDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QBluetoothTransferManager_DestroyQBluetoothTransferManagerDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -5469,27 +5387,6 @@ func (ptr *QBluetoothTransferManager) __findChildren_newList3() unsafe.Pointer {
 	return C.QBluetoothTransferManager___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QBluetoothTransferManager) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QBluetoothTransferManager___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QBluetoothTransferManager) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QBluetoothTransferManager___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QBluetoothTransferManager) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QBluetoothTransferManager___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQBluetoothTransferManager_ChildEvent
 func callbackQBluetoothTransferManager_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -5546,8 +5443,9 @@ func callbackQBluetoothTransferManager_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QBluetoothTransferManager) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QBluetoothTransferManager_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QBluetoothTransferManager_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -6088,16 +5986,18 @@ func (ptr *QBluetoothTransferReply) DisconnectDestroyQBluetoothTransferReply() {
 
 func (ptr *QBluetoothTransferReply) DestroyQBluetoothTransferReply() {
 	if ptr.Pointer() != nil {
-		C.QBluetoothTransferReply_DestroyQBluetoothTransferReply(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QBluetoothTransferReply_DestroyQBluetoothTransferReply(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QBluetoothTransferReply) DestroyQBluetoothTransferReplyDefault() {
 	if ptr.Pointer() != nil {
-		C.QBluetoothTransferReply_DestroyQBluetoothTransferReplyDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QBluetoothTransferReply_DestroyQBluetoothTransferReplyDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -6184,27 +6084,6 @@ func (ptr *QBluetoothTransferReply) __findChildren_newList3() unsafe.Pointer {
 	return C.QBluetoothTransferReply___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QBluetoothTransferReply) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QBluetoothTransferReply___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QBluetoothTransferReply) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QBluetoothTransferReply___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QBluetoothTransferReply) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QBluetoothTransferReply___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQBluetoothTransferReply_ChildEvent
 func callbackQBluetoothTransferReply_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -6261,8 +6140,9 @@ func callbackQBluetoothTransferReply_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QBluetoothTransferReply) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QBluetoothTransferReply_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QBluetoothTransferReply_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -6448,9 +6328,10 @@ func (ptr *QBluetoothTransferRequest) SetAttribute(code QBluetoothTransferReques
 
 func (ptr *QBluetoothTransferRequest) DestroyQBluetoothTransferRequest() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QBluetoothTransferRequest_DestroyQBluetoothTransferRequest(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -6918,9 +6799,10 @@ func (ptr *QBluetoothUuid) ToUInt32(ok *bool) uint {
 
 func (ptr *QBluetoothUuid) DestroyQBluetoothUuid() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QBluetoothUuid_DestroyQBluetoothUuid(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -7099,9 +6981,10 @@ func (ptr *QLowEnergyAdvertisingData) Swap(other QLowEnergyAdvertisingData_ITF) 
 
 func (ptr *QLowEnergyAdvertisingData) DestroyQLowEnergyAdvertisingData() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QLowEnergyAdvertisingData_DestroyQLowEnergyAdvertisingData(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -7263,9 +7146,10 @@ func (ptr *QLowEnergyAdvertisingParameters) Swap(other QLowEnergyAdvertisingPara
 
 func (ptr *QLowEnergyAdvertisingParameters) DestroyQLowEnergyAdvertisingParameters() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QLowEnergyAdvertisingParameters_DestroyQLowEnergyAdvertisingParameters(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -7400,9 +7284,10 @@ func (ptr *QLowEnergyCharacteristic) Value() *core.QByteArray {
 
 func (ptr *QLowEnergyCharacteristic) DestroyQLowEnergyCharacteristic() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QLowEnergyCharacteristic_DestroyQLowEnergyCharacteristic(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -7611,9 +7496,10 @@ func (ptr *QLowEnergyCharacteristicData) WriteConstraints() QBluetooth__AttAcces
 
 func (ptr *QLowEnergyCharacteristicData) DestroyQLowEnergyCharacteristicData() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QLowEnergyCharacteristicData_DestroyQLowEnergyCharacteristicData(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -7759,9 +7645,10 @@ func (ptr *QLowEnergyConnectionParameters) Swap(other QLowEnergyConnectionParame
 
 func (ptr *QLowEnergyConnectionParameters) DestroyQLowEnergyConnectionParameters() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QLowEnergyConnectionParameters_DestroyQLowEnergyConnectionParameters(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -8344,16 +8231,18 @@ func (ptr *QLowEnergyController) DisconnectDestroyQLowEnergyController() {
 
 func (ptr *QLowEnergyController) DestroyQLowEnergyController() {
 	if ptr.Pointer() != nil {
-		C.QLowEnergyController_DestroyQLowEnergyController(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QLowEnergyController_DestroyQLowEnergyController(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QLowEnergyController) DestroyQLowEnergyControllerDefault() {
 	if ptr.Pointer() != nil {
-		C.QLowEnergyController_DestroyQLowEnergyControllerDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QLowEnergyController_DestroyQLowEnergyControllerDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -8459,27 +8348,6 @@ func (ptr *QLowEnergyController) __findChildren_newList3() unsafe.Pointer {
 	return C.QLowEnergyController___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QLowEnergyController) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QLowEnergyController___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QLowEnergyController) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QLowEnergyController___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QLowEnergyController) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QLowEnergyController___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQLowEnergyController_ChildEvent
 func callbackQLowEnergyController_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -8536,8 +8404,9 @@ func callbackQLowEnergyController_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QLowEnergyController) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QLowEnergyController_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QLowEnergyController_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -8725,9 +8594,10 @@ func (ptr *QLowEnergyDescriptor) Value() *core.QByteArray {
 
 func (ptr *QLowEnergyDescriptor) DestroyQLowEnergyDescriptor() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QLowEnergyDescriptor_DestroyQLowEnergyDescriptor(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -8872,9 +8742,10 @@ func (ptr *QLowEnergyDescriptorData) WriteConstraints() QBluetooth__AttAccessCon
 
 func (ptr *QLowEnergyDescriptorData) DestroyQLowEnergyDescriptorData() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QLowEnergyDescriptorData_DestroyQLowEnergyDescriptorData(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -9394,16 +9265,18 @@ func (ptr *QLowEnergyService) DisconnectDestroyQLowEnergyService() {
 
 func (ptr *QLowEnergyService) DestroyQLowEnergyService() {
 	if ptr.Pointer() != nil {
-		C.QLowEnergyService_DestroyQLowEnergyService(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QLowEnergyService_DestroyQLowEnergyService(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QLowEnergyService) DestroyQLowEnergyServiceDefault() {
 	if ptr.Pointer() != nil {
-		C.QLowEnergyService_DestroyQLowEnergyServiceDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QLowEnergyService_DestroyQLowEnergyServiceDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -9528,27 +9401,6 @@ func (ptr *QLowEnergyService) __findChildren_newList3() unsafe.Pointer {
 	return C.QLowEnergyService___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QLowEnergyService) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QLowEnergyService___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QLowEnergyService) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QLowEnergyService___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QLowEnergyService) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QLowEnergyService___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQLowEnergyService_ChildEvent
 func callbackQLowEnergyService_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -9605,8 +9457,9 @@ func callbackQLowEnergyService_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QLowEnergyService) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QLowEnergyService_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QLowEnergyService_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -9870,9 +9723,10 @@ func (ptr *QLowEnergyServiceData) Uuid() *QBluetoothUuid {
 
 func (ptr *QLowEnergyServiceData) DestroyQLowEnergyServiceData() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QLowEnergyServiceData_DestroyQLowEnergyServiceData(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }

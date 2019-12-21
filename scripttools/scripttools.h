@@ -12,7 +12,7 @@ int QScriptEngineDebugger_QScriptEngineDebugger_QRegisterMetaType();
 extern "C" {
 #endif
 
-struct QtScriptTools_PackedString { char* data; long long len; };
+struct QtScriptTools_PackedString { char* data; long long len; void* ptr; };
 struct QtScriptTools_PackedList { void* data; long long len; };
 void* QScriptEngineDebugger_NewQScriptEngineDebugger(void* parent);
 void* QScriptEngineDebugger_Action(void* ptr, long long action);
@@ -45,9 +45,6 @@ void* QScriptEngineDebugger___findChildren_newList(void* ptr);
 void* QScriptEngineDebugger___findChildren_atList3(void* ptr, int i);
 void QScriptEngineDebugger___findChildren_setList3(void* ptr, void* i);
 void* QScriptEngineDebugger___findChildren_newList3(void* ptr);
-void* QScriptEngineDebugger___qFindChildren_atList2(void* ptr, int i);
-void QScriptEngineDebugger___qFindChildren_setList2(void* ptr, void* i);
-void* QScriptEngineDebugger___qFindChildren_newList2(void* ptr);
 void QScriptEngineDebugger_ChildEventDefault(void* ptr, void* event);
 void QScriptEngineDebugger_ConnectNotifyDefault(void* ptr, void* sign);
 void QScriptEngineDebugger_CustomEventDefault(void* ptr, void* event);

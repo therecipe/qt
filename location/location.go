@@ -15,13 +15,16 @@ import (
 	"unsafe"
 )
 
+func cGoFreePacked(ptr unsafe.Pointer) { core.NewQByteArrayFromPointer(ptr).DestroyQByteArray() }
 func cGoUnpackString(s C.struct_QtLocation_PackedString) string {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		return C.GoString(s.data)
 	}
 	return C.GoStringN(s.data, C.int(s.len))
 }
 func cGoUnpackBytes(s C.struct_QtLocation_PackedString) []byte {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
 		return *(*[]byte)(unsafe.Pointer(&gs))
@@ -203,12 +206,11 @@ func NewQGeoJsonFromPointer(ptr unsafe.Pointer) (n *QGeoJson) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QGeoJson) DestroyQGeoJson() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -404,9 +406,10 @@ func (ptr *QGeoManeuver) Waypoint() *positioning.QGeoCoordinate {
 
 func (ptr *QGeoManeuver) DestroyQGeoManeuver() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QGeoManeuver_DestroyQGeoManeuver(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -772,9 +775,10 @@ func (ptr *QGeoRoute) TravelTime() int {
 
 func (ptr *QGeoRoute) DestroyQGeoRoute() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QGeoRoute_DestroyQGeoRoute(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -1065,9 +1069,10 @@ func (ptr *QGeoRouteLeg) SetOverallRoute(route QGeoRoute_ITF) {
 
 func (ptr *QGeoRouteLeg) DestroyQGeoRouteLeg() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QGeoRouteLeg_DestroyQGeoRouteLeg(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -1431,16 +1436,18 @@ func (ptr *QGeoRouteReply) DisconnectDestroyQGeoRouteReply() {
 
 func (ptr *QGeoRouteReply) DestroyQGeoRouteReply() {
 	if ptr.Pointer() != nil {
-		C.QGeoRouteReply_DestroyQGeoRouteReply(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QGeoRouteReply_DestroyQGeoRouteReply(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QGeoRouteReply) DestroyQGeoRouteReplyDefault() {
 	if ptr.Pointer() != nil {
-		C.QGeoRouteReply_DestroyQGeoRouteReplyDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QGeoRouteReply_DestroyQGeoRouteReplyDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -1584,27 +1591,6 @@ func (ptr *QGeoRouteReply) __findChildren_newList3() unsafe.Pointer {
 	return C.QGeoRouteReply___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QGeoRouteReply) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QGeoRouteReply___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QGeoRouteReply) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QGeoRouteReply___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QGeoRouteReply) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QGeoRouteReply___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQGeoRouteReply_ChildEvent
 func callbackQGeoRouteReply_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -1661,8 +1647,9 @@ func callbackQGeoRouteReply_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QGeoRouteReply) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QGeoRouteReply_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QGeoRouteReply_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -2065,9 +2052,10 @@ func (ptr *QGeoRouteRequest) Waypoints() []*positioning.QGeoCoordinate {
 
 func (ptr *QGeoRouteRequest) DestroyQGeoRouteRequest() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QGeoRouteRequest_DestroyQGeoRouteRequest(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -2764,9 +2752,10 @@ func (ptr *QGeoRouteSegment) TravelTime() int {
 
 func (ptr *QGeoRouteSegment) DestroyQGeoRouteSegment() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QGeoRouteSegment_DestroyQGeoRouteSegment(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -3071,16 +3060,18 @@ func (ptr *QGeoRoutingManager) DisconnectDestroyQGeoRoutingManager() {
 
 func (ptr *QGeoRoutingManager) DestroyQGeoRoutingManager() {
 	if ptr.Pointer() != nil {
-		C.QGeoRoutingManager_DestroyQGeoRoutingManager(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QGeoRoutingManager_DestroyQGeoRoutingManager(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QGeoRoutingManager) DestroyQGeoRoutingManagerDefault() {
 	if ptr.Pointer() != nil {
-		C.QGeoRoutingManager_DestroyQGeoRoutingManagerDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QGeoRoutingManager_DestroyQGeoRoutingManagerDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -3167,27 +3158,6 @@ func (ptr *QGeoRoutingManager) __findChildren_newList3() unsafe.Pointer {
 	return C.QGeoRoutingManager___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QGeoRoutingManager) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QGeoRoutingManager___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QGeoRoutingManager) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QGeoRoutingManager___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QGeoRoutingManager) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QGeoRoutingManager___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQGeoRoutingManager_ChildEvent
 func callbackQGeoRoutingManager_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -3244,8 +3214,9 @@ func callbackQGeoRoutingManager_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QGeoRoutingManager) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QGeoRoutingManager_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QGeoRoutingManager_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -3728,16 +3699,18 @@ func (ptr *QGeoRoutingManagerEngine) DisconnectDestroyQGeoRoutingManagerEngine()
 
 func (ptr *QGeoRoutingManagerEngine) DestroyQGeoRoutingManagerEngine() {
 	if ptr.Pointer() != nil {
-		C.QGeoRoutingManagerEngine_DestroyQGeoRoutingManagerEngine(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QGeoRoutingManagerEngine_DestroyQGeoRoutingManagerEngine(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QGeoRoutingManagerEngine) DestroyQGeoRoutingManagerEngineDefault() {
 	if ptr.Pointer() != nil {
-		C.QGeoRoutingManagerEngine_DestroyQGeoRoutingManagerEngineDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QGeoRoutingManagerEngine_DestroyQGeoRoutingManagerEngineDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -3889,27 +3862,6 @@ func (ptr *QGeoRoutingManagerEngine) __findChildren_newList3() unsafe.Pointer {
 	return C.QGeoRoutingManagerEngine___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QGeoRoutingManagerEngine) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QGeoRoutingManagerEngine___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QGeoRoutingManagerEngine) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QGeoRoutingManagerEngine___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QGeoRoutingManagerEngine) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QGeoRoutingManagerEngine___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQGeoRoutingManagerEngine_ChildEvent
 func callbackQGeoRoutingManagerEngine_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -3966,8 +3918,9 @@ func callbackQGeoRoutingManagerEngine_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QGeoRoutingManagerEngine) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QGeoRoutingManagerEngine_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QGeoRoutingManagerEngine_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -4424,16 +4377,18 @@ func (ptr *QGeoServiceProvider) DisconnectDestroyQGeoServiceProvider() {
 
 func (ptr *QGeoServiceProvider) DestroyQGeoServiceProvider() {
 	if ptr.Pointer() != nil {
-		C.QGeoServiceProvider_DestroyQGeoServiceProvider(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QGeoServiceProvider_DestroyQGeoServiceProvider(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QGeoServiceProvider) DestroyQGeoServiceProviderDefault() {
 	if ptr.Pointer() != nil {
-		C.QGeoServiceProvider_DestroyQGeoServiceProviderDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QGeoServiceProvider_DestroyQGeoServiceProviderDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -4650,27 +4605,6 @@ func (ptr *QGeoServiceProvider) __findChildren_newList3() unsafe.Pointer {
 	return C.QGeoServiceProvider___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QGeoServiceProvider) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QGeoServiceProvider___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QGeoServiceProvider) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QGeoServiceProvider___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QGeoServiceProvider) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QGeoServiceProvider___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQGeoServiceProvider_ChildEvent
 func callbackQGeoServiceProvider_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -4727,8 +4661,9 @@ func callbackQGeoServiceProvider_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QGeoServiceProvider) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QGeoServiceProvider_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QGeoServiceProvider_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -4897,16 +4832,18 @@ func (ptr *QGeoServiceProviderFactory) DisconnectDestroyQGeoServiceProviderFacto
 
 func (ptr *QGeoServiceProviderFactory) DestroyQGeoServiceProviderFactory() {
 	if ptr.Pointer() != nil {
-		C.QGeoServiceProviderFactory_DestroyQGeoServiceProviderFactory(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QGeoServiceProviderFactory_DestroyQGeoServiceProviderFactory(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QGeoServiceProviderFactory) DestroyQGeoServiceProviderFactoryDefault() {
 	if ptr.Pointer() != nil {
-		C.QGeoServiceProviderFactory_DestroyQGeoServiceProviderFactoryDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QGeoServiceProviderFactory_DestroyQGeoServiceProviderFactoryDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -5248,13 +5185,12 @@ func NewQGeoServiceProviderFactoryV3FromPointer(ptr unsafe.Pointer) (n *QGeoServ
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QGeoServiceProviderFactoryV3) DestroyQGeoServiceProviderFactoryV3() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -5296,12 +5232,11 @@ func NewQLocationFromPointer(ptr unsafe.Pointer) (n *QLocation) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QLocation) DestroyQLocation() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }

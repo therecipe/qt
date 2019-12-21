@@ -581,12 +581,29 @@ func preambleCpp(module string, input []byte, mode int, target, tags string) []b
 
 #define protected public
 #define private public
-
+%v
 #include "%v.h"
 %v%v
 %v
 `,
 		buildTags(module, false, mode, tags),
+
+		func() string {
+			if target == "darwin" && utils.QT_STATIC() && utils.QT_DOCKER() && module == "QtCore" {
+				return `
+#include <QOperatingSystemVersion>
+extern "C" int32_t __isPlatformVersionAtLeast(int32_t Major, int32_t Minor, int32_t Subminor) {
+	const auto current = QOperatingSystemVersion::current();
+	if (Major < current.majorVersion()) return 1;
+	if (Major > current.majorVersion()) return 0;
+	if (Minor < current.minorVersion()) return 1;
+	if (Minor > current.minorVersion()) return 0;
+	return Subminor <= current.microVersion();
+}
+`
+			}
+			return ""
+		}(),
 
 		func() string {
 			switch module {

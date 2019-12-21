@@ -519,7 +519,7 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 
 	if docker {
 		for i := range args {
-			for _, t := range []string{"windows", "ubports", "linux", "js", "wasm", "android"} {
+			for _, t := range []string{"windows", "ubports", "linux", "js", "wasm", "android", "darwin"} {
 				if strings.HasPrefix(args[i], t+"_") {
 					args[i] = t
 					break

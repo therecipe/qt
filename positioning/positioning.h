@@ -16,7 +16,7 @@ int QNmeaPositionInfoSource_QNmeaPositionInfoSource_QRegisterMetaType();
 extern "C" {
 #endif
 
-struct QtPositioning_PackedString { char* data; long long len; };
+struct QtPositioning_PackedString { char* data; long long len; void* ptr; };
 struct QtPositioning_PackedList { void* data; long long len; };
 void* QGeoAddress_NewQGeoAddress();
 void* QGeoAddress_NewQGeoAddress2(void* other);
@@ -119,9 +119,6 @@ void* QGeoAreaMonitorSource___findChildren_newList(void* ptr);
 void* QGeoAreaMonitorSource___findChildren_atList3(void* ptr, int i);
 void QGeoAreaMonitorSource___findChildren_setList3(void* ptr, void* i);
 void* QGeoAreaMonitorSource___findChildren_newList3(void* ptr);
-void* QGeoAreaMonitorSource___qFindChildren_atList2(void* ptr, int i);
-void QGeoAreaMonitorSource___qFindChildren_setList2(void* ptr, void* i);
-void* QGeoAreaMonitorSource___qFindChildren_newList2(void* ptr);
 void QGeoAreaMonitorSource_ChildEventDefault(void* ptr, void* event);
 void QGeoAreaMonitorSource_ConnectNotifyDefault(void* ptr, void* sign);
 void QGeoAreaMonitorSource_CustomEventDefault(void* ptr, void* event);
@@ -302,9 +299,6 @@ void* QGeoPositionInfoSource___findChildren_newList(void* ptr);
 void* QGeoPositionInfoSource___findChildren_atList3(void* ptr, int i);
 void QGeoPositionInfoSource___findChildren_setList3(void* ptr, void* i);
 void* QGeoPositionInfoSource___findChildren_newList3(void* ptr);
-void* QGeoPositionInfoSource___qFindChildren_atList2(void* ptr, int i);
-void QGeoPositionInfoSource___qFindChildren_setList2(void* ptr, void* i);
-void* QGeoPositionInfoSource___qFindChildren_newList2(void* ptr);
 void QGeoPositionInfoSource_ChildEventDefault(void* ptr, void* event);
 void QGeoPositionInfoSource_ConnectNotifyDefault(void* ptr, void* sign);
 void QGeoPositionInfoSource_CustomEventDefault(void* ptr, void* event);
@@ -406,9 +400,6 @@ void* QGeoSatelliteInfoSource___findChildren_newList(void* ptr);
 void* QGeoSatelliteInfoSource___findChildren_atList3(void* ptr, int i);
 void QGeoSatelliteInfoSource___findChildren_setList3(void* ptr, void* i);
 void* QGeoSatelliteInfoSource___findChildren_newList3(void* ptr);
-void* QGeoSatelliteInfoSource___qFindChildren_atList2(void* ptr, int i);
-void QGeoSatelliteInfoSource___qFindChildren_setList2(void* ptr, void* i);
-void* QGeoSatelliteInfoSource___qFindChildren_newList2(void* ptr);
 void QGeoSatelliteInfoSource_ChildEventDefault(void* ptr, void* event);
 void QGeoSatelliteInfoSource_ConnectNotifyDefault(void* ptr, void* sign);
 void QGeoSatelliteInfoSource_CustomEventDefault(void* ptr, void* event);

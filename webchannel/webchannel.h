@@ -14,7 +14,7 @@ int QWebChannelAbstractTransport_QWebChannelAbstractTransport_QRegisterMetaType(
 extern "C" {
 #endif
 
-struct QtWebChannel_PackedString { char* data; long long len; };
+struct QtWebChannel_PackedString { char* data; long long len; void* ptr; };
 struct QtWebChannel_PackedList { void* data; long long len; };
 void* QQmlWebChannel___registerObjects_objects_atList(void* ptr, struct QtWebChannel_PackedString v, int i);
 void QQmlWebChannel___registerObjects_objects_setList(void* ptr, struct QtWebChannel_PackedString key, void* i);
@@ -60,9 +60,6 @@ void* QWebChannel___findChildren_newList(void* ptr);
 void* QWebChannel___findChildren_atList3(void* ptr, int i);
 void QWebChannel___findChildren_setList3(void* ptr, void* i);
 void* QWebChannel___findChildren_newList3(void* ptr);
-void* QWebChannel___qFindChildren_atList2(void* ptr, int i);
-void QWebChannel___qFindChildren_setList2(void* ptr, void* i);
-void* QWebChannel___qFindChildren_newList2(void* ptr);
 void QWebChannel_ChildEventDefault(void* ptr, void* event);
 void QWebChannel_ConnectNotifyDefault(void* ptr, void* sign);
 void QWebChannel_CustomEventDefault(void* ptr, void* event);
@@ -91,9 +88,6 @@ void* QWebChannelAbstractTransport___findChildren_newList(void* ptr);
 void* QWebChannelAbstractTransport___findChildren_atList3(void* ptr, int i);
 void QWebChannelAbstractTransport___findChildren_setList3(void* ptr, void* i);
 void* QWebChannelAbstractTransport___findChildren_newList3(void* ptr);
-void* QWebChannelAbstractTransport___qFindChildren_atList2(void* ptr, int i);
-void QWebChannelAbstractTransport___qFindChildren_setList2(void* ptr, void* i);
-void* QWebChannelAbstractTransport___qFindChildren_newList2(void* ptr);
 void QWebChannelAbstractTransport_ChildEventDefault(void* ptr, void* event);
 void QWebChannelAbstractTransport_ConnectNotifyDefault(void* ptr, void* sign);
 void QWebChannelAbstractTransport_CustomEventDefault(void* ptr, void* event);

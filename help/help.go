@@ -16,13 +16,16 @@ import (
 	"unsafe"
 )
 
+func cGoFreePacked(ptr unsafe.Pointer) { core.NewQByteArrayFromPointer(ptr).DestroyQByteArray() }
 func cGoUnpackString(s C.struct_QtHelp_PackedString) string {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		return C.GoString(s.data)
 	}
 	return C.GoStringN(s.data, C.int(s.len))
 }
 func cGoUnpackBytes(s C.struct_QtHelp_PackedString) []byte {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
 		return *(*[]byte)(unsafe.Pointer(&gs))
@@ -144,9 +147,10 @@ func (ptr *QCompressedHelpInfo) Version() *core.QVersionNumber {
 
 func (ptr *QCompressedHelpInfo) DestroyQCompressedHelpInfo() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QCompressedHelpInfo_DestroyQCompressedHelpInfo(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -241,9 +245,10 @@ func (ptr *QHelpContentItem) Url() *core.QUrl {
 
 func (ptr *QHelpContentItem) DestroyQHelpContentItem() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QHelpContentItem_DestroyQHelpContentItem(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -662,16 +667,18 @@ func (ptr *QHelpContentModel) DisconnectDestroyQHelpContentModel() {
 
 func (ptr *QHelpContentModel) DestroyQHelpContentModel() {
 	if ptr.Pointer() != nil {
-		C.QHelpContentModel_DestroyQHelpContentModel(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QHelpContentModel_DestroyQHelpContentModel(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QHelpContentModel) DestroyQHelpContentModelDefault() {
 	if ptr.Pointer() != nil {
-		C.QHelpContentModel_DestroyQHelpContentModelDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QHelpContentModel_DestroyQHelpContentModelDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -1090,27 +1097,6 @@ func (ptr *QHelpContentModel) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QHelpContentModel) __findChildren_newList3() unsafe.Pointer {
 	return C.QHelpContentModel___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QHelpContentModel) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QHelpContentModel___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QHelpContentModel) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpContentModel___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QHelpContentModel) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QHelpContentModel___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQHelpContentModel_Buddy
@@ -1920,8 +1906,9 @@ func callbackQHelpContentModel_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QHelpContentModel) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QHelpContentModel_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QHelpContentModel_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -2306,27 +2293,6 @@ func (ptr *QHelpContentWidget) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QHelpContentWidget) __findChildren_newList3() unsafe.Pointer {
 	return C.QHelpContentWidget___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QHelpContentWidget) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QHelpContentWidget___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QHelpContentWidget) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpContentWidget___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QHelpContentWidget) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QHelpContentWidget___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQHelpContentWidget_Collapse
@@ -4280,8 +4246,9 @@ func callbackQHelpContentWidget_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QHelpContentWidget) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QHelpContentWidget_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QHelpContentWidget_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -4471,16 +4438,18 @@ func (ptr *QHelpEngine) DisconnectDestroyQHelpEngine() {
 
 func (ptr *QHelpEngine) DestroyQHelpEngine() {
 	if ptr.Pointer() != nil {
-		C.QHelpEngine_DestroyQHelpEngine(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QHelpEngine_DestroyQHelpEngine(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QHelpEngine) DestroyQHelpEngineDefault() {
 	if ptr.Pointer() != nil {
-		C.QHelpEngine_DestroyQHelpEngineDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QHelpEngine_DestroyQHelpEngineDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -5009,16 +4978,18 @@ func (ptr *QHelpEngineCore) DisconnectDestroyQHelpEngineCore() {
 
 func (ptr *QHelpEngineCore) DestroyQHelpEngineCore() {
 	if ptr.Pointer() != nil {
-		C.QHelpEngineCore_DestroyQHelpEngineCore(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QHelpEngineCore_DestroyQHelpEngineCore(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QHelpEngineCore) DestroyQHelpEngineCoreDefault() {
 	if ptr.Pointer() != nil {
-		C.QHelpEngineCore_DestroyQHelpEngineCoreDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QHelpEngineCore_DestroyQHelpEngineCoreDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -5292,27 +5263,6 @@ func (ptr *QHelpEngineCore) __findChildren_newList3() unsafe.Pointer {
 	return C.QHelpEngineCore___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QHelpEngineCore) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QHelpEngineCore___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QHelpEngineCore) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpEngineCore___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QHelpEngineCore) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QHelpEngineCore___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQHelpEngineCore_ChildEvent
 func callbackQHelpEngineCore_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -5369,8 +5319,9 @@ func callbackQHelpEngineCore_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QHelpEngineCore) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QHelpEngineCore_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QHelpEngineCore_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -5566,9 +5517,10 @@ func (ptr *QHelpFilterData) Versions() []*core.QVersionNumber {
 
 func (ptr *QHelpFilterData) DestroyQHelpFilterData() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QHelpFilterData_DestroyQHelpFilterData(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -6020,27 +5972,6 @@ func (ptr *QHelpFilterEngine) __findChildren_newList3() unsafe.Pointer {
 	return C.QHelpFilterEngine___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QHelpFilterEngine) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QHelpFilterEngine___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QHelpFilterEngine) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpFilterEngine___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QHelpFilterEngine) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QHelpFilterEngine___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQHelpFilterEngine_ChildEvent
 func callbackQHelpFilterEngine_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -6097,8 +6028,9 @@ func callbackQHelpFilterEngine_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QHelpFilterEngine) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QHelpFilterEngine_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QHelpFilterEngine_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -6233,12 +6165,11 @@ func NewQHelpGlobalFromPointer(ptr unsafe.Pointer) (n *QHelpGlobal) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QHelpGlobal) DestroyQHelpGlobal() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -6877,27 +6808,6 @@ func (ptr *QHelpIndexModel) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QHelpIndexModel) __findChildren_newList3() unsafe.Pointer {
 	return C.QHelpIndexModel___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QHelpIndexModel) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QHelpIndexModel___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QHelpIndexModel) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpIndexModel___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QHelpIndexModel) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QHelpIndexModel___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQHelpIndexModel_Data
@@ -7793,8 +7703,9 @@ func callbackQHelpIndexModel_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QHelpIndexModel) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QHelpIndexModel_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QHelpIndexModel_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -8424,27 +8335,6 @@ func (ptr *QHelpIndexWidget) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QHelpIndexWidget) __findChildren_newList3() unsafe.Pointer {
 	return C.QHelpIndexWidget___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QHelpIndexWidget) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QHelpIndexWidget___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QHelpIndexWidget) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpIndexWidget___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QHelpIndexWidget) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QHelpIndexWidget___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQHelpIndexWidget_CurrentChanged
@@ -10177,8 +10067,9 @@ func callbackQHelpIndexWidget_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QHelpIndexWidget) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QHelpIndexWidget_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QHelpIndexWidget_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -10700,16 +10591,18 @@ func (ptr *QHelpSearchEngine) DisconnectDestroyQHelpSearchEngine() {
 
 func (ptr *QHelpSearchEngine) DestroyQHelpSearchEngine() {
 	if ptr.Pointer() != nil {
-		C.QHelpSearchEngine_DestroyQHelpSearchEngine(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QHelpSearchEngine_DestroyQHelpSearchEngine(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QHelpSearchEngine) DestroyQHelpSearchEngineDefault() {
 	if ptr.Pointer() != nil {
-		C.QHelpSearchEngine_DestroyQHelpSearchEngineDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QHelpSearchEngine_DestroyQHelpSearchEngineDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -10853,27 +10746,6 @@ func (ptr *QHelpSearchEngine) __findChildren_newList3() unsafe.Pointer {
 	return C.QHelpSearchEngine___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QHelpSearchEngine) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QHelpSearchEngine___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QHelpSearchEngine) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpSearchEngine___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QHelpSearchEngine) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QHelpSearchEngine___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQHelpSearchEngine_ChildEvent
 func callbackQHelpSearchEngine_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -10930,8 +10802,9 @@ func callbackQHelpSearchEngine_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QHelpSearchEngine) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QHelpSearchEngine_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QHelpSearchEngine_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -11066,16 +10939,14 @@ func NewQHelpSearchQueryFromPointer(ptr unsafe.Pointer) (n *QHelpSearchQuery) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QHelpSearchQuery) DestroyQHelpSearchQuery() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
-
 func NewQHelpSearchQuery() *QHelpSearchQuery {
 	tmpValue := NewQHelpSearchQueryFromPointer(C.QHelpSearchQuery_NewQHelpSearchQuery())
 	qt.SetFinalizer(tmpValue, (*QHelpSearchQuery).DestroyQHelpSearchQuery)
@@ -11231,16 +11102,18 @@ func (ptr *QHelpSearchQueryWidget) DisconnectDestroyQHelpSearchQueryWidget() {
 
 func (ptr *QHelpSearchQueryWidget) DestroyQHelpSearchQueryWidget() {
 	if ptr.Pointer() != nil {
-		C.QHelpSearchQueryWidget_DestroyQHelpSearchQueryWidget(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QHelpSearchQueryWidget_DestroyQHelpSearchQueryWidget(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) DestroyQHelpSearchQueryWidgetDefault() {
 	if ptr.Pointer() != nil {
-		C.QHelpSearchQueryWidget_DestroyQHelpSearchQueryWidgetDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QHelpSearchQueryWidget_DestroyQHelpSearchQueryWidgetDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -11426,27 +11299,6 @@ func (ptr *QHelpSearchQueryWidget) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QHelpSearchQueryWidget) __findChildren_newList3() unsafe.Pointer {
 	return C.QHelpSearchQueryWidget___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QHelpSearchQueryWidget) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QHelpSearchQueryWidget___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QHelpSearchQueryWidget) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpSearchQueryWidget___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QHelpSearchQueryWidget) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QHelpSearchQueryWidget___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQHelpSearchQueryWidget_ActionEvent
@@ -12421,8 +12273,9 @@ func callbackQHelpSearchQueryWidget_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QHelpSearchQueryWidget) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QHelpSearchQueryWidget_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QHelpSearchQueryWidget_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -12594,9 +12447,10 @@ func (ptr *QHelpSearchResult) Url() *core.QUrl {
 
 func (ptr *QHelpSearchResult) DestroyQHelpSearchResult() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QHelpSearchResult_DestroyQHelpSearchResult(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -12721,16 +12575,18 @@ func (ptr *QHelpSearchResultWidget) DisconnectDestroyQHelpSearchResultWidget() {
 
 func (ptr *QHelpSearchResultWidget) DestroyQHelpSearchResultWidget() {
 	if ptr.Pointer() != nil {
-		C.QHelpSearchResultWidget_DestroyQHelpSearchResultWidget(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QHelpSearchResultWidget_DestroyQHelpSearchResultWidget(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) DestroyQHelpSearchResultWidgetDefault() {
 	if ptr.Pointer() != nil {
-		C.QHelpSearchResultWidget_DestroyQHelpSearchResultWidgetDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QHelpSearchResultWidget_DestroyQHelpSearchResultWidgetDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -12878,27 +12734,6 @@ func (ptr *QHelpSearchResultWidget) __findChildren_setList3(i core.QObject_ITF) 
 
 func (ptr *QHelpSearchResultWidget) __findChildren_newList3() unsafe.Pointer {
 	return C.QHelpSearchResultWidget___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QHelpSearchResultWidget) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QHelpSearchResultWidget___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QHelpSearchResultWidget) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpSearchResultWidget___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QHelpSearchResultWidget) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QHelpSearchResultWidget___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQHelpSearchResultWidget_ActionEvent
@@ -13873,8 +13708,9 @@ func callbackQHelpSearchResultWidget_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QHelpSearchResultWidget) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QHelpSearchResultWidget_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QHelpSearchResultWidget_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 

@@ -14,13 +14,16 @@ import (
 	"unsafe"
 )
 
+func cGoFreePacked(ptr unsafe.Pointer) { core.NewQByteArrayFromPointer(ptr).DestroyQByteArray() }
 func cGoUnpackString(s C.struct_QtPurchasing_PackedString) string {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		return C.GoString(s.data)
 	}
 	return C.GoStringN(s.data, C.int(s.len))
 }
 func cGoUnpackBytes(s C.struct_QtPurchasing_PackedString) []byte {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
 		return *(*[]byte)(unsafe.Pointer(&gs))
@@ -235,27 +238,6 @@ func (ptr *QInAppProduct) __findChildren_newList3() unsafe.Pointer {
 	return C.QInAppProduct___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QInAppProduct) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QInAppProduct___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QInAppProduct) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QInAppProduct___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QInAppProduct) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QInAppProduct___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQInAppProduct_ChildEvent
 func callbackQInAppProduct_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -312,8 +294,9 @@ func callbackQInAppProduct_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QInAppProduct) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QInAppProduct_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QInAppProduct_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -664,16 +647,18 @@ func (ptr *QInAppStore) DisconnectDestroyQInAppStore() {
 
 func (ptr *QInAppStore) DestroyQInAppStore() {
 	if ptr.Pointer() != nil {
-		C.QInAppStore_DestroyQInAppStore(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QInAppStore_DestroyQInAppStore(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QInAppStore) DestroyQInAppStoreDefault() {
 	if ptr.Pointer() != nil {
-		C.QInAppStore_DestroyQInAppStoreDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QInAppStore_DestroyQInAppStoreDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -760,27 +745,6 @@ func (ptr *QInAppStore) __findChildren_newList3() unsafe.Pointer {
 	return C.QInAppStore___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QInAppStore) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QInAppStore___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QInAppStore) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QInAppStore___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QInAppStore) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QInAppStore___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQInAppStore_ChildEvent
 func callbackQInAppStore_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -837,8 +801,9 @@ func callbackQInAppStore_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QInAppStore) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QInAppStore_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QInAppStore_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -1374,27 +1339,6 @@ func (ptr *QInAppTransaction) __findChildren_newList3() unsafe.Pointer {
 	return C.QInAppTransaction___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QInAppTransaction) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QInAppTransaction___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QInAppTransaction) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QInAppTransaction___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QInAppTransaction) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QInAppTransaction___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQInAppTransaction_ChildEvent
 func callbackQInAppTransaction_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -1451,8 +1395,9 @@ func callbackQInAppTransaction_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QInAppTransaction) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QInAppTransaction_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QInAppTransaction_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 

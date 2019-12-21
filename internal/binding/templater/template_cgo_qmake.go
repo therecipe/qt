@@ -379,6 +379,10 @@ func createMakefile(module, path, target string, mode int) {
 		cmd.Args = append(cmd.Args, "CONFIG+=resources_big")
 	}
 
+	if utils.QT_STATIC() {
+		cmd.Args = append(cmd.Args, "CONFIG+=static")
+	}
+
 	//needed for QMAKE_MSC_VER bug: https://bugreports.qt.io/browse/QTBUG-59718
 	utils.RemoveAll(filepath.Join(cmd.Dir, ".qmake.stash"))
 
@@ -582,6 +586,10 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 	}
 
 	switch target {
+	case "darwin":
+		if utils.QT_STATIC() && utils.QT_DOCKER() {
+			fmt.Fprint(bb, "#cgo LDFLAGS: -Wl,-U,___isPlatformVersionAtLeast\n")
+		}
 	case "android", "android-emulator":
 		fmt.Fprintf(bb, "#cgo LDFLAGS: %s -Wl,--allow-shlib-undefined\n", utils.ANDROID_NDK_NOSTDLIBPP_LDFLAG())
 	case "windows":

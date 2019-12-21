@@ -15,7 +15,7 @@ int QAndroidServiceConnection_QAndroidServiceConnection_QRegisterMetaType();
 extern "C" {
 #endif
 
-struct QtAndroidExtras_PackedString { char* data; long long len; };
+struct QtAndroidExtras_PackedString { char* data; long long len; void* ptr; };
 struct QtAndroidExtras_PackedList { void* data; long long len; };
 void QAndroidActivityResultReceiver_HandleActivityResult(void* ptr, int receiverRequestCode, int resultCode, void* data);
 void* QAndroidBinder_NewQAndroidBinder();
@@ -189,9 +189,6 @@ void* QAndroidService___findChildren_newList(void* ptr);
 void* QAndroidService___findChildren_atList3(void* ptr, int i);
 void QAndroidService___findChildren_setList3(void* ptr, void* i);
 void* QAndroidService___findChildren_newList3(void* ptr);
-void* QAndroidService___qFindChildren_atList2(void* ptr, int i);
-void QAndroidService___qFindChildren_setList2(void* ptr, void* i);
-void* QAndroidService___qFindChildren_newList2(void* ptr);
 char QAndroidService_EventDefault(void* ptr, void* e);
 void QAndroidService_QuitDefault(void* ptr);
 void QAndroidService_ChildEventDefault(void* ptr, void* event);

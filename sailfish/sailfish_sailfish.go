@@ -16,13 +16,16 @@ import (
 	"unsafe"
 )
 
+func cGoFreePacked(ptr unsafe.Pointer) { core.NewQByteArrayFromPointer(ptr).DestroyQByteArray() }
 func cGoUnpackString(s C.struct_QtSailfish_PackedString) string {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		return C.GoString(s.data)
 	}
 	return C.GoStringN(s.data, C.int(s.len))
 }
 func cGoUnpackBytes(s C.struct_QtSailfish_PackedString) []byte {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
 		return *(*[]byte)(unsafe.Pointer(&gs))
@@ -73,16 +76,14 @@ func NewSailfishAppFromPointer(ptr unsafe.Pointer) (n *SailfishApp) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *SailfishApp) DestroySailfishApp() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
-
 func SailfishApp_Application(argc int, argv []string) *gui.QGuiApplication {
 	argvC := C.CString(strings.Join(argv, "|"))
 	defer C.free(unsafe.Pointer(argvC))

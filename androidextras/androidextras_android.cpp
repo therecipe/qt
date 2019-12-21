@@ -777,7 +777,7 @@ void QAndroidJniObject_QAndroidJniObject_SetStaticFieldBoolean4Caught(void* claz
 
 struct QtAndroidExtras_PackedString QAndroidJniObject_ToString(void* ptr)
 {
-	return ({ QByteArray t3150b4 = static_cast<QAndroidJniObject*>(ptr)->toString().toUtf8(); QtAndroidExtras_PackedString { const_cast<char*>(t3150b4.prepend("WHITESPACE").constData()+10), t3150b4.size()-10 }; });
+	return ({ QByteArray* t3150b4 = new QByteArray(static_cast<QAndroidJniObject*>(ptr)->toString().toUtf8()); QtAndroidExtras_PackedString { const_cast<char*>(t3150b4->prepend("WHITESPACE").constData()+10), t3150b4->size()-10, t3150b4 }; });
 }
 
 void QAndroidJniObject_DestroyQAndroidJniObject(void* ptr)
@@ -862,7 +862,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQAndroidService_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAndroidService_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAndroidService_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtAndroidExtras_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQAndroidService_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtAndroidExtras_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQAndroidService_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQAndroidService_TimerEvent(this, event); };
 };
 
@@ -957,22 +957,6 @@ void* QAndroidService___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QAndroidService___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QAndroidService___qFindChildren_setList2(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QAndroidService___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 char QAndroidService_EventDefault(void* ptr, void* e)
 {
 		return static_cast<QAndroidService*>(ptr)->QAndroidService::event(static_cast<QEvent*>(e));
@@ -1028,8 +1012,8 @@ class MyQAndroidServiceConnection: public QAndroidServiceConnection
 public:
 	MyQAndroidServiceConnection() : QAndroidServiceConnection() {QAndroidServiceConnection_QAndroidServiceConnection_QRegisterMetaType();};
 	MyQAndroidServiceConnection(const QAndroidJniObject &serviceConnection) : QAndroidServiceConnection(serviceConnection) {QAndroidServiceConnection_QAndroidServiceConnection_QRegisterMetaType();};
-	void onServiceConnected(const QString & name, const QAndroidBinder & serviceBinder) { QByteArray t6ae999 = name.toUtf8(); QtAndroidExtras_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };callbackQAndroidServiceConnection_OnServiceConnected(this, namePacked, const_cast<QAndroidBinder*>(&serviceBinder)); };
-	void onServiceDisconnected(const QString & name) { QByteArray t6ae999 = name.toUtf8(); QtAndroidExtras_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };callbackQAndroidServiceConnection_OnServiceDisconnected(this, namePacked); };
+	void onServiceConnected(const QString & name, const QAndroidBinder & serviceBinder) { QByteArray* t6ae999 = new QByteArray(name.toUtf8()); QtAndroidExtras_PackedString namePacked = { const_cast<char*>(t6ae999->prepend("WHITESPACE").constData()+10), t6ae999->size()-10, t6ae999 };callbackQAndroidServiceConnection_OnServiceConnected(this, namePacked, const_cast<QAndroidBinder*>(&serviceBinder)); };
+	void onServiceDisconnected(const QString & name) { QByteArray* t6ae999 = new QByteArray(name.toUtf8()); QtAndroidExtras_PackedString namePacked = { const_cast<char*>(t6ae999->prepend("WHITESPACE").constData()+10), t6ae999->size()-10, t6ae999 };callbackQAndroidServiceConnection_OnServiceDisconnected(this, namePacked); };
 };
 
 Q_DECLARE_METATYPE(QAndroidServiceConnection*)

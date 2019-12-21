@@ -16,13 +16,16 @@ import (
 	"unsafe"
 )
 
+func cGoFreePacked(ptr unsafe.Pointer) { core.NewQByteArrayFromPointer(ptr).DestroyQByteArray() }
 func cGoUnpackString(s C.struct_QtSvg_PackedString) string {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		return C.GoString(s.data)
 	}
 	return C.GoStringN(s.data, C.int(s.len))
 }
 func cGoUnpackBytes(s C.struct_QtSvg_PackedString) []byte {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
 		return *(*[]byte)(unsafe.Pointer(&gs))
@@ -335,27 +338,6 @@ func (ptr *QGraphicsSvgItem) __findChildren_newList3() unsafe.Pointer {
 	return C.QGraphicsSvgItem___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QGraphicsSvgItem) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QGraphicsSvgItem___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QGraphicsSvgItem) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QGraphicsSvgItem___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QGraphicsSvgItem) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QGraphicsSvgItem___qFindChildren_newList2(ptr.Pointer())
-}
-
 func (ptr *QGraphicsSvgItem) __childItems_atList(i int) *widgets.QGraphicsItem {
 	if ptr.Pointer() != nil {
 		return widgets.NewQGraphicsItemFromPointer(C.QGraphicsSvgItem___childItems_atList(ptr.Pointer(), C.int(int32(i))))
@@ -591,8 +573,9 @@ func callbackQGraphicsSvgItem_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QGraphicsSvgItem) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QGraphicsSvgItem_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QGraphicsSvgItem_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -1376,16 +1359,18 @@ func (ptr *QSvgGenerator) DisconnectDestroyQSvgGenerator() {
 
 func (ptr *QSvgGenerator) DestroyQSvgGenerator() {
 	if ptr.Pointer() != nil {
-		C.QSvgGenerator_DestroyQSvgGenerator(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QSvgGenerator_DestroyQSvgGenerator(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QSvgGenerator) DestroyQSvgGeneratorDefault() {
 	if ptr.Pointer() != nil {
-		C.QSvgGenerator_DestroyQSvgGeneratorDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QSvgGenerator_DestroyQSvgGeneratorDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -1428,13 +1413,12 @@ func NewQSvgIOHandlerFromPointer(ptr unsafe.Pointer) (n *QSvgIOHandler) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QSvgIOHandler) DestroyQSvgIOHandler() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -1477,13 +1461,12 @@ func NewQSvgIconEngineFromPointer(ptr unsafe.Pointer) (n *QSvgIconEngine) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QSvgIconEngine) DestroyQSvgIconEngine() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -2026,16 +2009,18 @@ func (ptr *QSvgRenderer) DisconnectDestroyQSvgRenderer() {
 
 func (ptr *QSvgRenderer) DestroyQSvgRenderer() {
 	if ptr.Pointer() != nil {
-		C.QSvgRenderer_DestroyQSvgRenderer(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QSvgRenderer_DestroyQSvgRenderer(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QSvgRenderer) DestroyQSvgRendererDefault() {
 	if ptr.Pointer() != nil {
-		C.QSvgRenderer_DestroyQSvgRendererDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QSvgRenderer_DestroyQSvgRendererDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -2122,27 +2107,6 @@ func (ptr *QSvgRenderer) __findChildren_newList3() unsafe.Pointer {
 	return C.QSvgRenderer___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QSvgRenderer) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSvgRenderer___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSvgRenderer) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSvgRenderer___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QSvgRenderer) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QSvgRenderer___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQSvgRenderer_ChildEvent
 func callbackQSvgRenderer_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -2199,8 +2163,9 @@ func callbackQSvgRenderer_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QSvgRenderer) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QSvgRenderer_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QSvgRenderer_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -2530,16 +2495,18 @@ func (ptr *QSvgWidget) DisconnectDestroyQSvgWidget() {
 
 func (ptr *QSvgWidget) DestroyQSvgWidget() {
 	if ptr.Pointer() != nil {
-		C.QSvgWidget_DestroyQSvgWidget(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QSvgWidget_DestroyQSvgWidget(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QSvgWidget) DestroyQSvgWidgetDefault() {
 	if ptr.Pointer() != nil {
-		C.QSvgWidget_DestroyQSvgWidgetDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QSvgWidget_DestroyQSvgWidgetDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -2687,27 +2654,6 @@ func (ptr *QSvgWidget) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QSvgWidget) __findChildren_newList3() unsafe.Pointer {
 	return C.QSvgWidget___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QSvgWidget) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSvgWidget___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSvgWidget) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSvgWidget___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QSvgWidget) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QSvgWidget___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQSvgWidget_ActionEvent
@@ -3649,8 +3595,9 @@ func callbackQSvgWidget_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QSvgWidget) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QSvgWidget_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QSvgWidget_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 

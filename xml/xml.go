@@ -14,13 +14,16 @@ import (
 	"unsafe"
 )
 
+func cGoFreePacked(ptr unsafe.Pointer) { core.NewQByteArrayFromPointer(ptr).DestroyQByteArray() }
 func cGoUnpackString(s C.struct_QtXml_PackedString) string {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		return C.GoString(s.data)
 	}
 	return C.GoStringN(s.data, C.int(s.len))
 }
 func cGoUnpackBytes(s C.struct_QtXml_PackedString) []byte {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
 		return *(*[]byte)(unsafe.Pointer(&gs))
@@ -72,16 +75,14 @@ func NewQDomAttrFromPointer(ptr unsafe.Pointer) (n *QDomAttr) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QDomAttr) DestroyQDomAttr() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
-
 func NewQDomAttr() *QDomAttr {
 	tmpValue := NewQDomAttrFromPointer(C.QDomAttr_NewQDomAttr())
 	qt.SetFinalizer(tmpValue, (*QDomAttr).DestroyQDomAttr)
@@ -173,16 +174,14 @@ func NewQDomCDATASectionFromPointer(ptr unsafe.Pointer) (n *QDomCDATASection) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QDomCDATASection) DestroyQDomCDATASection() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
-
 func NewQDomCDATASection() *QDomCDATASection {
 	tmpValue := NewQDomCDATASectionFromPointer(C.QDomCDATASection_NewQDomCDATASection())
 	qt.SetFinalizer(tmpValue, (*QDomCDATASection).DestroyQDomCDATASection)
@@ -233,16 +232,14 @@ func NewQDomCharacterDataFromPointer(ptr unsafe.Pointer) (n *QDomCharacterData) 
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QDomCharacterData) DestroyQDomCharacterData() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
-
 func NewQDomCharacterData() *QDomCharacterData {
 	tmpValue := NewQDomCharacterDataFromPointer(C.QDomCharacterData_NewQDomCharacterData())
 	qt.SetFinalizer(tmpValue, (*QDomCharacterData).DestroyQDomCharacterData)
@@ -364,16 +361,14 @@ func NewQDomCommentFromPointer(ptr unsafe.Pointer) (n *QDomComment) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QDomComment) DestroyQDomComment() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
-
 func NewQDomComment() *QDomComment {
 	tmpValue := NewQDomCommentFromPointer(C.QDomComment_NewQDomComment())
 	qt.SetFinalizer(tmpValue, (*QDomComment).DestroyQDomComment)
@@ -810,9 +805,10 @@ func (ptr *QDomDocument) ToString(indent int) string {
 
 func (ptr *QDomDocument) DestroyQDomDocument() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QDomDocument_DestroyQDomDocument(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -855,16 +851,14 @@ func NewQDomDocumentFragmentFromPointer(ptr unsafe.Pointer) (n *QDomDocumentFrag
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QDomDocumentFragment) DestroyQDomDocumentFragment() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
-
 func NewQDomDocumentFragment() *QDomDocumentFragment {
 	tmpValue := NewQDomDocumentFragmentFromPointer(C.QDomDocumentFragment_NewQDomDocumentFragment())
 	qt.SetFinalizer(tmpValue, (*QDomDocumentFragment).DestroyQDomDocumentFragment)
@@ -915,16 +909,14 @@ func NewQDomDocumentTypeFromPointer(ptr unsafe.Pointer) (n *QDomDocumentType) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QDomDocumentType) DestroyQDomDocumentType() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
-
 func NewQDomDocumentType() *QDomDocumentType {
 	tmpValue := NewQDomDocumentTypeFromPointer(C.QDomDocumentType_NewQDomDocumentType())
 	qt.SetFinalizer(tmpValue, (*QDomDocumentType).DestroyQDomDocumentType)
@@ -1021,16 +1013,14 @@ func NewQDomElementFromPointer(ptr unsafe.Pointer) (n *QDomElement) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QDomElement) DestroyQDomElement() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
-
 func NewQDomElement() *QDomElement {
 	tmpValue := NewQDomElementFromPointer(C.QDomElement_NewQDomElement())
 	qt.SetFinalizer(tmpValue, (*QDomElement).DestroyQDomElement)
@@ -1477,16 +1467,14 @@ func NewQDomEntityFromPointer(ptr unsafe.Pointer) (n *QDomEntity) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QDomEntity) DestroyQDomEntity() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
-
 func NewQDomEntity() *QDomEntity {
 	tmpValue := NewQDomEntityFromPointer(C.QDomEntity_NewQDomEntity())
 	qt.SetFinalizer(tmpValue, (*QDomEntity).DestroyQDomEntity)
@@ -1558,16 +1546,14 @@ func NewQDomEntityReferenceFromPointer(ptr unsafe.Pointer) (n *QDomEntityReferen
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QDomEntityReference) DestroyQDomEntityReference() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
-
 func NewQDomEntityReference() *QDomEntityReference {
 	tmpValue := NewQDomEntityReferenceFromPointer(C.QDomEntityReference_NewQDomEntityReference())
 	qt.SetFinalizer(tmpValue, (*QDomEntityReference).DestroyQDomEntityReference)
@@ -1725,9 +1711,10 @@ func (ptr *QDomImplementation) SetInvalidDataPolicy(policy QDomImplementation__I
 
 func (ptr *QDomImplementation) DestroyQDomImplementation() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QDomImplementation_DestroyQDomImplementation(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -1916,9 +1903,10 @@ func (ptr *QDomNamedNodeMap) Size() int {
 
 func (ptr *QDomNamedNodeMap) DestroyQDomNamedNodeMap() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QDomNamedNodeMap_DestroyQDomNamedNodeMap(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -2534,9 +2522,10 @@ func (ptr *QDomNode) ToText() *QDomText {
 
 func (ptr *QDomNode) DestroyQDomNode() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QDomNode_DestroyQDomNode(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -2638,9 +2627,10 @@ func (ptr *QDomNodeList) Size() int {
 
 func (ptr *QDomNodeList) DestroyQDomNodeList() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QDomNodeList_DestroyQDomNodeList(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -2683,16 +2673,14 @@ func NewQDomNotationFromPointer(ptr unsafe.Pointer) (n *QDomNotation) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QDomNotation) DestroyQDomNotation() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
-
 func NewQDomNotation() *QDomNotation {
 	tmpValue := NewQDomNotationFromPointer(C.QDomNotation_NewQDomNotation())
 	qt.SetFinalizer(tmpValue, (*QDomNotation).DestroyQDomNotation)
@@ -2757,16 +2745,14 @@ func NewQDomProcessingInstructionFromPointer(ptr unsafe.Pointer) (n *QDomProcess
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QDomProcessingInstruction) DestroyQDomProcessingInstruction() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
-
 func NewQDomProcessingInstruction() *QDomProcessingInstruction {
 	tmpValue := NewQDomProcessingInstructionFromPointer(C.QDomProcessingInstruction_NewQDomProcessingInstruction())
 	qt.SetFinalizer(tmpValue, (*QDomProcessingInstruction).DestroyQDomProcessingInstruction)
@@ -2842,16 +2828,14 @@ func NewQDomTextFromPointer(ptr unsafe.Pointer) (n *QDomText) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QDomText) DestroyQDomText() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
-
 func NewQDomText() *QDomText {
 	tmpValue := NewQDomTextFromPointer(C.QDomText_NewQDomText())
 	qt.SetFinalizer(tmpValue, (*QDomText).DestroyQDomText)
@@ -3137,16 +3121,18 @@ func (ptr *QXmlAttributes) DisconnectDestroyQXmlAttributes() {
 
 func (ptr *QXmlAttributes) DestroyQXmlAttributes() {
 	if ptr.Pointer() != nil {
-		C.QXmlAttributes_DestroyQXmlAttributes(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QXmlAttributes_DestroyQXmlAttributes(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QXmlAttributes) DestroyQXmlAttributesDefault() {
 	if ptr.Pointer() != nil {
-		C.QXmlAttributes_DestroyQXmlAttributesDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QXmlAttributes_DestroyQXmlAttributesDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -6723,16 +6709,18 @@ func (ptr *QXmlInputSource) DisconnectDestroyQXmlInputSource() {
 
 func (ptr *QXmlInputSource) DestroyQXmlInputSource() {
 	if ptr.Pointer() != nil {
-		C.QXmlInputSource_DestroyQXmlInputSource(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QXmlInputSource_DestroyQXmlInputSource(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QXmlInputSource) DestroyQXmlInputSourceDefault() {
 	if ptr.Pointer() != nil {
-		C.QXmlInputSource_DestroyQXmlInputSourceDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QXmlInputSource_DestroyQXmlInputSourceDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -7481,9 +7469,10 @@ func (ptr *QXmlNamespaceSupport) Uri(prefix string) string {
 
 func (ptr *QXmlNamespaceSupport) DestroyQXmlNamespaceSupport() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QXmlNamespaceSupport_DestroyQXmlNamespaceSupport(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -7589,9 +7578,10 @@ func (ptr *QXmlParseException) SystemId() string {
 
 func (ptr *QXmlParseException) DestroyQXmlParseException() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QXmlParseException_DestroyQXmlParseException(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }

@@ -52,7 +52,7 @@ public:
 	bool event(QEvent * e) { return callbackQInAppProduct_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQInAppProduct_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQInAppProduct_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtPurchasing_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQInAppProduct_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtPurchasing_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQInAppProduct_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQInAppProduct_TimerEvent(this, event); };
 };
 
@@ -63,17 +63,17 @@ int QInAppProduct_QInAppProduct_QRegisterMetaType(){qRegisterMetaType<QInAppProd
 
 struct QtPurchasing_PackedString QInAppProduct_Description(void* ptr)
 {
-	return ({ QByteArray t8de023 = static_cast<QInAppProduct*>(ptr)->description().toUtf8(); QtPurchasing_PackedString { const_cast<char*>(t8de023.prepend("WHITESPACE").constData()+10), t8de023.size()-10 }; });
+	return ({ QByteArray* t8de023 = new QByteArray(static_cast<QInAppProduct*>(ptr)->description().toUtf8()); QtPurchasing_PackedString { const_cast<char*>(t8de023->prepend("WHITESPACE").constData()+10), t8de023->size()-10, t8de023 }; });
 }
 
 struct QtPurchasing_PackedString QInAppProduct_Identifier(void* ptr)
 {
-	return ({ QByteArray t1115c2 = static_cast<QInAppProduct*>(ptr)->identifier().toUtf8(); QtPurchasing_PackedString { const_cast<char*>(t1115c2.prepend("WHITESPACE").constData()+10), t1115c2.size()-10 }; });
+	return ({ QByteArray* t1115c2 = new QByteArray(static_cast<QInAppProduct*>(ptr)->identifier().toUtf8()); QtPurchasing_PackedString { const_cast<char*>(t1115c2->prepend("WHITESPACE").constData()+10), t1115c2->size()-10, t1115c2 }; });
 }
 
 struct QtPurchasing_PackedString QInAppProduct_Price(void* ptr)
 {
-	return ({ QByteArray tb111f7 = static_cast<QInAppProduct*>(ptr)->price().toUtf8(); QtPurchasing_PackedString { const_cast<char*>(tb111f7.prepend("WHITESPACE").constData()+10), tb111f7.size()-10 }; });
+	return ({ QByteArray* tb111f7 = new QByteArray(static_cast<QInAppProduct*>(ptr)->price().toUtf8()); QtPurchasing_PackedString { const_cast<char*>(tb111f7->prepend("WHITESPACE").constData()+10), tb111f7->size()-10, tb111f7 }; });
 }
 
 long long QInAppProduct_ProductType(void* ptr)
@@ -88,7 +88,7 @@ void QInAppProduct_Purchase(void* ptr)
 
 struct QtPurchasing_PackedString QInAppProduct_Title(void* ptr)
 {
-	return ({ QByteArray t2b6ee0 = static_cast<QInAppProduct*>(ptr)->title().toUtf8(); QtPurchasing_PackedString { const_cast<char*>(t2b6ee0.prepend("WHITESPACE").constData()+10), t2b6ee0.size()-10 }; });
+	return ({ QByteArray* t2b6ee0 = new QByteArray(static_cast<QInAppProduct*>(ptr)->title().toUtf8()); QtPurchasing_PackedString { const_cast<char*>(t2b6ee0->prepend("WHITESPACE").constData()+10), t2b6ee0->size()-10, t2b6ee0 }; });
 }
 
 void* QInAppProduct___children_atList(void* ptr, int i)
@@ -155,22 +155,6 @@ void* QInAppProduct___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QInAppProduct___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QInAppProduct___qFindChildren_setList2(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QInAppProduct___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 void QInAppProduct_ChildEventDefault(void* ptr, void* event)
 {
 		static_cast<QInAppProduct*>(ptr)->QInAppProduct::childEvent(static_cast<QChildEvent*>(event));
@@ -221,7 +205,7 @@ class MyQInAppStore: public QInAppStore
 public:
 	MyQInAppStore(QObject *parent = Q_NULLPTR) : QInAppStore(parent) {QInAppStore_QInAppStore_QRegisterMetaType();};
 	void Signal_ProductRegistered(QInAppProduct * product) { callbackQInAppStore_ProductRegistered(this, product); };
-	void Signal_ProductUnknown(QInAppProduct::ProductType productType, const QString & identifier) { QByteArray tfae9fd = identifier.toUtf8(); QtPurchasing_PackedString identifierPacked = { const_cast<char*>(tfae9fd.prepend("WHITESPACE").constData()+10), tfae9fd.size()-10 };callbackQInAppStore_ProductUnknown(this, productType, identifierPacked); };
+	void Signal_ProductUnknown(QInAppProduct::ProductType productType, const QString & identifier) { QByteArray* tfae9fd = new QByteArray(identifier.toUtf8()); QtPurchasing_PackedString identifierPacked = { const_cast<char*>(tfae9fd->prepend("WHITESPACE").constData()+10), tfae9fd->size()-10, tfae9fd };callbackQInAppStore_ProductUnknown(this, productType, identifierPacked); };
 	void Signal_TransactionReady(QInAppTransaction * transaction) { callbackQInAppStore_TransactionReady(this, transaction); };
 	 ~MyQInAppStore() { callbackQInAppStore_DestroyQInAppStore(this); };
 	void childEvent(QChildEvent * event) { callbackQInAppStore_ChildEvent(this, event); };
@@ -233,7 +217,7 @@ public:
 	bool event(QEvent * e) { return callbackQInAppStore_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQInAppStore_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQInAppStore_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtPurchasing_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQInAppStore_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtPurchasing_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQInAppStore_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQInAppStore_TimerEvent(this, event); };
 };
 
@@ -429,22 +413,6 @@ void* QInAppStore___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QInAppStore___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QInAppStore___qFindChildren_setList2(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QInAppStore___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 void QInAppStore_ChildEventDefault(void* ptr, void* event)
 {
 		static_cast<QInAppStore*>(ptr)->QInAppStore::childEvent(static_cast<QChildEvent*>(event));
@@ -497,7 +465,7 @@ public:
 	QInAppTransaction::FailureReason failureReason() const { return static_cast<QInAppTransaction::FailureReason>(callbackQInAppTransaction_FailureReason(const_cast<void*>(static_cast<const void*>(this)))); };
 	void finalize() { callbackQInAppTransaction_Finalize(this); };
 	QString orderId() const { return ({ QtPurchasing_PackedString tempVal = callbackQInAppTransaction_OrderId(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
-	QString platformProperty(const QString & propertyName) const { QByteArray tdeaeb2 = propertyName.toUtf8(); QtPurchasing_PackedString propertyNamePacked = { const_cast<char*>(tdeaeb2.prepend("WHITESPACE").constData()+10), tdeaeb2.size()-10 };return ({ QtPurchasing_PackedString tempVal = callbackQInAppTransaction_PlatformProperty(const_cast<void*>(static_cast<const void*>(this)), propertyNamePacked); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	QString platformProperty(const QString & propertyName) const { QByteArray* tdeaeb2 = new QByteArray(propertyName.toUtf8()); QtPurchasing_PackedString propertyNamePacked = { const_cast<char*>(tdeaeb2->prepend("WHITESPACE").constData()+10), tdeaeb2->size()-10, tdeaeb2 };return ({ QtPurchasing_PackedString tempVal = callbackQInAppTransaction_PlatformProperty(const_cast<void*>(static_cast<const void*>(this)), propertyNamePacked); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	QDateTime timestamp() const { return *static_cast<QDateTime*>(callbackQInAppTransaction_Timestamp(const_cast<void*>(static_cast<const void*>(this)))); };
 	void childEvent(QChildEvent * event) { callbackQInAppTransaction_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQInAppTransaction_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -508,7 +476,7 @@ public:
 	bool event(QEvent * e) { return callbackQInAppTransaction_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQInAppTransaction_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQInAppTransaction_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtPurchasing_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQInAppTransaction_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtPurchasing_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQInAppTransaction_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQInAppTransaction_TimerEvent(this, event); };
 };
 
@@ -519,12 +487,12 @@ int QInAppTransaction_QInAppTransaction_QRegisterMetaType(){qRegisterMetaType<QI
 
 struct QtPurchasing_PackedString QInAppTransaction_ErrorString(void* ptr)
 {
-	return ({ QByteArray t910a82 = static_cast<QInAppTransaction*>(ptr)->errorString().toUtf8(); QtPurchasing_PackedString { const_cast<char*>(t910a82.prepend("WHITESPACE").constData()+10), t910a82.size()-10 }; });
+	return ({ QByteArray* t910a82 = new QByteArray(static_cast<QInAppTransaction*>(ptr)->errorString().toUtf8()); QtPurchasing_PackedString { const_cast<char*>(t910a82->prepend("WHITESPACE").constData()+10), t910a82->size()-10, t910a82 }; });
 }
 
 struct QtPurchasing_PackedString QInAppTransaction_ErrorStringDefault(void* ptr)
 {
-		return ({ QByteArray tb31c41 = static_cast<QInAppTransaction*>(ptr)->QInAppTransaction::errorString().toUtf8(); QtPurchasing_PackedString { const_cast<char*>(tb31c41.prepend("WHITESPACE").constData()+10), tb31c41.size()-10 }; });
+		return ({ QByteArray* tb31c41 = new QByteArray(static_cast<QInAppTransaction*>(ptr)->QInAppTransaction::errorString().toUtf8()); QtPurchasing_PackedString { const_cast<char*>(tb31c41->prepend("WHITESPACE").constData()+10), tb31c41->size()-10, tb31c41 }; });
 }
 
 long long QInAppTransaction_FailureReason(void* ptr)
@@ -544,22 +512,22 @@ void QInAppTransaction_Finalize(void* ptr)
 
 struct QtPurchasing_PackedString QInAppTransaction_OrderId(void* ptr)
 {
-	return ({ QByteArray t614537 = static_cast<QInAppTransaction*>(ptr)->orderId().toUtf8(); QtPurchasing_PackedString { const_cast<char*>(t614537.prepend("WHITESPACE").constData()+10), t614537.size()-10 }; });
+	return ({ QByteArray* t614537 = new QByteArray(static_cast<QInAppTransaction*>(ptr)->orderId().toUtf8()); QtPurchasing_PackedString { const_cast<char*>(t614537->prepend("WHITESPACE").constData()+10), t614537->size()-10, t614537 }; });
 }
 
 struct QtPurchasing_PackedString QInAppTransaction_OrderIdDefault(void* ptr)
 {
-		return ({ QByteArray t9740f5 = static_cast<QInAppTransaction*>(ptr)->QInAppTransaction::orderId().toUtf8(); QtPurchasing_PackedString { const_cast<char*>(t9740f5.prepend("WHITESPACE").constData()+10), t9740f5.size()-10 }; });
+		return ({ QByteArray* t9740f5 = new QByteArray(static_cast<QInAppTransaction*>(ptr)->QInAppTransaction::orderId().toUtf8()); QtPurchasing_PackedString { const_cast<char*>(t9740f5->prepend("WHITESPACE").constData()+10), t9740f5->size()-10, t9740f5 }; });
 }
 
 struct QtPurchasing_PackedString QInAppTransaction_PlatformProperty(void* ptr, struct QtPurchasing_PackedString propertyName)
 {
-	return ({ QByteArray t2b73cb = static_cast<QInAppTransaction*>(ptr)->platformProperty(QString::fromUtf8(propertyName.data, propertyName.len)).toUtf8(); QtPurchasing_PackedString { const_cast<char*>(t2b73cb.prepend("WHITESPACE").constData()+10), t2b73cb.size()-10 }; });
+	return ({ QByteArray* t2b73cb = new QByteArray(static_cast<QInAppTransaction*>(ptr)->platformProperty(QString::fromUtf8(propertyName.data, propertyName.len)).toUtf8()); QtPurchasing_PackedString { const_cast<char*>(t2b73cb->prepend("WHITESPACE").constData()+10), t2b73cb->size()-10, t2b73cb }; });
 }
 
 struct QtPurchasing_PackedString QInAppTransaction_PlatformPropertyDefault(void* ptr, struct QtPurchasing_PackedString propertyName)
 {
-		return ({ QByteArray t2cb180 = static_cast<QInAppTransaction*>(ptr)->QInAppTransaction::platformProperty(QString::fromUtf8(propertyName.data, propertyName.len)).toUtf8(); QtPurchasing_PackedString { const_cast<char*>(t2cb180.prepend("WHITESPACE").constData()+10), t2cb180.size()-10 }; });
+		return ({ QByteArray* t2cb180 = new QByteArray(static_cast<QInAppTransaction*>(ptr)->QInAppTransaction::platformProperty(QString::fromUtf8(propertyName.data, propertyName.len)).toUtf8()); QtPurchasing_PackedString { const_cast<char*>(t2cb180->prepend("WHITESPACE").constData()+10), t2cb180->size()-10, t2cb180 }; });
 }
 
 void* QInAppTransaction_Product(void* ptr)
@@ -641,22 +609,6 @@ void QInAppTransaction___findChildren_setList3(void* ptr, void* i)
 }
 
 void* QInAppTransaction___findChildren_newList3(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
-void* QInAppTransaction___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QInAppTransaction___qFindChildren_setList2(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QInAppTransaction___qFindChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();

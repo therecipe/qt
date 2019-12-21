@@ -2776,7 +2776,7 @@ public:
 	void Signal_MinChanged(float value) { callbackQAbstract3DAxis_MinChanged(this, value); };
 	void Signal_OrientationChanged(QAbstract3DAxis::AxisOrientation orientation) { callbackQAbstract3DAxis_OrientationChanged(this, orientation); };
 	void Signal_RangeChanged(float min, float max) { callbackQAbstract3DAxis_RangeChanged(this, min, max); };
-	void Signal_TitleChanged(const QString & newTitle) { QByteArray tee1e04 = newTitle.toUtf8(); QtDataVisualization_PackedString newTitlePacked = { const_cast<char*>(tee1e04.prepend("WHITESPACE").constData()+10), tee1e04.size()-10 };callbackQAbstract3DAxis_TitleChanged(this, newTitlePacked); };
+	void Signal_TitleChanged(const QString & newTitle) { QByteArray* tee1e04 = new QByteArray(newTitle.toUtf8()); QtDataVisualization_PackedString newTitlePacked = { const_cast<char*>(tee1e04->prepend("WHITESPACE").constData()+10), tee1e04->size()-10, tee1e04 };callbackQAbstract3DAxis_TitleChanged(this, newTitlePacked); };
 	void Signal_TitleFixedChanged(bool fixed) { callbackQAbstract3DAxis_TitleFixedChanged(this, fixed); };
 	void Signal_TitleVisibilityChanged(bool visible) { callbackQAbstract3DAxis_TitleVisibilityChanged(this, visible); };
 	 ~MyQAbstract3DAxis() { callbackQAbstract3DAxis_DestroyQAbstract3DAxis(this); };
@@ -2839,7 +2839,7 @@ void QAbstract3DAxis_LabelAutoRotationChanged(void* ptr, float angle)
 
 struct QtDataVisualization_PackedString QAbstract3DAxis_Labels(void* ptr)
 {
-	return ({ QByteArray t7dab2f = static_cast<QAbstract3DAxis*>(ptr)->labels().join("¡¦!").toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t7dab2f.prepend("WHITESPACE").constData()+10), t7dab2f.size()-10 }; });
+	return ({ QByteArray* t7dab2f = new QByteArray(static_cast<QAbstract3DAxis*>(ptr)->labels().join("¡¦!").toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(t7dab2f->prepend("WHITESPACE").constData()+10), t7dab2f->size()-10, t7dab2f }; });
 }
 
 void QAbstract3DAxis_ConnectLabelsChanged(void* ptr, long long t)
@@ -2979,7 +2979,7 @@ void QAbstract3DAxis_SetTitleVisible(void* ptr, char visible)
 
 struct QtDataVisualization_PackedString QAbstract3DAxis_Title(void* ptr)
 {
-	return ({ QByteArray tcaf968 = static_cast<QAbstract3DAxis*>(ptr)->title().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(tcaf968.prepend("WHITESPACE").constData()+10), tcaf968.size()-10 }; });
+	return ({ QByteArray* tcaf968 = new QByteArray(static_cast<QAbstract3DAxis*>(ptr)->title().toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(tcaf968->prepend("WHITESPACE").constData()+10), tcaf968->size()-10, tcaf968 }; });
 }
 
 void QAbstract3DAxis_ConnectTitleChanged(void* ptr, long long t)
@@ -3283,18 +3283,18 @@ public:
 	void Signal_BaseColorChanged(const QColor & color) { callbackQAbstract3DSeries_BaseColorChanged(this, const_cast<QColor*>(&color)); };
 	void Signal_BaseGradientChanged(const QLinearGradient & gradient) { callbackQAbstract3DSeries_BaseGradientChanged(this, const_cast<QLinearGradient*>(&gradient)); };
 	void Signal_ColorStyleChanged(Q3DTheme::ColorStyle style) { callbackQAbstract3DSeries_ColorStyleChanged(this, style); };
-	void Signal_ItemLabelChanged(const QString & label) { QByteArray t64c653 = label.toUtf8(); QtDataVisualization_PackedString labelPacked = { const_cast<char*>(t64c653.prepend("WHITESPACE").constData()+10), t64c653.size()-10 };callbackQAbstract3DSeries_ItemLabelChanged(this, labelPacked); };
-	void Signal_ItemLabelFormatChanged(const QString & format) { QByteArray t785987 = format.toUtf8(); QtDataVisualization_PackedString formatPacked = { const_cast<char*>(t785987.prepend("WHITESPACE").constData()+10), t785987.size()-10 };callbackQAbstract3DSeries_ItemLabelFormatChanged(this, formatPacked); };
+	void Signal_ItemLabelChanged(const QString & label) { QByteArray* t64c653 = new QByteArray(label.toUtf8()); QtDataVisualization_PackedString labelPacked = { const_cast<char*>(t64c653->prepend("WHITESPACE").constData()+10), t64c653->size()-10, t64c653 };callbackQAbstract3DSeries_ItemLabelChanged(this, labelPacked); };
+	void Signal_ItemLabelFormatChanged(const QString & format) { QByteArray* t785987 = new QByteArray(format.toUtf8()); QtDataVisualization_PackedString formatPacked = { const_cast<char*>(t785987->prepend("WHITESPACE").constData()+10), t785987->size()-10, t785987 };callbackQAbstract3DSeries_ItemLabelFormatChanged(this, formatPacked); };
 	void Signal_ItemLabelVisibilityChanged(bool visible) { callbackQAbstract3DSeries_ItemLabelVisibilityChanged(this, visible); };
 	void Signal_MeshChanged(QAbstract3DSeries::Mesh mesh) { callbackQAbstract3DSeries_MeshChanged(this, mesh); };
 	void Signal_MeshRotationChanged(const QQuaternion & rotation) { callbackQAbstract3DSeries_MeshRotationChanged(this, const_cast<QQuaternion*>(&rotation)); };
 	void Signal_MeshSmoothChanged(bool enabled) { callbackQAbstract3DSeries_MeshSmoothChanged(this, enabled); };
 	void Signal_MultiHighlightColorChanged(const QColor & color) { callbackQAbstract3DSeries_MultiHighlightColorChanged(this, const_cast<QColor*>(&color)); };
 	void Signal_MultiHighlightGradientChanged(const QLinearGradient & gradient) { callbackQAbstract3DSeries_MultiHighlightGradientChanged(this, const_cast<QLinearGradient*>(&gradient)); };
-	void Signal_NameChanged(const QString & name) { QByteArray t6ae999 = name.toUtf8(); QtDataVisualization_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };callbackQAbstract3DSeries_NameChanged(this, namePacked); };
+	void Signal_NameChanged(const QString & name) { QByteArray* t6ae999 = new QByteArray(name.toUtf8()); QtDataVisualization_PackedString namePacked = { const_cast<char*>(t6ae999->prepend("WHITESPACE").constData()+10), t6ae999->size()-10, t6ae999 };callbackQAbstract3DSeries_NameChanged(this, namePacked); };
 	void Signal_SingleHighlightColorChanged(const QColor & color) { callbackQAbstract3DSeries_SingleHighlightColorChanged(this, const_cast<QColor*>(&color)); };
 	void Signal_SingleHighlightGradientChanged(const QLinearGradient & gradient) { callbackQAbstract3DSeries_SingleHighlightGradientChanged(this, const_cast<QLinearGradient*>(&gradient)); };
-	void Signal_UserDefinedMeshChanged(const QString & fileName) { QByteArray td83e09 = fileName.toUtf8(); QtDataVisualization_PackedString fileNamePacked = { const_cast<char*>(td83e09.prepend("WHITESPACE").constData()+10), td83e09.size()-10 };callbackQAbstract3DSeries_UserDefinedMeshChanged(this, fileNamePacked); };
+	void Signal_UserDefinedMeshChanged(const QString & fileName) { QByteArray* td83e09 = new QByteArray(fileName.toUtf8()); QtDataVisualization_PackedString fileNamePacked = { const_cast<char*>(td83e09->prepend("WHITESPACE").constData()+10), td83e09->size()-10, td83e09 };callbackQAbstract3DSeries_UserDefinedMeshChanged(this, fileNamePacked); };
 	void Signal_VisibilityChanged(bool visible) { callbackQAbstract3DSeries_VisibilityChanged(this, visible); };
 	 ~MyQAbstract3DSeries() { callbackQAbstract3DSeries_DestroyQAbstract3DSeries(this); };
 };
@@ -3381,7 +3381,7 @@ char QAbstract3DSeries_IsVisible(void* ptr)
 
 struct QtDataVisualization_PackedString QAbstract3DSeries_ItemLabel(void* ptr)
 {
-	return ({ QByteArray tdad3c7 = static_cast<QAbstract3DSeries*>(ptr)->itemLabel().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(tdad3c7.prepend("WHITESPACE").constData()+10), tdad3c7.size()-10 }; });
+	return ({ QByteArray* tdad3c7 = new QByteArray(static_cast<QAbstract3DSeries*>(ptr)->itemLabel().toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(tdad3c7->prepend("WHITESPACE").constData()+10), tdad3c7->size()-10, tdad3c7 }; });
 }
 
 void QAbstract3DSeries_ConnectItemLabelChanged(void* ptr, long long t)
@@ -3401,7 +3401,7 @@ void QAbstract3DSeries_ItemLabelChanged(void* ptr, struct QtDataVisualization_Pa
 
 struct QtDataVisualization_PackedString QAbstract3DSeries_ItemLabelFormat(void* ptr)
 {
-	return ({ QByteArray tf0cb25 = static_cast<QAbstract3DSeries*>(ptr)->itemLabelFormat().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(tf0cb25.prepend("WHITESPACE").constData()+10), tf0cb25.size()-10 }; });
+	return ({ QByteArray* tf0cb25 = new QByteArray(static_cast<QAbstract3DSeries*>(ptr)->itemLabelFormat().toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(tf0cb25->prepend("WHITESPACE").constData()+10), tf0cb25->size()-10, tf0cb25 }; });
 }
 
 void QAbstract3DSeries_ConnectItemLabelFormatChanged(void* ptr, long long t)
@@ -3531,7 +3531,7 @@ void QAbstract3DSeries_MultiHighlightGradientChanged(void* ptr, void* gradient)
 
 struct QtDataVisualization_PackedString QAbstract3DSeries_Name(void* ptr)
 {
-	return ({ QByteArray t7f4311 = static_cast<QAbstract3DSeries*>(ptr)->name().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t7f4311.prepend("WHITESPACE").constData()+10), t7f4311.size()-10 }; });
+	return ({ QByteArray* t7f4311 = new QByteArray(static_cast<QAbstract3DSeries*>(ptr)->name().toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(t7f4311->prepend("WHITESPACE").constData()+10), t7f4311->size()-10, t7f4311 }; });
 }
 
 void QAbstract3DSeries_ConnectNameChanged(void* ptr, long long t)
@@ -3676,7 +3676,7 @@ long long QAbstract3DSeries_Type(void* ptr)
 
 struct QtDataVisualization_PackedString QAbstract3DSeries_UserDefinedMesh(void* ptr)
 {
-	return ({ QByteArray t448627 = static_cast<QAbstract3DSeries*>(ptr)->userDefinedMesh().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t448627.prepend("WHITESPACE").constData()+10), t448627.size()-10 }; });
+	return ({ QByteArray* t448627 = new QByteArray(static_cast<QAbstract3DSeries*>(ptr)->userDefinedMesh().toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(t448627->prepend("WHITESPACE").constData()+10), t448627->size()-10, t448627 }; });
 }
 
 void QAbstract3DSeries_ConnectUserDefinedMeshChanged(void* ptr, long long t)
@@ -4081,7 +4081,7 @@ void QBarDataProxy_ArrayReset(void* ptr)
 
 struct QtDataVisualization_PackedString QBarDataProxy_ColumnLabels(void* ptr)
 {
-	return ({ QByteArray t7f1685 = static_cast<QBarDataProxy*>(ptr)->columnLabels().join("¡¦!").toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t7f1685.prepend("WHITESPACE").constData()+10), t7f1685.size()-10 }; });
+	return ({ QByteArray* t7f1685 = new QByteArray(static_cast<QBarDataProxy*>(ptr)->columnLabels().join("¡¦!").toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(t7f1685->prepend("WHITESPACE").constData()+10), t7f1685->size()-10, t7f1685 }; });
 }
 
 void QBarDataProxy_ConnectColumnLabelsChanged(void* ptr, long long t)
@@ -4156,7 +4156,7 @@ void QBarDataProxy_RowCountChanged(void* ptr, int count)
 
 struct QtDataVisualization_PackedString QBarDataProxy_RowLabels(void* ptr)
 {
-	return ({ QByteArray t0565e1 = static_cast<QBarDataProxy*>(ptr)->rowLabels().join("¡¦!").toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t0565e1.prepend("WHITESPACE").constData()+10), t0565e1.size()-10 }; });
+	return ({ QByteArray* t0565e1 = new QByteArray(static_cast<QBarDataProxy*>(ptr)->rowLabels().join("¡¦!").toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(t0565e1->prepend("WHITESPACE").constData()+10), t0565e1->size()-10, t0565e1 }; });
 }
 
 void QBarDataProxy_ConnectRowLabelsChanged(void* ptr, long long t)
@@ -4347,7 +4347,7 @@ void* QCategory3DAxis_NewQCategory3DAxis(void* parent)
 
 struct QtDataVisualization_PackedString QCategory3DAxis_Labels(void* ptr)
 {
-	return ({ QByteArray t2a027f = static_cast<QCategory3DAxis*>(ptr)->labels().join("¡¦!").toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t2a027f.prepend("WHITESPACE").constData()+10), t2a027f.size()-10 }; });
+	return ({ QByteArray* t2a027f = new QByteArray(static_cast<QCategory3DAxis*>(ptr)->labels().join("¡¦!").toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(t2a027f->prepend("WHITESPACE").constData()+10), t2a027f->size()-10, t2a027f }; });
 }
 
 void QCategory3DAxis_ConnectLabelsChanged(void* ptr, long long t)
@@ -4386,14 +4386,14 @@ class MyQCustom3DItem: public QCustom3DItem
 public:
 	MyQCustom3DItem(QObject *parent = Q_NULLPTR) : QCustom3DItem(parent) {QCustom3DItem_QCustom3DItem_QRegisterMetaType();};
 	MyQCustom3DItem(const QString &meshFile, const QVector3D &position, const QVector3D &scaling, const QQuaternion &rotation, const QImage &texture, QObject *parent = Q_NULLPTR) : QCustom3DItem(meshFile, position, scaling, rotation, texture, parent) {QCustom3DItem_QCustom3DItem_QRegisterMetaType();};
-	void Signal_MeshFileChanged(const QString & meshFile) { QByteArray tdc0aec = meshFile.toUtf8(); QtDataVisualization_PackedString meshFilePacked = { const_cast<char*>(tdc0aec.prepend("WHITESPACE").constData()+10), tdc0aec.size()-10 };callbackQCustom3DItem_MeshFileChanged(this, meshFilePacked); };
+	void Signal_MeshFileChanged(const QString & meshFile) { QByteArray* tdc0aec = new QByteArray(meshFile.toUtf8()); QtDataVisualization_PackedString meshFilePacked = { const_cast<char*>(tdc0aec->prepend("WHITESPACE").constData()+10), tdc0aec->size()-10, tdc0aec };callbackQCustom3DItem_MeshFileChanged(this, meshFilePacked); };
 	void Signal_PositionAbsoluteChanged(bool positionAbsolute) { callbackQCustom3DItem_PositionAbsoluteChanged(this, positionAbsolute); };
 	void Signal_PositionChanged(const QVector3D & position) { callbackQCustom3DItem_PositionChanged(this, const_cast<QVector3D*>(&position)); };
 	void Signal_RotationChanged(const QQuaternion & rotation) { callbackQCustom3DItem_RotationChanged(this, const_cast<QQuaternion*>(&rotation)); };
 	void Signal_ScalingAbsoluteChanged(bool scalingAbsolute) { callbackQCustom3DItem_ScalingAbsoluteChanged(this, scalingAbsolute); };
 	void Signal_ScalingChanged(const QVector3D & scaling) { callbackQCustom3DItem_ScalingChanged(this, const_cast<QVector3D*>(&scaling)); };
 	void Signal_ShadowCastingChanged(bool shadowCasting) { callbackQCustom3DItem_ShadowCastingChanged(this, shadowCasting); };
-	void Signal_TextureFileChanged(const QString & textureFile) { QByteArray t19f53d = textureFile.toUtf8(); QtDataVisualization_PackedString textureFilePacked = { const_cast<char*>(t19f53d.prepend("WHITESPACE").constData()+10), t19f53d.size()-10 };callbackQCustom3DItem_TextureFileChanged(this, textureFilePacked); };
+	void Signal_TextureFileChanged(const QString & textureFile) { QByteArray* t19f53d = new QByteArray(textureFile.toUtf8()); QtDataVisualization_PackedString textureFilePacked = { const_cast<char*>(t19f53d->prepend("WHITESPACE").constData()+10), t19f53d->size()-10, t19f53d };callbackQCustom3DItem_TextureFileChanged(this, textureFilePacked); };
 	void Signal_VisibleChanged(bool visible) { callbackQCustom3DItem_VisibleChanged(this, visible); };
 	 ~MyQCustom3DItem() { callbackQCustom3DItem_DestroyQCustom3DItem(this); };
 };
@@ -4519,7 +4519,7 @@ char QCustom3DItem_IsVisible(void* ptr)
 
 struct QtDataVisualization_PackedString QCustom3DItem_MeshFile(void* ptr)
 {
-	return ({ QByteArray t3766ee = static_cast<QCustom3DItem*>(ptr)->meshFile().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t3766ee.prepend("WHITESPACE").constData()+10), t3766ee.size()-10 }; });
+	return ({ QByteArray* t3766ee = new QByteArray(static_cast<QCustom3DItem*>(ptr)->meshFile().toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(t3766ee->prepend("WHITESPACE").constData()+10), t3766ee->size()-10, t3766ee }; });
 }
 
 void QCustom3DItem_ConnectMeshFileChanged(void* ptr, long long t)
@@ -4699,7 +4699,7 @@ void QCustom3DItem_ShadowCastingChanged(void* ptr, char shadowCasting)
 
 struct QtDataVisualization_PackedString QCustom3DItem_TextureFile(void* ptr)
 {
-	return ({ QByteArray t0c954e = static_cast<QCustom3DItem*>(ptr)->textureFile().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t0c954e.prepend("WHITESPACE").constData()+10), t0c954e.size()-10 }; });
+	return ({ QByteArray* t0c954e = new QByteArray(static_cast<QCustom3DItem*>(ptr)->textureFile().toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(t0c954e->prepend("WHITESPACE").constData()+10), t0c954e->size()-10, t0c954e }; });
 }
 
 void QCustom3DItem_ConnectTextureFileChanged(void* ptr, long long t)
@@ -4753,7 +4753,7 @@ public:
 	void Signal_BorderEnabledChanged(bool enabled) { callbackQCustom3DLabel_BorderEnabledChanged(this, enabled); };
 	void Signal_FacingCameraChanged(bool enabled) { callbackQCustom3DLabel_FacingCameraChanged(this, enabled); };
 	void Signal_FontChanged(const QFont & font) { callbackQCustom3DLabel_FontChanged(this, const_cast<QFont*>(&font)); };
-	void Signal_TextChanged(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtDataVisualization_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQCustom3DLabel_TextChanged(this, textPacked); };
+	void Signal_TextChanged(const QString & text) { QByteArray* t372ea0 = new QByteArray(text.toUtf8()); QtDataVisualization_PackedString textPacked = { const_cast<char*>(t372ea0->prepend("WHITESPACE").constData()+10), t372ea0->size()-10, t372ea0 };callbackQCustom3DLabel_TextChanged(this, textPacked); };
 	void Signal_TextColorChanged(const QColor & color) { callbackQCustom3DLabel_TextColorChanged(this, const_cast<QColor*>(&color)); };
 	 ~MyQCustom3DLabel() { callbackQCustom3DLabel_DestroyQCustom3DLabel(this); };
 };
@@ -4994,7 +4994,7 @@ void QCustom3DLabel_SetTextColor(void* ptr, void* color)
 
 struct QtDataVisualization_PackedString QCustom3DLabel_Text(void* ptr)
 {
-	return ({ QByteArray ta11a00 = static_cast<QCustom3DLabel*>(ptr)->text().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(ta11a00.prepend("WHITESPACE").constData()+10), ta11a00.size()-10 }; });
+	return ({ QByteArray* ta11a00 = new QByteArray(static_cast<QCustom3DLabel*>(ptr)->text().toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(ta11a00->prepend("WHITESPACE").constData()+10), ta11a00->size()-10, ta11a00 }; });
 }
 
 void QCustom3DLabel_ConnectTextChanged(void* ptr, long long t)
@@ -5635,7 +5635,7 @@ public:
 	MyQHeightMapSurfaceDataProxy(const QImage &image, QObject *parent = Q_NULLPTR) : QHeightMapSurfaceDataProxy(image, parent) {QHeightMapSurfaceDataProxy_QHeightMapSurfaceDataProxy_QRegisterMetaType();};
 	MyQHeightMapSurfaceDataProxy(const QString &filename, QObject *parent = Q_NULLPTR) : QHeightMapSurfaceDataProxy(filename, parent) {QHeightMapSurfaceDataProxy_QHeightMapSurfaceDataProxy_QRegisterMetaType();};
 	void Signal_HeightMapChanged(const QImage & image) { callbackQHeightMapSurfaceDataProxy_HeightMapChanged(this, const_cast<QImage*>(&image)); };
-	void Signal_HeightMapFileChanged(const QString & filename) { QByteArray t08deae = filename.toUtf8(); QtDataVisualization_PackedString filenamePacked = { const_cast<char*>(t08deae.prepend("WHITESPACE").constData()+10), t08deae.size()-10 };callbackQHeightMapSurfaceDataProxy_HeightMapFileChanged(this, filenamePacked); };
+	void Signal_HeightMapFileChanged(const QString & filename) { QByteArray* t08deae = new QByteArray(filename.toUtf8()); QtDataVisualization_PackedString filenamePacked = { const_cast<char*>(t08deae->prepend("WHITESPACE").constData()+10), t08deae->size()-10, t08deae };callbackQHeightMapSurfaceDataProxy_HeightMapFileChanged(this, filenamePacked); };
 	void Signal_MaxXValueChanged(float value) { callbackQHeightMapSurfaceDataProxy_MaxXValueChanged(this, value); };
 	void Signal_MaxZValueChanged(float value) { callbackQHeightMapSurfaceDataProxy_MaxZValueChanged(this, value); };
 	void Signal_MinXValueChanged(float value) { callbackQHeightMapSurfaceDataProxy_MinXValueChanged(this, value); };
@@ -5811,7 +5811,7 @@ void QHeightMapSurfaceDataProxy_HeightMapChanged(void* ptr, void* image)
 
 struct QtDataVisualization_PackedString QHeightMapSurfaceDataProxy_HeightMapFile(void* ptr)
 {
-	return ({ QByteArray t26dd34 = static_cast<QHeightMapSurfaceDataProxy*>(ptr)->heightMapFile().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t26dd34.prepend("WHITESPACE").constData()+10), t26dd34.size()-10 }; });
+	return ({ QByteArray* t26dd34 = new QByteArray(static_cast<QHeightMapSurfaceDataProxy*>(ptr)->heightMapFile().toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(t26dd34->prepend("WHITESPACE").constData()+10), t26dd34->size()-10, t26dd34 }; });
 }
 
 void QHeightMapSurfaceDataProxy_ConnectHeightMapFileChanged(void* ptr, long long t)
@@ -5968,22 +5968,22 @@ public:
 	void Signal_AutoColumnCategoriesChanged(bool enable) { callbackQItemModelBarDataProxy_AutoColumnCategoriesChanged(this, enable); };
 	void Signal_AutoRowCategoriesChanged(bool enable) { callbackQItemModelBarDataProxy_AutoRowCategoriesChanged(this, enable); };
 	void Signal_ColumnCategoriesChanged() { callbackQItemModelBarDataProxy_ColumnCategoriesChanged(this); };
-	void Signal_ColumnRoleChanged(const QString & role) { QByteArray t8dca46 = role.toUtf8(); QtDataVisualization_PackedString rolePacked = { const_cast<char*>(t8dca46.prepend("WHITESPACE").constData()+10), t8dca46.size()-10 };callbackQItemModelBarDataProxy_ColumnRoleChanged(this, rolePacked); };
+	void Signal_ColumnRoleChanged(const QString & role) { QByteArray* t8dca46 = new QByteArray(role.toUtf8()); QtDataVisualization_PackedString rolePacked = { const_cast<char*>(t8dca46->prepend("WHITESPACE").constData()+10), t8dca46->size()-10, t8dca46 };callbackQItemModelBarDataProxy_ColumnRoleChanged(this, rolePacked); };
 	void Signal_ColumnRolePatternChanged(const QRegExp & pattern) { callbackQItemModelBarDataProxy_ColumnRolePatternChanged(this, const_cast<QRegExp*>(&pattern)); };
-	void Signal_ColumnRoleReplaceChanged(const QString & replace) { QByteArray t3cacc7 = replace.toUtf8(); QtDataVisualization_PackedString replacePacked = { const_cast<char*>(t3cacc7.prepend("WHITESPACE").constData()+10), t3cacc7.size()-10 };callbackQItemModelBarDataProxy_ColumnRoleReplaceChanged(this, replacePacked); };
+	void Signal_ColumnRoleReplaceChanged(const QString & replace) { QByteArray* t3cacc7 = new QByteArray(replace.toUtf8()); QtDataVisualization_PackedString replacePacked = { const_cast<char*>(t3cacc7->prepend("WHITESPACE").constData()+10), t3cacc7->size()-10, t3cacc7 };callbackQItemModelBarDataProxy_ColumnRoleReplaceChanged(this, replacePacked); };
 	void Signal_ItemModelChanged(const QAbstractItemModel * itemModel) { callbackQItemModelBarDataProxy_ItemModelChanged(this, const_cast<QAbstractItemModel*>(itemModel)); };
 	void Signal_MultiMatchBehaviorChanged(QItemModelBarDataProxy::MultiMatchBehavior behavior) { callbackQItemModelBarDataProxy_MultiMatchBehaviorChanged(this, behavior); };
-	void Signal_RotationRoleChanged(const QString & role) { QByteArray t8dca46 = role.toUtf8(); QtDataVisualization_PackedString rolePacked = { const_cast<char*>(t8dca46.prepend("WHITESPACE").constData()+10), t8dca46.size()-10 };callbackQItemModelBarDataProxy_RotationRoleChanged(this, rolePacked); };
+	void Signal_RotationRoleChanged(const QString & role) { QByteArray* t8dca46 = new QByteArray(role.toUtf8()); QtDataVisualization_PackedString rolePacked = { const_cast<char*>(t8dca46->prepend("WHITESPACE").constData()+10), t8dca46->size()-10, t8dca46 };callbackQItemModelBarDataProxy_RotationRoleChanged(this, rolePacked); };
 	void Signal_RotationRolePatternChanged(const QRegExp & pattern) { callbackQItemModelBarDataProxy_RotationRolePatternChanged(this, const_cast<QRegExp*>(&pattern)); };
-	void Signal_RotationRoleReplaceChanged(const QString & replace) { QByteArray t3cacc7 = replace.toUtf8(); QtDataVisualization_PackedString replacePacked = { const_cast<char*>(t3cacc7.prepend("WHITESPACE").constData()+10), t3cacc7.size()-10 };callbackQItemModelBarDataProxy_RotationRoleReplaceChanged(this, replacePacked); };
+	void Signal_RotationRoleReplaceChanged(const QString & replace) { QByteArray* t3cacc7 = new QByteArray(replace.toUtf8()); QtDataVisualization_PackedString replacePacked = { const_cast<char*>(t3cacc7->prepend("WHITESPACE").constData()+10), t3cacc7->size()-10, t3cacc7 };callbackQItemModelBarDataProxy_RotationRoleReplaceChanged(this, replacePacked); };
 	void Signal_RowCategoriesChanged() { callbackQItemModelBarDataProxy_RowCategoriesChanged(this); };
-	void Signal_RowRoleChanged(const QString & role) { QByteArray t8dca46 = role.toUtf8(); QtDataVisualization_PackedString rolePacked = { const_cast<char*>(t8dca46.prepend("WHITESPACE").constData()+10), t8dca46.size()-10 };callbackQItemModelBarDataProxy_RowRoleChanged(this, rolePacked); };
+	void Signal_RowRoleChanged(const QString & role) { QByteArray* t8dca46 = new QByteArray(role.toUtf8()); QtDataVisualization_PackedString rolePacked = { const_cast<char*>(t8dca46->prepend("WHITESPACE").constData()+10), t8dca46->size()-10, t8dca46 };callbackQItemModelBarDataProxy_RowRoleChanged(this, rolePacked); };
 	void Signal_RowRolePatternChanged(const QRegExp & pattern) { callbackQItemModelBarDataProxy_RowRolePatternChanged(this, const_cast<QRegExp*>(&pattern)); };
-	void Signal_RowRoleReplaceChanged(const QString & replace) { QByteArray t3cacc7 = replace.toUtf8(); QtDataVisualization_PackedString replacePacked = { const_cast<char*>(t3cacc7.prepend("WHITESPACE").constData()+10), t3cacc7.size()-10 };callbackQItemModelBarDataProxy_RowRoleReplaceChanged(this, replacePacked); };
+	void Signal_RowRoleReplaceChanged(const QString & replace) { QByteArray* t3cacc7 = new QByteArray(replace.toUtf8()); QtDataVisualization_PackedString replacePacked = { const_cast<char*>(t3cacc7->prepend("WHITESPACE").constData()+10), t3cacc7->size()-10, t3cacc7 };callbackQItemModelBarDataProxy_RowRoleReplaceChanged(this, replacePacked); };
 	void Signal_UseModelCategoriesChanged(bool enable) { callbackQItemModelBarDataProxy_UseModelCategoriesChanged(this, enable); };
-	void Signal_ValueRoleChanged(const QString & role) { QByteArray t8dca46 = role.toUtf8(); QtDataVisualization_PackedString rolePacked = { const_cast<char*>(t8dca46.prepend("WHITESPACE").constData()+10), t8dca46.size()-10 };callbackQItemModelBarDataProxy_ValueRoleChanged(this, rolePacked); };
+	void Signal_ValueRoleChanged(const QString & role) { QByteArray* t8dca46 = new QByteArray(role.toUtf8()); QtDataVisualization_PackedString rolePacked = { const_cast<char*>(t8dca46->prepend("WHITESPACE").constData()+10), t8dca46->size()-10, t8dca46 };callbackQItemModelBarDataProxy_ValueRoleChanged(this, rolePacked); };
 	void Signal_ValueRolePatternChanged(const QRegExp & pattern) { callbackQItemModelBarDataProxy_ValueRolePatternChanged(this, const_cast<QRegExp*>(&pattern)); };
-	void Signal_ValueRoleReplaceChanged(const QString & replace) { QByteArray t3cacc7 = replace.toUtf8(); QtDataVisualization_PackedString replacePacked = { const_cast<char*>(t3cacc7.prepend("WHITESPACE").constData()+10), t3cacc7.size()-10 };callbackQItemModelBarDataProxy_ValueRoleReplaceChanged(this, replacePacked); };
+	void Signal_ValueRoleReplaceChanged(const QString & replace) { QByteArray* t3cacc7 = new QByteArray(replace.toUtf8()); QtDataVisualization_PackedString replacePacked = { const_cast<char*>(t3cacc7->prepend("WHITESPACE").constData()+10), t3cacc7->size()-10, t3cacc7 };callbackQItemModelBarDataProxy_ValueRoleReplaceChanged(this, replacePacked); };
 	 ~MyQItemModelBarDataProxy() { callbackQItemModelBarDataProxy_DestroyQItemModelBarDataProxy(this); };
 };
 
@@ -6363,7 +6363,7 @@ void QItemModelBarDataProxy_AutoRowCategoriesChanged(void* ptr, char enable)
 
 struct QtDataVisualization_PackedString QItemModelBarDataProxy_ColumnCategories(void* ptr)
 {
-	return ({ QByteArray t86b84b = static_cast<QItemModelBarDataProxy*>(ptr)->columnCategories().join("¡¦!").toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t86b84b.prepend("WHITESPACE").constData()+10), t86b84b.size()-10 }; });
+	return ({ QByteArray* t86b84b = new QByteArray(static_cast<QItemModelBarDataProxy*>(ptr)->columnCategories().join("¡¦!").toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(t86b84b->prepend("WHITESPACE").constData()+10), t86b84b->size()-10, t86b84b }; });
 }
 
 void QItemModelBarDataProxy_ConnectColumnCategoriesChanged(void* ptr, long long t)
@@ -6388,7 +6388,7 @@ int QItemModelBarDataProxy_ColumnCategoryIndex(void* ptr, struct QtDataVisualiza
 
 struct QtDataVisualization_PackedString QItemModelBarDataProxy_ColumnRole(void* ptr)
 {
-	return ({ QByteArray t1d4975 = static_cast<QItemModelBarDataProxy*>(ptr)->columnRole().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t1d4975.prepend("WHITESPACE").constData()+10), t1d4975.size()-10 }; });
+	return ({ QByteArray* t1d4975 = new QByteArray(static_cast<QItemModelBarDataProxy*>(ptr)->columnRole().toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(t1d4975->prepend("WHITESPACE").constData()+10), t1d4975->size()-10, t1d4975 }; });
 }
 
 void QItemModelBarDataProxy_ConnectColumnRoleChanged(void* ptr, long long t)
@@ -6428,7 +6428,7 @@ void QItemModelBarDataProxy_ColumnRolePatternChanged(void* ptr, void* pattern)
 
 struct QtDataVisualization_PackedString QItemModelBarDataProxy_ColumnRoleReplace(void* ptr)
 {
-	return ({ QByteArray tf1dce7 = static_cast<QItemModelBarDataProxy*>(ptr)->columnRoleReplace().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(tf1dce7.prepend("WHITESPACE").constData()+10), tf1dce7.size()-10 }; });
+	return ({ QByteArray* tf1dce7 = new QByteArray(static_cast<QItemModelBarDataProxy*>(ptr)->columnRoleReplace().toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(tf1dce7->prepend("WHITESPACE").constData()+10), tf1dce7->size()-10, tf1dce7 }; });
 }
 
 void QItemModelBarDataProxy_ConnectColumnRoleReplaceChanged(void* ptr, long long t)
@@ -6493,7 +6493,7 @@ void QItemModelBarDataProxy_Remap(void* ptr, struct QtDataVisualization_PackedSt
 
 struct QtDataVisualization_PackedString QItemModelBarDataProxy_RotationRole(void* ptr)
 {
-	return ({ QByteArray ta1c8cc = static_cast<QItemModelBarDataProxy*>(ptr)->rotationRole().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(ta1c8cc.prepend("WHITESPACE").constData()+10), ta1c8cc.size()-10 }; });
+	return ({ QByteArray* ta1c8cc = new QByteArray(static_cast<QItemModelBarDataProxy*>(ptr)->rotationRole().toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(ta1c8cc->prepend("WHITESPACE").constData()+10), ta1c8cc->size()-10, ta1c8cc }; });
 }
 
 void QItemModelBarDataProxy_ConnectRotationRoleChanged(void* ptr, long long t)
@@ -6533,7 +6533,7 @@ void QItemModelBarDataProxy_RotationRolePatternChanged(void* ptr, void* pattern)
 
 struct QtDataVisualization_PackedString QItemModelBarDataProxy_RotationRoleReplace(void* ptr)
 {
-	return ({ QByteArray tf65c4d = static_cast<QItemModelBarDataProxy*>(ptr)->rotationRoleReplace().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(tf65c4d.prepend("WHITESPACE").constData()+10), tf65c4d.size()-10 }; });
+	return ({ QByteArray* tf65c4d = new QByteArray(static_cast<QItemModelBarDataProxy*>(ptr)->rotationRoleReplace().toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(tf65c4d->prepend("WHITESPACE").constData()+10), tf65c4d->size()-10, tf65c4d }; });
 }
 
 void QItemModelBarDataProxy_ConnectRotationRoleReplaceChanged(void* ptr, long long t)
@@ -6553,7 +6553,7 @@ void QItemModelBarDataProxy_RotationRoleReplaceChanged(void* ptr, struct QtDataV
 
 struct QtDataVisualization_PackedString QItemModelBarDataProxy_RowCategories(void* ptr)
 {
-	return ({ QByteArray t50f4e1 = static_cast<QItemModelBarDataProxy*>(ptr)->rowCategories().join("¡¦!").toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t50f4e1.prepend("WHITESPACE").constData()+10), t50f4e1.size()-10 }; });
+	return ({ QByteArray* t50f4e1 = new QByteArray(static_cast<QItemModelBarDataProxy*>(ptr)->rowCategories().join("¡¦!").toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(t50f4e1->prepend("WHITESPACE").constData()+10), t50f4e1->size()-10, t50f4e1 }; });
 }
 
 void QItemModelBarDataProxy_ConnectRowCategoriesChanged(void* ptr, long long t)
@@ -6578,7 +6578,7 @@ int QItemModelBarDataProxy_RowCategoryIndex(void* ptr, struct QtDataVisualizatio
 
 struct QtDataVisualization_PackedString QItemModelBarDataProxy_RowRole(void* ptr)
 {
-	return ({ QByteArray t609fcb = static_cast<QItemModelBarDataProxy*>(ptr)->rowRole().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t609fcb.prepend("WHITESPACE").constData()+10), t609fcb.size()-10 }; });
+	return ({ QByteArray* t609fcb = new QByteArray(static_cast<QItemModelBarDataProxy*>(ptr)->rowRole().toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(t609fcb->prepend("WHITESPACE").constData()+10), t609fcb->size()-10, t609fcb }; });
 }
 
 void QItemModelBarDataProxy_ConnectRowRoleChanged(void* ptr, long long t)
@@ -6618,7 +6618,7 @@ void QItemModelBarDataProxy_RowRolePatternChanged(void* ptr, void* pattern)
 
 struct QtDataVisualization_PackedString QItemModelBarDataProxy_RowRoleReplace(void* ptr)
 {
-	return ({ QByteArray td8a1ca = static_cast<QItemModelBarDataProxy*>(ptr)->rowRoleReplace().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(td8a1ca.prepend("WHITESPACE").constData()+10), td8a1ca.size()-10 }; });
+	return ({ QByteArray* td8a1ca = new QByteArray(static_cast<QItemModelBarDataProxy*>(ptr)->rowRoleReplace().toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(td8a1ca->prepend("WHITESPACE").constData()+10), td8a1ca->size()-10, td8a1ca }; });
 }
 
 void QItemModelBarDataProxy_ConnectRowRoleReplaceChanged(void* ptr, long long t)
@@ -6753,7 +6753,7 @@ void QItemModelBarDataProxy_UseModelCategoriesChanged(void* ptr, char enable)
 
 struct QtDataVisualization_PackedString QItemModelBarDataProxy_ValueRole(void* ptr)
 {
-	return ({ QByteArray t03456f = static_cast<QItemModelBarDataProxy*>(ptr)->valueRole().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t03456f.prepend("WHITESPACE").constData()+10), t03456f.size()-10 }; });
+	return ({ QByteArray* t03456f = new QByteArray(static_cast<QItemModelBarDataProxy*>(ptr)->valueRole().toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(t03456f->prepend("WHITESPACE").constData()+10), t03456f->size()-10, t03456f }; });
 }
 
 void QItemModelBarDataProxy_ConnectValueRoleChanged(void* ptr, long long t)
@@ -6793,7 +6793,7 @@ void QItemModelBarDataProxy_ValueRolePatternChanged(void* ptr, void* pattern)
 
 struct QtDataVisualization_PackedString QItemModelBarDataProxy_ValueRoleReplace(void* ptr)
 {
-	return ({ QByteArray t1ef472 = static_cast<QItemModelBarDataProxy*>(ptr)->valueRoleReplace().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t1ef472.prepend("WHITESPACE").constData()+10), t1ef472.size()-10 }; });
+	return ({ QByteArray* t1ef472 = new QByteArray(static_cast<QItemModelBarDataProxy*>(ptr)->valueRoleReplace().toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(t1ef472->prepend("WHITESPACE").constData()+10), t1ef472->size()-10, t1ef472 }; });
 }
 
 void QItemModelBarDataProxy_ConnectValueRoleReplaceChanged(void* ptr, long long t)
@@ -6830,18 +6830,18 @@ public:
 	MyQItemModelScatterDataProxy(QAbstractItemModel *itemModel, const QString &xPosRole, const QString &yPosRole, const QString &zPosRole, QObject *parent = Q_NULLPTR) : QItemModelScatterDataProxy(itemModel, xPosRole, yPosRole, zPosRole, parent) {QItemModelScatterDataProxy_QItemModelScatterDataProxy_QRegisterMetaType();};
 	MyQItemModelScatterDataProxy(QAbstractItemModel *itemModel, const QString &xPosRole, const QString &yPosRole, const QString &zPosRole, const QString &rotationRole, QObject *parent = Q_NULLPTR) : QItemModelScatterDataProxy(itemModel, xPosRole, yPosRole, zPosRole, rotationRole, parent) {QItemModelScatterDataProxy_QItemModelScatterDataProxy_QRegisterMetaType();};
 	void Signal_ItemModelChanged(const QAbstractItemModel * itemModel) { callbackQItemModelScatterDataProxy_ItemModelChanged(this, const_cast<QAbstractItemModel*>(itemModel)); };
-	void Signal_RotationRoleChanged(const QString & role) { QByteArray t8dca46 = role.toUtf8(); QtDataVisualization_PackedString rolePacked = { const_cast<char*>(t8dca46.prepend("WHITESPACE").constData()+10), t8dca46.size()-10 };callbackQItemModelScatterDataProxy_RotationRoleChanged(this, rolePacked); };
+	void Signal_RotationRoleChanged(const QString & role) { QByteArray* t8dca46 = new QByteArray(role.toUtf8()); QtDataVisualization_PackedString rolePacked = { const_cast<char*>(t8dca46->prepend("WHITESPACE").constData()+10), t8dca46->size()-10, t8dca46 };callbackQItemModelScatterDataProxy_RotationRoleChanged(this, rolePacked); };
 	void Signal_RotationRolePatternChanged(const QRegExp & pattern) { callbackQItemModelScatterDataProxy_RotationRolePatternChanged(this, const_cast<QRegExp*>(&pattern)); };
-	void Signal_RotationRoleReplaceChanged(const QString & replace) { QByteArray t3cacc7 = replace.toUtf8(); QtDataVisualization_PackedString replacePacked = { const_cast<char*>(t3cacc7.prepend("WHITESPACE").constData()+10), t3cacc7.size()-10 };callbackQItemModelScatterDataProxy_RotationRoleReplaceChanged(this, replacePacked); };
-	void Signal_XPosRoleChanged(const QString & role) { QByteArray t8dca46 = role.toUtf8(); QtDataVisualization_PackedString rolePacked = { const_cast<char*>(t8dca46.prepend("WHITESPACE").constData()+10), t8dca46.size()-10 };callbackQItemModelScatterDataProxy_XPosRoleChanged(this, rolePacked); };
+	void Signal_RotationRoleReplaceChanged(const QString & replace) { QByteArray* t3cacc7 = new QByteArray(replace.toUtf8()); QtDataVisualization_PackedString replacePacked = { const_cast<char*>(t3cacc7->prepend("WHITESPACE").constData()+10), t3cacc7->size()-10, t3cacc7 };callbackQItemModelScatterDataProxy_RotationRoleReplaceChanged(this, replacePacked); };
+	void Signal_XPosRoleChanged(const QString & role) { QByteArray* t8dca46 = new QByteArray(role.toUtf8()); QtDataVisualization_PackedString rolePacked = { const_cast<char*>(t8dca46->prepend("WHITESPACE").constData()+10), t8dca46->size()-10, t8dca46 };callbackQItemModelScatterDataProxy_XPosRoleChanged(this, rolePacked); };
 	void Signal_XPosRolePatternChanged(const QRegExp & pattern) { callbackQItemModelScatterDataProxy_XPosRolePatternChanged(this, const_cast<QRegExp*>(&pattern)); };
-	void Signal_XPosRoleReplaceChanged(const QString & replace) { QByteArray t3cacc7 = replace.toUtf8(); QtDataVisualization_PackedString replacePacked = { const_cast<char*>(t3cacc7.prepend("WHITESPACE").constData()+10), t3cacc7.size()-10 };callbackQItemModelScatterDataProxy_XPosRoleReplaceChanged(this, replacePacked); };
-	void Signal_YPosRoleChanged(const QString & role) { QByteArray t8dca46 = role.toUtf8(); QtDataVisualization_PackedString rolePacked = { const_cast<char*>(t8dca46.prepend("WHITESPACE").constData()+10), t8dca46.size()-10 };callbackQItemModelScatterDataProxy_YPosRoleChanged(this, rolePacked); };
+	void Signal_XPosRoleReplaceChanged(const QString & replace) { QByteArray* t3cacc7 = new QByteArray(replace.toUtf8()); QtDataVisualization_PackedString replacePacked = { const_cast<char*>(t3cacc7->prepend("WHITESPACE").constData()+10), t3cacc7->size()-10, t3cacc7 };callbackQItemModelScatterDataProxy_XPosRoleReplaceChanged(this, replacePacked); };
+	void Signal_YPosRoleChanged(const QString & role) { QByteArray* t8dca46 = new QByteArray(role.toUtf8()); QtDataVisualization_PackedString rolePacked = { const_cast<char*>(t8dca46->prepend("WHITESPACE").constData()+10), t8dca46->size()-10, t8dca46 };callbackQItemModelScatterDataProxy_YPosRoleChanged(this, rolePacked); };
 	void Signal_YPosRolePatternChanged(const QRegExp & pattern) { callbackQItemModelScatterDataProxy_YPosRolePatternChanged(this, const_cast<QRegExp*>(&pattern)); };
-	void Signal_YPosRoleReplaceChanged(const QString & replace) { QByteArray t3cacc7 = replace.toUtf8(); QtDataVisualization_PackedString replacePacked = { const_cast<char*>(t3cacc7.prepend("WHITESPACE").constData()+10), t3cacc7.size()-10 };callbackQItemModelScatterDataProxy_YPosRoleReplaceChanged(this, replacePacked); };
-	void Signal_ZPosRoleChanged(const QString & role) { QByteArray t8dca46 = role.toUtf8(); QtDataVisualization_PackedString rolePacked = { const_cast<char*>(t8dca46.prepend("WHITESPACE").constData()+10), t8dca46.size()-10 };callbackQItemModelScatterDataProxy_ZPosRoleChanged(this, rolePacked); };
+	void Signal_YPosRoleReplaceChanged(const QString & replace) { QByteArray* t3cacc7 = new QByteArray(replace.toUtf8()); QtDataVisualization_PackedString replacePacked = { const_cast<char*>(t3cacc7->prepend("WHITESPACE").constData()+10), t3cacc7->size()-10, t3cacc7 };callbackQItemModelScatterDataProxy_YPosRoleReplaceChanged(this, replacePacked); };
+	void Signal_ZPosRoleChanged(const QString & role) { QByteArray* t8dca46 = new QByteArray(role.toUtf8()); QtDataVisualization_PackedString rolePacked = { const_cast<char*>(t8dca46->prepend("WHITESPACE").constData()+10), t8dca46->size()-10, t8dca46 };callbackQItemModelScatterDataProxy_ZPosRoleChanged(this, rolePacked); };
 	void Signal_ZPosRolePatternChanged(const QRegExp & pattern) { callbackQItemModelScatterDataProxy_ZPosRolePatternChanged(this, const_cast<QRegExp*>(&pattern)); };
-	void Signal_ZPosRoleReplaceChanged(const QString & replace) { QByteArray t3cacc7 = replace.toUtf8(); QtDataVisualization_PackedString replacePacked = { const_cast<char*>(t3cacc7.prepend("WHITESPACE").constData()+10), t3cacc7.size()-10 };callbackQItemModelScatterDataProxy_ZPosRoleReplaceChanged(this, replacePacked); };
+	void Signal_ZPosRoleReplaceChanged(const QString & replace) { QByteArray* t3cacc7 = new QByteArray(replace.toUtf8()); QtDataVisualization_PackedString replacePacked = { const_cast<char*>(t3cacc7->prepend("WHITESPACE").constData()+10), t3cacc7->size()-10, t3cacc7 };callbackQItemModelScatterDataProxy_ZPosRoleReplaceChanged(this, replacePacked); };
 	 ~MyQItemModelScatterDataProxy() { callbackQItemModelScatterDataProxy_DestroyQItemModelScatterDataProxy(this); };
 };
 
@@ -7065,7 +7065,7 @@ void QItemModelScatterDataProxy_Remap(void* ptr, struct QtDataVisualization_Pack
 
 struct QtDataVisualization_PackedString QItemModelScatterDataProxy_RotationRole(void* ptr)
 {
-	return ({ QByteArray tb50293 = static_cast<QItemModelScatterDataProxy*>(ptr)->rotationRole().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(tb50293.prepend("WHITESPACE").constData()+10), tb50293.size()-10 }; });
+	return ({ QByteArray* tb50293 = new QByteArray(static_cast<QItemModelScatterDataProxy*>(ptr)->rotationRole().toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(tb50293->prepend("WHITESPACE").constData()+10), tb50293->size()-10, tb50293 }; });
 }
 
 void QItemModelScatterDataProxy_ConnectRotationRoleChanged(void* ptr, long long t)
@@ -7105,7 +7105,7 @@ void QItemModelScatterDataProxy_RotationRolePatternChanged(void* ptr, void* patt
 
 struct QtDataVisualization_PackedString QItemModelScatterDataProxy_RotationRoleReplace(void* ptr)
 {
-	return ({ QByteArray t94bb1d = static_cast<QItemModelScatterDataProxy*>(ptr)->rotationRoleReplace().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t94bb1d.prepend("WHITESPACE").constData()+10), t94bb1d.size()-10 }; });
+	return ({ QByteArray* t94bb1d = new QByteArray(static_cast<QItemModelScatterDataProxy*>(ptr)->rotationRoleReplace().toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(t94bb1d->prepend("WHITESPACE").constData()+10), t94bb1d->size()-10, t94bb1d }; });
 }
 
 void QItemModelScatterDataProxy_ConnectRotationRoleReplaceChanged(void* ptr, long long t)
@@ -7190,7 +7190,7 @@ void QItemModelScatterDataProxy_SetZPosRoleReplace(void* ptr, struct QtDataVisua
 
 struct QtDataVisualization_PackedString QItemModelScatterDataProxy_XPosRole(void* ptr)
 {
-	return ({ QByteArray t4f9501 = static_cast<QItemModelScatterDataProxy*>(ptr)->xPosRole().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t4f9501.prepend("WHITESPACE").constData()+10), t4f9501.size()-10 }; });
+	return ({ QByteArray* t4f9501 = new QByteArray(static_cast<QItemModelScatterDataProxy*>(ptr)->xPosRole().toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(t4f9501->prepend("WHITESPACE").constData()+10), t4f9501->size()-10, t4f9501 }; });
 }
 
 void QItemModelScatterDataProxy_ConnectXPosRoleChanged(void* ptr, long long t)
@@ -7230,7 +7230,7 @@ void QItemModelScatterDataProxy_XPosRolePatternChanged(void* ptr, void* pattern)
 
 struct QtDataVisualization_PackedString QItemModelScatterDataProxy_XPosRoleReplace(void* ptr)
 {
-	return ({ QByteArray tb11de2 = static_cast<QItemModelScatterDataProxy*>(ptr)->xPosRoleReplace().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(tb11de2.prepend("WHITESPACE").constData()+10), tb11de2.size()-10 }; });
+	return ({ QByteArray* tb11de2 = new QByteArray(static_cast<QItemModelScatterDataProxy*>(ptr)->xPosRoleReplace().toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(tb11de2->prepend("WHITESPACE").constData()+10), tb11de2->size()-10, tb11de2 }; });
 }
 
 void QItemModelScatterDataProxy_ConnectXPosRoleReplaceChanged(void* ptr, long long t)
@@ -7250,7 +7250,7 @@ void QItemModelScatterDataProxy_XPosRoleReplaceChanged(void* ptr, struct QtDataV
 
 struct QtDataVisualization_PackedString QItemModelScatterDataProxy_YPosRole(void* ptr)
 {
-	return ({ QByteArray td91cd2 = static_cast<QItemModelScatterDataProxy*>(ptr)->yPosRole().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(td91cd2.prepend("WHITESPACE").constData()+10), td91cd2.size()-10 }; });
+	return ({ QByteArray* td91cd2 = new QByteArray(static_cast<QItemModelScatterDataProxy*>(ptr)->yPosRole().toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(td91cd2->prepend("WHITESPACE").constData()+10), td91cd2->size()-10, td91cd2 }; });
 }
 
 void QItemModelScatterDataProxy_ConnectYPosRoleChanged(void* ptr, long long t)
@@ -7290,7 +7290,7 @@ void QItemModelScatterDataProxy_YPosRolePatternChanged(void* ptr, void* pattern)
 
 struct QtDataVisualization_PackedString QItemModelScatterDataProxy_YPosRoleReplace(void* ptr)
 {
-	return ({ QByteArray t4307ad = static_cast<QItemModelScatterDataProxy*>(ptr)->yPosRoleReplace().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t4307ad.prepend("WHITESPACE").constData()+10), t4307ad.size()-10 }; });
+	return ({ QByteArray* t4307ad = new QByteArray(static_cast<QItemModelScatterDataProxy*>(ptr)->yPosRoleReplace().toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(t4307ad->prepend("WHITESPACE").constData()+10), t4307ad->size()-10, t4307ad }; });
 }
 
 void QItemModelScatterDataProxy_ConnectYPosRoleReplaceChanged(void* ptr, long long t)
@@ -7310,7 +7310,7 @@ void QItemModelScatterDataProxy_YPosRoleReplaceChanged(void* ptr, struct QtDataV
 
 struct QtDataVisualization_PackedString QItemModelScatterDataProxy_ZPosRole(void* ptr)
 {
-	return ({ QByteArray t831570 = static_cast<QItemModelScatterDataProxy*>(ptr)->zPosRole().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t831570.prepend("WHITESPACE").constData()+10), t831570.size()-10 }; });
+	return ({ QByteArray* t831570 = new QByteArray(static_cast<QItemModelScatterDataProxy*>(ptr)->zPosRole().toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(t831570->prepend("WHITESPACE").constData()+10), t831570->size()-10, t831570 }; });
 }
 
 void QItemModelScatterDataProxy_ConnectZPosRoleChanged(void* ptr, long long t)
@@ -7350,7 +7350,7 @@ void QItemModelScatterDataProxy_ZPosRolePatternChanged(void* ptr, void* pattern)
 
 struct QtDataVisualization_PackedString QItemModelScatterDataProxy_ZPosRoleReplace(void* ptr)
 {
-	return ({ QByteArray t4c6acb = static_cast<QItemModelScatterDataProxy*>(ptr)->zPosRoleReplace().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t4c6acb.prepend("WHITESPACE").constData()+10), t4c6acb.size()-10 }; });
+	return ({ QByteArray* t4c6acb = new QByteArray(static_cast<QItemModelScatterDataProxy*>(ptr)->zPosRoleReplace().toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(t4c6acb->prepend("WHITESPACE").constData()+10), t4c6acb->size()-10, t4c6acb }; });
 }
 
 void QItemModelScatterDataProxy_ConnectZPosRoleReplaceChanged(void* ptr, long long t)
@@ -7392,25 +7392,25 @@ public:
 	void Signal_AutoColumnCategoriesChanged(bool enable) { callbackQItemModelSurfaceDataProxy_AutoColumnCategoriesChanged(this, enable); };
 	void Signal_AutoRowCategoriesChanged(bool enable) { callbackQItemModelSurfaceDataProxy_AutoRowCategoriesChanged(this, enable); };
 	void Signal_ColumnCategoriesChanged() { callbackQItemModelSurfaceDataProxy_ColumnCategoriesChanged(this); };
-	void Signal_ColumnRoleChanged(const QString & role) { QByteArray t8dca46 = role.toUtf8(); QtDataVisualization_PackedString rolePacked = { const_cast<char*>(t8dca46.prepend("WHITESPACE").constData()+10), t8dca46.size()-10 };callbackQItemModelSurfaceDataProxy_ColumnRoleChanged(this, rolePacked); };
+	void Signal_ColumnRoleChanged(const QString & role) { QByteArray* t8dca46 = new QByteArray(role.toUtf8()); QtDataVisualization_PackedString rolePacked = { const_cast<char*>(t8dca46->prepend("WHITESPACE").constData()+10), t8dca46->size()-10, t8dca46 };callbackQItemModelSurfaceDataProxy_ColumnRoleChanged(this, rolePacked); };
 	void Signal_ColumnRolePatternChanged(const QRegExp & pattern) { callbackQItemModelSurfaceDataProxy_ColumnRolePatternChanged(this, const_cast<QRegExp*>(&pattern)); };
-	void Signal_ColumnRoleReplaceChanged(const QString & replace) { QByteArray t3cacc7 = replace.toUtf8(); QtDataVisualization_PackedString replacePacked = { const_cast<char*>(t3cacc7.prepend("WHITESPACE").constData()+10), t3cacc7.size()-10 };callbackQItemModelSurfaceDataProxy_ColumnRoleReplaceChanged(this, replacePacked); };
+	void Signal_ColumnRoleReplaceChanged(const QString & replace) { QByteArray* t3cacc7 = new QByteArray(replace.toUtf8()); QtDataVisualization_PackedString replacePacked = { const_cast<char*>(t3cacc7->prepend("WHITESPACE").constData()+10), t3cacc7->size()-10, t3cacc7 };callbackQItemModelSurfaceDataProxy_ColumnRoleReplaceChanged(this, replacePacked); };
 	void Signal_ItemModelChanged(const QAbstractItemModel * itemModel) { callbackQItemModelSurfaceDataProxy_ItemModelChanged(this, const_cast<QAbstractItemModel*>(itemModel)); };
 	void Signal_MultiMatchBehaviorChanged(QItemModelSurfaceDataProxy::MultiMatchBehavior behavior) { callbackQItemModelSurfaceDataProxy_MultiMatchBehaviorChanged(this, behavior); };
 	void Signal_RowCategoriesChanged() { callbackQItemModelSurfaceDataProxy_RowCategoriesChanged(this); };
-	void Signal_RowRoleChanged(const QString & role) { QByteArray t8dca46 = role.toUtf8(); QtDataVisualization_PackedString rolePacked = { const_cast<char*>(t8dca46.prepend("WHITESPACE").constData()+10), t8dca46.size()-10 };callbackQItemModelSurfaceDataProxy_RowRoleChanged(this, rolePacked); };
+	void Signal_RowRoleChanged(const QString & role) { QByteArray* t8dca46 = new QByteArray(role.toUtf8()); QtDataVisualization_PackedString rolePacked = { const_cast<char*>(t8dca46->prepend("WHITESPACE").constData()+10), t8dca46->size()-10, t8dca46 };callbackQItemModelSurfaceDataProxy_RowRoleChanged(this, rolePacked); };
 	void Signal_RowRolePatternChanged(const QRegExp & pattern) { callbackQItemModelSurfaceDataProxy_RowRolePatternChanged(this, const_cast<QRegExp*>(&pattern)); };
-	void Signal_RowRoleReplaceChanged(const QString & replace) { QByteArray t3cacc7 = replace.toUtf8(); QtDataVisualization_PackedString replacePacked = { const_cast<char*>(t3cacc7.prepend("WHITESPACE").constData()+10), t3cacc7.size()-10 };callbackQItemModelSurfaceDataProxy_RowRoleReplaceChanged(this, replacePacked); };
+	void Signal_RowRoleReplaceChanged(const QString & replace) { QByteArray* t3cacc7 = new QByteArray(replace.toUtf8()); QtDataVisualization_PackedString replacePacked = { const_cast<char*>(t3cacc7->prepend("WHITESPACE").constData()+10), t3cacc7->size()-10, t3cacc7 };callbackQItemModelSurfaceDataProxy_RowRoleReplaceChanged(this, replacePacked); };
 	void Signal_UseModelCategoriesChanged(bool enable) { callbackQItemModelSurfaceDataProxy_UseModelCategoriesChanged(this, enable); };
-	void Signal_XPosRoleChanged(const QString & role) { QByteArray t8dca46 = role.toUtf8(); QtDataVisualization_PackedString rolePacked = { const_cast<char*>(t8dca46.prepend("WHITESPACE").constData()+10), t8dca46.size()-10 };callbackQItemModelSurfaceDataProxy_XPosRoleChanged(this, rolePacked); };
+	void Signal_XPosRoleChanged(const QString & role) { QByteArray* t8dca46 = new QByteArray(role.toUtf8()); QtDataVisualization_PackedString rolePacked = { const_cast<char*>(t8dca46->prepend("WHITESPACE").constData()+10), t8dca46->size()-10, t8dca46 };callbackQItemModelSurfaceDataProxy_XPosRoleChanged(this, rolePacked); };
 	void Signal_XPosRolePatternChanged(const QRegExp & pattern) { callbackQItemModelSurfaceDataProxy_XPosRolePatternChanged(this, const_cast<QRegExp*>(&pattern)); };
-	void Signal_XPosRoleReplaceChanged(const QString & replace) { QByteArray t3cacc7 = replace.toUtf8(); QtDataVisualization_PackedString replacePacked = { const_cast<char*>(t3cacc7.prepend("WHITESPACE").constData()+10), t3cacc7.size()-10 };callbackQItemModelSurfaceDataProxy_XPosRoleReplaceChanged(this, replacePacked); };
-	void Signal_YPosRoleChanged(const QString & role) { QByteArray t8dca46 = role.toUtf8(); QtDataVisualization_PackedString rolePacked = { const_cast<char*>(t8dca46.prepend("WHITESPACE").constData()+10), t8dca46.size()-10 };callbackQItemModelSurfaceDataProxy_YPosRoleChanged(this, rolePacked); };
+	void Signal_XPosRoleReplaceChanged(const QString & replace) { QByteArray* t3cacc7 = new QByteArray(replace.toUtf8()); QtDataVisualization_PackedString replacePacked = { const_cast<char*>(t3cacc7->prepend("WHITESPACE").constData()+10), t3cacc7->size()-10, t3cacc7 };callbackQItemModelSurfaceDataProxy_XPosRoleReplaceChanged(this, replacePacked); };
+	void Signal_YPosRoleChanged(const QString & role) { QByteArray* t8dca46 = new QByteArray(role.toUtf8()); QtDataVisualization_PackedString rolePacked = { const_cast<char*>(t8dca46->prepend("WHITESPACE").constData()+10), t8dca46->size()-10, t8dca46 };callbackQItemModelSurfaceDataProxy_YPosRoleChanged(this, rolePacked); };
 	void Signal_YPosRolePatternChanged(const QRegExp & pattern) { callbackQItemModelSurfaceDataProxy_YPosRolePatternChanged(this, const_cast<QRegExp*>(&pattern)); };
-	void Signal_YPosRoleReplaceChanged(const QString & replace) { QByteArray t3cacc7 = replace.toUtf8(); QtDataVisualization_PackedString replacePacked = { const_cast<char*>(t3cacc7.prepend("WHITESPACE").constData()+10), t3cacc7.size()-10 };callbackQItemModelSurfaceDataProxy_YPosRoleReplaceChanged(this, replacePacked); };
-	void Signal_ZPosRoleChanged(const QString & role) { QByteArray t8dca46 = role.toUtf8(); QtDataVisualization_PackedString rolePacked = { const_cast<char*>(t8dca46.prepend("WHITESPACE").constData()+10), t8dca46.size()-10 };callbackQItemModelSurfaceDataProxy_ZPosRoleChanged(this, rolePacked); };
+	void Signal_YPosRoleReplaceChanged(const QString & replace) { QByteArray* t3cacc7 = new QByteArray(replace.toUtf8()); QtDataVisualization_PackedString replacePacked = { const_cast<char*>(t3cacc7->prepend("WHITESPACE").constData()+10), t3cacc7->size()-10, t3cacc7 };callbackQItemModelSurfaceDataProxy_YPosRoleReplaceChanged(this, replacePacked); };
+	void Signal_ZPosRoleChanged(const QString & role) { QByteArray* t8dca46 = new QByteArray(role.toUtf8()); QtDataVisualization_PackedString rolePacked = { const_cast<char*>(t8dca46->prepend("WHITESPACE").constData()+10), t8dca46->size()-10, t8dca46 };callbackQItemModelSurfaceDataProxy_ZPosRoleChanged(this, rolePacked); };
 	void Signal_ZPosRolePatternChanged(const QRegExp & pattern) { callbackQItemModelSurfaceDataProxy_ZPosRolePatternChanged(this, const_cast<QRegExp*>(&pattern)); };
-	void Signal_ZPosRoleReplaceChanged(const QString & replace) { QByteArray t3cacc7 = replace.toUtf8(); QtDataVisualization_PackedString replacePacked = { const_cast<char*>(t3cacc7.prepend("WHITESPACE").constData()+10), t3cacc7.size()-10 };callbackQItemModelSurfaceDataProxy_ZPosRoleReplaceChanged(this, replacePacked); };
+	void Signal_ZPosRoleReplaceChanged(const QString & replace) { QByteArray* t3cacc7 = new QByteArray(replace.toUtf8()); QtDataVisualization_PackedString replacePacked = { const_cast<char*>(t3cacc7->prepend("WHITESPACE").constData()+10), t3cacc7->size()-10, t3cacc7 };callbackQItemModelSurfaceDataProxy_ZPosRoleReplaceChanged(this, replacePacked); };
 	 ~MyQItemModelSurfaceDataProxy() { callbackQItemModelSurfaceDataProxy_DestroyQItemModelSurfaceDataProxy(this); };
 };
 
@@ -7790,7 +7790,7 @@ void QItemModelSurfaceDataProxy_AutoRowCategoriesChanged(void* ptr, char enable)
 
 struct QtDataVisualization_PackedString QItemModelSurfaceDataProxy_ColumnCategories(void* ptr)
 {
-	return ({ QByteArray tb94ba4 = static_cast<QItemModelSurfaceDataProxy*>(ptr)->columnCategories().join("¡¦!").toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(tb94ba4.prepend("WHITESPACE").constData()+10), tb94ba4.size()-10 }; });
+	return ({ QByteArray* tb94ba4 = new QByteArray(static_cast<QItemModelSurfaceDataProxy*>(ptr)->columnCategories().join("¡¦!").toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(tb94ba4->prepend("WHITESPACE").constData()+10), tb94ba4->size()-10, tb94ba4 }; });
 }
 
 void QItemModelSurfaceDataProxy_ConnectColumnCategoriesChanged(void* ptr, long long t)
@@ -7815,7 +7815,7 @@ int QItemModelSurfaceDataProxy_ColumnCategoryIndex(void* ptr, struct QtDataVisua
 
 struct QtDataVisualization_PackedString QItemModelSurfaceDataProxy_ColumnRole(void* ptr)
 {
-	return ({ QByteArray tb79848 = static_cast<QItemModelSurfaceDataProxy*>(ptr)->columnRole().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(tb79848.prepend("WHITESPACE").constData()+10), tb79848.size()-10 }; });
+	return ({ QByteArray* tb79848 = new QByteArray(static_cast<QItemModelSurfaceDataProxy*>(ptr)->columnRole().toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(tb79848->prepend("WHITESPACE").constData()+10), tb79848->size()-10, tb79848 }; });
 }
 
 void QItemModelSurfaceDataProxy_ConnectColumnRoleChanged(void* ptr, long long t)
@@ -7855,7 +7855,7 @@ void QItemModelSurfaceDataProxy_ColumnRolePatternChanged(void* ptr, void* patter
 
 struct QtDataVisualization_PackedString QItemModelSurfaceDataProxy_ColumnRoleReplace(void* ptr)
 {
-	return ({ QByteArray t935d1d = static_cast<QItemModelSurfaceDataProxy*>(ptr)->columnRoleReplace().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t935d1d.prepend("WHITESPACE").constData()+10), t935d1d.size()-10 }; });
+	return ({ QByteArray* t935d1d = new QByteArray(static_cast<QItemModelSurfaceDataProxy*>(ptr)->columnRoleReplace().toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(t935d1d->prepend("WHITESPACE").constData()+10), t935d1d->size()-10, t935d1d }; });
 }
 
 void QItemModelSurfaceDataProxy_ConnectColumnRoleReplaceChanged(void* ptr, long long t)
@@ -7920,7 +7920,7 @@ void QItemModelSurfaceDataProxy_Remap(void* ptr, struct QtDataVisualization_Pack
 
 struct QtDataVisualization_PackedString QItemModelSurfaceDataProxy_RowCategories(void* ptr)
 {
-	return ({ QByteArray t02a480 = static_cast<QItemModelSurfaceDataProxy*>(ptr)->rowCategories().join("¡¦!").toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t02a480.prepend("WHITESPACE").constData()+10), t02a480.size()-10 }; });
+	return ({ QByteArray* t02a480 = new QByteArray(static_cast<QItemModelSurfaceDataProxy*>(ptr)->rowCategories().join("¡¦!").toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(t02a480->prepend("WHITESPACE").constData()+10), t02a480->size()-10, t02a480 }; });
 }
 
 void QItemModelSurfaceDataProxy_ConnectRowCategoriesChanged(void* ptr, long long t)
@@ -7945,7 +7945,7 @@ int QItemModelSurfaceDataProxy_RowCategoryIndex(void* ptr, struct QtDataVisualiz
 
 struct QtDataVisualization_PackedString QItemModelSurfaceDataProxy_RowRole(void* ptr)
 {
-	return ({ QByteArray t5df08d = static_cast<QItemModelSurfaceDataProxy*>(ptr)->rowRole().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t5df08d.prepend("WHITESPACE").constData()+10), t5df08d.size()-10 }; });
+	return ({ QByteArray* t5df08d = new QByteArray(static_cast<QItemModelSurfaceDataProxy*>(ptr)->rowRole().toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(t5df08d->prepend("WHITESPACE").constData()+10), t5df08d->size()-10, t5df08d }; });
 }
 
 void QItemModelSurfaceDataProxy_ConnectRowRoleChanged(void* ptr, long long t)
@@ -7985,7 +7985,7 @@ void QItemModelSurfaceDataProxy_RowRolePatternChanged(void* ptr, void* pattern)
 
 struct QtDataVisualization_PackedString QItemModelSurfaceDataProxy_RowRoleReplace(void* ptr)
 {
-	return ({ QByteArray t2f4502 = static_cast<QItemModelSurfaceDataProxy*>(ptr)->rowRoleReplace().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t2f4502.prepend("WHITESPACE").constData()+10), t2f4502.size()-10 }; });
+	return ({ QByteArray* t2f4502 = new QByteArray(static_cast<QItemModelSurfaceDataProxy*>(ptr)->rowRoleReplace().toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(t2f4502->prepend("WHITESPACE").constData()+10), t2f4502->size()-10, t2f4502 }; });
 }
 
 void QItemModelSurfaceDataProxy_ConnectRowRoleReplaceChanged(void* ptr, long long t)
@@ -8135,7 +8135,7 @@ void QItemModelSurfaceDataProxy_UseModelCategoriesChanged(void* ptr, char enable
 
 struct QtDataVisualization_PackedString QItemModelSurfaceDataProxy_XPosRole(void* ptr)
 {
-	return ({ QByteArray t72f466 = static_cast<QItemModelSurfaceDataProxy*>(ptr)->xPosRole().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t72f466.prepend("WHITESPACE").constData()+10), t72f466.size()-10 }; });
+	return ({ QByteArray* t72f466 = new QByteArray(static_cast<QItemModelSurfaceDataProxy*>(ptr)->xPosRole().toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(t72f466->prepend("WHITESPACE").constData()+10), t72f466->size()-10, t72f466 }; });
 }
 
 void QItemModelSurfaceDataProxy_ConnectXPosRoleChanged(void* ptr, long long t)
@@ -8175,7 +8175,7 @@ void QItemModelSurfaceDataProxy_XPosRolePatternChanged(void* ptr, void* pattern)
 
 struct QtDataVisualization_PackedString QItemModelSurfaceDataProxy_XPosRoleReplace(void* ptr)
 {
-	return ({ QByteArray t9a9018 = static_cast<QItemModelSurfaceDataProxy*>(ptr)->xPosRoleReplace().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t9a9018.prepend("WHITESPACE").constData()+10), t9a9018.size()-10 }; });
+	return ({ QByteArray* t9a9018 = new QByteArray(static_cast<QItemModelSurfaceDataProxy*>(ptr)->xPosRoleReplace().toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(t9a9018->prepend("WHITESPACE").constData()+10), t9a9018->size()-10, t9a9018 }; });
 }
 
 void QItemModelSurfaceDataProxy_ConnectXPosRoleReplaceChanged(void* ptr, long long t)
@@ -8195,7 +8195,7 @@ void QItemModelSurfaceDataProxy_XPosRoleReplaceChanged(void* ptr, struct QtDataV
 
 struct QtDataVisualization_PackedString QItemModelSurfaceDataProxy_YPosRole(void* ptr)
 {
-	return ({ QByteArray ta04979 = static_cast<QItemModelSurfaceDataProxy*>(ptr)->yPosRole().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(ta04979.prepend("WHITESPACE").constData()+10), ta04979.size()-10 }; });
+	return ({ QByteArray* ta04979 = new QByteArray(static_cast<QItemModelSurfaceDataProxy*>(ptr)->yPosRole().toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(ta04979->prepend("WHITESPACE").constData()+10), ta04979->size()-10, ta04979 }; });
 }
 
 void QItemModelSurfaceDataProxy_ConnectYPosRoleChanged(void* ptr, long long t)
@@ -8235,7 +8235,7 @@ void QItemModelSurfaceDataProxy_YPosRolePatternChanged(void* ptr, void* pattern)
 
 struct QtDataVisualization_PackedString QItemModelSurfaceDataProxy_YPosRoleReplace(void* ptr)
 {
-	return ({ QByteArray te4bace = static_cast<QItemModelSurfaceDataProxy*>(ptr)->yPosRoleReplace().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(te4bace.prepend("WHITESPACE").constData()+10), te4bace.size()-10 }; });
+	return ({ QByteArray* te4bace = new QByteArray(static_cast<QItemModelSurfaceDataProxy*>(ptr)->yPosRoleReplace().toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(te4bace->prepend("WHITESPACE").constData()+10), te4bace->size()-10, te4bace }; });
 }
 
 void QItemModelSurfaceDataProxy_ConnectYPosRoleReplaceChanged(void* ptr, long long t)
@@ -8255,7 +8255,7 @@ void QItemModelSurfaceDataProxy_YPosRoleReplaceChanged(void* ptr, struct QtDataV
 
 struct QtDataVisualization_PackedString QItemModelSurfaceDataProxy_ZPosRole(void* ptr)
 {
-	return ({ QByteArray tba9475 = static_cast<QItemModelSurfaceDataProxy*>(ptr)->zPosRole().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(tba9475.prepend("WHITESPACE").constData()+10), tba9475.size()-10 }; });
+	return ({ QByteArray* tba9475 = new QByteArray(static_cast<QItemModelSurfaceDataProxy*>(ptr)->zPosRole().toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(tba9475->prepend("WHITESPACE").constData()+10), tba9475->size()-10, tba9475 }; });
 }
 
 void QItemModelSurfaceDataProxy_ConnectZPosRoleChanged(void* ptr, long long t)
@@ -8295,7 +8295,7 @@ void QItemModelSurfaceDataProxy_ZPosRolePatternChanged(void* ptr, void* pattern)
 
 struct QtDataVisualization_PackedString QItemModelSurfaceDataProxy_ZPosRoleReplace(void* ptr)
 {
-	return ({ QByteArray t5d7f56 = static_cast<QItemModelSurfaceDataProxy*>(ptr)->zPosRoleReplace().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t5d7f56.prepend("WHITESPACE").constData()+10), t5d7f56.size()-10 }; });
+	return ({ QByteArray* t5d7f56 = new QByteArray(static_cast<QItemModelSurfaceDataProxy*>(ptr)->zPosRoleReplace().toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(t5d7f56->prepend("WHITESPACE").constData()+10), t5d7f56->size()-10, t5d7f56 }; });
 }
 
 void QItemModelSurfaceDataProxy_ConnectZPosRoleReplaceChanged(void* ptr, long long t)
@@ -8978,7 +8978,7 @@ public:
 	void Signal_FlatShadingSupportedChanged(bool enable) { callbackQSurface3DSeries_FlatShadingSupportedChanged(this, enable); };
 	void Signal_SelectedPointChanged(const QPoint & position) { callbackQSurface3DSeries_SelectedPointChanged(this, const_cast<QPoint*>(&position)); };
 	void Signal_TextureChanged(const QImage & image) { callbackQSurface3DSeries_TextureChanged(this, const_cast<QImage*>(&image)); };
-	void Signal_TextureFileChanged(const QString & filename) { QByteArray t08deae = filename.toUtf8(); QtDataVisualization_PackedString filenamePacked = { const_cast<char*>(t08deae.prepend("WHITESPACE").constData()+10), t08deae.size()-10 };callbackQSurface3DSeries_TextureFileChanged(this, filenamePacked); };
+	void Signal_TextureFileChanged(const QString & filename) { QByteArray* t08deae = new QByteArray(filename.toUtf8()); QtDataVisualization_PackedString filenamePacked = { const_cast<char*>(t08deae->prepend("WHITESPACE").constData()+10), t08deae->size()-10, t08deae };callbackQSurface3DSeries_TextureFileChanged(this, filenamePacked); };
 	 ~MyQSurface3DSeries() { callbackQSurface3DSeries_DestroyQSurface3DSeries(this); };
 };
 
@@ -9238,7 +9238,7 @@ void QSurface3DSeries_TextureChanged(void* ptr, void* image)
 
 struct QtDataVisualization_PackedString QSurface3DSeries_TextureFile(void* ptr)
 {
-	return ({ QByteArray tf3d489 = static_cast<QSurface3DSeries*>(ptr)->textureFile().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(tf3d489.prepend("WHITESPACE").constData()+10), tf3d489.size()-10 }; });
+	return ({ QByteArray* tf3d489 = new QByteArray(static_cast<QSurface3DSeries*>(ptr)->textureFile().toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(tf3d489->prepend("WHITESPACE").constData()+10), tf3d489->size()-10, tf3d489 }; });
 }
 
 void QSurface3DSeries_ConnectTextureFileChanged(void* ptr, long long t)
@@ -9669,7 +9669,7 @@ class MyQValue3DAxis: public QValue3DAxis
 public:
 	MyQValue3DAxis(QObject *parent = Q_NULLPTR) : QValue3DAxis(parent) {QValue3DAxis_QValue3DAxis_QRegisterMetaType();};
 	void Signal_FormatterChanged(QValue3DAxisFormatter * formatter) { callbackQValue3DAxis_FormatterChanged(this, formatter); };
-	void Signal_LabelFormatChanged(const QString & format) { QByteArray t785987 = format.toUtf8(); QtDataVisualization_PackedString formatPacked = { const_cast<char*>(t785987.prepend("WHITESPACE").constData()+10), t785987.size()-10 };callbackQValue3DAxis_LabelFormatChanged(this, formatPacked); };
+	void Signal_LabelFormatChanged(const QString & format) { QByteArray* t785987 = new QByteArray(format.toUtf8()); QtDataVisualization_PackedString formatPacked = { const_cast<char*>(t785987->prepend("WHITESPACE").constData()+10), t785987->size()-10, t785987 };callbackQValue3DAxis_LabelFormatChanged(this, formatPacked); };
 	void Signal_ReversedChanged(bool enable) { callbackQValue3DAxis_ReversedChanged(this, enable); };
 	void Signal_SegmentCountChanged(int count) { callbackQValue3DAxis_SegmentCountChanged(this, count); };
 	void Signal_SubSegmentCountChanged(int count) { callbackQValue3DAxis_SubSegmentCountChanged(this, count); };
@@ -9750,7 +9750,7 @@ void QValue3DAxis_FormatterChanged(void* ptr, void* formatter)
 
 struct QtDataVisualization_PackedString QValue3DAxis_LabelFormat(void* ptr)
 {
-	return ({ QByteArray teadd17 = static_cast<QValue3DAxis*>(ptr)->labelFormat().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(teadd17.prepend("WHITESPACE").constData()+10), teadd17.size()-10 }; });
+	return ({ QByteArray* teadd17 = new QByteArray(static_cast<QValue3DAxis*>(ptr)->labelFormat().toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(teadd17->prepend("WHITESPACE").constData()+10), teadd17->size()-10, teadd17 }; });
 }
 
 void QValue3DAxis_ConnectLabelFormatChanged(void* ptr, long long t)
@@ -9872,7 +9872,7 @@ public:
 	void populateCopy(QValue3DAxisFormatter & copy) const { callbackQValue3DAxisFormatter_PopulateCopy(const_cast<void*>(static_cast<const void*>(this)), static_cast<QValue3DAxisFormatter*>(&copy)); };
 	float positionAt(float value) const { return callbackQValue3DAxisFormatter_PositionAt(const_cast<void*>(static_cast<const void*>(this)), value); };
 	void recalculate() { callbackQValue3DAxisFormatter_Recalculate(this); };
-	QString stringForValue(qreal value, const QString & format) const { QByteArray t785987 = format.toUtf8(); QtDataVisualization_PackedString formatPacked = { const_cast<char*>(t785987.prepend("WHITESPACE").constData()+10), t785987.size()-10 };return ({ QtDataVisualization_PackedString tempVal = callbackQValue3DAxisFormatter_StringForValue(const_cast<void*>(static_cast<const void*>(this)), value, formatPacked); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	QString stringForValue(qreal value, const QString & format) const { QByteArray* t785987 = new QByteArray(format.toUtf8()); QtDataVisualization_PackedString formatPacked = { const_cast<char*>(t785987->prepend("WHITESPACE").constData()+10), t785987->size()-10, t785987 };return ({ QtDataVisualization_PackedString tempVal = callbackQValue3DAxisFormatter_StringForValue(const_cast<void*>(static_cast<const void*>(this)), value, formatPacked); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	float valueAt(float position) const { return callbackQValue3DAxisFormatter_ValueAt(const_cast<void*>(static_cast<const void*>(this)), position); };
 	 ~MyQValue3DAxisFormatter() { callbackQValue3DAxisFormatter_DestroyQValue3DAxisFormatter(this); };
 };
@@ -9966,7 +9966,7 @@ struct QtDataVisualization_PackedList QValue3DAxisFormatter_LabelPositions(void*
 
 struct QtDataVisualization_PackedString QValue3DAxisFormatter_LabelStrings(void* ptr)
 {
-	return ({ QByteArray td5e8ca = static_cast<QValue3DAxisFormatter*>(ptr)->labelStrings().join("¡¦!").toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(td5e8ca.prepend("WHITESPACE").constData()+10), td5e8ca.size()-10 }; });
+	return ({ QByteArray* td5e8ca = new QByteArray(static_cast<QValue3DAxisFormatter*>(ptr)->labelStrings().join("¡¦!").toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(td5e8ca->prepend("WHITESPACE").constData()+10), td5e8ca->size()-10, td5e8ca }; });
 }
 
 void* QValue3DAxisFormatter_Locale(void* ptr)
@@ -10026,12 +10026,12 @@ void QValue3DAxisFormatter_SetLocale(void* ptr, void* locale)
 
 struct QtDataVisualization_PackedString QValue3DAxisFormatter_StringForValue(void* ptr, double value, struct QtDataVisualization_PackedString format)
 {
-	return ({ QByteArray t1b2a5f = static_cast<QValue3DAxisFormatter*>(ptr)->stringForValue(value, QString::fromUtf8(format.data, format.len)).toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t1b2a5f.prepend("WHITESPACE").constData()+10), t1b2a5f.size()-10 }; });
+	return ({ QByteArray* t1b2a5f = new QByteArray(static_cast<QValue3DAxisFormatter*>(ptr)->stringForValue(value, QString::fromUtf8(format.data, format.len)).toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(t1b2a5f->prepend("WHITESPACE").constData()+10), t1b2a5f->size()-10, t1b2a5f }; });
 }
 
 struct QtDataVisualization_PackedString QValue3DAxisFormatter_StringForValueDefault(void* ptr, double value, struct QtDataVisualization_PackedString format)
 {
-		return ({ QByteArray te8d0b4 = static_cast<QValue3DAxisFormatter*>(ptr)->QValue3DAxisFormatter::stringForValue(value, QString::fromUtf8(format.data, format.len)).toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(te8d0b4.prepend("WHITESPACE").constData()+10), te8d0b4.size()-10 }; });
+		return ({ QByteArray* te8d0b4 = new QByteArray(static_cast<QValue3DAxisFormatter*>(ptr)->QValue3DAxisFormatter::stringForValue(value, QString::fromUtf8(format.data, format.len)).toUtf8()); QtDataVisualization_PackedString { const_cast<char*>(te8d0b4->prepend("WHITESPACE").constData()+10), te8d0b4->size()-10, te8d0b4 }; });
 }
 
 struct QtDataVisualization_PackedList QValue3DAxisFormatter_SubGridPositions(void* ptr)

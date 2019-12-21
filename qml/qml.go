@@ -11,17 +11,22 @@ import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/network"
+	"strconv"
 	"strings"
+	"sync"
 	"unsafe"
 )
 
+func cGoFreePacked(ptr unsafe.Pointer) { core.NewQByteArrayFromPointer(ptr).DestroyQByteArray() }
 func cGoUnpackString(s C.struct_QtQml_PackedString) string {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		return C.GoString(s.data)
 	}
 	return C.GoStringN(s.data, C.int(s.len))
 }
 func cGoUnpackBytes(s C.struct_QtQml_PackedString) []byte {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
 		return *(*[]byte)(unsafe.Pointer(&gs))
@@ -296,16 +301,18 @@ func (ptr *QJSEngine) DisconnectDestroyQJSEngine() {
 
 func (ptr *QJSEngine) DestroyQJSEngine() {
 	if ptr.Pointer() != nil {
-		C.QJSEngine_DestroyQJSEngine(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QJSEngine_DestroyQJSEngine(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QJSEngine) DestroyQJSEngineDefault() {
 	if ptr.Pointer() != nil {
-		C.QJSEngine_DestroyQJSEngineDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QJSEngine_DestroyQJSEngineDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -392,27 +399,6 @@ func (ptr *QJSEngine) __findChildren_newList3() unsafe.Pointer {
 	return C.QJSEngine___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QJSEngine) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QJSEngine___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QJSEngine) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QJSEngine___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QJSEngine) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QJSEngine___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQJSEngine_ChildEvent
 func callbackQJSEngine_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -469,8 +455,9 @@ func callbackQJSEngine_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QJSEngine) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QJSEngine_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QJSEngine_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -1027,12 +1014,19 @@ func (ptr *QJSValue) ToVariant() *core.QVariant {
 }
 
 func (ptr *QJSValue) DestroyQJSValue() {
+	helperMutex.Lock()
 	if ptr.Pointer() != nil {
-		C.QJSValue_DestroyQJSValue(ptr.Pointer())
-		C.free(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		pointer := ptr.Pointer()
 		ptr.SetPointer(nil)
+		helperMap = append(helperMap, strconv.FormatUint(uint64(uintptr(pointer)), 10))
+		if len(helperMap) >= 500 {
+			helper.SetObjectName(strings.Join(helperMap, "|"))
+			helperMap = nil
+		}
 	}
+	helperMutex.Unlock()
 }
 
 func (ptr *QJSValue) __call_args_atList(i int) *QJSValue {
@@ -1167,9 +1161,10 @@ func (ptr *QJSValueIterator) Value() *QJSValue {
 
 func (ptr *QJSValueIterator) DestroyQJSValueIterator() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QJSValueIterator_DestroyQJSValueIterator(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -1300,16 +1295,18 @@ func (ptr *QQmlAbstractUrlInterceptor) DisconnectDestroyQQmlAbstractUrlIntercept
 
 func (ptr *QQmlAbstractUrlInterceptor) DestroyQQmlAbstractUrlInterceptor() {
 	if ptr.Pointer() != nil {
-		C.QQmlAbstractUrlInterceptor_DestroyQQmlAbstractUrlInterceptor(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QQmlAbstractUrlInterceptor_DestroyQQmlAbstractUrlInterceptor(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QQmlAbstractUrlInterceptor) DestroyQQmlAbstractUrlInterceptorDefault() {
 	if ptr.Pointer() != nil {
-		C.QQmlAbstractUrlInterceptor_DestroyQQmlAbstractUrlInterceptorDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QQmlAbstractUrlInterceptor_DestroyQQmlAbstractUrlInterceptorDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -1610,16 +1607,18 @@ func (ptr *QQmlApplicationEngine) DisconnectDestroyQQmlApplicationEngine() {
 
 func (ptr *QQmlApplicationEngine) DestroyQQmlApplicationEngine() {
 	if ptr.Pointer() != nil {
-		C.QQmlApplicationEngine_DestroyQQmlApplicationEngine(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QQmlApplicationEngine_DestroyQQmlApplicationEngine(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QQmlApplicationEngine) DestroyQQmlApplicationEngineDefault() {
 	if ptr.Pointer() != nil {
-		C.QQmlApplicationEngine_DestroyQQmlApplicationEngineDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QQmlApplicationEngine_DestroyQQmlApplicationEngineDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -2238,16 +2237,18 @@ func (ptr *QQmlComponent) DisconnectDestroyQQmlComponent() {
 
 func (ptr *QQmlComponent) DestroyQQmlComponent() {
 	if ptr.Pointer() != nil {
-		C.QQmlComponent_DestroyQQmlComponent(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QQmlComponent_DestroyQQmlComponent(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QQmlComponent) DestroyQQmlComponentDefault() {
 	if ptr.Pointer() != nil {
-		C.QQmlComponent_DestroyQQmlComponentDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QQmlComponent_DestroyQQmlComponentDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -2353,27 +2354,6 @@ func (ptr *QQmlComponent) __findChildren_newList3() unsafe.Pointer {
 	return C.QQmlComponent___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QQmlComponent) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QQmlComponent___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QQmlComponent) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QQmlComponent___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QQmlComponent) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QQmlComponent___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQQmlComponent_ChildEvent
 func callbackQQmlComponent_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -2430,8 +2410,9 @@ func callbackQQmlComponent_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QQmlComponent) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QQmlComponent_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QQmlComponent_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -2729,16 +2710,18 @@ func (ptr *QQmlContext) DisconnectDestroyQQmlContext() {
 
 func (ptr *QQmlContext) DestroyQQmlContext() {
 	if ptr.Pointer() != nil {
-		C.QQmlContext_DestroyQQmlContext(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QQmlContext_DestroyQQmlContext(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QQmlContext) DestroyQQmlContextDefault() {
 	if ptr.Pointer() != nil {
-		C.QQmlContext_DestroyQQmlContextDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QQmlContext_DestroyQQmlContextDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -2829,27 +2812,6 @@ func (ptr *QQmlContext) __findChildren_newList3() unsafe.Pointer {
 	return C.QQmlContext___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QQmlContext) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QQmlContext___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QQmlContext) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QQmlContext___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QQmlContext) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QQmlContext___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQQmlContext_ChildEvent
 func callbackQQmlContext_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -2906,8 +2868,9 @@ func callbackQQmlContext_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QQmlContext) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QQmlContext_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QQmlContext_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -3042,12 +3005,11 @@ func NewQQmlDebuggingEnablerFromPointer(ptr unsafe.Pointer) (n *QQmlDebuggingEna
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QQmlDebuggingEnabler) DestroyQQmlDebuggingEnabler() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -3769,16 +3731,18 @@ func (ptr *QQmlEngine) DisconnectDestroyQQmlEngine() {
 
 func (ptr *QQmlEngine) DestroyQQmlEngine() {
 	if ptr.Pointer() != nil {
-		C.QQmlEngine_DestroyQQmlEngine(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QQmlEngine_DestroyQQmlEngine(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QQmlEngine) DestroyQQmlEngineDefault() {
 	if ptr.Pointer() != nil {
-		C.QQmlEngine_DestroyQQmlEngineDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QQmlEngine_DestroyQQmlEngineDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -3971,16 +3935,14 @@ func NewQQmlErrorFromPointer(ptr unsafe.Pointer) (n *QQmlError) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QQmlError) DestroyQQmlError() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
-
 func NewQQmlError() *QQmlError {
 	tmpValue := NewQQmlErrorFromPointer(C.QQmlError_NewQQmlError())
 	qt.SetFinalizer(tmpValue, (*QQmlError).DestroyQQmlError)
@@ -4355,16 +4317,18 @@ func (ptr *QQmlExpression) DisconnectDestroyQQmlExpression() {
 
 func (ptr *QQmlExpression) DestroyQQmlExpression() {
 	if ptr.Pointer() != nil {
-		C.QQmlExpression_DestroyQQmlExpression(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QQmlExpression_DestroyQQmlExpression(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QQmlExpression) DestroyQQmlExpressionDefault() {
 	if ptr.Pointer() != nil {
-		C.QQmlExpression_DestroyQQmlExpressionDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QQmlExpression_DestroyQQmlExpressionDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -4451,27 +4415,6 @@ func (ptr *QQmlExpression) __findChildren_newList3() unsafe.Pointer {
 	return C.QQmlExpression___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QQmlExpression) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QQmlExpression___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QQmlExpression) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QQmlExpression___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QQmlExpression) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QQmlExpression___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQQmlExpression_ChildEvent
 func callbackQQmlExpression_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -4528,8 +4471,9 @@ func callbackQQmlExpression_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QQmlExpression) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QQmlExpression_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QQmlExpression_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -4858,27 +4802,6 @@ func (ptr *QQmlExtensionPlugin) __findChildren_newList3() unsafe.Pointer {
 	return C.QQmlExtensionPlugin___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QQmlExtensionPlugin) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QQmlExtensionPlugin___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QQmlExtensionPlugin) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QQmlExtensionPlugin___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QQmlExtensionPlugin) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QQmlExtensionPlugin___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQQmlExtensionPlugin_ChildEvent
 func callbackQQmlExtensionPlugin_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -4935,8 +4858,9 @@ func callbackQQmlExtensionPlugin_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QQmlExtensionPlugin) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QQmlExtensionPlugin_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QQmlExtensionPlugin_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -5162,16 +5086,18 @@ func (ptr *QQmlFileSelector) DisconnectDestroyQQmlFileSelector() {
 
 func (ptr *QQmlFileSelector) DestroyQQmlFileSelector() {
 	if ptr.Pointer() != nil {
-		C.QQmlFileSelector_DestroyQQmlFileSelector(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QQmlFileSelector_DestroyQQmlFileSelector(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QQmlFileSelector) DestroyQQmlFileSelectorDefault() {
 	if ptr.Pointer() != nil {
-		C.QQmlFileSelector_DestroyQQmlFileSelectorDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QQmlFileSelector_DestroyQQmlFileSelectorDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -5258,27 +5184,6 @@ func (ptr *QQmlFileSelector) __findChildren_newList3() unsafe.Pointer {
 	return C.QQmlFileSelector___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QQmlFileSelector) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QQmlFileSelector___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QQmlFileSelector) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QQmlFileSelector___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QQmlFileSelector) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QQmlFileSelector___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQQmlFileSelector_ChildEvent
 func callbackQQmlFileSelector_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -5335,8 +5240,9 @@ func callbackQQmlFileSelector_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QQmlFileSelector) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QQmlFileSelector_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QQmlFileSelector_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -5471,13 +5377,12 @@ func NewQQmlImageProviderBaseFromPointer(ptr unsafe.Pointer) (n *QQmlImageProvid
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QQmlImageProviderBase) DestroyQQmlImageProviderBase() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -5615,17 +5520,15 @@ func NewQQmlIncubationControllerFromPointer(ptr unsafe.Pointer) (n *QQmlIncubati
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QQmlIncubationController) DestroyQQmlIncubationController() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
-
 func NewQQmlIncubationController2() *QQmlIncubationController {
 	return NewQQmlIncubationControllerFromPointer(C.QQmlIncubationController_NewQQmlIncubationController2())
 }
@@ -5734,13 +5637,12 @@ func NewQQmlIncubatorFromPointer(ptr unsafe.Pointer) (n *QQmlIncubator) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QQmlIncubator) DestroyQQmlIncubator() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -5992,12 +5894,11 @@ func NewQQmlInfoFromPointer(ptr unsafe.Pointer) (n *QQmlInfo) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QQmlInfo) DestroyQQmlInfo() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -6039,12 +5940,11 @@ func NewQQmlListPropertyFromPointer(ptr unsafe.Pointer) (n *QQmlListProperty) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QQmlListProperty) DestroyQQmlListProperty() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -6086,16 +5986,14 @@ func NewQQmlListReferenceFromPointer(ptr unsafe.Pointer) (n *QQmlListReference) 
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QQmlListReference) DestroyQQmlListReference() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
-
 func NewQQmlListReference() *QQmlListReference {
 	tmpValue := NewQQmlListReferenceFromPointer(C.QQmlListReference_NewQQmlListReference())
 	qt.SetFinalizer(tmpValue, (*QQmlListReference).DestroyQQmlListReference)
@@ -6378,13 +6276,12 @@ func NewQQmlParserStatusFromPointer(ptr unsafe.Pointer) (n *QQmlParserStatus) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QQmlParserStatus) DestroyQQmlParserStatus() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -6498,12 +6395,11 @@ func NewQQmlPropertyFromPointer(ptr unsafe.Pointer) (n *QQmlProperty) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QQmlProperty) DestroyQQmlProperty() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -7131,16 +7027,18 @@ func (ptr *QQmlPropertyMap) DisconnectDestroyQQmlPropertyMap() {
 
 func (ptr *QQmlPropertyMap) DestroyQQmlPropertyMap() {
 	if ptr.Pointer() != nil {
-		C.QQmlPropertyMap_DestroyQQmlPropertyMap(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QQmlPropertyMap_DestroyQQmlPropertyMap(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QQmlPropertyMap) DestroyQQmlPropertyMapDefault() {
 	if ptr.Pointer() != nil {
-		C.QQmlPropertyMap_DestroyQQmlPropertyMapDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QQmlPropertyMap_DestroyQQmlPropertyMapDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -7227,27 +7125,6 @@ func (ptr *QQmlPropertyMap) __findChildren_newList3() unsafe.Pointer {
 	return C.QQmlPropertyMap___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QQmlPropertyMap) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QQmlPropertyMap___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QQmlPropertyMap) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QQmlPropertyMap___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QQmlPropertyMap) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QQmlPropertyMap___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQQmlPropertyMap_ChildEvent
 func callbackQQmlPropertyMap_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -7304,8 +7181,9 @@ func callbackQQmlPropertyMap_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QQmlPropertyMap) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QQmlPropertyMap_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QQmlPropertyMap_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -7562,16 +7440,14 @@ func NewQQmlScriptStringFromPointer(ptr unsafe.Pointer) (n *QQmlScriptString) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QQmlScriptString) DestroyQQmlScriptString() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
-
 func NewQQmlScriptString() *QQmlScriptString {
 	tmpValue := NewQQmlScriptStringFromPointer(C.QQmlScriptString_NewQQmlScriptString())
 	qt.SetFinalizer(tmpValue, (*QQmlScriptString).DestroyQQmlScriptString)
@@ -7636,7 +7512,25 @@ func (ptr *QQmlScriptString) StringLiteral() string {
 	return ""
 }
 
+var (
+	helper      *core.QObject
+	helperMutex sync.Mutex
+	helperMap   []string
+)
+
 func init() {
+
+	helper = core.NewQObject(nil)
+	helper.ConnectObjectNameChanged(func(pl string) {
+		for _, p := range strings.Split(pl, "|") {
+			ptr, err := strconv.ParseUint(p, 10, 64)
+			if err != nil || ptr == 0 {
+				return
+			}
+			C.QJSValue_DestroyQJSValue(unsafe.Pointer(uintptr(ptr)))
+			C.free(unsafe.Pointer(uintptr(ptr)))
+		}
+	})
 	qt.ItfMap["qml.QJSEngine_ITF"] = QJSEngine{}
 	qt.FuncMap["qml.NewQJSEngine"] = NewQJSEngine
 	qt.FuncMap["qml.NewQJSEngine2"] = NewQJSEngine2

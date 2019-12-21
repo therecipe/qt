@@ -42,7 +42,7 @@ int QValue3DAxisFormatter_QValue3DAxisFormatter_QRegisterMetaType();
 extern "C" {
 #endif
 
-struct QtDataVisualization_PackedString { char* data; long long len; };
+struct QtDataVisualization_PackedString { char* data; long long len; void* ptr; };
 struct QtDataVisualization_PackedList { void* data; long long len; };
 void* Q3DBars_NewQ3DBars(void* format, void* parent);
 void Q3DBars_AddAxis(void* ptr, void* axis);

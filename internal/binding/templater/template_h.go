@@ -48,7 +48,7 @@ func HTemplate(m string, mode int, tags string) []byte {
 	fmt.Fprint(bb, "extern \"C\" {\n#endif\n\n")
 
 	if !UseJs() {
-		fmt.Fprintf(bb, "struct %v_PackedString { char* data; long long len; };\n", strings.Title(m))
+		fmt.Fprintf(bb, "struct %v_PackedString { char* data; long long len; void* ptr; };\n", strings.Title(m))
 		fmt.Fprintf(bb, "struct %v_PackedList { void* data; long long len; };\n", strings.Title(m))
 	}
 

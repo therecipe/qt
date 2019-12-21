@@ -102,6 +102,8 @@ func (c *Class) addGeneralFuncs() {
 				},
 				Signature: "(const QUrl &url, const char *uri, int versionMajor, int versionMinor, const char *qmlName)",
 			})
+
+			//TODO: 5.14.0 qmlRegisterSingletonInstance + qmlRegisterAnonymousType
 		}
 
 	case "QAndroidJniEnvironment":

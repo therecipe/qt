@@ -11,7 +11,7 @@
 extern "C" {
 #endif
 
-struct QtQuickControls2_PackedString { char* data; long long len; };
+struct QtQuickControls2_PackedString { char* data; long long len; void* ptr; };
 struct QtQuickControls2_PackedList { void* data; long long len; };
 void QQuickStyle_QQuickStyle_AddStylePath(struct QtQuickControls2_PackedString path);
 struct QtQuickControls2_PackedString QQuickStyle_QQuickStyle_AvailableStyles();

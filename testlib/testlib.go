@@ -15,13 +15,16 @@ import (
 	"unsafe"
 )
 
+func cGoFreePacked(ptr unsafe.Pointer) { core.NewQByteArrayFromPointer(ptr).DestroyQByteArray() }
 func cGoUnpackString(s C.struct_QtTestLib_PackedString) string {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		return C.GoString(s.data)
 	}
 	return C.GoStringN(s.data, C.int(s.len))
 }
 func cGoUnpackBytes(s C.struct_QtTestLib_PackedString) []byte {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
 		return *(*[]byte)(unsafe.Pointer(&gs))
@@ -72,12 +75,11 @@ func NewQAbstractItemModelTesterFromPointer(ptr unsafe.Pointer) (n *QAbstractIte
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QAbstractItemModelTester) DestroyQAbstractItemModelTester() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -152,12 +154,11 @@ func NewQEventSizeOfCheckerFromPointer(ptr unsafe.Pointer) (n *QEventSizeOfCheck
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QEventSizeOfChecker) DestroyQEventSizeOfChecker() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -352,27 +353,6 @@ func (ptr *QSignalSpy) __findChildren_newList3() unsafe.Pointer {
 	return C.QSignalSpy___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QSignalSpy) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSignalSpy___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSignalSpy) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSignalSpy___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QSignalSpy) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QSignalSpy___qFindChildren_newList2(ptr.Pointer())
-}
-
 //export callbackQSignalSpy_ChildEvent
 func callbackQSignalSpy_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
@@ -429,8 +409,9 @@ func callbackQSignalSpy_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QSignalSpy) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
-		C.QSignalSpy_DeleteLaterDefault(ptr.Pointer())
+
 		qt.SetFinalizer(ptr, nil)
+		C.QSignalSpy_DeleteLaterDefault(ptr.Pointer())
 	}
 }
 
@@ -565,12 +546,11 @@ func NewQSpontaneKeyEventFromPointer(ptr unsafe.Pointer) (n *QSpontaneKeyEvent) 
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QSpontaneKeyEvent) DestroyQSpontaneKeyEvent() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -612,12 +592,11 @@ func NewQTestFromPointer(ptr unsafe.Pointer) (n *QTest) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QTest) DestroyQTest() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -769,12 +748,11 @@ func NewQTestDataFromPointer(ptr unsafe.Pointer) (n *QTestData) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QTestData) DestroyQTestData() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -817,12 +795,11 @@ func NewQTestDelayEventFromPointer(ptr unsafe.Pointer) (n *QTestDelayEvent) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QTestDelayEvent) DestroyQTestDelayEvent() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -864,12 +841,11 @@ func NewQTestEventFromPointer(ptr unsafe.Pointer) (n *QTestEvent) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QTestEvent) DestroyQTestEvent() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -1035,9 +1011,10 @@ func (ptr *QTestEventList) Simulate(w widgets.QWidget_ITF) {
 
 func (ptr *QTestEventList) DestroyQTestEventList() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QTestEventList_DestroyQTestEventList(ptr.Pointer())
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -1079,12 +1056,11 @@ func NewQTestEventLoopFromPointer(ptr unsafe.Pointer) (n *QTestEventLoop) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QTestEventLoop) DestroyQTestEventLoop() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -1127,12 +1103,11 @@ func NewQTestKeyClicksEventFromPointer(ptr unsafe.Pointer) (n *QTestKeyClicksEve
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QTestKeyClicksEvent) DestroyQTestKeyClicksEvent() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -1175,12 +1150,11 @@ func NewQTestKeyEventFromPointer(ptr unsafe.Pointer) (n *QTestKeyEvent) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QTestKeyEvent) DestroyQTestKeyEvent() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
@@ -1223,16 +1197,14 @@ func NewQTestMouseEventFromPointer(ptr unsafe.Pointer) (n *QTestMouseEvent) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QTestMouseEvent) DestroyQTestMouseEvent() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
 
 		C.free(ptr.Pointer())
-		qt.SetFinalizer(ptr, nil)
 		ptr.SetPointer(nil)
 	}
 }
-
 func init() {
 	qt.ItfMap["testlib.QAbstractItemModelTester_ITF"] = QAbstractItemModelTester{}
 	qt.FuncMap["testlib.NewQAbstractItemModelTester"] = NewQAbstractItemModelTester
