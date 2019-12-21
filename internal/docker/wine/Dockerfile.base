@@ -15,7 +15,7 @@ RUN dpkg --add-architecture i386
 RUN curl -sL --retry 10 --retry-delay 60 https://dl.winehq.org/wine-builds/winehq.key | apt-key add -
 RUN apt-add-repository https://dl.winehq.org/wine-builds/ubuntu/
 RUN apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ xenial main'
-RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install winehq-staging xvfb cabextract && apt-get -qq clean
+RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install winehq-stable xvfb cabextract && apt-get -qq clean
 RUN WINEDLLOVERRIDES="mscoree,mshtml=" xvfb-run wineboot && wineserver -w
 RUN curl -sL --retry 10 --retry-delay 60 -O https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks && chmod +x winetricks && mv winetricks /usr/bin && xvfb-run winetricks -q vcrun2015 && rm -f winetricks
 

@@ -43,7 +43,7 @@ RUN dpkg --add-architecture i386
 RUN curl -sL --retry 10 --retry-delay 60 https://dl.winehq.org/wine-builds/winehq.key | apt-key add -
 RUN apt-add-repository https://dl.winehq.org/wine-builds/ubuntu/
 RUN apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ xenial main'
-RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install winehq-staging && apt-get -qq clean
+RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install winehq-stable && apt-get -qq clean
 RUN WINEDLLOVERRIDES="mscoree,mshtml=" wineboot && wineserver -w
 
 RUN curl -sL --retry 10 --retry-delay 60 https://github.com/therecipe/files/releases/download/v0.0.0/msvc_2017.tar.gz | tar -xz -C $HOME/.wine/drive_c
