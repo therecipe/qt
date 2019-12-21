@@ -15,7 +15,6 @@ rm -rf ./$PREF
 mkdir ./$PREF
 
 rsync -avz $QT_ROOT/Qt/${QT_VERSION}/clang_64 ./$PREF/${QT_VERSION}/
-rsync -avz $QT_ROOT/Qt/Licenses ./$PREF/
 
 
 rm -rf ./$PREF/${QT_VERSION}/clang_64/{doc,phrasebooks}
