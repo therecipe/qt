@@ -600,6 +600,7 @@ extern "C" int32_t __isPlatformVersionAtLeast(int32_t Major, int32_t Minor, int3
 	if (Minor > current.minorVersion()) return 0;
 	return Subminor <= current.microVersion();
 }
+extern "C" int32_t __isOSVersionAtLeast(int32_t Major, int32_t Minor, int32_t Subminor) { return __isPlatformVersionAtLeast(Major, Minor, Subminor); }
 `
 			}
 			return ""
