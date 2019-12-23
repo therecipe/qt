@@ -15,6 +15,6 @@ jobs:
       -
         script: 'while ! docker ps 2>/dev/null; do sleep 5; echo "waiting for docker to come up"; docker ps; done'
       -
-        script: 'cd internal/docker/darwin && ./build_static_base.sh && docker build -f ${{ parameters.file }} -t therecipe/qt:${{ parameters.tag }} .'
+        script: 'cd internal/docker/darwin && ./build_static_base.sh'
       -
         script: 'docker login -u therecipe -p $(DOCKER_PASSWORD) && docker push therecipe/qt:${{ parameters.tag }} && docker logout'

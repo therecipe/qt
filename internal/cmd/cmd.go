@@ -513,7 +513,7 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 		}
 
 		if !found && path != "" {
-			utils.Log.Panicln("Project needs to be inside GOPATH", path, utils.GOPATH())
+			utils.Log.Panicln("Project needs to be inside GOPATH; have:", path, "want:", utils.GOPATH())
 		}
 	}
 

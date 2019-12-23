@@ -2,7 +2,7 @@
 
 set -ev
 
-sudo xcode-select --switch /Applications/Xcode_9.4.1.app && xcrun -sdk macosx --show-sdk-path
+xcrun -sdk macosx --show-sdk-path
 git clone -q --depth 1 -b 5.13.2 --recursive https://code.qt.io/qt/qt5.git && cd qt5 && ./configure -prefix $HOME/Qt/5.13.0/clang_64 -opensource -confirm-license -release -nomake tests -nomake examples -qt-zlib -qt-libjpeg -qt-libpng -platform macx-clang -sysconfdir /Library/Preferences/Qt -dbus-runtime -static -optimize-size -skip qtwebengine -skip qtfeedback -skip qtpim -skip qtdocgallery -skip qtconnectivity -nomake tests -nomake examples && make -j $(sysctl -n hw.ncpu) && make install -j $(sysctl -n hw.ncpu) && cd .. && rm -rf qt5
 
 
@@ -52,3 +52,5 @@ du -sh ./$PREF
 zip -r ${PREF}.zip $PREF && rm -rf $PREF
 
 du -sh ${PREF}.zip
+
+docker build -f Dockerfile.static_base -t therecipe/qt:darwin_static_base .

@@ -28,14 +28,14 @@ jobs:
   -
     template: docker_darwin_static_base_template.yml
     parameters:
-      file: Dockerfile.static_base
+      file: darwin/Dockerfile.static_base
       tag: darwin_static_base
   -
     template: docker_darwin_static_template.yml
     parameters:
       file: darwin/Dockerfile.static
       tag: darwin_static
-      dep: darwin_static_base
+#      dep: darwin_static_base
 #  -
 #    template: docker_job_template.yml
 #    parameters:
