@@ -716,7 +716,11 @@ case QVariant__Map:
 	}
 
 default:
-	v.Set(reflect.ValueOf(ptr.ToInterface()).Convert(v.Type()))
+	if v.Kind() == reflect.String {
+		v.Set(reflect.ValueOf(ptr.ToString()))
+	} else {
+		v.Set(reflect.ValueOf(ptr.ToInterface()).Convert(v.Type()))
+	}
 }
 }
 `)

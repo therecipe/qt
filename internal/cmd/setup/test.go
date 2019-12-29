@@ -36,7 +36,7 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 			pattern = "all="
 		}
 
-		cmd := exec.Command("go", "test", "-v", "-tags=minimal", fmt.Sprintf("-ldflags=%v\"-s\"", pattern))
+		cmd := exec.Command("go", "test", "-v", "-tags=minimal", fmt.Sprintf("-ldflags=%v\"-s\"", pattern), "-race")
 		cmd.Env = append(os.Environ(), []string{"GODEBUG=cgocheck=2", "GO111MODULE=off"}...)
 		if runtime.GOOS == "linux" {
 			cmd.Env = append(cmd.Env, "QT_QPA_PLATFORM=offscreen")
