@@ -1,0 +1,24 @@
+jobs:
+  -
+    job: '${{ parameters.tag }}'
+    timeoutInMinutes: 0
+    pool:
+      vmImage: macOS-10.14
+    variables:
+      GO111MODULE: off
+    dependsOn: '${{ parameters.dep }}'
+    steps:
+      -
+        script: 'curl -sL --retry 10 --retry-delay 60 -O https://download.docker.com/mac/stable/31259/Docker.dmg && open -W Docker.dmg && cp -r /Volumes/Docker/Docker.app /Applications'
+      -
+        script: 'sudo /Applications/Docker.app/Contents/MacOS/Docker --quit-after-install --unattended'
+      -
+        script: 'nohup /Applications/Docker.app/Contents/MacOS/Docker --unattended &'
+      -
+        script: 'while ! docker ps 2>/dev/null; do sleep 5; echo "waiting for docker to come up"; docker ps; done'
+      -
+        script: 'brew install bbe'
+      -
+        script: 'go get -v -tags=no_env github.com/therecipe/qt/cmd/... && $(go env GOPATH)/bin/qtsetup prep'
+      -
+        script: 'go get -v -d github.com/therecipe/entry && cd $(go env GOPATH)/src/github.com/therecipe/entry && ./deploy.sh && ./push.sh'

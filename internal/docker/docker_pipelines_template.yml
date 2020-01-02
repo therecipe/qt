@@ -1,5 +1,9 @@
 jobs:
   -
+    template: docker_entry_template.yml
+    parameters:
+      tag: entry
+  -
     template: docker_windows_ci_template.yml
     parameters:
       name: windows_ft

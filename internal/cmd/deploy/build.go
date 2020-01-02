@@ -59,7 +59,9 @@ func build(mode, target, path, ldFlagsCustom, tagsCustom, name, depPath string, 
 	}
 
 	if utils.Log.Level == logrus.DebugLevel && target != "wasm" {
-		ldFlags = append(ldFlags, "-extldflags=-v")
+		if !(utils.GOVERSION_NUM() >= 113 && utils.UseGOMOD(path)) {
+			ldFlags = append(ldFlags, "-extldflags=-v")
+		}
 	}
 
 	cmd := exec.Command("go", "build", "-p", strconv.Itoa(runtime.GOMAXPROCS(0)), "-v")
@@ -100,7 +102,7 @@ func build(mode, target, path, ldFlagsCustom, tagsCustom, name, depPath string, 
 		cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", key, value))
 	}
 
-	//TODO: seems to be an go module issue
+	//TODO: seems to be an go module issue; not needed anymore with 1.13.5 ?
 	if utils.GOVERSION_NUM() >= 113 && utils.UseGOMOD(path) {
 		var String = func(c *exec.Cmd) string {
 			b := new(strings.Builder)
@@ -111,12 +113,12 @@ func build(mode, target, path, ldFlagsCustom, tagsCustom, name, depPath string, 
 			}
 			return b.String()
 		}
+		cmd.Args = append(cmd.Args, fmt.Sprintf("-ldflags=%v%v", pattern, escapeFlags(ldFlags, ldFlagsCustom)))
 		if runtime.GOOS != "windows" {
 			cmd.Args = []string{"bash", "-c", String(cmd)}
 		} else {
 			//cmd.Args = []string{"cmd", "/C", String(cmd)}
 		}
-		cmd.Args = append(cmd.Args, fmt.Sprintf("-ldflags=%v%v", pattern, escapeFlags(ldFlags, ldFlagsCustom)))
 		cmd.Path, _ = exec.LookPath(cmd.Args[0])
 	}
 

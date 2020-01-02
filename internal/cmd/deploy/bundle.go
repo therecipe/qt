@@ -122,7 +122,7 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 		if err := ioutil.WriteFile(fn, data, 0755); err != nil {
 			utils.Log.WithError(err).Warn("couldn't patch", fn)
 		} else {
-			utils.Log.Debug("patched", fn)
+			utils.Log.Debugln("patched", fn)
 		}
 
 	case "linux", "rpi1", "rpi2", "rpi3", "freebsd":
@@ -297,7 +297,7 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 				if err := ioutil.WriteFile(fn, data, 0755); err != nil {
 					utils.Log.WithError(err).Warn("couldn't patch", fn)
 				} else {
-					utils.Log.Debug("patched", fn)
+					utils.Log.Debugln("patched", fn)
 				}
 			}
 
@@ -333,7 +333,7 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 			if err := ioutil.WriteFile(fn, data, 0644); err != nil {
 				utils.Log.WithError(err).Warn("couldn't patch", fn)
 			} else {
-				utils.Log.Debug("patched", fn)
+				utils.Log.Debugln("patched", fn)
 			}
 		}
 		//<--
