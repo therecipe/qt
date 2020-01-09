@@ -573,10 +573,7 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 	var out string
 	var env map[string]string
 
-	androidAPI := "21"
-	if utils.QT_FELGO() {
-		androidAPI = "16"
-	}
+	androidAPI := utils.ANDROID_NDK_PLATFORM()
 
 	switch target {
 	case "android":
@@ -604,7 +601,7 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 			"CGO_LDFLAGS": fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=%v -target armv7-none-linux-androideabi -gcc-toolchain %v --sysroot=%v",
 				androidAPI,
 				filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64"),
-				filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-21", "arch-arm")),
+				filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", androidAPI, "arch-arm")),
 		}
 		if runtime.GOOS == "windows" {
 			env["TMP"] = os.Getenv("TMP")
