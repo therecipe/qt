@@ -67,7 +67,7 @@ func build(mode, target, path, ldFlagsCustom, tagsCustom, name, depPath string, 
 	cmd := exec.Command("go", "build", "-p", strconv.Itoa(runtime.GOMAXPROCS(0)), "-v")
 	if len(ldFlags) > 0 {
 		if !(utils.GOVERSION_NUM() >= 113 && utils.UseGOMOD(path)) {
-			cmd.Args = append(cmd.Args, fmt.Sprintf("-ldflags=%v%v", pattern, escapeFlags(ldFlags, ldFlagsCustom)))
+			cmd.Args = append(cmd.Args, fmt.Sprintf("-ldflags=%v'%v'", pattern, escapeFlags(ldFlags, ldFlagsCustom)))
 		}
 	}
 	if utils.GOVERSION_NUM() >= 113 {
@@ -113,7 +113,7 @@ func build(mode, target, path, ldFlagsCustom, tagsCustom, name, depPath string, 
 			}
 			return b.String()
 		}
-		cmd.Args = append(cmd.Args, fmt.Sprintf("-ldflags=%v%v", pattern, escapeFlags(ldFlags, ldFlagsCustom)))
+		cmd.Args = append(cmd.Args, fmt.Sprintf("-ldflags=%v'%v'", pattern, escapeFlags(ldFlags, ldFlagsCustom)))
 		if runtime.GOOS != "windows" {
 			cmd.Args = []string{"bash", "-c", String(cmd)}
 		} else {
