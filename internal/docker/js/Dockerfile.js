@@ -1,3 +1,14 @@
+FROM ubuntu:16.04 as base
+
+ENV USER user
+ENV HOME /home/$USER
+ENV GOPATH $HOME/work
+
+RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates curl git
+RUN GO=go1.12.9.linux-amd64.tar.gz && curl -sL --retry 10 --retry-delay 60 -O https://dl.google.com/go/$GO && tar -xzf $GO -C /usr/local
+RUN /usr/local/go/bin/go get -tags=no_env github.com/therecipe/qt/cmd/...
+
+
 FROM ubuntu:16.04
 LABEL maintainer therecipe
 
@@ -9,9 +20,9 @@ ENV QT_API 5.13.0
 ENV QT_DOCKER true
 ENV QT_QMAKE_DIR /usr/local/Qt-5.13.0/bin
 
-COPY --from=therecipe/qt:linux /usr/local/go /usr/local/go
-COPY --from=therecipe/qt:linux $GOPATH/bin $GOPATH/bin
-COPY --from=therecipe/qt:linux $GOPATH/src/github.com/therecipe/qt $GOPATH/src/github.com/therecipe/qt
+COPY --from=base /usr/local/go /usr/local/go
+COPY --from=base $GOPATH/bin $GOPATH/bin
+COPY --from=base $GOPATH/src/github.com/therecipe/qt $GOPATH/src/github.com/therecipe/qt
 COPY --from=therecipe/qt:js_base $HOME/emsdk $HOME/emsdk
 COPY --from=therecipe/qt:js_base $HOME/.emscripten $HOME/.emscripten
 COPY --from=therecipe/qt:js_base /usr/local/Qt-5.13.0 /usr/local/Qt-5.13.0

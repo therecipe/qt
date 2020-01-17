@@ -20,7 +20,7 @@ func goFunction(function *parser.Function) string {
 }
 
 func goFunctionHeader(function *parser.Function) string {
-	return fmt.Sprintf("func %v %v(%v)%v",
+	return fmt.Sprintf("func %v %v(%v) %v",
 		func() string {
 			if function.Static || function.Meta == parser.CONSTRUCTOR || function.SignalMode == parser.CALLBACK {
 				return ""
@@ -71,9 +71,31 @@ func goFunctionBody(function *parser.Function) string {
 			converter.GoHeaderOutput(function),
 		)
 	}
+	if utils.QT_FELGO() && class.IsSubClassOf("QCoreApplication") && function.Name == "exec" {
+		fmt.Fprintf(bb, "defer New%[1]vFromPointer(%[2]vQCoreApplication_Instance().Pointer()).Destroy%[1]v()\n",
+			class.Name,
+			func() string {
+				if class.Module == parser.MOC {
+					return "std_core."
+				} else if class.Module != "QtCore" {
+					return "core."
+				}
+				return ""
+			}())
+	}
+
+	if function.Meta == parser.DESTRUCTOR && class.Name == "QJSValue" {
+		fmt.Fprintf(bb, "helperMutex.Lock()\n")
+	}
 
 	if !(function.Static || function.Meta == parser.CONSTRUCTOR || function.SignalMode == parser.CALLBACK || strings.Contains(function.Name, "_newList")) {
 		fmt.Fprintf(bb, "if ptr.Pointer() != nil {\n")
+	}
+
+	if (function.Name == "deleteLater" || strings.HasPrefix(function.Name, parser.TILDE)) && function.SignalMode == "" {
+		if class.HasFinalizer {
+			fmt.Fprint(bb, "\nqt.SetFinalizer(ptr, nil)\n")
+		}
 	}
 
 	if class.Name == "QAndroidJniObject" {
@@ -117,9 +139,21 @@ func goFunctionBody(function *parser.Function) string {
 
 		var body string
 		if UseJs() {
-			body = converter.GoJSOutputParametersFromC(function, fmt.Sprintf("qt.WASM.Call(\"_%v\", %v)", converter.CppHeaderName(function), converter.GoInputParametersForJS(function)))
+			body = converter.GoJSOutputParametersFromC(function, fmt.Sprintf("qt.Module.Call(\"_%v\", %v)", converter.CppHeaderName(function), converter.GoInputParametersForJS(function)))
 		} else {
-			body = converter.GoOutputParametersFromC(function, fmt.Sprintf("C.%v(%v)", converter.CppHeaderName(function), converter.GoInputParametersForC(function)))
+			if function.Meta == parser.DESTRUCTOR && class.Name == "QJSValue" {
+				//TODO: use this order (set finalizer nil, set pointer nil, call destructor, free ptr) for all other destructor wrapper as well
+				//TODO: replace SetObjectName hack with generic run on main thread helper function
+				body = `pointer := ptr.Pointer()
+			ptr.SetPointer(nil)
+			helperMap = append(helperMap, strconv.FormatUint(uint64(uintptr(pointer)), 10))
+			if len(helperMap) >= 500 {
+				helper.SetObjectName(strings.Join(helperMap, "|"))
+				helperMap = nil
+			}`
+			} else {
+				body = converter.GoOutputParametersFromC(function, fmt.Sprintf("C.%v(%v)", converter.CppHeaderName(function), converter.GoInputParametersForC(function)))
+			}
 		}
 		fmt.Fprint(bb, func() string {
 			if function.IsMocFunction && function.SignalMode == "" {
@@ -181,7 +215,7 @@ func goFunctionBody(function *parser.Function) string {
 							fmt.Fprint(bb, "tmpValue.DestroyQAndroidJniObject()\n")
 						} else {
 							class.HasFinalizer = true
-							fmt.Fprintf(bb, "runtime.SetFinalizer(tmpValue, (%v).Destroy%v)\n",
+							fmt.Fprintf(bb, "qt.SetFinalizer(tmpValue, (%v).Destroy%v)\n",
 								func() string {
 									if function.TemplateModeJNI != "" {
 										return fmt.Sprintf("*%v", parser.CleanValue(function.Output))
@@ -222,9 +256,13 @@ func goFunctionBody(function *parser.Function) string {
 					var bb = new(bytes.Buffer)
 					defer bb.Reset()
 
+					if class.Module == parser.MOC && function.Meta == parser.CONSTRUCTOR {
+						fmt.Fprintf(bb, "%v_QRegisterMetaType()\n", class.Name)
+					}
+
 					fmt.Fprintf(bb, "tmpValue := %v\n", body)
 
-					if class.Name != "SailfishApp" {
+					if class.Name != "SailfishApp" && function.Fullname != "QWidget::style" && function.Fullname != "QApplication::style" { //TODO: blacklist other functions returning singletons as well?
 						fmt.Fprintf(bb, "if !qt.ExistsSignal(tmpValue.Pointer(), \"destroyed\") {\ntmpValue.ConnectDestroyed(func(%v){ tmpValue.SetPointer(nil) })\n}\n",
 							func() string {
 								if class.Module == "QtCore" {
@@ -242,6 +280,14 @@ func goFunctionBody(function *parser.Function) string {
 						}
 					}
 					*/
+
+					if function.Meta == parser.CONSTRUCTOR && utils.QT_API_NUM(utils.QT_VERSION()) >= 5050 {
+						if class.IsSubClassOf("QJSEngine") {
+							fmt.Fprintln(bb, "Z_initEngine(tmpValue)")
+						} else if class.IsSubClassOf("QQuickView") || class.IsSubClassOf("QQuickWidget") {
+							fmt.Fprintln(bb, "qml.Z_initEngine(tmpValue.Engine())")
+						}
+					}
 
 					fmt.Fprint(bb, "return tmpValue")
 
@@ -328,9 +374,9 @@ func goFunctionBody(function *parser.Function) string {
 				if pType := converter.GoType(function, p.Value, p.PureGoType); pType == "*bool" || pType == "*int" {
 					if UseJs() {
 						if pType == "*int" {
-							fmt.Fprintf(bb, "var %[1]vR int\nif %[1]v != 0 {\n%[1]vR = int(int32(qt.WASM.Call(\"getValue\", %[1]v, \"i32\").Int()))\ndefer func(){qt.WASM.Call(\"setValue\", %[1]v, %[1]vR, \"i32\")}()\n}\n", parser.CleanName(p.Name, p.Value))
+							fmt.Fprintf(bb, "var %[1]vR int\nif %[1]v != 0 {\n%[1]vR = int(int32(qt.Module.Call(\"getValue\", %[1]v, \"i32\").Int()))\ndefer func(){qt.Module.Call(\"setValue\", %[1]v, %[1]vR, \"i32\")}()\n}\n", parser.CleanName(p.Name, p.Value))
 						} else { //TODO: make empty *bool callbacks safe?
-							fmt.Fprintf(bb, "%[1]vR := int8(qt.WASM.Call(\"getValue\", %[1]v, \"i8\").Int()) != 0\ndefer func(){qt.WASM.Call(\"setValue\", %[1]v, qt.GoBoolToInt(%[1]vR), \"i8\")}()\n", parser.CleanName(p.Name, p.Value))
+							fmt.Fprintf(bb, "%[1]vR := int8(qt.Module.Call(\"getValue\", %[1]v, \"i8\").Int()) != 0\ndefer func(){qt.Module.Call(\"setValue\", %[1]v, qt.GoBoolToInt(%[1]vR), \"i8\")}()\n", parser.CleanName(p.Name, p.Value))
 						}
 					} else {
 						if pType == "*int" {
@@ -543,7 +589,7 @@ func goFunctionBody(function *parser.Function) string {
 						}
 
 						if !found {
-							//TODO:
+							//TODO: panic and name the missing virtual function ?
 							//function.Access = fmt.Sprintf("unsupported_FailedNilOutputInCallbacksForPureVirtualFunctions(%v)", function.Output)
 							fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(converter.GoOutputParametersFromCFailed(function), function.Output, function, function.PureGoOutput))
 						}
@@ -649,17 +695,21 @@ func goFunctionBody(function *parser.Function) string {
 		}
 	}
 
-	if (function.Name == "deleteLater" || strings.HasPrefix(function.Name, parser.TILDE)) && function.SignalMode == "" {
+	if (function.Name == "deleteLater" || strings.HasPrefix(function.Name, parser.TILDE)) && function.SignalMode == "" && !(function.Meta == parser.DESTRUCTOR && class.Name == "QJSValue") {
+		if !UseJs() && !class.HasCallbackFunctions() { //TODO: free c ptr in js/wasm ?
+			fmt.Fprint(bb, "\nC.free(ptr.Pointer())")
+		}
 		if function.Name != "deleteLater" {
 			fmt.Fprint(bb, "\nptr.SetPointer(nil)")
-		}
-		if class.HasFinalizer {
-			fmt.Fprint(bb, "\nruntime.SetFinalizer(ptr, nil)")
 		}
 	}
 
 	if !(function.Static || function.Meta == parser.CONSTRUCTOR || function.SignalMode == parser.CALLBACK || strings.Contains(function.Name, "_newList")) {
 		fmt.Fprint(bb, "\n}")
+
+		if function.Meta == parser.DESTRUCTOR && class.Name == "QJSValue" {
+			fmt.Fprint(bb, "\nhelperMutex.Unlock()")
+		}
 
 		if converter.GoHeaderOutput(function) == "" {
 			return bb.String()

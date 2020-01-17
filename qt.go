@@ -14,13 +14,28 @@ var (
 
 	signals      = make(map[unsafe.Pointer]map[string]unsafe.Pointer)
 	signalsJNI   = make(map[string]map[string]unsafe.Pointer)
-	signalsMutex = new(sync.Mutex)
+	signalsMutex sync.Mutex
 
 	objects      = make(map[unsafe.Pointer]interface{})
-	objectsMutex = new(sync.Mutex)
+	objectsMutex sync.Mutex
 
 	objectsTemp      = make(map[unsafe.Pointer]unsafe.Pointer)
-	objectsTempMutex = new(sync.Mutex)
+	objectsTempMutex sync.Mutex
+
+	connectionTypes      = make(map[unsafe.Pointer]map[string]int64)
+	connectionTypesMutex sync.Mutex
+
+	finalizerMap      = make(map[unsafe.Pointer]struct{})
+	finalizerMapMutex sync.Mutex
+
+	//
+
+	FuncMap      = make(map[string]interface{})
+	FuncMapMutex sync.Mutex
+	ItfMap       = make(map[string]interface{})
+	itfMapMutex  sync.Mutex
+	EnumMap      = make(map[string]int64)
+	EnumMapMutex sync.Mutex
 )
 
 func init() { runtime.LockOSThread() }
@@ -84,6 +99,9 @@ func DisconnectSignal(cPtr interface{}, signal string) {
 	if dcPtr, ok := cPtr.(unsafe.Pointer); ok {
 		signalsMutex.Lock()
 		delete(signals[dcPtr], signal)
+		if len(signals[dcPtr]) == 0 {
+			delete(signals, dcPtr)
+		}
 		signalsMutex.Unlock()
 	} else {
 		disconnectSignalJNI(cPtr.(string), signal)
@@ -93,6 +111,9 @@ func DisconnectSignal(cPtr interface{}, signal string) {
 func disconnectSignalJNI(cPtr, signal string) {
 	signalsMutex.Lock()
 	delete(signalsJNI[cPtr], signal)
+	if len(signalsJNI[cPtr]) == 0 {
+		delete(signalsJNI, cPtr)
+	}
 	signalsMutex.Unlock()
 }
 
@@ -134,6 +155,16 @@ func DumpTempObjects() {
 	}
 	objectsTempMutex.Unlock()
 	Debug("##############################\tTMP_OBJECTS_TABLE_END\t##############################")
+}
+
+func DumpConnectionTypes() {
+	Debug("##############################\tCON_MODES_TABLE_START\t##############################")
+	connectionTypesMutex.Lock()
+	for cPtr, entry := range connectionTypes {
+		Debug(cPtr, entry)
+	}
+	connectionTypesMutex.Unlock()
+	Debug("##############################\tCON_MODES_TABLE_END\t##############################")
 }
 
 func CountSignals() (c int) {
@@ -204,4 +235,98 @@ func UnregisterTemp(cPtr unsafe.Pointer) {
 	objectsTempMutex.Lock()
 	delete(objectsTemp, cPtr)
 	objectsTempMutex.Unlock()
+}
+
+func RegisterConnectionType(cPtr unsafe.Pointer, signal string, mode int64) {
+	connectionTypesMutex.Lock()
+	if s, exists := connectionTypes[cPtr]; !exists {
+		connectionTypes[cPtr] = map[string]int64{signal: mode}
+	} else {
+		s[signal] = mode
+	}
+	connectionTypesMutex.Unlock()
+}
+
+func ConnectionType(cPtr unsafe.Pointer, signal string) (m int64) {
+	connectionTypesMutex.Lock()
+	if s, exists := connectionTypes[cPtr]; exists {
+		if lm, ok := s[signal]; ok {
+			delete(s, signal)
+			if len(s) == 0 {
+				delete(connectionTypes, cPtr)
+			}
+			m = lm
+		}
+	}
+	connectionTypesMutex.Unlock()
+	return
+}
+
+func GetFuncMap(n string) (o interface{}, ok bool) {
+	FuncMapMutex.Lock()
+	o, ok = FuncMap[n]
+	FuncMapMutex.Unlock()
+	return
+}
+
+func SetFuncMap(n string, v interface{}) {
+	FuncMapMutex.Lock()
+	FuncMap[n] = v
+	FuncMapMutex.Unlock()
+}
+
+func GetItfMap(n string) (o interface{}, ok bool) {
+	itfMapMutex.Lock()
+	o, ok = ItfMap[n]
+	itfMapMutex.Unlock()
+	return
+}
+
+func SetItfMap(n string, v interface{}) {
+	itfMapMutex.Lock()
+	ItfMap[n] = v
+	itfMapMutex.Unlock()
+}
+
+func GetEnumMap(n string) (o int64, ok bool) {
+	EnumMapMutex.Lock()
+	o, ok = EnumMap[n]
+	EnumMapMutex.Unlock()
+	return
+}
+
+func SetEnumMap(n string, v int64) {
+	EnumMapMutex.Lock()
+	EnumMap[n] = v
+	EnumMapMutex.Unlock()
+}
+
+type ptr_itf interface {
+	Pointer() unsafe.Pointer
+	SetPointer(p unsafe.Pointer)
+}
+
+func SetFinalizer(ptr interface{}, f interface{}) {
+	finalizerMapMutex.Lock()
+	cPtr := ptr.(ptr_itf).Pointer()
+	if _, ok := finalizerMap[cPtr]; !ok || f == nil || cPtr == nil {
+		if cPtr != nil || (cPtr == nil && f == nil) {
+			runtime.SetFinalizer(ptr, f)
+		}
+		if f == nil {
+			delete(finalizerMap, cPtr)
+		} else if cPtr != nil {
+			finalizerMap[cPtr] = struct{}{}
+		}
+	} else {
+		runtime.SetFinalizer(ptr, func(p ptr_itf) { p.SetPointer(nil) })
+	}
+	finalizerMapMutex.Unlock()
+}
+
+func HasFinalizer(ptr interface{}) (ok bool) {
+	finalizerMapMutex.Lock()
+	_, ok = finalizerMap[ptr.(ptr_itf).Pointer()]
+	finalizerMapMutex.Unlock()
+	return
 }

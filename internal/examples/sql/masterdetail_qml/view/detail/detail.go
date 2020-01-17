@@ -41,19 +41,19 @@ func (d *detailController) init() {
 
 	d.iconLabel = widgets.NewQLabel(nil, 0)
 	d.iconLabel.SetAlignment(core.Qt__AlignBottom | core.Qt__AlignRight)
-	d.iconLabel.SetPixmap(gui.NewQPixmap5(":/images/icon.png", "", 0))
+	d.iconLabel.SetPixmap(gui.NewQPixmap3(":/images/icon.png", "", 0))
 
 	d.imageLabel = widgets.NewQLabel(nil, 0)
 	d.imageLabel.SetWordWrap(true)
 	d.imageLabel.SetAlignment(core.Qt__AlignCenter)
-	d.imageLabel.SetPixmap(gui.NewQPixmap5(":/images/image.png", "", 0))
+	d.imageLabel.SetPixmap(gui.NewQPixmap3(":/images/image.png", "", 0))
 
 	d.trackList = widgets.NewQListWidget(nil)
 
 	layout := widgets.NewQGridLayout2()
 	layout.AddWidget3(d.imageLabel, 0, 0, 3, 2, 0)
-	layout.AddWidget(d.profileLabel, 0, 0, 0)
-	layout.AddWidget(d.iconLabel, 0, 1, 0)
+	layout.AddWidget2(d.profileLabel, 0, 0, 0)
+	layout.AddWidget2(d.iconLabel, 0, 1, 0)
 	layout.AddWidget3(d.titleLabel, 1, 0, 1, 2, 0)
 	layout.AddWidget3(d.trackList, 2, 0, 1, 2, 0)
 	layout.SetRowStretch(2, 1)

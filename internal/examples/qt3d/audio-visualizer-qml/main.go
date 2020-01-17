@@ -1,4 +1,4 @@
-//source: http://doc.qt.io/qt-5/qt3d-audio-visualizer-qml-example.html
+//source: https://doc.qt.io/qt-5/qt3d-audio-visualizer-qml-example.html
 
 package main
 

@@ -41,6 +41,7 @@
 #include <QWidget>
 #include <QWindow>
 
+Q_DECLARE_METATYPE(QAbstractItemModelTester*)
 void* QAbstractItemModelTester_NewQAbstractItemModelTester(void* model, void* parent)
 {
 	if (dynamic_cast<QAudioSystemPlugin*>(static_cast<QObject*>(parent))) {
@@ -153,10 +154,11 @@ public:
 	bool event(QEvent * e) { return callbackQSignalSpy_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSignalSpy_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSignalSpy_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtTestLib_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSignalSpy_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtTestLib_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQSignalSpy_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSignalSpy_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QSignalSpy*)
 Q_DECLARE_METATYPE(MyQSignalSpy*)
 
 int QSignalSpy_QSignalSpy_QRegisterMetaType(){qRegisterMetaType<QSignalSpy*>(); return qRegisterMetaType<MyQSignalSpy*>();}
@@ -319,22 +321,6 @@ void* QSignalSpy___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QSignalSpy___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QSignalSpy___qFindChildren_setList2(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QSignalSpy___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 void QSignalSpy_ChildEventDefault(void* ptr, void* event)
 {
 		static_cast<QSignalSpy*>(ptr)->QSignalSpy::childEvent(static_cast<QChildEvent*>(event));
@@ -380,6 +366,7 @@ void QSignalSpy_TimerEventDefault(void* ptr, void* event)
 		static_cast<QSignalSpy*>(ptr)->QSignalSpy::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
+Q_DECLARE_METATYPE(QTestEventList*)
 void* QTestEventList_NewQTestEventList()
 {
 	return new QTestEventList();

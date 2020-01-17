@@ -1,4 +1,4 @@
-//source: http://doc.qt.io/qt-5/qtquickcontrols2-material.html
+//source: https://doc.qt.io/qt-5/qtquickcontrols2-material.html
 
 import QtQuick 2.0
 import QtQuick.Controls 2.0

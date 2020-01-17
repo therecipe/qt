@@ -102,6 +102,8 @@ func (c *Class) addGeneralFuncs() {
 				},
 				Signature: "(const QUrl &url, const char *uri, int versionMajor, int versionMinor, const char *qmlName)",
 			})
+
+			//TODO: 5.14.0 qmlRegisterSingletonInstance + qmlRegisterAnonymousType
 		}
 
 	case "QAndroidJniEnvironment":
@@ -192,6 +194,10 @@ func (c *Class) addGeneralFuncs() {
 }
 
 func (c *Class) addVarAndPropFuncs() {
+	if c.Name == "FelgoApplication" || c.Name == "FelgoLiveClient" {
+		return
+	}
+
 	for _, v := range c.Variables {
 		c.Functions = append(c.Functions, v.varToFunc()...)
 	}

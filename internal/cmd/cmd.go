@@ -40,15 +40,20 @@ func ParseFlags() bool {
 
 	runtime.GOMAXPROCS(*p)
 
+	var forDocker bool
+	if d := flag.Lookup("docker"); d != nil {
+		forDocker = d.Value.String() == "true"
+	}
+
 	if api := *qt_api; api != "" {
 		os.Setenv("QT_API", api)
 	}
 
 	_, err := exec.LookPath("go")
-	if api := utils.QT_API(""); api != "" && err == nil {
+	if api := utils.QT_API(""); api != "" && err == nil && !utils.QT_DOCKER() && !forDocker {
 		if utils.GoListOptional("{{.Dir}}", "github.com/therecipe/qt/internal/binding/files/docs/"+api, "-find", "get doc dir") == "" {
 			utils.Log.Errorf("invalid api version provided: '%v'", api)
-			fmt.Println("valid api versions are:")
+			fmt.Println("valid api versions are:") //TODO: if only one api version is available, use it
 			if !utils.UseGOMOD("") {
 				if o := utils.GoListOptional("{{join .Imports \"|\"}}", "github.com/therecipe/qt/internal/binding/files/docs", "get doc dir"); o != "" {
 					for _, v := range strings.Split(o, "|") {
@@ -91,8 +96,8 @@ func ParseFlags() bool {
 	return help != nil && *help
 }
 
-func InitEnv(target string) {
-	if target != runtime.GOOS || runtime.GOARCH != "amd64" || utils.GOARCH() != "amd64" {
+func InitEnv(target string, docker bool, path string) {
+	if docker || target != runtime.GOOS || ((runtime.GOARCH != "amd64" || utils.GOARCH() != "amd64") && runtime.GOOS != "windows") {
 		return
 	}
 
@@ -100,7 +105,7 @@ func InitEnv(target string) {
 	case "freebsd":
 		return
 	case "linux":
-		if utils.QT_PKG_CONFIG() || utils.QT_MXE() || utils.QT_STATIC() {
+		if utils.QT_PKG_CONFIG() || utils.QT_MXE() || utils.QT_FELGO() || utils.QT_STATIC() {
 			return
 		}
 	case "darwin":
@@ -113,30 +118,63 @@ func InitEnv(target string) {
 		}
 
 		defer func() {
-			qtenvPath := filepath.Join(filepath.Dir(utils.ToolPath("qmake", target)), "qtenv2.bat")
-			for _, s := range strings.Split(utils.Load(qtenvPath), "\r\n") {
-				if strings.HasPrefix(s, "set PATH") {
-					os.Setenv("PATH", strings.TrimPrefix(strings.Replace(s, "%PATH%", os.Getenv("PATH"), -1), "set PATH="))
-					break
-				}
-			}
-
-			for i, dPath := range []string{filepath.Join(runtime.GOROOT(), "bin", "qtenv.bat"), filepath.Join(utils.GOBIN(), "qtenv.bat")} {
-				sPath := qtenvPath
-				existed := utils.ExistsFile(dPath)
-				if existed {
-					utils.RemoveAll(dPath)
-				}
-				err := os.Link(sPath, dPath)
-				if i != 0 {
-					continue
-				}
-				if err == nil {
-					if !existed {
-						utils.Log.Infof("successfully created %v symlink in your PATH (%v)", filepath.Base(dPath), dPath)
+			if utils.QT_MSVC() {
+				var data string
+				if utils.QT_DOCKER() {
+					msvc_version := "14.16.27023"
+					msvc_path := fmt.Sprintf("C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\BuildTools\\VC\\Tools\\MSVC\\%v", msvc_version)
+					mswk_version := "10.0.17763.0"
+					mswk_path := func(m string) string {
+						return fmt.Sprintf("C:\\Program Files (x86)\\Windows Kits\\10\\%v\\%v", m, mswk_version)
+					}
+					msvc_arch := "x64"
+					if utils.GOARCH() == "386" {
+						msvc_arch = "x86"
+					}
+					data = fmt.Sprintf("@echo INCLUDE=%[1]v\\include;%[2]v\\ucrt;%[2]v\\shared;%[2]v\\um\r\n", msvc_path, mswk_path("include"))
+					data += fmt.Sprintf("@echo LIB=%[1]v\\lib\\%[2]v;%[3]v\\ucrt\\%[2]v;%[3]v\\um\\%[2]v\r\n", msvc_path, msvc_arch, mswk_path("lib"))
+					if utils.GOARCH() == "386" {
+						data += fmt.Sprintf("@echo PATH=%[1]v\\bin\\HostX64\\%[2]v;%[1]v\\bin\\HostX64\\x64;%[3]v;%%PATH%%\r\n", msvc_path, msvc_arch, utils.MINGWTOOLSDIR())
+					} else {
+						data += fmt.Sprintf("@echo PATH=%[1]v\\bin\\HostX64\\%[2]v;%[3]v;%%PATH%%\r\n", msvc_path, msvc_arch, utils.MINGWTOOLSDIR())
 					}
 				} else {
-					utils.Log.Warnf("failed to create %v symlink in your PATH (%v); please use %v instead", filepath.Base(dPath), dPath, sPath)
+					data = fmt.Sprintf("set PATH=%v;%%PATH%%\r\ncall \"%v\"\r\nset", utils.MINGWTOOLSDIR(), utils.GOVSVARSPATH())
+				}
+				utils.Save(filepath.Join(utils.GOBIN(), "qtenvexc.bat"), data)
+				for _, s := range strings.Split(utils.RunCmdOptional(exec.Command(filepath.Join(utils.GOBIN(), "qtenvexc.bat")), fmt.Sprintf("run qtenvexc for %v on %v", target, runtime.GOOS)), "\r\n") {
+					if !strings.Contains(s, "=") {
+						continue
+					}
+					es := strings.Split(s, "=")
+					os.Setenv(es[0], strings.Join(es[1:], "="))
+				}
+				utils.RemoveAll(filepath.Join(utils.GOBIN(), "qtenvexc.bat"))
+			} else {
+				qtenvPath := filepath.Join(filepath.Dir(utils.ToolPath("qmake", target)), "qtenv2.bat")
+				for _, s := range strings.Split(utils.Load(qtenvPath), "\r\n") {
+					if strings.HasPrefix(s, "set PATH") {
+						os.Setenv("PATH", strings.TrimPrefix(strings.Replace(s, "%PATH%", os.Getenv("PATH"), -1), "set PATH="))
+						break
+					}
+				}
+				for i, dPath := range []string{filepath.Join(runtime.GOROOT(), "bin", "qtenv.bat"), filepath.Join(utils.GOBIN(), "qtenv.bat")} {
+					sPath := qtenvPath
+					existed := utils.ExistsFile(dPath)
+					if existed {
+						utils.RemoveAll(dPath)
+					}
+					err := os.Link(sPath, dPath)
+					if i != 0 {
+						continue
+					}
+					if err == nil {
+						if !existed {
+							utils.Log.Infof("successfully created %v symlink in your PATH (%v)", filepath.Base(dPath), dPath)
+						}
+					} else {
+						utils.Log.Warnf("failed to create %v symlink in your PATH (%v); please use %v instead", filepath.Base(dPath), dPath, sPath)
+					}
 				}
 			}
 		}()
@@ -174,14 +212,16 @@ func InitEnv(target string) {
 				_, err = utils.RunCmdOptionalError(exec.Command("cmd", "/C", "mklink", "/J", link, strings.TrimSpace(utils.RunCmd(utils.GoList("{{.Dir}}", "github.com/therecipe/env_"+runtime.GOOS+"_amd64_"+strconv.Itoa(utils.QT_VERSION_NUM())[:3]+"/Tools", "-find"), "get env dir"))), "create symlink for env")
 			}
 		}
-		if err != nil {
+		if err != nil && target == runtime.GOOS {
 			if !(utils.ExistsFile(link) || utils.ExistsDir(link)) {
-				utils.Log.WithError(err).Warn("failed to create env symlink; fallback to patching binaries instead (this won't work for go modules)\r\nplease open an issue")
+				if s := "failed to create env symlink; fallback to patching binaries instead"; utils.UseGOMOD(path) {
+					utils.Log.WithError(err).Debug(s)
+				}
 				cmd := exec.Command("go", "run", "patch.go", qt_dir)
 				cmd.Dir = qt_dir
 				_, err = utils.RunCmdOptionalError(cmd, "patch env binaries")
 				if err != nil {
-					utils.Log.WithError(err).Warn("failed to patch binaries (do you use go modules?)\r\nyou won't be able to simply \"go build/run\" your application, but qtdeploy-ing applications should work nevertheless\r\nplease open an issue")
+					utils.Log.WithError(err).Warn("failed to patch binaries\r\nyou won't be able to simply \"go build/run\" your application, but qtdeploy-ing applications should work nevertheless")
 				}
 			}
 		}
@@ -208,7 +248,7 @@ func InitEnv(target string) {
 			}
 		}
 
-		if len(bindir) != 0 && utils.UseGOMOD("") && strings.Contains(qt_dir, "@") {
+		if len(bindir) != 0 && utils.UseGOMOD(path) && strings.Contains(qt_dir, "@") {
 			filepath.Walk(bindir, func(path string, info os.FileInfo, err error) error {
 				if err != nil || info.IsDir() {
 					return err
@@ -231,10 +271,16 @@ func Vagrant(arg []string, target, path string, writeCacheToHost bool, system st
 }
 
 func virtual(arg []string, target, path string, writeCacheToHost bool, docker bool, system string) {
+	dUser := "therecipe/qt"
+	if strings.Contains(target, ":") {
+		dUser = strings.Split(target, ":")[0]
+		target = strings.Split(target, ":")[1]
+	}
 	arg = append(arg, target)
 	if system == "" {
 		system = "linux"
 	}
+	android_arm64 := target == "android_arm64"
 
 	var image string
 	switch target {
@@ -269,10 +315,8 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 		switch system {
 		case "darwin":
 		case "linux":
-			if (strings.HasPrefix(target, "windows") || strings.HasPrefix(target, "ubports") || strings.HasPrefix(target, "linux") || strings.HasPrefix(target, "js") || strings.HasPrefix(target, "wasm")) && strings.Contains(target, "_") {
+			if strings.Contains(target, "_") {
 				image = target
-			} else if docker && strings.Contains(target, "_") {
-				utils.Log.Fatalf("%v is currently not supported", target)
 			}
 		case "windows":
 		}
@@ -302,22 +346,22 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 
 	if utils.UseGOMOD(path) {
 		args = append(args, []string{"-v", fmt.Sprintf("%v:/media/%v", filepath.Dir(utils.GOMOD(path)), filepath.Base(filepath.Dir(utils.GOMOD(path))))}...)
-	} else {
-		for i, gp := range strings.Split(utils.GOPATH(), string(filepath.ListSeparator)) {
-			if runtime.GOOS == "windows" {
-				gp = "//" + strings.ToLower(gp[:1]) + gp[1:]
-			}
-			gp = strings.Replace(gp, "\\", "/", -1)
-			gp = strings.Replace(gp, ":", "", -1)
+	}
 
-			var pathprefix string
-			if docker {
-				args = append(args, []string{"-v", fmt.Sprintf("%v:/media/sf_GOPATH%v", gp, i)}...)
-			} else if system == "windows" {
-				pathprefix = "C:"
-			}
-			paths = append(paths, fmt.Sprintf(pathprefix+"/media/sf_GOPATH%v", i))
+	for i, gp := range strings.Split(utils.GOPATH(), string(filepath.ListSeparator)) {
+		if runtime.GOOS == "windows" {
+			gp = "//" + strings.ToLower(gp[:1]) + gp[1:]
 		}
+		gp = strings.Replace(gp, "\\", "/", -1)
+		gp = strings.Replace(gp, ":", "", -1)
+
+		var pathprefix string
+		if docker {
+			args = append(args, []string{"-v", fmt.Sprintf("%v:/media/sf_GOPATH%v", gp, i)}...)
+		} else if system == "windows" {
+			pathprefix = "C:"
+		}
+		paths = append(paths, fmt.Sprintf(pathprefix+"/media/sf_GOPATH%v", i))
 	}
 
 	var gpfs string
@@ -339,14 +383,18 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 		pathseperator = ";"
 	}
 	gpath := strings.Join(paths, pathseperator)
-	if writeCacheToHost {
+	if utils.UseGOMOD(path) {
 		gpath += pathseperator + gpfs
-		args = append(args, []string{"-e", "QT_STUB=true"}...) //TODO: won't work with wine images atm
 	} else {
-		if strings.Contains(path, "github.com/therecipe/qt/internal/examples") && !strings.Contains(path, "github.com/therecipe/qt/internal/examples/androidextras") {
+		if writeCacheToHost {
 			gpath += pathseperator + gpfs
+			args = append(args, []string{"-e", "QT_STUB=true"}...) //TODO: won't work with wine images atm
 		} else {
-			gpath = gpfs + pathseperator + gpath
+			if strings.Contains(path, "github.com/therecipe/qt/internal/examples") && !strings.Contains(path, "github.com/therecipe/qt/internal/examples/androidextras") {
+				gpath += pathseperator + gpfs
+			} else {
+				gpath = gpfs + pathseperator + gpath
+			}
 		}
 	}
 
@@ -382,7 +430,7 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 		args = append(args, []string{"-e", "QT_NOT_CACHED=true"}...) //TODO: won't work with wine images atm
 	}
 
-	if target == "android" && utils.GOARCH() == "arm64" {
+	if (target == "android" && utils.GOARCH() == "arm64") || android_arm64 {
 		args = append(args, []string{"-e", "GOARCH=arm64"}...)
 	}
 
@@ -394,23 +442,31 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 		args = append(args, []string{"-e", "GOPROXY=" + v}...)
 	}
 
+	if v, ok := os.LookupEnv("GONOPROXY"); ok {
+		args = append(args, []string{"-e", "GONOPROXY=" + v}...)
+	}
+
+	if v, ok := os.LookupEnv("GOSUMDB"); ok {
+		args = append(args, []string{"-e", "GOSUMDB=" + v}...)
+	}
+
+	if v, ok := os.LookupEnv("GONOSUMBDB"); ok {
+		args = append(args, []string{"-e", "GONOSUMBDB=" + v}...)
+	}
+
 	if v, ok := os.LookupEnv("GOPRIVATE"); ok {
 		args = append(args, []string{"-e", "GOPRIVATE=" + v}...)
 	}
 
-	//TODO: flag for shared GOCACHE
-
-	if !utils.UseGOMOD(path) {
-		if docker {
-			args = append(args, []string{"-e", "GOPATH=" + gpath}...)
-		} else {
-			args = append(args, []string{"-e", "QT_VAGRANT=true"}...) //TODO: won't work with wine images atm
-			args = append(args, []string{"-e", "GOPATH='" + gpath + "'"}...)
-		}
+	if docker {
+		args = append(args, []string{"-e", "GOPATH=" + gpath}...)
+	} else {
+		args = append(args, []string{"-e", "QT_VAGRANT=true"}...) //TODO: won't work with wine images atm
+		args = append(args, []string{"-e", "GOPATH='" + gpath + "'"}...)
 	}
 
 	if docker {
-		args = append(args, []string{"-i", fmt.Sprintf("therecipe/qt:%v", image)}...)
+		args = append(args, []string{"-i", fmt.Sprintf("%v:%v", dUser, image)}...)
 	} else {
 		for i, a := range args {
 			if a == "-e" {
@@ -457,29 +513,17 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 		}
 
 		if !found && path != "" {
-			utils.Log.Panicln("Project needs to be inside GOPATH", path, utils.GOPATH())
+			utils.Log.Panicln("Project needs to be inside GOPATH; have:", path, "want:", utils.GOPATH())
 		}
 	}
 
 	if docker {
 		for i := range args {
-			if strings.HasPrefix(args[i], "windows_") {
-				args[i] = "windows"
-			}
-			if strings.HasPrefix(args[i], "ubports_") {
-				args[i] = "ubports"
-			}
-			if strings.HasPrefix(args[i], "linux_") {
-				args[i] = "linux"
-			}
-			if strings.HasPrefix(args[i], "js_") {
-				args[i] = "js"
-			}
-			if strings.HasPrefix(args[i], "wasm_") {
-				args[i] = "wasm"
-			}
-			if strings.HasPrefix(args[i], "android_") {
-				args[i] = "android"
+			for _, t := range []string{"windows", "ubports", "linux", "js", "wasm", "android", "darwin"} {
+				if strings.HasPrefix(args[i], t+"_") {
+					args[i] = t
+					break
+				}
 			}
 		}
 
@@ -529,6 +573,11 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 	var out string
 	var env map[string]string
 
+	androidAPI := "21"
+	if utils.QT_FELGO() {
+		androidAPI = "16"
+	}
+
 	switch target {
 	case "android":
 		tags = []string{target}
@@ -547,11 +596,13 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 			"CC":          filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "llvm", "prebuilt", runtime.GOOS+"-x86_64", "bin", "clang"),
 			"CXX":         filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "llvm", "prebuilt", runtime.GOOS+"-x86_64", "bin", "clang++"),
 
-			"CGO_CPPFLAGS": fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=21 -target armv7-none-linux-androideabi -gcc-toolchain %v --sysroot=%v -isystem %v",
+			"CGO_CPPFLAGS": fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=%v -target armv7-none-linux-androideabi -gcc-toolchain %v --sysroot=%v -isystem %v",
+				androidAPI,
 				filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64"),
 				filepath.Join(utils.ANDROID_NDK_DIR(), "sysroot"),
 				filepath.Join(utils.ANDROID_NDK_DIR(), "sysroot", "usr", "include", "arm-linux-androideabi")),
-			"CGO_LDFLAGS": fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=21 -target armv7-none-linux-androideabi -gcc-toolchain %v --sysroot=%v",
+			"CGO_LDFLAGS": fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=%v -target armv7-none-linux-androideabi -gcc-toolchain %v --sysroot=%v",
+				androidAPI,
 				filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64"),
 				filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-21", "arch-arm")),
 		}
@@ -563,11 +614,13 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 		if utils.GOARCH() == "arm64" {
 			env["GOARCH"] = "arm64"
 
-			env["CGO_CPPFLAGS"] = fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=21 -target aarch64-none-linux-android -gcc-toolchain %v --sysroot=%v -isystem %v",
+			env["CGO_CPPFLAGS"] = fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=%v -target aarch64-none-linux-android -gcc-toolchain %v --sysroot=%v -isystem %v",
+				androidAPI,
 				filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "aarch64-linux-android-4.9", "prebuilt", runtime.GOOS+"-x86_64"),
 				filepath.Join(utils.ANDROID_NDK_DIR(), "sysroot"),
 				filepath.Join(utils.ANDROID_NDK_DIR(), "sysroot", "usr", "include", "aarch64-linux-android"))
-			env["CGO_LDFLAGS"] = fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=21 -target aarch64-none-linux-android -gcc-toolchain %v --sysroot=%v",
+			env["CGO_LDFLAGS"] = fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=%v -target aarch64-none-linux-android -gcc-toolchain %v --sysroot=%v",
+				androidAPI,
 				filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "aarch64-linux-android-4.9", "prebuilt", runtime.GOOS+"-x86_64"),
 				filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-21", "arch-arm64"))
 		}
@@ -588,11 +641,13 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 			"CC":          filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "llvm", "prebuilt", runtime.GOOS+"-x86_64", "bin", "clang"),
 			"CXX":         filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "llvm", "prebuilt", runtime.GOOS+"-x86_64", "bin", "clang++"),
 
-			"CGO_CPPFLAGS": fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=21 -target i686-none-linux-android -mstackrealign -gcc-toolchain %v --sysroot=%v -isystem %v",
+			"CGO_CPPFLAGS": fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=%v -target i686-none-linux-android -mstackrealign -gcc-toolchain %v --sysroot=%v -isystem %v",
+				androidAPI,
 				filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "x86-4.9", "prebuilt", runtime.GOOS+"-x86_64"),
 				filepath.Join(utils.ANDROID_NDK_DIR(), "sysroot"),
 				filepath.Join(utils.ANDROID_NDK_DIR(), "sysroot", "usr", "include", "i686-linux-android")),
-			"CGO_LDFLAGS": fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=21 -target i686-none-linux-android -mstackrealign -gcc-toolchain %v --sysroot=%v",
+			"CGO_LDFLAGS": fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=%v -target i686-none-linux-android -mstackrealign -gcc-toolchain %v --sysroot=%v",
+				androidAPI,
 				filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "x86-4.9", "prebuilt", runtime.GOOS+"-x86_64"),
 				filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-21", "arch-x86")),
 		}
@@ -600,6 +655,8 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 			env["TMP"] = os.Getenv("TMP")
 			env["TEMP"] = os.Getenv("TEMP")
 		}
+
+		//TODO: x86_64
 
 	case "ios", "ios-simulator":
 		tags = []string{"ios"}
@@ -687,18 +744,14 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 
 			if utils.QT_MSYS2() {
 				env["GOARCH"] = utils.QT_MSYS2_ARCH()
-				// use gcc shipped with msys2
 				env["PATH"] = filepath.Join(utils.QT_MSYS2_DIR(), "bin") + ";" + env["PATH"]
 			} else {
-				// use gcc shipped with qt installation
-				path := filepath.Join(utils.QT_DIR(), "Tools", utils.MINGWTOOLSDIR(), "bin")
-				if !utils.ExistsDir(path) {
-					path = strings.Replace(path, utils.MINGWTOOLSDIR(), "mingw530_32", -1)
-				}
-				if !utils.ExistsDir(path) {
-					path = strings.Replace(path, "mingw530_32", "mingw492_32", -1)
-				}
-				env["PATH"] = path + ";" + env["PATH"]
+				env["PATH"] = utils.MINGWTOOLSDIR() + ";" + env["PATH"]
+			}
+
+			if utils.QT_MSVC() {
+				env["CC_FOR_CGO"] = "gcc"
+				env["CC"] = "cl"
 			}
 		} else {
 			delete(env, "TMP")
@@ -727,10 +780,18 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 			env["CGO_CXXFLAGS"] = "-std=c++11"
 		}
 
-		if arm, ok := os.LookupEnv("GOARM"); ok {
-			env["GOARM"] = arm
-			env["CC"] = os.Getenv("CC")
-			env["CXX"] = os.Getenv("CXX")
+		if strings.HasPrefix(env["GOARCH"], "arm") {
+			if env["GOARCH"] == "arm" {
+				if arm, ok := utils.GOARM(); ok {
+					env["GOARM"] = arm
+				}
+			}
+			if cc, ok := os.LookupEnv("CC"); ok {
+				env["CC"] = cc
+			}
+			if cxx, ok := os.LookupEnv("CXX"); ok {
+				env["CXX"] = cxx
+			}
 		}
 
 		if utils.QT_UBPORTS() || target == "ubports" {
@@ -768,10 +829,18 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 			"CGO_ENABLED": "1",
 		}
 
-		if arm, ok := os.LookupEnv("GOARM"); ok {
-			env["GOARM"] = arm
-			env["CC"] = os.Getenv("CC")
-			env["CXX"] = os.Getenv("CXX")
+		if strings.HasPrefix(env["GOARCH"], "arm") {
+			if env["GOARCH"] == "arm" {
+				if arm, ok := utils.GOARM(); ok {
+					env["GOARM"] = arm
+				}
+			}
+			if cc, ok := os.LookupEnv("CC"); ok {
+				env["CC"] = cc
+			}
+			if cxx, ok := os.LookupEnv("CXX"); ok {
+				env["CXX"] = cxx
+			}
 		}
 
 	case "rpi1", "rpi2", "rpi3":
@@ -889,13 +958,19 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 		if _, ok := env["EMSCRIPTEN"]; !ok {
 			env["EMSCRIPTEN"] = filepath.Join(env["BINARYEN_ROOT"], "emscripten")
 		}
-		env["PATH"] = env["PATH"] + ":" + env["EMSDK"] + ":" + env["LLVM_ROOT"] + ":" + env["NODE_JS"] + ":" + env["EMSCRIPTEN"]
+		env["PATH"] = env["EMSDK"] + ":" + env["LLVM_ROOT"] + ":" + env["NODE_JS"] + ":" + env["EMSCRIPTEN"] + ":" + env["PATH"]
 	}
 
-	if runtime.GOOS != target || strings.Contains(utils.GOVERSION(), "1.10") {
+	if runtime.GOOS != target || utils.GOVERSION_NUM() == 110 {
 		env["CGO_CFLAGS_ALLOW"] = utils.CGO_CFLAGS_ALLOW()
 		env["CGO_CXXFLAGS_ALLOW"] = utils.CGO_CXXFLAGS_ALLOW()
 		env["CGO_LDFLAGS_ALLOW"] = utils.CGO_LDFLAGS_ALLOW()
+	}
+
+	if utils.QT_MSVC() {
+		env["CGO_MSCFLAGS_ALLOW"] = utils.CGO_MSCFLAGS_ALLOW()
+		env["CGO_MSCXXFLAGS_ALLOW"] = utils.CGO_MSCXXFLAGS_ALLOW()
+		env["CGO_MSLDFLAGS_ALLOW"] = utils.CGO_MSLDFLAGS_ALLOW()
 	}
 
 	if flags := utils.GOFLAGS(); len(flags) != 0 {
@@ -907,11 +982,6 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 		if _, ok := env[es[0]]; !ok {
 			env[es[0]] = strings.Join(es[1:], "=")
 		}
-	}
-
-	//TODO: this can probably by removed, since it's explicitly set in UseGOMOD
-	if strings.Contains(strings.Replace(depPath, "\\", "/", -1), "src/"+utils.PackageName) && env["GO111MODULE"] != "on" {
-		env["GO111MODULE"] = "off"
 	}
 
 	return env, tags, ldFlags, out

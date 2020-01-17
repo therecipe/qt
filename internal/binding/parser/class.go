@@ -5,6 +5,7 @@ import (
 	"encoding/hex"
 	"fmt"
 	"os"
+	"strconv"
 	"strings"
 	"sync"
 
@@ -25,6 +26,7 @@ type Class struct {
 	Properties []*Variable `xml:"property"`
 	Classes    []*Class    `xml:"class"`
 	Since      string      `xml:"since,attr"`
+	Filepath   string      `xml:"filepath,attr"`
 
 	DocModule    string
 	Stub         bool
@@ -37,6 +39,8 @@ type Class struct {
 
 	Constructors []string
 	Derivations  []string
+
+	ToBeCleanedUp bool
 
 	sync.Mutex
 }
@@ -245,9 +249,21 @@ func (c *Class) IsSupported() bool {
 		return false
 	}
 
+	if strings.Contains(c.Since, ".") {
+		version := strings.TrimPrefix(c.Since, "Qt")
+		vmaj, _ := strconv.Atoi(string(version[0]))
+		vmin, _ := strconv.Atoi(strings.Replace(version[1:], ".", "", -1))
+		if vmaj*1e3+vmin*10 > utils.QT_VERSION_NUM() {
+			c.Access = "unsupported_isApiVersionBlockedClass"
+			return false
+		}
+	}
+
 	switch c.Name {
 	case "QCborStreamReader", "QCborStreamWriter", "QCborValue", "QScopeGuard", "QTest",
-		"QImageReaderWriterHelpers", "QPasswordDigestor", "QDtls", "QDtlsClientVerifier", "QGeoJson":
+		"QImageReaderWriterHelpers", "QPasswordDigestor", "QDtls", "QDtlsClientVerifier", "QGeoJson",
+		"QQuickPopupItem", "QQuickDeferredPointer", "QQuickPopupPositioner", "QQuickVelocityCalculator",
+		"QQuickPressHandler", "QQuickStackElement", "QQuickPopupTransitionManager":
 		c.Access = "unsupported_isBlockedClass"
 		return false
 	}
@@ -294,8 +310,6 @@ func (c *Class) IsSupported() bool {
 		"QPlatformGraphicsBuffer", "QPlatformSystemTrayIcon", "QRasterPaintEngine", "QSupportedWritingSystems", "QGeoLocation", //file not found or QPA API
 		"QAbstractOpenGLFunctions",
 
-		"QProcess", "QProcessEnvironment", //TODO: iOS
-
 		"QRemoteObjectPackets",
 
 		"QStaticByteArrayMatcher", "QtDummyFutex", "QtLinuxFutex",
@@ -316,11 +330,18 @@ func (c *Class) IsSupported() bool {
 		"QSvgIOHandler", "QSvgIconEngine", "QQuickProfilerAdapter",
 		"QWavefrontMesh", "QM3uPlaylistPlugin", "QOpenSLESAudioInput",
 		"QSGSimpleMaterialComparableMaterial", "QGStreamerAvailabilityControl",
-		"QGstreamerV4L2Input", "QSignalMapper":
+		"QGstreamerV4L2Input", "QSignalMapper",
+
+		"QGeoPositionInfoSourceFactoryV2":
 		{
 			c.Access = "unsupported_isBlockedClass"
 			return false
 		}
+	}
+
+	if strings.HasPrefix(c.Name, "QProcess") && strings.HasPrefix(State.Target, "ios") {
+		c.Access = "unsupported_isBlockedClass"
+		return false
 	}
 
 	for _, cn := range []string{"QTextToSpeechPlugin", "QTextToSpeechEngine"} {
@@ -336,11 +357,11 @@ func (c *Class) IsSupported() bool {
 
 		strings.HasPrefix(c.Name, "QAtomic"), //other
 
-		strings.HasSuffix(c.Name, "terator"), strings.Contains(c.Brief, "emplate"), //needs template
+		strings.HasSuffix(c.Name, "terator") && c.Name != "QJSValueIterator", strings.Contains(c.Brief, "emplate"), //needs template
 
 		strings.HasPrefix(c.Name, "QVulkan"),
 
-		!strings.HasPrefix(c.Name, "Q") && strings.HasPrefix(c.Module, "Qt") && c.Module != "QtSailfish" && c.Name != "PaintContext",
+		!strings.HasPrefix(c.Name, "Q") && strings.HasPrefix(c.Module, "Qt") && c.Module != "QtSailfish" && c.Module != "QtFelgo" && c.Name != "PaintContext" && c.Name != "RawHeader",
 		strings.HasPrefix(c.Name, "Qml") && c.Module == "QtSensors",
 		strings.HasPrefix(c.Name, "QQml") && (c.Module == "QtQuick" || c.Module == "QtWebSockets"),
 		strings.HasPrefix(c.Name, "QAndroid") && strings.HasPrefix(c.Module, "QtMultimedia"),

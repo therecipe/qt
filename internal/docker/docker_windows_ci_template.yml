@@ -1,0 +1,23 @@
+jobs:
+  -
+    job: '${{ parameters.name }}'
+    timeoutInMinutes: 0
+    pool:
+      vmImage: '${{ parameters.image }}'
+    variables:
+      CI: true
+      GO111MODULE: off
+    steps:
+      -
+        script: 'go get -v github.com/therecipe/qt/cmd/... && C:\Users\VssAdministrator\go\bin\qtsetup'
+  -
+    job: '${{ parameters.name }}_module'
+    timeoutInMinutes: 0
+    pool:
+      vmImage: '${{ parameters.image }}'
+    variables:
+      CI: true
+      GO111MODULE: on
+    steps:
+      -
+        script: 'git clone https://github.com/therecipe/examples.git && cd ./examples && go install -v -tags=no_env github.com/therecipe/qt/cmd/... && go mod vendor && git clone https://github.com/therecipe/env_windows_amd64_513.git vendor/github.com/therecipe/env_windows_amd64_513 && C:\Users\VssAdministrator\go\bin\qtsetup && C:\Users\VssAdministrator\go\bin\qtdeploy test desktop ./basic/widgets'

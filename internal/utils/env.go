@@ -20,7 +20,30 @@ func QT_VERSION() string {
 	if version, ok := os.LookupEnv("QT_VERSION"); ok {
 		return version
 	}
-	if QT_PKG_CONFIG() {
+
+	switch {
+	case QT_MXE():
+		return "5.13.0"
+
+	case os.Getenv("QT_HOMEBREW") == "true":
+		return "5.13.0"
+
+	case QT_MACPORTS(), QT_NIX():
+		return "5.11.1"
+
+	case QT_MSYS2(), QT_FELGO():
+		return "5.12.0"
+
+	case QT_UBPORTS_VERSION() == "xenial":
+		return "5.9.0"
+
+	case QT_SAILFISH():
+		return "5.6.3"
+
+	case QT_RPI():
+		return "5.7.0"
+
+	case QT_PKG_CONFIG():
 		var r string
 		qtVersionCacheMutex.Lock()
 		if qtVersionCache == "" {
@@ -29,14 +52,10 @@ func QT_VERSION() string {
 		r = qtVersionCache
 		qtVersionCacheMutex.Unlock()
 		return r
-	}
 
-	//TODO: proper def version for macports, mxe, msys, homebrew, ...
-
-	if QT_FELGO() {
-		return "5.11.1"
+	default:
+		return "5.13.0"
 	}
-	return "5.13.0"
 }
 
 func QT_VERSION_NUM() int {
@@ -47,6 +66,9 @@ func QT_VERSION_NUM() int {
 }
 
 func QT_VERSION_MAJOR() string {
+	if QT_FELGO() {
+		return "Felgo"
+	}
 	if version, ok := os.LookupEnv("QT_VERSION_MAJOR"); ok {
 		return version
 	}
@@ -160,7 +182,7 @@ func CheckBuildTarget(buildTarget string, docker bool) {
 		switch {
 		case QT_MSYS2():
 			Log.Fatalf("%v is not supported as a deploy target on %v with MSYS2 -> install the official Qt version instead and try again", buildTarget, runtime.GOOS)
-		case QT_HOMEBREW(), QT_MACPORTS(), QT_NIX(), QT_FELGO():
+		case QT_HOMEBREW(), QT_MACPORTS(), QT_NIX():
 			Log.Fatalf("%v is not supported as a deploy target on %v with HomeBrew/MacPorts/Nix -> install the official Qt version instead and try again", buildTarget, runtime.GOOS)
 		case QT_PKG_CONFIG() && !QT_UBPORTS():
 			Log.Fatalf("%v is not supported as a deploy target on %v with PkgConfig -> install the official Qt version instead and try again", buildTarget, runtime.GOOS)
@@ -254,6 +276,8 @@ func ToolPath(tool, target string) string {
 		//TODO:
 	case "rp1", "rpi2", "rpi3":
 		return filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), target, "bin", tool)
+	case "wasm", "js":
+		return filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), "wasm_32", "bin", tool)
 	}
 	return ""
 }
@@ -284,11 +308,42 @@ func CGO_LDFLAGS_ALLOW() string {
 	return ".*"
 }
 
+func CGO_MSCFLAGS_ALLOW() string {
+	if allowed, ok := os.LookupEnv("CGO_MSCFLAGS_ALLOW"); ok {
+		return allowed
+	}
+	return ".*"
+}
+
+func CGO_MSCXXFLAGS_ALLOW() string {
+	if allowed, ok := os.LookupEnv("CGO_MSCXXFLAGS_ALLOW"); ok {
+		return allowed
+	}
+	return ".*"
+}
+
+func CGO_MSLDFLAGS_ALLOW() string {
+	if allowed, ok := os.LookupEnv("CGO_MSLDFLAGS_ALLOW"); ok {
+		return allowed
+	}
+	return ".*"
+}
+
 func GOARCH() string {
 	if arch, ok := os.LookupEnv("GOARCH"); ok {
 		return arch
 	}
 	return runtime.GOARCH
+}
+
+func GOARM() (string, bool) {
+	if arm, ok := os.LookupEnv("GOARM"); ok {
+		return arm, true
+	}
+	if arm := strings.TrimSpace(RunCmd(exec.Command("go", "env", "GOARM"), "get GOARM")); arm != "" {
+		return arm, true
+	}
+	return "", false
 }
 
 func QT_DYNAMIC_SETUP() bool {
@@ -326,10 +381,11 @@ var (
 )
 
 func UseGOMOD(path string) (r bool) {
-	if strings.Contains(path, "src/"+PackageName) {
+	if strings.Contains(strings.Replace(path, "\\", "/", -1), "src/"+PackageName) {
+		os.Setenv("GO111MODULE", "off")
 		return
 	}
-	if wd, _ := os.Getwd(); path == "" && strings.Contains(wd, "src/"+PackageName) {
+	if wd, _ := os.Getwd(); path == "" && strings.Contains(strings.Replace(wd, "\\", "/", -1), "src/"+PackageName) {
 		os.Setenv("GO111MODULE", "off")
 		return
 	}
@@ -353,11 +409,14 @@ func QT_GEN_OPENGL() bool {
 	return os.Getenv("QT_GEN_OPENGL") == "true"
 }
 
+func QT_GEN_QUICK_EXTRAS() bool {
+	return os.Getenv("QT_GEN_QUICK_EXTRAS") == "true"
+}
+
 func GoList(args ...string) *exec.Cmd {
 	cmd := exec.Command("go", "list")
 	if UseGOMOD("") {
-		if /*strings.Contains(strings.Join(args, "|"), "github.com/therecipe/env_"+runtime.GOOS+"_amd64") ||*/ strings.Contains(strings.Join(args, "|"), "github.com/therecipe/qt/internal") {
-			//TODO: make env readonly if it can't be found inside ./vendor ...
+		if strings.Contains(strings.Join(args, "|"), "github.com/therecipe/qt/internal") && !strings.Contains(strings.Join(args, "|"), "github.com/therecipe/qt/internal/binding/runtime") {
 			cmd.Args = append(cmd.Args, "-mod=readonly")
 		} else {
 			cmd.Args = append(cmd.Args, GOFLAGS())
@@ -365,19 +424,11 @@ func GoList(args ...string) *exec.Cmd {
 		cmd.Dir = filepath.Dir(GOMOD(""))
 	}
 
-	var skip bool
-	for i := 5; i <= 10; i++ {
-		if v := GOVERSION(); strings.Contains(v, fmt.Sprintf("go1.%v.", i)) || strings.HasSuffix(v, fmt.Sprintf("go1.%v", i)) {
-			skip = true
-			break
-		}
-	}
-
 	for i := len(args) - 1; i >= 0; i-- {
 		a := args[i]
 		if strings.HasPrefix(a, "-") {
 			args = append(args[:i], args[i+1:]...)
-			if !skip {
+			if GOVERSION_NUM() > 110 {
 				cmd.Args = append(cmd.Args, a)
 			}
 		}
@@ -397,7 +448,7 @@ var (
 func GoListOptional(args ...string) (r string) {
 	goListCacheMutex.Lock()
 	if _, ok := goListCache[strings.Join(args, "|")]; !ok {
-		goListCache[strings.Join(args, "|")] = RunCmdOptional(GoList(args[:len(args)-1]...), args[len(args)-1])
+		goListCache[strings.Join(args, "|")] = strings.TrimSpace(RunCmdOptional(GoList(args[:len(args)-1]...), args[len(args)-1]))
 	}
 	r = goListCache[strings.Join(args, "|")]
 	goListCacheMutex.Unlock()
@@ -418,11 +469,45 @@ var (
 )
 
 func GOVERSION() (r string) {
+	if v, ok := os.LookupEnv("GOVERSION"); ok {
+		return v
+	}
+	if QT_MSVC() {
+		return "go1.10"
+	}
 	goVersionCacheMutex.Lock()
+	var version string
 	if goVersionCache == "" {
-		goVersionCache = strings.Split(RunCmd(exec.Command("go", "version"), "get go version"), " ")[2]
+		version = strings.TrimSpace(RunCmd(exec.Command("go", "version"), "get go version"))
+		goVersionCache = strings.Split(version, " ")[2]
+	}
+	if strings.Contains(version, "devel") {
+		if strings.Contains(version, "+6741b7009d") { //go build that supports the msvc
+			goVersionCache = "go1.10"
+		} else {
+			goVersionCache = "go1.13"
+		}
+		Log.Warnln("go dev build detected; setting GOVERSION to:", goVersionCache)
 	}
 	r = goVersionCache
 	goVersionCacheMutex.Unlock()
 	return r
+}
+
+func GOVERSION_NUM() int {
+	version := strings.TrimPrefix(GOVERSION(), "go")
+	vmaj, _ := strconv.Atoi(string(version[0]))
+	vmin, _ := strconv.Atoi(strings.Replace(version[1:], ".", "", -1))
+	if strings.Count(version, ".") == 2 {
+		vmin, _ = strconv.Atoi(strings.Split(version, ".")[1])
+	}
+	return vmaj*1e2 + vmin
+}
+
+func QT_RESOURCES_BIG() bool {
+	return os.Getenv("QT_RESOURCES_BIG") == "true"
+}
+
+func QT_GEN_TSD() bool {
+	return os.Getenv("QT_GEN_TSD") == "true"
 }

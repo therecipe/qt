@@ -10,18 +10,20 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"runtime"
 	"strings"
 	"unsafe"
 )
 
+func cGoFreePacked(ptr unsafe.Pointer) { core.NewQByteArrayFromPointer(ptr).DestroyQByteArray() }
 func cGoUnpackString(s C.struct_QtDBus_PackedString) string {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		return C.GoString(s.data)
 	}
 	return C.GoStringN(s.data, C.int(s.len))
 }
 func cGoUnpackBytes(s C.struct_QtDBus_PackedString) []byte {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
 		return *(*[]byte)(unsafe.Pointer(&gs))
@@ -72,12 +74,12 @@ func NewQDBusFromPointer(ptr unsafe.Pointer) (n *QDBus) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QDBus) DestroyQDBus() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -184,17 +186,19 @@ func (ptr *QDBusAbstractAdaptor) DisconnectDestroyQDBusAbstractAdaptor() {
 
 func (ptr *QDBusAbstractAdaptor) DestroyQDBusAbstractAdaptor() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QDBusAbstractAdaptor_DestroyQDBusAbstractAdaptor(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QDBusAbstractAdaptor) DestroyQDBusAbstractAdaptorDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QDBusAbstractAdaptor_DestroyQDBusAbstractAdaptorDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -222,7 +226,7 @@ func (ptr *QDBusAbstractAdaptor) __children_newList() unsafe.Pointer {
 func (ptr *QDBusAbstractAdaptor) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QDBusAbstractAdaptor___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -278,27 +282,6 @@ func (ptr *QDBusAbstractAdaptor) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QDBusAbstractAdaptor) __findChildren_newList3() unsafe.Pointer {
 	return C.QDBusAbstractAdaptor___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QDBusAbstractAdaptor) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QDBusAbstractAdaptor___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QDBusAbstractAdaptor) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDBusAbstractAdaptor___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QDBusAbstractAdaptor) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QDBusAbstractAdaptor___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQDBusAbstractAdaptor_ChildEvent
@@ -357,8 +340,9 @@ func callbackQDBusAbstractAdaptor_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QDBusAbstractAdaptor) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QDBusAbstractAdaptor_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -502,7 +486,7 @@ func (ptr *QDBusAbstractInterface) AsyncCall(method string, arg1 core.QVariant_I
 			defer C.free(unsafe.Pointer(methodC))
 		}
 		tmpValue := NewQDBusPendingCallFromPointer(C.QDBusAbstractInterface_AsyncCall(ptr.Pointer(), C.struct_QtDBus_PackedString{data: methodC, len: C.longlong(len(method))}, core.PointerFromQVariant(arg1), core.PointerFromQVariant(arg2), core.PointerFromQVariant(arg3), core.PointerFromQVariant(arg4), core.PointerFromQVariant(arg5), core.PointerFromQVariant(arg6), core.PointerFromQVariant(arg7), core.PointerFromQVariant(arg8)))
-		runtime.SetFinalizer(tmpValue, (*QDBusPendingCall).DestroyQDBusPendingCall)
+		qt.SetFinalizer(tmpValue, (*QDBusPendingCall).DestroyQDBusPendingCall)
 		return tmpValue
 	}
 	return nil
@@ -522,7 +506,7 @@ func (ptr *QDBusAbstractInterface) AsyncCallWithArgumentList(method string, args
 			}
 			return tmpList.Pointer()
 		}()))
-		runtime.SetFinalizer(tmpValue, (*QDBusPendingCall).DestroyQDBusPendingCall)
+		qt.SetFinalizer(tmpValue, (*QDBusPendingCall).DestroyQDBusPendingCall)
 		return tmpValue
 	}
 	return nil
@@ -536,7 +520,7 @@ func (ptr *QDBusAbstractInterface) Call(method string, arg1 core.QVariant_ITF, a
 			defer C.free(unsafe.Pointer(methodC))
 		}
 		tmpValue := NewQDBusMessageFromPointer(C.QDBusAbstractInterface_Call(ptr.Pointer(), C.struct_QtDBus_PackedString{data: methodC, len: C.longlong(len(method))}, core.PointerFromQVariant(arg1), core.PointerFromQVariant(arg2), core.PointerFromQVariant(arg3), core.PointerFromQVariant(arg4), core.PointerFromQVariant(arg5), core.PointerFromQVariant(arg6), core.PointerFromQVariant(arg7), core.PointerFromQVariant(arg8)))
-		runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
+		qt.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
 		return tmpValue
 	}
 	return nil
@@ -550,7 +534,7 @@ func (ptr *QDBusAbstractInterface) Call2(mode QDBus__CallMode, method string, ar
 			defer C.free(unsafe.Pointer(methodC))
 		}
 		tmpValue := NewQDBusMessageFromPointer(C.QDBusAbstractInterface_Call2(ptr.Pointer(), C.longlong(mode), C.struct_QtDBus_PackedString{data: methodC, len: C.longlong(len(method))}, core.PointerFromQVariant(arg1), core.PointerFromQVariant(arg2), core.PointerFromQVariant(arg3), core.PointerFromQVariant(arg4), core.PointerFromQVariant(arg5), core.PointerFromQVariant(arg6), core.PointerFromQVariant(arg7), core.PointerFromQVariant(arg8)))
-		runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
+		qt.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
 		return tmpValue
 	}
 	return nil
@@ -570,7 +554,7 @@ func (ptr *QDBusAbstractInterface) CallWithArgumentList(mode QDBus__CallMode, me
 			}
 			return tmpList.Pointer()
 		}()))
-		runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
+		qt.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
 		return tmpValue
 	}
 	return nil
@@ -630,7 +614,7 @@ func (ptr *QDBusAbstractInterface) CallWithCallback2(method string, args []*core
 func (ptr *QDBusAbstractInterface) Connection() *QDBusConnection {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDBusConnectionFromPointer(C.QDBusAbstractInterface_Connection(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QDBusConnection).DestroyQDBusConnection)
+		qt.SetFinalizer(tmpValue, (*QDBusConnection).DestroyQDBusConnection)
 		return tmpValue
 	}
 	return nil
@@ -710,24 +694,26 @@ func (ptr *QDBusAbstractInterface) DisconnectDestroyQDBusAbstractInterface() {
 
 func (ptr *QDBusAbstractInterface) DestroyQDBusAbstractInterface() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QDBusAbstractInterface_DestroyQDBusAbstractInterface(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QDBusAbstractInterface) DestroyQDBusAbstractInterfaceDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QDBusAbstractInterface_DestroyQDBusAbstractInterfaceDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QDBusAbstractInterface) __asyncCallWithArgumentList_args_atList(i int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QDBusAbstractInterface___asyncCallWithArgumentList_args_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -746,7 +732,7 @@ func (ptr *QDBusAbstractInterface) __asyncCallWithArgumentList_args_newList() un
 func (ptr *QDBusAbstractInterface) __callWithArgumentList_args_atList(i int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QDBusAbstractInterface___callWithArgumentList_args_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -765,7 +751,7 @@ func (ptr *QDBusAbstractInterface) __callWithArgumentList_args_newList() unsafe.
 func (ptr *QDBusAbstractInterface) __callWithCallback_args_atList(i int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QDBusAbstractInterface___callWithCallback_args_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -784,7 +770,7 @@ func (ptr *QDBusAbstractInterface) __callWithCallback_args_newList() unsafe.Poin
 func (ptr *QDBusAbstractInterface) __callWithCallback_args_atList2(i int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QDBusAbstractInterface___callWithCallback_args_atList2(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -803,7 +789,7 @@ func (ptr *QDBusAbstractInterface) __callWithCallback_args_newList2() unsafe.Poi
 func (ptr *QDBusAbstractInterface) __internalConstCall_args_atList(i int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QDBusAbstractInterface___internalConstCall_args_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -843,7 +829,7 @@ func (ptr *QDBusAbstractInterface) __children_newList() unsafe.Pointer {
 func (ptr *QDBusAbstractInterface) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QDBusAbstractInterface___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -899,27 +885,6 @@ func (ptr *QDBusAbstractInterface) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QDBusAbstractInterface) __findChildren_newList3() unsafe.Pointer {
 	return C.QDBusAbstractInterface___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QDBusAbstractInterface) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QDBusAbstractInterface___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QDBusAbstractInterface) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDBusAbstractInterface___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QDBusAbstractInterface) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QDBusAbstractInterface___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQDBusAbstractInterface_ChildEvent
@@ -978,8 +943,9 @@ func callbackQDBusAbstractInterface_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QDBusAbstractInterface) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QDBusAbstractInterface_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1139,7 +1105,7 @@ func (ptr *QDBusAbstractInterfaceBase) __children_newList() unsafe.Pointer {
 func (ptr *QDBusAbstractInterfaceBase) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QDBusAbstractInterfaceBase___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -1195,27 +1161,6 @@ func (ptr *QDBusAbstractInterfaceBase) __findChildren_setList3(i core.QObject_IT
 
 func (ptr *QDBusAbstractInterfaceBase) __findChildren_newList3() unsafe.Pointer {
 	return C.QDBusAbstractInterfaceBase___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QDBusAbstractInterfaceBase) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QDBusAbstractInterfaceBase___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QDBusAbstractInterfaceBase) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDBusAbstractInterfaceBase___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QDBusAbstractInterfaceBase) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QDBusAbstractInterfaceBase___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQDBusAbstractInterfaceBase_ChildEvent
@@ -1274,8 +1219,9 @@ func callbackQDBusAbstractInterfaceBase_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QDBusAbstractInterfaceBase) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QDBusAbstractInterfaceBase_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1427,20 +1373,20 @@ const (
 
 func NewQDBusArgument() *QDBusArgument {
 	tmpValue := NewQDBusArgumentFromPointer(C.QDBusArgument_NewQDBusArgument())
-	runtime.SetFinalizer(tmpValue, (*QDBusArgument).DestroyQDBusArgument)
+	qt.SetFinalizer(tmpValue, (*QDBusArgument).DestroyQDBusArgument)
 	return tmpValue
 }
 
 func NewQDBusArgument2(other QDBusArgument_ITF) *QDBusArgument {
 	tmpValue := NewQDBusArgumentFromPointer(C.QDBusArgument_NewQDBusArgument2(PointerFromQDBusArgument(other)))
-	runtime.SetFinalizer(tmpValue, (*QDBusArgument).DestroyQDBusArgument)
+	qt.SetFinalizer(tmpValue, (*QDBusArgument).DestroyQDBusArgument)
 	return tmpValue
 }
 
 func (ptr *QDBusArgument) AsVariant() *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QDBusArgument_AsVariant(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -1564,9 +1510,11 @@ func (ptr *QDBusArgument) Swap(other QDBusArgument_ITF) {
 
 func (ptr *QDBusArgument) DestroyQDBusArgument() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QDBusArgument_DestroyQDBusArgument(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1661,20 +1609,20 @@ func NewQDBusConnection(name string) *QDBusConnection {
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	tmpValue := NewQDBusConnectionFromPointer(C.QDBusConnection_NewQDBusConnection(C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}))
-	runtime.SetFinalizer(tmpValue, (*QDBusConnection).DestroyQDBusConnection)
+	qt.SetFinalizer(tmpValue, (*QDBusConnection).DestroyQDBusConnection)
 	return tmpValue
 }
 
 func NewQDBusConnection2(other QDBusConnection_ITF) *QDBusConnection {
 	tmpValue := NewQDBusConnectionFromPointer(C.QDBusConnection_NewQDBusConnection2(PointerFromQDBusConnection(other)))
-	runtime.SetFinalizer(tmpValue, (*QDBusConnection).DestroyQDBusConnection)
+	qt.SetFinalizer(tmpValue, (*QDBusConnection).DestroyQDBusConnection)
 	return tmpValue
 }
 
 func (ptr *QDBusConnection) AsyncCall(message QDBusMessage_ITF, timeout int) *QDBusPendingCall {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDBusPendingCallFromPointer(C.QDBusConnection_AsyncCall(ptr.Pointer(), PointerFromQDBusMessage(message), C.int(int32(timeout))))
-		runtime.SetFinalizer(tmpValue, (*QDBusPendingCall).DestroyQDBusPendingCall)
+		qt.SetFinalizer(tmpValue, (*QDBusPendingCall).DestroyQDBusPendingCall)
 		return tmpValue
 	}
 	return nil
@@ -1690,7 +1638,7 @@ func (ptr *QDBusConnection) BaseService() string {
 func (ptr *QDBusConnection) Call(message QDBusMessage_ITF, mode QDBus__CallMode, timeout int) *QDBusMessage {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDBusMessageFromPointer(C.QDBusConnection_Call(ptr.Pointer(), PointerFromQDBusMessage(message), C.longlong(mode), C.int(int32(timeout))))
-		runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
+		qt.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
 		return tmpValue
 	}
 	return nil
@@ -1828,7 +1776,7 @@ func QDBusConnection_ConnectToBus(ty QDBusConnection__BusType, name string) *QDB
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	tmpValue := NewQDBusConnectionFromPointer(C.QDBusConnection_QDBusConnection_ConnectToBus(C.longlong(ty), C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}))
-	runtime.SetFinalizer(tmpValue, (*QDBusConnection).DestroyQDBusConnection)
+	qt.SetFinalizer(tmpValue, (*QDBusConnection).DestroyQDBusConnection)
 	return tmpValue
 }
 
@@ -1839,7 +1787,7 @@ func (ptr *QDBusConnection) ConnectToBus(ty QDBusConnection__BusType, name strin
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	tmpValue := NewQDBusConnectionFromPointer(C.QDBusConnection_QDBusConnection_ConnectToBus(C.longlong(ty), C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}))
-	runtime.SetFinalizer(tmpValue, (*QDBusConnection).DestroyQDBusConnection)
+	qt.SetFinalizer(tmpValue, (*QDBusConnection).DestroyQDBusConnection)
 	return tmpValue
 }
 
@@ -1855,7 +1803,7 @@ func QDBusConnection_ConnectToBus2(address string, name string) *QDBusConnection
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	tmpValue := NewQDBusConnectionFromPointer(C.QDBusConnection_QDBusConnection_ConnectToBus2(C.struct_QtDBus_PackedString{data: addressC, len: C.longlong(len(address))}, C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}))
-	runtime.SetFinalizer(tmpValue, (*QDBusConnection).DestroyQDBusConnection)
+	qt.SetFinalizer(tmpValue, (*QDBusConnection).DestroyQDBusConnection)
 	return tmpValue
 }
 
@@ -1871,7 +1819,7 @@ func (ptr *QDBusConnection) ConnectToBus2(address string, name string) *QDBusCon
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	tmpValue := NewQDBusConnectionFromPointer(C.QDBusConnection_QDBusConnection_ConnectToBus2(C.struct_QtDBus_PackedString{data: addressC, len: C.longlong(len(address))}, C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}))
-	runtime.SetFinalizer(tmpValue, (*QDBusConnection).DestroyQDBusConnection)
+	qt.SetFinalizer(tmpValue, (*QDBusConnection).DestroyQDBusConnection)
 	return tmpValue
 }
 
@@ -1887,7 +1835,7 @@ func QDBusConnection_ConnectToPeer(address string, name string) *QDBusConnection
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	tmpValue := NewQDBusConnectionFromPointer(C.QDBusConnection_QDBusConnection_ConnectToPeer(C.struct_QtDBus_PackedString{data: addressC, len: C.longlong(len(address))}, C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}))
-	runtime.SetFinalizer(tmpValue, (*QDBusConnection).DestroyQDBusConnection)
+	qt.SetFinalizer(tmpValue, (*QDBusConnection).DestroyQDBusConnection)
 	return tmpValue
 }
 
@@ -1903,7 +1851,7 @@ func (ptr *QDBusConnection) ConnectToPeer(address string, name string) *QDBusCon
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	tmpValue := NewQDBusConnectionFromPointer(C.QDBusConnection_QDBusConnection_ConnectToPeer(C.struct_QtDBus_PackedString{data: addressC, len: C.longlong(len(address))}, C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}))
-	runtime.SetFinalizer(tmpValue, (*QDBusConnection).DestroyQDBusConnection)
+	qt.SetFinalizer(tmpValue, (*QDBusConnection).DestroyQDBusConnection)
 	return tmpValue
 }
 
@@ -2078,13 +2026,13 @@ func (ptr *QDBusConnection) IsConnected() bool {
 
 func QDBusConnection_LocalMachineId() *core.QByteArray {
 	tmpValue := core.NewQByteArrayFromPointer(C.QDBusConnection_QDBusConnection_LocalMachineId())
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
 func (ptr *QDBusConnection) LocalMachineId() *core.QByteArray {
 	tmpValue := core.NewQByteArrayFromPointer(C.QDBusConnection_QDBusConnection_LocalMachineId())
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
@@ -2161,13 +2109,13 @@ func (ptr *QDBusConnection) Send(message QDBusMessage_ITF) bool {
 
 func QDBusConnection_SessionBus() *QDBusConnection {
 	tmpValue := NewQDBusConnectionFromPointer(C.QDBusConnection_QDBusConnection_SessionBus())
-	runtime.SetFinalizer(tmpValue, (*QDBusConnection).DestroyQDBusConnection)
+	qt.SetFinalizer(tmpValue, (*QDBusConnection).DestroyQDBusConnection)
 	return tmpValue
 }
 
 func (ptr *QDBusConnection) SessionBus() *QDBusConnection {
 	tmpValue := NewQDBusConnectionFromPointer(C.QDBusConnection_QDBusConnection_SessionBus())
-	runtime.SetFinalizer(tmpValue, (*QDBusConnection).DestroyQDBusConnection)
+	qt.SetFinalizer(tmpValue, (*QDBusConnection).DestroyQDBusConnection)
 	return tmpValue
 }
 
@@ -2179,13 +2127,13 @@ func (ptr *QDBusConnection) Swap(other QDBusConnection_ITF) {
 
 func QDBusConnection_SystemBus() *QDBusConnection {
 	tmpValue := NewQDBusConnectionFromPointer(C.QDBusConnection_QDBusConnection_SystemBus())
-	runtime.SetFinalizer(tmpValue, (*QDBusConnection).DestroyQDBusConnection)
+	qt.SetFinalizer(tmpValue, (*QDBusConnection).DestroyQDBusConnection)
 	return tmpValue
 }
 
 func (ptr *QDBusConnection) SystemBus() *QDBusConnection {
 	tmpValue := NewQDBusConnectionFromPointer(C.QDBusConnection_QDBusConnection_SystemBus())
-	runtime.SetFinalizer(tmpValue, (*QDBusConnection).DestroyQDBusConnection)
+	qt.SetFinalizer(tmpValue, (*QDBusConnection).DestroyQDBusConnection)
 	return tmpValue
 }
 
@@ -2214,9 +2162,11 @@ func (ptr *QDBusConnection) UnregisterService(serviceName string) bool {
 
 func (ptr *QDBusConnection) DestroyQDBusConnection() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QDBusConnection_DestroyQDBusConnection(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2300,7 +2250,7 @@ func (ptr *QDBusConnectionInterface) ConnectCallWithCallbackFailed(f func(error 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "callWithCallbackFailed") {
-			C.QDBusConnectionInterface_ConnectCallWithCallbackFailed(ptr.Pointer())
+			C.QDBusConnectionInterface_ConnectCallWithCallbackFailed(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "callWithCallbackFailed")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "callWithCallbackFailed"); signal != nil {
@@ -2340,7 +2290,7 @@ func (ptr *QDBusConnectionInterface) ConnectServiceRegistered(f func(service str
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "serviceRegistered") {
-			C.QDBusConnectionInterface_ConnectServiceRegistered(ptr.Pointer())
+			C.QDBusConnectionInterface_ConnectServiceRegistered(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "serviceRegistered")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "serviceRegistered"); signal != nil {
@@ -2385,7 +2335,7 @@ func (ptr *QDBusConnectionInterface) ConnectServiceUnregistered(f func(service s
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "serviceUnregistered") {
-			C.QDBusConnectionInterface_ConnectServiceUnregistered(ptr.Pointer())
+			C.QDBusConnectionInterface_ConnectServiceUnregistered(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "serviceUnregistered")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "serviceUnregistered"); signal != nil {
@@ -2457,7 +2407,7 @@ func NewQDBusContextFromPointer(ptr unsafe.Pointer) (n *QDBusContext) {
 }
 func NewQDBusContext() *QDBusContext {
 	tmpValue := NewQDBusContextFromPointer(C.QDBusContext_NewQDBusContext())
-	runtime.SetFinalizer(tmpValue, (*QDBusContext).DestroyQDBusContext)
+	qt.SetFinalizer(tmpValue, (*QDBusContext).DestroyQDBusContext)
 	return tmpValue
 }
 
@@ -2471,7 +2421,7 @@ func (ptr *QDBusContext) CalledFromDBus() bool {
 func (ptr *QDBusContext) Connection() *QDBusConnection {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDBusConnectionFromPointer(C.QDBusContext_Connection(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QDBusConnection).DestroyQDBusConnection)
+		qt.SetFinalizer(tmpValue, (*QDBusConnection).DestroyQDBusConnection)
 		return tmpValue
 	}
 	return nil
@@ -2526,9 +2476,11 @@ func (ptr *QDBusContext) SetDelayedReply(enable bool) {
 
 func (ptr *QDBusContext) DestroyQDBusContext() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QDBusContext_DestroyQDBusContext(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2569,12 +2521,12 @@ func NewQDBusErrorFromPointer(ptr unsafe.Pointer) (n *QDBusError) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QDBusError) DestroyQDBusError() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2749,17 +2701,19 @@ func (ptr *QDBusInterface) DisconnectDestroyQDBusInterface() {
 
 func (ptr *QDBusInterface) DestroyQDBusInterface() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QDBusInterface_DestroyQDBusInterface(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QDBusInterface) DestroyQDBusInterfaceDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QDBusInterface_DestroyQDBusInterfaceDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2815,13 +2769,13 @@ const (
 
 func NewQDBusMessage() *QDBusMessage {
 	tmpValue := NewQDBusMessageFromPointer(C.QDBusMessage_NewQDBusMessage())
-	runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
+	qt.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
 	return tmpValue
 }
 
 func NewQDBusMessage2(other QDBusMessage_ITF) *QDBusMessage {
 	tmpValue := NewQDBusMessageFromPointer(C.QDBusMessage_NewQDBusMessage2(PointerFromQDBusMessage(other)))
-	runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
+	qt.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
 	return tmpValue
 }
 
@@ -2858,7 +2812,7 @@ func QDBusMessage_CreateError(name string, msg string) *QDBusMessage {
 		defer C.free(unsafe.Pointer(msgC))
 	}
 	tmpValue := NewQDBusMessageFromPointer(C.QDBusMessage_QDBusMessage_CreateError(C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtDBus_PackedString{data: msgC, len: C.longlong(len(msg))}))
-	runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
+	qt.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
 	return tmpValue
 }
 
@@ -2874,19 +2828,19 @@ func (ptr *QDBusMessage) CreateError(name string, msg string) *QDBusMessage {
 		defer C.free(unsafe.Pointer(msgC))
 	}
 	tmpValue := NewQDBusMessageFromPointer(C.QDBusMessage_QDBusMessage_CreateError(C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtDBus_PackedString{data: msgC, len: C.longlong(len(msg))}))
-	runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
+	qt.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
 	return tmpValue
 }
 
 func QDBusMessage_CreateError2(error QDBusError_ITF) *QDBusMessage {
 	tmpValue := NewQDBusMessageFromPointer(C.QDBusMessage_QDBusMessage_CreateError2(PointerFromQDBusError(error)))
-	runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
+	qt.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
 	return tmpValue
 }
 
 func (ptr *QDBusMessage) CreateError2(error QDBusError_ITF) *QDBusMessage {
 	tmpValue := NewQDBusMessageFromPointer(C.QDBusMessage_QDBusMessage_CreateError2(PointerFromQDBusError(error)))
-	runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
+	qt.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
 	return tmpValue
 }
 
@@ -2897,7 +2851,7 @@ func QDBusMessage_CreateError3(ty QDBusError__ErrorType, msg string) *QDBusMessa
 		defer C.free(unsafe.Pointer(msgC))
 	}
 	tmpValue := NewQDBusMessageFromPointer(C.QDBusMessage_QDBusMessage_CreateError3(C.longlong(ty), C.struct_QtDBus_PackedString{data: msgC, len: C.longlong(len(msg))}))
-	runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
+	qt.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
 	return tmpValue
 }
 
@@ -2908,7 +2862,7 @@ func (ptr *QDBusMessage) CreateError3(ty QDBusError__ErrorType, msg string) *QDB
 		defer C.free(unsafe.Pointer(msgC))
 	}
 	tmpValue := NewQDBusMessageFromPointer(C.QDBusMessage_QDBusMessage_CreateError3(C.longlong(ty), C.struct_QtDBus_PackedString{data: msgC, len: C.longlong(len(msg))}))
-	runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
+	qt.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
 	return tmpValue
 }
 
@@ -2925,7 +2879,7 @@ func (ptr *QDBusMessage) CreateErrorReply(name string, msg string) *QDBusMessage
 			defer C.free(unsafe.Pointer(msgC))
 		}
 		tmpValue := NewQDBusMessageFromPointer(C.QDBusMessage_CreateErrorReply(ptr.Pointer(), C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtDBus_PackedString{data: msgC, len: C.longlong(len(msg))}))
-		runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
+		qt.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
 		return tmpValue
 	}
 	return nil
@@ -2934,7 +2888,7 @@ func (ptr *QDBusMessage) CreateErrorReply(name string, msg string) *QDBusMessage
 func (ptr *QDBusMessage) CreateErrorReply2(error QDBusError_ITF) *QDBusMessage {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDBusMessageFromPointer(C.QDBusMessage_CreateErrorReply2(ptr.Pointer(), PointerFromQDBusError(error)))
-		runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
+		qt.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
 		return tmpValue
 	}
 	return nil
@@ -2948,7 +2902,7 @@ func (ptr *QDBusMessage) CreateErrorReply3(ty QDBusError__ErrorType, msg string)
 			defer C.free(unsafe.Pointer(msgC))
 		}
 		tmpValue := NewQDBusMessageFromPointer(C.QDBusMessage_CreateErrorReply3(ptr.Pointer(), C.longlong(ty), C.struct_QtDBus_PackedString{data: msgC, len: C.longlong(len(msg))}))
-		runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
+		qt.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
 		return tmpValue
 	}
 	return nil
@@ -2976,7 +2930,7 @@ func QDBusMessage_CreateMethodCall(service string, path string, interfa string, 
 		defer C.free(unsafe.Pointer(methodC))
 	}
 	tmpValue := NewQDBusMessageFromPointer(C.QDBusMessage_QDBusMessage_CreateMethodCall(C.struct_QtDBus_PackedString{data: serviceC, len: C.longlong(len(service))}, C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}, C.struct_QtDBus_PackedString{data: interfaC, len: C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{data: methodC, len: C.longlong(len(method))}))
-	runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
+	qt.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
 	return tmpValue
 }
 
@@ -3002,7 +2956,7 @@ func (ptr *QDBusMessage) CreateMethodCall(service string, path string, interfa s
 		defer C.free(unsafe.Pointer(methodC))
 	}
 	tmpValue := NewQDBusMessageFromPointer(C.QDBusMessage_QDBusMessage_CreateMethodCall(C.struct_QtDBus_PackedString{data: serviceC, len: C.longlong(len(service))}, C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}, C.struct_QtDBus_PackedString{data: interfaC, len: C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{data: methodC, len: C.longlong(len(method))}))
-	runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
+	qt.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
 	return tmpValue
 }
 
@@ -3015,7 +2969,7 @@ func (ptr *QDBusMessage) CreateReply(arguments []*core.QVariant) *QDBusMessage {
 			}
 			return tmpList.Pointer()
 		}()))
-		runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
+		qt.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
 		return tmpValue
 	}
 	return nil
@@ -3024,7 +2978,7 @@ func (ptr *QDBusMessage) CreateReply(arguments []*core.QVariant) *QDBusMessage {
 func (ptr *QDBusMessage) CreateReply2(argument core.QVariant_ITF) *QDBusMessage {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDBusMessageFromPointer(C.QDBusMessage_CreateReply2(ptr.Pointer(), core.PointerFromQVariant(argument)))
-		runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
+		qt.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
 		return tmpValue
 	}
 	return nil
@@ -3047,7 +3001,7 @@ func QDBusMessage_CreateSignal(path string, interfa string, name string) *QDBusM
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	tmpValue := NewQDBusMessageFromPointer(C.QDBusMessage_QDBusMessage_CreateSignal(C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}, C.struct_QtDBus_PackedString{data: interfaC, len: C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}))
-	runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
+	qt.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
 	return tmpValue
 }
 
@@ -3068,7 +3022,7 @@ func (ptr *QDBusMessage) CreateSignal(path string, interfa string, name string) 
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	tmpValue := NewQDBusMessageFromPointer(C.QDBusMessage_QDBusMessage_CreateSignal(C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}, C.struct_QtDBus_PackedString{data: interfaC, len: C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}))
-	runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
+	qt.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
 	return tmpValue
 }
 
@@ -3094,7 +3048,7 @@ func QDBusMessage_CreateTargetedSignal(service string, path string, interfa stri
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	tmpValue := NewQDBusMessageFromPointer(C.QDBusMessage_QDBusMessage_CreateTargetedSignal(C.struct_QtDBus_PackedString{data: serviceC, len: C.longlong(len(service))}, C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}, C.struct_QtDBus_PackedString{data: interfaC, len: C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}))
-	runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
+	qt.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
 	return tmpValue
 }
 
@@ -3120,7 +3074,7 @@ func (ptr *QDBusMessage) CreateTargetedSignal(service string, path string, inter
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	tmpValue := NewQDBusMessageFromPointer(C.QDBusMessage_QDBusMessage_CreateTargetedSignal(C.struct_QtDBus_PackedString{data: serviceC, len: C.longlong(len(service))}, C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}, C.struct_QtDBus_PackedString{data: interfaC, len: C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}))
-	runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
+	qt.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
 	return tmpValue
 }
 
@@ -3239,16 +3193,18 @@ func (ptr *QDBusMessage) Type() QDBusMessage__MessageType {
 
 func (ptr *QDBusMessage) DestroyQDBusMessage() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QDBusMessage_DestroyQDBusMessage(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QDBusMessage) __arguments_atList(i int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QDBusMessage___arguments_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -3267,7 +3223,7 @@ func (ptr *QDBusMessage) __arguments_newList() unsafe.Pointer {
 func (ptr *QDBusMessage) __createReply_arguments_atList(i int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QDBusMessage___createReply_arguments_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -3286,7 +3242,7 @@ func (ptr *QDBusMessage) __createReply_arguments_newList() unsafe.Pointer {
 func (ptr *QDBusMessage) __setArguments_arguments_atList(i int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QDBusMessage___setArguments_arguments_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -3339,18 +3295,17 @@ func NewQDBusObjectPathFromPointer(ptr unsafe.Pointer) (n *QDBusObjectPath) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QDBusObjectPath) DestroyQDBusObjectPath() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
-
 func NewQDBusObjectPath() *QDBusObjectPath {
 	tmpValue := NewQDBusObjectPathFromPointer(C.QDBusObjectPath_NewQDBusObjectPath())
-	runtime.SetFinalizer(tmpValue, (*QDBusObjectPath).DestroyQDBusObjectPath)
+	qt.SetFinalizer(tmpValue, (*QDBusObjectPath).DestroyQDBusObjectPath)
 	return tmpValue
 }
 
@@ -3361,13 +3316,13 @@ func NewQDBusObjectPath2(path string) *QDBusObjectPath {
 		defer C.free(unsafe.Pointer(pathC))
 	}
 	tmpValue := NewQDBusObjectPathFromPointer(C.QDBusObjectPath_NewQDBusObjectPath2(pathC))
-	runtime.SetFinalizer(tmpValue, (*QDBusObjectPath).DestroyQDBusObjectPath)
+	qt.SetFinalizer(tmpValue, (*QDBusObjectPath).DestroyQDBusObjectPath)
 	return tmpValue
 }
 
 func NewQDBusObjectPath3(path core.QLatin1String_ITF) *QDBusObjectPath {
 	tmpValue := NewQDBusObjectPathFromPointer(C.QDBusObjectPath_NewQDBusObjectPath3(core.PointerFromQLatin1String(path)))
-	runtime.SetFinalizer(tmpValue, (*QDBusObjectPath).DestroyQDBusObjectPath)
+	qt.SetFinalizer(tmpValue, (*QDBusObjectPath).DestroyQDBusObjectPath)
 	return tmpValue
 }
 
@@ -3378,7 +3333,7 @@ func NewQDBusObjectPath4(path string) *QDBusObjectPath {
 		defer C.free(unsafe.Pointer(pathC))
 	}
 	tmpValue := NewQDBusObjectPathFromPointer(C.QDBusObjectPath_NewQDBusObjectPath4(C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}))
-	runtime.SetFinalizer(tmpValue, (*QDBusObjectPath).DestroyQDBusObjectPath)
+	qt.SetFinalizer(tmpValue, (*QDBusObjectPath).DestroyQDBusObjectPath)
 	return tmpValue
 }
 
@@ -3445,31 +3400,31 @@ func NewQDBusPendingCallFromPointer(ptr unsafe.Pointer) (n *QDBusPendingCall) {
 }
 func NewQDBusPendingCall(other QDBusPendingCall_ITF) *QDBusPendingCall {
 	tmpValue := NewQDBusPendingCallFromPointer(C.QDBusPendingCall_NewQDBusPendingCall(PointerFromQDBusPendingCall(other)))
-	runtime.SetFinalizer(tmpValue, (*QDBusPendingCall).DestroyQDBusPendingCall)
+	qt.SetFinalizer(tmpValue, (*QDBusPendingCall).DestroyQDBusPendingCall)
 	return tmpValue
 }
 
 func QDBusPendingCall_FromCompletedCall(msg QDBusMessage_ITF) *QDBusPendingCall {
 	tmpValue := NewQDBusPendingCallFromPointer(C.QDBusPendingCall_QDBusPendingCall_FromCompletedCall(PointerFromQDBusMessage(msg)))
-	runtime.SetFinalizer(tmpValue, (*QDBusPendingCall).DestroyQDBusPendingCall)
+	qt.SetFinalizer(tmpValue, (*QDBusPendingCall).DestroyQDBusPendingCall)
 	return tmpValue
 }
 
 func (ptr *QDBusPendingCall) FromCompletedCall(msg QDBusMessage_ITF) *QDBusPendingCall {
 	tmpValue := NewQDBusPendingCallFromPointer(C.QDBusPendingCall_QDBusPendingCall_FromCompletedCall(PointerFromQDBusMessage(msg)))
-	runtime.SetFinalizer(tmpValue, (*QDBusPendingCall).DestroyQDBusPendingCall)
+	qt.SetFinalizer(tmpValue, (*QDBusPendingCall).DestroyQDBusPendingCall)
 	return tmpValue
 }
 
 func QDBusPendingCall_FromError(error QDBusError_ITF) *QDBusPendingCall {
 	tmpValue := NewQDBusPendingCallFromPointer(C.QDBusPendingCall_QDBusPendingCall_FromError(PointerFromQDBusError(error)))
-	runtime.SetFinalizer(tmpValue, (*QDBusPendingCall).DestroyQDBusPendingCall)
+	qt.SetFinalizer(tmpValue, (*QDBusPendingCall).DestroyQDBusPendingCall)
 	return tmpValue
 }
 
 func (ptr *QDBusPendingCall) FromError(error QDBusError_ITF) *QDBusPendingCall {
 	tmpValue := NewQDBusPendingCallFromPointer(C.QDBusPendingCall_QDBusPendingCall_FromError(PointerFromQDBusError(error)))
-	runtime.SetFinalizer(tmpValue, (*QDBusPendingCall).DestroyQDBusPendingCall)
+	qt.SetFinalizer(tmpValue, (*QDBusPendingCall).DestroyQDBusPendingCall)
 	return tmpValue
 }
 
@@ -3481,9 +3436,11 @@ func (ptr *QDBusPendingCall) Swap(other QDBusPendingCall_ITF) {
 
 func (ptr *QDBusPendingCall) DestroyQDBusPendingCall() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QDBusPendingCall_DestroyQDBusPendingCall(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3548,7 +3505,7 @@ func (ptr *QDBusPendingCallWatcher) ConnectFinished(f func(self *QDBusPendingCal
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "finished") {
-			C.QDBusPendingCallWatcher_ConnectFinished(ptr.Pointer())
+			C.QDBusPendingCallWatcher_ConnectFinished(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "finished")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "finished"); signal != nil {
@@ -3622,17 +3579,19 @@ func (ptr *QDBusPendingCallWatcher) DisconnectDestroyQDBusPendingCallWatcher() {
 
 func (ptr *QDBusPendingCallWatcher) DestroyQDBusPendingCallWatcher() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QDBusPendingCallWatcher_DestroyQDBusPendingCallWatcher(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QDBusPendingCallWatcher) DestroyQDBusPendingCallWatcherDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QDBusPendingCallWatcher_DestroyQDBusPendingCallWatcherDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3660,7 +3619,7 @@ func (ptr *QDBusPendingCallWatcher) __children_newList() unsafe.Pointer {
 func (ptr *QDBusPendingCallWatcher) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QDBusPendingCallWatcher___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -3716,27 +3675,6 @@ func (ptr *QDBusPendingCallWatcher) __findChildren_setList3(i core.QObject_ITF) 
 
 func (ptr *QDBusPendingCallWatcher) __findChildren_newList3() unsafe.Pointer {
 	return C.QDBusPendingCallWatcher___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QDBusPendingCallWatcher) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QDBusPendingCallWatcher___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QDBusPendingCallWatcher) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDBusPendingCallWatcher___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QDBusPendingCallWatcher) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QDBusPendingCallWatcher___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQDBusPendingCallWatcher_ChildEvent
@@ -3813,15 +3751,17 @@ func callbackQDBusPendingCallWatcher_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QDBusPendingCallWatcher) DeleteLater() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QDBusPendingCallWatcher_DeleteLater(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QDBusPendingCallWatcher) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QDBusPendingCallWatcher_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3990,12 +3930,12 @@ func NewQDBusPendingReplyFromPointer(ptr unsafe.Pointer) (n *QDBusPendingReply) 
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QDBusPendingReply) DestroyQDBusPendingReply() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4037,12 +3977,12 @@ func NewQDBusPendingReplyDataFromPointer(ptr unsafe.Pointer) (n *QDBusPendingRep
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QDBusPendingReplyData) DestroyQDBusPendingReplyData() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4083,12 +4023,12 @@ func NewQDBusReplyFromPointer(ptr unsafe.Pointer) (n *QDBusReply) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QDBusReply) DestroyQDBusReply() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4184,7 +4124,7 @@ func (ptr *QDBusServer) ConnectNewConnection(f func(connection *QDBusConnection)
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "newConnection") {
-			C.QDBusServer_ConnectNewConnection(ptr.Pointer())
+			C.QDBusServer_ConnectNewConnection(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "newConnection")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "newConnection"); signal != nil {
@@ -4251,17 +4191,19 @@ func (ptr *QDBusServer) DisconnectDestroyQDBusServer() {
 
 func (ptr *QDBusServer) DestroyQDBusServer() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QDBusServer_DestroyQDBusServer(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QDBusServer) DestroyQDBusServerDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QDBusServer_DestroyQDBusServerDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4289,7 +4231,7 @@ func (ptr *QDBusServer) __children_newList() unsafe.Pointer {
 func (ptr *QDBusServer) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QDBusServer___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -4345,27 +4287,6 @@ func (ptr *QDBusServer) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QDBusServer) __findChildren_newList3() unsafe.Pointer {
 	return C.QDBusServer___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QDBusServer) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QDBusServer___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QDBusServer) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDBusServer___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QDBusServer) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QDBusServer___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQDBusServer_ChildEvent
@@ -4424,8 +4345,9 @@ func callbackQDBusServer_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QDBusServer) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QDBusServer_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4607,7 +4529,7 @@ func (ptr *QDBusServiceWatcher) AddWatchedService(newService string) {
 func (ptr *QDBusServiceWatcher) Connection() *QDBusConnection {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDBusConnectionFromPointer(C.QDBusServiceWatcher_Connection(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QDBusConnection).DestroyQDBusConnection)
+		qt.SetFinalizer(tmpValue, (*QDBusConnection).DestroyQDBusConnection)
 		return tmpValue
 	}
 	return nil
@@ -4637,7 +4559,7 @@ func (ptr *QDBusServiceWatcher) ConnectServiceOwnerChanged(f func(serviceName st
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "serviceOwnerChanged") {
-			C.QDBusServiceWatcher_ConnectServiceOwnerChanged(ptr.Pointer())
+			C.QDBusServiceWatcher_ConnectServiceOwnerChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "serviceOwnerChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "serviceOwnerChanged"); signal != nil {
@@ -4692,7 +4614,7 @@ func (ptr *QDBusServiceWatcher) ConnectServiceRegistered(f func(serviceName stri
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "serviceRegistered") {
-			C.QDBusServiceWatcher_ConnectServiceRegistered(ptr.Pointer())
+			C.QDBusServiceWatcher_ConnectServiceRegistered(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "serviceRegistered")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "serviceRegistered"); signal != nil {
@@ -4737,7 +4659,7 @@ func (ptr *QDBusServiceWatcher) ConnectServiceUnregistered(f func(serviceName st
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "serviceUnregistered") {
-			C.QDBusServiceWatcher_ConnectServiceUnregistered(ptr.Pointer())
+			C.QDBusServiceWatcher_ConnectServiceUnregistered(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "serviceUnregistered")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "serviceUnregistered"); signal != nil {
@@ -4837,17 +4759,19 @@ func (ptr *QDBusServiceWatcher) DisconnectDestroyQDBusServiceWatcher() {
 
 func (ptr *QDBusServiceWatcher) DestroyQDBusServiceWatcher() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QDBusServiceWatcher_DestroyQDBusServiceWatcher(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QDBusServiceWatcher) DestroyQDBusServiceWatcherDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QDBusServiceWatcher_DestroyQDBusServiceWatcherDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4875,7 +4799,7 @@ func (ptr *QDBusServiceWatcher) __children_newList() unsafe.Pointer {
 func (ptr *QDBusServiceWatcher) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QDBusServiceWatcher___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -4931,27 +4855,6 @@ func (ptr *QDBusServiceWatcher) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QDBusServiceWatcher) __findChildren_newList3() unsafe.Pointer {
 	return C.QDBusServiceWatcher___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QDBusServiceWatcher) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QDBusServiceWatcher___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QDBusServiceWatcher) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDBusServiceWatcher___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QDBusServiceWatcher) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QDBusServiceWatcher___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQDBusServiceWatcher_ChildEvent
@@ -5010,8 +4913,9 @@ func callbackQDBusServiceWatcher_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QDBusServiceWatcher) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QDBusServiceWatcher_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5146,18 +5050,17 @@ func NewQDBusSignatureFromPointer(ptr unsafe.Pointer) (n *QDBusSignature) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QDBusSignature) DestroyQDBusSignature() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
-
 func NewQDBusSignature() *QDBusSignature {
 	tmpValue := NewQDBusSignatureFromPointer(C.QDBusSignature_NewQDBusSignature())
-	runtime.SetFinalizer(tmpValue, (*QDBusSignature).DestroyQDBusSignature)
+	qt.SetFinalizer(tmpValue, (*QDBusSignature).DestroyQDBusSignature)
 	return tmpValue
 }
 
@@ -5168,13 +5071,13 @@ func NewQDBusSignature2(signature string) *QDBusSignature {
 		defer C.free(unsafe.Pointer(signatureC))
 	}
 	tmpValue := NewQDBusSignatureFromPointer(C.QDBusSignature_NewQDBusSignature2(signatureC))
-	runtime.SetFinalizer(tmpValue, (*QDBusSignature).DestroyQDBusSignature)
+	qt.SetFinalizer(tmpValue, (*QDBusSignature).DestroyQDBusSignature)
 	return tmpValue
 }
 
 func NewQDBusSignature3(signature core.QLatin1String_ITF) *QDBusSignature {
 	tmpValue := NewQDBusSignatureFromPointer(C.QDBusSignature_NewQDBusSignature3(core.PointerFromQLatin1String(signature)))
-	runtime.SetFinalizer(tmpValue, (*QDBusSignature).DestroyQDBusSignature)
+	qt.SetFinalizer(tmpValue, (*QDBusSignature).DestroyQDBusSignature)
 	return tmpValue
 }
 
@@ -5185,7 +5088,7 @@ func NewQDBusSignature4(signature string) *QDBusSignature {
 		defer C.free(unsafe.Pointer(signatureC))
 	}
 	tmpValue := NewQDBusSignatureFromPointer(C.QDBusSignature_NewQDBusSignature4(C.struct_QtDBus_PackedString{data: signatureC, len: C.longlong(len(signature))}))
-	runtime.SetFinalizer(tmpValue, (*QDBusSignature).DestroyQDBusSignature)
+	qt.SetFinalizer(tmpValue, (*QDBusSignature).DestroyQDBusSignature)
 	return tmpValue
 }
 
@@ -5252,19 +5155,19 @@ func NewQDBusUnixFileDescriptorFromPointer(ptr unsafe.Pointer) (n *QDBusUnixFile
 }
 func NewQDBusUnixFileDescriptor() *QDBusUnixFileDescriptor {
 	tmpValue := NewQDBusUnixFileDescriptorFromPointer(C.QDBusUnixFileDescriptor_NewQDBusUnixFileDescriptor())
-	runtime.SetFinalizer(tmpValue, (*QDBusUnixFileDescriptor).DestroyQDBusUnixFileDescriptor)
+	qt.SetFinalizer(tmpValue, (*QDBusUnixFileDescriptor).DestroyQDBusUnixFileDescriptor)
 	return tmpValue
 }
 
 func NewQDBusUnixFileDescriptor2(fileDescriptor int) *QDBusUnixFileDescriptor {
 	tmpValue := NewQDBusUnixFileDescriptorFromPointer(C.QDBusUnixFileDescriptor_NewQDBusUnixFileDescriptor2(C.int(int32(fileDescriptor))))
-	runtime.SetFinalizer(tmpValue, (*QDBusUnixFileDescriptor).DestroyQDBusUnixFileDescriptor)
+	qt.SetFinalizer(tmpValue, (*QDBusUnixFileDescriptor).DestroyQDBusUnixFileDescriptor)
 	return tmpValue
 }
 
 func NewQDBusUnixFileDescriptor3(other QDBusUnixFileDescriptor_ITF) *QDBusUnixFileDescriptor {
 	tmpValue := NewQDBusUnixFileDescriptorFromPointer(C.QDBusUnixFileDescriptor_NewQDBusUnixFileDescriptor3(PointerFromQDBusUnixFileDescriptor(other)))
-	runtime.SetFinalizer(tmpValue, (*QDBusUnixFileDescriptor).DestroyQDBusUnixFileDescriptor)
+	qt.SetFinalizer(tmpValue, (*QDBusUnixFileDescriptor).DestroyQDBusUnixFileDescriptor)
 	return tmpValue
 }
 
@@ -5304,9 +5207,11 @@ func (ptr *QDBusUnixFileDescriptor) Swap(other QDBusUnixFileDescriptor_ITF) {
 
 func (ptr *QDBusUnixFileDescriptor) DestroyQDBusUnixFileDescriptor() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QDBusUnixFileDescriptor_DestroyQDBusUnixFileDescriptor(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5347,24 +5252,23 @@ func NewQDBusVariantFromPointer(ptr unsafe.Pointer) (n *QDBusVariant) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QDBusVariant) DestroyQDBusVariant() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
-
 func NewQDBusVariant() *QDBusVariant {
 	tmpValue := NewQDBusVariantFromPointer(C.QDBusVariant_NewQDBusVariant())
-	runtime.SetFinalizer(tmpValue, (*QDBusVariant).DestroyQDBusVariant)
+	qt.SetFinalizer(tmpValue, (*QDBusVariant).DestroyQDBusVariant)
 	return tmpValue
 }
 
 func NewQDBusVariant2(variant core.QVariant_ITF) *QDBusVariant {
 	tmpValue := NewQDBusVariantFromPointer(C.QDBusVariant_NewQDBusVariant2(core.PointerFromQVariant(variant)))
-	runtime.SetFinalizer(tmpValue, (*QDBusVariant).DestroyQDBusVariant)
+	qt.SetFinalizer(tmpValue, (*QDBusVariant).DestroyQDBusVariant)
 	return tmpValue
 }
 
@@ -5383,7 +5287,7 @@ func (ptr *QDBusVariant) Swap(other QDBusVariant_ITF) {
 func (ptr *QDBusVariant) Variant() *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QDBusVariant_Variant(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -5550,17 +5454,19 @@ func (ptr *QDBusVirtualObject) DisconnectDestroyQDBusVirtualObject() {
 
 func (ptr *QDBusVirtualObject) DestroyQDBusVirtualObject() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QDBusVirtualObject_DestroyQDBusVirtualObject(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QDBusVirtualObject) DestroyQDBusVirtualObjectDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QDBusVirtualObject_DestroyQDBusVirtualObjectDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5588,7 +5494,7 @@ func (ptr *QDBusVirtualObject) __children_newList() unsafe.Pointer {
 func (ptr *QDBusVirtualObject) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QDBusVirtualObject___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -5644,27 +5550,6 @@ func (ptr *QDBusVirtualObject) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QDBusVirtualObject) __findChildren_newList3() unsafe.Pointer {
 	return C.QDBusVirtualObject___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QDBusVirtualObject) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QDBusVirtualObject___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QDBusVirtualObject) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDBusVirtualObject___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QDBusVirtualObject) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QDBusVirtualObject___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQDBusVirtualObject_ChildEvent
@@ -5723,8 +5608,9 @@ func callbackQDBusVirtualObject_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QDBusVirtualObject) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QDBusVirtualObject_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5859,11 +5745,155 @@ func NewQMetaTypeId2FromPointer(ptr unsafe.Pointer) (n *QMetaTypeId2) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QMetaTypeId2) DestroyQMetaTypeId2() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
+}
+func init() {
+	qt.ItfMap["dbus.QDBus_ITF"] = QDBus{}
+	qt.EnumMap["dbus.QDBus__NoBlock"] = int64(QDBus__NoBlock)
+	qt.EnumMap["dbus.QDBus__Block"] = int64(QDBus__Block)
+	qt.EnumMap["dbus.QDBus__BlockWithGui"] = int64(QDBus__BlockWithGui)
+	qt.EnumMap["dbus.QDBus__AutoDetect"] = int64(QDBus__AutoDetect)
+	qt.ItfMap["dbus.QDBusAbstractAdaptor_ITF"] = QDBusAbstractAdaptor{}
+	qt.FuncMap["dbus.NewQDBusAbstractAdaptor"] = NewQDBusAbstractAdaptor
+	qt.ItfMap["dbus.QDBusAbstractInterface_ITF"] = QDBusAbstractInterface{}
+	qt.ItfMap["dbus.QDBusAbstractInterfaceBase_ITF"] = QDBusAbstractInterfaceBase{}
+	qt.ItfMap["dbus.QDBusArgument_ITF"] = QDBusArgument{}
+	qt.FuncMap["dbus.NewQDBusArgument"] = NewQDBusArgument
+	qt.FuncMap["dbus.NewQDBusArgument2"] = NewQDBusArgument2
+	qt.EnumMap["dbus.QDBusArgument__BasicType"] = int64(QDBusArgument__BasicType)
+	qt.EnumMap["dbus.QDBusArgument__VariantType"] = int64(QDBusArgument__VariantType)
+	qt.EnumMap["dbus.QDBusArgument__ArrayType"] = int64(QDBusArgument__ArrayType)
+	qt.EnumMap["dbus.QDBusArgument__StructureType"] = int64(QDBusArgument__StructureType)
+	qt.EnumMap["dbus.QDBusArgument__MapType"] = int64(QDBusArgument__MapType)
+	qt.EnumMap["dbus.QDBusArgument__MapEntryType"] = int64(QDBusArgument__MapEntryType)
+	qt.EnumMap["dbus.QDBusArgument__UnknownType"] = int64(QDBusArgument__UnknownType)
+	qt.ItfMap["dbus.QDBusConnection_ITF"] = QDBusConnection{}
+	qt.FuncMap["dbus.NewQDBusConnection"] = NewQDBusConnection
+	qt.FuncMap["dbus.NewQDBusConnection2"] = NewQDBusConnection2
+	qt.FuncMap["dbus.QDBusConnection_ConnectToBus"] = QDBusConnection_ConnectToBus
+	qt.FuncMap["dbus.QDBusConnection_ConnectToBus2"] = QDBusConnection_ConnectToBus2
+	qt.FuncMap["dbus.QDBusConnection_ConnectToPeer"] = QDBusConnection_ConnectToPeer
+	qt.FuncMap["dbus.QDBusConnection_DisconnectFromBus"] = QDBusConnection_DisconnectFromBus
+	qt.FuncMap["dbus.QDBusConnection_DisconnectFromPeer"] = QDBusConnection_DisconnectFromPeer
+	qt.FuncMap["dbus.QDBusConnection_LocalMachineId"] = QDBusConnection_LocalMachineId
+	qt.FuncMap["dbus.QDBusConnection_SessionBus"] = QDBusConnection_SessionBus
+	qt.FuncMap["dbus.QDBusConnection_SystemBus"] = QDBusConnection_SystemBus
+	qt.EnumMap["dbus.QDBusConnection__SessionBus"] = int64(QDBusConnection__SessionBus)
+	qt.EnumMap["dbus.QDBusConnection__SystemBus"] = int64(QDBusConnection__SystemBus)
+	qt.EnumMap["dbus.QDBusConnection__ActivationBus"] = int64(QDBusConnection__ActivationBus)
+	qt.EnumMap["dbus.QDBusConnection__ExportAdaptors"] = int64(QDBusConnection__ExportAdaptors)
+	qt.EnumMap["dbus.QDBusConnection__ExportScriptableSlots"] = int64(QDBusConnection__ExportScriptableSlots)
+	qt.EnumMap["dbus.QDBusConnection__ExportScriptableSignals"] = int64(QDBusConnection__ExportScriptableSignals)
+	qt.EnumMap["dbus.QDBusConnection__ExportScriptableProperties"] = int64(QDBusConnection__ExportScriptableProperties)
+	qt.EnumMap["dbus.QDBusConnection__ExportScriptableInvokables"] = int64(QDBusConnection__ExportScriptableInvokables)
+	qt.EnumMap["dbus.QDBusConnection__ExportScriptableContents"] = int64(QDBusConnection__ExportScriptableContents)
+	qt.EnumMap["dbus.QDBusConnection__ExportNonScriptableSlots"] = int64(QDBusConnection__ExportNonScriptableSlots)
+	qt.EnumMap["dbus.QDBusConnection__ExportNonScriptableSignals"] = int64(QDBusConnection__ExportNonScriptableSignals)
+	qt.EnumMap["dbus.QDBusConnection__ExportNonScriptableProperties"] = int64(QDBusConnection__ExportNonScriptableProperties)
+	qt.EnumMap["dbus.QDBusConnection__ExportNonScriptableInvokables"] = int64(QDBusConnection__ExportNonScriptableInvokables)
+	qt.EnumMap["dbus.QDBusConnection__ExportNonScriptableContents"] = int64(QDBusConnection__ExportNonScriptableContents)
+	qt.EnumMap["dbus.QDBusConnection__ExportChildObjects"] = int64(QDBusConnection__ExportChildObjects)
+	qt.EnumMap["dbus.QDBusConnection__UnregisterNode"] = int64(QDBusConnection__UnregisterNode)
+	qt.EnumMap["dbus.QDBusConnection__UnregisterTree"] = int64(QDBusConnection__UnregisterTree)
+	qt.EnumMap["dbus.QDBusConnection__UnixFileDescriptorPassing"] = int64(QDBusConnection__UnixFileDescriptorPassing)
+	qt.ItfMap["dbus.QDBusConnectionInterface_ITF"] = QDBusConnectionInterface{}
+	qt.EnumMap["dbus.QDBusConnectionInterface__DontQueueService"] = int64(QDBusConnectionInterface__DontQueueService)
+	qt.EnumMap["dbus.QDBusConnectionInterface__QueueService"] = int64(QDBusConnectionInterface__QueueService)
+	qt.EnumMap["dbus.QDBusConnectionInterface__ReplaceExistingService"] = int64(QDBusConnectionInterface__ReplaceExistingService)
+	qt.EnumMap["dbus.QDBusConnectionInterface__DontAllowReplacement"] = int64(QDBusConnectionInterface__DontAllowReplacement)
+	qt.EnumMap["dbus.QDBusConnectionInterface__AllowReplacement"] = int64(QDBusConnectionInterface__AllowReplacement)
+	qt.EnumMap["dbus.QDBusConnectionInterface__ServiceNotRegistered"] = int64(QDBusConnectionInterface__ServiceNotRegistered)
+	qt.EnumMap["dbus.QDBusConnectionInterface__ServiceRegistered"] = int64(QDBusConnectionInterface__ServiceRegistered)
+	qt.EnumMap["dbus.QDBusConnectionInterface__ServiceQueued"] = int64(QDBusConnectionInterface__ServiceQueued)
+	qt.ItfMap["dbus.QDBusContext_ITF"] = QDBusContext{}
+	qt.FuncMap["dbus.NewQDBusContext"] = NewQDBusContext
+	qt.ItfMap["dbus.QDBusError_ITF"] = QDBusError{}
+	qt.FuncMap["dbus.QDBusError_ErrorString"] = QDBusError_ErrorString
+	qt.EnumMap["dbus.QDBusError__NoError"] = int64(QDBusError__NoError)
+	qt.EnumMap["dbus.QDBusError__Other"] = int64(QDBusError__Other)
+	qt.EnumMap["dbus.QDBusError__Failed"] = int64(QDBusError__Failed)
+	qt.EnumMap["dbus.QDBusError__NoMemory"] = int64(QDBusError__NoMemory)
+	qt.EnumMap["dbus.QDBusError__ServiceUnknown"] = int64(QDBusError__ServiceUnknown)
+	qt.EnumMap["dbus.QDBusError__NoReply"] = int64(QDBusError__NoReply)
+	qt.EnumMap["dbus.QDBusError__BadAddress"] = int64(QDBusError__BadAddress)
+	qt.EnumMap["dbus.QDBusError__NotSupported"] = int64(QDBusError__NotSupported)
+	qt.EnumMap["dbus.QDBusError__LimitsExceeded"] = int64(QDBusError__LimitsExceeded)
+	qt.EnumMap["dbus.QDBusError__AccessDenied"] = int64(QDBusError__AccessDenied)
+	qt.EnumMap["dbus.QDBusError__NoServer"] = int64(QDBusError__NoServer)
+	qt.EnumMap["dbus.QDBusError__Timeout"] = int64(QDBusError__Timeout)
+	qt.EnumMap["dbus.QDBusError__NoNetwork"] = int64(QDBusError__NoNetwork)
+	qt.EnumMap["dbus.QDBusError__AddressInUse"] = int64(QDBusError__AddressInUse)
+	qt.EnumMap["dbus.QDBusError__Disconnected"] = int64(QDBusError__Disconnected)
+	qt.EnumMap["dbus.QDBusError__InvalidArgs"] = int64(QDBusError__InvalidArgs)
+	qt.EnumMap["dbus.QDBusError__UnknownMethod"] = int64(QDBusError__UnknownMethod)
+	qt.EnumMap["dbus.QDBusError__TimedOut"] = int64(QDBusError__TimedOut)
+	qt.EnumMap["dbus.QDBusError__InvalidSignature"] = int64(QDBusError__InvalidSignature)
+	qt.EnumMap["dbus.QDBusError__UnknownInterface"] = int64(QDBusError__UnknownInterface)
+	qt.EnumMap["dbus.QDBusError__UnknownObject"] = int64(QDBusError__UnknownObject)
+	qt.EnumMap["dbus.QDBusError__UnknownProperty"] = int64(QDBusError__UnknownProperty)
+	qt.EnumMap["dbus.QDBusError__PropertyReadOnly"] = int64(QDBusError__PropertyReadOnly)
+	qt.EnumMap["dbus.QDBusError__InternalError"] = int64(QDBusError__InternalError)
+	qt.EnumMap["dbus.QDBusError__InvalidService"] = int64(QDBusError__InvalidService)
+	qt.EnumMap["dbus.QDBusError__InvalidObjectPath"] = int64(QDBusError__InvalidObjectPath)
+	qt.EnumMap["dbus.QDBusError__InvalidInterface"] = int64(QDBusError__InvalidInterface)
+	qt.EnumMap["dbus.QDBusError__InvalidMember"] = int64(QDBusError__InvalidMember)
+	qt.ItfMap["dbus.QDBusInterface_ITF"] = QDBusInterface{}
+	qt.FuncMap["dbus.NewQDBusInterface2"] = NewQDBusInterface2
+	qt.ItfMap["dbus.QDBusMessage_ITF"] = QDBusMessage{}
+	qt.FuncMap["dbus.NewQDBusMessage"] = NewQDBusMessage
+	qt.FuncMap["dbus.NewQDBusMessage2"] = NewQDBusMessage2
+	qt.FuncMap["dbus.QDBusMessage_CreateError"] = QDBusMessage_CreateError
+	qt.FuncMap["dbus.QDBusMessage_CreateError2"] = QDBusMessage_CreateError2
+	qt.FuncMap["dbus.QDBusMessage_CreateError3"] = QDBusMessage_CreateError3
+	qt.FuncMap["dbus.QDBusMessage_CreateMethodCall"] = QDBusMessage_CreateMethodCall
+	qt.FuncMap["dbus.QDBusMessage_CreateSignal"] = QDBusMessage_CreateSignal
+	qt.FuncMap["dbus.QDBusMessage_CreateTargetedSignal"] = QDBusMessage_CreateTargetedSignal
+	qt.EnumMap["dbus.QDBusMessage__InvalidMessage"] = int64(QDBusMessage__InvalidMessage)
+	qt.EnumMap["dbus.QDBusMessage__MethodCallMessage"] = int64(QDBusMessage__MethodCallMessage)
+	qt.EnumMap["dbus.QDBusMessage__ReplyMessage"] = int64(QDBusMessage__ReplyMessage)
+	qt.EnumMap["dbus.QDBusMessage__ErrorMessage"] = int64(QDBusMessage__ErrorMessage)
+	qt.EnumMap["dbus.QDBusMessage__SignalMessage"] = int64(QDBusMessage__SignalMessage)
+	qt.ItfMap["dbus.QDBusObjectPath_ITF"] = QDBusObjectPath{}
+	qt.FuncMap["dbus.NewQDBusObjectPath"] = NewQDBusObjectPath
+	qt.FuncMap["dbus.NewQDBusObjectPath2"] = NewQDBusObjectPath2
+	qt.FuncMap["dbus.NewQDBusObjectPath3"] = NewQDBusObjectPath3
+	qt.FuncMap["dbus.NewQDBusObjectPath4"] = NewQDBusObjectPath4
+	qt.ItfMap["dbus.QDBusPendingCall_ITF"] = QDBusPendingCall{}
+	qt.FuncMap["dbus.NewQDBusPendingCall"] = NewQDBusPendingCall
+	qt.FuncMap["dbus.QDBusPendingCall_FromCompletedCall"] = QDBusPendingCall_FromCompletedCall
+	qt.FuncMap["dbus.QDBusPendingCall_FromError"] = QDBusPendingCall_FromError
+	qt.ItfMap["dbus.QDBusPendingCallWatcher_ITF"] = QDBusPendingCallWatcher{}
+	qt.FuncMap["dbus.NewQDBusPendingCallWatcher"] = NewQDBusPendingCallWatcher
+	qt.ItfMap["dbus.QDBusPendingReplyData_ITF"] = QDBusPendingReplyData{}
+	qt.ItfMap["dbus.QDBusServer_ITF"] = QDBusServer{}
+	qt.FuncMap["dbus.NewQDBusServer"] = NewQDBusServer
+	qt.FuncMap["dbus.NewQDBusServer2"] = NewQDBusServer2
+	qt.ItfMap["dbus.QDBusServiceWatcher_ITF"] = QDBusServiceWatcher{}
+	qt.FuncMap["dbus.NewQDBusServiceWatcher"] = NewQDBusServiceWatcher
+	qt.FuncMap["dbus.NewQDBusServiceWatcher2"] = NewQDBusServiceWatcher2
+	qt.EnumMap["dbus.QDBusServiceWatcher__WatchForRegistration"] = int64(QDBusServiceWatcher__WatchForRegistration)
+	qt.EnumMap["dbus.QDBusServiceWatcher__WatchForUnregistration"] = int64(QDBusServiceWatcher__WatchForUnregistration)
+	qt.EnumMap["dbus.QDBusServiceWatcher__WatchForOwnerChange"] = int64(QDBusServiceWatcher__WatchForOwnerChange)
+	qt.ItfMap["dbus.QDBusSignature_ITF"] = QDBusSignature{}
+	qt.FuncMap["dbus.NewQDBusSignature"] = NewQDBusSignature
+	qt.FuncMap["dbus.NewQDBusSignature2"] = NewQDBusSignature2
+	qt.FuncMap["dbus.NewQDBusSignature3"] = NewQDBusSignature3
+	qt.FuncMap["dbus.NewQDBusSignature4"] = NewQDBusSignature4
+	qt.ItfMap["dbus.QDBusUnixFileDescriptor_ITF"] = QDBusUnixFileDescriptor{}
+	qt.FuncMap["dbus.NewQDBusUnixFileDescriptor"] = NewQDBusUnixFileDescriptor
+	qt.FuncMap["dbus.NewQDBusUnixFileDescriptor2"] = NewQDBusUnixFileDescriptor2
+	qt.FuncMap["dbus.NewQDBusUnixFileDescriptor3"] = NewQDBusUnixFileDescriptor3
+	qt.FuncMap["dbus.QDBusUnixFileDescriptor_IsSupported"] = QDBusUnixFileDescriptor_IsSupported
+	qt.ItfMap["dbus.QDBusVariant_ITF"] = QDBusVariant{}
+	qt.FuncMap["dbus.NewQDBusVariant"] = NewQDBusVariant
+	qt.FuncMap["dbus.NewQDBusVariant2"] = NewQDBusVariant2
+	qt.ItfMap["dbus.QDBusVirtualObject_ITF"] = QDBusVirtualObject{}
+	qt.FuncMap["dbus.NewQDBusVirtualObject"] = NewQDBusVirtualObject
+	qt.ItfMap["dbus.QMetaTypeId2_ITF"] = QMetaTypeId2{}
 }

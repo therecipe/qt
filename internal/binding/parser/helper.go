@@ -2,6 +2,7 @@ package parser
 
 import (
 	"bytes"
+	"encoding/json"
 	"fmt"
 	"runtime"
 	"sort"
@@ -236,6 +237,8 @@ var LibDeps = map[string][]string{
 
 	MOC:            make([]string, 0),
 	"build_static": {"Qml"}, //TODO: REVIEW "Core", "Gui"},
+
+	"Felgo": {"Qml", "Quick", "Widgets", "Network", "Multimedia", "Sql", "WebSockets"},
 }
 
 func ShouldBuildForTarget(module, target string) bool {
@@ -245,6 +248,10 @@ func ShouldBuildForTargetM(module, target string) bool {
 	return shouldBuildForTarget(module, target, true)
 }
 func shouldBuildForTarget(module, target string, min bool) bool {
+	if module == "internal/binding/runtime" {
+		return true
+	}
+
 	if State.Minimal == true || min {
 		for _, m := range cmd.GetQtStdImports() {
 			if strings.ToLower(module) == strings.ToLower(m) ||
@@ -420,11 +427,13 @@ func GetLibs() []string {
 		"RemoteObjects",
 
 		"WebKit",
+
+		"Felgo",
 	}
 
 	for i := len(libs) - 1; i >= 0; i-- {
 		switch {
-		case !(runtime.GOOS == "darwin" || runtime.GOOS == "linux" || runtime.GOOS == "freebsd") && (libs[i] == "WebEngine" || libs[i] == "WebView"),
+		case !(runtime.GOOS == "darwin" || runtime.GOOS == "linux" || runtime.GOOS == "freebsd" || (runtime.GOOS == "windows" && utils.QT_MSVC())) && (libs[i] == "WebEngine" || libs[i] == "WebView"),
 			runtime.GOOS != "windows" && libs[i] == "WinExtras",
 			runtime.GOOS != "darwin" && libs[i] == "MacExtras",
 			!(runtime.GOOS == "linux" || runtime.GOOS == "freebsd") && libs[i] == "X11Extras":
@@ -442,6 +451,9 @@ func GetLibs() []string {
 		case (utils.QT_MSYS2() || utils.QT_PKG_CONFIG()) && libs[i] == "Purchasing":
 			libs = append(libs[:i], libs[i+1:]...)
 
+		case !utils.QT_FELGO() && libs[i] == "Felgo":
+			libs = append(libs[:i], libs[i+1:]...)
+
 		case utils.QT_FELGO() && strings.HasPrefix(libs[i], "Script"):
 			libs = append(libs[:i], libs[i+1:]...)
 		}
@@ -454,13 +466,13 @@ var (
 	getCustomLibsCacheMutex = new(sync.Mutex)
 )
 
-func GetCustomLibs(target string, env map[string]string, tags []string) map[string]string {
+func GetCustomLibs(_ string, env map[string]string, tags []string) map[string]string {
 	getCustomLibsCacheMutex.Lock()
 	defer getCustomLibsCacheMutex.Unlock()
 
 	out := make(map[string]string)
 	var modules []string
-	var pkgs []string
+	var paths []string
 	for _, lm := range []map[string]*Class{State.ClassMap, State.GoClassMap} {
 		for _, c := range lm {
 			if c.Pkg == "" {
@@ -470,7 +482,7 @@ func GetCustomLibs(target string, env map[string]string, tags []string) map[stri
 				if _, ok = out[c.Module]; !ok {
 					out[c.Module] = c.Pkg
 					modules = append(modules, c.Module)
-					pkgs = append(pkgs, c.Pkg)
+					paths = append(paths, c.Pkg)
 				}
 			} else {
 				out[c.Module] = path
@@ -479,16 +491,18 @@ func GetCustomLibs(target string, env map[string]string, tags []string) map[stri
 	}
 
 	if len(modules) > 0 {
-		cmd := utils.GoList(append([]string{"{{.ImportPath}}", "-find", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \""))}, pkgs...)...)
-		for k, v := range env {
-			cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", k, v))
-		}
+		for i, path := range paths {
+			cmd := utils.GoList(append([]string{"{{.ImportPath}}", "-find", utils.BuildTags(tags)}, path)...)
+			for k, v := range env {
+				cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", k, v))
+			}
 
-		for i, path := range strings.Split(strings.TrimSpace(utils.RunCmd(cmd, "get import path")), "\n") {
-			path = strings.TrimSpace(path)
+			for _, pkg := range strings.Split(strings.TrimSpace(utils.RunCmd(cmd, "get import pkg")), "\n") {
+				pkg = strings.TrimSpace(pkg)
 
-			getCustomLibsCache[pkgs[i]] = path
-			out[modules[i]] = path
+				getCustomLibsCache[paths[i]] = pkg
+				out[modules[i]] = pkg
+			}
 		}
 	}
 
@@ -500,6 +514,9 @@ func Dump() {
 		var bb = new(bytes.Buffer)
 		defer bb.Reset()
 
+		fmt.Fprint(bb, "class\n\n")
+		fmt.Fprintln(bb, c)
+
 		fmt.Fprint(bb, "funcs\n\n")
 		for _, f := range c.Functions {
 			fmt.Fprintln(bb, f)
@@ -509,6 +526,10 @@ func Dump() {
 		for _, e := range c.Enums {
 			fmt.Fprintln(bb, e)
 		}
+
+		fmt.Fprint(bb, "json\n\n")
+		jb, _ := json.Marshal(c)
+		bb.Write(jb)
 
 		utils.MkdirAll(utils.GoQtPkgPath("internal", "binding", "dump", c.Module))
 		utils.SaveBytes(utils.GoQtPkgPath("internal", "binding", "dump", c.Module, fmt.Sprintf("%v.txt", c.Name)), bb.Bytes())

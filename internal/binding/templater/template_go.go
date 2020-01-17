@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"go/format"
+	"path/filepath"
 	"strings"
 
 	"github.com/therecipe/qt/internal/binding/converter"
@@ -13,6 +14,20 @@ import (
 )
 
 func GoTemplate(module string, stub bool, mode int, pkg, target, tags string) []byte {
+
+	if module == "AndroidExtras" {
+		utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "utils-androidextras_android.go"), utils.Load(filepath.Join(strings.TrimSpace(utils.GoListOptional("{{.Dir}}", "github.com/therecipe/qt/internal", "-find", "get files dir")), "/binding/files/utils-androidextras_android.go")))
+	} else if module == "Qml" {
+		cont := utils.Load(filepath.Join(strings.TrimSpace(utils.GoListOptional("{{.Dir}}", "github.com/therecipe/qt/internal", "-find", "get files dir")), "/binding/files/utils-qml.go"))
+		if utils.QT_API_NUM(utils.QT_VERSION()) < 5060 {
+			cont = strings.Replace(cont, "Property2(", "Property3(", -1)
+		}
+		if utils.QT_API_NUM(utils.QT_VERSION()) < 5050 {
+			cont = "package qml"
+		}
+		utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "utils-qml.go"), cont)
+	}
+
 	utils.Log.WithField("module", module).Debug("generating go")
 	parser.State.Target = target
 
@@ -24,8 +39,13 @@ func GoTemplate(module string, stub bool, mode int, pkg, target, tags string) []
 	}
 
 	if !(UseStub(stub, module, mode) || UseJs()) {
-		fmt.Fprintf(bb, "func cGoUnpackString(s C.struct_%v_PackedString) string { if int(s.len) == -1 {\n return C.GoString(s.data)\n }\n return C.GoStringN(s.data, C.int(s.len)) }\n", strings.Title(module))
-		fmt.Fprintf(bb, "func cGoUnpackBytes(s C.struct_%v_PackedString) []byte { if int(s.len) == -1 {\n gs := C.GoString(s.data)\n return *(*[]byte)(unsafe.Pointer(&gs))\n }\n return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len)) }\n", strings.Title(module))
+		var m string
+		if module != "QtCore" {
+			m = "core."
+		}
+		fmt.Fprintf(bb, "func cGoFreePacked(ptr unsafe.Pointer) { %vNewQByteArrayFromPointer(ptr).DestroyQByteArray() }\n", m)
+		fmt.Fprintf(bb, "func cGoUnpackString(s C.struct_%v_PackedString) string { defer cGoFreePacked(s.ptr)\n if int(s.len) == -1 {\n return C.GoString(s.data)\n }\n return C.GoStringN(s.data, C.int(s.len)) }\n", strings.Title(module))
+		fmt.Fprintf(bb, "func cGoUnpackBytes(s C.struct_%v_PackedString) []byte { defer cGoFreePacked(s.ptr)\n if int(s.len) == -1 {\n gs := C.GoString(s.data)\n return *(*[]byte)(unsafe.Pointer(&gs))\n }\n return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len)) }\n", strings.Title(module))
 	}
 
 	if UseJs() {
@@ -195,39 +215,23 @@ func New%vFromPointer(ptr unsafe.Pointer) (n *%[2]v) {
 				if UseStub(stub, module, mode) {
 					fmt.Fprintf(bb, "\nfunc (ptr *%v) Destroy%v() {}\n\n", class.Name, strings.Title(class.Name))
 				} else if !class.IsSubClassOfQObject() {
-					if UseJs() {
-						fmt.Fprintf(bb, `
-func (ptr *%[1]v) Destroy%[1]v() {
-	if ptr != nil {
-		%v
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
-}
-
-`, class.Name, func() string {
-							if class.HasCallbackFunctions() {
-								return "\nqt.DisconnectAllSignals(ptr.Pointer(), \"\")"
-							}
-							return ""
-						}())
-					} else {
-						fmt.Fprintf(bb, `
-func (ptr *%[1]v) Destroy%[1]v() {
-	if ptr != nil {
-		C.free(ptr.Pointer())%v
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
-}
-
-`, class.Name, func() string {
-							if class.HasCallbackFunctions() {
-								return "\nqt.DisconnectAllSignals(ptr.Pointer(), \"\")"
-							}
-							return ""
-						}())
+					var ds string
+					if class.HasCallbackFunctions() {
+						ds = "\nqt.DisconnectAllSignals(ptr.Pointer(), \"\")"
 					}
+					var free string
+					if !UseJs() {
+						free = "C.free(ptr.Pointer())" //TODO: free c ptr in js/wasm ?
+					}
+					fmt.Fprintf(bb, `func (ptr *%[1]v) Destroy%[1]v() {
+						if ptr != nil {
+							qt.SetFinalizer(ptr, nil)
+							%v
+							%v
+							ptr.SetPointer(nil)
+						}
+					}
+					`, class.Name, ds, free)
 				}
 			}
 
@@ -471,7 +475,7 @@ func (ptr *%[1]v) Destroy%[1]v() {
 
 			if class.Name == "QVariant" {
 				fmt.Fprint(bb, "type qVariant_ITF interface { ToVariant() *QVariant }\n")
-				fmt.Fprint(bb, "func NewQVariant1(i interface{}) *QVariant {\n")
+				fmt.Fprint(bb, "func  NewQVariant1(i interface{}) *QVariant {\n")
 				fmt.Fprint(bb, "switch d:= i.(type) {\n")
 
 				has := make(map[string]struct{})
@@ -502,13 +506,109 @@ func (ptr *%[1]v) Destroy%[1]v() {
 					}
 				}
 				fmt.Fprint(bb, "case qVariant_ITF:\nreturn d.ToVariant()\n")
-				fmt.Fprint(bb, "default:\nreturn NewQVariant()\n")
-				fmt.Fprint(bb, "\n}\n}\n")
+				fmt.Fprint(bb, `default:
+s := reflect.ValueOf(i)
+if s.Kind() == reflect.Ptr {
+	s = s.Elem()
+}
+switch s.Kind() {
+	case reflect.Struct:
+		tmp := make(map[string]*QVariant, s.NumField())
+		for id := 0; id < s.NumField(); id++ {
+			field := s.Field(id)
+			if !field.CanInterface() {
+				continue
+			}
+			if tag, ok := s.Type().Field(id).Tag.Lookup("json"); ok {
+				switch {
+				case (strings.HasSuffix(tag, ",omitempty") && isZero(field)) || tag == "-":
+				case strings.Count(tag, ",") == 0:
+					tmp[tag] = NewQVariant1(field.Interface())
+				default:
+					tags := strings.Split(tag, ",")
+					name := s.Type().Field(id).Name
+					if len(tags[0]) != 0 {
+						name = tags[0]
+					}
+					v := NewQVariant1(field.Interface())
+					if tags[1] == "string" {
+						v = NewQVariant1(v.ToString()) //TODO: pure go type conversion
+					}
+					tmp[name] = v
+				}
+			} else {
+				tmp[s.Type().Field(id).Name] = NewQVariant1(field.Interface())
+			}
+		}
+		return NewQVariant1(tmp)
+
+	case reflect.Slice, reflect.Array:
+		tmp := make([]*QVariant, s.Len())
+		for id := 0; id < s.Len(); id++ {
+			if field := s.Index(id); field.CanInterface() {
+				tmp[id] = NewQVariant1(field.Interface())
+			}
+		}
+		return NewQVariant1(tmp)
+
+	case reflect.Map:
+		tmp := make(map[string]*QVariant, s.Len())
+		for _, id := range s.MapKeys() {
+			if field := s.MapIndex(id); field.CanInterface() {
+				if key := NewQVariant1(id.Interface()); key.CanConvert(int(QMetaType__QString)) {
+					tmp[key.ToString()] = NewQVariant1(field.Interface())
+				}
+			}
+		}
+		return NewQVariant1(tmp)
+}
+return NewQVariant()
+}
+}
+
+func isZero(v reflect.Value) bool {
+	switch v.Kind() {
+	case reflect.Bool:
+		return !v.Bool()
+	case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
+		return v.Int() == 0
+	case reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32, reflect.Uint64, reflect.Uintptr:
+		return v.Uint() == 0
+	case reflect.Float32, reflect.Float64:
+		return math.Float64bits(v.Float()) == 0
+	case reflect.Complex64, reflect.Complex128:
+		c := v.Complex()
+		return math.Float64bits(real(c)) == 0 && math.Float64bits(imag(c)) == 0
+	case reflect.Array:
+		for i := 0; i < v.Len(); i++ {
+			if !isZero(v.Index(i)) {
+				return false
+			}
+		}
+		return true
+	case reflect.Chan, reflect.Func, reflect.Interface, reflect.Map, reflect.Ptr, reflect.Slice, reflect.UnsafePointer:
+		return v.IsNil()
+	case reflect.String:
+		return v.Len() == 0
+	case reflect.Struct:
+		for i := 0; i < v.NumField(); i++ {
+			if !isZero(v.Field(i)) {
+				return false
+			}
+		}
+		return true
+	default:
+		// This should never happens, but will act as a safeguard for
+		// later, as a default value doesn't makes sense here.
+		panic(&reflect.ValueError{"reflect.Value.IsZero", v.Kind()})
+	}
+}
+`)
 
 				//
 
-				fmt.Fprint(bb, "func (v *QVariant) ToInterface() interface{} {\n")
-				fmt.Fprint(bb, "switch v.Type() {\n")
+				fmt.Fprint(bb, "func (ptr *QVariant) ToInterface() interface{} {\n")
+				fmt.Fprint(bb, "switch ptr.Type() {\n")
 
 				for _, v := range class.Enums[0].Values {
 					if c, ok := parser.IsClass("Q" + v.Name); ok {
@@ -524,26 +624,153 @@ func (ptr *%[1]v) Destroy%[1]v() {
 					if f := class.GetFunction("to" + v.Name); f != nil && f.IsSupported() {
 						fmt.Fprintf(bb, "case QVariant__%v:\n", v.Name)
 						if len(f.Parameters) == 0 {
-							fmt.Fprintf(bb, "return v.To%v()\n", v.Name)
+							fmt.Fprintf(bb, "return ptr.To%v()\n", v.Name)
 						} else {
-							fmt.Fprintf(bb, "return v.To%v(nil)\n", v.Name)
+							fmt.Fprintf(bb, "return ptr.To%v(nil)\n", v.Name)
 						}
 					}
 				}
-				fmt.Fprint(bb, "\n}\nreturn v\n}\n")
+				fmt.Fprint(bb, "\n}\nreturn ptr\n}\n")
+
+				//
+
+				fmt.Fprint(bb, `
+func (ptr *QVariant) ToGoType(dst interface{}) {
+v := reflect.ValueOf(dst)
+if v.Kind() == reflect.Ptr {
+	v = v.Elem()
+}
+
+switch ptr.Type() {
+case QVariant__List:
+	d := ptr.ToList()
+
+	switch v.Kind() {
+	case reflect.Slice:
+		v.Set(reflect.MakeSlice(v.Type(), len(d), len(d)))
+
+	case reflect.Array:
+		v.Set(reflect.Indirect(reflect.New(v.Type())))
+	}
+
+	for i := 0; i < len(d); i++ {
+		switch v.Type().Elem().Kind() {
+		case reflect.Struct, reflect.Map, reflect.Slice, reflect.Array:
+			s := reflect.New(v.Type().Elem())
+			d[i].ToGoType(s.Interface())
+			v.Index(i).Set(reflect.Indirect(s))
+
+		default:
+			v.Index(i).Set(reflect.ValueOf(d[i].ToInterface()).Convert(v.Type().Elem()))
+		}
+	}
+
+case QVariant__Map:
+	d := ptr.ToMap()
+
+	if v.Kind() == reflect.Struct {
+		for k, val := range d {
+			realName := k
+			toInt := false
+			for id := 0; id < v.NumField(); id++ {
+				if tag, ok := v.Type().Field(id).Tag.Lookup("json"); ok {
+					switch {
+					case strings.Count(tag, ",") == 0:
+						if k == tag {
+							realName = v.Type().Field(id).Name
+						}
+					default:
+						tags := strings.Split(tag, ",")
+						if k == tags[0] || (len(tags[0]) == 0 && k == v.Type().Field(id).Name) {
+							realName = v.Type().Field(id).Name
+							if tags[1] == "string" {
+								toInt = true
+							}
+						}
+					}
+				}
+			}
+			field := v.FieldByName(realName)
+			if !field.IsValid() {
+				continue
+			}
+			if toInt {
+				field.Set(reflect.ValueOf(val.ToLongLong(nil)).Convert(field.Type())) //TODO: pure go type conversion
+			} else {
+				val.ToGoType(field.Addr().Interface())
+			}
+		}
+	} else {
+		v.Set(reflect.MakeMapWithSize(v.Type(), len(d)))
+		for k, val := range d {
+			switch v.Type().Elem().Kind() {
+			case reflect.Struct, reflect.Map, reflect.Slice, reflect.Array:
+				s := reflect.New(v.Type().Elem())
+				val.ToGoType(s.Interface())
+				v.SetMapIndex(reflect.ValueOf(k).Convert(v.Type().Key()), reflect.Indirect(s))
+
+			default:
+				v.SetMapIndex(reflect.ValueOf(k).Convert(v.Type().Key()), reflect.ValueOf(val.ToInterface()).Convert(v.Type().Elem()))
+			}
+		}
+	}
+
+default:
+	if v.Kind() == reflect.String {
+		v.Set(reflect.ValueOf(ptr.ToString()))
+	} else {
+		v.Set(reflect.ValueOf(ptr.ToInterface()).Convert(v.Type()))
+	}
+}
+}
+`)
+
+			} else if class.Name == "QObject" {
+				fmt.Fprintln(bb, "\nfunc (ptr *QObject) ConnectSignal(f interface{}, a interface{}, t Qt__ConnectionType) {")
+				fmt.Fprintln(bb, "\tfn := strings.TrimSuffix(strings.Split(runtime.FuncForPC(reflect.ValueOf(f).Pointer()).Name(), \".Connect\")[1], \"-fm\")")
+				fmt.Fprintln(bb, "\tqt.RegisterConnectionType(ptr.Pointer(), strings.ToLower(fn[:1])+fn[1:], int64(t))")
+				fmt.Fprintln(bb, "\treflect.ValueOf(f).Call([]reflect.Value{reflect.ValueOf(a)})")
+				fmt.Fprintln(bb, "}\n")
 			}
 		}
 		cTemplate(bb, class, goEnum, goFunction, "\n\n", true)
 	}
 
+	if module == "QtQml" {
+		fmt.Fprint(bb, "var (\n\thelper *core.QObject\n\thelperMutex sync.Mutex\n\thelperMap []string\n)\n")
+	}
+
+	fmt.Fprint(bb, "func init() {\n")
+
+	if module == "QtQml" {
+		var free string
+		if !UseJs() {
+			free = `C.QJSValue_DestroyQJSValue(unsafe.Pointer(uintptr(ptr)))
+			C.free(unsafe.Pointer(uintptr(ptr)))`
+		} else {
+			free = "qt.Module.Call(\"_QJSValue_DestroyQJSValue\", uintptr(ptr))"
+		}
+		fmt.Fprintf(bb, `
+	helper = core.NewQObject(nil)
+	helper.ConnectObjectNameChanged(func(pl string) {
+		for _, p := range strings.Split(pl, "|") {
+			ptr, err := strconv.ParseUint(p, 10, 64)
+			if err != nil || ptr == 0 {
+				return
+			}
+			%v
+		}
+	})
+`, free) //TODO: replace with generic run on main thread helper function
+	}
+
 	if UseJs() {
-		fmt.Fprint(bb, "func init() {\n")
 		for _, l := range strings.Split(bb.String(), "\n") {
 			if strings.HasPrefix(l, "//export") {
 				if parser.UseWasm() {
-					fmt.Fprintf(bb, "qt.WASM.Set(\"_%[1]v\", js.FuncOf(%[1]v))\n", strings.TrimPrefix(l, "//export "))
+					fmt.Fprintf(bb, "qt.Module.Set(\"_%[1]v\", js.FuncOf(%[1]v))\n", strings.TrimPrefix(l, "//export "))
 				} else {
-					fmt.Fprintf(bb, "qt.WASM.Set(\"_%[1]v\", %[1]v)\n", strings.TrimPrefix(l, "//export "))
+					fmt.Fprintf(bb, "qt.Module.Set(\"_%[1]v\", %[1]v)\n", strings.TrimPrefix(l, "//export "))
 				}
 			}
 		}
@@ -559,22 +786,125 @@ func (ptr *%[1]v) Destroy%[1]v() {
 			fmt.Fprint(bb, "\tmodule = m\n")
 			fmt.Fprint(bb, "}\n")
 		}
+	}
 
-		for _, c := range parser.SortedClassesForModule(module, true) {
-			implemented := make(map[string]struct{})
-			for _, f := range c.Functions {
-				if f.Meta != parser.CONSTRUCTOR && !f.Static {
-					continue
-				}
-				if strings.Contains(f.Name, "RegisterMetaType") || strings.Contains(f.Name, "RegisterType") { //TODO:
-					continue
-				}
-				var _, e = implemented[fmt.Sprint(f.Name, f.OverloadNumber)]
-				if e || !f.IsSupported() {
-					continue
-				}
-				implemented[fmt.Sprint(f.Name, f.OverloadNumber)] = struct{}{}
+	tsd := new(bytes.Buffer)
+	defer tsd.Reset()
+	var gosplitted []string
+	if utils.QT_GEN_TSD() {
+		gosplitted = strings.Split(bb.String(), "\n")
 
+		fmt.Fprintf(tsd, "declare namespace %v {\n", goModule(func() string {
+			if mode == MOC {
+				return pkg
+			}
+			return module
+		}()))
+	}
+
+	for _, c := range parser.SortedClassesForModule(module, true) {
+
+		if c.IsSupported() && (cmd.ImportsQmlOrQuick() || mode == NONE) {
+			bb.WriteString(fmt.Sprintf("qt.ItfMap[\"%[1]v.%[2]v_ITF\"] = %[2]v{}\n", goModule(func() string {
+				if mode == MOC {
+					return pkg
+				}
+				return module
+			}()), c.Name))
+
+			if utils.QT_GEN_TSD() {
+
+				var parents []string
+				for _, parentClassName := range c.GetBases() {
+					var parentClass, ok = parser.State.ClassMap[parentClassName]
+					if !ok {
+						continue
+					}
+					if parentClass.Module == c.Module {
+						parents = append(parents, fmt.Sprintf("%v_ITF", parentClassName))
+					} else {
+						parents = append(parents, fmt.Sprintf("%v.%v_ITF", goModule(parentClass.Module), parentClassName))
+					}
+				}
+
+				if len(parents) != 0 {
+					fmt.Fprintf(tsd, "\tinterface %v_ITF extends %v {\n\t\t%v\t}\n\n",
+						c.Name,
+						parents[len(parents)-1],
+						func() string {
+							o := fmt.Sprintf("%[1]v_PTR():%[1]v;\n", c.Name)
+							for i, v := range parents {
+								if i == len(parents)-1 {
+									continue
+								}
+								p := v
+								if strings.Contains(v, ".") {
+									p = strings.Split(v, ".")[1]
+								}
+								o += fmt.Sprintf("\t\t%v():%v;\n", strings.TrimSuffix(p, "_ITF")+"_PTR", strings.TrimSuffix(parents[0], "_ITF"))
+							}
+							return o
+						}(),
+					)
+				} else {
+					fmt.Fprintf(tsd, "\tinterface %v_ITF {\n\t\t%v\t}\n\n",
+						c.Name,
+						fmt.Sprintf("%[1]v_PTR():%[1]v;\n", c.Name),
+					)
+				}
+
+				if len(parents) != 0 {
+					fmt.Fprintf(tsd, "\tclass %v extends %v {\n", c.Name, strings.TrimSuffix(parents[len(parents)-1], "_ITF"))
+
+					for i, v := range parents {
+						if i == len(parents)-1 {
+							continue
+						}
+						p := v
+						if strings.Contains(v, ".") {
+							p = strings.Split(v, ".")[1]
+						}
+						fmt.Fprintf(tsd, "\t\t%v():%v\n", strings.TrimSuffix(p, "_ITF")+"_PTR", strings.TrimSuffix(parents[0], "_ITF"))
+					}
+
+				} else {
+					fmt.Fprintf(tsd, "\tclass %v {\n", c.Name)
+				}
+
+				tsd.WriteString("\t\t___pointer: number;\n")
+
+				if c.Name == "QJSEngine" {
+					fmt.Fprint(tsd, "\t\tToGoType(jsval:QJSValue, dst:any):void\n")
+					fmt.Fprint(tsd, "\t\tNewJSType(property:QJSValue, name:string, i:any):void\n")
+					fmt.Fprint(tsd, "\t\tNewGoType(i:any[]):QJSValue\n")
+				}
+
+				for _, l := range gosplitted {
+					out := convertToTypeScriptDefinition(c.Name, l, true)
+					if out != "" {
+						tsd.WriteString("\t\t" + out + ";\n")
+					}
+				}
+
+				fmt.Fprint(tsd, "\t}\n")
+			}
+		}
+
+		implemented := make(map[string]struct{})
+		for _, f := range c.Functions {
+			if f.Meta != parser.CONSTRUCTOR && !f.Static {
+				continue
+			}
+			if strings.Contains(f.Name, "RegisterMetaType") || strings.Contains(f.Name, "RegisterType") { //TODO:
+				continue
+			}
+			var _, e = implemented[fmt.Sprint(f.Name, f.OverloadNumber)]
+			if e || !f.IsSupported() {
+				continue
+			}
+			implemented[fmt.Sprint(f.Name, f.OverloadNumber)] = struct{}{}
+
+			if parser.UseJs() {
 				var ip string
 				oldsm := f.SignalMode
 				f.SignalMode = parser.CALLBACK
@@ -597,30 +927,78 @@ func (ptr *%[1]v) Destroy%[1]v() {
 					bb.WriteString(out)
 				}
 			}
-
-			for _, e := range c.Enums {
-				for _, v := range e.Values {
-					if v.Name == "ByteOrder" {
-						continue
+			if cmd.ImportsQmlOrQuick() || mode == NONE {
+				out := fmt.Sprintf("qt.FuncMap[\"%[1]v.%[2]v\"] = %[2]v\n", goModule(func() string {
+					if mode == MOC {
+						return pkg
 					}
-					if parser.UseWasm() {
-						//TODO:
-					} else {
-						fmt.Fprintf(bb, "module.Set(\"%v__%v\", int64(%v__%v))\n", strings.Split(e.Fullname, "::")[0], v.Name, strings.Split(e.Fullname, "::")[0], v.Name)
-					}
+					return module
+				}()), converter.GoHeaderName(f))
+				if !strings.Contains(out, "unsupported_") && strings.Contains(bb.String(), converter.GoHeaderName(f)+"(") {
+					bb.WriteString(out)
 				}
 			}
 		}
 
-		fmt.Fprint(bb, "}\n")
+		if c.Name == "QVariant" {
+			if parser.UseJs() {
+				if parser.UseWasm() {
+					//TODO:
+				} else {
+					fmt.Fprint(bb, "module.Set(\"NewQVariant1\", func(i interface{}) *js.Object { return qt.MakeWrapper(NewQVariant1(i)) })\n")
+				}
+			}
+			if cmd.ImportsQmlOrQuick() || mode == NONE {
+				fmt.Fprint(bb, "qt.FuncMap[\"core.NewQVariant1\"] = NewQVariant1\n")
+			}
+		}
+
+		if utils.QT_GEN_TSD() && c.IsSupported() {
+			for _, l := range gosplitted {
+				out := convertToTypeScriptDefinition(c.Name, l, false)
+				if out != "" {
+					tsd.WriteString("\t" + out + ";\n")
+				}
+			}
+		}
+
+		for _, e := range c.Enums {
+			if e.ClassName() == "QColorSpace" { //TODO: 5.14.0
+				continue
+			}
+			for _, v := range e.Values {
+				if v.Name == "ByteOrder" {
+					continue
+				}
+				if parser.UseWasm() {
+					//TODO: same as for js ?
+				} else if parser.UseJs() {
+					fmt.Fprintf(bb, "module.Set(\"%v__%v\", int64(%v__%v))\n", strings.Split(e.Fullname, "::")[0], v.Name, strings.Split(e.Fullname, "::")[0], v.Name)
+				}
+				if cmd.ImportsQmlOrQuick() || mode == NONE {
+					bb.WriteString(fmt.Sprintf("qt.EnumMap[\"%[1]v.%[2]v__%[3]v\"] = int64(%[2]v__%[3]v)\n", goModule(module), strings.Split(e.Fullname, "::")[0], v.Name))
+
+					if utils.QT_GEN_TSD() {
+						fmt.Fprintf(tsd, "\tconst %v__%v: number;\n", strings.Split(e.Fullname, "::")[0], v.Name)
+					}
+				}
+			}
+		}
+	}
+	if utils.QT_GEN_TSD() {
+		tsd.WriteString("}")
 	}
 
-	return preambleGo(module, goModule(module), bb.Bytes(), stub, mode, pkg, target, tags)
+	fmt.Fprint(bb, "}\n")
+
+	return preambleGo(module, goModule(module), bb.Bytes(), stub, mode, pkg, target, tags, tsd)
 }
 
-func preambleGo(oldModule string, module string, input []byte, stub bool, mode int, pkg, target, tags string) []byte {
+func preambleGo(oldModule string, module string, input []byte, stub bool, mode int, pkg, target, tags string, tsd *bytes.Buffer) []byte {
 	var bb = new(bytes.Buffer)
 	defer bb.Reset()
+	var tsdbb = new(bytes.Buffer)
+	defer tsdbb.Reset()
 
 	if UseStub(stub, oldModule, mode) || UseJs() {
 		fmt.Fprintf(bb, `%v
@@ -699,7 +1077,7 @@ import "C"
 	}
 
 	fmt.Fprint(bb, "import (\n")
-	for _, m := range append(parser.GetLibs(), "qt", "strings", "unsafe", "log", "runtime", "fmt", "errors", "js", "time", "hex", "reflect") {
+	for _, m := range append(parser.GetLibs(), "qt", "strings", "unsafe", "log", "runtime", "fmt", "errors", "js", "time", "hex", "reflect", "math", "sync", "strconv") {
 		mlow := strings.ToLower(m)
 		if strings.Contains(inputString, fmt.Sprintf(" %v.", mlow)) ||
 			strings.Contains(inputString, fmt.Sprintf("\t%v.", mlow)) ||
@@ -711,7 +1089,7 @@ import "C"
 			strings.Contains(inputString, fmt.Sprintf(")%v.", mlow)) ||
 			strings.Contains(inputString, fmt.Sprintf("std_%v.", mlow)) {
 			switch mlow {
-			case "strings", "unsafe", "log", "runtime", "fmt", "errors", "time", "reflect":
+			case "strings", "unsafe", "log", "runtime", "fmt", "errors", "time", "reflect", "math", "sync", "strconv":
 				fmt.Fprintf(bb, "\"%v\"\n", mlow)
 
 			case "hex":
@@ -732,6 +1110,10 @@ import "C"
 					fmt.Fprintf(bb, "std_%[1]v \"github.com/therecipe/qt/%[1]v\"\n", mlow)
 				} else {
 					fmt.Fprintf(bb, "\"github.com/therecipe/qt/%v\"\n", mlow)
+				}
+
+				if utils.QT_GEN_TSD() {
+					fmt.Fprintf(tsdbb, "/// <reference path=\"%v.d.ts\" />\n", mlow)
 				}
 
 				if mode == MOC {
@@ -785,6 +1167,14 @@ import "C"
 					}
 				}
 				//TODO: REVIEW
+			}
+		}
+
+		if module == "gui" && utils.QT_API_NUM(utils.QT_VERSION()) >= 5050 {
+			if mode == NONE {
+				fmt.Fprintln(bb, "_ \"github.com/therecipe/qt/internal/binding/runtime\"")
+			} else if mode == MINIMAL && cmd.ImportsQmlOrQuick() {
+				fmt.Fprintln(bb, "_ \"github.com/therecipe/qt/internal/binding/runtime\"")
 			}
 		}
 	}
@@ -854,6 +1244,11 @@ import "C"
 		out = []byte(pre)
 	}
 
+	if utils.QT_GEN_TSD() && (mode == NONE || mode == MINIMAL) {
+		tsdbb.Write(tsd.Bytes())
+		utils.SaveBytes(utils.GoQtPkgPath(goModule(module), goModule(module)+".d.ts"), tsdbb.Bytes())
+	}
+
 	return out
 }
 
@@ -861,7 +1256,7 @@ import "C"
 func renameSubClasses(in []byte) []byte {
 	for _, c := range parser.State.ClassMap {
 		if c.Fullname != "" {
-			sep := []string{"\n", ".", "\"", " ", "*", "(", ")", "{", "C.", "_ITF", "_PTR", " New", ".New", "(New", "\"New", "From", "Destroy"}
+			sep := []string{"\n", ".", "\"", " ", "*", "(", ")", "{", "C.", "_ITF", "_PTR", " New", ".New", "(New", "\"New", "From", "Destroy", ",", "2"}
 			for _, p := range sep {
 				for _, s := range sep {
 					in = bytes.Replace(in, []byte(p+c.Name+s), []byte(p+strings.Replace(c.Fullname, "::", "_", -1)+s), -1)
@@ -870,4 +1265,133 @@ func renameSubClasses(in []byte) []byte {
 		}
 	}
 	return in
+}
+
+func convertToTypeScriptDefinition(className string, l string, convertClassMethods bool) string {
+	l = strings.TrimSpace(l)
+
+	if strings.HasPrefix(l, "func New"+className+"FromPointer") && !convertClassMethods {
+		return "function New" + className + "FromPointer(ptr:number):" + className
+	}
+
+	if (strings.Contains(l, "ptr *"+className+")") && !strings.Contains(l, " __") && convertClassMethods) ||
+		(strings.HasPrefix(l, "func  New"+className) && !strings.Contains(l, "FromPointer(") && !convertClassMethods) ||
+		(strings.HasPrefix(l, "func  "+className+"_") && !convertClassMethods) {
+		l = strings.Replace(l, "  ", " ", -1)
+		l = strings.Replace(l, "func (", "function(", -1)
+		l = strings.Replace(l, "func New", "function_New", -1)
+		l = strings.Replace(l, "func "+className, "function_"+className, -1)
+		l = strings.Replace(l, ") )", "))", -1)
+		l = strings.Replace(l, ", ", ",", -1)
+		l = strings.Replace(l, "*", "", -1)
+
+		if convertClassMethods {
+			l = strings.Join(strings.Split(l, ") ")[1:], ") ")
+		}
+
+		l = strings.TrimSpace(strings.TrimSuffix(l, "{"))
+		l = strings.Replace(l, " ", ":", -1)
+
+		for _, v := range [][]string{{"[]byte", "string"}, {"bool", "boolean"}, {"interface{}", "any"}, {"...interface{}", "any[]"}} {
+			l = strings.Replace(l, ":"+v[0], ":"+v[1], -1)
+		}
+
+		for _, v := range []string{"uint8", "int8", "uint16", "int16", "uint32", "int32", "uint64", "int64", "uintptr", "uint", "int", "float32", "float64", "unsafe.Pointer"} {
+			l = strings.Replace(l, ":"+v, ":number", -1)
+			l = strings.Replace(l, ":[]"+v, ":[]number", -1)
+			l = strings.Replace(l, "["+v+"]", "[number]", -1)
+		}
+
+		l = strings.Replace(l, "in:", "i:", -1)
+
+		ls := strings.Split(l, ":")
+		for i, lss := range ls {
+			for _, sc := range []string{")", ",", ";"} {
+				lsss := strings.Split(lss, sc)
+
+				if strings.Contains(lsss[0], "[]") {
+					for _, scc := range []string{",", ")", ";"} {
+						lssss := strings.Split(lsss[0], scc)
+						for j := range lssss {
+							if strings.Contains(lssss[j], "[]") {
+								lssss[j] = strings.Replace(lssss[j], "[]", "", -1) + "[_BLOCKING_]"
+							}
+						}
+						lsss[0] = strings.Join(lssss, scc)
+					}
+				}
+
+				if strings.Contains(lsss[0], "map[") {
+					lsss[0] = strings.Replace(lsss[0], "map[", "Map<", -1)
+					for _, scc := range []string{",", ")", ";"} {
+						lssss := strings.Split(lsss[0], scc)
+						for j := range lssss {
+							if strings.Contains(lssss[j], "]") {
+								lssss[j] = strings.Replace(lssss[j], "]", ",", -1) + ">"
+							}
+						}
+						lsss[0] = strings.Join(lssss, scc)
+					}
+				}
+
+				if strings.Contains(lsss[0], "__") {
+					index := strings.IndexAny(lsss[0], "),;")
+					if index != -1 {
+						lsss[0] = "number" + lsss[0][index:]
+					} else {
+						lsss[0] = "number"
+					}
+				}
+
+				lss = strings.Join(lsss, sc)
+			}
+			ls[i] = lss
+		}
+		l = strings.Join(ls, ":")
+
+		ls = strings.Split(l, "function(")
+		for i, lss := range ls {
+			if i == 0 {
+				continue
+			}
+			lse := strings.Split(lss, ")")
+
+			for j := range lse {
+				if j == 0 || j == len(lse)-1 {
+					continue
+				}
+				if strings.HasPrefix(lse[j], ":") {
+					lse[j] = "=>" + strings.TrimPrefix(lse[j], ":")
+				}
+			}
+
+			ls[i] = strings.Join(lse, ")")
+		}
+		l = strings.Join(ls, "(")
+
+		if strings.HasSuffix(l, ")") && !strings.Contains(l, "):(") {
+			l += ":void"
+		}
+		l = strings.Replace(l, "))", ")=>void)", -1)
+
+		if strings.Contains(l, "):(") {
+			ls = strings.Split(l, "):(")
+			ls[1] = strings.TrimSuffix(ls[1], ")")
+			if strings.Contains(ls[1], ",") {
+				ls[1] = "[" + ls[1] + "]"
+			}
+			for _, v := range [][]string{{"int", "number"}, {"bool", "boolean"}, {"error", "string"}} {
+				ls[1] = strings.Replace(ls[1], v[0], v[1], -1)
+			}
+			l = strings.Join(ls, "):")
+		}
+
+		l = strings.Replace(l, "function_New", "function New", -1)
+		l = strings.Replace(l, "function_"+className, "function "+className, -1)
+		l = strings.Replace(l, "function:", "func:", -1)
+		l = strings.Replace(l, "[_BLOCKING_]", "[]", -1)
+
+		return l
+	}
+	return ""
 }

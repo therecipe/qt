@@ -39,7 +39,11 @@ func goEnum(e *parser.Enum, _ *parser.Value) string {
 				if strings.HasPrefix(t, "C.") && c.Stub {
 					t = "0"
 				}
-				fmt.Fprintf(bb, "%v__%v %v = %v(%v)\n", strings.Split(e.Fullname, "::")[0], v.Name, strings.Replace(e.Fullname, ":", "_", -1), strings.Replace(e.Fullname, ":", "_", -1), t)
+				if e.ClassName() == "QColorSpace" { //TODO: 5.14.0
+					fmt.Fprintf(bb, "%v_%v %v = %v(%v)\n", strings.Replace(e.Fullname, ":", "_", -1), v.Name, strings.Replace(e.Fullname, ":", "_", -1), strings.Replace(e.Fullname, ":", "_", -1), t)
+				} else {
+					fmt.Fprintf(bb, "%v__%v %v = %v(%v)\n", strings.Split(e.Fullname, "::")[0], v.Name, strings.Replace(e.Fullname, ":", "_", -1), strings.Replace(e.Fullname, ":", "_", -1), t)
+				}
 			}
 		}
 	}

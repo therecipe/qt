@@ -50,12 +50,25 @@ var (
 	goDirCacheMutex = new(sync.Mutex)
 )
 
-func Moc(path, target, tags string, fast, slow, deploying bool) {
-	if utils.UseGOMOD(path) {
+func Moc(path, target, tags string, fast, slow, deploying bool, skipSetup bool) {
+	if utils.UseGOMOD(path) && !skipSetup {
 		if !utils.ExistsDir(filepath.Join(filepath.Dir(utils.GOMOD(path)), "vendor")) {
 			cmd := exec.Command("go", "mod", "vendor")
 			cmd.Dir = path
 			utils.RunCmd(cmd, "go mod vendor")
+		}
+		if utils.QT_DOCKER() {
+			cmd := exec.Command("go", "get", "-v", "-d", "github.com/therecipe/qt/internal/binding/files/docs/"+utils.QT_API(utils.QT_VERSION())+"@"+cmd.QtModVersion(filepath.Dir(utils.GOMOD(path)))) //TODO: needs to pull 5.8.0 if QT_WEBKIT
+			cmd.Dir = path
+			if !utils.QT_PKG_CONFIG() {
+				utils.RunCmdOptional(cmd, "go get docs") //TODO: this can fail if QT_PKG_CONFIG
+			}
+
+			if strings.HasPrefix(target, "sailfish") || strings.HasPrefix(target, "android") { //TODO: generate android and sailfish minimal instead
+				cmd := exec.Command(filepath.Join(utils.GOBIN(), "qtsetup"), "generate", target)
+				cmd.Dir = path
+				utils.RunCmd(cmd, "run setup")
+			}
 		}
 	}
 
@@ -63,7 +76,11 @@ func Moc(path, target, tags string, fast, slow, deploying bool) {
 
 	if !deploying && utils.QT_DOCKER() {
 		if idug, ok := os.LookupEnv("IDUG"); ok {
-			utils.RunCmd(exec.Command("chown", "-R", idug, path), "chown files to user")
+			if utils.UseGOMOD(path) {
+				utils.RunCmd(exec.Command("chown", "-R", idug, filepath.Dir(utils.GOMOD(path))), "chown files to user")
+			} else {
+				utils.RunCmd(exec.Command("chown", "-R", idug, path), "chown files to user")
+			}
 		}
 	}
 }
@@ -79,7 +96,9 @@ func moc(path, target, tags string, fast, slow, root bool, l int, dirty bool) {
 		for _, f := range []bool{false, true} {
 			env, tagsEnv, _, _ := cmd.BuildEnv(target, "", "")
 			scmd := utils.GoList("{{.Stale}}|{{.StaleReason}}")
-			scmd.Dir = path
+			if !utils.UseGOMOD(path) || (utils.UseGOMOD(path) && !strings.Contains(strings.Replace(path, "\\", "/", -1), "/vendor/")) {
+				scmd.Dir = path
+			}
 
 			if ((!fast && !utils.QT_FAT()) || f) && !((!fast && !utils.QT_FAT()) && f) {
 				tagsEnv = append(tagsEnv, "minimal")
@@ -87,10 +106,16 @@ func moc(path, target, tags string, fast, slow, root bool, l int, dirty bool) {
 			if tags != "" {
 				tagsEnv = append(tagsEnv, strings.Split(tags, " ")...)
 			}
-			scmd.Args = append(scmd.Args, fmt.Sprintf("-tags=\"%v\"", strings.Join(tagsEnv, "\" \"")))
+			scmd.Args = append(scmd.Args, utils.BuildTags(tagsEnv))
 
 			if target != runtime.GOOS {
 				scmd.Args = append(scmd.Args, []string{"-pkgdir", filepath.Join(utils.MustGoPath(), "pkg", fmt.Sprintf("%v_%v_%v", strings.Replace(target, "-", "_", -1), env["GOOS"], env["GOARCH"]))}...)
+			}
+
+			if utils.UseGOMOD(path) && strings.Contains(strings.Replace(path, "\\", "/", -1), "/vendor/") {
+				scmd.Dir = filepath.Dir(utils.GOMOD(path))
+				vl := strings.Split(strings.Replace(path, "\\", "/", -1), "/vendor/")
+				scmd.Args = append(scmd.Args, vl[len(vl)-1])
 			}
 
 			for key, value := range env {
@@ -179,7 +204,7 @@ func moc(path, target, tags string, fast, slow, root bool, l int, dirty bool) {
 			}
 
 			importAs := "custom_" + ipkg + "_" + cls[0].Hash() + "m"
-			if strings.Contains(spath, "/vendor/") {
+			if strings.Contains(spath, "/vendor/") && !utils.UseGOMOD(path) {
 				importAs = ipkg
 			}
 
@@ -347,7 +372,9 @@ func moc(path, target, tags string, fast, slow, root bool, l int, dirty bool) {
 	if !(target == "js" || target == "wasm" || utils.QT_NOT_CACHED()) { //TODO: remove for module support + resolve dependencies
 		env, tagsEnv, _, _ := cmd.BuildEnv(target, "", "")
 		scmd := utils.GoList("{{.Stale}}|{{.StaleReason}}")
-		scmd.Dir = path
+		if !utils.UseGOMOD(path) || (utils.UseGOMOD(path) && !strings.Contains(strings.Replace(path, "\\", "/", -1), "/vendor/")) {
+			scmd.Dir = path
+		}
 
 		if !fast && !utils.QT_FAT() {
 			tagsEnv = append(tagsEnv, "minimal")
@@ -355,10 +382,16 @@ func moc(path, target, tags string, fast, slow, root bool, l int, dirty bool) {
 		if tags != "" {
 			tagsEnv = append(tagsEnv, strings.Split(tags, " ")...)
 		}
-		scmd.Args = append(scmd.Args, fmt.Sprintf("-tags=\"%v\"", strings.Join(tagsEnv, "\" \"")))
+		scmd.Args = append(scmd.Args, utils.BuildTags(tagsEnv))
 
 		if target != runtime.GOOS {
 			scmd.Args = append(scmd.Args, []string{"-pkgdir", filepath.Join(utils.MustGoPath(), "pkg", fmt.Sprintf("%v_%v_%v", strings.Replace(target, "-", "_", -1), env["GOOS"], env["GOARCH"]))}...)
+		}
+
+		if utils.UseGOMOD(path) && strings.Contains(strings.Replace(path, "\\", "/", -1), "/vendor/") {
+			scmd.Dir = filepath.Dir(utils.GOMOD(path))
+			vl := strings.Split(strings.Replace(path, "\\", "/", -1), "/vendor/")
+			scmd.Args = append(scmd.Args, vl[len(vl)-1])
 		}
 
 		for key, value := range env {
@@ -472,11 +505,12 @@ func parse(path string) ([]*parser.Class, string, error) {
 			}
 
 			class := &parser.Class{
-				Access: "public",
-				Module: parser.MOC,
-				Name:   typeSpec.Name.String(),
-				Status: "public",
-				Path:   filepath.Dir(path),
+				Access:        "public",
+				Module:        parser.MOC,
+				Name:          typeSpec.Name.String(),
+				Status:        "public",
+				Path:          filepath.Dir(path),
+				ToBeCleanedUp: true,
 			}
 
 			//collect possible base classes
@@ -694,10 +728,10 @@ func parse(path string) ([]*parser.Class, string, error) {
 			if len(class.Properties) != 0 || len(class.Functions) != 0 ||
 				len(class.Constructors) != 0 || len(class.GetBases()) != 0 {
 				classes = append(classes, class)
-			} else {
+			} else if _, ok := parser.State.GoClassMap[class.Name]; !ok { //TODO: support proper namespaces instead
 				ipkg := file.Name.String()
 				importAs := "custom_" + ipkg + "_" + class.Hash() + "m"
-				if strings.Contains(path, "/vendor/") {
+				if strings.Contains(path, "/vendor/") && !utils.UseGOMOD(path) {
 					importAs = ipkg
 				}
 				class.Module = importAs

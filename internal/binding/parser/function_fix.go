@@ -156,6 +156,13 @@ func (f *Function) fixGeneral_Version() {
 				}
 			}
 		}
+	case "QJSEngine::toScriptValue":
+		f.Parameters[0].Value = "const QVariant &"
+	case "QJSEngine::fromScriptValue":
+		f.Output = "QVariant"
+		f.TemplateModeGo = "QVariant"
+	case "QJSEngine::qjsEngine":
+		f.Static = true
 	}
 }
 
@@ -295,6 +302,11 @@ func (f *Function) fixGenericOutput() {
 				}
 			}
 		}
+
+	case "QNetworkCacheMetaData::RawHeaderList":
+		{
+			f.Output = "QList<QNetworkCacheMetaData::RawHeader>"
+		}
 	}
 }
 
@@ -404,6 +416,11 @@ func (f *Function) fixGenericInput() {
 						p.Value = fmt.Sprintf("%v*", className)
 					}
 				}
+			}
+
+		case "QNetworkCacheMetaData::RawHeaderList":
+			{
+				p.Value = "QList<QNetworkCacheMetaData::RawHeader>"
 			}
 		}
 	}

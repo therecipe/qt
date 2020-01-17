@@ -10,10 +10,16 @@
 #ifdef __cplusplus
 int QAbstractMessageHandler_QAbstractMessageHandler_QRegisterMetaType();
 int QAbstractUriResolver_QAbstractUriResolver_QRegisterMetaType();
+int QAbstractXmlNodeModel_QAbstractXmlNodeModel_QRegisterMetaType();
+int QAbstractXmlReceiver_QAbstractXmlReceiver_QRegisterMetaType();
+int QSimpleXmlNodeModel_QSimpleXmlNodeModel_QRegisterMetaType();
+int QXmlFormatter_QXmlFormatter_QRegisterMetaType();
+int QXmlResultItems_QXmlResultItems_QRegisterMetaType();
+int QXmlSerializer_QXmlSerializer_QRegisterMetaType();
 extern "C" {
 #endif
 
-struct QtXmlPatterns_PackedString { char* data; long long len; };
+struct QtXmlPatterns_PackedString { char* data; long long len; void* ptr; };
 struct QtXmlPatterns_PackedList { void* data; long long len; };
 void QAbstractMessageHandler_DestroyQAbstractMessageHandler(void* ptr);
 void QAbstractMessageHandler_DestroyQAbstractMessageHandlerDefault(void* ptr);
@@ -29,9 +35,6 @@ void* QAbstractMessageHandler___findChildren_newList(void* ptr);
 void* QAbstractMessageHandler___findChildren_atList3(void* ptr, int i);
 void QAbstractMessageHandler___findChildren_setList3(void* ptr, void* i);
 void* QAbstractMessageHandler___findChildren_newList3(void* ptr);
-void* QAbstractMessageHandler___qFindChildren_atList2(void* ptr, int i);
-void QAbstractMessageHandler___qFindChildren_setList2(void* ptr, void* i);
-void* QAbstractMessageHandler___qFindChildren_newList2(void* ptr);
 void QAbstractMessageHandler_ChildEventDefault(void* ptr, void* event);
 void QAbstractMessageHandler_ConnectNotifyDefault(void* ptr, void* sign);
 void QAbstractMessageHandler_CustomEventDefault(void* ptr, void* event);
@@ -57,9 +60,6 @@ void* QAbstractUriResolver___findChildren_newList(void* ptr);
 void* QAbstractUriResolver___findChildren_atList3(void* ptr, int i);
 void QAbstractUriResolver___findChildren_setList3(void* ptr, void* i);
 void* QAbstractUriResolver___findChildren_newList3(void* ptr);
-void* QAbstractUriResolver___qFindChildren_atList2(void* ptr, int i);
-void QAbstractUriResolver___qFindChildren_setList2(void* ptr, void* i);
-void* QAbstractUriResolver___qFindChildren_newList2(void* ptr);
 void QAbstractUriResolver_ChildEventDefault(void* ptr, void* event);
 void QAbstractUriResolver_ConnectNotifyDefault(void* ptr, void* sign);
 void QAbstractUriResolver_CustomEventDefault(void* ptr, void* event);

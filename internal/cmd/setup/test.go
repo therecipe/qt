@@ -11,6 +11,7 @@ import (
 	"github.com/therecipe/qt/internal/binding/parser"
 	"github.com/therecipe/qt/internal/binding/templater"
 
+	"github.com/therecipe/qt/internal/cmd"
 	"github.com/therecipe/qt/internal/cmd/deploy"
 	"github.com/therecipe/qt/internal/cmd/minimal"
 	"github.com/therecipe/qt/internal/cmd/moc"
@@ -27,16 +28,19 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 
 		path := utils.GoQtPkgPath("internal", "cmd", "moc", "test")
 
-		moc.Moc(path, target, "", false, false, false)
-		minimal.Minimal(path, target, "")
+		moc.Moc(path, target, "", false, false, false, true)
+		minimal.Minimal(path, target, "", true)
 
 		var pattern string
-		if v := utils.GOVERSION(); strings.Contains(v, "1.1") || strings.Contains(v, "devel") {
+		if utils.GOVERSION_NUM() >= 110 {
 			pattern = "all="
 		}
 
-		cmd := exec.Command("go", "test", "-v", "-tags=minimal", fmt.Sprintf("-ldflags=%v\"-s\"", pattern))
+		cmd := exec.Command("go", "test", "-v", "-tags=minimal", fmt.Sprintf("-ldflags=%v\"-s\"", pattern), "-race")
 		cmd.Env = append(os.Environ(), []string{"GODEBUG=cgocheck=2", "GO111MODULE=off"}...)
+		if runtime.GOOS == "linux" {
+			cmd.Env = append(cmd.Env, "QT_QPA_PLATFORM=offscreen")
+		}
 		cmd.Dir = path
 		utils.RunCmd(cmd, "run \"go test\"")
 
@@ -59,11 +63,11 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 				filepath.Join("threejs", "planets"),
 			},
 
-			"charts": []string{"audio", "dynamicspline"},
+			"charts": []string{"audio", "dynamicspline", "modeldata"},
 
 			"common": []string{"qml_demo", "widgets_demo"},
 
-			//"grpc": []string{"hello_world","hello_world2"},
+			//"grpc": []string{"hello_world","hello_world2"}, //TODO: re-gen protobuf go files
 
 			//"gui": []string{"analogclock", "openglwindow", "rasterwindow"},
 
@@ -144,12 +148,14 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 			if cat == "virtualkeyboard" && (strings.Contains(target, "ios") || strings.Contains(target, "android")) {
 				continue
 			}
-
 			if (target == "js" || target == "wasm") &&
-				cat == "charts" || cat == "uitools" || cat == "sql" ||
-				cat == "androidextras" || cat == "qt3d" || cat == "webchannel" ||
-				(cat == "widgets" && strings.HasPrefix(example, "treeview")) ||
-				example == "video_player" || example == "custom_scheme" {
+				(cat == "charts" || cat == "uitools" || cat == "sql" ||
+					cat == "androidextras" || cat == "qt3d" || cat == "webchannel" ||
+					strings.HasPrefix(example, "treeview") ||
+					example == "video_player" || example == "custom_scheme") {
+				continue
+			}
+			if example == "wallet" && target == runtime.GOOS && runtime.GOOS == "windows" {
 				continue
 			}
 
@@ -170,10 +176,11 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 				vagrantsystem,
 				false,
 				true,
-				!strings.HasPrefix(target, "sailfish"),
+				false, //TODO: re-enable once quickcompiler files can be properly cleaned up automatically !strings.HasPrefix(target, "sailfish"),
 			)
 			templater.CleanupDepsForCI()
 			templater.CleanupDepsForCI = func() {}
+			cmd.CleanupImportsQmlOrQuickForCI()
 		}
 	}
 }

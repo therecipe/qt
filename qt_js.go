@@ -25,5 +25,3 @@ func MakeWrapper(i interface{}) *js.Object {
 }
 
 //
-
-var WASM = Module //TODO: remove

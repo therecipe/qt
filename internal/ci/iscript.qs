@@ -27,6 +27,13 @@ Controller.prototype.IntroductionPageCallback = function()
   gui.clickButton(buttons.NextButton);
 }
 
+Controller.prototype.DynamicTelemetryPluginFormCallback = function()
+{
+  var page = gui.pageWidgetByObjectName("DynamicTelemetryPluginForm");
+  page.statisticGroupBox.disableStatisticRadioButton.setChecked(true);
+  gui.clickButton(buttons.NextButton);
+}
+
 Controller.prototype.TargetDirectoryPageCallback = function()
 {
   gui.clickButton(buttons.NextButton);
@@ -68,21 +75,32 @@ Controller.prototype.ComponentSelectionPageCallback = function()
 
   if (installer.value("WINDOWS") == "true")
   {
-    gui.currentPageWidget().selectComponent("qt."+version+".win32_mingw49");
-    gui.currentPageWidget().selectComponent("qt."+version+".win32_mingw53");
-    if (installer.value("ARCH") == "32")
+    if (installer.value("MSVC") == "true")
     {
-      gui.currentPageWidget().selectComponent("qt."+version+".win32_mingw73");
+      if (installer.value("ARCH") == "32")
+      {
+        gui.currentPageWidget().selectComponent("qt."+version+".win32_msvc2017");
+        gui.currentPageWidget().selectComponent("qt.tools.win32_mingw730")
+      }
+      else
+      {
+        gui.currentPageWidget().selectComponent("qt."+version+".win64_msvc2017_64");
+        gui.currentPageWidget().selectComponent("qt.tools.win64_mingw730")
+      }
     }
     else
     {
-      gui.currentPageWidget().selectComponent("qt."+version+".win64_mingw73");
+      gui.currentPageWidget().selectComponent("qt."+version+".win32_mingw49");
+      gui.currentPageWidget().selectComponent("qt."+version+".win32_mingw53");
+      if (installer.value("ARCH") == "32")
+      {
+        gui.currentPageWidget().selectComponent("qt."+version+".win32_mingw73");
+      }
+      else
+      {
+        gui.currentPageWidget().selectComponent("qt."+version+".win64_mingw73");
+      }
     }
-  }
-
-  if (installer.value("LINUX") == "true")
-  {
-    gui.currentPageWidget().selectComponent("qt."+version+".gcc_64");
   }
 
   gui.currentPageWidget().selectComponent("qt."+version+".qt3d");
@@ -102,10 +120,16 @@ Controller.prototype.ComponentSelectionPageCallback = function()
   gui.currentPageWidget().selectComponent("qt."+version+".qtwebengine");
   gui.currentPageWidget().selectComponent("qt."+version+".qtwebglplugin");
   gui.currentPageWidget().selectComponent("qt."+version+".qtwebview");
+  gui.currentPageWidget().selectComponent("qt."+version+".qtlottie");
 
-  gui.currentPageWidget().selectComponent("qt."+version+".android_armv7");
-  gui.currentPageWidget().selectComponent("qt."+version+".android_x86");
-  gui.currentPageWidget().selectComponent("qt."+version+".android_arm64_v8a");
+  if (installer.value("LINUX") == "true")
+  {
+    gui.currentPageWidget().selectComponent("qt."+version+".gcc_64");
+
+    gui.currentPageWidget().selectComponent("qt."+version+".android_armv7");
+    gui.currentPageWidget().selectComponent("qt."+version+".android_x86");
+    gui.currentPageWidget().selectComponent("qt."+version+".android_arm64_v8a");
+  }
 
   gui.clickButton(buttons.NextButton);
 }

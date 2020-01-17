@@ -1,4 +1,4 @@
-//source: http://doc.qt.io/qt-5/qtmultimediawidgets-videowidget-example.html
+//source: https://doc.qt.io/qt-5/qtmultimedia-multimediawidgets-videowidget-example.html
 
 package main
 
@@ -17,6 +17,7 @@ var (
 	playButton      *widgets.QPushButton
 	positionsSlider *widgets.QSlider
 	errorLabel      *widgets.QLabel
+	videoWidget     *multimedia.QVideoWidget
 )
 
 func main() {
@@ -32,11 +33,9 @@ func main() {
 func newVideoPlayer() *widgets.QWidget {
 	videoPlayer = widgets.NewQWidget(nil, 0)
 	mediaPlayer = multimedia.NewQMediaPlayer(nil, multimedia.QMediaPlayer__VideoSurface)
+	videoWidget = multimedia.NewQVideoWidget(nil)
 
-	var (
-		videoWidget = multimedia.NewQVideoWidget(nil)
-		openButton  = widgets.NewQPushButton2("Open...", nil)
-	)
+	openButton := widgets.NewQPushButton2("Open...", nil)
 	openButton.ConnectClicked(func(_ bool) { openFile() })
 
 	playButton = widgets.NewQPushButton(nil)
@@ -94,6 +93,7 @@ func play() {
 	default:
 		{
 			mediaPlayer.Play()
+			videoWidget.AdjustSize()
 		}
 	}
 }

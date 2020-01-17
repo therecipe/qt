@@ -1,0 +1,12 @@
+{
+  "title": "Car Challenge",
+  "identifier": "net.vplay.demos.CarChallenge",
+  "orientation": "landscape",
+  "versioncode": 1,
+  "versionname": "1.0",
+  "stage": "test",
+
+  "ios": {
+    "prerendered_icon": true
+  }
+}

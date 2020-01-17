@@ -11,18 +11,22 @@ import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/network"
-	"runtime"
+	"strconv"
 	"strings"
+	"sync"
 	"unsafe"
 )
 
+func cGoFreePacked(ptr unsafe.Pointer) { core.NewQByteArrayFromPointer(ptr).DestroyQByteArray() }
 func cGoUnpackString(s C.struct_QtQml_PackedString) string {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		return C.GoString(s.data)
 	}
 	return C.GoStringN(s.data, C.int(s.len))
 }
 func cGoUnpackBytes(s C.struct_QtQml_PackedString) []byte {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
 		return *(*[]byte)(unsafe.Pointer(&gs))
@@ -91,6 +95,7 @@ func NewQJSEngine() *QJSEngine {
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
+	Z_initEngine(tmpValue)
 	return tmpValue
 }
 
@@ -99,6 +104,7 @@ func NewQJSEngine2(parent core.QObject_ITF) *QJSEngine {
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
+	Z_initEngine(tmpValue)
 	return tmpValue
 }
 
@@ -121,7 +127,16 @@ func (ptr *QJSEngine) Evaluate(program string, fileName string, lineNumber int) 
 			defer C.free(unsafe.Pointer(fileNameC))
 		}
 		tmpValue := NewQJSValueFromPointer(C.QJSEngine_Evaluate(ptr.Pointer(), C.struct_QtQml_PackedString{data: programC, len: C.longlong(len(program))}, C.struct_QtQml_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, C.int(int32(lineNumber))))
-		runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
+		qt.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QJSEngine) FromScriptValue(value QJSValue_ITF) *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QJSEngine_FromScriptValue(ptr.Pointer(), PointerFromQJSValue(value)))
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -130,7 +145,7 @@ func (ptr *QJSEngine) Evaluate(program string, fileName string, lineNumber int) 
 func (ptr *QJSEngine) GlobalObject() *QJSValue {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQJSValueFromPointer(C.QJSEngine_GlobalObject(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
+		qt.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
 		return tmpValue
 	}
 	return nil
@@ -144,7 +159,7 @@ func (ptr *QJSEngine) ImportModule(fileName string) *QJSValue {
 			defer C.free(unsafe.Pointer(fileNameC))
 		}
 		tmpValue := NewQJSValueFromPointer(C.QJSEngine_ImportModule(ptr.Pointer(), C.struct_QtQml_PackedString{data: fileNameC, len: C.longlong(len(fileName))}))
-		runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
+		qt.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
 		return tmpValue
 	}
 	return nil
@@ -159,7 +174,7 @@ func (ptr *QJSEngine) InstallExtensions(extensions QJSEngine__Extension, object 
 func (ptr *QJSEngine) NewArray(length uint) *QJSValue {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQJSValueFromPointer(C.QJSEngine_NewArray(ptr.Pointer(), C.uint(uint32(length))))
-		runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
+		qt.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
 		return tmpValue
 	}
 	return nil
@@ -173,7 +188,7 @@ func (ptr *QJSEngine) NewErrorObject(errorType QJSValue__ErrorType, message stri
 			defer C.free(unsafe.Pointer(messageC))
 		}
 		tmpValue := NewQJSValueFromPointer(C.QJSEngine_NewErrorObject(ptr.Pointer(), C.longlong(errorType), C.struct_QtQml_PackedString{data: messageC, len: C.longlong(len(message))}))
-		runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
+		qt.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
 		return tmpValue
 	}
 	return nil
@@ -182,7 +197,7 @@ func (ptr *QJSEngine) NewErrorObject(errorType QJSValue__ErrorType, message stri
 func (ptr *QJSEngine) NewObject() *QJSValue {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQJSValueFromPointer(C.QJSEngine_NewObject(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
+		qt.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
 		return tmpValue
 	}
 	return nil
@@ -191,7 +206,7 @@ func (ptr *QJSEngine) NewObject() *QJSValue {
 func (ptr *QJSEngine) NewQMetaObject(metaObject core.QMetaObject_ITF) *QJSValue {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQJSValueFromPointer(C.QJSEngine_NewQMetaObject(ptr.Pointer(), core.PointerFromQMetaObject(metaObject)))
-		runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
+		qt.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
 		return tmpValue
 	}
 	return nil
@@ -200,10 +215,26 @@ func (ptr *QJSEngine) NewQMetaObject(metaObject core.QMetaObject_ITF) *QJSValue 
 func (ptr *QJSEngine) NewQObject(object core.QObject_ITF) *QJSValue {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQJSValueFromPointer(C.QJSEngine_NewQObject(ptr.Pointer(), core.PointerFromQObject(object)))
-		runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
+		qt.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
 		return tmpValue
 	}
 	return nil
+}
+
+func QJSEngine_qjsEngine(object core.QObject_ITF) *QJSEngine {
+	tmpValue := NewQJSEngineFromPointer(C.QJSEngine_QJSEngine_qjsEngine(core.PointerFromQObject(object)))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
+
+func (ptr *QJSEngine) qjsEngine(object core.QObject_ITF) *QJSEngine {
+	tmpValue := NewQJSEngineFromPointer(C.QJSEngine_QJSEngine_qjsEngine(core.PointerFromQObject(object)))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
 }
 
 func (ptr *QJSEngine) ThrowError(message string) {
@@ -226,6 +257,15 @@ func (ptr *QJSEngine) ThrowError2(errorType QJSValue__ErrorType, message string)
 		}
 		C.QJSEngine_ThrowError2(ptr.Pointer(), C.longlong(errorType), C.struct_QtQml_PackedString{data: messageC, len: C.longlong(len(message))})
 	}
+}
+
+func (ptr *QJSEngine) ToScriptValue(value core.QVariant_ITF) *QJSValue {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQJSValueFromPointer(C.QJSEngine_ToScriptValue(ptr.Pointer(), core.PointerFromQVariant(value)))
+		qt.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
+		return tmpValue
+	}
+	return nil
 }
 
 //export callbackQJSEngine_DestroyQJSEngine
@@ -261,17 +301,19 @@ func (ptr *QJSEngine) DisconnectDestroyQJSEngine() {
 
 func (ptr *QJSEngine) DestroyQJSEngine() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QJSEngine_DestroyQJSEngine(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QJSEngine) DestroyQJSEngineDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QJSEngine_DestroyQJSEngineDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -299,7 +341,7 @@ func (ptr *QJSEngine) __children_newList() unsafe.Pointer {
 func (ptr *QJSEngine) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QJSEngine___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -355,27 +397,6 @@ func (ptr *QJSEngine) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QJSEngine) __findChildren_newList3() unsafe.Pointer {
 	return C.QJSEngine___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QJSEngine) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QJSEngine___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QJSEngine) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QJSEngine___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QJSEngine) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QJSEngine___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQJSEngine_ChildEvent
@@ -434,8 +455,9 @@ func callbackQJSEngine_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QJSEngine) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QJSEngine_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -597,43 +619,43 @@ const (
 
 func NewQJSValue(value QJSValue__SpecialValue) *QJSValue {
 	tmpValue := NewQJSValueFromPointer(C.QJSValue_NewQJSValue(C.longlong(value)))
-	runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
+	qt.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
 	return tmpValue
 }
 
 func NewQJSValue2(other QJSValue_ITF) *QJSValue {
 	tmpValue := NewQJSValueFromPointer(C.QJSValue_NewQJSValue2(PointerFromQJSValue(other)))
-	runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
+	qt.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
 	return tmpValue
 }
 
 func NewQJSValue3(other QJSValue_ITF) *QJSValue {
 	tmpValue := NewQJSValueFromPointer(C.QJSValue_NewQJSValue3(PointerFromQJSValue(other)))
-	runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
+	qt.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
 	return tmpValue
 }
 
 func NewQJSValue4(value bool) *QJSValue {
 	tmpValue := NewQJSValueFromPointer(C.QJSValue_NewQJSValue4(C.char(int8(qt.GoBoolToInt(value)))))
-	runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
+	qt.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
 	return tmpValue
 }
 
 func NewQJSValue5(value int) *QJSValue {
 	tmpValue := NewQJSValueFromPointer(C.QJSValue_NewQJSValue5(C.int(int32(value))))
-	runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
+	qt.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
 	return tmpValue
 }
 
 func NewQJSValue6(value uint) *QJSValue {
 	tmpValue := NewQJSValueFromPointer(C.QJSValue_NewQJSValue6(C.uint(uint32(value))))
-	runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
+	qt.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
 	return tmpValue
 }
 
 func NewQJSValue7(value float64) *QJSValue {
 	tmpValue := NewQJSValueFromPointer(C.QJSValue_NewQJSValue7(C.double(value)))
-	runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
+	qt.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
 	return tmpValue
 }
 
@@ -644,13 +666,13 @@ func NewQJSValue8(value string) *QJSValue {
 		defer C.free(unsafe.Pointer(valueC))
 	}
 	tmpValue := NewQJSValueFromPointer(C.QJSValue_NewQJSValue8(C.struct_QtQml_PackedString{data: valueC, len: C.longlong(len(value))}))
-	runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
+	qt.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
 	return tmpValue
 }
 
 func NewQJSValue9(value core.QLatin1String_ITF) *QJSValue {
 	tmpValue := NewQJSValueFromPointer(C.QJSValue_NewQJSValue9(core.PointerFromQLatin1String(value)))
-	runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
+	qt.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
 	return tmpValue
 }
 
@@ -661,7 +683,7 @@ func NewQJSValue10(value string) *QJSValue {
 		defer C.free(unsafe.Pointer(valueC))
 	}
 	tmpValue := NewQJSValueFromPointer(C.QJSValue_NewQJSValue10(valueC))
-	runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
+	qt.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
 	return tmpValue
 }
 
@@ -674,7 +696,7 @@ func (ptr *QJSValue) Call(args []*QJSValue) *QJSValue {
 			}
 			return tmpList.Pointer()
 		}()))
-		runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
+		qt.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
 		return tmpValue
 	}
 	return nil
@@ -689,7 +711,7 @@ func (ptr *QJSValue) CallAsConstructor(args []*QJSValue) *QJSValue {
 			}
 			return tmpList.Pointer()
 		}()))
-		runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
+		qt.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
 		return tmpValue
 	}
 	return nil
@@ -704,7 +726,7 @@ func (ptr *QJSValue) CallWithInstance(instance QJSValue_ITF, args []*QJSValue) *
 			}
 			return tmpList.Pointer()
 		}()))
-		runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
+		qt.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
 		return tmpValue
 	}
 	return nil
@@ -866,7 +888,7 @@ func (ptr *QJSValue) Property(name string) *QJSValue {
 			defer C.free(unsafe.Pointer(nameC))
 		}
 		tmpValue := NewQJSValueFromPointer(C.QJSValue_Property(ptr.Pointer(), C.struct_QtQml_PackedString{data: nameC, len: C.longlong(len(name))}))
-		runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
+		qt.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
 		return tmpValue
 	}
 	return nil
@@ -875,7 +897,7 @@ func (ptr *QJSValue) Property(name string) *QJSValue {
 func (ptr *QJSValue) Property2(arrayIndex uint) *QJSValue {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQJSValueFromPointer(C.QJSValue_Property2(ptr.Pointer(), C.uint(uint32(arrayIndex))))
-		runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
+		qt.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
 		return tmpValue
 	}
 	return nil
@@ -884,7 +906,7 @@ func (ptr *QJSValue) Property2(arrayIndex uint) *QJSValue {
 func (ptr *QJSValue) Prototype() *QJSValue {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQJSValueFromPointer(C.QJSValue_Prototype(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
+		qt.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
 		return tmpValue
 	}
 	return nil
@@ -930,7 +952,7 @@ func (ptr *QJSValue) ToBool() bool {
 func (ptr *QJSValue) ToDateTime() *core.QDateTime {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQDateTimeFromPointer(C.QJSValue_ToDateTime(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
+		qt.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
 		return tmpValue
 	}
 	return nil
@@ -985,24 +1007,32 @@ func (ptr *QJSValue) ToUInt() uint {
 func (ptr *QJSValue) ToVariant() *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QJSValue_ToVariant(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
 }
 
 func (ptr *QJSValue) DestroyQJSValue() {
+	helperMutex.Lock()
 	if ptr.Pointer() != nil {
-		C.QJSValue_DestroyQJSValue(ptr.Pointer())
+
+		qt.SetFinalizer(ptr, nil)
+		pointer := ptr.Pointer()
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
+		helperMap = append(helperMap, strconv.FormatUint(uint64(uintptr(pointer)), 10))
+		if len(helperMap) >= 500 {
+			helper.SetObjectName(strings.Join(helperMap, "|"))
+			helperMap = nil
+		}
 	}
+	helperMutex.Unlock()
 }
 
 func (ptr *QJSValue) __call_args_atList(i int) *QJSValue {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQJSValueFromPointer(C.QJSValue___call_args_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
+		qt.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
 		return tmpValue
 	}
 	return nil
@@ -1021,7 +1051,7 @@ func (ptr *QJSValue) __call_args_newList() unsafe.Pointer {
 func (ptr *QJSValue) __callAsConstructor_args_atList(i int) *QJSValue {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQJSValueFromPointer(C.QJSValue___callAsConstructor_args_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
+		qt.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
 		return tmpValue
 	}
 	return nil
@@ -1040,7 +1070,7 @@ func (ptr *QJSValue) __callAsConstructor_args_newList() unsafe.Pointer {
 func (ptr *QJSValue) __callWithInstance_args_atList(i int) *QJSValue {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQJSValueFromPointer(C.QJSValue___callWithInstance_args_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
+		qt.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
 		return tmpValue
 	}
 	return nil
@@ -1092,6 +1122,51 @@ func NewQJSValueIteratorFromPointer(ptr unsafe.Pointer) (n *QJSValueIterator) {
 	n = new(QJSValueIterator)
 	n.SetPointer(ptr)
 	return
+}
+func NewQJSValueIterator(object QJSValue_ITF) *QJSValueIterator {
+	tmpValue := NewQJSValueIteratorFromPointer(C.QJSValueIterator_NewQJSValueIterator(PointerFromQJSValue(object)))
+	qt.SetFinalizer(tmpValue, (*QJSValueIterator).DestroyQJSValueIterator)
+	return tmpValue
+}
+
+func (ptr *QJSValueIterator) HasNext() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QJSValueIterator_HasNext(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QJSValueIterator) Name() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QJSValueIterator_Name(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QJSValueIterator) Next() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QJSValueIterator_Next(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QJSValueIterator) Value() *QJSValue {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQJSValueFromPointer(C.QJSValueIterator_Value(ptr.Pointer()))
+		qt.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QJSValueIterator) DestroyQJSValueIterator() {
+	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
+		C.QJSValueIterator_DestroyQJSValueIterator(ptr.Pointer())
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 type QQmlAbstractUrlInterceptor struct {
@@ -1181,7 +1256,7 @@ func (ptr *QQmlAbstractUrlInterceptor) DisconnectIntercept() {
 func (ptr *QQmlAbstractUrlInterceptor) Intercept(url core.QUrl_ITF, ty QQmlAbstractUrlInterceptor__DataType) *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QQmlAbstractUrlInterceptor_Intercept(ptr.Pointer(), core.PointerFromQUrl(url), C.longlong(ty)))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -1220,17 +1295,19 @@ func (ptr *QQmlAbstractUrlInterceptor) DisconnectDestroyQQmlAbstractUrlIntercept
 
 func (ptr *QQmlAbstractUrlInterceptor) DestroyQQmlAbstractUrlInterceptor() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QQmlAbstractUrlInterceptor_DestroyQQmlAbstractUrlInterceptor(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QQmlAbstractUrlInterceptor) DestroyQQmlAbstractUrlInterceptorDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QQmlAbstractUrlInterceptor_DestroyQQmlAbstractUrlInterceptorDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1277,6 +1354,7 @@ func NewQQmlApplicationEngine(parent core.QObject_ITF) *QQmlApplicationEngine {
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
+	Z_initEngine(tmpValue)
 	return tmpValue
 }
 
@@ -1285,6 +1363,7 @@ func NewQQmlApplicationEngine2(url core.QUrl_ITF, parent core.QObject_ITF) *QQml
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
+	Z_initEngine(tmpValue)
 	return tmpValue
 }
 
@@ -1298,6 +1377,7 @@ func NewQQmlApplicationEngine3(filePath string, parent core.QObject_ITF) *QQmlAp
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
+	Z_initEngine(tmpValue)
 	return tmpValue
 }
 
@@ -1452,7 +1532,7 @@ func (ptr *QQmlApplicationEngine) ConnectObjectCreated(f func(object *core.QObje
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "objectCreated") {
-			C.QQmlApplicationEngine_ConnectObjectCreated(ptr.Pointer())
+			C.QQmlApplicationEngine_ConnectObjectCreated(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "objectCreated")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "objectCreated"); signal != nil {
@@ -1527,17 +1607,19 @@ func (ptr *QQmlApplicationEngine) DisconnectDestroyQQmlApplicationEngine() {
 
 func (ptr *QQmlApplicationEngine) DestroyQQmlApplicationEngine() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QQmlApplicationEngine_DestroyQQmlApplicationEngine(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QQmlApplicationEngine) DestroyQQmlApplicationEngineDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QQmlApplicationEngine_DestroyQQmlApplicationEngineDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1995,7 +2077,7 @@ func (ptr *QQmlComponent) ConnectProgressChanged(f func(progress float64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "progressChanged") {
-			C.QQmlComponent_ConnectProgressChanged(ptr.Pointer())
+			C.QQmlComponent_ConnectProgressChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "progressChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "progressChanged"); signal != nil {
@@ -2085,7 +2167,7 @@ func (ptr *QQmlComponent) ConnectStatusChanged(f func(status QQmlComponent__Stat
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "statusChanged") {
-			C.QQmlComponent_ConnectStatusChanged(ptr.Pointer())
+			C.QQmlComponent_ConnectStatusChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "statusChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "statusChanged"); signal != nil {
@@ -2116,7 +2198,7 @@ func (ptr *QQmlComponent) StatusChanged(status QQmlComponent__Status) {
 func (ptr *QQmlComponent) Url() *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QQmlComponent_Url(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -2155,24 +2237,26 @@ func (ptr *QQmlComponent) DisconnectDestroyQQmlComponent() {
 
 func (ptr *QQmlComponent) DestroyQQmlComponent() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QQmlComponent_DestroyQQmlComponent(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QQmlComponent) DestroyQQmlComponentDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QQmlComponent_DestroyQQmlComponentDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QQmlComponent) __errors_atList(i int) *QQmlError {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQQmlErrorFromPointer(C.QQmlComponent___errors_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QQmlError).DestroyQQmlError)
+		qt.SetFinalizer(tmpValue, (*QQmlError).DestroyQQmlError)
 		return tmpValue
 	}
 	return nil
@@ -2212,7 +2296,7 @@ func (ptr *QQmlComponent) __children_newList() unsafe.Pointer {
 func (ptr *QQmlComponent) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QQmlComponent___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -2268,27 +2352,6 @@ func (ptr *QQmlComponent) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QQmlComponent) __findChildren_newList3() unsafe.Pointer {
 	return C.QQmlComponent___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QQmlComponent) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QQmlComponent___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QQmlComponent) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QQmlComponent___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QQmlComponent) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QQmlComponent___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQQmlComponent_ChildEvent
@@ -2347,8 +2410,9 @@ func callbackQQmlComponent_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QQmlComponent) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QQmlComponent_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2503,7 +2567,7 @@ func NewQQmlContext2(parentContext QQmlContext_ITF, parent core.QObject_ITF) *QQ
 func (ptr *QQmlContext) BaseUrl() *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QQmlContext_BaseUrl(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -2528,7 +2592,7 @@ func (ptr *QQmlContext) ContextProperty(name string) *core.QVariant {
 			defer C.free(unsafe.Pointer(nameC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QQmlContext_ContextProperty(ptr.Pointer(), C.struct_QtQml_PackedString{data: nameC, len: C.longlong(len(name))}))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -2573,7 +2637,7 @@ func (ptr *QQmlContext) ParentContext() *QQmlContext {
 func (ptr *QQmlContext) ResolvedUrl(src core.QUrl_ITF) *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QQmlContext_ResolvedUrl(ptr.Pointer(), core.PointerFromQUrl(src)))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -2646,17 +2710,19 @@ func (ptr *QQmlContext) DisconnectDestroyQQmlContext() {
 
 func (ptr *QQmlContext) DestroyQQmlContext() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QQmlContext_DestroyQQmlContext(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QQmlContext) DestroyQQmlContextDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QQmlContext_DestroyQQmlContextDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2688,7 +2754,7 @@ func (ptr *QQmlContext) __children_newList() unsafe.Pointer {
 func (ptr *QQmlContext) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QQmlContext___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -2744,27 +2810,6 @@ func (ptr *QQmlContext) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QQmlContext) __findChildren_newList3() unsafe.Pointer {
 	return C.QQmlContext___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QQmlContext) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QQmlContext___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QQmlContext) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QQmlContext___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QQmlContext) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QQmlContext___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQQmlContext_ChildEvent
@@ -2823,8 +2868,9 @@ func callbackQQmlContext_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QQmlContext) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QQmlContext_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2959,12 +3005,12 @@ func NewQQmlDebuggingEnablerFromPointer(ptr unsafe.Pointer) (n *QQmlDebuggingEna
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QQmlDebuggingEnabler) DestroyQQmlDebuggingEnabler() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3095,7 +3141,7 @@ func (ptr *QQmlDebuggingEnabler) __startDebugConnector_configuration_atList(v st
 			defer C.free(unsafe.Pointer(vC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QQmlDebuggingEnabler___startDebugConnector_configuration_atList(ptr.Pointer(), C.struct_QtQml_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -3205,6 +3251,7 @@ func NewQQmlEngine(parent core.QObject_ITF) *QQmlEngine {
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
+	Z_initEngine(tmpValue)
 	return tmpValue
 }
 
@@ -3244,7 +3291,7 @@ func (ptr *QQmlEngine) AddPluginPath(path string) {
 func (ptr *QQmlEngine) BaseUrl() *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QQmlEngine_BaseUrl(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -3284,7 +3331,7 @@ func (ptr *QQmlEngine) ConnectExit(f func(retCode int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "exit") {
-			C.QQmlEngine_ConnectExit(ptr.Pointer())
+			C.QQmlEngine_ConnectExit(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "exit")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "exit"); signal != nil {
@@ -3432,7 +3479,7 @@ func (ptr *QQmlEngine) ConnectQuit(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "quit") {
-			C.QQmlEngine_ConnectQuit(ptr.Pointer())
+			C.QQmlEngine_ConnectQuit(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "quit")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "quit"); signal != nil {
@@ -3617,7 +3664,7 @@ func (ptr *QQmlEngine) ConnectWarnings(f func(warnings []*QQmlError)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "warnings") {
-			C.QQmlEngine_ConnectWarnings(ptr.Pointer())
+			C.QQmlEngine_ConnectWarnings(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "warnings")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "warnings"); signal != nil {
@@ -3684,17 +3731,19 @@ func (ptr *QQmlEngine) DisconnectDestroyQQmlEngine() {
 
 func (ptr *QQmlEngine) DestroyQQmlEngine() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QQmlEngine_DestroyQQmlEngine(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QQmlEngine) DestroyQQmlEngineDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QQmlEngine_DestroyQQmlEngineDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3757,7 +3806,7 @@ func (ptr *QQmlEngine) QmlRegisterType(url core.QUrl_ITF, uri string, versionMaj
 func (ptr *QQmlEngine) __importPlugin_errors_atList(i int) *QQmlError {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQQmlErrorFromPointer(C.QQmlEngine___importPlugin_errors_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QQmlError).DestroyQQmlError)
+		qt.SetFinalizer(tmpValue, (*QQmlError).DestroyQQmlError)
 		return tmpValue
 	}
 	return nil
@@ -3776,7 +3825,7 @@ func (ptr *QQmlEngine) __importPlugin_errors_newList() unsafe.Pointer {
 func (ptr *QQmlEngine) __qmlDebug_errors_atList3(i int) *QQmlError {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQQmlErrorFromPointer(C.QQmlEngine___qmlDebug_errors_atList3(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QQmlError).DestroyQQmlError)
+		qt.SetFinalizer(tmpValue, (*QQmlError).DestroyQQmlError)
 		return tmpValue
 	}
 	return nil
@@ -3795,7 +3844,7 @@ func (ptr *QQmlEngine) __qmlDebug_errors_newList3() unsafe.Pointer {
 func (ptr *QQmlEngine) __qmlInfo_errors_atList3(i int) *QQmlError {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQQmlErrorFromPointer(C.QQmlEngine___qmlInfo_errors_atList3(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QQmlError).DestroyQQmlError)
+		qt.SetFinalizer(tmpValue, (*QQmlError).DestroyQQmlError)
 		return tmpValue
 	}
 	return nil
@@ -3814,7 +3863,7 @@ func (ptr *QQmlEngine) __qmlInfo_errors_newList3() unsafe.Pointer {
 func (ptr *QQmlEngine) __qmlWarning_errors_atList3(i int) *QQmlError {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQQmlErrorFromPointer(C.QQmlEngine___qmlWarning_errors_atList3(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QQmlError).DestroyQQmlError)
+		qt.SetFinalizer(tmpValue, (*QQmlError).DestroyQQmlError)
 		return tmpValue
 	}
 	return nil
@@ -3833,7 +3882,7 @@ func (ptr *QQmlEngine) __qmlWarning_errors_newList3() unsafe.Pointer {
 func (ptr *QQmlEngine) __warnings_warnings_atList(i int) *QQmlError {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQQmlErrorFromPointer(C.QQmlEngine___warnings_warnings_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QQmlError).DestroyQQmlError)
+		qt.SetFinalizer(tmpValue, (*QQmlError).DestroyQQmlError)
 		return tmpValue
 	}
 	return nil
@@ -3886,24 +3935,23 @@ func NewQQmlErrorFromPointer(ptr unsafe.Pointer) (n *QQmlError) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QQmlError) DestroyQQmlError() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
-
 func NewQQmlError() *QQmlError {
 	tmpValue := NewQQmlErrorFromPointer(C.QQmlError_NewQQmlError())
-	runtime.SetFinalizer(tmpValue, (*QQmlError).DestroyQQmlError)
+	qt.SetFinalizer(tmpValue, (*QQmlError).DestroyQQmlError)
 	return tmpValue
 }
 
 func NewQQmlError2(other QQmlError_ITF) *QQmlError {
 	tmpValue := NewQQmlErrorFromPointer(C.QQmlError_NewQQmlError2(PointerFromQQmlError(other)))
-	runtime.SetFinalizer(tmpValue, (*QQmlError).DestroyQQmlError)
+	qt.SetFinalizer(tmpValue, (*QQmlError).DestroyQQmlError)
 	return tmpValue
 }
 
@@ -3991,7 +4039,7 @@ func (ptr *QQmlError) ToString() string {
 func (ptr *QQmlError) Url() *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QQmlError_Url(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -4102,7 +4150,7 @@ func (ptr *QQmlExpression) Engine() *QQmlEngine {
 func (ptr *QQmlExpression) Error() *QQmlError {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQQmlErrorFromPointer(C.QQmlExpression_Error(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QQmlError).DestroyQQmlError)
+		qt.SetFinalizer(tmpValue, (*QQmlError).DestroyQQmlError)
 		return tmpValue
 	}
 	return nil
@@ -4116,7 +4164,7 @@ func (ptr *QQmlExpression) Evaluate(valueIsUndefined *bool) *core.QVariant {
 			defer func() { *valueIsUndefined = int8(valueIsUndefinedC) != 0 }()
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QQmlExpression_Evaluate(ptr.Pointer(), &valueIsUndefinedC))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -4208,7 +4256,7 @@ func (ptr *QQmlExpression) ConnectValueChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "valueChanged") {
-			C.QQmlExpression_ConnectValueChanged(ptr.Pointer())
+			C.QQmlExpression_ConnectValueChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "valueChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "valueChanged"); signal != nil {
@@ -4269,17 +4317,19 @@ func (ptr *QQmlExpression) DisconnectDestroyQQmlExpression() {
 
 func (ptr *QQmlExpression) DestroyQQmlExpression() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QQmlExpression_DestroyQQmlExpression(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QQmlExpression) DestroyQQmlExpressionDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QQmlExpression_DestroyQQmlExpressionDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4307,7 +4357,7 @@ func (ptr *QQmlExpression) __children_newList() unsafe.Pointer {
 func (ptr *QQmlExpression) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QQmlExpression___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -4363,27 +4413,6 @@ func (ptr *QQmlExpression) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QQmlExpression) __findChildren_newList3() unsafe.Pointer {
 	return C.QQmlExpression___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QQmlExpression) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QQmlExpression___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QQmlExpression) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QQmlExpression___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QQmlExpression) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QQmlExpression___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQQmlExpression_ChildEvent
@@ -4442,8 +4471,9 @@ func callbackQQmlExpression_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QQmlExpression) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QQmlExpression_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4590,7 +4620,7 @@ func NewQQmlExtensionPlugin(parent core.QObject_ITF) *QQmlExtensionPlugin {
 func (ptr *QQmlExtensionPlugin) BaseUrl() *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QQmlExtensionPlugin_BaseUrl(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -4714,7 +4744,7 @@ func (ptr *QQmlExtensionPlugin) __children_newList() unsafe.Pointer {
 func (ptr *QQmlExtensionPlugin) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QQmlExtensionPlugin___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -4770,27 +4800,6 @@ func (ptr *QQmlExtensionPlugin) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QQmlExtensionPlugin) __findChildren_newList3() unsafe.Pointer {
 	return C.QQmlExtensionPlugin___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QQmlExtensionPlugin) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QQmlExtensionPlugin___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QQmlExtensionPlugin) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QQmlExtensionPlugin___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QQmlExtensionPlugin) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QQmlExtensionPlugin___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQQmlExtensionPlugin_ChildEvent
@@ -4849,8 +4858,9 @@ func callbackQQmlExtensionPlugin_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QQmlExtensionPlugin) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QQmlExtensionPlugin_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5076,17 +5086,19 @@ func (ptr *QQmlFileSelector) DisconnectDestroyQQmlFileSelector() {
 
 func (ptr *QQmlFileSelector) DestroyQQmlFileSelector() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QQmlFileSelector_DestroyQQmlFileSelector(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QQmlFileSelector) DestroyQQmlFileSelectorDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QQmlFileSelector_DestroyQQmlFileSelectorDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5114,7 +5126,7 @@ func (ptr *QQmlFileSelector) __children_newList() unsafe.Pointer {
 func (ptr *QQmlFileSelector) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QQmlFileSelector___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -5170,27 +5182,6 @@ func (ptr *QQmlFileSelector) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QQmlFileSelector) __findChildren_newList3() unsafe.Pointer {
 	return C.QQmlFileSelector___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QQmlFileSelector) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QQmlFileSelector___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QQmlFileSelector) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QQmlFileSelector___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QQmlFileSelector) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QQmlFileSelector___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQQmlFileSelector_ChildEvent
@@ -5249,8 +5240,9 @@ func callbackQQmlFileSelector_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QQmlFileSelector) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QQmlFileSelector_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5385,13 +5377,13 @@ func NewQQmlImageProviderBaseFromPointer(ptr unsafe.Pointer) (n *QQmlImageProvid
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QQmlImageProviderBase) DestroyQQmlImageProviderBase() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+		qt.SetFinalizer(ptr, nil)
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5528,16 +5520,15 @@ func NewQQmlIncubationControllerFromPointer(ptr unsafe.Pointer) (n *QQmlIncubati
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QQmlIncubationController) DestroyQQmlIncubationController() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+		qt.SetFinalizer(ptr, nil)
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
-
 func NewQQmlIncubationController2() *QQmlIncubationController {
 	return NewQQmlIncubationControllerFromPointer(C.QQmlIncubationController_NewQQmlIncubationController2())
 }
@@ -5646,13 +5637,13 @@ func NewQQmlIncubatorFromPointer(ptr unsafe.Pointer) (n *QQmlIncubator) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QQmlIncubator) DestroyQQmlIncubator() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+		qt.SetFinalizer(ptr, nil)
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5849,7 +5840,7 @@ func (ptr *QQmlIncubator) StatusChangedDefault(status QQmlIncubator__Status) {
 func (ptr *QQmlIncubator) __errors_atList(i int) *QQmlError {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQQmlErrorFromPointer(C.QQmlIncubator___errors_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QQmlError).DestroyQQmlError)
+		qt.SetFinalizer(tmpValue, (*QQmlError).DestroyQQmlError)
 		return tmpValue
 	}
 	return nil
@@ -5903,12 +5894,12 @@ func NewQQmlInfoFromPointer(ptr unsafe.Pointer) (n *QQmlInfo) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QQmlInfo) DestroyQQmlInfo() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5949,12 +5940,12 @@ func NewQQmlListPropertyFromPointer(ptr unsafe.Pointer) (n *QQmlListProperty) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QQmlListProperty) DestroyQQmlListProperty() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5995,18 +5986,17 @@ func NewQQmlListReferenceFromPointer(ptr unsafe.Pointer) (n *QQmlListReference) 
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QQmlListReference) DestroyQQmlListReference() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
-
 func NewQQmlListReference() *QQmlListReference {
 	tmpValue := NewQQmlListReferenceFromPointer(C.QQmlListReference_NewQQmlListReference())
-	runtime.SetFinalizer(tmpValue, (*QQmlListReference).DestroyQQmlListReference)
+	qt.SetFinalizer(tmpValue, (*QQmlListReference).DestroyQQmlListReference)
 	return tmpValue
 }
 
@@ -6017,7 +6007,7 @@ func NewQQmlListReference2(object core.QObject_ITF, property string, engine QQml
 		defer C.free(unsafe.Pointer(propertyC))
 	}
 	tmpValue := NewQQmlListReferenceFromPointer(C.QQmlListReference_NewQQmlListReference2(core.PointerFromQObject(object), propertyC, PointerFromQQmlEngine(engine)))
-	runtime.SetFinalizer(tmpValue, (*QQmlListReference).DestroyQQmlListReference)
+	qt.SetFinalizer(tmpValue, (*QQmlListReference).DestroyQQmlListReference)
 	return tmpValue
 }
 
@@ -6286,13 +6276,13 @@ func NewQQmlParserStatusFromPointer(ptr unsafe.Pointer) (n *QQmlParserStatus) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QQmlParserStatus) DestroyQQmlParserStatus() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+		qt.SetFinalizer(ptr, nil)
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6405,12 +6395,12 @@ func NewQQmlPropertyFromPointer(ptr unsafe.Pointer) (n *QQmlProperty) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QQmlProperty) DestroyQQmlProperty() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6437,25 +6427,25 @@ const (
 
 func NewQQmlProperty() *QQmlProperty {
 	tmpValue := NewQQmlPropertyFromPointer(C.QQmlProperty_NewQQmlProperty())
-	runtime.SetFinalizer(tmpValue, (*QQmlProperty).DestroyQQmlProperty)
+	qt.SetFinalizer(tmpValue, (*QQmlProperty).DestroyQQmlProperty)
 	return tmpValue
 }
 
 func NewQQmlProperty2(obj core.QObject_ITF) *QQmlProperty {
 	tmpValue := NewQQmlPropertyFromPointer(C.QQmlProperty_NewQQmlProperty2(core.PointerFromQObject(obj)))
-	runtime.SetFinalizer(tmpValue, (*QQmlProperty).DestroyQQmlProperty)
+	qt.SetFinalizer(tmpValue, (*QQmlProperty).DestroyQQmlProperty)
 	return tmpValue
 }
 
 func NewQQmlProperty3(obj core.QObject_ITF, ctxt QQmlContext_ITF) *QQmlProperty {
 	tmpValue := NewQQmlPropertyFromPointer(C.QQmlProperty_NewQQmlProperty3(core.PointerFromQObject(obj), PointerFromQQmlContext(ctxt)))
-	runtime.SetFinalizer(tmpValue, (*QQmlProperty).DestroyQQmlProperty)
+	qt.SetFinalizer(tmpValue, (*QQmlProperty).DestroyQQmlProperty)
 	return tmpValue
 }
 
 func NewQQmlProperty4(obj core.QObject_ITF, engine QQmlEngine_ITF) *QQmlProperty {
 	tmpValue := NewQQmlPropertyFromPointer(C.QQmlProperty_NewQQmlProperty4(core.PointerFromQObject(obj), PointerFromQQmlEngine(engine)))
-	runtime.SetFinalizer(tmpValue, (*QQmlProperty).DestroyQQmlProperty)
+	qt.SetFinalizer(tmpValue, (*QQmlProperty).DestroyQQmlProperty)
 	return tmpValue
 }
 
@@ -6466,7 +6456,7 @@ func NewQQmlProperty5(obj core.QObject_ITF, name string) *QQmlProperty {
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	tmpValue := NewQQmlPropertyFromPointer(C.QQmlProperty_NewQQmlProperty5(core.PointerFromQObject(obj), C.struct_QtQml_PackedString{data: nameC, len: C.longlong(len(name))}))
-	runtime.SetFinalizer(tmpValue, (*QQmlProperty).DestroyQQmlProperty)
+	qt.SetFinalizer(tmpValue, (*QQmlProperty).DestroyQQmlProperty)
 	return tmpValue
 }
 
@@ -6477,7 +6467,7 @@ func NewQQmlProperty6(obj core.QObject_ITF, name string, ctxt QQmlContext_ITF) *
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	tmpValue := NewQQmlPropertyFromPointer(C.QQmlProperty_NewQQmlProperty6(core.PointerFromQObject(obj), C.struct_QtQml_PackedString{data: nameC, len: C.longlong(len(name))}, PointerFromQQmlContext(ctxt)))
-	runtime.SetFinalizer(tmpValue, (*QQmlProperty).DestroyQQmlProperty)
+	qt.SetFinalizer(tmpValue, (*QQmlProperty).DestroyQQmlProperty)
 	return tmpValue
 }
 
@@ -6488,13 +6478,13 @@ func NewQQmlProperty7(obj core.QObject_ITF, name string, engine QQmlEngine_ITF) 
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	tmpValue := NewQQmlPropertyFromPointer(C.QQmlProperty_NewQQmlProperty7(core.PointerFromQObject(obj), C.struct_QtQml_PackedString{data: nameC, len: C.longlong(len(name))}, PointerFromQQmlEngine(engine)))
-	runtime.SetFinalizer(tmpValue, (*QQmlProperty).DestroyQQmlProperty)
+	qt.SetFinalizer(tmpValue, (*QQmlProperty).DestroyQQmlProperty)
 	return tmpValue
 }
 
 func NewQQmlProperty8(other QQmlProperty_ITF) *QQmlProperty {
 	tmpValue := NewQQmlPropertyFromPointer(C.QQmlProperty_NewQQmlProperty8(PointerFromQQmlProperty(other)))
-	runtime.SetFinalizer(tmpValue, (*QQmlProperty).DestroyQQmlProperty)
+	qt.SetFinalizer(tmpValue, (*QQmlProperty).DestroyQQmlProperty)
 	return tmpValue
 }
 
@@ -6576,7 +6566,7 @@ func (ptr *QQmlProperty) IsWritable() bool {
 func (ptr *QQmlProperty) Method() *core.QMetaMethod {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQMetaMethodFromPointer(C.QQmlProperty_Method(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QMetaMethod).DestroyQMetaMethod)
+		qt.SetFinalizer(tmpValue, (*core.QMetaMethod).DestroyQMetaMethod)
 		return tmpValue
 	}
 	return nil
@@ -6631,7 +6621,7 @@ func (ptr *QQmlProperty) PropertyTypeName() string {
 func (ptr *QQmlProperty) Read() *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QQmlProperty_Read(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -6644,7 +6634,7 @@ func QQmlProperty_Read2(object core.QObject_ITF, name string) *core.QVariant {
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	tmpValue := core.NewQVariantFromPointer(C.QQmlProperty_QQmlProperty_Read2(core.PointerFromQObject(object), C.struct_QtQml_PackedString{data: nameC, len: C.longlong(len(name))}))
-	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 	return tmpValue
 }
 
@@ -6655,7 +6645,7 @@ func (ptr *QQmlProperty) Read2(object core.QObject_ITF, name string) *core.QVari
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	tmpValue := core.NewQVariantFromPointer(C.QQmlProperty_QQmlProperty_Read2(core.PointerFromQObject(object), C.struct_QtQml_PackedString{data: nameC, len: C.longlong(len(name))}))
-	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 	return tmpValue
 }
 
@@ -6666,7 +6656,7 @@ func QQmlProperty_Read3(object core.QObject_ITF, name string, ctxt QQmlContext_I
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	tmpValue := core.NewQVariantFromPointer(C.QQmlProperty_QQmlProperty_Read3(core.PointerFromQObject(object), C.struct_QtQml_PackedString{data: nameC, len: C.longlong(len(name))}, PointerFromQQmlContext(ctxt)))
-	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 	return tmpValue
 }
 
@@ -6677,7 +6667,7 @@ func (ptr *QQmlProperty) Read3(object core.QObject_ITF, name string, ctxt QQmlCo
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	tmpValue := core.NewQVariantFromPointer(C.QQmlProperty_QQmlProperty_Read3(core.PointerFromQObject(object), C.struct_QtQml_PackedString{data: nameC, len: C.longlong(len(name))}, PointerFromQQmlContext(ctxt)))
-	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 	return tmpValue
 }
 
@@ -6688,7 +6678,7 @@ func QQmlProperty_Read4(object core.QObject_ITF, name string, engine QQmlEngine_
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	tmpValue := core.NewQVariantFromPointer(C.QQmlProperty_QQmlProperty_Read4(core.PointerFromQObject(object), C.struct_QtQml_PackedString{data: nameC, len: C.longlong(len(name))}, PointerFromQQmlEngine(engine)))
-	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 	return tmpValue
 }
 
@@ -6699,7 +6689,7 @@ func (ptr *QQmlProperty) Read4(object core.QObject_ITF, name string, engine QQml
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	tmpValue := core.NewQVariantFromPointer(C.QQmlProperty_QQmlProperty_Read4(core.PointerFromQObject(object), C.struct_QtQml_PackedString{data: nameC, len: C.longlong(len(name))}, PointerFromQQmlEngine(engine)))
-	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 	return tmpValue
 }
 
@@ -6925,7 +6915,7 @@ func (ptr *QQmlPropertyMap) UpdateValue(key string, input core.QVariant_ITF) *co
 			defer C.free(unsafe.Pointer(keyC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QQmlPropertyMap_UpdateValue(ptr.Pointer(), C.struct_QtQml_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(input)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -6939,7 +6929,7 @@ func (ptr *QQmlPropertyMap) UpdateValueDefault(key string, input core.QVariant_I
 			defer C.free(unsafe.Pointer(keyC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QQmlPropertyMap_UpdateValueDefault(ptr.Pointer(), C.struct_QtQml_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(input)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -6953,7 +6943,7 @@ func (ptr *QQmlPropertyMap) Value(key string) *core.QVariant {
 			defer C.free(unsafe.Pointer(keyC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QQmlPropertyMap_Value(ptr.Pointer(), C.struct_QtQml_PackedString{data: keyC, len: C.longlong(len(key))}))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -6971,7 +6961,7 @@ func (ptr *QQmlPropertyMap) ConnectValueChanged(f func(key string, value *core.Q
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "valueChanged") {
-			C.QQmlPropertyMap_ConnectValueChanged(ptr.Pointer())
+			C.QQmlPropertyMap_ConnectValueChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "valueChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "valueChanged"); signal != nil {
@@ -7037,17 +7027,19 @@ func (ptr *QQmlPropertyMap) DisconnectDestroyQQmlPropertyMap() {
 
 func (ptr *QQmlPropertyMap) DestroyQQmlPropertyMap() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QQmlPropertyMap_DestroyQQmlPropertyMap(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QQmlPropertyMap) DestroyQQmlPropertyMapDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QQmlPropertyMap_DestroyQQmlPropertyMapDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7075,7 +7067,7 @@ func (ptr *QQmlPropertyMap) __children_newList() unsafe.Pointer {
 func (ptr *QQmlPropertyMap) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QQmlPropertyMap___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -7131,27 +7123,6 @@ func (ptr *QQmlPropertyMap) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QQmlPropertyMap) __findChildren_newList3() unsafe.Pointer {
 	return C.QQmlPropertyMap___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QQmlPropertyMap) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QQmlPropertyMap___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QQmlPropertyMap) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QQmlPropertyMap___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QQmlPropertyMap) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QQmlPropertyMap___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQQmlPropertyMap_ChildEvent
@@ -7210,8 +7181,9 @@ func callbackQQmlPropertyMap_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QQmlPropertyMap) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QQmlPropertyMap_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7468,24 +7440,23 @@ func NewQQmlScriptStringFromPointer(ptr unsafe.Pointer) (n *QQmlScriptString) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QQmlScriptString) DestroyQQmlScriptString() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
-
 func NewQQmlScriptString() *QQmlScriptString {
 	tmpValue := NewQQmlScriptStringFromPointer(C.QQmlScriptString_NewQQmlScriptString())
-	runtime.SetFinalizer(tmpValue, (*QQmlScriptString).DestroyQQmlScriptString)
+	qt.SetFinalizer(tmpValue, (*QQmlScriptString).DestroyQQmlScriptString)
 	return tmpValue
 }
 
 func NewQQmlScriptString2(other QQmlScriptString_ITF) *QQmlScriptString {
 	tmpValue := NewQQmlScriptStringFromPointer(C.QQmlScriptString_NewQQmlScriptString2(PointerFromQQmlScriptString(other)))
-	runtime.SetFinalizer(tmpValue, (*QQmlScriptString).DestroyQQmlScriptString)
+	qt.SetFinalizer(tmpValue, (*QQmlScriptString).DestroyQQmlScriptString)
 	return tmpValue
 }
 
@@ -7539,4 +7510,167 @@ func (ptr *QQmlScriptString) StringLiteral() string {
 		return cGoUnpackString(C.QQmlScriptString_StringLiteral(ptr.Pointer()))
 	}
 	return ""
+}
+
+var (
+	helper      *core.QObject
+	helperMutex sync.Mutex
+	helperMap   []string
+)
+
+func init() {
+
+	helper = core.NewQObject(nil)
+	helper.ConnectObjectNameChanged(func(pl string) {
+		for _, p := range strings.Split(pl, "|") {
+			ptr, err := strconv.ParseUint(p, 10, 64)
+			if err != nil || ptr == 0 {
+				return
+			}
+			C.QJSValue_DestroyQJSValue(unsafe.Pointer(uintptr(ptr)))
+			C.free(unsafe.Pointer(uintptr(ptr)))
+		}
+	})
+	qt.ItfMap["qml.QJSEngine_ITF"] = QJSEngine{}
+	qt.FuncMap["qml.NewQJSEngine"] = NewQJSEngine
+	qt.FuncMap["qml.NewQJSEngine2"] = NewQJSEngine2
+	qt.FuncMap["qml.QJSEngine_qjsEngine"] = QJSEngine_qjsEngine
+	qt.EnumMap["qml.QJSEngine__TranslationExtension"] = int64(QJSEngine__TranslationExtension)
+	qt.EnumMap["qml.QJSEngine__ConsoleExtension"] = int64(QJSEngine__ConsoleExtension)
+	qt.EnumMap["qml.QJSEngine__GarbageCollectionExtension"] = int64(QJSEngine__GarbageCollectionExtension)
+	qt.EnumMap["qml.QJSEngine__AllExtensions"] = int64(QJSEngine__AllExtensions)
+	qt.ItfMap["qml.QJSValue_ITF"] = QJSValue{}
+	qt.FuncMap["qml.NewQJSValue"] = NewQJSValue
+	qt.FuncMap["qml.NewQJSValue2"] = NewQJSValue2
+	qt.FuncMap["qml.NewQJSValue3"] = NewQJSValue3
+	qt.FuncMap["qml.NewQJSValue4"] = NewQJSValue4
+	qt.FuncMap["qml.NewQJSValue5"] = NewQJSValue5
+	qt.FuncMap["qml.NewQJSValue6"] = NewQJSValue6
+	qt.FuncMap["qml.NewQJSValue7"] = NewQJSValue7
+	qt.FuncMap["qml.NewQJSValue8"] = NewQJSValue8
+	qt.FuncMap["qml.NewQJSValue9"] = NewQJSValue9
+	qt.FuncMap["qml.NewQJSValue10"] = NewQJSValue10
+	qt.EnumMap["qml.QJSValue__NullValue"] = int64(QJSValue__NullValue)
+	qt.EnumMap["qml.QJSValue__UndefinedValue"] = int64(QJSValue__UndefinedValue)
+	qt.EnumMap["qml.QJSValue__NoError"] = int64(QJSValue__NoError)
+	qt.EnumMap["qml.QJSValue__GenericError"] = int64(QJSValue__GenericError)
+	qt.EnumMap["qml.QJSValue__EvalError"] = int64(QJSValue__EvalError)
+	qt.EnumMap["qml.QJSValue__RangeError"] = int64(QJSValue__RangeError)
+	qt.EnumMap["qml.QJSValue__ReferenceError"] = int64(QJSValue__ReferenceError)
+	qt.EnumMap["qml.QJSValue__SyntaxError"] = int64(QJSValue__SyntaxError)
+	qt.EnumMap["qml.QJSValue__TypeError"] = int64(QJSValue__TypeError)
+	qt.EnumMap["qml.QJSValue__URIError"] = int64(QJSValue__URIError)
+	qt.ItfMap["qml.QJSValueIterator_ITF"] = QJSValueIterator{}
+	qt.FuncMap["qml.NewQJSValueIterator"] = NewQJSValueIterator
+	qt.ItfMap["qml.QQmlAbstractUrlInterceptor_ITF"] = QQmlAbstractUrlInterceptor{}
+	qt.FuncMap["qml.NewQQmlAbstractUrlInterceptor"] = NewQQmlAbstractUrlInterceptor
+	qt.EnumMap["qml.QQmlAbstractUrlInterceptor__QmlFile"] = int64(QQmlAbstractUrlInterceptor__QmlFile)
+	qt.EnumMap["qml.QQmlAbstractUrlInterceptor__JavaScriptFile"] = int64(QQmlAbstractUrlInterceptor__JavaScriptFile)
+	qt.EnumMap["qml.QQmlAbstractUrlInterceptor__QmldirFile"] = int64(QQmlAbstractUrlInterceptor__QmldirFile)
+	qt.EnumMap["qml.QQmlAbstractUrlInterceptor__UrlString"] = int64(QQmlAbstractUrlInterceptor__UrlString)
+	qt.ItfMap["qml.QQmlApplicationEngine_ITF"] = QQmlApplicationEngine{}
+	qt.FuncMap["qml.NewQQmlApplicationEngine"] = NewQQmlApplicationEngine
+	qt.FuncMap["qml.NewQQmlApplicationEngine2"] = NewQQmlApplicationEngine2
+	qt.FuncMap["qml.NewQQmlApplicationEngine3"] = NewQQmlApplicationEngine3
+	qt.ItfMap["qml.QQmlComponent_ITF"] = QQmlComponent{}
+	qt.FuncMap["qml.NewQQmlComponent2"] = NewQQmlComponent2
+	qt.FuncMap["qml.NewQQmlComponent3"] = NewQQmlComponent3
+	qt.FuncMap["qml.NewQQmlComponent4"] = NewQQmlComponent4
+	qt.FuncMap["qml.NewQQmlComponent5"] = NewQQmlComponent5
+	qt.FuncMap["qml.NewQQmlComponent6"] = NewQQmlComponent6
+	qt.EnumMap["qml.QQmlComponent__PreferSynchronous"] = int64(QQmlComponent__PreferSynchronous)
+	qt.EnumMap["qml.QQmlComponent__Asynchronous"] = int64(QQmlComponent__Asynchronous)
+	qt.EnumMap["qml.QQmlComponent__Null"] = int64(QQmlComponent__Null)
+	qt.EnumMap["qml.QQmlComponent__Ready"] = int64(QQmlComponent__Ready)
+	qt.EnumMap["qml.QQmlComponent__Loading"] = int64(QQmlComponent__Loading)
+	qt.EnumMap["qml.QQmlComponent__Error"] = int64(QQmlComponent__Error)
+	qt.ItfMap["qml.QQmlContext_ITF"] = QQmlContext{}
+	qt.FuncMap["qml.NewQQmlContext"] = NewQQmlContext
+	qt.FuncMap["qml.NewQQmlContext2"] = NewQQmlContext2
+	qt.ItfMap["qml.QQmlDebuggingEnabler_ITF"] = QQmlDebuggingEnabler{}
+	qt.FuncMap["qml.QQmlDebuggingEnabler_ConnectToLocalDebugger"] = QQmlDebuggingEnabler_ConnectToLocalDebugger
+	qt.FuncMap["qml.QQmlDebuggingEnabler_DebuggerServices"] = QQmlDebuggingEnabler_DebuggerServices
+	qt.FuncMap["qml.QQmlDebuggingEnabler_InspectorServices"] = QQmlDebuggingEnabler_InspectorServices
+	qt.FuncMap["qml.QQmlDebuggingEnabler_NativeDebuggerServices"] = QQmlDebuggingEnabler_NativeDebuggerServices
+	qt.FuncMap["qml.QQmlDebuggingEnabler_ProfilerServices"] = QQmlDebuggingEnabler_ProfilerServices
+	qt.FuncMap["qml.QQmlDebuggingEnabler_SetServices"] = QQmlDebuggingEnabler_SetServices
+	qt.FuncMap["qml.QQmlDebuggingEnabler_StartDebugConnector"] = QQmlDebuggingEnabler_StartDebugConnector
+	qt.FuncMap["qml.QQmlDebuggingEnabler_StartTcpDebugServer"] = QQmlDebuggingEnabler_StartTcpDebugServer
+	qt.EnumMap["qml.QQmlDebuggingEnabler__DoNotWaitForClient"] = int64(QQmlDebuggingEnabler__DoNotWaitForClient)
+	qt.EnumMap["qml.QQmlDebuggingEnabler__WaitForClient"] = int64(QQmlDebuggingEnabler__WaitForClient)
+	qt.ItfMap["qml.QQmlEngine_ITF"] = QQmlEngine{}
+	qt.FuncMap["qml.NewQQmlEngine"] = NewQQmlEngine
+	qt.FuncMap["qml.QQmlEngine_ContextForObject"] = QQmlEngine_ContextForObject
+	qt.FuncMap["qml.QQmlEngine_ObjectOwnership"] = QQmlEngine_ObjectOwnership
+	qt.FuncMap["qml.QQmlEngine_SetContextForObject"] = QQmlEngine_SetContextForObject
+	qt.FuncMap["qml.QQmlEngine_SetObjectOwnership"] = QQmlEngine_SetObjectOwnership
+	qt.FuncMap["qml.QQmlEngine_QmlRegisterSingletonType"] = QQmlEngine_QmlRegisterSingletonType
+	qt.EnumMap["qml.QQmlEngine__CppOwnership"] = int64(QQmlEngine__CppOwnership)
+	qt.EnumMap["qml.QQmlEngine__JavaScriptOwnership"] = int64(QQmlEngine__JavaScriptOwnership)
+	qt.ItfMap["qml.QQmlError_ITF"] = QQmlError{}
+	qt.FuncMap["qml.NewQQmlError"] = NewQQmlError
+	qt.FuncMap["qml.NewQQmlError2"] = NewQQmlError2
+	qt.ItfMap["qml.QQmlExpression_ITF"] = QQmlExpression{}
+	qt.FuncMap["qml.NewQQmlExpression"] = NewQQmlExpression
+	qt.FuncMap["qml.NewQQmlExpression2"] = NewQQmlExpression2
+	qt.FuncMap["qml.NewQQmlExpression3"] = NewQQmlExpression3
+	qt.ItfMap["qml.QQmlExtensionPlugin_ITF"] = QQmlExtensionPlugin{}
+	qt.FuncMap["qml.NewQQmlExtensionPlugin"] = NewQQmlExtensionPlugin
+	qt.ItfMap["qml.QQmlFileSelector_ITF"] = QQmlFileSelector{}
+	qt.FuncMap["qml.NewQQmlFileSelector"] = NewQQmlFileSelector
+	qt.FuncMap["qml.QQmlFileSelector_Get"] = QQmlFileSelector_Get
+	qt.ItfMap["qml.QQmlImageProviderBase_ITF"] = QQmlImageProviderBase{}
+	qt.EnumMap["qml.QQmlImageProviderBase__Image"] = int64(QQmlImageProviderBase__Image)
+	qt.EnumMap["qml.QQmlImageProviderBase__Pixmap"] = int64(QQmlImageProviderBase__Pixmap)
+	qt.EnumMap["qml.QQmlImageProviderBase__Texture"] = int64(QQmlImageProviderBase__Texture)
+	qt.EnumMap["qml.QQmlImageProviderBase__Invalid"] = int64(QQmlImageProviderBase__Invalid)
+	qt.EnumMap["qml.QQmlImageProviderBase__ImageResponse"] = int64(QQmlImageProviderBase__ImageResponse)
+	qt.EnumMap["qml.QQmlImageProviderBase__ForceAsynchronousImageLoading"] = int64(QQmlImageProviderBase__ForceAsynchronousImageLoading)
+	qt.ItfMap["qml.QQmlIncubationController_ITF"] = QQmlIncubationController{}
+	qt.FuncMap["qml.NewQQmlIncubationController2"] = NewQQmlIncubationController2
+	qt.ItfMap["qml.QQmlIncubator_ITF"] = QQmlIncubator{}
+	qt.FuncMap["qml.NewQQmlIncubator2"] = NewQQmlIncubator2
+	qt.EnumMap["qml.QQmlIncubator__Asynchronous"] = int64(QQmlIncubator__Asynchronous)
+	qt.EnumMap["qml.QQmlIncubator__AsynchronousIfNested"] = int64(QQmlIncubator__AsynchronousIfNested)
+	qt.EnumMap["qml.QQmlIncubator__Synchronous"] = int64(QQmlIncubator__Synchronous)
+	qt.EnumMap["qml.QQmlIncubator__Null"] = int64(QQmlIncubator__Null)
+	qt.EnumMap["qml.QQmlIncubator__Ready"] = int64(QQmlIncubator__Ready)
+	qt.EnumMap["qml.QQmlIncubator__Loading"] = int64(QQmlIncubator__Loading)
+	qt.EnumMap["qml.QQmlIncubator__Error"] = int64(QQmlIncubator__Error)
+	qt.ItfMap["qml.QQmlInfo_ITF"] = QQmlInfo{}
+	qt.ItfMap["qml.QQmlListReference_ITF"] = QQmlListReference{}
+	qt.FuncMap["qml.NewQQmlListReference"] = NewQQmlListReference
+	qt.FuncMap["qml.NewQQmlListReference2"] = NewQQmlListReference2
+	qt.ItfMap["qml.QQmlNetworkAccessManagerFactory_ITF"] = QQmlNetworkAccessManagerFactory{}
+	qt.FuncMap["qml.NewQQmlNetworkAccessManagerFactory"] = NewQQmlNetworkAccessManagerFactory
+	qt.ItfMap["qml.QQmlParserStatus_ITF"] = QQmlParserStatus{}
+	qt.ItfMap["qml.QQmlProperty_ITF"] = QQmlProperty{}
+	qt.FuncMap["qml.NewQQmlProperty"] = NewQQmlProperty
+	qt.FuncMap["qml.NewQQmlProperty2"] = NewQQmlProperty2
+	qt.FuncMap["qml.NewQQmlProperty3"] = NewQQmlProperty3
+	qt.FuncMap["qml.NewQQmlProperty4"] = NewQQmlProperty4
+	qt.FuncMap["qml.NewQQmlProperty5"] = NewQQmlProperty5
+	qt.FuncMap["qml.NewQQmlProperty6"] = NewQQmlProperty6
+	qt.FuncMap["qml.NewQQmlProperty7"] = NewQQmlProperty7
+	qt.FuncMap["qml.NewQQmlProperty8"] = NewQQmlProperty8
+	qt.FuncMap["qml.QQmlProperty_Read2"] = QQmlProperty_Read2
+	qt.FuncMap["qml.QQmlProperty_Read3"] = QQmlProperty_Read3
+	qt.FuncMap["qml.QQmlProperty_Read4"] = QQmlProperty_Read4
+	qt.FuncMap["qml.QQmlProperty_Write2"] = QQmlProperty_Write2
+	qt.FuncMap["qml.QQmlProperty_Write3"] = QQmlProperty_Write3
+	qt.FuncMap["qml.QQmlProperty_Write4"] = QQmlProperty_Write4
+	qt.EnumMap["qml.QQmlProperty__InvalidCategory"] = int64(QQmlProperty__InvalidCategory)
+	qt.EnumMap["qml.QQmlProperty__List"] = int64(QQmlProperty__List)
+	qt.EnumMap["qml.QQmlProperty__Object"] = int64(QQmlProperty__Object)
+	qt.EnumMap["qml.QQmlProperty__Normal"] = int64(QQmlProperty__Normal)
+	qt.EnumMap["qml.QQmlProperty__Invalid"] = int64(QQmlProperty__Invalid)
+	qt.EnumMap["qml.QQmlProperty__Property"] = int64(QQmlProperty__Property)
+	qt.EnumMap["qml.QQmlProperty__SignalProperty"] = int64(QQmlProperty__SignalProperty)
+	qt.ItfMap["qml.QQmlPropertyMap_ITF"] = QQmlPropertyMap{}
+	qt.FuncMap["qml.NewQQmlPropertyMap"] = NewQQmlPropertyMap
+	qt.ItfMap["qml.QQmlPropertyValueSource_ITF"] = QQmlPropertyValueSource{}
+	qt.FuncMap["qml.NewQQmlPropertyValueSource"] = NewQQmlPropertyValueSource
+	qt.ItfMap["qml.QQmlScriptString_ITF"] = QQmlScriptString{}
+	qt.FuncMap["qml.NewQQmlScriptString"] = NewQQmlScriptString
+	qt.FuncMap["qml.NewQQmlScriptString2"] = NewQQmlScriptString2
 }

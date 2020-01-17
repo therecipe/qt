@@ -30,10 +30,10 @@ func (w *Window) init() {
 	openGLLabel.SetAlignment(core.Qt__AlignHCenter)
 
 	layout := widgets.NewQGridLayout(nil)
-	layout.AddWidget(native, 0, 0, 0)
-	layout.AddWidget(openGL, 0, 1, 0)
-	layout.AddWidget(nativeLabel, 1, 0, 0)
-	layout.AddWidget(openGLLabel, 1, 1, 0)
+	layout.AddWidget2(native, 0, 0, 0)
+	layout.AddWidget2(openGL, 0, 1, 0)
+	layout.AddWidget2(nativeLabel, 1, 0, 0)
+	layout.AddWidget2(openGLLabel, 1, 1, 0)
 	w.SetLayout(layout)
 
 	timer := core.NewQTimer(nil)

@@ -1,4 +1,4 @@
-//source: https://doc.qt.io/qt-5.10/qtcharts-dynamicspline-example.html
+//source: https://doc.qt.io/qt-5/qtcharts-dynamicspline-example.html
 
 package main
 

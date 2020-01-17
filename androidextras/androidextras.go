@@ -3,6 +3,7 @@
 package androidextras
 
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"strings"
 	"unsafe"
@@ -1242,20 +1243,6 @@ func (ptr *QAndroidService) __findChildren_newList3() unsafe.Pointer {
 	return nil
 }
 
-func (ptr *QAndroidService) __qFindChildren_atList2(i int) *core.QObject {
-
-	return nil
-}
-
-func (ptr *QAndroidService) __qFindChildren_setList2(i core.QObject_ITF) {
-
-}
-
-func (ptr *QAndroidService) __qFindChildren_newList2() unsafe.Pointer {
-
-	return nil
-}
-
 func (ptr *QAndroidService) EventDefault(e core.QEvent_ITF) bool {
 
 	return false
@@ -1542,4 +1529,81 @@ func QtAndroid_StartIntentSender(intentSender QAndroidJniObject_ITF, receiverReq
 
 func (ptr *QtAndroid) StartIntentSender(intentSender QAndroidJniObject_ITF, receiverRequestCode int, resultReceiver QAndroidActivityResultReceiver_ITF) {
 
+}
+
+func init() {
+	qt.ItfMap["androidextras.QAndroidActivityResultReceiver_ITF"] = QAndroidActivityResultReceiver{}
+	qt.ItfMap["androidextras.QAndroidBinder_ITF"] = QAndroidBinder{}
+	qt.FuncMap["androidextras.NewQAndroidBinder"] = NewQAndroidBinder
+	qt.FuncMap["androidextras.NewQAndroidBinder2"] = NewQAndroidBinder2
+	qt.EnumMap["androidextras.QAndroidBinder__Normal"] = int64(QAndroidBinder__Normal)
+	qt.EnumMap["androidextras.QAndroidBinder__OneWay"] = int64(QAndroidBinder__OneWay)
+	qt.ItfMap["androidextras.QAndroidIntent_ITF"] = QAndroidIntent{}
+	qt.FuncMap["androidextras.NewQAndroidIntent"] = NewQAndroidIntent
+	qt.FuncMap["androidextras.NewQAndroidIntent2"] = NewQAndroidIntent2
+	qt.FuncMap["androidextras.NewQAndroidIntent3"] = NewQAndroidIntent3
+	qt.FuncMap["androidextras.NewQAndroidIntent4"] = NewQAndroidIntent4
+	qt.ItfMap["androidextras.QAndroidJniEnvironment_ITF"] = QAndroidJniEnvironment{}
+	qt.FuncMap["androidextras.NewQAndroidJniEnvironment"] = NewQAndroidJniEnvironment
+	qt.FuncMap["androidextras.QAndroidJniEnvironment_JavaVM"] = QAndroidJniEnvironment_JavaVM
+	qt.FuncMap["androidextras.QAndroidJniEnvironment_ExceptionCheck"] = QAndroidJniEnvironment_ExceptionCheck
+	qt.FuncMap["androidextras.QAndroidJniEnvironment_ExceptionDescribe"] = QAndroidJniEnvironment_ExceptionDescribe
+	qt.FuncMap["androidextras.QAndroidJniEnvironment_ExceptionClear"] = QAndroidJniEnvironment_ExceptionClear
+	qt.FuncMap["androidextras.QAndroidJniEnvironment_ExceptionOccurred"] = QAndroidJniEnvironment_ExceptionOccurred
+	qt.ItfMap["androidextras.QAndroidJniExceptionCleaner_ITF"] = QAndroidJniExceptionCleaner{}
+	qt.FuncMap["androidextras.NewQAndroidJniExceptionCleaner"] = NewQAndroidJniExceptionCleaner
+	qt.EnumMap["androidextras.QAndroidJniExceptionCleaner__Silent"] = int64(QAndroidJniExceptionCleaner__Silent)
+	qt.EnumMap["androidextras.QAndroidJniExceptionCleaner__Verbose"] = int64(QAndroidJniExceptionCleaner__Verbose)
+	qt.ItfMap["androidextras.QAndroidJniObject_ITF"] = QAndroidJniObject{}
+	qt.FuncMap["androidextras.NewQAndroidJniObject"] = NewQAndroidJniObject
+	qt.FuncMap["androidextras.NewQAndroidJniObject2"] = NewQAndroidJniObject2
+	qt.FuncMap["androidextras.NewQAndroidJniObject3"] = NewQAndroidJniObject3
+	qt.FuncMap["androidextras.NewQAndroidJniObject4"] = NewQAndroidJniObject4
+	qt.FuncMap["androidextras.NewQAndroidJniObject5"] = NewQAndroidJniObject5
+	qt.FuncMap["androidextras.NewQAndroidJniObject6"] = NewQAndroidJniObject6
+	qt.FuncMap["androidextras.QAndroidJniObject_CallStaticObjectMethod"] = QAndroidJniObject_CallStaticObjectMethod
+	qt.FuncMap["androidextras.QAndroidJniObject_CallStaticObjectMethod2"] = QAndroidJniObject_CallStaticObjectMethod2
+	qt.FuncMap["androidextras.QAndroidJniObject_CallStaticObjectMethod3"] = QAndroidJniObject_CallStaticObjectMethod3
+	qt.FuncMap["androidextras.QAndroidJniObject_CallStaticObjectMethod4"] = QAndroidJniObject_CallStaticObjectMethod4
+	qt.FuncMap["androidextras.QAndroidJniObject_FromLocalRef"] = QAndroidJniObject_FromLocalRef
+	qt.FuncMap["androidextras.QAndroidJniObject_FromString"] = QAndroidJniObject_FromString
+	qt.FuncMap["androidextras.QAndroidJniObject_GetStaticObjectField"] = QAndroidJniObject_GetStaticObjectField
+	qt.FuncMap["androidextras.QAndroidJniObject_GetStaticObjectField2"] = QAndroidJniObject_GetStaticObjectField2
+	qt.FuncMap["androidextras.QAndroidJniObject_GetStaticObjectField3"] = QAndroidJniObject_GetStaticObjectField3
+	qt.FuncMap["androidextras.QAndroidJniObject_GetStaticObjectField4"] = QAndroidJniObject_GetStaticObjectField4
+	qt.FuncMap["androidextras.QAndroidJniObject_IsClassAvailable"] = QAndroidJniObject_IsClassAvailable
+	qt.FuncMap["androidextras.QAndroidJniObject_SetStaticField"] = QAndroidJniObject_SetStaticField
+	qt.FuncMap["androidextras.QAndroidJniObject_SetStaticField3"] = QAndroidJniObject_SetStaticField3
+	qt.ItfMap["androidextras.QAndroidParcel_ITF"] = QAndroidParcel{}
+	qt.FuncMap["androidextras.NewQAndroidParcel"] = NewQAndroidParcel
+	qt.FuncMap["androidextras.NewQAndroidParcel2"] = NewQAndroidParcel2
+	qt.ItfMap["androidextras.QAndroidService_ITF"] = QAndroidService{}
+	qt.FuncMap["androidextras.NewQAndroidService"] = NewQAndroidService
+	qt.ItfMap["androidextras.QAndroidServiceConnection_ITF"] = QAndroidServiceConnection{}
+	qt.FuncMap["androidextras.NewQAndroidServiceConnection"] = NewQAndroidServiceConnection
+	qt.FuncMap["androidextras.NewQAndroidServiceConnection2"] = NewQAndroidServiceConnection2
+	qt.ItfMap["androidextras.QtAndroid_ITF"] = QtAndroid{}
+	qt.FuncMap["androidextras.QtAndroid_AndroidActivity"] = QtAndroid_AndroidActivity
+	qt.FuncMap["androidextras.QtAndroid_AndroidContext"] = QtAndroid_AndroidContext
+	qt.FuncMap["androidextras.QtAndroid_AndroidSdkVersion"] = QtAndroid_AndroidSdkVersion
+	qt.FuncMap["androidextras.QtAndroid_AndroidService"] = QtAndroid_AndroidService
+	qt.FuncMap["androidextras.QtAndroid_BindService"] = QtAndroid_BindService
+	qt.FuncMap["androidextras.QtAndroid_HideSplashScreen"] = QtAndroid_HideSplashScreen
+	qt.FuncMap["androidextras.QtAndroid_HideSplashScreen2"] = QtAndroid_HideSplashScreen2
+	qt.FuncMap["androidextras.QtAndroid_ShouldShowRequestPermissionRationale"] = QtAndroid_ShouldShowRequestPermissionRationale
+	qt.FuncMap["androidextras.QtAndroid_StartActivity"] = QtAndroid_StartActivity
+	qt.FuncMap["androidextras.QtAndroid_StartActivity2"] = QtAndroid_StartActivity2
+	qt.FuncMap["androidextras.QtAndroid_StartIntentSender"] = QtAndroid_StartIntentSender
+	qt.EnumMap["androidextras.QtAndroid__None"] = int64(QtAndroid__None)
+	qt.EnumMap["androidextras.QtAndroid__AutoCreate"] = int64(QtAndroid__AutoCreate)
+	qt.EnumMap["androidextras.QtAndroid__DebugUnbind"] = int64(QtAndroid__DebugUnbind)
+	qt.EnumMap["androidextras.QtAndroid__NotForeground"] = int64(QtAndroid__NotForeground)
+	qt.EnumMap["androidextras.QtAndroid__AboveClient"] = int64(QtAndroid__AboveClient)
+	qt.EnumMap["androidextras.QtAndroid__AllowOomManagement"] = int64(QtAndroid__AllowOomManagement)
+	qt.EnumMap["androidextras.QtAndroid__WaivePriority"] = int64(QtAndroid__WaivePriority)
+	qt.EnumMap["androidextras.QtAndroid__Important"] = int64(QtAndroid__Important)
+	qt.EnumMap["androidextras.QtAndroid__AdjustWithActivity"] = int64(QtAndroid__AdjustWithActivity)
+	qt.EnumMap["androidextras.QtAndroid__ExternalService"] = int64(QtAndroid__ExternalService)
+	qt.EnumMap["androidextras.QtAndroid__Granted"] = int64(QtAndroid__Granted)
+	qt.EnumMap["androidextras.QtAndroid__Denied"] = int64(QtAndroid__Denied)
 }

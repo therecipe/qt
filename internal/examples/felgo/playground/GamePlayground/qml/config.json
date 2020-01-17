@@ -1,0 +1,8 @@
+{
+  "title": "GamePlayground",
+  "identifier": "net.vplay.playground.games",
+  "orientation": "landscape",
+  "versioncode": 1,
+  "versionname": "1.0",
+  "stage": "test"
+}

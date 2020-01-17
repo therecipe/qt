@@ -12,18 +12,20 @@ import (
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
 	"github.com/therecipe/qt/widgets"
-	"runtime"
 	"strings"
 	"unsafe"
 )
 
+func cGoFreePacked(ptr unsafe.Pointer) { core.NewQByteArrayFromPointer(ptr).DestroyQByteArray() }
 func cGoUnpackString(s C.struct_QtPrintSupport_PackedString) string {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		return C.GoString(s.data)
 	}
 	return C.GoStringN(s.data, C.int(s.len))
 }
 func cGoUnpackBytes(s C.struct_QtPrintSupport_PackedString) []byte {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
 		return *(*[]byte)(unsafe.Pointer(&gs))
@@ -328,7 +330,7 @@ func (ptr *QAbstractPrintDialog) __children_newList() unsafe.Pointer {
 func (ptr *QAbstractPrintDialog) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QAbstractPrintDialog___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -384,27 +386,6 @@ func (ptr *QAbstractPrintDialog) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QAbstractPrintDialog) __findChildren_newList3() unsafe.Pointer {
 	return C.QAbstractPrintDialog___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QAbstractPrintDialog) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QAbstractPrintDialog___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QAbstractPrintDialog) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractPrintDialog___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QAbstractPrintDialog) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QAbstractPrintDialog___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQAbstractPrintDialog_Accept
@@ -526,7 +507,7 @@ func callbackQAbstractPrintDialog_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Poi
 func (ptr *QAbstractPrintDialog) MinimumSizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QAbstractPrintDialog_MinimumSizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -627,7 +608,7 @@ func callbackQAbstractPrintDialog_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 func (ptr *QAbstractPrintDialog) SizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QAbstractPrintDialog_SizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -928,7 +909,7 @@ func callbackQAbstractPrintDialog_InputMethodQuery(ptr unsafe.Pointer, query C.l
 func (ptr *QAbstractPrintDialog) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QAbstractPrintDialog_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -1479,8 +1460,9 @@ func callbackQAbstractPrintDialog_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QAbstractPrintDialog) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QAbstractPrintDialog_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1728,17 +1710,19 @@ func (ptr *QPageSetupDialog) DisconnectDestroyQPageSetupDialog() {
 
 func (ptr *QPageSetupDialog) DestroyQPageSetupDialog() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QPageSetupDialog_DestroyQPageSetupDialog(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QPageSetupDialog) DestroyQPageSetupDialogDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QPageSetupDialog_DestroyQPageSetupDialogDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1829,7 +1813,7 @@ func (ptr *QPageSetupDialog) __children_newList() unsafe.Pointer {
 func (ptr *QPageSetupDialog) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QPageSetupDialog___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -1885,27 +1869,6 @@ func (ptr *QPageSetupDialog) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QPageSetupDialog) __findChildren_newList3() unsafe.Pointer {
 	return C.QPageSetupDialog___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QPageSetupDialog) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QPageSetupDialog___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QPageSetupDialog) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPageSetupDialog___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QPageSetupDialog) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QPageSetupDialog___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQPageSetupDialog_Accept
@@ -2012,7 +1975,7 @@ func callbackQPageSetupDialog_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer
 func (ptr *QPageSetupDialog) MinimumSizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QPageSetupDialog_MinimumSizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -2098,7 +2061,7 @@ func callbackQPageSetupDialog_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 func (ptr *QPageSetupDialog) SizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QPageSetupDialog_SizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -2399,7 +2362,7 @@ func callbackQPageSetupDialog_InputMethodQuery(ptr unsafe.Pointer, query C.longl
 func (ptr *QPageSetupDialog) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QPageSetupDialog_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -2950,8 +2913,9 @@ func callbackQPageSetupDialog_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QPageSetupDialog) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QPageSetupDialog_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3054,12 +3018,12 @@ func NewQPlatformPrintDeviceFromPointer(ptr unsafe.Pointer) (n *QPlatformPrintDe
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QPlatformPrintDevice) DestroyQPlatformPrintDevice() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3160,7 +3124,7 @@ func (ptr *QPrintDialog) ConnectAccepted(f func(printer *QPrinter)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "accepted") {
-			C.QPrintDialog_ConnectAccepted(ptr.Pointer())
+			C.QPrintDialog_ConnectAccepted(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "accepted")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "accepted"); signal != nil {
@@ -3346,17 +3310,19 @@ func (ptr *QPrintDialog) DisconnectDestroyQPrintDialog() {
 
 func (ptr *QPrintDialog) DestroyQPrintDialog() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QPrintDialog_DestroyQPrintDialog(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QPrintDialog) DestroyQPrintDialogDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QPrintDialog_DestroyQPrintDialogDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3623,7 +3589,7 @@ func (ptr *QPrintEngine) DisconnectProperty() {
 func (ptr *QPrintEngine) Property(key QPrintEngine__PrintEnginePropertyKey) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QPrintEngine_Property(ptr.Pointer(), C.longlong(key)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -3698,17 +3664,19 @@ func (ptr *QPrintEngine) DisconnectDestroyQPrintEngine() {
 
 func (ptr *QPrintEngine) DestroyQPrintEngine() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QPrintEngine_DestroyQPrintEngine(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QPrintEngine) DestroyQPrintEngineDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QPrintEngine_DestroyQPrintEngineDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3821,7 +3789,7 @@ func (ptr *QPrintPreviewDialog) ConnectPaintRequested(f func(printer *QPrinter))
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "paintRequested") {
-			C.QPrintPreviewDialog_ConnectPaintRequested(ptr.Pointer())
+			C.QPrintPreviewDialog_ConnectPaintRequested(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "paintRequested")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "paintRequested"); signal != nil {
@@ -3904,17 +3872,19 @@ func (ptr *QPrintPreviewDialog) DisconnectDestroyQPrintPreviewDialog() {
 
 func (ptr *QPrintPreviewDialog) DestroyQPrintPreviewDialog() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QPrintPreviewDialog_DestroyQPrintPreviewDialog(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QPrintPreviewDialog) DestroyQPrintPreviewDialogDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QPrintPreviewDialog_DestroyQPrintPreviewDialogDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4005,7 +3975,7 @@ func (ptr *QPrintPreviewDialog) __children_newList() unsafe.Pointer {
 func (ptr *QPrintPreviewDialog) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QPrintPreviewDialog___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -4061,27 +4031,6 @@ func (ptr *QPrintPreviewDialog) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QPrintPreviewDialog) __findChildren_newList3() unsafe.Pointer {
 	return C.QPrintPreviewDialog___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QPrintPreviewDialog) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QPrintPreviewDialog___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QPrintPreviewDialog) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPrintPreviewDialog___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QPrintPreviewDialog) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QPrintPreviewDialog___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQPrintPreviewDialog_Accept
@@ -4204,7 +4153,7 @@ func callbackQPrintPreviewDialog_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Poin
 func (ptr *QPrintPreviewDialog) MinimumSizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QPrintPreviewDialog_MinimumSizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -4275,7 +4224,7 @@ func callbackQPrintPreviewDialog_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 func (ptr *QPrintPreviewDialog) SizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QPrintPreviewDialog_SizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -4576,7 +4525,7 @@ func callbackQPrintPreviewDialog_InputMethodQuery(ptr unsafe.Pointer, query C.lo
 func (ptr *QPrintPreviewDialog) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QPrintPreviewDialog_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -5127,8 +5076,9 @@ func callbackQPrintPreviewDialog_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QPrintPreviewDialog) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QPrintPreviewDialog_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5388,7 +5338,7 @@ func (ptr *QPrintPreviewWidget) ConnectPaintRequested(f func(printer *QPrinter))
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "paintRequested") {
-			C.QPrintPreviewWidget_ConnectPaintRequested(ptr.Pointer())
+			C.QPrintPreviewWidget_ConnectPaintRequested(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "paintRequested")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "paintRequested"); signal != nil {
@@ -5428,7 +5378,7 @@ func (ptr *QPrintPreviewWidget) ConnectPreviewChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "previewChanged") {
-			C.QPrintPreviewWidget_ConnectPreviewChanged(ptr.Pointer())
+			C.QPrintPreviewWidget_ConnectPreviewChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "previewChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "previewChanged"); signal != nil {
@@ -6155,17 +6105,19 @@ func (ptr *QPrintPreviewWidget) DisconnectDestroyQPrintPreviewWidget() {
 
 func (ptr *QPrintPreviewWidget) DestroyQPrintPreviewWidget() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QPrintPreviewWidget_DestroyQPrintPreviewWidget(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QPrintPreviewWidget) DestroyQPrintPreviewWidgetDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QPrintPreviewWidget_DestroyQPrintPreviewWidgetDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6256,7 +6208,7 @@ func (ptr *QPrintPreviewWidget) __children_newList() unsafe.Pointer {
 func (ptr *QPrintPreviewWidget) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QPrintPreviewWidget___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -6312,27 +6264,6 @@ func (ptr *QPrintPreviewWidget) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QPrintPreviewWidget) __findChildren_newList3() unsafe.Pointer {
 	return C.QPrintPreviewWidget___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QPrintPreviewWidget) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QPrintPreviewWidget___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QPrintPreviewWidget) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPrintPreviewWidget___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QPrintPreviewWidget) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QPrintPreviewWidget___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQPrintPreviewWidget_ActionEvent
@@ -6660,7 +6591,7 @@ func callbackQPrintPreviewWidget_InputMethodQuery(ptr unsafe.Pointer, query C.lo
 func (ptr *QPrintPreviewWidget) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QPrintPreviewWidget_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -6754,7 +6685,7 @@ func callbackQPrintPreviewWidget_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Poin
 func (ptr *QPrintPreviewWidget) MinimumSizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QPrintPreviewWidget_MinimumSizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -7154,7 +7085,7 @@ func callbackQPrintPreviewWidget_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 func (ptr *QPrintPreviewWidget) SizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQSizeFromPointer(C.QPrintPreviewWidget_SizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		qt.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
 	return nil
@@ -7292,8 +7223,9 @@ func callbackQPrintPreviewWidget_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QPrintPreviewWidget) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QPrintPreviewWidget_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7685,7 +7617,7 @@ func (ptr *QPrinter) PageOrder() QPrinter__PageOrder {
 func (ptr *QPrinter) PageRect2(unit QPrinter__Unit) *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QPrinter_PageRect2(ptr.Pointer(), C.longlong(unit)))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -7739,7 +7671,7 @@ func (ptr *QPrinter) PaintEngineDefault() *gui.QPaintEngine {
 func (ptr *QPrinter) PaperRect2(unit QPrinter__Unit) *core.QRectF {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFFromPointer(C.QPrinter_PaperRect2(ptr.Pointer(), C.longlong(unit)))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		qt.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
 	return nil
@@ -8019,17 +7951,19 @@ func (ptr *QPrinter) DisconnectDestroyQPrinter() {
 
 func (ptr *QPrinter) DestroyQPrinter() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QPrinter_DestroyQPrinter(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QPrinter) DestroyQPrinterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QPrinter_DestroyQPrinterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -8135,19 +8069,19 @@ func NewQPrinterInfoFromPointer(ptr unsafe.Pointer) (n *QPrinterInfo) {
 }
 func NewQPrinterInfo() *QPrinterInfo {
 	tmpValue := NewQPrinterInfoFromPointer(C.QPrinterInfo_NewQPrinterInfo())
-	runtime.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
+	qt.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
 	return tmpValue
 }
 
 func NewQPrinterInfo2(other QPrinterInfo_ITF) *QPrinterInfo {
 	tmpValue := NewQPrinterInfoFromPointer(C.QPrinterInfo_NewQPrinterInfo2(PointerFromQPrinterInfo(other)))
-	runtime.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
+	qt.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
 	return tmpValue
 }
 
 func NewQPrinterInfo3(printer QPrinter_ITF) *QPrinterInfo {
 	tmpValue := NewQPrinterInfoFromPointer(C.QPrinterInfo_NewQPrinterInfo3(PointerFromQPrinter(printer)))
-	runtime.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
+	qt.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
 	return tmpValue
 }
 
@@ -8198,7 +8132,7 @@ func (ptr *QPrinterInfo) DefaultDuplexMode() QPrinter__DuplexMode {
 func (ptr *QPrinterInfo) DefaultPageSize() *gui.QPageSize {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPageSizeFromPointer(C.QPrinterInfo_DefaultPageSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QPageSize).DestroyQPageSize)
+		qt.SetFinalizer(tmpValue, (*gui.QPageSize).DestroyQPageSize)
 		return tmpValue
 	}
 	return nil
@@ -8206,13 +8140,13 @@ func (ptr *QPrinterInfo) DefaultPageSize() *gui.QPageSize {
 
 func QPrinterInfo_DefaultPrinter() *QPrinterInfo {
 	tmpValue := NewQPrinterInfoFromPointer(C.QPrinterInfo_QPrinterInfo_DefaultPrinter())
-	runtime.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
+	qt.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
 	return tmpValue
 }
 
 func (ptr *QPrinterInfo) DefaultPrinter() *QPrinterInfo {
 	tmpValue := NewQPrinterInfoFromPointer(C.QPrinterInfo_QPrinterInfo_DefaultPrinter())
-	runtime.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
+	qt.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
 	return tmpValue
 }
 
@@ -8269,7 +8203,7 @@ func (ptr *QPrinterInfo) MakeAndModel() string {
 func (ptr *QPrinterInfo) MaximumPhysicalPageSize() *gui.QPageSize {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPageSizeFromPointer(C.QPrinterInfo_MaximumPhysicalPageSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QPageSize).DestroyQPageSize)
+		qt.SetFinalizer(tmpValue, (*gui.QPageSize).DestroyQPageSize)
 		return tmpValue
 	}
 	return nil
@@ -8278,7 +8212,7 @@ func (ptr *QPrinterInfo) MaximumPhysicalPageSize() *gui.QPageSize {
 func (ptr *QPrinterInfo) MinimumPhysicalPageSize() *gui.QPageSize {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPageSizeFromPointer(C.QPrinterInfo_MinimumPhysicalPageSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QPageSize).DestroyQPageSize)
+		qt.SetFinalizer(tmpValue, (*gui.QPageSize).DestroyQPageSize)
 		return tmpValue
 	}
 	return nil
@@ -8291,7 +8225,7 @@ func QPrinterInfo_PrinterInfo(printerName string) *QPrinterInfo {
 		defer C.free(unsafe.Pointer(printerNameC))
 	}
 	tmpValue := NewQPrinterInfoFromPointer(C.QPrinterInfo_QPrinterInfo_PrinterInfo(C.struct_QtPrintSupport_PackedString{data: printerNameC, len: C.longlong(len(printerName))}))
-	runtime.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
+	qt.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
 	return tmpValue
 }
 
@@ -8302,7 +8236,7 @@ func (ptr *QPrinterInfo) PrinterInfo(printerName string) *QPrinterInfo {
 		defer C.free(unsafe.Pointer(printerNameC))
 	}
 	tmpValue := NewQPrinterInfoFromPointer(C.QPrinterInfo_QPrinterInfo_PrinterInfo(C.struct_QtPrintSupport_PackedString{data: printerNameC, len: C.longlong(len(printerName))}))
-	runtime.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
+	qt.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
 	return tmpValue
 }
 
@@ -8385,16 +8319,18 @@ func (ptr *QPrinterInfo) SupportsCustomPageSizes() bool {
 
 func (ptr *QPrinterInfo) DestroyQPrinterInfo() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QPrinterInfo_DestroyQPrinterInfo(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QPrinterInfo) __availablePrinters_atList(i int) *QPrinterInfo {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQPrinterInfoFromPointer(C.QPrinterInfo___availablePrinters_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
+		qt.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
 		return tmpValue
 	}
 	return nil
@@ -8447,7 +8383,7 @@ func (ptr *QPrinterInfo) __supportedDuplexModes_newList() unsafe.Pointer {
 func (ptr *QPrinterInfo) __supportedPageSizes_atList(i int) *gui.QPageSize {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQPageSizeFromPointer(C.QPrinterInfo___supportedPageSizes_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*gui.QPageSize).DestroyQPageSize)
+		qt.SetFinalizer(tmpValue, (*gui.QPageSize).DestroyQPageSize)
 		return tmpValue
 	}
 	return nil
@@ -8482,4 +8418,130 @@ func (ptr *QPrinterInfo) __supportedResolutions_setList(i int) {
 
 func (ptr *QPrinterInfo) __supportedResolutions_newList() unsafe.Pointer {
 	return C.QPrinterInfo___supportedResolutions_newList(ptr.Pointer())
+}
+
+func init() {
+	qt.ItfMap["printsupport.QAbstractPrintDialog_ITF"] = QAbstractPrintDialog{}
+	qt.FuncMap["printsupport.NewQAbstractPrintDialog"] = NewQAbstractPrintDialog
+	qt.EnumMap["printsupport.QAbstractPrintDialog__None"] = int64(QAbstractPrintDialog__None)
+	qt.EnumMap["printsupport.QAbstractPrintDialog__PrintToFile"] = int64(QAbstractPrintDialog__PrintToFile)
+	qt.EnumMap["printsupport.QAbstractPrintDialog__PrintSelection"] = int64(QAbstractPrintDialog__PrintSelection)
+	qt.EnumMap["printsupport.QAbstractPrintDialog__PrintPageRange"] = int64(QAbstractPrintDialog__PrintPageRange)
+	qt.EnumMap["printsupport.QAbstractPrintDialog__PrintShowPageSize"] = int64(QAbstractPrintDialog__PrintShowPageSize)
+	qt.EnumMap["printsupport.QAbstractPrintDialog__PrintCollateCopies"] = int64(QAbstractPrintDialog__PrintCollateCopies)
+	qt.EnumMap["printsupport.QAbstractPrintDialog__DontUseSheet"] = int64(QAbstractPrintDialog__DontUseSheet)
+	qt.EnumMap["printsupport.QAbstractPrintDialog__PrintCurrentPage"] = int64(QAbstractPrintDialog__PrintCurrentPage)
+	qt.EnumMap["printsupport.QAbstractPrintDialog__AllPages"] = int64(QAbstractPrintDialog__AllPages)
+	qt.EnumMap["printsupport.QAbstractPrintDialog__Selection"] = int64(QAbstractPrintDialog__Selection)
+	qt.EnumMap["printsupport.QAbstractPrintDialog__PageRange"] = int64(QAbstractPrintDialog__PageRange)
+	qt.EnumMap["printsupport.QAbstractPrintDialog__CurrentPage"] = int64(QAbstractPrintDialog__CurrentPage)
+	qt.ItfMap["printsupport.QPageSetupDialog_ITF"] = QPageSetupDialog{}
+	qt.FuncMap["printsupport.NewQPageSetupDialog"] = NewQPageSetupDialog
+	qt.FuncMap["printsupport.NewQPageSetupDialog2"] = NewQPageSetupDialog2
+	qt.ItfMap["printsupport.QPrintDialog_ITF"] = QPrintDialog{}
+	qt.FuncMap["printsupport.NewQPrintDialog"] = NewQPrintDialog
+	qt.ItfMap["printsupport.QPrintEngine_ITF"] = QPrintEngine{}
+	qt.EnumMap["printsupport.QPrintEngine__PPK_CollateCopies"] = int64(QPrintEngine__PPK_CollateCopies)
+	qt.EnumMap["printsupport.QPrintEngine__PPK_ColorMode"] = int64(QPrintEngine__PPK_ColorMode)
+	qt.EnumMap["printsupport.QPrintEngine__PPK_Creator"] = int64(QPrintEngine__PPK_Creator)
+	qt.EnumMap["printsupport.QPrintEngine__PPK_DocumentName"] = int64(QPrintEngine__PPK_DocumentName)
+	qt.EnumMap["printsupport.QPrintEngine__PPK_FullPage"] = int64(QPrintEngine__PPK_FullPage)
+	qt.EnumMap["printsupport.QPrintEngine__PPK_NumberOfCopies"] = int64(QPrintEngine__PPK_NumberOfCopies)
+	qt.EnumMap["printsupport.QPrintEngine__PPK_Orientation"] = int64(QPrintEngine__PPK_Orientation)
+	qt.EnumMap["printsupport.QPrintEngine__PPK_OutputFileName"] = int64(QPrintEngine__PPK_OutputFileName)
+	qt.EnumMap["printsupport.QPrintEngine__PPK_PageOrder"] = int64(QPrintEngine__PPK_PageOrder)
+	qt.EnumMap["printsupport.QPrintEngine__PPK_PageRect"] = int64(QPrintEngine__PPK_PageRect)
+	qt.EnumMap["printsupport.QPrintEngine__PPK_PageSize"] = int64(QPrintEngine__PPK_PageSize)
+	qt.EnumMap["printsupport.QPrintEngine__PPK_PaperRect"] = int64(QPrintEngine__PPK_PaperRect)
+	qt.EnumMap["printsupport.QPrintEngine__PPK_PaperSource"] = int64(QPrintEngine__PPK_PaperSource)
+	qt.EnumMap["printsupport.QPrintEngine__PPK_PrinterName"] = int64(QPrintEngine__PPK_PrinterName)
+	qt.EnumMap["printsupport.QPrintEngine__PPK_PrinterProgram"] = int64(QPrintEngine__PPK_PrinterProgram)
+	qt.EnumMap["printsupport.QPrintEngine__PPK_Resolution"] = int64(QPrintEngine__PPK_Resolution)
+	qt.EnumMap["printsupport.QPrintEngine__PPK_SelectionOption"] = int64(QPrintEngine__PPK_SelectionOption)
+	qt.EnumMap["printsupport.QPrintEngine__PPK_SupportedResolutions"] = int64(QPrintEngine__PPK_SupportedResolutions)
+	qt.EnumMap["printsupport.QPrintEngine__PPK_WindowsPageSize"] = int64(QPrintEngine__PPK_WindowsPageSize)
+	qt.EnumMap["printsupport.QPrintEngine__PPK_FontEmbedding"] = int64(QPrintEngine__PPK_FontEmbedding)
+	qt.EnumMap["printsupport.QPrintEngine__PPK_Duplex"] = int64(QPrintEngine__PPK_Duplex)
+	qt.EnumMap["printsupport.QPrintEngine__PPK_PaperSources"] = int64(QPrintEngine__PPK_PaperSources)
+	qt.EnumMap["printsupport.QPrintEngine__PPK_CustomPaperSize"] = int64(QPrintEngine__PPK_CustomPaperSize)
+	qt.EnumMap["printsupport.QPrintEngine__PPK_PageMargins"] = int64(QPrintEngine__PPK_PageMargins)
+	qt.EnumMap["printsupport.QPrintEngine__PPK_CopyCount"] = int64(QPrintEngine__PPK_CopyCount)
+	qt.EnumMap["printsupport.QPrintEngine__PPK_SupportsMultipleCopies"] = int64(QPrintEngine__PPK_SupportsMultipleCopies)
+	qt.EnumMap["printsupport.QPrintEngine__PPK_PaperName"] = int64(QPrintEngine__PPK_PaperName)
+	qt.EnumMap["printsupport.QPrintEngine__PPK_QPageSize"] = int64(QPrintEngine__PPK_QPageSize)
+	qt.EnumMap["printsupport.QPrintEngine__PPK_QPageMargins"] = int64(QPrintEngine__PPK_QPageMargins)
+	qt.EnumMap["printsupport.QPrintEngine__PPK_QPageLayout"] = int64(QPrintEngine__PPK_QPageLayout)
+	qt.EnumMap["printsupport.QPrintEngine__PPK_PaperSize"] = int64(QPrintEngine__PPK_PaperSize)
+	qt.EnumMap["printsupport.QPrintEngine__PPK_CustomBase"] = int64(QPrintEngine__PPK_CustomBase)
+	qt.ItfMap["printsupport.QPrintPreviewDialog_ITF"] = QPrintPreviewDialog{}
+	qt.FuncMap["printsupport.NewQPrintPreviewDialog"] = NewQPrintPreviewDialog
+	qt.FuncMap["printsupport.NewQPrintPreviewDialog2"] = NewQPrintPreviewDialog2
+	qt.ItfMap["printsupport.QPrintPreviewWidget_ITF"] = QPrintPreviewWidget{}
+	qt.FuncMap["printsupport.NewQPrintPreviewWidget"] = NewQPrintPreviewWidget
+	qt.FuncMap["printsupport.NewQPrintPreviewWidget2"] = NewQPrintPreviewWidget2
+	qt.EnumMap["printsupport.QPrintPreviewWidget__SinglePageView"] = int64(QPrintPreviewWidget__SinglePageView)
+	qt.EnumMap["printsupport.QPrintPreviewWidget__FacingPagesView"] = int64(QPrintPreviewWidget__FacingPagesView)
+	qt.EnumMap["printsupport.QPrintPreviewWidget__AllPagesView"] = int64(QPrintPreviewWidget__AllPagesView)
+	qt.EnumMap["printsupport.QPrintPreviewWidget__CustomZoom"] = int64(QPrintPreviewWidget__CustomZoom)
+	qt.EnumMap["printsupport.QPrintPreviewWidget__FitToWidth"] = int64(QPrintPreviewWidget__FitToWidth)
+	qt.EnumMap["printsupport.QPrintPreviewWidget__FitInView"] = int64(QPrintPreviewWidget__FitInView)
+	qt.ItfMap["printsupport.QPrinter_ITF"] = QPrinter{}
+	qt.FuncMap["printsupport.NewQPrinter"] = NewQPrinter
+	qt.FuncMap["printsupport.NewQPrinter2"] = NewQPrinter2
+	qt.EnumMap["printsupport.QPrinter__ScreenResolution"] = int64(QPrinter__ScreenResolution)
+	qt.EnumMap["printsupport.QPrinter__PrinterResolution"] = int64(QPrinter__PrinterResolution)
+	qt.EnumMap["printsupport.QPrinter__HighResolution"] = int64(QPrinter__HighResolution)
+	qt.EnumMap["printsupport.QPrinter__Portrait"] = int64(QPrinter__Portrait)
+	qt.EnumMap["printsupport.QPrinter__Landscape"] = int64(QPrinter__Landscape)
+	qt.EnumMap["printsupport.QPrinter__FirstPageFirst"] = int64(QPrinter__FirstPageFirst)
+	qt.EnumMap["printsupport.QPrinter__LastPageFirst"] = int64(QPrinter__LastPageFirst)
+	qt.EnumMap["printsupport.QPrinter__GrayScale"] = int64(QPrinter__GrayScale)
+	qt.EnumMap["printsupport.QPrinter__Color"] = int64(QPrinter__Color)
+	qt.EnumMap["printsupport.QPrinter__OnlyOne"] = int64(QPrinter__OnlyOne)
+	qt.EnumMap["printsupport.QPrinter__Lower"] = int64(QPrinter__Lower)
+	qt.EnumMap["printsupport.QPrinter__Middle"] = int64(QPrinter__Middle)
+	qt.EnumMap["printsupport.QPrinter__Manual"] = int64(QPrinter__Manual)
+	qt.EnumMap["printsupport.QPrinter__Envelope"] = int64(QPrinter__Envelope)
+	qt.EnumMap["printsupport.QPrinter__EnvelopeManual"] = int64(QPrinter__EnvelopeManual)
+	qt.EnumMap["printsupport.QPrinter__Auto"] = int64(QPrinter__Auto)
+	qt.EnumMap["printsupport.QPrinter__Tractor"] = int64(QPrinter__Tractor)
+	qt.EnumMap["printsupport.QPrinter__SmallFormat"] = int64(QPrinter__SmallFormat)
+	qt.EnumMap["printsupport.QPrinter__LargeFormat"] = int64(QPrinter__LargeFormat)
+	qt.EnumMap["printsupport.QPrinter__LargeCapacity"] = int64(QPrinter__LargeCapacity)
+	qt.EnumMap["printsupport.QPrinter__Cassette"] = int64(QPrinter__Cassette)
+	qt.EnumMap["printsupport.QPrinter__FormSource"] = int64(QPrinter__FormSource)
+	qt.EnumMap["printsupport.QPrinter__MaxPageSource"] = int64(QPrinter__MaxPageSource)
+	qt.EnumMap["printsupport.QPrinter__CustomSource"] = int64(QPrinter__CustomSource)
+	qt.EnumMap["printsupport.QPrinter__LastPaperSource"] = int64(QPrinter__LastPaperSource)
+	qt.EnumMap["printsupport.QPrinter__Upper"] = int64(QPrinter__Upper)
+	qt.EnumMap["printsupport.QPrinter__Idle"] = int64(QPrinter__Idle)
+	qt.EnumMap["printsupport.QPrinter__Active"] = int64(QPrinter__Active)
+	qt.EnumMap["printsupport.QPrinter__Aborted"] = int64(QPrinter__Aborted)
+	qt.EnumMap["printsupport.QPrinter__Error"] = int64(QPrinter__Error)
+	qt.EnumMap["printsupport.QPrinter__NativeFormat"] = int64(QPrinter__NativeFormat)
+	qt.EnumMap["printsupport.QPrinter__PdfFormat"] = int64(QPrinter__PdfFormat)
+	qt.EnumMap["printsupport.QPrinter__AllPages"] = int64(QPrinter__AllPages)
+	qt.EnumMap["printsupport.QPrinter__Selection"] = int64(QPrinter__Selection)
+	qt.EnumMap["printsupport.QPrinter__PageRange"] = int64(QPrinter__PageRange)
+	qt.EnumMap["printsupport.QPrinter__CurrentPage"] = int64(QPrinter__CurrentPage)
+	qt.EnumMap["printsupport.QPrinter__Millimeter"] = int64(QPrinter__Millimeter)
+	qt.EnumMap["printsupport.QPrinter__Point"] = int64(QPrinter__Point)
+	qt.EnumMap["printsupport.QPrinter__Inch"] = int64(QPrinter__Inch)
+	qt.EnumMap["printsupport.QPrinter__Pica"] = int64(QPrinter__Pica)
+	qt.EnumMap["printsupport.QPrinter__Didot"] = int64(QPrinter__Didot)
+	qt.EnumMap["printsupport.QPrinter__Cicero"] = int64(QPrinter__Cicero)
+	qt.EnumMap["printsupport.QPrinter__DevicePixel"] = int64(QPrinter__DevicePixel)
+	qt.EnumMap["printsupport.QPrinter__DuplexNone"] = int64(QPrinter__DuplexNone)
+	qt.EnumMap["printsupport.QPrinter__DuplexAuto"] = int64(QPrinter__DuplexAuto)
+	qt.EnumMap["printsupport.QPrinter__DuplexLongSide"] = int64(QPrinter__DuplexLongSide)
+	qt.EnumMap["printsupport.QPrinter__DuplexShortSide"] = int64(QPrinter__DuplexShortSide)
+	qt.ItfMap["printsupport.QPrinterInfo_ITF"] = QPrinterInfo{}
+	qt.FuncMap["printsupport.NewQPrinterInfo"] = NewQPrinterInfo
+	qt.FuncMap["printsupport.NewQPrinterInfo2"] = NewQPrinterInfo2
+	qt.FuncMap["printsupport.NewQPrinterInfo3"] = NewQPrinterInfo3
+	qt.FuncMap["printsupport.QPrinterInfo_AvailablePrinterNames"] = QPrinterInfo_AvailablePrinterNames
+	qt.FuncMap["printsupport.QPrinterInfo_AvailablePrinters"] = QPrinterInfo_AvailablePrinters
+	qt.FuncMap["printsupport.QPrinterInfo_DefaultPrinter"] = QPrinterInfo_DefaultPrinter
+	qt.FuncMap["printsupport.QPrinterInfo_DefaultPrinterName"] = QPrinterInfo_DefaultPrinterName
+	qt.FuncMap["printsupport.QPrinterInfo_PrinterInfo"] = QPrinterInfo_PrinterInfo
 }

@@ -12,18 +12,20 @@ import (
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/network"
 	"reflect"
-	"runtime"
 	"strings"
 	"unsafe"
 )
 
+func cGoFreePacked(ptr unsafe.Pointer) { core.NewQByteArrayFromPointer(ptr).DestroyQByteArray() }
 func cGoUnpackString(s C.struct_QtBluetooth_PackedString) string {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		return C.GoString(s.data)
 	}
 	return C.GoStringN(s.data, C.int(s.len))
 }
 func cGoUnpackBytes(s C.struct_QtBluetooth_PackedString) []byte {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
 		return *(*[]byte)(unsafe.Pointer(&gs))
@@ -74,12 +76,12 @@ func NewQBluetoothFromPointer(ptr unsafe.Pointer) (n *QBluetooth) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QBluetooth) DestroyQBluetooth() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -144,13 +146,13 @@ func NewQBluetoothAddressFromPointer(ptr unsafe.Pointer) (n *QBluetoothAddress) 
 }
 func NewQBluetoothAddress() *QBluetoothAddress {
 	tmpValue := NewQBluetoothAddressFromPointer(C.QBluetoothAddress_NewQBluetoothAddress())
-	runtime.SetFinalizer(tmpValue, (*QBluetoothAddress).DestroyQBluetoothAddress)
+	qt.SetFinalizer(tmpValue, (*QBluetoothAddress).DestroyQBluetoothAddress)
 	return tmpValue
 }
 
 func NewQBluetoothAddress2(address uint64) *QBluetoothAddress {
 	tmpValue := NewQBluetoothAddressFromPointer(C.QBluetoothAddress_NewQBluetoothAddress2(C.ulonglong(address)))
-	runtime.SetFinalizer(tmpValue, (*QBluetoothAddress).DestroyQBluetoothAddress)
+	qt.SetFinalizer(tmpValue, (*QBluetoothAddress).DestroyQBluetoothAddress)
 	return tmpValue
 }
 
@@ -161,13 +163,13 @@ func NewQBluetoothAddress3(address string) *QBluetoothAddress {
 		defer C.free(unsafe.Pointer(addressC))
 	}
 	tmpValue := NewQBluetoothAddressFromPointer(C.QBluetoothAddress_NewQBluetoothAddress3(C.struct_QtBluetooth_PackedString{data: addressC, len: C.longlong(len(address))}))
-	runtime.SetFinalizer(tmpValue, (*QBluetoothAddress).DestroyQBluetoothAddress)
+	qt.SetFinalizer(tmpValue, (*QBluetoothAddress).DestroyQBluetoothAddress)
 	return tmpValue
 }
 
 func NewQBluetoothAddress4(other QBluetoothAddress_ITF) *QBluetoothAddress {
 	tmpValue := NewQBluetoothAddressFromPointer(C.QBluetoothAddress_NewQBluetoothAddress4(PointerFromQBluetoothAddress(other)))
-	runtime.SetFinalizer(tmpValue, (*QBluetoothAddress).DestroyQBluetoothAddress)
+	qt.SetFinalizer(tmpValue, (*QBluetoothAddress).DestroyQBluetoothAddress)
 	return tmpValue
 }
 
@@ -200,9 +202,11 @@ func (ptr *QBluetoothAddress) ToUInt64() uint64 {
 
 func (ptr *QBluetoothAddress) DestroyQBluetoothAddress() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QBluetoothAddress_DestroyQBluetoothAddress(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -306,7 +310,7 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) ConnectCanceled(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "canceled") {
-			C.QBluetoothDeviceDiscoveryAgent_ConnectCanceled(ptr.Pointer())
+			C.QBluetoothDeviceDiscoveryAgent_ConnectCanceled(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "canceled")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "canceled"); signal != nil {
@@ -346,7 +350,7 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) ConnectDeviceDiscovered(f func(info *
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "deviceDiscovered") {
-			C.QBluetoothDeviceDiscoveryAgent_ConnectDeviceDiscovered(ptr.Pointer())
+			C.QBluetoothDeviceDiscoveryAgent_ConnectDeviceDiscovered(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "deviceDiscovered")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "deviceDiscovered"); signal != nil {
@@ -386,7 +390,7 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) ConnectDeviceUpdated(f func(info *QBl
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "deviceUpdated") {
-			C.QBluetoothDeviceDiscoveryAgent_ConnectDeviceUpdated(ptr.Pointer())
+			C.QBluetoothDeviceDiscoveryAgent_ConnectDeviceUpdated(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "deviceUpdated")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "deviceUpdated"); signal != nil {
@@ -447,7 +451,7 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) ConnectError2(f func(error QBluetooth
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "error2") {
-			C.QBluetoothDeviceDiscoveryAgent_ConnectError2(ptr.Pointer())
+			C.QBluetoothDeviceDiscoveryAgent_ConnectError2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error2"); signal != nil {
@@ -494,7 +498,7 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) ConnectFinished(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "finished") {
-			C.QBluetoothDeviceDiscoveryAgent_ConnectFinished(ptr.Pointer())
+			C.QBluetoothDeviceDiscoveryAgent_ConnectFinished(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "finished")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "finished"); signal != nil {
@@ -725,24 +729,26 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) DisconnectDestroyQBluetoothDeviceDisc
 
 func (ptr *QBluetoothDeviceDiscoveryAgent) DestroyQBluetoothDeviceDiscoveryAgent() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QBluetoothDeviceDiscoveryAgent_DestroyQBluetoothDeviceDiscoveryAgent(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QBluetoothDeviceDiscoveryAgent) DestroyQBluetoothDeviceDiscoveryAgentDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QBluetoothDeviceDiscoveryAgent_DestroyQBluetoothDeviceDiscoveryAgentDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QBluetoothDeviceDiscoveryAgent) __discoveredDevices_atList(i int) *QBluetoothDeviceInfo {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQBluetoothDeviceInfoFromPointer(C.QBluetoothDeviceDiscoveryAgent___discoveredDevices_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QBluetoothDeviceInfo).DestroyQBluetoothDeviceInfo)
+		qt.SetFinalizer(tmpValue, (*QBluetoothDeviceInfo).DestroyQBluetoothDeviceInfo)
 		return tmpValue
 	}
 	return nil
@@ -782,7 +788,7 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) __children_newList() unsafe.Pointer {
 func (ptr *QBluetoothDeviceDiscoveryAgent) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QBluetoothDeviceDiscoveryAgent___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -838,27 +844,6 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) __findChildren_setList3(i core.QObjec
 
 func (ptr *QBluetoothDeviceDiscoveryAgent) __findChildren_newList3() unsafe.Pointer {
 	return C.QBluetoothDeviceDiscoveryAgent___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QBluetoothDeviceDiscoveryAgent) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QBluetoothDeviceDiscoveryAgent___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QBluetoothDeviceDiscoveryAgent) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QBluetoothDeviceDiscoveryAgent___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QBluetoothDeviceDiscoveryAgent) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QBluetoothDeviceDiscoveryAgent___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQBluetoothDeviceDiscoveryAgent_ChildEvent
@@ -917,8 +902,9 @@ func callbackQBluetoothDeviceDiscoveryAgent_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QBluetoothDeviceDiscoveryAgent) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QBluetoothDeviceDiscoveryAgent_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1268,7 +1254,7 @@ const (
 
 func NewQBluetoothDeviceInfo() *QBluetoothDeviceInfo {
 	tmpValue := NewQBluetoothDeviceInfoFromPointer(C.QBluetoothDeviceInfo_NewQBluetoothDeviceInfo())
-	runtime.SetFinalizer(tmpValue, (*QBluetoothDeviceInfo).DestroyQBluetoothDeviceInfo)
+	qt.SetFinalizer(tmpValue, (*QBluetoothDeviceInfo).DestroyQBluetoothDeviceInfo)
 	return tmpValue
 }
 
@@ -1279,7 +1265,7 @@ func NewQBluetoothDeviceInfo2(address QBluetoothAddress_ITF, name string, classO
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	tmpValue := NewQBluetoothDeviceInfoFromPointer(C.QBluetoothDeviceInfo_NewQBluetoothDeviceInfo2(PointerFromQBluetoothAddress(address), C.struct_QtBluetooth_PackedString{data: nameC, len: C.longlong(len(name))}, C.uint(uint32(classOfDevice))))
-	runtime.SetFinalizer(tmpValue, (*QBluetoothDeviceInfo).DestroyQBluetoothDeviceInfo)
+	qt.SetFinalizer(tmpValue, (*QBluetoothDeviceInfo).DestroyQBluetoothDeviceInfo)
 	return tmpValue
 }
 
@@ -1290,20 +1276,20 @@ func NewQBluetoothDeviceInfo3(uuid QBluetoothUuid_ITF, name string, classOfDevic
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	tmpValue := NewQBluetoothDeviceInfoFromPointer(C.QBluetoothDeviceInfo_NewQBluetoothDeviceInfo3(PointerFromQBluetoothUuid(uuid), C.struct_QtBluetooth_PackedString{data: nameC, len: C.longlong(len(name))}, C.uint(uint32(classOfDevice))))
-	runtime.SetFinalizer(tmpValue, (*QBluetoothDeviceInfo).DestroyQBluetoothDeviceInfo)
+	qt.SetFinalizer(tmpValue, (*QBluetoothDeviceInfo).DestroyQBluetoothDeviceInfo)
 	return tmpValue
 }
 
 func NewQBluetoothDeviceInfo4(other QBluetoothDeviceInfo_ITF) *QBluetoothDeviceInfo {
 	tmpValue := NewQBluetoothDeviceInfoFromPointer(C.QBluetoothDeviceInfo_NewQBluetoothDeviceInfo4(PointerFromQBluetoothDeviceInfo(other)))
-	runtime.SetFinalizer(tmpValue, (*QBluetoothDeviceInfo).DestroyQBluetoothDeviceInfo)
+	qt.SetFinalizer(tmpValue, (*QBluetoothDeviceInfo).DestroyQBluetoothDeviceInfo)
 	return tmpValue
 }
 
 func (ptr *QBluetoothDeviceInfo) Address() *QBluetoothAddress {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQBluetoothAddressFromPointer(C.QBluetoothDeviceInfo_Address(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QBluetoothAddress).DestroyQBluetoothAddress)
+		qt.SetFinalizer(tmpValue, (*QBluetoothAddress).DestroyQBluetoothAddress)
 		return tmpValue
 	}
 	return nil
@@ -1319,7 +1305,7 @@ func (ptr *QBluetoothDeviceInfo) CoreConfigurations() QBluetoothDeviceInfo__Core
 func (ptr *QBluetoothDeviceInfo) DeviceUuid() *QBluetoothUuid {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQBluetoothUuidFromPointer(C.QBluetoothDeviceInfo_DeviceUuid(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
+		qt.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
 		return tmpValue
 	}
 	return nil
@@ -1433,9 +1419,11 @@ func (ptr *QBluetoothDeviceInfo) SetServiceUuids2(uuids []*QBluetoothUuid) {
 
 func (ptr *QBluetoothDeviceInfo) DestroyQBluetoothDeviceInfo() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QBluetoothDeviceInfo_DestroyQBluetoothDeviceInfo(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1459,7 +1447,7 @@ func (ptr *QBluetoothDeviceInfo) __manufacturerIds_newList() unsafe.Pointer {
 func (ptr *QBluetoothDeviceInfo) __serviceUuids_atList(i int) *QBluetoothUuid {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQBluetoothUuidFromPointer(C.QBluetoothDeviceInfo___serviceUuids_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
+		qt.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
 		return tmpValue
 	}
 	return nil
@@ -1478,7 +1466,7 @@ func (ptr *QBluetoothDeviceInfo) __serviceUuids_newList() unsafe.Pointer {
 func (ptr *QBluetoothDeviceInfo) __setServiceUuids_uuids_atList(i int) *QBluetoothUuid {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQBluetoothUuidFromPointer(C.QBluetoothDeviceInfo___setServiceUuids_uuids_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
+		qt.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
 		return tmpValue
 	}
 	return nil
@@ -1497,7 +1485,7 @@ func (ptr *QBluetoothDeviceInfo) __setServiceUuids_uuids_newList() unsafe.Pointe
 func (ptr *QBluetoothDeviceInfo) __setServiceUuids_uuids_atList2(i int) *QBluetoothUuid {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQBluetoothUuidFromPointer(C.QBluetoothDeviceInfo___setServiceUuids_uuids_atList2(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
+		qt.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
 		return tmpValue
 	}
 	return nil
@@ -1569,20 +1557,20 @@ func NewQBluetoothHostInfoFromPointer(ptr unsafe.Pointer) (n *QBluetoothHostInfo
 }
 func NewQBluetoothHostInfo() *QBluetoothHostInfo {
 	tmpValue := NewQBluetoothHostInfoFromPointer(C.QBluetoothHostInfo_NewQBluetoothHostInfo())
-	runtime.SetFinalizer(tmpValue, (*QBluetoothHostInfo).DestroyQBluetoothHostInfo)
+	qt.SetFinalizer(tmpValue, (*QBluetoothHostInfo).DestroyQBluetoothHostInfo)
 	return tmpValue
 }
 
 func NewQBluetoothHostInfo2(other QBluetoothHostInfo_ITF) *QBluetoothHostInfo {
 	tmpValue := NewQBluetoothHostInfoFromPointer(C.QBluetoothHostInfo_NewQBluetoothHostInfo2(PointerFromQBluetoothHostInfo(other)))
-	runtime.SetFinalizer(tmpValue, (*QBluetoothHostInfo).DestroyQBluetoothHostInfo)
+	qt.SetFinalizer(tmpValue, (*QBluetoothHostInfo).DestroyQBluetoothHostInfo)
 	return tmpValue
 }
 
 func (ptr *QBluetoothHostInfo) Address() *QBluetoothAddress {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQBluetoothAddressFromPointer(C.QBluetoothHostInfo_Address(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QBluetoothAddress).DestroyQBluetoothAddress)
+		qt.SetFinalizer(tmpValue, (*QBluetoothAddress).DestroyQBluetoothAddress)
 		return tmpValue
 	}
 	return nil
@@ -1614,9 +1602,11 @@ func (ptr *QBluetoothHostInfo) SetName(name string) {
 
 func (ptr *QBluetoothHostInfo) DestroyQBluetoothHostInfo() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QBluetoothHostInfo_DestroyQBluetoothHostInfo(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1709,7 +1699,7 @@ func NewQBluetoothLocalDevice2(address QBluetoothAddress_ITF, parent core.QObjec
 func (ptr *QBluetoothLocalDevice) Address() *QBluetoothAddress {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQBluetoothAddressFromPointer(C.QBluetoothLocalDevice_Address(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QBluetoothAddress).DestroyQBluetoothAddress)
+		qt.SetFinalizer(tmpValue, (*QBluetoothAddress).DestroyQBluetoothAddress)
 		return tmpValue
 	}
 	return nil
@@ -1763,7 +1753,7 @@ func (ptr *QBluetoothLocalDevice) ConnectDeviceConnected(f func(address *QBlueto
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "deviceConnected") {
-			C.QBluetoothLocalDevice_ConnectDeviceConnected(ptr.Pointer())
+			C.QBluetoothLocalDevice_ConnectDeviceConnected(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "deviceConnected")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "deviceConnected"); signal != nil {
@@ -1803,7 +1793,7 @@ func (ptr *QBluetoothLocalDevice) ConnectDeviceDisconnected(f func(address *QBlu
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "deviceDisconnected") {
-			C.QBluetoothLocalDevice_ConnectDeviceDisconnected(ptr.Pointer())
+			C.QBluetoothLocalDevice_ConnectDeviceDisconnected(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "deviceDisconnected")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "deviceDisconnected"); signal != nil {
@@ -1843,7 +1833,7 @@ func (ptr *QBluetoothLocalDevice) ConnectError(f func(error QBluetoothLocalDevic
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "error") {
-			C.QBluetoothLocalDevice_ConnectError(ptr.Pointer())
+			C.QBluetoothLocalDevice_ConnectError(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error"); signal != nil {
@@ -1890,7 +1880,7 @@ func (ptr *QBluetoothLocalDevice) ConnectHostModeStateChanged(f func(state QBlue
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "hostModeStateChanged") {
-			C.QBluetoothLocalDevice_ConnectHostModeStateChanged(ptr.Pointer())
+			C.QBluetoothLocalDevice_ConnectHostModeStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "hostModeStateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "hostModeStateChanged"); signal != nil {
@@ -1987,7 +1977,7 @@ func (ptr *QBluetoothLocalDevice) ConnectPairingDisplayConfirmation(f func(addre
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "pairingDisplayConfirmation") {
-			C.QBluetoothLocalDevice_ConnectPairingDisplayConfirmation(ptr.Pointer())
+			C.QBluetoothLocalDevice_ConnectPairingDisplayConfirmation(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "pairingDisplayConfirmation")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "pairingDisplayConfirmation"); signal != nil {
@@ -2032,7 +2022,7 @@ func (ptr *QBluetoothLocalDevice) ConnectPairingDisplayPinCode(f func(address *Q
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "pairingDisplayPinCode") {
-			C.QBluetoothLocalDevice_ConnectPairingDisplayPinCode(ptr.Pointer())
+			C.QBluetoothLocalDevice_ConnectPairingDisplayPinCode(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "pairingDisplayPinCode")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "pairingDisplayPinCode"); signal != nil {
@@ -2077,7 +2067,7 @@ func (ptr *QBluetoothLocalDevice) ConnectPairingFinished(f func(address *QBlueto
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "pairingFinished") {
-			C.QBluetoothLocalDevice_ConnectPairingFinished(ptr.Pointer())
+			C.QBluetoothLocalDevice_ConnectPairingFinished(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "pairingFinished")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "pairingFinished"); signal != nil {
@@ -2163,24 +2153,26 @@ func (ptr *QBluetoothLocalDevice) DisconnectDestroyQBluetoothLocalDevice() {
 
 func (ptr *QBluetoothLocalDevice) DestroyQBluetoothLocalDevice() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QBluetoothLocalDevice_DestroyQBluetoothLocalDevice(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QBluetoothLocalDevice) DestroyQBluetoothLocalDeviceDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QBluetoothLocalDevice_DestroyQBluetoothLocalDeviceDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QBluetoothLocalDevice) __allDevices_atList(i int) *QBluetoothHostInfo {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQBluetoothHostInfoFromPointer(C.QBluetoothLocalDevice___allDevices_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QBluetoothHostInfo).DestroyQBluetoothHostInfo)
+		qt.SetFinalizer(tmpValue, (*QBluetoothHostInfo).DestroyQBluetoothHostInfo)
 		return tmpValue
 	}
 	return nil
@@ -2199,7 +2191,7 @@ func (ptr *QBluetoothLocalDevice) __allDevices_newList() unsafe.Pointer {
 func (ptr *QBluetoothLocalDevice) __connectedDevices_atList(i int) *QBluetoothAddress {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQBluetoothAddressFromPointer(C.QBluetoothLocalDevice___connectedDevices_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QBluetoothAddress).DestroyQBluetoothAddress)
+		qt.SetFinalizer(tmpValue, (*QBluetoothAddress).DestroyQBluetoothAddress)
 		return tmpValue
 	}
 	return nil
@@ -2239,7 +2231,7 @@ func (ptr *QBluetoothLocalDevice) __children_newList() unsafe.Pointer {
 func (ptr *QBluetoothLocalDevice) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QBluetoothLocalDevice___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -2295,27 +2287,6 @@ func (ptr *QBluetoothLocalDevice) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QBluetoothLocalDevice) __findChildren_newList3() unsafe.Pointer {
 	return C.QBluetoothLocalDevice___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QBluetoothLocalDevice) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QBluetoothLocalDevice___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QBluetoothLocalDevice) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QBluetoothLocalDevice___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QBluetoothLocalDevice) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QBluetoothLocalDevice___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQBluetoothLocalDevice_ChildEvent
@@ -2374,8 +2345,9 @@ func callbackQBluetoothLocalDevice_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QBluetoothLocalDevice) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QBluetoothLocalDevice_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2558,7 +2530,7 @@ func (ptr *QBluetoothServer) ConnectError2(f func(error QBluetoothServer__Error)
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "error2") {
-			C.QBluetoothServer_ConnectError2(ptr.Pointer())
+			C.QBluetoothServer_ConnectError2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error2"); signal != nil {
@@ -2615,7 +2587,7 @@ func (ptr *QBluetoothServer) Listen2(uuid QBluetoothUuid_ITF, serviceName string
 			defer C.free(unsafe.Pointer(serviceNameC))
 		}
 		tmpValue := NewQBluetoothServiceInfoFromPointer(C.QBluetoothServer_Listen2(ptr.Pointer(), PointerFromQBluetoothUuid(uuid), C.struct_QtBluetooth_PackedString{data: serviceNameC, len: C.longlong(len(serviceName))}))
-		runtime.SetFinalizer(tmpValue, (*QBluetoothServiceInfo).DestroyQBluetoothServiceInfo)
+		qt.SetFinalizer(tmpValue, (*QBluetoothServiceInfo).DestroyQBluetoothServiceInfo)
 		return tmpValue
 	}
 	return nil
@@ -2640,7 +2612,7 @@ func (ptr *QBluetoothServer) ConnectNewConnection(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "newConnection") {
-			C.QBluetoothServer_ConnectNewConnection(ptr.Pointer())
+			C.QBluetoothServer_ConnectNewConnection(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "newConnection")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "newConnection"); signal != nil {
@@ -2689,7 +2661,7 @@ func (ptr *QBluetoothServer) SecurityFlags() QBluetooth__Security {
 func (ptr *QBluetoothServer) ServerAddress() *QBluetoothAddress {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQBluetoothAddressFromPointer(C.QBluetoothServer_ServerAddress(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QBluetoothAddress).DestroyQBluetoothAddress)
+		qt.SetFinalizer(tmpValue, (*QBluetoothAddress).DestroyQBluetoothAddress)
 		return tmpValue
 	}
 	return nil
@@ -2754,17 +2726,19 @@ func (ptr *QBluetoothServer) DisconnectDestroyQBluetoothServer() {
 
 func (ptr *QBluetoothServer) DestroyQBluetoothServer() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QBluetoothServer_DestroyQBluetoothServer(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QBluetoothServer) DestroyQBluetoothServerDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QBluetoothServer_DestroyQBluetoothServerDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2792,7 +2766,7 @@ func (ptr *QBluetoothServer) __children_newList() unsafe.Pointer {
 func (ptr *QBluetoothServer) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QBluetoothServer___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -2848,27 +2822,6 @@ func (ptr *QBluetoothServer) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QBluetoothServer) __findChildren_newList3() unsafe.Pointer {
 	return C.QBluetoothServer___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QBluetoothServer) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QBluetoothServer___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QBluetoothServer) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QBluetoothServer___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QBluetoothServer) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QBluetoothServer___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQBluetoothServer_ChildEvent
@@ -2927,8 +2880,9 @@ func callbackQBluetoothServer_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QBluetoothServer) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QBluetoothServer_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3114,7 +3068,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) ConnectCanceled(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "canceled") {
-			C.QBluetoothServiceDiscoveryAgent_ConnectCanceled(ptr.Pointer())
+			C.QBluetoothServiceDiscoveryAgent_ConnectCanceled(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "canceled")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "canceled"); signal != nil {
@@ -3218,7 +3172,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) ConnectError2(f func(error QBluetoot
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "error2") {
-			C.QBluetoothServiceDiscoveryAgent_ConnectError2(ptr.Pointer())
+			C.QBluetoothServiceDiscoveryAgent_ConnectError2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error2"); signal != nil {
@@ -3265,7 +3219,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) ConnectFinished(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "finished") {
-			C.QBluetoothServiceDiscoveryAgent_ConnectFinished(ptr.Pointer())
+			C.QBluetoothServiceDiscoveryAgent_ConnectFinished(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "finished")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "finished"); signal != nil {
@@ -3303,7 +3257,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) IsActive() bool {
 func (ptr *QBluetoothServiceDiscoveryAgent) RemoteAddress() *QBluetoothAddress {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQBluetoothAddressFromPointer(C.QBluetoothServiceDiscoveryAgent_RemoteAddress(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QBluetoothAddress).DestroyQBluetoothAddress)
+		qt.SetFinalizer(tmpValue, (*QBluetoothAddress).DestroyQBluetoothAddress)
 		return tmpValue
 	}
 	return nil
@@ -3321,7 +3275,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) ConnectServiceDiscovered(f func(info
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "serviceDiscovered") {
-			C.QBluetoothServiceDiscoveryAgent_ConnectServiceDiscovered(ptr.Pointer())
+			C.QBluetoothServiceDiscoveryAgent_ConnectServiceDiscovered(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "serviceDiscovered")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "serviceDiscovered"); signal != nil {
@@ -3507,24 +3461,26 @@ func (ptr *QBluetoothServiceDiscoveryAgent) DisconnectDestroyQBluetoothServiceDi
 
 func (ptr *QBluetoothServiceDiscoveryAgent) DestroyQBluetoothServiceDiscoveryAgent() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QBluetoothServiceDiscoveryAgent_DestroyQBluetoothServiceDiscoveryAgent(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QBluetoothServiceDiscoveryAgent) DestroyQBluetoothServiceDiscoveryAgentDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QBluetoothServiceDiscoveryAgent_DestroyQBluetoothServiceDiscoveryAgentDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QBluetoothServiceDiscoveryAgent) __discoveredServices_atList(i int) *QBluetoothServiceInfo {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQBluetoothServiceInfoFromPointer(C.QBluetoothServiceDiscoveryAgent___discoveredServices_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QBluetoothServiceInfo).DestroyQBluetoothServiceInfo)
+		qt.SetFinalizer(tmpValue, (*QBluetoothServiceInfo).DestroyQBluetoothServiceInfo)
 		return tmpValue
 	}
 	return nil
@@ -3543,7 +3499,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) __discoveredServices_newList() unsaf
 func (ptr *QBluetoothServiceDiscoveryAgent) __setUuidFilter_uuids_atList(i int) *QBluetoothUuid {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQBluetoothUuidFromPointer(C.QBluetoothServiceDiscoveryAgent___setUuidFilter_uuids_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
+		qt.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
 		return tmpValue
 	}
 	return nil
@@ -3562,7 +3518,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) __setUuidFilter_uuids_newList() unsa
 func (ptr *QBluetoothServiceDiscoveryAgent) __uuidFilter_atList(i int) *QBluetoothUuid {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQBluetoothUuidFromPointer(C.QBluetoothServiceDiscoveryAgent___uuidFilter_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
+		qt.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
 		return tmpValue
 	}
 	return nil
@@ -3602,7 +3558,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) __children_newList() unsafe.Pointer 
 func (ptr *QBluetoothServiceDiscoveryAgent) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QBluetoothServiceDiscoveryAgent___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -3658,27 +3614,6 @@ func (ptr *QBluetoothServiceDiscoveryAgent) __findChildren_setList3(i core.QObje
 
 func (ptr *QBluetoothServiceDiscoveryAgent) __findChildren_newList3() unsafe.Pointer {
 	return C.QBluetoothServiceDiscoveryAgent___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QBluetoothServiceDiscoveryAgent) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QBluetoothServiceDiscoveryAgent___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QBluetoothServiceDiscoveryAgent) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QBluetoothServiceDiscoveryAgent___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QBluetoothServiceDiscoveryAgent) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QBluetoothServiceDiscoveryAgent___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQBluetoothServiceDiscoveryAgent_ChildEvent
@@ -3737,8 +3672,9 @@ func callbackQBluetoothServiceDiscoveryAgent_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QBluetoothServiceDiscoveryAgent) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QBluetoothServiceDiscoveryAgent_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3911,20 +3847,20 @@ const (
 
 func NewQBluetoothServiceInfo() *QBluetoothServiceInfo {
 	tmpValue := NewQBluetoothServiceInfoFromPointer(C.QBluetoothServiceInfo_NewQBluetoothServiceInfo())
-	runtime.SetFinalizer(tmpValue, (*QBluetoothServiceInfo).DestroyQBluetoothServiceInfo)
+	qt.SetFinalizer(tmpValue, (*QBluetoothServiceInfo).DestroyQBluetoothServiceInfo)
 	return tmpValue
 }
 
 func NewQBluetoothServiceInfo2(other QBluetoothServiceInfo_ITF) *QBluetoothServiceInfo {
 	tmpValue := NewQBluetoothServiceInfoFromPointer(C.QBluetoothServiceInfo_NewQBluetoothServiceInfo2(PointerFromQBluetoothServiceInfo(other)))
-	runtime.SetFinalizer(tmpValue, (*QBluetoothServiceInfo).DestroyQBluetoothServiceInfo)
+	qt.SetFinalizer(tmpValue, (*QBluetoothServiceInfo).DestroyQBluetoothServiceInfo)
 	return tmpValue
 }
 
 func (ptr *QBluetoothServiceInfo) Attribute(attributeId uint16) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QBluetoothServiceInfo_Attribute(ptr.Pointer(), C.ushort(attributeId)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -3940,7 +3876,7 @@ func (ptr *QBluetoothServiceInfo) Contains(attributeId uint16) bool {
 func (ptr *QBluetoothServiceInfo) Device() *QBluetoothDeviceInfo {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQBluetoothDeviceInfoFromPointer(C.QBluetoothServiceInfo_Device(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QBluetoothDeviceInfo).DestroyQBluetoothDeviceInfo)
+		qt.SetFinalizer(tmpValue, (*QBluetoothDeviceInfo).DestroyQBluetoothDeviceInfo)
 		return tmpValue
 	}
 	return nil
@@ -4039,7 +3975,7 @@ func (ptr *QBluetoothServiceInfo) ServiceProvider() string {
 func (ptr *QBluetoothServiceInfo) ServiceUuid() *QBluetoothUuid {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQBluetoothUuidFromPointer(C.QBluetoothServiceInfo_ServiceUuid(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
+		qt.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
 		return tmpValue
 	}
 	return nil
@@ -4129,16 +4065,18 @@ func (ptr *QBluetoothServiceInfo) UnregisterService() bool {
 
 func (ptr *QBluetoothServiceInfo) DestroyQBluetoothServiceInfo() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QBluetoothServiceInfo_DestroyQBluetoothServiceInfo(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QBluetoothServiceInfo) __serviceClassUuids_atList(i int) *QBluetoothUuid {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQBluetoothUuidFromPointer(C.QBluetoothServiceInfo___serviceClassUuids_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
+		qt.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
 		return tmpValue
 	}
 	return nil
@@ -4337,7 +4275,7 @@ func (ptr *QBluetoothSocket) ConnectConnected(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "connected") {
-			C.QBluetoothSocket_ConnectConnected(ptr.Pointer())
+			C.QBluetoothSocket_ConnectConnected(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "connected")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "connected"); signal != nil {
@@ -4383,7 +4321,7 @@ func (ptr *QBluetoothSocket) ConnectDisconnected(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "disconnected") {
-			C.QBluetoothSocket_ConnectDisconnected(ptr.Pointer())
+			C.QBluetoothSocket_ConnectDisconnected(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "disconnected")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "disconnected"); signal != nil {
@@ -4436,7 +4374,7 @@ func (ptr *QBluetoothSocket) ConnectError2(f func(error QBluetoothSocket__Socket
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "error2") {
-			C.QBluetoothSocket_ConnectError2(ptr.Pointer())
+			C.QBluetoothSocket_ConnectError2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error2"); signal != nil {
@@ -4483,7 +4421,7 @@ func (ptr *QBluetoothSocket) IsSequentialDefault() bool {
 func (ptr *QBluetoothSocket) LocalAddress() *QBluetoothAddress {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQBluetoothAddressFromPointer(C.QBluetoothSocket_LocalAddress(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QBluetoothAddress).DestroyQBluetoothAddress)
+		qt.SetFinalizer(tmpValue, (*QBluetoothAddress).DestroyQBluetoothAddress)
 		return tmpValue
 	}
 	return nil
@@ -4506,7 +4444,7 @@ func (ptr *QBluetoothSocket) LocalPort() uint16 {
 func (ptr *QBluetoothSocket) PeerAddress() *QBluetoothAddress {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQBluetoothAddressFromPointer(C.QBluetoothSocket_PeerAddress(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QBluetoothAddress).DestroyQBluetoothAddress)
+		qt.SetFinalizer(tmpValue, (*QBluetoothAddress).DestroyQBluetoothAddress)
 		return tmpValue
 	}
 	return nil
@@ -4657,7 +4595,7 @@ func (ptr *QBluetoothSocket) ConnectStateChanged(f func(state QBluetoothSocket__
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stateChanged") {
-			C.QBluetoothSocket_ConnectStateChanged(ptr.Pointer())
+			C.QBluetoothSocket_ConnectStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
@@ -4771,17 +4709,19 @@ func (ptr *QBluetoothSocket) DisconnectDestroyQBluetoothSocket() {
 
 func (ptr *QBluetoothSocket) DestroyQBluetoothSocket() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QBluetoothSocket_DestroyQBluetoothSocket(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QBluetoothSocket) DestroyQBluetoothSocketDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QBluetoothSocket_DestroyQBluetoothSocketDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4809,7 +4749,7 @@ func (ptr *QBluetoothSocket) __children_newList() unsafe.Pointer {
 func (ptr *QBluetoothSocket) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QBluetoothSocket___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -4865,27 +4805,6 @@ func (ptr *QBluetoothSocket) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QBluetoothSocket) __findChildren_newList3() unsafe.Pointer {
 	return C.QBluetoothSocket___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QBluetoothSocket) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QBluetoothSocket___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QBluetoothSocket) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QBluetoothSocket___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QBluetoothSocket) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QBluetoothSocket___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQBluetoothSocket_AboutToClose
@@ -5140,8 +5059,9 @@ func callbackQBluetoothSocket_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QBluetoothSocket) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QBluetoothSocket_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5297,7 +5217,7 @@ func (ptr *QBluetoothTransferManager) ConnectFinished(f func(reply *QBluetoothTr
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "finished") {
-			C.QBluetoothTransferManager_ConnectFinished(ptr.Pointer())
+			C.QBluetoothTransferManager_ConnectFinished(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "finished")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "finished"); signal != nil {
@@ -5369,17 +5289,19 @@ func (ptr *QBluetoothTransferManager) DisconnectDestroyQBluetoothTransferManager
 
 func (ptr *QBluetoothTransferManager) DestroyQBluetoothTransferManager() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QBluetoothTransferManager_DestroyQBluetoothTransferManager(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QBluetoothTransferManager) DestroyQBluetoothTransferManagerDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QBluetoothTransferManager_DestroyQBluetoothTransferManagerDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5407,7 +5329,7 @@ func (ptr *QBluetoothTransferManager) __children_newList() unsafe.Pointer {
 func (ptr *QBluetoothTransferManager) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QBluetoothTransferManager___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -5463,27 +5385,6 @@ func (ptr *QBluetoothTransferManager) __findChildren_setList3(i core.QObject_ITF
 
 func (ptr *QBluetoothTransferManager) __findChildren_newList3() unsafe.Pointer {
 	return C.QBluetoothTransferManager___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QBluetoothTransferManager) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QBluetoothTransferManager___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QBluetoothTransferManager) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QBluetoothTransferManager___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QBluetoothTransferManager) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QBluetoothTransferManager___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQBluetoothTransferManager_ChildEvent
@@ -5542,8 +5443,9 @@ func callbackQBluetoothTransferManager_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QBluetoothTransferManager) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QBluetoothTransferManager_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5796,7 +5698,7 @@ func (ptr *QBluetoothTransferReply) ConnectError2(f func(errorType QBluetoothTra
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "error2") {
-			C.QBluetoothTransferReply_ConnectError2(ptr.Pointer())
+			C.QBluetoothTransferReply_ConnectError2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error2"); signal != nil {
@@ -5875,7 +5777,7 @@ func (ptr *QBluetoothTransferReply) ConnectFinished(f func(reply *QBluetoothTran
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "finished") {
-			C.QBluetoothTransferReply_ConnectFinished(ptr.Pointer())
+			C.QBluetoothTransferReply_ConnectFinished(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "finished")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "finished"); signal != nil {
@@ -5993,7 +5895,7 @@ func (ptr *QBluetoothTransferReply) Manager() *QBluetoothTransferManager {
 func (ptr *QBluetoothTransferReply) Request() *QBluetoothTransferRequest {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQBluetoothTransferRequestFromPointer(C.QBluetoothTransferReply_Request(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QBluetoothTransferRequest).DestroyQBluetoothTransferRequest)
+		qt.SetFinalizer(tmpValue, (*QBluetoothTransferRequest).DestroyQBluetoothTransferRequest)
 		return tmpValue
 	}
 	return nil
@@ -6023,7 +5925,7 @@ func (ptr *QBluetoothTransferReply) ConnectTransferProgress(f func(bytesTransfer
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "transferProgress") {
-			C.QBluetoothTransferReply_ConnectTransferProgress(ptr.Pointer())
+			C.QBluetoothTransferReply_ConnectTransferProgress(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "transferProgress")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "transferProgress"); signal != nil {
@@ -6084,17 +5986,19 @@ func (ptr *QBluetoothTransferReply) DisconnectDestroyQBluetoothTransferReply() {
 
 func (ptr *QBluetoothTransferReply) DestroyQBluetoothTransferReply() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QBluetoothTransferReply_DestroyQBluetoothTransferReply(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QBluetoothTransferReply) DestroyQBluetoothTransferReplyDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QBluetoothTransferReply_DestroyQBluetoothTransferReplyDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6122,7 +6026,7 @@ func (ptr *QBluetoothTransferReply) __children_newList() unsafe.Pointer {
 func (ptr *QBluetoothTransferReply) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QBluetoothTransferReply___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -6178,27 +6082,6 @@ func (ptr *QBluetoothTransferReply) __findChildren_setList3(i core.QObject_ITF) 
 
 func (ptr *QBluetoothTransferReply) __findChildren_newList3() unsafe.Pointer {
 	return C.QBluetoothTransferReply___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QBluetoothTransferReply) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QBluetoothTransferReply___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QBluetoothTransferReply) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QBluetoothTransferReply___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QBluetoothTransferReply) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QBluetoothTransferReply___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQBluetoothTransferReply_ChildEvent
@@ -6257,8 +6140,9 @@ func callbackQBluetoothTransferReply_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QBluetoothTransferReply) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QBluetoothTransferReply_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6408,20 +6292,20 @@ const (
 
 func NewQBluetoothTransferRequest(address QBluetoothAddress_ITF) *QBluetoothTransferRequest {
 	tmpValue := NewQBluetoothTransferRequestFromPointer(C.QBluetoothTransferRequest_NewQBluetoothTransferRequest(PointerFromQBluetoothAddress(address)))
-	runtime.SetFinalizer(tmpValue, (*QBluetoothTransferRequest).DestroyQBluetoothTransferRequest)
+	qt.SetFinalizer(tmpValue, (*QBluetoothTransferRequest).DestroyQBluetoothTransferRequest)
 	return tmpValue
 }
 
 func NewQBluetoothTransferRequest2(other QBluetoothTransferRequest_ITF) *QBluetoothTransferRequest {
 	tmpValue := NewQBluetoothTransferRequestFromPointer(C.QBluetoothTransferRequest_NewQBluetoothTransferRequest2(PointerFromQBluetoothTransferRequest(other)))
-	runtime.SetFinalizer(tmpValue, (*QBluetoothTransferRequest).DestroyQBluetoothTransferRequest)
+	qt.SetFinalizer(tmpValue, (*QBluetoothTransferRequest).DestroyQBluetoothTransferRequest)
 	return tmpValue
 }
 
 func (ptr *QBluetoothTransferRequest) Address() *QBluetoothAddress {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQBluetoothAddressFromPointer(C.QBluetoothTransferRequest_Address(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QBluetoothAddress).DestroyQBluetoothAddress)
+		qt.SetFinalizer(tmpValue, (*QBluetoothAddress).DestroyQBluetoothAddress)
 		return tmpValue
 	}
 	return nil
@@ -6430,7 +6314,7 @@ func (ptr *QBluetoothTransferRequest) Address() *QBluetoothAddress {
 func (ptr *QBluetoothTransferRequest) Attribute(code QBluetoothTransferRequest__Attribute, defaultValue core.QVariant_ITF) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QBluetoothTransferRequest_Attribute(ptr.Pointer(), C.longlong(code), core.PointerFromQVariant(defaultValue)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -6444,9 +6328,11 @@ func (ptr *QBluetoothTransferRequest) SetAttribute(code QBluetoothTransferReques
 
 func (ptr *QBluetoothTransferRequest) DestroyQBluetoothTransferRequest() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QBluetoothTransferRequest_DestroyQBluetoothTransferRequest(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6785,43 +6671,43 @@ const (
 
 func NewQBluetoothUuid() *QBluetoothUuid {
 	tmpValue := NewQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid())
-	runtime.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
+	qt.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
 	return tmpValue
 }
 
 func NewQBluetoothUuid2(uuid QBluetoothUuid__ProtocolUuid) *QBluetoothUuid {
 	tmpValue := NewQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid2(C.longlong(uuid)))
-	runtime.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
+	qt.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
 	return tmpValue
 }
 
 func NewQBluetoothUuid3(uuid QBluetoothUuid__ServiceClassUuid) *QBluetoothUuid {
 	tmpValue := NewQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid3(C.longlong(uuid)))
-	runtime.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
+	qt.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
 	return tmpValue
 }
 
 func NewQBluetoothUuid4(uuid QBluetoothUuid__CharacteristicType) *QBluetoothUuid {
 	tmpValue := NewQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid4(C.longlong(uuid)))
-	runtime.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
+	qt.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
 	return tmpValue
 }
 
 func NewQBluetoothUuid5(uuid QBluetoothUuid__DescriptorType) *QBluetoothUuid {
 	tmpValue := NewQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid5(C.longlong(uuid)))
-	runtime.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
+	qt.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
 	return tmpValue
 }
 
 func NewQBluetoothUuid6(uuid uint16) *QBluetoothUuid {
 	tmpValue := NewQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid6(C.ushort(uuid)))
-	runtime.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
+	qt.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
 	return tmpValue
 }
 
 func NewQBluetoothUuid7(uuid uint) *QBluetoothUuid {
 	tmpValue := NewQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid7(C.uint(uint32(uuid))))
-	runtime.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
+	qt.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
 	return tmpValue
 }
 
@@ -6832,19 +6718,19 @@ func NewQBluetoothUuid9(uuid string) *QBluetoothUuid {
 		defer C.free(unsafe.Pointer(uuidC))
 	}
 	tmpValue := NewQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid9(C.struct_QtBluetooth_PackedString{data: uuidC, len: C.longlong(len(uuid))}))
-	runtime.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
+	qt.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
 	return tmpValue
 }
 
 func NewQBluetoothUuid10(uuid QBluetoothUuid_ITF) *QBluetoothUuid {
 	tmpValue := NewQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid10(PointerFromQBluetoothUuid(uuid)))
-	runtime.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
+	qt.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
 	return tmpValue
 }
 
 func NewQBluetoothUuid11(uuid core.QUuid_ITF) *QBluetoothUuid {
 	tmpValue := NewQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid11(core.PointerFromQUuid(uuid)))
-	runtime.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
+	qt.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
 	return tmpValue
 }
 
@@ -6913,9 +6799,11 @@ func (ptr *QBluetoothUuid) ToUInt32(ok *bool) uint {
 
 func (ptr *QBluetoothUuid) DestroyQBluetoothUuid() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QBluetoothUuid_DestroyQBluetoothUuid(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6969,13 +6857,13 @@ const (
 
 func NewQLowEnergyAdvertisingData() *QLowEnergyAdvertisingData {
 	tmpValue := NewQLowEnergyAdvertisingDataFromPointer(C.QLowEnergyAdvertisingData_NewQLowEnergyAdvertisingData())
-	runtime.SetFinalizer(tmpValue, (*QLowEnergyAdvertisingData).DestroyQLowEnergyAdvertisingData)
+	qt.SetFinalizer(tmpValue, (*QLowEnergyAdvertisingData).DestroyQLowEnergyAdvertisingData)
 	return tmpValue
 }
 
 func NewQLowEnergyAdvertisingData2(other QLowEnergyAdvertisingData_ITF) *QLowEnergyAdvertisingData {
 	tmpValue := NewQLowEnergyAdvertisingDataFromPointer(C.QLowEnergyAdvertisingData_NewQLowEnergyAdvertisingData2(PointerFromQLowEnergyAdvertisingData(other)))
-	runtime.SetFinalizer(tmpValue, (*QLowEnergyAdvertisingData).DestroyQLowEnergyAdvertisingData)
+	qt.SetFinalizer(tmpValue, (*QLowEnergyAdvertisingData).DestroyQLowEnergyAdvertisingData)
 	return tmpValue
 }
 
@@ -7018,7 +6906,7 @@ func (ptr *QLowEnergyAdvertisingData) ManufacturerId() uint16 {
 func (ptr *QLowEnergyAdvertisingData) RawData() *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QLowEnergyAdvertisingData_RawData(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -7093,16 +6981,18 @@ func (ptr *QLowEnergyAdvertisingData) Swap(other QLowEnergyAdvertisingData_ITF) 
 
 func (ptr *QLowEnergyAdvertisingData) DestroyQLowEnergyAdvertisingData() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QLowEnergyAdvertisingData_DestroyQLowEnergyAdvertisingData(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QLowEnergyAdvertisingData) __services_atList(i int) *QBluetoothUuid {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQBluetoothUuidFromPointer(C.QLowEnergyAdvertisingData___services_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
+		qt.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
 		return tmpValue
 	}
 	return nil
@@ -7121,7 +7011,7 @@ func (ptr *QLowEnergyAdvertisingData) __services_newList() unsafe.Pointer {
 func (ptr *QLowEnergyAdvertisingData) __setServices_services_atList(i int) *QBluetoothUuid {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQBluetoothUuidFromPointer(C.QLowEnergyAdvertisingData___setServices_services_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
+		qt.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
 		return tmpValue
 	}
 	return nil
@@ -7198,13 +7088,13 @@ const (
 
 func NewQLowEnergyAdvertisingParameters() *QLowEnergyAdvertisingParameters {
 	tmpValue := NewQLowEnergyAdvertisingParametersFromPointer(C.QLowEnergyAdvertisingParameters_NewQLowEnergyAdvertisingParameters())
-	runtime.SetFinalizer(tmpValue, (*QLowEnergyAdvertisingParameters).DestroyQLowEnergyAdvertisingParameters)
+	qt.SetFinalizer(tmpValue, (*QLowEnergyAdvertisingParameters).DestroyQLowEnergyAdvertisingParameters)
 	return tmpValue
 }
 
 func NewQLowEnergyAdvertisingParameters2(other QLowEnergyAdvertisingParameters_ITF) *QLowEnergyAdvertisingParameters {
 	tmpValue := NewQLowEnergyAdvertisingParametersFromPointer(C.QLowEnergyAdvertisingParameters_NewQLowEnergyAdvertisingParameters2(PointerFromQLowEnergyAdvertisingParameters(other)))
-	runtime.SetFinalizer(tmpValue, (*QLowEnergyAdvertisingParameters).DestroyQLowEnergyAdvertisingParameters)
+	qt.SetFinalizer(tmpValue, (*QLowEnergyAdvertisingParameters).DestroyQLowEnergyAdvertisingParameters)
 	return tmpValue
 }
 
@@ -7256,9 +7146,11 @@ func (ptr *QLowEnergyAdvertisingParameters) Swap(other QLowEnergyAdvertisingPara
 
 func (ptr *QLowEnergyAdvertisingParameters) DestroyQLowEnergyAdvertisingParameters() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QLowEnergyAdvertisingParameters_DestroyQLowEnergyAdvertisingParameters(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7318,20 +7210,20 @@ const (
 
 func NewQLowEnergyCharacteristic() *QLowEnergyCharacteristic {
 	tmpValue := NewQLowEnergyCharacteristicFromPointer(C.QLowEnergyCharacteristic_NewQLowEnergyCharacteristic())
-	runtime.SetFinalizer(tmpValue, (*QLowEnergyCharacteristic).DestroyQLowEnergyCharacteristic)
+	qt.SetFinalizer(tmpValue, (*QLowEnergyCharacteristic).DestroyQLowEnergyCharacteristic)
 	return tmpValue
 }
 
 func NewQLowEnergyCharacteristic2(other QLowEnergyCharacteristic_ITF) *QLowEnergyCharacteristic {
 	tmpValue := NewQLowEnergyCharacteristicFromPointer(C.QLowEnergyCharacteristic_NewQLowEnergyCharacteristic2(PointerFromQLowEnergyCharacteristic(other)))
-	runtime.SetFinalizer(tmpValue, (*QLowEnergyCharacteristic).DestroyQLowEnergyCharacteristic)
+	qt.SetFinalizer(tmpValue, (*QLowEnergyCharacteristic).DestroyQLowEnergyCharacteristic)
 	return tmpValue
 }
 
 func (ptr *QLowEnergyCharacteristic) Descriptor(uuid QBluetoothUuid_ITF) *QLowEnergyDescriptor {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQLowEnergyDescriptorFromPointer(C.QLowEnergyCharacteristic_Descriptor(ptr.Pointer(), PointerFromQBluetoothUuid(uuid)))
-		runtime.SetFinalizer(tmpValue, (*QLowEnergyDescriptor).DestroyQLowEnergyDescriptor)
+		qt.SetFinalizer(tmpValue, (*QLowEnergyDescriptor).DestroyQLowEnergyDescriptor)
 		return tmpValue
 	}
 	return nil
@@ -7375,7 +7267,7 @@ func (ptr *QLowEnergyCharacteristic) Properties() QLowEnergyCharacteristic__Prop
 func (ptr *QLowEnergyCharacteristic) Uuid() *QBluetoothUuid {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQBluetoothUuidFromPointer(C.QLowEnergyCharacteristic_Uuid(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
+		qt.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
 		return tmpValue
 	}
 	return nil
@@ -7384,7 +7276,7 @@ func (ptr *QLowEnergyCharacteristic) Uuid() *QBluetoothUuid {
 func (ptr *QLowEnergyCharacteristic) Value() *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QLowEnergyCharacteristic_Value(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -7392,16 +7284,18 @@ func (ptr *QLowEnergyCharacteristic) Value() *core.QByteArray {
 
 func (ptr *QLowEnergyCharacteristic) DestroyQLowEnergyCharacteristic() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QLowEnergyCharacteristic_DestroyQLowEnergyCharacteristic(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QLowEnergyCharacteristic) __descriptors_atList(i int) *QLowEnergyDescriptor {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQLowEnergyDescriptorFromPointer(C.QLowEnergyCharacteristic___descriptors_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QLowEnergyDescriptor).DestroyQLowEnergyDescriptor)
+		qt.SetFinalizer(tmpValue, (*QLowEnergyDescriptor).DestroyQLowEnergyDescriptor)
 		return tmpValue
 	}
 	return nil
@@ -7456,13 +7350,13 @@ func NewQLowEnergyCharacteristicDataFromPointer(ptr unsafe.Pointer) (n *QLowEner
 }
 func NewQLowEnergyCharacteristicData() *QLowEnergyCharacteristicData {
 	tmpValue := NewQLowEnergyCharacteristicDataFromPointer(C.QLowEnergyCharacteristicData_NewQLowEnergyCharacteristicData())
-	runtime.SetFinalizer(tmpValue, (*QLowEnergyCharacteristicData).DestroyQLowEnergyCharacteristicData)
+	qt.SetFinalizer(tmpValue, (*QLowEnergyCharacteristicData).DestroyQLowEnergyCharacteristicData)
 	return tmpValue
 }
 
 func NewQLowEnergyCharacteristicData2(other QLowEnergyCharacteristicData_ITF) *QLowEnergyCharacteristicData {
 	tmpValue := NewQLowEnergyCharacteristicDataFromPointer(C.QLowEnergyCharacteristicData_NewQLowEnergyCharacteristicData2(PointerFromQLowEnergyCharacteristicData(other)))
-	runtime.SetFinalizer(tmpValue, (*QLowEnergyCharacteristicData).DestroyQLowEnergyCharacteristicData)
+	qt.SetFinalizer(tmpValue, (*QLowEnergyCharacteristicData).DestroyQLowEnergyCharacteristicData)
 	return tmpValue
 }
 
@@ -7578,7 +7472,7 @@ func (ptr *QLowEnergyCharacteristicData) Swap(other QLowEnergyCharacteristicData
 func (ptr *QLowEnergyCharacteristicData) Uuid() *QBluetoothUuid {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQBluetoothUuidFromPointer(C.QLowEnergyCharacteristicData_Uuid(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
+		qt.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
 		return tmpValue
 	}
 	return nil
@@ -7587,7 +7481,7 @@ func (ptr *QLowEnergyCharacteristicData) Uuid() *QBluetoothUuid {
 func (ptr *QLowEnergyCharacteristicData) Value() *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QLowEnergyCharacteristicData_Value(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -7602,16 +7496,18 @@ func (ptr *QLowEnergyCharacteristicData) WriteConstraints() QBluetooth__AttAcces
 
 func (ptr *QLowEnergyCharacteristicData) DestroyQLowEnergyCharacteristicData() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QLowEnergyCharacteristicData_DestroyQLowEnergyCharacteristicData(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QLowEnergyCharacteristicData) __descriptors_atList(i int) *QLowEnergyDescriptorData {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQLowEnergyDescriptorDataFromPointer(C.QLowEnergyCharacteristicData___descriptors_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QLowEnergyDescriptorData).DestroyQLowEnergyDescriptorData)
+		qt.SetFinalizer(tmpValue, (*QLowEnergyDescriptorData).DestroyQLowEnergyDescriptorData)
 		return tmpValue
 	}
 	return nil
@@ -7630,7 +7526,7 @@ func (ptr *QLowEnergyCharacteristicData) __descriptors_newList() unsafe.Pointer 
 func (ptr *QLowEnergyCharacteristicData) __setDescriptors_descriptors_atList(i int) *QLowEnergyDescriptorData {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQLowEnergyDescriptorDataFromPointer(C.QLowEnergyCharacteristicData___setDescriptors_descriptors_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QLowEnergyDescriptorData).DestroyQLowEnergyDescriptorData)
+		qt.SetFinalizer(tmpValue, (*QLowEnergyDescriptorData).DestroyQLowEnergyDescriptorData)
 		return tmpValue
 	}
 	return nil
@@ -7685,13 +7581,13 @@ func NewQLowEnergyConnectionParametersFromPointer(ptr unsafe.Pointer) (n *QLowEn
 }
 func NewQLowEnergyConnectionParameters() *QLowEnergyConnectionParameters {
 	tmpValue := NewQLowEnergyConnectionParametersFromPointer(C.QLowEnergyConnectionParameters_NewQLowEnergyConnectionParameters())
-	runtime.SetFinalizer(tmpValue, (*QLowEnergyConnectionParameters).DestroyQLowEnergyConnectionParameters)
+	qt.SetFinalizer(tmpValue, (*QLowEnergyConnectionParameters).DestroyQLowEnergyConnectionParameters)
 	return tmpValue
 }
 
 func NewQLowEnergyConnectionParameters2(other QLowEnergyConnectionParameters_ITF) *QLowEnergyConnectionParameters {
 	tmpValue := NewQLowEnergyConnectionParametersFromPointer(C.QLowEnergyConnectionParameters_NewQLowEnergyConnectionParameters2(PointerFromQLowEnergyConnectionParameters(other)))
-	runtime.SetFinalizer(tmpValue, (*QLowEnergyConnectionParameters).DestroyQLowEnergyConnectionParameters)
+	qt.SetFinalizer(tmpValue, (*QLowEnergyConnectionParameters).DestroyQLowEnergyConnectionParameters)
 	return tmpValue
 }
 
@@ -7749,9 +7645,11 @@ func (ptr *QLowEnergyConnectionParameters) Swap(other QLowEnergyConnectionParame
 
 func (ptr *QLowEnergyConnectionParameters) DestroyQLowEnergyConnectionParameters() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QLowEnergyConnectionParameters_DestroyQLowEnergyConnectionParameters(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7870,7 +7768,7 @@ func (ptr *QLowEnergyController) ConnectConnected(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "connected") {
-			C.QLowEnergyController_ConnectConnected(ptr.Pointer())
+			C.QLowEnergyController_ConnectConnected(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "connected")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "connected"); signal != nil {
@@ -7910,7 +7808,7 @@ func (ptr *QLowEnergyController) ConnectConnectionUpdated(f func(newParameters *
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "connectionUpdated") {
-			C.QLowEnergyController_ConnectConnectionUpdated(ptr.Pointer())
+			C.QLowEnergyController_ConnectConnectionUpdated(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "connectionUpdated")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "connectionUpdated"); signal != nil {
@@ -7999,7 +7897,7 @@ func (ptr *QLowEnergyController) ConnectDisconnected(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "disconnected") {
-			C.QLowEnergyController_ConnectDisconnected(ptr.Pointer())
+			C.QLowEnergyController_ConnectDisconnected(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "disconnected")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "disconnected"); signal != nil {
@@ -8045,7 +7943,7 @@ func (ptr *QLowEnergyController) ConnectDiscoveryFinished(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "discoveryFinished") {
-			C.QLowEnergyController_ConnectDiscoveryFinished(ptr.Pointer())
+			C.QLowEnergyController_ConnectDiscoveryFinished(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "discoveryFinished")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "discoveryFinished"); signal != nil {
@@ -8092,7 +7990,7 @@ func (ptr *QLowEnergyController) ConnectError2(f func(newError QLowEnergyControl
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "error2") {
-			C.QLowEnergyController_ConnectError2(ptr.Pointer())
+			C.QLowEnergyController_ConnectError2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error2"); signal != nil {
@@ -8130,7 +8028,7 @@ func (ptr *QLowEnergyController) ErrorString() string {
 func (ptr *QLowEnergyController) LocalAddress() *QBluetoothAddress {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQBluetoothAddressFromPointer(C.QLowEnergyController_LocalAddress(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QBluetoothAddress).DestroyQBluetoothAddress)
+		qt.SetFinalizer(tmpValue, (*QBluetoothAddress).DestroyQBluetoothAddress)
 		return tmpValue
 	}
 	return nil
@@ -8139,7 +8037,7 @@ func (ptr *QLowEnergyController) LocalAddress() *QBluetoothAddress {
 func (ptr *QLowEnergyController) RemoteAddress() *QBluetoothAddress {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQBluetoothAddressFromPointer(C.QLowEnergyController_RemoteAddress(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QBluetoothAddress).DestroyQBluetoothAddress)
+		qt.SetFinalizer(tmpValue, (*QBluetoothAddress).DestroyQBluetoothAddress)
 		return tmpValue
 	}
 	return nil
@@ -8155,7 +8053,7 @@ func (ptr *QLowEnergyController) RemoteAddressType() QLowEnergyController__Remot
 func (ptr *QLowEnergyController) RemoteDeviceUuid() *QBluetoothUuid {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQBluetoothUuidFromPointer(C.QLowEnergyController_RemoteDeviceUuid(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
+		qt.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
 		return tmpValue
 	}
 	return nil
@@ -8193,7 +8091,7 @@ func (ptr *QLowEnergyController) ConnectServiceDiscovered(f func(newService *QBl
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "serviceDiscovered") {
-			C.QLowEnergyController_ConnectServiceDiscovered(ptr.Pointer())
+			C.QLowEnergyController_ConnectServiceDiscovered(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "serviceDiscovered")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "serviceDiscovered"); signal != nil {
@@ -8266,7 +8164,7 @@ func (ptr *QLowEnergyController) ConnectStateChanged(f func(state QLowEnergyCont
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stateChanged") {
-			C.QLowEnergyController_ConnectStateChanged(ptr.Pointer())
+			C.QLowEnergyController_ConnectStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
@@ -8333,24 +8231,26 @@ func (ptr *QLowEnergyController) DisconnectDestroyQLowEnergyController() {
 
 func (ptr *QLowEnergyController) DestroyQLowEnergyController() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QLowEnergyController_DestroyQLowEnergyController(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QLowEnergyController) DestroyQLowEnergyControllerDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QLowEnergyController_DestroyQLowEnergyControllerDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QLowEnergyController) __services_atList(i int) *QBluetoothUuid {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQBluetoothUuidFromPointer(C.QLowEnergyController___services_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
+		qt.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
 		return tmpValue
 	}
 	return nil
@@ -8390,7 +8290,7 @@ func (ptr *QLowEnergyController) __children_newList() unsafe.Pointer {
 func (ptr *QLowEnergyController) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QLowEnergyController___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8446,27 +8346,6 @@ func (ptr *QLowEnergyController) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QLowEnergyController) __findChildren_newList3() unsafe.Pointer {
 	return C.QLowEnergyController___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QLowEnergyController) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QLowEnergyController___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QLowEnergyController) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QLowEnergyController___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QLowEnergyController) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QLowEnergyController___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQLowEnergyController_ChildEvent
@@ -8525,8 +8404,9 @@ func callbackQLowEnergyController_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QLowEnergyController) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QLowEnergyController_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -8663,13 +8543,13 @@ func NewQLowEnergyDescriptorFromPointer(ptr unsafe.Pointer) (n *QLowEnergyDescri
 }
 func NewQLowEnergyDescriptor() *QLowEnergyDescriptor {
 	tmpValue := NewQLowEnergyDescriptorFromPointer(C.QLowEnergyDescriptor_NewQLowEnergyDescriptor())
-	runtime.SetFinalizer(tmpValue, (*QLowEnergyDescriptor).DestroyQLowEnergyDescriptor)
+	qt.SetFinalizer(tmpValue, (*QLowEnergyDescriptor).DestroyQLowEnergyDescriptor)
 	return tmpValue
 }
 
 func NewQLowEnergyDescriptor2(other QLowEnergyDescriptor_ITF) *QLowEnergyDescriptor {
 	tmpValue := NewQLowEnergyDescriptorFromPointer(C.QLowEnergyDescriptor_NewQLowEnergyDescriptor2(PointerFromQLowEnergyDescriptor(other)))
-	runtime.SetFinalizer(tmpValue, (*QLowEnergyDescriptor).DestroyQLowEnergyDescriptor)
+	qt.SetFinalizer(tmpValue, (*QLowEnergyDescriptor).DestroyQLowEnergyDescriptor)
 	return tmpValue
 }
 
@@ -8697,7 +8577,7 @@ func (ptr *QLowEnergyDescriptor) Type() QBluetoothUuid__DescriptorType {
 func (ptr *QLowEnergyDescriptor) Uuid() *QBluetoothUuid {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQBluetoothUuidFromPointer(C.QLowEnergyDescriptor_Uuid(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
+		qt.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
 		return tmpValue
 	}
 	return nil
@@ -8706,7 +8586,7 @@ func (ptr *QLowEnergyDescriptor) Uuid() *QBluetoothUuid {
 func (ptr *QLowEnergyDescriptor) Value() *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QLowEnergyDescriptor_Value(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8714,9 +8594,11 @@ func (ptr *QLowEnergyDescriptor) Value() *core.QByteArray {
 
 func (ptr *QLowEnergyDescriptor) DestroyQLowEnergyDescriptor() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QLowEnergyDescriptor_DestroyQLowEnergyDescriptor(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -8759,19 +8641,19 @@ func NewQLowEnergyDescriptorDataFromPointer(ptr unsafe.Pointer) (n *QLowEnergyDe
 }
 func NewQLowEnergyDescriptorData() *QLowEnergyDescriptorData {
 	tmpValue := NewQLowEnergyDescriptorDataFromPointer(C.QLowEnergyDescriptorData_NewQLowEnergyDescriptorData())
-	runtime.SetFinalizer(tmpValue, (*QLowEnergyDescriptorData).DestroyQLowEnergyDescriptorData)
+	qt.SetFinalizer(tmpValue, (*QLowEnergyDescriptorData).DestroyQLowEnergyDescriptorData)
 	return tmpValue
 }
 
 func NewQLowEnergyDescriptorData2(uuid QBluetoothUuid_ITF, value core.QByteArray_ITF) *QLowEnergyDescriptorData {
 	tmpValue := NewQLowEnergyDescriptorDataFromPointer(C.QLowEnergyDescriptorData_NewQLowEnergyDescriptorData2(PointerFromQBluetoothUuid(uuid), core.PointerFromQByteArray(value)))
-	runtime.SetFinalizer(tmpValue, (*QLowEnergyDescriptorData).DestroyQLowEnergyDescriptorData)
+	qt.SetFinalizer(tmpValue, (*QLowEnergyDescriptorData).DestroyQLowEnergyDescriptorData)
 	return tmpValue
 }
 
 func NewQLowEnergyDescriptorData3(other QLowEnergyDescriptorData_ITF) *QLowEnergyDescriptorData {
 	tmpValue := NewQLowEnergyDescriptorDataFromPointer(C.QLowEnergyDescriptorData_NewQLowEnergyDescriptorData3(PointerFromQLowEnergyDescriptorData(other)))
-	runtime.SetFinalizer(tmpValue, (*QLowEnergyDescriptorData).DestroyQLowEnergyDescriptorData)
+	qt.SetFinalizer(tmpValue, (*QLowEnergyDescriptorData).DestroyQLowEnergyDescriptorData)
 	return tmpValue
 }
 
@@ -8836,7 +8718,7 @@ func (ptr *QLowEnergyDescriptorData) Swap(other QLowEnergyDescriptorData_ITF) {
 func (ptr *QLowEnergyDescriptorData) Uuid() *QBluetoothUuid {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQBluetoothUuidFromPointer(C.QLowEnergyDescriptorData_Uuid(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
+		qt.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
 		return tmpValue
 	}
 	return nil
@@ -8845,7 +8727,7 @@ func (ptr *QLowEnergyDescriptorData) Uuid() *QBluetoothUuid {
 func (ptr *QLowEnergyDescriptorData) Value() *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QLowEnergyDescriptorData_Value(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8860,9 +8742,11 @@ func (ptr *QLowEnergyDescriptorData) WriteConstraints() QBluetooth__AttAccessCon
 
 func (ptr *QLowEnergyDescriptorData) DestroyQLowEnergyDescriptorData() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QLowEnergyDescriptorData_DestroyQLowEnergyDescriptorData(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -8953,7 +8837,7 @@ const (
 func (ptr *QLowEnergyService) Characteristic(uuid QBluetoothUuid_ITF) *QLowEnergyCharacteristic {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQLowEnergyCharacteristicFromPointer(C.QLowEnergyService_Characteristic(ptr.Pointer(), PointerFromQBluetoothUuid(uuid)))
-		runtime.SetFinalizer(tmpValue, (*QLowEnergyCharacteristic).DestroyQLowEnergyCharacteristic)
+		qt.SetFinalizer(tmpValue, (*QLowEnergyCharacteristic).DestroyQLowEnergyCharacteristic)
 		return tmpValue
 	}
 	return nil
@@ -8971,7 +8855,7 @@ func (ptr *QLowEnergyService) ConnectCharacteristicChanged(f func(characteristic
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "characteristicChanged") {
-			C.QLowEnergyService_ConnectCharacteristicChanged(ptr.Pointer())
+			C.QLowEnergyService_ConnectCharacteristicChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "characteristicChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "characteristicChanged"); signal != nil {
@@ -9011,7 +8895,7 @@ func (ptr *QLowEnergyService) ConnectCharacteristicRead(f func(characteristic *Q
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "characteristicRead") {
-			C.QLowEnergyService_ConnectCharacteristicRead(ptr.Pointer())
+			C.QLowEnergyService_ConnectCharacteristicRead(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "characteristicRead")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "characteristicRead"); signal != nil {
@@ -9051,7 +8935,7 @@ func (ptr *QLowEnergyService) ConnectCharacteristicWritten(f func(characteristic
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "characteristicWritten") {
-			C.QLowEnergyService_ConnectCharacteristicWritten(ptr.Pointer())
+			C.QLowEnergyService_ConnectCharacteristicWritten(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "characteristicWritten")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "characteristicWritten"); signal != nil {
@@ -9119,7 +9003,7 @@ func (ptr *QLowEnergyService) ConnectDescriptorRead(f func(descriptor *QLowEnerg
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "descriptorRead") {
-			C.QLowEnergyService_ConnectDescriptorRead(ptr.Pointer())
+			C.QLowEnergyService_ConnectDescriptorRead(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "descriptorRead")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "descriptorRead"); signal != nil {
@@ -9159,7 +9043,7 @@ func (ptr *QLowEnergyService) ConnectDescriptorWritten(f func(descriptor *QLowEn
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "descriptorWritten") {
-			C.QLowEnergyService_ConnectDescriptorWritten(ptr.Pointer())
+			C.QLowEnergyService_ConnectDescriptorWritten(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "descriptorWritten")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "descriptorWritten"); signal != nil {
@@ -9212,7 +9096,7 @@ func (ptr *QLowEnergyService) ConnectError2(f func(newError QLowEnergyService__S
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "error2") {
-			C.QLowEnergyService_ConnectError2(ptr.Pointer())
+			C.QLowEnergyService_ConnectError2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error2"); signal != nil {
@@ -9276,7 +9160,7 @@ func (ptr *QLowEnergyService) ServiceName() string {
 func (ptr *QLowEnergyService) ServiceUuid() *QBluetoothUuid {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQBluetoothUuidFromPointer(C.QLowEnergyService_ServiceUuid(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
+		qt.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
 		return tmpValue
 	}
 	return nil
@@ -9301,7 +9185,7 @@ func (ptr *QLowEnergyService) ConnectStateChanged(f func(newState QLowEnergyServ
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stateChanged") {
-			C.QLowEnergyService_ConnectStateChanged(ptr.Pointer())
+			C.QLowEnergyService_ConnectStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
@@ -9381,24 +9265,26 @@ func (ptr *QLowEnergyService) DisconnectDestroyQLowEnergyService() {
 
 func (ptr *QLowEnergyService) DestroyQLowEnergyService() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QLowEnergyService_DestroyQLowEnergyService(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QLowEnergyService) DestroyQLowEnergyServiceDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QLowEnergyService_DestroyQLowEnergyServiceDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QLowEnergyService) __characteristics_atList(i int) *QLowEnergyCharacteristic {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQLowEnergyCharacteristicFromPointer(C.QLowEnergyService___characteristics_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QLowEnergyCharacteristic).DestroyQLowEnergyCharacteristic)
+		qt.SetFinalizer(tmpValue, (*QLowEnergyCharacteristic).DestroyQLowEnergyCharacteristic)
 		return tmpValue
 	}
 	return nil
@@ -9417,7 +9303,7 @@ func (ptr *QLowEnergyService) __characteristics_newList() unsafe.Pointer {
 func (ptr *QLowEnergyService) __includedServices_atList(i int) *QBluetoothUuid {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQBluetoothUuidFromPointer(C.QLowEnergyService___includedServices_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
+		qt.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
 		return tmpValue
 	}
 	return nil
@@ -9457,7 +9343,7 @@ func (ptr *QLowEnergyService) __children_newList() unsafe.Pointer {
 func (ptr *QLowEnergyService) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QLowEnergyService___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -9513,27 +9399,6 @@ func (ptr *QLowEnergyService) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QLowEnergyService) __findChildren_newList3() unsafe.Pointer {
 	return C.QLowEnergyService___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QLowEnergyService) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QLowEnergyService___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QLowEnergyService) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QLowEnergyService___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QLowEnergyService) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QLowEnergyService___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQLowEnergyService_ChildEvent
@@ -9592,8 +9457,9 @@ func callbackQLowEnergyService_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QLowEnergyService) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QLowEnergyService_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -9740,13 +9606,13 @@ const (
 
 func NewQLowEnergyServiceData() *QLowEnergyServiceData {
 	tmpValue := NewQLowEnergyServiceDataFromPointer(C.QLowEnergyServiceData_NewQLowEnergyServiceData())
-	runtime.SetFinalizer(tmpValue, (*QLowEnergyServiceData).DestroyQLowEnergyServiceData)
+	qt.SetFinalizer(tmpValue, (*QLowEnergyServiceData).DestroyQLowEnergyServiceData)
 	return tmpValue
 }
 
 func NewQLowEnergyServiceData2(other QLowEnergyServiceData_ITF) *QLowEnergyServiceData {
 	tmpValue := NewQLowEnergyServiceDataFromPointer(C.QLowEnergyServiceData_NewQLowEnergyServiceData2(PointerFromQLowEnergyServiceData(other)))
-	runtime.SetFinalizer(tmpValue, (*QLowEnergyServiceData).DestroyQLowEnergyServiceData)
+	qt.SetFinalizer(tmpValue, (*QLowEnergyServiceData).DestroyQLowEnergyServiceData)
 	return tmpValue
 }
 
@@ -9849,7 +9715,7 @@ func (ptr *QLowEnergyServiceData) Type() QLowEnergyServiceData__ServiceType {
 func (ptr *QLowEnergyServiceData) Uuid() *QBluetoothUuid {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQBluetoothUuidFromPointer(C.QLowEnergyServiceData_Uuid(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
+		qt.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
 		return tmpValue
 	}
 	return nil
@@ -9857,16 +9723,18 @@ func (ptr *QLowEnergyServiceData) Uuid() *QBluetoothUuid {
 
 func (ptr *QLowEnergyServiceData) DestroyQLowEnergyServiceData() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QLowEnergyServiceData_DestroyQLowEnergyServiceData(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QLowEnergyServiceData) __characteristics_atList(i int) *QLowEnergyCharacteristicData {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQLowEnergyCharacteristicDataFromPointer(C.QLowEnergyServiceData___characteristics_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QLowEnergyCharacteristicData).DestroyQLowEnergyCharacteristicData)
+		qt.SetFinalizer(tmpValue, (*QLowEnergyCharacteristicData).DestroyQLowEnergyCharacteristicData)
 		return tmpValue
 	}
 	return nil
@@ -9906,7 +9774,7 @@ func (ptr *QLowEnergyServiceData) __includedServices_newList() unsafe.Pointer {
 func (ptr *QLowEnergyServiceData) __setCharacteristics_characteristics_atList(i int) *QLowEnergyCharacteristicData {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQLowEnergyCharacteristicDataFromPointer(C.QLowEnergyServiceData___setCharacteristics_characteristics_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QLowEnergyCharacteristicData).DestroyQLowEnergyCharacteristicData)
+		qt.SetFinalizer(tmpValue, (*QLowEnergyCharacteristicData).DestroyQLowEnergyCharacteristicData)
 		return tmpValue
 	}
 	return nil
@@ -9941,4 +9809,614 @@ func (ptr *QLowEnergyServiceData) __setIncludedServices_services_setList(i QLowE
 
 func (ptr *QLowEnergyServiceData) __setIncludedServices_services_newList() unsafe.Pointer {
 	return C.QLowEnergyServiceData___setIncludedServices_services_newList(ptr.Pointer())
+}
+
+func init() {
+	qt.ItfMap["bluetooth.QBluetooth_ITF"] = QBluetooth{}
+	qt.EnumMap["bluetooth.QBluetooth__AttAuthorizationRequired"] = int64(QBluetooth__AttAuthorizationRequired)
+	qt.EnumMap["bluetooth.QBluetooth__AttAuthenticationRequired"] = int64(QBluetooth__AttAuthenticationRequired)
+	qt.EnumMap["bluetooth.QBluetooth__AttEncryptionRequired"] = int64(QBluetooth__AttEncryptionRequired)
+	qt.EnumMap["bluetooth.QBluetooth__NoSecurity"] = int64(QBluetooth__NoSecurity)
+	qt.EnumMap["bluetooth.QBluetooth__Authorization"] = int64(QBluetooth__Authorization)
+	qt.EnumMap["bluetooth.QBluetooth__Authentication"] = int64(QBluetooth__Authentication)
+	qt.EnumMap["bluetooth.QBluetooth__Encryption"] = int64(QBluetooth__Encryption)
+	qt.EnumMap["bluetooth.QBluetooth__Secure"] = int64(QBluetooth__Secure)
+	qt.ItfMap["bluetooth.QBluetoothAddress_ITF"] = QBluetoothAddress{}
+	qt.FuncMap["bluetooth.NewQBluetoothAddress"] = NewQBluetoothAddress
+	qt.FuncMap["bluetooth.NewQBluetoothAddress2"] = NewQBluetoothAddress2
+	qt.FuncMap["bluetooth.NewQBluetoothAddress3"] = NewQBluetoothAddress3
+	qt.FuncMap["bluetooth.NewQBluetoothAddress4"] = NewQBluetoothAddress4
+	qt.ItfMap["bluetooth.QBluetoothDeviceDiscoveryAgent_ITF"] = QBluetoothDeviceDiscoveryAgent{}
+	qt.FuncMap["bluetooth.NewQBluetoothDeviceDiscoveryAgent"] = NewQBluetoothDeviceDiscoveryAgent
+	qt.FuncMap["bluetooth.NewQBluetoothDeviceDiscoveryAgent2"] = NewQBluetoothDeviceDiscoveryAgent2
+	qt.FuncMap["bluetooth.QBluetoothDeviceDiscoveryAgent_SupportedDiscoveryMethods"] = QBluetoothDeviceDiscoveryAgent_SupportedDiscoveryMethods
+	qt.EnumMap["bluetooth.QBluetoothDeviceDiscoveryAgent__NoError"] = int64(QBluetoothDeviceDiscoveryAgent__NoError)
+	qt.EnumMap["bluetooth.QBluetoothDeviceDiscoveryAgent__InputOutputError"] = int64(QBluetoothDeviceDiscoveryAgent__InputOutputError)
+	qt.EnumMap["bluetooth.QBluetoothDeviceDiscoveryAgent__PoweredOffError"] = int64(QBluetoothDeviceDiscoveryAgent__PoweredOffError)
+	qt.EnumMap["bluetooth.QBluetoothDeviceDiscoveryAgent__InvalidBluetoothAdapterError"] = int64(QBluetoothDeviceDiscoveryAgent__InvalidBluetoothAdapterError)
+	qt.EnumMap["bluetooth.QBluetoothDeviceDiscoveryAgent__UnsupportedPlatformError"] = int64(QBluetoothDeviceDiscoveryAgent__UnsupportedPlatformError)
+	qt.EnumMap["bluetooth.QBluetoothDeviceDiscoveryAgent__UnsupportedDiscoveryMethod"] = int64(QBluetoothDeviceDiscoveryAgent__UnsupportedDiscoveryMethod)
+	qt.EnumMap["bluetooth.QBluetoothDeviceDiscoveryAgent__UnknownError"] = int64(QBluetoothDeviceDiscoveryAgent__UnknownError)
+	qt.EnumMap["bluetooth.QBluetoothDeviceDiscoveryAgent__GeneralUnlimitedInquiry"] = int64(QBluetoothDeviceDiscoveryAgent__GeneralUnlimitedInquiry)
+	qt.EnumMap["bluetooth.QBluetoothDeviceDiscoveryAgent__LimitedInquiry"] = int64(QBluetoothDeviceDiscoveryAgent__LimitedInquiry)
+	qt.EnumMap["bluetooth.QBluetoothDeviceDiscoveryAgent__NoMethod"] = int64(QBluetoothDeviceDiscoveryAgent__NoMethod)
+	qt.EnumMap["bluetooth.QBluetoothDeviceDiscoveryAgent__ClassicMethod"] = int64(QBluetoothDeviceDiscoveryAgent__ClassicMethod)
+	qt.EnumMap["bluetooth.QBluetoothDeviceDiscoveryAgent__LowEnergyMethod"] = int64(QBluetoothDeviceDiscoveryAgent__LowEnergyMethod)
+	qt.ItfMap["bluetooth.QBluetoothDeviceInfo_ITF"] = QBluetoothDeviceInfo{}
+	qt.FuncMap["bluetooth.NewQBluetoothDeviceInfo"] = NewQBluetoothDeviceInfo
+	qt.FuncMap["bluetooth.NewQBluetoothDeviceInfo2"] = NewQBluetoothDeviceInfo2
+	qt.FuncMap["bluetooth.NewQBluetoothDeviceInfo3"] = NewQBluetoothDeviceInfo3
+	qt.FuncMap["bluetooth.NewQBluetoothDeviceInfo4"] = NewQBluetoothDeviceInfo4
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__MiscellaneousDevice"] = int64(QBluetoothDeviceInfo__MiscellaneousDevice)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__ComputerDevice"] = int64(QBluetoothDeviceInfo__ComputerDevice)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__PhoneDevice"] = int64(QBluetoothDeviceInfo__PhoneDevice)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__LANAccessDevice"] = int64(QBluetoothDeviceInfo__LANAccessDevice)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__NetworkDevice"] = int64(QBluetoothDeviceInfo__NetworkDevice)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__AudioVideoDevice"] = int64(QBluetoothDeviceInfo__AudioVideoDevice)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__PeripheralDevice"] = int64(QBluetoothDeviceInfo__PeripheralDevice)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__ImagingDevice"] = int64(QBluetoothDeviceInfo__ImagingDevice)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__WearableDevice"] = int64(QBluetoothDeviceInfo__WearableDevice)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__ToyDevice"] = int64(QBluetoothDeviceInfo__ToyDevice)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__HealthDevice"] = int64(QBluetoothDeviceInfo__HealthDevice)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__UncategorizedDevice"] = int64(QBluetoothDeviceInfo__UncategorizedDevice)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__UncategorizedMiscellaneous"] = int64(QBluetoothDeviceInfo__UncategorizedMiscellaneous)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__UncategorizedComputer"] = int64(QBluetoothDeviceInfo__UncategorizedComputer)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__DesktopComputer"] = int64(QBluetoothDeviceInfo__DesktopComputer)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__ServerComputer"] = int64(QBluetoothDeviceInfo__ServerComputer)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__LaptopComputer"] = int64(QBluetoothDeviceInfo__LaptopComputer)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__HandheldClamShellComputer"] = int64(QBluetoothDeviceInfo__HandheldClamShellComputer)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__HandheldComputer"] = int64(QBluetoothDeviceInfo__HandheldComputer)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__WearableComputer"] = int64(QBluetoothDeviceInfo__WearableComputer)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__UncategorizedPhone"] = int64(QBluetoothDeviceInfo__UncategorizedPhone)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__CellularPhone"] = int64(QBluetoothDeviceInfo__CellularPhone)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__CordlessPhone"] = int64(QBluetoothDeviceInfo__CordlessPhone)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__SmartPhone"] = int64(QBluetoothDeviceInfo__SmartPhone)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__WiredModemOrVoiceGatewayPhone"] = int64(QBluetoothDeviceInfo__WiredModemOrVoiceGatewayPhone)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__CommonIsdnAccessPhone"] = int64(QBluetoothDeviceInfo__CommonIsdnAccessPhone)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__NetworkFullService"] = int64(QBluetoothDeviceInfo__NetworkFullService)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__NetworkLoadFactorOne"] = int64(QBluetoothDeviceInfo__NetworkLoadFactorOne)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__NetworkLoadFactorTwo"] = int64(QBluetoothDeviceInfo__NetworkLoadFactorTwo)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__NetworkLoadFactorThree"] = int64(QBluetoothDeviceInfo__NetworkLoadFactorThree)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__NetworkLoadFactorFour"] = int64(QBluetoothDeviceInfo__NetworkLoadFactorFour)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__NetworkLoadFactorFive"] = int64(QBluetoothDeviceInfo__NetworkLoadFactorFive)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__NetworkLoadFactorSix"] = int64(QBluetoothDeviceInfo__NetworkLoadFactorSix)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__NetworkNoService"] = int64(QBluetoothDeviceInfo__NetworkNoService)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__UncategorizedAudioVideoDevice"] = int64(QBluetoothDeviceInfo__UncategorizedAudioVideoDevice)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__WearableHeadsetDevice"] = int64(QBluetoothDeviceInfo__WearableHeadsetDevice)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__HandsFreeDevice"] = int64(QBluetoothDeviceInfo__HandsFreeDevice)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__Microphone"] = int64(QBluetoothDeviceInfo__Microphone)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__Loudspeaker"] = int64(QBluetoothDeviceInfo__Loudspeaker)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__Headphones"] = int64(QBluetoothDeviceInfo__Headphones)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__PortableAudioDevice"] = int64(QBluetoothDeviceInfo__PortableAudioDevice)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__CarAudio"] = int64(QBluetoothDeviceInfo__CarAudio)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__SetTopBox"] = int64(QBluetoothDeviceInfo__SetTopBox)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__HiFiAudioDevice"] = int64(QBluetoothDeviceInfo__HiFiAudioDevice)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__Vcr"] = int64(QBluetoothDeviceInfo__Vcr)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__VideoCamera"] = int64(QBluetoothDeviceInfo__VideoCamera)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__Camcorder"] = int64(QBluetoothDeviceInfo__Camcorder)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__VideoMonitor"] = int64(QBluetoothDeviceInfo__VideoMonitor)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__VideoDisplayAndLoudspeaker"] = int64(QBluetoothDeviceInfo__VideoDisplayAndLoudspeaker)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__VideoConferencing"] = int64(QBluetoothDeviceInfo__VideoConferencing)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__GamingDevice"] = int64(QBluetoothDeviceInfo__GamingDevice)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__UncategorizedPeripheral"] = int64(QBluetoothDeviceInfo__UncategorizedPeripheral)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__KeyboardPeripheral"] = int64(QBluetoothDeviceInfo__KeyboardPeripheral)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__PointingDevicePeripheral"] = int64(QBluetoothDeviceInfo__PointingDevicePeripheral)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__KeyboardWithPointingDevicePeripheral"] = int64(QBluetoothDeviceInfo__KeyboardWithPointingDevicePeripheral)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__JoystickPeripheral"] = int64(QBluetoothDeviceInfo__JoystickPeripheral)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__GamepadPeripheral"] = int64(QBluetoothDeviceInfo__GamepadPeripheral)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__RemoteControlPeripheral"] = int64(QBluetoothDeviceInfo__RemoteControlPeripheral)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__SensingDevicePeripheral"] = int64(QBluetoothDeviceInfo__SensingDevicePeripheral)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__DigitizerTabletPeripheral"] = int64(QBluetoothDeviceInfo__DigitizerTabletPeripheral)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__CardReaderPeripheral"] = int64(QBluetoothDeviceInfo__CardReaderPeripheral)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__UncategorizedImagingDevice"] = int64(QBluetoothDeviceInfo__UncategorizedImagingDevice)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__ImageDisplay"] = int64(QBluetoothDeviceInfo__ImageDisplay)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__ImageCamera"] = int64(QBluetoothDeviceInfo__ImageCamera)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__ImageScanner"] = int64(QBluetoothDeviceInfo__ImageScanner)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__ImagePrinter"] = int64(QBluetoothDeviceInfo__ImagePrinter)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__UncategorizedWearableDevice"] = int64(QBluetoothDeviceInfo__UncategorizedWearableDevice)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__WearableWristWatch"] = int64(QBluetoothDeviceInfo__WearableWristWatch)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__WearablePager"] = int64(QBluetoothDeviceInfo__WearablePager)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__WearableJacket"] = int64(QBluetoothDeviceInfo__WearableJacket)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__WearableHelmet"] = int64(QBluetoothDeviceInfo__WearableHelmet)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__WearableGlasses"] = int64(QBluetoothDeviceInfo__WearableGlasses)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__UncategorizedToy"] = int64(QBluetoothDeviceInfo__UncategorizedToy)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__ToyRobot"] = int64(QBluetoothDeviceInfo__ToyRobot)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__ToyVehicle"] = int64(QBluetoothDeviceInfo__ToyVehicle)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__ToyDoll"] = int64(QBluetoothDeviceInfo__ToyDoll)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__ToyController"] = int64(QBluetoothDeviceInfo__ToyController)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__ToyGame"] = int64(QBluetoothDeviceInfo__ToyGame)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__UncategorizedHealthDevice"] = int64(QBluetoothDeviceInfo__UncategorizedHealthDevice)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__HealthBloodPressureMonitor"] = int64(QBluetoothDeviceInfo__HealthBloodPressureMonitor)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__HealthThermometer"] = int64(QBluetoothDeviceInfo__HealthThermometer)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__HealthWeightScale"] = int64(QBluetoothDeviceInfo__HealthWeightScale)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__HealthGlucoseMeter"] = int64(QBluetoothDeviceInfo__HealthGlucoseMeter)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__HealthPulseOximeter"] = int64(QBluetoothDeviceInfo__HealthPulseOximeter)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__HealthDataDisplay"] = int64(QBluetoothDeviceInfo__HealthDataDisplay)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__HealthStepCounter"] = int64(QBluetoothDeviceInfo__HealthStepCounter)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__NoService"] = int64(QBluetoothDeviceInfo__NoService)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__PositioningService"] = int64(QBluetoothDeviceInfo__PositioningService)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__NetworkingService"] = int64(QBluetoothDeviceInfo__NetworkingService)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__RenderingService"] = int64(QBluetoothDeviceInfo__RenderingService)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__CapturingService"] = int64(QBluetoothDeviceInfo__CapturingService)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__ObjectTransferService"] = int64(QBluetoothDeviceInfo__ObjectTransferService)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__AudioService"] = int64(QBluetoothDeviceInfo__AudioService)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__TelephonyService"] = int64(QBluetoothDeviceInfo__TelephonyService)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__InformationService"] = int64(QBluetoothDeviceInfo__InformationService)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__AllServices"] = int64(QBluetoothDeviceInfo__AllServices)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__DataComplete"] = int64(QBluetoothDeviceInfo__DataComplete)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__DataIncomplete"] = int64(QBluetoothDeviceInfo__DataIncomplete)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__DataUnavailable"] = int64(QBluetoothDeviceInfo__DataUnavailable)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__None"] = int64(QBluetoothDeviceInfo__None)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__RSSI"] = int64(QBluetoothDeviceInfo__RSSI)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__ManufacturerData"] = int64(QBluetoothDeviceInfo__ManufacturerData)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__All"] = int64(QBluetoothDeviceInfo__All)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__UnknownCoreConfiguration"] = int64(QBluetoothDeviceInfo__UnknownCoreConfiguration)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__LowEnergyCoreConfiguration"] = int64(QBluetoothDeviceInfo__LowEnergyCoreConfiguration)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__BaseRateCoreConfiguration"] = int64(QBluetoothDeviceInfo__BaseRateCoreConfiguration)
+	qt.EnumMap["bluetooth.QBluetoothDeviceInfo__BaseRateAndLowEnergyCoreConfiguration"] = int64(QBluetoothDeviceInfo__BaseRateAndLowEnergyCoreConfiguration)
+	qt.ItfMap["bluetooth.QBluetoothHostInfo_ITF"] = QBluetoothHostInfo{}
+	qt.FuncMap["bluetooth.NewQBluetoothHostInfo"] = NewQBluetoothHostInfo
+	qt.FuncMap["bluetooth.NewQBluetoothHostInfo2"] = NewQBluetoothHostInfo2
+	qt.ItfMap["bluetooth.QBluetoothLocalDevice_ITF"] = QBluetoothLocalDevice{}
+	qt.FuncMap["bluetooth.NewQBluetoothLocalDevice"] = NewQBluetoothLocalDevice
+	qt.FuncMap["bluetooth.NewQBluetoothLocalDevice2"] = NewQBluetoothLocalDevice2
+	qt.FuncMap["bluetooth.QBluetoothLocalDevice_AllDevices"] = QBluetoothLocalDevice_AllDevices
+	qt.EnumMap["bluetooth.QBluetoothLocalDevice__Unpaired"] = int64(QBluetoothLocalDevice__Unpaired)
+	qt.EnumMap["bluetooth.QBluetoothLocalDevice__Paired"] = int64(QBluetoothLocalDevice__Paired)
+	qt.EnumMap["bluetooth.QBluetoothLocalDevice__AuthorizedPaired"] = int64(QBluetoothLocalDevice__AuthorizedPaired)
+	qt.EnumMap["bluetooth.QBluetoothLocalDevice__HostPoweredOff"] = int64(QBluetoothLocalDevice__HostPoweredOff)
+	qt.EnumMap["bluetooth.QBluetoothLocalDevice__HostConnectable"] = int64(QBluetoothLocalDevice__HostConnectable)
+	qt.EnumMap["bluetooth.QBluetoothLocalDevice__HostDiscoverable"] = int64(QBluetoothLocalDevice__HostDiscoverable)
+	qt.EnumMap["bluetooth.QBluetoothLocalDevice__HostDiscoverableLimitedInquiry"] = int64(QBluetoothLocalDevice__HostDiscoverableLimitedInquiry)
+	qt.EnumMap["bluetooth.QBluetoothLocalDevice__NoError"] = int64(QBluetoothLocalDevice__NoError)
+	qt.EnumMap["bluetooth.QBluetoothLocalDevice__PairingError"] = int64(QBluetoothLocalDevice__PairingError)
+	qt.EnumMap["bluetooth.QBluetoothLocalDevice__UnknownError"] = int64(QBluetoothLocalDevice__UnknownError)
+	qt.ItfMap["bluetooth.QBluetoothServer_ITF"] = QBluetoothServer{}
+	qt.FuncMap["bluetooth.NewQBluetoothServer"] = NewQBluetoothServer
+	qt.EnumMap["bluetooth.QBluetoothServer__NoError"] = int64(QBluetoothServer__NoError)
+	qt.EnumMap["bluetooth.QBluetoothServer__UnknownError"] = int64(QBluetoothServer__UnknownError)
+	qt.EnumMap["bluetooth.QBluetoothServer__PoweredOffError"] = int64(QBluetoothServer__PoweredOffError)
+	qt.EnumMap["bluetooth.QBluetoothServer__InputOutputError"] = int64(QBluetoothServer__InputOutputError)
+	qt.EnumMap["bluetooth.QBluetoothServer__ServiceAlreadyRegisteredError"] = int64(QBluetoothServer__ServiceAlreadyRegisteredError)
+	qt.EnumMap["bluetooth.QBluetoothServer__UnsupportedProtocolError"] = int64(QBluetoothServer__UnsupportedProtocolError)
+	qt.ItfMap["bluetooth.QBluetoothServiceDiscoveryAgent_ITF"] = QBluetoothServiceDiscoveryAgent{}
+	qt.FuncMap["bluetooth.NewQBluetoothServiceDiscoveryAgent"] = NewQBluetoothServiceDiscoveryAgent
+	qt.FuncMap["bluetooth.NewQBluetoothServiceDiscoveryAgent2"] = NewQBluetoothServiceDiscoveryAgent2
+	qt.EnumMap["bluetooth.QBluetoothServiceDiscoveryAgent__NoError"] = int64(QBluetoothServiceDiscoveryAgent__NoError)
+	qt.EnumMap["bluetooth.QBluetoothServiceDiscoveryAgent__InputOutputError"] = int64(QBluetoothServiceDiscoveryAgent__InputOutputError)
+	qt.EnumMap["bluetooth.QBluetoothServiceDiscoveryAgent__PoweredOffError"] = int64(QBluetoothServiceDiscoveryAgent__PoweredOffError)
+	qt.EnumMap["bluetooth.QBluetoothServiceDiscoveryAgent__InvalidBluetoothAdapterError"] = int64(QBluetoothServiceDiscoveryAgent__InvalidBluetoothAdapterError)
+	qt.EnumMap["bluetooth.QBluetoothServiceDiscoveryAgent__UnknownError"] = int64(QBluetoothServiceDiscoveryAgent__UnknownError)
+	qt.EnumMap["bluetooth.QBluetoothServiceDiscoveryAgent__MinimalDiscovery"] = int64(QBluetoothServiceDiscoveryAgent__MinimalDiscovery)
+	qt.EnumMap["bluetooth.QBluetoothServiceDiscoveryAgent__FullDiscovery"] = int64(QBluetoothServiceDiscoveryAgent__FullDiscovery)
+	qt.ItfMap["bluetooth.QBluetoothServiceInfo_ITF"] = QBluetoothServiceInfo{}
+	qt.FuncMap["bluetooth.NewQBluetoothServiceInfo"] = NewQBluetoothServiceInfo
+	qt.FuncMap["bluetooth.NewQBluetoothServiceInfo2"] = NewQBluetoothServiceInfo2
+	qt.EnumMap["bluetooth.QBluetoothServiceInfo__ServiceRecordHandle"] = int64(QBluetoothServiceInfo__ServiceRecordHandle)
+	qt.EnumMap["bluetooth.QBluetoothServiceInfo__ServiceClassIds"] = int64(QBluetoothServiceInfo__ServiceClassIds)
+	qt.EnumMap["bluetooth.QBluetoothServiceInfo__ServiceRecordState"] = int64(QBluetoothServiceInfo__ServiceRecordState)
+	qt.EnumMap["bluetooth.QBluetoothServiceInfo__ServiceId"] = int64(QBluetoothServiceInfo__ServiceId)
+	qt.EnumMap["bluetooth.QBluetoothServiceInfo__ProtocolDescriptorList"] = int64(QBluetoothServiceInfo__ProtocolDescriptorList)
+	qt.EnumMap["bluetooth.QBluetoothServiceInfo__BrowseGroupList"] = int64(QBluetoothServiceInfo__BrowseGroupList)
+	qt.EnumMap["bluetooth.QBluetoothServiceInfo__LanguageBaseAttributeIdList"] = int64(QBluetoothServiceInfo__LanguageBaseAttributeIdList)
+	qt.EnumMap["bluetooth.QBluetoothServiceInfo__ServiceInfoTimeToLive"] = int64(QBluetoothServiceInfo__ServiceInfoTimeToLive)
+	qt.EnumMap["bluetooth.QBluetoothServiceInfo__ServiceAvailability"] = int64(QBluetoothServiceInfo__ServiceAvailability)
+	qt.EnumMap["bluetooth.QBluetoothServiceInfo__BluetoothProfileDescriptorList"] = int64(QBluetoothServiceInfo__BluetoothProfileDescriptorList)
+	qt.EnumMap["bluetooth.QBluetoothServiceInfo__DocumentationUrl"] = int64(QBluetoothServiceInfo__DocumentationUrl)
+	qt.EnumMap["bluetooth.QBluetoothServiceInfo__ClientExecutableUrl"] = int64(QBluetoothServiceInfo__ClientExecutableUrl)
+	qt.EnumMap["bluetooth.QBluetoothServiceInfo__IconUrl"] = int64(QBluetoothServiceInfo__IconUrl)
+	qt.EnumMap["bluetooth.QBluetoothServiceInfo__AdditionalProtocolDescriptorList"] = int64(QBluetoothServiceInfo__AdditionalProtocolDescriptorList)
+	qt.EnumMap["bluetooth.QBluetoothServiceInfo__PrimaryLanguageBase"] = int64(QBluetoothServiceInfo__PrimaryLanguageBase)
+	qt.EnumMap["bluetooth.QBluetoothServiceInfo__ServiceName"] = int64(QBluetoothServiceInfo__ServiceName)
+	qt.EnumMap["bluetooth.QBluetoothServiceInfo__ServiceDescription"] = int64(QBluetoothServiceInfo__ServiceDescription)
+	qt.EnumMap["bluetooth.QBluetoothServiceInfo__ServiceProvider"] = int64(QBluetoothServiceInfo__ServiceProvider)
+	qt.EnumMap["bluetooth.QBluetoothServiceInfo__UnknownProtocol"] = int64(QBluetoothServiceInfo__UnknownProtocol)
+	qt.EnumMap["bluetooth.QBluetoothServiceInfo__L2capProtocol"] = int64(QBluetoothServiceInfo__L2capProtocol)
+	qt.EnumMap["bluetooth.QBluetoothServiceInfo__RfcommProtocol"] = int64(QBluetoothServiceInfo__RfcommProtocol)
+	qt.ItfMap["bluetooth.QBluetoothSocket_ITF"] = QBluetoothSocket{}
+	qt.FuncMap["bluetooth.NewQBluetoothSocket"] = NewQBluetoothSocket
+	qt.FuncMap["bluetooth.NewQBluetoothSocket2"] = NewQBluetoothSocket2
+	qt.EnumMap["bluetooth.QBluetoothSocket__UnconnectedState"] = int64(QBluetoothSocket__UnconnectedState)
+	qt.EnumMap["bluetooth.QBluetoothSocket__ServiceLookupState"] = int64(QBluetoothSocket__ServiceLookupState)
+	qt.EnumMap["bluetooth.QBluetoothSocket__ConnectingState"] = int64(QBluetoothSocket__ConnectingState)
+	qt.EnumMap["bluetooth.QBluetoothSocket__ConnectedState"] = int64(QBluetoothSocket__ConnectedState)
+	qt.EnumMap["bluetooth.QBluetoothSocket__BoundState"] = int64(QBluetoothSocket__BoundState)
+	qt.EnumMap["bluetooth.QBluetoothSocket__ClosingState"] = int64(QBluetoothSocket__ClosingState)
+	qt.EnumMap["bluetooth.QBluetoothSocket__ListeningState"] = int64(QBluetoothSocket__ListeningState)
+	qt.EnumMap["bluetooth.QBluetoothSocket__NoSocketError"] = int64(QBluetoothSocket__NoSocketError)
+	qt.EnumMap["bluetooth.QBluetoothSocket__UnknownSocketError"] = int64(QBluetoothSocket__UnknownSocketError)
+	qt.EnumMap["bluetooth.QBluetoothSocket__RemoteHostClosedError"] = int64(QBluetoothSocket__RemoteHostClosedError)
+	qt.EnumMap["bluetooth.QBluetoothSocket__HostNotFoundError"] = int64(QBluetoothSocket__HostNotFoundError)
+	qt.EnumMap["bluetooth.QBluetoothSocket__ServiceNotFoundError"] = int64(QBluetoothSocket__ServiceNotFoundError)
+	qt.EnumMap["bluetooth.QBluetoothSocket__NetworkError"] = int64(QBluetoothSocket__NetworkError)
+	qt.EnumMap["bluetooth.QBluetoothSocket__UnsupportedProtocolError"] = int64(QBluetoothSocket__UnsupportedProtocolError)
+	qt.EnumMap["bluetooth.QBluetoothSocket__OperationError"] = int64(QBluetoothSocket__OperationError)
+	qt.ItfMap["bluetooth.QBluetoothTransferManager_ITF"] = QBluetoothTransferManager{}
+	qt.FuncMap["bluetooth.NewQBluetoothTransferManager"] = NewQBluetoothTransferManager
+	qt.ItfMap["bluetooth.QBluetoothTransferReply_ITF"] = QBluetoothTransferReply{}
+	qt.FuncMap["bluetooth.NewQBluetoothTransferReply"] = NewQBluetoothTransferReply
+	qt.EnumMap["bluetooth.QBluetoothTransferReply__NoError"] = int64(QBluetoothTransferReply__NoError)
+	qt.EnumMap["bluetooth.QBluetoothTransferReply__UnknownError"] = int64(QBluetoothTransferReply__UnknownError)
+	qt.EnumMap["bluetooth.QBluetoothTransferReply__FileNotFoundError"] = int64(QBluetoothTransferReply__FileNotFoundError)
+	qt.EnumMap["bluetooth.QBluetoothTransferReply__HostNotFoundError"] = int64(QBluetoothTransferReply__HostNotFoundError)
+	qt.EnumMap["bluetooth.QBluetoothTransferReply__UserCanceledTransferError"] = int64(QBluetoothTransferReply__UserCanceledTransferError)
+	qt.EnumMap["bluetooth.QBluetoothTransferReply__IODeviceNotReadableError"] = int64(QBluetoothTransferReply__IODeviceNotReadableError)
+	qt.EnumMap["bluetooth.QBluetoothTransferReply__ResourceBusyError"] = int64(QBluetoothTransferReply__ResourceBusyError)
+	qt.EnumMap["bluetooth.QBluetoothTransferReply__SessionError"] = int64(QBluetoothTransferReply__SessionError)
+	qt.ItfMap["bluetooth.QBluetoothTransferRequest_ITF"] = QBluetoothTransferRequest{}
+	qt.FuncMap["bluetooth.NewQBluetoothTransferRequest"] = NewQBluetoothTransferRequest
+	qt.FuncMap["bluetooth.NewQBluetoothTransferRequest2"] = NewQBluetoothTransferRequest2
+	qt.EnumMap["bluetooth.QBluetoothTransferRequest__DescriptionAttribute"] = int64(QBluetoothTransferRequest__DescriptionAttribute)
+	qt.EnumMap["bluetooth.QBluetoothTransferRequest__TimeAttribute"] = int64(QBluetoothTransferRequest__TimeAttribute)
+	qt.EnumMap["bluetooth.QBluetoothTransferRequest__TypeAttribute"] = int64(QBluetoothTransferRequest__TypeAttribute)
+	qt.EnumMap["bluetooth.QBluetoothTransferRequest__LengthAttribute"] = int64(QBluetoothTransferRequest__LengthAttribute)
+	qt.EnumMap["bluetooth.QBluetoothTransferRequest__NameAttribute"] = int64(QBluetoothTransferRequest__NameAttribute)
+	qt.ItfMap["bluetooth.QBluetoothUuid_ITF"] = QBluetoothUuid{}
+	qt.FuncMap["bluetooth.NewQBluetoothUuid"] = NewQBluetoothUuid
+	qt.FuncMap["bluetooth.NewQBluetoothUuid2"] = NewQBluetoothUuid2
+	qt.FuncMap["bluetooth.NewQBluetoothUuid3"] = NewQBluetoothUuid3
+	qt.FuncMap["bluetooth.NewQBluetoothUuid4"] = NewQBluetoothUuid4
+	qt.FuncMap["bluetooth.NewQBluetoothUuid5"] = NewQBluetoothUuid5
+	qt.FuncMap["bluetooth.NewQBluetoothUuid6"] = NewQBluetoothUuid6
+	qt.FuncMap["bluetooth.NewQBluetoothUuid7"] = NewQBluetoothUuid7
+	qt.FuncMap["bluetooth.NewQBluetoothUuid9"] = NewQBluetoothUuid9
+	qt.FuncMap["bluetooth.NewQBluetoothUuid10"] = NewQBluetoothUuid10
+	qt.FuncMap["bluetooth.NewQBluetoothUuid11"] = NewQBluetoothUuid11
+	qt.FuncMap["bluetooth.QBluetoothUuid_CharacteristicToString"] = QBluetoothUuid_CharacteristicToString
+	qt.FuncMap["bluetooth.QBluetoothUuid_DescriptorToString"] = QBluetoothUuid_DescriptorToString
+	qt.FuncMap["bluetooth.QBluetoothUuid_ProtocolToString"] = QBluetoothUuid_ProtocolToString
+	qt.FuncMap["bluetooth.QBluetoothUuid_ServiceClassToString"] = QBluetoothUuid_ServiceClassToString
+	qt.EnumMap["bluetooth.QBluetoothUuid__Sdp"] = int64(QBluetoothUuid__Sdp)
+	qt.EnumMap["bluetooth.QBluetoothUuid__Udp"] = int64(QBluetoothUuid__Udp)
+	qt.EnumMap["bluetooth.QBluetoothUuid__Rfcomm"] = int64(QBluetoothUuid__Rfcomm)
+	qt.EnumMap["bluetooth.QBluetoothUuid__Tcp"] = int64(QBluetoothUuid__Tcp)
+	qt.EnumMap["bluetooth.QBluetoothUuid__TcsBin"] = int64(QBluetoothUuid__TcsBin)
+	qt.EnumMap["bluetooth.QBluetoothUuid__TcsAt"] = int64(QBluetoothUuid__TcsAt)
+	qt.EnumMap["bluetooth.QBluetoothUuid__Att"] = int64(QBluetoothUuid__Att)
+	qt.EnumMap["bluetooth.QBluetoothUuid__Obex"] = int64(QBluetoothUuid__Obex)
+	qt.EnumMap["bluetooth.QBluetoothUuid__Ip"] = int64(QBluetoothUuid__Ip)
+	qt.EnumMap["bluetooth.QBluetoothUuid__Ftp"] = int64(QBluetoothUuid__Ftp)
+	qt.EnumMap["bluetooth.QBluetoothUuid__Http"] = int64(QBluetoothUuid__Http)
+	qt.EnumMap["bluetooth.QBluetoothUuid__Wsp"] = int64(QBluetoothUuid__Wsp)
+	qt.EnumMap["bluetooth.QBluetoothUuid__Bnep"] = int64(QBluetoothUuid__Bnep)
+	qt.EnumMap["bluetooth.QBluetoothUuid__Upnp"] = int64(QBluetoothUuid__Upnp)
+	qt.EnumMap["bluetooth.QBluetoothUuid__Hidp"] = int64(QBluetoothUuid__Hidp)
+	qt.EnumMap["bluetooth.QBluetoothUuid__HardcopyControlChannel"] = int64(QBluetoothUuid__HardcopyControlChannel)
+	qt.EnumMap["bluetooth.QBluetoothUuid__HardcopyDataChannel"] = int64(QBluetoothUuid__HardcopyDataChannel)
+	qt.EnumMap["bluetooth.QBluetoothUuid__HardcopyNotification"] = int64(QBluetoothUuid__HardcopyNotification)
+	qt.EnumMap["bluetooth.QBluetoothUuid__Avctp"] = int64(QBluetoothUuid__Avctp)
+	qt.EnumMap["bluetooth.QBluetoothUuid__Avdtp"] = int64(QBluetoothUuid__Avdtp)
+	qt.EnumMap["bluetooth.QBluetoothUuid__Cmtp"] = int64(QBluetoothUuid__Cmtp)
+	qt.EnumMap["bluetooth.QBluetoothUuid__UdiCPlain"] = int64(QBluetoothUuid__UdiCPlain)
+	qt.EnumMap["bluetooth.QBluetoothUuid__McapControlChannel"] = int64(QBluetoothUuid__McapControlChannel)
+	qt.EnumMap["bluetooth.QBluetoothUuid__McapDataChannel"] = int64(QBluetoothUuid__McapDataChannel)
+	qt.EnumMap["bluetooth.QBluetoothUuid__L2cap"] = int64(QBluetoothUuid__L2cap)
+	qt.EnumMap["bluetooth.QBluetoothUuid__ServiceDiscoveryServer"] = int64(QBluetoothUuid__ServiceDiscoveryServer)
+	qt.EnumMap["bluetooth.QBluetoothUuid__BrowseGroupDescriptor"] = int64(QBluetoothUuid__BrowseGroupDescriptor)
+	qt.EnumMap["bluetooth.QBluetoothUuid__PublicBrowseGroup"] = int64(QBluetoothUuid__PublicBrowseGroup)
+	qt.EnumMap["bluetooth.QBluetoothUuid__SerialPort"] = int64(QBluetoothUuid__SerialPort)
+	qt.EnumMap["bluetooth.QBluetoothUuid__LANAccessUsingPPP"] = int64(QBluetoothUuid__LANAccessUsingPPP)
+	qt.EnumMap["bluetooth.QBluetoothUuid__DialupNetworking"] = int64(QBluetoothUuid__DialupNetworking)
+	qt.EnumMap["bluetooth.QBluetoothUuid__IrMCSync"] = int64(QBluetoothUuid__IrMCSync)
+	qt.EnumMap["bluetooth.QBluetoothUuid__ObexObjectPush"] = int64(QBluetoothUuid__ObexObjectPush)
+	qt.EnumMap["bluetooth.QBluetoothUuid__OBEXFileTransfer"] = int64(QBluetoothUuid__OBEXFileTransfer)
+	qt.EnumMap["bluetooth.QBluetoothUuid__IrMCSyncCommand"] = int64(QBluetoothUuid__IrMCSyncCommand)
+	qt.EnumMap["bluetooth.QBluetoothUuid__Headset"] = int64(QBluetoothUuid__Headset)
+	qt.EnumMap["bluetooth.QBluetoothUuid__AudioSource"] = int64(QBluetoothUuid__AudioSource)
+	qt.EnumMap["bluetooth.QBluetoothUuid__AudioSink"] = int64(QBluetoothUuid__AudioSink)
+	qt.EnumMap["bluetooth.QBluetoothUuid__AV_RemoteControlTarget"] = int64(QBluetoothUuid__AV_RemoteControlTarget)
+	qt.EnumMap["bluetooth.QBluetoothUuid__AdvancedAudioDistribution"] = int64(QBluetoothUuid__AdvancedAudioDistribution)
+	qt.EnumMap["bluetooth.QBluetoothUuid__AV_RemoteControl"] = int64(QBluetoothUuid__AV_RemoteControl)
+	qt.EnumMap["bluetooth.QBluetoothUuid__AV_RemoteControlController"] = int64(QBluetoothUuid__AV_RemoteControlController)
+	qt.EnumMap["bluetooth.QBluetoothUuid__HeadsetAG"] = int64(QBluetoothUuid__HeadsetAG)
+	qt.EnumMap["bluetooth.QBluetoothUuid__PANU"] = int64(QBluetoothUuid__PANU)
+	qt.EnumMap["bluetooth.QBluetoothUuid__NAP"] = int64(QBluetoothUuid__NAP)
+	qt.EnumMap["bluetooth.QBluetoothUuid__GN"] = int64(QBluetoothUuid__GN)
+	qt.EnumMap["bluetooth.QBluetoothUuid__DirectPrinting"] = int64(QBluetoothUuid__DirectPrinting)
+	qt.EnumMap["bluetooth.QBluetoothUuid__ReferencePrinting"] = int64(QBluetoothUuid__ReferencePrinting)
+	qt.EnumMap["bluetooth.QBluetoothUuid__BasicImage"] = int64(QBluetoothUuid__BasicImage)
+	qt.EnumMap["bluetooth.QBluetoothUuid__ImagingResponder"] = int64(QBluetoothUuid__ImagingResponder)
+	qt.EnumMap["bluetooth.QBluetoothUuid__ImagingAutomaticArchive"] = int64(QBluetoothUuid__ImagingAutomaticArchive)
+	qt.EnumMap["bluetooth.QBluetoothUuid__ImagingReferenceObjects"] = int64(QBluetoothUuid__ImagingReferenceObjects)
+	qt.EnumMap["bluetooth.QBluetoothUuid__Handsfree"] = int64(QBluetoothUuid__Handsfree)
+	qt.EnumMap["bluetooth.QBluetoothUuid__HandsfreeAudioGateway"] = int64(QBluetoothUuid__HandsfreeAudioGateway)
+	qt.EnumMap["bluetooth.QBluetoothUuid__DirectPrintingReferenceObjectsService"] = int64(QBluetoothUuid__DirectPrintingReferenceObjectsService)
+	qt.EnumMap["bluetooth.QBluetoothUuid__ReflectedUI"] = int64(QBluetoothUuid__ReflectedUI)
+	qt.EnumMap["bluetooth.QBluetoothUuid__BasicPrinting"] = int64(QBluetoothUuid__BasicPrinting)
+	qt.EnumMap["bluetooth.QBluetoothUuid__PrintingStatus"] = int64(QBluetoothUuid__PrintingStatus)
+	qt.EnumMap["bluetooth.QBluetoothUuid__HumanInterfaceDeviceService"] = int64(QBluetoothUuid__HumanInterfaceDeviceService)
+	qt.EnumMap["bluetooth.QBluetoothUuid__HardcopyCableReplacement"] = int64(QBluetoothUuid__HardcopyCableReplacement)
+	qt.EnumMap["bluetooth.QBluetoothUuid__HCRPrint"] = int64(QBluetoothUuid__HCRPrint)
+	qt.EnumMap["bluetooth.QBluetoothUuid__HCRScan"] = int64(QBluetoothUuid__HCRScan)
+	qt.EnumMap["bluetooth.QBluetoothUuid__SIMAccess"] = int64(QBluetoothUuid__SIMAccess)
+	qt.EnumMap["bluetooth.QBluetoothUuid__PhonebookAccessPCE"] = int64(QBluetoothUuid__PhonebookAccessPCE)
+	qt.EnumMap["bluetooth.QBluetoothUuid__PhonebookAccessPSE"] = int64(QBluetoothUuid__PhonebookAccessPSE)
+	qt.EnumMap["bluetooth.QBluetoothUuid__PhonebookAccess"] = int64(QBluetoothUuid__PhonebookAccess)
+	qt.EnumMap["bluetooth.QBluetoothUuid__HeadsetHS"] = int64(QBluetoothUuid__HeadsetHS)
+	qt.EnumMap["bluetooth.QBluetoothUuid__MessageAccessServer"] = int64(QBluetoothUuid__MessageAccessServer)
+	qt.EnumMap["bluetooth.QBluetoothUuid__MessageNotificationServer"] = int64(QBluetoothUuid__MessageNotificationServer)
+	qt.EnumMap["bluetooth.QBluetoothUuid__MessageAccessProfile"] = int64(QBluetoothUuid__MessageAccessProfile)
+	qt.EnumMap["bluetooth.QBluetoothUuid__GNSS"] = int64(QBluetoothUuid__GNSS)
+	qt.EnumMap["bluetooth.QBluetoothUuid__GNSSServer"] = int64(QBluetoothUuid__GNSSServer)
+	qt.EnumMap["bluetooth.QBluetoothUuid__Display3D"] = int64(QBluetoothUuid__Display3D)
+	qt.EnumMap["bluetooth.QBluetoothUuid__Glasses3D"] = int64(QBluetoothUuid__Glasses3D)
+	qt.EnumMap["bluetooth.QBluetoothUuid__Synchronization3D"] = int64(QBluetoothUuid__Synchronization3D)
+	qt.EnumMap["bluetooth.QBluetoothUuid__MPSProfile"] = int64(QBluetoothUuid__MPSProfile)
+	qt.EnumMap["bluetooth.QBluetoothUuid__MPSService"] = int64(QBluetoothUuid__MPSService)
+	qt.EnumMap["bluetooth.QBluetoothUuid__PnPInformation"] = int64(QBluetoothUuid__PnPInformation)
+	qt.EnumMap["bluetooth.QBluetoothUuid__GenericNetworking"] = int64(QBluetoothUuid__GenericNetworking)
+	qt.EnumMap["bluetooth.QBluetoothUuid__GenericFileTransfer"] = int64(QBluetoothUuid__GenericFileTransfer)
+	qt.EnumMap["bluetooth.QBluetoothUuid__GenericAudio"] = int64(QBluetoothUuid__GenericAudio)
+	qt.EnumMap["bluetooth.QBluetoothUuid__GenericTelephony"] = int64(QBluetoothUuid__GenericTelephony)
+	qt.EnumMap["bluetooth.QBluetoothUuid__VideoSource"] = int64(QBluetoothUuid__VideoSource)
+	qt.EnumMap["bluetooth.QBluetoothUuid__VideoSink"] = int64(QBluetoothUuid__VideoSink)
+	qt.EnumMap["bluetooth.QBluetoothUuid__VideoDistribution"] = int64(QBluetoothUuid__VideoDistribution)
+	qt.EnumMap["bluetooth.QBluetoothUuid__HDP"] = int64(QBluetoothUuid__HDP)
+	qt.EnumMap["bluetooth.QBluetoothUuid__HDPSource"] = int64(QBluetoothUuid__HDPSource)
+	qt.EnumMap["bluetooth.QBluetoothUuid__HDPSink"] = int64(QBluetoothUuid__HDPSink)
+	qt.EnumMap["bluetooth.QBluetoothUuid__GenericAccess"] = int64(QBluetoothUuid__GenericAccess)
+	qt.EnumMap["bluetooth.QBluetoothUuid__GenericAttribute"] = int64(QBluetoothUuid__GenericAttribute)
+	qt.EnumMap["bluetooth.QBluetoothUuid__ImmediateAlert"] = int64(QBluetoothUuid__ImmediateAlert)
+	qt.EnumMap["bluetooth.QBluetoothUuid__LinkLoss"] = int64(QBluetoothUuid__LinkLoss)
+	qt.EnumMap["bluetooth.QBluetoothUuid__TxPower"] = int64(QBluetoothUuid__TxPower)
+	qt.EnumMap["bluetooth.QBluetoothUuid__CurrentTimeService"] = int64(QBluetoothUuid__CurrentTimeService)
+	qt.EnumMap["bluetooth.QBluetoothUuid__ReferenceTimeUpdateService"] = int64(QBluetoothUuid__ReferenceTimeUpdateService)
+	qt.EnumMap["bluetooth.QBluetoothUuid__NextDSTChangeService"] = int64(QBluetoothUuid__NextDSTChangeService)
+	qt.EnumMap["bluetooth.QBluetoothUuid__Glucose"] = int64(QBluetoothUuid__Glucose)
+	qt.EnumMap["bluetooth.QBluetoothUuid__HealthThermometer"] = int64(QBluetoothUuid__HealthThermometer)
+	qt.EnumMap["bluetooth.QBluetoothUuid__DeviceInformation"] = int64(QBluetoothUuid__DeviceInformation)
+	qt.EnumMap["bluetooth.QBluetoothUuid__HeartRate"] = int64(QBluetoothUuid__HeartRate)
+	qt.EnumMap["bluetooth.QBluetoothUuid__PhoneAlertStatusService"] = int64(QBluetoothUuid__PhoneAlertStatusService)
+	qt.EnumMap["bluetooth.QBluetoothUuid__BatteryService"] = int64(QBluetoothUuid__BatteryService)
+	qt.EnumMap["bluetooth.QBluetoothUuid__BloodPressure"] = int64(QBluetoothUuid__BloodPressure)
+	qt.EnumMap["bluetooth.QBluetoothUuid__AlertNotificationService"] = int64(QBluetoothUuid__AlertNotificationService)
+	qt.EnumMap["bluetooth.QBluetoothUuid__HumanInterfaceDevice"] = int64(QBluetoothUuid__HumanInterfaceDevice)
+	qt.EnumMap["bluetooth.QBluetoothUuid__ScanParameters"] = int64(QBluetoothUuid__ScanParameters)
+	qt.EnumMap["bluetooth.QBluetoothUuid__RunningSpeedAndCadence"] = int64(QBluetoothUuid__RunningSpeedAndCadence)
+	qt.EnumMap["bluetooth.QBluetoothUuid__CyclingSpeedAndCadence"] = int64(QBluetoothUuid__CyclingSpeedAndCadence)
+	qt.EnumMap["bluetooth.QBluetoothUuid__CyclingPower"] = int64(QBluetoothUuid__CyclingPower)
+	qt.EnumMap["bluetooth.QBluetoothUuid__LocationAndNavigation"] = int64(QBluetoothUuid__LocationAndNavigation)
+	qt.EnumMap["bluetooth.QBluetoothUuid__EnvironmentalSensing"] = int64(QBluetoothUuid__EnvironmentalSensing)
+	qt.EnumMap["bluetooth.QBluetoothUuid__BodyComposition"] = int64(QBluetoothUuid__BodyComposition)
+	qt.EnumMap["bluetooth.QBluetoothUuid__UserData"] = int64(QBluetoothUuid__UserData)
+	qt.EnumMap["bluetooth.QBluetoothUuid__WeightScale"] = int64(QBluetoothUuid__WeightScale)
+	qt.EnumMap["bluetooth.QBluetoothUuid__BondManagement"] = int64(QBluetoothUuid__BondManagement)
+	qt.EnumMap["bluetooth.QBluetoothUuid__ContinuousGlucoseMonitoring"] = int64(QBluetoothUuid__ContinuousGlucoseMonitoring)
+	qt.EnumMap["bluetooth.QBluetoothUuid__DeviceName"] = int64(QBluetoothUuid__DeviceName)
+	qt.EnumMap["bluetooth.QBluetoothUuid__Appearance"] = int64(QBluetoothUuid__Appearance)
+	qt.EnumMap["bluetooth.QBluetoothUuid__PeripheralPrivacyFlag"] = int64(QBluetoothUuid__PeripheralPrivacyFlag)
+	qt.EnumMap["bluetooth.QBluetoothUuid__ReconnectionAddress"] = int64(QBluetoothUuid__ReconnectionAddress)
+	qt.EnumMap["bluetooth.QBluetoothUuid__PeripheralPreferredConnectionParameters"] = int64(QBluetoothUuid__PeripheralPreferredConnectionParameters)
+	qt.EnumMap["bluetooth.QBluetoothUuid__ServiceChanged"] = int64(QBluetoothUuid__ServiceChanged)
+	qt.EnumMap["bluetooth.QBluetoothUuid__AlertLevel"] = int64(QBluetoothUuid__AlertLevel)
+	qt.EnumMap["bluetooth.QBluetoothUuid__TxPowerLevel"] = int64(QBluetoothUuid__TxPowerLevel)
+	qt.EnumMap["bluetooth.QBluetoothUuid__DateTime"] = int64(QBluetoothUuid__DateTime)
+	qt.EnumMap["bluetooth.QBluetoothUuid__DayOfWeek"] = int64(QBluetoothUuid__DayOfWeek)
+	qt.EnumMap["bluetooth.QBluetoothUuid__DayDateTime"] = int64(QBluetoothUuid__DayDateTime)
+	qt.EnumMap["bluetooth.QBluetoothUuid__ExactTime256"] = int64(QBluetoothUuid__ExactTime256)
+	qt.EnumMap["bluetooth.QBluetoothUuid__DSTOffset"] = int64(QBluetoothUuid__DSTOffset)
+	qt.EnumMap["bluetooth.QBluetoothUuid__TimeZone"] = int64(QBluetoothUuid__TimeZone)
+	qt.EnumMap["bluetooth.QBluetoothUuid__LocalTimeInformation"] = int64(QBluetoothUuid__LocalTimeInformation)
+	qt.EnumMap["bluetooth.QBluetoothUuid__TimeWithDST"] = int64(QBluetoothUuid__TimeWithDST)
+	qt.EnumMap["bluetooth.QBluetoothUuid__TimeAccuracy"] = int64(QBluetoothUuid__TimeAccuracy)
+	qt.EnumMap["bluetooth.QBluetoothUuid__TimeSource"] = int64(QBluetoothUuid__TimeSource)
+	qt.EnumMap["bluetooth.QBluetoothUuid__ReferenceTimeInformation"] = int64(QBluetoothUuid__ReferenceTimeInformation)
+	qt.EnumMap["bluetooth.QBluetoothUuid__TimeUpdateControlPoint"] = int64(QBluetoothUuid__TimeUpdateControlPoint)
+	qt.EnumMap["bluetooth.QBluetoothUuid__TimeUpdateState"] = int64(QBluetoothUuid__TimeUpdateState)
+	qt.EnumMap["bluetooth.QBluetoothUuid__GlucoseMeasurement"] = int64(QBluetoothUuid__GlucoseMeasurement)
+	qt.EnumMap["bluetooth.QBluetoothUuid__BatteryLevel"] = int64(QBluetoothUuid__BatteryLevel)
+	qt.EnumMap["bluetooth.QBluetoothUuid__TemperatureMeasurement"] = int64(QBluetoothUuid__TemperatureMeasurement)
+	qt.EnumMap["bluetooth.QBluetoothUuid__TemperatureType"] = int64(QBluetoothUuid__TemperatureType)
+	qt.EnumMap["bluetooth.QBluetoothUuid__IntermediateTemperature"] = int64(QBluetoothUuid__IntermediateTemperature)
+	qt.EnumMap["bluetooth.QBluetoothUuid__MeasurementInterval"] = int64(QBluetoothUuid__MeasurementInterval)
+	qt.EnumMap["bluetooth.QBluetoothUuid__BootKeyboardInputReport"] = int64(QBluetoothUuid__BootKeyboardInputReport)
+	qt.EnumMap["bluetooth.QBluetoothUuid__SystemID"] = int64(QBluetoothUuid__SystemID)
+	qt.EnumMap["bluetooth.QBluetoothUuid__ModelNumberString"] = int64(QBluetoothUuid__ModelNumberString)
+	qt.EnumMap["bluetooth.QBluetoothUuid__SerialNumberString"] = int64(QBluetoothUuid__SerialNumberString)
+	qt.EnumMap["bluetooth.QBluetoothUuid__FirmwareRevisionString"] = int64(QBluetoothUuid__FirmwareRevisionString)
+	qt.EnumMap["bluetooth.QBluetoothUuid__HardwareRevisionString"] = int64(QBluetoothUuid__HardwareRevisionString)
+	qt.EnumMap["bluetooth.QBluetoothUuid__SoftwareRevisionString"] = int64(QBluetoothUuid__SoftwareRevisionString)
+	qt.EnumMap["bluetooth.QBluetoothUuid__ManufacturerNameString"] = int64(QBluetoothUuid__ManufacturerNameString)
+	qt.EnumMap["bluetooth.QBluetoothUuid__IEEE1107320601RegulatoryCertificationDataList"] = int64(QBluetoothUuid__IEEE1107320601RegulatoryCertificationDataList)
+	qt.EnumMap["bluetooth.QBluetoothUuid__CurrentTime"] = int64(QBluetoothUuid__CurrentTime)
+	qt.EnumMap["bluetooth.QBluetoothUuid__MagneticDeclination"] = int64(QBluetoothUuid__MagneticDeclination)
+	qt.EnumMap["bluetooth.QBluetoothUuid__ScanRefresh"] = int64(QBluetoothUuid__ScanRefresh)
+	qt.EnumMap["bluetooth.QBluetoothUuid__BootKeyboardOutputReport"] = int64(QBluetoothUuid__BootKeyboardOutputReport)
+	qt.EnumMap["bluetooth.QBluetoothUuid__BootMouseInputReport"] = int64(QBluetoothUuid__BootMouseInputReport)
+	qt.EnumMap["bluetooth.QBluetoothUuid__GlucoseMeasurementContext"] = int64(QBluetoothUuid__GlucoseMeasurementContext)
+	qt.EnumMap["bluetooth.QBluetoothUuid__BloodPressureMeasurement"] = int64(QBluetoothUuid__BloodPressureMeasurement)
+	qt.EnumMap["bluetooth.QBluetoothUuid__IntermediateCuffPressure"] = int64(QBluetoothUuid__IntermediateCuffPressure)
+	qt.EnumMap["bluetooth.QBluetoothUuid__HeartRateMeasurement"] = int64(QBluetoothUuid__HeartRateMeasurement)
+	qt.EnumMap["bluetooth.QBluetoothUuid__BodySensorLocation"] = int64(QBluetoothUuid__BodySensorLocation)
+	qt.EnumMap["bluetooth.QBluetoothUuid__HeartRateControlPoint"] = int64(QBluetoothUuid__HeartRateControlPoint)
+	qt.EnumMap["bluetooth.QBluetoothUuid__AlertStatus"] = int64(QBluetoothUuid__AlertStatus)
+	qt.EnumMap["bluetooth.QBluetoothUuid__RingerControlPoint"] = int64(QBluetoothUuid__RingerControlPoint)
+	qt.EnumMap["bluetooth.QBluetoothUuid__RingerSetting"] = int64(QBluetoothUuid__RingerSetting)
+	qt.EnumMap["bluetooth.QBluetoothUuid__AlertCategoryIDBitMask"] = int64(QBluetoothUuid__AlertCategoryIDBitMask)
+	qt.EnumMap["bluetooth.QBluetoothUuid__AlertCategoryID"] = int64(QBluetoothUuid__AlertCategoryID)
+	qt.EnumMap["bluetooth.QBluetoothUuid__AlertNotificationControlPoint"] = int64(QBluetoothUuid__AlertNotificationControlPoint)
+	qt.EnumMap["bluetooth.QBluetoothUuid__UnreadAlertStatus"] = int64(QBluetoothUuid__UnreadAlertStatus)
+	qt.EnumMap["bluetooth.QBluetoothUuid__NewAlert"] = int64(QBluetoothUuid__NewAlert)
+	qt.EnumMap["bluetooth.QBluetoothUuid__SupportedNewAlertCategory"] = int64(QBluetoothUuid__SupportedNewAlertCategory)
+	qt.EnumMap["bluetooth.QBluetoothUuid__SupportedUnreadAlertCategory"] = int64(QBluetoothUuid__SupportedUnreadAlertCategory)
+	qt.EnumMap["bluetooth.QBluetoothUuid__BloodPressureFeature"] = int64(QBluetoothUuid__BloodPressureFeature)
+	qt.EnumMap["bluetooth.QBluetoothUuid__HIDInformation"] = int64(QBluetoothUuid__HIDInformation)
+	qt.EnumMap["bluetooth.QBluetoothUuid__ReportMap"] = int64(QBluetoothUuid__ReportMap)
+	qt.EnumMap["bluetooth.QBluetoothUuid__HIDControlPoint"] = int64(QBluetoothUuid__HIDControlPoint)
+	qt.EnumMap["bluetooth.QBluetoothUuid__Report"] = int64(QBluetoothUuid__Report)
+	qt.EnumMap["bluetooth.QBluetoothUuid__ProtocolMode"] = int64(QBluetoothUuid__ProtocolMode)
+	qt.EnumMap["bluetooth.QBluetoothUuid__ScanIntervalWindow"] = int64(QBluetoothUuid__ScanIntervalWindow)
+	qt.EnumMap["bluetooth.QBluetoothUuid__PnPID"] = int64(QBluetoothUuid__PnPID)
+	qt.EnumMap["bluetooth.QBluetoothUuid__GlucoseFeature"] = int64(QBluetoothUuid__GlucoseFeature)
+	qt.EnumMap["bluetooth.QBluetoothUuid__RecordAccessControlPoint"] = int64(QBluetoothUuid__RecordAccessControlPoint)
+	qt.EnumMap["bluetooth.QBluetoothUuid__RSCMeasurement"] = int64(QBluetoothUuid__RSCMeasurement)
+	qt.EnumMap["bluetooth.QBluetoothUuid__RSCFeature"] = int64(QBluetoothUuid__RSCFeature)
+	qt.EnumMap["bluetooth.QBluetoothUuid__SCControlPoint"] = int64(QBluetoothUuid__SCControlPoint)
+	qt.EnumMap["bluetooth.QBluetoothUuid__CSCMeasurement"] = int64(QBluetoothUuid__CSCMeasurement)
+	qt.EnumMap["bluetooth.QBluetoothUuid__CSCFeature"] = int64(QBluetoothUuid__CSCFeature)
+	qt.EnumMap["bluetooth.QBluetoothUuid__SensorLocation"] = int64(QBluetoothUuid__SensorLocation)
+	qt.EnumMap["bluetooth.QBluetoothUuid__CyclingPowerMeasurement"] = int64(QBluetoothUuid__CyclingPowerMeasurement)
+	qt.EnumMap["bluetooth.QBluetoothUuid__CyclingPowerVector"] = int64(QBluetoothUuid__CyclingPowerVector)
+	qt.EnumMap["bluetooth.QBluetoothUuid__CyclingPowerFeature"] = int64(QBluetoothUuid__CyclingPowerFeature)
+	qt.EnumMap["bluetooth.QBluetoothUuid__CyclingPowerControlPoint"] = int64(QBluetoothUuid__CyclingPowerControlPoint)
+	qt.EnumMap["bluetooth.QBluetoothUuid__LocationAndSpeed"] = int64(QBluetoothUuid__LocationAndSpeed)
+	qt.EnumMap["bluetooth.QBluetoothUuid__Navigation"] = int64(QBluetoothUuid__Navigation)
+	qt.EnumMap["bluetooth.QBluetoothUuid__PositionQuality"] = int64(QBluetoothUuid__PositionQuality)
+	qt.EnumMap["bluetooth.QBluetoothUuid__LNFeature"] = int64(QBluetoothUuid__LNFeature)
+	qt.EnumMap["bluetooth.QBluetoothUuid__LNControlPoint"] = int64(QBluetoothUuid__LNControlPoint)
+	qt.EnumMap["bluetooth.QBluetoothUuid__Elevation"] = int64(QBluetoothUuid__Elevation)
+	qt.EnumMap["bluetooth.QBluetoothUuid__Pressure"] = int64(QBluetoothUuid__Pressure)
+	qt.EnumMap["bluetooth.QBluetoothUuid__Temperature"] = int64(QBluetoothUuid__Temperature)
+	qt.EnumMap["bluetooth.QBluetoothUuid__Humidity"] = int64(QBluetoothUuid__Humidity)
+	qt.EnumMap["bluetooth.QBluetoothUuid__TrueWindSpeed"] = int64(QBluetoothUuid__TrueWindSpeed)
+	qt.EnumMap["bluetooth.QBluetoothUuid__TrueWindDirection"] = int64(QBluetoothUuid__TrueWindDirection)
+	qt.EnumMap["bluetooth.QBluetoothUuid__ApparentWindSpeed"] = int64(QBluetoothUuid__ApparentWindSpeed)
+	qt.EnumMap["bluetooth.QBluetoothUuid__ApparentWindDirection"] = int64(QBluetoothUuid__ApparentWindDirection)
+	qt.EnumMap["bluetooth.QBluetoothUuid__GustFactor"] = int64(QBluetoothUuid__GustFactor)
+	qt.EnumMap["bluetooth.QBluetoothUuid__PollenConcentration"] = int64(QBluetoothUuid__PollenConcentration)
+	qt.EnumMap["bluetooth.QBluetoothUuid__UVIndex"] = int64(QBluetoothUuid__UVIndex)
+	qt.EnumMap["bluetooth.QBluetoothUuid__Irradiance"] = int64(QBluetoothUuid__Irradiance)
+	qt.EnumMap["bluetooth.QBluetoothUuid__Rainfall"] = int64(QBluetoothUuid__Rainfall)
+	qt.EnumMap["bluetooth.QBluetoothUuid__WindChill"] = int64(QBluetoothUuid__WindChill)
+	qt.EnumMap["bluetooth.QBluetoothUuid__HeatIndex"] = int64(QBluetoothUuid__HeatIndex)
+	qt.EnumMap["bluetooth.QBluetoothUuid__DewPoint"] = int64(QBluetoothUuid__DewPoint)
+	qt.EnumMap["bluetooth.QBluetoothUuid__DescriptorValueChanged"] = int64(QBluetoothUuid__DescriptorValueChanged)
+	qt.EnumMap["bluetooth.QBluetoothUuid__AerobicHeartRateLowerLimit"] = int64(QBluetoothUuid__AerobicHeartRateLowerLimit)
+	qt.EnumMap["bluetooth.QBluetoothUuid__AerobicThreshold"] = int64(QBluetoothUuid__AerobicThreshold)
+	qt.EnumMap["bluetooth.QBluetoothUuid__Age"] = int64(QBluetoothUuid__Age)
+	qt.EnumMap["bluetooth.QBluetoothUuid__AnaerobicHeartRateLowerLimit"] = int64(QBluetoothUuid__AnaerobicHeartRateLowerLimit)
+	qt.EnumMap["bluetooth.QBluetoothUuid__AnaerobicHeartRateUpperLimit"] = int64(QBluetoothUuid__AnaerobicHeartRateUpperLimit)
+	qt.EnumMap["bluetooth.QBluetoothUuid__AnaerobicThreshold"] = int64(QBluetoothUuid__AnaerobicThreshold)
+	qt.EnumMap["bluetooth.QBluetoothUuid__AerobicHeartRateUpperLimit"] = int64(QBluetoothUuid__AerobicHeartRateUpperLimit)
+	qt.EnumMap["bluetooth.QBluetoothUuid__DateOfBirth"] = int64(QBluetoothUuid__DateOfBirth)
+	qt.EnumMap["bluetooth.QBluetoothUuid__DateOfThresholdAssessment"] = int64(QBluetoothUuid__DateOfThresholdAssessment)
+	qt.EnumMap["bluetooth.QBluetoothUuid__EmailAddress"] = int64(QBluetoothUuid__EmailAddress)
+	qt.EnumMap["bluetooth.QBluetoothUuid__FatBurnHeartRateLowerLimit"] = int64(QBluetoothUuid__FatBurnHeartRateLowerLimit)
+	qt.EnumMap["bluetooth.QBluetoothUuid__FatBurnHeartRateUpperLimit"] = int64(QBluetoothUuid__FatBurnHeartRateUpperLimit)
+	qt.EnumMap["bluetooth.QBluetoothUuid__FirstName"] = int64(QBluetoothUuid__FirstName)
+	qt.EnumMap["bluetooth.QBluetoothUuid__FiveZoneHeartRateLimits"] = int64(QBluetoothUuid__FiveZoneHeartRateLimits)
+	qt.EnumMap["bluetooth.QBluetoothUuid__Gender"] = int64(QBluetoothUuid__Gender)
+	qt.EnumMap["bluetooth.QBluetoothUuid__HeartRateMax"] = int64(QBluetoothUuid__HeartRateMax)
+	qt.EnumMap["bluetooth.QBluetoothUuid__Height"] = int64(QBluetoothUuid__Height)
+	qt.EnumMap["bluetooth.QBluetoothUuid__HipCircumference"] = int64(QBluetoothUuid__HipCircumference)
+	qt.EnumMap["bluetooth.QBluetoothUuid__LastName"] = int64(QBluetoothUuid__LastName)
+	qt.EnumMap["bluetooth.QBluetoothUuid__MaximumRecommendedHeartRate"] = int64(QBluetoothUuid__MaximumRecommendedHeartRate)
+	qt.EnumMap["bluetooth.QBluetoothUuid__RestingHeartRate"] = int64(QBluetoothUuid__RestingHeartRate)
+	qt.EnumMap["bluetooth.QBluetoothUuid__SportTypeForAerobicAnaerobicThresholds"] = int64(QBluetoothUuid__SportTypeForAerobicAnaerobicThresholds)
+	qt.EnumMap["bluetooth.QBluetoothUuid__ThreeZoneHeartRateLimits"] = int64(QBluetoothUuid__ThreeZoneHeartRateLimits)
+	qt.EnumMap["bluetooth.QBluetoothUuid__TwoZoneHeartRateLimits"] = int64(QBluetoothUuid__TwoZoneHeartRateLimits)
+	qt.EnumMap["bluetooth.QBluetoothUuid__VO2Max"] = int64(QBluetoothUuid__VO2Max)
+	qt.EnumMap["bluetooth.QBluetoothUuid__WaistCircumference"] = int64(QBluetoothUuid__WaistCircumference)
+	qt.EnumMap["bluetooth.QBluetoothUuid__Weight"] = int64(QBluetoothUuid__Weight)
+	qt.EnumMap["bluetooth.QBluetoothUuid__DatabaseChangeIncrement"] = int64(QBluetoothUuid__DatabaseChangeIncrement)
+	qt.EnumMap["bluetooth.QBluetoothUuid__UserIndex"] = int64(QBluetoothUuid__UserIndex)
+	qt.EnumMap["bluetooth.QBluetoothUuid__BodyCompositionFeature"] = int64(QBluetoothUuid__BodyCompositionFeature)
+	qt.EnumMap["bluetooth.QBluetoothUuid__BodyCompositionMeasurement"] = int64(QBluetoothUuid__BodyCompositionMeasurement)
+	qt.EnumMap["bluetooth.QBluetoothUuid__WeightMeasurement"] = int64(QBluetoothUuid__WeightMeasurement)
+	qt.EnumMap["bluetooth.QBluetoothUuid__WeightScaleFeature"] = int64(QBluetoothUuid__WeightScaleFeature)
+	qt.EnumMap["bluetooth.QBluetoothUuid__UserControlPoint"] = int64(QBluetoothUuid__UserControlPoint)
+	qt.EnumMap["bluetooth.QBluetoothUuid__MagneticFluxDensity2D"] = int64(QBluetoothUuid__MagneticFluxDensity2D)
+	qt.EnumMap["bluetooth.QBluetoothUuid__MagneticFluxDensity3D"] = int64(QBluetoothUuid__MagneticFluxDensity3D)
+	qt.EnumMap["bluetooth.QBluetoothUuid__Language"] = int64(QBluetoothUuid__Language)
+	qt.EnumMap["bluetooth.QBluetoothUuid__BarometricPressureTrend"] = int64(QBluetoothUuid__BarometricPressureTrend)
+	qt.EnumMap["bluetooth.QBluetoothUuid__UnknownDescriptorType"] = int64(QBluetoothUuid__UnknownDescriptorType)
+	qt.EnumMap["bluetooth.QBluetoothUuid__CharacteristicExtendedProperties"] = int64(QBluetoothUuid__CharacteristicExtendedProperties)
+	qt.EnumMap["bluetooth.QBluetoothUuid__CharacteristicUserDescription"] = int64(QBluetoothUuid__CharacteristicUserDescription)
+	qt.EnumMap["bluetooth.QBluetoothUuid__ClientCharacteristicConfiguration"] = int64(QBluetoothUuid__ClientCharacteristicConfiguration)
+	qt.EnumMap["bluetooth.QBluetoothUuid__ServerCharacteristicConfiguration"] = int64(QBluetoothUuid__ServerCharacteristicConfiguration)
+	qt.EnumMap["bluetooth.QBluetoothUuid__CharacteristicPresentationFormat"] = int64(QBluetoothUuid__CharacteristicPresentationFormat)
+	qt.EnumMap["bluetooth.QBluetoothUuid__CharacteristicAggregateFormat"] = int64(QBluetoothUuid__CharacteristicAggregateFormat)
+	qt.EnumMap["bluetooth.QBluetoothUuid__ValidRange"] = int64(QBluetoothUuid__ValidRange)
+	qt.EnumMap["bluetooth.QBluetoothUuid__ExternalReportReference"] = int64(QBluetoothUuid__ExternalReportReference)
+	qt.EnumMap["bluetooth.QBluetoothUuid__ReportReference"] = int64(QBluetoothUuid__ReportReference)
+	qt.EnumMap["bluetooth.QBluetoothUuid__EnvironmentalSensingConfiguration"] = int64(QBluetoothUuid__EnvironmentalSensingConfiguration)
+	qt.EnumMap["bluetooth.QBluetoothUuid__EnvironmentalSensingMeasurement"] = int64(QBluetoothUuid__EnvironmentalSensingMeasurement)
+	qt.EnumMap["bluetooth.QBluetoothUuid__EnvironmentalSensingTriggerSetting"] = int64(QBluetoothUuid__EnvironmentalSensingTriggerSetting)
+	qt.ItfMap["bluetooth.QLowEnergyAdvertisingData_ITF"] = QLowEnergyAdvertisingData{}
+	qt.FuncMap["bluetooth.NewQLowEnergyAdvertisingData"] = NewQLowEnergyAdvertisingData
+	qt.FuncMap["bluetooth.NewQLowEnergyAdvertisingData2"] = NewQLowEnergyAdvertisingData2
+	qt.FuncMap["bluetooth.QLowEnergyAdvertisingData_InvalidManufacturerId"] = QLowEnergyAdvertisingData_InvalidManufacturerId
+	qt.EnumMap["bluetooth.QLowEnergyAdvertisingData__DiscoverabilityNone"] = int64(QLowEnergyAdvertisingData__DiscoverabilityNone)
+	qt.EnumMap["bluetooth.QLowEnergyAdvertisingData__DiscoverabilityLimited"] = int64(QLowEnergyAdvertisingData__DiscoverabilityLimited)
+	qt.EnumMap["bluetooth.QLowEnergyAdvertisingData__DiscoverabilityGeneral"] = int64(QLowEnergyAdvertisingData__DiscoverabilityGeneral)
+	qt.ItfMap["bluetooth.QLowEnergyAdvertisingParameters_ITF"] = QLowEnergyAdvertisingParameters{}
+	qt.FuncMap["bluetooth.NewQLowEnergyAdvertisingParameters"] = NewQLowEnergyAdvertisingParameters
+	qt.FuncMap["bluetooth.NewQLowEnergyAdvertisingParameters2"] = NewQLowEnergyAdvertisingParameters2
+	qt.EnumMap["bluetooth.QLowEnergyAdvertisingParameters__AdvInd"] = int64(QLowEnergyAdvertisingParameters__AdvInd)
+	qt.EnumMap["bluetooth.QLowEnergyAdvertisingParameters__AdvScanInd"] = int64(QLowEnergyAdvertisingParameters__AdvScanInd)
+	qt.EnumMap["bluetooth.QLowEnergyAdvertisingParameters__AdvNonConnInd"] = int64(QLowEnergyAdvertisingParameters__AdvNonConnInd)
+	qt.EnumMap["bluetooth.QLowEnergyAdvertisingParameters__IgnoreWhiteList"] = int64(QLowEnergyAdvertisingParameters__IgnoreWhiteList)
+	qt.EnumMap["bluetooth.QLowEnergyAdvertisingParameters__UseWhiteListForScanning"] = int64(QLowEnergyAdvertisingParameters__UseWhiteListForScanning)
+	qt.EnumMap["bluetooth.QLowEnergyAdvertisingParameters__UseWhiteListForConnecting"] = int64(QLowEnergyAdvertisingParameters__UseWhiteListForConnecting)
+	qt.EnumMap["bluetooth.QLowEnergyAdvertisingParameters__UseWhiteListForScanningAndConnecting"] = int64(QLowEnergyAdvertisingParameters__UseWhiteListForScanningAndConnecting)
+	qt.ItfMap["bluetooth.QLowEnergyCharacteristic_ITF"] = QLowEnergyCharacteristic{}
+	qt.FuncMap["bluetooth.NewQLowEnergyCharacteristic"] = NewQLowEnergyCharacteristic
+	qt.FuncMap["bluetooth.NewQLowEnergyCharacteristic2"] = NewQLowEnergyCharacteristic2
+	qt.EnumMap["bluetooth.QLowEnergyCharacteristic__Unknown"] = int64(QLowEnergyCharacteristic__Unknown)
+	qt.EnumMap["bluetooth.QLowEnergyCharacteristic__Broadcasting"] = int64(QLowEnergyCharacteristic__Broadcasting)
+	qt.EnumMap["bluetooth.QLowEnergyCharacteristic__Read"] = int64(QLowEnergyCharacteristic__Read)
+	qt.EnumMap["bluetooth.QLowEnergyCharacteristic__WriteNoResponse"] = int64(QLowEnergyCharacteristic__WriteNoResponse)
+	qt.EnumMap["bluetooth.QLowEnergyCharacteristic__Write"] = int64(QLowEnergyCharacteristic__Write)
+	qt.EnumMap["bluetooth.QLowEnergyCharacteristic__Notify"] = int64(QLowEnergyCharacteristic__Notify)
+	qt.EnumMap["bluetooth.QLowEnergyCharacteristic__Indicate"] = int64(QLowEnergyCharacteristic__Indicate)
+	qt.EnumMap["bluetooth.QLowEnergyCharacteristic__WriteSigned"] = int64(QLowEnergyCharacteristic__WriteSigned)
+	qt.EnumMap["bluetooth.QLowEnergyCharacteristic__ExtendedProperty"] = int64(QLowEnergyCharacteristic__ExtendedProperty)
+	qt.ItfMap["bluetooth.QLowEnergyCharacteristicData_ITF"] = QLowEnergyCharacteristicData{}
+	qt.FuncMap["bluetooth.NewQLowEnergyCharacteristicData"] = NewQLowEnergyCharacteristicData
+	qt.FuncMap["bluetooth.NewQLowEnergyCharacteristicData2"] = NewQLowEnergyCharacteristicData2
+	qt.ItfMap["bluetooth.QLowEnergyConnectionParameters_ITF"] = QLowEnergyConnectionParameters{}
+	qt.FuncMap["bluetooth.NewQLowEnergyConnectionParameters"] = NewQLowEnergyConnectionParameters
+	qt.FuncMap["bluetooth.NewQLowEnergyConnectionParameters2"] = NewQLowEnergyConnectionParameters2
+	qt.ItfMap["bluetooth.QLowEnergyController_ITF"] = QLowEnergyController{}
+	qt.FuncMap["bluetooth.QLowEnergyController_CreateCentral"] = QLowEnergyController_CreateCentral
+	qt.FuncMap["bluetooth.QLowEnergyController_CreatePeripheral"] = QLowEnergyController_CreatePeripheral
+	qt.EnumMap["bluetooth.QLowEnergyController__NoError"] = int64(QLowEnergyController__NoError)
+	qt.EnumMap["bluetooth.QLowEnergyController__UnknownError"] = int64(QLowEnergyController__UnknownError)
+	qt.EnumMap["bluetooth.QLowEnergyController__UnknownRemoteDeviceError"] = int64(QLowEnergyController__UnknownRemoteDeviceError)
+	qt.EnumMap["bluetooth.QLowEnergyController__NetworkError"] = int64(QLowEnergyController__NetworkError)
+	qt.EnumMap["bluetooth.QLowEnergyController__InvalidBluetoothAdapterError"] = int64(QLowEnergyController__InvalidBluetoothAdapterError)
+	qt.EnumMap["bluetooth.QLowEnergyController__ConnectionError"] = int64(QLowEnergyController__ConnectionError)
+	qt.EnumMap["bluetooth.QLowEnergyController__AdvertisingError"] = int64(QLowEnergyController__AdvertisingError)
+	qt.EnumMap["bluetooth.QLowEnergyController__RemoteHostClosedError"] = int64(QLowEnergyController__RemoteHostClosedError)
+	qt.EnumMap["bluetooth.QLowEnergyController__UnconnectedState"] = int64(QLowEnergyController__UnconnectedState)
+	qt.EnumMap["bluetooth.QLowEnergyController__ConnectingState"] = int64(QLowEnergyController__ConnectingState)
+	qt.EnumMap["bluetooth.QLowEnergyController__ConnectedState"] = int64(QLowEnergyController__ConnectedState)
+	qt.EnumMap["bluetooth.QLowEnergyController__DiscoveringState"] = int64(QLowEnergyController__DiscoveringState)
+	qt.EnumMap["bluetooth.QLowEnergyController__DiscoveredState"] = int64(QLowEnergyController__DiscoveredState)
+	qt.EnumMap["bluetooth.QLowEnergyController__ClosingState"] = int64(QLowEnergyController__ClosingState)
+	qt.EnumMap["bluetooth.QLowEnergyController__AdvertisingState"] = int64(QLowEnergyController__AdvertisingState)
+	qt.EnumMap["bluetooth.QLowEnergyController__PublicAddress"] = int64(QLowEnergyController__PublicAddress)
+	qt.EnumMap["bluetooth.QLowEnergyController__RandomAddress"] = int64(QLowEnergyController__RandomAddress)
+	qt.EnumMap["bluetooth.QLowEnergyController__CentralRole"] = int64(QLowEnergyController__CentralRole)
+	qt.EnumMap["bluetooth.QLowEnergyController__PeripheralRole"] = int64(QLowEnergyController__PeripheralRole)
+	qt.ItfMap["bluetooth.QLowEnergyDescriptor_ITF"] = QLowEnergyDescriptor{}
+	qt.FuncMap["bluetooth.NewQLowEnergyDescriptor"] = NewQLowEnergyDescriptor
+	qt.FuncMap["bluetooth.NewQLowEnergyDescriptor2"] = NewQLowEnergyDescriptor2
+	qt.ItfMap["bluetooth.QLowEnergyDescriptorData_ITF"] = QLowEnergyDescriptorData{}
+	qt.FuncMap["bluetooth.NewQLowEnergyDescriptorData"] = NewQLowEnergyDescriptorData
+	qt.FuncMap["bluetooth.NewQLowEnergyDescriptorData2"] = NewQLowEnergyDescriptorData2
+	qt.FuncMap["bluetooth.NewQLowEnergyDescriptorData3"] = NewQLowEnergyDescriptorData3
+	qt.ItfMap["bluetooth.QLowEnergyService_ITF"] = QLowEnergyService{}
+	qt.EnumMap["bluetooth.QLowEnergyService__PrimaryService"] = int64(QLowEnergyService__PrimaryService)
+	qt.EnumMap["bluetooth.QLowEnergyService__IncludedService"] = int64(QLowEnergyService__IncludedService)
+	qt.EnumMap["bluetooth.QLowEnergyService__NoError"] = int64(QLowEnergyService__NoError)
+	qt.EnumMap["bluetooth.QLowEnergyService__OperationError"] = int64(QLowEnergyService__OperationError)
+	qt.EnumMap["bluetooth.QLowEnergyService__CharacteristicWriteError"] = int64(QLowEnergyService__CharacteristicWriteError)
+	qt.EnumMap["bluetooth.QLowEnergyService__DescriptorWriteError"] = int64(QLowEnergyService__DescriptorWriteError)
+	qt.EnumMap["bluetooth.QLowEnergyService__UnknownError"] = int64(QLowEnergyService__UnknownError)
+	qt.EnumMap["bluetooth.QLowEnergyService__CharacteristicReadError"] = int64(QLowEnergyService__CharacteristicReadError)
+	qt.EnumMap["bluetooth.QLowEnergyService__DescriptorReadError"] = int64(QLowEnergyService__DescriptorReadError)
+	qt.EnumMap["bluetooth.QLowEnergyService__InvalidService"] = int64(QLowEnergyService__InvalidService)
+	qt.EnumMap["bluetooth.QLowEnergyService__DiscoveryRequired"] = int64(QLowEnergyService__DiscoveryRequired)
+	qt.EnumMap["bluetooth.QLowEnergyService__DiscoveringServices"] = int64(QLowEnergyService__DiscoveringServices)
+	qt.EnumMap["bluetooth.QLowEnergyService__ServiceDiscovered"] = int64(QLowEnergyService__ServiceDiscovered)
+	qt.EnumMap["bluetooth.QLowEnergyService__LocalService"] = int64(QLowEnergyService__LocalService)
+	qt.EnumMap["bluetooth.QLowEnergyService__WriteWithResponse"] = int64(QLowEnergyService__WriteWithResponse)
+	qt.EnumMap["bluetooth.QLowEnergyService__WriteWithoutResponse"] = int64(QLowEnergyService__WriteWithoutResponse)
+	qt.EnumMap["bluetooth.QLowEnergyService__WriteSigned"] = int64(QLowEnergyService__WriteSigned)
+	qt.ItfMap["bluetooth.QLowEnergyServiceData_ITF"] = QLowEnergyServiceData{}
+	qt.FuncMap["bluetooth.NewQLowEnergyServiceData"] = NewQLowEnergyServiceData
+	qt.FuncMap["bluetooth.NewQLowEnergyServiceData2"] = NewQLowEnergyServiceData2
+	qt.EnumMap["bluetooth.QLowEnergyServiceData__ServiceTypePrimary"] = int64(QLowEnergyServiceData__ServiceTypePrimary)
+	qt.EnumMap["bluetooth.QLowEnergyServiceData__ServiceTypeSecondary"] = int64(QLowEnergyServiceData__ServiceTypeSecondary)
 }

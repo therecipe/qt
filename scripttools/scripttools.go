@@ -12,18 +12,20 @@ import (
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/script"
 	"github.com/therecipe/qt/widgets"
-	"runtime"
 	"strings"
 	"unsafe"
 )
 
+func cGoFreePacked(ptr unsafe.Pointer) { core.NewQByteArrayFromPointer(ptr).DestroyQByteArray() }
 func cGoUnpackString(s C.struct_QtScriptTools_PackedString) string {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		return C.GoString(s.data)
 	}
 	return C.GoStringN(s.data, C.int(s.len))
 }
 func cGoUnpackBytes(s C.struct_QtScriptTools_PackedString) []byte {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
 		return *(*[]byte)(unsafe.Pointer(&gs))
@@ -195,7 +197,7 @@ func (ptr *QScriptEngineDebugger) ConnectEvaluationResumed(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "evaluationResumed") {
-			C.QScriptEngineDebugger_ConnectEvaluationResumed(ptr.Pointer())
+			C.QScriptEngineDebugger_ConnectEvaluationResumed(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "evaluationResumed")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "evaluationResumed"); signal != nil {
@@ -235,7 +237,7 @@ func (ptr *QScriptEngineDebugger) ConnectEvaluationSuspended(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "evaluationSuspended") {
-			C.QScriptEngineDebugger_ConnectEvaluationSuspended(ptr.Pointer())
+			C.QScriptEngineDebugger_ConnectEvaluationSuspended(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "evaluationSuspended")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "evaluationSuspended"); signal != nil {
@@ -331,17 +333,19 @@ func (ptr *QScriptEngineDebugger) DisconnectDestroyQScriptEngineDebugger() {
 
 func (ptr *QScriptEngineDebugger) DestroyQScriptEngineDebugger() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QScriptEngineDebugger_DestroyQScriptEngineDebugger(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QScriptEngineDebugger) DestroyQScriptEngineDebuggerDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QScriptEngineDebugger_DestroyQScriptEngineDebuggerDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -369,7 +373,7 @@ func (ptr *QScriptEngineDebugger) __children_newList() unsafe.Pointer {
 func (ptr *QScriptEngineDebugger) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QScriptEngineDebugger___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -425,27 +429,6 @@ func (ptr *QScriptEngineDebugger) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QScriptEngineDebugger) __findChildren_newList3() unsafe.Pointer {
 	return C.QScriptEngineDebugger___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QScriptEngineDebugger) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QScriptEngineDebugger___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QScriptEngineDebugger) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScriptEngineDebugger___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QScriptEngineDebugger) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QScriptEngineDebugger___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQScriptEngineDebugger_ChildEvent
@@ -504,8 +487,9 @@ func callbackQScriptEngineDebugger_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QScriptEngineDebugger) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QScriptEngineDebugger_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -601,4 +585,35 @@ func (ptr *QScriptEngineDebugger) TimerEventDefault(event core.QTimerEvent_ITF) 
 	if ptr.Pointer() != nil {
 		C.QScriptEngineDebugger_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
+}
+
+func init() {
+	qt.ItfMap["scripttools.QScriptEngineDebugger_ITF"] = QScriptEngineDebugger{}
+	qt.FuncMap["scripttools.NewQScriptEngineDebugger"] = NewQScriptEngineDebugger
+	qt.EnumMap["scripttools.QScriptEngineDebugger__InterruptAction"] = int64(QScriptEngineDebugger__InterruptAction)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__ContinueAction"] = int64(QScriptEngineDebugger__ContinueAction)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__StepIntoAction"] = int64(QScriptEngineDebugger__StepIntoAction)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__StepOverAction"] = int64(QScriptEngineDebugger__StepOverAction)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__StepOutAction"] = int64(QScriptEngineDebugger__StepOutAction)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__RunToCursorAction"] = int64(QScriptEngineDebugger__RunToCursorAction)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__RunToNewScriptAction"] = int64(QScriptEngineDebugger__RunToNewScriptAction)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__ToggleBreakpointAction"] = int64(QScriptEngineDebugger__ToggleBreakpointAction)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__ClearDebugOutputAction"] = int64(QScriptEngineDebugger__ClearDebugOutputAction)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__ClearErrorLogAction"] = int64(QScriptEngineDebugger__ClearErrorLogAction)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__ClearConsoleAction"] = int64(QScriptEngineDebugger__ClearConsoleAction)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__FindInScriptAction"] = int64(QScriptEngineDebugger__FindInScriptAction)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__FindNextInScriptAction"] = int64(QScriptEngineDebugger__FindNextInScriptAction)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__FindPreviousInScriptAction"] = int64(QScriptEngineDebugger__FindPreviousInScriptAction)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__GoToLineAction"] = int64(QScriptEngineDebugger__GoToLineAction)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__ConsoleWidget"] = int64(QScriptEngineDebugger__ConsoleWidget)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__StackWidget"] = int64(QScriptEngineDebugger__StackWidget)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__ScriptsWidget"] = int64(QScriptEngineDebugger__ScriptsWidget)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__LocalsWidget"] = int64(QScriptEngineDebugger__LocalsWidget)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__CodeWidget"] = int64(QScriptEngineDebugger__CodeWidget)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__CodeFinderWidget"] = int64(QScriptEngineDebugger__CodeFinderWidget)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__BreakpointsWidget"] = int64(QScriptEngineDebugger__BreakpointsWidget)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__DebugOutputWidget"] = int64(QScriptEngineDebugger__DebugOutputWidget)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__ErrorLogWidget"] = int64(QScriptEngineDebugger__ErrorLogWidget)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__RunningState"] = int64(QScriptEngineDebugger__RunningState)
+	qt.EnumMap["scripttools.QScriptEngineDebugger__SuspendedState"] = int64(QScriptEngineDebugger__SuspendedState)
 }

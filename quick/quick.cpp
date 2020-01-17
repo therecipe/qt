@@ -128,17 +128,40 @@
 class MyQQuickAsyncImageProvider: public QQuickAsyncImageProvider
 {
 public:
-	QQuickImageResponse * requestImageResponse(const QString & id, const QSize & requestedSize) { QByteArray t87ea5d = id.toUtf8(); QtQuick_PackedString idPacked = { const_cast<char*>(t87ea5d.prepend("WHITESPACE").constData()+10), t87ea5d.size()-10 };return static_cast<QQuickImageResponse*>(callbackQQuickAsyncImageProvider_RequestImageResponse(this, idPacked, const_cast<QSize*>(&requestedSize))); };
+	MyQQuickAsyncImageProvider() : QQuickAsyncImageProvider() {QQuickAsyncImageProvider_QQuickAsyncImageProvider_QRegisterMetaType();};
+	QQuickImageResponse * requestImageResponse(const QString & id, const QSize & requestedSize) { QByteArray* t87ea5d = new QByteArray(id.toUtf8()); QtQuick_PackedString idPacked = { const_cast<char*>(t87ea5d->prepend("WHITESPACE").constData()+10), t87ea5d->size()-10, t87ea5d };return static_cast<QQuickImageResponse*>(callbackQQuickAsyncImageProvider_RequestImageResponse(this, idPacked, const_cast<QSize*>(&requestedSize))); };
+	 ~MyQQuickAsyncImageProvider() { callbackQQuickAsyncImageProvider_DestroyQQuickAsyncImageProvider(this); };
 	QQmlImageProviderBase::Flags flags() const { return static_cast<QQmlImageProviderBase::Flag>(callbackQQuickImageProvider_Flags(const_cast<void*>(static_cast<const void*>(this)))); };
 	QQmlImageProviderBase::ImageType imageType() const { return static_cast<QQmlImageProviderBase::ImageType>(callbackQQuickImageProvider_ImageType(const_cast<void*>(static_cast<const void*>(this)))); };
-	QImage requestImage(const QString & id, QSize * size, const QSize & requestedSize) { QByteArray t87ea5d = id.toUtf8(); QtQuick_PackedString idPacked = { const_cast<char*>(t87ea5d.prepend("WHITESPACE").constData()+10), t87ea5d.size()-10 };return *static_cast<QImage*>(callbackQQuickImageProvider_RequestImage(this, idPacked, size, const_cast<QSize*>(&requestedSize))); };
-	QPixmap requestPixmap(const QString & id, QSize * size, const QSize & requestedSize) { QByteArray t87ea5d = id.toUtf8(); QtQuick_PackedString idPacked = { const_cast<char*>(t87ea5d.prepend("WHITESPACE").constData()+10), t87ea5d.size()-10 };return *static_cast<QPixmap*>(callbackQQuickImageProvider_RequestPixmap(this, idPacked, size, const_cast<QSize*>(&requestedSize))); };
-	QQuickTextureFactory * requestTexture(const QString & id, QSize * size, const QSize & requestedSize) { QByteArray t87ea5d = id.toUtf8(); QtQuick_PackedString idPacked = { const_cast<char*>(t87ea5d.prepend("WHITESPACE").constData()+10), t87ea5d.size()-10 };return static_cast<QQuickTextureFactory*>(callbackQQuickImageProvider_RequestTexture(this, idPacked, size, const_cast<QSize*>(&requestedSize))); };
+	QImage requestImage(const QString & id, QSize * size, const QSize & requestedSize) { QByteArray* t87ea5d = new QByteArray(id.toUtf8()); QtQuick_PackedString idPacked = { const_cast<char*>(t87ea5d->prepend("WHITESPACE").constData()+10), t87ea5d->size()-10, t87ea5d };return *static_cast<QImage*>(callbackQQuickImageProvider_RequestImage(this, idPacked, size, const_cast<QSize*>(&requestedSize))); };
+	QPixmap requestPixmap(const QString & id, QSize * size, const QSize & requestedSize) { QByteArray* t87ea5d = new QByteArray(id.toUtf8()); QtQuick_PackedString idPacked = { const_cast<char*>(t87ea5d->prepend("WHITESPACE").constData()+10), t87ea5d->size()-10, t87ea5d };return *static_cast<QPixmap*>(callbackQQuickImageProvider_RequestPixmap(this, idPacked, size, const_cast<QSize*>(&requestedSize))); };
+	QQuickTextureFactory * requestTexture(const QString & id, QSize * size, const QSize & requestedSize) { QByteArray* t87ea5d = new QByteArray(id.toUtf8()); QtQuick_PackedString idPacked = { const_cast<char*>(t87ea5d->prepend("WHITESPACE").constData()+10), t87ea5d->size()-10, t87ea5d };return static_cast<QQuickTextureFactory*>(callbackQQuickImageProvider_RequestTexture(this, idPacked, size, const_cast<QSize*>(&requestedSize))); };
 };
+
+Q_DECLARE_METATYPE(QQuickAsyncImageProvider*)
+Q_DECLARE_METATYPE(MyQQuickAsyncImageProvider*)
+
+int QQuickAsyncImageProvider_QQuickAsyncImageProvider_QRegisterMetaType(){qRegisterMetaType<QQuickAsyncImageProvider*>(); return qRegisterMetaType<MyQQuickAsyncImageProvider*>();}
+
+void* QQuickAsyncImageProvider_NewQQuickAsyncImageProvider()
+{
+	return new MyQQuickAsyncImageProvider();
+}
 
 void* QQuickAsyncImageProvider_RequestImageResponse(void* ptr, struct QtQuick_PackedString id, void* requestedSize)
 {
 	return static_cast<QQuickAsyncImageProvider*>(ptr)->requestImageResponse(QString::fromUtf8(id.data, id.len), *static_cast<QSize*>(requestedSize));
+}
+
+void QQuickAsyncImageProvider_DestroyQQuickAsyncImageProvider(void* ptr)
+{
+	static_cast<QQuickAsyncImageProvider*>(ptr)->~QQuickAsyncImageProvider();
+}
+
+void QQuickAsyncImageProvider_DestroyQQuickAsyncImageProviderDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
 }
 
 class MyQQuickFramebufferObject: public QQuickFramebufferObject
@@ -190,7 +213,7 @@ public:
 	void Signal_RotationChanged() { callbackQQuickItem_RotationChanged(this); };
 	void Signal_ScaleChanged() { callbackQQuickItem_ScaleChanged(this); };
 	void Signal_SmoothChanged(bool vbo) { callbackQQuickItem_SmoothChanged(this, vbo); };
-	void Signal_StateChanged(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtQuick_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQQuickItem_StateChanged(this, vqsPacked); };
+	void Signal_StateChanged(const QString & vqs) { QByteArray* tda39a3 = new QByteArray(vqs.toUtf8()); QtQuick_PackedString vqsPacked = { const_cast<char*>(tda39a3->prepend("WHITESPACE").constData()+10), tda39a3->size()-10, tda39a3 };callbackQQuickItem_StateChanged(this, vqsPacked); };
 	void touchEvent(QTouchEvent * event) { callbackQQuickItem_TouchEvent(this, event); };
 	void touchUngrabEvent() { callbackQQuickItem_TouchUngrabEvent(this); };
 	void Signal_TransformOriginChanged(QQuickItem::TransformOrigin vqq) { callbackQQuickItem_TransformOriginChanged(this, vqq); };
@@ -211,10 +234,11 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQQuickItem_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQQuickItem_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQuickItem_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtQuick_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQQuickItem_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtQuick_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQQuickItem_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQQuickItem_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QQuickFramebufferObject*)
 Q_DECLARE_METATYPE(MyQQuickFramebufferObject*)
 
 int QQuickFramebufferObject_QQuickFramebufferObject_QRegisterMetaType(){qRegisterMetaType<QQuickFramebufferObject*>(); return qRegisterMetaType<MyQQuickFramebufferObject*>();}
@@ -224,9 +248,9 @@ char QQuickFramebufferObject_MirrorVertically(void* ptr)
 	return static_cast<QQuickFramebufferObject*>(ptr)->mirrorVertically();
 }
 
-void QQuickFramebufferObject_ConnectMirrorVerticallyChanged(void* ptr)
+void QQuickFramebufferObject_ConnectMirrorVerticallyChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickFramebufferObject*>(ptr), static_cast<void (QQuickFramebufferObject::*)(bool)>(&QQuickFramebufferObject::mirrorVerticallyChanged), static_cast<MyQQuickFramebufferObject*>(ptr), static_cast<void (MyQQuickFramebufferObject::*)(bool)>(&MyQQuickFramebufferObject::Signal_MirrorVerticallyChanged));
+	QObject::connect(static_cast<QQuickFramebufferObject*>(ptr), static_cast<void (QQuickFramebufferObject::*)(bool)>(&QQuickFramebufferObject::mirrorVerticallyChanged), static_cast<MyQQuickFramebufferObject*>(ptr), static_cast<void (MyQQuickFramebufferObject::*)(bool)>(&MyQQuickFramebufferObject::Signal_MirrorVerticallyChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickFramebufferObject_DisconnectMirrorVerticallyChanged(void* ptr)
@@ -254,9 +278,9 @@ char QQuickFramebufferObject_TextureFollowsItemSize(void* ptr)
 	return static_cast<QQuickFramebufferObject*>(ptr)->textureFollowsItemSize();
 }
 
-void QQuickFramebufferObject_ConnectTextureFollowsItemSizeChanged(void* ptr)
+void QQuickFramebufferObject_ConnectTextureFollowsItemSizeChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickFramebufferObject*>(ptr), static_cast<void (QQuickFramebufferObject::*)(bool)>(&QQuickFramebufferObject::textureFollowsItemSizeChanged), static_cast<MyQQuickFramebufferObject*>(ptr), static_cast<void (MyQQuickFramebufferObject::*)(bool)>(&MyQQuickFramebufferObject::Signal_TextureFollowsItemSizeChanged));
+	QObject::connect(static_cast<QQuickFramebufferObject*>(ptr), static_cast<void (QQuickFramebufferObject::*)(bool)>(&QQuickFramebufferObject::textureFollowsItemSizeChanged), static_cast<MyQQuickFramebufferObject*>(ptr), static_cast<void (MyQQuickFramebufferObject::*)(bool)>(&MyQQuickFramebufferObject::Signal_TextureFollowsItemSizeChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickFramebufferObject_DisconnectTextureFollowsItemSizeChanged(void* ptr)
@@ -272,14 +296,19 @@ void QQuickFramebufferObject_TextureFollowsItemSizeChanged(void* ptr, char vbo)
 class MyQQuickImageProvider: public QQuickImageProvider
 {
 public:
-	MyQQuickImageProvider(QQmlImageProviderBase::ImageType ty, QQmlImageProviderBase::Flags flags = Flags()) : QQuickImageProvider(ty, flags) {};
+	MyQQuickImageProvider(QQmlImageProviderBase::ImageType ty, QQmlImageProviderBase::Flags flags = Flags()) : QQuickImageProvider(ty, flags) {QQuickImageProvider_QQuickImageProvider_QRegisterMetaType();};
 	QQmlImageProviderBase::Flags flags() const { return static_cast<QQmlImageProviderBase::Flag>(callbackQQuickImageProvider_Flags(const_cast<void*>(static_cast<const void*>(this)))); };
 	QQmlImageProviderBase::ImageType imageType() const { return static_cast<QQmlImageProviderBase::ImageType>(callbackQQuickImageProvider_ImageType(const_cast<void*>(static_cast<const void*>(this)))); };
-	QImage requestImage(const QString & id, QSize * size, const QSize & requestedSize) { QByteArray t87ea5d = id.toUtf8(); QtQuick_PackedString idPacked = { const_cast<char*>(t87ea5d.prepend("WHITESPACE").constData()+10), t87ea5d.size()-10 };return *static_cast<QImage*>(callbackQQuickImageProvider_RequestImage(this, idPacked, size, const_cast<QSize*>(&requestedSize))); };
-	QPixmap requestPixmap(const QString & id, QSize * size, const QSize & requestedSize) { QByteArray t87ea5d = id.toUtf8(); QtQuick_PackedString idPacked = { const_cast<char*>(t87ea5d.prepend("WHITESPACE").constData()+10), t87ea5d.size()-10 };return *static_cast<QPixmap*>(callbackQQuickImageProvider_RequestPixmap(this, idPacked, size, const_cast<QSize*>(&requestedSize))); };
-	QQuickTextureFactory * requestTexture(const QString & id, QSize * size, const QSize & requestedSize) { QByteArray t87ea5d = id.toUtf8(); QtQuick_PackedString idPacked = { const_cast<char*>(t87ea5d.prepend("WHITESPACE").constData()+10), t87ea5d.size()-10 };return static_cast<QQuickTextureFactory*>(callbackQQuickImageProvider_RequestTexture(this, idPacked, size, const_cast<QSize*>(&requestedSize))); };
+	QImage requestImage(const QString & id, QSize * size, const QSize & requestedSize) { QByteArray* t87ea5d = new QByteArray(id.toUtf8()); QtQuick_PackedString idPacked = { const_cast<char*>(t87ea5d->prepend("WHITESPACE").constData()+10), t87ea5d->size()-10, t87ea5d };return *static_cast<QImage*>(callbackQQuickImageProvider_RequestImage(this, idPacked, size, const_cast<QSize*>(&requestedSize))); };
+	QPixmap requestPixmap(const QString & id, QSize * size, const QSize & requestedSize) { QByteArray* t87ea5d = new QByteArray(id.toUtf8()); QtQuick_PackedString idPacked = { const_cast<char*>(t87ea5d->prepend("WHITESPACE").constData()+10), t87ea5d->size()-10, t87ea5d };return *static_cast<QPixmap*>(callbackQQuickImageProvider_RequestPixmap(this, idPacked, size, const_cast<QSize*>(&requestedSize))); };
+	QQuickTextureFactory * requestTexture(const QString & id, QSize * size, const QSize & requestedSize) { QByteArray* t87ea5d = new QByteArray(id.toUtf8()); QtQuick_PackedString idPacked = { const_cast<char*>(t87ea5d->prepend("WHITESPACE").constData()+10), t87ea5d->size()-10, t87ea5d };return static_cast<QQuickTextureFactory*>(callbackQQuickImageProvider_RequestTexture(this, idPacked, size, const_cast<QSize*>(&requestedSize))); };
 	 ~MyQQuickImageProvider() { callbackQQuickImageProvider_DestroyQQuickImageProvider(this); };
 };
+
+Q_DECLARE_METATYPE(QQuickImageProvider*)
+Q_DECLARE_METATYPE(MyQQuickImageProvider*)
+
+int QQuickImageProvider_QQuickImageProvider_QRegisterMetaType(){qRegisterMetaType<QQuickImageProvider*>(); return qRegisterMetaType<MyQQuickImageProvider*>();}
 
 void* QQuickImageProvider_NewQQuickImageProvider(long long ty, long long flags)
 {
@@ -385,10 +414,11 @@ public:
 	bool event(QEvent * e) { return callbackQQuickImageResponse_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQQuickImageResponse_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQuickImageResponse_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtQuick_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQQuickImageResponse_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtQuick_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQQuickImageResponse_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQQuickImageResponse_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QQuickImageResponse*)
 Q_DECLARE_METATYPE(MyQQuickImageResponse*)
 
 int QQuickImageResponse_QQuickImageResponse_QRegisterMetaType(){qRegisterMetaType<QQuickImageResponse*>(); return qRegisterMetaType<MyQQuickImageResponse*>();}
@@ -410,17 +440,17 @@ void QQuickImageResponse_CancelDefault(void* ptr)
 
 struct QtQuick_PackedString QQuickImageResponse_ErrorString(void* ptr)
 {
-	return ({ QByteArray tfd721f = static_cast<QQuickImageResponse*>(ptr)->errorString().toUtf8(); QtQuick_PackedString { const_cast<char*>(tfd721f.prepend("WHITESPACE").constData()+10), tfd721f.size()-10 }; });
+	return ({ QByteArray* tfd721f = new QByteArray(static_cast<QQuickImageResponse*>(ptr)->errorString().toUtf8()); QtQuick_PackedString { const_cast<char*>(tfd721f->prepend("WHITESPACE").constData()+10), tfd721f->size()-10, tfd721f }; });
 }
 
 struct QtQuick_PackedString QQuickImageResponse_ErrorStringDefault(void* ptr)
 {
-		return ({ QByteArray t94ceb3 = static_cast<QQuickImageResponse*>(ptr)->QQuickImageResponse::errorString().toUtf8(); QtQuick_PackedString { const_cast<char*>(t94ceb3.prepend("WHITESPACE").constData()+10), t94ceb3.size()-10 }; });
+		return ({ QByteArray* t94ceb3 = new QByteArray(static_cast<QQuickImageResponse*>(ptr)->QQuickImageResponse::errorString().toUtf8()); QtQuick_PackedString { const_cast<char*>(t94ceb3->prepend("WHITESPACE").constData()+10), t94ceb3->size()-10, t94ceb3 }; });
 }
 
-void QQuickImageResponse_ConnectFinished(void* ptr)
+void QQuickImageResponse_ConnectFinished(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickImageResponse*>(ptr), static_cast<void (QQuickImageResponse::*)()>(&QQuickImageResponse::finished), static_cast<MyQQuickImageResponse*>(ptr), static_cast<void (MyQQuickImageResponse::*)()>(&MyQQuickImageResponse::Signal_Finished));
+	QObject::connect(static_cast<QQuickImageResponse*>(ptr), static_cast<void (QQuickImageResponse::*)()>(&QQuickImageResponse::finished), static_cast<MyQQuickImageResponse*>(ptr), static_cast<void (MyQQuickImageResponse::*)()>(&MyQQuickImageResponse::Signal_Finished), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickImageResponse_DisconnectFinished(void* ptr)
@@ -525,26 +555,6 @@ void* QQuickImageResponse___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QQuickImageResponse___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QQuickImageResponse___qFindChildren_setList2(void* ptr, void* i)
-{
-	if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QQuickItem*>(i));
-	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-	}
-}
-
-void* QQuickImageResponse___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 void QQuickImageResponse_ChildEventDefault(void* ptr, void* event)
 {
 		static_cast<QQuickImageResponse*>(ptr)->QQuickImageResponse::childEvent(static_cast<QChildEvent*>(event));
@@ -641,7 +651,7 @@ public:
 	void Signal_RotationChanged() { callbackQQuickItem_RotationChanged(this); };
 	void Signal_ScaleChanged() { callbackQQuickItem_ScaleChanged(this); };
 	void Signal_SmoothChanged(bool vbo) { callbackQQuickItem_SmoothChanged(this, vbo); };
-	void Signal_StateChanged(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtQuick_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQQuickItem_StateChanged(this, vqsPacked); };
+	void Signal_StateChanged(const QString & vqs) { QByteArray* tda39a3 = new QByteArray(vqs.toUtf8()); QtQuick_PackedString vqsPacked = { const_cast<char*>(tda39a3->prepend("WHITESPACE").constData()+10), tda39a3->size()-10, tda39a3 };callbackQQuickItem_StateChanged(this, vqsPacked); };
 	QSGTextureProvider * textureProvider() const { return static_cast<QSGTextureProvider*>(callbackQQuickItem_TextureProvider(const_cast<void*>(static_cast<const void*>(this)))); };
 	void touchEvent(QTouchEvent * event) { callbackQQuickItem_TouchEvent(this, event); };
 	void touchUngrabEvent() { callbackQQuickItem_TouchUngrabEvent(this); };
@@ -664,7 +674,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQQuickItem_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQQuickItem_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQuickItem_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtQuick_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQQuickItem_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtQuick_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQQuickItem_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQQuickItem_TimerEvent(this, event); };
 };
 
@@ -692,9 +702,9 @@ long long QQuickItem_AcceptedMouseButtons(void* ptr)
 		return static_cast<QQuickItem*>(ptr)->acceptedMouseButtons();
 }
 
-void QQuickItem_ConnectActiveFocusChanged(void* ptr)
+void QQuickItem_ConnectActiveFocusChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)(bool)>(&QQuickItem::activeFocusChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)(bool)>(&MyQQuickItem::Signal_ActiveFocusChanged));
+	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)(bool)>(&QQuickItem::activeFocusChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)(bool)>(&MyQQuickItem::Signal_ActiveFocusChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickItem_DisconnectActiveFocusChanged(void* ptr)
@@ -712,9 +722,9 @@ char QQuickItem_ActiveFocusOnTab(void* ptr)
 		return static_cast<QQuickItem*>(ptr)->activeFocusOnTab();
 }
 
-void QQuickItem_ConnectActiveFocusOnTabChanged(void* ptr)
+void QQuickItem_ConnectActiveFocusOnTabChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)(bool)>(&QQuickItem::activeFocusOnTabChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)(bool)>(&MyQQuickItem::Signal_ActiveFocusOnTabChanged));
+	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)(bool)>(&QQuickItem::activeFocusOnTabChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)(bool)>(&MyQQuickItem::Signal_ActiveFocusOnTabChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickItem_DisconnectActiveFocusOnTabChanged(void* ptr)
@@ -732,9 +742,9 @@ char QQuickItem_Antialiasing(void* ptr)
 		return static_cast<QQuickItem*>(ptr)->antialiasing();
 }
 
-void QQuickItem_ConnectAntialiasingChanged(void* ptr)
+void QQuickItem_ConnectAntialiasingChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)(bool)>(&QQuickItem::antialiasingChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)(bool)>(&MyQQuickItem::Signal_AntialiasingChanged));
+	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)(bool)>(&QQuickItem::antialiasingChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)(bool)>(&MyQQuickItem::Signal_AntialiasingChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickItem_DisconnectAntialiasingChanged(void* ptr)
@@ -752,9 +762,9 @@ double QQuickItem_BaselineOffset(void* ptr)
 		return static_cast<QQuickItem*>(ptr)->baselineOffset();
 }
 
-void QQuickItem_ConnectBaselineOffsetChanged(void* ptr)
+void QQuickItem_ConnectBaselineOffsetChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)(qreal)>(&QQuickItem::baselineOffsetChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)(qreal)>(&MyQQuickItem::Signal_BaselineOffsetChanged));
+	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)(qreal)>(&QQuickItem::baselineOffsetChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)(qreal)>(&MyQQuickItem::Signal_BaselineOffsetChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickItem_DisconnectBaselineOffsetChanged(void* ptr)
@@ -774,7 +784,7 @@ void* QQuickItem_ChildAt(void* ptr, double x, double y)
 
 struct QtQuick_PackedList QQuickItem_ChildItems(void* ptr)
 {
-		return ({ QList<QQuickItem *>* tmpValue = new QList<QQuickItem *>(static_cast<QQuickItem*>(ptr)->childItems()); QtQuick_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QList<QQuickItem *>* tmpValue890fa7 = new QList<QQuickItem *>(static_cast<QQuickItem*>(ptr)->childItems()); QtQuick_PackedList { tmpValue890fa7, tmpValue890fa7->size() }; });
 }
 
 char QQuickItem_ChildMouseEventFilter(void* ptr, void* item, void* event)
@@ -798,9 +808,9 @@ void* QQuickItem_ChildrenRect(void* ptr)
 		return ({ QRectF tmpValue = static_cast<QQuickItem*>(ptr)->childrenRect(); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
-void QQuickItem_ConnectChildrenRectChanged(void* ptr)
+void QQuickItem_ConnectChildrenRectChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)(const QRectF &)>(&QQuickItem::childrenRectChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)(const QRectF &)>(&MyQQuickItem::Signal_ChildrenRectChanged));
+	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)(const QRectF &)>(&QQuickItem::childrenRectChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)(const QRectF &)>(&MyQQuickItem::Signal_ChildrenRectChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickItem_DisconnectChildrenRectChanged(void* ptr)
@@ -834,9 +844,9 @@ char QQuickItem_Clip(void* ptr)
 		return static_cast<QQuickItem*>(ptr)->clip();
 }
 
-void QQuickItem_ConnectClipChanged(void* ptr)
+void QQuickItem_ConnectClipChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)(bool)>(&QQuickItem::clipChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)(bool)>(&MyQQuickItem::Signal_ClipChanged));
+	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)(bool)>(&QQuickItem::clipChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)(bool)>(&MyQQuickItem::Signal_ClipChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickItem_DisconnectClipChanged(void* ptr)
@@ -870,9 +880,9 @@ void* QQuickItem_ContainmentMask(void* ptr)
 		return static_cast<QQuickItem*>(ptr)->containmentMask();
 }
 
-void QQuickItem_ConnectContainmentMaskChanged(void* ptr)
+void QQuickItem_ConnectContainmentMaskChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)()>(&QQuickItem::containmentMaskChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)()>(&MyQQuickItem::Signal_ContainmentMaskChanged));
+	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)()>(&QQuickItem::containmentMaskChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)()>(&MyQQuickItem::Signal_ContainmentMaskChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickItem_DisconnectContainmentMaskChanged(void* ptr)
@@ -970,9 +980,9 @@ void QQuickItem_DropEventDefault(void* ptr, void* event)
 	}
 }
 
-void QQuickItem_ConnectEnabledChanged(void* ptr)
+void QQuickItem_ConnectEnabledChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)()>(&QQuickItem::enabledChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)()>(&MyQQuickItem::Signal_EnabledChanged));
+	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)()>(&QQuickItem::enabledChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)()>(&MyQQuickItem::Signal_EnabledChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickItem_DisconnectEnabledChanged(void* ptr)
@@ -1011,9 +1021,9 @@ long long QQuickItem_Flags(void* ptr)
 		return static_cast<QQuickItem*>(ptr)->flags();
 }
 
-void QQuickItem_ConnectFocusChanged(void* ptr)
+void QQuickItem_ConnectFocusChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)(bool)>(&QQuickItem::focusChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)(bool)>(&MyQQuickItem::Signal_FocusChanged));
+	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)(bool)>(&QQuickItem::focusChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)(bool)>(&MyQQuickItem::Signal_FocusChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickItem_DisconnectFocusChanged(void* ptr)
@@ -1109,9 +1119,9 @@ double QQuickItem_Height(void* ptr)
 		return static_cast<QQuickItem*>(ptr)->height();
 }
 
-void QQuickItem_ConnectHeightChanged(void* ptr)
+void QQuickItem_ConnectHeightChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)()>(&QQuickItem::heightChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)()>(&MyQQuickItem::Signal_HeightChanged));
+	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)()>(&QQuickItem::heightChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)()>(&MyQQuickItem::Signal_HeightChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickItem_DisconnectHeightChanged(void* ptr)
@@ -1182,9 +1192,9 @@ double QQuickItem_ImplicitHeight(void* ptr)
 		return static_cast<QQuickItem*>(ptr)->implicitHeight();
 }
 
-void QQuickItem_ConnectImplicitHeightChanged(void* ptr)
+void QQuickItem_ConnectImplicitHeightChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)()>(&QQuickItem::implicitHeightChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)()>(&MyQQuickItem::Signal_ImplicitHeightChanged));
+	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)()>(&QQuickItem::implicitHeightChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)()>(&MyQQuickItem::Signal_ImplicitHeightChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickItem_DisconnectImplicitHeightChanged(void* ptr)
@@ -1202,9 +1212,9 @@ double QQuickItem_ImplicitWidth(void* ptr)
 		return static_cast<QQuickItem*>(ptr)->implicitWidth();
 }
 
-void QQuickItem_ConnectImplicitWidthChanged(void* ptr)
+void QQuickItem_ConnectImplicitWidthChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)()>(&QQuickItem::implicitWidthChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)()>(&MyQQuickItem::Signal_ImplicitWidthChanged));
+	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)()>(&QQuickItem::implicitWidthChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)()>(&MyQQuickItem::Signal_ImplicitWidthChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickItem_DisconnectImplicitWidthChanged(void* ptr)
@@ -1472,9 +1482,9 @@ double QQuickItem_Opacity(void* ptr)
 		return static_cast<QQuickItem*>(ptr)->opacity();
 }
 
-void QQuickItem_ConnectOpacityChanged(void* ptr)
+void QQuickItem_ConnectOpacityChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)()>(&QQuickItem::opacityChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)()>(&MyQQuickItem::Signal_OpacityChanged));
+	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)()>(&QQuickItem::opacityChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)()>(&MyQQuickItem::Signal_OpacityChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickItem_DisconnectOpacityChanged(void* ptr)
@@ -1487,9 +1497,9 @@ void QQuickItem_OpacityChanged(void* ptr)
 		static_cast<QQuickItem*>(ptr)->opacityChanged();
 }
 
-void QQuickItem_ConnectParentChanged(void* ptr)
+void QQuickItem_ConnectParentChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)(QQuickItem *)>(&QQuickItem::parentChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)(QQuickItem *)>(&MyQQuickItem::Signal_ParentChanged));
+	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)(QQuickItem *)>(&QQuickItem::parentChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)(QQuickItem *)>(&MyQQuickItem::Signal_ParentChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickItem_DisconnectParentChanged(void* ptr)
@@ -1548,9 +1558,9 @@ double QQuickItem_Rotation(void* ptr)
 		return static_cast<QQuickItem*>(ptr)->rotation();
 }
 
-void QQuickItem_ConnectRotationChanged(void* ptr)
+void QQuickItem_ConnectRotationChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)()>(&QQuickItem::rotationChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)()>(&MyQQuickItem::Signal_RotationChanged));
+	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)()>(&QQuickItem::rotationChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)()>(&MyQQuickItem::Signal_RotationChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickItem_DisconnectRotationChanged(void* ptr)
@@ -1568,9 +1578,9 @@ double QQuickItem_Scale(void* ptr)
 		return static_cast<QQuickItem*>(ptr)->scale();
 }
 
-void QQuickItem_ConnectScaleChanged(void* ptr)
+void QQuickItem_ConnectScaleChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)()>(&QQuickItem::scaleChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)()>(&MyQQuickItem::Signal_ScaleChanged));
+	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)()>(&QQuickItem::scaleChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)()>(&MyQQuickItem::Signal_ScaleChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickItem_DisconnectScaleChanged(void* ptr)
@@ -1767,9 +1777,9 @@ char QQuickItem_Smooth(void* ptr)
 		return static_cast<QQuickItem*>(ptr)->smooth();
 }
 
-void QQuickItem_ConnectSmoothChanged(void* ptr)
+void QQuickItem_ConnectSmoothChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)(bool)>(&QQuickItem::smoothChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)(bool)>(&MyQQuickItem::Signal_SmoothChanged));
+	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)(bool)>(&QQuickItem::smoothChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)(bool)>(&MyQQuickItem::Signal_SmoothChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickItem_DisconnectSmoothChanged(void* ptr)
@@ -1794,12 +1804,12 @@ void QQuickItem_StackBefore(void* ptr, void* sibling)
 
 struct QtQuick_PackedString QQuickItem_State(void* ptr)
 {
-		return ({ QByteArray t803f42 = static_cast<QQuickItem*>(ptr)->state().toUtf8(); QtQuick_PackedString { const_cast<char*>(t803f42.prepend("WHITESPACE").constData()+10), t803f42.size()-10 }; });
+		return ({ QByteArray* t803f42 = new QByteArray(static_cast<QQuickItem*>(ptr)->state().toUtf8()); QtQuick_PackedString { const_cast<char*>(t803f42->prepend("WHITESPACE").constData()+10), t803f42->size()-10, t803f42 }; });
 }
 
-void QQuickItem_ConnectStateChanged(void* ptr)
+void QQuickItem_ConnectStateChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)(const QString &)>(&QQuickItem::stateChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)(const QString &)>(&MyQQuickItem::Signal_StateChanged));
+	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)(const QString &)>(&QQuickItem::stateChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)(const QString &)>(&MyQQuickItem::Signal_StateChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickItem_DisconnectStateChanged(void* ptr)
@@ -1865,10 +1875,10 @@ long long QQuickItem_TransformOrigin(void* ptr)
 		return static_cast<QQuickItem*>(ptr)->transformOrigin();
 }
 
-void QQuickItem_ConnectTransformOriginChanged(void* ptr)
+void QQuickItem_ConnectTransformOriginChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<QQuickItem::TransformOrigin>();
-	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)(QQuickItem::TransformOrigin)>(&QQuickItem::transformOriginChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)(QQuickItem::TransformOrigin)>(&MyQQuickItem::Signal_TransformOriginChanged));
+	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)(QQuickItem::TransformOrigin)>(&QQuickItem::transformOriginChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)(QQuickItem::TransformOrigin)>(&MyQQuickItem::Signal_TransformOriginChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickItem_DisconnectTransformOriginChanged(void* ptr)
@@ -1933,9 +1943,9 @@ void QQuickItem_UpdatePolishDefault(void* ptr)
 	}
 }
 
-void QQuickItem_ConnectVisibleChanged(void* ptr)
+void QQuickItem_ConnectVisibleChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)()>(&QQuickItem::visibleChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)()>(&MyQQuickItem::Signal_VisibleChanged));
+	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)()>(&QQuickItem::visibleChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)()>(&MyQQuickItem::Signal_VisibleChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickItem_DisconnectVisibleChanged(void* ptr)
@@ -1969,9 +1979,9 @@ double QQuickItem_Width(void* ptr)
 		return static_cast<QQuickItem*>(ptr)->width();
 }
 
-void QQuickItem_ConnectWidthChanged(void* ptr)
+void QQuickItem_ConnectWidthChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)()>(&QQuickItem::widthChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)()>(&MyQQuickItem::Signal_WidthChanged));
+	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)()>(&QQuickItem::widthChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)()>(&MyQQuickItem::Signal_WidthChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickItem_DisconnectWidthChanged(void* ptr)
@@ -1994,9 +2004,9 @@ void* QQuickItem_Window(void* ptr)
 		return static_cast<QQuickItem*>(ptr)->window();
 }
 
-void QQuickItem_ConnectWindowChanged(void* ptr)
+void QQuickItem_ConnectWindowChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)(QQuickWindow *)>(&QQuickItem::windowChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)(QQuickWindow *)>(&MyQQuickItem::Signal_WindowChanged));
+	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)(QQuickWindow *)>(&QQuickItem::windowChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)(QQuickWindow *)>(&MyQQuickItem::Signal_WindowChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickItem_DisconnectWindowChanged(void* ptr)
@@ -2014,9 +2024,9 @@ double QQuickItem_X(void* ptr)
 		return static_cast<QQuickItem*>(ptr)->x();
 }
 
-void QQuickItem_ConnectXChanged(void* ptr)
+void QQuickItem_ConnectXChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)()>(&QQuickItem::xChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)()>(&MyQQuickItem::Signal_XChanged));
+	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)()>(&QQuickItem::xChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)()>(&MyQQuickItem::Signal_XChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickItem_DisconnectXChanged(void* ptr)
@@ -2034,9 +2044,9 @@ double QQuickItem_Y(void* ptr)
 		return static_cast<QQuickItem*>(ptr)->y();
 }
 
-void QQuickItem_ConnectYChanged(void* ptr)
+void QQuickItem_ConnectYChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)()>(&QQuickItem::yChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)()>(&MyQQuickItem::Signal_YChanged));
+	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)()>(&QQuickItem::yChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)()>(&MyQQuickItem::Signal_YChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickItem_DisconnectYChanged(void* ptr)
@@ -2054,9 +2064,9 @@ double QQuickItem_Z(void* ptr)
 		return static_cast<QQuickItem*>(ptr)->z();
 }
 
-void QQuickItem_ConnectZChanged(void* ptr)
+void QQuickItem_ConnectZChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)()>(&QQuickItem::zChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)()>(&MyQQuickItem::Signal_ZChanged));
+	QObject::connect(static_cast<QQuickItem*>(ptr), static_cast<void (QQuickItem::*)()>(&QQuickItem::zChanged), static_cast<MyQQuickItem*>(ptr), static_cast<void (MyQQuickItem::*)()>(&MyQQuickItem::Signal_ZChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickItem_DisconnectZChanged(void* ptr)
@@ -2183,26 +2193,6 @@ void QQuickItem___findChildren_setList3(void* ptr, void* i)
 }
 
 void* QQuickItem___findChildren_newList3(void* ptr)
-{
-	Q_UNUSED(ptr);
-		return new QList<QObject*>();
-}
-
-void* QQuickItem___qFindChildren_atList2(void* ptr, int i)
-{
-		return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QQuickItem___qFindChildren_setList2(void* ptr, void* i)
-{
-	if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QQuickItem*>(i));
-	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-	}
-}
-
-void* QQuickItem___qFindChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
 		return new QList<QObject*>();
@@ -2365,10 +2355,11 @@ public:
 	bool event(QEvent * e) { return callbackQQuickItemGrabResult_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQQuickItemGrabResult_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQuickItemGrabResult_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtQuick_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQQuickItemGrabResult_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtQuick_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQQuickItemGrabResult_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQQuickItemGrabResult_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QQuickItemGrabResult*)
 Q_DECLARE_METATYPE(MyQQuickItemGrabResult*)
 
 int QQuickItemGrabResult_QQuickItemGrabResult_QRegisterMetaType(){qRegisterMetaType<QQuickItemGrabResult*>(); return qRegisterMetaType<MyQQuickItemGrabResult*>();}
@@ -2378,9 +2369,9 @@ void* QQuickItemGrabResult_Image(void* ptr)
 	return new QImage(static_cast<QQuickItemGrabResult*>(ptr)->image());
 }
 
-void QQuickItemGrabResult_ConnectReady(void* ptr)
+void QQuickItemGrabResult_ConnectReady(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickItemGrabResult*>(ptr), static_cast<void (QQuickItemGrabResult::*)()>(&QQuickItemGrabResult::ready), static_cast<MyQQuickItemGrabResult*>(ptr), static_cast<void (MyQQuickItemGrabResult::*)()>(&MyQQuickItemGrabResult::Signal_Ready));
+	QObject::connect(static_cast<QQuickItemGrabResult*>(ptr), static_cast<void (QQuickItemGrabResult::*)()>(&QQuickItemGrabResult::ready), static_cast<MyQQuickItemGrabResult*>(ptr), static_cast<void (MyQQuickItemGrabResult::*)()>(&MyQQuickItemGrabResult::Signal_Ready), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickItemGrabResult_DisconnectReady(void* ptr)
@@ -2474,26 +2465,6 @@ void QQuickItemGrabResult___findChildren_setList3(void* ptr, void* i)
 }
 
 void* QQuickItemGrabResult___findChildren_newList3(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
-void* QQuickItemGrabResult___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QQuickItemGrabResult___qFindChildren_setList2(void* ptr, void* i)
-{
-	if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QQuickItem*>(i));
-	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-	}
-}
-
-void* QQuickItemGrabResult___qFindChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();
@@ -2603,7 +2574,7 @@ public:
 	void Signal_RotationChanged() { callbackQQuickItem_RotationChanged(this); };
 	void Signal_ScaleChanged() { callbackQQuickItem_ScaleChanged(this); };
 	void Signal_SmoothChanged(bool vbo) { callbackQQuickItem_SmoothChanged(this, vbo); };
-	void Signal_StateChanged(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtQuick_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQQuickItem_StateChanged(this, vqsPacked); };
+	void Signal_StateChanged(const QString & vqs) { QByteArray* tda39a3 = new QByteArray(vqs.toUtf8()); QtQuick_PackedString vqsPacked = { const_cast<char*>(tda39a3->prepend("WHITESPACE").constData()+10), tda39a3->size()-10, tda39a3 };callbackQQuickItem_StateChanged(this, vqsPacked); };
 	void touchEvent(QTouchEvent * event) { callbackQQuickItem_TouchEvent(this, event); };
 	void touchUngrabEvent() { callbackQQuickItem_TouchUngrabEvent(this); };
 	void Signal_TransformOriginChanged(QQuickItem::TransformOrigin vqq) { callbackQQuickItem_TransformOriginChanged(this, vqq); };
@@ -2623,10 +2594,11 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQQuickItem_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQQuickItem_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQuickItem_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtQuick_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQQuickItem_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtQuick_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQQuickItem_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQQuickItem_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QQuickPaintedItem*)
 Q_DECLARE_METATYPE(MyQQuickPaintedItem*)
 
 int QQuickPaintedItem_QQuickPaintedItem_QRegisterMetaType(){qRegisterMetaType<QQuickPaintedItem*>(); return qRegisterMetaType<MyQQuickPaintedItem*>();}
@@ -2641,9 +2613,9 @@ double QQuickPaintedItem_ContentsScale(void* ptr)
 	return static_cast<QQuickPaintedItem*>(ptr)->contentsScale();
 }
 
-void QQuickPaintedItem_ConnectContentsScaleChanged(void* ptr)
+void QQuickPaintedItem_ConnectContentsScaleChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickPaintedItem*>(ptr), static_cast<void (QQuickPaintedItem::*)()>(&QQuickPaintedItem::contentsScaleChanged), static_cast<MyQQuickPaintedItem*>(ptr), static_cast<void (MyQQuickPaintedItem::*)()>(&MyQQuickPaintedItem::Signal_ContentsScaleChanged));
+	QObject::connect(static_cast<QQuickPaintedItem*>(ptr), static_cast<void (QQuickPaintedItem::*)()>(&QQuickPaintedItem::contentsScaleChanged), static_cast<MyQQuickPaintedItem*>(ptr), static_cast<void (MyQQuickPaintedItem::*)()>(&MyQQuickPaintedItem::Signal_ContentsScaleChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickPaintedItem_DisconnectContentsScaleChanged(void* ptr)
@@ -2661,9 +2633,9 @@ void* QQuickPaintedItem_ContentsSize(void* ptr)
 	return ({ QSize tmpValue = static_cast<QQuickPaintedItem*>(ptr)->contentsSize(); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
-void QQuickPaintedItem_ConnectContentsSizeChanged(void* ptr)
+void QQuickPaintedItem_ConnectContentsSizeChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickPaintedItem*>(ptr), static_cast<void (QQuickPaintedItem::*)()>(&QQuickPaintedItem::contentsSizeChanged), static_cast<MyQQuickPaintedItem*>(ptr), static_cast<void (MyQQuickPaintedItem::*)()>(&MyQQuickPaintedItem::Signal_ContentsSizeChanged));
+	QObject::connect(static_cast<QQuickPaintedItem*>(ptr), static_cast<void (QQuickPaintedItem::*)()>(&QQuickPaintedItem::contentsSizeChanged), static_cast<MyQQuickPaintedItem*>(ptr), static_cast<void (MyQQuickPaintedItem::*)()>(&MyQQuickPaintedItem::Signal_ContentsSizeChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickPaintedItem_DisconnectContentsSizeChanged(void* ptr)
@@ -2681,9 +2653,9 @@ void* QQuickPaintedItem_FillColor(void* ptr)
 	return new QColor(static_cast<QQuickPaintedItem*>(ptr)->fillColor());
 }
 
-void QQuickPaintedItem_ConnectFillColorChanged(void* ptr)
+void QQuickPaintedItem_ConnectFillColorChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickPaintedItem*>(ptr), static_cast<void (QQuickPaintedItem::*)()>(&QQuickPaintedItem::fillColorChanged), static_cast<MyQQuickPaintedItem*>(ptr), static_cast<void (MyQQuickPaintedItem::*)()>(&MyQQuickPaintedItem::Signal_FillColorChanged));
+	QObject::connect(static_cast<QQuickPaintedItem*>(ptr), static_cast<void (QQuickPaintedItem::*)()>(&QQuickPaintedItem::fillColorChanged), static_cast<MyQQuickPaintedItem*>(ptr), static_cast<void (MyQQuickPaintedItem::*)()>(&MyQQuickPaintedItem::Signal_FillColorChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickPaintedItem_DisconnectFillColorChanged(void* ptr)
@@ -2721,9 +2693,9 @@ long long QQuickPaintedItem_RenderTarget(void* ptr)
 	return static_cast<QQuickPaintedItem*>(ptr)->renderTarget();
 }
 
-void QQuickPaintedItem_ConnectRenderTargetChanged(void* ptr)
+void QQuickPaintedItem_ConnectRenderTargetChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickPaintedItem*>(ptr), static_cast<void (QQuickPaintedItem::*)()>(&QQuickPaintedItem::renderTargetChanged), static_cast<MyQQuickPaintedItem*>(ptr), static_cast<void (MyQQuickPaintedItem::*)()>(&MyQQuickPaintedItem::Signal_RenderTargetChanged));
+	QObject::connect(static_cast<QQuickPaintedItem*>(ptr), static_cast<void (QQuickPaintedItem::*)()>(&QQuickPaintedItem::renderTargetChanged), static_cast<MyQQuickPaintedItem*>(ptr), static_cast<void (MyQQuickPaintedItem::*)()>(&MyQQuickPaintedItem::Signal_RenderTargetChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickPaintedItem_DisconnectRenderTargetChanged(void* ptr)
@@ -2786,9 +2758,9 @@ void* QQuickPaintedItem_TextureSize(void* ptr)
 	return ({ QSize tmpValue = static_cast<QQuickPaintedItem*>(ptr)->textureSize(); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
-void QQuickPaintedItem_ConnectTextureSizeChanged(void* ptr)
+void QQuickPaintedItem_ConnectTextureSizeChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickPaintedItem*>(ptr), static_cast<void (QQuickPaintedItem::*)()>(&QQuickPaintedItem::textureSizeChanged), static_cast<MyQQuickPaintedItem*>(ptr), static_cast<void (MyQQuickPaintedItem::*)()>(&MyQQuickPaintedItem::Signal_TextureSizeChanged));
+	QObject::connect(static_cast<QQuickPaintedItem*>(ptr), static_cast<void (QQuickPaintedItem::*)()>(&QQuickPaintedItem::textureSizeChanged), static_cast<MyQQuickPaintedItem*>(ptr), static_cast<void (MyQQuickPaintedItem::*)()>(&MyQQuickPaintedItem::Signal_TextureSizeChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickPaintedItem_DisconnectTextureSizeChanged(void* ptr)
@@ -2834,10 +2806,11 @@ public:
 	bool event(QEvent * e) { return callbackQQuickRenderControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQQuickRenderControl_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQuickRenderControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtQuick_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQQuickRenderControl_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtQuick_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQQuickRenderControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQQuickRenderControl_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QQuickRenderControl*)
 Q_DECLARE_METATYPE(MyQQuickRenderControl*)
 
 int QQuickRenderControl_QQuickRenderControl_QRegisterMetaType(){qRegisterMetaType<QQuickRenderControl*>(); return qRegisterMetaType<MyQQuickRenderControl*>();}
@@ -2919,9 +2892,9 @@ void QQuickRenderControl_Render(void* ptr)
 	static_cast<QQuickRenderControl*>(ptr)->render();
 }
 
-void QQuickRenderControl_ConnectRenderRequested(void* ptr)
+void QQuickRenderControl_ConnectRenderRequested(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickRenderControl*>(ptr), static_cast<void (QQuickRenderControl::*)()>(&QQuickRenderControl::renderRequested), static_cast<MyQQuickRenderControl*>(ptr), static_cast<void (MyQQuickRenderControl::*)()>(&MyQQuickRenderControl::Signal_RenderRequested));
+	QObject::connect(static_cast<QQuickRenderControl*>(ptr), static_cast<void (QQuickRenderControl::*)()>(&QQuickRenderControl::renderRequested), static_cast<MyQQuickRenderControl*>(ptr), static_cast<void (MyQQuickRenderControl::*)()>(&MyQQuickRenderControl::Signal_RenderRequested), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickRenderControl_DisconnectRenderRequested(void* ptr)
@@ -2949,9 +2922,9 @@ void* QQuickRenderControl_QQuickRenderControl_RenderWindowFor(void* win, void* o
 	return QQuickRenderControl::renderWindowFor(static_cast<QQuickWindow*>(win), static_cast<QPoint*>(offset));
 }
 
-void QQuickRenderControl_ConnectSceneChanged(void* ptr)
+void QQuickRenderControl_ConnectSceneChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickRenderControl*>(ptr), static_cast<void (QQuickRenderControl::*)()>(&QQuickRenderControl::sceneChanged), static_cast<MyQQuickRenderControl*>(ptr), static_cast<void (MyQQuickRenderControl::*)()>(&MyQQuickRenderControl::Signal_SceneChanged));
+	QObject::connect(static_cast<QQuickRenderControl*>(ptr), static_cast<void (QQuickRenderControl::*)()>(&QQuickRenderControl::sceneChanged), static_cast<MyQQuickRenderControl*>(ptr), static_cast<void (MyQQuickRenderControl::*)()>(&MyQQuickRenderControl::Signal_SceneChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickRenderControl_DisconnectSceneChanged(void* ptr)
@@ -3056,26 +3029,6 @@ void* QQuickRenderControl___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QQuickRenderControl___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QQuickRenderControl___qFindChildren_setList2(void* ptr, void* i)
-{
-	if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QQuickItem*>(i));
-	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-	}
-}
-
-void* QQuickRenderControl___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 void QQuickRenderControl_ChildEventDefault(void* ptr, void* event)
 {
 		static_cast<QQuickRenderControl*>(ptr)->QQuickRenderControl::childEvent(static_cast<QChildEvent*>(event));
@@ -3138,7 +3091,7 @@ public:
 	bool event(QEvent * e) { return callbackQQuickTextDocument_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQQuickTextDocument_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQuickTextDocument_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtQuick_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQQuickTextDocument_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtQuick_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQQuickTextDocument_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQQuickTextDocument_TimerEvent(this, event); };
 };
 
@@ -3232,26 +3185,6 @@ void* QQuickTextDocument___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QQuickTextDocument___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QQuickTextDocument___qFindChildren_setList2(void* ptr, void* i)
-{
-	if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QQuickItem*>(i));
-	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-	}
-}
-
-void* QQuickTextDocument___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 void QQuickTextDocument_ChildEventDefault(void* ptr, void* event)
 {
 		static_cast<QQuickTextDocument*>(ptr)->QQuickTextDocument::childEvent(static_cast<QChildEvent*>(event));
@@ -3319,10 +3252,11 @@ public:
 	bool event(QEvent * e) { return callbackQQuickTextureFactory_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQQuickTextureFactory_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQuickTextureFactory_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtQuick_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQQuickTextureFactory_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtQuick_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQQuickTextureFactory_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQQuickTextureFactory_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QQuickTextureFactory*)
 Q_DECLARE_METATYPE(MyQQuickTextureFactory*)
 
 int QQuickTextureFactory_QQuickTextureFactory_QRegisterMetaType(){qRegisterMetaType<QQuickTextureFactory*>(); return qRegisterMetaType<MyQQuickTextureFactory*>();}
@@ -3449,26 +3383,6 @@ void* QQuickTextureFactory___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QQuickTextureFactory___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QQuickTextureFactory___qFindChildren_setList2(void* ptr, void* i)
-{
-	if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QQuickItem*>(i));
-	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-	}
-}
-
-void* QQuickTextureFactory___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 void QQuickTextureFactory_ChildEventDefault(void* ptr, void* event)
 {
 		static_cast<QQuickTextureFactory*>(ptr)->QQuickTextureFactory::childEvent(static_cast<QChildEvent*>(event));
@@ -3530,7 +3444,7 @@ public:
 	bool event(QEvent * e) { return callbackQQuickTransform_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQQuickTransform_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQuickTransform_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtQuick_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQQuickTransform_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtQuick_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQQuickTransform_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQQuickTransform_TimerEvent(this, event); };
 };
 
@@ -3609,26 +3523,6 @@ void QQuickTransform___findChildren_setList3(void* ptr, void* i)
 }
 
 void* QQuickTransform___findChildren_newList3(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
-void* QQuickTransform___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QQuickTransform___qFindChildren_setList2(void* ptr, void* i)
-{
-	if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QQuickItem*>(i));
-	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-	}
-}
-
-void* QQuickTransform___qFindChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();
@@ -3716,7 +3610,7 @@ public:
 	void releaseResources() { callbackQQuickWindow_ReleaseResources(this); };
 	void resizeEvent(QResizeEvent * ev) { callbackQQuickWindow_ResizeEvent(this, ev); };
 	void Signal_SceneGraphAboutToStop() { callbackQQuickWindow_SceneGraphAboutToStop(this); };
-	void Signal_SceneGraphError(QQuickWindow::SceneGraphError error, const QString & message) { QByteArray t6f9b9a = message.toUtf8(); QtQuick_PackedString messagePacked = { const_cast<char*>(t6f9b9a.prepend("WHITESPACE").constData()+10), t6f9b9a.size()-10 };callbackQQuickWindow_SceneGraphError(this, error, messagePacked); };
+	void Signal_SceneGraphError(QQuickWindow::SceneGraphError error, const QString & message) { QByteArray* t6f9b9a = new QByteArray(message.toUtf8()); QtQuick_PackedString messagePacked = { const_cast<char*>(t6f9b9a->prepend("WHITESPACE").constData()+10), t6f9b9a->size()-10, t6f9b9a };callbackQQuickWindow_SceneGraphError(this, error, messagePacked); };
 	void Signal_SceneGraphInitialized() { callbackQQuickWindow_SceneGraphInitialized(this); };
 	void Signal_SceneGraphInvalidated() { callbackQQuickWindow_SceneGraphInvalidated(this); };
 	void showEvent(QShowEvent * vqs) { callbackQQuickWindow_ShowEvent(this, vqs); };
@@ -3751,7 +3645,7 @@ public:
 	void setMaximumWidth(int w) { callbackQQuickWindow_SetMaximumWidth(this, w); };
 	void setMinimumHeight(int h) { callbackQQuickWindow_SetMinimumHeight(this, h); };
 	void setMinimumWidth(int w) { callbackQQuickWindow_SetMinimumWidth(this, w); };
-	void setTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtQuick_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQQuickWindow_SetTitle(this, vqsPacked); };
+	void setTitle(const QString & vqs) { QByteArray* tda39a3 = new QByteArray(vqs.toUtf8()); QtQuick_PackedString vqsPacked = { const_cast<char*>(tda39a3->prepend("WHITESPACE").constData()+10), tda39a3->size()-10, tda39a3 };callbackQQuickWindow_SetTitle(this, vqsPacked); };
 	void setVisible(bool visible) { callbackQQuickWindow_SetVisible(this, visible); };
 	void setWidth(int arg) { callbackQQuickWindow_SetWidth(this, arg); };
 	void setX(int arg) { callbackQQuickWindow_SetX(this, arg); };
@@ -3769,7 +3663,7 @@ public:
 	void Signal_VisibleChanged(bool arg) { callbackQQuickWindow_VisibleChanged(this, arg); };
 	void Signal_WidthChanged(int arg) { callbackQQuickWindow_WidthChanged(this, arg); };
 	void Signal_WindowStateChanged(Qt::WindowState windowState) { callbackQQuickWindow_WindowStateChanged(this, windowState); };
-	void Signal_WindowTitleChanged(const QString & title) { QByteArray t3c6de1 = title.toUtf8(); QtQuick_PackedString titlePacked = { const_cast<char*>(t3c6de1.prepend("WHITESPACE").constData()+10), t3c6de1.size()-10 };callbackQQuickWindow_WindowTitleChanged(this, titlePacked); };
+	void Signal_WindowTitleChanged(const QString & title) { QByteArray* t3c6de1 = new QByteArray(title.toUtf8()); QtQuick_PackedString titlePacked = { const_cast<char*>(t3c6de1->prepend("WHITESPACE").constData()+10), t3c6de1->size()-10, t3c6de1 };callbackQQuickWindow_WindowTitleChanged(this, titlePacked); };
 	void Signal_XChanged(int arg) { callbackQQuickWindow_XChanged(this, arg); };
 	void Signal_YChanged(int arg) { callbackQQuickWindow_YChanged(this, arg); };
 	void childEvent(QChildEvent * event) { callbackQQuickWindow_ChildEvent(this, event); };
@@ -3780,10 +3674,11 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQQuickWindow_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQQuickWindow_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQuickWindow_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtQuick_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQQuickWindow_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtQuick_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQQuickWindow_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQQuickWindow_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QQuickView*)
 Q_DECLARE_METATYPE(MyQQuickView*)
 
 int QQuickView_QQuickView_QRegisterMetaType(){qRegisterMetaType<QQuickView*>(); return qRegisterMetaType<MyQQuickView*>();}
@@ -3822,7 +3717,7 @@ void* QQuickView_Engine(void* ptr)
 
 struct QtQuick_PackedList QQuickView_Errors(void* ptr)
 {
-	return ({ QList<QQmlError>* tmpValue = new QList<QQmlError>(static_cast<QQuickView*>(ptr)->errors()); QtQuick_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QQmlError>* tmpValue33c655 = new QList<QQmlError>(static_cast<QQuickView*>(ptr)->errors()); QtQuick_PackedList { tmpValue33c655, tmpValue33c655->size() }; });
 }
 
 void* QQuickView_InitialSize(void* ptr)
@@ -3870,10 +3765,10 @@ long long QQuickView_Status(void* ptr)
 	return static_cast<QQuickView*>(ptr)->status();
 }
 
-void QQuickView_ConnectStatusChanged(void* ptr)
+void QQuickView_ConnectStatusChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<QQuickView::Status>();
-	QObject::connect(static_cast<QQuickView*>(ptr), static_cast<void (QQuickView::*)(QQuickView::Status)>(&QQuickView::statusChanged), static_cast<MyQQuickView*>(ptr), static_cast<void (MyQQuickView::*)(QQuickView::Status)>(&MyQQuickView::Signal_StatusChanged));
+	QObject::connect(static_cast<QQuickView*>(ptr), static_cast<void (QQuickView::*)(QQuickView::Status)>(&QQuickView::statusChanged), static_cast<MyQQuickView*>(ptr), static_cast<void (MyQQuickView::*)(QQuickView::Status)>(&MyQQuickView::Signal_StatusChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickView_DisconnectStatusChanged(void* ptr)
@@ -3935,7 +3830,7 @@ public:
 	void mousePressEvent(QMouseEvent * e) { callbackQQuickWidget_MousePressEvent(this, e); };
 	void mouseReleaseEvent(QMouseEvent * e) { callbackQQuickWidget_MouseReleaseEvent(this, e); };
 	void paintEvent(QPaintEvent * event) { callbackQQuickWidget_PaintEvent(this, event); };
-	void Signal_SceneGraphError(QQuickWindow::SceneGraphError error, const QString & message) { QByteArray t6f9b9a = message.toUtf8(); QtQuick_PackedString messagePacked = { const_cast<char*>(t6f9b9a.prepend("WHITESPACE").constData()+10), t6f9b9a.size()-10 };callbackQQuickWidget_SceneGraphError(this, error, messagePacked); };
+	void Signal_SceneGraphError(QQuickWindow::SceneGraphError error, const QString & message) { QByteArray* t6f9b9a = new QByteArray(message.toUtf8()); QtQuick_PackedString messagePacked = { const_cast<char*>(t6f9b9a->prepend("WHITESPACE").constData()+10), t6f9b9a->size()-10, t6f9b9a };callbackQQuickWidget_SceneGraphError(this, error, messagePacked); };
 	void setSource(const QUrl & url) { callbackQQuickWidget_SetSource(this, const_cast<QUrl*>(&url)); };
 	void showEvent(QShowEvent * vqs) { callbackQQuickWidget_ShowEvent(this, vqs); };
 	void Signal_StatusChanged(QQuickWidget::Status status) { callbackQQuickWidget_StatusChanged(this, status); };
@@ -3968,10 +3863,10 @@ public:
 	void setEnabled(bool vbo) { callbackQQuickWidget_SetEnabled(this, vbo); };
 	void setFocus() { callbackQQuickWidget_SetFocus2(this); };
 	void setHidden(bool hidden) { callbackQQuickWidget_SetHidden(this, hidden); };
-	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtQuick_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQQuickWidget_SetStyleSheet(this, styleSheetPacked); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray* t728ae7 = new QByteArray(styleSheet.toUtf8()); QtQuick_PackedString styleSheetPacked = { const_cast<char*>(t728ae7->prepend("WHITESPACE").constData()+10), t728ae7->size()-10, t728ae7 };callbackQQuickWidget_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQQuickWidget_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQQuickWidget_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtQuick_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQQuickWidget_SetWindowTitle(this, vqsPacked); };
+	void setWindowTitle(const QString & vqs) { QByteArray* tda39a3 = new QByteArray(vqs.toUtf8()); QtQuick_PackedString vqsPacked = { const_cast<char*>(tda39a3->prepend("WHITESPACE").constData()+10), tda39a3->size()-10, tda39a3 };callbackQQuickWidget_SetWindowTitle(this, vqsPacked); };
 	void show() { callbackQQuickWidget_Show(this); };
 	void showFullScreen() { callbackQQuickWidget_ShowFullScreen(this); };
 	void showMaximized() { callbackQQuickWidget_ShowMaximized(this); };
@@ -3982,7 +3877,7 @@ public:
 	void update() { callbackQQuickWidget_Update(this); };
 	void updateMicroFocus() { callbackQQuickWidget_UpdateMicroFocus(this); };
 	void Signal_WindowIconChanged(const QIcon & icon) { callbackQQuickWidget_WindowIconChanged(this, const_cast<QIcon*>(&icon)); };
-	void Signal_WindowTitleChanged(const QString & title) { QByteArray t3c6de1 = title.toUtf8(); QtQuick_PackedString titlePacked = { const_cast<char*>(t3c6de1.prepend("WHITESPACE").constData()+10), t3c6de1.size()-10 };callbackQQuickWidget_WindowTitleChanged(this, titlePacked); };
+	void Signal_WindowTitleChanged(const QString & title) { QByteArray* t3c6de1 = new QByteArray(title.toUtf8()); QtQuick_PackedString titlePacked = { const_cast<char*>(t3c6de1->prepend("WHITESPACE").constData()+10), t3c6de1->size()-10, t3c6de1 };callbackQQuickWidget_WindowTitleChanged(this, titlePacked); };
 	void childEvent(QChildEvent * event) { callbackQQuickWidget_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQQuickWidget_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQQuickWidget_CustomEvent(this, event); };
@@ -3991,10 +3886,11 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQQuickWidget_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQQuickWidget_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQuickWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtQuick_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQQuickWidget_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtQuick_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQQuickWidget_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQQuickWidget_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QQuickWidget*)
 Q_DECLARE_METATYPE(MyQQuickWidget*)
 
 int QQuickWidget_QQuickWidget_QRegisterMetaType(){qRegisterMetaType<QQuickWidget*>(); return qRegisterMetaType<MyQQuickWidget*>();}
@@ -4041,7 +3937,7 @@ void* QQuickWidget_Engine(void* ptr)
 
 struct QtQuick_PackedList QQuickWidget_Errors(void* ptr)
 {
-	return ({ QList<QQmlError>* tmpValue = new QList<QQmlError>(static_cast<QQuickWidget*>(ptr)->errors()); QtQuick_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QQmlError>* tmpValueeba523 = new QList<QQmlError>(static_cast<QQuickWidget*>(ptr)->errors()); QtQuick_PackedList { tmpValueeba523, tmpValueeba523->size() }; });
 }
 
 char QQuickWidget_EventDefault(void* ptr, void* e)
@@ -4139,10 +4035,10 @@ void* QQuickWidget_RootObject(void* ptr)
 	return static_cast<QQuickWidget*>(ptr)->rootObject();
 }
 
-void QQuickWidget_ConnectSceneGraphError(void* ptr)
+void QQuickWidget_ConnectSceneGraphError(void* ptr, long long t)
 {
 	qRegisterMetaType<QQuickWindow::SceneGraphError>();
-	QObject::connect(static_cast<QQuickWidget*>(ptr), static_cast<void (QQuickWidget::*)(QQuickWindow::SceneGraphError, const QString &)>(&QQuickWidget::sceneGraphError), static_cast<MyQQuickWidget*>(ptr), static_cast<void (MyQQuickWidget::*)(QQuickWindow::SceneGraphError, const QString &)>(&MyQQuickWidget::Signal_SceneGraphError));
+	QObject::connect(static_cast<QQuickWidget*>(ptr), static_cast<void (QQuickWidget::*)(QQuickWindow::SceneGraphError, const QString &)>(&QQuickWidget::sceneGraphError), static_cast<MyQQuickWidget*>(ptr), static_cast<void (MyQQuickWidget::*)(QQuickWindow::SceneGraphError, const QString &)>(&MyQQuickWidget::Signal_SceneGraphError), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickWidget_DisconnectSceneGraphError(void* ptr)
@@ -4195,10 +4091,10 @@ long long QQuickWidget_Status(void* ptr)
 	return static_cast<QQuickWidget*>(ptr)->status();
 }
 
-void QQuickWidget_ConnectStatusChanged(void* ptr)
+void QQuickWidget_ConnectStatusChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<QQuickWidget::Status>();
-	QObject::connect(static_cast<QQuickWidget*>(ptr), static_cast<void (QQuickWidget::*)(QQuickWidget::Status)>(&QQuickWidget::statusChanged), static_cast<MyQQuickWidget*>(ptr), static_cast<void (MyQQuickWidget::*)(QQuickWidget::Status)>(&MyQQuickWidget::Signal_StatusChanged));
+	QObject::connect(static_cast<QQuickWidget*>(ptr), static_cast<void (QQuickWidget::*)(QQuickWidget::Status)>(&QQuickWidget::statusChanged), static_cast<MyQQuickWidget*>(ptr), static_cast<void (MyQQuickWidget::*)(QQuickWidget::Status)>(&MyQQuickWidget::Signal_StatusChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickWidget_DisconnectStatusChanged(void* ptr)
@@ -4362,26 +4258,6 @@ void QQuickWidget___findChildren_setList3(void* ptr, void* i)
 }
 
 void* QQuickWidget___findChildren_newList3(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
-void* QQuickWidget___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QQuickWidget___qFindChildren_setList2(void* ptr, void* i)
-{
-	if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QQuickItem*>(i));
-	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-	}
-}
-
-void* QQuickWidget___qFindChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();
@@ -4654,7 +4530,7 @@ public:
 	void releaseResources() { callbackQQuickWindow_ReleaseResources(this); };
 	void resizeEvent(QResizeEvent * ev) { callbackQQuickWindow_ResizeEvent(this, ev); };
 	void Signal_SceneGraphAboutToStop() { callbackQQuickWindow_SceneGraphAboutToStop(this); };
-	void Signal_SceneGraphError(QQuickWindow::SceneGraphError error, const QString & message) { QByteArray t6f9b9a = message.toUtf8(); QtQuick_PackedString messagePacked = { const_cast<char*>(t6f9b9a.prepend("WHITESPACE").constData()+10), t6f9b9a.size()-10 };callbackQQuickWindow_SceneGraphError(this, error, messagePacked); };
+	void Signal_SceneGraphError(QQuickWindow::SceneGraphError error, const QString & message) { QByteArray* t6f9b9a = new QByteArray(message.toUtf8()); QtQuick_PackedString messagePacked = { const_cast<char*>(t6f9b9a->prepend("WHITESPACE").constData()+10), t6f9b9a->size()-10, t6f9b9a };callbackQQuickWindow_SceneGraphError(this, error, messagePacked); };
 	void Signal_SceneGraphInitialized() { callbackQQuickWindow_SceneGraphInitialized(this); };
 	void Signal_SceneGraphInvalidated() { callbackQQuickWindow_SceneGraphInvalidated(this); };
 	void showEvent(QShowEvent * vqs) { callbackQQuickWindow_ShowEvent(this, vqs); };
@@ -4690,7 +4566,7 @@ public:
 	void setMaximumWidth(int w) { callbackQQuickWindow_SetMaximumWidth(this, w); };
 	void setMinimumHeight(int h) { callbackQQuickWindow_SetMinimumHeight(this, h); };
 	void setMinimumWidth(int w) { callbackQQuickWindow_SetMinimumWidth(this, w); };
-	void setTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtQuick_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQQuickWindow_SetTitle(this, vqsPacked); };
+	void setTitle(const QString & vqs) { QByteArray* tda39a3 = new QByteArray(vqs.toUtf8()); QtQuick_PackedString vqsPacked = { const_cast<char*>(tda39a3->prepend("WHITESPACE").constData()+10), tda39a3->size()-10, tda39a3 };callbackQQuickWindow_SetTitle(this, vqsPacked); };
 	void setVisible(bool visible) { callbackQQuickWindow_SetVisible(this, visible); };
 	void setWidth(int arg) { callbackQQuickWindow_SetWidth(this, arg); };
 	void setX(int arg) { callbackQQuickWindow_SetX(this, arg); };
@@ -4708,7 +4584,7 @@ public:
 	void Signal_VisibleChanged(bool arg) { callbackQQuickWindow_VisibleChanged(this, arg); };
 	void Signal_WidthChanged(int arg) { callbackQQuickWindow_WidthChanged(this, arg); };
 	void Signal_WindowStateChanged(Qt::WindowState windowState) { callbackQQuickWindow_WindowStateChanged(this, windowState); };
-	void Signal_WindowTitleChanged(const QString & title) { QByteArray t3c6de1 = title.toUtf8(); QtQuick_PackedString titlePacked = { const_cast<char*>(t3c6de1.prepend("WHITESPACE").constData()+10), t3c6de1.size()-10 };callbackQQuickWindow_WindowTitleChanged(this, titlePacked); };
+	void Signal_WindowTitleChanged(const QString & title) { QByteArray* t3c6de1 = new QByteArray(title.toUtf8()); QtQuick_PackedString titlePacked = { const_cast<char*>(t3c6de1->prepend("WHITESPACE").constData()+10), t3c6de1->size()-10, t3c6de1 };callbackQQuickWindow_WindowTitleChanged(this, titlePacked); };
 	void Signal_XChanged(int arg) { callbackQQuickWindow_XChanged(this, arg); };
 	void Signal_YChanged(int arg) { callbackQQuickWindow_YChanged(this, arg); };
 	void childEvent(QChildEvent * event) { callbackQQuickWindow_ChildEvent(this, event); };
@@ -4719,7 +4595,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQQuickWindow_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQQuickWindow_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQuickWindow_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtQuick_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQQuickWindow_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtQuick_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQQuickWindow_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQQuickWindow_TimerEvent(this, event); };
 };
 
@@ -4755,9 +4631,9 @@ void* QQuickWindow_ActiveFocusItem(void* ptr)
 	return static_cast<QQuickWindow*>(ptr)->activeFocusItem();
 }
 
-void QQuickWindow_ConnectActiveFocusItemChanged(void* ptr)
+void QQuickWindow_ConnectActiveFocusItemChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickWindow*>(ptr), static_cast<void (QQuickWindow::*)()>(&QQuickWindow::activeFocusItemChanged), static_cast<MyQQuickWindow*>(ptr), static_cast<void (MyQQuickWindow::*)()>(&MyQQuickWindow::Signal_ActiveFocusItemChanged));
+	QObject::connect(static_cast<QQuickWindow*>(ptr), static_cast<void (QQuickWindow::*)()>(&QQuickWindow::activeFocusItemChanged), static_cast<MyQQuickWindow*>(ptr), static_cast<void (MyQQuickWindow::*)()>(&MyQQuickWindow::Signal_ActiveFocusItemChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickWindow_DisconnectActiveFocusItemChanged(void* ptr)
@@ -4770,9 +4646,9 @@ void QQuickWindow_ActiveFocusItemChanged(void* ptr)
 	static_cast<QQuickWindow*>(ptr)->activeFocusItemChanged();
 }
 
-void QQuickWindow_ConnectAfterAnimating(void* ptr)
+void QQuickWindow_ConnectAfterAnimating(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickWindow*>(ptr), static_cast<void (QQuickWindow::*)()>(&QQuickWindow::afterAnimating), static_cast<MyQQuickWindow*>(ptr), static_cast<void (MyQQuickWindow::*)()>(&MyQQuickWindow::Signal_AfterAnimating));
+	QObject::connect(static_cast<QQuickWindow*>(ptr), static_cast<void (QQuickWindow::*)()>(&QQuickWindow::afterAnimating), static_cast<MyQQuickWindow*>(ptr), static_cast<void (MyQQuickWindow::*)()>(&MyQQuickWindow::Signal_AfterAnimating), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickWindow_DisconnectAfterAnimating(void* ptr)
@@ -4785,9 +4661,9 @@ void QQuickWindow_AfterAnimating(void* ptr)
 	static_cast<QQuickWindow*>(ptr)->afterAnimating();
 }
 
-void QQuickWindow_ConnectAfterRendering(void* ptr)
+void QQuickWindow_ConnectAfterRendering(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickWindow*>(ptr), static_cast<void (QQuickWindow::*)()>(&QQuickWindow::afterRendering), static_cast<MyQQuickWindow*>(ptr), static_cast<void (MyQQuickWindow::*)()>(&MyQQuickWindow::Signal_AfterRendering));
+	QObject::connect(static_cast<QQuickWindow*>(ptr), static_cast<void (QQuickWindow::*)()>(&QQuickWindow::afterRendering), static_cast<MyQQuickWindow*>(ptr), static_cast<void (MyQQuickWindow::*)()>(&MyQQuickWindow::Signal_AfterRendering), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickWindow_DisconnectAfterRendering(void* ptr)
@@ -4800,9 +4676,9 @@ void QQuickWindow_AfterRendering(void* ptr)
 	static_cast<QQuickWindow*>(ptr)->afterRendering();
 }
 
-void QQuickWindow_ConnectAfterSynchronizing(void* ptr)
+void QQuickWindow_ConnectAfterSynchronizing(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickWindow*>(ptr), static_cast<void (QQuickWindow::*)()>(&QQuickWindow::afterSynchronizing), static_cast<MyQQuickWindow*>(ptr), static_cast<void (MyQQuickWindow::*)()>(&MyQQuickWindow::Signal_AfterSynchronizing));
+	QObject::connect(static_cast<QQuickWindow*>(ptr), static_cast<void (QQuickWindow::*)()>(&QQuickWindow::afterSynchronizing), static_cast<MyQQuickWindow*>(ptr), static_cast<void (MyQQuickWindow::*)()>(&MyQQuickWindow::Signal_AfterSynchronizing), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickWindow_DisconnectAfterSynchronizing(void* ptr)
@@ -4815,9 +4691,9 @@ void QQuickWindow_AfterSynchronizing(void* ptr)
 	static_cast<QQuickWindow*>(ptr)->afterSynchronizing();
 }
 
-void QQuickWindow_ConnectBeforeRendering(void* ptr)
+void QQuickWindow_ConnectBeforeRendering(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickWindow*>(ptr), static_cast<void (QQuickWindow::*)()>(&QQuickWindow::beforeRendering), static_cast<MyQQuickWindow*>(ptr), static_cast<void (MyQQuickWindow::*)()>(&MyQQuickWindow::Signal_BeforeRendering));
+	QObject::connect(static_cast<QQuickWindow*>(ptr), static_cast<void (QQuickWindow::*)()>(&QQuickWindow::beforeRendering), static_cast<MyQQuickWindow*>(ptr), static_cast<void (MyQQuickWindow::*)()>(&MyQQuickWindow::Signal_BeforeRendering), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickWindow_DisconnectBeforeRendering(void* ptr)
@@ -4830,9 +4706,9 @@ void QQuickWindow_BeforeRendering(void* ptr)
 	static_cast<QQuickWindow*>(ptr)->beforeRendering();
 }
 
-void QQuickWindow_ConnectBeforeSynchronizing(void* ptr)
+void QQuickWindow_ConnectBeforeSynchronizing(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickWindow*>(ptr), static_cast<void (QQuickWindow::*)()>(&QQuickWindow::beforeSynchronizing), static_cast<MyQQuickWindow*>(ptr), static_cast<void (MyQQuickWindow::*)()>(&MyQQuickWindow::Signal_BeforeSynchronizing));
+	QObject::connect(static_cast<QQuickWindow*>(ptr), static_cast<void (QQuickWindow::*)()>(&QQuickWindow::beforeSynchronizing), static_cast<MyQQuickWindow*>(ptr), static_cast<void (MyQQuickWindow::*)()>(&MyQQuickWindow::Signal_BeforeSynchronizing), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickWindow_DisconnectBeforeSynchronizing(void* ptr)
@@ -4855,9 +4731,9 @@ void* QQuickWindow_Color(void* ptr)
 	return new QColor(static_cast<QQuickWindow*>(ptr)->color());
 }
 
-void QQuickWindow_ConnectColorChanged(void* ptr)
+void QQuickWindow_ConnectColorChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickWindow*>(ptr), static_cast<void (QQuickWindow::*)(const QColor &)>(&QQuickWindow::colorChanged), static_cast<MyQQuickWindow*>(ptr), static_cast<void (MyQQuickWindow::*)(const QColor &)>(&MyQQuickWindow::Signal_ColorChanged));
+	QObject::connect(static_cast<QQuickWindow*>(ptr), static_cast<void (QQuickWindow::*)(const QColor &)>(&QQuickWindow::colorChanged), static_cast<MyQQuickWindow*>(ptr), static_cast<void (MyQQuickWindow::*)(const QColor &)>(&MyQQuickWindow::Signal_ColorChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickWindow_DisconnectColorChanged(void* ptr)
@@ -4941,9 +4817,9 @@ void QQuickWindow_FocusOutEventDefault(void* ptr, void* ev)
 	}
 }
 
-void QQuickWindow_ConnectFrameSwapped(void* ptr)
+void QQuickWindow_ConnectFrameSwapped(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickWindow*>(ptr), static_cast<void (QQuickWindow::*)()>(&QQuickWindow::frameSwapped), static_cast<MyQQuickWindow*>(ptr), static_cast<void (MyQQuickWindow::*)()>(&MyQQuickWindow::Signal_FrameSwapped));
+	QObject::connect(static_cast<QQuickWindow*>(ptr), static_cast<void (QQuickWindow::*)()>(&QQuickWindow::frameSwapped), static_cast<MyQQuickWindow*>(ptr), static_cast<void (MyQQuickWindow::*)()>(&MyQQuickWindow::Signal_FrameSwapped), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickWindow_DisconnectFrameSwapped(void* ptr)
@@ -5059,9 +4935,9 @@ void* QQuickWindow_OpenglContext(void* ptr)
 	return static_cast<QQuickWindow*>(ptr)->openglContext();
 }
 
-void QQuickWindow_ConnectOpenglContextCreated(void* ptr)
+void QQuickWindow_ConnectOpenglContextCreated(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickWindow*>(ptr), static_cast<void (QQuickWindow::*)(QOpenGLContext *)>(&QQuickWindow::openglContextCreated), static_cast<MyQQuickWindow*>(ptr), static_cast<void (MyQQuickWindow::*)(QOpenGLContext *)>(&MyQQuickWindow::Signal_OpenglContextCreated));
+	QObject::connect(static_cast<QQuickWindow*>(ptr), static_cast<void (QQuickWindow::*)(QOpenGLContext *)>(&QQuickWindow::openglContextCreated), static_cast<MyQQuickWindow*>(ptr), static_cast<void (MyQQuickWindow::*)(QOpenGLContext *)>(&MyQQuickWindow::Signal_OpenglContextCreated), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickWindow_DisconnectOpenglContextCreated(void* ptr)
@@ -5122,9 +4998,9 @@ void QQuickWindow_ResizeEventDefault(void* ptr, void* ev)
 	}
 }
 
-void QQuickWindow_ConnectSceneGraphAboutToStop(void* ptr)
+void QQuickWindow_ConnectSceneGraphAboutToStop(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickWindow*>(ptr), static_cast<void (QQuickWindow::*)()>(&QQuickWindow::sceneGraphAboutToStop), static_cast<MyQQuickWindow*>(ptr), static_cast<void (MyQQuickWindow::*)()>(&MyQQuickWindow::Signal_SceneGraphAboutToStop));
+	QObject::connect(static_cast<QQuickWindow*>(ptr), static_cast<void (QQuickWindow::*)()>(&QQuickWindow::sceneGraphAboutToStop), static_cast<MyQQuickWindow*>(ptr), static_cast<void (MyQQuickWindow::*)()>(&MyQQuickWindow::Signal_SceneGraphAboutToStop), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickWindow_DisconnectSceneGraphAboutToStop(void* ptr)
@@ -5139,13 +5015,13 @@ void QQuickWindow_SceneGraphAboutToStop(void* ptr)
 
 struct QtQuick_PackedString QQuickWindow_QQuickWindow_SceneGraphBackend()
 {
-	return ({ QByteArray t3cc258 = QQuickWindow::sceneGraphBackend().toUtf8(); QtQuick_PackedString { const_cast<char*>(t3cc258.prepend("WHITESPACE").constData()+10), t3cc258.size()-10 }; });
+	return ({ QByteArray* t3cc258 = new QByteArray(QQuickWindow::sceneGraphBackend().toUtf8()); QtQuick_PackedString { const_cast<char*>(t3cc258->prepend("WHITESPACE").constData()+10), t3cc258->size()-10, t3cc258 }; });
 }
 
-void QQuickWindow_ConnectSceneGraphError(void* ptr)
+void QQuickWindow_ConnectSceneGraphError(void* ptr, long long t)
 {
 	qRegisterMetaType<QQuickWindow::SceneGraphError>();
-	QObject::connect(static_cast<QQuickWindow*>(ptr), static_cast<void (QQuickWindow::*)(QQuickWindow::SceneGraphError, const QString &)>(&QQuickWindow::sceneGraphError), static_cast<MyQQuickWindow*>(ptr), static_cast<void (MyQQuickWindow::*)(QQuickWindow::SceneGraphError, const QString &)>(&MyQQuickWindow::Signal_SceneGraphError));
+	QObject::connect(static_cast<QQuickWindow*>(ptr), static_cast<void (QQuickWindow::*)(QQuickWindow::SceneGraphError, const QString &)>(&QQuickWindow::sceneGraphError), static_cast<MyQQuickWindow*>(ptr), static_cast<void (MyQQuickWindow::*)(QQuickWindow::SceneGraphError, const QString &)>(&MyQQuickWindow::Signal_SceneGraphError), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickWindow_DisconnectSceneGraphError(void* ptr)
@@ -5158,9 +5034,9 @@ void QQuickWindow_SceneGraphError(void* ptr, long long error, struct QtQuick_Pac
 	static_cast<QQuickWindow*>(ptr)->sceneGraphError(static_cast<QQuickWindow::SceneGraphError>(error), QString::fromUtf8(message.data, message.len));
 }
 
-void QQuickWindow_ConnectSceneGraphInitialized(void* ptr)
+void QQuickWindow_ConnectSceneGraphInitialized(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickWindow*>(ptr), static_cast<void (QQuickWindow::*)()>(&QQuickWindow::sceneGraphInitialized), static_cast<MyQQuickWindow*>(ptr), static_cast<void (MyQQuickWindow::*)()>(&MyQQuickWindow::Signal_SceneGraphInitialized));
+	QObject::connect(static_cast<QQuickWindow*>(ptr), static_cast<void (QQuickWindow::*)()>(&QQuickWindow::sceneGraphInitialized), static_cast<MyQQuickWindow*>(ptr), static_cast<void (MyQQuickWindow::*)()>(&MyQQuickWindow::Signal_SceneGraphInitialized), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickWindow_DisconnectSceneGraphInitialized(void* ptr)
@@ -5173,9 +5049,9 @@ void QQuickWindow_SceneGraphInitialized(void* ptr)
 	static_cast<QQuickWindow*>(ptr)->sceneGraphInitialized();
 }
 
-void QQuickWindow_ConnectSceneGraphInvalidated(void* ptr)
+void QQuickWindow_ConnectSceneGraphInvalidated(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QQuickWindow*>(ptr), static_cast<void (QQuickWindow::*)()>(&QQuickWindow::sceneGraphInvalidated), static_cast<MyQQuickWindow*>(ptr), static_cast<void (MyQQuickWindow::*)()>(&MyQQuickWindow::Signal_SceneGraphInvalidated));
+	QObject::connect(static_cast<QQuickWindow*>(ptr), static_cast<void (QQuickWindow::*)()>(&QQuickWindow::sceneGraphInvalidated), static_cast<MyQQuickWindow*>(ptr), static_cast<void (MyQQuickWindow::*)()>(&MyQQuickWindow::Signal_SceneGraphInvalidated), static_cast<Qt::ConnectionType>(t));
 }
 
 void QQuickWindow_DisconnectSceneGraphInvalidated(void* ptr)
@@ -5362,26 +5238,6 @@ void QQuickWindow___findChildren_setList3(void* ptr, void* i)
 }
 
 void* QQuickWindow___findChildren_newList3(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
-void* QQuickWindow___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QQuickWindow___qFindChildren_setList2(void* ptr, void* i)
-{
-	if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QQuickItem*>(i));
-	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-	}
-}
-
-void* QQuickWindow___qFindChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();
@@ -5769,10 +5625,11 @@ public:
 	bool event(QEvent * e) { return callbackQSGAbstractRenderer_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSGAbstractRenderer_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSGAbstractRenderer_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtQuick_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSGAbstractRenderer_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtQuick_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQSGAbstractRenderer_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSGAbstractRenderer_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QSGAbstractRenderer*)
 Q_DECLARE_METATYPE(MyQSGAbstractRenderer*)
 
 int QSGAbstractRenderer_QSGAbstractRenderer_QRegisterMetaType(){qRegisterMetaType<QSGAbstractRenderer*>(); return qRegisterMetaType<MyQSGAbstractRenderer*>();}
@@ -5802,9 +5659,9 @@ void QSGAbstractRenderer_RenderScene(void* ptr, unsigned int fboId)
 	static_cast<QSGAbstractRenderer*>(ptr)->renderScene(fboId);
 }
 
-void QSGAbstractRenderer_ConnectSceneGraphChanged(void* ptr)
+void QSGAbstractRenderer_ConnectSceneGraphChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSGAbstractRenderer*>(ptr), static_cast<void (QSGAbstractRenderer::*)()>(&QSGAbstractRenderer::sceneGraphChanged), static_cast<MyQSGAbstractRenderer*>(ptr), static_cast<void (MyQSGAbstractRenderer::*)()>(&MyQSGAbstractRenderer::Signal_SceneGraphChanged));
+	QObject::connect(static_cast<QSGAbstractRenderer*>(ptr), static_cast<void (QSGAbstractRenderer::*)()>(&QSGAbstractRenderer::sceneGraphChanged), static_cast<MyQSGAbstractRenderer*>(ptr), static_cast<void (MyQSGAbstractRenderer::*)()>(&MyQSGAbstractRenderer::Signal_SceneGraphChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSGAbstractRenderer_DisconnectSceneGraphChanged(void* ptr)
@@ -5938,26 +5795,6 @@ void* QSGAbstractRenderer___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QSGAbstractRenderer___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QSGAbstractRenderer___qFindChildren_setList2(void* ptr, void* i)
-{
-	if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QQuickItem*>(i));
-	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-	}
-}
-
-void* QSGAbstractRenderer___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 void QSGAbstractRenderer_ChildEventDefault(void* ptr, void* event)
 {
 		static_cast<QSGAbstractRenderer*>(ptr)->QSGAbstractRenderer::childEvent(static_cast<QChildEvent*>(event));
@@ -6015,6 +5852,11 @@ public:
 	void preprocess() { callbackQSGNode_Preprocess(this); };
 };
 
+Q_DECLARE_METATYPE(QSGBasicGeometryNode*)
+Q_DECLARE_METATYPE(MyQSGBasicGeometryNode*)
+
+int QSGBasicGeometryNode_QSGBasicGeometryNode_QRegisterMetaType(){qRegisterMetaType<QSGBasicGeometryNode*>(); return qRegisterMetaType<MyQSGBasicGeometryNode*>();}
+
 void* QSGBasicGeometryNode_Geometry(void* ptr)
 {
 	return const_cast<QSGGeometry*>(static_cast<QSGBasicGeometryNode*>(ptr)->geometry());
@@ -6044,11 +5886,16 @@ void QSGBasicGeometryNode_DestroyQSGBasicGeometryNodeDefault(void* ptr)
 class MyQSGClipNode: public QSGClipNode
 {
 public:
-	MyQSGClipNode() : QSGClipNode() {};
+	MyQSGClipNode() : QSGClipNode() {QSGClipNode_QSGClipNode_QRegisterMetaType();};
 	 ~MyQSGClipNode() { callbackQSGClipNode_DestroyQSGClipNode(this); };
 	bool isSubtreeBlocked() const { return callbackQSGNode_IsSubtreeBlocked(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	void preprocess() { callbackQSGNode_Preprocess(this); };
 };
+
+Q_DECLARE_METATYPE(QSGClipNode*)
+Q_DECLARE_METATYPE(MyQSGClipNode*)
+
+int QSGClipNode_QSGClipNode_QRegisterMetaType(){qRegisterMetaType<QSGClipNode*>(); return qRegisterMetaType<MyQSGClipNode*>();}
 
 void* QSGClipNode_NewQSGClipNode()
 {
@@ -6107,10 +5954,11 @@ public:
 	bool event(QEvent * e) { return callbackQSGTexture_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSGTexture_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSGTexture_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtQuick_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSGTexture_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtQuick_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQSGTexture_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSGTexture_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QSGDynamicTexture*)
 Q_DECLARE_METATYPE(MyQSGDynamicTexture*)
 
 int QSGDynamicTexture_QSGDynamicTexture_QRegisterMetaType(){qRegisterMetaType<QSGDynamicTexture*>(); return qRegisterMetaType<MyQSGDynamicTexture*>();}
@@ -6189,10 +6037,11 @@ public:
 	bool event(QEvent * e) { return callbackQSGEngine_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSGEngine_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSGEngine_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtQuick_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSGEngine_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtQuick_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQSGEngine_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSGEngine_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QSGEngine*)
 Q_DECLARE_METATYPE(MyQSGEngine*)
 
 int QSGEngine_QSGEngine_QRegisterMetaType(){qRegisterMetaType<QSGEngine*>(); return qRegisterMetaType<MyQSGEngine*>();}
@@ -6371,26 +6220,6 @@ void* QSGEngine___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QSGEngine___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QSGEngine___qFindChildren_setList2(void* ptr, void* i)
-{
-	if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QQuickItem*>(i));
-	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-	}
-}
-
-void* QSGEngine___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 void QSGEngine_ChildEventDefault(void* ptr, void* event)
 {
 		static_cast<QSGEngine*>(ptr)->QSGEngine::childEvent(static_cast<QChildEvent*>(event));
@@ -6443,11 +6272,16 @@ void QSGEngine_TimerEventDefault(void* ptr, void* event)
 class MyQSGFlatColorMaterial: public QSGFlatColorMaterial
 {
 public:
-	MyQSGFlatColorMaterial() : QSGFlatColorMaterial() {};
+	MyQSGFlatColorMaterial() : QSGFlatColorMaterial() {QSGFlatColorMaterial_QSGFlatColorMaterial_QRegisterMetaType();};
 	int compare(const QSGMaterial * other) const { return callbackQSGMaterial_Compare(const_cast<void*>(static_cast<const void*>(this)), const_cast<QSGMaterial*>(other)); };
 	QSGMaterialShader * createShader() const { return static_cast<QSGMaterialShader*>(callbackQSGFlatColorMaterial_CreateShader(const_cast<void*>(static_cast<const void*>(this)))); };
 	QSGMaterialType * type() const { return static_cast<QSGMaterialType*>(callbackQSGFlatColorMaterial_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(QSGFlatColorMaterial*)
+Q_DECLARE_METATYPE(MyQSGFlatColorMaterial*)
+
+int QSGFlatColorMaterial_QSGFlatColorMaterial_QRegisterMetaType(){qRegisterMetaType<QSGFlatColorMaterial*>(); return qRegisterMetaType<MyQSGFlatColorMaterial*>();}
 
 void* QSGFlatColorMaterial_NewQSGFlatColorMaterial()
 {
@@ -6489,6 +6323,11 @@ class MyQSGGeometry: public QSGGeometry
 public:
 	 ~MyQSGGeometry() { callbackQSGGeometry_DestroyQSGGeometry(this); };
 };
+
+Q_DECLARE_METATYPE(QSGGeometry*)
+Q_DECLARE_METATYPE(MyQSGGeometry*)
+
+int QSGGeometry_QSGGeometry_QRegisterMetaType(){qRegisterMetaType<QSGGeometry*>(); return qRegisterMetaType<MyQSGGeometry*>();}
 
 void QSGGeometry_Allocate(void* ptr, int vertexCount, int indexCount)
 {
@@ -6644,11 +6483,16 @@ void QSGGeometry_DestroyQSGGeometryDefault(void* ptr)
 class MyQSGGeometryNode: public QSGGeometryNode
 {
 public:
-	MyQSGGeometryNode() : QSGGeometryNode() {};
+	MyQSGGeometryNode() : QSGGeometryNode() {QSGGeometryNode_QSGGeometryNode_QRegisterMetaType();};
 	 ~MyQSGGeometryNode() { callbackQSGGeometryNode_DestroyQSGGeometryNode(this); };
 	bool isSubtreeBlocked() const { return callbackQSGNode_IsSubtreeBlocked(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	void preprocess() { callbackQSGNode_Preprocess(this); };
 };
+
+Q_DECLARE_METATYPE(QSGGeometryNode*)
+Q_DECLARE_METATYPE(MyQSGGeometryNode*)
+
+int QSGGeometryNode_QSGGeometryNode_QRegisterMetaType(){qRegisterMetaType<QSGGeometryNode*>(); return qRegisterMetaType<MyQSGGeometryNode*>();}
 
 void* QSGGeometryNode_NewQSGGeometryNode()
 {
@@ -6706,6 +6550,11 @@ public:
 	bool isSubtreeBlocked() const { return callbackQSGNode_IsSubtreeBlocked(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	void preprocess() { callbackQSGNode_Preprocess(this); };
 };
+
+Q_DECLARE_METATYPE(QSGImageNode*)
+Q_DECLARE_METATYPE(MyQSGImageNode*)
+
+int QSGImageNode_QSGImageNode_QRegisterMetaType(){qRegisterMetaType<QSGImageNode*>(); return qRegisterMetaType<MyQSGImageNode*>();}
 
 long long QSGImageNode_Filtering(void* ptr)
 {
@@ -6800,6 +6649,11 @@ public:
 	QSGMaterialType * type() const { return static_cast<QSGMaterialType*>(callbackQSGMaterial_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(QSGMaterial*)
+Q_DECLARE_METATYPE(MyQSGMaterial*)
+
+int QSGMaterial_QSGMaterial_QRegisterMetaType(){qRegisterMetaType<QSGMaterial*>(); return qRegisterMetaType<MyQSGMaterial*>();}
+
 int QSGMaterial_Compare(void* ptr, void* other)
 {
 	return static_cast<QSGMaterial*>(ptr)->compare(static_cast<QSGMaterial*>(other));
@@ -6851,6 +6705,11 @@ public:
 	const char * vertexShader() const { return const_cast<const char*>(callbackQSGMaterialShader_VertexShader(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(QSGMaterialShader*)
+Q_DECLARE_METATYPE(MyQSGMaterialShader*)
+
+int QSGMaterialShader_QSGMaterialShader_QRegisterMetaType(){qRegisterMetaType<QSGMaterialShader*>(); return qRegisterMetaType<MyQSGMaterialShader*>();}
+
 void QSGMaterialShader_Activate(void* ptr)
 {
 	static_cast<QSGMaterialShader*>(ptr)->activate();
@@ -6883,12 +6742,12 @@ void QSGMaterialShader_DeactivateDefault(void* ptr)
 
 struct QtQuick_PackedString QSGMaterialShader_FragmentShader(void* ptr)
 {
-	return QtQuick_PackedString { const_cast<char*>(static_cast<QSGMaterialShader*>(ptr)->fragmentShader()), -1 };
+	return QtQuick_PackedString { const_cast<char*>(static_cast<QSGMaterialShader*>(ptr)->fragmentShader()), -1, NULL };
 }
 
 struct QtQuick_PackedString QSGMaterialShader_FragmentShaderDefault(void* ptr)
 {
-		return QtQuick_PackedString { const_cast<char*>(static_cast<QSGMaterialShader*>(ptr)->QSGMaterialShader::fragmentShader()), -1 };
+		return QtQuick_PackedString { const_cast<char*>(static_cast<QSGMaterialShader*>(ptr)->QSGMaterialShader::fragmentShader()), -1, NULL };
 }
 
 void QSGMaterialShader_Initialize(void* ptr)
@@ -6918,22 +6777,27 @@ void QSGMaterialShader_SetShaderSourceFiles(void* ptr, long long ty, struct QtQu
 
 struct QtQuick_PackedString QSGMaterialShader_VertexShader(void* ptr)
 {
-	return QtQuick_PackedString { const_cast<char*>(static_cast<QSGMaterialShader*>(ptr)->vertexShader()), -1 };
+	return QtQuick_PackedString { const_cast<char*>(static_cast<QSGMaterialShader*>(ptr)->vertexShader()), -1, NULL };
 }
 
 struct QtQuick_PackedString QSGMaterialShader_VertexShaderDefault(void* ptr)
 {
-		return QtQuick_PackedString { const_cast<char*>(static_cast<QSGMaterialShader*>(ptr)->QSGMaterialShader::vertexShader()), -1 };
+		return QtQuick_PackedString { const_cast<char*>(static_cast<QSGMaterialShader*>(ptr)->QSGMaterialShader::vertexShader()), -1, NULL };
 }
 
 class MyQSGNode: public QSGNode
 {
 public:
-	MyQSGNode() : QSGNode() {};
+	MyQSGNode() : QSGNode() {QSGNode_QSGNode_QRegisterMetaType();};
 	bool isSubtreeBlocked() const { return callbackQSGNode_IsSubtreeBlocked(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	void preprocess() { callbackQSGNode_Preprocess(this); };
 	 ~MyQSGNode() { callbackQSGNode_DestroyQSGNode(this); };
 };
+
+Q_DECLARE_METATYPE(QSGNode*)
+Q_DECLARE_METATYPE(MyQSGNode*)
+
+int QSGNode_QSGNode_QRegisterMetaType(){qRegisterMetaType<QSGNode*>(); return qRegisterMetaType<MyQSGNode*>();}
 
 void* QSGNode_NewQSGNode()
 {
@@ -7108,11 +6972,16 @@ void QSGNode_DestroyQSGNodeDefault(void* ptr)
 class MyQSGOpacityNode: public QSGOpacityNode
 {
 public:
-	MyQSGOpacityNode() : QSGOpacityNode() {};
+	MyQSGOpacityNode() : QSGOpacityNode() {QSGOpacityNode_QSGOpacityNode_QRegisterMetaType();};
 	 ~MyQSGOpacityNode() { callbackQSGOpacityNode_DestroyQSGOpacityNode(this); };
 	bool isSubtreeBlocked() const { return callbackQSGNode_IsSubtreeBlocked(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	void preprocess() { callbackQSGNode_Preprocess(this); };
 };
+
+Q_DECLARE_METATYPE(QSGOpacityNode*)
+Q_DECLARE_METATYPE(MyQSGOpacityNode*)
+
+int QSGOpacityNode_QSGOpacityNode_QRegisterMetaType(){qRegisterMetaType<QSGOpacityNode*>(); return qRegisterMetaType<MyQSGOpacityNode*>();}
 
 void* QSGOpacityNode_NewQSGOpacityNode()
 {
@@ -7143,11 +7012,16 @@ void QSGOpacityNode_DestroyQSGOpacityNodeDefault(void* ptr)
 class MyQSGOpaqueTextureMaterial: public QSGOpaqueTextureMaterial
 {
 public:
-	MyQSGOpaqueTextureMaterial() : QSGOpaqueTextureMaterial() {};
+	MyQSGOpaqueTextureMaterial() : QSGOpaqueTextureMaterial() {QSGOpaqueTextureMaterial_QSGOpaqueTextureMaterial_QRegisterMetaType();};
 	int compare(const QSGMaterial * other) const { return callbackQSGMaterial_Compare(const_cast<void*>(static_cast<const void*>(this)), const_cast<QSGMaterial*>(other)); };
 	QSGMaterialShader * createShader() const { return static_cast<QSGMaterialShader*>(callbackQSGOpaqueTextureMaterial_CreateShader(const_cast<void*>(static_cast<const void*>(this)))); };
 	QSGMaterialType * type() const { return static_cast<QSGMaterialType*>(callbackQSGOpaqueTextureMaterial_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(QSGOpaqueTextureMaterial*)
+Q_DECLARE_METATYPE(MyQSGOpaqueTextureMaterial*)
+
+int QSGOpaqueTextureMaterial_QSGOpaqueTextureMaterial_QRegisterMetaType(){qRegisterMetaType<QSGOpaqueTextureMaterial*>(); return qRegisterMetaType<MyQSGOpaqueTextureMaterial*>();}
 
 void* QSGOpaqueTextureMaterial_NewQSGOpaqueTextureMaterial()
 {
@@ -7253,6 +7127,11 @@ public:
 	void preprocess() { callbackQSGNode_Preprocess(this); };
 };
 
+Q_DECLARE_METATYPE(QSGRectangleNode*)
+Q_DECLARE_METATYPE(MyQSGRectangleNode*)
+
+int QSGRectangleNode_QSGRectangleNode_QRegisterMetaType(){qRegisterMetaType<QSGRectangleNode*>(); return qRegisterMetaType<MyQSGRectangleNode*>();}
+
 void* QSGRectangleNode_Color(void* ptr)
 {
 	return new QColor(static_cast<QSGRectangleNode*>(ptr)->color());
@@ -7289,6 +7168,11 @@ public:
 	bool isSubtreeBlocked() const { return callbackQSGNode_IsSubtreeBlocked(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	void preprocess() { callbackQSGNode_Preprocess(this); };
 };
+
+Q_DECLARE_METATYPE(QSGRenderNode*)
+Q_DECLARE_METATYPE(MyQSGRenderNode*)
+
+int QSGRenderNode_QSGRenderNode_QRegisterMetaType(){qRegisterMetaType<QSGRenderNode*>(); return qRegisterMetaType<MyQSGRenderNode*>();}
 
 long long QSGRenderNode_ChangedStates(void* ptr)
 {
@@ -7360,12 +7244,17 @@ class MyQSGRendererInterface: public QSGRendererInterface
 {
 public:
 	void * getResource(QQuickWindow * window, QSGRendererInterface::Resource resource) const { return callbackQSGRendererInterface_GetResource(const_cast<void*>(static_cast<const void*>(this)), window, resource); };
-	void * getResource(QQuickWindow * window, const char * resource) const { QtQuick_PackedString resourcePacked = { const_cast<char*>(resource), -1 };return callbackQSGRendererInterface_GetResource2(const_cast<void*>(static_cast<const void*>(this)), window, resourcePacked); };
+	void * getResource(QQuickWindow * window, const char * resource) const { QtQuick_PackedString resourcePacked = { const_cast<char*>(resource), -1, NULL };return callbackQSGRendererInterface_GetResource2(const_cast<void*>(static_cast<const void*>(this)), window, resourcePacked); };
 	QSGRendererInterface::GraphicsApi graphicsApi() const { return static_cast<QSGRendererInterface::GraphicsApi>(callbackQSGRendererInterface_GraphicsApi(const_cast<void*>(static_cast<const void*>(this)))); };
 	QSGRendererInterface::ShaderCompilationTypes shaderCompilationType() const { return static_cast<QSGRendererInterface::ShaderCompilationType>(callbackQSGRendererInterface_ShaderCompilationType(const_cast<void*>(static_cast<const void*>(this)))); };
 	QSGRendererInterface::ShaderSourceTypes shaderSourceType() const { return static_cast<QSGRendererInterface::ShaderSourceType>(callbackQSGRendererInterface_ShaderSourceType(const_cast<void*>(static_cast<const void*>(this)))); };
 	QSGRendererInterface::ShaderType shaderType() const { return static_cast<QSGRendererInterface::ShaderType>(callbackQSGRendererInterface_ShaderType(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(QSGRendererInterface*)
+Q_DECLARE_METATYPE(MyQSGRendererInterface*)
+
+int QSGRendererInterface_QSGRendererInterface_QRegisterMetaType(){qRegisterMetaType<QSGRendererInterface*>(); return qRegisterMetaType<MyQSGRendererInterface*>();}
 
 void* QSGRendererInterface_GetResource(void* ptr, void* window, long long resource)
 {
@@ -7410,11 +7299,16 @@ long long QSGRendererInterface_ShaderType(void* ptr)
 class MyQSGSimpleRectNode: public QSGSimpleRectNode
 {
 public:
-	MyQSGSimpleRectNode(const QRectF &rect, const QColor &color) : QSGSimpleRectNode(rect, color) {};
-	MyQSGSimpleRectNode() : QSGSimpleRectNode() {};
+	MyQSGSimpleRectNode(const QRectF &rect, const QColor &color) : QSGSimpleRectNode(rect, color) {QSGSimpleRectNode_QSGSimpleRectNode_QRegisterMetaType();};
+	MyQSGSimpleRectNode() : QSGSimpleRectNode() {QSGSimpleRectNode_QSGSimpleRectNode_QRegisterMetaType();};
 	bool isSubtreeBlocked() const { return callbackQSGNode_IsSubtreeBlocked(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	void preprocess() { callbackQSGNode_Preprocess(this); };
 };
+
+Q_DECLARE_METATYPE(QSGSimpleRectNode*)
+Q_DECLARE_METATYPE(MyQSGSimpleRectNode*)
+
+int QSGSimpleRectNode_QSGSimpleRectNode_QRegisterMetaType(){qRegisterMetaType<QSGSimpleRectNode*>(); return qRegisterMetaType<MyQSGSimpleRectNode*>();}
 
 void* QSGSimpleRectNode_NewQSGSimpleRectNode(void* rect, void* color)
 {
@@ -7454,11 +7348,16 @@ void QSGSimpleRectNode_SetRect2(void* ptr, double x, double y, double w, double 
 class MyQSGSimpleTextureNode: public QSGSimpleTextureNode
 {
 public:
-	MyQSGSimpleTextureNode() : QSGSimpleTextureNode() {};
+	MyQSGSimpleTextureNode() : QSGSimpleTextureNode() {QSGSimpleTextureNode_QSGSimpleTextureNode_QRegisterMetaType();};
 	 ~MyQSGSimpleTextureNode() { callbackQSGSimpleTextureNode_DestroyQSGSimpleTextureNode(this); };
 	bool isSubtreeBlocked() const { return callbackQSGNode_IsSubtreeBlocked(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	void preprocess() { callbackQSGNode_Preprocess(this); };
 };
+
+Q_DECLARE_METATYPE(QSGSimpleTextureNode*)
+Q_DECLARE_METATYPE(MyQSGSimpleTextureNode*)
+
+int QSGSimpleTextureNode_QSGSimpleTextureNode_QRegisterMetaType(){qRegisterMetaType<QSGSimpleTextureNode*>(); return qRegisterMetaType<MyQSGSimpleTextureNode*>();}
 
 void* QSGSimpleTextureNode_NewQSGSimpleTextureNode()
 {
@@ -7568,10 +7467,11 @@ public:
 	bool event(QEvent * e) { return callbackQSGTexture_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSGTexture_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSGTexture_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtQuick_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSGTexture_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtQuick_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQSGTexture_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSGTexture_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QSGTexture*)
 Q_DECLARE_METATYPE(MyQSGTexture*)
 
 int QSGTexture_QSGTexture_QRegisterMetaType(){qRegisterMetaType<QSGTexture*>(); return qRegisterMetaType<MyQSGTexture*>();}
@@ -7795,26 +7695,6 @@ void* QSGTexture___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QSGTexture___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QSGTexture___qFindChildren_setList2(void* ptr, void* i)
-{
-	if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QQuickItem*>(i));
-	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-	}
-}
-
-void* QSGTexture___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 void QSGTexture_ChildEventDefault(void* ptr, void* event)
 {
 	if (dynamic_cast<QSGDynamicTexture*>(static_cast<QObject*>(ptr))) {
@@ -7912,6 +7792,11 @@ public:
 	QSGMaterialType * type() const { return static_cast<QSGMaterialType*>(callbackQSGOpaqueTextureMaterial_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(QSGTextureMaterial*)
+Q_DECLARE_METATYPE(MyQSGTextureMaterial*)
+
+int QSGTextureMaterial_QSGTextureMaterial_QRegisterMetaType(){qRegisterMetaType<QSGTextureMaterial*>(); return qRegisterMetaType<MyQSGTextureMaterial*>();}
+
 class MyQSGTextureProvider: public QSGTextureProvider
 {
 public:
@@ -7926,10 +7811,11 @@ public:
 	bool event(QEvent * e) { return callbackQSGTextureProvider_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSGTextureProvider_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSGTextureProvider_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtQuick_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSGTextureProvider_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtQuick_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQSGTextureProvider_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSGTextureProvider_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QSGTextureProvider*)
 Q_DECLARE_METATYPE(MyQSGTextureProvider*)
 
 int QSGTextureProvider_QSGTextureProvider_QRegisterMetaType(){qRegisterMetaType<QSGTextureProvider*>(); return qRegisterMetaType<MyQSGTextureProvider*>();}
@@ -7939,9 +7825,9 @@ void* QSGTextureProvider_Texture(void* ptr)
 	return static_cast<QSGTextureProvider*>(ptr)->texture();
 }
 
-void QSGTextureProvider_ConnectTextureChanged(void* ptr)
+void QSGTextureProvider_ConnectTextureChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSGTextureProvider*>(ptr), static_cast<void (QSGTextureProvider::*)()>(&QSGTextureProvider::textureChanged), static_cast<MyQSGTextureProvider*>(ptr), static_cast<void (MyQSGTextureProvider::*)()>(&MyQSGTextureProvider::Signal_TextureChanged));
+	QObject::connect(static_cast<QSGTextureProvider*>(ptr), static_cast<void (QSGTextureProvider::*)()>(&QSGTextureProvider::textureChanged), static_cast<MyQSGTextureProvider*>(ptr), static_cast<void (MyQSGTextureProvider::*)()>(&MyQSGTextureProvider::Signal_TextureChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSGTextureProvider_DisconnectTextureChanged(void* ptr)
@@ -8030,26 +7916,6 @@ void* QSGTextureProvider___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QSGTextureProvider___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QSGTextureProvider___qFindChildren_setList2(void* ptr, void* i)
-{
-	if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QQuickItem*>(i));
-	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-	}
-}
-
-void* QSGTextureProvider___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 void QSGTextureProvider_ChildEventDefault(void* ptr, void* event)
 {
 		static_cast<QSGTextureProvider*>(ptr)->QSGTextureProvider::childEvent(static_cast<QChildEvent*>(event));
@@ -8102,11 +7968,16 @@ void QSGTextureProvider_TimerEventDefault(void* ptr, void* event)
 class MyQSGTransformNode: public QSGTransformNode
 {
 public:
-	MyQSGTransformNode() : QSGTransformNode() {};
+	MyQSGTransformNode() : QSGTransformNode() {QSGTransformNode_QSGTransformNode_QRegisterMetaType();};
 	 ~MyQSGTransformNode() { callbackQSGTransformNode_DestroyQSGTransformNode(this); };
 	bool isSubtreeBlocked() const { return callbackQSGNode_IsSubtreeBlocked(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	void preprocess() { callbackQSGNode_Preprocess(this); };
 };
+
+Q_DECLARE_METATYPE(QSGTransformNode*)
+Q_DECLARE_METATYPE(MyQSGTransformNode*)
+
+int QSGTransformNode_QSGTransformNode_QRegisterMetaType(){qRegisterMetaType<QSGTransformNode*>(); return qRegisterMetaType<MyQSGTransformNode*>();}
 
 void* QSGTransformNode_NewQSGTransformNode()
 {
@@ -8137,11 +8008,16 @@ void QSGTransformNode_DestroyQSGTransformNodeDefault(void* ptr)
 class MyQSGVertexColorMaterial: public QSGVertexColorMaterial
 {
 public:
-	MyQSGVertexColorMaterial() : QSGVertexColorMaterial() {};
+	MyQSGVertexColorMaterial() : QSGVertexColorMaterial() {QSGVertexColorMaterial_QSGVertexColorMaterial_QRegisterMetaType();};
 	int compare(const QSGMaterial * other) const { return callbackQSGMaterial_Compare(const_cast<void*>(static_cast<const void*>(this)), const_cast<QSGMaterial*>(other)); };
 	QSGMaterialShader * createShader() const { return static_cast<QSGMaterialShader*>(callbackQSGVertexColorMaterial_CreateShader(const_cast<void*>(static_cast<const void*>(this)))); };
 	QSGMaterialType * type() const { return static_cast<QSGMaterialType*>(callbackQSGVertexColorMaterial_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(QSGVertexColorMaterial*)
+Q_DECLARE_METATYPE(MyQSGVertexColorMaterial*)
+
+int QSGVertexColorMaterial_QSGVertexColorMaterial_QRegisterMetaType(){qRegisterMetaType<QSGVertexColorMaterial*>(); return qRegisterMetaType<MyQSGVertexColorMaterial*>();}
 
 void* QSGVertexColorMaterial_NewQSGVertexColorMaterial()
 {

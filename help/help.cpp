@@ -92,6 +92,8 @@
 #include <QWidget>
 #include <QWindow>
 
+Q_DECLARE_METATYPE(QCompressedHelpInfo)
+Q_DECLARE_METATYPE(QCompressedHelpInfo*)
 void* QCompressedHelpInfo_NewQCompressedHelpInfo()
 {
 	return new QCompressedHelpInfo();
@@ -109,7 +111,7 @@ void* QCompressedHelpInfo_NewQCompressedHelpInfo3(void* other)
 
 struct QtHelp_PackedString QCompressedHelpInfo_Component(void* ptr)
 {
-	return ({ QByteArray t1bdadb = static_cast<QCompressedHelpInfo*>(ptr)->component().toUtf8(); QtHelp_PackedString { const_cast<char*>(t1bdadb.prepend("WHITESPACE").constData()+10), t1bdadb.size()-10 }; });
+	return ({ QByteArray* t1bdadb = new QByteArray(static_cast<QCompressedHelpInfo*>(ptr)->component().toUtf8()); QtHelp_PackedString { const_cast<char*>(t1bdadb->prepend("WHITESPACE").constData()+10), t1bdadb->size()-10, t1bdadb }; });
 }
 
 void* QCompressedHelpInfo_QCompressedHelpInfo_FromCompressedHelpFile(struct QtHelp_PackedString documentationFileName)
@@ -119,7 +121,7 @@ void* QCompressedHelpInfo_QCompressedHelpInfo_FromCompressedHelpFile(struct QtHe
 
 struct QtHelp_PackedString QCompressedHelpInfo_NamespaceName(void* ptr)
 {
-	return ({ QByteArray ted3518 = static_cast<QCompressedHelpInfo*>(ptr)->namespaceName().toUtf8(); QtHelp_PackedString { const_cast<char*>(ted3518.prepend("WHITESPACE").constData()+10), ted3518.size()-10 }; });
+	return ({ QByteArray* ted3518 = new QByteArray(static_cast<QCompressedHelpInfo*>(ptr)->namespaceName().toUtf8()); QtHelp_PackedString { const_cast<char*>(ted3518->prepend("WHITESPACE").constData()+10), ted3518->size()-10, ted3518 }; });
 }
 
 void QCompressedHelpInfo_Swap(void* ptr, void* other)
@@ -164,7 +166,7 @@ int QHelpContentItem_Row(void* ptr)
 
 struct QtHelp_PackedString QHelpContentItem_Title(void* ptr)
 {
-	return ({ QByteArray t03003b = static_cast<QHelpContentItem*>(ptr)->title().toUtf8(); QtHelp_PackedString { const_cast<char*>(t03003b.prepend("WHITESPACE").constData()+10), t03003b.size()-10 }; });
+	return ({ QByteArray* t03003b = new QByteArray(static_cast<QHelpContentItem*>(ptr)->title().toUtf8()); QtHelp_PackedString { const_cast<char*>(t03003b->prepend("WHITESPACE").constData()+10), t03003b->size()-10, t03003b }; });
 }
 
 void* QHelpContentItem_Url(void* ptr)
@@ -197,7 +199,7 @@ public:
 	void Signal_ColumnsInserted(const QModelIndex & parent, int first, int last) { callbackQHelpContentModel_ColumnsInserted(this, const_cast<QModelIndex*>(&parent), first, last); };
 	void Signal_ColumnsMoved(const QModelIndex & parent, int start, int end, const QModelIndex & destination, int column) { callbackQHelpContentModel_ColumnsMoved(this, const_cast<QModelIndex*>(&parent), start, end, const_cast<QModelIndex*>(&destination), column); };
 	void Signal_ColumnsRemoved(const QModelIndex & parent, int first, int last) { callbackQHelpContentModel_ColumnsRemoved(this, const_cast<QModelIndex*>(&parent), first, last); };
-	void Signal_DataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQHelpContentModel_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = new QVector<int>(roles); QtHelp_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_DataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQHelpContentModel_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue037c88 = new QVector<int>(roles); QtHelp_PackedList { tmpValue037c88, tmpValue037c88->size() }; })); };
 	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQHelpContentModel_DropMimeData(this, const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
 	void fetchMore(const QModelIndex & parent) { callbackQHelpContentModel_FetchMore(this, const_cast<QModelIndex*>(&parent)); };
 	Qt::ItemFlags flags(const QModelIndex & index) const { return static_cast<Qt::ItemFlag>(callbackQHelpContentModel_Flags(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
@@ -207,10 +209,10 @@ public:
 	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQHelpContentModel_InsertColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQHelpContentModel_InsertRows(this, row, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	QMap<int, QVariant> itemData(const QModelIndex & index) const { return ({ QMap<int, QVariant>* tmpP = static_cast<QMap<int, QVariant>*>(callbackQHelpContentModel_ItemData(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); QMap<int, QVariant> tmpV = *tmpP; tmpP->~QMap(); free(tmpP); tmpV; }); };
-	void Signal_LayoutAboutToBeChanged(const QList<QPersistentModelIndex> & parents, QAbstractItemModel::LayoutChangeHint hint) { callbackQHelpContentModel_LayoutAboutToBeChanged(this, ({ QList<QPersistentModelIndex>* tmpValue = new QList<QPersistentModelIndex>(parents); QtHelp_PackedList { tmpValue, tmpValue->size() }; }), hint); };
-	void Signal_LayoutChanged(const QList<QPersistentModelIndex> & parents, QAbstractItemModel::LayoutChangeHint hint) { callbackQHelpContentModel_LayoutChanged(this, ({ QList<QPersistentModelIndex>* tmpValue = new QList<QPersistentModelIndex>(parents); QtHelp_PackedList { tmpValue, tmpValue->size() }; }), hint); };
+	void Signal_LayoutAboutToBeChanged(const QList<QPersistentModelIndex> & parents, QAbstractItemModel::LayoutChangeHint hint) { callbackQHelpContentModel_LayoutAboutToBeChanged(this, ({ QList<QPersistentModelIndex>* tmpValuea664f1 = new QList<QPersistentModelIndex>(parents); QtHelp_PackedList { tmpValuea664f1, tmpValuea664f1->size() }; }), hint); };
+	void Signal_LayoutChanged(const QList<QPersistentModelIndex> & parents, QAbstractItemModel::LayoutChangeHint hint) { callbackQHelpContentModel_LayoutChanged(this, ({ QList<QPersistentModelIndex>* tmpValuea664f1 = new QList<QPersistentModelIndex>(parents); QtHelp_PackedList { tmpValuea664f1, tmpValuea664f1->size() }; }), hint); };
 	QList<QModelIndex> match(const QModelIndex & start, int role, const QVariant & value, int hits, Qt::MatchFlags flags) const { return ({ QList<QModelIndex>* tmpP = static_cast<QList<QModelIndex>*>(callbackQHelpContentModel_Match(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&start), role, const_cast<QVariant*>(&value), hits, flags)); QList<QModelIndex> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
-	QMimeData * mimeData(const QModelIndexList & indexes) const { return static_cast<QMimeData*>(callbackQHelpContentModel_MimeData(const_cast<void*>(static_cast<const void*>(this)), ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(indexes); QtHelp_PackedList { tmpValue, tmpValue->size() }; }))); };
+	QMimeData * mimeData(const QModelIndexList & indexes) const { return static_cast<QMimeData*>(callbackQHelpContentModel_MimeData(const_cast<void*>(static_cast<const void*>(this)), ({ QList<QModelIndex>* tmpValuee0adf2 = new QList<QModelIndex>(indexes); QtHelp_PackedList { tmpValuee0adf2, tmpValuee0adf2->size() }; }))); };
 	QStringList mimeTypes() const { return ({ QtHelp_PackedString tempVal = callbackQHelpContentModel_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	void Signal_ModelAboutToBeReset() { callbackQHelpContentModel_ModelAboutToBeReset(this); };
 	void Signal_ModelReset() { callbackQHelpContentModel_ModelReset(this); };
@@ -229,7 +231,7 @@ public:
 	void Signal_RowsRemoved(const QModelIndex & parent, int first, int last) { callbackQHelpContentModel_RowsRemoved(this, const_cast<QModelIndex*>(&parent), first, last); };
 	bool setData(const QModelIndex & index, const QVariant & value, int role) { return callbackQHelpContentModel_SetData(this, const_cast<QModelIndex*>(&index), const_cast<QVariant*>(&value), role) != 0; };
 	bool setHeaderData(int section, Qt::Orientation orientation, const QVariant & value, int role) { return callbackQHelpContentModel_SetHeaderData(this, section, orientation, const_cast<QVariant*>(&value), role) != 0; };
-	bool setItemData(const QModelIndex & index, const QMap<int, QVariant> & roles) { return callbackQHelpContentModel_SetItemData(this, const_cast<QModelIndex*>(&index), ({ QMap<int, QVariant>* tmpValue = new QMap<int, QVariant>(roles); QtHelp_PackedList { tmpValue, tmpValue->size() }; })) != 0; };
+	bool setItemData(const QModelIndex & index, const QMap<int, QVariant> & roles) { return callbackQHelpContentModel_SetItemData(this, const_cast<QModelIndex*>(&index), ({ QMap<int, QVariant>* tmpValue037c88 = new QMap<int, QVariant>(roles); QtHelp_PackedList { tmpValue037c88, tmpValue037c88->size() }; })) != 0; };
 	QModelIndex sibling(int row, int column, const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQHelpContentModel_Sibling(const_cast<void*>(static_cast<const void*>(this)), row, column, const_cast<QModelIndex*>(&index))); };
 	void sort(int column, Qt::SortOrder order) { callbackQHelpContentModel_Sort(this, column, order); };
 	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQHelpContentModel_Span(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
@@ -245,10 +247,11 @@ public:
 	bool event(QEvent * e) { return callbackQHelpContentModel_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQHelpContentModel_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQHelpContentModel_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtHelp_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQHelpContentModel_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtHelp_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQHelpContentModel_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQHelpContentModel_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QHelpContentModel*)
 Q_DECLARE_METATYPE(MyQHelpContentModel*)
 
 int QHelpContentModel_QHelpContentModel_QRegisterMetaType(){qRegisterMetaType<QHelpContentModel*>(); return qRegisterMetaType<MyQHelpContentModel*>();}
@@ -268,9 +271,9 @@ void* QHelpContentModel_ContentItemAt(void* ptr, void* index)
 	return static_cast<QHelpContentModel*>(ptr)->contentItemAt(*static_cast<QModelIndex*>(index));
 }
 
-void QHelpContentModel_ConnectContentsCreated(void* ptr)
+void QHelpContentModel_ConnectContentsCreated(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QHelpContentModel*>(ptr), static_cast<void (QHelpContentModel::*)()>(&QHelpContentModel::contentsCreated), static_cast<MyQHelpContentModel*>(ptr), static_cast<void (MyQHelpContentModel::*)()>(&MyQHelpContentModel::Signal_ContentsCreated));
+	QObject::connect(static_cast<QHelpContentModel*>(ptr), static_cast<void (QHelpContentModel::*)()>(&QHelpContentModel::contentsCreated), static_cast<MyQHelpContentModel*>(ptr), static_cast<void (MyQHelpContentModel::*)()>(&MyQHelpContentModel::Signal_ContentsCreated), static_cast<Qt::ConnectionType>(t));
 }
 
 void QHelpContentModel_DisconnectContentsCreated(void* ptr)
@@ -283,9 +286,9 @@ void QHelpContentModel_ContentsCreated(void* ptr)
 	static_cast<QHelpContentModel*>(ptr)->contentsCreated();
 }
 
-void QHelpContentModel_ConnectContentsCreationStarted(void* ptr)
+void QHelpContentModel_ConnectContentsCreationStarted(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QHelpContentModel*>(ptr), static_cast<void (QHelpContentModel::*)()>(&QHelpContentModel::contentsCreationStarted), static_cast<MyQHelpContentModel*>(ptr), static_cast<void (MyQHelpContentModel::*)()>(&MyQHelpContentModel::Signal_ContentsCreationStarted));
+	QObject::connect(static_cast<QHelpContentModel*>(ptr), static_cast<void (QHelpContentModel::*)()>(&QHelpContentModel::contentsCreationStarted), static_cast<MyQHelpContentModel*>(ptr), static_cast<void (MyQHelpContentModel::*)()>(&MyQHelpContentModel::Signal_ContentsCreationStarted), static_cast<Qt::ConnectionType>(t));
 }
 
 void QHelpContentModel_DisconnectContentsCreationStarted(void* ptr)
@@ -425,7 +428,7 @@ void* QHelpContentModel___itemData_newList(void* ptr)
 
 struct QtHelp_PackedList QHelpContentModel___itemData_keyList(void* ptr)
 {
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<int>* tmpValue249128 = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtHelp_PackedList { tmpValue249128, tmpValue249128->size() }; });
 }
 
 void* QHelpContentModel___layoutAboutToBeChanged_parents_atList(void* ptr, int i)
@@ -526,7 +529,7 @@ void* QHelpContentModel___roleNames_newList(void* ptr)
 
 struct QtHelp_PackedList QHelpContentModel___roleNames_keyList(void* ptr)
 {
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QHash<int, QByteArray>*>(ptr)->keys()); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<int>* tmpValue7fc3bb = new QList<int>(static_cast<QHash<int, QByteArray>*>(ptr)->keys()); QtHelp_PackedList { tmpValue7fc3bb, tmpValue7fc3bb->size() }; });
 }
 
 void* QHelpContentModel___setItemData_roles_atList(void* ptr, int v, int i)
@@ -547,7 +550,7 @@ void* QHelpContentModel___setItemData_roles_newList(void* ptr)
 
 struct QtHelp_PackedList QHelpContentModel___setItemData_roles_keyList(void* ptr)
 {
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<int>* tmpValue249128 = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtHelp_PackedList { tmpValue249128, tmpValue249128->size() }; });
 }
 
 int QHelpContentModel_____doSetRoleNames_roleNames_keyList_atList(void* ptr, int i)
@@ -694,22 +697,6 @@ void* QHelpContentModel___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QHelpContentModel___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QHelpContentModel___qFindChildren_setList2(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QHelpContentModel___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 void* QHelpContentModel_BuddyDefault(void* ptr, void* index)
 {
 		return new QModelIndex(static_cast<QHelpContentModel*>(ptr)->QHelpContentModel::buddy(*static_cast<QModelIndex*>(index)));
@@ -762,12 +749,12 @@ char QHelpContentModel_InsertRowsDefault(void* ptr, int row, int count, void* pa
 
 struct QtHelp_PackedList QHelpContentModel_ItemDataDefault(void* ptr, void* index)
 {
-		return ({ QMap<int, QVariant>* tmpValue = new QMap<int, QVariant>(static_cast<QHelpContentModel*>(ptr)->QHelpContentModel::itemData(*static_cast<QModelIndex*>(index))); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QMap<int, QVariant>* tmpValue5b17af = new QMap<int, QVariant>(static_cast<QHelpContentModel*>(ptr)->QHelpContentModel::itemData(*static_cast<QModelIndex*>(index))); QtHelp_PackedList { tmpValue5b17af, tmpValue5b17af->size() }; });
 }
 
 struct QtHelp_PackedList QHelpContentModel_MatchDefault(void* ptr, void* start, int role, void* value, int hits, long long flags)
 {
-		return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QHelpContentModel*>(ptr)->QHelpContentModel::match(*static_cast<QModelIndex*>(start), role, *static_cast<QVariant*>(value), hits, static_cast<Qt::MatchFlag>(flags))); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QList<QModelIndex>* tmpValue5fd243 = new QList<QModelIndex>(static_cast<QHelpContentModel*>(ptr)->QHelpContentModel::match(*static_cast<QModelIndex*>(start), role, *static_cast<QVariant*>(value), hits, static_cast<Qt::MatchFlag>(flags))); QtHelp_PackedList { tmpValue5fd243, tmpValue5fd243->size() }; });
 }
 
 void* QHelpContentModel_MimeDataDefault(void* ptr, void* indexes)
@@ -777,7 +764,7 @@ void* QHelpContentModel_MimeDataDefault(void* ptr, void* indexes)
 
 struct QtHelp_PackedString QHelpContentModel_MimeTypesDefault(void* ptr)
 {
-		return ({ QByteArray tf8824d = static_cast<QHelpContentModel*>(ptr)->QHelpContentModel::mimeTypes().join("¡¦!").toUtf8(); QtHelp_PackedString { const_cast<char*>(tf8824d.prepend("WHITESPACE").constData()+10), tf8824d.size()-10 }; });
+		return ({ QByteArray* tf8824d = new QByteArray(static_cast<QHelpContentModel*>(ptr)->QHelpContentModel::mimeTypes().join("¡¦!").toUtf8()); QtHelp_PackedString { const_cast<char*>(tf8824d->prepend("WHITESPACE").constData()+10), tf8824d->size()-10, tf8824d }; });
 }
 
 char QHelpContentModel_MoveColumnsDefault(void* ptr, void* sourceParent, int sourceColumn, int count, void* destinationParent, int destinationChild)
@@ -812,7 +799,7 @@ void QHelpContentModel_RevertDefault(void* ptr)
 
 struct QtHelp_PackedList QHelpContentModel_RoleNamesDefault(void* ptr)
 {
-		return ({ QHash<int, QByteArray>* tmpValue = new QHash<int, QByteArray>(static_cast<QHelpContentModel*>(ptr)->QHelpContentModel::roleNames()); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QHash<int, QByteArray>* tmpValue93ed79 = new QHash<int, QByteArray>(static_cast<QHelpContentModel*>(ptr)->QHelpContentModel::roleNames()); QtHelp_PackedList { tmpValue93ed79, tmpValue93ed79->size() }; });
 }
 
 char QHelpContentModel_SetDataDefault(void* ptr, void* index, void* value, int role)
@@ -916,7 +903,7 @@ public:
 	void columnMoved() { callbackQHelpContentWidget_ColumnMoved(this); };
 	void columnResized(int column, int oldSize, int newSize) { callbackQHelpContentWidget_ColumnResized(this, column, oldSize, newSize); };
 	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQHelpContentWidget_CurrentChanged(this, const_cast<QModelIndex*>(&current), const_cast<QModelIndex*>(&previous)); };
-	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQHelpContentWidget_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = new QVector<int>(roles); QtHelp_PackedList { tmpValue, tmpValue->size() }; })); };
+	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQHelpContentWidget_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue037c88 = new QVector<int>(roles); QtHelp_PackedList { tmpValue037c88, tmpValue037c88->size() }; })); };
 	void dragMoveEvent(QDragMoveEvent * event) { callbackQHelpContentWidget_DragMoveEvent(this, event); };
 	void drawBranches(QPainter * painter, const QRect & rect, const QModelIndex & index) const { callbackQHelpContentWidget_DrawBranches(const_cast<void*>(static_cast<const void*>(this)), painter, const_cast<QRect*>(&rect), const_cast<QModelIndex*>(&index)); };
 	void drawRow(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const { callbackQHelpContentWidget_DrawRow(const_cast<void*>(static_cast<const void*>(this)), painter, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index)); };
@@ -930,7 +917,7 @@ public:
 	QModelIndex indexAt(const QPoint & point) const { return *static_cast<QModelIndex*>(callbackQHelpContentWidget_IndexAt(const_cast<void*>(static_cast<const void*>(this)), const_cast<QPoint*>(&point))); };
 	bool isIndexHidden(const QModelIndex & index) const { return callbackQHelpContentWidget_IsIndexHidden(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index)) != 0; };
 	void keyPressEvent(QKeyEvent * event) { callbackQHelpContentWidget_KeyPressEvent(this, event); };
-	void keyboardSearch(const QString & search) { QByteArray t3559d7 = search.toUtf8(); QtHelp_PackedString searchPacked = { const_cast<char*>(t3559d7.prepend("WHITESPACE").constData()+10), t3559d7.size()-10 };callbackQHelpContentWidget_KeyboardSearch(this, searchPacked); };
+	void keyboardSearch(const QString & search) { QByteArray* t3559d7 = new QByteArray(search.toUtf8()); QtHelp_PackedString searchPacked = { const_cast<char*>(t3559d7->prepend("WHITESPACE").constData()+10), t3559d7->size()-10, t3559d7 };callbackQHelpContentWidget_KeyboardSearch(this, searchPacked); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQHelpContentWidget_MouseDoubleClickEvent(this, event); };
 	void mouseMoveEvent(QMouseEvent * event) { callbackQHelpContentWidget_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQHelpContentWidget_MousePressEvent(this, event); };
@@ -1021,10 +1008,10 @@ public:
 	void setEnabled(bool vbo) { callbackQHelpContentWidget_SetEnabled(this, vbo); };
 	void setFocus() { callbackQHelpContentWidget_SetFocus2(this); };
 	void setHidden(bool hidden) { callbackQHelpContentWidget_SetHidden(this, hidden); };
-	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtHelp_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQHelpContentWidget_SetStyleSheet(this, styleSheetPacked); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray* t728ae7 = new QByteArray(styleSheet.toUtf8()); QtHelp_PackedString styleSheetPacked = { const_cast<char*>(t728ae7->prepend("WHITESPACE").constData()+10), t728ae7->size()-10, t728ae7 };callbackQHelpContentWidget_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQHelpContentWidget_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQHelpContentWidget_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtHelp_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQHelpContentWidget_SetWindowTitle(this, vqsPacked); };
+	void setWindowTitle(const QString & vqs) { QByteArray* tda39a3 = new QByteArray(vqs.toUtf8()); QtHelp_PackedString vqsPacked = { const_cast<char*>(tda39a3->prepend("WHITESPACE").constData()+10), tda39a3->size()-10, tda39a3 };callbackQHelpContentWidget_SetWindowTitle(this, vqsPacked); };
 	void show() { callbackQHelpContentWidget_Show(this); };
 	void showEvent(QShowEvent * event) { callbackQHelpContentWidget_ShowEvent(this, event); };
 	void showFullScreen() { callbackQHelpContentWidget_ShowFullScreen(this); };
@@ -1034,7 +1021,7 @@ public:
 	void tabletEvent(QTabletEvent * event) { callbackQHelpContentWidget_TabletEvent(this, event); };
 	void updateMicroFocus() { callbackQHelpContentWidget_UpdateMicroFocus(this); };
 	void Signal_WindowIconChanged(const QIcon & icon) { callbackQHelpContentWidget_WindowIconChanged(this, const_cast<QIcon*>(&icon)); };
-	void Signal_WindowTitleChanged(const QString & title) { QByteArray t3c6de1 = title.toUtf8(); QtHelp_PackedString titlePacked = { const_cast<char*>(t3c6de1.prepend("WHITESPACE").constData()+10), t3c6de1.size()-10 };callbackQHelpContentWidget_WindowTitleChanged(this, titlePacked); };
+	void Signal_WindowTitleChanged(const QString & title) { QByteArray* t3c6de1 = new QByteArray(title.toUtf8()); QtHelp_PackedString titlePacked = { const_cast<char*>(t3c6de1->prepend("WHITESPACE").constData()+10), t3c6de1->size()-10, t3c6de1 };callbackQHelpContentWidget_WindowTitleChanged(this, titlePacked); };
 	void childEvent(QChildEvent * event) { callbackQHelpContentWidget_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQHelpContentWidget_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQHelpContentWidget_CustomEvent(this, event); };
@@ -1042,9 +1029,10 @@ public:
 	void Signal_Destroyed(QObject * obj) { callbackQHelpContentWidget_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQHelpContentWidget_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQHelpContentWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtHelp_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQHelpContentWidget_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtHelp_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQHelpContentWidget_ObjectNameChanged(this, objectNamePacked); };
 };
 
+Q_DECLARE_METATYPE(QHelpContentWidget*)
 Q_DECLARE_METATYPE(MyQHelpContentWidget*)
 
 int QHelpContentWidget_QHelpContentWidget_QRegisterMetaType(){qRegisterMetaType<QHelpContentWidget*>(); return qRegisterMetaType<MyQHelpContentWidget*>();}
@@ -1054,9 +1042,9 @@ void* QHelpContentWidget_IndexOf(void* ptr, void* link)
 	return new QModelIndex(static_cast<QHelpContentWidget*>(ptr)->indexOf(*static_cast<QUrl*>(link)));
 }
 
-void QHelpContentWidget_ConnectLinkActivated(void* ptr)
+void QHelpContentWidget_ConnectLinkActivated(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QHelpContentWidget*>(ptr), static_cast<void (QHelpContentWidget::*)(const QUrl &)>(&QHelpContentWidget::linkActivated), static_cast<MyQHelpContentWidget*>(ptr), static_cast<void (MyQHelpContentWidget::*)(const QUrl &)>(&MyQHelpContentWidget::Signal_LinkActivated));
+	QObject::connect(static_cast<QHelpContentWidget*>(ptr), static_cast<void (QHelpContentWidget::*)(const QUrl &)>(&QHelpContentWidget::linkActivated), static_cast<MyQHelpContentWidget*>(ptr), static_cast<void (MyQHelpContentWidget::*)(const QUrl &)>(&MyQHelpContentWidget::Signal_LinkActivated), static_cast<Qt::ConnectionType>(t));
 }
 
 void QHelpContentWidget_DisconnectLinkActivated(void* ptr)
@@ -1224,22 +1212,6 @@ void QHelpContentWidget___findChildren_setList3(void* ptr, void* i)
 }
 
 void* QHelpContentWidget___findChildren_newList3(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
-void* QHelpContentWidget___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QHelpContentWidget___qFindChildren_setList2(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QHelpContentWidget___qFindChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();
@@ -1854,7 +1826,7 @@ public:
 	 ~MyQHelpEngine() { callbackQHelpEngine_DestroyQHelpEngine(this); };
 	void Signal_SetupFinished() { callbackQHelpEngineCore_SetupFinished(this); };
 	void Signal_SetupStarted() { callbackQHelpEngineCore_SetupStarted(this); };
-	void Signal_Warning(const QString & msg) { QByteArray t19f34e = msg.toUtf8(); QtHelp_PackedString msgPacked = { const_cast<char*>(t19f34e.prepend("WHITESPACE").constData()+10), t19f34e.size()-10 };callbackQHelpEngineCore_Warning(this, msgPacked); };
+	void Signal_Warning(const QString & msg) { QByteArray* t19f34e = new QByteArray(msg.toUtf8()); QtHelp_PackedString msgPacked = { const_cast<char*>(t19f34e->prepend("WHITESPACE").constData()+10), t19f34e->size()-10, t19f34e };callbackQHelpEngineCore_Warning(this, msgPacked); };
 	void childEvent(QChildEvent * event) { callbackQHelpEngineCore_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQHelpEngineCore_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQHelpEngineCore_CustomEvent(this, event); };
@@ -1864,10 +1836,11 @@ public:
 	bool event(QEvent * e) { return callbackQHelpEngineCore_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQHelpEngineCore_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQHelpEngineCore_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtHelp_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQHelpEngineCore_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtHelp_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQHelpEngineCore_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQHelpEngineCore_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QHelpEngine*)
 Q_DECLARE_METATYPE(MyQHelpEngine*)
 
 int QHelpEngine_QHelpEngine_QRegisterMetaType(){qRegisterMetaType<QHelpEngine*>(); return qRegisterMetaType<MyQHelpEngine*>();}
@@ -1961,7 +1934,7 @@ public:
 	MyQHelpEngineCore(const QString &collectionFile, QObject *parent = Q_NULLPTR) : QHelpEngineCore(collectionFile, parent) {QHelpEngineCore_QHelpEngineCore_QRegisterMetaType();};
 	void Signal_SetupFinished() { callbackQHelpEngineCore_SetupFinished(this); };
 	void Signal_SetupStarted() { callbackQHelpEngineCore_SetupStarted(this); };
-	void Signal_Warning(const QString & msg) { QByteArray t19f34e = msg.toUtf8(); QtHelp_PackedString msgPacked = { const_cast<char*>(t19f34e.prepend("WHITESPACE").constData()+10), t19f34e.size()-10 };callbackQHelpEngineCore_Warning(this, msgPacked); };
+	void Signal_Warning(const QString & msg) { QByteArray* t19f34e = new QByteArray(msg.toUtf8()); QtHelp_PackedString msgPacked = { const_cast<char*>(t19f34e->prepend("WHITESPACE").constData()+10), t19f34e->size()-10, t19f34e };callbackQHelpEngineCore_Warning(this, msgPacked); };
 	 ~MyQHelpEngineCore() { callbackQHelpEngineCore_DestroyQHelpEngineCore(this); };
 	void childEvent(QChildEvent * event) { callbackQHelpEngineCore_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQHelpEngineCore_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -1972,10 +1945,11 @@ public:
 	bool event(QEvent * e) { return callbackQHelpEngineCore_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQHelpEngineCore_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQHelpEngineCore_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtHelp_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQHelpEngineCore_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtHelp_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQHelpEngineCore_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQHelpEngineCore_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QHelpEngineCore*)
 Q_DECLARE_METATYPE(MyQHelpEngineCore*)
 
 int QHelpEngineCore_QHelpEngineCore_QRegisterMetaType(){qRegisterMetaType<QHelpEngineCore*>(); return qRegisterMetaType<MyQHelpEngineCore*>();}
@@ -2034,7 +2008,7 @@ char QHelpEngineCore_AutoSaveFilter(void* ptr)
 
 struct QtHelp_PackedString QHelpEngineCore_CollectionFile(void* ptr)
 {
-	return ({ QByteArray tbb1d46 = static_cast<QHelpEngineCore*>(ptr)->collectionFile().toUtf8(); QtHelp_PackedString { const_cast<char*>(tbb1d46.prepend("WHITESPACE").constData()+10), tbb1d46.size()-10 }; });
+	return ({ QByteArray* tbb1d46 = new QByteArray(static_cast<QHelpEngineCore*>(ptr)->collectionFile().toUtf8()); QtHelp_PackedString { const_cast<char*>(tbb1d46->prepend("WHITESPACE").constData()+10), tbb1d46->size()-10, tbb1d46 }; });
 }
 
 char QHelpEngineCore_CopyCollectionFile(void* ptr, struct QtHelp_PackedString fileName)
@@ -2044,7 +2018,7 @@ char QHelpEngineCore_CopyCollectionFile(void* ptr, struct QtHelp_PackedString fi
 
 struct QtHelp_PackedString QHelpEngineCore_CurrentFilter(void* ptr)
 {
-	return ({ QByteArray taf4fbf = static_cast<QHelpEngineCore*>(ptr)->currentFilter().toUtf8(); QtHelp_PackedString { const_cast<char*>(taf4fbf.prepend("WHITESPACE").constData()+10), taf4fbf.size()-10 }; });
+	return ({ QByteArray* taf4fbf = new QByteArray(static_cast<QHelpEngineCore*>(ptr)->currentFilter().toUtf8()); QtHelp_PackedString { const_cast<char*>(taf4fbf->prepend("WHITESPACE").constData()+10), taf4fbf->size()-10, taf4fbf }; });
 }
 
 void* QHelpEngineCore_CustomValue(void* ptr, struct QtHelp_PackedString key, void* defaultValue)
@@ -2054,12 +2028,12 @@ void* QHelpEngineCore_CustomValue(void* ptr, struct QtHelp_PackedString key, voi
 
 struct QtHelp_PackedString QHelpEngineCore_DocumentationFileName(void* ptr, struct QtHelp_PackedString namespaceName)
 {
-	return ({ QByteArray t454496 = static_cast<QHelpEngineCore*>(ptr)->documentationFileName(QString::fromUtf8(namespaceName.data, namespaceName.len)).toUtf8(); QtHelp_PackedString { const_cast<char*>(t454496.prepend("WHITESPACE").constData()+10), t454496.size()-10 }; });
+	return ({ QByteArray* t454496 = new QByteArray(static_cast<QHelpEngineCore*>(ptr)->documentationFileName(QString::fromUtf8(namespaceName.data, namespaceName.len)).toUtf8()); QtHelp_PackedString { const_cast<char*>(t454496->prepend("WHITESPACE").constData()+10), t454496->size()-10, t454496 }; });
 }
 
 struct QtHelp_PackedString QHelpEngineCore_Error(void* ptr)
 {
-	return ({ QByteArray t952e50 = static_cast<QHelpEngineCore*>(ptr)->error().toUtf8(); QtHelp_PackedString { const_cast<char*>(t952e50.prepend("WHITESPACE").constData()+10), t952e50.size()-10 }; });
+	return ({ QByteArray* t952e50 = new QByteArray(static_cast<QHelpEngineCore*>(ptr)->error().toUtf8()); QtHelp_PackedString { const_cast<char*>(t952e50->prepend("WHITESPACE").constData()+10), t952e50->size()-10, t952e50 }; });
 }
 
 void* QHelpEngineCore_FileData(void* ptr, void* url)
@@ -2069,7 +2043,7 @@ void* QHelpEngineCore_FileData(void* ptr, void* url)
 
 struct QtHelp_PackedList QHelpEngineCore_Files2(void* ptr, struct QtHelp_PackedString namespaceName, struct QtHelp_PackedString filterName, struct QtHelp_PackedString extensionFilter)
 {
-	return ({ QList<QUrl>* tmpValue = new QList<QUrl>(static_cast<QHelpEngineCore*>(ptr)->files(QString::fromUtf8(namespaceName.data, namespaceName.len), QString::fromUtf8(filterName.data, filterName.len), QString::fromUtf8(extensionFilter.data, extensionFilter.len))); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QUrl>* tmpValue17408f = new QList<QUrl>(static_cast<QHelpEngineCore*>(ptr)->files(QString::fromUtf8(namespaceName.data, namespaceName.len), QString::fromUtf8(filterName.data, filterName.len), QString::fromUtf8(extensionFilter.data, extensionFilter.len))); QtHelp_PackedList { tmpValue17408f, tmpValue17408f->size() }; });
 }
 
 void* QHelpEngineCore_FilterEngine(void* ptr)
@@ -2084,12 +2058,12 @@ void* QHelpEngineCore_FindFile(void* ptr, void* url)
 
 struct QtHelp_PackedList QHelpEngineCore_LinksForIdentifier(void* ptr, struct QtHelp_PackedString id)
 {
-	return ({ QMap<QString, QUrl>* tmpValue = new QMap<QString, QUrl>(static_cast<QHelpEngineCore*>(ptr)->linksForIdentifier(QString::fromUtf8(id.data, id.len))); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QMap<QString, QUrl>* tmpValue361fdc = new QMap<QString, QUrl>(static_cast<QHelpEngineCore*>(ptr)->linksForIdentifier(QString::fromUtf8(id.data, id.len))); QtHelp_PackedList { tmpValue361fdc, tmpValue361fdc->size() }; });
 }
 
 struct QtHelp_PackedList QHelpEngineCore_LinksForKeyword(void* ptr, struct QtHelp_PackedString keyword)
 {
-	return ({ QMap<QString, QUrl>* tmpValue = new QMap<QString, QUrl>(static_cast<QHelpEngineCore*>(ptr)->linksForKeyword(QString::fromUtf8(keyword.data, keyword.len))); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QMap<QString, QUrl>* tmpValue8227a8 = new QMap<QString, QUrl>(static_cast<QHelpEngineCore*>(ptr)->linksForKeyword(QString::fromUtf8(keyword.data, keyword.len))); QtHelp_PackedList { tmpValue8227a8, tmpValue8227a8->size() }; });
 }
 
 void* QHelpEngineCore_QHelpEngineCore_MetaData(struct QtHelp_PackedString documentationFileName, struct QtHelp_PackedString name)
@@ -2099,7 +2073,7 @@ void* QHelpEngineCore_QHelpEngineCore_MetaData(struct QtHelp_PackedString docume
 
 struct QtHelp_PackedString QHelpEngineCore_QHelpEngineCore_NamespaceName(struct QtHelp_PackedString documentationFileName)
 {
-	return ({ QByteArray te8bcfa = QHelpEngineCore::namespaceName(QString::fromUtf8(documentationFileName.data, documentationFileName.len)).toUtf8(); QtHelp_PackedString { const_cast<char*>(te8bcfa.prepend("WHITESPACE").constData()+10), te8bcfa.size()-10 }; });
+	return ({ QByteArray* te8bcfa = new QByteArray(QHelpEngineCore::namespaceName(QString::fromUtf8(documentationFileName.data, documentationFileName.len)).toUtf8()); QtHelp_PackedString { const_cast<char*>(te8bcfa->prepend("WHITESPACE").constData()+10), te8bcfa->size()-10, te8bcfa }; });
 }
 
 char QHelpEngineCore_RegisterDocumentation(void* ptr, struct QtHelp_PackedString documentationFileName)
@@ -2109,7 +2083,7 @@ char QHelpEngineCore_RegisterDocumentation(void* ptr, struct QtHelp_PackedString
 
 struct QtHelp_PackedString QHelpEngineCore_RegisteredDocumentations(void* ptr)
 {
-	return ({ QByteArray t7c5252 = static_cast<QHelpEngineCore*>(ptr)->registeredDocumentations().join("¡¦!").toUtf8(); QtHelp_PackedString { const_cast<char*>(t7c5252.prepend("WHITESPACE").constData()+10), t7c5252.size()-10 }; });
+	return ({ QByteArray* t7c5252 = new QByteArray(static_cast<QHelpEngineCore*>(ptr)->registeredDocumentations().join("¡¦!").toUtf8()); QtHelp_PackedString { const_cast<char*>(t7c5252->prepend("WHITESPACE").constData()+10), t7c5252->size()-10, t7c5252 }; });
 }
 
 char QHelpEngineCore_RemoveCustomValue(void* ptr, struct QtHelp_PackedString key)
@@ -2147,9 +2121,9 @@ char QHelpEngineCore_SetupData(void* ptr)
 	return static_cast<QHelpEngineCore*>(ptr)->setupData();
 }
 
-void QHelpEngineCore_ConnectSetupFinished(void* ptr)
+void QHelpEngineCore_ConnectSetupFinished(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QHelpEngineCore*>(ptr), static_cast<void (QHelpEngineCore::*)()>(&QHelpEngineCore::setupFinished), static_cast<MyQHelpEngineCore*>(ptr), static_cast<void (MyQHelpEngineCore::*)()>(&MyQHelpEngineCore::Signal_SetupFinished));
+	QObject::connect(static_cast<QHelpEngineCore*>(ptr), static_cast<void (QHelpEngineCore::*)()>(&QHelpEngineCore::setupFinished), static_cast<MyQHelpEngineCore*>(ptr), static_cast<void (MyQHelpEngineCore::*)()>(&MyQHelpEngineCore::Signal_SetupFinished), static_cast<Qt::ConnectionType>(t));
 }
 
 void QHelpEngineCore_DisconnectSetupFinished(void* ptr)
@@ -2162,9 +2136,9 @@ void QHelpEngineCore_SetupFinished(void* ptr)
 	static_cast<QHelpEngineCore*>(ptr)->setupFinished();
 }
 
-void QHelpEngineCore_ConnectSetupStarted(void* ptr)
+void QHelpEngineCore_ConnectSetupStarted(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QHelpEngineCore*>(ptr), static_cast<void (QHelpEngineCore::*)()>(&QHelpEngineCore::setupStarted), static_cast<MyQHelpEngineCore*>(ptr), static_cast<void (MyQHelpEngineCore::*)()>(&MyQHelpEngineCore::Signal_SetupStarted));
+	QObject::connect(static_cast<QHelpEngineCore*>(ptr), static_cast<void (QHelpEngineCore::*)()>(&QHelpEngineCore::setupStarted), static_cast<MyQHelpEngineCore*>(ptr), static_cast<void (MyQHelpEngineCore::*)()>(&MyQHelpEngineCore::Signal_SetupStarted), static_cast<Qt::ConnectionType>(t));
 }
 
 void QHelpEngineCore_DisconnectSetupStarted(void* ptr)
@@ -2187,9 +2161,9 @@ char QHelpEngineCore_UsesFilterEngine(void* ptr)
 	return static_cast<QHelpEngineCore*>(ptr)->usesFilterEngine();
 }
 
-void QHelpEngineCore_ConnectWarning(void* ptr)
+void QHelpEngineCore_ConnectWarning(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QHelpEngineCore*>(ptr), static_cast<void (QHelpEngineCore::*)(const QString &)>(&QHelpEngineCore::warning), static_cast<MyQHelpEngineCore*>(ptr), static_cast<void (MyQHelpEngineCore::*)(const QString &)>(&MyQHelpEngineCore::Signal_Warning));
+	QObject::connect(static_cast<QHelpEngineCore*>(ptr), static_cast<void (QHelpEngineCore::*)(const QString &)>(&QHelpEngineCore::warning), static_cast<MyQHelpEngineCore*>(ptr), static_cast<void (MyQHelpEngineCore::*)(const QString &)>(&MyQHelpEngineCore::Signal_Warning), static_cast<Qt::ConnectionType>(t));
 }
 
 void QHelpEngineCore_DisconnectWarning(void* ptr)
@@ -2247,7 +2221,7 @@ void* QHelpEngineCore___files_newList2(void* ptr)
 
 struct QtHelp_PackedString QHelpEngineCore___filterAttributeSets_atList(void* ptr, int i)
 {
-	return ({ QByteArray tbc37c9 = ({QStringList tmp = static_cast<QList<QStringList>*>(ptr)->at(i); if (i == static_cast<QList<QStringList>*>(ptr)->size()-1) { static_cast<QList<QStringList>*>(ptr)->~QList(); free(ptr); }; tmp; }).join("¡¦!").toUtf8(); QtHelp_PackedString { const_cast<char*>(tbc37c9.prepend("WHITESPACE").constData()+10), tbc37c9.size()-10 }; });
+	return ({ QByteArray* tbc37c9 = new QByteArray(({QStringList tmp = static_cast<QList<QStringList>*>(ptr)->at(i); if (i == static_cast<QList<QStringList>*>(ptr)->size()-1) { static_cast<QList<QStringList>*>(ptr)->~QList(); free(ptr); }; tmp; }).join("¡¦!").toUtf8()); QtHelp_PackedString { const_cast<char*>(tbc37c9->prepend("WHITESPACE").constData()+10), tbc37c9->size()-10, tbc37c9 }; });
 }
 
 void QHelpEngineCore___filterAttributeSets_setList(void* ptr, struct QtHelp_PackedString i)
@@ -2279,7 +2253,7 @@ void* QHelpEngineCore___linksForIdentifier_newList(void* ptr)
 
 struct QtHelp_PackedList QHelpEngineCore___linksForIdentifier_keyList(void* ptr)
 {
-	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QUrl>*>(ptr)->keys()); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QString>* tmpValue9ecb96 = new QList<QString>(static_cast<QMap<QString, QUrl>*>(ptr)->keys()); QtHelp_PackedList { tmpValue9ecb96, tmpValue9ecb96->size() }; });
 }
 
 void* QHelpEngineCore___linksForKeyword_atList(void* ptr, struct QtHelp_PackedString v, int i)
@@ -2300,12 +2274,12 @@ void* QHelpEngineCore___linksForKeyword_newList(void* ptr)
 
 struct QtHelp_PackedList QHelpEngineCore___linksForKeyword_keyList(void* ptr)
 {
-	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QUrl>*>(ptr)->keys()); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QString>* tmpValue9ecb96 = new QList<QString>(static_cast<QMap<QString, QUrl>*>(ptr)->keys()); QtHelp_PackedList { tmpValue9ecb96, tmpValue9ecb96->size() }; });
 }
 
 struct QtHelp_PackedString QHelpEngineCore_____linksForIdentifier_keyList_atList(void* ptr, int i)
 {
-	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtHelp_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
+	return ({ QByteArray* t94aa5e = new QByteArray(({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8()); QtHelp_PackedString { const_cast<char*>(t94aa5e->prepend("WHITESPACE").constData()+10), t94aa5e->size()-10, t94aa5e }; });
 }
 
 void QHelpEngineCore_____linksForIdentifier_keyList_setList(void* ptr, struct QtHelp_PackedString i)
@@ -2321,7 +2295,7 @@ void* QHelpEngineCore_____linksForIdentifier_keyList_newList(void* ptr)
 
 struct QtHelp_PackedString QHelpEngineCore_____linksForKeyword_keyList_atList(void* ptr, int i)
 {
-	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtHelp_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
+	return ({ QByteArray* t94aa5e = new QByteArray(({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8()); QtHelp_PackedString { const_cast<char*>(t94aa5e->prepend("WHITESPACE").constData()+10), t94aa5e->size()-10, t94aa5e }; });
 }
 
 void QHelpEngineCore_____linksForKeyword_keyList_setList(void* ptr, struct QtHelp_PackedString i)
@@ -2394,22 +2368,6 @@ void QHelpEngineCore___findChildren_setList3(void* ptr, void* i)
 }
 
 void* QHelpEngineCore___findChildren_newList3(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
-void* QHelpEngineCore___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QHelpEngineCore___qFindChildren_setList2(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QHelpEngineCore___qFindChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();
@@ -2496,6 +2454,8 @@ void QHelpEngineCore_TimerEventDefault(void* ptr, void* event)
 	}
 }
 
+Q_DECLARE_METATYPE(QHelpFilterData)
+Q_DECLARE_METATYPE(QHelpFilterData*)
 void* QHelpFilterData_NewQHelpFilterData()
 {
 	return new QHelpFilterData();
@@ -2513,7 +2473,7 @@ void* QHelpFilterData_NewQHelpFilterData3(void* other)
 
 struct QtHelp_PackedString QHelpFilterData_Components(void* ptr)
 {
-	return ({ QByteArray t8c3205 = static_cast<QHelpFilterData*>(ptr)->components().join("¡¦!").toUtf8(); QtHelp_PackedString { const_cast<char*>(t8c3205.prepend("WHITESPACE").constData()+10), t8c3205.size()-10 }; });
+	return ({ QByteArray* t8c3205 = new QByteArray(static_cast<QHelpFilterData*>(ptr)->components().join("¡¦!").toUtf8()); QtHelp_PackedString { const_cast<char*>(t8c3205->prepend("WHITESPACE").constData()+10), t8c3205->size()-10, t8c3205 }; });
 }
 
 void QHelpFilterData_SetComponents(void* ptr, struct QtHelp_PackedString components)
@@ -2528,7 +2488,7 @@ void QHelpFilterData_SetVersions(void* ptr, void* versions)
 
 struct QtHelp_PackedList QHelpFilterData_Versions(void* ptr)
 {
-	return ({ QList<QVersionNumber>* tmpValue = new QList<QVersionNumber>(static_cast<QHelpFilterData*>(ptr)->versions()); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QVersionNumber>* tmpValuee33815 = new QList<QVersionNumber>(static_cast<QHelpFilterData*>(ptr)->versions()); QtHelp_PackedList { tmpValuee33815, tmpValuee33815->size() }; });
 }
 
 void QHelpFilterData_DestroyQHelpFilterData(void* ptr)
@@ -2571,7 +2531,7 @@ void* QHelpFilterData___versions_newList(void* ptr)
 class MyQHelpFilterEngine: public QHelpFilterEngine
 {
 public:
-	void Signal_FilterActivated(const QString & newFilter) { QByteArray t56548b = newFilter.toUtf8(); QtHelp_PackedString newFilterPacked = { const_cast<char*>(t56548b.prepend("WHITESPACE").constData()+10), t56548b.size()-10 };callbackQHelpFilterEngine_FilterActivated(this, newFilterPacked); };
+	void Signal_FilterActivated(const QString & newFilter) { QByteArray* t56548b = new QByteArray(newFilter.toUtf8()); QtHelp_PackedString newFilterPacked = { const_cast<char*>(t56548b->prepend("WHITESPACE").constData()+10), t56548b->size()-10, t56548b };callbackQHelpFilterEngine_FilterActivated(this, newFilterPacked); };
 	void childEvent(QChildEvent * event) { callbackQHelpFilterEngine_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQHelpFilterEngine_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQHelpFilterEngine_CustomEvent(this, event); };
@@ -2581,27 +2541,28 @@ public:
 	bool event(QEvent * e) { return callbackQHelpFilterEngine_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQHelpFilterEngine_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQHelpFilterEngine_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtHelp_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQHelpFilterEngine_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtHelp_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQHelpFilterEngine_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQHelpFilterEngine_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QHelpFilterEngine*)
 Q_DECLARE_METATYPE(MyQHelpFilterEngine*)
 
 int QHelpFilterEngine_QHelpFilterEngine_QRegisterMetaType(){qRegisterMetaType<QHelpFilterEngine*>(); return qRegisterMetaType<MyQHelpFilterEngine*>();}
 
 struct QtHelp_PackedString QHelpFilterEngine_ActiveFilter(void* ptr)
 {
-	return ({ QByteArray t1f8aba = static_cast<QHelpFilterEngine*>(ptr)->activeFilter().toUtf8(); QtHelp_PackedString { const_cast<char*>(t1f8aba.prepend("WHITESPACE").constData()+10), t1f8aba.size()-10 }; });
+	return ({ QByteArray* t1f8aba = new QByteArray(static_cast<QHelpFilterEngine*>(ptr)->activeFilter().toUtf8()); QtHelp_PackedString { const_cast<char*>(t1f8aba->prepend("WHITESPACE").constData()+10), t1f8aba->size()-10, t1f8aba }; });
 }
 
 struct QtHelp_PackedString QHelpFilterEngine_AvailableComponents(void* ptr)
 {
-	return ({ QByteArray te1b10d = static_cast<QHelpFilterEngine*>(ptr)->availableComponents().join("¡¦!").toUtf8(); QtHelp_PackedString { const_cast<char*>(te1b10d.prepend("WHITESPACE").constData()+10), te1b10d.size()-10 }; });
+	return ({ QByteArray* te1b10d = new QByteArray(static_cast<QHelpFilterEngine*>(ptr)->availableComponents().join("¡¦!").toUtf8()); QtHelp_PackedString { const_cast<char*>(te1b10d->prepend("WHITESPACE").constData()+10), te1b10d->size()-10, te1b10d }; });
 }
 
-void QHelpFilterEngine_ConnectFilterActivated(void* ptr)
+void QHelpFilterEngine_ConnectFilterActivated(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QHelpFilterEngine*>(ptr), static_cast<void (QHelpFilterEngine::*)(const QString &)>(&QHelpFilterEngine::filterActivated), static_cast<MyQHelpFilterEngine*>(ptr), static_cast<void (MyQHelpFilterEngine::*)(const QString &)>(&MyQHelpFilterEngine::Signal_FilterActivated));
+	QObject::connect(static_cast<QHelpFilterEngine*>(ptr), static_cast<void (QHelpFilterEngine::*)(const QString &)>(&QHelpFilterEngine::filterActivated), static_cast<MyQHelpFilterEngine*>(ptr), static_cast<void (MyQHelpFilterEngine::*)(const QString &)>(&MyQHelpFilterEngine::Signal_FilterActivated), static_cast<Qt::ConnectionType>(t));
 }
 
 void QHelpFilterEngine_DisconnectFilterActivated(void* ptr)
@@ -2621,22 +2582,22 @@ void* QHelpFilterEngine_FilterData(void* ptr, struct QtHelp_PackedString filterN
 
 struct QtHelp_PackedString QHelpFilterEngine_Filters(void* ptr)
 {
-	return ({ QByteArray td6cc86 = static_cast<QHelpFilterEngine*>(ptr)->filters().join("¡¦!").toUtf8(); QtHelp_PackedString { const_cast<char*>(td6cc86.prepend("WHITESPACE").constData()+10), td6cc86.size()-10 }; });
+	return ({ QByteArray* td6cc86 = new QByteArray(static_cast<QHelpFilterEngine*>(ptr)->filters().join("¡¦!").toUtf8()); QtHelp_PackedString { const_cast<char*>(td6cc86->prepend("WHITESPACE").constData()+10), td6cc86->size()-10, td6cc86 }; });
 }
 
 struct QtHelp_PackedList QHelpFilterEngine_NamespaceToComponent(void* ptr)
 {
-	return ({ QMap<QString, QString>* tmpValue = new QMap<QString, QString>(static_cast<QHelpFilterEngine*>(ptr)->namespaceToComponent()); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QMap<QString, QString>* tmpValuee91d13 = new QMap<QString, QString>(static_cast<QHelpFilterEngine*>(ptr)->namespaceToComponent()); QtHelp_PackedList { tmpValuee91d13, tmpValuee91d13->size() }; });
 }
 
 struct QtHelp_PackedList QHelpFilterEngine_NamespaceToVersion(void* ptr)
 {
-	return ({ QMap<QString, QVersionNumber>* tmpValue = new QMap<QString, QVersionNumber>(static_cast<QHelpFilterEngine*>(ptr)->namespaceToVersion()); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QMap<QString, QVersionNumber>* tmpValue1b077b = new QMap<QString, QVersionNumber>(static_cast<QHelpFilterEngine*>(ptr)->namespaceToVersion()); QtHelp_PackedList { tmpValue1b077b, tmpValue1b077b->size() }; });
 }
 
 struct QtHelp_PackedString QHelpFilterEngine_NamespacesForFilter(void* ptr, struct QtHelp_PackedString filterName)
 {
-	return ({ QByteArray te946de = static_cast<QHelpFilterEngine*>(ptr)->namespacesForFilter(QString::fromUtf8(filterName.data, filterName.len)).join("¡¦!").toUtf8(); QtHelp_PackedString { const_cast<char*>(te946de.prepend("WHITESPACE").constData()+10), te946de.size()-10 }; });
+	return ({ QByteArray* te946de = new QByteArray(static_cast<QHelpFilterEngine*>(ptr)->namespacesForFilter(QString::fromUtf8(filterName.data, filterName.len)).join("¡¦!").toUtf8()); QtHelp_PackedString { const_cast<char*>(te946de->prepend("WHITESPACE").constData()+10), te946de->size()-10, te946de }; });
 }
 
 char QHelpFilterEngine_RemoveFilter(void* ptr, struct QtHelp_PackedString filterName)
@@ -2656,7 +2617,7 @@ char QHelpFilterEngine_SetFilterData(void* ptr, struct QtHelp_PackedString filte
 
 struct QtHelp_PackedString QHelpFilterEngine___namespaceToComponent_atList(void* ptr, struct QtHelp_PackedString v, int i)
 {
-	return ({ QByteArray t1a0c54 = ({ QString tmp = static_cast<QMap<QString, QString>*>(ptr)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QString>*>(ptr)->size()-1) { static_cast<QMap<QString, QString>*>(ptr)->~QMap(); free(ptr); }; tmp; }).toUtf8(); QtHelp_PackedString { const_cast<char*>(t1a0c54.prepend("WHITESPACE").constData()+10), t1a0c54.size()-10 }; });
+	return ({ QByteArray* t1a0c54 = new QByteArray(({ QString tmp = static_cast<QMap<QString, QString>*>(ptr)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QString>*>(ptr)->size()-1) { static_cast<QMap<QString, QString>*>(ptr)->~QMap(); free(ptr); }; tmp; }).toUtf8()); QtHelp_PackedString { const_cast<char*>(t1a0c54->prepend("WHITESPACE").constData()+10), t1a0c54->size()-10, t1a0c54 }; });
 }
 
 void QHelpFilterEngine___namespaceToComponent_setList(void* ptr, struct QtHelp_PackedString key, struct QtHelp_PackedString i)
@@ -2672,7 +2633,7 @@ void* QHelpFilterEngine___namespaceToComponent_newList(void* ptr)
 
 struct QtHelp_PackedList QHelpFilterEngine___namespaceToComponent_keyList(void* ptr)
 {
-	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QString>*>(ptr)->keys()); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QString>* tmpValuebd888a = new QList<QString>(static_cast<QMap<QString, QString>*>(ptr)->keys()); QtHelp_PackedList { tmpValuebd888a, tmpValuebd888a->size() }; });
 }
 
 void* QHelpFilterEngine___namespaceToVersion_atList(void* ptr, struct QtHelp_PackedString v, int i)
@@ -2693,12 +2654,12 @@ void* QHelpFilterEngine___namespaceToVersion_newList(void* ptr)
 
 struct QtHelp_PackedList QHelpFilterEngine___namespaceToVersion_keyList(void* ptr)
 {
-	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QVersionNumber>*>(ptr)->keys()); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QString>* tmpValue19a2a2 = new QList<QString>(static_cast<QMap<QString, QVersionNumber>*>(ptr)->keys()); QtHelp_PackedList { tmpValue19a2a2, tmpValue19a2a2->size() }; });
 }
 
 struct QtHelp_PackedString QHelpFilterEngine_____namespaceToComponent_keyList_atList(void* ptr, int i)
 {
-	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtHelp_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
+	return ({ QByteArray* t94aa5e = new QByteArray(({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8()); QtHelp_PackedString { const_cast<char*>(t94aa5e->prepend("WHITESPACE").constData()+10), t94aa5e->size()-10, t94aa5e }; });
 }
 
 void QHelpFilterEngine_____namespaceToComponent_keyList_setList(void* ptr, struct QtHelp_PackedString i)
@@ -2714,7 +2675,7 @@ void* QHelpFilterEngine_____namespaceToComponent_keyList_newList(void* ptr)
 
 struct QtHelp_PackedString QHelpFilterEngine_____namespaceToVersion_keyList_atList(void* ptr, int i)
 {
-	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtHelp_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
+	return ({ QByteArray* t94aa5e = new QByteArray(({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8()); QtHelp_PackedString { const_cast<char*>(t94aa5e->prepend("WHITESPACE").constData()+10), t94aa5e->size()-10, t94aa5e }; });
 }
 
 void QHelpFilterEngine_____namespaceToVersion_keyList_setList(void* ptr, struct QtHelp_PackedString i)
@@ -2792,22 +2753,6 @@ void* QHelpFilterEngine___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QHelpFilterEngine___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QHelpFilterEngine___qFindChildren_setList2(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QHelpFilterEngine___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 void QHelpFilterEngine_ChildEventDefault(void* ptr, void* event)
 {
 		static_cast<QHelpFilterEngine*>(ptr)->QHelpFilterEngine::childEvent(static_cast<QChildEvent*>(event));
@@ -2866,7 +2811,7 @@ public:
 	bool removeRows(int row, int count, const QModelIndex & parent) { return callbackQHelpIndexModel_RemoveRows(this, row, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	int rowCount(const QModelIndex & parent) const { return callbackQHelpIndexModel_RowCount(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&parent)); };
 	bool setData(const QModelIndex & index, const QVariant & value, int role) { return callbackQHelpIndexModel_SetData(this, const_cast<QModelIndex*>(&index), const_cast<QVariant*>(&value), role) != 0; };
-	bool setItemData(const QModelIndex & index, const QMap<int, QVariant> & roles) { return callbackQHelpIndexModel_SetItemData(this, const_cast<QModelIndex*>(&index), ({ QMap<int, QVariant>* tmpValue = new QMap<int, QVariant>(roles); QtHelp_PackedList { tmpValue, tmpValue->size() }; })) != 0; };
+	bool setItemData(const QModelIndex & index, const QMap<int, QVariant> & roles) { return callbackQHelpIndexModel_SetItemData(this, const_cast<QModelIndex*>(&index), ({ QMap<int, QVariant>* tmpValue037c88 = new QMap<int, QVariant>(roles); QtHelp_PackedList { tmpValue037c88, tmpValue037c88->size() }; })) != 0; };
 	QModelIndex sibling(int row, int column, const QModelIndex & idx) const { return *static_cast<QModelIndex*>(callbackQHelpIndexModel_Sibling(const_cast<void*>(static_cast<const void*>(this)), row, column, const_cast<QModelIndex*>(&idx))); };
 	void sort(int column, Qt::SortOrder order) { callbackQHelpIndexModel_Sort(this, column, order); };
 	Qt::DropActions supportedDropActions() const { return static_cast<Qt::DropAction>(callbackQHelpIndexModel_SupportedDropActions(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -2882,16 +2827,16 @@ public:
 	void Signal_ColumnsInserted(const QModelIndex & parent, int first, int last) { callbackQHelpIndexModel_ColumnsInserted(this, const_cast<QModelIndex*>(&parent), first, last); };
 	void Signal_ColumnsMoved(const QModelIndex & parent, int start, int end, const QModelIndex & destination, int column) { callbackQHelpIndexModel_ColumnsMoved(this, const_cast<QModelIndex*>(&parent), start, end, const_cast<QModelIndex*>(&destination), column); };
 	void Signal_ColumnsRemoved(const QModelIndex & parent, int first, int last) { callbackQHelpIndexModel_ColumnsRemoved(this, const_cast<QModelIndex*>(&parent), first, last); };
-	void Signal_DataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQHelpIndexModel_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = new QVector<int>(roles); QtHelp_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_DataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQHelpIndexModel_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue037c88 = new QVector<int>(roles); QtHelp_PackedList { tmpValue037c88, tmpValue037c88->size() }; })); };
 	void fetchMore(const QModelIndex & parent) { callbackQHelpIndexModel_FetchMore(this, const_cast<QModelIndex*>(&parent)); };
 	bool hasChildren(const QModelIndex & parent) const { return callbackQHelpIndexModel_HasChildren(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&parent)) != 0; };
 	QVariant headerData(int section, Qt::Orientation orientation, int role) const { return *static_cast<QVariant*>(callbackQHelpIndexModel_HeaderData(const_cast<void*>(static_cast<const void*>(this)), section, orientation, role)); };
 	void Signal_HeaderDataChanged(Qt::Orientation orientation, int first, int last) { callbackQHelpIndexModel_HeaderDataChanged(this, orientation, first, last); };
 	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQHelpIndexModel_InsertColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };
-	void Signal_LayoutAboutToBeChanged(const QList<QPersistentModelIndex> & parents, QAbstractItemModel::LayoutChangeHint hint) { callbackQHelpIndexModel_LayoutAboutToBeChanged(this, ({ QList<QPersistentModelIndex>* tmpValue = new QList<QPersistentModelIndex>(parents); QtHelp_PackedList { tmpValue, tmpValue->size() }; }), hint); };
-	void Signal_LayoutChanged(const QList<QPersistentModelIndex> & parents, QAbstractItemModel::LayoutChangeHint hint) { callbackQHelpIndexModel_LayoutChanged(this, ({ QList<QPersistentModelIndex>* tmpValue = new QList<QPersistentModelIndex>(parents); QtHelp_PackedList { tmpValue, tmpValue->size() }; }), hint); };
+	void Signal_LayoutAboutToBeChanged(const QList<QPersistentModelIndex> & parents, QAbstractItemModel::LayoutChangeHint hint) { callbackQHelpIndexModel_LayoutAboutToBeChanged(this, ({ QList<QPersistentModelIndex>* tmpValuea664f1 = new QList<QPersistentModelIndex>(parents); QtHelp_PackedList { tmpValuea664f1, tmpValuea664f1->size() }; }), hint); };
+	void Signal_LayoutChanged(const QList<QPersistentModelIndex> & parents, QAbstractItemModel::LayoutChangeHint hint) { callbackQHelpIndexModel_LayoutChanged(this, ({ QList<QPersistentModelIndex>* tmpValuea664f1 = new QList<QPersistentModelIndex>(parents); QtHelp_PackedList { tmpValuea664f1, tmpValuea664f1->size() }; }), hint); };
 	QList<QModelIndex> match(const QModelIndex & start, int role, const QVariant & value, int hits, Qt::MatchFlags flags) const { return ({ QList<QModelIndex>* tmpP = static_cast<QList<QModelIndex>*>(callbackQHelpIndexModel_Match(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&start), role, const_cast<QVariant*>(&value), hits, flags)); QList<QModelIndex> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
-	QMimeData * mimeData(const QModelIndexList & indexes) const { return static_cast<QMimeData*>(callbackQHelpIndexModel_MimeData(const_cast<void*>(static_cast<const void*>(this)), ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(indexes); QtHelp_PackedList { tmpValue, tmpValue->size() }; }))); };
+	QMimeData * mimeData(const QModelIndexList & indexes) const { return static_cast<QMimeData*>(callbackQHelpIndexModel_MimeData(const_cast<void*>(static_cast<const void*>(this)), ({ QList<QModelIndex>* tmpValuee0adf2 = new QList<QModelIndex>(indexes); QtHelp_PackedList { tmpValuee0adf2, tmpValuee0adf2->size() }; }))); };
 	QStringList mimeTypes() const { return ({ QtHelp_PackedString tempVal = callbackQHelpIndexModel_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("¡¦!", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	void Signal_ModelAboutToBeReset() { callbackQHelpIndexModel_ModelAboutToBeReset(this); };
 	void Signal_ModelReset() { callbackQHelpIndexModel_ModelReset(this); };
@@ -2920,10 +2865,11 @@ public:
 	bool event(QEvent * e) { return callbackQHelpIndexModel_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQHelpIndexModel_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQHelpIndexModel_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtHelp_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQHelpIndexModel_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtHelp_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQHelpIndexModel_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQHelpIndexModel_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QHelpIndexModel*)
 Q_DECLARE_METATYPE(MyQHelpIndexModel*)
 
 int QHelpIndexModel_QHelpIndexModel_QRegisterMetaType(){qRegisterMetaType<QHelpIndexModel*>(); return qRegisterMetaType<MyQHelpIndexModel*>();}
@@ -2938,9 +2884,9 @@ void* QHelpIndexModel_Filter(void* ptr, struct QtHelp_PackedString filter, struc
 	return new QModelIndex(static_cast<QHelpIndexModel*>(ptr)->filter(QString::fromUtf8(filter.data, filter.len), QString::fromUtf8(wildcard.data, wildcard.len)));
 }
 
-void QHelpIndexModel_ConnectIndexCreated(void* ptr)
+void QHelpIndexModel_ConnectIndexCreated(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QHelpIndexModel*>(ptr), static_cast<void (QHelpIndexModel::*)()>(&QHelpIndexModel::indexCreated), static_cast<MyQHelpIndexModel*>(ptr), static_cast<void (MyQHelpIndexModel::*)()>(&MyQHelpIndexModel::Signal_IndexCreated));
+	QObject::connect(static_cast<QHelpIndexModel*>(ptr), static_cast<void (QHelpIndexModel::*)()>(&QHelpIndexModel::indexCreated), static_cast<MyQHelpIndexModel*>(ptr), static_cast<void (MyQHelpIndexModel::*)()>(&MyQHelpIndexModel::Signal_IndexCreated), static_cast<Qt::ConnectionType>(t));
 }
 
 void QHelpIndexModel_DisconnectIndexCreated(void* ptr)
@@ -2953,9 +2899,9 @@ void QHelpIndexModel_IndexCreated(void* ptr)
 	static_cast<QHelpIndexModel*>(ptr)->indexCreated();
 }
 
-void QHelpIndexModel_ConnectIndexCreationStarted(void* ptr)
+void QHelpIndexModel_ConnectIndexCreationStarted(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QHelpIndexModel*>(ptr), static_cast<void (QHelpIndexModel::*)()>(&QHelpIndexModel::indexCreationStarted), static_cast<MyQHelpIndexModel*>(ptr), static_cast<void (MyQHelpIndexModel::*)()>(&MyQHelpIndexModel::Signal_IndexCreationStarted));
+	QObject::connect(static_cast<QHelpIndexModel*>(ptr), static_cast<void (QHelpIndexModel::*)()>(&QHelpIndexModel::indexCreationStarted), static_cast<MyQHelpIndexModel*>(ptr), static_cast<void (MyQHelpIndexModel::*)()>(&MyQHelpIndexModel::Signal_IndexCreationStarted), static_cast<Qt::ConnectionType>(t));
 }
 
 void QHelpIndexModel_DisconnectIndexCreationStarted(void* ptr)
@@ -2991,12 +2937,12 @@ void* QHelpIndexModel___linksForKeyword_newList(void* ptr)
 
 struct QtHelp_PackedList QHelpIndexModel___linksForKeyword_keyList(void* ptr)
 {
-	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QUrl>*>(ptr)->keys()); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QString>* tmpValue9ecb96 = new QList<QString>(static_cast<QMap<QString, QUrl>*>(ptr)->keys()); QtHelp_PackedList { tmpValue9ecb96, tmpValue9ecb96->size() }; });
 }
 
 struct QtHelp_PackedString QHelpIndexModel_____linksForKeyword_keyList_atList(void* ptr, int i)
 {
-	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtHelp_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
+	return ({ QByteArray* t94aa5e = new QByteArray(({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8()); QtHelp_PackedString { const_cast<char*>(t94aa5e->prepend("WHITESPACE").constData()+10), t94aa5e->size()-10, t94aa5e }; });
 }
 
 void QHelpIndexModel_____linksForKeyword_keyList_setList(void* ptr, struct QtHelp_PackedString i)
@@ -3028,7 +2974,7 @@ void* QHelpIndexModel___itemData_newList(void* ptr)
 
 struct QtHelp_PackedList QHelpIndexModel___itemData_keyList(void* ptr)
 {
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<int>* tmpValue249128 = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtHelp_PackedList { tmpValue249128, tmpValue249128->size() }; });
 }
 
 void* QHelpIndexModel___setItemData_roles_atList(void* ptr, int v, int i)
@@ -3049,7 +2995,7 @@ void* QHelpIndexModel___setItemData_roles_newList(void* ptr)
 
 struct QtHelp_PackedList QHelpIndexModel___setItemData_roles_keyList(void* ptr)
 {
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<int>* tmpValue249128 = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtHelp_PackedList { tmpValue249128, tmpValue249128->size() }; });
 }
 
 int QHelpIndexModel_____itemData_keyList_atList(void* ptr, int i)
@@ -3246,7 +3192,7 @@ void* QHelpIndexModel___roleNames_newList(void* ptr)
 
 struct QtHelp_PackedList QHelpIndexModel___roleNames_keyList(void* ptr)
 {
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QHash<int, QByteArray>*>(ptr)->keys()); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<int>* tmpValue7fc3bb = new QList<int>(static_cast<QHash<int, QByteArray>*>(ptr)->keys()); QtHelp_PackedList { tmpValue7fc3bb, tmpValue7fc3bb->size() }; });
 }
 
 int QHelpIndexModel_____doSetRoleNames_roleNames_keyList_atList(void* ptr, int i)
@@ -3345,22 +3291,6 @@ void* QHelpIndexModel___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QHelpIndexModel___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QHelpIndexModel___qFindChildren_setList2(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QHelpIndexModel___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 void* QHelpIndexModel_DataDefault(void* ptr, void* index, int role)
 {
 		return new QVariant(static_cast<QHelpIndexModel*>(ptr)->QHelpIndexModel::data(*static_cast<QModelIndex*>(index), role));
@@ -3378,7 +3308,7 @@ char QHelpIndexModel_InsertRowsDefault(void* ptr, int row, int count, void* pare
 
 struct QtHelp_PackedList QHelpIndexModel_ItemDataDefault(void* ptr, void* index)
 {
-		return ({ QMap<int, QVariant>* tmpValue = new QMap<int, QVariant>(static_cast<QHelpIndexModel*>(ptr)->QHelpIndexModel::itemData(*static_cast<QModelIndex*>(index))); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QMap<int, QVariant>* tmpValue41ea50 = new QMap<int, QVariant>(static_cast<QHelpIndexModel*>(ptr)->QHelpIndexModel::itemData(*static_cast<QModelIndex*>(index))); QtHelp_PackedList { tmpValue41ea50, tmpValue41ea50->size() }; });
 }
 
 char QHelpIndexModel_MoveRowsDefault(void* ptr, void* sourceParent, int sourceRow, int count, void* destinationParent, int destinationChild)
@@ -3473,7 +3403,7 @@ char QHelpIndexModel_InsertColumnsDefault(void* ptr, int column, int count, void
 
 struct QtHelp_PackedList QHelpIndexModel_MatchDefault(void* ptr, void* start, int role, void* value, int hits, long long flags)
 {
-		return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QHelpIndexModel*>(ptr)->QHelpIndexModel::match(*static_cast<QModelIndex*>(start), role, *static_cast<QVariant*>(value), hits, static_cast<Qt::MatchFlag>(flags))); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QList<QModelIndex>* tmpValuee80a60 = new QList<QModelIndex>(static_cast<QHelpIndexModel*>(ptr)->QHelpIndexModel::match(*static_cast<QModelIndex*>(start), role, *static_cast<QVariant*>(value), hits, static_cast<Qt::MatchFlag>(flags))); QtHelp_PackedList { tmpValuee80a60, tmpValuee80a60->size() }; });
 }
 
 void* QHelpIndexModel_MimeDataDefault(void* ptr, void* indexes)
@@ -3483,7 +3413,7 @@ void* QHelpIndexModel_MimeDataDefault(void* ptr, void* indexes)
 
 struct QtHelp_PackedString QHelpIndexModel_MimeTypesDefault(void* ptr)
 {
-		return ({ QByteArray t6c8862 = static_cast<QHelpIndexModel*>(ptr)->QHelpIndexModel::mimeTypes().join("¡¦!").toUtf8(); QtHelp_PackedString { const_cast<char*>(t6c8862.prepend("WHITESPACE").constData()+10), t6c8862.size()-10 }; });
+		return ({ QByteArray* t6c8862 = new QByteArray(static_cast<QHelpIndexModel*>(ptr)->QHelpIndexModel::mimeTypes().join("¡¦!").toUtf8()); QtHelp_PackedString { const_cast<char*>(t6c8862->prepend("WHITESPACE").constData()+10), t6c8862->size()-10, t6c8862 }; });
 }
 
 char QHelpIndexModel_MoveColumnsDefault(void* ptr, void* sourceParent, int sourceColumn, int count, void* destinationParent, int destinationChild)
@@ -3513,7 +3443,7 @@ void QHelpIndexModel_RevertDefault(void* ptr)
 
 struct QtHelp_PackedList QHelpIndexModel_RoleNamesDefault(void* ptr)
 {
-		return ({ QHash<int, QByteArray>* tmpValue = new QHash<int, QByteArray>(static_cast<QHelpIndexModel*>(ptr)->QHelpIndexModel::roleNames()); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QHash<int, QByteArray>* tmpValue956076 = new QHash<int, QByteArray>(static_cast<QHelpIndexModel*>(ptr)->QHelpIndexModel::roleNames()); QtHelp_PackedList { tmpValue956076, tmpValue956076->size() }; });
 }
 
 char QHelpIndexModel_SetHeaderDataDefault(void* ptr, int section, long long orientation, void* value, int role)
@@ -3585,11 +3515,11 @@ class MyQHelpIndexWidget: public QHelpIndexWidget
 {
 public:
 	void activateCurrentItem() { callbackQHelpIndexWidget_ActivateCurrentItem(this); };
-	void filterIndices(const QString & filter, const QString & wildcard) { QByteArray t4bb4ca = filter.toUtf8(); QtHelp_PackedString filterPacked = { const_cast<char*>(t4bb4ca.prepend("WHITESPACE").constData()+10), t4bb4ca.size()-10 };QByteArray t08654e = wildcard.toUtf8(); QtHelp_PackedString wildcardPacked = { const_cast<char*>(t08654e.prepend("WHITESPACE").constData()+10), t08654e.size()-10 };callbackQHelpIndexWidget_FilterIndices(this, filterPacked, wildcardPacked); };
-	void Signal_LinkActivated(const QUrl & link, const QString & keyword) { QByteArray ta43aa2 = keyword.toUtf8(); QtHelp_PackedString keywordPacked = { const_cast<char*>(ta43aa2.prepend("WHITESPACE").constData()+10), ta43aa2.size()-10 };callbackQHelpIndexWidget_LinkActivated(this, const_cast<QUrl*>(&link), keywordPacked); };
-	void Signal_LinksActivated(const QMap<QString, QUrl> & links, const QString & keyword) { QByteArray ta43aa2 = keyword.toUtf8(); QtHelp_PackedString keywordPacked = { const_cast<char*>(ta43aa2.prepend("WHITESPACE").constData()+10), ta43aa2.size()-10 };callbackQHelpIndexWidget_LinksActivated(this, ({ QMap<QString, QUrl>* tmpValue = new QMap<QString, QUrl>(links); QtHelp_PackedList { tmpValue, tmpValue->size() }; }), keywordPacked); };
+	void filterIndices(const QString & filter, const QString & wildcard) { QByteArray* t4bb4ca = new QByteArray(filter.toUtf8()); QtHelp_PackedString filterPacked = { const_cast<char*>(t4bb4ca->prepend("WHITESPACE").constData()+10), t4bb4ca->size()-10, t4bb4ca };QByteArray* t08654e = new QByteArray(wildcard.toUtf8()); QtHelp_PackedString wildcardPacked = { const_cast<char*>(t08654e->prepend("WHITESPACE").constData()+10), t08654e->size()-10, t08654e };callbackQHelpIndexWidget_FilterIndices(this, filterPacked, wildcardPacked); };
+	void Signal_LinkActivated(const QUrl & link, const QString & keyword) { QByteArray* ta43aa2 = new QByteArray(keyword.toUtf8()); QtHelp_PackedString keywordPacked = { const_cast<char*>(ta43aa2->prepend("WHITESPACE").constData()+10), ta43aa2->size()-10, ta43aa2 };callbackQHelpIndexWidget_LinkActivated(this, const_cast<QUrl*>(&link), keywordPacked); };
+	void Signal_LinksActivated(const QMap<QString, QUrl> & links, const QString & keyword) { QByteArray* ta43aa2 = new QByteArray(keyword.toUtf8()); QtHelp_PackedString keywordPacked = { const_cast<char*>(ta43aa2->prepend("WHITESPACE").constData()+10), ta43aa2->size()-10, ta43aa2 };callbackQHelpIndexWidget_LinksActivated(this, ({ QMap<QString, QUrl>* tmpValue379e75 = new QMap<QString, QUrl>(links); QtHelp_PackedList { tmpValue379e75, tmpValue379e75->size() }; }), keywordPacked); };
 	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQHelpIndexWidget_CurrentChanged(this, const_cast<QModelIndex*>(&current), const_cast<QModelIndex*>(&previous)); };
-	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQHelpIndexWidget_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = new QVector<int>(roles); QtHelp_PackedList { tmpValue, tmpValue->size() }; })); };
+	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQHelpIndexWidget_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue037c88 = new QVector<int>(roles); QtHelp_PackedList { tmpValue037c88, tmpValue037c88->size() }; })); };
 	void dragLeaveEvent(QDragLeaveEvent * e) { callbackQHelpIndexWidget_DragLeaveEvent(this, e); };
 	void dragMoveEvent(QDragMoveEvent * e) { callbackQHelpIndexWidget_DragMoveEvent(this, e); };
 	void dropEvent(QDropEvent * e) { callbackQHelpIndexWidget_DropEvent(this, e); };
@@ -3636,7 +3566,7 @@ public:
 	void inputMethodEvent(QInputMethodEvent * event) { callbackQHelpIndexWidget_InputMethodEvent(this, event); };
 	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackQHelpIndexWidget_InputMethodQuery(const_cast<void*>(static_cast<const void*>(this)), query)); };
 	void keyPressEvent(QKeyEvent * event) { callbackQHelpIndexWidget_KeyPressEvent(this, event); };
-	void keyboardSearch(const QString & search) { QByteArray t3559d7 = search.toUtf8(); QtHelp_PackedString searchPacked = { const_cast<char*>(t3559d7.prepend("WHITESPACE").constData()+10), t3559d7.size()-10 };callbackQHelpIndexWidget_KeyboardSearch(this, searchPacked); };
+	void keyboardSearch(const QString & search) { QByteArray* t3559d7 = new QByteArray(search.toUtf8()); QtHelp_PackedString searchPacked = { const_cast<char*>(t3559d7->prepend("WHITESPACE").constData()+10), t3559d7->size()-10, t3559d7 };callbackQHelpIndexWidget_KeyboardSearch(this, searchPacked); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQHelpIndexWidget_MouseDoubleClickEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQHelpIndexWidget_MousePressEvent(this, event); };
 	void Signal_Pressed(const QModelIndex & index) { callbackQHelpIndexWidget_Pressed(this, const_cast<QModelIndex*>(&index)); };
@@ -3683,10 +3613,10 @@ public:
 	void setEnabled(bool vbo) { callbackQHelpIndexWidget_SetEnabled(this, vbo); };
 	void setFocus() { callbackQHelpIndexWidget_SetFocus2(this); };
 	void setHidden(bool hidden) { callbackQHelpIndexWidget_SetHidden(this, hidden); };
-	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtHelp_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQHelpIndexWidget_SetStyleSheet(this, styleSheetPacked); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray* t728ae7 = new QByteArray(styleSheet.toUtf8()); QtHelp_PackedString styleSheetPacked = { const_cast<char*>(t728ae7->prepend("WHITESPACE").constData()+10), t728ae7->size()-10, t728ae7 };callbackQHelpIndexWidget_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQHelpIndexWidget_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQHelpIndexWidget_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtHelp_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQHelpIndexWidget_SetWindowTitle(this, vqsPacked); };
+	void setWindowTitle(const QString & vqs) { QByteArray* tda39a3 = new QByteArray(vqs.toUtf8()); QtHelp_PackedString vqsPacked = { const_cast<char*>(tda39a3->prepend("WHITESPACE").constData()+10), tda39a3->size()-10, tda39a3 };callbackQHelpIndexWidget_SetWindowTitle(this, vqsPacked); };
 	void show() { callbackQHelpIndexWidget_Show(this); };
 	void showEvent(QShowEvent * event) { callbackQHelpIndexWidget_ShowEvent(this, event); };
 	void showFullScreen() { callbackQHelpIndexWidget_ShowFullScreen(this); };
@@ -3696,7 +3626,7 @@ public:
 	void tabletEvent(QTabletEvent * event) { callbackQHelpIndexWidget_TabletEvent(this, event); };
 	void updateMicroFocus() { callbackQHelpIndexWidget_UpdateMicroFocus(this); };
 	void Signal_WindowIconChanged(const QIcon & icon) { callbackQHelpIndexWidget_WindowIconChanged(this, const_cast<QIcon*>(&icon)); };
-	void Signal_WindowTitleChanged(const QString & title) { QByteArray t3c6de1 = title.toUtf8(); QtHelp_PackedString titlePacked = { const_cast<char*>(t3c6de1.prepend("WHITESPACE").constData()+10), t3c6de1.size()-10 };callbackQHelpIndexWidget_WindowTitleChanged(this, titlePacked); };
+	void Signal_WindowTitleChanged(const QString & title) { QByteArray* t3c6de1 = new QByteArray(title.toUtf8()); QtHelp_PackedString titlePacked = { const_cast<char*>(t3c6de1->prepend("WHITESPACE").constData()+10), t3c6de1->size()-10, t3c6de1 };callbackQHelpIndexWidget_WindowTitleChanged(this, titlePacked); };
 	void childEvent(QChildEvent * event) { callbackQHelpIndexWidget_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQHelpIndexWidget_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQHelpIndexWidget_CustomEvent(this, event); };
@@ -3704,9 +3634,10 @@ public:
 	void Signal_Destroyed(QObject * obj) { callbackQHelpIndexWidget_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQHelpIndexWidget_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQHelpIndexWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtHelp_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQHelpIndexWidget_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtHelp_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQHelpIndexWidget_ObjectNameChanged(this, objectNamePacked); };
 };
 
+Q_DECLARE_METATYPE(QHelpIndexWidget*)
 Q_DECLARE_METATYPE(MyQHelpIndexWidget*)
 
 int QHelpIndexWidget_QHelpIndexWidget_QRegisterMetaType(){qRegisterMetaType<QHelpIndexWidget*>(); return qRegisterMetaType<MyQHelpIndexWidget*>();}
@@ -3731,9 +3662,9 @@ void QHelpIndexWidget_FilterIndicesDefault(void* ptr, struct QtHelp_PackedString
 		static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::filterIndices(QString::fromUtf8(filter.data, filter.len), QString::fromUtf8(wildcard.data, wildcard.len));
 }
 
-void QHelpIndexWidget_ConnectLinkActivated(void* ptr)
+void QHelpIndexWidget_ConnectLinkActivated(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QHelpIndexWidget*>(ptr), static_cast<void (QHelpIndexWidget::*)(const QUrl &, const QString &)>(&QHelpIndexWidget::linkActivated), static_cast<MyQHelpIndexWidget*>(ptr), static_cast<void (MyQHelpIndexWidget::*)(const QUrl &, const QString &)>(&MyQHelpIndexWidget::Signal_LinkActivated));
+	QObject::connect(static_cast<QHelpIndexWidget*>(ptr), static_cast<void (QHelpIndexWidget::*)(const QUrl &, const QString &)>(&QHelpIndexWidget::linkActivated), static_cast<MyQHelpIndexWidget*>(ptr), static_cast<void (MyQHelpIndexWidget::*)(const QUrl &, const QString &)>(&MyQHelpIndexWidget::Signal_LinkActivated), static_cast<Qt::ConnectionType>(t));
 }
 
 void QHelpIndexWidget_DisconnectLinkActivated(void* ptr)
@@ -3746,9 +3677,9 @@ void QHelpIndexWidget_LinkActivated(void* ptr, void* link, struct QtHelp_PackedS
 	static_cast<QHelpIndexWidget*>(ptr)->linkActivated(*static_cast<QUrl*>(link), QString::fromUtf8(keyword.data, keyword.len));
 }
 
-void QHelpIndexWidget_ConnectLinksActivated(void* ptr)
+void QHelpIndexWidget_ConnectLinksActivated(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QHelpIndexWidget*>(ptr), static_cast<void (QHelpIndexWidget::*)(const QMap<QString, QUrl> &, const QString &)>(&QHelpIndexWidget::linksActivated), static_cast<MyQHelpIndexWidget*>(ptr), static_cast<void (MyQHelpIndexWidget::*)(const QMap<QString, QUrl> &, const QString &)>(&MyQHelpIndexWidget::Signal_LinksActivated));
+	QObject::connect(static_cast<QHelpIndexWidget*>(ptr), static_cast<void (QHelpIndexWidget::*)(const QMap<QString, QUrl> &, const QString &)>(&QHelpIndexWidget::linksActivated), static_cast<MyQHelpIndexWidget*>(ptr), static_cast<void (MyQHelpIndexWidget::*)(const QMap<QString, QUrl> &, const QString &)>(&MyQHelpIndexWidget::Signal_LinksActivated), static_cast<Qt::ConnectionType>(t));
 }
 
 void QHelpIndexWidget_DisconnectLinksActivated(void* ptr)
@@ -3779,12 +3710,12 @@ void* QHelpIndexWidget___linksActivated_links_newList(void* ptr)
 
 struct QtHelp_PackedList QHelpIndexWidget___linksActivated_links_keyList(void* ptr)
 {
-	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QUrl>*>(ptr)->keys()); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QString>* tmpValue9ecb96 = new QList<QString>(static_cast<QMap<QString, QUrl>*>(ptr)->keys()); QtHelp_PackedList { tmpValue9ecb96, tmpValue9ecb96->size() }; });
 }
 
 struct QtHelp_PackedString QHelpIndexWidget_____linksActivated_links_keyList_atList(void* ptr, int i)
 {
-	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtHelp_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
+	return ({ QByteArray* t94aa5e = new QByteArray(({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8()); QtHelp_PackedString { const_cast<char*>(t94aa5e->prepend("WHITESPACE").constData()+10), t94aa5e->size()-10, t94aa5e }; });
 }
 
 void QHelpIndexWidget_____linksActivated_links_keyList_setList(void* ptr, struct QtHelp_PackedString i)
@@ -3974,22 +3905,6 @@ void* QHelpIndexWidget___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QHelpIndexWidget___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QHelpIndexWidget___qFindChildren_setList2(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QHelpIndexWidget___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 void QHelpIndexWidget_CurrentChangedDefault(void* ptr, void* current, void* previous)
 {
 		static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::currentChanged(*static_cast<QModelIndex*>(current), *static_cast<QModelIndex*>(previous));
@@ -4077,7 +3992,7 @@ void QHelpIndexWidget_ScrollToDefault(void* ptr, void* index, long long hint)
 
 struct QtHelp_PackedList QHelpIndexWidget_SelectedIndexesDefault(void* ptr)
 {
-		return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::selectedIndexes()); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QList<QModelIndex>* tmpValue2faf74 = new QList<QModelIndex>(static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::selectedIndexes()); QtHelp_PackedList { tmpValue2faf74, tmpValue2faf74->size() }; });
 }
 
 void QHelpIndexWidget_SelectionChangedDefault(void* ptr, void* selected, void* deselected)
@@ -4524,7 +4439,7 @@ public:
 	void Signal_IndexingFinished() { callbackQHelpSearchEngine_IndexingFinished(this); };
 	void Signal_IndexingStarted() { callbackQHelpSearchEngine_IndexingStarted(this); };
 	void reindexDocumentation() { callbackQHelpSearchEngine_ReindexDocumentation(this); };
-	void search(const QString & searchInput) { QByteArray t978613 = searchInput.toUtf8(); QtHelp_PackedString searchInputPacked = { const_cast<char*>(t978613.prepend("WHITESPACE").constData()+10), t978613.size()-10 };callbackQHelpSearchEngine_Search2(this, searchInputPacked); };
+	void search(const QString & searchInput) { QByteArray* t978613 = new QByteArray(searchInput.toUtf8()); QtHelp_PackedString searchInputPacked = { const_cast<char*>(t978613->prepend("WHITESPACE").constData()+10), t978613->size()-10, t978613 };callbackQHelpSearchEngine_Search2(this, searchInputPacked); };
 	void Signal_SearchingFinished(int searchResultCount) { callbackQHelpSearchEngine_SearchingFinished(this, searchResultCount); };
 	void Signal_SearchingStarted() { callbackQHelpSearchEngine_SearchingStarted(this); };
 	 ~MyQHelpSearchEngine() { callbackQHelpSearchEngine_DestroyQHelpSearchEngine(this); };
@@ -4537,10 +4452,11 @@ public:
 	bool event(QEvent * e) { return callbackQHelpSearchEngine_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQHelpSearchEngine_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQHelpSearchEngine_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtHelp_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQHelpSearchEngine_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtHelp_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQHelpSearchEngine_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQHelpSearchEngine_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QHelpSearchEngine*)
 Q_DECLARE_METATYPE(MyQHelpSearchEngine*)
 
 int QHelpSearchEngine_QHelpSearchEngine_QRegisterMetaType(){qRegisterMetaType<QHelpSearchEngine*>(); return qRegisterMetaType<MyQHelpSearchEngine*>();}
@@ -4612,9 +4528,9 @@ void QHelpSearchEngine_CancelSearchingDefault(void* ptr)
 		static_cast<QHelpSearchEngine*>(ptr)->QHelpSearchEngine::cancelSearching();
 }
 
-void QHelpSearchEngine_ConnectIndexingFinished(void* ptr)
+void QHelpSearchEngine_ConnectIndexingFinished(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QHelpSearchEngine*>(ptr), static_cast<void (QHelpSearchEngine::*)()>(&QHelpSearchEngine::indexingFinished), static_cast<MyQHelpSearchEngine*>(ptr), static_cast<void (MyQHelpSearchEngine::*)()>(&MyQHelpSearchEngine::Signal_IndexingFinished));
+	QObject::connect(static_cast<QHelpSearchEngine*>(ptr), static_cast<void (QHelpSearchEngine::*)()>(&QHelpSearchEngine::indexingFinished), static_cast<MyQHelpSearchEngine*>(ptr), static_cast<void (MyQHelpSearchEngine::*)()>(&MyQHelpSearchEngine::Signal_IndexingFinished), static_cast<Qt::ConnectionType>(t));
 }
 
 void QHelpSearchEngine_DisconnectIndexingFinished(void* ptr)
@@ -4627,9 +4543,9 @@ void QHelpSearchEngine_IndexingFinished(void* ptr)
 	static_cast<QHelpSearchEngine*>(ptr)->indexingFinished();
 }
 
-void QHelpSearchEngine_ConnectIndexingStarted(void* ptr)
+void QHelpSearchEngine_ConnectIndexingStarted(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QHelpSearchEngine*>(ptr), static_cast<void (QHelpSearchEngine::*)()>(&QHelpSearchEngine::indexingStarted), static_cast<MyQHelpSearchEngine*>(ptr), static_cast<void (MyQHelpSearchEngine::*)()>(&MyQHelpSearchEngine::Signal_IndexingStarted));
+	QObject::connect(static_cast<QHelpSearchEngine*>(ptr), static_cast<void (QHelpSearchEngine::*)()>(&QHelpSearchEngine::indexingStarted), static_cast<MyQHelpSearchEngine*>(ptr), static_cast<void (MyQHelpSearchEngine::*)()>(&MyQHelpSearchEngine::Signal_IndexingStarted), static_cast<Qt::ConnectionType>(t));
 }
 
 void QHelpSearchEngine_DisconnectIndexingStarted(void* ptr)
@@ -4674,7 +4590,7 @@ void QHelpSearchEngine_Search2Default(void* ptr, struct QtHelp_PackedString sear
 
 struct QtHelp_PackedString QHelpSearchEngine_SearchInput(void* ptr)
 {
-	return ({ QByteArray t530fa8 = static_cast<QHelpSearchEngine*>(ptr)->searchInput().toUtf8(); QtHelp_PackedString { const_cast<char*>(t530fa8.prepend("WHITESPACE").constData()+10), t530fa8.size()-10 }; });
+	return ({ QByteArray* t530fa8 = new QByteArray(static_cast<QHelpSearchEngine*>(ptr)->searchInput().toUtf8()); QtHelp_PackedString { const_cast<char*>(t530fa8->prepend("WHITESPACE").constData()+10), t530fa8->size()-10, t530fa8 }; });
 }
 
 int QHelpSearchEngine_SearchResultCount(void* ptr)
@@ -4684,12 +4600,12 @@ int QHelpSearchEngine_SearchResultCount(void* ptr)
 
 struct QtHelp_PackedList QHelpSearchEngine_SearchResults(void* ptr, int start, int end)
 {
-	return ({ QVector<QHelpSearchResult>* tmpValue = new QVector<QHelpSearchResult>(static_cast<QHelpSearchEngine*>(ptr)->searchResults(start, end)); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QVector<QHelpSearchResult>* tmpValue4cf1bd = new QVector<QHelpSearchResult>(static_cast<QHelpSearchEngine*>(ptr)->searchResults(start, end)); QtHelp_PackedList { tmpValue4cf1bd, tmpValue4cf1bd->size() }; });
 }
 
-void QHelpSearchEngine_ConnectSearchingFinished(void* ptr)
+void QHelpSearchEngine_ConnectSearchingFinished(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QHelpSearchEngine*>(ptr), static_cast<void (QHelpSearchEngine::*)(int)>(&QHelpSearchEngine::searchingFinished), static_cast<MyQHelpSearchEngine*>(ptr), static_cast<void (MyQHelpSearchEngine::*)(int)>(&MyQHelpSearchEngine::Signal_SearchingFinished));
+	QObject::connect(static_cast<QHelpSearchEngine*>(ptr), static_cast<void (QHelpSearchEngine::*)(int)>(&QHelpSearchEngine::searchingFinished), static_cast<MyQHelpSearchEngine*>(ptr), static_cast<void (MyQHelpSearchEngine::*)(int)>(&MyQHelpSearchEngine::Signal_SearchingFinished), static_cast<Qt::ConnectionType>(t));
 }
 
 void QHelpSearchEngine_DisconnectSearchingFinished(void* ptr)
@@ -4702,9 +4618,9 @@ void QHelpSearchEngine_SearchingFinished(void* ptr, int searchResultCount)
 	static_cast<QHelpSearchEngine*>(ptr)->searchingFinished(searchResultCount);
 }
 
-void QHelpSearchEngine_ConnectSearchingStarted(void* ptr)
+void QHelpSearchEngine_ConnectSearchingStarted(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QHelpSearchEngine*>(ptr), static_cast<void (QHelpSearchEngine::*)()>(&QHelpSearchEngine::searchingStarted), static_cast<MyQHelpSearchEngine*>(ptr), static_cast<void (MyQHelpSearchEngine::*)()>(&MyQHelpSearchEngine::Signal_SearchingStarted));
+	QObject::connect(static_cast<QHelpSearchEngine*>(ptr), static_cast<void (QHelpSearchEngine::*)()>(&QHelpSearchEngine::searchingStarted), static_cast<MyQHelpSearchEngine*>(ptr), static_cast<void (MyQHelpSearchEngine::*)()>(&MyQHelpSearchEngine::Signal_SearchingStarted), static_cast<Qt::ConnectionType>(t));
 }
 
 void QHelpSearchEngine_DisconnectSearchingStarted(void* ptr)
@@ -4840,22 +4756,6 @@ void* QHelpSearchEngine___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QHelpSearchEngine___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QHelpSearchEngine___qFindChildren_setList2(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QHelpSearchEngine___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 void QHelpSearchEngine_ChildEventDefault(void* ptr, void* event)
 {
 		static_cast<QHelpSearchEngine*>(ptr)->QHelpSearchEngine::childEvent(static_cast<QChildEvent*>(event));
@@ -4901,6 +4801,8 @@ void QHelpSearchEngine_TimerEventDefault(void* ptr, void* event)
 		static_cast<QHelpSearchEngine*>(ptr)->QHelpSearchEngine::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
+Q_DECLARE_METATYPE(QHelpSearchQuery)
+Q_DECLARE_METATYPE(QHelpSearchQuery*)
 void* QHelpSearchQuery_NewQHelpSearchQuery()
 {
 	return new QHelpSearchQuery();
@@ -4955,10 +4857,10 @@ public:
 	void setEnabled(bool vbo) { callbackQHelpSearchQueryWidget_SetEnabled(this, vbo); };
 	void setFocus() { callbackQHelpSearchQueryWidget_SetFocus2(this); };
 	void setHidden(bool hidden) { callbackQHelpSearchQueryWidget_SetHidden(this, hidden); };
-	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtHelp_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQHelpSearchQueryWidget_SetStyleSheet(this, styleSheetPacked); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray* t728ae7 = new QByteArray(styleSheet.toUtf8()); QtHelp_PackedString styleSheetPacked = { const_cast<char*>(t728ae7->prepend("WHITESPACE").constData()+10), t728ae7->size()-10, t728ae7 };callbackQHelpSearchQueryWidget_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQHelpSearchQueryWidget_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQHelpSearchQueryWidget_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtHelp_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQHelpSearchQueryWidget_SetWindowTitle(this, vqsPacked); };
+	void setWindowTitle(const QString & vqs) { QByteArray* tda39a3 = new QByteArray(vqs.toUtf8()); QtHelp_PackedString vqsPacked = { const_cast<char*>(tda39a3->prepend("WHITESPACE").constData()+10), tda39a3->size()-10, tda39a3 };callbackQHelpSearchQueryWidget_SetWindowTitle(this, vqsPacked); };
 	void show() { callbackQHelpSearchQueryWidget_Show(this); };
 	void showEvent(QShowEvent * event) { callbackQHelpSearchQueryWidget_ShowEvent(this, event); };
 	void showFullScreen() { callbackQHelpSearchQueryWidget_ShowFullScreen(this); };
@@ -4971,7 +4873,7 @@ public:
 	void updateMicroFocus() { callbackQHelpSearchQueryWidget_UpdateMicroFocus(this); };
 	void wheelEvent(QWheelEvent * event) { callbackQHelpSearchQueryWidget_WheelEvent(this, event); };
 	void Signal_WindowIconChanged(const QIcon & icon) { callbackQHelpSearchQueryWidget_WindowIconChanged(this, const_cast<QIcon*>(&icon)); };
-	void Signal_WindowTitleChanged(const QString & title) { QByteArray t3c6de1 = title.toUtf8(); QtHelp_PackedString titlePacked = { const_cast<char*>(t3c6de1.prepend("WHITESPACE").constData()+10), t3c6de1.size()-10 };callbackQHelpSearchQueryWidget_WindowTitleChanged(this, titlePacked); };
+	void Signal_WindowTitleChanged(const QString & title) { QByteArray* t3c6de1 = new QByteArray(title.toUtf8()); QtHelp_PackedString titlePacked = { const_cast<char*>(t3c6de1->prepend("WHITESPACE").constData()+10), t3c6de1->size()-10, t3c6de1 };callbackQHelpSearchQueryWidget_WindowTitleChanged(this, titlePacked); };
 	void childEvent(QChildEvent * event) { callbackQHelpSearchQueryWidget_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQHelpSearchQueryWidget_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQHelpSearchQueryWidget_CustomEvent(this, event); };
@@ -4980,10 +4882,11 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQHelpSearchQueryWidget_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQHelpSearchQueryWidget_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQHelpSearchQueryWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtHelp_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQHelpSearchQueryWidget_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtHelp_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQHelpSearchQueryWidget_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQHelpSearchQueryWidget_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QHelpSearchQueryWidget*)
 Q_DECLARE_METATYPE(MyQHelpSearchQueryWidget*)
 
 int QHelpSearchQueryWidget_QHelpSearchQueryWidget_QRegisterMetaType(){qRegisterMetaType<QHelpSearchQueryWidget*>(); return qRegisterMetaType<MyQHelpSearchQueryWidget*>();}
@@ -5003,9 +4906,9 @@ void QHelpSearchQueryWidget_ExpandExtendedSearch(void* ptr)
 	static_cast<QHelpSearchQueryWidget*>(ptr)->expandExtendedSearch();
 }
 
-void QHelpSearchQueryWidget_ConnectSearch(void* ptr)
+void QHelpSearchQueryWidget_ConnectSearch(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QHelpSearchQueryWidget*>(ptr), static_cast<void (QHelpSearchQueryWidget::*)()>(&QHelpSearchQueryWidget::search), static_cast<MyQHelpSearchQueryWidget*>(ptr), static_cast<void (MyQHelpSearchQueryWidget::*)()>(&MyQHelpSearchQueryWidget::Signal_Search));
+	QObject::connect(static_cast<QHelpSearchQueryWidget*>(ptr), static_cast<void (QHelpSearchQueryWidget::*)()>(&QHelpSearchQueryWidget::search), static_cast<MyQHelpSearchQueryWidget*>(ptr), static_cast<void (MyQHelpSearchQueryWidget::*)()>(&MyQHelpSearchQueryWidget::Signal_Search), static_cast<Qt::ConnectionType>(t));
 }
 
 void QHelpSearchQueryWidget_DisconnectSearch(void* ptr)
@@ -5020,7 +4923,7 @@ void QHelpSearchQueryWidget_Search(void* ptr)
 
 struct QtHelp_PackedString QHelpSearchQueryWidget_SearchInput(void* ptr)
 {
-	return ({ QByteArray t285afe = static_cast<QHelpSearchQueryWidget*>(ptr)->searchInput().toUtf8(); QtHelp_PackedString { const_cast<char*>(t285afe.prepend("WHITESPACE").constData()+10), t285afe.size()-10 }; });
+	return ({ QByteArray* t285afe = new QByteArray(static_cast<QHelpSearchQueryWidget*>(ptr)->searchInput().toUtf8()); QtHelp_PackedString { const_cast<char*>(t285afe->prepend("WHITESPACE").constData()+10), t285afe->size()-10, t285afe }; });
 }
 
 void QHelpSearchQueryWidget_SetSearchInput(void* ptr, struct QtHelp_PackedString searchInput)
@@ -5178,22 +5081,6 @@ void QHelpSearchQueryWidget___findChildren_setList3(void* ptr, void* i)
 }
 
 void* QHelpSearchQueryWidget___findChildren_newList3(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
-void* QHelpSearchQueryWidget___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QHelpSearchQueryWidget___qFindChildren_setList2(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QHelpSearchQueryWidget___qFindChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();
@@ -5524,6 +5411,8 @@ void QHelpSearchQueryWidget_TimerEventDefault(void* ptr, void* event)
 		static_cast<QHelpSearchQueryWidget*>(ptr)->QHelpSearchQueryWidget::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
+Q_DECLARE_METATYPE(QHelpSearchResult)
+Q_DECLARE_METATYPE(QHelpSearchResult*)
 void* QHelpSearchResult_NewQHelpSearchResult()
 {
 	return new QHelpSearchResult();
@@ -5541,12 +5430,12 @@ void* QHelpSearchResult_NewQHelpSearchResult3(void* url, struct QtHelp_PackedStr
 
 struct QtHelp_PackedString QHelpSearchResult_Snippet(void* ptr)
 {
-	return ({ QByteArray tf76589 = static_cast<QHelpSearchResult*>(ptr)->snippet().toUtf8(); QtHelp_PackedString { const_cast<char*>(tf76589.prepend("WHITESPACE").constData()+10), tf76589.size()-10 }; });
+	return ({ QByteArray* tf76589 = new QByteArray(static_cast<QHelpSearchResult*>(ptr)->snippet().toUtf8()); QtHelp_PackedString { const_cast<char*>(tf76589->prepend("WHITESPACE").constData()+10), tf76589->size()-10, tf76589 }; });
 }
 
 struct QtHelp_PackedString QHelpSearchResult_Title(void* ptr)
 {
-	return ({ QByteArray t34a6b4 = static_cast<QHelpSearchResult*>(ptr)->title().toUtf8(); QtHelp_PackedString { const_cast<char*>(t34a6b4.prepend("WHITESPACE").constData()+10), t34a6b4.size()-10 }; });
+	return ({ QByteArray* t34a6b4 = new QByteArray(static_cast<QHelpSearchResult*>(ptr)->title().toUtf8()); QtHelp_PackedString { const_cast<char*>(t34a6b4->prepend("WHITESPACE").constData()+10), t34a6b4->size()-10, t34a6b4 }; });
 }
 
 void* QHelpSearchResult_Url(void* ptr)
@@ -5607,10 +5496,10 @@ public:
 	void setEnabled(bool vbo) { callbackQHelpSearchResultWidget_SetEnabled(this, vbo); };
 	void setFocus() { callbackQHelpSearchResultWidget_SetFocus2(this); };
 	void setHidden(bool hidden) { callbackQHelpSearchResultWidget_SetHidden(this, hidden); };
-	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtHelp_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQHelpSearchResultWidget_SetStyleSheet(this, styleSheetPacked); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray* t728ae7 = new QByteArray(styleSheet.toUtf8()); QtHelp_PackedString styleSheetPacked = { const_cast<char*>(t728ae7->prepend("WHITESPACE").constData()+10), t728ae7->size()-10, t728ae7 };callbackQHelpSearchResultWidget_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQHelpSearchResultWidget_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQHelpSearchResultWidget_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtHelp_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQHelpSearchResultWidget_SetWindowTitle(this, vqsPacked); };
+	void setWindowTitle(const QString & vqs) { QByteArray* tda39a3 = new QByteArray(vqs.toUtf8()); QtHelp_PackedString vqsPacked = { const_cast<char*>(tda39a3->prepend("WHITESPACE").constData()+10), tda39a3->size()-10, tda39a3 };callbackQHelpSearchResultWidget_SetWindowTitle(this, vqsPacked); };
 	void show() { callbackQHelpSearchResultWidget_Show(this); };
 	void showEvent(QShowEvent * event) { callbackQHelpSearchResultWidget_ShowEvent(this, event); };
 	void showFullScreen() { callbackQHelpSearchResultWidget_ShowFullScreen(this); };
@@ -5623,7 +5512,7 @@ public:
 	void updateMicroFocus() { callbackQHelpSearchResultWidget_UpdateMicroFocus(this); };
 	void wheelEvent(QWheelEvent * event) { callbackQHelpSearchResultWidget_WheelEvent(this, event); };
 	void Signal_WindowIconChanged(const QIcon & icon) { callbackQHelpSearchResultWidget_WindowIconChanged(this, const_cast<QIcon*>(&icon)); };
-	void Signal_WindowTitleChanged(const QString & title) { QByteArray t3c6de1 = title.toUtf8(); QtHelp_PackedString titlePacked = { const_cast<char*>(t3c6de1.prepend("WHITESPACE").constData()+10), t3c6de1.size()-10 };callbackQHelpSearchResultWidget_WindowTitleChanged(this, titlePacked); };
+	void Signal_WindowTitleChanged(const QString & title) { QByteArray* t3c6de1 = new QByteArray(title.toUtf8()); QtHelp_PackedString titlePacked = { const_cast<char*>(t3c6de1->prepend("WHITESPACE").constData()+10), t3c6de1->size()-10, t3c6de1 };callbackQHelpSearchResultWidget_WindowTitleChanged(this, titlePacked); };
 	void childEvent(QChildEvent * event) { callbackQHelpSearchResultWidget_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQHelpSearchResultWidget_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQHelpSearchResultWidget_CustomEvent(this, event); };
@@ -5632,10 +5521,11 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQHelpSearchResultWidget_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQHelpSearchResultWidget_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQHelpSearchResultWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtHelp_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQHelpSearchResultWidget_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtHelp_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQHelpSearchResultWidget_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQHelpSearchResultWidget_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QHelpSearchResultWidget*)
 Q_DECLARE_METATYPE(MyQHelpSearchResultWidget*)
 
 int QHelpSearchResultWidget_QHelpSearchResultWidget_QRegisterMetaType(){qRegisterMetaType<QHelpSearchResultWidget*>(); return qRegisterMetaType<MyQHelpSearchResultWidget*>();}
@@ -5645,9 +5535,9 @@ void* QHelpSearchResultWidget_LinkAt(void* ptr, void* point)
 	return new QUrl(static_cast<QHelpSearchResultWidget*>(ptr)->linkAt(*static_cast<QPoint*>(point)));
 }
 
-void QHelpSearchResultWidget_ConnectRequestShowLink(void* ptr)
+void QHelpSearchResultWidget_ConnectRequestShowLink(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QHelpSearchResultWidget*>(ptr), static_cast<void (QHelpSearchResultWidget::*)(const QUrl &)>(&QHelpSearchResultWidget::requestShowLink), static_cast<MyQHelpSearchResultWidget*>(ptr), static_cast<void (MyQHelpSearchResultWidget::*)(const QUrl &)>(&MyQHelpSearchResultWidget::Signal_RequestShowLink));
+	QObject::connect(static_cast<QHelpSearchResultWidget*>(ptr), static_cast<void (QHelpSearchResultWidget::*)(const QUrl &)>(&QHelpSearchResultWidget::requestShowLink), static_cast<MyQHelpSearchResultWidget*>(ptr), static_cast<void (MyQHelpSearchResultWidget::*)(const QUrl &)>(&MyQHelpSearchResultWidget::Signal_RequestShowLink), static_cast<Qt::ConnectionType>(t));
 }
 
 void QHelpSearchResultWidget_DisconnectRequestShowLink(void* ptr)
@@ -5778,22 +5668,6 @@ void QHelpSearchResultWidget___findChildren_setList3(void* ptr, void* i)
 }
 
 void* QHelpSearchResultWidget___findChildren_newList3(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
-void* QHelpSearchResultWidget___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QHelpSearchResultWidget___qFindChildren_setList2(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QHelpSearchResultWidget___qFindChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();

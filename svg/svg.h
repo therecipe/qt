@@ -9,12 +9,13 @@
 
 #ifdef __cplusplus
 int QGraphicsSvgItem_QGraphicsSvgItem_QRegisterMetaType();
+int QSvgGenerator_QSvgGenerator_QRegisterMetaType();
 int QSvgRenderer_QSvgRenderer_QRegisterMetaType();
 int QSvgWidget_QSvgWidget_QRegisterMetaType();
 extern "C" {
 #endif
 
-struct QtSvg_PackedString { char* data; long long len; };
+struct QtSvg_PackedString { char* data; long long len; void* ptr; };
 struct QtSvg_PackedList { void* data; long long len; };
 void* QGraphicsSvgItem_NewQGraphicsSvgItem(void* parent);
 void* QGraphicsSvgItem_NewQGraphicsSvgItem2(struct QtSvg_PackedString fileName, void* parent);
@@ -41,9 +42,6 @@ void* QGraphicsSvgItem___findChildren_newList(void* ptr);
 void* QGraphicsSvgItem___findChildren_atList3(void* ptr, int i);
 void QGraphicsSvgItem___findChildren_setList3(void* ptr, void* i);
 void* QGraphicsSvgItem___findChildren_newList3(void* ptr);
-void* QGraphicsSvgItem___qFindChildren_atList2(void* ptr, int i);
-void QGraphicsSvgItem___qFindChildren_setList2(void* ptr, void* i);
-void* QGraphicsSvgItem___qFindChildren_newList2(void* ptr);
 void* QGraphicsSvgItem___childItems_atList(void* ptr, int i);
 void QGraphicsSvgItem___childItems_setList(void* ptr, void* i);
 void* QGraphicsSvgItem___childItems_newList(void* ptr);
@@ -140,7 +138,7 @@ void QSvgRenderer_Render2(void* ptr, void* painter, void* bounds);
 void QSvgRenderer_Render2Default(void* ptr, void* painter, void* bounds);
 void QSvgRenderer_Render3(void* ptr, void* painter, struct QtSvg_PackedString elementId, void* bounds);
 void QSvgRenderer_Render3Default(void* ptr, void* painter, struct QtSvg_PackedString elementId, void* bounds);
-void QSvgRenderer_ConnectRepaintNeeded(void* ptr);
+void QSvgRenderer_ConnectRepaintNeeded(void* ptr, long long t);
 void QSvgRenderer_DisconnectRepaintNeeded(void* ptr);
 void QSvgRenderer_RepaintNeeded(void* ptr);
 void QSvgRenderer_SetFramesPerSecond(void* ptr, int num);
@@ -162,9 +160,6 @@ void* QSvgRenderer___findChildren_newList(void* ptr);
 void* QSvgRenderer___findChildren_atList3(void* ptr, int i);
 void QSvgRenderer___findChildren_setList3(void* ptr, void* i);
 void* QSvgRenderer___findChildren_newList3(void* ptr);
-void* QSvgRenderer___qFindChildren_atList2(void* ptr, int i);
-void QSvgRenderer___qFindChildren_setList2(void* ptr, void* i);
-void* QSvgRenderer___qFindChildren_newList2(void* ptr);
 void QSvgRenderer_ChildEventDefault(void* ptr, void* event);
 void QSvgRenderer_ConnectNotifyDefault(void* ptr, void* sign);
 void QSvgRenderer_CustomEventDefault(void* ptr, void* event);
@@ -206,9 +201,6 @@ void* QSvgWidget___findChildren_newList(void* ptr);
 void* QSvgWidget___findChildren_atList3(void* ptr, int i);
 void QSvgWidget___findChildren_setList3(void* ptr, void* i);
 void* QSvgWidget___findChildren_newList3(void* ptr);
-void* QSvgWidget___qFindChildren_atList2(void* ptr, int i);
-void QSvgWidget___qFindChildren_setList2(void* ptr, void* i);
-void* QSvgWidget___qFindChildren_newList2(void* ptr);
 void QSvgWidget_ActionEventDefault(void* ptr, void* event);
 void QSvgWidget_ChangeEventDefault(void* ptr, void* event);
 char QSvgWidget_CloseDefault(void* ptr);

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleIconFile</key>
+	<string></string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleExecutable</key>
+	<string>${EXECUTABLE_NAME}</string>
+	<key>CFBundleIdentifier</key>
+	<string>net.vplay.demos.apps.showcaseapp</string>
+	<key>CFBundleDisplayName</key>
+	<string>Felgo Apps</string>
+	<key>CFBundleName</key>
+	<string>${PRODUCT_NAME}</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+  <key>UIViewControllerBasedStatusBarAppearance</key>
+  <false/>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+  <key>NSLocationWhenInUseUsageDescription</key>
+  <string>Map Example</string>
+  <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+  <string>Map Example</string>
+  <key>LSApplicationQueriesSchemes</key>
+  <array>
+    <string>fb</string>
+  </array>
+  <key>NSAppTransportSecurity</key>
+  <dict>
+      <key>NSAllowsArbitraryLoads</key>
+      <true/>
+  </dict>
+  <key>NSPhotoLibraryAddUsageDescription</key>
+  <string>App would like to save images taken with camera.</string>
+  <key>NSPhotoLibraryUsageDescription</key>
+  <string>App would like to access the library.</string>
+  <key>NSCameraUsageDescription</key>
+  <string>App would like to access the camera.</string>
+  <key>NSContactsUsageDescription</key>
+  <string>App would like to store contacts to the Addressbook.</string>
+</dict>
+</plist>

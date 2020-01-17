@@ -14,6 +14,12 @@ import (
 )
 
 func main() {
+	var non_recursive bool
+	if os.Args[len(os.Args)-1] == "non_recursive" {
+		non_recursive = true
+		os.Args = os.Args[:len(os.Args)-1]
+	}
+
 	flag.Usage = func() {
 		println("Usage: qtsetup [-debug] [mode] [target]\n")
 
@@ -89,7 +95,18 @@ func main() {
 		target = runtime.GOOS
 	}
 	utils.CheckBuildTarget(target, docker)
-	cmd.InitEnv(target)
+
+	path, err := os.Getwd()
+	if err != nil {
+		utils.Log.WithError(err).Debug("failed to get cwd")
+	}
+
+	cmd.InitEnv(target, docker, path)
+	if utils.QT_DOCKER() && utils.UseGOMOD(path) && !non_recursive {
+		if cmd.RestartWithPinnedVersion(path) {
+			return
+		}
+	}
 
 	if dynamic && (target == runtime.GOOS || target == "js" || target == "wasm") {
 		os.Setenv("QT_DYNAMIC_SETUP", "true")
@@ -105,7 +122,7 @@ func main() {
 	case "install":
 		setup.Install(target, docker, vagrant, failfast)
 	case "test":
-		if !test {
+		if !test || utils.UseGOMOD(utils.GoQtPkgPath("core")) {
 			return
 		}
 		setup.Test(target, docker, vagrant, vagrant_system)
@@ -114,7 +131,7 @@ func main() {
 		setup.Check(target, docker, vagrant)
 		setup.Generate(target, docker, vagrant)
 		setup.Install(target, docker, vagrant, failfast)
-		if !test {
+		if !test || utils.UseGOMOD(utils.GoQtPkgPath("core")) {
 			return
 		}
 		setup.Test(target, docker, vagrant, vagrant_system)

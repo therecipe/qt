@@ -1,6 +1,7 @@
 package parser
 
 import (
+	"fmt"
 	"strings"
 
 	"github.com/therecipe/qt/internal/utils"
@@ -13,9 +14,9 @@ type Module struct {
 }
 
 type Namespace struct {
-	Classes []*Class `xml:"class"`
-	Structs []*Class `xml:"struct"`
-	//Functions     []*Function     `xml:"function"` //TODO: uncomment
+	Classes   []*Class    `xml:"class"`
+	Structs   []*Class    `xml:"struct"`
+	Functions []*Function `xml:"function"`
 	//Enums         []*Enum         `xml:"enum"`     //TODO: uncomment
 	SubNamespaces []*SubNamespace `xml:"namespace"`
 }
@@ -42,6 +43,26 @@ func (m *Module) Prepare() error {
 		c.register(m)
 	}
 	m.add()
+
+	for _, f := range m.Namespace.Functions {
+		if m.Project == "QtQml" && f.Name == "qjsEngine" {
+			f.Fullname = "QJSEngine::qjsEngine"
+			f.register(m.Project)
+		}
+		if m.Project != "QtCore" || !(strings.Contains(f.Name, "Environment") || strings.HasSuffix(f.Name, "env") || f.Name == "qVersion") {
+			continue
+		}
+		f.Fullname = strings.Replace(strings.Replace(f.Fullname, "<", "", -1), ">", "", -1)
+		f.Static = true
+		if f.Name == "qEnvironmentVariable" && len(f.Parameters) == 2 {
+			f.Overload = true
+			f.OverloadNumber = "2"
+		}
+		if !strings.HasPrefix(f.Fullname, "QtGlobal") {
+			f.Fullname = fmt.Sprintf("%v::%v", "QtGlobal", f.Name)
+		}
+		f.register(m.Project)
+	}
 
 	//register enums and functions from subnamespaces
 	var snsExtraClasses []*Class
@@ -91,6 +112,16 @@ func (m *Module) Prepare() error {
 	}
 
 	//mutate classmap
+	if utils.QT_GEN_QUICK_EXTRAS() {
+		if m.Project == "QtQuickControls2" {
+			for _, c := range append(SortedClassesForModule(m.Project, false), snsExtraClasses...) {
+				if strings.HasPrefix(c.Name, "QQuick") && !strings.HasSuffix(c.Name, "Private") {
+					c.Status = "active"
+					c.Access = "public"
+				}
+			}
+		}
+	}
 	m.remove()
 
 	//mutate classes

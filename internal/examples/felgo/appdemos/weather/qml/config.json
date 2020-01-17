@@ -1,0 +1,9 @@
+{
+  "title": "Weather",
+  "identifier": "net.vplay.demos.apps.weather",
+  "orientation": "portrait",
+  "versioncode": 1,
+  "versionname": "1.0",
+  "stage": "test"
+}
+

@@ -3,6 +3,7 @@
 package sailfish
 
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
 	"github.com/therecipe/qt/quick"
@@ -105,4 +106,13 @@ func SailfishApp_PathToMainQml() *core.QUrl {
 func (ptr *SailfishApp) PathToMainQml() *core.QUrl {
 
 	return nil
+}
+
+func init() {
+	qt.ItfMap["sailfish.SailfishApp_ITF"] = SailfishApp{}
+	qt.FuncMap["sailfish.SailfishApp_Application"] = SailfishApp_Application
+	qt.FuncMap["sailfish.SailfishApp_Main"] = SailfishApp_Main
+	qt.FuncMap["sailfish.SailfishApp_CreateView"] = SailfishApp_CreateView
+	qt.FuncMap["sailfish.SailfishApp_PathTo"] = SailfishApp_PathTo
+	qt.FuncMap["sailfish.SailfishApp_PathToMainQml"] = SailfishApp_PathToMainQml
 }

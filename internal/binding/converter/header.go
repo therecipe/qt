@@ -56,6 +56,9 @@ func GoHeaderName(f *parser.Function) string {
 						strings.HasSuffix(f.Name, "_newList") || strings.HasSuffix(f.Name, "_keyList") {
 						return f.Name
 					}
+					if strings.Contains(f.Fullname, "QtGlobal") || f.Fullname == "QJSEngine::qjsEngine" {
+						return f.Name
+					}
 					return strings.Title(f.Name)
 				}(),
 
@@ -339,6 +342,9 @@ func CppHeaderInput(f *parser.Function) string {
 	}
 
 	if f.Meta == parser.SIGNAL {
+		if f.SignalMode == parser.CONNECT {
+			tmp = append(tmp, "long long t")
+		}
 		return strings.Join(tmp, ", ")
 	}
 

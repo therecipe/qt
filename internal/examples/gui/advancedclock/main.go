@@ -237,8 +237,8 @@ func (w *AnalogClockQwdgt) renderNow(ev *gui.QPaintEvent) {
 	w.BackingStore().BeginPaint(qr3)
 	var device = w.BackingStore().PaintDevice()
 	var painter = gui.NewQPainter2(device)
-	defer painter.DestroyQPainter()
 	w.render(painter)
+	painter.DestroyQPainter()
 	w.BackingStore().EndPaint()
 	w.BackingStore().Flush(gui.NewQRegion3(rect, gui.QRegion__Ellipse), nil, core.NewQPoint())
 }

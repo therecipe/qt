@@ -33,6 +33,10 @@ func CgoTemplateSafe(module, path, target string, mode int, ipkg, tags string, l
 func cgoTemplate(module, path, target string, mode int, ipkg, tags string, libs []string) (o string) {
 	utils.Log.WithField("module", module).WithField("path", path).WithField("target", target).WithField("mode", mode).WithField("pkg", ipkg).Debug("running cgoTemplate")
 
+	if utils.UseGOMOD(utils.GoQtPkgPath("core")) {
+		utils.MkdirAll(utils.GoQtPkgPath(strings.ToLower(module)))
+	}
+
 	switch module {
 	case "AndroidExtras":
 		if !(target == "android" || target == "android-emulator") {
@@ -80,7 +84,7 @@ func isAlreadyCached(module, path, target string, mode int, libs []string) bool 
 		return false
 	}
 
-	for _, file := range cgoFileNames(module, path, target, mode) {
+	for _, file := range CgoFileNames(path, target, mode) {
 		file = filepath.Join(path, file)
 		if utils.ExistsFile(file) {
 			file = utils.Load(file)
@@ -138,12 +142,12 @@ func isAlreadyCached(module, path, target string, mode int, libs []string) bool 
 			switch target {
 			case "windows":
 				if utils.QT_DEBUG_CONSOLE() {
-					if strings.Contains(file, "subsystem,windows") {
+					if strings.Contains(file, "subsystem,windows") || strings.Contains(file, "/SUBSYSTEM:WINDOWS") {
 						utils.Log.Debugln("wrong subsystem: have windows and want console, re-creating ...")
 						return false
 					}
 				} else {
-					if strings.Contains(file, "subsystem,console") {
+					if strings.Contains(file, "subsystem,console") || strings.Contains(file, "/SUBSYSTEM:CONSOLE") {
 						utils.Log.Debugln("wrong subsystem: have console and want windows, re-creating ...")
 						return false
 					}
@@ -231,13 +235,23 @@ func createProject(module, path, target string, mode int, libs []string) {
 	}
 
 	if utils.UseGOMOD(path) && (mode == NONE || mode == MINIMAL) {
+		//TODO: use project root for MINIMAL regardless of go module usage?
 		proPath = filepath.Join(filepath.Dir(utils.GOMOD(path)), fmt.Sprintf("%v.pro", filepath.Base(path)))
 	}
 
 	bb := new(bytes.Buffer)
 	defer bb.Reset()
 	for _, o := range out {
+		if !cmd.ImportsQmlOrQuick() && (o == "qml" || o == "quick") && module == "build_static" {
+			continue
+		}
 		fmt.Fprintf(bb, "qtHaveModule(%[1]v) { QT+=%[1]v }\n", o)
+		if o == "quickcontrols2" && utils.QT_GEN_QUICK_EXTRAS() {
+			fmt.Fprintf(bb, "qtHaveModule(qml-private) { QT+=qml-private }\n", o)
+			fmt.Fprintf(bb, "qtHaveModule(quick-private) { QT+=quick-private }\n", o)
+			fmt.Fprintf(bb, "qtHaveModule(quicktemplates2-private) { QT+=quicktemplates2-private }\n", o)
+			fmt.Fprintf(bb, "qtHaveModule(quickcontrols2-private) { QT+=quickcontrols2-private }\n", o)
+		}
 	}
 	if hasVirtualKeyboard && (utils.QT_STATIC() || target == "js" || target == "wasm") {
 		fmt.Fprintf(bb, "QTPLUGIN += qtvirtualkeyboardplugin\n")
@@ -272,6 +286,7 @@ func createMakefile(module, path, target string, mode int) {
 	}
 
 	if utils.UseGOMOD(path) && (mode == NONE || mode == MINIMAL) {
+		//TODO: use project root for MINIMAL regardless of go module usage?
 		proPath = filepath.Join(filepath.Dir(utils.GOMOD(path)), fmt.Sprintf("%v.pro", filepath.Base(path)))
 	}
 
@@ -290,7 +305,11 @@ func createMakefile(module, path, target string, mode int) {
 		if utils.QT_DEBUG_CONSOLE() {
 			subsystem = "console"
 		}
-		cmd.Args = append(cmd.Args, []string{"-spec", "win32-g++", "CONFIG+=" + subsystem}...)
+		spec := "win32-g++"
+		if utils.QT_MSVC() {
+			spec = "win32-msvc"
+		}
+		cmd.Args = append(cmd.Args, []string{"-spec", spec, "CONFIG+=" + subsystem}...)
 	case "linux":
 		cmd.Args = append(cmd.Args, []string{"-spec", "linux-g++"}...)
 	case "freebsd":
@@ -301,7 +320,7 @@ func createMakefile(module, path, target string, mode int) {
 		cmd.Args = append(cmd.Args, []string{"-spec", "macx-ios-clang", "CONFIG+=iphonesimulator", "CONFIG+=simulator"}...)
 	case "android", "android-emulator":
 		cmd.Args = append(cmd.Args, []string{"-spec", "android-clang"}...)
-		cmd.Env = []string{fmt.Sprintf("ANDROID_NDK_ROOT=%v", utils.ANDROID_NDK_DIR())}
+		cmd.Env = []string{fmt.Sprintf("ANDROID_NDK_ROOT=%v", utils.ANDROID_NDK_DIR()), fmt.Sprintf("ANDROID_NDK_PLATFORM=%v", utils.ANDROID_NDK_PLATFORM())}
 	case "sailfish", "sailfish-emulator":
 		cmd.Args = append(cmd.Args, []string{"-spec", "linux-g++"}...)
 		cmd.Env = []string{
@@ -346,8 +365,26 @@ func createMakefile(module, path, target string, mode int) {
 	if utils.QT_DEBUG_QML() {
 		cmd.Args = append(cmd.Args, []string{"CONFIG+=debug", "CONFIG+=declarative_debug", "CONFIG+=qml_debug"}...)
 	} else {
-		cmd.Args = append(cmd.Args, "CONFIG+=release")
+		cmd.Args = append(cmd.Args, "CONFIG+=release", "CONFIG-=declarative_debug", "CONFIG-=qml_debug")
 	}
+
+	if utils.QT_FELGO() && (module == "Felgo" || module == "build_static" || mode == MOC) {
+		cmd.Args = append(cmd.Args, []string{"CONFIG+=felgo"}...)
+		if utils.QT_FELGO_LIVE() || mode == NONE {
+			cmd.Args = append(cmd.Args, []string{"CONFIG+=felgo-live"}...)
+		}
+	}
+
+	if utils.QT_RESOURCES_BIG() && mode == RCC {
+		cmd.Args = append(cmd.Args, "CONFIG+=resources_big")
+	}
+
+	if utils.QT_STATIC() {
+		cmd.Args = append(cmd.Args, "CONFIG+=static")
+	}
+
+	//needed for QMAKE_MSC_VER bug: https://bugreports.qt.io/browse/QTBUG-59718
+	utils.RemoveAll(filepath.Join(cmd.Dir, ".qmake.stash"))
 
 	if (target == "android" || target == "android-emulator") && runtime.GOOS == "windows" {
 		//TODO: use os.Setenv instead? -->
@@ -364,6 +401,12 @@ func createMakefile(module, path, target string, mode int) {
 	if utils.QT_UBPORTS() {
 		utils.Save(filepath.Join(path, "Mfile"), utils.Load(mPath))
 		utils.RemoveAll(mPath)
+	}
+
+	if utils.QT_FELGO() {
+		utils.RemoveAll(filepath.Join(filepath.Dir(proPath), "FelgoLive"))
+		utils.RemoveAll(filepath.Join(path, "android-build"))
+		utils.RemoveAll(filepath.Join(path, "gradle.properties"))
 	}
 
 	utils.RemoveAll(proPath)
@@ -471,6 +514,8 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 		guards += target
 	case "js", "wasm":
 		guards += "ignore"
+	case "linux":
+		guards += "!ubports"
 	}
 	//TODO: move "minimal" build tag in separate line -->
 	switch mode {
@@ -541,10 +586,16 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 	}
 
 	switch target {
+	case "darwin":
+		if utils.QT_STATIC() && utils.QT_DOCKER() {
+			fmt.Fprint(bb, "#cgo LDFLAGS: -Wl,-U,___isPlatformVersionAtLeast -Wl,-U,___isOSVersionAtLeast\n")
+		}
 	case "android", "android-emulator":
-		fmt.Fprint(bb, "#cgo LDFLAGS: -Wl,--allow-shlib-undefined\n")
+		fmt.Fprintf(bb, "#cgo LDFLAGS: %s -Wl,--allow-shlib-undefined\n", utils.ANDROID_NDK_NOSTDLIBPP_LDFLAG())
 	case "windows":
-		fmt.Fprint(bb, "#cgo LDFLAGS: -Wl,--allow-multiple-definition\n")
+		if !utils.QT_MSVC() {
+			fmt.Fprint(bb, "#cgo LDFLAGS: -Wl,--allow-multiple-definition\n")
+		}
 	case "ios":
 		fmt.Fprintf(bb, "#cgo CXXFLAGS: -isysroot %v/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/%v -miphoneos-version-min=11.0\n", utils.XCODE_DIR(), utils.IPHONEOS_SDK_DIR())
 		fmt.Fprintf(bb, "#cgo LDFLAGS: -Wl,-syslibroot,%v/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/%v -miphoneos-version-min=11.0\n", utils.XCODE_DIR(), utils.IPHONEOS_SDK_DIR())
@@ -555,8 +606,10 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 		fmt.Fprint(bb, "#cgo CFLAGS: -s EXTRA_EXPORTED_RUNTIME_METHODS=['getValue','setValue']\n")
 	}
 
-	fmt.Fprint(bb, "#cgo CFLAGS: -Wno-unused-parameter -Wno-unused-variable -Wno-return-type\n")
-	fmt.Fprint(bb, "#cgo CXXFLAGS: -Wno-unused-parameter -Wno-unused-variable -Wno-return-type\n")
+	if !utils.QT_MSVC() {
+		fmt.Fprint(bb, "#cgo CFLAGS: -Wno-unused-parameter -Wno-unused-variable -Wno-return-type\n")
+		fmt.Fprint(bb, "#cgo CXXFLAGS: -Wno-unused-parameter -Wno-unused-variable -Wno-return-type\n")
+	}
 
 	fmt.Fprint(bb, "*/\nimport \"C\"\n")
 
@@ -606,7 +659,7 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 		return tmp
 	}
 
-	for _, file := range cgoFileNames(module, path, target, mode) {
+	for _, file := range CgoFileNames(path, target, mode) {
 		switch target {
 		case "android", "android-emulator":
 			tmp = strings.Replace(tmp, "/opt/android/"+filepath.Base(utils.ANDROID_NDK_DIR()), utils.ANDROID_NDK_DIR(), -1)
@@ -621,6 +674,15 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 			tmp = strings.Replace(tmp, "-fdata-sections", "", -1)
 			tmp = strings.Replace(tmp, "-Wl,-dead_strip", "", -1)
 		case "windows":
+			if utils.QT_MSVC() {
+				tmp = strings.Replace(tmp, "-DUNICODE", "-D_ALLOW_KEYWORD_MACROS -DUNICODE", -1)
+				tmp = strings.Replace(tmp, "-wd4467", "-wd4467 -wd4716", -1)
+				tmp = strings.Replace(tmp, `"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'"`, "", -1) //TODO:
+
+				tmp = strings.Replace(tmp, " CFLAGS:", " MSCFLAGS:", -1)
+				tmp = strings.Replace(tmp, " CXXFLAGS:", " MSCXXFLAGS:", -1)
+				tmp = strings.Replace(tmp, " LDFLAGS:", " MSLDFLAGS:", -1)
+			}
 			if utils.QT_MSYS2() {
 				tmp = strings.Replace(tmp, ",--relax,--gc-sections", "", -1)
 				if utils.QT_MSYS2_STATIC() {
@@ -640,8 +702,10 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 			}
 			if utils.QT_DEBUG_CONSOLE() { //TODO: necessary at all?
 				tmp = strings.Replace(tmp, "subsystem,windows", "subsystem,console", -1)
+				tmp = strings.Replace(tmp, "/SUBSYSTEM:WINDOWS", "/SUBSYSTEM:CONSOLE", -1)
 			} else {
 				tmp = strings.Replace(tmp, "subsystem,console", "subsystem,windows", -1)
+				tmp = strings.Replace(tmp, "/SUBSYSTEM:CONSOLE", "/SUBSYSTEM:WINDOWS", -1)
 			}
 			if utils.QT_MXE() {
 				if li := fmt.Sprintf("-L %v", filepath.Join(utils.QT_MXE_DIR(), "usr", utils.QT_MXE_TRIPLET(), "qt5", "lib")); !strings.Contains(tmp, li) {
@@ -680,20 +744,26 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 	return ""
 }
 
-func cgoFileNames(module, path, target string, mode int) []string {
+func CgoFileNames(path string, target string, mode int) []string {
+	return cgoFileNamesRecursive(path, target, mode, true)
+}
+
+func cgoFileNamesRecursive(path string, target string, mode int, recursive bool) []string {
 	var pFix string
 	switch mode {
 	case RCC:
-		if utils.QT_STATIC() && target == "linux" { //TODO: fix wrong order issue in LDFLAGS instead
-			pFix = "moc_"
-		} else {
-			pFix = "rcc_"
+		pFix = "rcc_"
+		if utils.QT_STATIC() && target == "linux" && recursive { //TODO: fix wrong order issue in LDFLAGS instead
+			if mocName := filepath.Join(path, cgoFileNamesRecursive(path, target, MOC, false)[0]); utils.ExistsFile(mocName) {
+				pFix = "omit"
+			}
 		}
 	case MOC:
-		if utils.QT_STATIC() && target == "linux" { //TODO: fix wrong order issue in LDFLAGS instead
-			pFix = "rcc_"
-		} else {
-			pFix = "moc_"
+		pFix = "moc_"
+		if utils.QT_STATIC() && target == "linux" && recursive { //TODO: fix wrong order issue in LDFLAGS instead
+			if rccName := filepath.Join(path, cgoFileNamesRecursive(path, target, RCC, false)[0]); utils.ExistsFile(rccName) {
+				utils.RemoveAll(rccName)
+			}
 		}
 	case MINIMAL:
 		pFix = "minimal_"
@@ -748,6 +818,9 @@ func cgoFileNames(module, path, target string, mode int) []string {
 
 	var o []string
 	for _, sFix := range sFixes {
+		if pFix == "omit" {
+			continue
+		}
 		o = append(o, fmt.Sprintf("%vcgo_%v_%v.go", pFix, strings.Replace(target, "-", "_", -1), sFix))
 	}
 	return o
@@ -756,7 +829,7 @@ func cgoFileNames(module, path, target string, mode int) []string {
 func ParseCgo(module, target string) (string, string) {
 	utils.Log.WithField("module", module).WithField("target", target).Debug("parse cgo for shared lib")
 
-	tmp := utils.LoadOptional(utils.GoQtPkgPath(module, cgoFileNames(module, "", target, NONE)[0]))
+	tmp := utils.LoadOptional(utils.GoQtPkgPath(module, CgoFileNames("", target, NONE)[0]))
 	if tmp != "" {
 		tmp = strings.Split(tmp, "/*")[1]
 		tmp = strings.Split(tmp, "*/")[0]
@@ -781,10 +854,10 @@ func ParseCgo(module, target string) (string, string) {
 func ReplaceCgo(module, target string) {
 	utils.Log.WithField("module", module).WithField("target", target).Debug("replace cgo for shared lib")
 
-	tmp := utils.LoadOptional(utils.GoQtPkgPath(module, cgoFileNames(module, "", target, NONE)[0]))
+	tmp := utils.LoadOptional(utils.GoQtPkgPath(module, CgoFileNames("", target, NONE)[0]))
 	if tmp != "" {
 		pre := strings.Split(tmp, "/*")[0]
 		past := strings.Split(tmp, "*/")[1]
-		utils.Save(utils.GoQtPkgPath(module, cgoFileNames(module, "", target, NONE)[0]), fmt.Sprintf("%v/*\n#cgo CFLAGS: -I.\n#cgo LDFLAGS: -L. -l%v -Wl,-rpath,%v\n*/%v", pre, module, utils.GoQtPkgPath(), past))
+		utils.Save(utils.GoQtPkgPath(module, CgoFileNames("", target, NONE)[0]), fmt.Sprintf("%v/*\n#cgo CFLAGS: -I.\n#cgo LDFLAGS: -L. -l%v -Wl,-rpath,%v\n*/%v", pre, module, utils.GoQtPkgPath(), past))
 	}
 }

@@ -44,10 +44,10 @@ class MyQUiLoader: public QUiLoader
 {
 public:
 	MyQUiLoader(QObject *parent = Q_NULLPTR) : QUiLoader(parent) {QUiLoader_QUiLoader_QRegisterMetaType();};
-	QAction * createAction(QObject * parent, const QString & name) { QByteArray t6ae999 = name.toUtf8(); QtUiTools_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };return static_cast<QAction*>(callbackQUiLoader_CreateAction(this, parent, namePacked)); };
-	QActionGroup * createActionGroup(QObject * parent, const QString & name) { QByteArray t6ae999 = name.toUtf8(); QtUiTools_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };return static_cast<QActionGroup*>(callbackQUiLoader_CreateActionGroup(this, parent, namePacked)); };
-	QLayout * createLayout(const QString & className, QObject * parent, const QString & name) { QByteArray td80a05 = className.toUtf8(); QtUiTools_PackedString classNamePacked = { const_cast<char*>(td80a05.prepend("WHITESPACE").constData()+10), td80a05.size()-10 };QByteArray t6ae999 = name.toUtf8(); QtUiTools_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };return static_cast<QLayout*>(callbackQUiLoader_CreateLayout(this, classNamePacked, parent, namePacked)); };
-	QWidget * createWidget(const QString & className, QWidget * parent, const QString & name) { QByteArray td80a05 = className.toUtf8(); QtUiTools_PackedString classNamePacked = { const_cast<char*>(td80a05.prepend("WHITESPACE").constData()+10), td80a05.size()-10 };QByteArray t6ae999 = name.toUtf8(); QtUiTools_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };return static_cast<QWidget*>(callbackQUiLoader_CreateWidget(this, classNamePacked, parent, namePacked)); };
+	QAction * createAction(QObject * parent, const QString & name) { QByteArray* t6ae999 = new QByteArray(name.toUtf8()); QtUiTools_PackedString namePacked = { const_cast<char*>(t6ae999->prepend("WHITESPACE").constData()+10), t6ae999->size()-10, t6ae999 };return static_cast<QAction*>(callbackQUiLoader_CreateAction(this, parent, namePacked)); };
+	QActionGroup * createActionGroup(QObject * parent, const QString & name) { QByteArray* t6ae999 = new QByteArray(name.toUtf8()); QtUiTools_PackedString namePacked = { const_cast<char*>(t6ae999->prepend("WHITESPACE").constData()+10), t6ae999->size()-10, t6ae999 };return static_cast<QActionGroup*>(callbackQUiLoader_CreateActionGroup(this, parent, namePacked)); };
+	QLayout * createLayout(const QString & className, QObject * parent, const QString & name) { QByteArray* td80a05 = new QByteArray(className.toUtf8()); QtUiTools_PackedString classNamePacked = { const_cast<char*>(td80a05->prepend("WHITESPACE").constData()+10), td80a05->size()-10, td80a05 };QByteArray* t6ae999 = new QByteArray(name.toUtf8()); QtUiTools_PackedString namePacked = { const_cast<char*>(t6ae999->prepend("WHITESPACE").constData()+10), t6ae999->size()-10, t6ae999 };return static_cast<QLayout*>(callbackQUiLoader_CreateLayout(this, classNamePacked, parent, namePacked)); };
+	QWidget * createWidget(const QString & className, QWidget * parent, const QString & name) { QByteArray* td80a05 = new QByteArray(className.toUtf8()); QtUiTools_PackedString classNamePacked = { const_cast<char*>(td80a05->prepend("WHITESPACE").constData()+10), td80a05->size()-10, td80a05 };QByteArray* t6ae999 = new QByteArray(name.toUtf8()); QtUiTools_PackedString namePacked = { const_cast<char*>(t6ae999->prepend("WHITESPACE").constData()+10), t6ae999->size()-10, t6ae999 };return static_cast<QWidget*>(callbackQUiLoader_CreateWidget(this, classNamePacked, parent, namePacked)); };
 	 ~MyQUiLoader() { callbackQUiLoader_DestroyQUiLoader(this); };
 	void childEvent(QChildEvent * event) { callbackQUiLoader_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQUiLoader_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -58,10 +58,11 @@ public:
 	bool event(QEvent * e) { return callbackQUiLoader_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQUiLoader_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQUiLoader_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtUiTools_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQUiLoader_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtUiTools_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQUiLoader_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQUiLoader_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QUiLoader*)
 Q_DECLARE_METATYPE(MyQUiLoader*)
 
 int QUiLoader_QUiLoader_QRegisterMetaType(){qRegisterMetaType<QUiLoader*>(); return qRegisterMetaType<MyQUiLoader*>();}
@@ -120,12 +121,12 @@ void QUiLoader_AddPluginPath(void* ptr, struct QtUiTools_PackedString path)
 
 struct QtUiTools_PackedString QUiLoader_AvailableLayouts(void* ptr)
 {
-	return ({ QByteArray te9f98b = static_cast<QUiLoader*>(ptr)->availableLayouts().join("¡¦!").toUtf8(); QtUiTools_PackedString { const_cast<char*>(te9f98b.prepend("WHITESPACE").constData()+10), te9f98b.size()-10 }; });
+	return ({ QByteArray* te9f98b = new QByteArray(static_cast<QUiLoader*>(ptr)->availableLayouts().join("¡¦!").toUtf8()); QtUiTools_PackedString { const_cast<char*>(te9f98b->prepend("WHITESPACE").constData()+10), te9f98b->size()-10, te9f98b }; });
 }
 
 struct QtUiTools_PackedString QUiLoader_AvailableWidgets(void* ptr)
 {
-	return ({ QByteArray tf979e0 = static_cast<QUiLoader*>(ptr)->availableWidgets().join("¡¦!").toUtf8(); QtUiTools_PackedString { const_cast<char*>(tf979e0.prepend("WHITESPACE").constData()+10), tf979e0.size()-10 }; });
+	return ({ QByteArray* tf979e0 = new QByteArray(static_cast<QUiLoader*>(ptr)->availableWidgets().join("¡¦!").toUtf8()); QtUiTools_PackedString { const_cast<char*>(tf979e0->prepend("WHITESPACE").constData()+10), tf979e0->size()-10, tf979e0 }; });
 }
 
 void QUiLoader_ClearPluginPaths(void* ptr)
@@ -175,7 +176,7 @@ void* QUiLoader_CreateWidgetDefault(void* ptr, struct QtUiTools_PackedString cla
 
 struct QtUiTools_PackedString QUiLoader_ErrorString(void* ptr)
 {
-	return ({ QByteArray tadc93d = static_cast<QUiLoader*>(ptr)->errorString().toUtf8(); QtUiTools_PackedString { const_cast<char*>(tadc93d.prepend("WHITESPACE").constData()+10), tadc93d.size()-10 }; });
+	return ({ QByteArray* tadc93d = new QByteArray(static_cast<QUiLoader*>(ptr)->errorString().toUtf8()); QtUiTools_PackedString { const_cast<char*>(tadc93d->prepend("WHITESPACE").constData()+10), tadc93d->size()-10, tadc93d }; });
 }
 
 char QUiLoader_IsLanguageChangeEnabled(void* ptr)
@@ -190,7 +191,7 @@ void* QUiLoader_Load(void* ptr, void* device, void* parentWidget)
 
 struct QtUiTools_PackedString QUiLoader_PluginPaths(void* ptr)
 {
-	return ({ QByteArray t84d911 = static_cast<QUiLoader*>(ptr)->pluginPaths().join("¡¦!").toUtf8(); QtUiTools_PackedString { const_cast<char*>(t84d911.prepend("WHITESPACE").constData()+10), t84d911.size()-10 }; });
+	return ({ QByteArray* t84d911 = new QByteArray(static_cast<QUiLoader*>(ptr)->pluginPaths().join("¡¦!").toUtf8()); QtUiTools_PackedString { const_cast<char*>(t84d911->prepend("WHITESPACE").constData()+10), t84d911->size()-10, t84d911 }; });
 }
 
 void QUiLoader_SetLanguageChangeEnabled(void* ptr, char enabled)
@@ -278,22 +279,6 @@ void QUiLoader___findChildren_setList3(void* ptr, void* i)
 }
 
 void* QUiLoader___findChildren_newList3(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
-void* QUiLoader___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QUiLoader___qFindChildren_setList2(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QUiLoader___qFindChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();

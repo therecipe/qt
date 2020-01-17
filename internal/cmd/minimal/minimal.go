@@ -15,16 +15,52 @@ import (
 	"github.com/therecipe/qt/internal/binding/templater"
 
 	"github.com/therecipe/qt/internal/cmd"
+	"github.com/therecipe/qt/internal/cmd/moc"
 
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func Minimal(path, target, tags string) {
-	if utils.UseGOMOD(path) {
+func Minimal(path, target, tags string, skipSetup bool) {
+	rootPath := path
+	defer func() {
+		if cmd.ImportsQmlOrQuick() { //TODO: and not deploying + reinstate on moc.moc with deploying ?
+			if pkg_path := utils.GoQtPkgPath("internal/binding/runtime"); utils.QT_NOT_CACHED() || !utils.ExistsFile(filepath.Join(pkg_path, templater.CgoFileNames(pkg_path, target, templater.MOC)[0])) {
+				filepath.Walk(pkg_path, func(path string, info os.FileInfo, err error) error {
+					if err != nil || info.IsDir() {
+						return err
+					}
+					if strings.HasPrefix(info.Name(), "moc_cgo") || strings.HasPrefix(info.Name(), "rcc_cgo") { //rcc_cgo for static linux workaround
+						os.Remove(path)
+					}
+					return nil
+				})
+				moc.Moc(pkg_path, target, "", true, false, false, true)
+			} else {
+				moc.ResourceNamesMutex.Lock()
+				moc.ResourceNames[filepath.Join(pkg_path, "moc.cpp")] = ""
+				moc.ResourceNamesMutex.Unlock()
+			}
+		}
+	}()
+
+	if utils.UseGOMOD(path) && !skipSetup {
 		if !utils.ExistsDir(filepath.Join(filepath.Dir(utils.GOMOD(path)), "vendor")) {
 			cmd := exec.Command("go", "mod", "vendor")
 			cmd.Dir = path
 			utils.RunCmd(cmd, "go mod vendor")
+		}
+		if utils.QT_DOCKER() {
+			cmd := exec.Command("go", "get", "-v", "-d", "github.com/therecipe/qt/internal/binding/files/docs/"+utils.QT_API(utils.QT_VERSION())+"@"+cmd.QtModVersion(filepath.Dir(utils.GOMOD(path)))) //TODO: needs to pull 5.8.0 if QT_WEBKIT
+			cmd.Dir = path
+			if !utils.QT_PKG_CONFIG() {
+				utils.RunCmdOptional(cmd, "go get docs") //TODO: this can fail if QT_PKG_CONFIG
+			}
+
+			if strings.HasPrefix(target, "sailfish") || strings.HasPrefix(target, "android") { //TODO: generate android and sailfish minimal instead
+				cmd := exec.Command(filepath.Join(utils.GOBIN(), "qtsetup"), "generate", target)
+				cmd.Dir = path
+				utils.RunCmd(cmd, "run setup")
+			}
 		}
 	}
 
@@ -38,7 +74,7 @@ func Minimal(path, target, tags string) {
 		if tags != "" {
 			tagsEnv = append(tagsEnv, strings.Split(tags, " ")...)
 		}
-		scmd.Args = append(scmd.Args, fmt.Sprintf("-tags=\"%v\"", strings.Join(tagsEnv, "\" \"")))
+		scmd.Args = append(scmd.Args, utils.BuildTags(tagsEnv))
 
 		if target != runtime.GOOS {
 			scmd.Args = append(scmd.Args, []string{"-pkgdir", filepath.Join(utils.MustGoPath(), "pkg", fmt.Sprintf("%v_%v_%v", strings.Replace(target, "-", "_", -1), env["GOOS"], env["GOARCH"]))}...)
@@ -58,7 +94,7 @@ func Minimal(path, target, tags string) {
 
 	//TODO: cleanup state from moc for minimal first -->
 	for _, c := range parser.State.ClassMap {
-		if c.Module == parser.MOC || strings.HasPrefix(c.Module, "custom_") {
+		if c.Module == parser.MOC || strings.HasPrefix(c.Module, "custom_") || c.ToBeCleanedUp {
 			delete(parser.State.ClassMap, c.Name)
 		}
 	}
@@ -93,12 +129,12 @@ func Minimal(path, target, tags string) {
 				files = append(files, file)
 				fileMutex.Unlock()
 			}
-			if target == "js" { //TODO: wasm as well
+			if target == "js" || cmd.ImportsQmlOrQuick() { //TODO: wasm as well
 				filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
-					if err != nil || info.IsDir() {
+					if err != nil || info.IsDir() || strings.HasPrefix(path, filepath.Join(rootPath, "deploy")) {
 						return err
 					}
-					if filepath.Ext(path) == ".js" {
+					if filepath.Ext(path) == ".js" || (filepath.Ext(path) == ".ts" && !strings.HasSuffix(path, ".d.ts")) || filepath.Ext(path) == ".qml" {
 						utils.Log.WithField("path", path).Debug("analyse js for minimal")
 						file := utils.Load(path)
 						fileMutex.Lock()
@@ -231,7 +267,7 @@ func Minimal(path, target, tags string) {
 		}
 	case "js", "wasm":
 		exportClass(parser.State.ClassMap["QSvgWidget"], files)
-	case "android", "android-emulator": //TODO: generate minimal androidextras instead?
+	default: //"android", "android-emulator": //TODO: generate minimal androidextras instead, otherwise using the androidextras module reports missing classes when building for targets other than android
 		exportClass(parser.State.ClassMap["QChildEvent"], files)
 		exportClass(parser.State.ClassMap["QTimerEvent"], files)
 		exportClass(parser.State.ClassMap["QMetaObject"], files)
@@ -243,6 +279,10 @@ func Minimal(path, target, tags string) {
 	}
 	if utils.QT_STATIC() {
 		exportClass(parser.State.ClassMap["QSvgWidget"], files)
+	}
+	if utils.QT_FELGO() {
+		exportClass(parser.State.ClassMap["QCoreApplication"], files)
+		exportFunction(parser.State.ClassMap["QCoreApplication"].GetFunction("instance"), files)
 	}
 
 	wg.Add(len(files))
@@ -261,7 +301,9 @@ func Minimal(path, target, tags string) {
 
 	if _, ok := parser.State.ClassMap["QVariant"]; ok {
 		exportClass(parser.State.ClassMap["QVariant"], files)
-		exportFunction(parser.State.ClassMap["QVariant"].GetFunction("type"), files)
+		for _, fn := range []string{"type", "canConvert", "toList", "toMap", "isValid", "toString"} {
+			exportFunction(parser.State.ClassMap["QVariant"].GetFunction(fn), files)
+		}
 
 		for _, v := range parser.State.ClassMap["QVariant"].Enums[0].Values {
 			if f := parser.State.ClassMap["QVariant"].GetFunction("to" + v.Name); f != nil {
@@ -273,6 +315,34 @@ func Minimal(path, target, tags string) {
 					exportFunction(f, files)
 				}
 			}
+		}
+	}
+
+	if _, ok := parser.State.ClassMap["QObject"]; ok {
+		exportClass(parser.State.ClassMap["QObject"], files)
+		for _, fn := range []string{"setObjectName", "objectNameChanged"} {
+			exportFunction(parser.State.ClassMap["QObject"].GetFunction(fn), files)
+		}
+	}
+
+	if _, ok := parser.State.ClassMap["QJSValue"]; ok {
+		exportClass(parser.State.ClassMap["QJSValue"], files)
+		for _, fn := range []string{"property", "setProperty", "toQObject", "isCallable", "isNull", "isUndefined", "toString", "call", "toInt", "isString"} {
+			exportFunction(parser.State.ClassMap["QJSValue"].GetFunction(fn), files)
+		}
+	}
+
+	if _, ok := parser.State.ClassMap["QJSEngine"]; ok {
+		exportClass(parser.State.ClassMap["QJSEngine"], files)
+		for _, fn := range []string{"newQObject", "newObject", "qjsEngine", "toScriptValue", "globalObject", "newArray", "evaluate"} {
+			exportFunction(parser.State.ClassMap["QJSEngine"].GetFunction(fn), files)
+		}
+	}
+
+	if _, ok := parser.State.ClassMap["QQuickView"]; ok {
+		exportClass(parser.State.ClassMap["QQuickView"], files)
+		for _, fn := range []string{"engine"} {
+			exportFunction(parser.State.ClassMap["QQuickView"].GetFunction(fn), files)
 		}
 	}
 
@@ -315,6 +385,9 @@ func Minimal(path, target, tags string) {
 
 func exportClass(c *parser.Class, files []string) {
 	if c == nil {
+		return
+	}
+	if c.Name == "FelgoLiveClient" && !utils.QT_FELGO_LIVE() {
 		return
 	}
 	c.Lock()

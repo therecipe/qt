@@ -54,6 +54,7 @@
 #include <QWidget>
 #include <QWindow>
 
+Q_DECLARE_METATYPE(QGeoAddress*)
 void* QGeoAddress_NewQGeoAddress()
 {
 	return new QGeoAddress();
@@ -66,7 +67,7 @@ void* QGeoAddress_NewQGeoAddress2(void* other)
 
 struct QtPositioning_PackedString QGeoAddress_City(void* ptr)
 {
-	return ({ QByteArray t1ae2a5 = static_cast<QGeoAddress*>(ptr)->city().toUtf8(); QtPositioning_PackedString { const_cast<char*>(t1ae2a5.prepend("WHITESPACE").constData()+10), t1ae2a5.size()-10 }; });
+	return ({ QByteArray* t1ae2a5 = new QByteArray(static_cast<QGeoAddress*>(ptr)->city().toUtf8()); QtPositioning_PackedString { const_cast<char*>(t1ae2a5->prepend("WHITESPACE").constData()+10), t1ae2a5->size()-10, t1ae2a5 }; });
 }
 
 void QGeoAddress_Clear(void* ptr)
@@ -76,22 +77,22 @@ void QGeoAddress_Clear(void* ptr)
 
 struct QtPositioning_PackedString QGeoAddress_Country(void* ptr)
 {
-	return ({ QByteArray te96f62 = static_cast<QGeoAddress*>(ptr)->country().toUtf8(); QtPositioning_PackedString { const_cast<char*>(te96f62.prepend("WHITESPACE").constData()+10), te96f62.size()-10 }; });
+	return ({ QByteArray* te96f62 = new QByteArray(static_cast<QGeoAddress*>(ptr)->country().toUtf8()); QtPositioning_PackedString { const_cast<char*>(te96f62->prepend("WHITESPACE").constData()+10), te96f62->size()-10, te96f62 }; });
 }
 
 struct QtPositioning_PackedString QGeoAddress_CountryCode(void* ptr)
 {
-	return ({ QByteArray tbdca51 = static_cast<QGeoAddress*>(ptr)->countryCode().toUtf8(); QtPositioning_PackedString { const_cast<char*>(tbdca51.prepend("WHITESPACE").constData()+10), tbdca51.size()-10 }; });
+	return ({ QByteArray* tbdca51 = new QByteArray(static_cast<QGeoAddress*>(ptr)->countryCode().toUtf8()); QtPositioning_PackedString { const_cast<char*>(tbdca51->prepend("WHITESPACE").constData()+10), tbdca51->size()-10, tbdca51 }; });
 }
 
 struct QtPositioning_PackedString QGeoAddress_County(void* ptr)
 {
-	return ({ QByteArray t5bb60c = static_cast<QGeoAddress*>(ptr)->county().toUtf8(); QtPositioning_PackedString { const_cast<char*>(t5bb60c.prepend("WHITESPACE").constData()+10), t5bb60c.size()-10 }; });
+	return ({ QByteArray* t5bb60c = new QByteArray(static_cast<QGeoAddress*>(ptr)->county().toUtf8()); QtPositioning_PackedString { const_cast<char*>(t5bb60c->prepend("WHITESPACE").constData()+10), t5bb60c->size()-10, t5bb60c }; });
 }
 
 struct QtPositioning_PackedString QGeoAddress_District(void* ptr)
 {
-	return ({ QByteArray t09161b = static_cast<QGeoAddress*>(ptr)->district().toUtf8(); QtPositioning_PackedString { const_cast<char*>(t09161b.prepend("WHITESPACE").constData()+10), t09161b.size()-10 }; });
+	return ({ QByteArray* t09161b = new QByteArray(static_cast<QGeoAddress*>(ptr)->district().toUtf8()); QtPositioning_PackedString { const_cast<char*>(t09161b->prepend("WHITESPACE").constData()+10), t09161b->size()-10, t09161b }; });
 }
 
 char QGeoAddress_IsEmpty(void* ptr)
@@ -106,7 +107,7 @@ char QGeoAddress_IsTextGenerated(void* ptr)
 
 struct QtPositioning_PackedString QGeoAddress_PostalCode(void* ptr)
 {
-	return ({ QByteArray t3693ff = static_cast<QGeoAddress*>(ptr)->postalCode().toUtf8(); QtPositioning_PackedString { const_cast<char*>(t3693ff.prepend("WHITESPACE").constData()+10), t3693ff.size()-10 }; });
+	return ({ QByteArray* t3693ff = new QByteArray(static_cast<QGeoAddress*>(ptr)->postalCode().toUtf8()); QtPositioning_PackedString { const_cast<char*>(t3693ff->prepend("WHITESPACE").constData()+10), t3693ff->size()-10, t3693ff }; });
 }
 
 void QGeoAddress_SetCity(void* ptr, struct QtPositioning_PackedString city)
@@ -156,17 +157,17 @@ void QGeoAddress_SetText(void* ptr, struct QtPositioning_PackedString text)
 
 struct QtPositioning_PackedString QGeoAddress_State(void* ptr)
 {
-	return ({ QByteArray t2cd605 = static_cast<QGeoAddress*>(ptr)->state().toUtf8(); QtPositioning_PackedString { const_cast<char*>(t2cd605.prepend("WHITESPACE").constData()+10), t2cd605.size()-10 }; });
+	return ({ QByteArray* t2cd605 = new QByteArray(static_cast<QGeoAddress*>(ptr)->state().toUtf8()); QtPositioning_PackedString { const_cast<char*>(t2cd605->prepend("WHITESPACE").constData()+10), t2cd605->size()-10, t2cd605 }; });
 }
 
 struct QtPositioning_PackedString QGeoAddress_Street(void* ptr)
 {
-	return ({ QByteArray tdff817 = static_cast<QGeoAddress*>(ptr)->street().toUtf8(); QtPositioning_PackedString { const_cast<char*>(tdff817.prepend("WHITESPACE").constData()+10), tdff817.size()-10 }; });
+	return ({ QByteArray* tdff817 = new QByteArray(static_cast<QGeoAddress*>(ptr)->street().toUtf8()); QtPositioning_PackedString { const_cast<char*>(tdff817->prepend("WHITESPACE").constData()+10), tdff817->size()-10, tdff817 }; });
 }
 
 struct QtPositioning_PackedString QGeoAddress_Text(void* ptr)
 {
-	return ({ QByteArray tba5c7b = static_cast<QGeoAddress*>(ptr)->text().toUtf8(); QtPositioning_PackedString { const_cast<char*>(tba5c7b.prepend("WHITESPACE").constData()+10), tba5c7b.size()-10 }; });
+	return ({ QByteArray* tba5c7b = new QByteArray(static_cast<QGeoAddress*>(ptr)->text().toUtf8()); QtPositioning_PackedString { const_cast<char*>(tba5c7b->prepend("WHITESPACE").constData()+10), tba5c7b->size()-10, tba5c7b }; });
 }
 
 void QGeoAddress_DestroyQGeoAddress(void* ptr)
@@ -174,6 +175,7 @@ void QGeoAddress_DestroyQGeoAddress(void* ptr)
 	static_cast<QGeoAddress*>(ptr)->~QGeoAddress();
 }
 
+Q_DECLARE_METATYPE(QGeoAreaMonitorInfo*)
 void* QGeoAreaMonitorInfo_NewQGeoAreaMonitorInfo(struct QtPositioning_PackedString name)
 {
 	return new QGeoAreaMonitorInfo(QString::fromUtf8(name.data, name.len));
@@ -196,7 +198,7 @@ void* QGeoAreaMonitorInfo_Expiration(void* ptr)
 
 struct QtPositioning_PackedString QGeoAreaMonitorInfo_Identifier(void* ptr)
 {
-	return ({ QByteArray tba0e32 = static_cast<QGeoAreaMonitorInfo*>(ptr)->identifier().toUtf8(); QtPositioning_PackedString { const_cast<char*>(tba0e32.prepend("WHITESPACE").constData()+10), tba0e32.size()-10 }; });
+	return ({ QByteArray* tba0e32 = new QByteArray(static_cast<QGeoAreaMonitorInfo*>(ptr)->identifier().toUtf8()); QtPositioning_PackedString { const_cast<char*>(tba0e32->prepend("WHITESPACE").constData()+10), tba0e32->size()-10, tba0e32 }; });
 }
 
 char QGeoAreaMonitorInfo_IsPersistent(void* ptr)
@@ -211,12 +213,12 @@ char QGeoAreaMonitorInfo_IsValid(void* ptr)
 
 struct QtPositioning_PackedString QGeoAreaMonitorInfo_Name(void* ptr)
 {
-	return ({ QByteArray ta2df77 = static_cast<QGeoAreaMonitorInfo*>(ptr)->name().toUtf8(); QtPositioning_PackedString { const_cast<char*>(ta2df77.prepend("WHITESPACE").constData()+10), ta2df77.size()-10 }; });
+	return ({ QByteArray* ta2df77 = new QByteArray(static_cast<QGeoAreaMonitorInfo*>(ptr)->name().toUtf8()); QtPositioning_PackedString { const_cast<char*>(ta2df77->prepend("WHITESPACE").constData()+10), ta2df77->size()-10, ta2df77 }; });
 }
 
 struct QtPositioning_PackedList QGeoAreaMonitorInfo_NotificationParameters(void* ptr)
 {
-	return ({ QMap<QString, QVariant>* tmpValue = new QMap<QString, QVariant>(static_cast<QGeoAreaMonitorInfo*>(ptr)->notificationParameters()); QtPositioning_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QMap<QString, QVariant>* tmpValue2d34b3 = new QMap<QString, QVariant>(static_cast<QGeoAreaMonitorInfo*>(ptr)->notificationParameters()); QtPositioning_PackedList { tmpValue2d34b3, tmpValue2d34b3->size() }; });
 }
 
 void QGeoAreaMonitorInfo_SetArea(void* ptr, void* newShape)
@@ -267,7 +269,7 @@ void* QGeoAreaMonitorInfo___notificationParameters_newList(void* ptr)
 
 struct QtPositioning_PackedList QGeoAreaMonitorInfo___notificationParameters_keyList(void* ptr)
 {
-	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QVariant>*>(ptr)->keys()); QtPositioning_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QString>* tmpValue1ab909 = new QList<QString>(static_cast<QMap<QString, QVariant>*>(ptr)->keys()); QtPositioning_PackedList { tmpValue1ab909, tmpValue1ab909->size() }; });
 }
 
 void* QGeoAreaMonitorInfo___setNotificationParameters_parameters_atList(void* ptr, struct QtPositioning_PackedString v, int i)
@@ -288,12 +290,12 @@ void* QGeoAreaMonitorInfo___setNotificationParameters_parameters_newList(void* p
 
 struct QtPositioning_PackedList QGeoAreaMonitorInfo___setNotificationParameters_parameters_keyList(void* ptr)
 {
-	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QVariant>*>(ptr)->keys()); QtPositioning_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QString>* tmpValue1ab909 = new QList<QString>(static_cast<QMap<QString, QVariant>*>(ptr)->keys()); QtPositioning_PackedList { tmpValue1ab909, tmpValue1ab909->size() }; });
 }
 
 struct QtPositioning_PackedString QGeoAreaMonitorInfo_____notificationParameters_keyList_atList(void* ptr, int i)
 {
-	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtPositioning_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
+	return ({ QByteArray* t94aa5e = new QByteArray(({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8()); QtPositioning_PackedString { const_cast<char*>(t94aa5e->prepend("WHITESPACE").constData()+10), t94aa5e->size()-10, t94aa5e }; });
 }
 
 void QGeoAreaMonitorInfo_____notificationParameters_keyList_setList(void* ptr, struct QtPositioning_PackedString i)
@@ -309,7 +311,7 @@ void* QGeoAreaMonitorInfo_____notificationParameters_keyList_newList(void* ptr)
 
 struct QtPositioning_PackedString QGeoAreaMonitorInfo_____setNotificationParameters_parameters_keyList_atList(void* ptr, int i)
 {
-	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtPositioning_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
+	return ({ QByteArray* t94aa5e = new QByteArray(({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8()); QtPositioning_PackedString { const_cast<char*>(t94aa5e->prepend("WHITESPACE").constData()+10), t94aa5e->size()-10, t94aa5e }; });
 }
 
 void QGeoAreaMonitorInfo_____setNotificationParameters_parameters_keyList_setList(void* ptr, struct QtPositioning_PackedString i)
@@ -335,7 +337,7 @@ public:
 	void Signal_Error2(QGeoAreaMonitorSource::Error areaMonitoringError) { callbackQGeoAreaMonitorSource_Error2(this, areaMonitoringError); };
 	void Signal_MonitorExpired(const QGeoAreaMonitorInfo & monitor) { callbackQGeoAreaMonitorSource_MonitorExpired(this, const_cast<QGeoAreaMonitorInfo*>(&monitor)); };
 	QGeoPositionInfoSource * positionInfoSource() const { return static_cast<QGeoPositionInfoSource*>(callbackQGeoAreaMonitorSource_PositionInfoSource(const_cast<void*>(static_cast<const void*>(this)))); };
-	bool requestUpdate(const QGeoAreaMonitorInfo & monitor, const char * sign) { QtPositioning_PackedString signPacked = { const_cast<char*>(sign), -1 };return callbackQGeoAreaMonitorSource_RequestUpdate(this, const_cast<QGeoAreaMonitorInfo*>(&monitor), signPacked) != 0; };
+	bool requestUpdate(const QGeoAreaMonitorInfo & monitor, const char * sign) { QtPositioning_PackedString signPacked = { const_cast<char*>(sign), -1, NULL };return callbackQGeoAreaMonitorSource_RequestUpdate(this, const_cast<QGeoAreaMonitorInfo*>(&monitor), signPacked) != 0; };
 	void setPositionInfoSource(QGeoPositionInfoSource * newSource) { callbackQGeoAreaMonitorSource_SetPositionInfoSource(this, newSource); };
 	bool startMonitoring(const QGeoAreaMonitorInfo & monitor) { return callbackQGeoAreaMonitorSource_StartMonitoring(this, const_cast<QGeoAreaMonitorInfo*>(&monitor)) != 0; };
 	bool stopMonitoring(const QGeoAreaMonitorInfo & monitor) { return callbackQGeoAreaMonitorSource_StopMonitoring(this, const_cast<QGeoAreaMonitorInfo*>(&monitor)) != 0; };
@@ -350,10 +352,11 @@ public:
 	bool event(QEvent * e) { return callbackQGeoAreaMonitorSource_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQGeoAreaMonitorSource_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGeoAreaMonitorSource_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtPositioning_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQGeoAreaMonitorSource_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtPositioning_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQGeoAreaMonitorSource_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQGeoAreaMonitorSource_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QGeoAreaMonitorSource*)
 Q_DECLARE_METATYPE(MyQGeoAreaMonitorSource*)
 
 int QGeoAreaMonitorSource_QGeoAreaMonitorSource_QRegisterMetaType(){qRegisterMetaType<QGeoAreaMonitorSource*>(); return qRegisterMetaType<MyQGeoAreaMonitorSource*>();}
@@ -407,17 +410,17 @@ void* QGeoAreaMonitorSource_NewQGeoAreaMonitorSource(void* parent)
 
 struct QtPositioning_PackedList QGeoAreaMonitorSource_ActiveMonitors(void* ptr)
 {
-	return ({ QList<QGeoAreaMonitorInfo>* tmpValue = new QList<QGeoAreaMonitorInfo>(static_cast<QGeoAreaMonitorSource*>(ptr)->activeMonitors()); QtPositioning_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QGeoAreaMonitorInfo>* tmpValue4e29dd = new QList<QGeoAreaMonitorInfo>(static_cast<QGeoAreaMonitorSource*>(ptr)->activeMonitors()); QtPositioning_PackedList { tmpValue4e29dd, tmpValue4e29dd->size() }; });
 }
 
 struct QtPositioning_PackedList QGeoAreaMonitorSource_ActiveMonitors2(void* ptr, void* lookupArea)
 {
-	return ({ QList<QGeoAreaMonitorInfo>* tmpValue = new QList<QGeoAreaMonitorInfo>(static_cast<QGeoAreaMonitorSource*>(ptr)->activeMonitors(*static_cast<QGeoShape*>(lookupArea))); QtPositioning_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QGeoAreaMonitorInfo>* tmpValuecdc19c = new QList<QGeoAreaMonitorInfo>(static_cast<QGeoAreaMonitorSource*>(ptr)->activeMonitors(*static_cast<QGeoShape*>(lookupArea))); QtPositioning_PackedList { tmpValuecdc19c, tmpValuecdc19c->size() }; });
 }
 
-void QGeoAreaMonitorSource_ConnectAreaEntered(void* ptr)
+void QGeoAreaMonitorSource_ConnectAreaEntered(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGeoAreaMonitorSource*>(ptr), static_cast<void (QGeoAreaMonitorSource::*)(const QGeoAreaMonitorInfo &, const QGeoPositionInfo &)>(&QGeoAreaMonitorSource::areaEntered), static_cast<MyQGeoAreaMonitorSource*>(ptr), static_cast<void (MyQGeoAreaMonitorSource::*)(const QGeoAreaMonitorInfo &, const QGeoPositionInfo &)>(&MyQGeoAreaMonitorSource::Signal_AreaEntered));
+	QObject::connect(static_cast<QGeoAreaMonitorSource*>(ptr), static_cast<void (QGeoAreaMonitorSource::*)(const QGeoAreaMonitorInfo &, const QGeoPositionInfo &)>(&QGeoAreaMonitorSource::areaEntered), static_cast<MyQGeoAreaMonitorSource*>(ptr), static_cast<void (MyQGeoAreaMonitorSource::*)(const QGeoAreaMonitorInfo &, const QGeoPositionInfo &)>(&MyQGeoAreaMonitorSource::Signal_AreaEntered), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGeoAreaMonitorSource_DisconnectAreaEntered(void* ptr)
@@ -430,9 +433,9 @@ void QGeoAreaMonitorSource_AreaEntered(void* ptr, void* monitor, void* update)
 	static_cast<QGeoAreaMonitorSource*>(ptr)->areaEntered(*static_cast<QGeoAreaMonitorInfo*>(monitor), *static_cast<QGeoPositionInfo*>(update));
 }
 
-void QGeoAreaMonitorSource_ConnectAreaExited(void* ptr)
+void QGeoAreaMonitorSource_ConnectAreaExited(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGeoAreaMonitorSource*>(ptr), static_cast<void (QGeoAreaMonitorSource::*)(const QGeoAreaMonitorInfo &, const QGeoPositionInfo &)>(&QGeoAreaMonitorSource::areaExited), static_cast<MyQGeoAreaMonitorSource*>(ptr), static_cast<void (MyQGeoAreaMonitorSource::*)(const QGeoAreaMonitorInfo &, const QGeoPositionInfo &)>(&MyQGeoAreaMonitorSource::Signal_AreaExited));
+	QObject::connect(static_cast<QGeoAreaMonitorSource*>(ptr), static_cast<void (QGeoAreaMonitorSource::*)(const QGeoAreaMonitorInfo &, const QGeoPositionInfo &)>(&QGeoAreaMonitorSource::areaExited), static_cast<MyQGeoAreaMonitorSource*>(ptr), static_cast<void (MyQGeoAreaMonitorSource::*)(const QGeoAreaMonitorInfo &, const QGeoPositionInfo &)>(&MyQGeoAreaMonitorSource::Signal_AreaExited), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGeoAreaMonitorSource_DisconnectAreaExited(void* ptr)
@@ -447,7 +450,7 @@ void QGeoAreaMonitorSource_AreaExited(void* ptr, void* monitor, void* update)
 
 struct QtPositioning_PackedString QGeoAreaMonitorSource_QGeoAreaMonitorSource_AvailableSources()
 {
-	return ({ QByteArray t3a05b8 = QGeoAreaMonitorSource::availableSources().join("¡¦!").toUtf8(); QtPositioning_PackedString { const_cast<char*>(t3a05b8.prepend("WHITESPACE").constData()+10), t3a05b8.size()-10 }; });
+	return ({ QByteArray* t3a05b8 = new QByteArray(QGeoAreaMonitorSource::availableSources().join("¡¦!").toUtf8()); QtPositioning_PackedString { const_cast<char*>(t3a05b8->prepend("WHITESPACE").constData()+10), t3a05b8->size()-10, t3a05b8 }; });
 }
 
 void* QGeoAreaMonitorSource_QGeoAreaMonitorSource_CreateDefaultSource(void* parent)
@@ -465,9 +468,9 @@ long long QGeoAreaMonitorSource_Error(void* ptr)
 	return static_cast<QGeoAreaMonitorSource*>(ptr)->error();
 }
 
-void QGeoAreaMonitorSource_ConnectError2(void* ptr)
+void QGeoAreaMonitorSource_ConnectError2(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGeoAreaMonitorSource*>(ptr), static_cast<void (QGeoAreaMonitorSource::*)(QGeoAreaMonitorSource::Error)>(&QGeoAreaMonitorSource::error), static_cast<MyQGeoAreaMonitorSource*>(ptr), static_cast<void (MyQGeoAreaMonitorSource::*)(QGeoAreaMonitorSource::Error)>(&MyQGeoAreaMonitorSource::Signal_Error2));
+	QObject::connect(static_cast<QGeoAreaMonitorSource*>(ptr), static_cast<void (QGeoAreaMonitorSource::*)(QGeoAreaMonitorSource::Error)>(&QGeoAreaMonitorSource::error), static_cast<MyQGeoAreaMonitorSource*>(ptr), static_cast<void (MyQGeoAreaMonitorSource::*)(QGeoAreaMonitorSource::Error)>(&MyQGeoAreaMonitorSource::Signal_Error2), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGeoAreaMonitorSource_DisconnectError2(void* ptr)
@@ -480,9 +483,9 @@ void QGeoAreaMonitorSource_Error2(void* ptr, long long areaMonitoringError)
 	static_cast<QGeoAreaMonitorSource*>(ptr)->error(static_cast<QGeoAreaMonitorSource::Error>(areaMonitoringError));
 }
 
-void QGeoAreaMonitorSource_ConnectMonitorExpired(void* ptr)
+void QGeoAreaMonitorSource_ConnectMonitorExpired(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGeoAreaMonitorSource*>(ptr), static_cast<void (QGeoAreaMonitorSource::*)(const QGeoAreaMonitorInfo &)>(&QGeoAreaMonitorSource::monitorExpired), static_cast<MyQGeoAreaMonitorSource*>(ptr), static_cast<void (MyQGeoAreaMonitorSource::*)(const QGeoAreaMonitorInfo &)>(&MyQGeoAreaMonitorSource::Signal_MonitorExpired));
+	QObject::connect(static_cast<QGeoAreaMonitorSource*>(ptr), static_cast<void (QGeoAreaMonitorSource::*)(const QGeoAreaMonitorInfo &)>(&QGeoAreaMonitorSource::monitorExpired), static_cast<MyQGeoAreaMonitorSource*>(ptr), static_cast<void (MyQGeoAreaMonitorSource::*)(const QGeoAreaMonitorInfo &)>(&MyQGeoAreaMonitorSource::Signal_MonitorExpired), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGeoAreaMonitorSource_DisconnectMonitorExpired(void* ptr)
@@ -522,7 +525,7 @@ void QGeoAreaMonitorSource_SetPositionInfoSourceDefault(void* ptr, void* newSour
 
 struct QtPositioning_PackedString QGeoAreaMonitorSource_SourceName(void* ptr)
 {
-	return ({ QByteArray t77e733 = static_cast<QGeoAreaMonitorSource*>(ptr)->sourceName().toUtf8(); QtPositioning_PackedString { const_cast<char*>(t77e733.prepend("WHITESPACE").constData()+10), t77e733.size()-10 }; });
+	return ({ QByteArray* t77e733 = new QByteArray(static_cast<QGeoAreaMonitorSource*>(ptr)->sourceName().toUtf8()); QtPositioning_PackedString { const_cast<char*>(t77e733->prepend("WHITESPACE").constData()+10), t77e733->size()-10, t77e733 }; });
 }
 
 char QGeoAreaMonitorSource_StartMonitoring(void* ptr, void* monitor)
@@ -647,22 +650,6 @@ void* QGeoAreaMonitorSource___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QGeoAreaMonitorSource___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QGeoAreaMonitorSource___qFindChildren_setList2(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QGeoAreaMonitorSource___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 void QGeoAreaMonitorSource_ChildEventDefault(void* ptr, void* event)
 {
 		static_cast<QGeoAreaMonitorSource*>(ptr)->QGeoAreaMonitorSource::childEvent(static_cast<QChildEvent*>(event));
@@ -708,6 +695,7 @@ void QGeoAreaMonitorSource_TimerEventDefault(void* ptr, void* event)
 		static_cast<QGeoAreaMonitorSource*>(ptr)->QGeoAreaMonitorSource::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
+Q_DECLARE_METATYPE(QGeoCircle*)
 void* QGeoCircle_NewQGeoCircle()
 {
 	return new QGeoCircle();
@@ -763,6 +751,7 @@ void QGeoCircle_DestroyQGeoCircle(void* ptr)
 	static_cast<QGeoCircle*>(ptr)->~QGeoCircle();
 }
 
+Q_DECLARE_METATYPE(QGeoCoordinate*)
 void* QGeoCoordinate_NewQGeoCoordinate()
 {
 	return new QGeoCoordinate();
@@ -835,7 +824,7 @@ void QGeoCoordinate_SetLongitude(void* ptr, double longitude)
 
 struct QtPositioning_PackedString QGeoCoordinate_ToString(void* ptr, long long format)
 {
-	return ({ QByteArray t4ceea1 = static_cast<QGeoCoordinate*>(ptr)->toString(static_cast<QGeoCoordinate::CoordinateFormat>(format)).toUtf8(); QtPositioning_PackedString { const_cast<char*>(t4ceea1.prepend("WHITESPACE").constData()+10), t4ceea1.size()-10 }; });
+	return ({ QByteArray* t4ceea1 = new QByteArray(static_cast<QGeoCoordinate*>(ptr)->toString(static_cast<QGeoCoordinate::CoordinateFormat>(format)).toUtf8()); QtPositioning_PackedString { const_cast<char*>(t4ceea1->prepend("WHITESPACE").constData()+10), t4ceea1->size()-10, t4ceea1 }; });
 }
 
 long long QGeoCoordinate_Type(void* ptr)
@@ -848,6 +837,7 @@ void QGeoCoordinate_DestroyQGeoCoordinate(void* ptr)
 	static_cast<QGeoCoordinate*>(ptr)->~QGeoCoordinate();
 }
 
+Q_DECLARE_METATYPE(QGeoPath*)
 void* QGeoPath_NewQGeoPath()
 {
 	return new QGeoPath();
@@ -900,7 +890,7 @@ double QGeoPath_Length(void* ptr, int indexFrom, int indexTo)
 
 struct QtPositioning_PackedList QGeoPath_Path(void* ptr)
 {
-	return ({ QList<QGeoCoordinate>* tmpValue = const_cast<QList<QGeoCoordinate>*>(&static_cast<QGeoPath*>(ptr)->path()); QtPositioning_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QGeoCoordinate>* tmpValue374978 = const_cast<QList<QGeoCoordinate>*>(&static_cast<QGeoPath*>(ptr)->path()); QtPositioning_PackedList { tmpValue374978, tmpValue374978->size() }; });
 }
 
 void QGeoPath_RemoveCoordinate(void* ptr, void* coordinate)
@@ -1033,6 +1023,7 @@ void* QGeoPath___variantPath_newList(void* ptr)
 	return new QList<QVariant>();
 }
 
+Q_DECLARE_METATYPE(QGeoPolygon*)
 void* QGeoPolygon_NewQGeoPolygon()
 {
 	return new QGeoPolygon();
@@ -1080,12 +1071,12 @@ void* QGeoPolygon_CoordinateAt(void* ptr, int index)
 
 struct QtPositioning_PackedList QGeoPolygon_Hole(void* ptr, int index)
 {
-	return ({ QList<QVariant>* tmpValue = new QList<QVariant>(static_cast<QGeoPolygon*>(ptr)->hole(index)); QtPositioning_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QVariant>* tmpValue32df99 = new QList<QVariant>(static_cast<QGeoPolygon*>(ptr)->hole(index)); QtPositioning_PackedList { tmpValue32df99, tmpValue32df99->size() }; });
 }
 
 struct QtPositioning_PackedList QGeoPolygon_HolePath(void* ptr, int index)
 {
-	return ({ QList<QGeoCoordinate>* tmpValue = new QList<QGeoCoordinate>(static_cast<QGeoPolygon*>(ptr)->holePath(index)); QtPositioning_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QGeoCoordinate>* tmpValueedba93 = new QList<QGeoCoordinate>(static_cast<QGeoPolygon*>(ptr)->holePath(index)); QtPositioning_PackedList { tmpValueedba93, tmpValueedba93->size() }; });
 }
 
 int QGeoPolygon_HolesCount(void* ptr)
@@ -1105,12 +1096,12 @@ double QGeoPolygon_Length(void* ptr, int indexFrom, int indexTo)
 
 struct QtPositioning_PackedList QGeoPolygon_Path(void* ptr)
 {
-	return ({ QList<QGeoCoordinate>* tmpValue = const_cast<QList<QGeoCoordinate>*>(&static_cast<QGeoPolygon*>(ptr)->path()); QtPositioning_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QGeoCoordinate>* tmpValue5de66b = const_cast<QList<QGeoCoordinate>*>(&static_cast<QGeoPolygon*>(ptr)->path()); QtPositioning_PackedList { tmpValue5de66b, tmpValue5de66b->size() }; });
 }
 
 struct QtPositioning_PackedList QGeoPolygon_Perimeter(void* ptr)
 {
-	return ({ QList<QVariant>* tmpValue = new QList<QVariant>(static_cast<QGeoPolygon*>(ptr)->perimeter()); QtPositioning_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QVariant>* tmpValue8a4a8f = new QList<QVariant>(static_cast<QGeoPolygon*>(ptr)->perimeter()); QtPositioning_PackedList { tmpValue8a4a8f, tmpValue8a4a8f->size() }; });
 }
 
 void QGeoPolygon_RemoveCoordinate(void* ptr, void* coordinate)
@@ -1291,6 +1282,7 @@ void* QGeoPolygon___setPerimeter_path_newList(void* ptr)
 	return new QList<QVariant>();
 }
 
+Q_DECLARE_METATYPE(QGeoPositionInfo*)
 void* QGeoPositionInfo_NewQGeoPositionInfo()
 {
 	return new QGeoPositionInfo();
@@ -1383,10 +1375,11 @@ public:
 	bool event(QEvent * e) { return callbackQGeoPositionInfoSource_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQGeoPositionInfoSource_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGeoPositionInfoSource_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtPositioning_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQGeoPositionInfoSource_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtPositioning_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQGeoPositionInfoSource_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQGeoPositionInfoSource_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QGeoPositionInfoSource*)
 Q_DECLARE_METATYPE(MyQGeoPositionInfoSource*)
 
 int QGeoPositionInfoSource_QGeoPositionInfoSource_QRegisterMetaType(){qRegisterMetaType<QGeoPositionInfoSource*>(); return qRegisterMetaType<MyQGeoPositionInfoSource*>();}
@@ -1440,7 +1433,7 @@ void* QGeoPositionInfoSource_NewQGeoPositionInfoSource(void* parent)
 
 struct QtPositioning_PackedString QGeoPositionInfoSource_QGeoPositionInfoSource_AvailableSources()
 {
-	return ({ QByteArray t547e22 = QGeoPositionInfoSource::availableSources().join("¡¦!").toUtf8(); QtPositioning_PackedString { const_cast<char*>(t547e22.prepend("WHITESPACE").constData()+10), t547e22.size()-10 }; });
+	return ({ QByteArray* t547e22 = new QByteArray(QGeoPositionInfoSource::availableSources().join("¡¦!").toUtf8()); QtPositioning_PackedString { const_cast<char*>(t547e22->prepend("WHITESPACE").constData()+10), t547e22->size()-10, t547e22 }; });
 }
 
 void* QGeoPositionInfoSource_QGeoPositionInfoSource_CreateDefaultSource(void* parent)
@@ -1458,9 +1451,9 @@ long long QGeoPositionInfoSource_Error(void* ptr)
 	return static_cast<QGeoPositionInfoSource*>(ptr)->error();
 }
 
-void QGeoPositionInfoSource_ConnectError2(void* ptr)
+void QGeoPositionInfoSource_ConnectError2(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGeoPositionInfoSource*>(ptr), static_cast<void (QGeoPositionInfoSource::*)(QGeoPositionInfoSource::Error)>(&QGeoPositionInfoSource::error), static_cast<MyQGeoPositionInfoSource*>(ptr), static_cast<void (MyQGeoPositionInfoSource::*)(QGeoPositionInfoSource::Error)>(&MyQGeoPositionInfoSource::Signal_Error2));
+	QObject::connect(static_cast<QGeoPositionInfoSource*>(ptr), static_cast<void (QGeoPositionInfoSource::*)(QGeoPositionInfoSource::Error)>(&QGeoPositionInfoSource::error), static_cast<MyQGeoPositionInfoSource*>(ptr), static_cast<void (MyQGeoPositionInfoSource::*)(QGeoPositionInfoSource::Error)>(&MyQGeoPositionInfoSource::Signal_Error2), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGeoPositionInfoSource_DisconnectError2(void* ptr)
@@ -1483,9 +1476,9 @@ int QGeoPositionInfoSource_MinimumUpdateInterval(void* ptr)
 	return static_cast<QGeoPositionInfoSource*>(ptr)->minimumUpdateInterval();
 }
 
-void QGeoPositionInfoSource_ConnectPositionUpdated(void* ptr)
+void QGeoPositionInfoSource_ConnectPositionUpdated(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGeoPositionInfoSource*>(ptr), static_cast<void (QGeoPositionInfoSource::*)(const QGeoPositionInfo &)>(&QGeoPositionInfoSource::positionUpdated), static_cast<MyQGeoPositionInfoSource*>(ptr), static_cast<void (MyQGeoPositionInfoSource::*)(const QGeoPositionInfo &)>(&MyQGeoPositionInfoSource::Signal_PositionUpdated));
+	QObject::connect(static_cast<QGeoPositionInfoSource*>(ptr), static_cast<void (QGeoPositionInfoSource::*)(const QGeoPositionInfo &)>(&QGeoPositionInfoSource::positionUpdated), static_cast<MyQGeoPositionInfoSource*>(ptr), static_cast<void (MyQGeoPositionInfoSource::*)(const QGeoPositionInfo &)>(&MyQGeoPositionInfoSource::Signal_PositionUpdated), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGeoPositionInfoSource_DisconnectPositionUpdated(void* ptr)
@@ -1538,7 +1531,7 @@ void QGeoPositionInfoSource_SetUpdateIntervalDefault(void* ptr, int msec)
 
 struct QtPositioning_PackedString QGeoPositionInfoSource_SourceName(void* ptr)
 {
-	return ({ QByteArray ta59e39 = static_cast<QGeoPositionInfoSource*>(ptr)->sourceName().toUtf8(); QtPositioning_PackedString { const_cast<char*>(ta59e39.prepend("WHITESPACE").constData()+10), ta59e39.size()-10 }; });
+	return ({ QByteArray* ta59e39 = new QByteArray(static_cast<QGeoPositionInfoSource*>(ptr)->sourceName().toUtf8()); QtPositioning_PackedString { const_cast<char*>(ta59e39->prepend("WHITESPACE").constData()+10), ta59e39->size()-10, ta59e39 }; });
 }
 
 void QGeoPositionInfoSource_StartUpdates(void* ptr)
@@ -1556,9 +1549,9 @@ long long QGeoPositionInfoSource_SupportedPositioningMethods(void* ptr)
 	return static_cast<QGeoPositionInfoSource*>(ptr)->supportedPositioningMethods();
 }
 
-void QGeoPositionInfoSource_ConnectSupportedPositioningMethodsChanged(void* ptr)
+void QGeoPositionInfoSource_ConnectSupportedPositioningMethodsChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGeoPositionInfoSource*>(ptr), static_cast<void (QGeoPositionInfoSource::*)()>(&QGeoPositionInfoSource::supportedPositioningMethodsChanged), static_cast<MyQGeoPositionInfoSource*>(ptr), static_cast<void (MyQGeoPositionInfoSource::*)()>(&MyQGeoPositionInfoSource::Signal_SupportedPositioningMethodsChanged));
+	QObject::connect(static_cast<QGeoPositionInfoSource*>(ptr), static_cast<void (QGeoPositionInfoSource::*)()>(&QGeoPositionInfoSource::supportedPositioningMethodsChanged), static_cast<MyQGeoPositionInfoSource*>(ptr), static_cast<void (MyQGeoPositionInfoSource::*)()>(&MyQGeoPositionInfoSource::Signal_SupportedPositioningMethodsChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGeoPositionInfoSource_DisconnectSupportedPositioningMethodsChanged(void* ptr)
@@ -1576,9 +1569,9 @@ int QGeoPositionInfoSource_UpdateInterval(void* ptr)
 	return static_cast<QGeoPositionInfoSource*>(ptr)->updateInterval();
 }
 
-void QGeoPositionInfoSource_ConnectUpdateTimeout(void* ptr)
+void QGeoPositionInfoSource_ConnectUpdateTimeout(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGeoPositionInfoSource*>(ptr), static_cast<void (QGeoPositionInfoSource::*)()>(&QGeoPositionInfoSource::updateTimeout), static_cast<MyQGeoPositionInfoSource*>(ptr), static_cast<void (MyQGeoPositionInfoSource::*)()>(&MyQGeoPositionInfoSource::Signal_UpdateTimeout));
+	QObject::connect(static_cast<QGeoPositionInfoSource*>(ptr), static_cast<void (QGeoPositionInfoSource::*)()>(&QGeoPositionInfoSource::updateTimeout), static_cast<MyQGeoPositionInfoSource*>(ptr), static_cast<void (MyQGeoPositionInfoSource::*)()>(&MyQGeoPositionInfoSource::Signal_UpdateTimeout), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGeoPositionInfoSource_DisconnectUpdateTimeout(void* ptr)
@@ -1661,22 +1654,6 @@ void QGeoPositionInfoSource___findChildren_setList3(void* ptr, void* i)
 }
 
 void* QGeoPositionInfoSource___findChildren_newList3(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
-void* QGeoPositionInfoSource___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QGeoPositionInfoSource___qFindChildren_setList2(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QGeoPositionInfoSource___qFindChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();
@@ -1772,6 +1749,11 @@ public:
 	 ~MyQGeoPositionInfoSourceFactory() { callbackQGeoPositionInfoSourceFactory_DestroyQGeoPositionInfoSourceFactory(this); };
 };
 
+Q_DECLARE_METATYPE(QGeoPositionInfoSourceFactory*)
+Q_DECLARE_METATYPE(MyQGeoPositionInfoSourceFactory*)
+
+int QGeoPositionInfoSourceFactory_QGeoPositionInfoSourceFactory_QRegisterMetaType(){qRegisterMetaType<QGeoPositionInfoSourceFactory*>(); return qRegisterMetaType<MyQGeoPositionInfoSourceFactory*>();}
+
 void* QGeoPositionInfoSourceFactory_AreaMonitor(void* ptr, void* parent)
 {
 	return static_cast<QGeoPositionInfoSourceFactory*>(ptr)->areaMonitor(static_cast<QObject*>(parent));
@@ -1798,6 +1780,7 @@ void QGeoPositionInfoSourceFactory_DestroyQGeoPositionInfoSourceFactoryDefault(v
 
 }
 
+Q_DECLARE_METATYPE(QGeoRectangle*)
 void* QGeoRectangle_NewQGeoRectangle()
 {
 	return new QGeoRectangle();
@@ -1944,6 +1927,8 @@ void* QGeoRectangle___QGeoRectangle_coordinates_newList4(void* ptr)
 	return new QList<QGeoCoordinate>();
 }
 
+Q_DECLARE_METATYPE(QGeoSatelliteInfo)
+Q_DECLARE_METATYPE(QGeoSatelliteInfo*)
 void* QGeoSatelliteInfo_NewQGeoSatelliteInfo()
 {
 	return new QGeoSatelliteInfo();
@@ -2018,8 +2003,8 @@ public:
 	int minimumUpdateInterval() const { return callbackQGeoSatelliteInfoSource_MinimumUpdateInterval(const_cast<void*>(static_cast<const void*>(this))); };
 	void Signal_RequestTimeout() { callbackQGeoSatelliteInfoSource_RequestTimeout(this); };
 	void requestUpdate(int timeout) { callbackQGeoSatelliteInfoSource_RequestUpdate(this, timeout); };
-	void Signal_SatellitesInUseUpdated(const QList<QGeoSatelliteInfo> & satellites) { callbackQGeoSatelliteInfoSource_SatellitesInUseUpdated(this, ({ QList<QGeoSatelliteInfo>* tmpValue = new QList<QGeoSatelliteInfo>(satellites); QtPositioning_PackedList { tmpValue, tmpValue->size() }; })); };
-	void Signal_SatellitesInViewUpdated(const QList<QGeoSatelliteInfo> & satellites) { callbackQGeoSatelliteInfoSource_SatellitesInViewUpdated(this, ({ QList<QGeoSatelliteInfo>* tmpValue = new QList<QGeoSatelliteInfo>(satellites); QtPositioning_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_SatellitesInUseUpdated(const QList<QGeoSatelliteInfo> & satellites) { callbackQGeoSatelliteInfoSource_SatellitesInUseUpdated(this, ({ QList<QGeoSatelliteInfo>* tmpValue411ed0 = new QList<QGeoSatelliteInfo>(satellites); QtPositioning_PackedList { tmpValue411ed0, tmpValue411ed0->size() }; })); };
+	void Signal_SatellitesInViewUpdated(const QList<QGeoSatelliteInfo> & satellites) { callbackQGeoSatelliteInfoSource_SatellitesInViewUpdated(this, ({ QList<QGeoSatelliteInfo>* tmpValue411ed0 = new QList<QGeoSatelliteInfo>(satellites); QtPositioning_PackedList { tmpValue411ed0, tmpValue411ed0->size() }; })); };
 	void setUpdateInterval(int msec) { callbackQGeoSatelliteInfoSource_SetUpdateInterval(this, msec); };
 	void startUpdates() { callbackQGeoSatelliteInfoSource_StartUpdates(this); };
 	void stopUpdates() { callbackQGeoSatelliteInfoSource_StopUpdates(this); };
@@ -2033,10 +2018,11 @@ public:
 	bool event(QEvent * e) { return callbackQGeoSatelliteInfoSource_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQGeoSatelliteInfoSource_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGeoSatelliteInfoSource_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtPositioning_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQGeoSatelliteInfoSource_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtPositioning_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQGeoSatelliteInfoSource_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQGeoSatelliteInfoSource_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QGeoSatelliteInfoSource*)
 Q_DECLARE_METATYPE(MyQGeoSatelliteInfoSource*)
 
 int QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_QRegisterMetaType(){qRegisterMetaType<QGeoSatelliteInfoSource*>(); return qRegisterMetaType<MyQGeoSatelliteInfoSource*>();}
@@ -2090,7 +2076,7 @@ void* QGeoSatelliteInfoSource_NewQGeoSatelliteInfoSource(void* parent)
 
 struct QtPositioning_PackedString QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_AvailableSources()
 {
-	return ({ QByteArray tab00fe = QGeoSatelliteInfoSource::availableSources().join("¡¦!").toUtf8(); QtPositioning_PackedString { const_cast<char*>(tab00fe.prepend("WHITESPACE").constData()+10), tab00fe.size()-10 }; });
+	return ({ QByteArray* tab00fe = new QByteArray(QGeoSatelliteInfoSource::availableSources().join("¡¦!").toUtf8()); QtPositioning_PackedString { const_cast<char*>(tab00fe->prepend("WHITESPACE").constData()+10), tab00fe->size()-10, tab00fe }; });
 }
 
 void* QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_CreateDefaultSource(void* parent)
@@ -2108,9 +2094,9 @@ long long QGeoSatelliteInfoSource_Error(void* ptr)
 	return static_cast<QGeoSatelliteInfoSource*>(ptr)->error();
 }
 
-void QGeoSatelliteInfoSource_ConnectError2(void* ptr)
+void QGeoSatelliteInfoSource_ConnectError2(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGeoSatelliteInfoSource*>(ptr), static_cast<void (QGeoSatelliteInfoSource::*)(QGeoSatelliteInfoSource::Error)>(&QGeoSatelliteInfoSource::error), static_cast<MyQGeoSatelliteInfoSource*>(ptr), static_cast<void (MyQGeoSatelliteInfoSource::*)(QGeoSatelliteInfoSource::Error)>(&MyQGeoSatelliteInfoSource::Signal_Error2));
+	QObject::connect(static_cast<QGeoSatelliteInfoSource*>(ptr), static_cast<void (QGeoSatelliteInfoSource::*)(QGeoSatelliteInfoSource::Error)>(&QGeoSatelliteInfoSource::error), static_cast<MyQGeoSatelliteInfoSource*>(ptr), static_cast<void (MyQGeoSatelliteInfoSource::*)(QGeoSatelliteInfoSource::Error)>(&MyQGeoSatelliteInfoSource::Signal_Error2), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGeoSatelliteInfoSource_DisconnectError2(void* ptr)
@@ -2128,9 +2114,9 @@ int QGeoSatelliteInfoSource_MinimumUpdateInterval(void* ptr)
 	return static_cast<QGeoSatelliteInfoSource*>(ptr)->minimumUpdateInterval();
 }
 
-void QGeoSatelliteInfoSource_ConnectRequestTimeout(void* ptr)
+void QGeoSatelliteInfoSource_ConnectRequestTimeout(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGeoSatelliteInfoSource*>(ptr), static_cast<void (QGeoSatelliteInfoSource::*)()>(&QGeoSatelliteInfoSource::requestTimeout), static_cast<MyQGeoSatelliteInfoSource*>(ptr), static_cast<void (MyQGeoSatelliteInfoSource::*)()>(&MyQGeoSatelliteInfoSource::Signal_RequestTimeout));
+	QObject::connect(static_cast<QGeoSatelliteInfoSource*>(ptr), static_cast<void (QGeoSatelliteInfoSource::*)()>(&QGeoSatelliteInfoSource::requestTimeout), static_cast<MyQGeoSatelliteInfoSource*>(ptr), static_cast<void (MyQGeoSatelliteInfoSource::*)()>(&MyQGeoSatelliteInfoSource::Signal_RequestTimeout), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGeoSatelliteInfoSource_DisconnectRequestTimeout(void* ptr)
@@ -2148,9 +2134,9 @@ void QGeoSatelliteInfoSource_RequestUpdate(void* ptr, int timeout)
 	QMetaObject::invokeMethod(static_cast<QGeoSatelliteInfoSource*>(ptr), "requestUpdate", Q_ARG(int, timeout));
 }
 
-void QGeoSatelliteInfoSource_ConnectSatellitesInUseUpdated(void* ptr)
+void QGeoSatelliteInfoSource_ConnectSatellitesInUseUpdated(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGeoSatelliteInfoSource*>(ptr), static_cast<void (QGeoSatelliteInfoSource::*)(const QList<QGeoSatelliteInfo> &)>(&QGeoSatelliteInfoSource::satellitesInUseUpdated), static_cast<MyQGeoSatelliteInfoSource*>(ptr), static_cast<void (MyQGeoSatelliteInfoSource::*)(const QList<QGeoSatelliteInfo> &)>(&MyQGeoSatelliteInfoSource::Signal_SatellitesInUseUpdated));
+	QObject::connect(static_cast<QGeoSatelliteInfoSource*>(ptr), static_cast<void (QGeoSatelliteInfoSource::*)(const QList<QGeoSatelliteInfo> &)>(&QGeoSatelliteInfoSource::satellitesInUseUpdated), static_cast<MyQGeoSatelliteInfoSource*>(ptr), static_cast<void (MyQGeoSatelliteInfoSource::*)(const QList<QGeoSatelliteInfo> &)>(&MyQGeoSatelliteInfoSource::Signal_SatellitesInUseUpdated), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGeoSatelliteInfoSource_DisconnectSatellitesInUseUpdated(void* ptr)
@@ -2163,9 +2149,9 @@ void QGeoSatelliteInfoSource_SatellitesInUseUpdated(void* ptr, void* satellites)
 	static_cast<QGeoSatelliteInfoSource*>(ptr)->satellitesInUseUpdated(*static_cast<QList<QGeoSatelliteInfo>*>(satellites));
 }
 
-void QGeoSatelliteInfoSource_ConnectSatellitesInViewUpdated(void* ptr)
+void QGeoSatelliteInfoSource_ConnectSatellitesInViewUpdated(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGeoSatelliteInfoSource*>(ptr), static_cast<void (QGeoSatelliteInfoSource::*)(const QList<QGeoSatelliteInfo> &)>(&QGeoSatelliteInfoSource::satellitesInViewUpdated), static_cast<MyQGeoSatelliteInfoSource*>(ptr), static_cast<void (MyQGeoSatelliteInfoSource::*)(const QList<QGeoSatelliteInfo> &)>(&MyQGeoSatelliteInfoSource::Signal_SatellitesInViewUpdated));
+	QObject::connect(static_cast<QGeoSatelliteInfoSource*>(ptr), static_cast<void (QGeoSatelliteInfoSource::*)(const QList<QGeoSatelliteInfo> &)>(&QGeoSatelliteInfoSource::satellitesInViewUpdated), static_cast<MyQGeoSatelliteInfoSource*>(ptr), static_cast<void (MyQGeoSatelliteInfoSource::*)(const QList<QGeoSatelliteInfo> &)>(&MyQGeoSatelliteInfoSource::Signal_SatellitesInViewUpdated), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGeoSatelliteInfoSource_DisconnectSatellitesInViewUpdated(void* ptr)
@@ -2190,7 +2176,7 @@ void QGeoSatelliteInfoSource_SetUpdateIntervalDefault(void* ptr, int msec)
 
 struct QtPositioning_PackedString QGeoSatelliteInfoSource_SourceName(void* ptr)
 {
-	return ({ QByteArray t6fe95a = static_cast<QGeoSatelliteInfoSource*>(ptr)->sourceName().toUtf8(); QtPositioning_PackedString { const_cast<char*>(t6fe95a.prepend("WHITESPACE").constData()+10), t6fe95a.size()-10 }; });
+	return ({ QByteArray* t6fe95a = new QByteArray(static_cast<QGeoSatelliteInfoSource*>(ptr)->sourceName().toUtf8()); QtPositioning_PackedString { const_cast<char*>(t6fe95a->prepend("WHITESPACE").constData()+10), t6fe95a->size()-10, t6fe95a }; });
 }
 
 void QGeoSatelliteInfoSource_StartUpdates(void* ptr)
@@ -2315,22 +2301,6 @@ void* QGeoSatelliteInfoSource___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QGeoSatelliteInfoSource___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QGeoSatelliteInfoSource___qFindChildren_setList2(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QGeoSatelliteInfoSource___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 void QGeoSatelliteInfoSource_ChildEventDefault(void* ptr, void* event)
 {
 		static_cast<QGeoSatelliteInfoSource*>(ptr)->QGeoSatelliteInfoSource::childEvent(static_cast<QChildEvent*>(event));
@@ -2376,6 +2346,7 @@ void QGeoSatelliteInfoSource_TimerEventDefault(void* ptr, void* event)
 		static_cast<QGeoSatelliteInfoSource*>(ptr)->QGeoSatelliteInfoSource::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
+Q_DECLARE_METATYPE(QGeoShape*)
 void* QGeoShape_NewQGeoShape()
 {
 	return new QGeoShape();
@@ -2413,7 +2384,7 @@ char QGeoShape_IsValid(void* ptr)
 
 struct QtPositioning_PackedString QGeoShape_ToString(void* ptr)
 {
-	return ({ QByteArray teed09f = static_cast<QGeoShape*>(ptr)->toString().toUtf8(); QtPositioning_PackedString { const_cast<char*>(teed09f.prepend("WHITESPACE").constData()+10), teed09f.size()-10 }; });
+	return ({ QByteArray* teed09f = new QByteArray(static_cast<QGeoShape*>(ptr)->toString().toUtf8()); QtPositioning_PackedString { const_cast<char*>(teed09f->prepend("WHITESPACE").constData()+10), teed09f->size()-10, teed09f }; });
 }
 
 long long QGeoShape_Type(void* ptr)
@@ -2433,7 +2404,7 @@ public:
 	QGeoPositionInfoSource::Error error() const { return static_cast<QGeoPositionInfoSource::Error>(callbackQNmeaPositionInfoSource_Error(const_cast<void*>(static_cast<const void*>(this)))); };
 	QGeoPositionInfo lastKnownPosition(bool fromSatellitePositioningMethodsOnly) const { return *static_cast<QGeoPositionInfo*>(callbackQNmeaPositionInfoSource_LastKnownPosition(const_cast<void*>(static_cast<const void*>(this)), fromSatellitePositioningMethodsOnly)); };
 	int minimumUpdateInterval() const { return callbackQNmeaPositionInfoSource_MinimumUpdateInterval(const_cast<void*>(static_cast<const void*>(this))); };
-	bool parsePosInfoFromNmeaData(const char * data, int size, QGeoPositionInfo * posInfo, bool * hasFix) { QtPositioning_PackedString dataPacked = { const_cast<char*>(data), size };return callbackQNmeaPositionInfoSource_ParsePosInfoFromNmeaData(this, dataPacked, size, posInfo, reinterpret_cast<char*>(hasFix)) != 0; };
+	bool parsePosInfoFromNmeaData(const char * data, int size, QGeoPositionInfo * posInfo, bool * hasFix) { QtPositioning_PackedString dataPacked = { const_cast<char*>(data), size, NULL };return callbackQNmeaPositionInfoSource_ParsePosInfoFromNmeaData(this, dataPacked, size, posInfo, reinterpret_cast<char*>(hasFix)) != 0; };
 	void requestUpdate(int msec) { callbackQNmeaPositionInfoSource_RequestUpdate(this, msec); };
 	void setUpdateInterval(int msec) { callbackQGeoPositionInfoSource_SetUpdateInterval(this, msec); };
 	void startUpdates() { callbackQNmeaPositionInfoSource_StartUpdates(this); };
@@ -2454,10 +2425,11 @@ public:
 	bool event(QEvent * e) { return callbackQGeoPositionInfoSource_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQGeoPositionInfoSource_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGeoPositionInfoSource_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtPositioning_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQGeoPositionInfoSource_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtPositioning_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQGeoPositionInfoSource_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQGeoPositionInfoSource_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QNmeaPositionInfoSource*)
 Q_DECLARE_METATYPE(MyQNmeaPositionInfoSource*)
 
 int QNmeaPositionInfoSource_QNmeaPositionInfoSource_QRegisterMetaType(){qRegisterMetaType<QNmeaPositionInfoSource*>(); return qRegisterMetaType<MyQNmeaPositionInfoSource*>();}

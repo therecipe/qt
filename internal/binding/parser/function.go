@@ -3,6 +3,7 @@ package parser
 import (
 	"fmt"
 	"sort"
+	"strconv"
 	"strings"
 
 	"github.com/therecipe/qt/internal/utils"
@@ -32,6 +33,7 @@ type Function struct {
 	TmpName           string
 	Export            bool
 	NeedsFinalizer    bool
+	NeedsFinalizerFor []string
 	Container         string
 	TemplateModeGo    string
 	NonMember         bool
@@ -266,6 +268,24 @@ func (f *Function) IsJNIGeneric() bool {
 //TODO:
 func (f *Function) IsSupported() bool {
 
+	if utils.QT_API_NUM(utils.QT_VERSION()) >= 5140 { //TODO: 5.14.0
+		if f.Name == "setInitialProperties" || f.Fullname == "QRemoteObjectPendingCall::waitForFinished" ||
+			f.Fullname == "QActionGroup::setExclusionPolicy" {
+			f.Access = "unsupported_isBlockedFunction"
+			return false
+		}
+	}
+
+	if strings.Contains(f.Since, ".") {
+		version := strings.TrimPrefix(f.Since, "Qt")
+		vmaj, _ := strconv.Atoi(string(version[0]))
+		vmin, _ := strconv.Atoi(strings.Replace(version[1:], ".", "", -1))
+		if vmaj*1e3+vmin*10 > utils.QT_VERSION_NUM() {
+			f.Access = "unsupported_isApiVersionBlockedFunction"
+			return false
+		}
+	}
+
 	if utils.QT_MACPORTS() {
 		if f.Fullname == "QWebFrame::ownerElement" || f.Fullname == "QWebHistory::toMap" ||
 			f.Fullname == "QWebHistoryItem::toMap" || f.Fullname == "QWebPage::consoleMessageReceived" ||
@@ -291,7 +311,7 @@ func (f *Function) IsSupported() bool {
 		}
 	}
 
-	if f.Related == "true" {
+	if f.Related == "true" && !(strings.Contains(f.Fullname, "QtGlobal") || f.Fullname == "QJSEngine::qjsEngine") {
 		f.Access = "unsupported_isBlockedFunction"
 		return false
 	}
@@ -315,10 +335,10 @@ func (f *Function) IsSupported() bool {
 
 		f.Fullname == "QSGMaterialShader::attributeNames",
 
-		f.ClassName() == "QVariant" && (f.Name == "value" || f.Name == "canConvert"), //needs template
+		f.ClassName() == "QVariant" && (f.Name == "value" || (f.Name == "canConvert") && len(f.Parameters) == 0), //needs template
 
 		f.Fullname == "QNdefRecord::isRecordType", f.Fullname == "QScriptEngine::scriptValueFromQMetaObject", //needs template
-		f.Fullname == "QScriptEngine::fromScriptValue", f.Fullname == "QJSEngine::fromScriptValue",
+		f.Fullname == "QScriptEngine::fromScriptValue",
 
 		f.ClassName() == "QMetaType" && //needs template
 			(f.Name == "hasRegisteredComparators" || f.Name == "registerComparators" ||
@@ -423,6 +443,10 @@ func (f *Function) IsSupported() bool {
 		f.Fullname == "QtVirtualKeyboard::qlcVirtualKeyboard",
 		f.Name == "trUtf8",
 
+		f.Fullname == "FelgoLiveClient::Q_PROPERTY",
+
+		f.Fullname == "QQuickTumblerView::wrapChange",
+
 		strings.Contains(f.Access, "unsupported"):
 		{
 			if !strings.Contains(f.Access, "unsupported") {
@@ -454,7 +478,7 @@ func (f *Function) IsSupported() bool {
 		strings.HasPrefix(genName, "QCustom3DVolume_textureData") || strings.HasPrefix(genName, "createTextureData") ||
 		strings.Contains(genName, "alternateSubjectNames") || strings.HasPrefix(genName, "fromVariantMap") ||
 		strings.HasPrefix(genName, "QScxmlDataModel") || strings.HasPrefix(genName, "readAllFrames") ||
-		strings.HasPrefix(genName, "manufacturerData") {
+		strings.HasPrefix(genName, "manufacturerData") || strings.HasPrefix(genName, "qFindChildren") {
 
 		if strings.HasPrefix(genName, "setTabs") || strings.HasPrefix(genName, "tabs") {
 			return !strings.HasPrefix(f.Name, "__")
@@ -554,6 +578,7 @@ func IsBlockedDefault() []string {
 
 		"QAbstractBarSeries::type",
 		"QXYSeries::type",
+		"QQuickStylePlugin::registerTypes",
 	}
 }
 

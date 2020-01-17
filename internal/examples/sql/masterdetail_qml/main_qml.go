@@ -15,7 +15,7 @@ import (
 	_ "github.com/therecipe/qt/internal/examples/sql/masterdetail_qml/view"
 )
 
-const PRODUCTION = false
+const PRODUCTION = true
 
 func init() {
 	if !PRODUCTION {

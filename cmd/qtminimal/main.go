@@ -15,6 +15,12 @@ import (
 )
 
 func main() {
+	var non_recursive bool
+	if os.Args[len(os.Args)-1] == "non_recursive" {
+		non_recursive = true
+		os.Args = os.Args[:len(os.Args)-1]
+	}
+
 	flag.Usage = func() {
 		println("Usage: qtminimal [-docker] [target] [path/to/project]\n")
 
@@ -69,7 +75,6 @@ func main() {
 		target = runtime.GOOS
 	}
 	utils.CheckBuildTarget(target, docker)
-	cmd.InitEnv(target)
 
 	if !filepath.IsAbs(path) {
 		oPath := path
@@ -89,12 +94,19 @@ func main() {
 		}
 	}
 
+	cmd.InitEnv(target, docker, path)
+	if utils.QT_DOCKER() && utils.UseGOMOD(path) && !non_recursive {
+		if cmd.RestartWithPinnedVersion(path) {
+			return
+		}
+	}
+
 	switch {
 	case docker:
 		cmd.Docker([]string{"qtminimal", "-debug", "-tags=" + tags}, target, path, false)
 	case vagrant:
 		cmd.Vagrant([]string{"qtminimal", "-debug", "-tags=" + tags}, target, path, false, vagrant_system)
 	default:
-		minimal.Minimal(path, target, tags)
+		minimal.Minimal(path, target, tags, false)
 	}
 }

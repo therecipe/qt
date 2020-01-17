@@ -1,0 +1,8 @@
+{
+  "title": "Basic App",
+  "identifier": "net.vplay.demos.BasicApp",
+  "orientation": "auto",
+  "versioncode": 1,
+  "versionname": "1.0",
+  "stage": "test"
+}

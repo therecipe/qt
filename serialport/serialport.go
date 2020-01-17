@@ -11,18 +11,20 @@ import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"reflect"
-	"runtime"
 	"strings"
 	"unsafe"
 )
 
+func cGoFreePacked(ptr unsafe.Pointer) { core.NewQByteArrayFromPointer(ptr).DestroyQByteArray() }
 func cGoUnpackString(s C.struct_QtSerialPort_PackedString) string {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		return C.GoString(s.data)
 	}
 	return C.GoStringN(s.data, C.int(s.len))
 }
 func cGoUnpackBytes(s C.struct_QtSerialPort_PackedString) []byte {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
 		return *(*[]byte)(unsafe.Pointer(&gs))
@@ -251,7 +253,7 @@ func (ptr *QSerialPort) ConnectBaudRateChanged(f func(baudRate int, directions Q
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "baudRateChanged") {
-			C.QSerialPort_ConnectBaudRateChanged(ptr.Pointer())
+			C.QSerialPort_ConnectBaudRateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "baudRateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "baudRateChanged"); signal != nil {
@@ -291,7 +293,7 @@ func (ptr *QSerialPort) ConnectBreakEnabledChanged(f func(set bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "breakEnabledChanged") {
-			C.QSerialPort_ConnectBreakEnabledChanged(ptr.Pointer())
+			C.QSerialPort_ConnectBreakEnabledChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "breakEnabledChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "breakEnabledChanged"); signal != nil {
@@ -414,7 +416,7 @@ func (ptr *QSerialPort) ConnectDataBitsChanged(f func(dataBits QSerialPort__Data
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "dataBitsChanged") {
-			C.QSerialPort_ConnectDataBitsChanged(ptr.Pointer())
+			C.QSerialPort_ConnectDataBitsChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "dataBitsChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "dataBitsChanged"); signal != nil {
@@ -454,7 +456,7 @@ func (ptr *QSerialPort) ConnectDataTerminalReadyChanged(f func(set bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "dataTerminalReadyChanged") {
-			C.QSerialPort_ConnectDataTerminalReadyChanged(ptr.Pointer())
+			C.QSerialPort_ConnectDataTerminalReadyChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "dataTerminalReadyChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "dataTerminalReadyChanged"); signal != nil {
@@ -501,7 +503,7 @@ func (ptr *QSerialPort) ConnectErrorOccurred(f func(error QSerialPort__SerialPor
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "errorOccurred") {
-			C.QSerialPort_ConnectErrorOccurred(ptr.Pointer())
+			C.QSerialPort_ConnectErrorOccurred(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "errorOccurred")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "errorOccurred"); signal != nil {
@@ -548,7 +550,7 @@ func (ptr *QSerialPort) ConnectFlowControlChanged(f func(flow QSerialPort__FlowC
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "flowControlChanged") {
-			C.QSerialPort_ConnectFlowControlChanged(ptr.Pointer())
+			C.QSerialPort_ConnectFlowControlChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "flowControlChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "flowControlChanged"); signal != nil {
@@ -655,7 +657,7 @@ func (ptr *QSerialPort) ConnectParityChanged(f func(parity QSerialPort__Parity))
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "parityChanged") {
-			C.QSerialPort_ConnectParityChanged(ptr.Pointer())
+			C.QSerialPort_ConnectParityChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "parityChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "parityChanged"); signal != nil {
@@ -802,7 +804,7 @@ func (ptr *QSerialPort) ConnectRequestToSendChanged(f func(set bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "requestToSendChanged") {
-			C.QSerialPort_ConnectRequestToSendChanged(ptr.Pointer())
+			C.QSerialPort_ConnectRequestToSendChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "requestToSendChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "requestToSendChanged"); signal != nil {
@@ -948,7 +950,7 @@ func (ptr *QSerialPort) ConnectStopBitsChanged(f func(stopBits QSerialPort__Stop
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stopBitsChanged") {
-			C.QSerialPort_ConnectStopBitsChanged(ptr.Pointer())
+			C.QSerialPort_ConnectStopBitsChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stopBitsChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stopBitsChanged"); signal != nil {
@@ -1094,17 +1096,19 @@ func (ptr *QSerialPort) DisconnectDestroyQSerialPort() {
 
 func (ptr *QSerialPort) DestroyQSerialPort() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QSerialPort_DestroyQSerialPort(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QSerialPort) DestroyQSerialPortDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QSerialPort_DestroyQSerialPortDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1132,7 +1136,7 @@ func (ptr *QSerialPort) __children_newList() unsafe.Pointer {
 func (ptr *QSerialPort) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QSerialPort___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -1188,27 +1192,6 @@ func (ptr *QSerialPort) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QSerialPort) __findChildren_newList3() unsafe.Pointer {
 	return C.QSerialPort___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QSerialPort) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSerialPort___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSerialPort) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSerialPort___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QSerialPort) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QSerialPort___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQSerialPort_AboutToClose
@@ -1379,8 +1362,9 @@ func callbackQSerialPort_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QSerialPort) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QSerialPort_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1517,13 +1501,13 @@ func NewQSerialPortInfoFromPointer(ptr unsafe.Pointer) (n *QSerialPortInfo) {
 }
 func NewQSerialPortInfo() *QSerialPortInfo {
 	tmpValue := NewQSerialPortInfoFromPointer(C.QSerialPortInfo_NewQSerialPortInfo())
-	runtime.SetFinalizer(tmpValue, (*QSerialPortInfo).DestroyQSerialPortInfo)
+	qt.SetFinalizer(tmpValue, (*QSerialPortInfo).DestroyQSerialPortInfo)
 	return tmpValue
 }
 
 func NewQSerialPortInfo2(port QSerialPort_ITF) *QSerialPortInfo {
 	tmpValue := NewQSerialPortInfoFromPointer(C.QSerialPortInfo_NewQSerialPortInfo2(PointerFromQSerialPort(port)))
-	runtime.SetFinalizer(tmpValue, (*QSerialPortInfo).DestroyQSerialPortInfo)
+	qt.SetFinalizer(tmpValue, (*QSerialPortInfo).DestroyQSerialPortInfo)
 	return tmpValue
 }
 
@@ -1534,13 +1518,13 @@ func NewQSerialPortInfo3(name string) *QSerialPortInfo {
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	tmpValue := NewQSerialPortInfoFromPointer(C.QSerialPortInfo_NewQSerialPortInfo3(C.struct_QtSerialPort_PackedString{data: nameC, len: C.longlong(len(name))}))
-	runtime.SetFinalizer(tmpValue, (*QSerialPortInfo).DestroyQSerialPortInfo)
+	qt.SetFinalizer(tmpValue, (*QSerialPortInfo).DestroyQSerialPortInfo)
 	return tmpValue
 }
 
 func NewQSerialPortInfo4(other QSerialPortInfo_ITF) *QSerialPortInfo {
 	tmpValue := NewQSerialPortInfoFromPointer(C.QSerialPortInfo_NewQSerialPortInfo4(PointerFromQSerialPortInfo(other)))
-	runtime.SetFinalizer(tmpValue, (*QSerialPortInfo).DestroyQSerialPortInfo)
+	qt.SetFinalizer(tmpValue, (*QSerialPortInfo).DestroyQSerialPortInfo)
 	return tmpValue
 }
 
@@ -1673,16 +1657,18 @@ func (ptr *QSerialPortInfo) VendorIdentifier() uint16 {
 
 func (ptr *QSerialPortInfo) DestroyQSerialPortInfo() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QSerialPortInfo_DestroyQSerialPortInfo(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QSerialPortInfo) __availablePorts_atList(i int) *QSerialPortInfo {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSerialPortInfoFromPointer(C.QSerialPortInfo___availablePorts_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSerialPortInfo).DestroyQSerialPortInfo)
+		qt.SetFinalizer(tmpValue, (*QSerialPortInfo).DestroyQSerialPortInfo)
 		return tmpValue
 	}
 	return nil
@@ -1713,4 +1699,74 @@ func (ptr *QSerialPortInfo) __standardBaudRates_setList(i int) {
 
 func (ptr *QSerialPortInfo) __standardBaudRates_newList() unsafe.Pointer {
 	return C.QSerialPortInfo___standardBaudRates_newList(ptr.Pointer())
+}
+
+func init() {
+	qt.ItfMap["serialport.QSerialPort_ITF"] = QSerialPort{}
+	qt.FuncMap["serialport.NewQSerialPort"] = NewQSerialPort
+	qt.FuncMap["serialport.NewQSerialPort2"] = NewQSerialPort2
+	qt.FuncMap["serialport.NewQSerialPort3"] = NewQSerialPort3
+	qt.EnumMap["serialport.QSerialPort__Input"] = int64(QSerialPort__Input)
+	qt.EnumMap["serialport.QSerialPort__Output"] = int64(QSerialPort__Output)
+	qt.EnumMap["serialport.QSerialPort__AllDirections"] = int64(QSerialPort__AllDirections)
+	qt.EnumMap["serialport.QSerialPort__Baud1200"] = int64(QSerialPort__Baud1200)
+	qt.EnumMap["serialport.QSerialPort__Baud2400"] = int64(QSerialPort__Baud2400)
+	qt.EnumMap["serialport.QSerialPort__Baud4800"] = int64(QSerialPort__Baud4800)
+	qt.EnumMap["serialport.QSerialPort__Baud9600"] = int64(QSerialPort__Baud9600)
+	qt.EnumMap["serialport.QSerialPort__Baud19200"] = int64(QSerialPort__Baud19200)
+	qt.EnumMap["serialport.QSerialPort__Baud38400"] = int64(QSerialPort__Baud38400)
+	qt.EnumMap["serialport.QSerialPort__Baud57600"] = int64(QSerialPort__Baud57600)
+	qt.EnumMap["serialport.QSerialPort__Baud115200"] = int64(QSerialPort__Baud115200)
+	qt.EnumMap["serialport.QSerialPort__UnknownBaud"] = int64(QSerialPort__UnknownBaud)
+	qt.EnumMap["serialport.QSerialPort__Data5"] = int64(QSerialPort__Data5)
+	qt.EnumMap["serialport.QSerialPort__Data6"] = int64(QSerialPort__Data6)
+	qt.EnumMap["serialport.QSerialPort__Data7"] = int64(QSerialPort__Data7)
+	qt.EnumMap["serialport.QSerialPort__Data8"] = int64(QSerialPort__Data8)
+	qt.EnumMap["serialport.QSerialPort__UnknownDataBits"] = int64(QSerialPort__UnknownDataBits)
+	qt.EnumMap["serialport.QSerialPort__NoParity"] = int64(QSerialPort__NoParity)
+	qt.EnumMap["serialport.QSerialPort__EvenParity"] = int64(QSerialPort__EvenParity)
+	qt.EnumMap["serialport.QSerialPort__OddParity"] = int64(QSerialPort__OddParity)
+	qt.EnumMap["serialport.QSerialPort__SpaceParity"] = int64(QSerialPort__SpaceParity)
+	qt.EnumMap["serialport.QSerialPort__MarkParity"] = int64(QSerialPort__MarkParity)
+	qt.EnumMap["serialport.QSerialPort__UnknownParity"] = int64(QSerialPort__UnknownParity)
+	qt.EnumMap["serialport.QSerialPort__OneStop"] = int64(QSerialPort__OneStop)
+	qt.EnumMap["serialport.QSerialPort__OneAndHalfStop"] = int64(QSerialPort__OneAndHalfStop)
+	qt.EnumMap["serialport.QSerialPort__TwoStop"] = int64(QSerialPort__TwoStop)
+	qt.EnumMap["serialport.QSerialPort__UnknownStopBits"] = int64(QSerialPort__UnknownStopBits)
+	qt.EnumMap["serialport.QSerialPort__NoFlowControl"] = int64(QSerialPort__NoFlowControl)
+	qt.EnumMap["serialport.QSerialPort__HardwareControl"] = int64(QSerialPort__HardwareControl)
+	qt.EnumMap["serialport.QSerialPort__SoftwareControl"] = int64(QSerialPort__SoftwareControl)
+	qt.EnumMap["serialport.QSerialPort__UnknownFlowControl"] = int64(QSerialPort__UnknownFlowControl)
+	qt.EnumMap["serialport.QSerialPort__NoSignal"] = int64(QSerialPort__NoSignal)
+	qt.EnumMap["serialport.QSerialPort__TransmittedDataSignal"] = int64(QSerialPort__TransmittedDataSignal)
+	qt.EnumMap["serialport.QSerialPort__ReceivedDataSignal"] = int64(QSerialPort__ReceivedDataSignal)
+	qt.EnumMap["serialport.QSerialPort__DataTerminalReadySignal"] = int64(QSerialPort__DataTerminalReadySignal)
+	qt.EnumMap["serialport.QSerialPort__DataCarrierDetectSignal"] = int64(QSerialPort__DataCarrierDetectSignal)
+	qt.EnumMap["serialport.QSerialPort__DataSetReadySignal"] = int64(QSerialPort__DataSetReadySignal)
+	qt.EnumMap["serialport.QSerialPort__RingIndicatorSignal"] = int64(QSerialPort__RingIndicatorSignal)
+	qt.EnumMap["serialport.QSerialPort__RequestToSendSignal"] = int64(QSerialPort__RequestToSendSignal)
+	qt.EnumMap["serialport.QSerialPort__ClearToSendSignal"] = int64(QSerialPort__ClearToSendSignal)
+	qt.EnumMap["serialport.QSerialPort__SecondaryTransmittedDataSignal"] = int64(QSerialPort__SecondaryTransmittedDataSignal)
+	qt.EnumMap["serialport.QSerialPort__SecondaryReceivedDataSignal"] = int64(QSerialPort__SecondaryReceivedDataSignal)
+	qt.EnumMap["serialport.QSerialPort__NoError"] = int64(QSerialPort__NoError)
+	qt.EnumMap["serialport.QSerialPort__DeviceNotFoundError"] = int64(QSerialPort__DeviceNotFoundError)
+	qt.EnumMap["serialport.QSerialPort__PermissionError"] = int64(QSerialPort__PermissionError)
+	qt.EnumMap["serialport.QSerialPort__OpenError"] = int64(QSerialPort__OpenError)
+	qt.EnumMap["serialport.QSerialPort__ParityError"] = int64(QSerialPort__ParityError)
+	qt.EnumMap["serialport.QSerialPort__FramingError"] = int64(QSerialPort__FramingError)
+	qt.EnumMap["serialport.QSerialPort__BreakConditionError"] = int64(QSerialPort__BreakConditionError)
+	qt.EnumMap["serialport.QSerialPort__WriteError"] = int64(QSerialPort__WriteError)
+	qt.EnumMap["serialport.QSerialPort__ReadError"] = int64(QSerialPort__ReadError)
+	qt.EnumMap["serialport.QSerialPort__ResourceError"] = int64(QSerialPort__ResourceError)
+	qt.EnumMap["serialport.QSerialPort__UnsupportedOperationError"] = int64(QSerialPort__UnsupportedOperationError)
+	qt.EnumMap["serialport.QSerialPort__UnknownError"] = int64(QSerialPort__UnknownError)
+	qt.EnumMap["serialport.QSerialPort__TimeoutError"] = int64(QSerialPort__TimeoutError)
+	qt.EnumMap["serialport.QSerialPort__NotOpenError"] = int64(QSerialPort__NotOpenError)
+	qt.ItfMap["serialport.QSerialPortInfo_ITF"] = QSerialPortInfo{}
+	qt.FuncMap["serialport.NewQSerialPortInfo"] = NewQSerialPortInfo
+	qt.FuncMap["serialport.NewQSerialPortInfo2"] = NewQSerialPortInfo2
+	qt.FuncMap["serialport.NewQSerialPortInfo3"] = NewQSerialPortInfo3
+	qt.FuncMap["serialport.NewQSerialPortInfo4"] = NewQSerialPortInfo4
+	qt.FuncMap["serialport.QSerialPortInfo_AvailablePorts"] = QSerialPortInfo_AvailablePorts
+	qt.FuncMap["serialport.QSerialPortInfo_StandardBaudRates"] = QSerialPortInfo_StandardBaudRates
 }

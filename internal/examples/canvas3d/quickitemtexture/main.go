@@ -1,4 +1,4 @@
-//source: http://doc.qt.io/qt-5/qtcanvas3d-quickitemtexture-example.html
+//source: https://doc.qt.io/qt-5.11/qtcanvas3d-quickitemtexture-example.html
 
 package main
 

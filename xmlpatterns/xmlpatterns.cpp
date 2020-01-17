@@ -71,10 +71,11 @@ public:
 	bool event(QEvent * e) { return callbackQAbstractMessageHandler_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAbstractMessageHandler_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractMessageHandler_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtXmlPatterns_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQAbstractMessageHandler_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtXmlPatterns_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQAbstractMessageHandler_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractMessageHandler_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QAbstractMessageHandler*)
 Q_DECLARE_METATYPE(MyQAbstractMessageHandler*)
 
 int QAbstractMessageHandler_QAbstractMessageHandler_QRegisterMetaType(){qRegisterMetaType<QAbstractMessageHandler*>(); return qRegisterMetaType<MyQAbstractMessageHandler*>();}
@@ -154,22 +155,6 @@ void* QAbstractMessageHandler___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QAbstractMessageHandler___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QAbstractMessageHandler___qFindChildren_setList2(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QAbstractMessageHandler___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 void QAbstractMessageHandler_ChildEventDefault(void* ptr, void* event)
 {
 		static_cast<QAbstractMessageHandler*>(ptr)->QAbstractMessageHandler::childEvent(static_cast<QChildEvent*>(event));
@@ -230,10 +215,11 @@ public:
 	bool event(QEvent * e) { return callbackQAbstractUriResolver_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAbstractUriResolver_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractUriResolver_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtXmlPatterns_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQAbstractUriResolver_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtXmlPatterns_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQAbstractUriResolver_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractUriResolver_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QAbstractUriResolver*)
 Q_DECLARE_METATYPE(MyQAbstractUriResolver*)
 
 int QAbstractUriResolver_QAbstractUriResolver_QRegisterMetaType(){qRegisterMetaType<QAbstractUriResolver*>(); return qRegisterMetaType<MyQAbstractUriResolver*>();}
@@ -365,22 +351,6 @@ void* QAbstractUriResolver___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QAbstractUriResolver___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QAbstractUriResolver___qFindChildren_setList2(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QAbstractUriResolver___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 void QAbstractUriResolver_ChildEventDefault(void* ptr, void* event)
 {
 		static_cast<QAbstractUriResolver*>(ptr)->QAbstractUriResolver::childEvent(static_cast<QChildEvent*>(event));
@@ -444,6 +414,11 @@ public:
 	 ~MyQAbstractXmlNodeModel() { callbackQAbstractXmlNodeModel_DestroyQAbstractXmlNodeModel(this); };
 };
 
+Q_DECLARE_METATYPE(QAbstractXmlNodeModel*)
+Q_DECLARE_METATYPE(MyQAbstractXmlNodeModel*)
+
+int QAbstractXmlNodeModel_QAbstractXmlNodeModel_QRegisterMetaType(){qRegisterMetaType<QAbstractXmlNodeModel*>(); return qRegisterMetaType<MyQAbstractXmlNodeModel*>();}
+
 void* QAbstractXmlNodeModel_BaseUri(void* ptr, void* n)
 {
 	return new QUrl(static_cast<QAbstractXmlNodeModel*>(ptr)->baseUri(*static_cast<QXmlNodeModelIndex*>(n)));
@@ -491,7 +466,7 @@ void* QAbstractXmlNodeModel_Name(void* ptr, void* ni)
 
 struct QtXmlPatterns_PackedList QAbstractXmlNodeModel_NamespaceBindings(void* ptr, void* n)
 {
-	return ({ QVector<QXmlName>* tmpValue = new QVector<QXmlName>(static_cast<QAbstractXmlNodeModel*>(ptr)->namespaceBindings(*static_cast<QXmlNodeModelIndex*>(n))); QtXmlPatterns_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QVector<QXmlName>* tmpValue0fdead = new QVector<QXmlName>(static_cast<QAbstractXmlNodeModel*>(ptr)->namespaceBindings(*static_cast<QXmlNodeModelIndex*>(n))); QtXmlPatterns_PackedList { tmpValue0fdead, tmpValue0fdead->size() }; });
 }
 
 void* QAbstractXmlNodeModel_NextFromSimpleAxis(void* ptr, long long axis, void* origin)
@@ -501,7 +476,7 @@ void* QAbstractXmlNodeModel_NextFromSimpleAxis(void* ptr, long long axis, void* 
 
 struct QtXmlPatterns_PackedList QAbstractXmlNodeModel_NodesByIdref(void* ptr, void* idref)
 {
-	return ({ QVector<QXmlNodeModelIndex>* tmpValue = new QVector<QXmlNodeModelIndex>(static_cast<QAbstractXmlNodeModel*>(ptr)->nodesByIdref(*static_cast<QXmlName*>(idref))); QtXmlPatterns_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QVector<QXmlNodeModelIndex>* tmpValue82e561 = new QVector<QXmlNodeModelIndex>(static_cast<QAbstractXmlNodeModel*>(ptr)->nodesByIdref(*static_cast<QXmlName*>(idref))); QtXmlPatterns_PackedList { tmpValue82e561, tmpValue82e561->size() }; });
 }
 
 void* QAbstractXmlNodeModel_Root(void* ptr, void* n)
@@ -516,7 +491,7 @@ void* QAbstractXmlNodeModel_SourceLocation(void* ptr, void* index)
 
 struct QtXmlPatterns_PackedString QAbstractXmlNodeModel_StringValue(void* ptr, void* n)
 {
-	return ({ QByteArray t02d1c5 = static_cast<QAbstractXmlNodeModel*>(ptr)->stringValue(*static_cast<QXmlNodeModelIndex*>(n)).toUtf8(); QtXmlPatterns_PackedString { const_cast<char*>(t02d1c5.prepend("WHITESPACE").constData()+10), t02d1c5.size()-10 }; });
+	return ({ QByteArray* t02d1c5 = new QByteArray(static_cast<QAbstractXmlNodeModel*>(ptr)->stringValue(*static_cast<QXmlNodeModelIndex*>(n)).toUtf8()); QtXmlPatterns_PackedString { const_cast<char*>(t02d1c5->prepend("WHITESPACE").constData()+10), t02d1c5->size()-10, t02d1c5 }; });
 }
 
 void* QAbstractXmlNodeModel_TypedValue(void* ptr, void* node)
@@ -570,21 +545,26 @@ void* QAbstractXmlNodeModel___nodesByIdref_newList(void* ptr)
 class MyQAbstractXmlReceiver: public QAbstractXmlReceiver
 {
 public:
-	MyQAbstractXmlReceiver() : QAbstractXmlReceiver() {};
+	MyQAbstractXmlReceiver() : QAbstractXmlReceiver() {QAbstractXmlReceiver_QAbstractXmlReceiver_QRegisterMetaType();};
 	void atomicValue(const QVariant & value) { callbackQAbstractXmlReceiver_AtomicValue(this, const_cast<QVariant*>(&value)); };
 	void attribute(const QXmlName & name, const QStringRef & value) { callbackQAbstractXmlReceiver_Attribute(this, const_cast<QXmlName*>(&name), const_cast<QStringRef*>(&value)); };
 	void characters(const QStringRef & value) { callbackQAbstractXmlReceiver_Characters(this, const_cast<QStringRef*>(&value)); };
-	void comment(const QString & value) { QByteArray tf32b67 = value.toUtf8(); QtXmlPatterns_PackedString valuePacked = { const_cast<char*>(tf32b67.prepend("WHITESPACE").constData()+10), tf32b67.size()-10 };callbackQAbstractXmlReceiver_Comment(this, valuePacked); };
+	void comment(const QString & value) { QByteArray* tf32b67 = new QByteArray(value.toUtf8()); QtXmlPatterns_PackedString valuePacked = { const_cast<char*>(tf32b67->prepend("WHITESPACE").constData()+10), tf32b67->size()-10, tf32b67 };callbackQAbstractXmlReceiver_Comment(this, valuePacked); };
 	void endDocument() { callbackQAbstractXmlReceiver_EndDocument(this); };
 	void endElement() { callbackQAbstractXmlReceiver_EndElement(this); };
 	void endOfSequence() { callbackQAbstractXmlReceiver_EndOfSequence(this); };
 	void namespaceBinding(const QXmlName & name) { callbackQAbstractXmlReceiver_NamespaceBinding(this, const_cast<QXmlName*>(&name)); };
-	void processingInstruction(const QXmlName & target, const QString & value) { QByteArray tf32b67 = value.toUtf8(); QtXmlPatterns_PackedString valuePacked = { const_cast<char*>(tf32b67.prepend("WHITESPACE").constData()+10), tf32b67.size()-10 };callbackQAbstractXmlReceiver_ProcessingInstruction(this, const_cast<QXmlName*>(&target), valuePacked); };
+	void processingInstruction(const QXmlName & target, const QString & value) { QByteArray* tf32b67 = new QByteArray(value.toUtf8()); QtXmlPatterns_PackedString valuePacked = { const_cast<char*>(tf32b67->prepend("WHITESPACE").constData()+10), tf32b67->size()-10, tf32b67 };callbackQAbstractXmlReceiver_ProcessingInstruction(this, const_cast<QXmlName*>(&target), valuePacked); };
 	void startDocument() { callbackQAbstractXmlReceiver_StartDocument(this); };
 	void startElement(const QXmlName & name) { callbackQAbstractXmlReceiver_StartElement(this, const_cast<QXmlName*>(&name)); };
 	void startOfSequence() { callbackQAbstractXmlReceiver_StartOfSequence(this); };
 	 ~MyQAbstractXmlReceiver() { callbackQAbstractXmlReceiver_DestroyQAbstractXmlReceiver(this); };
 };
+
+Q_DECLARE_METATYPE(QAbstractXmlReceiver*)
+Q_DECLARE_METATYPE(MyQAbstractXmlReceiver*)
+
+int QAbstractXmlReceiver_QAbstractXmlReceiver_QRegisterMetaType(){qRegisterMetaType<QAbstractXmlReceiver*>(); return qRegisterMetaType<MyQAbstractXmlReceiver*>();}
 
 void* QAbstractXmlReceiver_NewQAbstractXmlReceiver()
 {
@@ -680,6 +660,11 @@ public:
 	QVariant typedValue(const QXmlNodeModelIndex & node) const { return *static_cast<QVariant*>(callbackQSimpleXmlNodeModel_TypedValue(const_cast<void*>(static_cast<const void*>(this)), const_cast<QXmlNodeModelIndex*>(&node))); };
 };
 
+Q_DECLARE_METATYPE(QSimpleXmlNodeModel*)
+Q_DECLARE_METATYPE(MyQSimpleXmlNodeModel*)
+
+int QSimpleXmlNodeModel_QSimpleXmlNodeModel_QRegisterMetaType(){qRegisterMetaType<QSimpleXmlNodeModel*>(); return qRegisterMetaType<MyQSimpleXmlNodeModel*>();}
+
 void* QSimpleXmlNodeModel_BaseUri(void* ptr, void* node)
 {
 	return new QUrl(static_cast<QSimpleXmlNodeModel*>(ptr)->baseUri(*static_cast<QXmlNodeModelIndex*>(node)));
@@ -707,32 +692,32 @@ void* QSimpleXmlNodeModel_NamePool(void* ptr)
 
 struct QtXmlPatterns_PackedList QSimpleXmlNodeModel_NamespaceBindings(void* ptr, void* node)
 {
-	return ({ QVector<QXmlName>* tmpValue = new QVector<QXmlName>(static_cast<QSimpleXmlNodeModel*>(ptr)->namespaceBindings(*static_cast<QXmlNodeModelIndex*>(node))); QtXmlPatterns_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QVector<QXmlName>* tmpValuecd6905 = new QVector<QXmlName>(static_cast<QSimpleXmlNodeModel*>(ptr)->namespaceBindings(*static_cast<QXmlNodeModelIndex*>(node))); QtXmlPatterns_PackedList { tmpValuecd6905, tmpValuecd6905->size() }; });
 }
 
 struct QtXmlPatterns_PackedList QSimpleXmlNodeModel_NamespaceBindingsDefault(void* ptr, void* node)
 {
-		return ({ QVector<QXmlName>* tmpValue = new QVector<QXmlName>(static_cast<QSimpleXmlNodeModel*>(ptr)->QSimpleXmlNodeModel::namespaceBindings(*static_cast<QXmlNodeModelIndex*>(node))); QtXmlPatterns_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QVector<QXmlName>* tmpValue596062 = new QVector<QXmlName>(static_cast<QSimpleXmlNodeModel*>(ptr)->QSimpleXmlNodeModel::namespaceBindings(*static_cast<QXmlNodeModelIndex*>(node))); QtXmlPatterns_PackedList { tmpValue596062, tmpValue596062->size() }; });
 }
 
 struct QtXmlPatterns_PackedList QSimpleXmlNodeModel_NodesByIdref(void* ptr, void* idref)
 {
-	return ({ QVector<QXmlNodeModelIndex>* tmpValue = new QVector<QXmlNodeModelIndex>(static_cast<QSimpleXmlNodeModel*>(ptr)->nodesByIdref(*static_cast<QXmlName*>(idref))); QtXmlPatterns_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QVector<QXmlNodeModelIndex>* tmpValuef9cac1 = new QVector<QXmlNodeModelIndex>(static_cast<QSimpleXmlNodeModel*>(ptr)->nodesByIdref(*static_cast<QXmlName*>(idref))); QtXmlPatterns_PackedList { tmpValuef9cac1, tmpValuef9cac1->size() }; });
 }
 
 struct QtXmlPatterns_PackedList QSimpleXmlNodeModel_NodesByIdrefDefault(void* ptr, void* idref)
 {
-		return ({ QVector<QXmlNodeModelIndex>* tmpValue = new QVector<QXmlNodeModelIndex>(static_cast<QSimpleXmlNodeModel*>(ptr)->QSimpleXmlNodeModel::nodesByIdref(*static_cast<QXmlName*>(idref))); QtXmlPatterns_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QVector<QXmlNodeModelIndex>* tmpValue87a382 = new QVector<QXmlNodeModelIndex>(static_cast<QSimpleXmlNodeModel*>(ptr)->QSimpleXmlNodeModel::nodesByIdref(*static_cast<QXmlName*>(idref))); QtXmlPatterns_PackedList { tmpValue87a382, tmpValue87a382->size() }; });
 }
 
 struct QtXmlPatterns_PackedString QSimpleXmlNodeModel_StringValue(void* ptr, void* node)
 {
-	return ({ QByteArray t8d99fb = static_cast<QSimpleXmlNodeModel*>(ptr)->stringValue(*static_cast<QXmlNodeModelIndex*>(node)).toUtf8(); QtXmlPatterns_PackedString { const_cast<char*>(t8d99fb.prepend("WHITESPACE").constData()+10), t8d99fb.size()-10 }; });
+	return ({ QByteArray* t8d99fb = new QByteArray(static_cast<QSimpleXmlNodeModel*>(ptr)->stringValue(*static_cast<QXmlNodeModelIndex*>(node)).toUtf8()); QtXmlPatterns_PackedString { const_cast<char*>(t8d99fb->prepend("WHITESPACE").constData()+10), t8d99fb->size()-10, t8d99fb }; });
 }
 
 struct QtXmlPatterns_PackedString QSimpleXmlNodeModel_StringValueDefault(void* ptr, void* node)
 {
-		return ({ QByteArray tf9d087 = static_cast<QSimpleXmlNodeModel*>(ptr)->QSimpleXmlNodeModel::stringValue(*static_cast<QXmlNodeModelIndex*>(node)).toUtf8(); QtXmlPatterns_PackedString { const_cast<char*>(tf9d087.prepend("WHITESPACE").constData()+10), tf9d087.size()-10 }; });
+		return ({ QByteArray* tf9d087 = new QByteArray(static_cast<QSimpleXmlNodeModel*>(ptr)->QSimpleXmlNodeModel::stringValue(*static_cast<QXmlNodeModelIndex*>(node)).toUtf8()); QtXmlPatterns_PackedString { const_cast<char*>(tf9d087->prepend("WHITESPACE").constData()+10), tf9d087->size()-10, tf9d087 }; });
 }
 
 void QSimpleXmlNodeModel_DestroyQSimpleXmlNodeModel(void* ptr)
@@ -832,6 +817,7 @@ void* QSimpleXmlNodeModel_TypedValueDefault(void* ptr, void* node)
 	
 }
 
+Q_DECLARE_METATYPE(QSourceLocation*)
 void* QSourceLocation_NewQSourceLocation()
 {
 	return new QSourceLocation();
@@ -890,20 +876,25 @@ void QSourceLocation_DestroyQSourceLocation(void* ptr)
 class MyQXmlFormatter: public QXmlFormatter
 {
 public:
-	MyQXmlFormatter(const QXmlQuery &query, QIODevice *outputDevice) : QXmlFormatter(query, outputDevice) {};
+	MyQXmlFormatter(const QXmlQuery &query, QIODevice *outputDevice) : QXmlFormatter(query, outputDevice) {QXmlFormatter_QXmlFormatter_QRegisterMetaType();};
 	void atomicValue(const QVariant & value) { callbackQXmlSerializer_AtomicValue(this, const_cast<QVariant*>(&value)); };
 	void attribute(const QXmlName & name, const QStringRef & value) { callbackQXmlSerializer_Attribute(this, const_cast<QXmlName*>(&name), const_cast<QStringRef*>(&value)); };
 	void characters(const QStringRef & value) { callbackQXmlSerializer_Characters(this, const_cast<QStringRef*>(&value)); };
-	void comment(const QString & value) { QByteArray tf32b67 = value.toUtf8(); QtXmlPatterns_PackedString valuePacked = { const_cast<char*>(tf32b67.prepend("WHITESPACE").constData()+10), tf32b67.size()-10 };callbackQXmlSerializer_Comment(this, valuePacked); };
+	void comment(const QString & value) { QByteArray* tf32b67 = new QByteArray(value.toUtf8()); QtXmlPatterns_PackedString valuePacked = { const_cast<char*>(tf32b67->prepend("WHITESPACE").constData()+10), tf32b67->size()-10, tf32b67 };callbackQXmlSerializer_Comment(this, valuePacked); };
 	void endDocument() { callbackQXmlSerializer_EndDocument(this); };
 	void endElement() { callbackQXmlSerializer_EndElement(this); };
 	void endOfSequence() { callbackQXmlSerializer_EndOfSequence(this); };
-	void processingInstruction(const QXmlName & name, const QString & value) { QByteArray tf32b67 = value.toUtf8(); QtXmlPatterns_PackedString valuePacked = { const_cast<char*>(tf32b67.prepend("WHITESPACE").constData()+10), tf32b67.size()-10 };callbackQXmlSerializer_ProcessingInstruction(this, const_cast<QXmlName*>(&name), valuePacked); };
+	void processingInstruction(const QXmlName & name, const QString & value) { QByteArray* tf32b67 = new QByteArray(value.toUtf8()); QtXmlPatterns_PackedString valuePacked = { const_cast<char*>(tf32b67->prepend("WHITESPACE").constData()+10), tf32b67->size()-10, tf32b67 };callbackQXmlSerializer_ProcessingInstruction(this, const_cast<QXmlName*>(&name), valuePacked); };
 	void startDocument() { callbackQXmlSerializer_StartDocument(this); };
 	void startElement(const QXmlName & name) { callbackQXmlSerializer_StartElement(this, const_cast<QXmlName*>(&name)); };
 	void startOfSequence() { callbackQXmlSerializer_StartOfSequence(this); };
 	void namespaceBinding(const QXmlName & nb) { callbackQXmlSerializer_NamespaceBinding(this, const_cast<QXmlName*>(&nb)); };
 };
+
+Q_DECLARE_METATYPE(QXmlFormatter*)
+Q_DECLARE_METATYPE(MyQXmlFormatter*)
+
+int QXmlFormatter_QXmlFormatter_QRegisterMetaType(){qRegisterMetaType<QXmlFormatter*>(); return qRegisterMetaType<MyQXmlFormatter*>();}
 
 void* QXmlFormatter_NewQXmlFormatter(void* query, void* outputDevice)
 {
@@ -920,6 +911,7 @@ void QXmlFormatter_SetIndentationDepth(void* ptr, int depth)
 	static_cast<QXmlFormatter*>(ptr)->setIndentationDepth(depth);
 }
 
+Q_DECLARE_METATYPE(QXmlItem*)
 void* QXmlItem_NewQXmlItem()
 {
 	return new QXmlItem();
@@ -970,6 +962,7 @@ void QXmlItem_DestroyQXmlItem(void* ptr)
 	static_cast<QXmlItem*>(ptr)->~QXmlItem();
 }
 
+Q_DECLARE_METATYPE(QXmlName*)
 void* QXmlName_NewQXmlName()
 {
 	return new QXmlName();
@@ -1002,24 +995,26 @@ char QXmlName_IsNull(void* ptr)
 
 struct QtXmlPatterns_PackedString QXmlName_LocalName(void* ptr, void* namePool)
 {
-	return ({ QByteArray tf2a5c3 = static_cast<QXmlName*>(ptr)->localName(*static_cast<QXmlNamePool*>(namePool)).toUtf8(); QtXmlPatterns_PackedString { const_cast<char*>(tf2a5c3.prepend("WHITESPACE").constData()+10), tf2a5c3.size()-10 }; });
+	return ({ QByteArray* tf2a5c3 = new QByteArray(static_cast<QXmlName*>(ptr)->localName(*static_cast<QXmlNamePool*>(namePool)).toUtf8()); QtXmlPatterns_PackedString { const_cast<char*>(tf2a5c3->prepend("WHITESPACE").constData()+10), tf2a5c3->size()-10, tf2a5c3 }; });
 }
 
 struct QtXmlPatterns_PackedString QXmlName_NamespaceUri(void* ptr, void* namePool)
 {
-	return ({ QByteArray tbb7dfe = static_cast<QXmlName*>(ptr)->namespaceUri(*static_cast<QXmlNamePool*>(namePool)).toUtf8(); QtXmlPatterns_PackedString { const_cast<char*>(tbb7dfe.prepend("WHITESPACE").constData()+10), tbb7dfe.size()-10 }; });
+	return ({ QByteArray* tbb7dfe = new QByteArray(static_cast<QXmlName*>(ptr)->namespaceUri(*static_cast<QXmlNamePool*>(namePool)).toUtf8()); QtXmlPatterns_PackedString { const_cast<char*>(tbb7dfe->prepend("WHITESPACE").constData()+10), tbb7dfe->size()-10, tbb7dfe }; });
 }
 
 struct QtXmlPatterns_PackedString QXmlName_Prefix(void* ptr, void* namePool)
 {
-	return ({ QByteArray t451eec = static_cast<QXmlName*>(ptr)->prefix(*static_cast<QXmlNamePool*>(namePool)).toUtf8(); QtXmlPatterns_PackedString { const_cast<char*>(t451eec.prepend("WHITESPACE").constData()+10), t451eec.size()-10 }; });
+	return ({ QByteArray* t451eec = new QByteArray(static_cast<QXmlName*>(ptr)->prefix(*static_cast<QXmlNamePool*>(namePool)).toUtf8()); QtXmlPatterns_PackedString { const_cast<char*>(t451eec->prepend("WHITESPACE").constData()+10), t451eec->size()-10, t451eec }; });
 }
 
 struct QtXmlPatterns_PackedString QXmlName_ToClarkName(void* ptr, void* namePool)
 {
-	return ({ QByteArray t611ba4 = static_cast<QXmlName*>(ptr)->toClarkName(*static_cast<QXmlNamePool*>(namePool)).toUtf8(); QtXmlPatterns_PackedString { const_cast<char*>(t611ba4.prepend("WHITESPACE").constData()+10), t611ba4.size()-10 }; });
+	return ({ QByteArray* t611ba4 = new QByteArray(static_cast<QXmlName*>(ptr)->toClarkName(*static_cast<QXmlNamePool*>(namePool)).toUtf8()); QtXmlPatterns_PackedString { const_cast<char*>(t611ba4->prepend("WHITESPACE").constData()+10), t611ba4->size()-10, t611ba4 }; });
 }
 
+Q_DECLARE_METATYPE(QXmlNamePool)
+Q_DECLARE_METATYPE(QXmlNamePool*)
 void* QXmlNamePool_NewQXmlNamePool()
 {
 	return new QXmlNamePool();
@@ -1035,6 +1030,8 @@ void QXmlNamePool_DestroyQXmlNamePool(void* ptr)
 	static_cast<QXmlNamePool*>(ptr)->~QXmlNamePool();
 }
 
+Q_DECLARE_METATYPE(QXmlNodeModelIndex)
+Q_DECLARE_METATYPE(QXmlNodeModelIndex*)
 void* QXmlNodeModelIndex_NewQXmlNodeModelIndex()
 {
 	return new QXmlNodeModelIndex();
@@ -1086,6 +1083,8 @@ void* QXmlNodeModelIndex___namespaceBindings_newList(void* ptr)
 	return new QVector<QXmlName>();
 }
 
+Q_DECLARE_METATYPE(QXmlQuery)
+Q_DECLARE_METATYPE(QXmlQuery*)
 void* QXmlQuery_NewQXmlQuery()
 {
 	return new QXmlQuery();
@@ -1264,9 +1263,14 @@ void QXmlQuery_DestroyQXmlQuery(void* ptr)
 class MyQXmlResultItems: public QXmlResultItems
 {
 public:
-	MyQXmlResultItems() : QXmlResultItems() {};
+	MyQXmlResultItems() : QXmlResultItems() {QXmlResultItems_QXmlResultItems_QRegisterMetaType();};
 	 ~MyQXmlResultItems() { callbackQXmlResultItems_DestroyQXmlResultItems(this); };
 };
+
+Q_DECLARE_METATYPE(QXmlResultItems*)
+Q_DECLARE_METATYPE(MyQXmlResultItems*)
+
+int QXmlResultItems_QXmlResultItems_QRegisterMetaType(){qRegisterMetaType<QXmlResultItems*>(); return qRegisterMetaType<MyQXmlResultItems*>();}
 
 void* QXmlResultItems_NewQXmlResultItems()
 {
@@ -1299,6 +1303,8 @@ void QXmlResultItems_DestroyQXmlResultItemsDefault(void* ptr)
 
 }
 
+Q_DECLARE_METATYPE(QXmlSchema)
+Q_DECLARE_METATYPE(QXmlSchema*)
 void* QXmlSchema_NewQXmlSchema()
 {
 	return new QXmlSchema();
@@ -1374,6 +1380,7 @@ void QXmlSchema_DestroyQXmlSchema(void* ptr)
 	static_cast<QXmlSchema*>(ptr)->~QXmlSchema();
 }
 
+Q_DECLARE_METATYPE(QXmlSchemaValidator*)
 void* QXmlSchemaValidator_NewQXmlSchemaValidator()
 {
 	return new QXmlSchemaValidator();
@@ -1452,20 +1459,25 @@ void QXmlSchemaValidator_DestroyQXmlSchemaValidator(void* ptr)
 class MyQXmlSerializer: public QXmlSerializer
 {
 public:
-	MyQXmlSerializer(const QXmlQuery &query, QIODevice *outputDevice) : QXmlSerializer(query, outputDevice) {};
+	MyQXmlSerializer(const QXmlQuery &query, QIODevice *outputDevice) : QXmlSerializer(query, outputDevice) {QXmlSerializer_QXmlSerializer_QRegisterMetaType();};
 	void atomicValue(const QVariant & value) { callbackQXmlSerializer_AtomicValue(this, const_cast<QVariant*>(&value)); };
 	void attribute(const QXmlName & name, const QStringRef & value) { callbackQXmlSerializer_Attribute(this, const_cast<QXmlName*>(&name), const_cast<QStringRef*>(&value)); };
 	void characters(const QStringRef & value) { callbackQXmlSerializer_Characters(this, const_cast<QStringRef*>(&value)); };
-	void comment(const QString & value) { QByteArray tf32b67 = value.toUtf8(); QtXmlPatterns_PackedString valuePacked = { const_cast<char*>(tf32b67.prepend("WHITESPACE").constData()+10), tf32b67.size()-10 };callbackQXmlSerializer_Comment(this, valuePacked); };
+	void comment(const QString & value) { QByteArray* tf32b67 = new QByteArray(value.toUtf8()); QtXmlPatterns_PackedString valuePacked = { const_cast<char*>(tf32b67->prepend("WHITESPACE").constData()+10), tf32b67->size()-10, tf32b67 };callbackQXmlSerializer_Comment(this, valuePacked); };
 	void endDocument() { callbackQXmlSerializer_EndDocument(this); };
 	void endElement() { callbackQXmlSerializer_EndElement(this); };
 	void endOfSequence() { callbackQXmlSerializer_EndOfSequence(this); };
 	void namespaceBinding(const QXmlName & nb) { callbackQXmlSerializer_NamespaceBinding(this, const_cast<QXmlName*>(&nb)); };
-	void processingInstruction(const QXmlName & name, const QString & value) { QByteArray tf32b67 = value.toUtf8(); QtXmlPatterns_PackedString valuePacked = { const_cast<char*>(tf32b67.prepend("WHITESPACE").constData()+10), tf32b67.size()-10 };callbackQXmlSerializer_ProcessingInstruction(this, const_cast<QXmlName*>(&name), valuePacked); };
+	void processingInstruction(const QXmlName & name, const QString & value) { QByteArray* tf32b67 = new QByteArray(value.toUtf8()); QtXmlPatterns_PackedString valuePacked = { const_cast<char*>(tf32b67->prepend("WHITESPACE").constData()+10), tf32b67->size()-10, tf32b67 };callbackQXmlSerializer_ProcessingInstruction(this, const_cast<QXmlName*>(&name), valuePacked); };
 	void startDocument() { callbackQXmlSerializer_StartDocument(this); };
 	void startElement(const QXmlName & name) { callbackQXmlSerializer_StartElement(this, const_cast<QXmlName*>(&name)); };
 	void startOfSequence() { callbackQXmlSerializer_StartOfSequence(this); };
 };
+
+Q_DECLARE_METATYPE(QXmlSerializer*)
+Q_DECLARE_METATYPE(MyQXmlSerializer*)
+
+int QXmlSerializer_QXmlSerializer_QRegisterMetaType(){qRegisterMetaType<QXmlSerializer*>(); return qRegisterMetaType<MyQXmlSerializer*>();}
 
 void* QXmlSerializer_NewQXmlSerializer(void* query, void* outputDevice)
 {

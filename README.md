@@ -16,27 +16,26 @@ Status
 
 Almost all Qt functions and classes are accessible from Go and you should be able to find everything you need to build fully featured applications.
 
-(A special exception are the WebEngine/WebView packages, these aren't available for Windows yet.)
-
 Installation
 ------------
 
 ##### Windows [(more info)](https://github.com/therecipe/qt/wiki/Installation-on-Windows)
 
 ```powershell
-go get -u -v github.com/therecipe/qt/cmd/... && for /f %v in ('go env GOPATH') do %v\bin\qtsetup test && %v\bin\qtsetup -test=false
+set GO111MODULE=off
+go get -v github.com/therecipe/qt/cmd/... && for /f %v in ('go env GOPATH') do %v\bin\qtsetup test && %v\bin\qtsetup -test=false
 ```
 
 ##### macOS [(more info)](https://github.com/therecipe/qt/wiki/Installation-on-macOS)
 
 ```bash
-xcode-select --install; go get -u -v github.com/therecipe/qt/cmd/... && $(go env GOPATH)/bin/qtsetup test && $(go env GOPATH)/bin/qtsetup -test=false
+export GO111MODULE=off; xcode-select --install; go get -v github.com/therecipe/qt/cmd/... && $(go env GOPATH)/bin/qtsetup test && $(go env GOPATH)/bin/qtsetup -test=false
 ```
 
 ##### Linux [(more info)](https://github.com/therecipe/qt/wiki/Installation-on-Linux)
 
 ```bash
-go get -u -v github.com/therecipe/qt/cmd/... && $(go env GOPATH)/bin/qtsetup test && $(go env GOPATH)/bin/qtsetup -test=false
+export GO111MODULE=off; go get -v github.com/therecipe/qt/cmd/... && $(go env GOPATH)/bin/qtsetup test && $(go env GOPATH)/bin/qtsetup -test=false
 ```
 
 Resources
@@ -52,23 +51,23 @@ Resources
 Deployment Targets
 ------------------
 
-| Target                   | Arch        | Linkage                   | Docker Deployment | Host OS |
-|:------------------------:|:-----------:|:-------------------------:|:-----------------:|:-------:|
-|         Windows          |   32 / 64   |     dynamic / static      |        Yes        |   Any   |
-|          macOS           |     64      |          dynamic          |        Yes        |   Any   |
-|          Linux           |     64      | dynamic / static / system |        Yes        |   Any   |
-|     Android (+Wear)      | arm / arm64 |          dynamic          |        Yes        |   Any   |
-| Android-Emulator (+Wear) |     32      |          dynamic          |        Yes        |   Any   |
-|        SailfishOS        |     arm     |          system           |        Yes        |   Any   |
-|   SailfishOS-Emulator    |     32      |          system           |        Yes        |   Any   |
-|   Raspberry Pi (1/2/3)   |     arm     |     dynamic / system      |        Yes        |   Any   |
-|       Ubuntu Touch       |  arm / 64   |          system           |        Yes        |   Any   |
-|        JavaScript        |     32      |          static           |        Yes        |   Any   |
-|       WebAssembly        |     32      |          static           |        Yes        |   Any   |
-|           iOS            |    arm64    |          static           |        No         |  macOS  |
-|      iOS-Simulator       |     64      |          static           |        No         |  macOS  |
-|        AsteroidOS        |     arm     |          system           |        No         |  Linux  |
-|         FreeBSD          |   32 / 64   |          system           |        No         | FreeBSD |
+| Target                   | Arch             | Linkage                   | Docker Deployment | Host OS |
+|:------------------------:|:----------------:|:-------------------------:|:-----------------:|:-------:|
+|         Windows          |     32 / 64      |     dynamic / static      |        Yes        |   Any   |
+|          macOS           |        64        |          dynamic          |        Yes        |   Any   |
+|          Linux           | arm / arm64 / 64 | dynamic / static / system |        Yes        |   Any   |
+|     Android (+Wear)      |   arm / arm64    |          dynamic          |        Yes        |   Any   |
+| Android-Emulator (+Wear) |        32        |          dynamic          |        Yes        |   Any   |
+|        SailfishOS        |       arm        |          system           |        Yes        |   Any   |
+|   SailfishOS-Emulator    |        32        |          system           |        Yes        |   Any   |
+|   Raspberry Pi (1/2/3)   |       arm        |     dynamic / system      |        Yes        |   Any   |
+|       Ubuntu Touch       |     arm / 64     |          system           |        Yes        |   Any   |
+|        JavaScript        |        32        |          static           |        Yes        |   Any   |
+|       WebAssembly        |        32        |          static           |        Yes        |   Any   |
+|           iOS            |      arm64       |          static           |        No         |  macOS  |
+|      iOS-Simulator       |        64        |          static           |        No         |  macOS  |
+|        AsteroidOS        |       arm        |          system           |        No         |  Linux  |
+|         FreeBSD          |     32 / 64      |          system           |        No         | FreeBSD |
 
 License
 -------

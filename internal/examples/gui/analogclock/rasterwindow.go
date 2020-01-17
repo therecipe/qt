@@ -68,11 +68,9 @@ func (w *RasterWindow) renderNow() {
 
 	var device = w.m_backingStore.PaintDevice()
 	var painter = gui.NewQPainter2(device)
-	defer painter.DestroyQPainter()
-
 	painter.FillRect7(0, 0, w.Width(), w.Height(), core.Qt__white)
 	w.render(painter)
-
+	painter.DestroyQPainter()
 	w.m_backingStore.EndPaint()
 	w.m_backingStore.Flush(gui.NewQRegion3(rect, 0), w, core.NewQPoint())
 }

@@ -17,8 +17,8 @@ func assertion(key int, input ...interface{}) (unsafe.Pointer, func()) {
 			return jObject.Object(), func() { jObject.DestroyQAndroidJniObject() }
 
 		case []string:
-			jObject := QAndroidJniObject_FromString(strings.Join(deduced, ",,,"))
-			jObject2 := jObject.CallObjectMethod2("split", "(Ljava/lang/String;)[Ljava/lang/String;", ",,,")
+			jObject := QAndroidJniObject_FromString(strings.Join(deduced, "¡¦!"))
+			jObject2 := jObject.CallObjectMethod2("split", "(Ljava/lang/String;)[Ljava/lang/String;", "¡¦!")
 			jObject.DestroyQAndroidJniObject()
 
 			return jObject2.Object(), func() { jObject2.DestroyQAndroidJniObject() }

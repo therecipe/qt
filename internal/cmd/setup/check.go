@@ -27,10 +27,14 @@ func Check(target string, docker, vagrant bool) {
 	}
 
 	hash := "please install git"
-	if _, err := exec.LookPath("git"); err == nil {
-		cmd := exec.Command("git", "rev-parse", "--verify", "HEAD")
-		cmd.Dir = utils.GoQtPkgPath()
-		hash = strings.TrimSpace(utils.RunCmdOptional(cmd, "get git hash"))
+	if utils.UseGOMOD("") {
+		hash = utils.GoListOptional("{{.Version}}", "github.com/therecipe/qt", "-m", "get qt hash")
+	} else {
+		if _, err := exec.LookPath("git"); err == nil {
+			cmd := exec.Command("git", "rev-parse", "--verify", "HEAD")
+			cmd.Dir = utils.GoQtPkgPath()
+			hash = strings.TrimSpace(utils.RunCmdOptional(cmd, "get git hash"))
+		}
 	}
 
 	vars := [][]string{
@@ -50,6 +54,12 @@ func Check(target string, docker, vagrant bool) {
 		{"QT_DEBUG", fmt.Sprint(utils.QT_DEBUG())},
 		{"QT_QMAKE_DIR", utils.QT_QMAKE_DIR()},
 		{"QT_WEBKIT", fmt.Sprint(utils.QT_WEBKIT())},
+		{"QT_STATIC", fmt.Sprint(utils.QT_STATIC())},
+		{"QT_GEN_TSD", fmt.Sprint(utils.QT_GEN_TSD())},
+		{"QT_GEN_OPENGL", fmt.Sprint(utils.QT_GEN_OPENGL())},
+		{"QT_GEN_QUICK_EXTRAS", fmt.Sprint(utils.QT_GEN_QUICK_EXTRAS())},
+		{"QT_RESOURCES_BIG", fmt.Sprint(utils.QT_RESOURCES_BIG())},
+		{"QT_NOT_CACHED", fmt.Sprint(utils.QT_NOT_CACHED())},
 	}
 
 	if utils.CI() {
@@ -79,7 +89,7 @@ func Check(target string, docker, vagrant bool) {
 		}
 
 		if _, err := exec.LookPath("clang++"); err != nil {
-			utils.Log.WithError(err).Panic("failed to find clang++, did you install Xcode?; please run: xcode-select --install")
+			utils.Log.WithError(err).Panic("failed to find clang++, did you install Xcode?\nplease install Xcode (https://itunes.apple.com/us/app/xcode/id497799835) and then run: xcode-select --install")
 		}
 
 	case "linux", "ubports", "freebsd":
@@ -92,6 +102,12 @@ func Check(target string, docker, vagrant bool) {
 			vars = append(vars, [][]string{
 				{"QT_DOC_DIR", utils.QT_DOC_DIR()},
 				{"QT_MISC_DIR", utils.QT_MISC_DIR()},
+			}...)
+		}
+
+		if arm, ok := utils.GOARM(); ok {
+			vars = append(vars, [][]string{
+				{"GOARM", arm},
 			}...)
 		}
 
@@ -113,6 +129,17 @@ func Check(target string, docker, vagrant bool) {
 					{"QT_MSYS2_ARCH", utils.QT_MSYS2_ARCH()},
 					{"QT_MSYS2_STATIC", fmt.Sprint(utils.QT_MSYS2_STATIC())},
 				}...)
+			}
+
+			if utils.QT_MSVC() {
+				vars = append(vars, [][]string{
+					{"QT_MSVC", fmt.Sprint(utils.QT_MSVC())},
+					{"GOVSVARSPATH", utils.GOVSVARSPATH()},
+				}...)
+
+				if _, err := exec.LookPath("cl"); err != nil {
+					utils.Log.WithError(err).Panic("failed to find cl, did you start the MSVC shell?")
+				}
 			}
 
 			if _, err := exec.LookPath("g++"); err != nil && !utils.QT_MSYS2() {

@@ -11,6 +11,10 @@ import (
 )
 
 func GenModule(m, target string, mode int) {
+	if os.Getenv("QT_DUMP") == "true" {
+		defer parser.Dump()
+	}
+
 	if !parser.ShouldBuildForTarget(m, target) {
 		utils.Log.WithField("module", m).Debug("skip generation")
 		return
@@ -47,10 +51,6 @@ func GenModule(m, target string, mode int) {
 		return
 	}
 
-	if m == "AndroidExtras" {
-		utils.Save(utils.GoQtPkgPath(strings.ToLower(m), "utils-androidextras_android.go"), utils.Load(filepath.Join(strings.TrimSpace(utils.GoListOptional("{{.Dir}}", "github.com/therecipe/qt/internal", "-find", "get files dir")), "/binding/files/utils-androidextras_android.go")))
-	}
-
 	if !UseStub(false, "Qt"+m, mode) {
 		utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+suffix+".cpp"), CppTemplate(m, mode, target, ""))
 		utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+suffix+".h"), HTemplate(m, mode, ""))
@@ -70,7 +70,11 @@ func GenModule(m, target string, mode int) {
 
 	if utils.QT_DOCKER() {
 		if idug, ok := os.LookupEnv("IDUG"); ok {
-			utils.RunCmd(exec.Command("chown", "-R", idug, utils.GoQtPkgPath(strings.ToLower(m))), "chown files to user")
+			if path := utils.GoQtPkgPath(strings.ToLower(m)); utils.UseGOMOD(path) {
+				utils.RunCmd(exec.Command("chown", "-R", idug, filepath.Dir(utils.GOMOD(path))), "chown files to user")
+			} else {
+				utils.RunCmd(exec.Command("chown", "-R", idug, path), "chown files to user")
+			}
 		}
 	}
 }

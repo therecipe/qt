@@ -15,8 +15,10 @@ Mfile*
 */*_string.go
 */cgo_*
 */minimal_*
+*/*.d.ts
 
 /internal/binding/dump/*
+/internal/binding/runtime/moc*
 /internal/cmd/moc/test/**/moc*
 /internal/examples/**/deploy
 /internal/examples/**/moc*

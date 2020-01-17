@@ -8,18 +8,22 @@ package webview
 //#include "webview.h"
 import "C"
 import (
-	"runtime"
+	"github.com/therecipe/qt"
+	"github.com/therecipe/qt/core"
 	"strings"
 	"unsafe"
 )
 
+func cGoFreePacked(ptr unsafe.Pointer) { core.NewQByteArrayFromPointer(ptr).DestroyQByteArray() }
 func cGoUnpackString(s C.struct_QtWebView_PackedString) string {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		return C.GoString(s.data)
 	}
 	return C.GoStringN(s.data, C.int(s.len))
 }
 func cGoUnpackBytes(s C.struct_QtWebView_PackedString) []byte {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
 		return *(*[]byte)(unsafe.Pointer(&gs))
@@ -70,19 +74,23 @@ func NewQtWebViewFromPointer(ptr unsafe.Pointer) (n *QtWebView) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QtWebView) DestroyQtWebView() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
-
 func QtWebView_Initialize() {
 	C.QtWebView_QtWebView_Initialize()
 }
 
 func (ptr *QtWebView) Initialize() {
 	C.QtWebView_QtWebView_Initialize()
+}
+
+func init() {
+	qt.ItfMap["webview.QtWebView_ITF"] = QtWebView{}
+	qt.FuncMap["webview.QtWebView_Initialize"] = QtWebView_Initialize
 }

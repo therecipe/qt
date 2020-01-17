@@ -66,7 +66,7 @@ public:
 	void Signal_ButtonYChanged(bool value) { callbackQGamepad_ButtonYChanged(this, value); };
 	void Signal_ConnectedChanged(bool value) { callbackQGamepad_ConnectedChanged(this, value); };
 	void Signal_DeviceIdChanged(int value) { callbackQGamepad_DeviceIdChanged(this, value); };
-	void Signal_NameChanged(QString value) { QByteArray tf32b67 = value.toUtf8(); QtGamepad_PackedString valuePacked = { const_cast<char*>(tf32b67.prepend("WHITESPACE").constData()+10), tf32b67.size()-10 };callbackQGamepad_NameChanged(this, valuePacked); };
+	void Signal_NameChanged(QString value) { QByteArray* tf32b67 = new QByteArray(value.toUtf8()); QtGamepad_PackedString valuePacked = { const_cast<char*>(tf32b67->prepend("WHITESPACE").constData()+10), tf32b67->size()-10, tf32b67 };callbackQGamepad_NameChanged(this, valuePacked); };
 	void setDeviceId(int number) { callbackQGamepad_SetDeviceId(this, number); };
 	void childEvent(QChildEvent * event) { callbackQGamepad_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQGamepad_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -77,7 +77,7 @@ public:
 	bool event(QEvent * e) { return callbackQGamepad_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQGamepad_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGamepad_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtGamepad_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQGamepad_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtGamepad_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQGamepad_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQGamepad_TimerEvent(this, event); };
 };
 
@@ -137,9 +137,9 @@ double QGamepad_AxisLeftX(void* ptr)
 	return static_cast<QGamepad*>(ptr)->axisLeftX();
 }
 
-void QGamepad_ConnectAxisLeftXChanged(void* ptr)
+void QGamepad_ConnectAxisLeftXChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(double)>(&QGamepad::axisLeftXChanged), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(double)>(&MyQGamepad::Signal_AxisLeftXChanged));
+	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(double)>(&QGamepad::axisLeftXChanged), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(double)>(&MyQGamepad::Signal_AxisLeftXChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepad_DisconnectAxisLeftXChanged(void* ptr)
@@ -157,9 +157,9 @@ double QGamepad_AxisLeftY(void* ptr)
 	return static_cast<QGamepad*>(ptr)->axisLeftY();
 }
 
-void QGamepad_ConnectAxisLeftYChanged(void* ptr)
+void QGamepad_ConnectAxisLeftYChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(double)>(&QGamepad::axisLeftYChanged), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(double)>(&MyQGamepad::Signal_AxisLeftYChanged));
+	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(double)>(&QGamepad::axisLeftYChanged), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(double)>(&MyQGamepad::Signal_AxisLeftYChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepad_DisconnectAxisLeftYChanged(void* ptr)
@@ -177,9 +177,9 @@ double QGamepad_AxisRightX(void* ptr)
 	return static_cast<QGamepad*>(ptr)->axisRightX();
 }
 
-void QGamepad_ConnectAxisRightXChanged(void* ptr)
+void QGamepad_ConnectAxisRightXChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(double)>(&QGamepad::axisRightXChanged), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(double)>(&MyQGamepad::Signal_AxisRightXChanged));
+	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(double)>(&QGamepad::axisRightXChanged), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(double)>(&MyQGamepad::Signal_AxisRightXChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepad_DisconnectAxisRightXChanged(void* ptr)
@@ -197,9 +197,9 @@ double QGamepad_AxisRightY(void* ptr)
 	return static_cast<QGamepad*>(ptr)->axisRightY();
 }
 
-void QGamepad_ConnectAxisRightYChanged(void* ptr)
+void QGamepad_ConnectAxisRightYChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(double)>(&QGamepad::axisRightYChanged), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(double)>(&MyQGamepad::Signal_AxisRightYChanged));
+	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(double)>(&QGamepad::axisRightYChanged), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(double)>(&MyQGamepad::Signal_AxisRightYChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepad_DisconnectAxisRightYChanged(void* ptr)
@@ -217,9 +217,9 @@ char QGamepad_ButtonA(void* ptr)
 	return static_cast<QGamepad*>(ptr)->buttonA();
 }
 
-void QGamepad_ConnectButtonAChanged(void* ptr)
+void QGamepad_ConnectButtonAChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(bool)>(&QGamepad::buttonAChanged), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(bool)>(&MyQGamepad::Signal_ButtonAChanged));
+	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(bool)>(&QGamepad::buttonAChanged), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(bool)>(&MyQGamepad::Signal_ButtonAChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepad_DisconnectButtonAChanged(void* ptr)
@@ -237,9 +237,9 @@ char QGamepad_ButtonB(void* ptr)
 	return static_cast<QGamepad*>(ptr)->buttonB();
 }
 
-void QGamepad_ConnectButtonBChanged(void* ptr)
+void QGamepad_ConnectButtonBChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(bool)>(&QGamepad::buttonBChanged), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(bool)>(&MyQGamepad::Signal_ButtonBChanged));
+	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(bool)>(&QGamepad::buttonBChanged), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(bool)>(&MyQGamepad::Signal_ButtonBChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepad_DisconnectButtonBChanged(void* ptr)
@@ -257,9 +257,9 @@ char QGamepad_ButtonCenter(void* ptr)
 	return static_cast<QGamepad*>(ptr)->buttonCenter();
 }
 
-void QGamepad_ConnectButtonCenterChanged(void* ptr)
+void QGamepad_ConnectButtonCenterChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(bool)>(&QGamepad::buttonCenterChanged), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(bool)>(&MyQGamepad::Signal_ButtonCenterChanged));
+	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(bool)>(&QGamepad::buttonCenterChanged), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(bool)>(&MyQGamepad::Signal_ButtonCenterChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepad_DisconnectButtonCenterChanged(void* ptr)
@@ -277,9 +277,9 @@ char QGamepad_ButtonDown(void* ptr)
 	return static_cast<QGamepad*>(ptr)->buttonDown();
 }
 
-void QGamepad_ConnectButtonDownChanged(void* ptr)
+void QGamepad_ConnectButtonDownChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(bool)>(&QGamepad::buttonDownChanged), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(bool)>(&MyQGamepad::Signal_ButtonDownChanged));
+	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(bool)>(&QGamepad::buttonDownChanged), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(bool)>(&MyQGamepad::Signal_ButtonDownChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepad_DisconnectButtonDownChanged(void* ptr)
@@ -297,9 +297,9 @@ char QGamepad_ButtonGuide(void* ptr)
 	return static_cast<QGamepad*>(ptr)->buttonGuide();
 }
 
-void QGamepad_ConnectButtonGuideChanged(void* ptr)
+void QGamepad_ConnectButtonGuideChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(bool)>(&QGamepad::buttonGuideChanged), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(bool)>(&MyQGamepad::Signal_ButtonGuideChanged));
+	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(bool)>(&QGamepad::buttonGuideChanged), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(bool)>(&MyQGamepad::Signal_ButtonGuideChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepad_DisconnectButtonGuideChanged(void* ptr)
@@ -317,9 +317,9 @@ char QGamepad_ButtonL1(void* ptr)
 	return static_cast<QGamepad*>(ptr)->buttonL1();
 }
 
-void QGamepad_ConnectButtonL1Changed(void* ptr)
+void QGamepad_ConnectButtonL1Changed(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(bool)>(&QGamepad::buttonL1Changed), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(bool)>(&MyQGamepad::Signal_ButtonL1Changed));
+	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(bool)>(&QGamepad::buttonL1Changed), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(bool)>(&MyQGamepad::Signal_ButtonL1Changed), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepad_DisconnectButtonL1Changed(void* ptr)
@@ -337,9 +337,9 @@ double QGamepad_ButtonL2(void* ptr)
 	return static_cast<QGamepad*>(ptr)->buttonL2();
 }
 
-void QGamepad_ConnectButtonL2Changed(void* ptr)
+void QGamepad_ConnectButtonL2Changed(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(double)>(&QGamepad::buttonL2Changed), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(double)>(&MyQGamepad::Signal_ButtonL2Changed));
+	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(double)>(&QGamepad::buttonL2Changed), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(double)>(&MyQGamepad::Signal_ButtonL2Changed), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepad_DisconnectButtonL2Changed(void* ptr)
@@ -357,9 +357,9 @@ char QGamepad_ButtonL3(void* ptr)
 	return static_cast<QGamepad*>(ptr)->buttonL3();
 }
 
-void QGamepad_ConnectButtonL3Changed(void* ptr)
+void QGamepad_ConnectButtonL3Changed(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(bool)>(&QGamepad::buttonL3Changed), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(bool)>(&MyQGamepad::Signal_ButtonL3Changed));
+	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(bool)>(&QGamepad::buttonL3Changed), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(bool)>(&MyQGamepad::Signal_ButtonL3Changed), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepad_DisconnectButtonL3Changed(void* ptr)
@@ -377,9 +377,9 @@ char QGamepad_ButtonLeft(void* ptr)
 	return static_cast<QGamepad*>(ptr)->buttonLeft();
 }
 
-void QGamepad_ConnectButtonLeftChanged(void* ptr)
+void QGamepad_ConnectButtonLeftChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(bool)>(&QGamepad::buttonLeftChanged), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(bool)>(&MyQGamepad::Signal_ButtonLeftChanged));
+	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(bool)>(&QGamepad::buttonLeftChanged), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(bool)>(&MyQGamepad::Signal_ButtonLeftChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepad_DisconnectButtonLeftChanged(void* ptr)
@@ -397,9 +397,9 @@ char QGamepad_ButtonR1(void* ptr)
 	return static_cast<QGamepad*>(ptr)->buttonR1();
 }
 
-void QGamepad_ConnectButtonR1Changed(void* ptr)
+void QGamepad_ConnectButtonR1Changed(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(bool)>(&QGamepad::buttonR1Changed), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(bool)>(&MyQGamepad::Signal_ButtonR1Changed));
+	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(bool)>(&QGamepad::buttonR1Changed), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(bool)>(&MyQGamepad::Signal_ButtonR1Changed), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepad_DisconnectButtonR1Changed(void* ptr)
@@ -417,9 +417,9 @@ double QGamepad_ButtonR2(void* ptr)
 	return static_cast<QGamepad*>(ptr)->buttonR2();
 }
 
-void QGamepad_ConnectButtonR2Changed(void* ptr)
+void QGamepad_ConnectButtonR2Changed(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(double)>(&QGamepad::buttonR2Changed), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(double)>(&MyQGamepad::Signal_ButtonR2Changed));
+	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(double)>(&QGamepad::buttonR2Changed), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(double)>(&MyQGamepad::Signal_ButtonR2Changed), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepad_DisconnectButtonR2Changed(void* ptr)
@@ -437,9 +437,9 @@ char QGamepad_ButtonR3(void* ptr)
 	return static_cast<QGamepad*>(ptr)->buttonR3();
 }
 
-void QGamepad_ConnectButtonR3Changed(void* ptr)
+void QGamepad_ConnectButtonR3Changed(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(bool)>(&QGamepad::buttonR3Changed), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(bool)>(&MyQGamepad::Signal_ButtonR3Changed));
+	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(bool)>(&QGamepad::buttonR3Changed), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(bool)>(&MyQGamepad::Signal_ButtonR3Changed), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepad_DisconnectButtonR3Changed(void* ptr)
@@ -457,9 +457,9 @@ char QGamepad_ButtonRight(void* ptr)
 	return static_cast<QGamepad*>(ptr)->buttonRight();
 }
 
-void QGamepad_ConnectButtonRightChanged(void* ptr)
+void QGamepad_ConnectButtonRightChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(bool)>(&QGamepad::buttonRightChanged), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(bool)>(&MyQGamepad::Signal_ButtonRightChanged));
+	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(bool)>(&QGamepad::buttonRightChanged), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(bool)>(&MyQGamepad::Signal_ButtonRightChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepad_DisconnectButtonRightChanged(void* ptr)
@@ -477,9 +477,9 @@ char QGamepad_ButtonSelect(void* ptr)
 	return static_cast<QGamepad*>(ptr)->buttonSelect();
 }
 
-void QGamepad_ConnectButtonSelectChanged(void* ptr)
+void QGamepad_ConnectButtonSelectChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(bool)>(&QGamepad::buttonSelectChanged), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(bool)>(&MyQGamepad::Signal_ButtonSelectChanged));
+	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(bool)>(&QGamepad::buttonSelectChanged), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(bool)>(&MyQGamepad::Signal_ButtonSelectChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepad_DisconnectButtonSelectChanged(void* ptr)
@@ -497,9 +497,9 @@ char QGamepad_ButtonStart(void* ptr)
 	return static_cast<QGamepad*>(ptr)->buttonStart();
 }
 
-void QGamepad_ConnectButtonStartChanged(void* ptr)
+void QGamepad_ConnectButtonStartChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(bool)>(&QGamepad::buttonStartChanged), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(bool)>(&MyQGamepad::Signal_ButtonStartChanged));
+	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(bool)>(&QGamepad::buttonStartChanged), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(bool)>(&MyQGamepad::Signal_ButtonStartChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepad_DisconnectButtonStartChanged(void* ptr)
@@ -517,9 +517,9 @@ char QGamepad_ButtonUp(void* ptr)
 	return static_cast<QGamepad*>(ptr)->buttonUp();
 }
 
-void QGamepad_ConnectButtonUpChanged(void* ptr)
+void QGamepad_ConnectButtonUpChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(bool)>(&QGamepad::buttonUpChanged), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(bool)>(&MyQGamepad::Signal_ButtonUpChanged));
+	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(bool)>(&QGamepad::buttonUpChanged), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(bool)>(&MyQGamepad::Signal_ButtonUpChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepad_DisconnectButtonUpChanged(void* ptr)
@@ -537,9 +537,9 @@ char QGamepad_ButtonX(void* ptr)
 	return static_cast<QGamepad*>(ptr)->buttonX();
 }
 
-void QGamepad_ConnectButtonXChanged(void* ptr)
+void QGamepad_ConnectButtonXChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(bool)>(&QGamepad::buttonXChanged), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(bool)>(&MyQGamepad::Signal_ButtonXChanged));
+	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(bool)>(&QGamepad::buttonXChanged), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(bool)>(&MyQGamepad::Signal_ButtonXChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepad_DisconnectButtonXChanged(void* ptr)
@@ -557,9 +557,9 @@ char QGamepad_ButtonY(void* ptr)
 	return static_cast<QGamepad*>(ptr)->buttonY();
 }
 
-void QGamepad_ConnectButtonYChanged(void* ptr)
+void QGamepad_ConnectButtonYChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(bool)>(&QGamepad::buttonYChanged), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(bool)>(&MyQGamepad::Signal_ButtonYChanged));
+	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(bool)>(&QGamepad::buttonYChanged), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(bool)>(&MyQGamepad::Signal_ButtonYChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepad_DisconnectButtonYChanged(void* ptr)
@@ -572,9 +572,9 @@ void QGamepad_ButtonYChanged(void* ptr, char value)
 	static_cast<QGamepad*>(ptr)->buttonYChanged(value != 0);
 }
 
-void QGamepad_ConnectConnectedChanged(void* ptr)
+void QGamepad_ConnectConnectedChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(bool)>(&QGamepad::connectedChanged), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(bool)>(&MyQGamepad::Signal_ConnectedChanged));
+	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(bool)>(&QGamepad::connectedChanged), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(bool)>(&MyQGamepad::Signal_ConnectedChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepad_DisconnectConnectedChanged(void* ptr)
@@ -592,9 +592,9 @@ int QGamepad_DeviceId(void* ptr)
 	return static_cast<QGamepad*>(ptr)->deviceId();
 }
 
-void QGamepad_ConnectDeviceIdChanged(void* ptr)
+void QGamepad_ConnectDeviceIdChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(int)>(&QGamepad::deviceIdChanged), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(int)>(&MyQGamepad::Signal_DeviceIdChanged));
+	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(int)>(&QGamepad::deviceIdChanged), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(int)>(&MyQGamepad::Signal_DeviceIdChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepad_DisconnectDeviceIdChanged(void* ptr)
@@ -614,12 +614,12 @@ char QGamepad_IsConnected(void* ptr)
 
 struct QtGamepad_PackedString QGamepad_Name(void* ptr)
 {
-	return ({ QByteArray t4fe02c = static_cast<QGamepad*>(ptr)->name().toUtf8(); QtGamepad_PackedString { const_cast<char*>(t4fe02c.prepend("WHITESPACE").constData()+10), t4fe02c.size()-10 }; });
+	return ({ QByteArray* t4fe02c = new QByteArray(static_cast<QGamepad*>(ptr)->name().toUtf8()); QtGamepad_PackedString { const_cast<char*>(t4fe02c->prepend("WHITESPACE").constData()+10), t4fe02c->size()-10, t4fe02c }; });
 }
 
-void QGamepad_ConnectNameChanged(void* ptr)
+void QGamepad_ConnectNameChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(QString)>(&QGamepad::nameChanged), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(QString)>(&MyQGamepad::Signal_NameChanged));
+	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(QString)>(&QGamepad::nameChanged), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(QString)>(&MyQGamepad::Signal_NameChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepad_DisconnectNameChanged(void* ptr)
@@ -701,22 +701,6 @@ void QGamepad___findChildren_setList3(void* ptr, void* i)
 }
 
 void* QGamepad___findChildren_newList3(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
-void* QGamepad___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QGamepad___qFindChildren_setList2(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QGamepad___qFindChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();
@@ -818,10 +802,11 @@ public:
 	bool event(QEvent * e) { return callbackQGamepadKeyNavigation_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQGamepadKeyNavigation_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGamepadKeyNavigation_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtGamepad_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQGamepadKeyNavigation_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtGamepad_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQGamepadKeyNavigation_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQGamepadKeyNavigation_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QGamepadKeyNavigation*)
 Q_DECLARE_METATYPE(MyQGamepadKeyNavigation*)
 
 int QGamepadKeyNavigation_QGamepadKeyNavigation_QRegisterMetaType(){qRegisterMetaType<QGamepadKeyNavigation*>(); return qRegisterMetaType<MyQGamepadKeyNavigation*>();}
@@ -878,9 +863,9 @@ char QGamepadKeyNavigation_Active(void* ptr)
 	return static_cast<QGamepadKeyNavigation*>(ptr)->active();
 }
 
-void QGamepadKeyNavigation_ConnectActiveChanged(void* ptr)
+void QGamepadKeyNavigation_ConnectActiveChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGamepadKeyNavigation*>(ptr), static_cast<void (QGamepadKeyNavigation::*)(bool)>(&QGamepadKeyNavigation::activeChanged), static_cast<MyQGamepadKeyNavigation*>(ptr), static_cast<void (MyQGamepadKeyNavigation::*)(bool)>(&MyQGamepadKeyNavigation::Signal_ActiveChanged));
+	QObject::connect(static_cast<QGamepadKeyNavigation*>(ptr), static_cast<void (QGamepadKeyNavigation::*)(bool)>(&QGamepadKeyNavigation::activeChanged), static_cast<MyQGamepadKeyNavigation*>(ptr), static_cast<void (MyQGamepadKeyNavigation::*)(bool)>(&MyQGamepadKeyNavigation::Signal_ActiveChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepadKeyNavigation_DisconnectActiveChanged(void* ptr)
@@ -898,10 +883,10 @@ long long QGamepadKeyNavigation_ButtonAKey(void* ptr)
 	return static_cast<QGamepadKeyNavigation*>(ptr)->buttonAKey();
 }
 
-void QGamepadKeyNavigation_ConnectButtonAKeyChanged(void* ptr)
+void QGamepadKeyNavigation_ConnectButtonAKeyChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<Qt::Key>();
-	QObject::connect(static_cast<QGamepadKeyNavigation*>(ptr), static_cast<void (QGamepadKeyNavigation::*)(Qt::Key)>(&QGamepadKeyNavigation::buttonAKeyChanged), static_cast<MyQGamepadKeyNavigation*>(ptr), static_cast<void (MyQGamepadKeyNavigation::*)(Qt::Key)>(&MyQGamepadKeyNavigation::Signal_ButtonAKeyChanged));
+	QObject::connect(static_cast<QGamepadKeyNavigation*>(ptr), static_cast<void (QGamepadKeyNavigation::*)(Qt::Key)>(&QGamepadKeyNavigation::buttonAKeyChanged), static_cast<MyQGamepadKeyNavigation*>(ptr), static_cast<void (MyQGamepadKeyNavigation::*)(Qt::Key)>(&MyQGamepadKeyNavigation::Signal_ButtonAKeyChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepadKeyNavigation_DisconnectButtonAKeyChanged(void* ptr)
@@ -919,10 +904,10 @@ long long QGamepadKeyNavigation_ButtonBKey(void* ptr)
 	return static_cast<QGamepadKeyNavigation*>(ptr)->buttonBKey();
 }
 
-void QGamepadKeyNavigation_ConnectButtonBKeyChanged(void* ptr)
+void QGamepadKeyNavigation_ConnectButtonBKeyChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<Qt::Key>();
-	QObject::connect(static_cast<QGamepadKeyNavigation*>(ptr), static_cast<void (QGamepadKeyNavigation::*)(Qt::Key)>(&QGamepadKeyNavigation::buttonBKeyChanged), static_cast<MyQGamepadKeyNavigation*>(ptr), static_cast<void (MyQGamepadKeyNavigation::*)(Qt::Key)>(&MyQGamepadKeyNavigation::Signal_ButtonBKeyChanged));
+	QObject::connect(static_cast<QGamepadKeyNavigation*>(ptr), static_cast<void (QGamepadKeyNavigation::*)(Qt::Key)>(&QGamepadKeyNavigation::buttonBKeyChanged), static_cast<MyQGamepadKeyNavigation*>(ptr), static_cast<void (MyQGamepadKeyNavigation::*)(Qt::Key)>(&MyQGamepadKeyNavigation::Signal_ButtonBKeyChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepadKeyNavigation_DisconnectButtonBKeyChanged(void* ptr)
@@ -940,10 +925,10 @@ long long QGamepadKeyNavigation_ButtonGuideKey(void* ptr)
 	return static_cast<QGamepadKeyNavigation*>(ptr)->buttonGuideKey();
 }
 
-void QGamepadKeyNavigation_ConnectButtonGuideKeyChanged(void* ptr)
+void QGamepadKeyNavigation_ConnectButtonGuideKeyChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<Qt::Key>();
-	QObject::connect(static_cast<QGamepadKeyNavigation*>(ptr), static_cast<void (QGamepadKeyNavigation::*)(Qt::Key)>(&QGamepadKeyNavigation::buttonGuideKeyChanged), static_cast<MyQGamepadKeyNavigation*>(ptr), static_cast<void (MyQGamepadKeyNavigation::*)(Qt::Key)>(&MyQGamepadKeyNavigation::Signal_ButtonGuideKeyChanged));
+	QObject::connect(static_cast<QGamepadKeyNavigation*>(ptr), static_cast<void (QGamepadKeyNavigation::*)(Qt::Key)>(&QGamepadKeyNavigation::buttonGuideKeyChanged), static_cast<MyQGamepadKeyNavigation*>(ptr), static_cast<void (MyQGamepadKeyNavigation::*)(Qt::Key)>(&MyQGamepadKeyNavigation::Signal_ButtonGuideKeyChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepadKeyNavigation_DisconnectButtonGuideKeyChanged(void* ptr)
@@ -961,10 +946,10 @@ long long QGamepadKeyNavigation_ButtonL1Key(void* ptr)
 	return static_cast<QGamepadKeyNavigation*>(ptr)->buttonL1Key();
 }
 
-void QGamepadKeyNavigation_ConnectButtonL1KeyChanged(void* ptr)
+void QGamepadKeyNavigation_ConnectButtonL1KeyChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<Qt::Key>();
-	QObject::connect(static_cast<QGamepadKeyNavigation*>(ptr), static_cast<void (QGamepadKeyNavigation::*)(Qt::Key)>(&QGamepadKeyNavigation::buttonL1KeyChanged), static_cast<MyQGamepadKeyNavigation*>(ptr), static_cast<void (MyQGamepadKeyNavigation::*)(Qt::Key)>(&MyQGamepadKeyNavigation::Signal_ButtonL1KeyChanged));
+	QObject::connect(static_cast<QGamepadKeyNavigation*>(ptr), static_cast<void (QGamepadKeyNavigation::*)(Qt::Key)>(&QGamepadKeyNavigation::buttonL1KeyChanged), static_cast<MyQGamepadKeyNavigation*>(ptr), static_cast<void (MyQGamepadKeyNavigation::*)(Qt::Key)>(&MyQGamepadKeyNavigation::Signal_ButtonL1KeyChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepadKeyNavigation_DisconnectButtonL1KeyChanged(void* ptr)
@@ -982,10 +967,10 @@ long long QGamepadKeyNavigation_ButtonL2Key(void* ptr)
 	return static_cast<QGamepadKeyNavigation*>(ptr)->buttonL2Key();
 }
 
-void QGamepadKeyNavigation_ConnectButtonL2KeyChanged(void* ptr)
+void QGamepadKeyNavigation_ConnectButtonL2KeyChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<Qt::Key>();
-	QObject::connect(static_cast<QGamepadKeyNavigation*>(ptr), static_cast<void (QGamepadKeyNavigation::*)(Qt::Key)>(&QGamepadKeyNavigation::buttonL2KeyChanged), static_cast<MyQGamepadKeyNavigation*>(ptr), static_cast<void (MyQGamepadKeyNavigation::*)(Qt::Key)>(&MyQGamepadKeyNavigation::Signal_ButtonL2KeyChanged));
+	QObject::connect(static_cast<QGamepadKeyNavigation*>(ptr), static_cast<void (QGamepadKeyNavigation::*)(Qt::Key)>(&QGamepadKeyNavigation::buttonL2KeyChanged), static_cast<MyQGamepadKeyNavigation*>(ptr), static_cast<void (MyQGamepadKeyNavigation::*)(Qt::Key)>(&MyQGamepadKeyNavigation::Signal_ButtonL2KeyChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepadKeyNavigation_DisconnectButtonL2KeyChanged(void* ptr)
@@ -1003,10 +988,10 @@ long long QGamepadKeyNavigation_ButtonL3Key(void* ptr)
 	return static_cast<QGamepadKeyNavigation*>(ptr)->buttonL3Key();
 }
 
-void QGamepadKeyNavigation_ConnectButtonL3KeyChanged(void* ptr)
+void QGamepadKeyNavigation_ConnectButtonL3KeyChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<Qt::Key>();
-	QObject::connect(static_cast<QGamepadKeyNavigation*>(ptr), static_cast<void (QGamepadKeyNavigation::*)(Qt::Key)>(&QGamepadKeyNavigation::buttonL3KeyChanged), static_cast<MyQGamepadKeyNavigation*>(ptr), static_cast<void (MyQGamepadKeyNavigation::*)(Qt::Key)>(&MyQGamepadKeyNavigation::Signal_ButtonL3KeyChanged));
+	QObject::connect(static_cast<QGamepadKeyNavigation*>(ptr), static_cast<void (QGamepadKeyNavigation::*)(Qt::Key)>(&QGamepadKeyNavigation::buttonL3KeyChanged), static_cast<MyQGamepadKeyNavigation*>(ptr), static_cast<void (MyQGamepadKeyNavigation::*)(Qt::Key)>(&MyQGamepadKeyNavigation::Signal_ButtonL3KeyChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepadKeyNavigation_DisconnectButtonL3KeyChanged(void* ptr)
@@ -1024,10 +1009,10 @@ long long QGamepadKeyNavigation_ButtonR1Key(void* ptr)
 	return static_cast<QGamepadKeyNavigation*>(ptr)->buttonR1Key();
 }
 
-void QGamepadKeyNavigation_ConnectButtonR1KeyChanged(void* ptr)
+void QGamepadKeyNavigation_ConnectButtonR1KeyChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<Qt::Key>();
-	QObject::connect(static_cast<QGamepadKeyNavigation*>(ptr), static_cast<void (QGamepadKeyNavigation::*)(Qt::Key)>(&QGamepadKeyNavigation::buttonR1KeyChanged), static_cast<MyQGamepadKeyNavigation*>(ptr), static_cast<void (MyQGamepadKeyNavigation::*)(Qt::Key)>(&MyQGamepadKeyNavigation::Signal_ButtonR1KeyChanged));
+	QObject::connect(static_cast<QGamepadKeyNavigation*>(ptr), static_cast<void (QGamepadKeyNavigation::*)(Qt::Key)>(&QGamepadKeyNavigation::buttonR1KeyChanged), static_cast<MyQGamepadKeyNavigation*>(ptr), static_cast<void (MyQGamepadKeyNavigation::*)(Qt::Key)>(&MyQGamepadKeyNavigation::Signal_ButtonR1KeyChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepadKeyNavigation_DisconnectButtonR1KeyChanged(void* ptr)
@@ -1045,10 +1030,10 @@ long long QGamepadKeyNavigation_ButtonR2Key(void* ptr)
 	return static_cast<QGamepadKeyNavigation*>(ptr)->buttonR2Key();
 }
 
-void QGamepadKeyNavigation_ConnectButtonR2KeyChanged(void* ptr)
+void QGamepadKeyNavigation_ConnectButtonR2KeyChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<Qt::Key>();
-	QObject::connect(static_cast<QGamepadKeyNavigation*>(ptr), static_cast<void (QGamepadKeyNavigation::*)(Qt::Key)>(&QGamepadKeyNavigation::buttonR2KeyChanged), static_cast<MyQGamepadKeyNavigation*>(ptr), static_cast<void (MyQGamepadKeyNavigation::*)(Qt::Key)>(&MyQGamepadKeyNavigation::Signal_ButtonR2KeyChanged));
+	QObject::connect(static_cast<QGamepadKeyNavigation*>(ptr), static_cast<void (QGamepadKeyNavigation::*)(Qt::Key)>(&QGamepadKeyNavigation::buttonR2KeyChanged), static_cast<MyQGamepadKeyNavigation*>(ptr), static_cast<void (MyQGamepadKeyNavigation::*)(Qt::Key)>(&MyQGamepadKeyNavigation::Signal_ButtonR2KeyChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepadKeyNavigation_DisconnectButtonR2KeyChanged(void* ptr)
@@ -1066,10 +1051,10 @@ long long QGamepadKeyNavigation_ButtonR3Key(void* ptr)
 	return static_cast<QGamepadKeyNavigation*>(ptr)->buttonR3Key();
 }
 
-void QGamepadKeyNavigation_ConnectButtonR3KeyChanged(void* ptr)
+void QGamepadKeyNavigation_ConnectButtonR3KeyChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<Qt::Key>();
-	QObject::connect(static_cast<QGamepadKeyNavigation*>(ptr), static_cast<void (QGamepadKeyNavigation::*)(Qt::Key)>(&QGamepadKeyNavigation::buttonR3KeyChanged), static_cast<MyQGamepadKeyNavigation*>(ptr), static_cast<void (MyQGamepadKeyNavigation::*)(Qt::Key)>(&MyQGamepadKeyNavigation::Signal_ButtonR3KeyChanged));
+	QObject::connect(static_cast<QGamepadKeyNavigation*>(ptr), static_cast<void (QGamepadKeyNavigation::*)(Qt::Key)>(&QGamepadKeyNavigation::buttonR3KeyChanged), static_cast<MyQGamepadKeyNavigation*>(ptr), static_cast<void (MyQGamepadKeyNavigation::*)(Qt::Key)>(&MyQGamepadKeyNavigation::Signal_ButtonR3KeyChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepadKeyNavigation_DisconnectButtonR3KeyChanged(void* ptr)
@@ -1087,10 +1072,10 @@ long long QGamepadKeyNavigation_ButtonSelectKey(void* ptr)
 	return static_cast<QGamepadKeyNavigation*>(ptr)->buttonSelectKey();
 }
 
-void QGamepadKeyNavigation_ConnectButtonSelectKeyChanged(void* ptr)
+void QGamepadKeyNavigation_ConnectButtonSelectKeyChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<Qt::Key>();
-	QObject::connect(static_cast<QGamepadKeyNavigation*>(ptr), static_cast<void (QGamepadKeyNavigation::*)(Qt::Key)>(&QGamepadKeyNavigation::buttonSelectKeyChanged), static_cast<MyQGamepadKeyNavigation*>(ptr), static_cast<void (MyQGamepadKeyNavigation::*)(Qt::Key)>(&MyQGamepadKeyNavigation::Signal_ButtonSelectKeyChanged));
+	QObject::connect(static_cast<QGamepadKeyNavigation*>(ptr), static_cast<void (QGamepadKeyNavigation::*)(Qt::Key)>(&QGamepadKeyNavigation::buttonSelectKeyChanged), static_cast<MyQGamepadKeyNavigation*>(ptr), static_cast<void (MyQGamepadKeyNavigation::*)(Qt::Key)>(&MyQGamepadKeyNavigation::Signal_ButtonSelectKeyChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepadKeyNavigation_DisconnectButtonSelectKeyChanged(void* ptr)
@@ -1108,10 +1093,10 @@ long long QGamepadKeyNavigation_ButtonStartKey(void* ptr)
 	return static_cast<QGamepadKeyNavigation*>(ptr)->buttonStartKey();
 }
 
-void QGamepadKeyNavigation_ConnectButtonStartKeyChanged(void* ptr)
+void QGamepadKeyNavigation_ConnectButtonStartKeyChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<Qt::Key>();
-	QObject::connect(static_cast<QGamepadKeyNavigation*>(ptr), static_cast<void (QGamepadKeyNavigation::*)(Qt::Key)>(&QGamepadKeyNavigation::buttonStartKeyChanged), static_cast<MyQGamepadKeyNavigation*>(ptr), static_cast<void (MyQGamepadKeyNavigation::*)(Qt::Key)>(&MyQGamepadKeyNavigation::Signal_ButtonStartKeyChanged));
+	QObject::connect(static_cast<QGamepadKeyNavigation*>(ptr), static_cast<void (QGamepadKeyNavigation::*)(Qt::Key)>(&QGamepadKeyNavigation::buttonStartKeyChanged), static_cast<MyQGamepadKeyNavigation*>(ptr), static_cast<void (MyQGamepadKeyNavigation::*)(Qt::Key)>(&MyQGamepadKeyNavigation::Signal_ButtonStartKeyChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepadKeyNavigation_DisconnectButtonStartKeyChanged(void* ptr)
@@ -1129,10 +1114,10 @@ long long QGamepadKeyNavigation_ButtonXKey(void* ptr)
 	return static_cast<QGamepadKeyNavigation*>(ptr)->buttonXKey();
 }
 
-void QGamepadKeyNavigation_ConnectButtonXKeyChanged(void* ptr)
+void QGamepadKeyNavigation_ConnectButtonXKeyChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<Qt::Key>();
-	QObject::connect(static_cast<QGamepadKeyNavigation*>(ptr), static_cast<void (QGamepadKeyNavigation::*)(Qt::Key)>(&QGamepadKeyNavigation::buttonXKeyChanged), static_cast<MyQGamepadKeyNavigation*>(ptr), static_cast<void (MyQGamepadKeyNavigation::*)(Qt::Key)>(&MyQGamepadKeyNavigation::Signal_ButtonXKeyChanged));
+	QObject::connect(static_cast<QGamepadKeyNavigation*>(ptr), static_cast<void (QGamepadKeyNavigation::*)(Qt::Key)>(&QGamepadKeyNavigation::buttonXKeyChanged), static_cast<MyQGamepadKeyNavigation*>(ptr), static_cast<void (MyQGamepadKeyNavigation::*)(Qt::Key)>(&MyQGamepadKeyNavigation::Signal_ButtonXKeyChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepadKeyNavigation_DisconnectButtonXKeyChanged(void* ptr)
@@ -1150,10 +1135,10 @@ long long QGamepadKeyNavigation_ButtonYKey(void* ptr)
 	return static_cast<QGamepadKeyNavigation*>(ptr)->buttonYKey();
 }
 
-void QGamepadKeyNavigation_ConnectButtonYKeyChanged(void* ptr)
+void QGamepadKeyNavigation_ConnectButtonYKeyChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<Qt::Key>();
-	QObject::connect(static_cast<QGamepadKeyNavigation*>(ptr), static_cast<void (QGamepadKeyNavigation::*)(Qt::Key)>(&QGamepadKeyNavigation::buttonYKeyChanged), static_cast<MyQGamepadKeyNavigation*>(ptr), static_cast<void (MyQGamepadKeyNavigation::*)(Qt::Key)>(&MyQGamepadKeyNavigation::Signal_ButtonYKeyChanged));
+	QObject::connect(static_cast<QGamepadKeyNavigation*>(ptr), static_cast<void (QGamepadKeyNavigation::*)(Qt::Key)>(&QGamepadKeyNavigation::buttonYKeyChanged), static_cast<MyQGamepadKeyNavigation*>(ptr), static_cast<void (MyQGamepadKeyNavigation::*)(Qt::Key)>(&MyQGamepadKeyNavigation::Signal_ButtonYKeyChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepadKeyNavigation_DisconnectButtonYKeyChanged(void* ptr)
@@ -1171,10 +1156,10 @@ long long QGamepadKeyNavigation_DownKey(void* ptr)
 	return static_cast<QGamepadKeyNavigation*>(ptr)->downKey();
 }
 
-void QGamepadKeyNavigation_ConnectDownKeyChanged(void* ptr)
+void QGamepadKeyNavigation_ConnectDownKeyChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<Qt::Key>();
-	QObject::connect(static_cast<QGamepadKeyNavigation*>(ptr), static_cast<void (QGamepadKeyNavigation::*)(Qt::Key)>(&QGamepadKeyNavigation::downKeyChanged), static_cast<MyQGamepadKeyNavigation*>(ptr), static_cast<void (MyQGamepadKeyNavigation::*)(Qt::Key)>(&MyQGamepadKeyNavigation::Signal_DownKeyChanged));
+	QObject::connect(static_cast<QGamepadKeyNavigation*>(ptr), static_cast<void (QGamepadKeyNavigation::*)(Qt::Key)>(&QGamepadKeyNavigation::downKeyChanged), static_cast<MyQGamepadKeyNavigation*>(ptr), static_cast<void (MyQGamepadKeyNavigation::*)(Qt::Key)>(&MyQGamepadKeyNavigation::Signal_DownKeyChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepadKeyNavigation_DisconnectDownKeyChanged(void* ptr)
@@ -1192,9 +1177,9 @@ void* QGamepadKeyNavigation_Gamepad(void* ptr)
 	return static_cast<QGamepadKeyNavigation*>(ptr)->gamepad();
 }
 
-void QGamepadKeyNavigation_ConnectGamepadChanged(void* ptr)
+void QGamepadKeyNavigation_ConnectGamepadChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGamepadKeyNavigation*>(ptr), static_cast<void (QGamepadKeyNavigation::*)(QGamepad *)>(&QGamepadKeyNavigation::gamepadChanged), static_cast<MyQGamepadKeyNavigation*>(ptr), static_cast<void (MyQGamepadKeyNavigation::*)(QGamepad *)>(&MyQGamepadKeyNavigation::Signal_GamepadChanged));
+	QObject::connect(static_cast<QGamepadKeyNavigation*>(ptr), static_cast<void (QGamepadKeyNavigation::*)(QGamepad *)>(&QGamepadKeyNavigation::gamepadChanged), static_cast<MyQGamepadKeyNavigation*>(ptr), static_cast<void (MyQGamepadKeyNavigation::*)(QGamepad *)>(&MyQGamepadKeyNavigation::Signal_GamepadChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepadKeyNavigation_DisconnectGamepadChanged(void* ptr)
@@ -1212,10 +1197,10 @@ long long QGamepadKeyNavigation_LeftKey(void* ptr)
 	return static_cast<QGamepadKeyNavigation*>(ptr)->leftKey();
 }
 
-void QGamepadKeyNavigation_ConnectLeftKeyChanged(void* ptr)
+void QGamepadKeyNavigation_ConnectLeftKeyChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<Qt::Key>();
-	QObject::connect(static_cast<QGamepadKeyNavigation*>(ptr), static_cast<void (QGamepadKeyNavigation::*)(Qt::Key)>(&QGamepadKeyNavigation::leftKeyChanged), static_cast<MyQGamepadKeyNavigation*>(ptr), static_cast<void (MyQGamepadKeyNavigation::*)(Qt::Key)>(&MyQGamepadKeyNavigation::Signal_LeftKeyChanged));
+	QObject::connect(static_cast<QGamepadKeyNavigation*>(ptr), static_cast<void (QGamepadKeyNavigation::*)(Qt::Key)>(&QGamepadKeyNavigation::leftKeyChanged), static_cast<MyQGamepadKeyNavigation*>(ptr), static_cast<void (MyQGamepadKeyNavigation::*)(Qt::Key)>(&MyQGamepadKeyNavigation::Signal_LeftKeyChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepadKeyNavigation_DisconnectLeftKeyChanged(void* ptr)
@@ -1233,10 +1218,10 @@ long long QGamepadKeyNavigation_RightKey(void* ptr)
 	return static_cast<QGamepadKeyNavigation*>(ptr)->rightKey();
 }
 
-void QGamepadKeyNavigation_ConnectRightKeyChanged(void* ptr)
+void QGamepadKeyNavigation_ConnectRightKeyChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<Qt::Key>();
-	QObject::connect(static_cast<QGamepadKeyNavigation*>(ptr), static_cast<void (QGamepadKeyNavigation::*)(Qt::Key)>(&QGamepadKeyNavigation::rightKeyChanged), static_cast<MyQGamepadKeyNavigation*>(ptr), static_cast<void (MyQGamepadKeyNavigation::*)(Qt::Key)>(&MyQGamepadKeyNavigation::Signal_RightKeyChanged));
+	QObject::connect(static_cast<QGamepadKeyNavigation*>(ptr), static_cast<void (QGamepadKeyNavigation::*)(Qt::Key)>(&QGamepadKeyNavigation::rightKeyChanged), static_cast<MyQGamepadKeyNavigation*>(ptr), static_cast<void (MyQGamepadKeyNavigation::*)(Qt::Key)>(&MyQGamepadKeyNavigation::Signal_RightKeyChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepadKeyNavigation_DisconnectRightKeyChanged(void* ptr)
@@ -1461,10 +1446,10 @@ long long QGamepadKeyNavigation_UpKey(void* ptr)
 	return static_cast<QGamepadKeyNavigation*>(ptr)->upKey();
 }
 
-void QGamepadKeyNavigation_ConnectUpKeyChanged(void* ptr)
+void QGamepadKeyNavigation_ConnectUpKeyChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<Qt::Key>();
-	QObject::connect(static_cast<QGamepadKeyNavigation*>(ptr), static_cast<void (QGamepadKeyNavigation::*)(Qt::Key)>(&QGamepadKeyNavigation::upKeyChanged), static_cast<MyQGamepadKeyNavigation*>(ptr), static_cast<void (MyQGamepadKeyNavigation::*)(Qt::Key)>(&MyQGamepadKeyNavigation::Signal_UpKeyChanged));
+	QObject::connect(static_cast<QGamepadKeyNavigation*>(ptr), static_cast<void (QGamepadKeyNavigation::*)(Qt::Key)>(&QGamepadKeyNavigation::upKeyChanged), static_cast<MyQGamepadKeyNavigation*>(ptr), static_cast<void (MyQGamepadKeyNavigation::*)(Qt::Key)>(&MyQGamepadKeyNavigation::Signal_UpKeyChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepadKeyNavigation_DisconnectUpKeyChanged(void* ptr)
@@ -1541,22 +1526,6 @@ void* QGamepadKeyNavigation___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QGamepadKeyNavigation___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QGamepadKeyNavigation___qFindChildren_setList2(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QGamepadKeyNavigation___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 void QGamepadKeyNavigation_ChildEventDefault(void* ptr, void* event)
 {
 		static_cast<QGamepadKeyNavigation*>(ptr)->QGamepadKeyNavigation::childEvent(static_cast<QChildEvent*>(event));
@@ -1608,7 +1577,7 @@ public:
 	void Signal_ConnectedGamepadsChanged() { callbackQGamepadManager_ConnectedGamepadsChanged(this); };
 	bool isConfigurationNeeded(int deviceId) const { return callbackQGamepadManager_IsConfigurationNeeded(const_cast<void*>(static_cast<const void*>(this)), deviceId) != 0; };
 	void resetConfiguration(int deviceId) { callbackQGamepadManager_ResetConfiguration(this, deviceId); };
-	void setSettingsFile(const QString & file) { QByteArray t971c41 = file.toUtf8(); QtGamepad_PackedString filePacked = { const_cast<char*>(t971c41.prepend("WHITESPACE").constData()+10), t971c41.size()-10 };callbackQGamepadManager_SetSettingsFile(this, filePacked); };
+	void setSettingsFile(const QString & file) { QByteArray* t971c41 = new QByteArray(file.toUtf8()); QtGamepad_PackedString filePacked = { const_cast<char*>(t971c41->prepend("WHITESPACE").constData()+10), t971c41->size()-10, t971c41 };callbackQGamepadManager_SetSettingsFile(this, filePacked); };
 	void childEvent(QChildEvent * event) { callbackQGamepadManager_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQGamepadManager_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQGamepadManager_CustomEvent(this, event); };
@@ -1618,22 +1587,23 @@ public:
 	bool event(QEvent * e) { return callbackQGamepadManager_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQGamepadManager_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGamepadManager_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtGamepad_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQGamepadManager_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtGamepad_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQGamepadManager_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQGamepadManager_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QGamepadManager*)
 Q_DECLARE_METATYPE(MyQGamepadManager*)
 
 int QGamepadManager_QGamepadManager_QRegisterMetaType(){qRegisterMetaType<QGamepadManager*>(); return qRegisterMetaType<MyQGamepadManager*>();}
 
 struct QtGamepad_PackedList QGamepadManager_ConnectedGamepads(void* ptr)
 {
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QGamepadManager*>(ptr)->connectedGamepads()); QtGamepad_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<int>* tmpValue3d1c40 = new QList<int>(static_cast<QGamepadManager*>(ptr)->connectedGamepads()); QtGamepad_PackedList { tmpValue3d1c40, tmpValue3d1c40->size() }; });
 }
 
-void QGamepadManager_ConnectConnectedGamepadsChanged(void* ptr)
+void QGamepadManager_ConnectConnectedGamepadsChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QGamepadManager*>(ptr), static_cast<void (QGamepadManager::*)()>(&QGamepadManager::connectedGamepadsChanged), static_cast<MyQGamepadManager*>(ptr), static_cast<void (MyQGamepadManager::*)()>(&MyQGamepadManager::Signal_ConnectedGamepadsChanged));
+	QObject::connect(static_cast<QGamepadManager*>(ptr), static_cast<void (QGamepadManager::*)()>(&QGamepadManager::connectedGamepadsChanged), static_cast<MyQGamepadManager*>(ptr), static_cast<void (MyQGamepadManager::*)()>(&MyQGamepadManager::Signal_ConnectedGamepadsChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QGamepadManager_DisconnectConnectedGamepadsChanged(void* ptr)
@@ -1648,7 +1618,7 @@ void QGamepadManager_ConnectedGamepadsChanged(void* ptr)
 
 struct QtGamepad_PackedString QGamepadManager_GamepadName(void* ptr, int deviceId)
 {
-	return ({ QByteArray tb309b5 = static_cast<QGamepadManager*>(ptr)->gamepadName(deviceId).toUtf8(); QtGamepad_PackedString { const_cast<char*>(tb309b5.prepend("WHITESPACE").constData()+10), tb309b5.size()-10 }; });
+	return ({ QByteArray* tb309b5 = new QByteArray(static_cast<QGamepadManager*>(ptr)->gamepadName(deviceId).toUtf8()); QtGamepad_PackedString { const_cast<char*>(tb309b5->prepend("WHITESPACE").constData()+10), tb309b5->size()-10, tb309b5 }; });
 }
 
 void* QGamepadManager_QGamepadManager_Instance()
@@ -1768,22 +1738,6 @@ void QGamepadManager___findChildren_setList3(void* ptr, void* i)
 }
 
 void* QGamepadManager___findChildren_newList3(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
-void* QGamepadManager___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QGamepadManager___qFindChildren_setList2(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QGamepadManager___qFindChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();

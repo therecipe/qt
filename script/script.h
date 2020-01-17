@@ -8,12 +8,14 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
+int QScriptClass_QScriptClass_QRegisterMetaType();
 int QScriptEngine_QScriptEngine_QRegisterMetaType();
+int QScriptEngineAgent_QScriptEngineAgent_QRegisterMetaType();
 int QScriptExtensionPlugin_QScriptExtensionPlugin_QRegisterMetaType();
 extern "C" {
 #endif
 
-struct QtScript_PackedString { char* data; long long len; };
+struct QtScript_PackedString { char* data; long long len; void* ptr; };
 struct QtScript_PackedList { void* data; long long len; };
 void* QScriptClass_NewQScriptClass(void* engine);
 void* QScriptClass_Engine(void* ptr);
@@ -107,7 +109,7 @@ void QScriptEngine_SetAgent(void* ptr, void* agent);
 void QScriptEngine_SetDefaultPrototype(void* ptr, int metaTypeId, void* prototype);
 void QScriptEngine_SetGlobalObject(void* ptr, void* object);
 void QScriptEngine_SetProcessEventsInterval(void* ptr, int interval);
-void QScriptEngine_ConnectSignalHandlerException(void* ptr);
+void QScriptEngine_ConnectSignalHandlerException(void* ptr, long long t);
 void QScriptEngine_DisconnectSignalHandlerException(void* ptr);
 void QScriptEngine_SignalHandlerException(void* ptr, void* exception);
 void* QScriptEngine_ToObject(void* ptr, void* value);
@@ -130,9 +132,6 @@ void* QScriptEngine___findChildren_newList(void* ptr);
 void* QScriptEngine___findChildren_atList3(void* ptr, int i);
 void QScriptEngine___findChildren_setList3(void* ptr, void* i);
 void* QScriptEngine___findChildren_newList3(void* ptr);
-void* QScriptEngine___qFindChildren_atList2(void* ptr, int i);
-void QScriptEngine___qFindChildren_setList2(void* ptr, void* i);
-void* QScriptEngine___qFindChildren_newList2(void* ptr);
 void QScriptEngine_ChildEventDefault(void* ptr, void* event);
 void QScriptEngine_ConnectNotifyDefault(void* ptr, void* sign);
 void QScriptEngine_CustomEventDefault(void* ptr, void* event);
@@ -186,9 +185,6 @@ void* QScriptExtensionPlugin___findChildren_newList(void* ptr);
 void* QScriptExtensionPlugin___findChildren_atList3(void* ptr, int i);
 void QScriptExtensionPlugin___findChildren_setList3(void* ptr, void* i);
 void* QScriptExtensionPlugin___findChildren_newList3(void* ptr);
-void* QScriptExtensionPlugin___qFindChildren_atList2(void* ptr, int i);
-void QScriptExtensionPlugin___qFindChildren_setList2(void* ptr, void* i);
-void* QScriptExtensionPlugin___qFindChildren_newList2(void* ptr);
 void QScriptExtensionPlugin_ChildEvent(void* ptr, void* event);
 void QScriptExtensionPlugin_ChildEventDefault(void* ptr, void* event);
 void QScriptExtensionPlugin_ConnectNotify(void* ptr, void* sign);

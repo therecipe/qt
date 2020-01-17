@@ -2,9 +2,11 @@ package cmd
 
 import (
 	"fmt"
+	"os"
 	"os/exec"
 	"path/filepath"
 	"runtime"
+	"strconv"
 	"strings"
 	"sync"
 
@@ -18,8 +20,9 @@ var (
 	imported      = make(map[string]string)
 	importedMutex = new(sync.Mutex)
 
-	importedStd      = make(map[string]struct{})
-	importedStdMutex = new(sync.Mutex)
+	importedStd       = make(map[string]struct{})
+	importedStdMutex  = new(sync.Mutex)
+	importsQmlOrQuick string
 )
 
 func IsStdPkg(pkg string) bool {
@@ -38,6 +41,7 @@ func IsStdPkg(pkg string) bool {
 	return false
 }
 
+//TODO:
 func GetImports(path, target, tagsCustom string, level int, onlyDirect bool) []string {
 	utils.Log.WithField("path", path).WithField("level", level).Debug("get imports")
 
@@ -58,11 +62,48 @@ func GetImports(path, target, tagsCustom string, level int, onlyDirect bool) []s
 	imp := "Deps"
 	if onlyDirect {
 		imp = "Imports"
+	} else {
+		defer func() {
+			importedStdMutex.Lock()
+			if importsQmlOrQuick == "" {
+				stdImport := make([]string, len(importedStd)+1)
+				var c int
+				for k := range importedStd {
+					stdImport[c] = k
+					c++
+				}
+				stdImport[len(stdImport)-1] = "github.com/therecipe/qt/internal/binding/runtime"
+
+				cmd := utils.GoList(fmt.Sprintf("{{if not .Standard}}{{if eq .ImportPath \"%v\"}}{{else}}{{range .Imports}}{{if eq . \"github.com/therecipe/qt/qml\" \"github.com/therecipe/qt/quick\"}}{{.}}{{end}}{{end}}{{end}}{{end}}", strings.Join(stdImport, "\" \"")), "-deps", utils.BuildTags(tags))
+				if !utils.UseGOMOD(path) || (utils.UseGOMOD(path) && !strings.Contains(strings.Replace(path, "\\", "/", -1), "/vendor/")) {
+					cmd.Dir = path
+				} else if utils.UseGOMOD(path) && strings.Contains(strings.Replace(path, "\\", "/", -1), "/vendor/") {
+					cmd.Dir = filepath.Dir(utils.GOMOD(path))
+					vl := strings.Split(strings.Replace(path, "\\", "/", -1), "/vendor/")
+					cmd.Args = append(cmd.Args, vl[len(vl)-1])
+				}
+				for k, v := range env {
+					cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", k, v))
+				}
+
+				importsQmlOrQuick = fmt.Sprint(strings.TrimSpace(utils.RunCmd(cmd, "go list imports qml or quick")) != "")
+
+				utils.Log.WithField("path", path).Debug("project depends on qml or quick: " + importsQmlOrQuick)
+			}
+			importedStdMutex.Unlock()
+		}()
 	}
 
 	//TODO: cache
-	cmd := utils.GoList("{{join .TestImports \"|\"}}|{{join .XTestImports \"|\"}}|{{join ."+imp+" \"|\"}}", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))
-	cmd.Dir = path
+	cmd := utils.GoList("{{join .TestImports \"|\"}}|{{join .XTestImports \"|\"}}|{{join ."+imp+" \"|\"}}", utils.BuildTags(tags))
+	if !utils.UseGOMOD(path) || (utils.UseGOMOD(path) && !strings.Contains(strings.Replace(path, "\\", "/", -1), "/vendor/")) {
+		cmd.Dir = path
+	} else if utils.UseGOMOD(path) && strings.Contains(strings.Replace(path, "\\", "/", -1), "/vendor/") {
+		cmd.Dir = filepath.Dir(utils.GOMOD(path))
+		vl := strings.Split(strings.Replace(path, "\\", "/", -1), "/vendor/")
+		cmd.Args = append(cmd.Args, vl[len(vl)-1])
+	}
+
 	for k, v := range env {
 		cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", k, v))
 	}
@@ -111,7 +152,7 @@ func GetImports(path, target, tagsCustom string, level int, onlyDirect bool) []s
 				return
 			}
 
-			cmd := utils.GoList("{{.Dir}}", "-find", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")), l)
+			cmd := utils.GoList("{{.Dir}}", "-find", utils.BuildTags(tags), l)
 			for k, v := range env {
 				cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", k, v))
 			}
@@ -137,11 +178,21 @@ func GetImports(path, target, tagsCustom string, level int, onlyDirect bool) []s
 }
 
 func GetQtStdImports() (o []string) {
+	importedStdMutex.Lock()
 	for k := range importedStd {
 		o = append(o, strings.TrimPrefix(k, "github.com/therecipe/qt/"))
 	}
+	importedStdMutex.Unlock()
 	return
 }
+
+func ImportsQmlOrQuick() (o bool) {
+	importedStdMutex.Lock()
+	o = importsQmlOrQuick == "true"
+	importedStdMutex.Unlock()
+	return
+}
+func CleanupImportsQmlOrQuickForCI() { importsQmlOrQuick = "" }
 
 func GetGoFiles(path, target, tagsCustom string) []string {
 	utils.Log.WithField("path", path).WithField("target", target).WithField("tagsCustom", tagsCustom).Debug("get go files")
@@ -152,8 +203,15 @@ func GetGoFiles(path, target, tagsCustom string) []string {
 	}
 
 	//TODO: cache
-	cmd := utils.GoList("{{join .GoFiles \"|\"}}|{{join .CgoFiles \"|\"}}|{{join .TestGoFiles \"|\"}}|{{join .XTestGoFiles \"|\"}}", "-find", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))
-	cmd.Dir = path
+	cmd := utils.GoList("{{join .GoFiles \"|\"}}|{{join .CgoFiles \"|\"}}|{{join .TestGoFiles \"|\"}}|{{join .XTestGoFiles \"|\"}}", "-find", utils.BuildTags(tags))
+	if !utils.UseGOMOD(path) || (utils.UseGOMOD(path) && !strings.Contains(strings.Replace(path, "\\", "/", -1), "/vendor/")) {
+		cmd.Dir = path
+	} else if utils.UseGOMOD(path) && strings.Contains(strings.Replace(path, "\\", "/", -1), "/vendor/") {
+		cmd.Dir = filepath.Dir(utils.GOMOD(path))
+		vl := strings.Split(strings.Replace(path, "\\", "/", -1), "/vendor/")
+		cmd.Args = append(cmd.Args, vl[len(vl)-1])
+	}
+
 	for k, v := range env {
 		cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", k, v))
 	}
@@ -170,4 +228,43 @@ func GetGoFiles(path, target, tagsCustom string) []string {
 		olibs = append(olibs, filepath.Join(path, k))
 	}
 	return olibs
+}
+
+//TODO: directly parse go.mod to make it possible to skip "go mod download"
+func QtModVersion(path string) string {
+	cmd := exec.Command("go", "list", "-m", "-f", "{{.Version}}", "github.com/therecipe/qt")
+	cmd.Dir = path
+	version := strings.TrimSpace(utils.RunCmdOptional(cmd, "get qt tooling version"))
+	if !strings.HasPrefix(version, "v") {
+		return "latest"
+	}
+	return version
+}
+
+func RestartWithPinnedVersion(path string) bool {
+	cmd := exec.Command("go", "mod", "download")
+	cmd.Dir = path
+	utils.RunCmd(cmd, "download qt based on the go.mod version")
+
+	if v := QtModVersion(path); strings.Count(v, "-") == 2 {
+		if i, err := strconv.ParseInt(strings.Split(v, "-")[1], 10, 64); !(err == nil && i >= 20191110184604) { //6e660afb3df7
+			return false
+		}
+	} else {
+		return false
+	}
+
+	cmd = exec.Command("go", "install", "-v", "-tags=no_env", "github.com/therecipe/qt/cmd/...")
+	cmd.Dir = path
+	cmd.Env = append(os.Environ(), "GOBIN="+utils.GOBIN())
+	utils.RunCmd(cmd, "re-install qt tooling based on the go.mod version")
+
+	procAttr := new(os.ProcAttr)
+	procAttr.Files = []*os.File{os.Stdin, os.Stdout, os.Stderr}
+	p, err := os.StartProcess(filepath.Join(utils.GOBIN(), filepath.Base(os.Args[0])), append(os.Args, "non_recursive"), procAttr)
+	if err != nil {
+		utils.Log.WithError(err).Error("failed to RestartWithPinnedVersion")
+	}
+	p.Wait()
+	return true
 }

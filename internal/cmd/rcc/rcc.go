@@ -24,12 +24,25 @@ var (
 	ResourceNamesMutex = new(sync.Mutex)
 )
 
-func Rcc(path, target, tagsCustom, output_dir string, useuic, quickcompiler, deploying bool) {
-	if utils.UseGOMOD(path) {
+func Rcc(path, target, tagsCustom, output_dir string, useuic, quickcompiler, deploying bool, skipSetup bool) {
+	if utils.UseGOMOD(path) && !skipSetup {
 		if !utils.ExistsDir(filepath.Join(filepath.Dir(utils.GOMOD(path)), "vendor")) {
 			cmd := exec.Command("go", "mod", "vendor")
 			cmd.Dir = path
 			utils.RunCmd(cmd, "go mod vendor")
+		}
+		if utils.QT_DOCKER() {
+			cmd := exec.Command("go", "get", "-v", "-d", "github.com/therecipe/qt/internal/binding/files/docs/"+utils.QT_API(utils.QT_VERSION())+"@"+cmd.QtModVersion(filepath.Dir(utils.GOMOD(path)))) //TODO: needs to pull 5.8.0 if QT_WEBKIT
+			cmd.Dir = path
+			if !utils.QT_PKG_CONFIG() {
+				utils.RunCmdOptional(cmd, "go get docs") //TODO: this can fail if QT_PKG_CONFIG
+			}
+
+			if strings.HasPrefix(target, "sailfish") || strings.HasPrefix(target, "android") { //TODO: generate android and sailfish minimal instead
+				cmd := exec.Command(filepath.Join(utils.GOBIN(), "qtsetup"), "generate", target)
+				cmd.Dir = path
+				utils.RunCmd(cmd, "run setup")
+			}
 		}
 	}
 
@@ -37,7 +50,11 @@ func Rcc(path, target, tagsCustom, output_dir string, useuic, quickcompiler, dep
 
 	if !deploying && utils.QT_DOCKER() {
 		if idug, ok := os.LookupEnv("IDUG"); ok {
-			utils.RunCmd(exec.Command("chown", "-R", idug, path), "chown files to user")
+			if utils.UseGOMOD(path) {
+				utils.RunCmd(exec.Command("chown", "-R", idug, filepath.Dir(utils.GOMOD(path))), "chown files to user")
+			} else {
+				utils.RunCmd(exec.Command("chown", "-R", idug, path), "chown files to user")
+			}
 		}
 	}
 }
@@ -85,7 +102,9 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 	}
 
 	if hasUIFiles {
-		if uic := utils.ToolPath("uic", target); utils.ExistsFile(uic) {
+		uic := utils.ToolPath("uic", target)
+		if (target == "windows" && utils.ExistsFile(uic+".exe")) || utils.ExistsFile(uic) {
+
 			path := filepath.Join(path, "ui")
 
 			files, err = ioutil.ReadDir(filepath.Join(path))
@@ -104,7 +123,7 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 			for _, filePath := range fileList {
 
 				utils.RunCmd(exec.Command(uic, "-o", filepath.Join(path, "uic_tmp.cpp"), filePath), fmt.Sprintf("execute uic for %v on %v", target, runtime.GOOS))
-				file := utils.Load(filepath.Join(path, "uic_tmp.cpp"))
+				file := strings.Replace(utils.Load(filepath.Join(path, "uic_tmp.cpp")), "\r\n", "\n", -1)
 				defer utils.RemoveAll(filepath.Join(path, "uic_tmp.cpp"))
 
 				name := strings.TrimSpace(strings.Split(strings.Split(file, "class Ui_")[1], "{")[0])
@@ -133,6 +152,8 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 						module = "webengine"
 					case "QCameraViewfinder":
 						module = "multimedia"
+					case "QQuickWidget":
+						module = "quick"
 					}
 					fmt.Fprintf(bb, "%v%v *%v.%v\n", strings.Title(ls[1][:1]), ls[1][1:], module, ls[0])
 
@@ -147,8 +168,10 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 				fmt.Fprintln(bb, "}")
 
 				if useuic {
-					if typ == "QGroupBox" {
+					if typ == "QGroupBox" || typ == "QMdiArea" || typ == "QScrollArea" || typ == "QStackedWidget" || typ == "QTabWidget" || typ == "QWizardPage" {
 						fmt.Fprintf(bb, "w := &%[1]v{%[2]v: widgets.New%[2]v(par)}\n", name, typ)
+					} else if typ == "QDockWidget" {
+						fmt.Fprintf(bb, "w := &%[1]v{%[2]v: widgets.New%[2]v2(par, core.Qt__WindowType(0))}\n", name, typ)
 					} else {
 						fmt.Fprintf(bb, "w := &%[1]v{%[2]v: widgets.New%[2]v(par, 0)}\n", name, typ)
 					}
@@ -273,7 +296,7 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 
 						//
 
-						for i, n := range []string{"QWebEngineView", "QCameraViewfinder", "QTableWidgetItem", "QTreeWidgetItem", "QListWidgetItem", "QSizePolicy", "QPalette", "QFont", "QIcon", "QBrush"} {
+						for i, n := range []string{"QWebEngineView", "QCameraViewfinder", "QQuickWidget", "QTableWidgetItem", "QTreeWidgetItem", "QListWidgetItem", "QSizePolicy", "QPalette", "QFont", "QIcon", "QBrush"} {
 							if !strings.Contains(l, n) {
 								continue
 							}
@@ -284,11 +307,13 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 								module = "webengine"
 							case i == 1:
 								module = "multimedia"
-							case i >= 6:
+							case i == 2:
+								module = "quick"
+							case i >= 7:
 								module = "gui"
 							}
 
-							if i <= 1 {
+							if i <= 2 {
 								l = strings.Replace(l, fmt.Sprintf("= new %v(", n), fmt.Sprintf("= %v.New%v(", module, n), -1)
 							} else {
 								if n == "QIcon" {
@@ -307,6 +332,12 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 
 						l = strings.Replace(l, "QIcon::hasThemeIcon", "gui.QIcon_HasThemeIcon", -1)
 						l = strings.Replace(l, "QIcon::fromTheme", "gui.QIcon_FromTheme", -1)
+						if utils.QT_API_NUM(utils.QT_VERSION()) <= 5063 && strings.Contains(l, "gui.QIcon_FromTheme") {
+							l = strings.TrimSuffix(l, ")") + ", gui.NewQIcon())"
+						}
+
+						l = strings.Replace(l, "QTabWidget::North", "widgets.QTabWidget__North", -1)
+						l = strings.Replace(l, "QTabWidget::Rounded", "widgets.QTabWidget__Rounded", -1)
 
 						for _, n := range []string{"QPalette", "QFont", "QIcon"} {
 							l = strings.Replace(l, n+"::", "gui."+n+"__", -1)
@@ -314,6 +345,10 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 
 						for _, n := range []string{"QDockWidget", "QLCDNumber", "QLayout", "QTextEdit", "QPlainTextEdit", "QSlider", "QFrame", "QFormLayout", "QDialogButtonBox", "QSizePolicy", "QLineEdit", "QListView", "QAbstractItemView"} {
 							l = strings.Replace(l, n+"::", "widgets."+n+"__", -1)
+						}
+
+						for _, n := range []string{"QQuickWidget"} {
+							l = strings.Replace(l, n+"::", "quick."+n+"__", -1)
 						}
 
 						//
@@ -335,7 +370,7 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 
 						//
 
-						for _, n := range []string{"QWidget", "QLabel", "QSizePolicy", "QListWidgetItem", "QFrame"} {
+						for _, n := range []string{"QWidget", "QLabel", "QSizePolicy", "QListWidgetItem", "QFrame", "QToolBox", "QOpenGLWidget"} {
 							if strings.Contains(l, ".New"+n+"(") {
 								l = strings.TrimSuffix(l, ")") + ", 0)"
 							}
@@ -392,7 +427,7 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 							}
 						}
 
-						for _, n := range []string{"QFormLayout"} {
+						for _, n := range []string{"QFormLayout", "QWizardPage"} {
 							if strings.Contains(l, ".New"+n+"(") && strings.Contains(l, ".New"+n+"()") {
 								l = strings.Replace(l, ".New"+n+"(", ".New"+n+"(nil", -1)
 							}
@@ -430,12 +465,12 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 
 						if strings.Contains(l, ".AddItem(") {
 							if strings.Contains(l, "QString()") {
-								l = strings.TrimSuffix(l, ")") + ", core.NewQVariant7(0))"
+								l = strings.TrimSuffix(l, ")") + ", core.NewQVariant1(0))"
 							} else if !strings.Contains(l, "(w.") || strings.Count(l, ",") >= 4 {
 								l = strings.TrimSuffix(l, ")") + ", 0)"
 							}
 
-							if strings.Contains(l, "(icon") {
+							if strings.Contains(l, "(icon") || strings.Contains(typeForName(l), "QToolBox") {
 								l = strings.Replace(l, ".AddItem(", ".AddItem2(", -1)
 							}
 						}
@@ -448,12 +483,14 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 							l = strings.Replace(l, ".SetTextAlignment(", ".SetTextAlignment(int(", -1)
 							l = strings.TrimSuffix(l, ")") + "))"
 						}
-						
+
 						if strings.Contains(l, ".SetAlignment(") {
-							l = strings.Replace(l, ".SetAlignment(", ".SetAlignment(int(", -1)
-							l = strings.TrimSuffix(l, ")") + "))"
+							if strings.Contains(typeForName(l), "QGroupBox") {
+								l = strings.Replace(l, ".SetAlignment(", ".SetAlignment(int(", -1)
+								l = strings.TrimSuffix(l, ")") + "))"
+							}
 						}
-						
+
 						if strings.Contains(l, ".AddAction(") {
 							l = strings.Replace(l, ".AddAction(", ".AddActions([]*widgets.QAction{", -1)
 							l = strings.TrimSuffix(l, ")") + "})"
@@ -482,11 +519,7 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 						}
 
 						if strings.Contains(l, "QVariant(") {
-							if strings.Contains(l, "QUrl") {
-								l = strings.Replace(l, "QVariant(", "core.NewQVariant38(", -1)
-							} else {
-								l = strings.Replace(l, "QVariant(", "core.NewQVariant11(", -1)
-							}
+							l = strings.Replace(l, "QVariant(", "core.NewQVariant1(", -1)
 						}
 
 						if strings.Contains(l, "QDateTime(QDate(") {
@@ -531,7 +564,11 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 						l = strings.Replace(l, ".IsEmpty()", "== \"\"", -1)
 
 						if strings.Contains(l, "QPixmap(") {
-							l = strings.Replace(l, "QPixmap(", "gui.NewQPixmap5(", -1)
+							if utils.QT_API_NUM(utils.QT_VERSION()) >= 5130 {
+								l = strings.Replace(l, "QPixmap(", "gui.NewQPixmap3(", -1)
+							} else {
+								l = strings.Replace(l, "QPixmap(", "gui.NewQPixmap5(", -1)
+							}
 							ls := strings.Split(l, ")")
 							ls[0] += ", \"\", 0"
 							l = strings.Join(ls, ")")
@@ -651,7 +688,7 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 				}
 				fmt.Fprintln(bb, "import (")
 
-				for i, p := range []string{"runtime", "core", "gui", "widgets", "webengine", "multimedia", "uitools"} {
+				for i, p := range []string{"runtime", "core", "gui", "widgets", "webengine", "multimedia", "uitools", "quick"} {
 					if !bytes.Contains(by, []byte(p+".")) {
 						continue
 					}
@@ -719,8 +756,15 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 		tags = append(tags, strings.Split(tagsCustom, " ")...)
 	}
 
-	pkgCmd := utils.GoList("{{.Name}}", "-find", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))
-	pkgCmd.Dir = path
+	pkgCmd := utils.GoList("{{.Name}}", "-find", utils.BuildTags(tags))
+	if !utils.UseGOMOD(path) || (utils.UseGOMOD(path) && !strings.Contains(strings.Replace(path, "\\", "/", -1), "/vendor/")) {
+		pkgCmd.Dir = path
+	} else if utils.UseGOMOD(path) && strings.Contains(strings.Replace(path, "\\", "/", -1), "/vendor/") {
+		pkgCmd.Dir = filepath.Dir(utils.GOMOD(path))
+		vl := strings.Split(strings.Replace(path, "\\", "/", -1), "/vendor/")
+		pkgCmd.Args = append(pkgCmd.Args, vl[len(vl)-1])
+	}
+
 	for k, v := range env {
 		pkgCmd.Env = append(pkgCmd.Env, fmt.Sprintf("%v=%v", k, v))
 	}
@@ -770,8 +814,15 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 		}
 	}
 
-	nameCmd := utils.GoList("{{.ImportPath}}", "-find", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))
-	nameCmd.Dir = path
+	nameCmd := utils.GoList("{{.ImportPath}}", "-find", utils.BuildTags(tags))
+	if !utils.UseGOMOD(path) || (utils.UseGOMOD(path) && !strings.Contains(strings.Replace(path, "\\", "/", -1), "/vendor/")) {
+		nameCmd.Dir = path
+	} else if utils.UseGOMOD(path) && strings.Contains(strings.Replace(path, "\\", "/", -1), "/vendor/") {
+		nameCmd.Dir = filepath.Dir(utils.GOMOD(path))
+		vl := strings.Split(strings.Replace(path, "\\", "/", -1), "/vendor/")
+		nameCmd.Args = append(nameCmd.Args, vl[len(vl)-1])
+	}
+
 	for k, v := range env {
 		nameCmd.Env = append(nameCmd.Env, fmt.Sprintf("%v=%v", k, v))
 	}
@@ -781,7 +832,8 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 		name = strings.Replace(name, s, "_", -1)
 	}
 
-	if cachgen := utils.ToolPath("qmlcachegen", target); utils.ExistsFile(cachgen) && quickcompiler {
+	cachgen := utils.ToolPath("qmlcachegen", target)
+	if ((target == "windows" && utils.ExistsFile(cachgen+".exe")) || utils.ExistsFile(cachgen)) && quickcompiler {
 		utils.RemoveAll(rccCpp)
 
 		var filteredFiles []string

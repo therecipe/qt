@@ -6,9 +6,10 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
-	"runtime"
 	"strings"
 	"testing"
+
+	"github.com/therecipe/qt/internal/utils"
 )
 
 func Test_escapeFlags(t *testing.T) {
@@ -20,12 +21,12 @@ func Test_escapeFlags(t *testing.T) {
 	}
 
 	var pattern string
-	if v := utils.GOVERSION(); strings.Contains(v, "1.1") || strings.Contains(v, "devel") {
+	if utils.GOVERSION_NUM() >= 110 {
 		pattern = "all="
 	}
 
 	for _, flags := range [][]string{
-		{},
+		//{},
 		{"-w"},
 		{"-w", "-s"},
 		{"-w", "-s", "-extldflags=-v"},

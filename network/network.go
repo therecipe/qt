@@ -11,18 +11,20 @@ import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"reflect"
-	"runtime"
 	"strings"
 	"unsafe"
 )
 
+func cGoFreePacked(ptr unsafe.Pointer) { core.NewQByteArrayFromPointer(ptr).DestroyQByteArray() }
 func cGoUnpackString(s C.struct_QtNetwork_PackedString) string {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		return C.GoString(s.data)
 	}
 	return C.GoStringN(s.data, C.int(s.len))
 }
 func cGoUnpackBytes(s C.struct_QtNetwork_PackedString) []byte {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
 		return *(*[]byte)(unsafe.Pointer(&gs))
@@ -268,7 +270,7 @@ func (ptr *QAbstractNetworkCache) DisconnectMetaData() {
 func (ptr *QAbstractNetworkCache) MetaData(url core.QUrl_ITF) *QNetworkCacheMetaData {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQNetworkCacheMetaDataFromPointer(C.QAbstractNetworkCache_MetaData(ptr.Pointer(), core.PointerFromQUrl(url)))
-		runtime.SetFinalizer(tmpValue, (*QNetworkCacheMetaData).DestroyQNetworkCacheMetaData)
+		qt.SetFinalizer(tmpValue, (*QNetworkCacheMetaData).DestroyQNetworkCacheMetaData)
 		return tmpValue
 	}
 	return nil
@@ -423,17 +425,19 @@ func (ptr *QAbstractNetworkCache) DisconnectDestroyQAbstractNetworkCache() {
 
 func (ptr *QAbstractNetworkCache) DestroyQAbstractNetworkCache() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QAbstractNetworkCache_DestroyQAbstractNetworkCache(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QAbstractNetworkCache) DestroyQAbstractNetworkCacheDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QAbstractNetworkCache_DestroyQAbstractNetworkCacheDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -461,7 +465,7 @@ func (ptr *QAbstractNetworkCache) __children_newList() unsafe.Pointer {
 func (ptr *QAbstractNetworkCache) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QAbstractNetworkCache___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -517,27 +521,6 @@ func (ptr *QAbstractNetworkCache) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QAbstractNetworkCache) __findChildren_newList3() unsafe.Pointer {
 	return C.QAbstractNetworkCache___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QAbstractNetworkCache) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QAbstractNetworkCache___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QAbstractNetworkCache) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractNetworkCache___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QAbstractNetworkCache) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QAbstractNetworkCache___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQAbstractNetworkCache_ChildEvent
@@ -596,8 +579,9 @@ func callbackQAbstractNetworkCache_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QAbstractNetworkCache) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QAbstractNetworkCache_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1051,7 +1035,7 @@ func (ptr *QAbstractSocket) ConnectConnected(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "connected") {
-			C.QAbstractSocket_ConnectConnected(ptr.Pointer())
+			C.QAbstractSocket_ConnectConnected(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "connected")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "connected"); signal != nil {
@@ -1134,7 +1118,7 @@ func (ptr *QAbstractSocket) ConnectDisconnected(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "disconnected") {
-			C.QAbstractSocket_ConnectDisconnected(ptr.Pointer())
+			C.QAbstractSocket_ConnectDisconnected(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "disconnected")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "disconnected"); signal != nil {
@@ -1181,7 +1165,7 @@ func (ptr *QAbstractSocket) ConnectError2(f func(socketError QAbstractSocket__So
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "error2") {
-			C.QAbstractSocket_ConnectError2(ptr.Pointer())
+			C.QAbstractSocket_ConnectError2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error2"); signal != nil {
@@ -1228,7 +1212,7 @@ func (ptr *QAbstractSocket) ConnectHostFound(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "hostFound") {
-			C.QAbstractSocket_ConnectHostFound(ptr.Pointer())
+			C.QAbstractSocket_ConnectHostFound(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "hostFound")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "hostFound"); signal != nil {
@@ -1282,7 +1266,7 @@ func (ptr *QAbstractSocket) IsValid() bool {
 func (ptr *QAbstractSocket) LocalAddress() *QHostAddress {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQHostAddressFromPointer(C.QAbstractSocket_LocalAddress(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
+		qt.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
 		return tmpValue
 	}
 	return nil
@@ -1305,7 +1289,7 @@ func (ptr *QAbstractSocket) PauseMode() QAbstractSocket__PauseMode {
 func (ptr *QAbstractSocket) PeerAddress() *QHostAddress {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQHostAddressFromPointer(C.QAbstractSocket_PeerAddress(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
+		qt.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
 		return tmpValue
 	}
 	return nil
@@ -1335,7 +1319,7 @@ func (ptr *QAbstractSocket) ProtocolTag() string {
 func (ptr *QAbstractSocket) Proxy() *QNetworkProxy {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQNetworkProxyFromPointer(C.QAbstractSocket_Proxy(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QNetworkProxy).DestroyQNetworkProxy)
+		qt.SetFinalizer(tmpValue, (*QNetworkProxy).DestroyQNetworkProxy)
 		return tmpValue
 	}
 	return nil
@@ -1353,7 +1337,7 @@ func (ptr *QAbstractSocket) ConnectProxyAuthenticationRequired(f func(proxy *QNe
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "proxyAuthenticationRequired") {
-			C.QAbstractSocket_ConnectProxyAuthenticationRequired(ptr.Pointer())
+			C.QAbstractSocket_ConnectProxyAuthenticationRequired(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "proxyAuthenticationRequired")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "proxyAuthenticationRequired"); signal != nil {
@@ -1707,7 +1691,7 @@ func (ptr *QAbstractSocket) DisconnectSocketOption() {
 func (ptr *QAbstractSocket) SocketOption(option QAbstractSocket__SocketOption) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QAbstractSocket_SocketOption(ptr.Pointer(), C.longlong(option)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -1716,7 +1700,7 @@ func (ptr *QAbstractSocket) SocketOption(option QAbstractSocket__SocketOption) *
 func (ptr *QAbstractSocket) SocketOptionDefault(option QAbstractSocket__SocketOption) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QAbstractSocket_SocketOptionDefault(ptr.Pointer(), C.longlong(option)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -1748,7 +1732,7 @@ func (ptr *QAbstractSocket) ConnectStateChanged(f func(socketState QAbstractSock
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stateChanged") {
-			C.QAbstractSocket_ConnectStateChanged(ptr.Pointer())
+			C.QAbstractSocket_ConnectStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
@@ -1984,17 +1968,19 @@ func (ptr *QAbstractSocket) DisconnectDestroyQAbstractSocket() {
 
 func (ptr *QAbstractSocket) DestroyQAbstractSocket() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QAbstractSocket_DestroyQAbstractSocket(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QAbstractSocket) DestroyQAbstractSocketDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QAbstractSocket_DestroyQAbstractSocketDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2022,7 +2008,7 @@ func (ptr *QAbstractSocket) __children_newList() unsafe.Pointer {
 func (ptr *QAbstractSocket) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QAbstractSocket___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -2078,27 +2064,6 @@ func (ptr *QAbstractSocket) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QAbstractSocket) __findChildren_newList3() unsafe.Pointer {
 	return C.QAbstractSocket___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QAbstractSocket) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QAbstractSocket___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QAbstractSocket) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractSocket___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QAbstractSocket) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QAbstractSocket___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQAbstractSocket_AboutToClose
@@ -2285,8 +2250,9 @@ func callbackQAbstractSocket_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QAbstractSocket) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QAbstractSocket_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2423,13 +2389,13 @@ func NewQAuthenticatorFromPointer(ptr unsafe.Pointer) (n *QAuthenticator) {
 }
 func NewQAuthenticator() *QAuthenticator {
 	tmpValue := NewQAuthenticatorFromPointer(C.QAuthenticator_NewQAuthenticator())
-	runtime.SetFinalizer(tmpValue, (*QAuthenticator).DestroyQAuthenticator)
+	qt.SetFinalizer(tmpValue, (*QAuthenticator).DestroyQAuthenticator)
 	return tmpValue
 }
 
 func NewQAuthenticator2(other QAuthenticator_ITF) *QAuthenticator {
 	tmpValue := NewQAuthenticatorFromPointer(C.QAuthenticator_NewQAuthenticator2(PointerFromQAuthenticator(other)))
-	runtime.SetFinalizer(tmpValue, (*QAuthenticator).DestroyQAuthenticator)
+	qt.SetFinalizer(tmpValue, (*QAuthenticator).DestroyQAuthenticator)
 	return tmpValue
 }
 
@@ -2448,7 +2414,7 @@ func (ptr *QAuthenticator) Option(opt string) *core.QVariant {
 			defer C.free(unsafe.Pointer(optC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QAuthenticator_Option(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: optC, len: C.longlong(len(opt))}))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -2524,9 +2490,11 @@ func (ptr *QAuthenticator) User() string {
 
 func (ptr *QAuthenticator) DestroyQAuthenticator() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QAuthenticator_DestroyQAuthenticator(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2538,7 +2506,7 @@ func (ptr *QAuthenticator) __options_atList(v string, i int) *core.QVariant {
 			defer C.free(unsafe.Pointer(vC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QAuthenticator___options_atList(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -2634,13 +2602,13 @@ func NewQDnsDomainNameRecordFromPointer(ptr unsafe.Pointer) (n *QDnsDomainNameRe
 }
 func NewQDnsDomainNameRecord() *QDnsDomainNameRecord {
 	tmpValue := NewQDnsDomainNameRecordFromPointer(C.QDnsDomainNameRecord_NewQDnsDomainNameRecord())
-	runtime.SetFinalizer(tmpValue, (*QDnsDomainNameRecord).DestroyQDnsDomainNameRecord)
+	qt.SetFinalizer(tmpValue, (*QDnsDomainNameRecord).DestroyQDnsDomainNameRecord)
 	return tmpValue
 }
 
 func NewQDnsDomainNameRecord2(other QDnsDomainNameRecord_ITF) *QDnsDomainNameRecord {
 	tmpValue := NewQDnsDomainNameRecordFromPointer(C.QDnsDomainNameRecord_NewQDnsDomainNameRecord2(PointerFromQDnsDomainNameRecord(other)))
-	runtime.SetFinalizer(tmpValue, (*QDnsDomainNameRecord).DestroyQDnsDomainNameRecord)
+	qt.SetFinalizer(tmpValue, (*QDnsDomainNameRecord).DestroyQDnsDomainNameRecord)
 	return tmpValue
 }
 
@@ -2673,9 +2641,11 @@ func (ptr *QDnsDomainNameRecord) Value() string {
 
 func (ptr *QDnsDomainNameRecord) DestroyQDnsDomainNameRecord() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QDnsDomainNameRecord_DestroyQDnsDomainNameRecord(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2718,13 +2688,13 @@ func NewQDnsHostAddressRecordFromPointer(ptr unsafe.Pointer) (n *QDnsHostAddress
 }
 func NewQDnsHostAddressRecord() *QDnsHostAddressRecord {
 	tmpValue := NewQDnsHostAddressRecordFromPointer(C.QDnsHostAddressRecord_NewQDnsHostAddressRecord())
-	runtime.SetFinalizer(tmpValue, (*QDnsHostAddressRecord).DestroyQDnsHostAddressRecord)
+	qt.SetFinalizer(tmpValue, (*QDnsHostAddressRecord).DestroyQDnsHostAddressRecord)
 	return tmpValue
 }
 
 func NewQDnsHostAddressRecord2(other QDnsHostAddressRecord_ITF) *QDnsHostAddressRecord {
 	tmpValue := NewQDnsHostAddressRecordFromPointer(C.QDnsHostAddressRecord_NewQDnsHostAddressRecord2(PointerFromQDnsHostAddressRecord(other)))
-	runtime.SetFinalizer(tmpValue, (*QDnsHostAddressRecord).DestroyQDnsHostAddressRecord)
+	qt.SetFinalizer(tmpValue, (*QDnsHostAddressRecord).DestroyQDnsHostAddressRecord)
 	return tmpValue
 }
 
@@ -2751,7 +2721,7 @@ func (ptr *QDnsHostAddressRecord) TimeToLive() uint {
 func (ptr *QDnsHostAddressRecord) Value() *QHostAddress {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQHostAddressFromPointer(C.QDnsHostAddressRecord_Value(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
+		qt.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
 		return tmpValue
 	}
 	return nil
@@ -2759,9 +2729,11 @@ func (ptr *QDnsHostAddressRecord) Value() *QHostAddress {
 
 func (ptr *QDnsHostAddressRecord) DestroyQDnsHostAddressRecord() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QDnsHostAddressRecord_DestroyQDnsHostAddressRecord(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2952,7 +2924,7 @@ func (ptr *QDnsLookup) ConnectFinished(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "finished") {
-			C.QDnsLookup_ConnectFinished(ptr.Pointer())
+			C.QDnsLookup_ConnectFinished(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "finished")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "finished"); signal != nil {
@@ -3077,7 +3049,7 @@ func (ptr *QDnsLookup) ConnectNameChanged(f func(name string)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "nameChanged") {
-			C.QDnsLookup_ConnectNameChanged(ptr.Pointer())
+			C.QDnsLookup_ConnectNameChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "nameChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "nameChanged"); signal != nil {
@@ -3127,7 +3099,7 @@ func (ptr *QDnsLookup) NameServerRecords() []*QDnsDomainNameRecord {
 func (ptr *QDnsLookup) Nameserver() *QHostAddress {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQHostAddressFromPointer(C.QDnsLookup_Nameserver(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
+		qt.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
 		return tmpValue
 	}
 	return nil
@@ -3145,7 +3117,7 @@ func (ptr *QDnsLookup) ConnectNameserverChanged(f func(nameserver *QHostAddress)
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "nameserverChanged") {
-			C.QDnsLookup_ConnectNameserverChanged(ptr.Pointer())
+			C.QDnsLookup_ConnectNameserverChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "nameserverChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "nameserverChanged"); signal != nil {
@@ -3257,7 +3229,7 @@ func (ptr *QDnsLookup) ConnectTypeChanged(f func(ty QDnsLookup__Type)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "typeChanged") {
-			C.QDnsLookup_ConnectTypeChanged(ptr.Pointer())
+			C.QDnsLookup_ConnectTypeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "typeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "typeChanged"); signal != nil {
@@ -3318,24 +3290,26 @@ func (ptr *QDnsLookup) DisconnectDestroyQDnsLookup() {
 
 func (ptr *QDnsLookup) DestroyQDnsLookup() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QDnsLookup_DestroyQDnsLookup(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QDnsLookup) DestroyQDnsLookupDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QDnsLookup_DestroyQDnsLookupDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QDnsLookup) __canonicalNameRecords_atList(i int) *QDnsDomainNameRecord {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDnsDomainNameRecordFromPointer(C.QDnsLookup___canonicalNameRecords_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QDnsDomainNameRecord).DestroyQDnsDomainNameRecord)
+		qt.SetFinalizer(tmpValue, (*QDnsDomainNameRecord).DestroyQDnsDomainNameRecord)
 		return tmpValue
 	}
 	return nil
@@ -3354,7 +3328,7 @@ func (ptr *QDnsLookup) __canonicalNameRecords_newList() unsafe.Pointer {
 func (ptr *QDnsLookup) __hostAddressRecords_atList(i int) *QDnsHostAddressRecord {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDnsHostAddressRecordFromPointer(C.QDnsLookup___hostAddressRecords_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QDnsHostAddressRecord).DestroyQDnsHostAddressRecord)
+		qt.SetFinalizer(tmpValue, (*QDnsHostAddressRecord).DestroyQDnsHostAddressRecord)
 		return tmpValue
 	}
 	return nil
@@ -3373,7 +3347,7 @@ func (ptr *QDnsLookup) __hostAddressRecords_newList() unsafe.Pointer {
 func (ptr *QDnsLookup) __mailExchangeRecords_atList(i int) *QDnsMailExchangeRecord {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDnsMailExchangeRecordFromPointer(C.QDnsLookup___mailExchangeRecords_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QDnsMailExchangeRecord).DestroyQDnsMailExchangeRecord)
+		qt.SetFinalizer(tmpValue, (*QDnsMailExchangeRecord).DestroyQDnsMailExchangeRecord)
 		return tmpValue
 	}
 	return nil
@@ -3392,7 +3366,7 @@ func (ptr *QDnsLookup) __mailExchangeRecords_newList() unsafe.Pointer {
 func (ptr *QDnsLookup) __nameServerRecords_atList(i int) *QDnsDomainNameRecord {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDnsDomainNameRecordFromPointer(C.QDnsLookup___nameServerRecords_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QDnsDomainNameRecord).DestroyQDnsDomainNameRecord)
+		qt.SetFinalizer(tmpValue, (*QDnsDomainNameRecord).DestroyQDnsDomainNameRecord)
 		return tmpValue
 	}
 	return nil
@@ -3411,7 +3385,7 @@ func (ptr *QDnsLookup) __nameServerRecords_newList() unsafe.Pointer {
 func (ptr *QDnsLookup) __pointerRecords_atList(i int) *QDnsDomainNameRecord {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDnsDomainNameRecordFromPointer(C.QDnsLookup___pointerRecords_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QDnsDomainNameRecord).DestroyQDnsDomainNameRecord)
+		qt.SetFinalizer(tmpValue, (*QDnsDomainNameRecord).DestroyQDnsDomainNameRecord)
 		return tmpValue
 	}
 	return nil
@@ -3430,7 +3404,7 @@ func (ptr *QDnsLookup) __pointerRecords_newList() unsafe.Pointer {
 func (ptr *QDnsLookup) __serviceRecords_atList(i int) *QDnsServiceRecord {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDnsServiceRecordFromPointer(C.QDnsLookup___serviceRecords_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QDnsServiceRecord).DestroyQDnsServiceRecord)
+		qt.SetFinalizer(tmpValue, (*QDnsServiceRecord).DestroyQDnsServiceRecord)
 		return tmpValue
 	}
 	return nil
@@ -3449,7 +3423,7 @@ func (ptr *QDnsLookup) __serviceRecords_newList() unsafe.Pointer {
 func (ptr *QDnsLookup) __textRecords_atList(i int) *QDnsTextRecord {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDnsTextRecordFromPointer(C.QDnsLookup___textRecords_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QDnsTextRecord).DestroyQDnsTextRecord)
+		qt.SetFinalizer(tmpValue, (*QDnsTextRecord).DestroyQDnsTextRecord)
 		return tmpValue
 	}
 	return nil
@@ -3489,7 +3463,7 @@ func (ptr *QDnsLookup) __children_newList() unsafe.Pointer {
 func (ptr *QDnsLookup) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QDnsLookup___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -3545,27 +3519,6 @@ func (ptr *QDnsLookup) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QDnsLookup) __findChildren_newList3() unsafe.Pointer {
 	return C.QDnsLookup___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QDnsLookup) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QDnsLookup___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QDnsLookup) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDnsLookup___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QDnsLookup) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QDnsLookup___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQDnsLookup_ChildEvent
@@ -3624,8 +3577,9 @@ func callbackQDnsLookup_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QDnsLookup) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QDnsLookup_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3762,13 +3716,13 @@ func NewQDnsMailExchangeRecordFromPointer(ptr unsafe.Pointer) (n *QDnsMailExchan
 }
 func NewQDnsMailExchangeRecord() *QDnsMailExchangeRecord {
 	tmpValue := NewQDnsMailExchangeRecordFromPointer(C.QDnsMailExchangeRecord_NewQDnsMailExchangeRecord())
-	runtime.SetFinalizer(tmpValue, (*QDnsMailExchangeRecord).DestroyQDnsMailExchangeRecord)
+	qt.SetFinalizer(tmpValue, (*QDnsMailExchangeRecord).DestroyQDnsMailExchangeRecord)
 	return tmpValue
 }
 
 func NewQDnsMailExchangeRecord2(other QDnsMailExchangeRecord_ITF) *QDnsMailExchangeRecord {
 	tmpValue := NewQDnsMailExchangeRecordFromPointer(C.QDnsMailExchangeRecord_NewQDnsMailExchangeRecord2(PointerFromQDnsMailExchangeRecord(other)))
-	runtime.SetFinalizer(tmpValue, (*QDnsMailExchangeRecord).DestroyQDnsMailExchangeRecord)
+	qt.SetFinalizer(tmpValue, (*QDnsMailExchangeRecord).DestroyQDnsMailExchangeRecord)
 	return tmpValue
 }
 
@@ -3808,9 +3762,11 @@ func (ptr *QDnsMailExchangeRecord) TimeToLive() uint {
 
 func (ptr *QDnsMailExchangeRecord) DestroyQDnsMailExchangeRecord() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QDnsMailExchangeRecord_DestroyQDnsMailExchangeRecord(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3853,13 +3809,13 @@ func NewQDnsServiceRecordFromPointer(ptr unsafe.Pointer) (n *QDnsServiceRecord) 
 }
 func NewQDnsServiceRecord() *QDnsServiceRecord {
 	tmpValue := NewQDnsServiceRecordFromPointer(C.QDnsServiceRecord_NewQDnsServiceRecord())
-	runtime.SetFinalizer(tmpValue, (*QDnsServiceRecord).DestroyQDnsServiceRecord)
+	qt.SetFinalizer(tmpValue, (*QDnsServiceRecord).DestroyQDnsServiceRecord)
 	return tmpValue
 }
 
 func NewQDnsServiceRecord2(other QDnsServiceRecord_ITF) *QDnsServiceRecord {
 	tmpValue := NewQDnsServiceRecordFromPointer(C.QDnsServiceRecord_NewQDnsServiceRecord2(PointerFromQDnsServiceRecord(other)))
-	runtime.SetFinalizer(tmpValue, (*QDnsServiceRecord).DestroyQDnsServiceRecord)
+	qt.SetFinalizer(tmpValue, (*QDnsServiceRecord).DestroyQDnsServiceRecord)
 	return tmpValue
 }
 
@@ -3913,9 +3869,11 @@ func (ptr *QDnsServiceRecord) Weight() uint16 {
 
 func (ptr *QDnsServiceRecord) DestroyQDnsServiceRecord() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QDnsServiceRecord_DestroyQDnsServiceRecord(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3958,13 +3916,13 @@ func NewQDnsTextRecordFromPointer(ptr unsafe.Pointer) (n *QDnsTextRecord) {
 }
 func NewQDnsTextRecord() *QDnsTextRecord {
 	tmpValue := NewQDnsTextRecordFromPointer(C.QDnsTextRecord_NewQDnsTextRecord())
-	runtime.SetFinalizer(tmpValue, (*QDnsTextRecord).DestroyQDnsTextRecord)
+	qt.SetFinalizer(tmpValue, (*QDnsTextRecord).DestroyQDnsTextRecord)
 	return tmpValue
 }
 
 func NewQDnsTextRecord2(other QDnsTextRecord_ITF) *QDnsTextRecord {
 	tmpValue := NewQDnsTextRecordFromPointer(C.QDnsTextRecord_NewQDnsTextRecord2(PointerFromQDnsTextRecord(other)))
-	runtime.SetFinalizer(tmpValue, (*QDnsTextRecord).DestroyQDnsTextRecord)
+	qt.SetFinalizer(tmpValue, (*QDnsTextRecord).DestroyQDnsTextRecord)
 	return tmpValue
 }
 
@@ -4004,16 +3962,18 @@ func (ptr *QDnsTextRecord) Values() []*core.QByteArray {
 
 func (ptr *QDnsTextRecord) DestroyQDnsTextRecord() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QDnsTextRecord_DestroyQDnsTextRecord(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QDnsTextRecord) __values_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QDnsTextRecord___values_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -4201,13 +4161,13 @@ const (
 
 func NewQHostAddress() *QHostAddress {
 	tmpValue := NewQHostAddressFromPointer(C.QHostAddress_NewQHostAddress())
-	runtime.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
+	qt.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
 	return tmpValue
 }
 
 func NewQHostAddress2(ip4Addr uint) *QHostAddress {
 	tmpValue := NewQHostAddressFromPointer(C.QHostAddress_NewQHostAddress2(C.uint(uint32(ip4Addr))))
-	runtime.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
+	qt.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
 	return tmpValue
 }
 
@@ -4218,7 +4178,7 @@ func NewQHostAddress3(ip6Addr string) *QHostAddress {
 		defer C.free(unsafe.Pointer(ip6AddrC))
 	}
 	tmpValue := NewQHostAddressFromPointer(C.QHostAddress_NewQHostAddress3(ip6AddrC))
-	runtime.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
+	qt.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
 	return tmpValue
 }
 
@@ -4229,7 +4189,7 @@ func NewQHostAddress4(ip6Addr string) *QHostAddress {
 		defer C.free(unsafe.Pointer(ip6AddrC))
 	}
 	tmpValue := NewQHostAddressFromPointer(C.QHostAddress_NewQHostAddress4(ip6AddrC))
-	runtime.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
+	qt.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
 	return tmpValue
 }
 
@@ -4240,19 +4200,19 @@ func NewQHostAddress7(address string) *QHostAddress {
 		defer C.free(unsafe.Pointer(addressC))
 	}
 	tmpValue := NewQHostAddressFromPointer(C.QHostAddress_NewQHostAddress7(C.struct_QtNetwork_PackedString{data: addressC, len: C.longlong(len(address))}))
-	runtime.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
+	qt.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
 	return tmpValue
 }
 
 func NewQHostAddress8(address QHostAddress_ITF) *QHostAddress {
 	tmpValue := NewQHostAddressFromPointer(C.QHostAddress_NewQHostAddress8(PointerFromQHostAddress(address)))
-	runtime.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
+	qt.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
 	return tmpValue
 }
 
 func NewQHostAddress9(address QHostAddress__SpecialAddress) *QHostAddress {
 	tmpValue := NewQHostAddressFromPointer(C.QHostAddress_NewQHostAddress9(C.longlong(address)))
-	runtime.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
+	qt.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
 	return tmpValue
 }
 
@@ -4437,9 +4397,11 @@ func (ptr *QHostAddress) ToString() string {
 
 func (ptr *QHostAddress) DestroyQHostAddress() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QHostAddress_DestroyQHostAddress(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4493,13 +4455,13 @@ const (
 
 func NewQHostInfo(id int) *QHostInfo {
 	tmpValue := NewQHostInfoFromPointer(C.QHostInfo_NewQHostInfo(C.int(int32(id))))
-	runtime.SetFinalizer(tmpValue, (*QHostInfo).DestroyQHostInfo)
+	qt.SetFinalizer(tmpValue, (*QHostInfo).DestroyQHostInfo)
 	return tmpValue
 }
 
 func NewQHostInfo2(other QHostInfo_ITF) *QHostInfo {
 	tmpValue := NewQHostInfoFromPointer(C.QHostInfo_NewQHostInfo2(PointerFromQHostInfo(other)))
-	runtime.SetFinalizer(tmpValue, (*QHostInfo).DestroyQHostInfo)
+	qt.SetFinalizer(tmpValue, (*QHostInfo).DestroyQHostInfo)
 	return tmpValue
 }
 
@@ -4546,7 +4508,7 @@ func QHostInfo_FromName(name string) *QHostInfo {
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	tmpValue := NewQHostInfoFromPointer(C.QHostInfo_QHostInfo_FromName(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}))
-	runtime.SetFinalizer(tmpValue, (*QHostInfo).DestroyQHostInfo)
+	qt.SetFinalizer(tmpValue, (*QHostInfo).DestroyQHostInfo)
 	return tmpValue
 }
 
@@ -4557,7 +4519,7 @@ func (ptr *QHostInfo) FromName(name string) *QHostInfo {
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	tmpValue := NewQHostInfoFromPointer(C.QHostInfo_QHostInfo_FromName(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}))
-	runtime.SetFinalizer(tmpValue, (*QHostInfo).DestroyQHostInfo)
+	qt.SetFinalizer(tmpValue, (*QHostInfo).DestroyQHostInfo)
 	return tmpValue
 }
 
@@ -4673,16 +4635,18 @@ func (ptr *QHostInfo) Swap(other QHostInfo_ITF) {
 
 func (ptr *QHostInfo) DestroyQHostInfo() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QHostInfo_DestroyQHostInfo(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QHostInfo) __addresses_atList(i int) *QHostAddress {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQHostAddressFromPointer(C.QHostInfo___addresses_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
+		qt.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
 		return tmpValue
 	}
 	return nil
@@ -4701,7 +4665,7 @@ func (ptr *QHostInfo) __addresses_newList() unsafe.Pointer {
 func (ptr *QHostInfo) __setAddresses_addresses_atList(i int) *QHostAddress {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQHostAddressFromPointer(C.QHostInfo___setAddresses_addresses_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
+		qt.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
 		return tmpValue
 	}
 	return nil
@@ -4765,7 +4729,7 @@ const (
 
 func NewQHstsPolicy() *QHstsPolicy {
 	tmpValue := NewQHstsPolicyFromPointer(C.QHstsPolicy_NewQHstsPolicy())
-	runtime.SetFinalizer(tmpValue, (*QHstsPolicy).DestroyQHstsPolicy)
+	qt.SetFinalizer(tmpValue, (*QHstsPolicy).DestroyQHstsPolicy)
 	return tmpValue
 }
 
@@ -4776,20 +4740,20 @@ func NewQHstsPolicy2(expiry core.QDateTime_ITF, flags QHstsPolicy__PolicyFlag, h
 		defer C.free(unsafe.Pointer(hostC))
 	}
 	tmpValue := NewQHstsPolicyFromPointer(C.QHstsPolicy_NewQHstsPolicy2(core.PointerFromQDateTime(expiry), C.longlong(flags), C.struct_QtNetwork_PackedString{data: hostC, len: C.longlong(len(host))}, C.longlong(mode)))
-	runtime.SetFinalizer(tmpValue, (*QHstsPolicy).DestroyQHstsPolicy)
+	qt.SetFinalizer(tmpValue, (*QHstsPolicy).DestroyQHstsPolicy)
 	return tmpValue
 }
 
 func NewQHstsPolicy3(other QHstsPolicy_ITF) *QHstsPolicy {
 	tmpValue := NewQHstsPolicyFromPointer(C.QHstsPolicy_NewQHstsPolicy3(PointerFromQHstsPolicy(other)))
-	runtime.SetFinalizer(tmpValue, (*QHstsPolicy).DestroyQHstsPolicy)
+	qt.SetFinalizer(tmpValue, (*QHstsPolicy).DestroyQHstsPolicy)
 	return tmpValue
 }
 
 func (ptr *QHstsPolicy) Expiry() *core.QDateTime {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQDateTimeFromPointer(C.QHstsPolicy_Expiry(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
+		qt.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
 		return tmpValue
 	}
 	return nil
@@ -4847,9 +4811,11 @@ func (ptr *QHstsPolicy) Swap(other QHstsPolicy_ITF) {
 
 func (ptr *QHstsPolicy) DestroyQHstsPolicy() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QHstsPolicy_DestroyQHstsPolicy(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4928,7 +4894,7 @@ func (ptr *QHttpMultiPart) Append(httpPart QHttpPart_ITF) {
 func (ptr *QHttpMultiPart) Boundary() *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QHttpMultiPart_Boundary(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -4979,17 +4945,19 @@ func (ptr *QHttpMultiPart) DisconnectDestroyQHttpMultiPart() {
 
 func (ptr *QHttpMultiPart) DestroyQHttpMultiPart() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QHttpMultiPart_DestroyQHttpMultiPart(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QHttpMultiPart) DestroyQHttpMultiPartDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QHttpMultiPart_DestroyQHttpMultiPartDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5017,7 +4985,7 @@ func (ptr *QHttpMultiPart) __children_newList() unsafe.Pointer {
 func (ptr *QHttpMultiPart) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QHttpMultiPart___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -5073,27 +5041,6 @@ func (ptr *QHttpMultiPart) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QHttpMultiPart) __findChildren_newList3() unsafe.Pointer {
 	return C.QHttpMultiPart___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QHttpMultiPart) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QHttpMultiPart___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QHttpMultiPart) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHttpMultiPart___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QHttpMultiPart) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QHttpMultiPart___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQHttpMultiPart_ChildEvent
@@ -5152,8 +5099,9 @@ func callbackQHttpMultiPart_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QHttpMultiPart) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QHttpMultiPart_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5290,13 +5238,13 @@ func NewQHttpPartFromPointer(ptr unsafe.Pointer) (n *QHttpPart) {
 }
 func NewQHttpPart() *QHttpPart {
 	tmpValue := NewQHttpPartFromPointer(C.QHttpPart_NewQHttpPart())
-	runtime.SetFinalizer(tmpValue, (*QHttpPart).DestroyQHttpPart)
+	qt.SetFinalizer(tmpValue, (*QHttpPart).DestroyQHttpPart)
 	return tmpValue
 }
 
 func NewQHttpPart2(other QHttpPart_ITF) *QHttpPart {
 	tmpValue := NewQHttpPartFromPointer(C.QHttpPart_NewQHttpPart2(PointerFromQHttpPart(other)))
-	runtime.SetFinalizer(tmpValue, (*QHttpPart).DestroyQHttpPart)
+	qt.SetFinalizer(tmpValue, (*QHttpPart).DestroyQHttpPart)
 	return tmpValue
 }
 
@@ -5332,9 +5280,11 @@ func (ptr *QHttpPart) Swap(other QHttpPart_ITF) {
 
 func (ptr *QHttpPart) DestroyQHttpPart() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QHttpPart_DestroyQHttpPart(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5375,12 +5325,12 @@ func NewQIPv6AddressFromPointer(ptr unsafe.Pointer) (n *QIPv6Address) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QIPv6Address) DestroyQIPv6Address() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5589,7 +5539,7 @@ func (ptr *QLocalServer) ConnectNewConnection(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "newConnection") {
-			C.QLocalServer_ConnectNewConnection(ptr.Pointer())
+			C.QLocalServer_ConnectNewConnection(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "newConnection")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "newConnection"); signal != nil {
@@ -5766,17 +5716,19 @@ func (ptr *QLocalServer) DisconnectDestroyQLocalServer() {
 
 func (ptr *QLocalServer) DestroyQLocalServer() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QLocalServer_DestroyQLocalServer(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QLocalServer) DestroyQLocalServerDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QLocalServer_DestroyQLocalServerDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5804,7 +5756,7 @@ func (ptr *QLocalServer) __children_newList() unsafe.Pointer {
 func (ptr *QLocalServer) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QLocalServer___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -5860,27 +5812,6 @@ func (ptr *QLocalServer) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QLocalServer) __findChildren_newList3() unsafe.Pointer {
 	return C.QLocalServer___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QLocalServer) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QLocalServer___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QLocalServer) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QLocalServer___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QLocalServer) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QLocalServer___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQLocalServer_ChildEvent
@@ -5939,8 +5870,9 @@ func callbackQLocalServer_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QLocalServer) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QLocalServer_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6212,7 +6144,7 @@ func (ptr *QLocalSocket) ConnectConnected(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "connected") {
-			C.QLocalSocket_ConnectConnected(ptr.Pointer())
+			C.QLocalSocket_ConnectConnected(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "connected")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "connected"); signal != nil {
@@ -6258,7 +6190,7 @@ func (ptr *QLocalSocket) ConnectDisconnected(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "disconnected") {
-			C.QLocalSocket_ConnectDisconnected(ptr.Pointer())
+			C.QLocalSocket_ConnectDisconnected(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "disconnected")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "disconnected"); signal != nil {
@@ -6305,7 +6237,7 @@ func (ptr *QLocalSocket) ConnectError2(f func(socketError QLocalSocket__LocalSoc
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "error2") {
-			C.QLocalSocket_ConnectError2(ptr.Pointer())
+			C.QLocalSocket_ConnectError2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error2"); signal != nil {
@@ -6502,7 +6434,7 @@ func (ptr *QLocalSocket) ConnectStateChanged(f func(socketState QLocalSocket__Lo
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stateChanged") {
-			C.QLocalSocket_ConnectStateChanged(ptr.Pointer())
+			C.QLocalSocket_ConnectStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
@@ -6662,17 +6594,19 @@ func (ptr *QLocalSocket) DisconnectDestroyQLocalSocket() {
 
 func (ptr *QLocalSocket) DestroyQLocalSocket() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QLocalSocket_DestroyQLocalSocket(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QLocalSocket) DestroyQLocalSocketDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QLocalSocket_DestroyQLocalSocketDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6700,7 +6634,7 @@ func (ptr *QLocalSocket) __children_newList() unsafe.Pointer {
 func (ptr *QLocalSocket) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QLocalSocket___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -6756,27 +6690,6 @@ func (ptr *QLocalSocket) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QLocalSocket) __findChildren_newList3() unsafe.Pointer {
 	return C.QLocalSocket___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QLocalSocket) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QLocalSocket___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QLocalSocket) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QLocalSocket___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QLocalSocket) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QLocalSocket___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQLocalSocket_AboutToClose
@@ -6983,8 +6896,9 @@ func callbackQLocalSocket_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QLocalSocket) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QLocalSocket_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7156,7 +7070,7 @@ func NewQNetworkAccessManager(parent core.QObject_ITF) *QNetworkAccessManager {
 func (ptr *QNetworkAccessManager) ActiveConfiguration() *QNetworkConfiguration {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQNetworkConfigurationFromPointer(C.QNetworkAccessManager_ActiveConfiguration(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QNetworkConfiguration).DestroyQNetworkConfiguration)
+		qt.SetFinalizer(tmpValue, (*QNetworkConfiguration).DestroyQNetworkConfiguration)
 		return tmpValue
 	}
 	return nil
@@ -7186,7 +7100,7 @@ func (ptr *QNetworkAccessManager) ConnectAuthenticationRequired(f func(reply *QN
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "authenticationRequired") {
-			C.QNetworkAccessManager_ConnectAuthenticationRequired(ptr.Pointer())
+			C.QNetworkAccessManager_ConnectAuthenticationRequired(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "authenticationRequired")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "authenticationRequired"); signal != nil {
@@ -7240,7 +7154,7 @@ func (ptr *QNetworkAccessManager) ClearConnectionCache() {
 func (ptr *QNetworkAccessManager) Configuration() *QNetworkConfiguration {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQNetworkConfigurationFromPointer(C.QNetworkAccessManager_Configuration(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QNetworkConfiguration).DestroyQNetworkConfiguration)
+		qt.SetFinalizer(tmpValue, (*QNetworkConfiguration).DestroyQNetworkConfiguration)
 		return tmpValue
 	}
 	return nil
@@ -7382,7 +7296,7 @@ func (ptr *QNetworkAccessManager) ConnectEncrypted(f func(reply *QNetworkReply))
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "encrypted") {
-			C.QNetworkAccessManager_ConnectEncrypted(ptr.Pointer())
+			C.QNetworkAccessManager_ConnectEncrypted(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "encrypted")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "encrypted"); signal != nil {
@@ -7422,7 +7336,7 @@ func (ptr *QNetworkAccessManager) ConnectFinished(f func(reply *QNetworkReply)) 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "finished") {
-			C.QNetworkAccessManager_ConnectFinished(ptr.Pointer())
+			C.QNetworkAccessManager_ConnectFinished(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "finished")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "finished"); signal != nil {
@@ -7505,7 +7419,7 @@ func (ptr *QNetworkAccessManager) ConnectNetworkAccessibleChanged(f func(accessi
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "networkAccessibleChanged") {
-			C.QNetworkAccessManager_ConnectNetworkAccessibleChanged(ptr.Pointer())
+			C.QNetworkAccessManager_ConnectNetworkAccessibleChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "networkAccessibleChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "networkAccessibleChanged"); signal != nil {
@@ -7578,7 +7492,7 @@ func (ptr *QNetworkAccessManager) ConnectPreSharedKeyAuthenticationRequired(f fu
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "preSharedKeyAuthenticationRequired") {
-			C.QNetworkAccessManager_ConnectPreSharedKeyAuthenticationRequired(ptr.Pointer())
+			C.QNetworkAccessManager_ConnectPreSharedKeyAuthenticationRequired(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "preSharedKeyAuthenticationRequired")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "preSharedKeyAuthenticationRequired"); signal != nil {
@@ -7609,7 +7523,7 @@ func (ptr *QNetworkAccessManager) PreSharedKeyAuthenticationRequired(reply QNetw
 func (ptr *QNetworkAccessManager) Proxy() *QNetworkProxy {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQNetworkProxyFromPointer(C.QNetworkAccessManager_Proxy(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QNetworkProxy).DestroyQNetworkProxy)
+		qt.SetFinalizer(tmpValue, (*QNetworkProxy).DestroyQNetworkProxy)
 		return tmpValue
 	}
 	return nil
@@ -7627,7 +7541,7 @@ func (ptr *QNetworkAccessManager) ConnectProxyAuthenticationRequired(f func(prox
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "proxyAuthenticationRequired") {
-			C.QNetworkAccessManager_ConnectProxyAuthenticationRequired(ptr.Pointer())
+			C.QNetworkAccessManager_ConnectProxyAuthenticationRequired(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "proxyAuthenticationRequired")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "proxyAuthenticationRequired"); signal != nil {
@@ -7802,7 +7716,7 @@ func (ptr *QNetworkAccessManager) ConnectSslErrors(f func(reply *QNetworkReply, 
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "sslErrors") {
-			C.QNetworkAccessManager_ConnectSslErrors(ptr.Pointer())
+			C.QNetworkAccessManager_ConnectSslErrors(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "sslErrors")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "sslErrors"); signal != nil {
@@ -7936,24 +7850,26 @@ func (ptr *QNetworkAccessManager) DisconnectDestroyQNetworkAccessManager() {
 
 func (ptr *QNetworkAccessManager) DestroyQNetworkAccessManager() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QNetworkAccessManager_DestroyQNetworkAccessManager(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QNetworkAccessManager) DestroyQNetworkAccessManagerDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QNetworkAccessManager_DestroyQNetworkAccessManagerDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QNetworkAccessManager) __addStrictTransportSecurityHosts_knownHosts_atList(i int) *QHstsPolicy {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQHstsPolicyFromPointer(C.QNetworkAccessManager___addStrictTransportSecurityHosts_knownHosts_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QHstsPolicy).DestroyQHstsPolicy)
+		qt.SetFinalizer(tmpValue, (*QHstsPolicy).DestroyQHstsPolicy)
 		return tmpValue
 	}
 	return nil
@@ -7972,7 +7888,7 @@ func (ptr *QNetworkAccessManager) __addStrictTransportSecurityHosts_knownHosts_n
 func (ptr *QNetworkAccessManager) __sslErrors_errors_atList(i int) *QSslError {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslErrorFromPointer(C.QNetworkAccessManager___sslErrors_errors_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSslError).DestroyQSslError)
+		qt.SetFinalizer(tmpValue, (*QSslError).DestroyQSslError)
 		return tmpValue
 	}
 	return nil
@@ -7991,7 +7907,7 @@ func (ptr *QNetworkAccessManager) __sslErrors_errors_newList() unsafe.Pointer {
 func (ptr *QNetworkAccessManager) __strictTransportSecurityHosts_atList(i int) *QHstsPolicy {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQHstsPolicyFromPointer(C.QNetworkAccessManager___strictTransportSecurityHosts_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QHstsPolicy).DestroyQHstsPolicy)
+		qt.SetFinalizer(tmpValue, (*QHstsPolicy).DestroyQHstsPolicy)
 		return tmpValue
 	}
 	return nil
@@ -8031,7 +7947,7 @@ func (ptr *QNetworkAccessManager) __children_newList() unsafe.Pointer {
 func (ptr *QNetworkAccessManager) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QNetworkAccessManager___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -8087,27 +8003,6 @@ func (ptr *QNetworkAccessManager) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QNetworkAccessManager) __findChildren_newList3() unsafe.Pointer {
 	return C.QNetworkAccessManager___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QNetworkAccessManager) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QNetworkAccessManager___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QNetworkAccessManager) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QNetworkAccessManager) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QNetworkAccessManager___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQNetworkAccessManager_ChildEvent
@@ -8166,8 +8061,9 @@ func callbackQNetworkAccessManager_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QNetworkAccessManager) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QNetworkAccessManager_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -8315,20 +8211,20 @@ const (
 
 func NewQNetworkAddressEntry() *QNetworkAddressEntry {
 	tmpValue := NewQNetworkAddressEntryFromPointer(C.QNetworkAddressEntry_NewQNetworkAddressEntry())
-	runtime.SetFinalizer(tmpValue, (*QNetworkAddressEntry).DestroyQNetworkAddressEntry)
+	qt.SetFinalizer(tmpValue, (*QNetworkAddressEntry).DestroyQNetworkAddressEntry)
 	return tmpValue
 }
 
 func NewQNetworkAddressEntry2(other QNetworkAddressEntry_ITF) *QNetworkAddressEntry {
 	tmpValue := NewQNetworkAddressEntryFromPointer(C.QNetworkAddressEntry_NewQNetworkAddressEntry2(PointerFromQNetworkAddressEntry(other)))
-	runtime.SetFinalizer(tmpValue, (*QNetworkAddressEntry).DestroyQNetworkAddressEntry)
+	qt.SetFinalizer(tmpValue, (*QNetworkAddressEntry).DestroyQNetworkAddressEntry)
 	return tmpValue
 }
 
 func (ptr *QNetworkAddressEntry) Broadcast() *QHostAddress {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQHostAddressFromPointer(C.QNetworkAddressEntry_Broadcast(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
+		qt.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
 		return tmpValue
 	}
 	return nil
@@ -8350,7 +8246,7 @@ func (ptr *QNetworkAddressEntry) DnsEligibility() QNetworkAddressEntry__DnsEligi
 func (ptr *QNetworkAddressEntry) Ip() *QHostAddress {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQHostAddressFromPointer(C.QNetworkAddressEntry_Ip(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
+		qt.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
 		return tmpValue
 	}
 	return nil
@@ -8380,7 +8276,7 @@ func (ptr *QNetworkAddressEntry) IsTemporary() bool {
 func (ptr *QNetworkAddressEntry) Netmask() *QHostAddress {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQHostAddressFromPointer(C.QNetworkAddressEntry_Netmask(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
+		qt.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
 		return tmpValue
 	}
 	return nil
@@ -8437,9 +8333,11 @@ func (ptr *QNetworkAddressEntry) Swap(other QNetworkAddressEntry_ITF) {
 
 func (ptr *QNetworkAddressEntry) DestroyQNetworkAddressEntry() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QNetworkAddressEntry_DestroyQNetworkAddressEntry(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -8482,20 +8380,20 @@ func NewQNetworkCacheMetaDataFromPointer(ptr unsafe.Pointer) (n *QNetworkCacheMe
 }
 func NewQNetworkCacheMetaData() *QNetworkCacheMetaData {
 	tmpValue := NewQNetworkCacheMetaDataFromPointer(C.QNetworkCacheMetaData_NewQNetworkCacheMetaData())
-	runtime.SetFinalizer(tmpValue, (*QNetworkCacheMetaData).DestroyQNetworkCacheMetaData)
+	qt.SetFinalizer(tmpValue, (*QNetworkCacheMetaData).DestroyQNetworkCacheMetaData)
 	return tmpValue
 }
 
 func NewQNetworkCacheMetaData2(other QNetworkCacheMetaData_ITF) *QNetworkCacheMetaData {
 	tmpValue := NewQNetworkCacheMetaDataFromPointer(C.QNetworkCacheMetaData_NewQNetworkCacheMetaData2(PointerFromQNetworkCacheMetaData(other)))
-	runtime.SetFinalizer(tmpValue, (*QNetworkCacheMetaData).DestroyQNetworkCacheMetaData)
+	qt.SetFinalizer(tmpValue, (*QNetworkCacheMetaData).DestroyQNetworkCacheMetaData)
 	return tmpValue
 }
 
 func (ptr *QNetworkCacheMetaData) ExpirationDate() *core.QDateTime {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQDateTimeFromPointer(C.QNetworkCacheMetaData_ExpirationDate(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
+		qt.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
 		return tmpValue
 	}
 	return nil
@@ -8511,10 +8409,24 @@ func (ptr *QNetworkCacheMetaData) IsValid() bool {
 func (ptr *QNetworkCacheMetaData) LastModified() *core.QDateTime {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQDateTimeFromPointer(C.QNetworkCacheMetaData_LastModified(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
+		qt.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
 		return tmpValue
 	}
 	return nil
+}
+
+func (ptr *QNetworkCacheMetaData) RawHeaders() []*QNetworkCacheMetaData_RawHeader {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtNetwork_PackedList) []*QNetworkCacheMetaData_RawHeader {
+			out := make([]*QNetworkCacheMetaData_RawHeader, int(l.len))
+			tmpList := NewQNetworkCacheMetaDataFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__rawHeaders_atList(i)
+			}
+			return out
+		}(C.QNetworkCacheMetaData_RawHeaders(ptr.Pointer()))
+	}
+	return make([]*QNetworkCacheMetaData_RawHeader, 0)
 }
 
 func (ptr *QNetworkCacheMetaData) SaveToDisk() bool {
@@ -8533,6 +8445,18 @@ func (ptr *QNetworkCacheMetaData) SetExpirationDate(dateTime core.QDateTime_ITF)
 func (ptr *QNetworkCacheMetaData) SetLastModified(dateTime core.QDateTime_ITF) {
 	if ptr.Pointer() != nil {
 		C.QNetworkCacheMetaData_SetLastModified(ptr.Pointer(), core.PointerFromQDateTime(dateTime))
+	}
+}
+
+func (ptr *QNetworkCacheMetaData) SetRawHeaders(list []*QNetworkCacheMetaData_RawHeader) {
+	if ptr.Pointer() != nil {
+		C.QNetworkCacheMetaData_SetRawHeaders(ptr.Pointer(), func() unsafe.Pointer {
+			tmpList := NewQNetworkCacheMetaDataFromPointer(NewQNetworkCacheMetaDataFromPointer(nil).__setRawHeaders_list_newList())
+			for _, v := range list {
+				tmpList.__setRawHeaders_list_setList(v)
+			}
+			return tmpList.Pointer()
+		}())
 	}
 }
 
@@ -8557,7 +8481,7 @@ func (ptr *QNetworkCacheMetaData) Swap(other QNetworkCacheMetaData_ITF) {
 func (ptr *QNetworkCacheMetaData) Url() *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QNetworkCacheMetaData_Url(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -8565,10 +8489,50 @@ func (ptr *QNetworkCacheMetaData) Url() *core.QUrl {
 
 func (ptr *QNetworkCacheMetaData) DestroyQNetworkCacheMetaData() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QNetworkCacheMetaData_DestroyQNetworkCacheMetaData(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
+}
+
+func (ptr *QNetworkCacheMetaData) __rawHeaders_atList(i int) *QNetworkCacheMetaData_RawHeader {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQNetworkCacheMetaData_RawHeaderFromPointer(C.QNetworkCacheMetaData___rawHeaders_atList(ptr.Pointer(), C.int(int32(i))))
+		qt.SetFinalizer(tmpValue, (*QNetworkCacheMetaData_RawHeader).DestroyQNetworkCacheMetaData_RawHeader)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QNetworkCacheMetaData) __rawHeaders_setList(i QNetworkCacheMetaData_RawHeader_ITF) {
+	if ptr.Pointer() != nil {
+		C.QNetworkCacheMetaData___rawHeaders_setList(ptr.Pointer(), PointerFromQNetworkCacheMetaData_RawHeader(i))
+	}
+}
+
+func (ptr *QNetworkCacheMetaData) __rawHeaders_newList() unsafe.Pointer {
+	return C.QNetworkCacheMetaData___rawHeaders_newList(ptr.Pointer())
+}
+
+func (ptr *QNetworkCacheMetaData) __setRawHeaders_list_atList(i int) *QNetworkCacheMetaData_RawHeader {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQNetworkCacheMetaData_RawHeaderFromPointer(C.QNetworkCacheMetaData___setRawHeaders_list_atList(ptr.Pointer(), C.int(int32(i))))
+		qt.SetFinalizer(tmpValue, (*QNetworkCacheMetaData_RawHeader).DestroyQNetworkCacheMetaData_RawHeader)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QNetworkCacheMetaData) __setRawHeaders_list_setList(i QNetworkCacheMetaData_RawHeader_ITF) {
+	if ptr.Pointer() != nil {
+		C.QNetworkCacheMetaData___setRawHeaders_list_setList(ptr.Pointer(), PointerFromQNetworkCacheMetaData_RawHeader(i))
+	}
+}
+
+func (ptr *QNetworkCacheMetaData) __setRawHeaders_list_newList() unsafe.Pointer {
+	return C.QNetworkCacheMetaData___setRawHeaders_list_newList(ptr.Pointer())
 }
 
 type QNetworkConfiguration struct {
@@ -8664,13 +8628,13 @@ const (
 
 func NewQNetworkConfiguration() *QNetworkConfiguration {
 	tmpValue := NewQNetworkConfigurationFromPointer(C.QNetworkConfiguration_NewQNetworkConfiguration())
-	runtime.SetFinalizer(tmpValue, (*QNetworkConfiguration).DestroyQNetworkConfiguration)
+	qt.SetFinalizer(tmpValue, (*QNetworkConfiguration).DestroyQNetworkConfiguration)
 	return tmpValue
 }
 
 func NewQNetworkConfiguration2(other QNetworkConfiguration_ITF) *QNetworkConfiguration {
 	tmpValue := NewQNetworkConfigurationFromPointer(C.QNetworkConfiguration_NewQNetworkConfiguration2(PointerFromQNetworkConfiguration(other)))
-	runtime.SetFinalizer(tmpValue, (*QNetworkConfiguration).DestroyQNetworkConfiguration)
+	qt.SetFinalizer(tmpValue, (*QNetworkConfiguration).DestroyQNetworkConfiguration)
 	return tmpValue
 }
 
@@ -8780,16 +8744,18 @@ func (ptr *QNetworkConfiguration) Type() QNetworkConfiguration__Type {
 
 func (ptr *QNetworkConfiguration) DestroyQNetworkConfiguration() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QNetworkConfiguration_DestroyQNetworkConfiguration(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QNetworkConfiguration) __children_atList(i int) *QNetworkConfiguration {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQNetworkConfigurationFromPointer(C.QNetworkConfiguration___children_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QNetworkConfiguration).DestroyQNetworkConfiguration)
+		qt.SetFinalizer(tmpValue, (*QNetworkConfiguration).DestroyQNetworkConfiguration)
 		return tmpValue
 	}
 	return nil
@@ -8899,7 +8865,7 @@ func (ptr *QNetworkConfigurationManager) ConnectConfigurationAdded(f func(config
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "configurationAdded") {
-			C.QNetworkConfigurationManager_ConnectConfigurationAdded(ptr.Pointer())
+			C.QNetworkConfigurationManager_ConnectConfigurationAdded(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "configurationAdded")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "configurationAdded"); signal != nil {
@@ -8939,7 +8905,7 @@ func (ptr *QNetworkConfigurationManager) ConnectConfigurationChanged(f func(conf
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "configurationChanged") {
-			C.QNetworkConfigurationManager_ConnectConfigurationChanged(ptr.Pointer())
+			C.QNetworkConfigurationManager_ConnectConfigurationChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "configurationChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "configurationChanged"); signal != nil {
@@ -8975,7 +8941,7 @@ func (ptr *QNetworkConfigurationManager) ConfigurationFromIdentifier(identifier 
 			defer C.free(unsafe.Pointer(identifierC))
 		}
 		tmpValue := NewQNetworkConfigurationFromPointer(C.QNetworkConfigurationManager_ConfigurationFromIdentifier(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: identifierC, len: C.longlong(len(identifier))}))
-		runtime.SetFinalizer(tmpValue, (*QNetworkConfiguration).DestroyQNetworkConfiguration)
+		qt.SetFinalizer(tmpValue, (*QNetworkConfiguration).DestroyQNetworkConfiguration)
 		return tmpValue
 	}
 	return nil
@@ -8993,7 +8959,7 @@ func (ptr *QNetworkConfigurationManager) ConnectConfigurationRemoved(f func(conf
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "configurationRemoved") {
-			C.QNetworkConfigurationManager_ConnectConfigurationRemoved(ptr.Pointer())
+			C.QNetworkConfigurationManager_ConnectConfigurationRemoved(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "configurationRemoved")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "configurationRemoved"); signal != nil {
@@ -9024,7 +8990,7 @@ func (ptr *QNetworkConfigurationManager) ConfigurationRemoved(config QNetworkCon
 func (ptr *QNetworkConfigurationManager) DefaultConfiguration() *QNetworkConfiguration {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQNetworkConfigurationFromPointer(C.QNetworkConfigurationManager_DefaultConfiguration(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QNetworkConfiguration).DestroyQNetworkConfiguration)
+		qt.SetFinalizer(tmpValue, (*QNetworkConfiguration).DestroyQNetworkConfiguration)
 		return tmpValue
 	}
 	return nil
@@ -9049,7 +9015,7 @@ func (ptr *QNetworkConfigurationManager) ConnectOnlineStateChanged(f func(isOnli
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "onlineStateChanged") {
-			C.QNetworkConfigurationManager_ConnectOnlineStateChanged(ptr.Pointer())
+			C.QNetworkConfigurationManager_ConnectOnlineStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "onlineStateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "onlineStateChanged"); signal != nil {
@@ -9089,7 +9055,7 @@ func (ptr *QNetworkConfigurationManager) ConnectUpdateCompleted(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "updateCompleted") {
-			C.QNetworkConfigurationManager_ConnectUpdateCompleted(ptr.Pointer())
+			C.QNetworkConfigurationManager_ConnectUpdateCompleted(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "updateCompleted")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "updateCompleted"); signal != nil {
@@ -9193,24 +9159,26 @@ func (ptr *QNetworkConfigurationManager) DisconnectDestroyQNetworkConfigurationM
 
 func (ptr *QNetworkConfigurationManager) DestroyQNetworkConfigurationManager() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QNetworkConfigurationManager_DestroyQNetworkConfigurationManager(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QNetworkConfigurationManager) DestroyQNetworkConfigurationManagerDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QNetworkConfigurationManager_DestroyQNetworkConfigurationManagerDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QNetworkConfigurationManager) __allConfigurations_atList(i int) *QNetworkConfiguration {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQNetworkConfigurationFromPointer(C.QNetworkConfigurationManager___allConfigurations_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QNetworkConfiguration).DestroyQNetworkConfiguration)
+		qt.SetFinalizer(tmpValue, (*QNetworkConfiguration).DestroyQNetworkConfiguration)
 		return tmpValue
 	}
 	return nil
@@ -9250,7 +9218,7 @@ func (ptr *QNetworkConfigurationManager) __children_newList() unsafe.Pointer {
 func (ptr *QNetworkConfigurationManager) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QNetworkConfigurationManager___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -9306,27 +9274,6 @@ func (ptr *QNetworkConfigurationManager) __findChildren_setList3(i core.QObject_
 
 func (ptr *QNetworkConfigurationManager) __findChildren_newList3() unsafe.Pointer {
 	return C.QNetworkConfigurationManager___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QNetworkConfigurationManager) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QNetworkConfigurationManager___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QNetworkConfigurationManager) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkConfigurationManager___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QNetworkConfigurationManager) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QNetworkConfigurationManager___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQNetworkConfigurationManager_ChildEvent
@@ -9385,8 +9332,9 @@ func callbackQNetworkConfigurationManager_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QNetworkConfigurationManager) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QNetworkConfigurationManager_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -9533,13 +9481,13 @@ const (
 
 func NewQNetworkCookie(name core.QByteArray_ITF, value core.QByteArray_ITF) *QNetworkCookie {
 	tmpValue := NewQNetworkCookieFromPointer(C.QNetworkCookie_NewQNetworkCookie(core.PointerFromQByteArray(name), core.PointerFromQByteArray(value)))
-	runtime.SetFinalizer(tmpValue, (*QNetworkCookie).DestroyQNetworkCookie)
+	qt.SetFinalizer(tmpValue, (*QNetworkCookie).DestroyQNetworkCookie)
 	return tmpValue
 }
 
 func NewQNetworkCookie2(other QNetworkCookie_ITF) *QNetworkCookie {
 	tmpValue := NewQNetworkCookieFromPointer(C.QNetworkCookie_NewQNetworkCookie2(PointerFromQNetworkCookie(other)))
-	runtime.SetFinalizer(tmpValue, (*QNetworkCookie).DestroyQNetworkCookie)
+	qt.SetFinalizer(tmpValue, (*QNetworkCookie).DestroyQNetworkCookie)
 	return tmpValue
 }
 
@@ -9553,7 +9501,7 @@ func (ptr *QNetworkCookie) Domain() string {
 func (ptr *QNetworkCookie) ExpirationDate() *core.QDateTime {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQDateTimeFromPointer(C.QNetworkCookie_ExpirationDate(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
+		qt.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
 		return tmpValue
 	}
 	return nil
@@ -9590,7 +9538,7 @@ func (ptr *QNetworkCookie) IsSessionCookie() bool {
 func (ptr *QNetworkCookie) Name() *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QNetworkCookie_Name(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -9692,7 +9640,7 @@ func (ptr *QNetworkCookie) Swap(other QNetworkCookie_ITF) {
 func (ptr *QNetworkCookie) ToRawForm(form QNetworkCookie__RawForm) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QNetworkCookie_ToRawForm(ptr.Pointer(), C.longlong(form)))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -9701,7 +9649,7 @@ func (ptr *QNetworkCookie) ToRawForm(form QNetworkCookie__RawForm) *core.QByteAr
 func (ptr *QNetworkCookie) Value() *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QNetworkCookie_Value(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -9709,16 +9657,18 @@ func (ptr *QNetworkCookie) Value() *core.QByteArray {
 
 func (ptr *QNetworkCookie) DestroyQNetworkCookie() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QNetworkCookie_DestroyQNetworkCookie(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QNetworkCookie) __parseCookies_atList(i int) *QNetworkCookie {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQNetworkCookieFromPointer(C.QNetworkCookie___parseCookies_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QNetworkCookie).DestroyQNetworkCookie)
+		qt.SetFinalizer(tmpValue, (*QNetworkCookie).DestroyQNetworkCookie)
 		return tmpValue
 	}
 	return nil
@@ -10161,24 +10111,26 @@ func (ptr *QNetworkCookieJar) DisconnectDestroyQNetworkCookieJar() {
 
 func (ptr *QNetworkCookieJar) DestroyQNetworkCookieJar() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QNetworkCookieJar_DestroyQNetworkCookieJar(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QNetworkCookieJar) DestroyQNetworkCookieJarDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QNetworkCookieJar_DestroyQNetworkCookieJarDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QNetworkCookieJar) __allCookies_atList(i int) *QNetworkCookie {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQNetworkCookieFromPointer(C.QNetworkCookieJar___allCookies_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QNetworkCookie).DestroyQNetworkCookie)
+		qt.SetFinalizer(tmpValue, (*QNetworkCookie).DestroyQNetworkCookie)
 		return tmpValue
 	}
 	return nil
@@ -10197,7 +10149,7 @@ func (ptr *QNetworkCookieJar) __allCookies_newList() unsafe.Pointer {
 func (ptr *QNetworkCookieJar) __cookiesForUrl_atList(i int) *QNetworkCookie {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQNetworkCookieFromPointer(C.QNetworkCookieJar___cookiesForUrl_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QNetworkCookie).DestroyQNetworkCookie)
+		qt.SetFinalizer(tmpValue, (*QNetworkCookie).DestroyQNetworkCookie)
 		return tmpValue
 	}
 	return nil
@@ -10216,7 +10168,7 @@ func (ptr *QNetworkCookieJar) __cookiesForUrl_newList() unsafe.Pointer {
 func (ptr *QNetworkCookieJar) __setAllCookies_cookieList_atList(i int) *QNetworkCookie {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQNetworkCookieFromPointer(C.QNetworkCookieJar___setAllCookies_cookieList_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QNetworkCookie).DestroyQNetworkCookie)
+		qt.SetFinalizer(tmpValue, (*QNetworkCookie).DestroyQNetworkCookie)
 		return tmpValue
 	}
 	return nil
@@ -10235,7 +10187,7 @@ func (ptr *QNetworkCookieJar) __setAllCookies_cookieList_newList() unsafe.Pointe
 func (ptr *QNetworkCookieJar) __setCookiesFromUrl_cookieList_atList(i int) *QNetworkCookie {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQNetworkCookieFromPointer(C.QNetworkCookieJar___setCookiesFromUrl_cookieList_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QNetworkCookie).DestroyQNetworkCookie)
+		qt.SetFinalizer(tmpValue, (*QNetworkCookie).DestroyQNetworkCookie)
 		return tmpValue
 	}
 	return nil
@@ -10275,7 +10227,7 @@ func (ptr *QNetworkCookieJar) __children_newList() unsafe.Pointer {
 func (ptr *QNetworkCookieJar) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QNetworkCookieJar___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -10331,27 +10283,6 @@ func (ptr *QNetworkCookieJar) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QNetworkCookieJar) __findChildren_newList3() unsafe.Pointer {
 	return C.QNetworkCookieJar___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QNetworkCookieJar) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QNetworkCookieJar___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QNetworkCookieJar) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkCookieJar___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QNetworkCookieJar) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QNetworkCookieJar___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQNetworkCookieJar_ChildEvent
@@ -10410,8 +10341,9 @@ func callbackQNetworkCookieJar_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QNetworkCookieJar) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QNetworkCookieJar_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -10546,30 +10478,29 @@ func NewQNetworkDatagramFromPointer(ptr unsafe.Pointer) (n *QNetworkDatagram) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QNetworkDatagram) DestroyQNetworkDatagram() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
-
 func NewQNetworkDatagram() *QNetworkDatagram {
 	tmpValue := NewQNetworkDatagramFromPointer(C.QNetworkDatagram_NewQNetworkDatagram())
-	runtime.SetFinalizer(tmpValue, (*QNetworkDatagram).DestroyQNetworkDatagram)
+	qt.SetFinalizer(tmpValue, (*QNetworkDatagram).DestroyQNetworkDatagram)
 	return tmpValue
 }
 
 func NewQNetworkDatagram2(data core.QByteArray_ITF, destinationAddress QHostAddress_ITF, port uint16) *QNetworkDatagram {
 	tmpValue := NewQNetworkDatagramFromPointer(C.QNetworkDatagram_NewQNetworkDatagram2(core.PointerFromQByteArray(data), PointerFromQHostAddress(destinationAddress), C.ushort(port)))
-	runtime.SetFinalizer(tmpValue, (*QNetworkDatagram).DestroyQNetworkDatagram)
+	qt.SetFinalizer(tmpValue, (*QNetworkDatagram).DestroyQNetworkDatagram)
 	return tmpValue
 }
 
 func NewQNetworkDatagram3(other QNetworkDatagram_ITF) *QNetworkDatagram {
 	tmpValue := NewQNetworkDatagramFromPointer(C.QNetworkDatagram_NewQNetworkDatagram3(PointerFromQNetworkDatagram(other)))
-	runtime.SetFinalizer(tmpValue, (*QNetworkDatagram).DestroyQNetworkDatagram)
+	qt.SetFinalizer(tmpValue, (*QNetworkDatagram).DestroyQNetworkDatagram)
 	return tmpValue
 }
 
@@ -10582,7 +10513,7 @@ func (ptr *QNetworkDatagram) Clear() {
 func (ptr *QNetworkDatagram) Data() *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QNetworkDatagram_Data(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -10591,7 +10522,7 @@ func (ptr *QNetworkDatagram) Data() *core.QByteArray {
 func (ptr *QNetworkDatagram) DestinationAddress() *QHostAddress {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQHostAddressFromPointer(C.QNetworkDatagram_DestinationAddress(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
+		qt.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
 		return tmpValue
 	}
 	return nil
@@ -10635,7 +10566,7 @@ func (ptr *QNetworkDatagram) IsValid() bool {
 func (ptr *QNetworkDatagram) MakeReply(payload core.QByteArray_ITF) *QNetworkDatagram {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQNetworkDatagramFromPointer(C.QNetworkDatagram_MakeReply(ptr.Pointer(), core.PointerFromQByteArray(payload)))
-		runtime.SetFinalizer(tmpValue, (*QNetworkDatagram).DestroyQNetworkDatagram)
+		qt.SetFinalizer(tmpValue, (*QNetworkDatagram).DestroyQNetworkDatagram)
 		return tmpValue
 	}
 	return nil
@@ -10644,7 +10575,7 @@ func (ptr *QNetworkDatagram) MakeReply(payload core.QByteArray_ITF) *QNetworkDat
 func (ptr *QNetworkDatagram) MakeReply2(payload core.QByteArray_ITF) *QNetworkDatagram {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQNetworkDatagramFromPointer(C.QNetworkDatagram_MakeReply2(ptr.Pointer(), core.PointerFromQByteArray(payload)))
-		runtime.SetFinalizer(tmpValue, (*QNetworkDatagram).DestroyQNetworkDatagram)
+		qt.SetFinalizer(tmpValue, (*QNetworkDatagram).DestroyQNetworkDatagram)
 		return tmpValue
 	}
 	return nil
@@ -10653,7 +10584,7 @@ func (ptr *QNetworkDatagram) MakeReply2(payload core.QByteArray_ITF) *QNetworkDa
 func (ptr *QNetworkDatagram) SenderAddress() *QHostAddress {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQHostAddressFromPointer(C.QNetworkDatagram_SenderAddress(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
+		qt.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
 		return tmpValue
 	}
 	return nil
@@ -10949,7 +10880,7 @@ func (ptr *QNetworkDiskCache) FileMetaData(fileName string) *QNetworkCacheMetaDa
 			defer C.free(unsafe.Pointer(fileNameC))
 		}
 		tmpValue := NewQNetworkCacheMetaDataFromPointer(C.QNetworkDiskCache_FileMetaData(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: fileNameC, len: C.longlong(len(fileName))}))
-		runtime.SetFinalizer(tmpValue, (*QNetworkCacheMetaData).DestroyQNetworkCacheMetaData)
+		qt.SetFinalizer(tmpValue, (*QNetworkCacheMetaData).DestroyQNetworkCacheMetaData)
 		return tmpValue
 	}
 	return nil
@@ -11039,7 +10970,7 @@ func (ptr *QNetworkDiskCache) DisconnectMetaData() {
 func (ptr *QNetworkDiskCache) MetaData(url core.QUrl_ITF) *QNetworkCacheMetaData {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQNetworkCacheMetaDataFromPointer(C.QNetworkDiskCache_MetaData(ptr.Pointer(), core.PointerFromQUrl(url)))
-		runtime.SetFinalizer(tmpValue, (*QNetworkCacheMetaData).DestroyQNetworkCacheMetaData)
+		qt.SetFinalizer(tmpValue, (*QNetworkCacheMetaData).DestroyQNetworkCacheMetaData)
 		return tmpValue
 	}
 	return nil
@@ -11048,7 +10979,7 @@ func (ptr *QNetworkDiskCache) MetaData(url core.QUrl_ITF) *QNetworkCacheMetaData
 func (ptr *QNetworkDiskCache) MetaDataDefault(url core.QUrl_ITF) *QNetworkCacheMetaData {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQNetworkCacheMetaDataFromPointer(C.QNetworkDiskCache_MetaDataDefault(ptr.Pointer(), core.PointerFromQUrl(url)))
-		runtime.SetFinalizer(tmpValue, (*QNetworkCacheMetaData).DestroyQNetworkCacheMetaData)
+		qt.SetFinalizer(tmpValue, (*QNetworkCacheMetaData).DestroyQNetworkCacheMetaData)
 		return tmpValue
 	}
 	return nil
@@ -11245,17 +11176,19 @@ func (ptr *QNetworkDiskCache) DisconnectDestroyQNetworkDiskCache() {
 
 func (ptr *QNetworkDiskCache) DestroyQNetworkDiskCache() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QNetworkDiskCache_DestroyQNetworkDiskCache(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QNetworkDiskCache) DestroyQNetworkDiskCacheDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QNetworkDiskCache_DestroyQNetworkDiskCacheDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -11334,13 +11267,13 @@ const (
 
 func NewQNetworkInterface() *QNetworkInterface {
 	tmpValue := NewQNetworkInterfaceFromPointer(C.QNetworkInterface_NewQNetworkInterface())
-	runtime.SetFinalizer(tmpValue, (*QNetworkInterface).DestroyQNetworkInterface)
+	qt.SetFinalizer(tmpValue, (*QNetworkInterface).DestroyQNetworkInterface)
 	return tmpValue
 }
 
 func NewQNetworkInterface2(other QNetworkInterface_ITF) *QNetworkInterface {
 	tmpValue := NewQNetworkInterfaceFromPointer(C.QNetworkInterface_NewQNetworkInterface2(PointerFromQNetworkInterface(other)))
-	runtime.SetFinalizer(tmpValue, (*QNetworkInterface).DestroyQNetworkInterface)
+	qt.SetFinalizer(tmpValue, (*QNetworkInterface).DestroyQNetworkInterface)
 	return tmpValue
 }
 
@@ -11432,13 +11365,13 @@ func (ptr *QNetworkInterface) Index() int {
 
 func QNetworkInterface_InterfaceFromIndex(index int) *QNetworkInterface {
 	tmpValue := NewQNetworkInterfaceFromPointer(C.QNetworkInterface_QNetworkInterface_InterfaceFromIndex(C.int(int32(index))))
-	runtime.SetFinalizer(tmpValue, (*QNetworkInterface).DestroyQNetworkInterface)
+	qt.SetFinalizer(tmpValue, (*QNetworkInterface).DestroyQNetworkInterface)
 	return tmpValue
 }
 
 func (ptr *QNetworkInterface) InterfaceFromIndex(index int) *QNetworkInterface {
 	tmpValue := NewQNetworkInterfaceFromPointer(C.QNetworkInterface_QNetworkInterface_InterfaceFromIndex(C.int(int32(index))))
-	runtime.SetFinalizer(tmpValue, (*QNetworkInterface).DestroyQNetworkInterface)
+	qt.SetFinalizer(tmpValue, (*QNetworkInterface).DestroyQNetworkInterface)
 	return tmpValue
 }
 
@@ -11449,7 +11382,7 @@ func QNetworkInterface_InterfaceFromName(name string) *QNetworkInterface {
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	tmpValue := NewQNetworkInterfaceFromPointer(C.QNetworkInterface_QNetworkInterface_InterfaceFromName(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}))
-	runtime.SetFinalizer(tmpValue, (*QNetworkInterface).DestroyQNetworkInterface)
+	qt.SetFinalizer(tmpValue, (*QNetworkInterface).DestroyQNetworkInterface)
 	return tmpValue
 }
 
@@ -11460,7 +11393,7 @@ func (ptr *QNetworkInterface) InterfaceFromName(name string) *QNetworkInterface 
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	tmpValue := NewQNetworkInterfaceFromPointer(C.QNetworkInterface_QNetworkInterface_InterfaceFromName(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}))
-	runtime.SetFinalizer(tmpValue, (*QNetworkInterface).DestroyQNetworkInterface)
+	qt.SetFinalizer(tmpValue, (*QNetworkInterface).DestroyQNetworkInterface)
 	return tmpValue
 }
 
@@ -11526,16 +11459,18 @@ func (ptr *QNetworkInterface) Type() QNetworkInterface__InterfaceType {
 
 func (ptr *QNetworkInterface) DestroyQNetworkInterface() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QNetworkInterface_DestroyQNetworkInterface(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QNetworkInterface) __addressEntries_atList(i int) *QNetworkAddressEntry {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQNetworkAddressEntryFromPointer(C.QNetworkInterface___addressEntries_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QNetworkAddressEntry).DestroyQNetworkAddressEntry)
+		qt.SetFinalizer(tmpValue, (*QNetworkAddressEntry).DestroyQNetworkAddressEntry)
 		return tmpValue
 	}
 	return nil
@@ -11554,7 +11489,7 @@ func (ptr *QNetworkInterface) __addressEntries_newList() unsafe.Pointer {
 func (ptr *QNetworkInterface) __allAddresses_atList(i int) *QHostAddress {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQHostAddressFromPointer(C.QNetworkInterface___allAddresses_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
+		qt.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
 		return tmpValue
 	}
 	return nil
@@ -11573,7 +11508,7 @@ func (ptr *QNetworkInterface) __allAddresses_newList() unsafe.Pointer {
 func (ptr *QNetworkInterface) __allInterfaces_atList(i int) *QNetworkInterface {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQNetworkInterfaceFromPointer(C.QNetworkInterface___allInterfaces_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QNetworkInterface).DestroyQNetworkInterface)
+		qt.SetFinalizer(tmpValue, (*QNetworkInterface).DestroyQNetworkInterface)
 		return tmpValue
 	}
 	return nil
@@ -11656,7 +11591,7 @@ const (
 
 func NewQNetworkProxy() *QNetworkProxy {
 	tmpValue := NewQNetworkProxyFromPointer(C.QNetworkProxy_NewQNetworkProxy())
-	runtime.SetFinalizer(tmpValue, (*QNetworkProxy).DestroyQNetworkProxy)
+	qt.SetFinalizer(tmpValue, (*QNetworkProxy).DestroyQNetworkProxy)
 	return tmpValue
 }
 
@@ -11677,25 +11612,25 @@ func NewQNetworkProxy2(ty QNetworkProxy__ProxyType, hostName string, port uint16
 		defer C.free(unsafe.Pointer(passwordC))
 	}
 	tmpValue := NewQNetworkProxyFromPointer(C.QNetworkProxy_NewQNetworkProxy2(C.longlong(ty), C.struct_QtNetwork_PackedString{data: hostNameC, len: C.longlong(len(hostName))}, C.ushort(port), C.struct_QtNetwork_PackedString{data: userC, len: C.longlong(len(user))}, C.struct_QtNetwork_PackedString{data: passwordC, len: C.longlong(len(password))}))
-	runtime.SetFinalizer(tmpValue, (*QNetworkProxy).DestroyQNetworkProxy)
+	qt.SetFinalizer(tmpValue, (*QNetworkProxy).DestroyQNetworkProxy)
 	return tmpValue
 }
 
 func NewQNetworkProxy3(other QNetworkProxy_ITF) *QNetworkProxy {
 	tmpValue := NewQNetworkProxyFromPointer(C.QNetworkProxy_NewQNetworkProxy3(PointerFromQNetworkProxy(other)))
-	runtime.SetFinalizer(tmpValue, (*QNetworkProxy).DestroyQNetworkProxy)
+	qt.SetFinalizer(tmpValue, (*QNetworkProxy).DestroyQNetworkProxy)
 	return tmpValue
 }
 
 func QNetworkProxy_ApplicationProxy() *QNetworkProxy {
 	tmpValue := NewQNetworkProxyFromPointer(C.QNetworkProxy_QNetworkProxy_ApplicationProxy())
-	runtime.SetFinalizer(tmpValue, (*QNetworkProxy).DestroyQNetworkProxy)
+	qt.SetFinalizer(tmpValue, (*QNetworkProxy).DestroyQNetworkProxy)
 	return tmpValue
 }
 
 func (ptr *QNetworkProxy) ApplicationProxy() *QNetworkProxy {
 	tmpValue := NewQNetworkProxyFromPointer(C.QNetworkProxy_QNetworkProxy_ApplicationProxy())
-	runtime.SetFinalizer(tmpValue, (*QNetworkProxy).DestroyQNetworkProxy)
+	qt.SetFinalizer(tmpValue, (*QNetworkProxy).DestroyQNetworkProxy)
 	return tmpValue
 }
 
@@ -11716,7 +11651,7 @@ func (ptr *QNetworkProxy) HasRawHeader(headerName core.QByteArray_ITF) bool {
 func (ptr *QNetworkProxy) Header(header QNetworkRequest__KnownHeaders) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QNetworkProxy_Header(ptr.Pointer(), C.longlong(header)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -11757,10 +11692,10 @@ func (ptr *QNetworkProxy) Port() uint16 {
 	return 0
 }
 
-func (ptr *QNetworkProxy) RawHeader(headerName core.QByteArray_ITF) *core.QByteArray {
+func (ptr *QNetworkProxy) QNetworkCacheMetaData_RawHeader(headerName core.QByteArray_ITF) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QNetworkProxy_RawHeader(ptr.Pointer(), core.PointerFromQByteArray(headerName)))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -11873,16 +11808,18 @@ func (ptr *QNetworkProxy) User() string {
 
 func (ptr *QNetworkProxy) DestroyQNetworkProxy() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QNetworkProxy_DestroyQNetworkProxy(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QNetworkProxy) __rawHeaderList_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QNetworkProxy___rawHeaderList_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -12097,24 +12034,26 @@ func (ptr *QNetworkProxyFactory) DisconnectDestroyQNetworkProxyFactory() {
 
 func (ptr *QNetworkProxyFactory) DestroyQNetworkProxyFactory() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QNetworkProxyFactory_DestroyQNetworkProxyFactory(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QNetworkProxyFactory) DestroyQNetworkProxyFactoryDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QNetworkProxyFactory_DestroyQNetworkProxyFactoryDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QNetworkProxyFactory) __proxyForQuery_atList(i int) *QNetworkProxy {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQNetworkProxyFromPointer(C.QNetworkProxyFactory___proxyForQuery_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QNetworkProxy).DestroyQNetworkProxy)
+		qt.SetFinalizer(tmpValue, (*QNetworkProxy).DestroyQNetworkProxy)
 		return tmpValue
 	}
 	return nil
@@ -12133,7 +12072,7 @@ func (ptr *QNetworkProxyFactory) __proxyForQuery_newList() unsafe.Pointer {
 func (ptr *QNetworkProxyFactory) __queryProxy_atList(i int) *QNetworkProxy {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQNetworkProxyFromPointer(C.QNetworkProxyFactory___queryProxy_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QNetworkProxy).DestroyQNetworkProxy)
+		qt.SetFinalizer(tmpValue, (*QNetworkProxy).DestroyQNetworkProxy)
 		return tmpValue
 	}
 	return nil
@@ -12152,7 +12091,7 @@ func (ptr *QNetworkProxyFactory) __queryProxy_newList() unsafe.Pointer {
 func (ptr *QNetworkProxyFactory) __systemProxyForQuery_atList(i int) *QNetworkProxy {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQNetworkProxyFromPointer(C.QNetworkProxyFactory___systemProxyForQuery_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QNetworkProxy).DestroyQNetworkProxy)
+		qt.SetFinalizer(tmpValue, (*QNetworkProxy).DestroyQNetworkProxy)
 		return tmpValue
 	}
 	return nil
@@ -12221,13 +12160,13 @@ const (
 
 func NewQNetworkProxyQuery() *QNetworkProxyQuery {
 	tmpValue := NewQNetworkProxyQueryFromPointer(C.QNetworkProxyQuery_NewQNetworkProxyQuery())
-	runtime.SetFinalizer(tmpValue, (*QNetworkProxyQuery).DestroyQNetworkProxyQuery)
+	qt.SetFinalizer(tmpValue, (*QNetworkProxyQuery).DestroyQNetworkProxyQuery)
 	return tmpValue
 }
 
 func NewQNetworkProxyQuery2(requestUrl core.QUrl_ITF, queryType QNetworkProxyQuery__QueryType) *QNetworkProxyQuery {
 	tmpValue := NewQNetworkProxyQueryFromPointer(C.QNetworkProxyQuery_NewQNetworkProxyQuery2(core.PointerFromQUrl(requestUrl), C.longlong(queryType)))
-	runtime.SetFinalizer(tmpValue, (*QNetworkProxyQuery).DestroyQNetworkProxyQuery)
+	qt.SetFinalizer(tmpValue, (*QNetworkProxyQuery).DestroyQNetworkProxyQuery)
 	return tmpValue
 }
 
@@ -12243,7 +12182,7 @@ func NewQNetworkProxyQuery3(hostname string, port int, protocolTag string, query
 		defer C.free(unsafe.Pointer(protocolTagC))
 	}
 	tmpValue := NewQNetworkProxyQueryFromPointer(C.QNetworkProxyQuery_NewQNetworkProxyQuery3(C.struct_QtNetwork_PackedString{data: hostnameC, len: C.longlong(len(hostname))}, C.int(int32(port)), C.struct_QtNetwork_PackedString{data: protocolTagC, len: C.longlong(len(protocolTag))}, C.longlong(queryType)))
-	runtime.SetFinalizer(tmpValue, (*QNetworkProxyQuery).DestroyQNetworkProxyQuery)
+	qt.SetFinalizer(tmpValue, (*QNetworkProxyQuery).DestroyQNetworkProxyQuery)
 	return tmpValue
 }
 
@@ -12254,13 +12193,13 @@ func NewQNetworkProxyQuery4(bindPort uint16, protocolTag string, queryType QNetw
 		defer C.free(unsafe.Pointer(protocolTagC))
 	}
 	tmpValue := NewQNetworkProxyQueryFromPointer(C.QNetworkProxyQuery_NewQNetworkProxyQuery4(C.ushort(bindPort), C.struct_QtNetwork_PackedString{data: protocolTagC, len: C.longlong(len(protocolTag))}, C.longlong(queryType)))
-	runtime.SetFinalizer(tmpValue, (*QNetworkProxyQuery).DestroyQNetworkProxyQuery)
+	qt.SetFinalizer(tmpValue, (*QNetworkProxyQuery).DestroyQNetworkProxyQuery)
 	return tmpValue
 }
 
 func NewQNetworkProxyQuery8(other QNetworkProxyQuery_ITF) *QNetworkProxyQuery {
 	tmpValue := NewQNetworkProxyQueryFromPointer(C.QNetworkProxyQuery_NewQNetworkProxyQuery8(PointerFromQNetworkProxyQuery(other)))
-	runtime.SetFinalizer(tmpValue, (*QNetworkProxyQuery).DestroyQNetworkProxyQuery)
+	qt.SetFinalizer(tmpValue, (*QNetworkProxyQuery).DestroyQNetworkProxyQuery)
 	return tmpValue
 }
 
@@ -12354,7 +12293,7 @@ func (ptr *QNetworkProxyQuery) Swap(other QNetworkProxyQuery_ITF) {
 func (ptr *QNetworkProxyQuery) Url() *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QNetworkProxyQuery_Url(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -12362,9 +12301,11 @@ func (ptr *QNetworkProxyQuery) Url() *core.QUrl {
 
 func (ptr *QNetworkProxyQuery) DestroyQNetworkProxyQuery() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QNetworkProxyQuery_DestroyQNetworkProxyQuery(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -12495,7 +12436,7 @@ func (ptr *QNetworkReply) Abort() {
 func (ptr *QNetworkReply) Attribute(code QNetworkRequest__Attribute) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QNetworkReply_Attribute(ptr.Pointer(), C.longlong(code)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -12528,7 +12469,7 @@ func (ptr *QNetworkReply) ConnectDownloadProgress(f func(bytesReceived int64, by
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "downloadProgress") {
-			C.QNetworkReply_ConnectDownloadProgress(ptr.Pointer())
+			C.QNetworkReply_ConnectDownloadProgress(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "downloadProgress")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "downloadProgress"); signal != nil {
@@ -12568,7 +12509,7 @@ func (ptr *QNetworkReply) ConnectEncrypted(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "encrypted") {
-			C.QNetworkReply_ConnectEncrypted(ptr.Pointer())
+			C.QNetworkReply_ConnectEncrypted(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "encrypted")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "encrypted"); signal != nil {
@@ -12615,7 +12556,7 @@ func (ptr *QNetworkReply) ConnectError2(f func(code QNetworkReply__NetworkError)
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "error2") {
-			C.QNetworkReply_ConnectError2(ptr.Pointer())
+			C.QNetworkReply_ConnectError2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error2"); signal != nil {
@@ -12655,7 +12596,7 @@ func (ptr *QNetworkReply) ConnectFinished(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "finished") {
-			C.QNetworkReply_ConnectFinished(ptr.Pointer())
+			C.QNetworkReply_ConnectFinished(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "finished")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "finished"); signal != nil {
@@ -12693,7 +12634,7 @@ func (ptr *QNetworkReply) HasRawHeader(headerName core.QByteArray_ITF) bool {
 func (ptr *QNetworkReply) Header(header QNetworkRequest__KnownHeaders) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QNetworkReply_Header(ptr.Pointer(), C.longlong(header)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -12860,7 +12801,7 @@ func (ptr *QNetworkReply) ConnectMetaDataChanged(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "metaDataChanged") {
-			C.QNetworkReply_ConnectMetaDataChanged(ptr.Pointer())
+			C.QNetworkReply_ConnectMetaDataChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "metaDataChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "metaDataChanged"); signal != nil {
@@ -12907,7 +12848,7 @@ func (ptr *QNetworkReply) ConnectPreSharedKeyAuthenticationRequired(f func(authe
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "preSharedKeyAuthenticationRequired") {
-			C.QNetworkReply_ConnectPreSharedKeyAuthenticationRequired(ptr.Pointer())
+			C.QNetworkReply_ConnectPreSharedKeyAuthenticationRequired(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "preSharedKeyAuthenticationRequired")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "preSharedKeyAuthenticationRequired"); signal != nil {
@@ -12935,10 +12876,10 @@ func (ptr *QNetworkReply) PreSharedKeyAuthenticationRequired(authenticator QSslP
 	}
 }
 
-func (ptr *QNetworkReply) RawHeader(headerName core.QByteArray_ITF) *core.QByteArray {
+func (ptr *QNetworkReply) QNetworkCacheMetaData_RawHeader(headerName core.QByteArray_ITF) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QNetworkReply_RawHeader(ptr.Pointer(), core.PointerFromQByteArray(headerName)))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -12977,7 +12918,7 @@ func (ptr *QNetworkReply) ConnectRedirectAllowed(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "redirectAllowed") {
-			C.QNetworkReply_ConnectRedirectAllowed(ptr.Pointer())
+			C.QNetworkReply_ConnectRedirectAllowed(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "redirectAllowed")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "redirectAllowed"); signal != nil {
@@ -13017,7 +12958,7 @@ func (ptr *QNetworkReply) ConnectRedirected(f func(url *core.QUrl)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "redirected") {
-			C.QNetworkReply_ConnectRedirected(ptr.Pointer())
+			C.QNetworkReply_ConnectRedirected(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "redirected")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "redirected"); signal != nil {
@@ -13048,7 +12989,7 @@ func (ptr *QNetworkReply) Redirected(url core.QUrl_ITF) {
 func (ptr *QNetworkReply) Request() *QNetworkRequest {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQNetworkRequestFromPointer(C.QNetworkReply_Request(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QNetworkRequest).DestroyQNetworkRequest)
+		qt.SetFinalizer(tmpValue, (*QNetworkRequest).DestroyQNetworkRequest)
 		return tmpValue
 	}
 	return nil
@@ -13202,7 +13143,7 @@ func (ptr *QNetworkReply) SetUrl(url core.QUrl_ITF) {
 func (ptr *QNetworkReply) SslConfiguration() *QSslConfiguration {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslConfigurationFromPointer(C.QNetworkReply_SslConfiguration(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QSslConfiguration).DestroyQSslConfiguration)
+		qt.SetFinalizer(tmpValue, (*QSslConfiguration).DestroyQSslConfiguration)
 		return tmpValue
 	}
 	return nil
@@ -13270,7 +13211,7 @@ func (ptr *QNetworkReply) ConnectSslErrors(f func(errors []*QSslError)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "sslErrors") {
-			C.QNetworkReply_ConnectSslErrors(ptr.Pointer())
+			C.QNetworkReply_ConnectSslErrors(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "sslErrors")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "sslErrors"); signal != nil {
@@ -13316,7 +13257,7 @@ func (ptr *QNetworkReply) ConnectUploadProgress(f func(bytesSent int64, bytesTot
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "uploadProgress") {
-			C.QNetworkReply_ConnectUploadProgress(ptr.Pointer())
+			C.QNetworkReply_ConnectUploadProgress(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "uploadProgress")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "uploadProgress"); signal != nil {
@@ -13347,7 +13288,7 @@ func (ptr *QNetworkReply) UploadProgress(bytesSent int64, bytesTotal int64) {
 func (ptr *QNetworkReply) Url() *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QNetworkReply_Url(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -13386,24 +13327,26 @@ func (ptr *QNetworkReply) DisconnectDestroyQNetworkReply() {
 
 func (ptr *QNetworkReply) DestroyQNetworkReply() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QNetworkReply_DestroyQNetworkReply(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QNetworkReply) DestroyQNetworkReplyDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QNetworkReply_DestroyQNetworkReplyDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QNetworkReply) __ignoreSslErrors_errors_atList2(i int) *QSslError {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslErrorFromPointer(C.QNetworkReply___ignoreSslErrors_errors_atList2(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSslError).DestroyQSslError)
+		qt.SetFinalizer(tmpValue, (*QSslError).DestroyQSslError)
 		return tmpValue
 	}
 	return nil
@@ -13422,7 +13365,7 @@ func (ptr *QNetworkReply) __ignoreSslErrors_errors_newList2() unsafe.Pointer {
 func (ptr *QNetworkReply) __ignoreSslErrorsImplementation_errors_atList(i int) *QSslError {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslErrorFromPointer(C.QNetworkReply___ignoreSslErrorsImplementation_errors_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSslError).DestroyQSslError)
+		qt.SetFinalizer(tmpValue, (*QSslError).DestroyQSslError)
 		return tmpValue
 	}
 	return nil
@@ -13441,7 +13384,7 @@ func (ptr *QNetworkReply) __ignoreSslErrorsImplementation_errors_newList() unsaf
 func (ptr *QNetworkReply) __rawHeaderList_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QNetworkReply___rawHeaderList_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -13460,7 +13403,7 @@ func (ptr *QNetworkReply) __rawHeaderList_newList() unsafe.Pointer {
 func (ptr *QNetworkReply) __sslErrors_errors_atList(i int) *QSslError {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslErrorFromPointer(C.QNetworkReply___sslErrors_errors_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSslError).DestroyQSslError)
+		qt.SetFinalizer(tmpValue, (*QSslError).DestroyQSslError)
 		return tmpValue
 	}
 	return nil
@@ -13500,7 +13443,7 @@ func (ptr *QNetworkReply) __children_newList() unsafe.Pointer {
 func (ptr *QNetworkReply) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QNetworkReply___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -13556,27 +13499,6 @@ func (ptr *QNetworkReply) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QNetworkReply) __findChildren_newList3() unsafe.Pointer {
 	return C.QNetworkReply___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QNetworkReply) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QNetworkReply___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QNetworkReply) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QNetworkReply) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QNetworkReply___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQNetworkReply_AboutToClose
@@ -13970,8 +13892,9 @@ func callbackQNetworkReply_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QNetworkReply) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QNetworkReply_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -14207,20 +14130,20 @@ const (
 
 func NewQNetworkRequest(url core.QUrl_ITF) *QNetworkRequest {
 	tmpValue := NewQNetworkRequestFromPointer(C.QNetworkRequest_NewQNetworkRequest(core.PointerFromQUrl(url)))
-	runtime.SetFinalizer(tmpValue, (*QNetworkRequest).DestroyQNetworkRequest)
+	qt.SetFinalizer(tmpValue, (*QNetworkRequest).DestroyQNetworkRequest)
 	return tmpValue
 }
 
 func NewQNetworkRequest2(other QNetworkRequest_ITF) *QNetworkRequest {
 	tmpValue := NewQNetworkRequestFromPointer(C.QNetworkRequest_NewQNetworkRequest2(PointerFromQNetworkRequest(other)))
-	runtime.SetFinalizer(tmpValue, (*QNetworkRequest).DestroyQNetworkRequest)
+	qt.SetFinalizer(tmpValue, (*QNetworkRequest).DestroyQNetworkRequest)
 	return tmpValue
 }
 
 func (ptr *QNetworkRequest) Attribute(code QNetworkRequest__Attribute, defaultValue core.QVariant_ITF) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QNetworkRequest_Attribute(ptr.Pointer(), C.longlong(code), core.PointerFromQVariant(defaultValue)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -14236,7 +14159,7 @@ func (ptr *QNetworkRequest) HasRawHeader(headerName core.QByteArray_ITF) bool {
 func (ptr *QNetworkRequest) Header(header QNetworkRequest__KnownHeaders) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QNetworkRequest_Header(ptr.Pointer(), C.longlong(header)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -14274,10 +14197,10 @@ func (ptr *QNetworkRequest) Priority() QNetworkRequest__Priority {
 	return 0
 }
 
-func (ptr *QNetworkRequest) RawHeader(headerName core.QByteArray_ITF) *core.QByteArray {
+func (ptr *QNetworkRequest) QNetworkCacheMetaData_RawHeader(headerName core.QByteArray_ITF) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QNetworkRequest_RawHeader(ptr.Pointer(), core.PointerFromQByteArray(headerName)))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -14359,7 +14282,7 @@ func (ptr *QNetworkRequest) SetUrl(url core.QUrl_ITF) {
 func (ptr *QNetworkRequest) SslConfiguration() *QSslConfiguration {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslConfigurationFromPointer(C.QNetworkRequest_SslConfiguration(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QSslConfiguration).DestroyQSslConfiguration)
+		qt.SetFinalizer(tmpValue, (*QSslConfiguration).DestroyQSslConfiguration)
 		return tmpValue
 	}
 	return nil
@@ -14374,7 +14297,7 @@ func (ptr *QNetworkRequest) Swap(other QNetworkRequest_ITF) {
 func (ptr *QNetworkRequest) Url() *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QNetworkRequest_Url(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
@@ -14382,16 +14305,18 @@ func (ptr *QNetworkRequest) Url() *core.QUrl {
 
 func (ptr *QNetworkRequest) DestroyQNetworkRequest() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QNetworkRequest_DestroyQNetworkRequest(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QNetworkRequest) __rawHeaderList_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QNetworkRequest___rawHeaderList_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -14608,7 +14533,7 @@ func (ptr *QNetworkSession) ConnectClosed(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "closed") {
-			C.QNetworkSession_ConnectClosed(ptr.Pointer())
+			C.QNetworkSession_ConnectClosed(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "closed")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "closed"); signal != nil {
@@ -14639,7 +14564,7 @@ func (ptr *QNetworkSession) Closed() {
 func (ptr *QNetworkSession) Configuration() *QNetworkConfiguration {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQNetworkConfigurationFromPointer(C.QNetworkSession_Configuration(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QNetworkConfiguration).DestroyQNetworkConfiguration)
+		qt.SetFinalizer(tmpValue, (*QNetworkConfiguration).DestroyQNetworkConfiguration)
 		return tmpValue
 	}
 	return nil
@@ -14664,7 +14589,7 @@ func (ptr *QNetworkSession) ConnectError2(f func(error QNetworkSession__SessionE
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "error2") {
-			C.QNetworkSession_ConnectError2(ptr.Pointer())
+			C.QNetworkSession_ConnectError2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error2"); signal != nil {
@@ -14745,7 +14670,7 @@ func (ptr *QNetworkSession) IgnoreDefault() {
 func (ptr *QNetworkSession) Interface() *QNetworkInterface {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQNetworkInterfaceFromPointer(C.QNetworkSession_Interface(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QNetworkInterface).DestroyQNetworkInterface)
+		qt.SetFinalizer(tmpValue, (*QNetworkInterface).DestroyQNetworkInterface)
 		return tmpValue
 	}
 	return nil
@@ -14813,7 +14738,7 @@ func (ptr *QNetworkSession) ConnectNewConfigurationActivated(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "newConfigurationActivated") {
-			C.QNetworkSession_ConnectNewConfigurationActivated(ptr.Pointer())
+			C.QNetworkSession_ConnectNewConfigurationActivated(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "newConfigurationActivated")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "newConfigurationActivated"); signal != nil {
@@ -14896,7 +14821,7 @@ func (ptr *QNetworkSession) ConnectOpened(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "opened") {
-			C.QNetworkSession_ConnectOpened(ptr.Pointer())
+			C.QNetworkSession_ConnectOpened(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "opened")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "opened"); signal != nil {
@@ -14936,7 +14861,7 @@ func (ptr *QNetworkSession) ConnectPreferredConfigurationChanged(f func(config *
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "preferredConfigurationChanged") {
-			C.QNetworkSession_ConnectPreferredConfigurationChanged(ptr.Pointer())
+			C.QNetworkSession_ConnectPreferredConfigurationChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "preferredConfigurationChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "preferredConfigurationChanged"); signal != nil {
@@ -15015,7 +14940,7 @@ func (ptr *QNetworkSession) SessionProperty(key string) *core.QVariant {
 			defer C.free(unsafe.Pointer(keyC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QNetworkSession_SessionProperty(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: keyC, len: C.longlong(len(key))}))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -15051,7 +14976,7 @@ func (ptr *QNetworkSession) ConnectStateChanged(f func(state QNetworkSession__St
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stateChanged") {
-			C.QNetworkSession_ConnectStateChanged(ptr.Pointer())
+			C.QNetworkSession_ConnectStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
@@ -15141,7 +15066,7 @@ func (ptr *QNetworkSession) ConnectUsagePoliciesChanged(f func(usagePolicies QNe
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "usagePoliciesChanged") {
-			C.QNetworkSession_ConnectUsagePoliciesChanged(ptr.Pointer())
+			C.QNetworkSession_ConnectUsagePoliciesChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "usagePoliciesChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "usagePoliciesChanged"); signal != nil {
@@ -15209,17 +15134,19 @@ func (ptr *QNetworkSession) DisconnectDestroyQNetworkSession() {
 
 func (ptr *QNetworkSession) DestroyQNetworkSession() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QNetworkSession_DestroyQNetworkSession(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QNetworkSession) DestroyQNetworkSessionDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QNetworkSession_DestroyQNetworkSessionDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -15247,7 +15174,7 @@ func (ptr *QNetworkSession) __children_newList() unsafe.Pointer {
 func (ptr *QNetworkSession) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QNetworkSession___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -15303,27 +15230,6 @@ func (ptr *QNetworkSession) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QNetworkSession) __findChildren_newList3() unsafe.Pointer {
 	return C.QNetworkSession___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QNetworkSession) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QNetworkSession___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QNetworkSession) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkSession___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QNetworkSession) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QNetworkSession___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQNetworkSession_ChildEvent
@@ -15382,8 +15288,9 @@ func callbackQNetworkSession_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QNetworkSession) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QNetworkSession_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -15547,26 +15454,26 @@ const (
 
 func NewQOcspResponse() *QOcspResponse {
 	tmpValue := NewQOcspResponseFromPointer(C.QOcspResponse_NewQOcspResponse())
-	runtime.SetFinalizer(tmpValue, (*QOcspResponse).DestroyQOcspResponse)
+	qt.SetFinalizer(tmpValue, (*QOcspResponse).DestroyQOcspResponse)
 	return tmpValue
 }
 
 func NewQOcspResponse2(other QOcspResponse_ITF) *QOcspResponse {
 	tmpValue := NewQOcspResponseFromPointer(C.QOcspResponse_NewQOcspResponse2(PointerFromQOcspResponse(other)))
-	runtime.SetFinalizer(tmpValue, (*QOcspResponse).DestroyQOcspResponse)
+	qt.SetFinalizer(tmpValue, (*QOcspResponse).DestroyQOcspResponse)
 	return tmpValue
 }
 
 func NewQOcspResponse3(other QOcspResponse_ITF) *QOcspResponse {
 	tmpValue := NewQOcspResponseFromPointer(C.QOcspResponse_NewQOcspResponse3(PointerFromQOcspResponse(other)))
-	runtime.SetFinalizer(tmpValue, (*QOcspResponse).DestroyQOcspResponse)
+	qt.SetFinalizer(tmpValue, (*QOcspResponse).DestroyQOcspResponse)
 	return tmpValue
 }
 
 func (ptr *QOcspResponse) Subject() *QSslCertificate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslCertificateFromPointer(C.QOcspResponse_Subject(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
+		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
 		return tmpValue
 	}
 	return nil
@@ -15580,9 +15487,11 @@ func (ptr *QOcspResponse) Swap(other QOcspResponse_ITF) {
 
 func (ptr *QOcspResponse) DestroyQOcspResponse() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QOcspResponse_DestroyQOcspResponse(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -15623,12 +15532,12 @@ func NewQPasswordDigestorFromPointer(ptr unsafe.Pointer) (n *QPasswordDigestor) 
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QPasswordDigestor) DestroyQPasswordDigestor() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -15747,12 +15656,12 @@ func NewQSslFromPointer(ptr unsafe.Pointer) (n *QSsl) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QSsl) DestroyQSsl() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -15893,19 +15802,19 @@ const (
 
 func NewQSslCertificate(device core.QIODevice_ITF, format QSsl__EncodingFormat) *QSslCertificate {
 	tmpValue := NewQSslCertificateFromPointer(C.QSslCertificate_NewQSslCertificate(core.PointerFromQIODevice(device), C.longlong(format)))
-	runtime.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
+	qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
 	return tmpValue
 }
 
 func NewQSslCertificate2(data core.QByteArray_ITF, format QSsl__EncodingFormat) *QSslCertificate {
 	tmpValue := NewQSslCertificateFromPointer(C.QSslCertificate_NewQSslCertificate2(core.PointerFromQByteArray(data), C.longlong(format)))
-	runtime.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
+	qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
 	return tmpValue
 }
 
 func NewQSslCertificate3(other QSslCertificate_ITF) *QSslCertificate {
 	tmpValue := NewQSslCertificateFromPointer(C.QSslCertificate_NewQSslCertificate3(PointerFromQSslCertificate(other)))
-	runtime.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
+	qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
 	return tmpValue
 }
 
@@ -15918,7 +15827,7 @@ func (ptr *QSslCertificate) Clear() {
 func (ptr *QSslCertificate) Digest(algorithm core.QCryptographicHash__Algorithm) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QSslCertificate_Digest(ptr.Pointer(), C.longlong(algorithm)))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -15927,7 +15836,7 @@ func (ptr *QSslCertificate) Digest(algorithm core.QCryptographicHash__Algorithm)
 func (ptr *QSslCertificate) EffectiveDate() *core.QDateTime {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQDateTimeFromPointer(C.QSslCertificate_EffectiveDate(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
+		qt.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
 		return tmpValue
 	}
 	return nil
@@ -15936,7 +15845,7 @@ func (ptr *QSslCertificate) EffectiveDate() *core.QDateTime {
 func (ptr *QSslCertificate) ExpiryDate() *core.QDateTime {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQDateTimeFromPointer(C.QSslCertificate_ExpiryDate(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
+		qt.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
 		return tmpValue
 	}
 	return nil
@@ -16111,7 +16020,7 @@ func (ptr *QSslCertificate) IssuerInfoAttributes() []*core.QByteArray {
 func (ptr *QSslCertificate) PublicKey() *QSslKey {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslKeyFromPointer(C.QSslCertificate_PublicKey(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QSslKey).DestroyQSslKey)
+		qt.SetFinalizer(tmpValue, (*QSslKey).DestroyQSslKey)
 		return tmpValue
 	}
 	return nil
@@ -16120,7 +16029,7 @@ func (ptr *QSslCertificate) PublicKey() *QSslKey {
 func (ptr *QSslCertificate) SerialNumber() *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QSslCertificate_SerialNumber(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -16184,7 +16093,7 @@ func (ptr *QSslCertificate) Swap(other QSslCertificate_ITF) {
 func (ptr *QSslCertificate) ToDer() *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QSslCertificate_ToDer(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -16193,7 +16102,7 @@ func (ptr *QSslCertificate) ToDer() *core.QByteArray {
 func (ptr *QSslCertificate) ToPem() *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QSslCertificate_ToPem(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -16253,7 +16162,7 @@ func (ptr *QSslCertificate) Verify(certificateChain []*QSslCertificate, hostName
 func (ptr *QSslCertificate) Version() *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QSslCertificate_Version(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -16261,16 +16170,18 @@ func (ptr *QSslCertificate) Version() *core.QByteArray {
 
 func (ptr *QSslCertificate) DestroyQSslCertificate() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QSslCertificate_DestroyQSslCertificate(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QSslCertificate) __extensions_atList(i int) *QSslCertificateExtension {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslCertificateExtensionFromPointer(C.QSslCertificate___extensions_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSslCertificateExtension).DestroyQSslCertificateExtension)
+		qt.SetFinalizer(tmpValue, (*QSslCertificateExtension).DestroyQSslCertificateExtension)
 		return tmpValue
 	}
 	return nil
@@ -16289,7 +16200,7 @@ func (ptr *QSslCertificate) __extensions_newList() unsafe.Pointer {
 func (ptr *QSslCertificate) __fromData_atList(i int) *QSslCertificate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslCertificateFromPointer(C.QSslCertificate___fromData_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
+		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
 		return tmpValue
 	}
 	return nil
@@ -16308,7 +16219,7 @@ func (ptr *QSslCertificate) __fromData_newList() unsafe.Pointer {
 func (ptr *QSslCertificate) __fromDevice_atList(i int) *QSslCertificate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslCertificateFromPointer(C.QSslCertificate___fromDevice_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
+		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
 		return tmpValue
 	}
 	return nil
@@ -16327,7 +16238,7 @@ func (ptr *QSslCertificate) __fromDevice_newList() unsafe.Pointer {
 func (ptr *QSslCertificate) __fromPath_atList(i int) *QSslCertificate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslCertificateFromPointer(C.QSslCertificate___fromPath_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
+		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
 		return tmpValue
 	}
 	return nil
@@ -16346,7 +16257,7 @@ func (ptr *QSslCertificate) __fromPath_newList() unsafe.Pointer {
 func (ptr *QSslCertificate) __importPkcs12_caCertificates_atList(i int) *QSslCertificate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslCertificateFromPointer(C.QSslCertificate___importPkcs12_caCertificates_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
+		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
 		return tmpValue
 	}
 	return nil
@@ -16365,7 +16276,7 @@ func (ptr *QSslCertificate) __importPkcs12_caCertificates_newList() unsafe.Point
 func (ptr *QSslCertificate) __issuerInfoAttributes_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QSslCertificate___issuerInfoAttributes_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -16420,7 +16331,7 @@ func (ptr *QSslCertificate) __subjectAlternativeNames_keyList() []QSsl__Alternat
 func (ptr *QSslCertificate) __subjectInfoAttributes_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QSslCertificate___subjectInfoAttributes_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -16439,7 +16350,7 @@ func (ptr *QSslCertificate) __subjectInfoAttributes_newList() unsafe.Pointer {
 func (ptr *QSslCertificate) __verify_atList(i int) *QSslError {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslErrorFromPointer(C.QSslCertificate___verify_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSslError).DestroyQSslError)
+		qt.SetFinalizer(tmpValue, (*QSslError).DestroyQSslError)
 		return tmpValue
 	}
 	return nil
@@ -16458,7 +16369,7 @@ func (ptr *QSslCertificate) __verify_newList() unsafe.Pointer {
 func (ptr *QSslCertificate) __verify_certificateChain_atList(i int) *QSslCertificate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslCertificateFromPointer(C.QSslCertificate___verify_certificateChain_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
+		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
 		return tmpValue
 	}
 	return nil
@@ -16530,13 +16441,13 @@ func NewQSslCertificateExtensionFromPointer(ptr unsafe.Pointer) (n *QSslCertific
 }
 func NewQSslCertificateExtension() *QSslCertificateExtension {
 	tmpValue := NewQSslCertificateExtensionFromPointer(C.QSslCertificateExtension_NewQSslCertificateExtension())
-	runtime.SetFinalizer(tmpValue, (*QSslCertificateExtension).DestroyQSslCertificateExtension)
+	qt.SetFinalizer(tmpValue, (*QSslCertificateExtension).DestroyQSslCertificateExtension)
 	return tmpValue
 }
 
 func NewQSslCertificateExtension2(other QSslCertificateExtension_ITF) *QSslCertificateExtension {
 	tmpValue := NewQSslCertificateExtensionFromPointer(C.QSslCertificateExtension_NewQSslCertificateExtension2(PointerFromQSslCertificateExtension(other)))
-	runtime.SetFinalizer(tmpValue, (*QSslCertificateExtension).DestroyQSslCertificateExtension)
+	qt.SetFinalizer(tmpValue, (*QSslCertificateExtension).DestroyQSslCertificateExtension)
 	return tmpValue
 }
 
@@ -16577,7 +16488,7 @@ func (ptr *QSslCertificateExtension) Swap(other QSslCertificateExtension_ITF) {
 func (ptr *QSslCertificateExtension) Value() *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QSslCertificateExtension_Value(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -16585,9 +16496,11 @@ func (ptr *QSslCertificateExtension) Value() *core.QVariant {
 
 func (ptr *QSslCertificateExtension) DestroyQSslCertificateExtension() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QSslCertificateExtension_DestroyQSslCertificateExtension(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -16630,7 +16543,7 @@ func NewQSslCipherFromPointer(ptr unsafe.Pointer) (n *QSslCipher) {
 }
 func NewQSslCipher() *QSslCipher {
 	tmpValue := NewQSslCipherFromPointer(C.QSslCipher_NewQSslCipher())
-	runtime.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
+	qt.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
 	return tmpValue
 }
 
@@ -16641,7 +16554,7 @@ func NewQSslCipher2(name string) *QSslCipher {
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	tmpValue := NewQSslCipherFromPointer(C.QSslCipher_NewQSslCipher2(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}))
-	runtime.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
+	qt.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
 	return tmpValue
 }
 
@@ -16652,13 +16565,13 @@ func NewQSslCipher3(name string, protocol QSsl__SslProtocol) *QSslCipher {
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	tmpValue := NewQSslCipherFromPointer(C.QSslCipher_NewQSslCipher3(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}, C.longlong(protocol)))
-	runtime.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
+	qt.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
 	return tmpValue
 }
 
 func NewQSslCipher4(other QSslCipher_ITF) *QSslCipher {
 	tmpValue := NewQSslCipherFromPointer(C.QSslCipher_NewQSslCipher4(PointerFromQSslCipher(other)))
-	runtime.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
+	qt.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
 	return tmpValue
 }
 
@@ -16733,9 +16646,11 @@ func (ptr *QSslCipher) UsedBits() int {
 
 func (ptr *QSslCipher) DestroyQSslCipher() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QSslCipher_DestroyQSslCipher(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -16789,13 +16704,13 @@ const (
 
 func NewQSslConfiguration() *QSslConfiguration {
 	tmpValue := NewQSslConfigurationFromPointer(C.QSslConfiguration_NewQSslConfiguration())
-	runtime.SetFinalizer(tmpValue, (*QSslConfiguration).DestroyQSslConfiguration)
+	qt.SetFinalizer(tmpValue, (*QSslConfiguration).DestroyQSslConfiguration)
 	return tmpValue
 }
 
 func NewQSslConfiguration2(other QSslConfiguration_ITF) *QSslConfiguration {
 	tmpValue := NewQSslConfigurationFromPointer(C.QSslConfiguration_NewQSslConfiguration2(PointerFromQSslConfiguration(other)))
-	runtime.SetFinalizer(tmpValue, (*QSslConfiguration).DestroyQSslConfiguration)
+	qt.SetFinalizer(tmpValue, (*QSslConfiguration).DestroyQSslConfiguration)
 	return tmpValue
 }
 
@@ -16857,20 +16772,20 @@ func (ptr *QSslConfiguration) Ciphers() []*QSslCipher {
 
 func QSslConfiguration_DefaultConfiguration() *QSslConfiguration {
 	tmpValue := NewQSslConfigurationFromPointer(C.QSslConfiguration_QSslConfiguration_DefaultConfiguration())
-	runtime.SetFinalizer(tmpValue, (*QSslConfiguration).DestroyQSslConfiguration)
+	qt.SetFinalizer(tmpValue, (*QSslConfiguration).DestroyQSslConfiguration)
 	return tmpValue
 }
 
 func (ptr *QSslConfiguration) DefaultConfiguration() *QSslConfiguration {
 	tmpValue := NewQSslConfigurationFromPointer(C.QSslConfiguration_QSslConfiguration_DefaultConfiguration())
-	runtime.SetFinalizer(tmpValue, (*QSslConfiguration).DestroyQSslConfiguration)
+	qt.SetFinalizer(tmpValue, (*QSslConfiguration).DestroyQSslConfiguration)
 	return tmpValue
 }
 
 func (ptr *QSslConfiguration) DiffieHellmanParameters() *QSslDiffieHellmanParameters {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslDiffieHellmanParametersFromPointer(C.QSslConfiguration_DiffieHellmanParameters(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QSslDiffieHellmanParameters).DestroyQSslDiffieHellmanParameters)
+		qt.SetFinalizer(tmpValue, (*QSslDiffieHellmanParameters).DestroyQSslDiffieHellmanParameters)
 		return tmpValue
 	}
 	return nil
@@ -16879,7 +16794,7 @@ func (ptr *QSslConfiguration) DiffieHellmanParameters() *QSslDiffieHellmanParame
 func (ptr *QSslConfiguration) EphemeralServerKey() *QSslKey {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslKeyFromPointer(C.QSslConfiguration_EphemeralServerKey(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QSslKey).DestroyQSslKey)
+		qt.SetFinalizer(tmpValue, (*QSslKey).DestroyQSslKey)
 		return tmpValue
 	}
 	return nil
@@ -16895,7 +16810,7 @@ func (ptr *QSslConfiguration) IsNull() bool {
 func (ptr *QSslConfiguration) LocalCertificate() *QSslCertificate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslCertificateFromPointer(C.QSslConfiguration_LocalCertificate(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
+		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
 		return tmpValue
 	}
 	return nil
@@ -16918,7 +16833,7 @@ func (ptr *QSslConfiguration) LocalCertificateChain() []*QSslCertificate {
 func (ptr *QSslConfiguration) NextNegotiatedProtocol() *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QSslConfiguration_NextNegotiatedProtocol(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -16941,7 +16856,7 @@ func (ptr *QSslConfiguration) OcspStaplingEnabled() bool {
 func (ptr *QSslConfiguration) PeerCertificate() *QSslCertificate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslCertificateFromPointer(C.QSslConfiguration_PeerCertificate(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
+		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
 		return tmpValue
 	}
 	return nil
@@ -16978,7 +16893,7 @@ func (ptr *QSslConfiguration) PeerVerifyMode() QSslSocket__PeerVerifyMode {
 func (ptr *QSslConfiguration) PreSharedKeyIdentityHint() *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QSslConfiguration_PreSharedKeyIdentityHint(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -16987,7 +16902,7 @@ func (ptr *QSslConfiguration) PreSharedKeyIdentityHint() *core.QByteArray {
 func (ptr *QSslConfiguration) PrivateKey() *QSslKey {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslKeyFromPointer(C.QSslConfiguration_PrivateKey(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QSslKey).DestroyQSslKey)
+		qt.SetFinalizer(tmpValue, (*QSslKey).DestroyQSslKey)
 		return tmpValue
 	}
 	return nil
@@ -17003,7 +16918,7 @@ func (ptr *QSslConfiguration) Protocol() QSsl__SslProtocol {
 func (ptr *QSslConfiguration) SessionCipher() *QSslCipher {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslCipherFromPointer(C.QSslConfiguration_SessionCipher(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
+		qt.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
 		return tmpValue
 	}
 	return nil
@@ -17019,7 +16934,7 @@ func (ptr *QSslConfiguration) SessionProtocol() QSsl__SslProtocol {
 func (ptr *QSslConfiguration) SessionTicket() *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QSslConfiguration_SessionTicket(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -17237,16 +17152,18 @@ func (ptr *QSslConfiguration) TestSslOption(option QSsl__SslOption) bool {
 
 func (ptr *QSslConfiguration) DestroyQSslConfiguration() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QSslConfiguration_DestroyQSslConfiguration(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QSslConfiguration) __allowedNextProtocols_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QSslConfiguration___allowedNextProtocols_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -17265,7 +17182,7 @@ func (ptr *QSslConfiguration) __allowedNextProtocols_newList() unsafe.Pointer {
 func (ptr *QSslConfiguration) __backendConfiguration_atList(v core.QByteArray_ITF, i int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QSslConfiguration___backendConfiguration_atList(ptr.Pointer(), core.PointerFromQByteArray(v), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -17298,7 +17215,7 @@ func (ptr *QSslConfiguration) __backendConfiguration_keyList() []*core.QByteArra
 func (ptr *QSslConfiguration) __caCertificates_atList(i int) *QSslCertificate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslCertificateFromPointer(C.QSslConfiguration___caCertificates_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
+		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
 		return tmpValue
 	}
 	return nil
@@ -17317,7 +17234,7 @@ func (ptr *QSslConfiguration) __caCertificates_newList() unsafe.Pointer {
 func (ptr *QSslConfiguration) __ciphers_atList(i int) *QSslCipher {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslCipherFromPointer(C.QSslConfiguration___ciphers_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
+		qt.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
 		return tmpValue
 	}
 	return nil
@@ -17336,7 +17253,7 @@ func (ptr *QSslConfiguration) __ciphers_newList() unsafe.Pointer {
 func (ptr *QSslConfiguration) __ellipticCurves_atList(i int) *QSslEllipticCurve {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslEllipticCurveFromPointer(C.QSslConfiguration___ellipticCurves_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSslEllipticCurve).DestroyQSslEllipticCurve)
+		qt.SetFinalizer(tmpValue, (*QSslEllipticCurve).DestroyQSslEllipticCurve)
 		return tmpValue
 	}
 	return nil
@@ -17355,7 +17272,7 @@ func (ptr *QSslConfiguration) __ellipticCurves_newList() unsafe.Pointer {
 func (ptr *QSslConfiguration) __localCertificateChain_atList(i int) *QSslCertificate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslCertificateFromPointer(C.QSslConfiguration___localCertificateChain_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
+		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
 		return tmpValue
 	}
 	return nil
@@ -17374,7 +17291,7 @@ func (ptr *QSslConfiguration) __localCertificateChain_newList() unsafe.Pointer {
 func (ptr *QSslConfiguration) __peerCertificateChain_atList(i int) *QSslCertificate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslCertificateFromPointer(C.QSslConfiguration___peerCertificateChain_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
+		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
 		return tmpValue
 	}
 	return nil
@@ -17393,7 +17310,7 @@ func (ptr *QSslConfiguration) __peerCertificateChain_newList() unsafe.Pointer {
 func (ptr *QSslConfiguration) __setAllowedNextProtocols_protocols_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QSslConfiguration___setAllowedNextProtocols_protocols_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -17412,7 +17329,7 @@ func (ptr *QSslConfiguration) __setAllowedNextProtocols_protocols_newList() unsa
 func (ptr *QSslConfiguration) __setBackendConfiguration_backendConfiguration_atList(v core.QByteArray_ITF, i int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QSslConfiguration___setBackendConfiguration_backendConfiguration_atList(ptr.Pointer(), core.PointerFromQByteArray(v), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -17445,7 +17362,7 @@ func (ptr *QSslConfiguration) __setBackendConfiguration_backendConfiguration_key
 func (ptr *QSslConfiguration) __setCaCertificates_certificates_atList(i int) *QSslCertificate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslCertificateFromPointer(C.QSslConfiguration___setCaCertificates_certificates_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
+		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
 		return tmpValue
 	}
 	return nil
@@ -17464,7 +17381,7 @@ func (ptr *QSslConfiguration) __setCaCertificates_certificates_newList() unsafe.
 func (ptr *QSslConfiguration) __setCiphers_ciphers_atList(i int) *QSslCipher {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslCipherFromPointer(C.QSslConfiguration___setCiphers_ciphers_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
+		qt.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
 		return tmpValue
 	}
 	return nil
@@ -17483,7 +17400,7 @@ func (ptr *QSslConfiguration) __setCiphers_ciphers_newList() unsafe.Pointer {
 func (ptr *QSslConfiguration) __setEllipticCurves_curves_atList(i int) *QSslEllipticCurve {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslEllipticCurveFromPointer(C.QSslConfiguration___setEllipticCurves_curves_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSslEllipticCurve).DestroyQSslEllipticCurve)
+		qt.SetFinalizer(tmpValue, (*QSslEllipticCurve).DestroyQSslEllipticCurve)
 		return tmpValue
 	}
 	return nil
@@ -17502,7 +17419,7 @@ func (ptr *QSslConfiguration) __setEllipticCurves_curves_newList() unsafe.Pointe
 func (ptr *QSslConfiguration) __setLocalCertificateChain_localChain_atList(i int) *QSslCertificate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslCertificateFromPointer(C.QSslConfiguration___setLocalCertificateChain_localChain_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
+		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
 		return tmpValue
 	}
 	return nil
@@ -17521,7 +17438,7 @@ func (ptr *QSslConfiguration) __setLocalCertificateChain_localChain_newList() un
 func (ptr *QSslConfiguration) __supportedCiphers_atList(i int) *QSslCipher {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslCipherFromPointer(C.QSslConfiguration___supportedCiphers_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
+		qt.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
 		return tmpValue
 	}
 	return nil
@@ -17540,7 +17457,7 @@ func (ptr *QSslConfiguration) __supportedCiphers_newList() unsafe.Pointer {
 func (ptr *QSslConfiguration) __supportedEllipticCurves_atList(i int) *QSslEllipticCurve {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslEllipticCurveFromPointer(C.QSslConfiguration___supportedEllipticCurves_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSslEllipticCurve).DestroyQSslEllipticCurve)
+		qt.SetFinalizer(tmpValue, (*QSslEllipticCurve).DestroyQSslEllipticCurve)
 		return tmpValue
 	}
 	return nil
@@ -17559,7 +17476,7 @@ func (ptr *QSslConfiguration) __supportedEllipticCurves_newList() unsafe.Pointer
 func (ptr *QSslConfiguration) __systemCaCertificates_atList(i int) *QSslCertificate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslCertificateFromPointer(C.QSslConfiguration___systemCaCertificates_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
+		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
 		return tmpValue
 	}
 	return nil
@@ -17578,7 +17495,7 @@ func (ptr *QSslConfiguration) __systemCaCertificates_newList() unsafe.Pointer {
 func (ptr *QSslConfiguration) ____backendConfiguration_keyList_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QSslConfiguration_____backendConfiguration_keyList_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -17597,7 +17514,7 @@ func (ptr *QSslConfiguration) ____backendConfiguration_keyList_newList() unsafe.
 func (ptr *QSslConfiguration) ____setBackendConfiguration_backendConfiguration_keyList_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QSslConfiguration_____setBackendConfiguration_backendConfiguration_keyList_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -17663,31 +17580,31 @@ const (
 
 func NewQSslDiffieHellmanParameters() *QSslDiffieHellmanParameters {
 	tmpValue := NewQSslDiffieHellmanParametersFromPointer(C.QSslDiffieHellmanParameters_NewQSslDiffieHellmanParameters())
-	runtime.SetFinalizer(tmpValue, (*QSslDiffieHellmanParameters).DestroyQSslDiffieHellmanParameters)
+	qt.SetFinalizer(tmpValue, (*QSslDiffieHellmanParameters).DestroyQSslDiffieHellmanParameters)
 	return tmpValue
 }
 
 func NewQSslDiffieHellmanParameters2(other QSslDiffieHellmanParameters_ITF) *QSslDiffieHellmanParameters {
 	tmpValue := NewQSslDiffieHellmanParametersFromPointer(C.QSslDiffieHellmanParameters_NewQSslDiffieHellmanParameters2(PointerFromQSslDiffieHellmanParameters(other)))
-	runtime.SetFinalizer(tmpValue, (*QSslDiffieHellmanParameters).DestroyQSslDiffieHellmanParameters)
+	qt.SetFinalizer(tmpValue, (*QSslDiffieHellmanParameters).DestroyQSslDiffieHellmanParameters)
 	return tmpValue
 }
 
 func NewQSslDiffieHellmanParameters3(other QSslDiffieHellmanParameters_ITF) *QSslDiffieHellmanParameters {
 	tmpValue := NewQSslDiffieHellmanParametersFromPointer(C.QSslDiffieHellmanParameters_NewQSslDiffieHellmanParameters3(PointerFromQSslDiffieHellmanParameters(other)))
-	runtime.SetFinalizer(tmpValue, (*QSslDiffieHellmanParameters).DestroyQSslDiffieHellmanParameters)
+	qt.SetFinalizer(tmpValue, (*QSslDiffieHellmanParameters).DestroyQSslDiffieHellmanParameters)
 	return tmpValue
 }
 
 func QSslDiffieHellmanParameters_DefaultParameters() *QSslDiffieHellmanParameters {
 	tmpValue := NewQSslDiffieHellmanParametersFromPointer(C.QSslDiffieHellmanParameters_QSslDiffieHellmanParameters_DefaultParameters())
-	runtime.SetFinalizer(tmpValue, (*QSslDiffieHellmanParameters).DestroyQSslDiffieHellmanParameters)
+	qt.SetFinalizer(tmpValue, (*QSslDiffieHellmanParameters).DestroyQSslDiffieHellmanParameters)
 	return tmpValue
 }
 
 func (ptr *QSslDiffieHellmanParameters) DefaultParameters() *QSslDiffieHellmanParameters {
 	tmpValue := NewQSslDiffieHellmanParametersFromPointer(C.QSslDiffieHellmanParameters_QSslDiffieHellmanParameters_DefaultParameters())
-	runtime.SetFinalizer(tmpValue, (*QSslDiffieHellmanParameters).DestroyQSslDiffieHellmanParameters)
+	qt.SetFinalizer(tmpValue, (*QSslDiffieHellmanParameters).DestroyQSslDiffieHellmanParameters)
 	return tmpValue
 }
 
@@ -17707,25 +17624,25 @@ func (ptr *QSslDiffieHellmanParameters) ErrorString() string {
 
 func QSslDiffieHellmanParameters_FromEncoded(encoded core.QByteArray_ITF, encoding QSsl__EncodingFormat) *QSslDiffieHellmanParameters {
 	tmpValue := NewQSslDiffieHellmanParametersFromPointer(C.QSslDiffieHellmanParameters_QSslDiffieHellmanParameters_FromEncoded(core.PointerFromQByteArray(encoded), C.longlong(encoding)))
-	runtime.SetFinalizer(tmpValue, (*QSslDiffieHellmanParameters).DestroyQSslDiffieHellmanParameters)
+	qt.SetFinalizer(tmpValue, (*QSslDiffieHellmanParameters).DestroyQSslDiffieHellmanParameters)
 	return tmpValue
 }
 
 func (ptr *QSslDiffieHellmanParameters) FromEncoded(encoded core.QByteArray_ITF, encoding QSsl__EncodingFormat) *QSslDiffieHellmanParameters {
 	tmpValue := NewQSslDiffieHellmanParametersFromPointer(C.QSslDiffieHellmanParameters_QSslDiffieHellmanParameters_FromEncoded(core.PointerFromQByteArray(encoded), C.longlong(encoding)))
-	runtime.SetFinalizer(tmpValue, (*QSslDiffieHellmanParameters).DestroyQSslDiffieHellmanParameters)
+	qt.SetFinalizer(tmpValue, (*QSslDiffieHellmanParameters).DestroyQSslDiffieHellmanParameters)
 	return tmpValue
 }
 
 func QSslDiffieHellmanParameters_FromEncoded2(device core.QIODevice_ITF, encoding QSsl__EncodingFormat) *QSslDiffieHellmanParameters {
 	tmpValue := NewQSslDiffieHellmanParametersFromPointer(C.QSslDiffieHellmanParameters_QSslDiffieHellmanParameters_FromEncoded2(core.PointerFromQIODevice(device), C.longlong(encoding)))
-	runtime.SetFinalizer(tmpValue, (*QSslDiffieHellmanParameters).DestroyQSslDiffieHellmanParameters)
+	qt.SetFinalizer(tmpValue, (*QSslDiffieHellmanParameters).DestroyQSslDiffieHellmanParameters)
 	return tmpValue
 }
 
 func (ptr *QSslDiffieHellmanParameters) FromEncoded2(device core.QIODevice_ITF, encoding QSsl__EncodingFormat) *QSslDiffieHellmanParameters {
 	tmpValue := NewQSslDiffieHellmanParametersFromPointer(C.QSslDiffieHellmanParameters_QSslDiffieHellmanParameters_FromEncoded2(core.PointerFromQIODevice(device), C.longlong(encoding)))
-	runtime.SetFinalizer(tmpValue, (*QSslDiffieHellmanParameters).DestroyQSslDiffieHellmanParameters)
+	qt.SetFinalizer(tmpValue, (*QSslDiffieHellmanParameters).DestroyQSslDiffieHellmanParameters)
 	return tmpValue
 }
 
@@ -17751,9 +17668,11 @@ func (ptr *QSslDiffieHellmanParameters) Swap(other QSslDiffieHellmanParameters_I
 
 func (ptr *QSslDiffieHellmanParameters) DestroyQSslDiffieHellmanParameters() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QSslDiffieHellmanParameters_DestroyQSslDiffieHellmanParameters(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -17794,18 +17713,17 @@ func NewQSslEllipticCurveFromPointer(ptr unsafe.Pointer) (n *QSslEllipticCurve) 
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QSslEllipticCurve) DestroyQSslEllipticCurve() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
-
 func NewQSslEllipticCurve() *QSslEllipticCurve {
 	tmpValue := NewQSslEllipticCurveFromPointer(C.QSslEllipticCurve_NewQSslEllipticCurve())
-	runtime.SetFinalizer(tmpValue, (*QSslEllipticCurve).DestroyQSslEllipticCurve)
+	qt.SetFinalizer(tmpValue, (*QSslEllipticCurve).DestroyQSslEllipticCurve)
 	return tmpValue
 }
 
@@ -17816,7 +17734,7 @@ func QSslEllipticCurve_FromLongName(name string) *QSslEllipticCurve {
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	tmpValue := NewQSslEllipticCurveFromPointer(C.QSslEllipticCurve_QSslEllipticCurve_FromLongName(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}))
-	runtime.SetFinalizer(tmpValue, (*QSslEllipticCurve).DestroyQSslEllipticCurve)
+	qt.SetFinalizer(tmpValue, (*QSslEllipticCurve).DestroyQSslEllipticCurve)
 	return tmpValue
 }
 
@@ -17827,7 +17745,7 @@ func (ptr *QSslEllipticCurve) FromLongName(name string) *QSslEllipticCurve {
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	tmpValue := NewQSslEllipticCurveFromPointer(C.QSslEllipticCurve_QSslEllipticCurve_FromLongName(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}))
-	runtime.SetFinalizer(tmpValue, (*QSslEllipticCurve).DestroyQSslEllipticCurve)
+	qt.SetFinalizer(tmpValue, (*QSslEllipticCurve).DestroyQSslEllipticCurve)
 	return tmpValue
 }
 
@@ -17838,7 +17756,7 @@ func QSslEllipticCurve_FromShortName(name string) *QSslEllipticCurve {
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	tmpValue := NewQSslEllipticCurveFromPointer(C.QSslEllipticCurve_QSslEllipticCurve_FromShortName(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}))
-	runtime.SetFinalizer(tmpValue, (*QSslEllipticCurve).DestroyQSslEllipticCurve)
+	qt.SetFinalizer(tmpValue, (*QSslEllipticCurve).DestroyQSslEllipticCurve)
 	return tmpValue
 }
 
@@ -17849,7 +17767,7 @@ func (ptr *QSslEllipticCurve) FromShortName(name string) *QSslEllipticCurve {
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	tmpValue := NewQSslEllipticCurveFromPointer(C.QSslEllipticCurve_QSslEllipticCurve_FromShortName(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}))
-	runtime.SetFinalizer(tmpValue, (*QSslEllipticCurve).DestroyQSslEllipticCurve)
+	qt.SetFinalizer(tmpValue, (*QSslEllipticCurve).DestroyQSslEllipticCurve)
 	return tmpValue
 }
 
@@ -17966,32 +17884,32 @@ const (
 
 func NewQSslError() *QSslError {
 	tmpValue := NewQSslErrorFromPointer(C.QSslError_NewQSslError())
-	runtime.SetFinalizer(tmpValue, (*QSslError).DestroyQSslError)
+	qt.SetFinalizer(tmpValue, (*QSslError).DestroyQSslError)
 	return tmpValue
 }
 
 func NewQSslError2(error QSslError__SslError) *QSslError {
 	tmpValue := NewQSslErrorFromPointer(C.QSslError_NewQSslError2(C.longlong(error)))
-	runtime.SetFinalizer(tmpValue, (*QSslError).DestroyQSslError)
+	qt.SetFinalizer(tmpValue, (*QSslError).DestroyQSslError)
 	return tmpValue
 }
 
 func NewQSslError3(error QSslError__SslError, certificate QSslCertificate_ITF) *QSslError {
 	tmpValue := NewQSslErrorFromPointer(C.QSslError_NewQSslError3(C.longlong(error), PointerFromQSslCertificate(certificate)))
-	runtime.SetFinalizer(tmpValue, (*QSslError).DestroyQSslError)
+	qt.SetFinalizer(tmpValue, (*QSslError).DestroyQSslError)
 	return tmpValue
 }
 
 func NewQSslError4(other QSslError_ITF) *QSslError {
 	tmpValue := NewQSslErrorFromPointer(C.QSslError_NewQSslError4(PointerFromQSslError(other)))
-	runtime.SetFinalizer(tmpValue, (*QSslError).DestroyQSslError)
+	qt.SetFinalizer(tmpValue, (*QSslError).DestroyQSslError)
 	return tmpValue
 }
 
 func (ptr *QSslError) Certificate() *QSslCertificate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslCertificateFromPointer(C.QSslError_Certificate(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
+		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
 		return tmpValue
 	}
 	return nil
@@ -18019,9 +17937,11 @@ func (ptr *QSslError) Swap(other QSslError_ITF) {
 
 func (ptr *QSslError) DestroyQSslError() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QSslError_DestroyQSslError(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -18064,25 +17984,25 @@ func NewQSslKeyFromPointer(ptr unsafe.Pointer) (n *QSslKey) {
 }
 func NewQSslKey() *QSslKey {
 	tmpValue := NewQSslKeyFromPointer(C.QSslKey_NewQSslKey())
-	runtime.SetFinalizer(tmpValue, (*QSslKey).DestroyQSslKey)
+	qt.SetFinalizer(tmpValue, (*QSslKey).DestroyQSslKey)
 	return tmpValue
 }
 
 func NewQSslKey2(encoded core.QByteArray_ITF, algorithm QSsl__KeyAlgorithm, encoding QSsl__EncodingFormat, ty QSsl__KeyType, passPhrase core.QByteArray_ITF) *QSslKey {
 	tmpValue := NewQSslKeyFromPointer(C.QSslKey_NewQSslKey2(core.PointerFromQByteArray(encoded), C.longlong(algorithm), C.longlong(encoding), C.longlong(ty), core.PointerFromQByteArray(passPhrase)))
-	runtime.SetFinalizer(tmpValue, (*QSslKey).DestroyQSslKey)
+	qt.SetFinalizer(tmpValue, (*QSslKey).DestroyQSslKey)
 	return tmpValue
 }
 
 func NewQSslKey3(device core.QIODevice_ITF, algorithm QSsl__KeyAlgorithm, encoding QSsl__EncodingFormat, ty QSsl__KeyType, passPhrase core.QByteArray_ITF) *QSslKey {
 	tmpValue := NewQSslKeyFromPointer(C.QSslKey_NewQSslKey3(core.PointerFromQIODevice(device), C.longlong(algorithm), C.longlong(encoding), C.longlong(ty), core.PointerFromQByteArray(passPhrase)))
-	runtime.SetFinalizer(tmpValue, (*QSslKey).DestroyQSslKey)
+	qt.SetFinalizer(tmpValue, (*QSslKey).DestroyQSslKey)
 	return tmpValue
 }
 
 func NewQSslKey5(other QSslKey_ITF) *QSslKey {
 	tmpValue := NewQSslKeyFromPointer(C.QSslKey_NewQSslKey5(PointerFromQSslKey(other)))
-	runtime.SetFinalizer(tmpValue, (*QSslKey).DestroyQSslKey)
+	qt.SetFinalizer(tmpValue, (*QSslKey).DestroyQSslKey)
 	return tmpValue
 }
 
@@ -18122,7 +18042,7 @@ func (ptr *QSslKey) Swap(other QSslKey_ITF) {
 func (ptr *QSslKey) ToDer(passPhrase core.QByteArray_ITF) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QSslKey_ToDer(ptr.Pointer(), core.PointerFromQByteArray(passPhrase)))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -18131,7 +18051,7 @@ func (ptr *QSslKey) ToDer(passPhrase core.QByteArray_ITF) *core.QByteArray {
 func (ptr *QSslKey) ToPem(passPhrase core.QByteArray_ITF) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QSslKey_ToPem(ptr.Pointer(), core.PointerFromQByteArray(passPhrase)))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -18146,9 +18066,11 @@ func (ptr *QSslKey) Type() QSsl__KeyType {
 
 func (ptr *QSslKey) DestroyQSslKey() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QSslKey_DestroyQSslKey(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -18191,20 +18113,20 @@ func NewQSslPreSharedKeyAuthenticatorFromPointer(ptr unsafe.Pointer) (n *QSslPre
 }
 func NewQSslPreSharedKeyAuthenticator() *QSslPreSharedKeyAuthenticator {
 	tmpValue := NewQSslPreSharedKeyAuthenticatorFromPointer(C.QSslPreSharedKeyAuthenticator_NewQSslPreSharedKeyAuthenticator())
-	runtime.SetFinalizer(tmpValue, (*QSslPreSharedKeyAuthenticator).DestroyQSslPreSharedKeyAuthenticator)
+	qt.SetFinalizer(tmpValue, (*QSslPreSharedKeyAuthenticator).DestroyQSslPreSharedKeyAuthenticator)
 	return tmpValue
 }
 
 func NewQSslPreSharedKeyAuthenticator2(authenticator QSslPreSharedKeyAuthenticator_ITF) *QSslPreSharedKeyAuthenticator {
 	tmpValue := NewQSslPreSharedKeyAuthenticatorFromPointer(C.QSslPreSharedKeyAuthenticator_NewQSslPreSharedKeyAuthenticator2(PointerFromQSslPreSharedKeyAuthenticator(authenticator)))
-	runtime.SetFinalizer(tmpValue, (*QSslPreSharedKeyAuthenticator).DestroyQSslPreSharedKeyAuthenticator)
+	qt.SetFinalizer(tmpValue, (*QSslPreSharedKeyAuthenticator).DestroyQSslPreSharedKeyAuthenticator)
 	return tmpValue
 }
 
 func (ptr *QSslPreSharedKeyAuthenticator) Identity() *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QSslPreSharedKeyAuthenticator_Identity(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -18213,7 +18135,7 @@ func (ptr *QSslPreSharedKeyAuthenticator) Identity() *core.QByteArray {
 func (ptr *QSslPreSharedKeyAuthenticator) IdentityHint() *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QSslPreSharedKeyAuthenticator_IdentityHint(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -18236,7 +18158,7 @@ func (ptr *QSslPreSharedKeyAuthenticator) MaximumPreSharedKeyLength() int {
 func (ptr *QSslPreSharedKeyAuthenticator) PreSharedKey() *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QSslPreSharedKeyAuthenticator_PreSharedKey(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -18262,9 +18184,11 @@ func (ptr *QSslPreSharedKeyAuthenticator) Swap(authenticator QSslPreSharedKeyAut
 
 func (ptr *QSslPreSharedKeyAuthenticator) DestroyQSslPreSharedKeyAuthenticator() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QSslPreSharedKeyAuthenticator_DestroyQSslPreSharedKeyAuthenticator(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -18451,7 +18375,7 @@ func (ptr *QSslSocket) ConnectEncrypted(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "encrypted") {
-			C.QSslSocket_ConnectEncrypted(ptr.Pointer())
+			C.QSslSocket_ConnectEncrypted(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "encrypted")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "encrypted"); signal != nil {
@@ -18505,7 +18429,7 @@ func (ptr *QSslSocket) ConnectEncryptedBytesWritten(f func(written int64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "encryptedBytesWritten") {
-			C.QSslSocket_ConnectEncryptedBytesWritten(ptr.Pointer())
+			C.QSslSocket_ConnectEncryptedBytesWritten(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "encryptedBytesWritten")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "encryptedBytesWritten"); signal != nil {
@@ -18598,7 +18522,7 @@ func (ptr *QSslSocket) IsEncrypted() bool {
 func (ptr *QSslSocket) LocalCertificate() *QSslCertificate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslCertificateFromPointer(C.QSslSocket_LocalCertificate(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
+		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
 		return tmpValue
 	}
 	return nil
@@ -18637,7 +18561,7 @@ func (ptr *QSslSocket) ConnectModeChanged(f func(mode QSslSocket__SslMode)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "modeChanged") {
-			C.QSslSocket_ConnectModeChanged(ptr.Pointer())
+			C.QSslSocket_ConnectModeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "modeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "modeChanged"); signal != nil {
@@ -18682,7 +18606,7 @@ func (ptr *QSslSocket) OcspResponses() []*QOcspResponse {
 func (ptr *QSslSocket) PeerCertificate() *QSslCertificate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslCertificateFromPointer(C.QSslSocket_PeerCertificate(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
+		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
 		return tmpValue
 	}
 	return nil
@@ -18721,7 +18645,7 @@ func (ptr *QSslSocket) ConnectPeerVerifyError(f func(error *QSslError)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "peerVerifyError") {
-			C.QSslSocket_ConnectPeerVerifyError(ptr.Pointer())
+			C.QSslSocket_ConnectPeerVerifyError(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "peerVerifyError")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "peerVerifyError"); signal != nil {
@@ -18775,7 +18699,7 @@ func (ptr *QSslSocket) ConnectPreSharedKeyAuthenticationRequired(f func(authenti
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "preSharedKeyAuthenticationRequired") {
-			C.QSslSocket_ConnectPreSharedKeyAuthenticationRequired(ptr.Pointer())
+			C.QSslSocket_ConnectPreSharedKeyAuthenticationRequired(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "preSharedKeyAuthenticationRequired")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "preSharedKeyAuthenticationRequired"); signal != nil {
@@ -18806,7 +18730,7 @@ func (ptr *QSslSocket) PreSharedKeyAuthenticationRequired(authenticator QSslPreS
 func (ptr *QSslSocket) PrivateKey() *QSslKey {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslKeyFromPointer(C.QSslSocket_PrivateKey(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QSslKey).DestroyQSslKey)
+		qt.SetFinalizer(tmpValue, (*QSslKey).DestroyQSslKey)
 		return tmpValue
 	}
 	return nil
@@ -18822,7 +18746,7 @@ func (ptr *QSslSocket) Protocol() QSsl__SslProtocol {
 func (ptr *QSslSocket) SessionCipher() *QSslCipher {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslCipherFromPointer(C.QSslSocket_SessionCipher(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
+		qt.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
 		return tmpValue
 	}
 	return nil
@@ -18919,7 +18843,7 @@ func (ptr *QSslSocket) SetSslConfiguration(configuration QSslConfiguration_ITF) 
 func (ptr *QSslSocket) SslConfiguration() *QSslConfiguration {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslConfigurationFromPointer(C.QSslSocket_SslConfiguration(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QSslConfiguration).DestroyQSslConfiguration)
+		qt.SetFinalizer(tmpValue, (*QSslConfiguration).DestroyQSslConfiguration)
 		return tmpValue
 	}
 	return nil
@@ -18958,7 +18882,7 @@ func (ptr *QSslSocket) ConnectSslErrors2(f func(errors []*QSslError)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "sslErrors2") {
-			C.QSslSocket_ConnectSslErrors2(ptr.Pointer())
+			C.QSslSocket_ConnectSslErrors2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "sslErrors")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "sslErrors2"); signal != nil {
@@ -19158,24 +19082,26 @@ func (ptr *QSslSocket) DisconnectDestroyQSslSocket() {
 
 func (ptr *QSslSocket) DestroyQSslSocket() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QSslSocket_DestroyQSslSocket(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QSslSocket) DestroyQSslSocketDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QSslSocket_DestroyQSslSocketDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QSslSocket) __addCaCertificates_certificates_atList2(i int) *QSslCertificate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslCertificateFromPointer(C.QSslSocket___addCaCertificates_certificates_atList2(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
+		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
 		return tmpValue
 	}
 	return nil
@@ -19194,7 +19120,7 @@ func (ptr *QSslSocket) __addCaCertificates_certificates_newList2() unsafe.Pointe
 func (ptr *QSslSocket) __addDefaultCaCertificates_certificates_atList2(i int) *QSslCertificate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslCertificateFromPointer(C.QSslSocket___addDefaultCaCertificates_certificates_atList2(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
+		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
 		return tmpValue
 	}
 	return nil
@@ -19213,7 +19139,7 @@ func (ptr *QSslSocket) __addDefaultCaCertificates_certificates_newList2() unsafe
 func (ptr *QSslSocket) __caCertificates_atList(i int) *QSslCertificate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslCertificateFromPointer(C.QSslSocket___caCertificates_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
+		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
 		return tmpValue
 	}
 	return nil
@@ -19232,7 +19158,7 @@ func (ptr *QSslSocket) __caCertificates_newList() unsafe.Pointer {
 func (ptr *QSslSocket) __ciphers_atList(i int) *QSslCipher {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslCipherFromPointer(C.QSslSocket___ciphers_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
+		qt.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
 		return tmpValue
 	}
 	return nil
@@ -19251,7 +19177,7 @@ func (ptr *QSslSocket) __ciphers_newList() unsafe.Pointer {
 func (ptr *QSslSocket) __defaultCaCertificates_atList(i int) *QSslCertificate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslCertificateFromPointer(C.QSslSocket___defaultCaCertificates_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
+		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
 		return tmpValue
 	}
 	return nil
@@ -19270,7 +19196,7 @@ func (ptr *QSslSocket) __defaultCaCertificates_newList() unsafe.Pointer {
 func (ptr *QSslSocket) __defaultCiphers_atList(i int) *QSslCipher {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslCipherFromPointer(C.QSslSocket___defaultCiphers_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
+		qt.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
 		return tmpValue
 	}
 	return nil
@@ -19289,7 +19215,7 @@ func (ptr *QSslSocket) __defaultCiphers_newList() unsafe.Pointer {
 func (ptr *QSslSocket) __ignoreSslErrors_errors_atList2(i int) *QSslError {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslErrorFromPointer(C.QSslSocket___ignoreSslErrors_errors_atList2(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSslError).DestroyQSslError)
+		qt.SetFinalizer(tmpValue, (*QSslError).DestroyQSslError)
 		return tmpValue
 	}
 	return nil
@@ -19308,7 +19234,7 @@ func (ptr *QSslSocket) __ignoreSslErrors_errors_newList2() unsafe.Pointer {
 func (ptr *QSslSocket) __localCertificateChain_atList(i int) *QSslCertificate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslCertificateFromPointer(C.QSslSocket___localCertificateChain_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
+		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
 		return tmpValue
 	}
 	return nil
@@ -19327,7 +19253,7 @@ func (ptr *QSslSocket) __localCertificateChain_newList() unsafe.Pointer {
 func (ptr *QSslSocket) __ocspResponses_atList(i int) *QOcspResponse {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQOcspResponseFromPointer(C.QSslSocket___ocspResponses_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QOcspResponse).DestroyQOcspResponse)
+		qt.SetFinalizer(tmpValue, (*QOcspResponse).DestroyQOcspResponse)
 		return tmpValue
 	}
 	return nil
@@ -19346,7 +19272,7 @@ func (ptr *QSslSocket) __ocspResponses_newList() unsafe.Pointer {
 func (ptr *QSslSocket) __peerCertificateChain_atList(i int) *QSslCertificate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslCertificateFromPointer(C.QSslSocket___peerCertificateChain_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
+		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
 		return tmpValue
 	}
 	return nil
@@ -19365,7 +19291,7 @@ func (ptr *QSslSocket) __peerCertificateChain_newList() unsafe.Pointer {
 func (ptr *QSslSocket) __setCaCertificates_certificates_atList(i int) *QSslCertificate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslCertificateFromPointer(C.QSslSocket___setCaCertificates_certificates_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
+		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
 		return tmpValue
 	}
 	return nil
@@ -19384,7 +19310,7 @@ func (ptr *QSslSocket) __setCaCertificates_certificates_newList() unsafe.Pointer
 func (ptr *QSslSocket) __setCiphers_ciphers_atList(i int) *QSslCipher {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslCipherFromPointer(C.QSslSocket___setCiphers_ciphers_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
+		qt.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
 		return tmpValue
 	}
 	return nil
@@ -19403,7 +19329,7 @@ func (ptr *QSslSocket) __setCiphers_ciphers_newList() unsafe.Pointer {
 func (ptr *QSslSocket) __setDefaultCaCertificates_certificates_atList(i int) *QSslCertificate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslCertificateFromPointer(C.QSslSocket___setDefaultCaCertificates_certificates_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
+		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
 		return tmpValue
 	}
 	return nil
@@ -19422,7 +19348,7 @@ func (ptr *QSslSocket) __setDefaultCaCertificates_certificates_newList() unsafe.
 func (ptr *QSslSocket) __setDefaultCiphers_ciphers_atList(i int) *QSslCipher {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslCipherFromPointer(C.QSslSocket___setDefaultCiphers_ciphers_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
+		qt.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
 		return tmpValue
 	}
 	return nil
@@ -19441,7 +19367,7 @@ func (ptr *QSslSocket) __setDefaultCiphers_ciphers_newList() unsafe.Pointer {
 func (ptr *QSslSocket) __setLocalCertificateChain_localChain_atList(i int) *QSslCertificate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslCertificateFromPointer(C.QSslSocket___setLocalCertificateChain_localChain_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
+		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
 		return tmpValue
 	}
 	return nil
@@ -19460,7 +19386,7 @@ func (ptr *QSslSocket) __setLocalCertificateChain_localChain_newList() unsafe.Po
 func (ptr *QSslSocket) __sslErrors_atList(i int) *QSslError {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslErrorFromPointer(C.QSslSocket___sslErrors_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSslError).DestroyQSslError)
+		qt.SetFinalizer(tmpValue, (*QSslError).DestroyQSslError)
 		return tmpValue
 	}
 	return nil
@@ -19479,7 +19405,7 @@ func (ptr *QSslSocket) __sslErrors_newList() unsafe.Pointer {
 func (ptr *QSslSocket) __sslErrors_errors_atList2(i int) *QSslError {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslErrorFromPointer(C.QSslSocket___sslErrors_errors_atList2(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSslError).DestroyQSslError)
+		qt.SetFinalizer(tmpValue, (*QSslError).DestroyQSslError)
 		return tmpValue
 	}
 	return nil
@@ -19498,7 +19424,7 @@ func (ptr *QSslSocket) __sslErrors_errors_newList2() unsafe.Pointer {
 func (ptr *QSslSocket) __supportedCiphers_atList(i int) *QSslCipher {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslCipherFromPointer(C.QSslSocket___supportedCiphers_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
+		qt.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
 		return tmpValue
 	}
 	return nil
@@ -19517,7 +19443,7 @@ func (ptr *QSslSocket) __supportedCiphers_newList() unsafe.Pointer {
 func (ptr *QSslSocket) __systemCaCertificates_atList(i int) *QSslCertificate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQSslCertificateFromPointer(C.QSslSocket___systemCaCertificates_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
+		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
 		return tmpValue
 	}
 	return nil
@@ -19591,7 +19517,7 @@ func (ptr *QTcpServer) ConnectAcceptError(f func(socketError QAbstractSocket__So
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "acceptError") {
-			C.QTcpServer_ConnectAcceptError(ptr.Pointer())
+			C.QTcpServer_ConnectAcceptError(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "acceptError")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "acceptError"); signal != nil {
@@ -19716,7 +19642,7 @@ func (ptr *QTcpServer) ConnectNewConnection(f func()) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "newConnection") {
-			C.QTcpServer_ConnectNewConnection(ptr.Pointer())
+			C.QTcpServer_ConnectNewConnection(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "newConnection")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "newConnection"); signal != nil {
@@ -19806,7 +19732,7 @@ func (ptr *QTcpServer) PauseAccepting() {
 func (ptr *QTcpServer) Proxy() *QNetworkProxy {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQNetworkProxyFromPointer(C.QTcpServer_Proxy(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QNetworkProxy).DestroyQNetworkProxy)
+		qt.SetFinalizer(tmpValue, (*QNetworkProxy).DestroyQNetworkProxy)
 		return tmpValue
 	}
 	return nil
@@ -19821,7 +19747,7 @@ func (ptr *QTcpServer) ResumeAccepting() {
 func (ptr *QTcpServer) ServerAddress() *QHostAddress {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQHostAddressFromPointer(C.QTcpServer_ServerAddress(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
+		qt.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
 		return tmpValue
 	}
 	return nil
@@ -19898,17 +19824,19 @@ func (ptr *QTcpServer) DisconnectDestroyQTcpServer() {
 
 func (ptr *QTcpServer) DestroyQTcpServer() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QTcpServer_DestroyQTcpServer(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QTcpServer) DestroyQTcpServerDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QTcpServer_DestroyQTcpServerDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -19936,7 +19864,7 @@ func (ptr *QTcpServer) __children_newList() unsafe.Pointer {
 func (ptr *QTcpServer) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QTcpServer___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -19992,27 +19920,6 @@ func (ptr *QTcpServer) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QTcpServer) __findChildren_newList3() unsafe.Pointer {
 	return C.QTcpServer___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QTcpServer) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QTcpServer___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QTcpServer) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QTcpServer___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QTcpServer) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QTcpServer___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQTcpServer_ChildEvent
@@ -20071,8 +19978,9 @@ func callbackQTcpServer_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QTcpServer) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QTcpServer_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -20249,17 +20157,19 @@ func (ptr *QTcpSocket) DisconnectDestroyQTcpSocket() {
 
 func (ptr *QTcpSocket) DestroyQTcpSocket() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QTcpSocket_DestroyQTcpSocket(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QTcpSocket) DestroyQTcpSocketDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QTcpSocket_DestroyQTcpSocketDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -20347,7 +20257,7 @@ func (ptr *QUdpSocket) LeaveMulticastGroup2(groupAddress QHostAddress_ITF, iface
 func (ptr *QUdpSocket) MulticastInterface() *QNetworkInterface {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQNetworkInterfaceFromPointer(C.QUdpSocket_MulticastInterface(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QNetworkInterface).DestroyQNetworkInterface)
+		qt.SetFinalizer(tmpValue, (*QNetworkInterface).DestroyQNetworkInterface)
 		return tmpValue
 	}
 	return nil
@@ -20374,7 +20284,7 @@ func (ptr *QUdpSocket) ReadDatagram(data []byte, maxSize int64, address QHostAdd
 func (ptr *QUdpSocket) ReceiveDatagram(maxSize int64) *QNetworkDatagram {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQNetworkDatagramFromPointer(C.QUdpSocket_ReceiveDatagram(ptr.Pointer(), C.longlong(maxSize)))
-		runtime.SetFinalizer(tmpValue, (*QNetworkDatagram).DestroyQNetworkDatagram)
+		qt.SetFinalizer(tmpValue, (*QNetworkDatagram).DestroyQNetworkDatagram)
 		return tmpValue
 	}
 	return nil
@@ -20444,16 +20354,724 @@ func (ptr *QUdpSocket) DisconnectDestroyQUdpSocket() {
 
 func (ptr *QUdpSocket) DestroyQUdpSocket() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QUdpSocket_DestroyQUdpSocket(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
 func (ptr *QUdpSocket) DestroyQUdpSocketDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QUdpSocket_DestroyQUdpSocketDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
+}
+
+type QNetworkCacheMetaData_RawHeader struct {
+	ptr unsafe.Pointer
+}
+
+type QNetworkCacheMetaData_RawHeader_ITF interface {
+	QNetworkCacheMetaData_RawHeader_PTR() *QNetworkCacheMetaData_RawHeader
+}
+
+func (ptr *QNetworkCacheMetaData_RawHeader) QNetworkCacheMetaData_RawHeader_PTR() *QNetworkCacheMetaData_RawHeader {
+	return ptr
+}
+
+func (ptr *QNetworkCacheMetaData_RawHeader) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QNetworkCacheMetaData_RawHeader) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQNetworkCacheMetaData_RawHeader(ptr QNetworkCacheMetaData_RawHeader_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QNetworkCacheMetaData_RawHeader_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQNetworkCacheMetaData_RawHeaderFromPointer(ptr unsafe.Pointer) (n *QNetworkCacheMetaData_RawHeader) {
+	n = new(QNetworkCacheMetaData_RawHeader)
+	n.SetPointer(ptr)
+	return
+}
+func (ptr *QNetworkCacheMetaData_RawHeader) DestroyQNetworkCacheMetaData_RawHeader() {
+	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
+
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+func NewQNetworkCacheMetaData_RawHeader() *QNetworkCacheMetaData_RawHeader {
+	tmpValue := NewQNetworkCacheMetaData_RawHeaderFromPointer(C.RawHeader_NewRawHeader())
+	qt.SetFinalizer(tmpValue, (*QNetworkCacheMetaData_RawHeader).DestroyQNetworkCacheMetaData_RawHeader)
+	return tmpValue
+}
+
+func NewQNetworkCacheMetaData_RawHeader2(first core.QByteArray_ITF, second core.QByteArray_ITF) *QNetworkCacheMetaData_RawHeader {
+	tmpValue := NewQNetworkCacheMetaData_RawHeaderFromPointer(C.RawHeader_NewRawHeader2(core.PointerFromQByteArray(first), core.PointerFromQByteArray(second)))
+	qt.SetFinalizer(tmpValue, (*QNetworkCacheMetaData_RawHeader).DestroyQNetworkCacheMetaData_RawHeader)
+	return tmpValue
+}
+
+func (ptr *QNetworkCacheMetaData_RawHeader) First() *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.RawHeader_First(ptr.Pointer()))
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QNetworkCacheMetaData_RawHeader) SetFirst(vqb core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.RawHeader_SetFirst(ptr.Pointer(), core.PointerFromQByteArray(vqb))
+	}
+}
+
+func (ptr *QNetworkCacheMetaData_RawHeader) Second() *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.RawHeader_Second(ptr.Pointer()))
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QNetworkCacheMetaData_RawHeader) SetSecond(vqb core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.RawHeader_SetSecond(ptr.Pointer(), core.PointerFromQByteArray(vqb))
+	}
+}
+
+func init() {
+	qt.ItfMap["network.QAbstractNetworkCache_ITF"] = QAbstractNetworkCache{}
+	qt.FuncMap["network.NewQAbstractNetworkCache"] = NewQAbstractNetworkCache
+	qt.ItfMap["network.QAbstractSocket_ITF"] = QAbstractSocket{}
+	qt.FuncMap["network.NewQAbstractSocket"] = NewQAbstractSocket
+	qt.EnumMap["network.QAbstractSocket__TcpSocket"] = int64(QAbstractSocket__TcpSocket)
+	qt.EnumMap["network.QAbstractSocket__UdpSocket"] = int64(QAbstractSocket__UdpSocket)
+	qt.EnumMap["network.QAbstractSocket__SctpSocket"] = int64(QAbstractSocket__SctpSocket)
+	qt.EnumMap["network.QAbstractSocket__UnknownSocketType"] = int64(QAbstractSocket__UnknownSocketType)
+	qt.EnumMap["network.QAbstractSocket__IPv4Protocol"] = int64(QAbstractSocket__IPv4Protocol)
+	qt.EnumMap["network.QAbstractSocket__IPv6Protocol"] = int64(QAbstractSocket__IPv6Protocol)
+	qt.EnumMap["network.QAbstractSocket__AnyIPProtocol"] = int64(QAbstractSocket__AnyIPProtocol)
+	qt.EnumMap["network.QAbstractSocket__UnknownNetworkLayerProtocol"] = int64(QAbstractSocket__UnknownNetworkLayerProtocol)
+	qt.EnumMap["network.QAbstractSocket__ConnectionRefusedError"] = int64(QAbstractSocket__ConnectionRefusedError)
+	qt.EnumMap["network.QAbstractSocket__RemoteHostClosedError"] = int64(QAbstractSocket__RemoteHostClosedError)
+	qt.EnumMap["network.QAbstractSocket__HostNotFoundError"] = int64(QAbstractSocket__HostNotFoundError)
+	qt.EnumMap["network.QAbstractSocket__SocketAccessError"] = int64(QAbstractSocket__SocketAccessError)
+	qt.EnumMap["network.QAbstractSocket__SocketResourceError"] = int64(QAbstractSocket__SocketResourceError)
+	qt.EnumMap["network.QAbstractSocket__SocketTimeoutError"] = int64(QAbstractSocket__SocketTimeoutError)
+	qt.EnumMap["network.QAbstractSocket__DatagramTooLargeError"] = int64(QAbstractSocket__DatagramTooLargeError)
+	qt.EnumMap["network.QAbstractSocket__NetworkError"] = int64(QAbstractSocket__NetworkError)
+	qt.EnumMap["network.QAbstractSocket__AddressInUseError"] = int64(QAbstractSocket__AddressInUseError)
+	qt.EnumMap["network.QAbstractSocket__SocketAddressNotAvailableError"] = int64(QAbstractSocket__SocketAddressNotAvailableError)
+	qt.EnumMap["network.QAbstractSocket__UnsupportedSocketOperationError"] = int64(QAbstractSocket__UnsupportedSocketOperationError)
+	qt.EnumMap["network.QAbstractSocket__UnfinishedSocketOperationError"] = int64(QAbstractSocket__UnfinishedSocketOperationError)
+	qt.EnumMap["network.QAbstractSocket__ProxyAuthenticationRequiredError"] = int64(QAbstractSocket__ProxyAuthenticationRequiredError)
+	qt.EnumMap["network.QAbstractSocket__SslHandshakeFailedError"] = int64(QAbstractSocket__SslHandshakeFailedError)
+	qt.EnumMap["network.QAbstractSocket__ProxyConnectionRefusedError"] = int64(QAbstractSocket__ProxyConnectionRefusedError)
+	qt.EnumMap["network.QAbstractSocket__ProxyConnectionClosedError"] = int64(QAbstractSocket__ProxyConnectionClosedError)
+	qt.EnumMap["network.QAbstractSocket__ProxyConnectionTimeoutError"] = int64(QAbstractSocket__ProxyConnectionTimeoutError)
+	qt.EnumMap["network.QAbstractSocket__ProxyNotFoundError"] = int64(QAbstractSocket__ProxyNotFoundError)
+	qt.EnumMap["network.QAbstractSocket__ProxyProtocolError"] = int64(QAbstractSocket__ProxyProtocolError)
+	qt.EnumMap["network.QAbstractSocket__OperationError"] = int64(QAbstractSocket__OperationError)
+	qt.EnumMap["network.QAbstractSocket__SslInternalError"] = int64(QAbstractSocket__SslInternalError)
+	qt.EnumMap["network.QAbstractSocket__SslInvalidUserDataError"] = int64(QAbstractSocket__SslInvalidUserDataError)
+	qt.EnumMap["network.QAbstractSocket__TemporaryError"] = int64(QAbstractSocket__TemporaryError)
+	qt.EnumMap["network.QAbstractSocket__UnknownSocketError"] = int64(QAbstractSocket__UnknownSocketError)
+	qt.EnumMap["network.QAbstractSocket__UnconnectedState"] = int64(QAbstractSocket__UnconnectedState)
+	qt.EnumMap["network.QAbstractSocket__HostLookupState"] = int64(QAbstractSocket__HostLookupState)
+	qt.EnumMap["network.QAbstractSocket__ConnectingState"] = int64(QAbstractSocket__ConnectingState)
+	qt.EnumMap["network.QAbstractSocket__ConnectedState"] = int64(QAbstractSocket__ConnectedState)
+	qt.EnumMap["network.QAbstractSocket__BoundState"] = int64(QAbstractSocket__BoundState)
+	qt.EnumMap["network.QAbstractSocket__ListeningState"] = int64(QAbstractSocket__ListeningState)
+	qt.EnumMap["network.QAbstractSocket__ClosingState"] = int64(QAbstractSocket__ClosingState)
+	qt.EnumMap["network.QAbstractSocket__LowDelayOption"] = int64(QAbstractSocket__LowDelayOption)
+	qt.EnumMap["network.QAbstractSocket__KeepAliveOption"] = int64(QAbstractSocket__KeepAliveOption)
+	qt.EnumMap["network.QAbstractSocket__MulticastTtlOption"] = int64(QAbstractSocket__MulticastTtlOption)
+	qt.EnumMap["network.QAbstractSocket__MulticastLoopbackOption"] = int64(QAbstractSocket__MulticastLoopbackOption)
+	qt.EnumMap["network.QAbstractSocket__TypeOfServiceOption"] = int64(QAbstractSocket__TypeOfServiceOption)
+	qt.EnumMap["network.QAbstractSocket__SendBufferSizeSocketOption"] = int64(QAbstractSocket__SendBufferSizeSocketOption)
+	qt.EnumMap["network.QAbstractSocket__ReceiveBufferSizeSocketOption"] = int64(QAbstractSocket__ReceiveBufferSizeSocketOption)
+	qt.EnumMap["network.QAbstractSocket__PathMtuSocketOption"] = int64(QAbstractSocket__PathMtuSocketOption)
+	qt.EnumMap["network.QAbstractSocket__DefaultForPlatform"] = int64(QAbstractSocket__DefaultForPlatform)
+	qt.EnumMap["network.QAbstractSocket__ShareAddress"] = int64(QAbstractSocket__ShareAddress)
+	qt.EnumMap["network.QAbstractSocket__DontShareAddress"] = int64(QAbstractSocket__DontShareAddress)
+	qt.EnumMap["network.QAbstractSocket__ReuseAddressHint"] = int64(QAbstractSocket__ReuseAddressHint)
+	qt.EnumMap["network.QAbstractSocket__PauseNever"] = int64(QAbstractSocket__PauseNever)
+	qt.EnumMap["network.QAbstractSocket__PauseOnSslErrors"] = int64(QAbstractSocket__PauseOnSslErrors)
+	qt.ItfMap["network.QAuthenticator_ITF"] = QAuthenticator{}
+	qt.FuncMap["network.NewQAuthenticator"] = NewQAuthenticator
+	qt.FuncMap["network.NewQAuthenticator2"] = NewQAuthenticator2
+	qt.ItfMap["network.QDnsDomainNameRecord_ITF"] = QDnsDomainNameRecord{}
+	qt.FuncMap["network.NewQDnsDomainNameRecord"] = NewQDnsDomainNameRecord
+	qt.FuncMap["network.NewQDnsDomainNameRecord2"] = NewQDnsDomainNameRecord2
+	qt.ItfMap["network.QDnsHostAddressRecord_ITF"] = QDnsHostAddressRecord{}
+	qt.FuncMap["network.NewQDnsHostAddressRecord"] = NewQDnsHostAddressRecord
+	qt.FuncMap["network.NewQDnsHostAddressRecord2"] = NewQDnsHostAddressRecord2
+	qt.ItfMap["network.QDnsLookup_ITF"] = QDnsLookup{}
+	qt.FuncMap["network.NewQDnsLookup"] = NewQDnsLookup
+	qt.FuncMap["network.NewQDnsLookup2"] = NewQDnsLookup2
+	qt.FuncMap["network.NewQDnsLookup3"] = NewQDnsLookup3
+	qt.EnumMap["network.QDnsLookup__NoError"] = int64(QDnsLookup__NoError)
+	qt.EnumMap["network.QDnsLookup__ResolverError"] = int64(QDnsLookup__ResolverError)
+	qt.EnumMap["network.QDnsLookup__OperationCancelledError"] = int64(QDnsLookup__OperationCancelledError)
+	qt.EnumMap["network.QDnsLookup__InvalidRequestError"] = int64(QDnsLookup__InvalidRequestError)
+	qt.EnumMap["network.QDnsLookup__InvalidReplyError"] = int64(QDnsLookup__InvalidReplyError)
+	qt.EnumMap["network.QDnsLookup__ServerFailureError"] = int64(QDnsLookup__ServerFailureError)
+	qt.EnumMap["network.QDnsLookup__ServerRefusedError"] = int64(QDnsLookup__ServerRefusedError)
+	qt.EnumMap["network.QDnsLookup__NotFoundError"] = int64(QDnsLookup__NotFoundError)
+	qt.EnumMap["network.QDnsLookup__A"] = int64(QDnsLookup__A)
+	qt.EnumMap["network.QDnsLookup__AAAA"] = int64(QDnsLookup__AAAA)
+	qt.EnumMap["network.QDnsLookup__ANY"] = int64(QDnsLookup__ANY)
+	qt.EnumMap["network.QDnsLookup__CNAME"] = int64(QDnsLookup__CNAME)
+	qt.EnumMap["network.QDnsLookup__MX"] = int64(QDnsLookup__MX)
+	qt.EnumMap["network.QDnsLookup__NS"] = int64(QDnsLookup__NS)
+	qt.EnumMap["network.QDnsLookup__PTR"] = int64(QDnsLookup__PTR)
+	qt.EnumMap["network.QDnsLookup__SRV"] = int64(QDnsLookup__SRV)
+	qt.EnumMap["network.QDnsLookup__TXT"] = int64(QDnsLookup__TXT)
+	qt.ItfMap["network.QDnsMailExchangeRecord_ITF"] = QDnsMailExchangeRecord{}
+	qt.FuncMap["network.NewQDnsMailExchangeRecord"] = NewQDnsMailExchangeRecord
+	qt.FuncMap["network.NewQDnsMailExchangeRecord2"] = NewQDnsMailExchangeRecord2
+	qt.ItfMap["network.QDnsServiceRecord_ITF"] = QDnsServiceRecord{}
+	qt.FuncMap["network.NewQDnsServiceRecord"] = NewQDnsServiceRecord
+	qt.FuncMap["network.NewQDnsServiceRecord2"] = NewQDnsServiceRecord2
+	qt.ItfMap["network.QDnsTextRecord_ITF"] = QDnsTextRecord{}
+	qt.FuncMap["network.NewQDnsTextRecord"] = NewQDnsTextRecord
+	qt.FuncMap["network.NewQDnsTextRecord2"] = NewQDnsTextRecord2
+	qt.EnumMap["network.QDtls__NoError"] = int64(QDtls__NoError)
+	qt.EnumMap["network.QDtls__InvalidInputParameters"] = int64(QDtls__InvalidInputParameters)
+	qt.EnumMap["network.QDtls__InvalidOperation"] = int64(QDtls__InvalidOperation)
+	qt.EnumMap["network.QDtls__UnderlyingSocketError"] = int64(QDtls__UnderlyingSocketError)
+	qt.EnumMap["network.QDtls__RemoteClosedConnectionError"] = int64(QDtls__RemoteClosedConnectionError)
+	qt.EnumMap["network.QDtls__PeerVerificationError"] = int64(QDtls__PeerVerificationError)
+	qt.EnumMap["network.QDtls__TlsInitializationError"] = int64(QDtls__TlsInitializationError)
+	qt.EnumMap["network.QDtls__TlsFatalError"] = int64(QDtls__TlsFatalError)
+	qt.EnumMap["network.QDtls__TlsNonFatalError"] = int64(QDtls__TlsNonFatalError)
+	qt.EnumMap["network.QDtls__HandshakeNotStarted"] = int64(QDtls__HandshakeNotStarted)
+	qt.EnumMap["network.QDtls__HandshakeInProgress"] = int64(QDtls__HandshakeInProgress)
+	qt.EnumMap["network.QDtls__PeerVerificationFailed"] = int64(QDtls__PeerVerificationFailed)
+	qt.EnumMap["network.QDtls__HandshakeComplete"] = int64(QDtls__HandshakeComplete)
+	qt.ItfMap["network.QHostAddress_ITF"] = QHostAddress{}
+	qt.FuncMap["network.NewQHostAddress"] = NewQHostAddress
+	qt.FuncMap["network.NewQHostAddress2"] = NewQHostAddress2
+	qt.FuncMap["network.NewQHostAddress3"] = NewQHostAddress3
+	qt.FuncMap["network.NewQHostAddress4"] = NewQHostAddress4
+	qt.FuncMap["network.NewQHostAddress7"] = NewQHostAddress7
+	qt.FuncMap["network.NewQHostAddress8"] = NewQHostAddress8
+	qt.FuncMap["network.NewQHostAddress9"] = NewQHostAddress9
+	qt.EnumMap["network.QHostAddress__Null"] = int64(QHostAddress__Null)
+	qt.EnumMap["network.QHostAddress__Broadcast"] = int64(QHostAddress__Broadcast)
+	qt.EnumMap["network.QHostAddress__LocalHost"] = int64(QHostAddress__LocalHost)
+	qt.EnumMap["network.QHostAddress__LocalHostIPv6"] = int64(QHostAddress__LocalHostIPv6)
+	qt.EnumMap["network.QHostAddress__Any"] = int64(QHostAddress__Any)
+	qt.EnumMap["network.QHostAddress__AnyIPv6"] = int64(QHostAddress__AnyIPv6)
+	qt.EnumMap["network.QHostAddress__AnyIPv4"] = int64(QHostAddress__AnyIPv4)
+	qt.EnumMap["network.QHostAddress__ConvertV4MappedToIPv4"] = int64(QHostAddress__ConvertV4MappedToIPv4)
+	qt.EnumMap["network.QHostAddress__ConvertV4CompatToIPv4"] = int64(QHostAddress__ConvertV4CompatToIPv4)
+	qt.EnumMap["network.QHostAddress__ConvertUnspecifiedAddress"] = int64(QHostAddress__ConvertUnspecifiedAddress)
+	qt.EnumMap["network.QHostAddress__ConvertLocalHost"] = int64(QHostAddress__ConvertLocalHost)
+	qt.EnumMap["network.QHostAddress__TolerantConversion"] = int64(QHostAddress__TolerantConversion)
+	qt.EnumMap["network.QHostAddress__StrictConversion"] = int64(QHostAddress__StrictConversion)
+	qt.ItfMap["network.QHostInfo_ITF"] = QHostInfo{}
+	qt.FuncMap["network.NewQHostInfo"] = NewQHostInfo
+	qt.FuncMap["network.NewQHostInfo2"] = NewQHostInfo2
+	qt.FuncMap["network.QHostInfo_AbortHostLookup"] = QHostInfo_AbortHostLookup
+	qt.FuncMap["network.QHostInfo_FromName"] = QHostInfo_FromName
+	qt.FuncMap["network.QHostInfo_LocalDomainName"] = QHostInfo_LocalDomainName
+	qt.FuncMap["network.QHostInfo_LocalHostName"] = QHostInfo_LocalHostName
+	qt.FuncMap["network.QHostInfo_LookupHost"] = QHostInfo_LookupHost
+	qt.EnumMap["network.QHostInfo__NoError"] = int64(QHostInfo__NoError)
+	qt.EnumMap["network.QHostInfo__HostNotFound"] = int64(QHostInfo__HostNotFound)
+	qt.EnumMap["network.QHostInfo__UnknownError"] = int64(QHostInfo__UnknownError)
+	qt.ItfMap["network.QHstsPolicy_ITF"] = QHstsPolicy{}
+	qt.FuncMap["network.NewQHstsPolicy"] = NewQHstsPolicy
+	qt.FuncMap["network.NewQHstsPolicy2"] = NewQHstsPolicy2
+	qt.FuncMap["network.NewQHstsPolicy3"] = NewQHstsPolicy3
+	qt.EnumMap["network.QHstsPolicy__IncludeSubDomains"] = int64(QHstsPolicy__IncludeSubDomains)
+	qt.ItfMap["network.QHttpMultiPart_ITF"] = QHttpMultiPart{}
+	qt.FuncMap["network.NewQHttpMultiPart"] = NewQHttpMultiPart
+	qt.FuncMap["network.NewQHttpMultiPart2"] = NewQHttpMultiPart2
+	qt.EnumMap["network.QHttpMultiPart__MixedType"] = int64(QHttpMultiPart__MixedType)
+	qt.EnumMap["network.QHttpMultiPart__RelatedType"] = int64(QHttpMultiPart__RelatedType)
+	qt.EnumMap["network.QHttpMultiPart__FormDataType"] = int64(QHttpMultiPart__FormDataType)
+	qt.EnumMap["network.QHttpMultiPart__AlternativeType"] = int64(QHttpMultiPart__AlternativeType)
+	qt.ItfMap["network.QHttpPart_ITF"] = QHttpPart{}
+	qt.FuncMap["network.NewQHttpPart"] = NewQHttpPart
+	qt.FuncMap["network.NewQHttpPart2"] = NewQHttpPart2
+	qt.ItfMap["network.QIPv6Address_ITF"] = QIPv6Address{}
+	qt.ItfMap["network.QLocalServer_ITF"] = QLocalServer{}
+	qt.FuncMap["network.NewQLocalServer"] = NewQLocalServer
+	qt.FuncMap["network.QLocalServer_RemoveServer"] = QLocalServer_RemoveServer
+	qt.EnumMap["network.QLocalServer__NoOptions"] = int64(QLocalServer__NoOptions)
+	qt.EnumMap["network.QLocalServer__UserAccessOption"] = int64(QLocalServer__UserAccessOption)
+	qt.EnumMap["network.QLocalServer__GroupAccessOption"] = int64(QLocalServer__GroupAccessOption)
+	qt.EnumMap["network.QLocalServer__OtherAccessOption"] = int64(QLocalServer__OtherAccessOption)
+	qt.EnumMap["network.QLocalServer__WorldAccessOption"] = int64(QLocalServer__WorldAccessOption)
+	qt.ItfMap["network.QLocalSocket_ITF"] = QLocalSocket{}
+	qt.FuncMap["network.NewQLocalSocket"] = NewQLocalSocket
+	qt.EnumMap["network.QLocalSocket__ConnectionRefusedError"] = int64(QLocalSocket__ConnectionRefusedError)
+	qt.EnumMap["network.QLocalSocket__PeerClosedError"] = int64(QLocalSocket__PeerClosedError)
+	qt.EnumMap["network.QLocalSocket__ServerNotFoundError"] = int64(QLocalSocket__ServerNotFoundError)
+	qt.EnumMap["network.QLocalSocket__SocketAccessError"] = int64(QLocalSocket__SocketAccessError)
+	qt.EnumMap["network.QLocalSocket__SocketResourceError"] = int64(QLocalSocket__SocketResourceError)
+	qt.EnumMap["network.QLocalSocket__SocketTimeoutError"] = int64(QLocalSocket__SocketTimeoutError)
+	qt.EnumMap["network.QLocalSocket__DatagramTooLargeError"] = int64(QLocalSocket__DatagramTooLargeError)
+	qt.EnumMap["network.QLocalSocket__ConnectionError"] = int64(QLocalSocket__ConnectionError)
+	qt.EnumMap["network.QLocalSocket__UnsupportedSocketOperationError"] = int64(QLocalSocket__UnsupportedSocketOperationError)
+	qt.EnumMap["network.QLocalSocket__UnknownSocketError"] = int64(QLocalSocket__UnknownSocketError)
+	qt.EnumMap["network.QLocalSocket__OperationError"] = int64(QLocalSocket__OperationError)
+	qt.EnumMap["network.QLocalSocket__UnconnectedState"] = int64(QLocalSocket__UnconnectedState)
+	qt.EnumMap["network.QLocalSocket__ConnectingState"] = int64(QLocalSocket__ConnectingState)
+	qt.EnumMap["network.QLocalSocket__ConnectedState"] = int64(QLocalSocket__ConnectedState)
+	qt.EnumMap["network.QLocalSocket__ClosingState"] = int64(QLocalSocket__ClosingState)
+	qt.ItfMap["network.QNetworkAccessManager_ITF"] = QNetworkAccessManager{}
+	qt.FuncMap["network.NewQNetworkAccessManager"] = NewQNetworkAccessManager
+	qt.EnumMap["network.QNetworkAccessManager__HeadOperation"] = int64(QNetworkAccessManager__HeadOperation)
+	qt.EnumMap["network.QNetworkAccessManager__GetOperation"] = int64(QNetworkAccessManager__GetOperation)
+	qt.EnumMap["network.QNetworkAccessManager__PutOperation"] = int64(QNetworkAccessManager__PutOperation)
+	qt.EnumMap["network.QNetworkAccessManager__PostOperation"] = int64(QNetworkAccessManager__PostOperation)
+	qt.EnumMap["network.QNetworkAccessManager__DeleteOperation"] = int64(QNetworkAccessManager__DeleteOperation)
+	qt.EnumMap["network.QNetworkAccessManager__CustomOperation"] = int64(QNetworkAccessManager__CustomOperation)
+	qt.EnumMap["network.QNetworkAccessManager__UnknownOperation"] = int64(QNetworkAccessManager__UnknownOperation)
+	qt.EnumMap["network.QNetworkAccessManager__UnknownAccessibility"] = int64(QNetworkAccessManager__UnknownAccessibility)
+	qt.EnumMap["network.QNetworkAccessManager__NotAccessible"] = int64(QNetworkAccessManager__NotAccessible)
+	qt.EnumMap["network.QNetworkAccessManager__Accessible"] = int64(QNetworkAccessManager__Accessible)
+	qt.ItfMap["network.QNetworkAddressEntry_ITF"] = QNetworkAddressEntry{}
+	qt.FuncMap["network.NewQNetworkAddressEntry"] = NewQNetworkAddressEntry
+	qt.FuncMap["network.NewQNetworkAddressEntry2"] = NewQNetworkAddressEntry2
+	qt.EnumMap["network.QNetworkAddressEntry__DnsEligibilityUnknown"] = int64(QNetworkAddressEntry__DnsEligibilityUnknown)
+	qt.EnumMap["network.QNetworkAddressEntry__DnsIneligible"] = int64(QNetworkAddressEntry__DnsIneligible)
+	qt.EnumMap["network.QNetworkAddressEntry__DnsEligible"] = int64(QNetworkAddressEntry__DnsEligible)
+	qt.ItfMap["network.QNetworkCacheMetaData_ITF"] = QNetworkCacheMetaData{}
+	qt.FuncMap["network.NewQNetworkCacheMetaData"] = NewQNetworkCacheMetaData
+	qt.FuncMap["network.NewQNetworkCacheMetaData2"] = NewQNetworkCacheMetaData2
+	qt.ItfMap["network.QNetworkConfiguration_ITF"] = QNetworkConfiguration{}
+	qt.FuncMap["network.NewQNetworkConfiguration"] = NewQNetworkConfiguration
+	qt.FuncMap["network.NewQNetworkConfiguration2"] = NewQNetworkConfiguration2
+	qt.EnumMap["network.QNetworkConfiguration__InternetAccessPoint"] = int64(QNetworkConfiguration__InternetAccessPoint)
+	qt.EnumMap["network.QNetworkConfiguration__ServiceNetwork"] = int64(QNetworkConfiguration__ServiceNetwork)
+	qt.EnumMap["network.QNetworkConfiguration__UserChoice"] = int64(QNetworkConfiguration__UserChoice)
+	qt.EnumMap["network.QNetworkConfiguration__Invalid"] = int64(QNetworkConfiguration__Invalid)
+	qt.EnumMap["network.QNetworkConfiguration__UnknownPurpose"] = int64(QNetworkConfiguration__UnknownPurpose)
+	qt.EnumMap["network.QNetworkConfiguration__PublicPurpose"] = int64(QNetworkConfiguration__PublicPurpose)
+	qt.EnumMap["network.QNetworkConfiguration__PrivatePurpose"] = int64(QNetworkConfiguration__PrivatePurpose)
+	qt.EnumMap["network.QNetworkConfiguration__ServiceSpecificPurpose"] = int64(QNetworkConfiguration__ServiceSpecificPurpose)
+	qt.EnumMap["network.QNetworkConfiguration__Undefined"] = int64(QNetworkConfiguration__Undefined)
+	qt.EnumMap["network.QNetworkConfiguration__Defined"] = int64(QNetworkConfiguration__Defined)
+	qt.EnumMap["network.QNetworkConfiguration__Discovered"] = int64(QNetworkConfiguration__Discovered)
+	qt.EnumMap["network.QNetworkConfiguration__Active"] = int64(QNetworkConfiguration__Active)
+	qt.EnumMap["network.QNetworkConfiguration__BearerUnknown"] = int64(QNetworkConfiguration__BearerUnknown)
+	qt.EnumMap["network.QNetworkConfiguration__BearerEthernet"] = int64(QNetworkConfiguration__BearerEthernet)
+	qt.EnumMap["network.QNetworkConfiguration__BearerWLAN"] = int64(QNetworkConfiguration__BearerWLAN)
+	qt.EnumMap["network.QNetworkConfiguration__Bearer2G"] = int64(QNetworkConfiguration__Bearer2G)
+	qt.EnumMap["network.QNetworkConfiguration__BearerCDMA2000"] = int64(QNetworkConfiguration__BearerCDMA2000)
+	qt.EnumMap["network.QNetworkConfiguration__BearerWCDMA"] = int64(QNetworkConfiguration__BearerWCDMA)
+	qt.EnumMap["network.QNetworkConfiguration__BearerHSPA"] = int64(QNetworkConfiguration__BearerHSPA)
+	qt.EnumMap["network.QNetworkConfiguration__BearerBluetooth"] = int64(QNetworkConfiguration__BearerBluetooth)
+	qt.EnumMap["network.QNetworkConfiguration__BearerWiMAX"] = int64(QNetworkConfiguration__BearerWiMAX)
+	qt.EnumMap["network.QNetworkConfiguration__BearerEVDO"] = int64(QNetworkConfiguration__BearerEVDO)
+	qt.EnumMap["network.QNetworkConfiguration__BearerLTE"] = int64(QNetworkConfiguration__BearerLTE)
+	qt.EnumMap["network.QNetworkConfiguration__Bearer3G"] = int64(QNetworkConfiguration__Bearer3G)
+	qt.EnumMap["network.QNetworkConfiguration__Bearer4G"] = int64(QNetworkConfiguration__Bearer4G)
+	qt.ItfMap["network.QNetworkConfigurationManager_ITF"] = QNetworkConfigurationManager{}
+	qt.FuncMap["network.NewQNetworkConfigurationManager"] = NewQNetworkConfigurationManager
+	qt.EnumMap["network.QNetworkConfigurationManager__CanStartAndStopInterfaces"] = int64(QNetworkConfigurationManager__CanStartAndStopInterfaces)
+	qt.EnumMap["network.QNetworkConfigurationManager__DirectConnectionRouting"] = int64(QNetworkConfigurationManager__DirectConnectionRouting)
+	qt.EnumMap["network.QNetworkConfigurationManager__SystemSessionSupport"] = int64(QNetworkConfigurationManager__SystemSessionSupport)
+	qt.EnumMap["network.QNetworkConfigurationManager__ApplicationLevelRoaming"] = int64(QNetworkConfigurationManager__ApplicationLevelRoaming)
+	qt.EnumMap["network.QNetworkConfigurationManager__ForcedRoaming"] = int64(QNetworkConfigurationManager__ForcedRoaming)
+	qt.EnumMap["network.QNetworkConfigurationManager__DataStatistics"] = int64(QNetworkConfigurationManager__DataStatistics)
+	qt.EnumMap["network.QNetworkConfigurationManager__NetworkSessionRequired"] = int64(QNetworkConfigurationManager__NetworkSessionRequired)
+	qt.ItfMap["network.QNetworkCookie_ITF"] = QNetworkCookie{}
+	qt.FuncMap["network.NewQNetworkCookie"] = NewQNetworkCookie
+	qt.FuncMap["network.NewQNetworkCookie2"] = NewQNetworkCookie2
+	qt.FuncMap["network.QNetworkCookie_ParseCookies"] = QNetworkCookie_ParseCookies
+	qt.EnumMap["network.QNetworkCookie__NameAndValueOnly"] = int64(QNetworkCookie__NameAndValueOnly)
+	qt.EnumMap["network.QNetworkCookie__Full"] = int64(QNetworkCookie__Full)
+	qt.ItfMap["network.QNetworkCookieJar_ITF"] = QNetworkCookieJar{}
+	qt.FuncMap["network.NewQNetworkCookieJar"] = NewQNetworkCookieJar
+	qt.ItfMap["network.QNetworkDatagram_ITF"] = QNetworkDatagram{}
+	qt.FuncMap["network.NewQNetworkDatagram"] = NewQNetworkDatagram
+	qt.FuncMap["network.NewQNetworkDatagram2"] = NewQNetworkDatagram2
+	qt.FuncMap["network.NewQNetworkDatagram3"] = NewQNetworkDatagram3
+	qt.ItfMap["network.QNetworkDiskCache_ITF"] = QNetworkDiskCache{}
+	qt.FuncMap["network.NewQNetworkDiskCache"] = NewQNetworkDiskCache
+	qt.ItfMap["network.QNetworkInterface_ITF"] = QNetworkInterface{}
+	qt.FuncMap["network.NewQNetworkInterface"] = NewQNetworkInterface
+	qt.FuncMap["network.NewQNetworkInterface2"] = NewQNetworkInterface2
+	qt.FuncMap["network.QNetworkInterface_AllAddresses"] = QNetworkInterface_AllAddresses
+	qt.FuncMap["network.QNetworkInterface_AllInterfaces"] = QNetworkInterface_AllInterfaces
+	qt.FuncMap["network.QNetworkInterface_InterfaceFromIndex"] = QNetworkInterface_InterfaceFromIndex
+	qt.FuncMap["network.QNetworkInterface_InterfaceFromName"] = QNetworkInterface_InterfaceFromName
+	qt.FuncMap["network.QNetworkInterface_InterfaceIndexFromName"] = QNetworkInterface_InterfaceIndexFromName
+	qt.FuncMap["network.QNetworkInterface_InterfaceNameFromIndex"] = QNetworkInterface_InterfaceNameFromIndex
+	qt.EnumMap["network.QNetworkInterface__Loopback"] = int64(QNetworkInterface__Loopback)
+	qt.EnumMap["network.QNetworkInterface__Virtual"] = int64(QNetworkInterface__Virtual)
+	qt.EnumMap["network.QNetworkInterface__Ethernet"] = int64(QNetworkInterface__Ethernet)
+	qt.EnumMap["network.QNetworkInterface__Slip"] = int64(QNetworkInterface__Slip)
+	qt.EnumMap["network.QNetworkInterface__CanBus"] = int64(QNetworkInterface__CanBus)
+	qt.EnumMap["network.QNetworkInterface__Ppp"] = int64(QNetworkInterface__Ppp)
+	qt.EnumMap["network.QNetworkInterface__Fddi"] = int64(QNetworkInterface__Fddi)
+	qt.EnumMap["network.QNetworkInterface__Wifi"] = int64(QNetworkInterface__Wifi)
+	qt.EnumMap["network.QNetworkInterface__Ieee80211"] = int64(QNetworkInterface__Ieee80211)
+	qt.EnumMap["network.QNetworkInterface__Phonet"] = int64(QNetworkInterface__Phonet)
+	qt.EnumMap["network.QNetworkInterface__Ieee802154"] = int64(QNetworkInterface__Ieee802154)
+	qt.EnumMap["network.QNetworkInterface__SixLoWPAN"] = int64(QNetworkInterface__SixLoWPAN)
+	qt.EnumMap["network.QNetworkInterface__Ieee80216"] = int64(QNetworkInterface__Ieee80216)
+	qt.EnumMap["network.QNetworkInterface__Ieee1394"] = int64(QNetworkInterface__Ieee1394)
+	qt.EnumMap["network.QNetworkInterface__Unknown"] = int64(QNetworkInterface__Unknown)
+	qt.EnumMap["network.QNetworkInterface__IsUp"] = int64(QNetworkInterface__IsUp)
+	qt.EnumMap["network.QNetworkInterface__IsRunning"] = int64(QNetworkInterface__IsRunning)
+	qt.EnumMap["network.QNetworkInterface__CanBroadcast"] = int64(QNetworkInterface__CanBroadcast)
+	qt.EnumMap["network.QNetworkInterface__IsLoopBack"] = int64(QNetworkInterface__IsLoopBack)
+	qt.EnumMap["network.QNetworkInterface__IsPointToPoint"] = int64(QNetworkInterface__IsPointToPoint)
+	qt.EnumMap["network.QNetworkInterface__CanMulticast"] = int64(QNetworkInterface__CanMulticast)
+	qt.ItfMap["network.QNetworkProxy_ITF"] = QNetworkProxy{}
+	qt.FuncMap["network.NewQNetworkProxy"] = NewQNetworkProxy
+	qt.FuncMap["network.NewQNetworkProxy2"] = NewQNetworkProxy2
+	qt.FuncMap["network.NewQNetworkProxy3"] = NewQNetworkProxy3
+	qt.FuncMap["network.QNetworkProxy_ApplicationProxy"] = QNetworkProxy_ApplicationProxy
+	qt.FuncMap["network.QNetworkProxy_SetApplicationProxy"] = QNetworkProxy_SetApplicationProxy
+	qt.EnumMap["network.QNetworkProxy__DefaultProxy"] = int64(QNetworkProxy__DefaultProxy)
+	qt.EnumMap["network.QNetworkProxy__Socks5Proxy"] = int64(QNetworkProxy__Socks5Proxy)
+	qt.EnumMap["network.QNetworkProxy__NoProxy"] = int64(QNetworkProxy__NoProxy)
+	qt.EnumMap["network.QNetworkProxy__HttpProxy"] = int64(QNetworkProxy__HttpProxy)
+	qt.EnumMap["network.QNetworkProxy__HttpCachingProxy"] = int64(QNetworkProxy__HttpCachingProxy)
+	qt.EnumMap["network.QNetworkProxy__FtpCachingProxy"] = int64(QNetworkProxy__FtpCachingProxy)
+	qt.EnumMap["network.QNetworkProxy__TunnelingCapability"] = int64(QNetworkProxy__TunnelingCapability)
+	qt.EnumMap["network.QNetworkProxy__ListeningCapability"] = int64(QNetworkProxy__ListeningCapability)
+	qt.EnumMap["network.QNetworkProxy__UdpTunnelingCapability"] = int64(QNetworkProxy__UdpTunnelingCapability)
+	qt.EnumMap["network.QNetworkProxy__CachingCapability"] = int64(QNetworkProxy__CachingCapability)
+	qt.EnumMap["network.QNetworkProxy__HostNameLookupCapability"] = int64(QNetworkProxy__HostNameLookupCapability)
+	qt.EnumMap["network.QNetworkProxy__SctpTunnelingCapability"] = int64(QNetworkProxy__SctpTunnelingCapability)
+	qt.EnumMap["network.QNetworkProxy__SctpListeningCapability"] = int64(QNetworkProxy__SctpListeningCapability)
+	qt.ItfMap["network.QNetworkProxyFactory_ITF"] = QNetworkProxyFactory{}
+	qt.FuncMap["network.NewQNetworkProxyFactory"] = NewQNetworkProxyFactory
+	qt.FuncMap["network.QNetworkProxyFactory_ProxyForQuery"] = QNetworkProxyFactory_ProxyForQuery
+	qt.FuncMap["network.QNetworkProxyFactory_SetApplicationProxyFactory"] = QNetworkProxyFactory_SetApplicationProxyFactory
+	qt.FuncMap["network.QNetworkProxyFactory_SetUseSystemConfiguration"] = QNetworkProxyFactory_SetUseSystemConfiguration
+	qt.FuncMap["network.QNetworkProxyFactory_SystemProxyForQuery"] = QNetworkProxyFactory_SystemProxyForQuery
+	qt.FuncMap["network.QNetworkProxyFactory_UsesSystemConfiguration"] = QNetworkProxyFactory_UsesSystemConfiguration
+	qt.ItfMap["network.QNetworkProxyQuery_ITF"] = QNetworkProxyQuery{}
+	qt.FuncMap["network.NewQNetworkProxyQuery"] = NewQNetworkProxyQuery
+	qt.FuncMap["network.NewQNetworkProxyQuery2"] = NewQNetworkProxyQuery2
+	qt.FuncMap["network.NewQNetworkProxyQuery3"] = NewQNetworkProxyQuery3
+	qt.FuncMap["network.NewQNetworkProxyQuery4"] = NewQNetworkProxyQuery4
+	qt.FuncMap["network.NewQNetworkProxyQuery8"] = NewQNetworkProxyQuery8
+	qt.EnumMap["network.QNetworkProxyQuery__TcpSocket"] = int64(QNetworkProxyQuery__TcpSocket)
+	qt.EnumMap["network.QNetworkProxyQuery__UdpSocket"] = int64(QNetworkProxyQuery__UdpSocket)
+	qt.EnumMap["network.QNetworkProxyQuery__SctpSocket"] = int64(QNetworkProxyQuery__SctpSocket)
+	qt.EnumMap["network.QNetworkProxyQuery__TcpServer"] = int64(QNetworkProxyQuery__TcpServer)
+	qt.EnumMap["network.QNetworkProxyQuery__UrlRequest"] = int64(QNetworkProxyQuery__UrlRequest)
+	qt.EnumMap["network.QNetworkProxyQuery__SctpServer"] = int64(QNetworkProxyQuery__SctpServer)
+	qt.ItfMap["network.QNetworkReply_ITF"] = QNetworkReply{}
+	qt.FuncMap["network.NewQNetworkReply"] = NewQNetworkReply
+	qt.EnumMap["network.QNetworkReply__NoError"] = int64(QNetworkReply__NoError)
+	qt.EnumMap["network.QNetworkReply__ConnectionRefusedError"] = int64(QNetworkReply__ConnectionRefusedError)
+	qt.EnumMap["network.QNetworkReply__RemoteHostClosedError"] = int64(QNetworkReply__RemoteHostClosedError)
+	qt.EnumMap["network.QNetworkReply__HostNotFoundError"] = int64(QNetworkReply__HostNotFoundError)
+	qt.EnumMap["network.QNetworkReply__TimeoutError"] = int64(QNetworkReply__TimeoutError)
+	qt.EnumMap["network.QNetworkReply__OperationCanceledError"] = int64(QNetworkReply__OperationCanceledError)
+	qt.EnumMap["network.QNetworkReply__SslHandshakeFailedError"] = int64(QNetworkReply__SslHandshakeFailedError)
+	qt.EnumMap["network.QNetworkReply__TemporaryNetworkFailureError"] = int64(QNetworkReply__TemporaryNetworkFailureError)
+	qt.EnumMap["network.QNetworkReply__NetworkSessionFailedError"] = int64(QNetworkReply__NetworkSessionFailedError)
+	qt.EnumMap["network.QNetworkReply__BackgroundRequestNotAllowedError"] = int64(QNetworkReply__BackgroundRequestNotAllowedError)
+	qt.EnumMap["network.QNetworkReply__TooManyRedirectsError"] = int64(QNetworkReply__TooManyRedirectsError)
+	qt.EnumMap["network.QNetworkReply__InsecureRedirectError"] = int64(QNetworkReply__InsecureRedirectError)
+	qt.EnumMap["network.QNetworkReply__UnknownNetworkError"] = int64(QNetworkReply__UnknownNetworkError)
+	qt.EnumMap["network.QNetworkReply__ProxyConnectionRefusedError"] = int64(QNetworkReply__ProxyConnectionRefusedError)
+	qt.EnumMap["network.QNetworkReply__ProxyConnectionClosedError"] = int64(QNetworkReply__ProxyConnectionClosedError)
+	qt.EnumMap["network.QNetworkReply__ProxyNotFoundError"] = int64(QNetworkReply__ProxyNotFoundError)
+	qt.EnumMap["network.QNetworkReply__ProxyTimeoutError"] = int64(QNetworkReply__ProxyTimeoutError)
+	qt.EnumMap["network.QNetworkReply__ProxyAuthenticationRequiredError"] = int64(QNetworkReply__ProxyAuthenticationRequiredError)
+	qt.EnumMap["network.QNetworkReply__UnknownProxyError"] = int64(QNetworkReply__UnknownProxyError)
+	qt.EnumMap["network.QNetworkReply__ContentAccessDenied"] = int64(QNetworkReply__ContentAccessDenied)
+	qt.EnumMap["network.QNetworkReply__ContentOperationNotPermittedError"] = int64(QNetworkReply__ContentOperationNotPermittedError)
+	qt.EnumMap["network.QNetworkReply__ContentNotFoundError"] = int64(QNetworkReply__ContentNotFoundError)
+	qt.EnumMap["network.QNetworkReply__AuthenticationRequiredError"] = int64(QNetworkReply__AuthenticationRequiredError)
+	qt.EnumMap["network.QNetworkReply__ContentReSendError"] = int64(QNetworkReply__ContentReSendError)
+	qt.EnumMap["network.QNetworkReply__ContentConflictError"] = int64(QNetworkReply__ContentConflictError)
+	qt.EnumMap["network.QNetworkReply__ContentGoneError"] = int64(QNetworkReply__ContentGoneError)
+	qt.EnumMap["network.QNetworkReply__UnknownContentError"] = int64(QNetworkReply__UnknownContentError)
+	qt.EnumMap["network.QNetworkReply__ProtocolUnknownError"] = int64(QNetworkReply__ProtocolUnknownError)
+	qt.EnumMap["network.QNetworkReply__ProtocolInvalidOperationError"] = int64(QNetworkReply__ProtocolInvalidOperationError)
+	qt.EnumMap["network.QNetworkReply__ProtocolFailure"] = int64(QNetworkReply__ProtocolFailure)
+	qt.EnumMap["network.QNetworkReply__InternalServerError"] = int64(QNetworkReply__InternalServerError)
+	qt.EnumMap["network.QNetworkReply__OperationNotImplementedError"] = int64(QNetworkReply__OperationNotImplementedError)
+	qt.EnumMap["network.QNetworkReply__ServiceUnavailableError"] = int64(QNetworkReply__ServiceUnavailableError)
+	qt.EnumMap["network.QNetworkReply__UnknownServerError"] = int64(QNetworkReply__UnknownServerError)
+	qt.ItfMap["network.QNetworkRequest_ITF"] = QNetworkRequest{}
+	qt.FuncMap["network.NewQNetworkRequest"] = NewQNetworkRequest
+	qt.FuncMap["network.NewQNetworkRequest2"] = NewQNetworkRequest2
+	qt.EnumMap["network.QNetworkRequest__HttpStatusCodeAttribute"] = int64(QNetworkRequest__HttpStatusCodeAttribute)
+	qt.EnumMap["network.QNetworkRequest__HttpReasonPhraseAttribute"] = int64(QNetworkRequest__HttpReasonPhraseAttribute)
+	qt.EnumMap["network.QNetworkRequest__RedirectionTargetAttribute"] = int64(QNetworkRequest__RedirectionTargetAttribute)
+	qt.EnumMap["network.QNetworkRequest__ConnectionEncryptedAttribute"] = int64(QNetworkRequest__ConnectionEncryptedAttribute)
+	qt.EnumMap["network.QNetworkRequest__CacheLoadControlAttribute"] = int64(QNetworkRequest__CacheLoadControlAttribute)
+	qt.EnumMap["network.QNetworkRequest__CacheSaveControlAttribute"] = int64(QNetworkRequest__CacheSaveControlAttribute)
+	qt.EnumMap["network.QNetworkRequest__SourceIsFromCacheAttribute"] = int64(QNetworkRequest__SourceIsFromCacheAttribute)
+	qt.EnumMap["network.QNetworkRequest__DoNotBufferUploadDataAttribute"] = int64(QNetworkRequest__DoNotBufferUploadDataAttribute)
+	qt.EnumMap["network.QNetworkRequest__HttpPipeliningAllowedAttribute"] = int64(QNetworkRequest__HttpPipeliningAllowedAttribute)
+	qt.EnumMap["network.QNetworkRequest__HttpPipeliningWasUsedAttribute"] = int64(QNetworkRequest__HttpPipeliningWasUsedAttribute)
+	qt.EnumMap["network.QNetworkRequest__CustomVerbAttribute"] = int64(QNetworkRequest__CustomVerbAttribute)
+	qt.EnumMap["network.QNetworkRequest__CookieLoadControlAttribute"] = int64(QNetworkRequest__CookieLoadControlAttribute)
+	qt.EnumMap["network.QNetworkRequest__AuthenticationReuseAttribute"] = int64(QNetworkRequest__AuthenticationReuseAttribute)
+	qt.EnumMap["network.QNetworkRequest__CookieSaveControlAttribute"] = int64(QNetworkRequest__CookieSaveControlAttribute)
+	qt.EnumMap["network.QNetworkRequest__MaximumDownloadBufferSizeAttribute"] = int64(QNetworkRequest__MaximumDownloadBufferSizeAttribute)
+	qt.EnumMap["network.QNetworkRequest__DownloadBufferAttribute"] = int64(QNetworkRequest__DownloadBufferAttribute)
+	qt.EnumMap["network.QNetworkRequest__SynchronousRequestAttribute"] = int64(QNetworkRequest__SynchronousRequestAttribute)
+	qt.EnumMap["network.QNetworkRequest__BackgroundRequestAttribute"] = int64(QNetworkRequest__BackgroundRequestAttribute)
+	qt.EnumMap["network.QNetworkRequest__SpdyAllowedAttribute"] = int64(QNetworkRequest__SpdyAllowedAttribute)
+	qt.EnumMap["network.QNetworkRequest__SpdyWasUsedAttribute"] = int64(QNetworkRequest__SpdyWasUsedAttribute)
+	qt.EnumMap["network.QNetworkRequest__EmitAllUploadProgressSignalsAttribute"] = int64(QNetworkRequest__EmitAllUploadProgressSignalsAttribute)
+	qt.EnumMap["network.QNetworkRequest__FollowRedirectsAttribute"] = int64(QNetworkRequest__FollowRedirectsAttribute)
+	qt.EnumMap["network.QNetworkRequest__HTTP2AllowedAttribute"] = int64(QNetworkRequest__HTTP2AllowedAttribute)
+	qt.EnumMap["network.QNetworkRequest__HTTP2WasUsedAttribute"] = int64(QNetworkRequest__HTTP2WasUsedAttribute)
+	qt.EnumMap["network.QNetworkRequest__OriginalContentLengthAttribute"] = int64(QNetworkRequest__OriginalContentLengthAttribute)
+	qt.EnumMap["network.QNetworkRequest__RedirectPolicyAttribute"] = int64(QNetworkRequest__RedirectPolicyAttribute)
+	qt.EnumMap["network.QNetworkRequest__Http2DirectAttribute"] = int64(QNetworkRequest__Http2DirectAttribute)
+	qt.EnumMap["network.QNetworkRequest__ResourceTypeAttribute"] = int64(QNetworkRequest__ResourceTypeAttribute)
+	qt.EnumMap["network.QNetworkRequest__User"] = int64(QNetworkRequest__User)
+	qt.EnumMap["network.QNetworkRequest__UserMax"] = int64(QNetworkRequest__UserMax)
+	qt.EnumMap["network.QNetworkRequest__ContentTypeHeader"] = int64(QNetworkRequest__ContentTypeHeader)
+	qt.EnumMap["network.QNetworkRequest__ContentLengthHeader"] = int64(QNetworkRequest__ContentLengthHeader)
+	qt.EnumMap["network.QNetworkRequest__LocationHeader"] = int64(QNetworkRequest__LocationHeader)
+	qt.EnumMap["network.QNetworkRequest__LastModifiedHeader"] = int64(QNetworkRequest__LastModifiedHeader)
+	qt.EnumMap["network.QNetworkRequest__CookieHeader"] = int64(QNetworkRequest__CookieHeader)
+	qt.EnumMap["network.QNetworkRequest__SetCookieHeader"] = int64(QNetworkRequest__SetCookieHeader)
+	qt.EnumMap["network.QNetworkRequest__ContentDispositionHeader"] = int64(QNetworkRequest__ContentDispositionHeader)
+	qt.EnumMap["network.QNetworkRequest__UserAgentHeader"] = int64(QNetworkRequest__UserAgentHeader)
+	qt.EnumMap["network.QNetworkRequest__ServerHeader"] = int64(QNetworkRequest__ServerHeader)
+	qt.EnumMap["network.QNetworkRequest__IfModifiedSinceHeader"] = int64(QNetworkRequest__IfModifiedSinceHeader)
+	qt.EnumMap["network.QNetworkRequest__ETagHeader"] = int64(QNetworkRequest__ETagHeader)
+	qt.EnumMap["network.QNetworkRequest__IfMatchHeader"] = int64(QNetworkRequest__IfMatchHeader)
+	qt.EnumMap["network.QNetworkRequest__IfNoneMatchHeader"] = int64(QNetworkRequest__IfNoneMatchHeader)
+	qt.EnumMap["network.QNetworkRequest__AlwaysNetwork"] = int64(QNetworkRequest__AlwaysNetwork)
+	qt.EnumMap["network.QNetworkRequest__PreferNetwork"] = int64(QNetworkRequest__PreferNetwork)
+	qt.EnumMap["network.QNetworkRequest__PreferCache"] = int64(QNetworkRequest__PreferCache)
+	qt.EnumMap["network.QNetworkRequest__AlwaysCache"] = int64(QNetworkRequest__AlwaysCache)
+	qt.EnumMap["network.QNetworkRequest__Automatic"] = int64(QNetworkRequest__Automatic)
+	qt.EnumMap["network.QNetworkRequest__Manual"] = int64(QNetworkRequest__Manual)
+	qt.EnumMap["network.QNetworkRequest__HighPriority"] = int64(QNetworkRequest__HighPriority)
+	qt.EnumMap["network.QNetworkRequest__NormalPriority"] = int64(QNetworkRequest__NormalPriority)
+	qt.EnumMap["network.QNetworkRequest__LowPriority"] = int64(QNetworkRequest__LowPriority)
+	qt.EnumMap["network.QNetworkRequest__ManualRedirectPolicy"] = int64(QNetworkRequest__ManualRedirectPolicy)
+	qt.EnumMap["network.QNetworkRequest__NoLessSafeRedirectPolicy"] = int64(QNetworkRequest__NoLessSafeRedirectPolicy)
+	qt.EnumMap["network.QNetworkRequest__SameOriginRedirectPolicy"] = int64(QNetworkRequest__SameOriginRedirectPolicy)
+	qt.EnumMap["network.QNetworkRequest__UserVerifiedRedirectPolicy"] = int64(QNetworkRequest__UserVerifiedRedirectPolicy)
+	qt.ItfMap["network.QNetworkSession_ITF"] = QNetworkSession{}
+	qt.FuncMap["network.NewQNetworkSession"] = NewQNetworkSession
+	qt.EnumMap["network.QNetworkSession__Invalid"] = int64(QNetworkSession__Invalid)
+	qt.EnumMap["network.QNetworkSession__NotAvailable"] = int64(QNetworkSession__NotAvailable)
+	qt.EnumMap["network.QNetworkSession__Connecting"] = int64(QNetworkSession__Connecting)
+	qt.EnumMap["network.QNetworkSession__Connected"] = int64(QNetworkSession__Connected)
+	qt.EnumMap["network.QNetworkSession__Closing"] = int64(QNetworkSession__Closing)
+	qt.EnumMap["network.QNetworkSession__Disconnected"] = int64(QNetworkSession__Disconnected)
+	qt.EnumMap["network.QNetworkSession__Roaming"] = int64(QNetworkSession__Roaming)
+	qt.EnumMap["network.QNetworkSession__UnknownSessionError"] = int64(QNetworkSession__UnknownSessionError)
+	qt.EnumMap["network.QNetworkSession__SessionAbortedError"] = int64(QNetworkSession__SessionAbortedError)
+	qt.EnumMap["network.QNetworkSession__RoamingError"] = int64(QNetworkSession__RoamingError)
+	qt.EnumMap["network.QNetworkSession__OperationNotSupportedError"] = int64(QNetworkSession__OperationNotSupportedError)
+	qt.EnumMap["network.QNetworkSession__InvalidConfigurationError"] = int64(QNetworkSession__InvalidConfigurationError)
+	qt.EnumMap["network.QNetworkSession__NoPolicy"] = int64(QNetworkSession__NoPolicy)
+	qt.EnumMap["network.QNetworkSession__NoBackgroundTrafficPolicy"] = int64(QNetworkSession__NoBackgroundTrafficPolicy)
+	qt.ItfMap["network.QOcspResponse_ITF"] = QOcspResponse{}
+	qt.FuncMap["network.NewQOcspResponse"] = NewQOcspResponse
+	qt.FuncMap["network.NewQOcspResponse2"] = NewQOcspResponse2
+	qt.FuncMap["network.NewQOcspResponse3"] = NewQOcspResponse3
+	qt.EnumMap["network.QOcspResponse__Good"] = int64(QOcspResponse__Good)
+	qt.EnumMap["network.QOcspResponse__Revoked"] = int64(QOcspResponse__Revoked)
+	qt.EnumMap["network.QOcspResponse__Unknown"] = int64(QOcspResponse__Unknown)
+	qt.EnumMap["network.QOcspResponse__None"] = int64(QOcspResponse__None)
+	qt.EnumMap["network.QOcspResponse__Unspecified"] = int64(QOcspResponse__Unspecified)
+	qt.EnumMap["network.QOcspResponse__KeyCompromise"] = int64(QOcspResponse__KeyCompromise)
+	qt.EnumMap["network.QOcspResponse__CACompromise"] = int64(QOcspResponse__CACompromise)
+	qt.EnumMap["network.QOcspResponse__AffiliationChanged"] = int64(QOcspResponse__AffiliationChanged)
+	qt.EnumMap["network.QOcspResponse__Superseded"] = int64(QOcspResponse__Superseded)
+	qt.EnumMap["network.QOcspResponse__CessationOfOperation"] = int64(QOcspResponse__CessationOfOperation)
+	qt.EnumMap["network.QOcspResponse__CertificateHold"] = int64(QOcspResponse__CertificateHold)
+	qt.EnumMap["network.QOcspResponse__RemoveFromCRL"] = int64(QOcspResponse__RemoveFromCRL)
+	qt.ItfMap["network.QSsl_ITF"] = QSsl{}
+	qt.EnumMap["network.QSsl__PrivateKey"] = int64(QSsl__PrivateKey)
+	qt.EnumMap["network.QSsl__PublicKey"] = int64(QSsl__PublicKey)
+	qt.EnumMap["network.QSsl__Pem"] = int64(QSsl__Pem)
+	qt.EnumMap["network.QSsl__Der"] = int64(QSsl__Der)
+	qt.EnumMap["network.QSsl__Opaque"] = int64(QSsl__Opaque)
+	qt.EnumMap["network.QSsl__Rsa"] = int64(QSsl__Rsa)
+	qt.EnumMap["network.QSsl__Dsa"] = int64(QSsl__Dsa)
+	qt.EnumMap["network.QSsl__Ec"] = int64(QSsl__Ec)
+	qt.EnumMap["network.QSsl__Dh"] = int64(QSsl__Dh)
+	qt.EnumMap["network.QSsl__EmailEntry"] = int64(QSsl__EmailEntry)
+	qt.EnumMap["network.QSsl__DnsEntry"] = int64(QSsl__DnsEntry)
+	qt.EnumMap["network.QSsl__IpAddressEntry"] = int64(QSsl__IpAddressEntry)
+	qt.EnumMap["network.QSsl__SslV3"] = int64(QSsl__SslV3)
+	qt.EnumMap["network.QSsl__SslV2"] = int64(QSsl__SslV2)
+	qt.EnumMap["network.QSsl__TlsV1_0"] = int64(QSsl__TlsV1_0)
+	qt.EnumMap["network.QSsl__TlsV1"] = int64(QSsl__TlsV1)
+	qt.EnumMap["network.QSsl__TlsV1_1"] = int64(QSsl__TlsV1_1)
+	qt.EnumMap["network.QSsl__TlsV1_2"] = int64(QSsl__TlsV1_2)
+	qt.EnumMap["network.QSsl__AnyProtocol"] = int64(QSsl__AnyProtocol)
+	qt.EnumMap["network.QSsl__TlsV1SslV3"] = int64(QSsl__TlsV1SslV3)
+	qt.EnumMap["network.QSsl__SecureProtocols"] = int64(QSsl__SecureProtocols)
+	qt.EnumMap["network.QSsl__TlsV1_0OrLater"] = int64(QSsl__TlsV1_0OrLater)
+	qt.EnumMap["network.QSsl__TlsV1_1OrLater"] = int64(QSsl__TlsV1_1OrLater)
+	qt.EnumMap["network.QSsl__TlsV1_2OrLater"] = int64(QSsl__TlsV1_2OrLater)
+	qt.EnumMap["network.QSsl__DtlsV1_0"] = int64(QSsl__DtlsV1_0)
+	qt.EnumMap["network.QSsl__DtlsV1_0OrLater"] = int64(QSsl__DtlsV1_0OrLater)
+	qt.EnumMap["network.QSsl__DtlsV1_2"] = int64(QSsl__DtlsV1_2)
+	qt.EnumMap["network.QSsl__DtlsV1_2OrLater"] = int64(QSsl__DtlsV1_2OrLater)
+	qt.EnumMap["network.QSsl__TlsV1_3"] = int64(QSsl__TlsV1_3)
+	qt.EnumMap["network.QSsl__TlsV1_3OrLater"] = int64(QSsl__TlsV1_3OrLater)
+	qt.EnumMap["network.QSsl__UnknownProtocol"] = int64(QSsl__UnknownProtocol)
+	qt.EnumMap["network.QSsl__SslOptionDisableEmptyFragments"] = int64(QSsl__SslOptionDisableEmptyFragments)
+	qt.EnumMap["network.QSsl__SslOptionDisableSessionTickets"] = int64(QSsl__SslOptionDisableSessionTickets)
+	qt.EnumMap["network.QSsl__SslOptionDisableCompression"] = int64(QSsl__SslOptionDisableCompression)
+	qt.EnumMap["network.QSsl__SslOptionDisableServerNameIndication"] = int64(QSsl__SslOptionDisableServerNameIndication)
+	qt.EnumMap["network.QSsl__SslOptionDisableLegacyRenegotiation"] = int64(QSsl__SslOptionDisableLegacyRenegotiation)
+	qt.EnumMap["network.QSsl__SslOptionDisableSessionSharing"] = int64(QSsl__SslOptionDisableSessionSharing)
+	qt.EnumMap["network.QSsl__SslOptionDisableSessionPersistence"] = int64(QSsl__SslOptionDisableSessionPersistence)
+	qt.EnumMap["network.QSsl__SslOptionDisableServerCipherPreference"] = int64(QSsl__SslOptionDisableServerCipherPreference)
+	qt.ItfMap["network.QSslCertificate_ITF"] = QSslCertificate{}
+	qt.FuncMap["network.NewQSslCertificate"] = NewQSslCertificate
+	qt.FuncMap["network.NewQSslCertificate2"] = NewQSslCertificate2
+	qt.FuncMap["network.NewQSslCertificate3"] = NewQSslCertificate3
+	qt.FuncMap["network.QSslCertificate_FromData"] = QSslCertificate_FromData
+	qt.FuncMap["network.QSslCertificate_FromDevice"] = QSslCertificate_FromDevice
+	qt.FuncMap["network.QSslCertificate_FromPath"] = QSslCertificate_FromPath
+	qt.FuncMap["network.QSslCertificate_ImportPkcs12"] = QSslCertificate_ImportPkcs12
+	qt.FuncMap["network.QSslCertificate_Verify"] = QSslCertificate_Verify
+	qt.EnumMap["network.QSslCertificate__Organization"] = int64(QSslCertificate__Organization)
+	qt.EnumMap["network.QSslCertificate__CommonName"] = int64(QSslCertificate__CommonName)
+	qt.EnumMap["network.QSslCertificate__LocalityName"] = int64(QSslCertificate__LocalityName)
+	qt.EnumMap["network.QSslCertificate__OrganizationalUnitName"] = int64(QSslCertificate__OrganizationalUnitName)
+	qt.EnumMap["network.QSslCertificate__CountryName"] = int64(QSslCertificate__CountryName)
+	qt.EnumMap["network.QSslCertificate__StateOrProvinceName"] = int64(QSslCertificate__StateOrProvinceName)
+	qt.EnumMap["network.QSslCertificate__DistinguishedNameQualifier"] = int64(QSslCertificate__DistinguishedNameQualifier)
+	qt.EnumMap["network.QSslCertificate__SerialNumber"] = int64(QSslCertificate__SerialNumber)
+	qt.EnumMap["network.QSslCertificate__EmailAddress"] = int64(QSslCertificate__EmailAddress)
+	qt.ItfMap["network.QSslCertificateExtension_ITF"] = QSslCertificateExtension{}
+	qt.FuncMap["network.NewQSslCertificateExtension"] = NewQSslCertificateExtension
+	qt.FuncMap["network.NewQSslCertificateExtension2"] = NewQSslCertificateExtension2
+	qt.ItfMap["network.QSslCipher_ITF"] = QSslCipher{}
+	qt.FuncMap["network.NewQSslCipher"] = NewQSslCipher
+	qt.FuncMap["network.NewQSslCipher2"] = NewQSslCipher2
+	qt.FuncMap["network.NewQSslCipher3"] = NewQSslCipher3
+	qt.FuncMap["network.NewQSslCipher4"] = NewQSslCipher4
+	qt.ItfMap["network.QSslConfiguration_ITF"] = QSslConfiguration{}
+	qt.FuncMap["network.NewQSslConfiguration"] = NewQSslConfiguration
+	qt.FuncMap["network.NewQSslConfiguration2"] = NewQSslConfiguration2
+	qt.FuncMap["network.QSslConfiguration_DefaultConfiguration"] = QSslConfiguration_DefaultConfiguration
+	qt.FuncMap["network.QSslConfiguration_SetDefaultConfiguration"] = QSslConfiguration_SetDefaultConfiguration
+	qt.FuncMap["network.QSslConfiguration_SupportedCiphers"] = QSslConfiguration_SupportedCiphers
+	qt.FuncMap["network.QSslConfiguration_SystemCaCertificates"] = QSslConfiguration_SystemCaCertificates
+	qt.EnumMap["network.QSslConfiguration__NextProtocolNegotiationNone"] = int64(QSslConfiguration__NextProtocolNegotiationNone)
+	qt.EnumMap["network.QSslConfiguration__NextProtocolNegotiationNegotiated"] = int64(QSslConfiguration__NextProtocolNegotiationNegotiated)
+	qt.EnumMap["network.QSslConfiguration__NextProtocolNegotiationUnsupported"] = int64(QSslConfiguration__NextProtocolNegotiationUnsupported)
+	qt.ItfMap["network.QSslDiffieHellmanParameters_ITF"] = QSslDiffieHellmanParameters{}
+	qt.FuncMap["network.NewQSslDiffieHellmanParameters"] = NewQSslDiffieHellmanParameters
+	qt.FuncMap["network.NewQSslDiffieHellmanParameters2"] = NewQSslDiffieHellmanParameters2
+	qt.FuncMap["network.NewQSslDiffieHellmanParameters3"] = NewQSslDiffieHellmanParameters3
+	qt.FuncMap["network.QSslDiffieHellmanParameters_DefaultParameters"] = QSslDiffieHellmanParameters_DefaultParameters
+	qt.FuncMap["network.QSslDiffieHellmanParameters_FromEncoded"] = QSslDiffieHellmanParameters_FromEncoded
+	qt.FuncMap["network.QSslDiffieHellmanParameters_FromEncoded2"] = QSslDiffieHellmanParameters_FromEncoded2
+	qt.EnumMap["network.QSslDiffieHellmanParameters__NoError"] = int64(QSslDiffieHellmanParameters__NoError)
+	qt.EnumMap["network.QSslDiffieHellmanParameters__InvalidInputDataError"] = int64(QSslDiffieHellmanParameters__InvalidInputDataError)
+	qt.EnumMap["network.QSslDiffieHellmanParameters__UnsafeParametersError"] = int64(QSslDiffieHellmanParameters__UnsafeParametersError)
+	qt.ItfMap["network.QSslEllipticCurve_ITF"] = QSslEllipticCurve{}
+	qt.FuncMap["network.NewQSslEllipticCurve"] = NewQSslEllipticCurve
+	qt.FuncMap["network.QSslEllipticCurve_FromLongName"] = QSslEllipticCurve_FromLongName
+	qt.FuncMap["network.QSslEllipticCurve_FromShortName"] = QSslEllipticCurve_FromShortName
+	qt.ItfMap["network.QSslError_ITF"] = QSslError{}
+	qt.FuncMap["network.NewQSslError"] = NewQSslError
+	qt.FuncMap["network.NewQSslError2"] = NewQSslError2
+	qt.FuncMap["network.NewQSslError3"] = NewQSslError3
+	qt.FuncMap["network.NewQSslError4"] = NewQSslError4
+	qt.EnumMap["network.QSslError__NoError"] = int64(QSslError__NoError)
+	qt.EnumMap["network.QSslError__UnableToGetIssuerCertificate"] = int64(QSslError__UnableToGetIssuerCertificate)
+	qt.EnumMap["network.QSslError__UnableToDecryptCertificateSignature"] = int64(QSslError__UnableToDecryptCertificateSignature)
+	qt.EnumMap["network.QSslError__UnableToDecodeIssuerPublicKey"] = int64(QSslError__UnableToDecodeIssuerPublicKey)
+	qt.EnumMap["network.QSslError__CertificateSignatureFailed"] = int64(QSslError__CertificateSignatureFailed)
+	qt.EnumMap["network.QSslError__CertificateNotYetValid"] = int64(QSslError__CertificateNotYetValid)
+	qt.EnumMap["network.QSslError__CertificateExpired"] = int64(QSslError__CertificateExpired)
+	qt.EnumMap["network.QSslError__InvalidNotBeforeField"] = int64(QSslError__InvalidNotBeforeField)
+	qt.EnumMap["network.QSslError__InvalidNotAfterField"] = int64(QSslError__InvalidNotAfterField)
+	qt.EnumMap["network.QSslError__SelfSignedCertificate"] = int64(QSslError__SelfSignedCertificate)
+	qt.EnumMap["network.QSslError__SelfSignedCertificateInChain"] = int64(QSslError__SelfSignedCertificateInChain)
+	qt.EnumMap["network.QSslError__UnableToGetLocalIssuerCertificate"] = int64(QSslError__UnableToGetLocalIssuerCertificate)
+	qt.EnumMap["network.QSslError__UnableToVerifyFirstCertificate"] = int64(QSslError__UnableToVerifyFirstCertificate)
+	qt.EnumMap["network.QSslError__CertificateRevoked"] = int64(QSslError__CertificateRevoked)
+	qt.EnumMap["network.QSslError__InvalidCaCertificate"] = int64(QSslError__InvalidCaCertificate)
+	qt.EnumMap["network.QSslError__PathLengthExceeded"] = int64(QSslError__PathLengthExceeded)
+	qt.EnumMap["network.QSslError__InvalidPurpose"] = int64(QSslError__InvalidPurpose)
+	qt.EnumMap["network.QSslError__CertificateUntrusted"] = int64(QSslError__CertificateUntrusted)
+	qt.EnumMap["network.QSslError__CertificateRejected"] = int64(QSslError__CertificateRejected)
+	qt.EnumMap["network.QSslError__SubjectIssuerMismatch"] = int64(QSslError__SubjectIssuerMismatch)
+	qt.EnumMap["network.QSslError__AuthorityIssuerSerialNumberMismatch"] = int64(QSslError__AuthorityIssuerSerialNumberMismatch)
+	qt.EnumMap["network.QSslError__NoPeerCertificate"] = int64(QSslError__NoPeerCertificate)
+	qt.EnumMap["network.QSslError__HostNameMismatch"] = int64(QSslError__HostNameMismatch)
+	qt.EnumMap["network.QSslError__NoSslSupport"] = int64(QSslError__NoSslSupport)
+	qt.EnumMap["network.QSslError__CertificateBlacklisted"] = int64(QSslError__CertificateBlacklisted)
+	qt.EnumMap["network.QSslError__CertificateStatusUnknown"] = int64(QSslError__CertificateStatusUnknown)
+	qt.EnumMap["network.QSslError__OcspNoResponseFound"] = int64(QSslError__OcspNoResponseFound)
+	qt.EnumMap["network.QSslError__OcspMalformedRequest"] = int64(QSslError__OcspMalformedRequest)
+	qt.EnumMap["network.QSslError__OcspMalformedResponse"] = int64(QSslError__OcspMalformedResponse)
+	qt.EnumMap["network.QSslError__OcspInternalError"] = int64(QSslError__OcspInternalError)
+	qt.EnumMap["network.QSslError__OcspTryLater"] = int64(QSslError__OcspTryLater)
+	qt.EnumMap["network.QSslError__OcspSigRequred"] = int64(QSslError__OcspSigRequred)
+	qt.EnumMap["network.QSslError__OcspUnauthorized"] = int64(QSslError__OcspUnauthorized)
+	qt.EnumMap["network.QSslError__OcspResponseCannotBeTrusted"] = int64(QSslError__OcspResponseCannotBeTrusted)
+	qt.EnumMap["network.QSslError__OcspResponseCertIdUnknown"] = int64(QSslError__OcspResponseCertIdUnknown)
+	qt.EnumMap["network.QSslError__OcspResponseExpired"] = int64(QSslError__OcspResponseExpired)
+	qt.EnumMap["network.QSslError__OcspStatusUnknown"] = int64(QSslError__OcspStatusUnknown)
+	qt.EnumMap["network.QSslError__UnspecifiedError"] = int64(QSslError__UnspecifiedError)
+	qt.ItfMap["network.QSslKey_ITF"] = QSslKey{}
+	qt.FuncMap["network.NewQSslKey"] = NewQSslKey
+	qt.FuncMap["network.NewQSslKey2"] = NewQSslKey2
+	qt.FuncMap["network.NewQSslKey3"] = NewQSslKey3
+	qt.FuncMap["network.NewQSslKey5"] = NewQSslKey5
+	qt.ItfMap["network.QSslPreSharedKeyAuthenticator_ITF"] = QSslPreSharedKeyAuthenticator{}
+	qt.FuncMap["network.NewQSslPreSharedKeyAuthenticator"] = NewQSslPreSharedKeyAuthenticator
+	qt.FuncMap["network.NewQSslPreSharedKeyAuthenticator2"] = NewQSslPreSharedKeyAuthenticator2
+	qt.ItfMap["network.QSslSocket_ITF"] = QSslSocket{}
+	qt.FuncMap["network.NewQSslSocket"] = NewQSslSocket
+	qt.FuncMap["network.QSslSocket_AddDefaultCaCertificate"] = QSslSocket_AddDefaultCaCertificate
+	qt.FuncMap["network.QSslSocket_AddDefaultCaCertificates"] = QSslSocket_AddDefaultCaCertificates
+	qt.FuncMap["network.QSslSocket_AddDefaultCaCertificates2"] = QSslSocket_AddDefaultCaCertificates2
+	qt.FuncMap["network.QSslSocket_SslLibraryBuildVersionNumber"] = QSslSocket_SslLibraryBuildVersionNumber
+	qt.FuncMap["network.QSslSocket_SslLibraryBuildVersionString"] = QSslSocket_SslLibraryBuildVersionString
+	qt.FuncMap["network.QSslSocket_SslLibraryVersionNumber"] = QSslSocket_SslLibraryVersionNumber
+	qt.FuncMap["network.QSslSocket_SslLibraryVersionString"] = QSslSocket_SslLibraryVersionString
+	qt.FuncMap["network.QSslSocket_SupportsSsl"] = QSslSocket_SupportsSsl
+	qt.EnumMap["network.QSslSocket__UnencryptedMode"] = int64(QSslSocket__UnencryptedMode)
+	qt.EnumMap["network.QSslSocket__SslClientMode"] = int64(QSslSocket__SslClientMode)
+	qt.EnumMap["network.QSslSocket__SslServerMode"] = int64(QSslSocket__SslServerMode)
+	qt.EnumMap["network.QSslSocket__VerifyNone"] = int64(QSslSocket__VerifyNone)
+	qt.EnumMap["network.QSslSocket__QueryPeer"] = int64(QSslSocket__QueryPeer)
+	qt.EnumMap["network.QSslSocket__VerifyPeer"] = int64(QSslSocket__VerifyPeer)
+	qt.EnumMap["network.QSslSocket__AutoVerifyPeer"] = int64(QSslSocket__AutoVerifyPeer)
+	qt.ItfMap["network.QTcpServer_ITF"] = QTcpServer{}
+	qt.FuncMap["network.NewQTcpServer"] = NewQTcpServer
+	qt.ItfMap["network.QTcpSocket_ITF"] = QTcpSocket{}
+	qt.FuncMap["network.NewQTcpSocket"] = NewQTcpSocket
+	qt.ItfMap["network.QUdpSocket_ITF"] = QUdpSocket{}
+	qt.FuncMap["network.NewQUdpSocket"] = NewQUdpSocket
+	qt.ItfMap["network.QNetworkCacheMetaData_RawHeader_ITF"] = QNetworkCacheMetaData_RawHeader{}
+	qt.FuncMap["network.NewQNetworkCacheMetaData_RawHeader"] = NewQNetworkCacheMetaData_RawHeader
+	qt.FuncMap["network.NewQNetworkCacheMetaData_RawHeader2"] = NewQNetworkCacheMetaData_RawHeader2
 }

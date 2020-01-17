@@ -8,18 +8,22 @@ package quickcontrols2
 //#include "quickcontrols2.h"
 import "C"
 import (
-	"runtime"
+	"github.com/therecipe/qt"
+	"github.com/therecipe/qt/core"
 	"strings"
 	"unsafe"
 )
 
+func cGoFreePacked(ptr unsafe.Pointer) { core.NewQByteArrayFromPointer(ptr).DestroyQByteArray() }
 func cGoUnpackString(s C.struct_QtQuickControls2_PackedString) string {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		return C.GoString(s.data)
 	}
 	return C.GoStringN(s.data, C.int(s.len))
 }
 func cGoUnpackBytes(s C.struct_QtQuickControls2_PackedString) []byte {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
 		return *(*[]byte)(unsafe.Pointer(&gs))
@@ -70,15 +74,14 @@ func NewQQuickStyleFromPointer(ptr unsafe.Pointer) (n *QQuickStyle) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QQuickStyle) DestroyQQuickStyle() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
-
 func QQuickStyle_AddStylePath(path string) {
 	var pathC *C.char
 	if path != "" {
@@ -163,4 +166,15 @@ func QQuickStyle_StylePathList() []string {
 
 func (ptr *QQuickStyle) StylePathList() []string {
 	return unpackStringList(cGoUnpackString(C.QQuickStyle_QQuickStyle_StylePathList()))
+}
+
+func init() {
+	qt.ItfMap["quickcontrols2.QQuickStyle_ITF"] = QQuickStyle{}
+	qt.FuncMap["quickcontrols2.QQuickStyle_AddStylePath"] = QQuickStyle_AddStylePath
+	qt.FuncMap["quickcontrols2.QQuickStyle_AvailableStyles"] = QQuickStyle_AvailableStyles
+	qt.FuncMap["quickcontrols2.QQuickStyle_Name"] = QQuickStyle_Name
+	qt.FuncMap["quickcontrols2.QQuickStyle_Path"] = QQuickStyle_Path
+	qt.FuncMap["quickcontrols2.QQuickStyle_SetFallbackStyle"] = QQuickStyle_SetFallbackStyle
+	qt.FuncMap["quickcontrols2.QQuickStyle_SetStyle"] = QQuickStyle_SetStyle
+	qt.FuncMap["quickcontrols2.QQuickStyle_StylePathList"] = QQuickStyle_StylePathList
 }

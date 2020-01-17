@@ -1,4 +1,4 @@
-//source: http://doc.qt.io/qt-5/qtcanvas3d-threejs-cellphone-example.html
+//source: https://doc.qt.io/qt-5.11/qtcanvas3d-threejs-cellphone-example.html
 
 package main
 

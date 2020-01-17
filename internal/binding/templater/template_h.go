@@ -35,7 +35,7 @@ func HTemplate(m string, mode int, tags string) []byte {
 
 	fmt.Fprint(bb, "#ifdef __cplusplus\n")
 	for _, c := range parser.SortedClassNamesForModule(m, true) {
-		if parser.State.ClassMap[c].IsSubClassOfQObject() && parser.State.ClassMap[c].IsSupported() {
+		if (parser.State.ClassMap[c].IsSubClassOfQObject() || parser.State.ClassMap[c].HasCallbackFunctions()) && parser.State.ClassMap[c].IsSupported() {
 			if m == parser.MOC {
 				fmt.Fprintf(bb, "class %v;\n", c)
 				fmt.Fprintf(bb, "void %[1]v_%[1]v_QRegisterMetaTypes();\n", c)
@@ -48,7 +48,7 @@ func HTemplate(m string, mode int, tags string) []byte {
 	fmt.Fprint(bb, "extern \"C\" {\n#endif\n\n")
 
 	if !UseJs() {
-		fmt.Fprintf(bb, "struct %v_PackedString { char* data; long long len; };\n", strings.Title(m))
+		fmt.Fprintf(bb, "struct %v_PackedString { char* data; long long len; void* ptr; };\n", strings.Title(m))
 		fmt.Fprintf(bb, "struct %v_PackedList { void* data; long long len; };\n", strings.Title(m))
 	}
 

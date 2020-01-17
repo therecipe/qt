@@ -36,7 +36,7 @@ Item {
 
   Connections {
     target: libraryModel
-    onDataChanged: { //ListModel inherits core.QAbstractItemModel signals http://doc.qt.io/qt-5/qabstractitemmodel.html#dataChanged
+    onDataChanged: { //ListModel inherits core.QAbstractItemModel signals https://doc.qt.io/qt-5/qabstractitemmodel.html#dataChanged
       QmlBridge.editedModel(topLeft.row, roles, libraryModel.get(topLeft.row))
     }
   }

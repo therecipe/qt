@@ -107,7 +107,7 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQGraphicsSvgItem_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQGraphicsSvgItem_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGraphicsSvgItem_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSvg_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQGraphicsSvgItem_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtSvg_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQGraphicsSvgItem_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQGraphicsSvgItem_TimerEvent(this, event); };
 	void advance(int phase) { callbackQGraphicsSvgItem_Advance(this, phase); };
 	bool collidesWithItem(const QGraphicsItem * other, Qt::ItemSelectionMode mode) const { return callbackQGraphicsSvgItem_CollidesWithItem(const_cast<void*>(static_cast<const void*>(this)), const_cast<QGraphicsItem*>(other), mode) != 0; };
@@ -140,6 +140,7 @@ public:
 	void wheelEvent(QGraphicsSceneWheelEvent * event) { callbackQGraphicsSvgItem_WheelEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QGraphicsSvgItem*)
 Q_DECLARE_METATYPE(MyQGraphicsSvgItem*)
 
 int QGraphicsSvgItem_QGraphicsSvgItem_QRegisterMetaType(){qRegisterMetaType<QGraphicsSvgItem*>(); return qRegisterMetaType<MyQGraphicsSvgItem*>();}
@@ -178,7 +179,7 @@ void* QGraphicsSvgItem_BoundingRectDefault(void* ptr)
 
 struct QtSvg_PackedString QGraphicsSvgItem_ElementId(void* ptr)
 {
-	return ({ QByteArray t96b361 = static_cast<QGraphicsSvgItem*>(ptr)->elementId().toUtf8(); QtSvg_PackedString { const_cast<char*>(t96b361.prepend("WHITESPACE").constData()+10), t96b361.size()-10 }; });
+	return ({ QByteArray* t96b361 = new QByteArray(static_cast<QGraphicsSvgItem*>(ptr)->elementId().toUtf8()); QtSvg_PackedString { const_cast<char*>(t96b361->prepend("WHITESPACE").constData()+10), t96b361->size()-10, t96b361 }; });
 }
 
 void* QGraphicsSvgItem_MaximumCacheSize(void* ptr)
@@ -280,22 +281,6 @@ void QGraphicsSvgItem___findChildren_setList3(void* ptr, void* i)
 }
 
 void* QGraphicsSvgItem___findChildren_newList3(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
-void* QGraphicsSvgItem___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QGraphicsSvgItem___qFindChildren_setList2(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QGraphicsSvgItem___qFindChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();
@@ -563,10 +548,15 @@ void QGraphicsSvgItem_WheelEventDefault(void* ptr, void* event)
 class MyQSvgGenerator: public QSvgGenerator
 {
 public:
-	MyQSvgGenerator() : QSvgGenerator() {};
+	MyQSvgGenerator() : QSvgGenerator() {QSvgGenerator_QSvgGenerator_QRegisterMetaType();};
 	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQSvgGenerator_PaintEngine(const_cast<void*>(static_cast<const void*>(this)))); };
 	 ~MyQSvgGenerator() { callbackQSvgGenerator_DestroyQSvgGenerator(this); };
 };
+
+Q_DECLARE_METATYPE(QSvgGenerator*)
+Q_DECLARE_METATYPE(MyQSvgGenerator*)
+
+int QSvgGenerator_QSvgGenerator_QRegisterMetaType(){qRegisterMetaType<QSvgGenerator*>(); return qRegisterMetaType<MyQSvgGenerator*>();}
 
 void* QSvgGenerator_NewQSvgGenerator()
 {
@@ -575,12 +565,12 @@ void* QSvgGenerator_NewQSvgGenerator()
 
 struct QtSvg_PackedString QSvgGenerator_Description(void* ptr)
 {
-	return ({ QByteArray t85d23d = static_cast<QSvgGenerator*>(ptr)->description().toUtf8(); QtSvg_PackedString { const_cast<char*>(t85d23d.prepend("WHITESPACE").constData()+10), t85d23d.size()-10 }; });
+	return ({ QByteArray* t85d23d = new QByteArray(static_cast<QSvgGenerator*>(ptr)->description().toUtf8()); QtSvg_PackedString { const_cast<char*>(t85d23d->prepend("WHITESPACE").constData()+10), t85d23d->size()-10, t85d23d }; });
 }
 
 struct QtSvg_PackedString QSvgGenerator_FileName(void* ptr)
 {
-	return ({ QByteArray ta251c4 = static_cast<QSvgGenerator*>(ptr)->fileName().toUtf8(); QtSvg_PackedString { const_cast<char*>(ta251c4.prepend("WHITESPACE").constData()+10), ta251c4.size()-10 }; });
+	return ({ QByteArray* ta251c4 = new QByteArray(static_cast<QSvgGenerator*>(ptr)->fileName().toUtf8()); QtSvg_PackedString { const_cast<char*>(ta251c4->prepend("WHITESPACE").constData()+10), ta251c4->size()-10, ta251c4 }; });
 }
 
 void* QSvgGenerator_OutputDevice(void* ptr)
@@ -650,7 +640,7 @@ void* QSvgGenerator_Size(void* ptr)
 
 struct QtSvg_PackedString QSvgGenerator_Title(void* ptr)
 {
-	return ({ QByteArray tb87794 = static_cast<QSvgGenerator*>(ptr)->title().toUtf8(); QtSvg_PackedString { const_cast<char*>(tb87794.prepend("WHITESPACE").constData()+10), tb87794.size()-10 }; });
+	return ({ QByteArray* tb87794 = new QByteArray(static_cast<QSvgGenerator*>(ptr)->title().toUtf8()); QtSvg_PackedString { const_cast<char*>(tb87794->prepend("WHITESPACE").constData()+10), tb87794->size()-10, tb87794 }; });
 }
 
 void* QSvgGenerator_ViewBox(void* ptr)
@@ -683,12 +673,12 @@ public:
 	MyQSvgRenderer(const QString &filename, QObject *parent = Q_NULLPTR) : QSvgRenderer(filename, parent) {QSvgRenderer_QSvgRenderer_QRegisterMetaType();};
 	MyQSvgRenderer(const QByteArray &contents, QObject *parent = Q_NULLPTR) : QSvgRenderer(contents, parent) {QSvgRenderer_QSvgRenderer_QRegisterMetaType();};
 	MyQSvgRenderer(QXmlStreamReader *contents, QObject *parent = Q_NULLPTR) : QSvgRenderer(contents, parent) {QSvgRenderer_QSvgRenderer_QRegisterMetaType();};
-	bool load(const QString & filename) { QByteArray t08deae = filename.toUtf8(); QtSvg_PackedString filenamePacked = { const_cast<char*>(t08deae.prepend("WHITESPACE").constData()+10), t08deae.size()-10 };return callbackQSvgRenderer_Load(this, filenamePacked) != 0; };
+	bool load(const QString & filename) { QByteArray* t08deae = new QByteArray(filename.toUtf8()); QtSvg_PackedString filenamePacked = { const_cast<char*>(t08deae->prepend("WHITESPACE").constData()+10), t08deae->size()-10, t08deae };return callbackQSvgRenderer_Load(this, filenamePacked) != 0; };
 	bool load(const QByteArray & contents) { return callbackQSvgRenderer_Load2(this, const_cast<QByteArray*>(&contents)) != 0; };
 	bool load(QXmlStreamReader * contents) { return callbackQSvgRenderer_Load3(this, contents) != 0; };
 	void render(QPainter * painter) { callbackQSvgRenderer_Render(this, painter); };
 	void render(QPainter * painter, const QRectF & bounds) { callbackQSvgRenderer_Render2(this, painter, const_cast<QRectF*>(&bounds)); };
-	void render(QPainter * painter, const QString & elementId, const QRectF & bounds) { QByteArray t5b5420 = elementId.toUtf8(); QtSvg_PackedString elementIdPacked = { const_cast<char*>(t5b5420.prepend("WHITESPACE").constData()+10), t5b5420.size()-10 };callbackQSvgRenderer_Render3(this, painter, elementIdPacked, const_cast<QRectF*>(&bounds)); };
+	void render(QPainter * painter, const QString & elementId, const QRectF & bounds) { QByteArray* t5b5420 = new QByteArray(elementId.toUtf8()); QtSvg_PackedString elementIdPacked = { const_cast<char*>(t5b5420->prepend("WHITESPACE").constData()+10), t5b5420->size()-10, t5b5420 };callbackQSvgRenderer_Render3(this, painter, elementIdPacked, const_cast<QRectF*>(&bounds)); };
 	void Signal_RepaintNeeded() { callbackQSvgRenderer_RepaintNeeded(this); };
 	 ~MyQSvgRenderer() { callbackQSvgRenderer_DestroyQSvgRenderer(this); };
 	void childEvent(QChildEvent * event) { callbackQSvgRenderer_ChildEvent(this, event); };
@@ -700,10 +690,11 @@ public:
 	bool event(QEvent * e) { return callbackQSvgRenderer_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSvgRenderer_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSvgRenderer_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSvg_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSvgRenderer_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtSvg_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQSvgRenderer_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSvgRenderer_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QSvgRenderer*)
 Q_DECLARE_METATYPE(MyQSvgRenderer*)
 
 int QSvgRenderer_QSvgRenderer_QRegisterMetaType(){qRegisterMetaType<QSvgRenderer*>(); return qRegisterMetaType<MyQSvgRenderer*>();}
@@ -997,9 +988,9 @@ void QSvgRenderer_Render3Default(void* ptr, void* painter, struct QtSvg_PackedSt
 		static_cast<QSvgRenderer*>(ptr)->QSvgRenderer::render(static_cast<QPainter*>(painter), QString::fromUtf8(elementId.data, elementId.len), *static_cast<QRectF*>(bounds));
 }
 
-void QSvgRenderer_ConnectRepaintNeeded(void* ptr)
+void QSvgRenderer_ConnectRepaintNeeded(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QSvgRenderer*>(ptr), static_cast<void (QSvgRenderer::*)()>(&QSvgRenderer::repaintNeeded), static_cast<MyQSvgRenderer*>(ptr), static_cast<void (MyQSvgRenderer::*)()>(&MyQSvgRenderer::Signal_RepaintNeeded));
+	QObject::connect(static_cast<QSvgRenderer*>(ptr), static_cast<void (QSvgRenderer::*)()>(&QSvgRenderer::repaintNeeded), static_cast<MyQSvgRenderer*>(ptr), static_cast<void (MyQSvgRenderer::*)()>(&MyQSvgRenderer::Signal_RepaintNeeded), static_cast<Qt::ConnectionType>(t));
 }
 
 void QSvgRenderer_DisconnectRepaintNeeded(void* ptr)
@@ -1112,22 +1103,6 @@ void* QSvgRenderer___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QSvgRenderer___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QSvgRenderer___qFindChildren_setList2(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QSvgRenderer___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 void QSvgRenderer_ChildEventDefault(void* ptr, void* event)
 {
 		static_cast<QSvgRenderer*>(ptr)->QSvgRenderer::childEvent(static_cast<QChildEvent*>(event));
@@ -1178,7 +1153,7 @@ class MyQSvgWidget: public QSvgWidget
 public:
 	MyQSvgWidget(QWidget *parent = Q_NULLPTR) : QSvgWidget(parent) {QSvgWidget_QSvgWidget_QRegisterMetaType();};
 	MyQSvgWidget(const QString &file, QWidget *parent = Q_NULLPTR) : QSvgWidget(file, parent) {QSvgWidget_QSvgWidget_QRegisterMetaType();};
-	void load(const QString & file) { QByteArray t971c41 = file.toUtf8(); QtSvg_PackedString filePacked = { const_cast<char*>(t971c41.prepend("WHITESPACE").constData()+10), t971c41.size()-10 };callbackQSvgWidget_Load(this, filePacked); };
+	void load(const QString & file) { QByteArray* t971c41 = new QByteArray(file.toUtf8()); QtSvg_PackedString filePacked = { const_cast<char*>(t971c41->prepend("WHITESPACE").constData()+10), t971c41->size()-10, t971c41 };callbackQSvgWidget_Load(this, filePacked); };
 	void load(const QByteArray & contents) { callbackQSvgWidget_Load2(this, const_cast<QByteArray*>(&contents)); };
 	void paintEvent(QPaintEvent * event) { callbackQSvgWidget_PaintEvent(this, event); };
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQSvgWidget_SizeHint(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -1225,10 +1200,10 @@ public:
 	void setEnabled(bool vbo) { callbackQSvgWidget_SetEnabled(this, vbo); };
 	void setFocus() { callbackQSvgWidget_SetFocus2(this); };
 	void setHidden(bool hidden) { callbackQSvgWidget_SetHidden(this, hidden); };
-	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtSvg_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQSvgWidget_SetStyleSheet(this, styleSheetPacked); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray* t728ae7 = new QByteArray(styleSheet.toUtf8()); QtSvg_PackedString styleSheetPacked = { const_cast<char*>(t728ae7->prepend("WHITESPACE").constData()+10), t728ae7->size()-10, t728ae7 };callbackQSvgWidget_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQSvgWidget_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQSvgWidget_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtSvg_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQSvgWidget_SetWindowTitle(this, vqsPacked); };
+	void setWindowTitle(const QString & vqs) { QByteArray* tda39a3 = new QByteArray(vqs.toUtf8()); QtSvg_PackedString vqsPacked = { const_cast<char*>(tda39a3->prepend("WHITESPACE").constData()+10), tda39a3->size()-10, tda39a3 };callbackQSvgWidget_SetWindowTitle(this, vqsPacked); };
 	void show() { callbackQSvgWidget_Show(this); };
 	void showEvent(QShowEvent * event) { callbackQSvgWidget_ShowEvent(this, event); };
 	void showFullScreen() { callbackQSvgWidget_ShowFullScreen(this); };
@@ -1240,7 +1215,7 @@ public:
 	void updateMicroFocus() { callbackQSvgWidget_UpdateMicroFocus(this); };
 	void wheelEvent(QWheelEvent * event) { callbackQSvgWidget_WheelEvent(this, event); };
 	void Signal_WindowIconChanged(const QIcon & icon) { callbackQSvgWidget_WindowIconChanged(this, const_cast<QIcon*>(&icon)); };
-	void Signal_WindowTitleChanged(const QString & title) { QByteArray t3c6de1 = title.toUtf8(); QtSvg_PackedString titlePacked = { const_cast<char*>(t3c6de1.prepend("WHITESPACE").constData()+10), t3c6de1.size()-10 };callbackQSvgWidget_WindowTitleChanged(this, titlePacked); };
+	void Signal_WindowTitleChanged(const QString & title) { QByteArray* t3c6de1 = new QByteArray(title.toUtf8()); QtSvg_PackedString titlePacked = { const_cast<char*>(t3c6de1->prepend("WHITESPACE").constData()+10), t3c6de1->size()-10, t3c6de1 };callbackQSvgWidget_WindowTitleChanged(this, titlePacked); };
 	void childEvent(QChildEvent * event) { callbackQSvgWidget_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQSvgWidget_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQSvgWidget_CustomEvent(this, event); };
@@ -1249,10 +1224,11 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSvgWidget_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSvgWidget_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSvgWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSvg_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSvgWidget_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtSvg_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQSvgWidget_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSvgWidget_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QSvgWidget*)
 Q_DECLARE_METATYPE(MyQSvgWidget*)
 
 int QSvgWidget_QSvgWidget_QRegisterMetaType(){qRegisterMetaType<QSvgWidget*>(); return qRegisterMetaType<MyQSvgWidget*>();}
@@ -1420,22 +1396,6 @@ void QSvgWidget___findChildren_setList3(void* ptr, void* i)
 }
 
 void* QSvgWidget___findChildren_newList3(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
-void* QSvgWidget___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QSvgWidget___qFindChildren_setList2(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QSvgWidget___qFindChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();

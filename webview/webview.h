@@ -11,7 +11,7 @@
 extern "C" {
 #endif
 
-struct QtWebView_PackedString { char* data; long long len; };
+struct QtWebView_PackedString { char* data; long long len; void* ptr; };
 struct QtWebView_PackedList { void* data; long long len; };
 void QtWebView_QtWebView_Initialize();
 

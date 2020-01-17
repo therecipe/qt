@@ -50,6 +50,19 @@ func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast b
 				cmd.Dir = path
 				utils.RunCmd(cmd, "go mod vendor")
 			}
+			if utils.QT_DOCKER() {
+				cmd := exec.Command("go", "get", "-v", "-d", "github.com/therecipe/qt/internal/binding/files/docs/"+utils.QT_API(utils.QT_VERSION())+"@"+cmd.QtModVersion(filepath.Dir(utils.GOMOD(path)))) //TODO: needs to pull 5.8.0 if QT_WEBKIT
+				cmd.Dir = path
+				if !utils.QT_PKG_CONFIG() {
+					utils.RunCmdOptional(cmd, "go get docs") //TODO: this can fail if QT_PKG_CONFIG
+				}
+
+				if strings.HasPrefix(target, "sailfish") || strings.HasPrefix(target, "android") { //TODO: generate android and sailfish minimal instead
+					cmd := exec.Command(filepath.Join(utils.GOBIN(), "qtsetup"), "generate", target)
+					cmd.Dir = path
+					utils.RunCmd(cmd, "run setup")
+				}
+			}
 		}
 
 		if docker || vagrant {
@@ -80,28 +93,37 @@ func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast b
 			break
 		}
 
+		if (utils.QT_FELGO() && fast) || utils.QT_FELGO_LIVE() {
+			utils.Save(filepath.Join(path, "live.pro"), "")
+		}
+
 		if utils.ExistsDir(depPath + "_obj") {
 			utils.RemoveAll(depPath + "_obj")
 		}
 
-		rcc.Rcc(path, target, tags, os.Getenv("QTRCC_OUTPUT_DIR"), useuic, quickcompiler, true)
+		rcc.Rcc(path, target, tags, os.Getenv("QTRCC_OUTPUT_DIR"), useuic, quickcompiler, true, true)
 		if !fast {
-			moc.Moc(path, target, tags, false, false, true)
+			moc.Moc(path, target, tags, false, false, true, true)
 		}
 
 		if ((!fast || utils.QT_STUB()) || ((target == "js" || target == "wasm") && (utils.QT_DOCKER() || utils.QT_VAGRANT()))) && !utils.QT_FAT() {
-			minimal.Minimal(path, target, tags)
+			minimal.Minimal(path, target, tags, true)
 		}
 
 		build(mode, target, path, ldFlags, tags, name, depPath, fast, comply)
 
-		if !(fast || (utils.QT_DEBUG_QML() && target == runtime.GOOS)) || (target == "js" || target == "wasm") {
+		if !(fast || ((utils.QT_DEBUG_QML() || utils.QT_FELGO_LIVE()) && target == runtime.GOOS)) || (target == "js" || target == "wasm") {
 			bundle(mode, target, path, name, depPath, tags, fast)
-		} else if fast {
+		} else if fast || (utils.QT_DEBUG_QML() || utils.QT_FELGO_LIVE()) {
 			switch target {
 			case "darwin":
 				if fn := filepath.Join(depPath, name+".app", "Contents", "Info.plist"); !utils.ExistsFile(fn) {
 					utils.Save(fn, darwin_plist(name))
+				}
+			case "windows":
+				if utils.QT_MSVC() {
+					_, _, _, out := cmd.BuildEnv(target, name, depPath)
+					cmd.PatchBinary(out + ".exe")
 				}
 			}
 		}

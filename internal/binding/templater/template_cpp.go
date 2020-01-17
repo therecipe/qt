@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"math"
 	"math/rand"
+	"path/filepath"
 	"sort"
 	"strings"
 	"time"
@@ -185,7 +186,7 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 
 							func() string {
 								var pre string
-								if class.IsSubClassOfQObject() {
+								if class.IsSubClassOfQObject() || class.HasCallbackFunctions() {
 									pre = fmt.Sprintf("%[1]v_%[1]v_QRegisterMetaType();", className)
 								}
 								if mode != MOC {
@@ -226,6 +227,7 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 
 						implementedVirtuals[f.Name+f.OverloadNumber] = struct{}{}
 
+						fOld := f
 						var f = *f
 						f.SignalMode = parser.CALLBACK
 						f.Fullname = fmt.Sprintf("%v::%v", class.Name, f.Name)
@@ -235,6 +237,10 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 							if fb := cppFunctionCallback(&f); len(fb) != 0 {
 								fmt.Fprintf(bb, "\t%v\n", fb)
 							}
+						}
+						if f.NeedsFinalizer {
+							fOld.NeedsFinalizer = true
+							fOld.NeedsFinalizerFor = f.NeedsFinalizerFor
 						}
 					}
 				}
@@ -295,9 +301,12 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 					fmt.Fprintln(bb, "public slots:")
 					for _, function := range class.Functions {
 						if function.Meta == parser.SLOT {
+							osm := function.SignalMode
+							function.SignalMode = parser.CALLBACK
 							if fb := cppFunctionCallback(function); len(fb) != 0 {
 								fmt.Fprintf(bb, "\t%v\n", fb)
 							}
+							function.SignalMode = osm
 						}
 					}
 
@@ -316,7 +325,19 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 
 				fmt.Fprint(bb, "};\n\n")
 			}
-			if class.IsSubClassOfQObject() {
+			if class.IsSubClassOfQObject() || class.HasCallbackFunctions() {
+				if mode != MOC {
+					switch class.Name {
+					case "QSurface", "QGraphicsItem", "QObject", "QMacToolBar", "QQmlComponent", "QQmlWebChannel",
+						"QAbstractVideoSurface", "QScxmlDataModel", "QScxmlInvokableService", "QScxmlStateMachine",
+						"QGamepad", "QQuickItem", "QQuickTextDocument", "QQuickTransform", "QQuickWindow", "QWebEngineCookieStore":
+						//re-definition
+					default:
+						if class.Module != "QtQuickControls2" || (class.Module == "QtQuickControls2" && !strings.HasPrefix(class.Name, "QQuick")) {
+							fmt.Fprintf(bb, "Q_DECLARE_METATYPE(%v*)\n", class.Name)
+						}
+					}
+				}
 				fmt.Fprintf(bb, "Q_DECLARE_METATYPE(%v%v*)\n\n",
 					func() string {
 						if mode != MOC {
@@ -329,7 +350,11 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 					if strings.HasPrefix(class.Name, "QMac") && !strings.HasPrefix(parser.State.ClassMap[class.Name].Module, "QtMac") {
 						fmt.Fprintf(bb, "int %[1]v_%[1]v_QRegisterMetaType(){\n\t#ifdef Q_OS_OSX\n\t\tqRegisterMetaType<%[1]v*>(); return qRegisterMetaType<My%[1]v*>();\n\t#else\n\t\treturn 0;\n\t#endif\n}\n\n", class.Name)
 					} else {
-						fmt.Fprintf(bb, "int %[1]v_%[1]v_QRegisterMetaType(){qRegisterMetaType<%[1]v*>(); return qRegisterMetaType<My%[1]v*>();}\n\n", class.Name)
+						if class.Module == "QtQuickControls2" && strings.HasPrefix(class.Name, "QQuick") {
+							fmt.Fprintf(bb, "int %[1]v_%[1]v_QRegisterMetaType(){return qRegisterMetaType<My%[1]v*>();}\n\n", class.Name)
+						} else {
+							fmt.Fprintf(bb, "int %[1]v_%[1]v_QRegisterMetaType(){qRegisterMetaType<%[1]v*>(); return qRegisterMetaType<My%[1]v*>();}\n\n", class.Name)
+						}
 					}
 				} else {
 					typeMap := make(map[string]string)
@@ -397,6 +422,41 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 						fmt.Fprintf(bb, "\tqRegisterMetaType<%v>();\n", t)
 					}
 					fmt.Fprint(bb, "}\n\n")
+				}
+			} else if strings.HasPrefix(class.Name, "Q") {
+				if f := class.GetFunction(class.Name); f != nil {
+					if cppFunction(f); f.IsSupported() {
+						switch class.Name {
+						case "QFileInfo", "QItemSelection", "QItemSelectionRange", "QStorageInfo",
+							"QVariant", "QVersionNumber", "QOpenGLDebugMessage", "QPageLayout",
+							"QPageSize", "QStaticText", "QNetworkAddressEntry", "QNetworkConfiguration",
+							"QNetworkDatagram", "QNetworkInterface", "QNetworkProxy", "QOcspResponse",
+							"QSslConfiguration", "QSslEllipticCurve", "QSslPreSharedKeyAuthenticator",
+							"QDBusArgument", "QDBusMessage", "QDBusObjectPath", "QDBusSignature", "QDBusUnixFileDescriptor",
+							"QDBusVariant", "QNdefMessage", "QGeoAddress", "QGeoCircle", "QGeoCoordinate", "QGeoPath", "QGeoPolygon",
+							"QGeoPositionInfo", "QGeoRectangle", "QGeoShape", "QQmlListReference", "QQmlScriptString",
+							"QSourceLocation", "QXmlItem", "QXmlName", "QBluetoothAddress", "QBluetoothDeviceInfo", "QBluetoothHostInfo",
+							"QBluetoothServiceInfo", "QBluetoothUuid", "QLowEnergyCharacteristic", "QLowEnergyConnectionParameters",
+							"QLowEnergyDescriptor", "QAudioBuffer", "QAudioDeviceInfo", "QAudioEncoderSettings", "QAudioFormat", "QCameraViewfinderSettings",
+							"QImageEncoderSettings", "QMediaContent", "QMediaResource", "QVideoEncoderSettings", "QVideoFrame",
+							"QVideoSurfaceFormat", "QTestEventList", "QModbusDeviceIdentification", "QScxmlError", "QScxmlEvent",
+							"QNetworkRequest", "QWebElement":
+							//re-definition
+						case "QCommandLineParser", "QDataStream", "QEventLoopLocker", "QMessageLogger", "QMimeDatabase",
+							"QSemaphoreReleaser", "QTemporaryDir", "QWaitCondition", "QXmlStreamReader", "QXmlStreamWriter",
+							"QImageReader", "QImageWriter", "QOpenGLTextureBlitter", "QPainter", "QPainterPathStroker",
+							"QPictureIO", "QTextDocumentWriter", "QTextLayout", "QXmlNamespaceSupport", "QStylePainter",
+							"QXmlSchemaValidator", "QAndroidJniEnvironment", "QMutex", "QRecursiveMutex":
+							//constructor issue
+						default:
+							if len(f.Parameters) == 0 {
+								fmt.Fprintf(bb, "Q_DECLARE_METATYPE(%v)\n", class.Name)
+							}
+						}
+						if class.Name != "QSslPreSharedKeyAuthenticator" {
+							fmt.Fprintf(bb, "Q_DECLARE_METATYPE(%v*)\n", class.Name)
+						}
+					}
 				}
 			}
 		}
@@ -521,12 +581,30 @@ func preambleCpp(module string, input []byte, mode int, target, tags string) []b
 
 #define protected public
 #define private public
-
+%v
 #include "%v.h"
 %v%v
-
+%v
 `,
 		buildTags(module, false, mode, tags),
+
+		func() string {
+			if target == "darwin" && utils.QT_STATIC() && utils.QT_DOCKER() && module == "QtCore" {
+				return `
+#include <QOperatingSystemVersion>
+extern "C" int32_t __isOSVersionAtLeast(int32_t Major, int32_t Minor, int32_t Subminor) {
+	const auto current = QOperatingSystemVersion::current();
+	if (Major < current.majorVersion()) return 1;
+	if (Major > current.majorVersion()) return 0;
+	if (Minor < current.minorVersion()) return 1;
+	if (Minor > current.minorVersion()) return 0;
+	return Subminor <= current.microVersion();
+}
+extern "C" int32_t __isPlatformVersionAtLeast(int32_t Platform, int32_t Major, int32_t Minor, int32_t Subminor) { return __isOSVersionAtLeast(Major, Minor, Subminor); }
+`
+			}
+			return ""
+		}(),
 
 		func() string {
 			switch module {
@@ -576,6 +654,19 @@ func preambleCpp(module string, input []byte, mode int, target, tags string) []b
 			}
 			return ""
 		}(),
+
+		func() string {
+			if module == "QtCore" {
+				return `
+#ifndef QT_CORE_LIB
+	#error ------------------------------------------------------------------
+	#error please run: '$(go env GOPATH)/bin/qtsetup'
+	#error more info here: https://github.com/therecipe/qt/wiki/Installation
+	#error ------------------------------------------------------------------
+#endif`
+			}
+			return ""
+		}(),
 	)
 
 	var classes = make([]string, 0)
@@ -601,7 +692,7 @@ func preambleCpp(module string, input []byte, mode int, target, tags string) []b
 			var c, _ = parser.State.ClassMap[class]
 			if strings.HasPrefix(c.Module, "custom_") ||
 				strings.ToLower(c.Module) == c.Module ||
-				!strings.HasPrefix(class, "Q") {
+				!strings.HasPrefix(class, "Q") && !(class == "FelgoApplication" || class == "FelgoLiveClient") {
 				continue
 			}
 			switch c.Name {
@@ -660,7 +751,16 @@ func preambleCpp(module string, input []byte, mode int, target, tags string) []b
 				}
 			}
 
-			fmt.Fprintf(bb, "#include <%v>\n", class)
+			if c.Module == "QtQuickControls2" && strings.HasPrefix(c.Name, "QQuick") && c.Name != "QQuickStyle" {
+				dir, fn := filepath.Split(c.Filepath)
+				if filepath.Base(dir) == "quickcontrols2" {
+					fmt.Fprintf(bb, "#include <QtQuickControls2/private/%v>\n", fn)
+				} else {
+					fmt.Fprintf(bb, "#include <QtQuickTemplates2/private/%v>\n", fn)
+				}
+			} else {
+				fmt.Fprintf(bb, "#include <%v>\n", class)
+			}
 
 			if (strings.HasPrefix(target, "ios") || target == "js" || target == "wasm") && mode == MINIMAL {
 				oldModuleGo := strings.TrimPrefix(c.Module, "Qt")
@@ -780,7 +880,11 @@ func preambleCpp(module string, input []byte, mode int, target, tags string) []b
 	}
 
 	if mode == MOC {
-		fmt.Fprint(bb, "\n#ifdef QT_QML_LIB\n\t#include <QQmlEngine>\n#endif\n")
+		if utils.QT_VERSION_NUM() < 5070 {
+			fmt.Fprint(bb, "\n#ifdef QT_QML_LIB\n\t#include <QtQml>\n#endif\n")
+		} else {
+			fmt.Fprint(bb, "\n#ifdef QT_QML_LIB\n\t#include <QQmlEngine>\n#endif\n")
+		}
 	}
 
 	fmt.Fprint(bb, "\n")
@@ -814,11 +918,25 @@ func preambleCpp(module string, input []byte, mode int, target, tags string) []b
 			hName := c.Hash()
 			sep := []string{"\"_", "LIVE_", " ", "\t", "\n", "\r", "(", ")", ":", ";", "*", "<", ">", "&", "~", "{", "}", "[", "]", "_", "callback"}
 			for _, p := range sep {
+				if p == ":" {
+					continue
+				}
 				for _, s := range sep {
-					if s == "callback" {
+					if s == "callback" ||
+						(p == "(" && s == ")") ||
+						(p == " " && s == " ") ||
+						(p == ">" && s != ":") {
 						continue
 					}
-					pre = strings.Replace(pre, p+c.Name+s, p+c.Name+hName+s, -1)
+					if p == " " && (s == "(" || s == ")") {
+						p = "new "
+						pre = strings.Replace(pre, p+c.Name+s, p+c.Name+hName+s, -1)
+						p = ": "
+						pre = strings.Replace(pre, p+c.Name+s, p+c.Name+hName+s, -1)
+						p = " "
+					} else {
+						pre = strings.Replace(pre, p+c.Name+s, p+c.Name+hName+s, -1)
+					}
 				}
 			}
 		}

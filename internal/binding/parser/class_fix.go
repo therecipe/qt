@@ -55,6 +55,13 @@ func (c *Class) fixEnums() {
 				}
 			}
 		}
+		if e.Fullname == "QDateTime::YearRange" {
+			for i := len(e.Values) - 1; i >= 0; i-- {
+				if v := e.Values[i]; v.Name == "Last" {
+					e.Values = append(e.Values[:i], e.Values[i+1:]...)
+				}
+			}
+		}
 		if utils.QT_MACPORTS() {
 			if e.Fullname == "QWebSettings::WebAttribute" {
 				for i := len(e.Values) - 1; i >= 0; i-- {
@@ -168,25 +175,47 @@ func (c *Class) fixGeneral_Version() {
 				})
 			}
 		}
-	case "QDesktopWidget":
+
+	case "QWebEnginePage", "QWebEngineView", "QWebEngineClientCertificateSelection", "QWebEngineSettings", "QWebEngineProfile",
+		"QDesktopWidget", "QQuickAsyncImageProvider":
 		{
 			for _, f := range c.Functions {
-				f.Status = "active"
+				if !(((f.Name == "QWebEnginePage" || f.Name == "QWebEngineProfile") && f.OverloadNumber == "3") ||
+					(f.Name == "QWebEngineView" && f.OverloadNumber == "2") ||
+					f.Name == "QWebEngineSettings" && !f.Overload ||
+					f.Name == "QDesktopWidget" && f.Overload) {
+
+					f.Status = "active"
+					f.Access = "public"
+				}
 			}
 		}
 
-	case "QWebEnginePage", "QWebEngineView":
+	case "FelgoApplication", "FelgoLiveClient":
 		{
 			for _, f := range c.Functions {
-				switch f.Name {
-				case "setHtml", "setWebChannel", "runJavaScript", "setPage", "page", "QWebEnginePage", "QWebEngineView", "QWebChannel":
-					if !((f.Name == "QWebEnginePage" && f.OverloadNumber == "3") ||
-						(f.Name == "QWebEngineView" && f.OverloadNumber == "2")) {
-						f.Status = "active"
-						f.Access = "public"
-					}
-				}
+				f.Status = "active"
+				f.Access = "public"
 			}
+		}
+	}
+
+	if c.Module == "QtQuickControls2" && strings.HasPrefix(c.Name, "QQuick") {
+		for _, f := range c.Functions {
+			if f.Meta == CONSTRUCTOR && strings.Contains(f.Signature, "&") {
+				continue
+			}
+			if f.Meta == CONSTRUCTOR && (c.Name == "QQuickPaletteProvider" ||
+				c.Name == "QQuickPopupPositioner" ||
+				c.Name == "QQuickPopupTransitionManager" ||
+				c.Name == "QQuickStackElement" ||
+				c.Name == "QQuickStyleSelector" ||
+				c.Name == "QQuickTheme") {
+				continue
+			}
+
+			f.Status = "active"
+			f.Access = "public"
 		}
 	}
 }
@@ -425,13 +454,16 @@ func getBasesFromHeader(f string, n string, m string) string {
 					l = strings.Split(l, "/")[0]
 				}
 
-				var tmp = strings.Split(l, ":")[1]
+				if strings.Contains(l, ":") {
 
-				for _, s := range []string{"{", "}", "#ifndef", "QT_NO_QOBJECT", "#else", "#endif", "class", "Q_" + strings.ToUpper(strings.TrimPrefix(m, "Qt")) + "_EXPORT " + n, "public", "protected", "private", "  ", " "} {
-					tmp = strings.Replace(tmp, s, "", -1)
+					tmp := strings.Split(l, ":")[1]
+
+					for _, s := range []string{"{", "}", "#ifndef", "QT_NO_QOBJECT", "#else", "#endif", "class", "Q_" + strings.ToUpper(strings.TrimPrefix(m, "Qt")) + "_EXPORT " + n, "public", "protected", "private", "  ", " "} {
+						tmp = strings.Replace(tmp, s, "", -1)
+					}
+
+					return strings.TrimSpace(tmp)
 				}
-
-				return strings.TrimSpace(tmp)
 			}
 		}
 	}

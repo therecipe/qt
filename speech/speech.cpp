@@ -53,7 +53,7 @@ public:
 	void Signal_PitchChanged(double pitch) { callbackQTextToSpeech_PitchChanged(this, pitch); };
 	void Signal_RateChanged(double rate) { callbackQTextToSpeech_RateChanged(this, rate); };
 	void resume() { callbackQTextToSpeech_Resume(this); };
-	void say(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtSpeech_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQTextToSpeech_Say(this, textPacked); };
+	void say(const QString & text) { QByteArray* t372ea0 = new QByteArray(text.toUtf8()); QtSpeech_PackedString textPacked = { const_cast<char*>(t372ea0->prepend("WHITESPACE").constData()+10), t372ea0->size()-10, t372ea0 };callbackQTextToSpeech_Say(this, textPacked); };
 	void setLocale(const QLocale & locale) { callbackQTextToSpeech_SetLocale(this, const_cast<QLocale*>(&locale)); };
 	void setPitch(double pitch) { callbackQTextToSpeech_SetPitch(this, pitch); };
 	void setRate(double rate) { callbackQTextToSpeech_SetRate(this, rate); };
@@ -72,10 +72,11 @@ public:
 	bool event(QEvent * e) { return callbackQTextToSpeech_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQTextToSpeech_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQTextToSpeech_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSpeech_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQTextToSpeech_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtSpeech_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQTextToSpeech_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQTextToSpeech_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QTextToSpeech*)
 Q_DECLARE_METATYPE(MyQTextToSpeech*)
 
 int QTextToSpeech_QTextToSpeech_QRegisterMetaType(){qRegisterMetaType<QTextToSpeech*>(); return qRegisterMetaType<MyQTextToSpeech*>();}
@@ -176,17 +177,17 @@ void* QTextToSpeech_NewQTextToSpeech2(struct QtSpeech_PackedString engine, void*
 
 struct QtSpeech_PackedString QTextToSpeech_QTextToSpeech_AvailableEngines()
 {
-	return ({ QByteArray tb1cc61 = QTextToSpeech::availableEngines().join("¡¦!").toUtf8(); QtSpeech_PackedString { const_cast<char*>(tb1cc61.prepend("WHITESPACE").constData()+10), tb1cc61.size()-10 }; });
+	return ({ QByteArray* tb1cc61 = new QByteArray(QTextToSpeech::availableEngines().join("¡¦!").toUtf8()); QtSpeech_PackedString { const_cast<char*>(tb1cc61->prepend("WHITESPACE").constData()+10), tb1cc61->size()-10, tb1cc61 }; });
 }
 
 struct QtSpeech_PackedList QTextToSpeech_AvailableLocales(void* ptr)
 {
-	return ({ QVector<QLocale>* tmpValue = new QVector<QLocale>(static_cast<QTextToSpeech*>(ptr)->availableLocales()); QtSpeech_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QVector<QLocale>* tmpValue3aad13 = new QVector<QLocale>(static_cast<QTextToSpeech*>(ptr)->availableLocales()); QtSpeech_PackedList { tmpValue3aad13, tmpValue3aad13->size() }; });
 }
 
 struct QtSpeech_PackedList QTextToSpeech_AvailableVoices(void* ptr)
 {
-	return ({ QVector<QVoice>* tmpValue = new QVector<QVoice>(static_cast<QTextToSpeech*>(ptr)->availableVoices()); QtSpeech_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QVector<QVoice>* tmpValue05b1bf = new QVector<QVoice>(static_cast<QTextToSpeech*>(ptr)->availableVoices()); QtSpeech_PackedList { tmpValue05b1bf, tmpValue05b1bf->size() }; });
 }
 
 void* QTextToSpeech_Locale(void* ptr)
@@ -194,9 +195,9 @@ void* QTextToSpeech_Locale(void* ptr)
 	return new QLocale(static_cast<QTextToSpeech*>(ptr)->locale());
 }
 
-void QTextToSpeech_ConnectLocaleChanged(void* ptr)
+void QTextToSpeech_ConnectLocaleChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QTextToSpeech*>(ptr), static_cast<void (QTextToSpeech::*)(const QLocale &)>(&QTextToSpeech::localeChanged), static_cast<MyQTextToSpeech*>(ptr), static_cast<void (MyQTextToSpeech::*)(const QLocale &)>(&MyQTextToSpeech::Signal_LocaleChanged));
+	QObject::connect(static_cast<QTextToSpeech*>(ptr), static_cast<void (QTextToSpeech::*)(const QLocale &)>(&QTextToSpeech::localeChanged), static_cast<MyQTextToSpeech*>(ptr), static_cast<void (MyQTextToSpeech::*)(const QLocale &)>(&MyQTextToSpeech::Signal_LocaleChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QTextToSpeech_DisconnectLocaleChanged(void* ptr)
@@ -224,9 +225,9 @@ double QTextToSpeech_Pitch(void* ptr)
 	return static_cast<QTextToSpeech*>(ptr)->pitch();
 }
 
-void QTextToSpeech_ConnectPitchChanged(void* ptr)
+void QTextToSpeech_ConnectPitchChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QTextToSpeech*>(ptr), static_cast<void (QTextToSpeech::*)(double)>(&QTextToSpeech::pitchChanged), static_cast<MyQTextToSpeech*>(ptr), static_cast<void (MyQTextToSpeech::*)(double)>(&MyQTextToSpeech::Signal_PitchChanged));
+	QObject::connect(static_cast<QTextToSpeech*>(ptr), static_cast<void (QTextToSpeech::*)(double)>(&QTextToSpeech::pitchChanged), static_cast<MyQTextToSpeech*>(ptr), static_cast<void (MyQTextToSpeech::*)(double)>(&MyQTextToSpeech::Signal_PitchChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QTextToSpeech_DisconnectPitchChanged(void* ptr)
@@ -244,9 +245,9 @@ double QTextToSpeech_Rate(void* ptr)
 	return static_cast<QTextToSpeech*>(ptr)->rate();
 }
 
-void QTextToSpeech_ConnectRateChanged(void* ptr)
+void QTextToSpeech_ConnectRateChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QTextToSpeech*>(ptr), static_cast<void (QTextToSpeech::*)(double)>(&QTextToSpeech::rateChanged), static_cast<MyQTextToSpeech*>(ptr), static_cast<void (MyQTextToSpeech::*)(double)>(&MyQTextToSpeech::Signal_RateChanged));
+	QObject::connect(static_cast<QTextToSpeech*>(ptr), static_cast<void (QTextToSpeech::*)(double)>(&QTextToSpeech::rateChanged), static_cast<MyQTextToSpeech*>(ptr), static_cast<void (MyQTextToSpeech::*)(double)>(&MyQTextToSpeech::Signal_RateChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QTextToSpeech_DisconnectRateChanged(void* ptr)
@@ -334,10 +335,10 @@ long long QTextToSpeech_State(void* ptr)
 	return static_cast<QTextToSpeech*>(ptr)->state();
 }
 
-void QTextToSpeech_ConnectStateChanged(void* ptr)
+void QTextToSpeech_ConnectStateChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<QTextToSpeech::State>();
-	QObject::connect(static_cast<QTextToSpeech*>(ptr), static_cast<void (QTextToSpeech::*)(QTextToSpeech::State)>(&QTextToSpeech::stateChanged), static_cast<MyQTextToSpeech*>(ptr), static_cast<void (MyQTextToSpeech::*)(QTextToSpeech::State)>(&MyQTextToSpeech::Signal_StateChanged));
+	QObject::connect(static_cast<QTextToSpeech*>(ptr), static_cast<void (QTextToSpeech::*)(QTextToSpeech::State)>(&QTextToSpeech::stateChanged), static_cast<MyQTextToSpeech*>(ptr), static_cast<void (MyQTextToSpeech::*)(QTextToSpeech::State)>(&MyQTextToSpeech::Signal_StateChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QTextToSpeech_DisconnectStateChanged(void* ptr)
@@ -370,9 +371,9 @@ double QTextToSpeech_Volume(void* ptr)
 	return static_cast<QTextToSpeech*>(ptr)->volume();
 }
 
-void QTextToSpeech_ConnectVolumeChanged(void* ptr)
+void QTextToSpeech_ConnectVolumeChanged(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QTextToSpeech*>(ptr), static_cast<void (QTextToSpeech::*)(int)>(&QTextToSpeech::volumeChanged), static_cast<MyQTextToSpeech*>(ptr), static_cast<void (MyQTextToSpeech::*)(int)>(&MyQTextToSpeech::Signal_VolumeChanged));
+	QObject::connect(static_cast<QTextToSpeech*>(ptr), static_cast<void (QTextToSpeech::*)(int)>(&QTextToSpeech::volumeChanged), static_cast<MyQTextToSpeech*>(ptr), static_cast<void (MyQTextToSpeech::*)(int)>(&MyQTextToSpeech::Signal_VolumeChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QTextToSpeech_DisconnectVolumeChanged(void* ptr)
@@ -385,9 +386,9 @@ void QTextToSpeech_VolumeChanged(void* ptr, int volume)
 	static_cast<QTextToSpeech*>(ptr)->volumeChanged(volume);
 }
 
-void QTextToSpeech_ConnectVolumeChanged2(void* ptr)
+void QTextToSpeech_ConnectVolumeChanged2(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QTextToSpeech*>(ptr), static_cast<void (QTextToSpeech::*)(double)>(&QTextToSpeech::volumeChanged), static_cast<MyQTextToSpeech*>(ptr), static_cast<void (MyQTextToSpeech::*)(double)>(&MyQTextToSpeech::Signal_VolumeChanged2));
+	QObject::connect(static_cast<QTextToSpeech*>(ptr), static_cast<void (QTextToSpeech::*)(double)>(&QTextToSpeech::volumeChanged), static_cast<MyQTextToSpeech*>(ptr), static_cast<void (MyQTextToSpeech::*)(double)>(&MyQTextToSpeech::Signal_VolumeChanged2), static_cast<Qt::ConnectionType>(t));
 }
 
 void QTextToSpeech_DisconnectVolumeChanged2(void* ptr)
@@ -496,22 +497,6 @@ void* QTextToSpeech___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QTextToSpeech___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QTextToSpeech___qFindChildren_setList2(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QTextToSpeech___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 void QTextToSpeech_ChildEventDefault(void* ptr, void* event)
 {
 		static_cast<QTextToSpeech*>(ptr)->QTextToSpeech::childEvent(static_cast<QChildEvent*>(event));
@@ -568,7 +553,7 @@ public:
 	double pitch() const { return callbackQTextToSpeechEngine_Pitch(const_cast<void*>(static_cast<const void*>(this))); };
 	double rate() const { return callbackQTextToSpeechEngine_Rate(const_cast<void*>(static_cast<const void*>(this))); };
 	void resume() { callbackQTextToSpeechEngine_Resume(this); };
-	void say(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtSpeech_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQTextToSpeechEngine_Say(this, textPacked); };
+	void say(const QString & text) { QByteArray* t372ea0 = new QByteArray(text.toUtf8()); QtSpeech_PackedString textPacked = { const_cast<char*>(t372ea0->prepend("WHITESPACE").constData()+10), t372ea0->size()-10, t372ea0 };callbackQTextToSpeechEngine_Say(this, textPacked); };
 	bool setLocale(const QLocale & locale) { return callbackQTextToSpeechEngine_SetLocale(this, const_cast<QLocale*>(&locale)) != 0; };
 	bool setPitch(double pitch) { return callbackQTextToSpeechEngine_SetPitch(this, pitch) != 0; };
 	bool setRate(double rate) { return callbackQTextToSpeechEngine_SetRate(this, rate) != 0; };
@@ -588,10 +573,11 @@ public:
 	bool event(QEvent * e) { return callbackQTextToSpeechEngine_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQTextToSpeechEngine_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQTextToSpeechEngine_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSpeech_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQTextToSpeechEngine_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtSpeech_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQTextToSpeechEngine_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQTextToSpeechEngine_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QTextToSpeechEngine*)
 Q_DECLARE_METATYPE(MyQTextToSpeechEngine*)
 
 int QTextToSpeechEngine_QTextToSpeechEngine_QRegisterMetaType(){qRegisterMetaType<QTextToSpeechEngine*>(); return qRegisterMetaType<MyQTextToSpeechEngine*>();}
@@ -645,12 +631,12 @@ void* QTextToSpeechEngine_NewQTextToSpeechEngine(void* parent)
 
 struct QtSpeech_PackedList QTextToSpeechEngine_AvailableLocales(void* ptr)
 {
-	return ({ QVector<QLocale>* tmpValue = new QVector<QLocale>(static_cast<QTextToSpeechEngine*>(ptr)->availableLocales()); QtSpeech_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QVector<QLocale>* tmpValued4fc62 = new QVector<QLocale>(static_cast<QTextToSpeechEngine*>(ptr)->availableLocales()); QtSpeech_PackedList { tmpValued4fc62, tmpValued4fc62->size() }; });
 }
 
 struct QtSpeech_PackedList QTextToSpeechEngine_AvailableVoices(void* ptr)
 {
-	return ({ QVector<QVoice>* tmpValue = new QVector<QVoice>(static_cast<QTextToSpeechEngine*>(ptr)->availableVoices()); QtSpeech_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QVector<QVoice>* tmpValue7c0049 = new QVector<QVoice>(static_cast<QTextToSpeechEngine*>(ptr)->availableVoices()); QtSpeech_PackedList { tmpValue7c0049, tmpValue7c0049->size() }; });
 }
 
 void* QTextToSpeechEngine_QTextToSpeechEngine_CreateVoice(struct QtSpeech_PackedString name, long long gender, long long age, void* data)
@@ -718,10 +704,10 @@ long long QTextToSpeechEngine_State(void* ptr)
 	return static_cast<QTextToSpeechEngine*>(ptr)->state();
 }
 
-void QTextToSpeechEngine_ConnectStateChanged(void* ptr)
+void QTextToSpeechEngine_ConnectStateChanged(void* ptr, long long t)
 {
 	qRegisterMetaType<QTextToSpeech::State>();
-	QObject::connect(static_cast<QTextToSpeechEngine*>(ptr), static_cast<void (QTextToSpeechEngine::*)(QTextToSpeech::State)>(&QTextToSpeechEngine::stateChanged), static_cast<MyQTextToSpeechEngine*>(ptr), static_cast<void (MyQTextToSpeechEngine::*)(QTextToSpeech::State)>(&MyQTextToSpeechEngine::Signal_StateChanged));
+	QObject::connect(static_cast<QTextToSpeechEngine*>(ptr), static_cast<void (QTextToSpeechEngine::*)(QTextToSpeech::State)>(&QTextToSpeechEngine::stateChanged), static_cast<MyQTextToSpeechEngine*>(ptr), static_cast<void (MyQTextToSpeechEngine::*)(QTextToSpeech::State)>(&MyQTextToSpeechEngine::Signal_StateChanged), static_cast<Qt::ConnectionType>(t));
 }
 
 void QTextToSpeechEngine_DisconnectStateChanged(void* ptr)
@@ -850,22 +836,6 @@ void* QTextToSpeechEngine___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QTextToSpeechEngine___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QTextToSpeechEngine___qFindChildren_setList2(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QTextToSpeechEngine___qFindChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
 void QTextToSpeechEngine_ChildEventDefault(void* ptr, void* event)
 {
 		static_cast<QTextToSpeechEngine*>(ptr)->QTextToSpeechEngine::childEvent(static_cast<QChildEvent*>(event));
@@ -914,8 +884,13 @@ void QTextToSpeechEngine_TimerEventDefault(void* ptr, void* event)
 class MyQTextToSpeechPlugin: public QTextToSpeechPlugin
 {
 public:
-	QTextToSpeechEngine * createTextToSpeechEngine(const QVariantMap & parameters, QObject * parent, QString * errorString) const { QByteArray tc8b6bd = errorString->toUtf8(); QtSpeech_PackedString errorStringPacked = { const_cast<char*>(tc8b6bd.prepend("WHITESPACE").constData()+10), tc8b6bd.size()-10 };return static_cast<QTextToSpeechEngine*>(callbackQTextToSpeechPlugin_CreateTextToSpeechEngine(const_cast<void*>(static_cast<const void*>(this)), ({ QMap<QString, QVariant>* tmpValue = new QMap<QString, QVariant>(parameters); QtSpeech_PackedList { tmpValue, tmpValue->size() }; }), parent, errorStringPacked)); };
+	QTextToSpeechEngine * createTextToSpeechEngine(const QVariantMap & parameters, QObject * parent, QString * errorString) const { QByteArray* tc8b6bd = new QByteArray(errorString->toUtf8()); QtSpeech_PackedString errorStringPacked = { const_cast<char*>(tc8b6bd->prepend("WHITESPACE").constData()+10), tc8b6bd->size()-10, tc8b6bd };return static_cast<QTextToSpeechEngine*>(callbackQTextToSpeechPlugin_CreateTextToSpeechEngine(const_cast<void*>(static_cast<const void*>(this)), ({ QMap<QString, QVariant>* tmpValuef1f142 = new QMap<QString, QVariant>(parameters); QtSpeech_PackedList { tmpValuef1f142, tmpValuef1f142->size() }; }), parent, errorStringPacked)); };
 };
+
+Q_DECLARE_METATYPE(QTextToSpeechPlugin*)
+Q_DECLARE_METATYPE(MyQTextToSpeechPlugin*)
+
+int QTextToSpeechPlugin_QTextToSpeechPlugin_QRegisterMetaType(){qRegisterMetaType<QTextToSpeechPlugin*>(); return qRegisterMetaType<MyQTextToSpeechPlugin*>();}
 
 void* QTextToSpeechPlugin_CreateTextToSpeechEngine(void* ptr, void* parameters, void* parent, struct QtSpeech_PackedString errorString)
 {
@@ -945,12 +920,12 @@ void* QTextToSpeechPlugin___createTextToSpeechEngine_parameters_newList(void* pt
 
 struct QtSpeech_PackedList QTextToSpeechPlugin___createTextToSpeechEngine_parameters_keyList(void* ptr)
 {
-	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QVariant>*>(ptr)->keys()); QtSpeech_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QString>* tmpValue1ab909 = new QList<QString>(static_cast<QMap<QString, QVariant>*>(ptr)->keys()); QtSpeech_PackedList { tmpValue1ab909, tmpValue1ab909->size() }; });
 }
 
 struct QtSpeech_PackedString QTextToSpeechPlugin_____createTextToSpeechEngine_parameters_keyList_atList(void* ptr, int i)
 {
-	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtSpeech_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
+	return ({ QByteArray* t94aa5e = new QByteArray(({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8()); QtSpeech_PackedString { const_cast<char*>(t94aa5e->prepend("WHITESPACE").constData()+10), t94aa5e->size()-10, t94aa5e }; });
 }
 
 void QTextToSpeechPlugin_____createTextToSpeechEngine_parameters_keyList_setList(void* ptr, struct QtSpeech_PackedString i)
@@ -971,7 +946,7 @@ long long QVoice_Age(void* ptr)
 
 struct QtSpeech_PackedString QVoice_QVoice_AgeName(long long age)
 {
-	return ({ QByteArray t3dc0ed = QVoice::ageName(static_cast<QVoice::Age>(age)).toUtf8(); QtSpeech_PackedString { const_cast<char*>(t3dc0ed.prepend("WHITESPACE").constData()+10), t3dc0ed.size()-10 }; });
+	return ({ QByteArray* t3dc0ed = new QByteArray(QVoice::ageName(static_cast<QVoice::Age>(age)).toUtf8()); QtSpeech_PackedString { const_cast<char*>(t3dc0ed->prepend("WHITESPACE").constData()+10), t3dc0ed->size()-10, t3dc0ed }; });
 }
 
 long long QVoice_Gender(void* ptr)
@@ -981,11 +956,11 @@ long long QVoice_Gender(void* ptr)
 
 struct QtSpeech_PackedString QVoice_QVoice_GenderName(long long gender)
 {
-	return ({ QByteArray t94d66c = QVoice::genderName(static_cast<QVoice::Gender>(gender)).toUtf8(); QtSpeech_PackedString { const_cast<char*>(t94d66c.prepend("WHITESPACE").constData()+10), t94d66c.size()-10 }; });
+	return ({ QByteArray* t94d66c = new QByteArray(QVoice::genderName(static_cast<QVoice::Gender>(gender)).toUtf8()); QtSpeech_PackedString { const_cast<char*>(t94d66c->prepend("WHITESPACE").constData()+10), t94d66c->size()-10, t94d66c }; });
 }
 
 struct QtSpeech_PackedString QVoice_Name(void* ptr)
 {
-	return ({ QByteArray t889245 = static_cast<QVoice*>(ptr)->name().toUtf8(); QtSpeech_PackedString { const_cast<char*>(t889245.prepend("WHITESPACE").constData()+10), t889245.size()-10 }; });
+	return ({ QByteArray* t889245 = new QByteArray(static_cast<QVoice*>(ptr)->name().toUtf8()); QtSpeech_PackedString { const_cast<char*>(t889245->prepend("WHITESPACE").constData()+10), t889245->size()-10, t889245 }; });
 }
 

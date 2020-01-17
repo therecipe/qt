@@ -53,10 +53,11 @@ public:
 	bool event(QEvent * e) { return callbackQScriptEngineDebugger_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQScriptEngineDebugger_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQScriptEngineDebugger_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtScriptTools_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQScriptEngineDebugger_ObjectNameChanged(this, objectNamePacked); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray* taa2c4f = new QByteArray(objectName.toUtf8()); QtScriptTools_PackedString objectNamePacked = { const_cast<char*>(taa2c4f->prepend("WHITESPACE").constData()+10), taa2c4f->size()-10, taa2c4f };callbackQScriptEngineDebugger_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQScriptEngineDebugger_TimerEvent(this, event); };
 };
 
+Q_DECLARE_METATYPE(QScriptEngineDebugger*)
 Q_DECLARE_METATYPE(MyQScriptEngineDebugger*)
 
 int QScriptEngineDebugger_QScriptEngineDebugger_QRegisterMetaType(){qRegisterMetaType<QScriptEngineDebugger*>(); return qRegisterMetaType<MyQScriptEngineDebugger*>();}
@@ -138,9 +139,9 @@ void QScriptEngineDebugger_Detach(void* ptr)
 	static_cast<QScriptEngineDebugger*>(ptr)->detach();
 }
 
-void QScriptEngineDebugger_ConnectEvaluationResumed(void* ptr)
+void QScriptEngineDebugger_ConnectEvaluationResumed(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QScriptEngineDebugger*>(ptr), static_cast<void (QScriptEngineDebugger::*)()>(&QScriptEngineDebugger::evaluationResumed), static_cast<MyQScriptEngineDebugger*>(ptr), static_cast<void (MyQScriptEngineDebugger::*)()>(&MyQScriptEngineDebugger::Signal_EvaluationResumed));
+	QObject::connect(static_cast<QScriptEngineDebugger*>(ptr), static_cast<void (QScriptEngineDebugger::*)()>(&QScriptEngineDebugger::evaluationResumed), static_cast<MyQScriptEngineDebugger*>(ptr), static_cast<void (MyQScriptEngineDebugger::*)()>(&MyQScriptEngineDebugger::Signal_EvaluationResumed), static_cast<Qt::ConnectionType>(t));
 }
 
 void QScriptEngineDebugger_DisconnectEvaluationResumed(void* ptr)
@@ -153,9 +154,9 @@ void QScriptEngineDebugger_EvaluationResumed(void* ptr)
 	static_cast<QScriptEngineDebugger*>(ptr)->evaluationResumed();
 }
 
-void QScriptEngineDebugger_ConnectEvaluationSuspended(void* ptr)
+void QScriptEngineDebugger_ConnectEvaluationSuspended(void* ptr, long long t)
 {
-	QObject::connect(static_cast<QScriptEngineDebugger*>(ptr), static_cast<void (QScriptEngineDebugger::*)()>(&QScriptEngineDebugger::evaluationSuspended), static_cast<MyQScriptEngineDebugger*>(ptr), static_cast<void (MyQScriptEngineDebugger::*)()>(&MyQScriptEngineDebugger::Signal_EvaluationSuspended));
+	QObject::connect(static_cast<QScriptEngineDebugger*>(ptr), static_cast<void (QScriptEngineDebugger::*)()>(&QScriptEngineDebugger::evaluationSuspended), static_cast<MyQScriptEngineDebugger*>(ptr), static_cast<void (MyQScriptEngineDebugger::*)()>(&MyQScriptEngineDebugger::Signal_EvaluationSuspended), static_cast<Qt::ConnectionType>(t));
 }
 
 void QScriptEngineDebugger_DisconnectEvaluationSuspended(void* ptr)
@@ -258,22 +259,6 @@ void QScriptEngineDebugger___findChildren_setList3(void* ptr, void* i)
 }
 
 void* QScriptEngineDebugger___findChildren_newList3(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QObject*>();
-}
-
-void* QScriptEngineDebugger___qFindChildren_atList2(void* ptr, int i)
-{
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QScriptEngineDebugger___qFindChildren_setList2(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QScriptEngineDebugger___qFindChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QObject*>();

@@ -10,18 +10,20 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"runtime"
 	"strings"
 	"unsafe"
 )
 
+func cGoFreePacked(ptr unsafe.Pointer) { core.NewQByteArrayFromPointer(ptr).DestroyQByteArray() }
 func cGoUnpackString(s C.struct_QtSpeech_PackedString) string {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		return C.GoString(s.data)
 	}
 	return C.GoStringN(s.data, C.int(s.len))
 }
 func cGoUnpackBytes(s C.struct_QtSpeech_PackedString) []byte {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
 		return *(*[]byte)(unsafe.Pointer(&gs))
@@ -145,7 +147,7 @@ func (ptr *QTextToSpeech) AvailableVoices() []*QVoice {
 func (ptr *QTextToSpeech) Locale() *core.QLocale {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQLocaleFromPointer(C.QTextToSpeech_Locale(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QLocale).DestroyQLocale)
+		qt.SetFinalizer(tmpValue, (*core.QLocale).DestroyQLocale)
 		return tmpValue
 	}
 	return nil
@@ -163,7 +165,7 @@ func (ptr *QTextToSpeech) ConnectLocaleChanged(f func(locale *core.QLocale)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "localeChanged") {
-			C.QTextToSpeech_ConnectLocaleChanged(ptr.Pointer())
+			C.QTextToSpeech_ConnectLocaleChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "localeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "localeChanged"); signal != nil {
@@ -253,7 +255,7 @@ func (ptr *QTextToSpeech) ConnectPitchChanged(f func(pitch float64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "pitchChanged") {
-			C.QTextToSpeech_ConnectPitchChanged(ptr.Pointer())
+			C.QTextToSpeech_ConnectPitchChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "pitchChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "pitchChanged"); signal != nil {
@@ -300,7 +302,7 @@ func (ptr *QTextToSpeech) ConnectRateChanged(f func(rate float64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "rateChanged") {
-			C.QTextToSpeech_ConnectRateChanged(ptr.Pointer())
+			C.QTextToSpeech_ConnectRateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "rateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "rateChanged"); signal != nil {
@@ -658,7 +660,7 @@ func (ptr *QTextToSpeech) ConnectStateChanged(f func(state QTextToSpeech__State)
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stateChanged") {
-			C.QTextToSpeech_ConnectStateChanged(ptr.Pointer())
+			C.QTextToSpeech_ConnectStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
@@ -732,7 +734,7 @@ func (ptr *QTextToSpeech) StopDefault() {
 func (ptr *QTextToSpeech) Voice() *QVoice {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVoiceFromPointer(C.QTextToSpeech_Voice(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QVoice).DestroyQVoice)
+		qt.SetFinalizer(tmpValue, (*QVoice).DestroyQVoice)
 		return tmpValue
 	}
 	return nil
@@ -757,7 +759,7 @@ func (ptr *QTextToSpeech) ConnectVolumeChanged(f func(volume int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "volumeChanged") {
-			C.QTextToSpeech_ConnectVolumeChanged(ptr.Pointer())
+			C.QTextToSpeech_ConnectVolumeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "volumeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "volumeChanged"); signal != nil {
@@ -797,7 +799,7 @@ func (ptr *QTextToSpeech) ConnectVolumeChanged2(f func(volume float64)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "volumeChanged2") {
-			C.QTextToSpeech_ConnectVolumeChanged2(ptr.Pointer())
+			C.QTextToSpeech_ConnectVolumeChanged2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "volumeChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "volumeChanged2"); signal != nil {
@@ -828,7 +830,7 @@ func (ptr *QTextToSpeech) VolumeChanged2(volume float64) {
 func (ptr *QTextToSpeech) __availableLocales_atList(i int) *core.QLocale {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQLocaleFromPointer(C.QTextToSpeech___availableLocales_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QLocale).DestroyQLocale)
+		qt.SetFinalizer(tmpValue, (*core.QLocale).DestroyQLocale)
 		return tmpValue
 	}
 	return nil
@@ -847,7 +849,7 @@ func (ptr *QTextToSpeech) __availableLocales_newList() unsafe.Pointer {
 func (ptr *QTextToSpeech) __availableVoices_atList(i int) *QVoice {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVoiceFromPointer(C.QTextToSpeech___availableVoices_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QVoice).DestroyQVoice)
+		qt.SetFinalizer(tmpValue, (*QVoice).DestroyQVoice)
 		return tmpValue
 	}
 	return nil
@@ -887,7 +889,7 @@ func (ptr *QTextToSpeech) __children_newList() unsafe.Pointer {
 func (ptr *QTextToSpeech) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QTextToSpeech___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -943,27 +945,6 @@ func (ptr *QTextToSpeech) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QTextToSpeech) __findChildren_newList3() unsafe.Pointer {
 	return C.QTextToSpeech___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QTextToSpeech) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QTextToSpeech___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QTextToSpeech) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QTextToSpeech___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QTextToSpeech) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QTextToSpeech___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQTextToSpeech_ChildEvent
@@ -1022,8 +1003,9 @@ func callbackQTextToSpeech_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QTextToSpeech) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QTextToSpeech_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1288,7 +1270,7 @@ func QTextToSpeechEngine_CreateVoice(name string, gender QVoice__Gender, age QVo
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	tmpValue := NewQVoiceFromPointer(C.QTextToSpeechEngine_QTextToSpeechEngine_CreateVoice(C.struct_QtSpeech_PackedString{data: nameC, len: C.longlong(len(name))}, C.longlong(gender), C.longlong(age), core.PointerFromQVariant(data)))
-	runtime.SetFinalizer(tmpValue, (*QVoice).DestroyQVoice)
+	qt.SetFinalizer(tmpValue, (*QVoice).DestroyQVoice)
 	return tmpValue
 }
 
@@ -1299,7 +1281,7 @@ func (ptr *QTextToSpeechEngine) CreateVoice(name string, gender QVoice__Gender, 
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	tmpValue := NewQVoiceFromPointer(C.QTextToSpeechEngine_QTextToSpeechEngine_CreateVoice(C.struct_QtSpeech_PackedString{data: nameC, len: C.longlong(len(name))}, C.longlong(gender), C.longlong(age), core.PointerFromQVariant(data)))
-	runtime.SetFinalizer(tmpValue, (*QVoice).DestroyQVoice)
+	qt.SetFinalizer(tmpValue, (*QVoice).DestroyQVoice)
 	return tmpValue
 }
 
@@ -1337,7 +1319,7 @@ func (ptr *QTextToSpeechEngine) DisconnectLocale() {
 func (ptr *QTextToSpeechEngine) Locale() *core.QLocale {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQLocaleFromPointer(C.QTextToSpeechEngine_Locale(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QLocale).DestroyQLocale)
+		qt.SetFinalizer(tmpValue, (*core.QLocale).DestroyQLocale)
 		return tmpValue
 	}
 	return nil
@@ -1772,7 +1754,7 @@ func (ptr *QTextToSpeechEngine) ConnectStateChanged(f func(state QTextToSpeech__
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "stateChanged") {
-			C.QTextToSpeechEngine_ConnectStateChanged(ptr.Pointer())
+			C.QTextToSpeechEngine_ConnectStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stateChanged")))
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
@@ -1870,7 +1852,7 @@ func (ptr *QTextToSpeechEngine) DisconnectVoice() {
 func (ptr *QTextToSpeechEngine) Voice() *QVoice {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVoiceFromPointer(C.QTextToSpeechEngine_Voice(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QVoice).DestroyQVoice)
+		qt.SetFinalizer(tmpValue, (*QVoice).DestroyQVoice)
 		return tmpValue
 	}
 	return nil
@@ -1878,13 +1860,13 @@ func (ptr *QTextToSpeechEngine) Voice() *QVoice {
 
 func QTextToSpeechEngine_VoiceData(voice QVoice_ITF) *core.QVariant {
 	tmpValue := core.NewQVariantFromPointer(C.QTextToSpeechEngine_QTextToSpeechEngine_VoiceData(PointerFromQVoice(voice)))
-	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func (ptr *QTextToSpeechEngine) VoiceData(voice QVoice_ITF) *core.QVariant {
 	tmpValue := core.NewQVariantFromPointer(C.QTextToSpeechEngine_QTextToSpeechEngine_VoiceData(PointerFromQVoice(voice)))
-	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+	qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 	return tmpValue
 }
 
@@ -1929,7 +1911,7 @@ func (ptr *QTextToSpeechEngine) Volume() float64 {
 func (ptr *QTextToSpeechEngine) __availableLocales_atList(i int) *core.QLocale {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQLocaleFromPointer(C.QTextToSpeechEngine___availableLocales_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QLocale).DestroyQLocale)
+		qt.SetFinalizer(tmpValue, (*core.QLocale).DestroyQLocale)
 		return tmpValue
 	}
 	return nil
@@ -1948,7 +1930,7 @@ func (ptr *QTextToSpeechEngine) __availableLocales_newList() unsafe.Pointer {
 func (ptr *QTextToSpeechEngine) __availableVoices_atList(i int) *QVoice {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVoiceFromPointer(C.QTextToSpeechEngine___availableVoices_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QVoice).DestroyQVoice)
+		qt.SetFinalizer(tmpValue, (*QVoice).DestroyQVoice)
 		return tmpValue
 	}
 	return nil
@@ -1988,7 +1970,7 @@ func (ptr *QTextToSpeechEngine) __children_newList() unsafe.Pointer {
 func (ptr *QTextToSpeechEngine) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QTextToSpeechEngine___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -2044,27 +2026,6 @@ func (ptr *QTextToSpeechEngine) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QTextToSpeechEngine) __findChildren_newList3() unsafe.Pointer {
 	return C.QTextToSpeechEngine___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QTextToSpeechEngine) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QTextToSpeechEngine___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QTextToSpeechEngine) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QTextToSpeechEngine___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QTextToSpeechEngine) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QTextToSpeechEngine___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQTextToSpeechEngine_ChildEvent
@@ -2123,8 +2084,9 @@ func callbackQTextToSpeechEngine_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QTextToSpeechEngine) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QTextToSpeechEngine_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2532,13 +2494,13 @@ func NewQTextToSpeechPluginFromPointer(ptr unsafe.Pointer) (n *QTextToSpeechPlug
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QTextToSpeechPlugin) DestroyQTextToSpeechPlugin() {
 	if ptr != nil {
-		C.free(ptr.Pointer())
+		qt.SetFinalizer(ptr, nil)
+
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2639,7 +2601,7 @@ func (ptr *QTextToSpeechPlugin) __createTextToSpeechEngine_parameters_atList(v s
 			defer C.free(unsafe.Pointer(vC))
 		}
 		tmpValue := core.NewQVariantFromPointer(C.QTextToSpeechPlugin___createTextToSpeechEngine_parameters_atList(ptr.Pointer(), C.struct_QtSpeech_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
@@ -3027,12 +2989,12 @@ func NewQTextToSpeechProcessorFliteFromPointer(ptr unsafe.Pointer) (n *QTextToSp
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QTextToSpeechProcessorFlite) DestroyQTextToSpeechProcessorFlite() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3073,12 +3035,12 @@ func NewQVoiceFromPointer(ptr unsafe.Pointer) (n *QVoice) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QVoice) DestroyQVoice() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3139,4 +3101,31 @@ func (ptr *QVoice) Name() string {
 		return cGoUnpackString(C.QVoice_Name(ptr.Pointer()))
 	}
 	return ""
+}
+
+func init() {
+	qt.ItfMap["speech.QTextToSpeech_ITF"] = QTextToSpeech{}
+	qt.FuncMap["speech.NewQTextToSpeech"] = NewQTextToSpeech
+	qt.FuncMap["speech.NewQTextToSpeech2"] = NewQTextToSpeech2
+	qt.FuncMap["speech.QTextToSpeech_AvailableEngines"] = QTextToSpeech_AvailableEngines
+	qt.EnumMap["speech.QTextToSpeech__Ready"] = int64(QTextToSpeech__Ready)
+	qt.EnumMap["speech.QTextToSpeech__Speaking"] = int64(QTextToSpeech__Speaking)
+	qt.EnumMap["speech.QTextToSpeech__Paused"] = int64(QTextToSpeech__Paused)
+	qt.EnumMap["speech.QTextToSpeech__BackendError"] = int64(QTextToSpeech__BackendError)
+	qt.ItfMap["speech.QTextToSpeechEngine_ITF"] = QTextToSpeechEngine{}
+	qt.FuncMap["speech.NewQTextToSpeechEngine"] = NewQTextToSpeechEngine
+	qt.FuncMap["speech.QTextToSpeechEngine_CreateVoice"] = QTextToSpeechEngine_CreateVoice
+	qt.FuncMap["speech.QTextToSpeechEngine_VoiceData"] = QTextToSpeechEngine_VoiceData
+	qt.ItfMap["speech.QTextToSpeechPlugin_ITF"] = QTextToSpeechPlugin{}
+	qt.ItfMap["speech.QVoice_ITF"] = QVoice{}
+	qt.FuncMap["speech.QVoice_AgeName"] = QVoice_AgeName
+	qt.FuncMap["speech.QVoice_GenderName"] = QVoice_GenderName
+	qt.EnumMap["speech.QVoice__Child"] = int64(QVoice__Child)
+	qt.EnumMap["speech.QVoice__Teenager"] = int64(QVoice__Teenager)
+	qt.EnumMap["speech.QVoice__Adult"] = int64(QVoice__Adult)
+	qt.EnumMap["speech.QVoice__Senior"] = int64(QVoice__Senior)
+	qt.EnumMap["speech.QVoice__Other"] = int64(QVoice__Other)
+	qt.EnumMap["speech.QVoice__Male"] = int64(QVoice__Male)
+	qt.EnumMap["speech.QVoice__Female"] = int64(QVoice__Female)
+	qt.EnumMap["speech.QVoice__Unknown"] = int64(QVoice__Unknown)
 }

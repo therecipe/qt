@@ -8,21 +8,24 @@ package sailfish
 //#include "sailfish_sailfish.h"
 import "C"
 import (
+	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
 	"github.com/therecipe/qt/quick"
-	"runtime"
 	"strings"
 	"unsafe"
 )
 
+func cGoFreePacked(ptr unsafe.Pointer) { core.NewQByteArrayFromPointer(ptr).DestroyQByteArray() }
 func cGoUnpackString(s C.struct_QtSailfish_PackedString) string {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		return C.GoString(s.data)
 	}
 	return C.GoStringN(s.data, C.int(s.len))
 }
 func cGoUnpackBytes(s C.struct_QtSailfish_PackedString) []byte {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
 		return *(*[]byte)(unsafe.Pointer(&gs))
@@ -73,15 +76,14 @@ func NewSailfishAppFromPointer(ptr unsafe.Pointer) (n *SailfishApp) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *SailfishApp) DestroySailfishApp() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
-
 func SailfishApp_Application(argc int, argv []string) *gui.QGuiApplication {
 	argvC := C.CString(strings.Join(argv, "|"))
 	defer C.free(unsafe.Pointer(argvC))
@@ -125,7 +127,7 @@ func SailfishApp_PathTo(filename string) *core.QUrl {
 		defer C.free(unsafe.Pointer(filenameC))
 	}
 	tmpValue := core.NewQUrlFromPointer(C.SailfishApp_SailfishApp_PathTo(C.struct_QtSailfish_PackedString{data: filenameC, len: C.longlong(len(filename))}))
-	runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+	qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 	return tmpValue
 }
 
@@ -136,18 +138,27 @@ func (ptr *SailfishApp) PathTo(filename string) *core.QUrl {
 		defer C.free(unsafe.Pointer(filenameC))
 	}
 	tmpValue := core.NewQUrlFromPointer(C.SailfishApp_SailfishApp_PathTo(C.struct_QtSailfish_PackedString{data: filenameC, len: C.longlong(len(filename))}))
-	runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+	qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 	return tmpValue
 }
 
 func SailfishApp_PathToMainQml() *core.QUrl {
 	tmpValue := core.NewQUrlFromPointer(C.SailfishApp_SailfishApp_PathToMainQml())
-	runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+	qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 	return tmpValue
 }
 
 func (ptr *SailfishApp) PathToMainQml() *core.QUrl {
 	tmpValue := core.NewQUrlFromPointer(C.SailfishApp_SailfishApp_PathToMainQml())
-	runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+	qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 	return tmpValue
+}
+
+func init() {
+	qt.ItfMap["sailfish.SailfishApp_ITF"] = SailfishApp{}
+	qt.FuncMap["sailfish.SailfishApp_Application"] = SailfishApp_Application
+	qt.FuncMap["sailfish.SailfishApp_Main"] = SailfishApp_Main
+	qt.FuncMap["sailfish.SailfishApp_CreateView"] = SailfishApp_CreateView
+	qt.FuncMap["sailfish.SailfishApp_PathTo"] = SailfishApp_PathTo
+	qt.FuncMap["sailfish.SailfishApp_PathToMainQml"] = SailfishApp_PathToMainQml
 }

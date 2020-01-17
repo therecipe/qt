@@ -11,18 +11,20 @@ import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/widgets"
-	"runtime"
 	"strings"
 	"unsafe"
 )
 
+func cGoFreePacked(ptr unsafe.Pointer) { core.NewQByteArrayFromPointer(ptr).DestroyQByteArray() }
 func cGoUnpackString(s C.struct_QtTestLib_PackedString) string {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		return C.GoString(s.data)
 	}
 	return C.GoStringN(s.data, C.int(s.len))
 }
 func cGoUnpackBytes(s C.struct_QtTestLib_PackedString) []byte {
+	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
 		return *(*[]byte)(unsafe.Pointer(&gs))
@@ -73,12 +75,12 @@ func NewQAbstractItemModelTesterFromPointer(ptr unsafe.Pointer) (n *QAbstractIte
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QAbstractItemModelTester) DestroyQAbstractItemModelTester() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -94,13 +96,13 @@ const (
 
 func NewQAbstractItemModelTester(model core.QAbstractItemModel_ITF, parent core.QObject_ITF) *QAbstractItemModelTester {
 	tmpValue := NewQAbstractItemModelTesterFromPointer(C.QAbstractItemModelTester_NewQAbstractItemModelTester(core.PointerFromQAbstractItemModel(model), core.PointerFromQObject(parent)))
-	runtime.SetFinalizer(tmpValue, (*QAbstractItemModelTester).DestroyQAbstractItemModelTester)
+	qt.SetFinalizer(tmpValue, (*QAbstractItemModelTester).DestroyQAbstractItemModelTester)
 	return tmpValue
 }
 
 func NewQAbstractItemModelTester2(model core.QAbstractItemModel_ITF, mode QAbstractItemModelTester__FailureReportingMode, parent core.QObject_ITF) *QAbstractItemModelTester {
 	tmpValue := NewQAbstractItemModelTesterFromPointer(C.QAbstractItemModelTester_NewQAbstractItemModelTester2(core.PointerFromQAbstractItemModel(model), C.longlong(mode), core.PointerFromQObject(parent)))
-	runtime.SetFinalizer(tmpValue, (*QAbstractItemModelTester).DestroyQAbstractItemModelTester)
+	qt.SetFinalizer(tmpValue, (*QAbstractItemModelTester).DestroyQAbstractItemModelTester)
 	return tmpValue
 }
 
@@ -152,12 +154,12 @@ func NewQEventSizeOfCheckerFromPointer(ptr unsafe.Pointer) (n *QEventSizeOfCheck
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QEventSizeOfChecker) DestroyQEventSizeOfChecker() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -222,7 +224,7 @@ func (ptr *QSignalSpy) IsValid() bool {
 func (ptr *QSignalSpy) Signal() *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QSignalSpy_Signal(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -293,7 +295,7 @@ func (ptr *QSignalSpy) __children_newList() unsafe.Pointer {
 func (ptr *QSignalSpy) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QSignalSpy___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
@@ -349,27 +351,6 @@ func (ptr *QSignalSpy) __findChildren_setList3(i core.QObject_ITF) {
 
 func (ptr *QSignalSpy) __findChildren_newList3() unsafe.Pointer {
 	return C.QSignalSpy___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QSignalSpy) __qFindChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSignalSpy___qFindChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSignalSpy) __qFindChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSignalSpy___qFindChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QSignalSpy) __qFindChildren_newList2() unsafe.Pointer {
-	return C.QSignalSpy___qFindChildren_newList2(ptr.Pointer())
 }
 
 //export callbackQSignalSpy_ChildEvent
@@ -428,8 +409,9 @@ func callbackQSignalSpy_DeleteLater(ptr unsafe.Pointer) {
 
 func (ptr *QSignalSpy) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QSignalSpy_DeleteLaterDefault(ptr.Pointer())
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -564,12 +546,12 @@ func NewQSpontaneKeyEventFromPointer(ptr unsafe.Pointer) (n *QSpontaneKeyEvent) 
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QSpontaneKeyEvent) DestroyQSpontaneKeyEvent() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -610,12 +592,12 @@ func NewQTestFromPointer(ptr unsafe.Pointer) (n *QTest) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QTest) DestroyQTest() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -766,12 +748,12 @@ func NewQTestDataFromPointer(ptr unsafe.Pointer) (n *QTestData) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QTestData) DestroyQTestData() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -813,12 +795,12 @@ func NewQTestDelayEventFromPointer(ptr unsafe.Pointer) (n *QTestDelayEvent) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QTestDelayEvent) DestroyQTestDelayEvent() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -859,12 +841,12 @@ func NewQTestEventFromPointer(ptr unsafe.Pointer) (n *QTestEvent) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QTestEvent) DestroyQTestEvent() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -907,13 +889,13 @@ func NewQTestEventListFromPointer(ptr unsafe.Pointer) (n *QTestEventList) {
 }
 func NewQTestEventList() *QTestEventList {
 	tmpValue := NewQTestEventListFromPointer(C.QTestEventList_NewQTestEventList())
-	runtime.SetFinalizer(tmpValue, (*QTestEventList).DestroyQTestEventList)
+	qt.SetFinalizer(tmpValue, (*QTestEventList).DestroyQTestEventList)
 	return tmpValue
 }
 
 func NewQTestEventList2(other QTestEventList_ITF) *QTestEventList {
 	tmpValue := NewQTestEventListFromPointer(C.QTestEventList_NewQTestEventList2(PointerFromQTestEventList(other)))
-	runtime.SetFinalizer(tmpValue, (*QTestEventList).DestroyQTestEventList)
+	qt.SetFinalizer(tmpValue, (*QTestEventList).DestroyQTestEventList)
 	return tmpValue
 }
 
@@ -1029,9 +1011,11 @@ func (ptr *QTestEventList) Simulate(w widgets.QWidget_ITF) {
 
 func (ptr *QTestEventList) DestroyQTestEventList() {
 	if ptr.Pointer() != nil {
+
+		qt.SetFinalizer(ptr, nil)
 		C.QTestEventList_DestroyQTestEventList(ptr.Pointer())
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1072,12 +1056,12 @@ func NewQTestEventLoopFromPointer(ptr unsafe.Pointer) (n *QTestEventLoop) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QTestEventLoop) DestroyQTestEventLoop() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1119,12 +1103,12 @@ func NewQTestKeyClicksEventFromPointer(ptr unsafe.Pointer) (n *QTestKeyClicksEve
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QTestKeyClicksEvent) DestroyQTestKeyClicksEvent() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1166,12 +1150,12 @@ func NewQTestKeyEventFromPointer(ptr unsafe.Pointer) (n *QTestKeyEvent) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QTestKeyEvent) DestroyQTestKeyEvent() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1213,11 +1197,101 @@ func NewQTestMouseEventFromPointer(ptr unsafe.Pointer) (n *QTestMouseEvent) {
 	n.SetPointer(ptr)
 	return
 }
-
 func (ptr *QTestMouseEvent) DestroyQTestMouseEvent() {
 	if ptr != nil {
+		qt.SetFinalizer(ptr, nil)
+
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
+}
+func init() {
+	qt.ItfMap["testlib.QAbstractItemModelTester_ITF"] = QAbstractItemModelTester{}
+	qt.FuncMap["testlib.NewQAbstractItemModelTester"] = NewQAbstractItemModelTester
+	qt.FuncMap["testlib.NewQAbstractItemModelTester2"] = NewQAbstractItemModelTester2
+	qt.EnumMap["testlib.QAbstractItemModelTester__QtTest"] = int64(QAbstractItemModelTester__QtTest)
+	qt.EnumMap["testlib.QAbstractItemModelTester__Warning"] = int64(QAbstractItemModelTester__Warning)
+	qt.EnumMap["testlib.QAbstractItemModelTester__Fatal"] = int64(QAbstractItemModelTester__Fatal)
+	qt.ItfMap["testlib.QEventSizeOfChecker_ITF"] = QEventSizeOfChecker{}
+	qt.ItfMap["testlib.QSignalSpy_ITF"] = QSignalSpy{}
+	qt.FuncMap["testlib.NewQSignalSpy"] = NewQSignalSpy
+	qt.ItfMap["testlib.QSpontaneKeyEvent_ITF"] = QSpontaneKeyEvent{}
+	qt.EnumMap["testlib.QTest__Abort"] = int64(QTest__Abort)
+	qt.EnumMap["testlib.QTest__Continue"] = int64(QTest__Continue)
+	qt.EnumMap["testlib.QTest__FramesPerSecond"] = int64(QTest__FramesPerSecond)
+	qt.EnumMap["testlib.QTest__BitsPerSecond"] = int64(QTest__BitsPerSecond)
+	qt.EnumMap["testlib.QTest__BytesPerSecond"] = int64(QTest__BytesPerSecond)
+	qt.EnumMap["testlib.QTest__WalltimeMilliseconds"] = int64(QTest__WalltimeMilliseconds)
+	qt.EnumMap["testlib.QTest__CPUTicks"] = int64(QTest__CPUTicks)
+	qt.EnumMap["testlib.QTest__InstructionReads"] = int64(QTest__InstructionReads)
+	qt.EnumMap["testlib.QTest__Events"] = int64(QTest__Events)
+	qt.EnumMap["testlib.QTest__WalltimeNanoseconds"] = int64(QTest__WalltimeNanoseconds)
+	qt.EnumMap["testlib.QTest__BytesAllocated"] = int64(QTest__BytesAllocated)
+	qt.EnumMap["testlib.QTest__CPUMigrations"] = int64(QTest__CPUMigrations)
+	qt.EnumMap["testlib.QTest__CPUCycles"] = int64(QTest__CPUCycles)
+	qt.EnumMap["testlib.QTest__BusCycles"] = int64(QTest__BusCycles)
+	qt.EnumMap["testlib.QTest__StalledCycles"] = int64(QTest__StalledCycles)
+	qt.EnumMap["testlib.QTest__Instructions"] = int64(QTest__Instructions)
+	qt.EnumMap["testlib.QTest__BranchInstructions"] = int64(QTest__BranchInstructions)
+	qt.EnumMap["testlib.QTest__BranchMisses"] = int64(QTest__BranchMisses)
+	qt.EnumMap["testlib.QTest__CacheReferences"] = int64(QTest__CacheReferences)
+	qt.EnumMap["testlib.QTest__CacheReads"] = int64(QTest__CacheReads)
+	qt.EnumMap["testlib.QTest__CacheWrites"] = int64(QTest__CacheWrites)
+	qt.EnumMap["testlib.QTest__CachePrefetches"] = int64(QTest__CachePrefetches)
+	qt.EnumMap["testlib.QTest__CacheMisses"] = int64(QTest__CacheMisses)
+	qt.EnumMap["testlib.QTest__CacheReadMisses"] = int64(QTest__CacheReadMisses)
+	qt.EnumMap["testlib.QTest__CacheWriteMisses"] = int64(QTest__CacheWriteMisses)
+	qt.EnumMap["testlib.QTest__CachePrefetchMisses"] = int64(QTest__CachePrefetchMisses)
+	qt.EnumMap["testlib.QTest__ContextSwitches"] = int64(QTest__ContextSwitches)
+	qt.EnumMap["testlib.QTest__PageFaults"] = int64(QTest__PageFaults)
+	qt.EnumMap["testlib.QTest__MinorPageFaults"] = int64(QTest__MinorPageFaults)
+	qt.EnumMap["testlib.QTest__MajorPageFaults"] = int64(QTest__MajorPageFaults)
+	qt.EnumMap["testlib.QTest__AlignmentFaults"] = int64(QTest__AlignmentFaults)
+	qt.EnumMap["testlib.QTest__EmulationFaults"] = int64(QTest__EmulationFaults)
+	qt.EnumMap["testlib.QTest__RefCPUCycles"] = int64(QTest__RefCPUCycles)
+	qt.EnumMap["testlib.QTest__Press"] = int64(QTest__Press)
+	qt.EnumMap["testlib.QTest__Release"] = int64(QTest__Release)
+	qt.EnumMap["testlib.QTest__Click"] = int64(QTest__Click)
+	qt.EnumMap["testlib.QTest__Shortcut"] = int64(QTest__Shortcut)
+	qt.EnumMap["testlib.QTest__MousePress"] = int64(QTest__MousePress)
+	qt.EnumMap["testlib.QTest__MouseRelease"] = int64(QTest__MouseRelease)
+	qt.EnumMap["testlib.QTest__MouseClick"] = int64(QTest__MouseClick)
+	qt.EnumMap["testlib.QTest__MouseDClick"] = int64(QTest__MouseDClick)
+	qt.EnumMap["testlib.QTest__MouseMove"] = int64(QTest__MouseMove)
+	qt.EnumMap["testlib.QTest__AI_Undefined"] = int64(QTest__AI_Undefined)
+	qt.EnumMap["testlib.QTest__AI_Name"] = int64(QTest__AI_Name)
+	qt.EnumMap["testlib.QTest__AI_Result"] = int64(QTest__AI_Result)
+	qt.EnumMap["testlib.QTest__AI_Tests"] = int64(QTest__AI_Tests)
+	qt.EnumMap["testlib.QTest__AI_Failures"] = int64(QTest__AI_Failures)
+	qt.EnumMap["testlib.QTest__AI_Errors"] = int64(QTest__AI_Errors)
+	qt.EnumMap["testlib.QTest__AI_Type"] = int64(QTest__AI_Type)
+	qt.EnumMap["testlib.QTest__AI_Description"] = int64(QTest__AI_Description)
+	qt.EnumMap["testlib.QTest__AI_PropertyValue"] = int64(QTest__AI_PropertyValue)
+	qt.EnumMap["testlib.QTest__AI_QTestVersion"] = int64(QTest__AI_QTestVersion)
+	qt.EnumMap["testlib.QTest__AI_QtVersion"] = int64(QTest__AI_QtVersion)
+	qt.EnumMap["testlib.QTest__AI_File"] = int64(QTest__AI_File)
+	qt.EnumMap["testlib.QTest__AI_Line"] = int64(QTest__AI_Line)
+	qt.EnumMap["testlib.QTest__AI_Metric"] = int64(QTest__AI_Metric)
+	qt.EnumMap["testlib.QTest__AI_Tag"] = int64(QTest__AI_Tag)
+	qt.EnumMap["testlib.QTest__AI_Value"] = int64(QTest__AI_Value)
+	qt.EnumMap["testlib.QTest__AI_Iterations"] = int64(QTest__AI_Iterations)
+	qt.EnumMap["testlib.QTest__LET_Undefined"] = int64(QTest__LET_Undefined)
+	qt.EnumMap["testlib.QTest__LET_Property"] = int64(QTest__LET_Property)
+	qt.EnumMap["testlib.QTest__LET_Properties"] = int64(QTest__LET_Properties)
+	qt.EnumMap["testlib.QTest__LET_Failure"] = int64(QTest__LET_Failure)
+	qt.EnumMap["testlib.QTest__LET_Error"] = int64(QTest__LET_Error)
+	qt.EnumMap["testlib.QTest__LET_TestCase"] = int64(QTest__LET_TestCase)
+	qt.EnumMap["testlib.QTest__LET_TestSuite"] = int64(QTest__LET_TestSuite)
+	qt.EnumMap["testlib.QTest__LET_Benchmark"] = int64(QTest__LET_Benchmark)
+	qt.EnumMap["testlib.QTest__LET_SystemError"] = int64(QTest__LET_SystemError)
+	qt.ItfMap["testlib.QTestData_ITF"] = QTestData{}
+	qt.ItfMap["testlib.QTestDelayEvent_ITF"] = QTestDelayEvent{}
+	qt.ItfMap["testlib.QTestEvent_ITF"] = QTestEvent{}
+	qt.ItfMap["testlib.QTestEventList_ITF"] = QTestEventList{}
+	qt.FuncMap["testlib.NewQTestEventList"] = NewQTestEventList
+	qt.FuncMap["testlib.NewQTestEventList2"] = NewQTestEventList2
+	qt.ItfMap["testlib.QTestEventLoop_ITF"] = QTestEventLoop{}
+	qt.ItfMap["testlib.QTestKeyClicksEvent_ITF"] = QTestKeyClicksEvent{}
+	qt.ItfMap["testlib.QTestKeyEvent_ITF"] = QTestKeyEvent{}
+	qt.ItfMap["testlib.QTestMouseEvent_ITF"] = QTestMouseEvent{}
 }
