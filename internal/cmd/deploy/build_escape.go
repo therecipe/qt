@@ -31,8 +31,8 @@ func escapeFlags(ldFlags []string, ldFlagsCustom string) string {
 		ldFlags = append(ldFlags, strings.Split(ldFlagsCustom, " ")...)
 	}
 
-	if out := strings.Replace(strings.Join(ldFlags, "\" \""), "_DONT_ESCAPE_", " ", -1); len(out) > 0 {
-		return fmt.Sprintf("\"%v\"", out)
+	if out := strings.Replace(strings.Join(ldFlags, " "), "_DONT_ESCAPE_", " ", -1); len(out) > 0 {
+		return fmt.Sprintf("%q", out)
 	}
 	return ""
 }
