@@ -130,6 +130,7 @@ func ANDROID_NDK_PLATFORM() string {
 		return value
 	}
 
-	// default value as set in cmd.go BuildEnv function
+	// default value as recommended in https://wiki.qt.io/Qt_for_Android_known_issues
+	// to workaround problems with arm64 android builds
 	return "android-21"
 }
