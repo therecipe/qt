@@ -263,11 +263,18 @@ func ToolPath(tool, target string) string {
 	case "ios", "ios-simulator":
 		return filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), "ios", "bin", tool)
 	case "android":
+		if QT_VERSION_NUM() >= 5140 {
+			return filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), "android", "bin", tool)
+		}
 		if GOARCH() == "arm64" {
 			return filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), "android_arm64_v8a", "bin", tool)
 		}
 		return filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), "android_armv7", "bin", tool)
 	case "android-emulator":
+		if QT_VERSION_NUM() >= 5140 {
+			return filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), "android", "bin", tool)
+		}
+		//TODO: x86_64
 		return filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), "android_x86", "bin", tool)
 	case "sailfish", "sailfish-emulator":
 		return filepath.Join("/srv/mer/targets/SailfishOS-"+QT_SAILFISH_VERSION()+"-i486/usr/lib/qt5/bin/", tool)
@@ -416,9 +423,7 @@ func QT_GEN_QUICK_EXTRAS() bool {
 func GoList(args ...string) *exec.Cmd {
 	cmd := exec.Command("go", "list")
 	if UseGOMOD("") {
-		if strings.Contains(strings.Join(args, "|"), "github.com/therecipe/qt/internal") && !strings.Contains(strings.Join(args, "|"), "github.com/therecipe/qt/internal/binding/runtime") {
-			cmd.Args = append(cmd.Args, "-mod=readonly")
-		} else {
+		if !(strings.Contains(strings.Join(args, "|"), "github.com/therecipe/qt/internal") && !strings.Contains(strings.Join(args, "|"), "github.com/therecipe/qt/internal/binding/runtime")) {
 			cmd.Args = append(cmd.Args, GOFLAGS())
 		}
 		cmd.Dir = filepath.Dir(GOMOD(""))

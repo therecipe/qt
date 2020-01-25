@@ -568,12 +568,15 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 
 func BuildEnv(target, name, depPath string) (map[string]string, []string, []string, string) {
 
-	var tags []string
-	var ldFlags []string
-	var out string
-	var env map[string]string
+	var (
+		tags    []string
+		ldFlags []string
+		out     string
+		env     map[string]string
+	)
 
 	androidAPI := utils.ANDROID_NDK_PLATFORM()
+	androidEABI := strings.Replace(androidAPI, "-", "eabi", -1)
 
 	switch target {
 	case "android":
@@ -592,16 +595,20 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 			"CGO_ENABLED": "1",
 			"CC":          filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "llvm", "prebuilt", runtime.GOOS+"-x86_64", "bin", "clang"),
 			"CXX":         filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "llvm", "prebuilt", runtime.GOOS+"-x86_64", "bin", "clang++"),
-
-			"CGO_CPPFLAGS": fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=%v -target armv7-none-linux-androideabi -gcc-toolchain %v --sysroot=%v -isystem %v",
+		}
+		if utils.QT_VERSION_NUM() >= 5140 {
+			env["CGO_CPPFLAGS"] = "-target armv7a-linux-" + androidEABI
+			env["CGO_LDFLAGS"] = "-target armv7a-linux-" + androidEABI
+		} else {
+			env["CGO_CPPFLAGS"] = fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=%v -target armv7-none-linux-androideabi -gcc-toolchain %v --sysroot=%v -isystem %v",
 				androidAPI,
 				filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64"),
 				filepath.Join(utils.ANDROID_NDK_DIR(), "sysroot"),
-				filepath.Join(utils.ANDROID_NDK_DIR(), "sysroot", "usr", "include", "arm-linux-androideabi")),
-			"CGO_LDFLAGS": fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=%v -target armv7-none-linux-androideabi -gcc-toolchain %v --sysroot=%v",
+				filepath.Join(utils.ANDROID_NDK_DIR(), "sysroot", "usr", "include", "arm-linux-androideabi"))
+			env["CGO_LDFLAGS"] = fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=%v -target armv7-none-linux-androideabi -gcc-toolchain %v --sysroot=%v",
 				androidAPI,
 				filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64"),
-				filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", androidAPI, "arch-arm")),
+				filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", androidAPI, "arch-arm"))
 		}
 		if runtime.GOOS == "windows" {
 			env["TMP"] = os.Getenv("TMP")
@@ -611,15 +618,20 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 		if utils.GOARCH() == "arm64" {
 			env["GOARCH"] = "arm64"
 
-			env["CGO_CPPFLAGS"] = fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=%v -target aarch64-none-linux-android -gcc-toolchain %v --sysroot=%v -isystem %v",
-				androidAPI,
-				filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "aarch64-linux-android-4.9", "prebuilt", runtime.GOOS+"-x86_64"),
-				filepath.Join(utils.ANDROID_NDK_DIR(), "sysroot"),
-				filepath.Join(utils.ANDROID_NDK_DIR(), "sysroot", "usr", "include", "aarch64-linux-android"))
-			env["CGO_LDFLAGS"] = fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=%v -target aarch64-none-linux-android -gcc-toolchain %v --sysroot=%v",
-				androidAPI,
-				filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "aarch64-linux-android-4.9", "prebuilt", runtime.GOOS+"-x86_64"),
-				filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-21", "arch-arm64"))
+			if utils.QT_VERSION_NUM() >= 5140 {
+				env["CGO_CPPFLAGS"] = "-target aarch64-linux-" + androidEABI
+				env["CGO_LDFLAGS"] = "-target aarch64-linux-" + androidEABI
+			} else {
+				env["CGO_CPPFLAGS"] = fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=%v -target aarch64-none-linux-android -gcc-toolchain %v --sysroot=%v -isystem %v",
+					androidAPI,
+					filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "aarch64-linux-android-4.9", "prebuilt", runtime.GOOS+"-x86_64"),
+					filepath.Join(utils.ANDROID_NDK_DIR(), "sysroot"),
+					filepath.Join(utils.ANDROID_NDK_DIR(), "sysroot", "usr", "include", "aarch64-linux-android"))
+				env["CGO_LDFLAGS"] = fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=%v -target aarch64-none-linux-android -gcc-toolchain %v --sysroot=%v",
+					androidAPI,
+					filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "aarch64-linux-android-4.9", "prebuilt", runtime.GOOS+"-x86_64"),
+					filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", androidAPI, "arch-arm64"))
+			}
 		}
 
 	case "android-emulator":
@@ -637,16 +649,20 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 			"CGO_ENABLED": "1",
 			"CC":          filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "llvm", "prebuilt", runtime.GOOS+"-x86_64", "bin", "clang"),
 			"CXX":         filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "llvm", "prebuilt", runtime.GOOS+"-x86_64", "bin", "clang++"),
-
-			"CGO_CPPFLAGS": fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=%v -target i686-none-linux-android -mstackrealign -gcc-toolchain %v --sysroot=%v -isystem %v",
+		}
+		if utils.QT_VERSION_NUM() >= 5140 {
+			env["CGO_CPPFLAGS"] = "-target i686-linux-" + androidEABI
+			env["CGO_LDFLAGS"] = "-target i686-linux-" + androidEABI
+		} else {
+			env["CGO_CPPFLAGS"] = fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=%v -target i686-none-linux-android -mstackrealign -gcc-toolchain %v --sysroot=%v -isystem %v",
 				androidAPI,
 				filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "x86-4.9", "prebuilt", runtime.GOOS+"-x86_64"),
 				filepath.Join(utils.ANDROID_NDK_DIR(), "sysroot"),
-				filepath.Join(utils.ANDROID_NDK_DIR(), "sysroot", "usr", "include", "i686-linux-android")),
-			"CGO_LDFLAGS": fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=%v -target i686-none-linux-android -mstackrealign -gcc-toolchain %v --sysroot=%v",
+				filepath.Join(utils.ANDROID_NDK_DIR(), "sysroot", "usr", "include", "i686-linux-android"))
+			env["CGO_LDFLAGS"] = fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=%v -target i686-none-linux-android -mstackrealign -gcc-toolchain %v --sysroot=%v",
 				androidAPI,
 				filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "x86-4.9", "prebuilt", runtime.GOOS+"-x86_64"),
-				filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-21", "arch-x86")),
+				filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", androidAPI, "arch-x86"))
 		}
 		if runtime.GOOS == "windows" {
 			env["TMP"] = os.Getenv("TMP")

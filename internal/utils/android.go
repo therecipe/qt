@@ -55,10 +55,16 @@ func ANDROID_NDK_DIR() string {
 	if dir, ok := os.LookupEnv("ANDROID_NDK_ROOT"); ok {
 		return filepath.Clean(dir)
 	}
-	if runtime.GOOS == "windows" {
-		return windowsSystemDrive() + "\\android-ndk-r18b"
+
+	version := "r18b" //TODO: test r19c and 20b
+	if QT_VERSION_NUM() >= 5140 {
+		version = "r21"
 	}
-	return filepath.Join(os.Getenv("HOME"), "android-ndk-r18b")
+
+	if runtime.GOOS == "windows" {
+		return windowsSystemDrive() + "\\android-ndk-" + version
+	}
+	return filepath.Join(os.Getenv("HOME"), "android-ndk-"+version)
 }
 
 func ANDROID_NDK_MAJOR_VERSION() int {
@@ -104,7 +110,7 @@ func ANDROID_NDK_MAJOR_VERSION() int {
 
 // ANDROID_NDK_REQUIRE_NOSTDLIBPP_LDFLAG returns true if the -nostdlib++ flag is required by Android NDK and false otherwise
 func ANDROID_NDK_REQUIRE_NOSTDLIBPP_LDFLAG() bool {
-	if ANDROID_NDK_MAJOR_VERSION() > 19 {
+	if ANDROID_NDK_MAJOR_VERSION() > 19 && QT_VERSION_NUM() < 5140 {
 		return true
 	}
 	return false
@@ -112,7 +118,7 @@ func ANDROID_NDK_REQUIRE_NOSTDLIBPP_LDFLAG() bool {
 
 // ANDROID_NDK_NOSTDLIBPP_LDFLAG return -nostdlib++ or empty string if that flag is no required by Android NDK
 func ANDROID_NDK_NOSTDLIBPP_LDFLAG() string {
-	if ANDROID_NDK_MAJOR_VERSION() > 19 {
+	if ANDROID_NDK_REQUIRE_NOSTDLIBPP_LDFLAG() {
 		return "-nostdlib++"
 	}
 	return ""

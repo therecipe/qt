@@ -4,6 +4,10 @@ jobs:
     parameters:
       tag: entry
   -
+    template: docker_widgets_playground_template.yml
+    parameters:
+      tag: widgets_playground
+  -
     template: docker_windows_ci_template.yml
     parameters:
       name: windows_ft

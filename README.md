@@ -9,7 +9,9 @@ This package allows you to write Qt applications entirely in Go and makes deploy
 
 [Gallery](https://github.com/therecipe/qt/wiki/Gallery) of example applications making use of this package.
 
-[WebAssembly Live Demo](https://therecipe.github.io/widgets_playground) | *[repo](https://github.com/therecipe/widgets_playground)*
+[WebAssembly Demo (new)](https://therecipe.github.io/entry) | *[repo](https://github.com/therecipe/entry)*
+
+[WebAssembly Demo (old)](https://therecipe.github.io/widgets_playground) | *[repo](https://github.com/therecipe/widgets_playground)*
 
 Status
 ------

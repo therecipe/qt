@@ -320,6 +320,20 @@ func createMakefile(module, path, target string, mode int) {
 		cmd.Args = append(cmd.Args, []string{"-spec", "macx-ios-clang", "CONFIG+=iphonesimulator", "CONFIG+=simulator"}...)
 	case "android", "android-emulator":
 		cmd.Args = append(cmd.Args, []string{"-spec", "android-clang"}...)
+		if utils.QT_VERSION_NUM() >= 5140 {
+			var arch string
+			if target == "android" {
+				if utils.GOARCH() == "arm64" {
+					arch = "arm64-v8a"
+				} else {
+					arch = "armeabi-v7a"
+				}
+			} else {
+				arch = "x86"
+				//TODO: x86_64
+			}
+			cmd.Args = append(cmd.Args, "ANDROID_ABIS="+arch)
+		}
 		cmd.Env = []string{fmt.Sprintf("ANDROID_NDK_ROOT=%v", utils.ANDROID_NDK_DIR()), fmt.Sprintf("ANDROID_NDK_PLATFORM=%v", utils.ANDROID_NDK_PLATFORM())}
 	case "sailfish", "sailfish-emulator":
 		cmd.Args = append(cmd.Args, []string{"-spec", "linux-g++"}...)
@@ -475,6 +489,20 @@ func createMakefile(module, path, target string, mode int) {
 		utils.RemoveAll(filepath.Join(path, fmt.Sprintf("%v.xcodeproj", filepath.Base(path))))
 	case "android", "android-emulator":
 		utils.RemoveAll(filepath.Join(path, fmt.Sprintf("android-lib%v.so-deployment-settings.json", filepath.Base(path))))
+		utils.RemoveAll(filepath.Join(path, fmt.Sprintf("android-%v-deployment-settings.json", filepath.Base(path))))
+
+		var arch string
+		if target == "android" {
+			if utils.GOARCH() == "arm64" {
+				arch = "arm64-v8a"
+			} else {
+				arch = "armeabi-v7a"
+			}
+		} else {
+			arch = "x86"
+			//TODO: x86_64
+		}
+		utils.RemoveAll(filepath.Join(path, arch))
 	case "sailfish", "sailfish-emulator":
 	case "asteroid":
 	case "rpi1", "rpi2", "rpi3":

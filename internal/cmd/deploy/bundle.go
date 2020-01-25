@@ -9,6 +9,7 @@ import (
 	"path/filepath"
 	"runtime"
 	"strings"
+	"time"
 
 	"github.com/therecipe/qt/internal/binding/parser"
 	"github.com/therecipe/qt/internal/binding/templater"
@@ -140,11 +141,11 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 				if info.IsDir() {
 					return nil
 				}
-				if strings.HasPrefix(filepath.Base(path), "lib") {
+				if strings.HasPrefix(filepath.Base(path), "lib") { //TODO: only strip binaries
 					if strings.HasPrefix(target, "rpi") {
-						utils.RunCmd(exec.Command(rpiToolPath+"strip", "-s", path), "strip binaries on linux")
+						utils.RunCmdOptional(exec.Command(rpiToolPath+"strip", "-s", path), "strip binaries on linux")
 					} else {
-						utils.RunCmd(exec.Command("strip", "-s", path), "strip binaries on linux")
+						utils.RunCmdOptional(exec.Command("strip", "-s", path), "strip binaries on linux")
 					}
 				}
 				return nil
@@ -553,11 +554,25 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 		env, _, _, _ := cmd.BuildEnv(target, "", "")
 		compiler := env["CXX"]
 
+		libPath := filepath.Join(depPath, "build", "libs", "armeabi-v7a")
+		if target == "android" && utils.GOARCH() == "arm64" {
+			libPath = filepath.Join(depPath, "build", "libs", "arm64-v8a")
+		}
+		if target == "android-emulator" {
+			libPath = filepath.Join(depPath, "build", "libs", "x86")
+		}
+		utils.MkdirAll(libPath)
+
+		finalLibGoName := "libgo.so"
+		if utils.QT_VERSION_NUM() >= 5140 {
+			finalLibGoName = "libgo_" + filepath.Base(libPath) + ".so"
+		}
+
 		wrapper := filepath.Join(depPath, "c_main_wrapper.cpp")
 		utils.Save(wrapper, "#include \"libgo_base.h\"\nint main(int argc, char *argv[]) { go_main_wrapper(argc, argv); }")
-		cmd := exec.Command(compiler, "c_main_wrapper.cpp", "-o", filepath.Join(depPath, "libgo.so"), "-I../..", "-L.", "-lgo_base", "-Wl,-soname,libgo.so", "-shared")
+		cmd := exec.Command(compiler, "c_main_wrapper.cpp", "-o", filepath.Join(depPath, "libgo.so"), "-I../..", "-L.", "-lgo_base", "-Wl,-soname,"+finalLibGoName, "-shared")
 		if target == "android-emulator" {
-			cmd = exec.Command(compiler, "c_main_wrapper.cpp", "-o", filepath.Join(depPath, "libgo.so"), "-I../..", "-L.", "-lgo_base", "-Wl,-soname,libgo.so", "-shared")
+			cmd = exec.Command(compiler, "c_main_wrapper.cpp", "-o", filepath.Join(depPath, "libgo.so"), "-I../..", "-L.", "-lgo_base", "-Wl,-soname,"+finalLibGoName, "-shared")
 		}
 		if utils.ANDROID_NDK_REQUIRE_NOSTDLIBPP_LDFLAG() {
 			cmd.Args = append(cmd.Args, "-nostdlib++")
@@ -573,31 +588,19 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 		strip.Dir = depPath
 		utils.RunCmd(strip, fmt.Sprintf("strip binary for %v on %v", target, runtime.GOOS))
 
-		libPath := filepath.Join(depPath, "build", "libs", "armeabi-v7a")
-		if target == "android" && utils.GOARCH() == "arm64" {
-			libPath = filepath.Join(depPath, "build", "libs", "arm64-v8a")
-		}
-		if target == "android-emulator" {
-			libPath = filepath.Join(depPath, "build", "libs", "x86")
-		}
-		utils.MkdirAll(libPath)
-
 		if utils.QT_VAGRANT() {
 			libPath = strings.Replace(libPath, "C:\\media\\sf_GOPATH", "C:\\media\\UNC\\vboxsrv\\media_sf_GOPATH", -1)
 			utils.RemoveAll(libPath)
 			utils.MkdirAll(libPath)
-			copy(filepath.Join(depPath, "libgo.so"), filepath.Join(libPath, "libgo.so"))
-			copy(filepath.Join(depPath, "libgo_base.so"), filepath.Join(libPath, "libgo_base.so"))
-			utils.RemoveAll(filepath.Join(depPath, "libgo.so"))
-			utils.RemoveAll(filepath.Join(depPath, "libgo_base.so"))
-		} else {
-			os.Rename(filepath.Join(depPath, "libgo.so"), filepath.Join(libPath, "libgo.so"))
-			os.Rename(filepath.Join(depPath, "libgo_base.so"), filepath.Join(libPath, "libgo_base.so"))
 		}
 
-		//trick androiddeployqt into checking dependencies from libgo_base.so
-		copy(filepath.Join(libPath, "libgo_base.so"), depPath)
-		copy(filepath.Join(libPath, "libgo_base.so"), filepath.Join(depPath, "libgo.so"))
+		//trick androiddeployqt into checking dependencies from libgo_base.so 1/2 ->
+		copy(filepath.Join(depPath, "libgo_base.so"), filepath.Join(libPath, finalLibGoName))
+		copy(filepath.Join(depPath, "libgo_base.so"), filepath.Join(libPath, "libgo_base.so"))
+
+		os.Rename(filepath.Join(depPath, "libgo.so"), filepath.Join(depPath, finalLibGoName))
+		os.Chtimes(filepath.Join(depPath, finalLibGoName), time.Now(), time.Now())
+		//<-
 
 		utils.Save(filepath.Join(depPath, "android-libgo.so-deployment-settings.json"), android_config(target, path, depPath))
 

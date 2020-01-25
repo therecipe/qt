@@ -26,7 +26,7 @@ func Test_escapeFlags(t *testing.T) {
 	}
 
 	for _, flags := range [][]string{
-		//{},
+		{},
 		{"-w"},
 		{"-w", "-s"},
 		{"-w", "-s", "-extldflags=-v"},

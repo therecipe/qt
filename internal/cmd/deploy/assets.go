@@ -62,20 +62,21 @@ func linux_sh(target, name string) string {
 
 func android_config(target, path, depPath string) string {
 	jsonStruct := &struct {
-		Qt                            string `json:"qt"`
-		Sdk                           string `json:"sdk"`
-		SdkBuildToolsRevision         string `json:"sdkBuildToolsRevision"`
-		Ndk                           string `json:"ndk"`
-		Toolchainprefix               string `json:"toolchain-prefix"`
-		Toolprefix                    string `json:"tool-prefix"`
-		Toolchainversion              string `json:"toolchain-version"`
-		Ndkhost                       string `json:"ndk-host"`
-		Targetarchitecture            string `json:"target-architecture"`
-		AndroidExtraLibs              string `json:"android-extra-libs"`
-		AndroidPackageSourceDirectory string `json:"android-package-source-directory"`
-		Qmlrootpath                   string `json:"qml-root-path"`
-		StdcppPath                    string `json:"stdcpp-path"`
-		Applicationbinary             string `json:"application-binary"`
+		Qt                            string            `json:"qt"`
+		Sdk                           string            `json:"sdk"`
+		SdkBuildToolsRevision         string            `json:"sdkBuildToolsRevision"`
+		Ndk                           string            `json:"ndk"`
+		Toolchainprefix               string            `json:"toolchain-prefix"`
+		Toolprefix                    string            `json:"tool-prefix"`
+		Toolchainversion              string            `json:"toolchain-version"`
+		Ndkhost                       string            `json:"ndk-host"`
+		Architectures                 map[string]string `json:"architectures"`
+		Targetarchitecture            string            `json:"target-architecture"`
+		AndroidExtraLibs              string            `json:"android-extra-libs"`
+		AndroidPackageSourceDirectory string            `json:"android-package-source-directory"`
+		Qmlrootpath                   string            `json:"qml-root-path"`
+		StdcppPath                    string            `json:"stdcpp-path"`
+		Applicationbinary             string            `json:"application-binary"`
 	}{
 		Qt:                            utils.QT_INSTALL_PREFIX(target),
 		Sdk:                           utils.ANDROID_SDK_DIR(),
@@ -86,7 +87,6 @@ func android_config(target, path, depPath string) string {
 		Toolchainversion:              "4.9",
 		Ndkhost:                       runtime.GOOS + "-x86_64",
 		Targetarchitecture:            "armeabi-v7a",
-		AndroidExtraLibs:              filepath.Join(depPath, "libgo_base.so"),
 		AndroidPackageSourceDirectory: filepath.Join(path, target),
 		Qmlrootpath:                   path,
 		StdcppPath:                    filepath.Join(utils.ANDROID_NDK_DIR(), "sources", "cxx-stl", "llvm-libc++", "libs", "armeabi-v7a", "libc++_shared.so"),
@@ -105,6 +105,20 @@ func android_config(target, path, depPath string) string {
 		jsonStruct.Toolprefix = "i686-linux-android"
 		jsonStruct.Targetarchitecture = "x86"
 		jsonStruct.StdcppPath = filepath.Join(utils.ANDROID_NDK_DIR(), "sources", "cxx-stl", "llvm-libc++", "libs", jsonStruct.Targetarchitecture, "libc++_shared.so")
+	}
+
+	if utils.QT_VERSION_NUM() >= 5140 {
+		jsonStruct.Architectures = map[string]string{jsonStruct.Targetarchitecture: jsonStruct.Toolprefix}
+		jsonStruct.StdcppPath = filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "llvm", "prebuilt", jsonStruct.Ndkhost, "sysroot", "usr", "lib") //TODO: fix paths for Qt < 5.14 above ?
+		jsonStruct.Toolchainprefix = "llvm"
+		jsonStruct.Toolprefix = "llvm"
+		jsonStruct.Applicationbinary = "go"
+
+		//trick androiddeployqt into checking dependencies from libgo_base.so 2/2 ->
+		jsonStruct.AndroidExtraLibs += "," + filepath.Join(depPath, "libgo_"+jsonStruct.Targetarchitecture+".so")
+	} else {
+		jsonStruct.AndroidExtraLibs += "," + filepath.Join(depPath, "libgo.so")
+		//<-
 	}
 
 	if utils.QT_DOCKER() {
