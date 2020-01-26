@@ -54976,7 +54976,21 @@ func NewQVariant1(i interface{}) *QVariant {
 				}
 			}
 			return NewQVariant1(tmp)
+
+		case reflect.UnsafePointer:
+			return NewQVariant1(uint64(uintptr(s.Interface().(unsafe.Pointer))))
+
+		case reflect.Uintptr:
+			return NewQVariant1(uint64(s.Interface().(uintptr)))
 		}
+
+		if s.Type().ConvertibleTo(reflect.TypeOf(int8(0))) {
+			if s.Kind() == reflect.Int64 {
+				return NewQVariant1(s.Convert(reflect.TypeOf(int64(0))).Interface())
+			}
+			return NewQVariant1(s.Interface())
+		}
+
 		return NewQVariant()
 	}
 }

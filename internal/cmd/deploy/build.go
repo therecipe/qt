@@ -59,16 +59,12 @@ func build(mode, target, path, ldFlagsCustom, tagsCustom, name, depPath string, 
 	}
 
 	if utils.Log.Level == logrus.DebugLevel && target != "wasm" {
-		if !(utils.GOVERSION_NUM() >= 113 && utils.UseGOMOD(path)) {
-			ldFlags = append(ldFlags, "-extldflags=-v")
-		}
+		ldFlags = append(ldFlags, "-extldflags=-v")
 	}
 
 	cmd := exec.Command("go", "build", "-p", strconv.Itoa(runtime.GOMAXPROCS(0)), "-v")
 	if len(ldFlags) > 0 {
-		if !(utils.GOVERSION_NUM() >= 113 && utils.UseGOMOD(path)) {
-			cmd.Args = append(cmd.Args, fmt.Sprintf("-ldflags=%v%v", pattern, escapeFlags(ldFlags, ldFlagsCustom)))
-		}
+		cmd.Args = append(cmd.Args, fmt.Sprintf("-ldflags=%v%v", pattern, escapeFlags(ldFlags, ldFlagsCustom)))
 	}
 	if utils.GOVERSION_NUM() >= 113 {
 		cmd.Args = append(cmd.Args, "-trimpath")
@@ -100,26 +96,6 @@ func build(mode, target, path, ldFlagsCustom, tagsCustom, name, depPath string, 
 
 	for key, value := range env {
 		cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", key, value))
-	}
-
-	//TODO: seems to be an go module issue; not needed anymore with 1.13.5 ?
-	if utils.GOVERSION_NUM() >= 113 && utils.UseGOMOD(path) {
-		var String = func(c *exec.Cmd) string {
-			b := new(strings.Builder)
-			b.WriteString(c.Path)
-			for _, a := range c.Args[1:] {
-				b.WriteByte(' ')
-				b.WriteString(a)
-			}
-			return b.String()
-		}
-		cmd.Args = append(cmd.Args, fmt.Sprintf("-ldflags=%v%v", pattern, escapeFlags(ldFlags, ldFlagsCustom)))
-		if runtime.GOOS != "windows" {
-			cmd.Args = []string{"bash", "-c", String(cmd)}
-		} else {
-			//cmd.Args = []string{"cmd", "/C", String(cmd)}
-		}
-		cmd.Path, _ = exec.LookPath(cmd.Args[0])
 	}
 
 	utils.RunCmd(cmd, fmt.Sprintf("build for %v on %v", target, runtime.GOOS))

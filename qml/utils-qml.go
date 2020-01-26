@@ -348,7 +348,7 @@ func (ptr *QJSEngine) newGoType(property *QJSValue, name string, i ...interface{
 		rv = reflect.ValueOf(i[1])
 	}
 
-	//TODO: merge into core.NewQVariant1 >>>
+	//TODO: merged into core.NewQVariant1; can probably be removed after testing >>>
 	switch rv.Kind() {
 
 	case reflect.UnsafePointer:
