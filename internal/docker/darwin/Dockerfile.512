@@ -1,6 +1,6 @@
 FROM ubuntu:16.04 as base
 
-RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install curl cmake file git build-essential xz-utils software-properties-common
+RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install curl cmake file git build-essential xz-utils software-properties-common apt-transport-https
 
 RUN curl -sL --retry 10 --retry-delay 60 https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add -
 RUN apt-add-repository "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-9 main"
@@ -27,7 +27,7 @@ ENV QT_VERSION $QT_API
 ENV QT_QMAKE_DIR $GOPATH/src/github.com/therecipe/env_darwin_amd64_512/5.12.0/clang_64/bin
 
 
-RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install curl git build-essential libglib2.0-dev software-properties-common && apt-get -qq clean
+RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install curl git build-essential libglib2.0-dev software-properties-common apt-transport-https && apt-get -qq clean
 
 COPY --from=base /osxcross/target /osxcross/target
 RUN ln -s /osxcross/target/bin/xcrun /usr/bin/xcrun

@@ -7,6 +7,6 @@ jobs:
     dependsOn: '${{ parameters.dep }}'
     steps:
       -
-        script: 'docker build -f internal/docker/${{ parameters.file }} -t therecipe/qt:${{ parameters.tag }} .'
+        script: 'docker build --force-rm -f internal/docker/${{ parameters.file }} -t therecipe/qt:${{ parameters.tag }} .'
       -
         script: 'docker login -u therecipe -p $(DOCKER_PASSWORD) && docker push therecipe/qt:${{ parameters.tag }} && docker logout'
