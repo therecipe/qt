@@ -756,7 +756,7 @@ default:
 
 	fmt.Fprint(bb, "func init() {\n")
 
-	if module == "QtQml" {
+	if module == "QtQml" && !utils.QT_STUB() {
 		var free string
 		if !UseJs() {
 			free = `C.QJSValue_DestroyQJSValue(unsafe.Pointer(uintptr(ptr)))

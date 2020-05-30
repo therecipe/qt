@@ -10,7 +10,7 @@ RUN /usr/local/go/bin/go get -tags=no_env github.com/therecipe/qt/cmd/...
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install dbus fontconfig libx11-6 libx11-xcb1
 ENV QT qt-opensource-linux-x64-5.13.0.run
-RUN curl -sL --retry 10 --retry-delay 60 -O https://download.qt.io/archive/qt/5.13/5.13.0/$QT && chmod +x $QT 
+RUN curl -sL --retry 10 --retry-delay 60 -O https://download.qt.io/archive/qt/5.13/5.13.0/$QT && chmod +x $QT
 RUN QT_QPA_PLATFORM=minimal ./$QT --no-force-installations --script $GOPATH/src/github.com/therecipe/qt/internal/ci/iscript.qs LINUX=true
 RUN find /opt/Qt5.13.0/5.13.0 -type f -name "*.debug" -delete
 RUN find /opt/Qt5.13.0/Docs -type f ! -name "*.index" -delete
