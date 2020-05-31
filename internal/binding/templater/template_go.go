@@ -1082,7 +1082,7 @@ import "C"
 	if mode == MOC {
 		for _, lib := range parser.GetLibs() {
 			mlow := strings.ToLower(lib)
-			for _, pre := range []string{" ", "\t", "\r", "\n", "!", "*", "(", ")", "[", "]"} {
+			for _, pre := range []string{" ", "=", "\t", "\r", "\n", "!", "*", "(", ")", "[", "]"} { //TODO: "=" shouldn't be needed, but there seemse to be some issue in the fmt or strings pkg in Go 1.14 (at least when the module mode is enabled); which causes the internal/runtime/moc.go file to come out invalid
 				for _, past := range []string{"NewQ", "PointerFromQ", "Q"} {
 					inputString = strings.Replace(inputString, fmt.Sprintf("%v%v.%v", pre, mlow, past), fmt.Sprintf("%vstd_%v.%v", pre, mlow, past), -1)
 				}
@@ -1200,7 +1200,7 @@ import "C"
 		}
 		for custom, m := range parser.GetCustomLibs(target, env, tagsEnv) {
 			switch {
-			case strings.Contains(m, "/vendor/"):
+			case strings.Contains(m, "/vendor/") && strings.Contains(inputString, fmt.Sprintf("%v.", custom)):
 				fmt.Fprintf(bb, "\"%v\"\n", custom)
 
 			case strings.Contains(inputString, fmt.Sprintf("%v.", custom)):
@@ -1209,7 +1209,13 @@ import "C"
 		}
 
 		for i := range parser.State.MocImports {
-			fmt.Fprintf(bb, "%v\n", i)
+			if strings.HasPrefix(i, "\"") { //TODO: golang.org/x/tools/imports seems to be buggy; advanced/qml_quick/tableview fails in module mode
+				if strings.Contains(inputString, fmt.Sprintf("%v.", strings.Replace(i, "\"", "", -1))) {
+					fmt.Fprintf(bb, "%v\n", i)
+				}
+			} else {
+				fmt.Fprintf(bb, "%v\n", i)
+			}
 
 			if strings.HasPrefix(i, ".") {
 				delete(parser.State.MocImports, i)

@@ -20,4 +20,4 @@ jobs:
       GO111MODULE: on
     steps:
       -
-        script: 'xcode-select --install; git clone https://github.com/therecipe/examples.git && cd ./examples && go install -v -tags=no_env github.com/therecipe/qt/cmd/... && go mod vendor && git clone https://github.com/therecipe/env_darwin_amd64_513.git vendor/github.com/therecipe/env_darwin_amd64_513 && $(go env GOPATH)/bin/qtsetup && $(go env GOPATH)/bin/qtdeploy test desktop ./basic/widgets'
+        script: 'xcode-select --install; cd $(go env GOPATH)/src && git clone https://github.com/therecipe/examples.git && cd ./examples && go install -v -tags=no_env github.com/therecipe/qt/cmd/... && go mod vendor && git clone https://github.com/therecipe/env_darwin_amd64_513.git vendor/github.com/therecipe/env_darwin_amd64_513 && $(go env GOPATH)/bin/qtsetup && $(go env GOPATH)/bin/qtdeploy test desktop ./basic/widgets'
