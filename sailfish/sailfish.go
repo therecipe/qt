@@ -56,7 +56,8 @@ func NewSailfishAppFromPointer(ptr unsafe.Pointer) (n *SailfishApp) {
 	return
 }
 
-func (ptr *SailfishApp) DestroySailfishApp() {}
+func (ptr *SailfishApp) DestroySailfishApp() {
+}
 
 func SailfishApp_Application(argc int, argv []string) *gui.QGuiApplication {
 

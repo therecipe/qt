@@ -110,6 +110,10 @@ func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast b
 			minimal.Minimal(path, target, tags, true)
 		}
 
+		if cmd.ImportsFlutter() {
+			flutter(target, path)
+		}
+
 		build(mode, target, path, ldFlags, tags, name, depPath, fast, comply)
 
 		if !(fast || ((utils.QT_DEBUG_QML() || utils.QT_FELGO_LIVE()) && target == runtime.GOOS)) || (target == "js" || target == "wasm") {

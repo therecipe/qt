@@ -27,7 +27,7 @@ func cGoUnpackBytes(s C.struct_QtWidgets_PackedString) []byte {
 	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
-		return *(*[]byte)(unsafe.Pointer(&gs))
+		return []byte(gs)
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
@@ -110434,6 +110434,7 @@ func init() {
 	qt.EnumMap["widgets.QInputDialog__DoubleInput"] = int64(QInputDialog__DoubleInput)
 	qt.ItfMap["widgets.QItemDelegate_ITF"] = QItemDelegate{}
 	qt.FuncMap["widgets.NewQItemDelegate"] = NewQItemDelegate
+	qt.ItfMap["widgets.QItemEditorCreator_ITF"] = QItemEditorCreator{}
 	qt.ItfMap["widgets.QItemEditorCreatorBase_ITF"] = QItemEditorCreatorBase{}
 	qt.ItfMap["widgets.QItemEditorFactory_ITF"] = QItemEditorFactory{}
 	qt.FuncMap["widgets.NewQItemEditorFactory"] = NewQItemEditorFactory
@@ -110741,6 +110742,7 @@ func init() {
 	qt.EnumMap["widgets.QStackedLayout__StackAll"] = int64(QStackedLayout__StackAll)
 	qt.ItfMap["widgets.QStackedWidget_ITF"] = QStackedWidget{}
 	qt.FuncMap["widgets.NewQStackedWidget"] = NewQStackedWidget
+	qt.ItfMap["widgets.QStandardItemEditorCreator_ITF"] = QStandardItemEditorCreator{}
 	qt.ItfMap["widgets.QStatusBar_ITF"] = QStatusBar{}
 	qt.FuncMap["widgets.NewQStatusBar"] = NewQStatusBar
 	qt.ItfMap["widgets.QStyle_ITF"] = QStyle{}
@@ -111683,6 +111685,7 @@ func init() {
 	qt.EnumMap["widgets.QTreeWidgetItem__ShowIndicator"] = int64(QTreeWidgetItem__ShowIndicator)
 	qt.EnumMap["widgets.QTreeWidgetItem__DontShowIndicator"] = int64(QTreeWidgetItem__DontShowIndicator)
 	qt.EnumMap["widgets.QTreeWidgetItem__DontShowIndicatorWhenChildless"] = int64(QTreeWidgetItem__DontShowIndicatorWhenChildless)
+	qt.ItfMap["widgets.QTreeWidgetItemIterator_ITF"] = QTreeWidgetItemIterator{}
 	qt.EnumMap["widgets.QTreeWidgetItemIterator__All"] = int64(QTreeWidgetItemIterator__All)
 	qt.EnumMap["widgets.QTreeWidgetItemIterator__Hidden"] = int64(QTreeWidgetItemIterator__Hidden)
 	qt.EnumMap["widgets.QTreeWidgetItemIterator__NotHidden"] = int64(QTreeWidgetItemIterator__NotHidden)

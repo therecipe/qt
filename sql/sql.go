@@ -28,7 +28,7 @@ func cGoUnpackBytes(s C.struct_QtSql_PackedString) []byte {
 	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
-		return *(*[]byte)(unsafe.Pointer(&gs))
+		return []byte(gs)
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
@@ -9383,6 +9383,7 @@ func init() {
 	qt.EnumMap["sql.QSqlDriver__UnknownSource"] = int64(QSqlDriver__UnknownSource)
 	qt.EnumMap["sql.QSqlDriver__SelfSource"] = int64(QSqlDriver__SelfSource)
 	qt.EnumMap["sql.QSqlDriver__OtherSource"] = int64(QSqlDriver__OtherSource)
+	qt.ItfMap["sql.QSqlDriverCreator_ITF"] = QSqlDriverCreator{}
 	qt.ItfMap["sql.QSqlDriverCreatorBase_ITF"] = QSqlDriverCreatorBase{}
 	qt.ItfMap["sql.QSqlDriverPlugin_ITF"] = QSqlDriverPlugin{}
 	qt.FuncMap["sql.NewQSqlDriverPlugin"] = NewQSqlDriverPlugin

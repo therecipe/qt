@@ -28,7 +28,7 @@ func cGoUnpackBytes(s C.struct_QtDesigner_PackedString) []byte {
 	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
-		return *(*[]byte)(unsafe.Pointer(&gs))
+		return []byte(gs)
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
@@ -18761,17 +18761,34 @@ func NewVersionDialogFromPointer(ptr unsafe.Pointer) (n *VersionDialog) {
 	return
 }
 func init() {
+	qt.ItfMap["designer.AppFontDialog_ITF"] = AppFontDialog{}
+	qt.ItfMap["designer.AppFontWidget_ITF"] = AppFontWidget{}
+	qt.ItfMap["designer.AppearanceOptions_ITF"] = AppearanceOptions{}
+	qt.ItfMap["designer.AssistantClient_ITF"] = AssistantClient{}
+	qt.ItfMap["designer.DockedMainWindow_ITF"] = DockedMainWindow{}
+	qt.ItfMap["designer.DockedMdiArea_ITF"] = DockedMdiArea{}
+	qt.ItfMap["designer.MainWindowBase_ITF"] = MainWindowBase{}
+	qt.ItfMap["designer.NewForm_ITF"] = NewForm{}
+	qt.ItfMap["designer.PreferencesDialog_ITF"] = PreferencesDialog{}
+	qt.ItfMap["designer.QAbstractExtensionFactory_ITF"] = QAbstractExtensionFactory{}
 	qt.ItfMap["designer.QAbstractExtensionManager_ITF"] = QAbstractExtensionManager{}
 	qt.ItfMap["designer.QAbstractFormBuilder_ITF"] = QAbstractFormBuilder{}
 	qt.FuncMap["designer.NewQAbstractFormBuilder"] = NewQAbstractFormBuilder
+	qt.ItfMap["designer.QDesigner_ITF"] = QDesigner{}
 	qt.ItfMap["designer.QDesignerActionEditorInterface_ITF"] = QDesignerActionEditorInterface{}
 	qt.FuncMap["designer.NewQDesignerActionEditorInterface"] = NewQDesignerActionEditorInterface
+	qt.ItfMap["designer.QDesignerActions_ITF"] = QDesignerActions{}
+	qt.ItfMap["designer.QDesignerAppearanceOptionsPage_ITF"] = QDesignerAppearanceOptionsPage{}
+	qt.ItfMap["designer.QDesignerAppearanceOptionsWidget_ITF"] = QDesignerAppearanceOptionsWidget{}
+	qt.ItfMap["designer.QDesignerClient_ITF"] = QDesignerClient{}
+	qt.ItfMap["designer.QDesignerComponents_ITF"] = QDesignerComponents{}
 	qt.ItfMap["designer.QDesignerContainerExtension_ITF"] = QDesignerContainerExtension{}
 	qt.ItfMap["designer.QDesignerCustomWidgetCollectionInterface_ITF"] = QDesignerCustomWidgetCollectionInterface{}
 	qt.ItfMap["designer.QDesignerCustomWidgetInterface_ITF"] = QDesignerCustomWidgetInterface{}
 	qt.ItfMap["designer.QDesignerDynamicPropertySheetExtension_ITF"] = QDesignerDynamicPropertySheetExtension{}
 	qt.ItfMap["designer.QDesignerFormEditorInterface_ITF"] = QDesignerFormEditorInterface{}
 	qt.FuncMap["designer.NewQDesignerFormEditorInterface"] = NewQDesignerFormEditorInterface
+	qt.ItfMap["designer.QDesignerFormWindow_ITF"] = QDesignerFormWindow{}
 	qt.ItfMap["designer.QDesignerFormWindowCursorInterface_ITF"] = QDesignerFormWindowCursorInterface{}
 	qt.EnumMap["designer.QDesignerFormWindowCursorInterface__NoMove"] = int64(QDesignerFormWindowCursorInterface__NoMove)
 	qt.EnumMap["designer.QDesignerFormWindowCursorInterface__Start"] = int64(QDesignerFormWindowCursorInterface__Start)
@@ -18824,12 +18841,20 @@ func init() {
 	qt.FuncMap["designer.NewQDesignerPropertyEditorInterface"] = NewQDesignerPropertyEditorInterface
 	qt.ItfMap["designer.QDesignerPropertySheetExtension_ITF"] = QDesignerPropertySheetExtension{}
 	qt.ItfMap["designer.QDesignerResourceBrowserInterface_ITF"] = QDesignerResourceBrowserInterface{}
+	qt.ItfMap["designer.QDesignerServer_ITF"] = QDesignerServer{}
+	qt.ItfMap["designer.QDesignerSettings_ITF"] = QDesignerSettings{}
 	qt.ItfMap["designer.QDesignerTaskMenuExtension_ITF"] = QDesignerTaskMenuExtension{}
+	qt.ItfMap["designer.QDesignerToolWindow_ITF"] = QDesignerToolWindow{}
 	qt.ItfMap["designer.QDesignerWidgetBoxInterface_ITF"] = QDesignerWidgetBoxInterface{}
+	qt.ItfMap["designer.QDesignerWorkbench_ITF"] = QDesignerWorkbench{}
 	qt.ItfMap["designer.QExtensionFactory_ITF"] = QExtensionFactory{}
 	qt.FuncMap["designer.NewQExtensionFactory"] = NewQExtensionFactory
 	qt.ItfMap["designer.QExtensionManager_ITF"] = QExtensionManager{}
 	qt.FuncMap["designer.NewQExtensionManager"] = NewQExtensionManager
 	qt.ItfMap["designer.QFormBuilder_ITF"] = QFormBuilder{}
 	qt.FuncMap["designer.NewQFormBuilder"] = NewQFormBuilder
+	qt.ItfMap["designer.SaveFormAsTemplate_ITF"] = SaveFormAsTemplate{}
+	qt.ItfMap["designer.ToolBarManager_ITF"] = ToolBarManager{}
+	qt.ItfMap["designer.ToolWindowFontSettings_ITF"] = ToolWindowFontSettings{}
+	qt.ItfMap["designer.VersionDialog_ITF"] = VersionDialog{}
 }

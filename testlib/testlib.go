@@ -27,7 +27,7 @@ func cGoUnpackBytes(s C.struct_QtTestLib_PackedString) []byte {
 	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
-		return *(*[]byte)(unsafe.Pointer(&gs))
+		return []byte(gs)
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
@@ -1216,6 +1216,7 @@ func init() {
 	qt.ItfMap["testlib.QSignalSpy_ITF"] = QSignalSpy{}
 	qt.FuncMap["testlib.NewQSignalSpy"] = NewQSignalSpy
 	qt.ItfMap["testlib.QSpontaneKeyEvent_ITF"] = QSpontaneKeyEvent{}
+	qt.ItfMap["testlib.QTest_ITF"] = QTest{}
 	qt.EnumMap["testlib.QTest__Abort"] = int64(QTest__Abort)
 	qt.EnumMap["testlib.QTest__Continue"] = int64(QTest__Continue)
 	qt.EnumMap["testlib.QTest__FramesPerSecond"] = int64(QTest__FramesPerSecond)

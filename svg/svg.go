@@ -28,7 +28,7 @@ func cGoUnpackBytes(s C.struct_QtSvg_PackedString) []byte {
 	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
-		return *(*[]byte)(unsafe.Pointer(&gs))
+		return []byte(gs)
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
@@ -3685,6 +3685,8 @@ func init() {
 	qt.FuncMap["svg.NewQGraphicsSvgItem2"] = NewQGraphicsSvgItem2
 	qt.ItfMap["svg.QSvgGenerator_ITF"] = QSvgGenerator{}
 	qt.FuncMap["svg.NewQSvgGenerator"] = NewQSvgGenerator
+	qt.ItfMap["svg.QSvgIOHandler_ITF"] = QSvgIOHandler{}
+	qt.ItfMap["svg.QSvgIconEngine_ITF"] = QSvgIconEngine{}
 	qt.ItfMap["svg.QSvgRenderer_ITF"] = QSvgRenderer{}
 	qt.FuncMap["svg.NewQSvgRenderer"] = NewQSvgRenderer
 	qt.FuncMap["svg.NewQSvgRenderer2"] = NewQSvgRenderer2

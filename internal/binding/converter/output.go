@@ -820,6 +820,9 @@ func _cppOutput(name, value string, f *parser.Function) string {
 		{
 			if value == "void" || value == "T" {
 				if strings.Contains(vOld, "*") {
+					if f.OgOutput == "QFunctionPointer" {
+						return fmt.Sprintf("reinterpret_cast<void*>(%v)", name)
+					}
 					if strings.Contains(vOld, "const") {
 						return fmt.Sprintf("const_cast<void*>(%v)", name)
 					}
@@ -919,7 +922,7 @@ func _cppOutput(name, value string, f *parser.Function) string {
 			}
 
 			switch f.Fullname {
-			case "QColor::toVariant", "QFont::toVariant", "QImage::toVariant", "QObject::toVariant", "QIcon::toVariant", "QBrush::toVariant":
+			case "QColor::toVariant", "QFont::toVariant", "QImage::toVariant", "QObject::toVariant", "QIcon::toVariant", "QBrush::toVariant", "QPixmap::toVariant":
 				{
 					if f.Fullname == "QObject::toVariant" {
 						return fmt.Sprintf("new %v(QVariant::fromValue(%v))", value, strings.Split(name, "->")[0])
@@ -927,7 +930,7 @@ func _cppOutput(name, value string, f *parser.Function) string {
 					return fmt.Sprintf("new %v(*%v)", value, strings.Split(name, "->")[0])
 				}
 
-			case "QVariant::toColor", "QVariant::toFont", "QVariant::toImage", "QVariant::toObject", "QVariant::toIcon", "QVariant::toBrush":
+			case "QVariant::toColor", "QVariant::toFont", "QVariant::toImage", "QVariant::toObject", "QVariant::toIcon", "QVariant::toBrush", "QVariant::toPixmap":
 				{
 					f.NeedsFinalizer = false
 

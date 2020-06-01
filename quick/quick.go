@@ -29,7 +29,7 @@ func cGoUnpackBytes(s C.struct_QtQuick_PackedString) []byte {
 	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
-		return *(*[]byte)(unsafe.Pointer(&gs))
+		return []byte(gs)
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
@@ -20385,12 +20385,42 @@ func (ptr *ValueLookupJob) DestroyValueLookupJob() {
 	}
 }
 func init() {
+	qt.ItfMap["quick.BacktraceJob_ITF"] = BacktraceJob{}
+	qt.ItfMap["quick.CollectJob_ITF"] = CollectJob{}
+	qt.ItfMap["quick.EvalJob_ITF"] = EvalJob{}
+	qt.ItfMap["quick.ExpressionEvalJob_ITF"] = ExpressionEvalJob{}
+	qt.ItfMap["quick.FrameJob_ITF"] = FrameJob{}
+	qt.ItfMap["quick.GatherSourcesJob_ITF"] = GatherSourcesJob{}
+	qt.ItfMap["quick.JavaScriptJob_ITF"] = JavaScriptJob{}
 	qt.ItfMap["quick.QDebugMessageServiceFactory_ITF"] = QDebugMessageServiceFactory{}
 	qt.ItfMap["quick.QDebugMessageServiceImpl_ITF"] = QDebugMessageServiceImpl{}
 	qt.ItfMap["quick.QLocalClientConnectionFactory_ITF"] = QLocalClientConnectionFactory{}
+	qt.ItfMap["quick.QOpenVGMatrix_ITF"] = QOpenVGMatrix{}
 	qt.ItfMap["quick.QOpenVGOffscreenSurface_ITF"] = QOpenVGOffscreenSurface{}
+	qt.ItfMap["quick.QQmlDebugServerFactory_ITF"] = QQmlDebugServerFactory{}
+	qt.ItfMap["quick.QQmlDebuggerServiceFactory_ITF"] = QQmlDebuggerServiceFactory{}
+	qt.ItfMap["quick.QQmlEngineControlServiceImpl_ITF"] = QQmlEngineControlServiceImpl{}
+	qt.ItfMap["quick.QQmlEngineDebugServiceImpl_ITF"] = QQmlEngineDebugServiceImpl{}
+	qt.ItfMap["quick.QQmlInspectorServiceFactory_ITF"] = QQmlInspectorServiceFactory{}
+	qt.ItfMap["quick.QQmlNativeDebugConnector_ITF"] = QQmlNativeDebugConnector{}
+	qt.ItfMap["quick.QQmlNativeDebugConnectorFactory_ITF"] = QQmlNativeDebugConnectorFactory{}
+	qt.ItfMap["quick.QQmlNativeDebugServiceFactory_ITF"] = QQmlNativeDebugServiceFactory{}
+	qt.ItfMap["quick.QQmlNativeDebugServiceImpl_ITF"] = QQmlNativeDebugServiceImpl{}
+	qt.ItfMap["quick.QQmlPreviewBlacklist_ITF"] = QQmlPreviewBlacklist{}
+	qt.ItfMap["quick.QQmlPreviewFileEngine_ITF"] = QQmlPreviewFileEngine{}
+	qt.ItfMap["quick.QQmlPreviewFileEngineHandler_ITF"] = QQmlPreviewFileEngineHandler{}
+	qt.ItfMap["quick.QQmlPreviewFileLoader_ITF"] = QQmlPreviewFileLoader{}
+	qt.ItfMap["quick.QQmlPreviewHandler_ITF"] = QQmlPreviewHandler{}
+	qt.ItfMap["quick.QQmlPreviewPosition_ITF"] = QQmlPreviewPosition{}
+	qt.ItfMap["quick.QQmlPreviewServiceFactory_ITF"] = QQmlPreviewServiceFactory{}
+	qt.ItfMap["quick.QQmlPreviewServiceImpl_ITF"] = QQmlPreviewServiceImpl{}
+	qt.ItfMap["quick.QQmlProfilerAdapter_ITF"] = QQmlProfilerAdapter{}
+	qt.ItfMap["quick.QQmlProfilerServiceFactory_ITF"] = QQmlProfilerServiceFactory{}
+	qt.ItfMap["quick.QQmlProfilerServiceImpl_ITF"] = QQmlProfilerServiceImpl{}
+	qt.ItfMap["quick.QQmlWatcher_ITF"] = QQmlWatcher{}
 	qt.ItfMap["quick.QQuickAsyncImageProvider_ITF"] = QQuickAsyncImageProvider{}
 	qt.FuncMap["quick.NewQQuickAsyncImageProvider"] = NewQQuickAsyncImageProvider
+	qt.ItfMap["quick.QQuickFolderListModel_ITF"] = QQuickFolderListModel{}
 	qt.ItfMap["quick.QQuickFramebufferObject_ITF"] = QQuickFramebufferObject{}
 	qt.ItfMap["quick.QQuickImageProvider_ITF"] = QQuickImageProvider{}
 	qt.FuncMap["quick.NewQQuickImageProvider"] = NewQQuickImageProvider
@@ -20430,6 +20460,7 @@ func init() {
 	qt.EnumMap["quick.QQuickPaintedItem__FramebufferObject"] = int64(QQuickPaintedItem__FramebufferObject)
 	qt.EnumMap["quick.QQuickPaintedItem__InvertedYFramebufferObject"] = int64(QQuickPaintedItem__InvertedYFramebufferObject)
 	qt.EnumMap["quick.QQuickPaintedItem__FastFBOResizing"] = int64(QQuickPaintedItem__FastFBOResizing)
+	qt.ItfMap["quick.QQuickProfilerAdapter_ITF"] = QQuickProfilerAdapter{}
 	qt.ItfMap["quick.QQuickProfilerAdapterFactory_ITF"] = QQuickProfilerAdapterFactory{}
 	qt.ItfMap["quick.QQuickRenderControl_ITF"] = QQuickRenderControl{}
 	qt.FuncMap["quick.NewQQuickRenderControl"] = NewQQuickRenderControl
@@ -20571,6 +20602,19 @@ func init() {
 	qt.FuncMap["quick.NewQSGOpacityNode"] = NewQSGOpacityNode
 	qt.ItfMap["quick.QSGOpaqueTextureMaterial_ITF"] = QSGOpaqueTextureMaterial{}
 	qt.FuncMap["quick.NewQSGOpaqueTextureMaterial"] = NewQSGOpaqueTextureMaterial
+	qt.ItfMap["quick.QSGOpenVGFontGlyphCache_ITF"] = QSGOpenVGFontGlyphCache{}
+	qt.ItfMap["quick.QSGOpenVGFontGlyphCacheManager_ITF"] = QSGOpenVGFontGlyphCacheManager{}
+	qt.ItfMap["quick.QSGOpenVGImageNode_ITF"] = QSGOpenVGImageNode{}
+	qt.ItfMap["quick.QSGOpenVGInternalImageNode_ITF"] = QSGOpenVGInternalImageNode{}
+	qt.ItfMap["quick.QSGOpenVGInternalRectangleNode_ITF"] = QSGOpenVGInternalRectangleNode{}
+	qt.ItfMap["quick.QSGOpenVGLayer_ITF"] = QSGOpenVGLayer{}
+	qt.ItfMap["quick.QSGOpenVGNinePatchNode_ITF"] = QSGOpenVGNinePatchNode{}
+	qt.ItfMap["quick.QSGOpenVGNodeVisitor_ITF"] = QSGOpenVGNodeVisitor{}
+	qt.ItfMap["quick.QSGOpenVGPainterNode_ITF"] = QSGOpenVGPainterNode{}
+	qt.ItfMap["quick.QSGOpenVGRectangleNode_ITF"] = QSGOpenVGRectangleNode{}
+	qt.ItfMap["quick.QSGOpenVGRenderable_ITF"] = QSGOpenVGRenderable{}
+	qt.ItfMap["quick.QSGOpenVGSpriteNode_ITF"] = QSGOpenVGSpriteNode{}
+	qt.ItfMap["quick.QSGOpenVGTexture_ITF"] = QSGOpenVGTexture{}
 	qt.ItfMap["quick.QSGRectangleNode_ITF"] = QSGRectangleNode{}
 	qt.ItfMap["quick.QSGRenderNode_ITF"] = QSGRenderNode{}
 	qt.EnumMap["quick.QSGRenderNode__DepthState"] = int64(QSGRenderNode__DepthState)
@@ -20602,6 +20646,9 @@ func init() {
 	qt.EnumMap["quick.QSGRendererInterface__ShaderSourceString"] = int64(QSGRendererInterface__ShaderSourceString)
 	qt.EnumMap["quick.QSGRendererInterface__ShaderSourceFile"] = int64(QSGRendererInterface__ShaderSourceFile)
 	qt.EnumMap["quick.QSGRendererInterface__ShaderByteCode"] = int64(QSGRendererInterface__ShaderByteCode)
+	qt.ItfMap["quick.QSGSimpleMaterial_ITF"] = QSGSimpleMaterial{}
+	qt.ItfMap["quick.QSGSimpleMaterialComparableMaterial_ITF"] = QSGSimpleMaterialComparableMaterial{}
+	qt.ItfMap["quick.QSGSimpleMaterialShader_ITF"] = QSGSimpleMaterialShader{}
 	qt.ItfMap["quick.QSGSimpleRectNode_ITF"] = QSGSimpleRectNode{}
 	qt.FuncMap["quick.NewQSGSimpleRectNode"] = NewQSGSimpleRectNode
 	qt.FuncMap["quick.NewQSGSimpleRectNode2"] = NewQSGSimpleRectNode2
@@ -20630,4 +20677,14 @@ func init() {
 	qt.ItfMap["quick.QSGVertexColorMaterial_ITF"] = QSGVertexColorMaterial{}
 	qt.FuncMap["quick.NewQSGVertexColorMaterial"] = NewQSGVertexColorMaterial
 	qt.ItfMap["quick.QTcpServerConnectionFactory_ITF"] = QTcpServerConnectionFactory{}
+	qt.ItfMap["quick.QV4DataCollector_ITF"] = QV4DataCollector{}
+	qt.ItfMap["quick.QV4DebugJob_ITF"] = QV4DebugJob{}
+	qt.ItfMap["quick.QV4DebugServiceImpl_ITF"] = QV4DebugServiceImpl{}
+	qt.ItfMap["quick.QV4Debugger_ITF"] = QV4Debugger{}
+	qt.ItfMap["quick.QV4DebuggerAgent_ITF"] = QV4DebuggerAgent{}
+	qt.ItfMap["quick.QV4ProfilerAdapter_ITF"] = QV4ProfilerAdapter{}
+	qt.ItfMap["quick.QWavefrontMesh_ITF"] = QWavefrontMesh{}
+	qt.ItfMap["quick.ScopeJob_ITF"] = ScopeJob{}
+	qt.ItfMap["quick.SharedImageProvider_ITF"] = SharedImageProvider{}
+	qt.ItfMap["quick.ValueLookupJob_ITF"] = ValueLookupJob{}
 }

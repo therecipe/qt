@@ -5,6 +5,7 @@ import (
 	"encoding/hex"
 	"fmt"
 	"os"
+	"sort"
 	"strconv"
 	"strings"
 	"sync"
@@ -77,6 +78,14 @@ func (c *Class) GetBases() []string {
 		return strings.Split(c.Bases, ",")
 	}
 	return []string{c.Bases}
+}
+
+func (c *Class) GetBasesSorted() []string {
+	b := c.GetBases()
+	sort.SliceStable(b, func(i int, j int) bool {
+		return (b[j] == "QObject") || (len(State.ClassMap[b[i]].GetAllBases()) > len(State.ClassMap[b[j]].GetAllBases()))
+	})
+	return b
 }
 
 func (c *Class) GetAllBases() []string {
@@ -413,6 +422,15 @@ func (c *Class) IsSupported() bool {
 func (c *Class) GetFunction(fname string) *Function {
 	for _, f := range c.Functions {
 		if f.Name == fname {
+			return f
+		}
+	}
+	return nil
+}
+
+func (c *Class) GetTitledFunction(fname string) *Function {
+	for _, f := range c.Functions {
+		if strings.Title(f.Name) == strings.Title(fname) {
 			return f
 		}
 	}

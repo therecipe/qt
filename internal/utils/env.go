@@ -520,3 +520,7 @@ func QT_RESOURCES_BIG() bool {
 func QT_GEN_TSD() bool {
 	return os.Getenv("QT_GEN_TSD") == "true"
 }
+
+func QT_GEN_DART() bool {
+	return os.Getenv("QT_GEN_DART") == "true"
+}

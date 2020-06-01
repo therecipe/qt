@@ -1,25 +1,27 @@
 Introduction
 ------------
 
-[Qt](https://en.wikipedia.org/wiki/Qt_(software)) is a cross-platform application framework that is used for developing application software that can be run on various software and hardware platforms with little or no change in the underlying codebase.
+[Qt](https://en.wikipedia.org/wiki/Qt_(software)) is a free and open-source widget toolkit for creating graphical user interfaces as well as cross-platform applications that run on various software and hardware platforms with little or no change in the underlying codebase.
 
-[Go](https://en.wikipedia.org/wiki/Go_(programming_language)) (often referred to as golang) is a programming language created at Google.
+[Go](https://en.wikipedia.org/wiki/Go_(programming_language)), also known as Golang, is a programming language designed at Google.
 
-This package allows you to write Qt applications entirely in Go and makes deploying them later very easy.
+[therecipe/qt](https://github.com/therecipe/qt) allows you to write Qt applications entirely in Go or JavaScript.
 
-[Gallery](https://github.com/therecipe/qt/wiki/Gallery) of example applications making use of this package.
+Beside the language bindings provided, `therecipe/qt` also greatly simplifies the deployment of Qt applications to various software and hardware platforms.
 
-[WebAssembly Demo (new)](https://therecipe.github.io/entry) | *[repo](https://github.com/therecipe/entry)*
+At the time of writing, almost all Qt functions and classes are accessible from Go and JavaScript, and you should be able to find everything you need to build fully featured Qt applications.
 
-[WebAssembly Demo (old)](https://therecipe.github.io/widgets_playground) | *[repo](https://github.com/therecipe/widgets_playground)*
+Impressions
+-----------
 
-Status
-------
+[Gallery](https://github.com/therecipe/qt/wiki/Gallery) of example applications.
 
-Almost all Qt functions and classes are accessible from Go and you should be able to find everything you need to build fully featured applications.
+[JavaScript Demo](https://therecipe.github.io/entry) | *[source](https://github.com/therecipe/entry)*
 
 Installation
 ------------
+
+The following instructions assume that you already installed [Go](https://golang.org/dl/)
 
 ##### Windows [(more info)](https://github.com/therecipe/qt/wiki/Installation-on-Windows)
 
@@ -43,7 +45,7 @@ export GO111MODULE=off; go get -v github.com/therecipe/qt/cmd/... && $(go env GO
 Resources
 ---------
 
--	[General Installation](https://github.com/therecipe/qt/wiki/Installation)
+-	[Installation](https://github.com/therecipe/qt/wiki/Installation)
 -	[Getting Started](https://github.com/therecipe/qt/wiki/Getting-Started)
 -	[Wiki](https://github.com/therecipe/qt/wiki)
 -	[Qt Documentation](https://doc.qt.io/qt-5/classes.html)
@@ -76,4 +78,4 @@ License
 
 This package is released under [LGPLv3](https://opensource.org/licenses/LGPL-3.0)
 
-Qt is available under multiple [licenses](https://www.qt.io/licensing)
+Qt itself is licensed and available under multiple [licenses](https://www.qt.io/licensing).

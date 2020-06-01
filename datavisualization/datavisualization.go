@@ -27,7 +27,7 @@ func cGoUnpackBytes(s C.struct_QtDataVisualization_PackedString) []byte {
 	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
-		return *(*[]byte)(unsafe.Pointer(&gs))
+		return []byte(gs)
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
@@ -18379,6 +18379,7 @@ func init() {
 	qt.EnumMap["datavisualization.QAbstract3DAxis__AxisTypeNone"] = int64(QAbstract3DAxis__AxisTypeNone)
 	qt.EnumMap["datavisualization.QAbstract3DAxis__AxisTypeCategory"] = int64(QAbstract3DAxis__AxisTypeCategory)
 	qt.EnumMap["datavisualization.QAbstract3DAxis__AxisTypeValue"] = int64(QAbstract3DAxis__AxisTypeValue)
+	qt.ItfMap["datavisualization.QAbstract3DGraph_ITF"] = QAbstract3DGraph{}
 	qt.EnumMap["datavisualization.QAbstract3DGraph__SelectionNone"] = int64(QAbstract3DGraph__SelectionNone)
 	qt.EnumMap["datavisualization.QAbstract3DGraph__SelectionItem"] = int64(QAbstract3DGraph__SelectionItem)
 	qt.EnumMap["datavisualization.QAbstract3DGraph__SelectionRow"] = int64(QAbstract3DGraph__SelectionRow)

@@ -59,7 +59,8 @@ func NewQAndroidActivityResultReceiverFromPointer(ptr unsafe.Pointer) (n *QAndro
 	return
 }
 
-func (ptr *QAndroidActivityResultReceiver) DestroyQAndroidActivityResultReceiver() {}
+func (ptr *QAndroidActivityResultReceiver) DestroyQAndroidActivityResultReceiver() {
+}
 
 func (ptr *QAndroidActivityResultReceiver) ConnectHandleActivityResult(f func(receiverRequestCode int, resultCode int, data *QAndroidJniObject)) {
 
@@ -111,7 +112,8 @@ func NewQAndroidBinderFromPointer(ptr unsafe.Pointer) (n *QAndroidBinder) {
 	return
 }
 
-func (ptr *QAndroidBinder) DestroyQAndroidBinder() {}
+func (ptr *QAndroidBinder) DestroyQAndroidBinder() {
+}
 
 //go:generate stringer -type=QAndroidBinder__CallType
 //QAndroidBinder::CallType
@@ -180,7 +182,8 @@ func NewQAndroidIntentFromPointer(ptr unsafe.Pointer) (n *QAndroidIntent) {
 	return
 }
 
-func (ptr *QAndroidIntent) DestroyQAndroidIntent() {}
+func (ptr *QAndroidIntent) DestroyQAndroidIntent() {
+}
 
 func NewQAndroidIntent() *QAndroidIntent {
 
@@ -1070,7 +1073,8 @@ func NewQAndroidParcelFromPointer(ptr unsafe.Pointer) (n *QAndroidParcel) {
 	return
 }
 
-func (ptr *QAndroidParcel) DestroyQAndroidParcel() {}
+func (ptr *QAndroidParcel) DestroyQAndroidParcel() {
+}
 
 func NewQAndroidParcel() *QAndroidParcel {
 
@@ -1162,7 +1166,8 @@ func NewQAndroidServiceFromPointer(ptr unsafe.Pointer) (n *QAndroidService) {
 	return
 }
 
-func (ptr *QAndroidService) DestroyQAndroidService() {}
+func (ptr *QAndroidService) DestroyQAndroidService() {
+}
 
 func NewQAndroidService(argc int, argv []string) *QAndroidService {
 
@@ -1324,7 +1329,8 @@ func NewQAndroidServiceConnectionFromPointer(ptr unsafe.Pointer) (n *QAndroidSer
 	return
 }
 
-func (ptr *QAndroidServiceConnection) DestroyQAndroidServiceConnection() {}
+func (ptr *QAndroidServiceConnection) DestroyQAndroidServiceConnection() {
+}
 
 func NewQAndroidServiceConnection() *QAndroidServiceConnection {
 
@@ -1403,7 +1409,8 @@ func NewQtAndroidFromPointer(ptr unsafe.Pointer) (n *QtAndroid) {
 	return
 }
 
-func (ptr *QtAndroid) DestroyQtAndroid() {}
+func (ptr *QtAndroid) DestroyQtAndroid() {
+}
 
 //go:generate stringer -type=QtAndroid__BindFlag
 //QtAndroid::BindFlag

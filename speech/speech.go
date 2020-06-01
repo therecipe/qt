@@ -26,7 +26,7 @@ func cGoUnpackBytes(s C.struct_QtSpeech_PackedString) []byte {
 	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
-		return *(*[]byte)(unsafe.Pointer(&gs))
+		return []byte(gs)
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
@@ -3116,7 +3116,22 @@ func init() {
 	qt.FuncMap["speech.NewQTextToSpeechEngine"] = NewQTextToSpeechEngine
 	qt.FuncMap["speech.QTextToSpeechEngine_CreateVoice"] = QTextToSpeechEngine_CreateVoice
 	qt.FuncMap["speech.QTextToSpeechEngine_VoiceData"] = QTextToSpeechEngine_VoiceData
+	qt.ItfMap["speech.QTextToSpeechEngineAndroid_ITF"] = QTextToSpeechEngineAndroid{}
+	qt.ItfMap["speech.QTextToSpeechEngineFlite_ITF"] = QTextToSpeechEngineFlite{}
+	qt.ItfMap["speech.QTextToSpeechEngineIos_ITF"] = QTextToSpeechEngineIos{}
+	qt.ItfMap["speech.QTextToSpeechEngineOsx_ITF"] = QTextToSpeechEngineOsx{}
+	qt.ItfMap["speech.QTextToSpeechEngineSapi_ITF"] = QTextToSpeechEngineSapi{}
+	qt.ItfMap["speech.QTextToSpeechEngineSpeechd_ITF"] = QTextToSpeechEngineSpeechd{}
+	qt.ItfMap["speech.QTextToSpeechEngineWinRT_ITF"] = QTextToSpeechEngineWinRT{}
 	qt.ItfMap["speech.QTextToSpeechPlugin_ITF"] = QTextToSpeechPlugin{}
+	qt.ItfMap["speech.QTextToSpeechPluginAndroid_ITF"] = QTextToSpeechPluginAndroid{}
+	qt.ItfMap["speech.QTextToSpeechPluginFlite_ITF"] = QTextToSpeechPluginFlite{}
+	qt.ItfMap["speech.QTextToSpeechPluginIos_ITF"] = QTextToSpeechPluginIos{}
+	qt.ItfMap["speech.QTextToSpeechPluginOsx_ITF"] = QTextToSpeechPluginOsx{}
+	qt.ItfMap["speech.QTextToSpeechPluginSapi_ITF"] = QTextToSpeechPluginSapi{}
+	qt.ItfMap["speech.QTextToSpeechPluginSpeechd_ITF"] = QTextToSpeechPluginSpeechd{}
+	qt.ItfMap["speech.QTextToSpeechPluginWinRT_ITF"] = QTextToSpeechPluginWinRT{}
+	qt.ItfMap["speech.QTextToSpeechProcessorFlite_ITF"] = QTextToSpeechProcessorFlite{}
 	qt.ItfMap["speech.QVoice_ITF"] = QVoice{}
 	qt.FuncMap["speech.QVoice_AgeName"] = QVoice_AgeName
 	qt.FuncMap["speech.QVoice_GenderName"] = QVoice_GenderName

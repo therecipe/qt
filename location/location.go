@@ -27,7 +27,7 @@ func cGoUnpackBytes(s C.struct_QtLocation_PackedString) []byte {
 	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
-		return *(*[]byte)(unsafe.Pointer(&gs))
+		return []byte(gs)
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
@@ -6366,6 +6366,7 @@ func NewQPlaceUserFromPointer(ptr unsafe.Pointer) (n *QPlaceUser) {
 	return
 }
 func init() {
+	qt.ItfMap["location.QGeoCodeReply_ITF"] = QGeoCodeReply{}
 	qt.EnumMap["location.QGeoCodeReply__NoError"] = int64(QGeoCodeReply__NoError)
 	qt.EnumMap["location.QGeoCodeReply__EngineNotSetError"] = int64(QGeoCodeReply__EngineNotSetError)
 	qt.EnumMap["location.QGeoCodeReply__CommunicationError"] = int64(QGeoCodeReply__CommunicationError)
@@ -6373,6 +6374,9 @@ func init() {
 	qt.EnumMap["location.QGeoCodeReply__UnsupportedOptionError"] = int64(QGeoCodeReply__UnsupportedOptionError)
 	qt.EnumMap["location.QGeoCodeReply__CombinationError"] = int64(QGeoCodeReply__CombinationError)
 	qt.EnumMap["location.QGeoCodeReply__UnknownError"] = int64(QGeoCodeReply__UnknownError)
+	qt.ItfMap["location.QGeoCodingManager_ITF"] = QGeoCodingManager{}
+	qt.ItfMap["location.QGeoCodingManagerEngine_ITF"] = QGeoCodingManagerEngine{}
+	qt.ItfMap["location.QGeoJson_ITF"] = QGeoJson{}
 	qt.ItfMap["location.QGeoManeuver_ITF"] = QGeoManeuver{}
 	qt.FuncMap["location.NewQGeoManeuver"] = NewQGeoManeuver
 	qt.FuncMap["location.NewQGeoManeuver2"] = NewQGeoManeuver2
@@ -6487,20 +6491,41 @@ func init() {
 	qt.EnumMap["location.QGeoServiceProvider__OfflineNavigationFeature"] = int64(QGeoServiceProvider__OfflineNavigationFeature)
 	qt.EnumMap["location.QGeoServiceProvider__AnyNavigationFeatures"] = int64(QGeoServiceProvider__AnyNavigationFeatures)
 	qt.ItfMap["location.QGeoServiceProviderFactory_ITF"] = QGeoServiceProviderFactory{}
+	qt.ItfMap["location.QGeoServiceProviderFactoryV2_ITF"] = QGeoServiceProviderFactoryV2{}
+	qt.ItfMap["location.QGeoServiceProviderFactoryV3_ITF"] = QGeoServiceProviderFactoryV3{}
 	qt.ItfMap["location.QLocation_ITF"] = QLocation{}
 	qt.EnumMap["location.QLocation__UnspecifiedVisibility"] = int64(QLocation__UnspecifiedVisibility)
 	qt.EnumMap["location.QLocation__DeviceVisibility"] = int64(QLocation__DeviceVisibility)
 	qt.EnumMap["location.QLocation__PrivateVisibility"] = int64(QLocation__PrivateVisibility)
 	qt.EnumMap["location.QLocation__PublicVisibility"] = int64(QLocation__PublicVisibility)
+	qt.ItfMap["location.QPlace_ITF"] = QPlace{}
+	qt.ItfMap["location.QPlaceAttribute_ITF"] = QPlaceAttribute{}
+	qt.ItfMap["location.QPlaceCategory_ITF"] = QPlaceCategory{}
+	qt.ItfMap["location.QPlaceContactDetail_ITF"] = QPlaceContactDetail{}
+	qt.ItfMap["location.QPlaceContent_ITF"] = QPlaceContent{}
 	qt.EnumMap["location.QPlaceContent__NoType"] = int64(QPlaceContent__NoType)
 	qt.EnumMap["location.QPlaceContent__ImageType"] = int64(QPlaceContent__ImageType)
 	qt.EnumMap["location.QPlaceContent__ReviewType"] = int64(QPlaceContent__ReviewType)
 	qt.EnumMap["location.QPlaceContent__EditorialType"] = int64(QPlaceContent__EditorialType)
 	qt.EnumMap["location.QPlaceContent__CustomType"] = int64(QPlaceContent__CustomType)
+	qt.ItfMap["location.QPlaceContentReply_ITF"] = QPlaceContentReply{}
+	qt.ItfMap["location.QPlaceContentRequest_ITF"] = QPlaceContentRequest{}
+	qt.ItfMap["location.QPlaceDetailsReply_ITF"] = QPlaceDetailsReply{}
+	qt.ItfMap["location.QPlaceEditorial_ITF"] = QPlaceEditorial{}
+	qt.ItfMap["location.QPlaceIcon_ITF"] = QPlaceIcon{}
+	qt.ItfMap["location.QPlaceIdReply_ITF"] = QPlaceIdReply{}
 	qt.EnumMap["location.QPlaceIdReply__SavePlace"] = int64(QPlaceIdReply__SavePlace)
 	qt.EnumMap["location.QPlaceIdReply__SaveCategory"] = int64(QPlaceIdReply__SaveCategory)
 	qt.EnumMap["location.QPlaceIdReply__RemovePlace"] = int64(QPlaceIdReply__RemovePlace)
 	qt.EnumMap["location.QPlaceIdReply__RemoveCategory"] = int64(QPlaceIdReply__RemoveCategory)
+	qt.ItfMap["location.QPlaceImage_ITF"] = QPlaceImage{}
+	qt.ItfMap["location.QPlaceManager_ITF"] = QPlaceManager{}
+	qt.ItfMap["location.QPlaceManagerEngine_ITF"] = QPlaceManagerEngine{}
+	qt.ItfMap["location.QPlaceMatchReply_ITF"] = QPlaceMatchReply{}
+	qt.ItfMap["location.QPlaceMatchRequest_ITF"] = QPlaceMatchRequest{}
+	qt.ItfMap["location.QPlaceProposedSearchResult_ITF"] = QPlaceProposedSearchResult{}
+	qt.ItfMap["location.QPlaceRatings_ITF"] = QPlaceRatings{}
+	qt.ItfMap["location.QPlaceReply_ITF"] = QPlaceReply{}
 	qt.EnumMap["location.QPlaceReply__NoError"] = int64(QPlaceReply__NoError)
 	qt.EnumMap["location.QPlaceReply__PlaceDoesNotExistError"] = int64(QPlaceReply__PlaceDoesNotExistError)
 	qt.EnumMap["location.QPlaceReply__CategoryDoesNotExistError"] = int64(QPlaceReply__CategoryDoesNotExistError)
@@ -6518,10 +6543,18 @@ func init() {
 	qt.EnumMap["location.QPlaceReply__ContentReply"] = int64(QPlaceReply__ContentReply)
 	qt.EnumMap["location.QPlaceReply__IdReply"] = int64(QPlaceReply__IdReply)
 	qt.EnumMap["location.QPlaceReply__MatchReply"] = int64(QPlaceReply__MatchReply)
+	qt.ItfMap["location.QPlaceResult_ITF"] = QPlaceResult{}
+	qt.ItfMap["location.QPlaceReview_ITF"] = QPlaceReview{}
+	qt.ItfMap["location.QPlaceSearchReply_ITF"] = QPlaceSearchReply{}
+	qt.ItfMap["location.QPlaceSearchRequest_ITF"] = QPlaceSearchRequest{}
 	qt.EnumMap["location.QPlaceSearchRequest__UnspecifiedHint"] = int64(QPlaceSearchRequest__UnspecifiedHint)
 	qt.EnumMap["location.QPlaceSearchRequest__DistanceHint"] = int64(QPlaceSearchRequest__DistanceHint)
 	qt.EnumMap["location.QPlaceSearchRequest__LexicalPlaceNameHint"] = int64(QPlaceSearchRequest__LexicalPlaceNameHint)
+	qt.ItfMap["location.QPlaceSearchResult_ITF"] = QPlaceSearchResult{}
 	qt.EnumMap["location.QPlaceSearchResult__UnknownSearchResult"] = int64(QPlaceSearchResult__UnknownSearchResult)
 	qt.EnumMap["location.QPlaceSearchResult__PlaceResult"] = int64(QPlaceSearchResult__PlaceResult)
 	qt.EnumMap["location.QPlaceSearchResult__ProposedSearchResult"] = int64(QPlaceSearchResult__ProposedSearchResult)
+	qt.ItfMap["location.QPlaceSearchSuggestionReply_ITF"] = QPlaceSearchSuggestionReply{}
+	qt.ItfMap["location.QPlaceSupplier_ITF"] = QPlaceSupplier{}
+	qt.ItfMap["location.QPlaceUser_ITF"] = QPlaceUser{}
 }

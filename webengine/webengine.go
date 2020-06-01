@@ -31,7 +31,7 @@ func cGoUnpackBytes(s C.struct_QtWebEngine_PackedString) []byte {
 	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
-		return *(*[]byte)(unsafe.Pointer(&gs))
+		return []byte(gs)
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
@@ -10866,6 +10866,11 @@ func (ptr *WebEventFactory) DestroyWebEventFactory() {
 	}
 }
 func init() {
+	qt.ItfMap["webengine.CertificateErrorController_ITF"] = CertificateErrorController{}
+	qt.ItfMap["webengine.ClientCertSelectController_ITF"] = ClientCertSelectController{}
+	qt.ItfMap["webengine.CommandLinePrefStoreQt_ITF"] = CommandLinePrefStoreQt{}
+	qt.ItfMap["webengine.GLContextHelper_ITF"] = GLContextHelper{}
+	qt.ItfMap["webengine.ProxyConfigServiceQt_ITF"] = ProxyConfigServiceQt{}
 	qt.ItfMap["webengine.QQuickWebEngineProfile_ITF"] = QQuickWebEngineProfile{}
 	qt.FuncMap["webengine.NewQQuickWebEngineProfile"] = NewQQuickWebEngineProfile
 	qt.FuncMap["webengine.QQuickWebEngineProfile_DefaultProfile"] = QQuickWebEngineProfile_DefaultProfile
@@ -11121,4 +11126,11 @@ func init() {
 	qt.FuncMap["webengine.QWebEngineView_Tr"] = QWebEngineView_Tr
 	qt.ItfMap["webengine.QtWebEngine_ITF"] = QtWebEngine{}
 	qt.FuncMap["webengine.QtWebEngine_Initialize"] = QtWebEngine_Initialize
+	qt.ItfMap["webengine.RenderViewObserverQt_ITF"] = RenderViewObserverQt{}
+	qt.ItfMap["webengine.ServiceQt_ITF"] = ServiceQt{}
+	qt.ItfMap["webengine.UserResourceController_ITF"] = UserResourceController{}
+	qt.ItfMap["webengine.UserScriptData_ITF"] = UserScriptData{}
+	qt.ItfMap["webengine.WebEngineError_ITF"] = WebEngineError{}
+	qt.ItfMap["webengine.WebEngineLibraryInfo_ITF"] = WebEngineLibraryInfo{}
+	qt.ItfMap["webengine.WebEventFactory_ITF"] = WebEventFactory{}
 }

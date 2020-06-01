@@ -12297,6 +12297,26 @@ long long QLibrary_LoadHints(void* ptr)
 	return static_cast<QLibrary*>(ptr)->loadHints();
 }
 
+void* QLibrary_Resolve(void* ptr, char* symbol)
+{
+	return reinterpret_cast<void*>(static_cast<QLibrary*>(ptr)->resolve(const_cast<const char*>(symbol)));
+}
+
+void* QLibrary_QLibrary_Resolve2(struct QtCore_PackedString fileName, char* symbol)
+{
+	return reinterpret_cast<void*>(QLibrary::resolve(QString::fromUtf8(fileName.data, fileName.len), const_cast<const char*>(symbol)));
+}
+
+void* QLibrary_QLibrary_Resolve3(struct QtCore_PackedString fileName, int verNum, char* symbol)
+{
+	return reinterpret_cast<void*>(QLibrary::resolve(QString::fromUtf8(fileName.data, fileName.len), verNum, const_cast<const char*>(symbol)));
+}
+
+void* QLibrary_QLibrary_Resolve4(struct QtCore_PackedString fileName, struct QtCore_PackedString version, char* symbol)
+{
+	return reinterpret_cast<void*>(QLibrary::resolve(QString::fromUtf8(fileName.data, fileName.len), QString::fromUtf8(version.data, version.len), const_cast<const char*>(symbol)));
+}
+
 void QLibrary_SetFileName(void* ptr, struct QtCore_PackedString fileName)
 {
 	static_cast<QLibrary*>(ptr)->setFileName(QString::fromUtf8(fileName.data, fileName.len));

@@ -28,7 +28,7 @@ func cGoUnpackBytes(s C.struct_QtCore_PackedString) []byte {
 	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
-		return *(*[]byte)(unsafe.Pointer(&gs))
+		return []byte(gs)
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
@@ -26407,6 +26407,112 @@ func (ptr *QLibrary) LoadHints() QLibrary__LoadHint {
 		return QLibrary__LoadHint(C.QLibrary_LoadHints(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QLibrary) Resolve(symbol string) unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		var symbolC *C.char
+		if symbol != "" {
+			symbolC = C.CString(symbol)
+			defer C.free(unsafe.Pointer(symbolC))
+		}
+		return C.QLibrary_Resolve(ptr.Pointer(), symbolC)
+	}
+	return nil
+}
+
+func QLibrary_Resolve2(fileName string, symbol string) unsafe.Pointer {
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
+	var symbolC *C.char
+	if symbol != "" {
+		symbolC = C.CString(symbol)
+		defer C.free(unsafe.Pointer(symbolC))
+	}
+	return C.QLibrary_QLibrary_Resolve2(C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, symbolC)
+}
+
+func (ptr *QLibrary) Resolve2(fileName string, symbol string) unsafe.Pointer {
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
+	var symbolC *C.char
+	if symbol != "" {
+		symbolC = C.CString(symbol)
+		defer C.free(unsafe.Pointer(symbolC))
+	}
+	return C.QLibrary_QLibrary_Resolve2(C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, symbolC)
+}
+
+func QLibrary_Resolve3(fileName string, verNum int, symbol string) unsafe.Pointer {
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
+	var symbolC *C.char
+	if symbol != "" {
+		symbolC = C.CString(symbol)
+		defer C.free(unsafe.Pointer(symbolC))
+	}
+	return C.QLibrary_QLibrary_Resolve3(C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, C.int(int32(verNum)), symbolC)
+}
+
+func (ptr *QLibrary) Resolve3(fileName string, verNum int, symbol string) unsafe.Pointer {
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
+	var symbolC *C.char
+	if symbol != "" {
+		symbolC = C.CString(symbol)
+		defer C.free(unsafe.Pointer(symbolC))
+	}
+	return C.QLibrary_QLibrary_Resolve3(C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, C.int(int32(verNum)), symbolC)
+}
+
+func QLibrary_Resolve4(fileName string, version string, symbol string) unsafe.Pointer {
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
+	var versionC *C.char
+	if version != "" {
+		versionC = C.CString(version)
+		defer C.free(unsafe.Pointer(versionC))
+	}
+	var symbolC *C.char
+	if symbol != "" {
+		symbolC = C.CString(symbol)
+		defer C.free(unsafe.Pointer(symbolC))
+	}
+	return C.QLibrary_QLibrary_Resolve4(C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, C.struct_QtCore_PackedString{data: versionC, len: C.longlong(len(version))}, symbolC)
+}
+
+func (ptr *QLibrary) Resolve4(fileName string, version string, symbol string) unsafe.Pointer {
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
+	var versionC *C.char
+	if version != "" {
+		versionC = C.CString(version)
+		defer C.free(unsafe.Pointer(versionC))
+	}
+	var symbolC *C.char
+	if symbol != "" {
+		symbolC = C.CString(symbol)
+		defer C.free(unsafe.Pointer(symbolC))
+	}
+	return C.QLibrary_QLibrary_Resolve4(C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, C.struct_QtCore_PackedString{data: versionC, len: C.longlong(len(version))}, symbolC)
 }
 
 func (ptr *QLibrary) SetFileName(fileName string) {
@@ -54984,7 +55090,7 @@ func NewQVariant1(i interface{}) *QVariant {
 			return NewQVariant1(uint64(s.Interface().(uintptr)))
 		}
 
-		if s.Type().ConvertibleTo(reflect.TypeOf(int8(0))) {
+		if i != nil && s.Type().ConvertibleTo(reflect.TypeOf(int8(0))) {
 			if s.Kind() == reflect.Int64 {
 				return NewQVariant1(s.Convert(reflect.TypeOf(int64(0))).Interface())
 			}
@@ -61256,6 +61362,11 @@ func init() {
 	qt.ItfMap["core.QArrayData_ITF"] = QArrayData{}
 	qt.ItfMap["core.QArrayDataPointer_ITF"] = QArrayDataPointer{}
 	qt.ItfMap["core.QAssociativeIterable_ITF"] = QAssociativeIterable{}
+	qt.ItfMap["core.QAtomicInt_ITF"] = QAtomicInt{}
+	qt.ItfMap["core.QAtomicInteger_ITF"] = QAtomicInteger{}
+	qt.ItfMap["core.QAtomicOps_ITF"] = QAtomicOps{}
+	qt.ItfMap["core.QAtomicPointer_ITF"] = QAtomicPointer{}
+	qt.ItfMap["core.QAtomicTraits_ITF"] = QAtomicTraits{}
 	qt.ItfMap["core.QBEInteger_ITF"] = QBEInteger{}
 	qt.ItfMap["core.QBasicAtomicInteger_ITF"] = QBasicAtomicInteger{}
 	qt.ItfMap["core.QBasicAtomicPointer_ITF"] = QBasicAtomicPointer{}
@@ -61297,6 +61408,7 @@ func init() {
 	qt.FuncMap["core.NewQByteArrayMatcher3"] = NewQByteArrayMatcher3
 	qt.FuncMap["core.NewQByteArrayMatcher4"] = NewQByteArrayMatcher4
 	qt.ItfMap["core.QByteRef_ITF"] = QByteRef{}
+	qt.ItfMap["core.QCache_ITF"] = QCache{}
 	qt.ItfMap["core.QCborArray_ITF"] = QCborArray{}
 	qt.FuncMap["core.NewQCborArray"] = NewQCborArray
 	qt.FuncMap["core.NewQCborArray2"] = NewQCborArray2
@@ -61325,6 +61437,7 @@ func init() {
 	qt.FuncMap["core.QCborMap_FromJsonObject"] = QCborMap_FromJsonObject
 	qt.FuncMap["core.QCborMap_FromVariantHash"] = QCborMap_FromVariantHash
 	qt.ItfMap["core.QCborParserError_ITF"] = QCborParserError{}
+	qt.ItfMap["core.QCborStreamReader_ITF"] = QCborStreamReader{}
 	qt.EnumMap["core.QCborStreamReader__UnsignedInteger"] = int64(QCborStreamReader__UnsignedInteger)
 	qt.EnumMap["core.QCborStreamReader__NegativeInteger"] = int64(QCborStreamReader__NegativeInteger)
 	qt.EnumMap["core.QCborStreamReader__ByteString"] = int64(QCborStreamReader__ByteString)
@@ -61343,6 +61456,8 @@ func init() {
 	qt.EnumMap["core.QCborStreamReader__EndOfString"] = int64(QCborStreamReader__EndOfString)
 	qt.EnumMap["core.QCborStreamReader__Ok"] = int64(QCborStreamReader__Ok)
 	qt.EnumMap["core.QCborStreamReader__Error"] = int64(QCborStreamReader__Error)
+	qt.ItfMap["core.QCborStreamWriter_ITF"] = QCborStreamWriter{}
+	qt.ItfMap["core.QCborValue_ITF"] = QCborValue{}
 	qt.EnumMap["core.QCborValue__SortKeysInMaps"] = int64(QCborValue__SortKeysInMaps)
 	qt.EnumMap["core.QCborValue__UseFloat"] = int64(QCborValue__UseFloat)
 	qt.EnumMap["core.QCborValue__UseFloat16"] = int64(QCborValue__UseFloat16)
@@ -61695,6 +61810,7 @@ func init() {
 	qt.EnumMap["core.QCommandLineParser__ParseAsPositionalArguments"] = int64(QCommandLineParser__ParseAsPositionalArguments)
 	qt.ItfMap["core.QConcatenateTablesProxyModel_ITF"] = QConcatenateTablesProxyModel{}
 	qt.FuncMap["core.NewQConcatenateTablesProxyModel"] = NewQConcatenateTablesProxyModel
+	qt.ItfMap["core.QContiguousCache_ITF"] = QContiguousCache{}
 	qt.ItfMap["core.QContiguousCacheData_ITF"] = QContiguousCacheData{}
 	qt.ItfMap["core.QContiguousCacheTypedData_ITF"] = QContiguousCacheTypedData{}
 	qt.ItfMap["core.QCoreApplication_ITF"] = QCoreApplication{}
@@ -61908,6 +62024,7 @@ func init() {
 	qt.EnumMap["core.QDir__LocaleAware"] = int64(QDir__LocaleAware)
 	qt.EnumMap["core.QDir__Type"] = int64(QDir__Type)
 	qt.EnumMap["core.QDir__NoSort"] = int64(QDir__NoSort)
+	qt.ItfMap["core.QDirIterator_ITF"] = QDirIterator{}
 	qt.EnumMap["core.QDirIterator__NoIteratorFlags"] = int64(QDirIterator__NoIteratorFlags)
 	qt.EnumMap["core.QDirIterator__FollowSymlinks"] = int64(QDirIterator__FollowSymlinks)
 	qt.EnumMap["core.QDirIterator__Subdirectories"] = int64(QDirIterator__Subdirectories)
@@ -62169,6 +62286,8 @@ func init() {
 	qt.ItfMap["core.QEventTransition_ITF"] = QEventTransition{}
 	qt.FuncMap["core.NewQEventTransition"] = NewQEventTransition
 	qt.FuncMap["core.NewQEventTransition2"] = NewQEventTransition2
+	qt.ItfMap["core.QException_ITF"] = QException{}
+	qt.ItfMap["core.QExplicitlySharedDataPointer_ITF"] = QExplicitlySharedDataPointer{}
 	qt.ItfMap["core.QFactoryInterface_ITF"] = QFactoryInterface{}
 	qt.ItfMap["core.QFile_ITF"] = QFile{}
 	qt.FuncMap["core.NewQFile"] = NewQFile
@@ -62242,15 +62361,23 @@ func init() {
 	qt.FuncMap["core.NewQFlag2"] = NewQFlag2
 	qt.FuncMap["core.NewQFlag3"] = NewQFlag3
 	qt.FuncMap["core.NewQFlag4"] = NewQFlag4
+	qt.ItfMap["core.QFlags_ITF"] = QFlags{}
+	qt.ItfMap["core.QFuture_ITF"] = QFuture{}
 	qt.ItfMap["core.QFutureInterface_ITF"] = QFutureInterface{}
 	qt.ItfMap["core.QFutureInterfaceBase_ITF"] = QFutureInterfaceBase{}
+	qt.ItfMap["core.QFutureIterator_ITF"] = QFutureIterator{}
+	qt.ItfMap["core.QFutureSynchronizer_ITF"] = QFutureSynchronizer{}
+	qt.ItfMap["core.QFutureWatcher_ITF"] = QFutureWatcher{}
 	qt.ItfMap["core.QFutureWatcherBase_ITF"] = QFutureWatcherBase{}
 	qt.ItfMap["core.QGenericArgument_ITF"] = QGenericArgument{}
 	qt.FuncMap["core.NewQGenericArgument"] = NewQGenericArgument
 	qt.ItfMap["core.QGenericAtomicOps_ITF"] = QGenericAtomicOps{}
 	qt.ItfMap["core.QGenericReturnArgument_ITF"] = QGenericReturnArgument{}
 	qt.FuncMap["core.NewQGenericReturnArgument"] = NewQGenericReturnArgument
+	qt.ItfMap["core.QGlobalStatic_ITF"] = QGlobalStatic{}
+	qt.ItfMap["core.QHash_ITF"] = QHash{}
 	qt.ItfMap["core.QHashData_ITF"] = QHashData{}
+	qt.ItfMap["core.QHashIterator_ITF"] = QHashIterator{}
 	qt.ItfMap["core.QHashNode_ITF"] = QHashNode{}
 	qt.ItfMap["core.QHistoryState_ITF"] = QHistoryState{}
 	qt.FuncMap["core.NewQHistoryState"] = NewQHistoryState
@@ -62361,6 +62488,7 @@ func init() {
 	qt.EnumMap["core.QJsonValue__Undefined"] = int64(QJsonValue__Undefined)
 	qt.ItfMap["core.QJsonValuePtr_ITF"] = QJsonValuePtr{}
 	qt.ItfMap["core.QJsonValueRefPtr_ITF"] = QJsonValueRefPtr{}
+	qt.ItfMap["core.QKeyValueIterator_ITF"] = QKeyValueIterator{}
 	qt.ItfMap["core.QLEInteger_ITF"] = QLEInteger{}
 	qt.ItfMap["core.QLatin1Char_ITF"] = QLatin1Char{}
 	qt.FuncMap["core.NewQLatin1Char"] = NewQLatin1Char
@@ -62376,6 +62504,9 @@ func init() {
 	qt.FuncMap["core.NewQLibrary3"] = NewQLibrary3
 	qt.FuncMap["core.NewQLibrary4"] = NewQLibrary4
 	qt.FuncMap["core.QLibrary_IsLibrary"] = QLibrary_IsLibrary
+	qt.FuncMap["core.QLibrary_Resolve2"] = QLibrary_Resolve2
+	qt.FuncMap["core.QLibrary_Resolve3"] = QLibrary_Resolve3
+	qt.FuncMap["core.QLibrary_Resolve4"] = QLibrary_Resolve4
 	qt.EnumMap["core.QLibrary__ResolveAllSymbolsHint"] = int64(QLibrary__ResolveAllSymbolsHint)
 	qt.EnumMap["core.QLibrary__ExportExternalSymbolsHint"] = int64(QLibrary__ExportExternalSymbolsHint)
 	qt.EnumMap["core.QLibrary__LoadArchiveMemberHint"] = int64(QLibrary__LoadArchiveMemberHint)
@@ -62413,8 +62544,11 @@ func init() {
 	qt.EnumMap["core.QLineF__NoIntersection"] = int64(QLineF__NoIntersection)
 	qt.EnumMap["core.QLineF__BoundedIntersection"] = int64(QLineF__BoundedIntersection)
 	qt.EnumMap["core.QLineF__UnboundedIntersection"] = int64(QLineF__UnboundedIntersection)
+	qt.ItfMap["core.QLinkedList_ITF"] = QLinkedList{}
+	qt.ItfMap["core.QLinkedListIterator_ITF"] = QLinkedListIterator{}
 	qt.ItfMap["core.QLinkedListNode_ITF"] = QLinkedListNode{}
 	qt.ItfMap["core.QListData_ITF"] = QListData{}
+	qt.ItfMap["core.QListIterator_ITF"] = QListIterator{}
 	qt.ItfMap["core.QListSpecialMethods_ITF"] = QListSpecialMethods{}
 	qt.ItfMap["core.QLittleEndianStorageType_ITF"] = QLittleEndianStorageType{}
 	qt.ItfMap["core.QLocale_ITF"] = QLocale{}
@@ -63262,8 +63396,10 @@ func init() {
 	qt.FuncMap["core.NewQLoggingCategory2"] = NewQLoggingCategory2
 	qt.FuncMap["core.QLoggingCategory_DefaultCategory"] = QLoggingCategory_DefaultCategory
 	qt.FuncMap["core.QLoggingCategory_SetFilterRules"] = QLoggingCategory_SetFilterRules
+	qt.ItfMap["core.QMap_ITF"] = QMap{}
 	qt.ItfMap["core.QMapData_ITF"] = QMapData{}
 	qt.ItfMap["core.QMapDataBase_ITF"] = QMapDataBase{}
+	qt.ItfMap["core.QMapIterator_ITF"] = QMapIterator{}
 	qt.ItfMap["core.QMapNode_ITF"] = QMapNode{}
 	qt.ItfMap["core.QMapNodeBase_ITF"] = QMapNodeBase{}
 	qt.ItfMap["core.QMargins_ITF"] = QMargins{}
@@ -63427,6 +63563,14 @@ func init() {
 	qt.FuncMap["core.NewQMimeType2"] = NewQMimeType2
 	qt.ItfMap["core.QModelIndex_ITF"] = QModelIndex{}
 	qt.FuncMap["core.NewQModelIndex"] = NewQModelIndex
+	qt.ItfMap["core.QMultiHash_ITF"] = QMultiHash{}
+	qt.ItfMap["core.QMultiMap_ITF"] = QMultiMap{}
+	qt.ItfMap["core.QMutableHashIterator_ITF"] = QMutableHashIterator{}
+	qt.ItfMap["core.QMutableLinkedListIterator_ITF"] = QMutableLinkedListIterator{}
+	qt.ItfMap["core.QMutableListIterator_ITF"] = QMutableListIterator{}
+	qt.ItfMap["core.QMutableMapIterator_ITF"] = QMutableMapIterator{}
+	qt.ItfMap["core.QMutableSetIterator_ITF"] = QMutableSetIterator{}
+	qt.ItfMap["core.QMutableVectorIterator_ITF"] = QMutableVectorIterator{}
 	qt.ItfMap["core.QMutex_ITF"] = QMutex{}
 	qt.FuncMap["core.NewQMutex"] = NewQMutex
 	qt.EnumMap["core.QMutex__NonRecursive"] = int64(QMutex__NonRecursive)
@@ -63475,6 +63619,7 @@ func init() {
 	qt.EnumMap["core.QOperatingSystemVersion__TvOS"] = int64(QOperatingSystemVersion__TvOS)
 	qt.EnumMap["core.QOperatingSystemVersion__WatchOS"] = int64(QOperatingSystemVersion__WatchOS)
 	qt.EnumMap["core.QOperatingSystemVersion__Android"] = int64(QOperatingSystemVersion__Android)
+	qt.ItfMap["core.QPair_ITF"] = QPair{}
 	qt.ItfMap["core.QParallelAnimationGroup_ITF"] = QParallelAnimationGroup{}
 	qt.FuncMap["core.NewQParallelAnimationGroup"] = NewQParallelAnimationGroup
 	qt.ItfMap["core.QPauseAnimation_ITF"] = QPauseAnimation{}
@@ -63497,6 +63642,7 @@ func init() {
 	qt.FuncMap["core.NewQPointF2"] = NewQPointF2
 	qt.FuncMap["core.NewQPointF3"] = NewQPointF3
 	qt.FuncMap["core.QPointF_DotProduct"] = QPointF_DotProduct
+	qt.ItfMap["core.QPointer_ITF"] = QPointer{}
 	qt.ItfMap["core.QProcess_ITF"] = QProcess{}
 	qt.FuncMap["core.NewQProcess"] = NewQProcess
 	qt.FuncMap["core.QProcess_Execute"] = QProcess_Execute
@@ -63532,6 +63678,7 @@ func init() {
 	qt.ItfMap["core.QPropertyAnimation_ITF"] = QPropertyAnimation{}
 	qt.FuncMap["core.NewQPropertyAnimation"] = NewQPropertyAnimation
 	qt.FuncMap["core.NewQPropertyAnimation2"] = NewQPropertyAnimation2
+	qt.ItfMap["core.QQueue_ITF"] = QQueue{}
 	qt.ItfMap["core.QRandomGenerator_ITF"] = QRandomGenerator{}
 	qt.FuncMap["core.NewQRandomGenerator"] = NewQRandomGenerator
 	qt.FuncMap["core.NewQRandomGenerator5"] = NewQRandomGenerator5
@@ -63598,6 +63745,7 @@ func init() {
 	qt.ItfMap["core.QRegularExpressionMatch_ITF"] = QRegularExpressionMatch{}
 	qt.FuncMap["core.NewQRegularExpressionMatch"] = NewQRegularExpressionMatch
 	qt.FuncMap["core.NewQRegularExpressionMatch2"] = NewQRegularExpressionMatch2
+	qt.ItfMap["core.QRegularExpressionMatchIterator_ITF"] = QRegularExpressionMatchIterator{}
 	qt.ItfMap["core.QResource_ITF"] = QResource{}
 	qt.FuncMap["core.NewQResource"] = NewQResource
 	qt.FuncMap["core.QResource_RegisterResource"] = QResource_RegisterResource
@@ -63614,10 +63762,14 @@ func init() {
 	qt.FuncMap["core.NewQSaveFile"] = NewQSaveFile
 	qt.FuncMap["core.NewQSaveFile2"] = NewQSaveFile2
 	qt.FuncMap["core.NewQSaveFile3"] = NewQSaveFile3
+	qt.ItfMap["core.QScopeGuard_ITF"] = QScopeGuard{}
+	qt.ItfMap["core.QScopedArrayPointer_ITF"] = QScopedArrayPointer{}
+	qt.ItfMap["core.QScopedPointer_ITF"] = QScopedPointer{}
 	qt.ItfMap["core.QScopedPointerArrayDeleter_ITF"] = QScopedPointerArrayDeleter{}
 	qt.ItfMap["core.QScopedPointerDeleter_ITF"] = QScopedPointerDeleter{}
 	qt.ItfMap["core.QScopedPointerObjectDeleteLater_ITF"] = QScopedPointerObjectDeleteLater{}
 	qt.ItfMap["core.QScopedPointerPodDeleter_ITF"] = QScopedPointerPodDeleter{}
+	qt.ItfMap["core.QScopedValueRollback_ITF"] = QScopedValueRollback{}
 	qt.ItfMap["core.QSemaphore_ITF"] = QSemaphore{}
 	qt.FuncMap["core.NewQSemaphore"] = NewQSemaphore
 	qt.ItfMap["core.QSemaphoreReleaser_ITF"] = QSemaphoreReleaser{}
@@ -63627,6 +63779,8 @@ func init() {
 	qt.ItfMap["core.QSequentialAnimationGroup_ITF"] = QSequentialAnimationGroup{}
 	qt.FuncMap["core.NewQSequentialAnimationGroup"] = NewQSequentialAnimationGroup
 	qt.ItfMap["core.QSequentialIterable_ITF"] = QSequentialIterable{}
+	qt.ItfMap["core.QSet_ITF"] = QSet{}
+	qt.ItfMap["core.QSetIterator_ITF"] = QSetIterator{}
 	qt.ItfMap["core.QSettings_ITF"] = QSettings{}
 	qt.FuncMap["core.NewQSettings"] = NewQSettings
 	qt.FuncMap["core.NewQSettings2"] = NewQSettings2
@@ -63666,6 +63820,7 @@ func init() {
 	qt.ItfMap["core.QSharedData_ITF"] = QSharedData{}
 	qt.FuncMap["core.NewQSharedData"] = NewQSharedData
 	qt.FuncMap["core.NewQSharedData2"] = NewQSharedData2
+	qt.ItfMap["core.QSharedDataPointer_ITF"] = QSharedDataPointer{}
 	qt.ItfMap["core.QSharedMemory_ITF"] = QSharedMemory{}
 	qt.FuncMap["core.NewQSharedMemory"] = NewQSharedMemory
 	qt.FuncMap["core.NewQSharedMemory2"] = NewQSharedMemory2
@@ -63680,9 +63835,11 @@ func init() {
 	qt.EnumMap["core.QSharedMemory__LockError"] = int64(QSharedMemory__LockError)
 	qt.EnumMap["core.QSharedMemory__OutOfResources"] = int64(QSharedMemory__OutOfResources)
 	qt.EnumMap["core.QSharedMemory__UnknownError"] = int64(QSharedMemory__UnknownError)
+	qt.ItfMap["core.QSharedPointer_ITF"] = QSharedPointer{}
 	qt.ItfMap["core.QSignalBlocker_ITF"] = QSignalBlocker{}
 	qt.FuncMap["core.NewQSignalBlocker"] = NewQSignalBlocker
 	qt.FuncMap["core.NewQSignalBlocker2"] = NewQSignalBlocker2
+	qt.ItfMap["core.QSignalMapper_ITF"] = QSignalMapper{}
 	qt.ItfMap["core.QSignalTransition_ITF"] = QSignalTransition{}
 	qt.FuncMap["core.NewQSignalTransition"] = NewQSignalTransition
 	qt.FuncMap["core.NewQSignalTransition2"] = NewQSignalTransition2
@@ -63700,6 +63857,7 @@ func init() {
 	qt.ItfMap["core.QSortFilterProxyModel_ITF"] = QSortFilterProxyModel{}
 	qt.FuncMap["core.NewQSortFilterProxyModel"] = NewQSortFilterProxyModel
 	qt.ItfMap["core.QSpecialInteger_ITF"] = QSpecialInteger{}
+	qt.ItfMap["core.QStack_ITF"] = QStack{}
 	qt.ItfMap["core.QStandardPaths_ITF"] = QStandardPaths{}
 	qt.FuncMap["core.QStandardPaths_DisplayName"] = QStandardPaths_DisplayName
 	qt.FuncMap["core.QStandardPaths_FindExecutable"] = QStandardPaths_FindExecutable
@@ -63747,6 +63905,7 @@ func init() {
 	qt.EnumMap["core.QStateMachine__NoDefaultStateInHistoryStateError"] = int64(QStateMachine__NoDefaultStateInHistoryStateError)
 	qt.EnumMap["core.QStateMachine__NoCommonAncestorForTransitionError"] = int64(QStateMachine__NoCommonAncestorForTransitionError)
 	qt.ItfMap["core.QStaticByteArrayData_ITF"] = QStaticByteArrayData{}
+	qt.ItfMap["core.QStaticByteArrayMatcher_ITF"] = QStaticByteArrayMatcher{}
 	qt.ItfMap["core.QStaticPlugin_ITF"] = QStaticPlugin{}
 	qt.ItfMap["core.QStaticStringData_ITF"] = QStaticStringData{}
 	qt.ItfMap["core.QStorageInfo_ITF"] = QStorageInfo{}
@@ -63756,6 +63915,7 @@ func init() {
 	qt.FuncMap["core.NewQStorageInfo4"] = NewQStorageInfo4
 	qt.FuncMap["core.QStorageInfo_MountedVolumes"] = QStorageInfo_MountedVolumes
 	qt.FuncMap["core.QStorageInfo_Root"] = QStorageInfo_Root
+	qt.ItfMap["core.QString_ITF"] = QString{}
 	qt.EnumMap["core.QString__SectionDefault"] = int64(QString__SectionDefault)
 	qt.EnumMap["core.QString__SectionSkipEmpty"] = int64(QString__SectionSkipEmpty)
 	qt.EnumMap["core.QString__SectionIncludeLeadingSep"] = int64(QString__SectionIncludeLeadingSep)
@@ -63768,6 +63928,7 @@ func init() {
 	qt.EnumMap["core.QString__NormalizationForm_KD"] = int64(QString__NormalizationForm_KD)
 	qt.EnumMap["core.QString__NormalizationForm_KC"] = int64(QString__NormalizationForm_KC)
 	qt.ItfMap["core.QStringBuilderCommon_ITF"] = QStringBuilderCommon{}
+	qt.ItfMap["core.QStringList_ITF"] = QStringList{}
 	qt.ItfMap["core.QStringListModel_ITF"] = QStringListModel{}
 	qt.FuncMap["core.NewQStringListModel"] = NewQStringListModel
 	qt.FuncMap["core.NewQStringListModel2"] = NewQStringListModel2
@@ -63905,6 +64066,7 @@ func init() {
 	qt.ItfMap["core.QThreadPool_ITF"] = QThreadPool{}
 	qt.FuncMap["core.NewQThreadPool"] = NewQThreadPool
 	qt.FuncMap["core.QThreadPool_GlobalInstance"] = QThreadPool_GlobalInstance
+	qt.ItfMap["core.QThreadStorage_ITF"] = QThreadStorage{}
 	qt.ItfMap["core.QThreadStorageData_ITF"] = QThreadStorageData{}
 	qt.ItfMap["core.QTime_ITF"] = QTime{}
 	qt.FuncMap["core.NewQTime2"] = NewQTime2
@@ -64043,6 +64205,7 @@ func init() {
 	qt.EnumMap["core.QUuid__WithBraces"] = int64(QUuid__WithBraces)
 	qt.EnumMap["core.QUuid__WithoutBraces"] = int64(QUuid__WithoutBraces)
 	qt.EnumMap["core.QUuid__Id128"] = int64(QUuid__Id128)
+	qt.ItfMap["core.QVarLengthArray_ITF"] = QVarLengthArray{}
 	qt.ItfMap["core.QVariant_ITF"] = QVariant{}
 	qt.FuncMap["core.NewQVariant"] = NewQVariant
 	qt.FuncMap["core.NewQVariant2"] = NewQVariant2
@@ -64154,6 +64317,8 @@ func init() {
 	qt.EnumMap["core.QVariant__LastType"] = int64(QVariant__LastType)
 	qt.ItfMap["core.QVariantAnimation_ITF"] = QVariantAnimation{}
 	qt.FuncMap["core.NewQVariantAnimation"] = NewQVariantAnimation
+	qt.ItfMap["core.QVector_ITF"] = QVector{}
+	qt.ItfMap["core.QVectorIterator_ITF"] = QVectorIterator{}
 	qt.ItfMap["core.QVersionNumber_ITF"] = QVersionNumber{}
 	qt.FuncMap["core.NewQVersionNumber"] = NewQVersionNumber
 	qt.FuncMap["core.NewQVersionNumber2"] = NewQVersionNumber2
@@ -64168,6 +64333,8 @@ func init() {
 	qt.FuncMap["core.QVersionNumber_FromString3"] = QVersionNumber_FromString3
 	qt.ItfMap["core.QWaitCondition_ITF"] = QWaitCondition{}
 	qt.FuncMap["core.NewQWaitCondition"] = NewQWaitCondition
+	qt.ItfMap["core.QWeakPointer_ITF"] = QWeakPointer{}
+	qt.ItfMap["core.QWinEventNotifier_ITF"] = QWinEventNotifier{}
 	qt.ItfMap["core.QWriteLocker_ITF"] = QWriteLocker{}
 	qt.FuncMap["core.NewQWriteLocker"] = NewQWriteLocker
 	qt.ItfMap["core.QXmlStreamAttribute_ITF"] = QXmlStreamAttribute{}
@@ -65415,4 +65582,5 @@ func init() {
 	qt.FuncMap["core.QtGlobal_qgetenv"] = QtGlobal_qgetenv
 	qt.FuncMap["core.QtGlobal_qputenv"] = QtGlobal_qputenv
 	qt.FuncMap["core.QtGlobal_qunsetenv"] = QtGlobal_qunsetenv
+	qt.ItfMap["core.qfloat16_ITF"] = qfloat16{}
 }

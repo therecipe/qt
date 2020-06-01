@@ -29,7 +29,7 @@ func cGoUnpackBytes(s C.struct_QtQml_PackedString) []byte {
 	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
-		return *(*[]byte)(unsafe.Pointer(&gs))
+		return []byte(gs)
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
@@ -7638,6 +7638,7 @@ func init() {
 	qt.EnumMap["qml.QQmlIncubator__Loading"] = int64(QQmlIncubator__Loading)
 	qt.EnumMap["qml.QQmlIncubator__Error"] = int64(QQmlIncubator__Error)
 	qt.ItfMap["qml.QQmlInfo_ITF"] = QQmlInfo{}
+	qt.ItfMap["qml.QQmlListProperty_ITF"] = QQmlListProperty{}
 	qt.ItfMap["qml.QQmlListReference_ITF"] = QQmlListReference{}
 	qt.FuncMap["qml.NewQQmlListReference"] = NewQQmlListReference
 	qt.FuncMap["qml.NewQQmlListReference2"] = NewQQmlListReference2

@@ -17,6 +17,8 @@ Mfile*
 */minimal_*
 */*.d.ts
 
+interop/moc*
+
 /internal/binding/dump/*
 /internal/binding/runtime/moc*
 /internal/cmd/moc/test/**/moc*

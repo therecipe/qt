@@ -26,7 +26,7 @@ func cGoUnpackBytes(s C.struct_QtSensors_PackedString) []byte {
 	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
-		return *(*[]byte)(unsafe.Pointer(&gs))
+		return []byte(gs)
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
@@ -13861,6 +13861,27 @@ func NewSensorfwaccelerometerFromPointer(ptr unsafe.Pointer) (n *sensorfwacceler
 	return
 }
 func init() {
+	qt.ItfMap["sensors.AndroidAccelerometer_ITF"] = AndroidAccelerometer{}
+	qt.ItfMap["sensors.AndroidCompass_ITF"] = AndroidCompass{}
+	qt.ItfMap["sensors.AndroidGyroscope_ITF"] = AndroidGyroscope{}
+	qt.ItfMap["sensors.AndroidLight_ITF"] = AndroidLight{}
+	qt.ItfMap["sensors.AndroidMagnetometer_ITF"] = AndroidMagnetometer{}
+	qt.ItfMap["sensors.AndroidPressure_ITF"] = AndroidPressure{}
+	qt.ItfMap["sensors.AndroidProximity_ITF"] = AndroidProximity{}
+	qt.ItfMap["sensors.AndroidRotation_ITF"] = AndroidRotation{}
+	qt.ItfMap["sensors.AndroidTemperature_ITF"] = AndroidTemperature{}
+	qt.ItfMap["sensors.FunctionEvent_ITF"] = FunctionEvent{}
+	qt.ItfMap["sensors.GenericTiltSensor_ITF"] = GenericTiltSensor{}
+	qt.ItfMap["sensors.IIOSensorProxyCompass_ITF"] = IIOSensorProxyCompass{}
+	qt.ItfMap["sensors.IIOSensorProxyLightSensor_ITF"] = IIOSensorProxyLightSensor{}
+	qt.ItfMap["sensors.IIOSensorProxyOrientationSensor_ITF"] = IIOSensorProxyOrientationSensor{}
+	qt.ItfMap["sensors.IIOSensorProxySensorBase_ITF"] = IIOSensorProxySensorBase{}
+	qt.ItfMap["sensors.IOSAccelerometer_ITF"] = IOSAccelerometer{}
+	qt.ItfMap["sensors.IOSCompass_ITF"] = IOSCompass{}
+	qt.ItfMap["sensors.IOSGyroscope_ITF"] = IOSGyroscope{}
+	qt.ItfMap["sensors.IOSMagnetometer_ITF"] = IOSMagnetometer{}
+	qt.ItfMap["sensors.IOSProximitySensor_ITF"] = IOSProximitySensor{}
+	qt.ItfMap["sensors.LinuxSysAccelerometer_ITF"] = LinuxSysAccelerometer{}
 	qt.ItfMap["sensors.QAccelerometer_ITF"] = QAccelerometer{}
 	qt.FuncMap["sensors.NewQAccelerometer"] = NewQAccelerometer
 	qt.EnumMap["sensors.QAccelerometer__Combined"] = int64(QAccelerometer__Combined)
@@ -14004,4 +14025,94 @@ func init() {
 	qt.ItfMap["sensors.QTiltReading_ITF"] = QTiltReading{}
 	qt.ItfMap["sensors.QTiltSensor_ITF"] = QTiltSensor{}
 	qt.FuncMap["sensors.NewQTiltSensor"] = NewQTiltSensor
+	qt.ItfMap["sensors.QmlAccelerometer_ITF"] = QmlAccelerometer{}
+	qt.ItfMap["sensors.QmlAccelerometerReading_ITF"] = QmlAccelerometerReading{}
+	qt.ItfMap["sensors.QmlAltimeter_ITF"] = QmlAltimeter{}
+	qt.ItfMap["sensors.QmlAltimeterReading_ITF"] = QmlAltimeterReading{}
+	qt.ItfMap["sensors.QmlAmbientLightSensor_ITF"] = QmlAmbientLightSensor{}
+	qt.ItfMap["sensors.QmlAmbientLightSensorReading_ITF"] = QmlAmbientLightSensorReading{}
+	qt.ItfMap["sensors.QmlAmbientTemperatureReading_ITF"] = QmlAmbientTemperatureReading{}
+	qt.ItfMap["sensors.QmlAmbientTemperatureSensor_ITF"] = QmlAmbientTemperatureSensor{}
+	qt.ItfMap["sensors.QmlCompass_ITF"] = QmlCompass{}
+	qt.ItfMap["sensors.QmlCompassReading_ITF"] = QmlCompassReading{}
+	qt.ItfMap["sensors.QmlDistanceReading_ITF"] = QmlDistanceReading{}
+	qt.ItfMap["sensors.QmlDistanceSensor_ITF"] = QmlDistanceSensor{}
+	qt.ItfMap["sensors.QmlGyroscope_ITF"] = QmlGyroscope{}
+	qt.ItfMap["sensors.QmlGyroscopeReading_ITF"] = QmlGyroscopeReading{}
+	qt.ItfMap["sensors.QmlHolsterReading_ITF"] = QmlHolsterReading{}
+	qt.ItfMap["sensors.QmlHolsterSensor_ITF"] = QmlHolsterSensor{}
+	qt.ItfMap["sensors.QmlHumidityReading_ITF"] = QmlHumidityReading{}
+	qt.ItfMap["sensors.QmlHumiditySensor_ITF"] = QmlHumiditySensor{}
+	qt.ItfMap["sensors.QmlIRProximitySensor_ITF"] = QmlIRProximitySensor{}
+	qt.ItfMap["sensors.QmlIRProximitySensorReading_ITF"] = QmlIRProximitySensorReading{}
+	qt.ItfMap["sensors.QmlLidReading_ITF"] = QmlLidReading{}
+	qt.ItfMap["sensors.QmlLidSensor_ITF"] = QmlLidSensor{}
+	qt.ItfMap["sensors.QmlLightSensor_ITF"] = QmlLightSensor{}
+	qt.ItfMap["sensors.QmlLightSensorReading_ITF"] = QmlLightSensorReading{}
+	qt.ItfMap["sensors.QmlMagnetometer_ITF"] = QmlMagnetometer{}
+	qt.ItfMap["sensors.QmlMagnetometerReading_ITF"] = QmlMagnetometerReading{}
+	qt.ItfMap["sensors.QmlOrientationSensor_ITF"] = QmlOrientationSensor{}
+	qt.ItfMap["sensors.QmlOrientationSensorReading_ITF"] = QmlOrientationSensorReading{}
+	qt.ItfMap["sensors.QmlPressureReading_ITF"] = QmlPressureReading{}
+	qt.ItfMap["sensors.QmlPressureSensor_ITF"] = QmlPressureSensor{}
+	qt.ItfMap["sensors.QmlProximitySensor_ITF"] = QmlProximitySensor{}
+	qt.ItfMap["sensors.QmlProximitySensorReading_ITF"] = QmlProximitySensorReading{}
+	qt.ItfMap["sensors.QmlRotationSensor_ITF"] = QmlRotationSensor{}
+	qt.ItfMap["sensors.QmlRotationSensorReading_ITF"] = QmlRotationSensorReading{}
+	qt.ItfMap["sensors.QmlSensor_ITF"] = QmlSensor{}
+	qt.ItfMap["sensors.QmlSensorGesture_ITF"] = QmlSensorGesture{}
+	qt.ItfMap["sensors.QmlSensorGlobal_ITF"] = QmlSensorGlobal{}
+	qt.ItfMap["sensors.QmlSensorOutputRange_ITF"] = QmlSensorOutputRange{}
+	qt.ItfMap["sensors.QmlSensorRange_ITF"] = QmlSensorRange{}
+	qt.ItfMap["sensors.QmlSensorReading_ITF"] = QmlSensorReading{}
+	qt.ItfMap["sensors.QmlTapSensor_ITF"] = QmlTapSensor{}
+	qt.ItfMap["sensors.QmlTapSensorReading_ITF"] = QmlTapSensorReading{}
+	qt.ItfMap["sensors.QmlTiltSensor_ITF"] = QmlTiltSensor{}
+	qt.ItfMap["sensors.QmlTiltSensorReading_ITF"] = QmlTiltSensorReading{}
+	qt.ItfMap["sensors.SensorEventQueue_ITF"] = SensorEventQueue{}
+	qt.ItfMap["sensors.SensorManager_ITF"] = SensorManager{}
+	qt.ItfMap["sensors.SensorTagAccelerometer_ITF"] = SensorTagAccelerometer{}
+	qt.ItfMap["sensors.SensorTagAls_ITF"] = SensorTagAls{}
+	qt.ItfMap["sensors.SensorTagBase_ITF"] = SensorTagBase{}
+	qt.ItfMap["sensors.SensorTagGyroscope_ITF"] = SensorTagGyroscope{}
+	qt.ItfMap["sensors.SensorTagHumiditySensor_ITF"] = SensorTagHumiditySensor{}
+	qt.ItfMap["sensors.SensorTagLightSensor_ITF"] = SensorTagLightSensor{}
+	qt.ItfMap["sensors.SensorTagMagnetometer_ITF"] = SensorTagMagnetometer{}
+	qt.ItfMap["sensors.SensorTagPressureSensor_ITF"] = SensorTagPressureSensor{}
+	qt.ItfMap["sensors.SensorTagTemperatureSensor_ITF"] = SensorTagTemperatureSensor{}
+	qt.ItfMap["sensors.SensorfwCompass_ITF"] = SensorfwCompass{}
+	qt.ItfMap["sensors.SensorfwGyroscope_ITF"] = SensorfwGyroscope{}
+	qt.ItfMap["sensors.SensorfwIrProximitySensor_ITF"] = SensorfwIrProximitySensor{}
+	qt.ItfMap["sensors.SensorfwLidSensor_ITF"] = SensorfwLidSensor{}
+	qt.ItfMap["sensors.SensorfwLightSensor_ITF"] = SensorfwLightSensor{}
+	qt.ItfMap["sensors.SensorfwMagnetometer_ITF"] = SensorfwMagnetometer{}
+	qt.ItfMap["sensors.SensorfwOrientationSensor_ITF"] = SensorfwOrientationSensor{}
+	qt.ItfMap["sensors.SensorfwProximitySensor_ITF"] = SensorfwProximitySensor{}
+	qt.ItfMap["sensors.SensorfwRotationSensor_ITF"] = SensorfwRotationSensor{}
+	qt.ItfMap["sensors.SensorfwSensorBase_ITF"] = SensorfwSensorBase{}
+	qt.ItfMap["sensors.SensorfwTapSensor_ITF"] = SensorfwTapSensor{}
+	qt.ItfMap["sensors.Sensorfwals_ITF"] = Sensorfwals{}
+	qt.ItfMap["sensors.SensorsConnection_ITF"] = SensorsConnection{}
+	qt.ItfMap["sensors.SimulatorAccelerometer_ITF"] = SimulatorAccelerometer{}
+	qt.ItfMap["sensors.SimulatorAmbientLightSensor_ITF"] = SimulatorAmbientLightSensor{}
+	qt.ItfMap["sensors.SimulatorCommon_ITF"] = SimulatorCommon{}
+	qt.ItfMap["sensors.SimulatorCompass_ITF"] = SimulatorCompass{}
+	qt.ItfMap["sensors.SimulatorIRProximitySensor_ITF"] = SimulatorIRProximitySensor{}
+	qt.ItfMap["sensors.SimulatorLightSensor_ITF"] = SimulatorLightSensor{}
+	qt.ItfMap["sensors.SimulatorMagnetometer_ITF"] = SimulatorMagnetometer{}
+	qt.ItfMap["sensors.SimulatorProximitySensor_ITF"] = SimulatorProximitySensor{}
+	qt.ItfMap["sensors.ThreadSafeSensorBackend_ITF"] = ThreadSafeSensorBackend{}
+	qt.ItfMap["sensors.WinRtAccelerometer_ITF"] = WinRtAccelerometer{}
+	qt.ItfMap["sensors.WinRtAmbientLightSensor_ITF"] = WinRtAmbientLightSensor{}
+	qt.ItfMap["sensors.WinRtCompass_ITF"] = WinRtCompass{}
+	qt.ItfMap["sensors.WinRtGyroscope_ITF"] = WinRtGyroscope{}
+	qt.ItfMap["sensors.WinRtOrientationSensor_ITF"] = WinRtOrientationSensor{}
+	qt.ItfMap["sensors.WinRtRotationSensor_ITF"] = WinRtRotationSensor{}
+	qt.ItfMap["sensors.dummyaccelerometer_ITF"] = dummyaccelerometer{}
+	qt.ItfMap["sensors.dummycommon_ITF"] = dummycommon{}
+	qt.ItfMap["sensors.dummylightsensor_ITF"] = dummylightsensor{}
+	qt.ItfMap["sensors.genericalssensor_ITF"] = genericalssensor{}
+	qt.ItfMap["sensors.genericorientationsensor_ITF"] = genericorientationsensor{}
+	qt.ItfMap["sensors.genericrotationsensor_ITF"] = genericrotationsensor{}
+	qt.ItfMap["sensors.sensorfwaccelerometer_ITF"] = sensorfwaccelerometer{}
 }

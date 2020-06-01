@@ -43,6 +43,7 @@ type Function struct {
 	Exception         bool
 	IsMap             bool
 	OgParameters      []Parameter
+	OgOutput          string
 	IsMocFunction     bool
 	IsMocProperty     bool
 	PureGoOutput      string

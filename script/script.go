@@ -26,7 +26,7 @@ func cGoUnpackBytes(s C.struct_QtScript_PackedString) []byte {
 	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
-		return *(*[]byte)(unsafe.Pointer(&gs))
+		return []byte(gs)
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
@@ -3819,6 +3819,7 @@ func init() {
 	qt.EnumMap["script.QScriptClass__HandlesWriteAccess"] = int64(QScriptClass__HandlesWriteAccess)
 	qt.EnumMap["script.QScriptClass__Callable"] = int64(QScriptClass__Callable)
 	qt.EnumMap["script.QScriptClass__HasInstance"] = int64(QScriptClass__HasInstance)
+	qt.ItfMap["script.QScriptClassPropertyIterator_ITF"] = QScriptClassPropertyIterator{}
 	qt.ItfMap["script.QScriptContext_ITF"] = QScriptContext{}
 	qt.EnumMap["script.QScriptContext__NormalState"] = int64(QScriptContext__NormalState)
 	qt.EnumMap["script.QScriptContext__ExceptionState"] = int64(QScriptContext__ExceptionState)
@@ -3894,5 +3895,6 @@ func init() {
 	qt.EnumMap["script.QScriptValue__QObjectMember"] = int64(QScriptValue__QObjectMember)
 	qt.EnumMap["script.QScriptValue__KeepExistingFlags"] = int64(QScriptValue__KeepExistingFlags)
 	qt.EnumMap["script.QScriptValue__UserRange"] = int64(QScriptValue__UserRange)
+	qt.ItfMap["script.QScriptValueIterator_ITF"] = QScriptValueIterator{}
 	qt.ItfMap["script.QScriptable_ITF"] = QScriptable{}
 }

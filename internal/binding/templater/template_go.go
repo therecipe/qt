@@ -26,6 +26,15 @@ func GoTemplate(module string, stub bool, mode int, pkg, target, tags string) []
 			cont = "package qml"
 		}
 		utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "utils-qml.go"), cont)
+
+		//TODO: make layer generic instead
+		cont = strings.Replace(cont, "package qml", "package interop", -1)
+		cont = strings.Replace(cont, "qml.", "interop.", -1)
+		cont = strings.Replace(cont, "QJSValue", "PseudoQJSValue", -1)
+		cont = strings.Replace(cont, "QJSEngine", "PseudoQJSEngine", -1)
+		if utils.ExistsDir(utils.GoQtPkgPath(strings.ToLower("interop"))) {
+			utils.Save(utils.GoQtPkgPath(strings.ToLower("interop"), "interop.go"), cont)
+		}
 	}
 
 	utils.Log.WithField("module", module).Debug("generating go")
@@ -45,7 +54,7 @@ func GoTemplate(module string, stub bool, mode int, pkg, target, tags string) []
 		}
 		fmt.Fprintf(bb, "func cGoFreePacked(ptr unsafe.Pointer) { %vNewQByteArrayFromPointer(ptr).DestroyQByteArray() }\n", m)
 		fmt.Fprintf(bb, "func cGoUnpackString(s C.struct_%v_PackedString) string { defer cGoFreePacked(s.ptr)\n if int(s.len) == -1 {\n return C.GoString(s.data)\n }\n return C.GoStringN(s.data, C.int(s.len)) }\n", strings.Title(module))
-		fmt.Fprintf(bb, "func cGoUnpackBytes(s C.struct_%v_PackedString) []byte { defer cGoFreePacked(s.ptr)\n if int(s.len) == -1 {\n gs := C.GoString(s.data)\n return *(*[]byte)(unsafe.Pointer(&gs))\n }\n return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len)) }\n", strings.Title(module))
+		fmt.Fprintf(bb, "func cGoUnpackBytes(s C.struct_%v_PackedString) []byte { defer cGoFreePacked(s.ptr)\n if int(s.len) == -1 {\n gs := C.GoString(s.data)\n return []byte(gs)\n }\n return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len)) }\n", strings.Title(module))
 	}
 
 	if UseJs() {
@@ -213,7 +222,7 @@ func New%vFromPointer(ptr unsafe.Pointer) (n *%[2]v) {
 
 			if !class.HasDestructor() {
 				if UseStub(stub, module, mode) {
-					fmt.Fprintf(bb, "\nfunc (ptr *%v) Destroy%v() {}\n\n", class.Name, strings.Title(class.Name))
+					fmt.Fprintf(bb, "\nfunc (ptr *%v) Destroy%v() {\n}\n\n", class.Name, strings.Title(class.Name))
 				} else if !class.IsSubClassOfQObject() {
 					var ds string
 					if class.HasCallbackFunctions() {
@@ -569,7 +578,7 @@ switch s.Kind() {
 		return NewQVariant1(uint64(s.Interface().(uintptr)))
 }
 
-if s.Type().ConvertibleTo(reflect.TypeOf(int8(0))) {
+if i != nil && s.Type().ConvertibleTo(reflect.TypeOf(int8(0))) {
 	if s.Kind() == reflect.Int64 {
 		return NewQVariant1(s.Convert(reflect.TypeOf(int64(0))).Interface())
 	}
@@ -745,6 +754,8 @@ default:
 				fmt.Fprintln(bb, "\tqt.RegisterConnectionType(ptr.Pointer(), strings.ToLower(fn[:1])+fn[1:], int64(t))")
 				fmt.Fprintln(bb, "\treflect.ValueOf(f).Call([]reflect.Value{reflect.ValueOf(a)})")
 				fmt.Fprintln(bb, "}\n")
+
+				//TODO: invokeMethod
 			}
 		}
 		cTemplate(bb, class, goEnum, goFunction, "\n\n", true)
@@ -814,11 +825,24 @@ default:
 			}
 			return module
 		}()))
+	} else if utils.QT_GEN_DART() {
+		gosplitted = strings.Split(bb.String(), "\n")
+
+		fmt.Fprint(tsd, "import '../internal.dart';\n")
+
+		fmt.Fprint(tsd, "bool inited = false;\nvoid initModule() {\nif (inited) { return; }\ninited = true;\n")
+		for _, c := range parser.SortedClassesForModule(module, true) {
+			if c.IsSupported() || (c.Export && mode == MINIMAL) {
+				fmt.Fprintf(tsd, "constructorTable[\"%v.%v\"] = New%vFromPointer;\n", goModule(c.Module), c.Name, strings.Title(c.Name))
+			}
+		}
+		fmt.Fprint(tsd, "\ninit();\n")
+		fmt.Fprint(tsd, "\n___IMPORTPLACEHOLDER___\n}\n")
 	}
 
 	for _, c := range parser.SortedClassesForModule(module, true) {
 
-		if c.IsSupported() && (cmd.ImportsQmlOrQuick() || mode == NONE) {
+		if c.IsSupported() && (cmd.ImportsQmlOrQuick() || cmd.ImportsInterop()) || mode == NONE {
 			bb.WriteString(fmt.Sprintf("qt.ItfMap[\"%[1]v.%[2]v_ITF\"] = %[2]v{}\n", goModule(func() string {
 				if mode == MOC {
 					return pkg
@@ -887,16 +911,97 @@ default:
 
 				tsd.WriteString("\t\t___pointer: number;\n")
 
-				if c.Name == "QJSEngine" {
-					fmt.Fprint(tsd, "\t\tToGoType(jsval:QJSValue, dst:any):void\n")
+				if c.Name == "QJSEngine" { //TODO: also NewQVariant1 + toInterface function
+					//fmt.Fprint(tsd, "\t\tNewGoType(i:any[]):QJSValue\n")            //TODO: only possible for the webbrowser js api?
+					//fmt.Fprint(tsd, "\t\tToGoType(jsval:QJSValue, dst:any):void\n") //TODO: only possible for the webbrowser js api?
 					fmt.Fprint(tsd, "\t\tNewJSType(property:QJSValue, name:string, i:any):void\n")
-					fmt.Fprint(tsd, "\t\tNewGoType(i:any[]):QJSValue\n")
 				}
 
 				for _, l := range gosplitted {
 					out := convertToTypeScriptDefinition(c.Name, l, true)
 					if out != "" {
 						tsd.WriteString("\t\t" + out + ";\n")
+					}
+				}
+
+				fmt.Fprint(tsd, "\t}\n")
+			} else if utils.QT_GEN_DART() {
+				var parents []string
+				for _, parentClassName := range c.GetBasesSorted() {
+					var parentClass, ok = parser.State.ClassMap[parentClassName]
+					if !ok {
+						continue
+					}
+					if parentClass.Module == c.Module {
+						parents = append(parents, fmt.Sprintf("%v_ITF", parentClassName))
+					} else {
+						parents = append(parents, fmt.Sprintf("%v.%v_ITF", goModule(parentClass.Module), parentClassName))
+					}
+				}
+
+				if len(parents) != 0 && !(strings.HasPrefix(strings.Title(c.Name), "Generic") && c.Module == "QtSensors") {
+
+					var with string
+					if len(parents) > 1 {
+						with = " with "
+						for i, p := range parents {
+							if i == 0 {
+								continue
+							}
+							with += p + ", "
+						}
+						with = strings.TrimSuffix(with, ", ")
+					}
+
+					fmt.Fprintf(tsd, "\tabstract class %v_ITF extends %v%v {\n\t\t%v\t}\n\n",
+						c.Name,
+						parents[0],
+						with,
+						fmt.Sprintf("%[1]v %[1]v_PTR();\n", c.Name),
+					)
+				} else {
+					fmt.Fprintf(tsd, "\tabstract class %v_ITF {\n\t\t%v\t}\n\n",
+						c.Name,
+						fmt.Sprintf("%[1]v %[1]v_PTR();\n", c.Name),
+					)
+				}
+
+				if len(parents) != 0 && !(strings.HasPrefix(strings.Title(c.Name), "Generic") && c.Module == "QtSensors") {
+
+					var with string
+					if len(parents) > 1 {
+						with = " with "
+						for i, p := range parents {
+							if i == 0 {
+								continue
+							}
+							p = strings.TrimSuffix(p, "_ITF")
+							with += p + ", "
+						}
+						with = strings.TrimSuffix(with, ", ")
+					}
+
+					fmt.Fprintf(tsd, "\tclass %[1]v extends %v%v implements %[1]v_ITF {\n",
+						c.Name,
+						strings.TrimSuffix(parents[0], "_ITF"),
+						with,
+					)
+				} else {
+					fmt.Fprintf(tsd, "\tclass %[1]v extends Internal implements %[1]v_ITF {\n",
+						c.Name,
+					)
+				}
+
+				if c.Name == "QJSEngine" { //TODO: also NewQVariant1 + toInterface function
+					fmt.Fprint(tsd, "\t\tQJSValue NewGoType(List<dynamic> i) { return callLocalFunction([\"\",this.Pointer(),this.className,\"NewGoType\",i]); }\n") //TODO: check if one of the args is a function
+					//fmt.Fprint(tsd, "\t\tToGoType(jsval:QJSValue, dst:any):void\n")                                                                                                                 //TODO: only possible with reflection in dart
+					//fmt.Fprint(tsd, "\t\tvoid NewJSType(QJSValue property, String name, dynamic i) { callLocalFunction([\"\",this.Pointer(),this.className,\"NewJSType\",property, name, i]); }\n") //TODO: check if one of the args is a function
+				}
+
+				for _, l := range gosplitted {
+					out := convertToDart(c.Name, l, true)
+					if out != "" {
+						tsd.WriteString("\t\t" + out + "\n")
 					}
 				}
 
@@ -941,7 +1046,7 @@ default:
 					bb.WriteString(out)
 				}
 			}
-			if cmd.ImportsQmlOrQuick() || mode == NONE {
+			if cmd.ImportsQmlOrQuick() || cmd.ImportsInterop() || mode == NONE {
 				out := fmt.Sprintf("qt.FuncMap[\"%[1]v.%[2]v\"] = %[2]v\n", goModule(func() string {
 					if mode == MOC {
 						return pkg
@@ -962,16 +1067,24 @@ default:
 					fmt.Fprint(bb, "module.Set(\"NewQVariant1\", func(i interface{}) *js.Object { return qt.MakeWrapper(NewQVariant1(i)) })\n")
 				}
 			}
-			if cmd.ImportsQmlOrQuick() || mode == NONE {
+			if cmd.ImportsQmlOrQuick() || cmd.ImportsInterop() || mode == NONE {
 				fmt.Fprint(bb, "qt.FuncMap[\"core.NewQVariant1\"] = NewQVariant1\n")
 			}
 		}
 
-		if utils.QT_GEN_TSD() && c.IsSupported() {
+		if (utils.QT_GEN_TSD() || utils.QT_GEN_DART()) && c.IsSupported() {
 			for _, l := range gosplitted {
-				out := convertToTypeScriptDefinition(c.Name, l, false)
-				if out != "" {
-					tsd.WriteString("\t" + out + ";\n")
+				var out string
+				if utils.QT_GEN_TSD() {
+					out = convertToTypeScriptDefinition(c.Name, l, false)
+					if out != "" {
+						tsd.WriteString("\t" + out + ";\n")
+					}
+				} else {
+					out = convertToDart(c.Name, l, false)
+					if out != "" {
+						tsd.WriteString("\t" + out + "\n")
+					}
 				}
 			}
 		}
@@ -989,7 +1102,7 @@ default:
 				} else if parser.UseJs() {
 					fmt.Fprintf(bb, "module.Set(\"%v__%v\", int64(%v__%v))\n", strings.Split(e.Fullname, "::")[0], v.Name, strings.Split(e.Fullname, "::")[0], v.Name)
 				}
-				if cmd.ImportsQmlOrQuick() || mode == NONE {
+				if cmd.ImportsQmlOrQuick() || cmd.ImportsInterop() || mode == NONE {
 					bb.WriteString(fmt.Sprintf("qt.EnumMap[\"%[1]v.%[2]v__%[3]v\"] = int64(%[2]v__%[3]v)\n", goModule(module), strings.Split(e.Fullname, "::")[0], v.Name))
 
 					if utils.QT_GEN_TSD() {
@@ -1090,6 +1203,7 @@ import "C"
 		}
 	}
 
+	var dartInput []string
 	fmt.Fprint(bb, "import (\n")
 	for _, m := range append(parser.GetLibs(), "qt", "strings", "unsafe", "log", "runtime", "fmt", "errors", "js", "time", "hex", "reflect", "math", "sync", "strconv") {
 		mlow := strings.ToLower(m)
@@ -1128,6 +1242,9 @@ import "C"
 
 				if utils.QT_GEN_TSD() {
 					fmt.Fprintf(tsdbb, "/// <reference path=\"%v.d.ts\" />\n", mlow)
+				} else if utils.QT_GEN_DART() {
+					fmt.Fprintf(tsdbb, "import '%[1]v.dart' as %[1]v;\n", mlow)
+					dartInput = append(dartInput, fmt.Sprintf("%v.initModule();", mlow))
 				}
 
 				if mode == MOC {
@@ -1187,7 +1304,7 @@ import "C"
 		if module == "gui" && utils.QT_API_NUM(utils.QT_VERSION()) >= 5050 {
 			if mode == NONE {
 				fmt.Fprintln(bb, "_ \"github.com/therecipe/qt/internal/binding/runtime\"")
-			} else if mode == MINIMAL && cmd.ImportsQmlOrQuick() {
+			} else if mode == MINIMAL && (cmd.ImportsQmlOrQuick() || cmd.ImportsInterop()) {
 				fmt.Fprintln(bb, "_ \"github.com/therecipe/qt/internal/binding/runtime\"")
 			}
 		}
@@ -1264,9 +1381,17 @@ import "C"
 		out = []byte(pre)
 	}
 
-	if utils.QT_GEN_TSD() && (mode == NONE || mode == MINIMAL) {
-		tsdbb.Write(tsd.Bytes())
-		utils.SaveBytes(utils.GoQtPkgPath(goModule(module), goModule(module)+".d.ts"), tsdbb.Bytes())
+	if (utils.QT_GEN_TSD() || utils.QT_GEN_DART()) && (mode == NONE || mode == MINIMAL) {
+		tsdBytes := tsd.Bytes()
+		if utils.QT_GEN_DART() {
+			tsdBytes = bytes.Replace(tsdBytes, []byte("\n___IMPORTPLACEHOLDER___"), []byte(strings.Join(dartInput, "\n")), -1)
+		}
+		tsdbb.Write(tsdBytes)
+		ending := ".d.ts"
+		if utils.QT_GEN_DART() {
+			ending = ".dart"
+		}
+		utils.SaveBytes(utils.GoQtPkgPath(goModule(module), goModule(module)+ending), tsdbb.Bytes())
 	}
 
 	return out
@@ -1295,7 +1420,7 @@ func convertToTypeScriptDefinition(className string, l string, convertClassMetho
 	}
 
 	if (strings.Contains(l, "ptr *"+className+")") && !strings.Contains(l, " __") && convertClassMethods) ||
-		(strings.HasPrefix(l, "func  New"+className) && !strings.Contains(l, "FromPointer(") && !convertClassMethods) ||
+		(strings.HasPrefix(l, "func  New"+className) && strings.Contains(l, className+"{") && !strings.Contains(l, "FromPointer(") && !convertClassMethods) ||
 		(strings.HasPrefix(l, "func  "+className+"_") && !convertClassMethods) {
 		l = strings.Replace(l, "  ", " ", -1)
 		l = strings.Replace(l, "func (", "function(", -1)
@@ -1414,4 +1539,311 @@ func convertToTypeScriptDefinition(className string, l string, convertClassMetho
 		return l
 	}
 	return ""
+}
+
+func convertToDart(className string, l string, convertClassMethods bool) string {
+	l = strings.TrimSpace(l)
+
+	if strings.HasPrefix(l, "func New"+className+"FromPointer") && !convertClassMethods {
+		return fmt.Sprintf("%[1]v New%[1]vFromPointer(int ptr) { final r = new %[1]v(); r.initFrom(ptr, \"%[2]v.%[1]v\"); return r; }", className, goModule(parser.State.ClassMap[className].Module))
+	}
+
+	if (strings.Contains(l, "ptr *"+className+")") && !strings.Contains(l, " __") && convertClassMethods) ||
+		(strings.HasPrefix(l, "func  New"+className) && strings.Contains(l, className+"{") && !strings.Contains(l, "FromPointer(") && !convertClassMethods) ||
+		(strings.HasPrefix(l, "func  "+className+"_") && !convertClassMethods) {
+		l = strings.Replace(l, "  ", " ", -1)
+		l = strings.Replace(l, "func (", "function(", -1)
+		l = strings.Replace(l, "func New", "function_New", -1)
+		l = strings.Replace(l, "func "+className, "function_"+className, -1)
+		l = strings.Replace(l, ") )", "))", -1)
+		l = strings.Replace(l, ", ", ",", -1)
+		l = strings.Replace(l, "*", "", -1)
+
+		if convertClassMethods {
+			l = strings.Join(strings.Split(l, ") ")[1:], ") ")
+		}
+
+		l = strings.TrimSpace(strings.TrimSuffix(l, "{"))
+		l = strings.Replace(l, " ", ":", -1)
+
+		for _, v := range [][]string{{"string", "String"}, {"[]byte", "String"}, {"interface{}", "dynamic"}, {"...interface{}", "List<dynamic>"}} {
+			l = strings.Replace(l, ":"+v[0], ":"+v[1], -1)
+		}
+
+		for _, v := range []string{"string"} {
+			l = strings.Replace(l, ":[]"+v, ":[]String", -1)
+			l = strings.Replace(l, "["+v+"]", "[String]", -1)
+			l = strings.Replace(l, "]"+v+")", "]String)", -1)
+			l = strings.Replace(l, "]"+v, "]String", -1)
+		}
+
+		for _, v := range []string{"uint8", "int8", "uint16", "int16", "uint32", "int32", "uint64", "int64", "uintptr", "uint", "int", "float32", "float64", "unsafe.Pointer"} {
+			l = strings.Replace(l, ":"+v, ":int", -1)
+			l = strings.Replace(l, ":[]"+v, ":[]int", -1)
+			l = strings.Replace(l, "["+v+"]", "[int]", -1)
+		}
+
+		l = strings.Replace(l, "in:", "i:", -1)
+
+		ls := strings.Split(l, ":")
+		for i, lss := range ls {
+			for _, sc := range []string{")", ",", ";"} {
+				lsss := strings.Split(lss, sc)
+
+				if strings.Contains(lsss[0], "[]") {
+					for _, scc := range []string{",", ")", ";"} {
+						lssss := strings.Split(lsss[0], scc)
+						for j := range lssss {
+							if strings.Contains(lssss[j], "[]") {
+								lssss[j] = "List<" + strings.Replace(lssss[j], "[]", "", -1) + ">"
+							}
+						}
+						lsss[0] = strings.Join(lssss, scc)
+					}
+				}
+
+				if strings.Contains(lsss[0], "map[") {
+					lsss[0] = strings.Replace(lsss[0], "map[", "Map<", -1)
+					for _, scc := range []string{",", ")", ";"} {
+						lssss := strings.Split(lsss[0], scc)
+						for j := range lssss {
+							if strings.Contains(lssss[j], "]") {
+								lssss[j] = strings.Replace(lssss[j], "]", "#", -1) + ">"
+							}
+						}
+						lsss[0] = strings.Join(lssss, scc)
+					}
+				}
+
+				//TODO: support enums
+				if strings.Contains(lsss[0], "__") {
+					index := strings.IndexAny(lsss[0], "),;")
+					if index != -1 {
+						lsss[0] = "int" + lsss[0][index:]
+					} else {
+						lsss[0] = "int"
+					}
+				}
+
+				lss = strings.Join(lsss, sc)
+			}
+			ls[i] = lss
+		}
+		l = strings.Join(ls, ":")
+
+		ls = strings.Split(l, "function(")
+		for i, lss := range ls {
+			if i == 0 {
+				continue
+			}
+			lse := strings.Split(lss, ")")
+
+			for j := range lse {
+				if j == 0 || j == len(lse)-1 {
+					continue
+				}
+				if strings.HasPrefix(lse[j], ":") {
+					lse[j] = "=>" + strings.TrimPrefix(lse[j], ":")
+				}
+			}
+
+			ls[i] = strings.Join(lse, ")")
+		}
+		l = strings.Join(ls, "(")
+
+		if strings.HasSuffix(l, ")") && !strings.Contains(l, "):(") {
+			l += ":void"
+		}
+		l = strings.Replace(l, "))", ")=>void)", -1)
+
+		if strings.Contains(l, "):(") {
+			ls = strings.Split(l, "):(")
+			ls[1] = strings.TrimSuffix(ls[1], ")")
+			if strings.Contains(ls[1], ",") {
+				ls[1] = "[" + ls[1] + "]"
+			}
+			for _, v := range [][]string{{"error", "String"}} {
+				ls[1] = strings.Replace(ls[1], v[0], v[1], -1)
+			}
+			l = strings.Join(ls, "):")
+		}
+
+		l = strings.Replace(l, "function_New", "New", -1)
+		l = strings.Replace(l, "function_"+className, className, -1)
+		l = strings.Replace(l, "function:", "func:", -1)
+		l = strings.Replace(l, "[_BLOCKING_]", "[]", -1)
+
+		///
+		///
+		///
+
+		var params []string
+
+		l = strings.Replace(l, ":(", ":Function(", -1)
+		if in := getInner(l); in != "" {
+			n, c := switchParameters(in)
+			params = c
+			l = strings.Replace(l, in, n, -1)
+		}
+
+		l = strings.Replace(l, "#", ",", -1)
+
+		ls = strings.Split(l, ":")
+		if len(ls) == 2 {
+			ls[0], ls[1] = ls[1], ls[0]
+			l = strings.Join(ls, " ")
+		}
+
+		ls = strings.Split(strings.Split(l, "(")[0], " ")
+
+		ret, name := ls[0], ls[1]
+		ret = strings.TrimSpace(ret)
+		name = strings.TrimSpace(name)
+
+		//needed because dart isn't supporting overloading: https://github.com/dart-lang/sdk/issues/26488
+		if c, ok := parser.State.ClassMap[className]; ok {
+			var (
+				f       *parser.Function
+				classes = append([]string{c.Name}, c.GetAllBases()...)
+			)
+
+			for i, bcn := range classes {
+				if f == nil {
+					f = parser.State.ClassMap[bcn].GetTitledFunction(name)
+					if f == nil {
+						lookupName := name
+						switch {
+						case strings.HasPrefix(name, "Connect"):
+							lookupName = strings.TrimPrefix(lookupName, "Connect")
+						case strings.HasPrefix(name, "Disconnect"):
+							lookupName = strings.TrimPrefix(lookupName, "Disconnect")
+						case strings.HasSuffix(name, "Default"):
+							lookupName = strings.TrimSuffix(lookupName, "Default")
+						}
+						if lookupName != name {
+							f = parser.State.ClassMap[bcn].GetTitledFunction(lookupName)
+						}
+					}
+					continue
+				}
+				compareFunc := parser.State.ClassMap[bcn].GetTitledFunction(f.Name)
+				if compareFunc == nil {
+					compareFunc = parser.State.ClassMap[bcn].GetTitledFunction(name)
+					if compareFunc == nil {
+						continue
+					}
+				}
+				if bcf := compareFunc; bcf != nil &&
+					((len(bcf.Parameters) != len(f.Parameters)) || (bcf.Output != f.Output)) {
+					l = strings.Replace(l, name+"(", name+"_"+classes[i-1]+"(", -1)
+					break
+				}
+				var br bool
+				for j, p := range compareFunc.Parameters {
+					if p.Value != f.Parameters[j].Value {
+						l = strings.Replace(l, name+"(", name+"_"+classes[i-1]+"(", -1)
+						br = true
+						break
+					}
+				}
+				if br {
+					break
+				}
+			}
+		}
+		if name == "String" || name == "Map" { //TODO:
+			l = strings.Replace(l, name+"(", name+"_Function(", -1)
+		}
+		//
+
+		var input string
+		if len(params) > 0 {
+			input = "," + strings.Join(params, ",")
+		}
+
+		var (
+			return_prefix string
+			return_suffix string
+		)
+
+		if ret != "void" {
+			return_prefix = "return "
+		}
+		if strings.HasPrefix(ret, "List<") || strings.HasPrefix(ret, "Map<") {
+			return_prefix = "return " + ret + ".from("
+			return_suffix = ")"
+		}
+
+		if convertClassMethods {
+			//TODO: lookup Connect/Disconnect functions to figure out if they are really a signal/slot or virtual function
+			if strings.HasPrefix(name, "Connect") && len(params) == 1 {
+				l += fmt.Sprintf("{ callLocalAndRegisterRemoteFunction([\"\",this.Pointer(),this.className,\"%v\",\"___REMOTE_CALLBACK___\"]%v); }", name, input)
+			} else if strings.HasPrefix(name, "Disconnect") && len(params) == 0 {
+				l += fmt.Sprintf("{ callLocalAndDeregisterRemoteFunction([\"\",this.Pointer(),this.className,\"%v\"]); }", name)
+			} else {
+				l += fmt.Sprintf("{ %vcallLocalFunction([\"\",this.Pointer(),this.className,\"%v\"%v])%v; }", return_prefix, name, input, return_suffix)
+			}
+		} else {
+			//TODO: call enum function
+			l += fmt.Sprintf("{ initModule(); %vcallLocalFunction([\"\",\"\",\"%v.%v\",\"\"%v])%v; }", return_prefix, goModule(parser.State.ClassMap[className].Module), name, input, return_suffix)
+		}
+
+		if !(name == "Pointer" || name == "SetPointer") {
+			return l
+		}
+	}
+	return ""
+}
+
+func getInner(i string) string {
+	pres := strings.Split(i, "(")
+	if len(pres) > 1 {
+		pres = strings.Split(strings.Join(pres[1:], "("), ")")
+		return strings.Join(pres[:len(pres)-1], ")")
+	}
+	return ""
+}
+
+func switchParameters(i string) (string, []string) {
+	in := getInner(i)
+	if in != "" {
+		i = strings.Replace(i, in, "___PLACEHOLDER___", -1)
+	}
+
+	var pNames []string
+
+	if strings.Contains(i, ":") {
+		cs := strings.Split(i, ",")
+		for i, v := range cs {
+			vs := strings.Split(v, ":")
+			if len(vs) == 1 {
+				continue
+			}
+
+			var retval string
+			if strings.Contains(vs[1], "=>") {
+				vss := strings.Split(vs[1], "=>")
+				vs[1] = vss[0]
+				retval = vss[1]
+			}
+
+			pNames = append(pNames, vs[0])
+
+			vs[0], vs[1] = vs[1], vs[0]
+
+			cs[i] = strings.Join(vs, " ")
+
+			if retval != "" {
+				cs[i] = retval + " " + cs[i]
+			}
+		}
+		i = strings.Join(cs, ",")
+	}
+
+	if in != "" {
+		n, _ := switchParameters(in)
+		i = strings.Replace(i, "___PLACEHOLDER___", n, -1)
+	}
+
+	return i, pNames
 }

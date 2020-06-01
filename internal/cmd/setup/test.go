@@ -180,7 +180,7 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 			)
 			templater.CleanupDepsForCI()
 			templater.CleanupDepsForCI = func() {}
-			cmd.CleanupImportsQmlOrQuickForCI()
+			cmd.CleanupRegisteredImportsForCI()
 		}
 	}
 }

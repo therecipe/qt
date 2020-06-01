@@ -23,6 +23,8 @@ var (
 	importedStd       = make(map[string]struct{})
 	importedStdMutex  = new(sync.Mutex)
 	importsQmlOrQuick string
+	importsInterop    string
+	importsFlutter    string
 )
 
 func IsStdPkg(pkg string) bool {
@@ -90,6 +92,58 @@ func GetImports(path, target, tagsCustom string, level int, onlyDirect bool) []s
 
 				utils.Log.WithField("path", path).Debug("project depends on qml or quick: " + importsQmlOrQuick)
 			}
+
+			if importsInterop == "" {
+				stdImport := make([]string, len(importedStd)+1)
+				var c int
+				for k := range importedStd {
+					stdImport[c] = k
+					c++
+				}
+				stdImport[len(stdImport)-1] = "github.com/therecipe/qt/internal/binding/runtime"
+
+				cmd := utils.GoList(fmt.Sprintf("{{if not .Standard}}{{if eq .ImportPath \"%v\"}}{{else}}{{range .Imports}}{{if eq . \"github.com/therecipe/qt/interop\"}}{{.}}{{end}}{{end}}{{end}}{{end}}", strings.Join(stdImport, "\" \"")), "-deps", utils.BuildTags(tags))
+				if !utils.UseGOMOD(path) || (utils.UseGOMOD(path) && !strings.Contains(strings.Replace(path, "\\", "/", -1), "/vendor/")) {
+					cmd.Dir = path
+				} else if utils.UseGOMOD(path) && strings.Contains(strings.Replace(path, "\\", "/", -1), "/vendor/") {
+					cmd.Dir = filepath.Dir(utils.GOMOD(path))
+					vl := strings.Split(strings.Replace(path, "\\", "/", -1), "/vendor/")
+					cmd.Args = append(cmd.Args, vl[len(vl)-1])
+				}
+				for k, v := range env {
+					cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", k, v))
+				}
+
+				importsInterop = fmt.Sprint(strings.TrimSpace(utils.RunCmd(cmd, "go list imports interop")) != "")
+
+				utils.Log.WithField("path", path).Debug("project depends on interop: " + importsInterop)
+			}
+
+			if importsFlutter == "" {
+				stdImport := make([]string, len(importedStd)+1)
+				var c int
+				for k := range importedStd {
+					stdImport[c] = k
+					c++
+				}
+				stdImport[len(stdImport)-1] = "github.com/therecipe/qt/internal/binding/runtime"
+
+				cmd := utils.GoList(fmt.Sprintf("{{if not .Standard}}{{if eq .ImportPath \"%v\"}}{{else}}{{range .Imports}}{{if eq . \"github.com/therecipe/qt/flutter\"}}{{.}}{{end}}{{end}}{{end}}{{end}}", strings.Join(stdImport, "\" \"")), "-deps", utils.BuildTags(tags))
+				if !utils.UseGOMOD(path) || (utils.UseGOMOD(path) && !strings.Contains(strings.Replace(path, "\\", "/", -1), "/vendor/")) {
+					cmd.Dir = path
+				} else if utils.UseGOMOD(path) && strings.Contains(strings.Replace(path, "\\", "/", -1), "/vendor/") {
+					cmd.Dir = filepath.Dir(utils.GOMOD(path))
+					vl := strings.Split(strings.Replace(path, "\\", "/", -1), "/vendor/")
+					cmd.Args = append(cmd.Args, vl[len(vl)-1])
+				}
+				for k, v := range env {
+					cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", k, v))
+				}
+
+				importsFlutter = fmt.Sprint(strings.TrimSpace(utils.RunCmd(cmd, "go list imports flutter")) != "")
+
+				utils.Log.WithField("path", path).Debug("project depends on flutter: " + importsFlutter)
+			}
 			importedStdMutex.Unlock()
 		}()
 	}
@@ -143,7 +197,7 @@ func GetImports(path, target, tagsCustom string, level int, onlyDirect bool) []s
 				wg.Done()
 			}()
 
-			if strings.Contains(l, "github.com/therecipe/qt") && !strings.Contains(l, "qt/internal") {
+			if strings.Contains(l, "github.com/therecipe/qt") && !(strings.Contains(l, "qt/internal") || strings.Contains(l, "qt/flutter") || strings.Contains(l, "qt/interop")) {
 				if strings.Contains(l, "github.com/therecipe/qt/") {
 					importedStdMutex.Lock()
 					importedStd[l] = struct{}{}
@@ -192,7 +246,22 @@ func ImportsQmlOrQuick() (o bool) {
 	importedStdMutex.Unlock()
 	return
 }
-func CleanupImportsQmlOrQuickForCI() { importsQmlOrQuick = "" }
+
+func ImportsInterop() (o bool) {
+	importedStdMutex.Lock()
+	o = importsInterop == "true"
+	importedStdMutex.Unlock()
+	return
+}
+
+func ImportsFlutter() (o bool) {
+	importedStdMutex.Lock()
+	o = importsFlutter == "true"
+	importedStdMutex.Unlock()
+	return
+}
+
+func CleanupRegisteredImportsForCI() { importsQmlOrQuick = ""; importsInterop = ""; importsFlutter = "" }
 
 func GetGoFiles(path, target, tagsCustom string) []string {
 	utils.Log.WithField("path", path).WithField("target", target).WithField("tagsCustom", tagsCustom).Debug("get go files")

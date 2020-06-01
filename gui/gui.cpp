@@ -6675,6 +6675,11 @@ void QGuiApplication_PaletteChanged(void* ptr, void* palette)
 	static_cast<QGuiApplication*>(ptr)->paletteChanged(*static_cast<QPalette*>(palette));
 }
 
+void* QGuiApplication_QGuiApplication_PlatformFunction(void* function)
+{
+	return reinterpret_cast<void*>(QGuiApplication::platformFunction(*static_cast<QByteArray*>(function)));
+}
+
 struct QtGui_PackedString QGuiApplication_QGuiApplication_PlatformName()
 {
 	return ({ QByteArray* t498934 = new QByteArray(QGuiApplication::platformName().toUtf8()); QtGui_PackedString { const_cast<char*>(t498934->prepend("WHITESPACE").constData()+10), t498934->size()-10, t498934 }; });
@@ -12127,6 +12132,16 @@ void* QOpenGLContext_Format(void* ptr)
 void* QOpenGLContext_Functions(void* ptr)
 {
 	return static_cast<QOpenGLContext*>(ptr)->functions();
+}
+
+void* QOpenGLContext_GetProcAddress(void* ptr, void* procName)
+{
+	return reinterpret_cast<void*>(static_cast<QOpenGLContext*>(ptr)->getProcAddress(*static_cast<QByteArray*>(procName)));
+}
+
+void* QOpenGLContext_GetProcAddress2(void* ptr, char* procName)
+{
+	return reinterpret_cast<void*>(static_cast<QOpenGLContext*>(ptr)->getProcAddress(const_cast<const char*>(procName)));
 }
 
 void* QOpenGLContext_QOpenGLContext_GlobalShareContext()
@@ -22486,6 +22501,11 @@ void QPixmap_DestroyQPixmapDefault(void* ptr)
 {
 	Q_UNUSED(ptr);
 
+}
+
+void* QPixmap_ToVariant(void* ptr)
+{
+	return new QVariant(*static_cast<QPixmap*>(ptr));
 }
 
 void* QPixmap_PaintEngine(void* ptr)

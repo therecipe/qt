@@ -26,7 +26,7 @@ func cGoUnpackBytes(s C.struct_QtDBus_PackedString) []byte {
 	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
-		return *(*[]byte)(unsafe.Pointer(&gs))
+		return []byte(gs)
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
@@ -5870,7 +5870,9 @@ func init() {
 	qt.FuncMap["dbus.QDBusPendingCall_FromError"] = QDBusPendingCall_FromError
 	qt.ItfMap["dbus.QDBusPendingCallWatcher_ITF"] = QDBusPendingCallWatcher{}
 	qt.FuncMap["dbus.NewQDBusPendingCallWatcher"] = NewQDBusPendingCallWatcher
+	qt.ItfMap["dbus.QDBusPendingReply_ITF"] = QDBusPendingReply{}
 	qt.ItfMap["dbus.QDBusPendingReplyData_ITF"] = QDBusPendingReplyData{}
+	qt.ItfMap["dbus.QDBusReply_ITF"] = QDBusReply{}
 	qt.ItfMap["dbus.QDBusServer_ITF"] = QDBusServer{}
 	qt.FuncMap["dbus.NewQDBusServer"] = NewQDBusServer
 	qt.FuncMap["dbus.NewQDBusServer2"] = NewQDBusServer2

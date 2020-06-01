@@ -2585,9 +2585,9 @@ void QVirtualKeyboardTrace_SetChannels(void* ptr, struct QtVirtualKeyboard_Packe
 	static_cast<QVirtualKeyboardTrace*>(ptr)->setChannels(QString::fromUtf8(channels.data, channels.len).split("¡¦!", QString::SkipEmptyParts));
 }
 
-void QVirtualKeyboardTrace_SetFinal(void* ptr, char final)
+void QVirtualKeyboardTrace_SetFinal(void* ptr, char fin)
 {
-	static_cast<QVirtualKeyboardTrace*>(ptr)->setFinal(final != 0);
+	static_cast<QVirtualKeyboardTrace*>(ptr)->setFinal(fin != 0);
 }
 
 void QVirtualKeyboardTrace_SetOpacity(void* ptr, double opacity)

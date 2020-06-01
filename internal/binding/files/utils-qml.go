@@ -25,7 +25,7 @@ type ptr_itf interface {
 
 func Z_initEngine(engine QJSEngine_ITF) {
 	ptr := engine.QJSEngine_PTR()
-	ptr.ConnectDestroyed(func(ptr *core.QObject) {
+	ptr.QObject.ConnectDestroyed(func(ptr *core.QObject) {
 		finalizerMapMutex.Lock()
 		pointers := finalizerMap[ptr.Pointer()]
 		delete(finalizerMap, ptr.Pointer())
@@ -129,7 +129,8 @@ func Z_initEngine(engine QJSEngine_ITF) {
 func Z_wrapperFunction(jsvals *QJSValue) *QJSValue {
 
 	var m reflect.Value
-	if cn, fn := jsvals.Property2(2).ToString(), jsvals.Property2(3).ToString(); fn == "" {
+	cn, fn := jsvals.Property2(2).ToString(), jsvals.Property2(3).ToString()
+	if fn == "" {
 		v, _ := qt.GetFuncMap(cn)
 		m = reflect.ValueOf(v)
 
@@ -151,34 +152,78 @@ func Z_wrapperFunction(jsvals *QJSValue) *QJSValue {
 		m = o.MethodByName(fn)
 	}
 
-	//
-
 	engine := QJSEngine_qjsEngine(core.NewQObjectFromPointer(unsafe.Pointer(uintptr(jsvals.Property2(0).ToVariant().ToULongLong(nil)))))
 
-	input := make([]reflect.Value, m.Type().NumIn())
-	for i := 0; i < len(input); i++ {
-		input[i] = engine.fromJsToRef(m.Type().In(i), jsvals.Property2(uint(4+i)))
-	}
+	if fn == "NewGoType" || (fn == "NewQVariant1" && cn == "core.QVariant") {
 
-	//
+		input := make([]interface{}, jsvals.Property("length").ToInt()-4)
+		for i := 0; i < len(input); i++ {
 
-	ret := m.Call(input)
-	if len(ret) == 0 {
-		return NewQJSValue(QJSValue__UndefinedValue)
-	}
+			in := jsvals.Property2(uint(4 + i))
 
-	rret := engine.NewGoType(ret[0].Interface())
-	if reflect.TypeOf(ret[0].Interface()).Implements(reflect.TypeOf((*core.QObject_ITF)(nil)).Elem()) { //TODO: check for destroyed signal instead, or simply override the destructor instead ?
-		if qt.ExistsSignal(ret[0].Interface().(ptr_itf).Pointer(), "destroyed") {
-			engine.GlobalObject().Property("___connectDestroyed").Call([]*QJSValue{rret}) //TODO: connect destroyed/destructor from go instead ?
+			switch in.ToVariant().Type() {
+			case core.QVariant__List:
+				var o []interface{}
+				engine.ToGoType(in, &o)
+				input[i] = o
+
+			case core.QVariant__Map:
+				var o map[string]interface{}
+				engine.ToGoType(in, &o)
+				input[i] = o
+
+			default:
+				input[i] = in.ToVariant().ToInterface()
+			}
 		}
-	}
 
-	return rret
+		if fn == "NewQVariant1" {
+			return engine.NewGoType(core.NewQVariant1(input[0]))
+		}
+		if cn != "qml.QJSEngine" {
+			refInput := make([]reflect.Value, len(input))
+			for i, v := range input {
+				if jsv := jsvals.Property2(uint(4 + i)); jsv.IsCallable() {
+					refInput[i] = reflect.ValueOf(func(i interface{}) interface{} { //TODO: remote needs to provide infos about the expected arguments (needed for the callbacks for Qml created in the remote)
+						return jsv.Call([]*QJSValue{engine.NewGoType(i)}).ToVariant().ToInterface()
+					})
+				} else {
+					refInput[i] = reflect.ValueOf(v)
+				}
+			}
+			return engine.NewGoType(m.Call(refInput)[0].Interface())
+		}
+		return engine.NewGoType(engine.NewGoType(input...))
+
+	} else {
+
+		input := make([]reflect.Value, m.Type().NumIn())
+		for i := 0; i < len(input); i++ {
+			input[i] = engine.fromJsToRef(m.Type().In(i), jsvals.Property2(uint(4+i)))
+		}
+
+		ret := m.Call(input)
+		if len(ret) == 0 {
+			return NewQJSValue(QJSValue__UndefinedValue)
+		}
+
+		rret := engine.NewGoType(ret[0].Interface())
+		if reflect.TypeOf(ret[0].Interface()).Implements(reflect.TypeOf((*core.QObject_ITF)(nil)).Elem()) { //TODO: check for destroyed signal instead, or simply override the destructor instead ?
+			if qt.ExistsSignal(ret[0].Interface().(ptr_itf).Pointer(), "destroyed") {
+				engine.GlobalObject().Property("___connectDestroyed").Call([]*QJSValue{rret}) //TODO: connect destroyed/destructor from go instead ?
+			}
+		}
+
+		return rret
+	}
 }
 
 func (ptr *QJSEngine) ToGoType(jsval *QJSValue, dst interface{}) {
-	reflect.ValueOf(dst).Elem().Set(ptr.fromJsToRef(reflect.TypeOf(dst), jsval).Elem())
+	out := ptr.fromJsToRef(reflect.TypeOf(dst), jsval)
+	if out.Type().Kind() == reflect.Ptr {
+		out = out.Elem()
+	}
+	reflect.ValueOf(dst).Elem().Set(out)
 }
 
 func (ptr *QJSEngine) fromJsToRef(tofi reflect.Type, jsval *QJSValue) reflect.Value {
@@ -517,17 +562,23 @@ func (ptr *QJSEngine) makeFuncWrapper(fn string) *QJSValue {
 
 	retV := ptr.GlobalObject().Property("___factory_single_func").Call([]*QJSValue{NewQJSValue8(fn), NewQJSValue8("")})
 
+	//only needed for generic binding >>>
+	retV.SetProperty("callable", ptr.NewGoType(true))
+	retV.SetProperty("callableLocal", ptr.NewGoType(true))
+	retV.SetProperty("callableName", ptr.NewGoType(fn))
+	//<<<
+
 	//TODO: allow creation of funcs in arbitrary module depth
-	var jsv *QJSValue
-	if m := ptr.GlobalObject().Property(strings.Split(fn, ".")[0]); m.IsUndefined() {
-		jsv = ptr.NewObject()
-		ptr.GlobalObject().SetProperty(strings.Split(fn, ".")[0], jsv)
-	} else {
-		jsv = m
-	}
 	if strings.Count(fn, ".") == 0 {
 		ptr.GlobalObject().SetProperty(fn, retV)
 	} else {
+		var jsv *QJSValue
+		if m := ptr.GlobalObject().Property(strings.Split(fn, ".")[0]); m.IsUndefined() {
+			jsv = ptr.NewObject()
+			ptr.GlobalObject().SetProperty(strings.Split(fn, ".")[0], jsv)
+		} else {
+			jsv = m
+		}
 		jsv.SetProperty(strings.Split(fn, ".")[1], retV)
 	}
 

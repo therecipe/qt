@@ -27,7 +27,7 @@ func cGoUnpackBytes(s C.struct_QtWebSockets_PackedString) []byte {
 	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
-		return *(*[]byte)(unsafe.Pointer(&gs))
+		return []byte(gs)
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
@@ -3161,6 +3161,8 @@ func (ptr *QtWebSocketsDeclarativeModule) DestroyQtWebSocketsDeclarativeModule()
 func init() {
 	qt.ItfMap["websockets.QMaskGenerator_ITF"] = QMaskGenerator{}
 	qt.FuncMap["websockets.NewQMaskGenerator2"] = NewQMaskGenerator2
+	qt.ItfMap["websockets.QQmlWebSocket_ITF"] = QQmlWebSocket{}
+	qt.ItfMap["websockets.QQmlWebSocketServer_ITF"] = QQmlWebSocketServer{}
 	qt.ItfMap["websockets.QWebSocket_ITF"] = QWebSocket{}
 	qt.FuncMap["websockets.NewQWebSocket2"] = NewQWebSocket2
 	qt.ItfMap["websockets.QWebSocketCorsAuthenticator_ITF"] = QWebSocketCorsAuthenticator{}

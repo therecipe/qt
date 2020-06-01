@@ -26,7 +26,7 @@ func cGoUnpackBytes(s C.struct_QtRemoteObjects_PackedString) []byte {
 	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
-		return *(*[]byte)(unsafe.Pointer(&gs))
+		return []byte(gs)
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
@@ -4756,8 +4756,14 @@ func (ptr *SourceApiMap) DestroySourceApiMap() {
 	}
 }
 func init() {
+	qt.ItfMap["remoteobjects.DataEntries_ITF"] = DataEntries{}
+	qt.ItfMap["remoteobjects.IndexValuePair_ITF"] = IndexValuePair{}
+	qt.ItfMap["remoteobjects.ModelIndex_ITF"] = ModelIndex{}
 	qt.ItfMap["remoteobjects.QAbstractItemModelReplica_ITF"] = QAbstractItemModelReplica{}
+	qt.ItfMap["remoteobjects.QIOQnxSource_ITF"] = QIOQnxSource{}
 	qt.ItfMap["remoteobjects.QMetaTypeId_ITF"] = QMetaTypeId{}
+	qt.ItfMap["remoteobjects.QQnxNativeIo_ITF"] = QQnxNativeIo{}
+	qt.ItfMap["remoteobjects.QQnxNativeServer_ITF"] = QQnxNativeServer{}
 	qt.ItfMap["remoteobjects.QRemoteObjectAbstractPersistedStore_ITF"] = QRemoteObjectAbstractPersistedStore{}
 	qt.FuncMap["remoteobjects.NewQRemoteObjectAbstractPersistedStore"] = NewQRemoteObjectAbstractPersistedStore
 	qt.ItfMap["remoteobjects.QRemoteObjectDynamicReplica_ITF"] = QRemoteObjectDynamicReplica{}
@@ -4798,4 +4804,7 @@ func init() {
 	qt.ItfMap["remoteobjects.QRemoteObjectSettingsStore_ITF"] = QRemoteObjectSettingsStore{}
 	qt.ItfMap["remoteobjects.QRemoteObjectSourceLocationInfo_ITF"] = QRemoteObjectSourceLocationInfo{}
 	qt.ItfMap["remoteobjects.QTypeInfo_ITF"] = QTypeInfo{}
+	qt.ItfMap["remoteobjects.QtROClientFactory_ITF"] = QtROClientFactory{}
+	qt.ItfMap["remoteobjects.QtROServerFactory_ITF"] = QtROServerFactory{}
+	qt.ItfMap["remoteobjects.SourceApiMap_ITF"] = SourceApiMap{}
 }

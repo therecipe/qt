@@ -23,7 +23,7 @@ import (
 func Minimal(path, target, tags string, skipSetup bool) {
 	rootPath := path
 	defer func() {
-		if cmd.ImportsQmlOrQuick() { //TODO: and not deploying + reinstate on moc.moc with deploying ?
+		if cmd.ImportsQmlOrQuick() || cmd.ImportsInterop() { //TODO: and not deploying + reinstate on moc.moc with deploying ?
 			if pkg_path := utils.GoQtPkgPath("internal/binding/runtime"); utils.QT_NOT_CACHED() || !utils.ExistsFile(filepath.Join(pkg_path, templater.CgoFileNames(pkg_path, target, templater.MOC)[0])) {
 				filepath.Walk(pkg_path, func(path string, info os.FileInfo, err error) error {
 					if err != nil || info.IsDir() {
@@ -129,16 +129,20 @@ func Minimal(path, target, tags string, skipSetup bool) {
 				files = append(files, file)
 				fileMutex.Unlock()
 			}
-			if target == "js" || cmd.ImportsQmlOrQuick() { //TODO: wasm as well
+			if target == "js" || cmd.ImportsQmlOrQuick() || cmd.ImportsInterop() { //TODO: wasm as well
 				filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
 					if err != nil || info.IsDir() || strings.HasPrefix(path, filepath.Join(rootPath, "deploy")) {
 						return err
 					}
-					if filepath.Ext(path) == ".js" || (filepath.Ext(path) == ".ts" && !strings.HasSuffix(path, ".d.ts")) || filepath.Ext(path) == ".qml" {
-						utils.Log.WithField("path", path).Debug("analyse js for minimal")
+					if filepath.Ext(path) == ".js" || (filepath.Ext(path) == ".ts" && !strings.HasSuffix(path, ".d.ts")) || filepath.Ext(path) == ".qml" || filepath.Ext(path) == ".dart" {
 						file := utils.Load(path)
 						fileMutex.Lock()
-						files = append(files, file)
+						if strings.Contains(file, utils.PackageName) {
+							files = append(files, file)
+							utils.Log.WithField("path", path).Debug("analyse for minimal")
+						} else {
+							utils.Log.WithField("path", path).Debug("ignore for minimal")
+						}
 						fileMutex.Unlock()
 					}
 					return nil
@@ -233,6 +237,9 @@ func Minimal(path, target, tags string, skipSetup bool) {
 		}
 		exportClass(parser.State.ClassMap["QSvgWidget"], files)
 
+	case "android", "android-emulator":
+		exportClass(parser.State.ClassMap["QSvgWidget"], files)
+
 	case "rpi1", "rpi2", "rpi3":
 		if !utils.QT_RPI() {
 			break
@@ -301,7 +308,7 @@ func Minimal(path, target, tags string, skipSetup bool) {
 
 	if _, ok := parser.State.ClassMap["QVariant"]; ok {
 		exportClass(parser.State.ClassMap["QVariant"], files)
-		for _, fn := range []string{"type", "canConvert", "toList", "toMap", "isValid", "toString"} {
+		for _, fn := range []string{"type", "canConvert", "toList", "toMap", "isValid", "toString", "isNull"} {
 			exportFunction(parser.State.ClassMap["QVariant"].GetFunction(fn), files)
 		}
 

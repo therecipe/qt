@@ -67,6 +67,13 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 		utils.MkdirAll(assets)
 		copy(assets+"/.", filepath.Join(depPath, name+".app"))
 
+		if cmd.ImportsFlutter() {
+			utils.MkdirAll(filepath.Join(depPath, name+".app", "Contents", "Frameworks"))
+
+			copy(filepath.Join(path, "build", "flutter_assets"), filepath.Join(depPath, name+".app", "Contents", "MacOS", "flutter_assets"))
+			copy(filepath.Join(path, "FlutterEmbedder.framework"), filepath.Join(depPath, name+".app", "Contents", "Frameworks", "FlutterEmbedder.framework"))
+		}
+
 		if utils.QT_STATIC() {
 			break
 		}
@@ -161,6 +168,18 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 		assets := filepath.Join(path, target)
 		utils.MkdirAll(assets)
 		copy(assets+"/.", depPath)
+
+		if cmd.ImportsFlutter() {
+			libDir := "lib"
+			if name == libDir {
+				libDir = "libs"
+			}
+			utils.MkdirAll(filepath.Join(depPath, libDir))
+
+			copy(filepath.Join(path, "build", "flutter_assets"), filepath.Join(depPath, "flutter_assets"))
+			copy(filepath.Join(path, "libflutter_engine.so"), filepath.Join(depPath, "lib", "libflutter_engine.so"))
+			copy(filepath.Join(path, "icudtl.dat"), filepath.Join(depPath, "icudtl.dat"))
+		}
 
 		if utils.QT_STATIC() || utils.QT_PKG_CONFIG() {
 			break
@@ -348,6 +367,14 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 		assets := filepath.Join(path, target)
 		utils.MkdirAll(assets)
 		copy(assets+string(filepath.Separator)+".", depPath)
+
+		if cmd.ImportsFlutter() {
+			utils.MkdirAll(filepath.Join(depPath, "flutter_assets"))
+
+			copy(filepath.Join(path, "build", "flutter_assets"+string(filepath.Separator)+"."), filepath.Join(depPath, "flutter_assets"))
+			copy(filepath.Join(path, "flutter_engine.dll"), filepath.Join(depPath, "flutter_engine.dll"))
+			copy(filepath.Join(path, "icudtl.dat"), filepath.Join(depPath, "icudtl.dat"))
+		}
 
 		//TODO: -->
 		switch {

@@ -15,7 +15,7 @@ func (c *Class) add() {
 
 func (c *Class) addGeneralFuncs() {
 	switch c.Name {
-	case "QColor", "QFont", "QImage", "QObject", "QIcon", "QBrush":
+	case "QColor", "QFont", "QImage", "QObject", "QIcon", "QBrush", "QPixmap": //TODO: add missing https://doc.qt.io/qt-5/qmetatype.html#Type-enum
 		{
 			if c.Name == "QObject" {
 				c.Functions = append(c.Functions, &Function{

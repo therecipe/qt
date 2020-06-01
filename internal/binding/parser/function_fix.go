@@ -307,6 +307,12 @@ func (f *Function) fixGenericOutput() {
 		{
 			f.Output = "QList<QNetworkCacheMetaData::RawHeader>"
 		}
+
+	case "QFunctionPointer":
+		{
+			f.OgOutput = f.Output
+			f.Output = "void*"
+		}
 	}
 }
 

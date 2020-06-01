@@ -26,7 +26,7 @@ func cGoUnpackBytes(s C.struct_QtVirtualKeyboard_PackedString) []byte {
 	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
-		return *(*[]byte)(unsafe.Pointer(&gs))
+		return []byte(gs)
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
@@ -6028,9 +6028,9 @@ func (ptr *QVirtualKeyboardTrace) SetChannels(channels []string) {
 	}
 }
 
-func (ptr *QVirtualKeyboardTrace) SetFinal(final bool) {
+func (ptr *QVirtualKeyboardTrace) SetFinal(fin bool) {
 	if ptr.Pointer() != nil {
-		C.QVirtualKeyboardTrace_SetFinal(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(final))))
+		C.QVirtualKeyboardTrace_SetFinal(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(fin))))
 	}
 }
 

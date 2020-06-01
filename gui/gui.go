@@ -27,7 +27,7 @@ func cGoUnpackBytes(s C.struct_QtGui_PackedString) []byte {
 	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
-		return *(*[]byte)(unsafe.Pointer(&gs))
+		return []byte(gs)
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
@@ -14907,6 +14907,14 @@ func (ptr *QGuiApplication) PaletteChanged(palette QPalette_ITF) {
 	}
 }
 
+func QGuiApplication_PlatformFunction(function core.QByteArray_ITF) unsafe.Pointer {
+	return C.QGuiApplication_QGuiApplication_PlatformFunction(core.PointerFromQByteArray(function))
+}
+
+func (ptr *QGuiApplication) PlatformFunction(function core.QByteArray_ITF) unsafe.Pointer {
+	return C.QGuiApplication_QGuiApplication_PlatformFunction(core.PointerFromQByteArray(function))
+}
+
 func QGuiApplication_PlatformName() string {
 	return cGoUnpackString(C.QGuiApplication_QGuiApplication_PlatformName())
 }
@@ -26128,6 +26136,25 @@ func (ptr *QOpenGLContext) Format() *QSurfaceFormat {
 func (ptr *QOpenGLContext) Functions() *QOpenGLFunctions {
 	if ptr.Pointer() != nil {
 		return NewQOpenGLFunctionsFromPointer(C.QOpenGLContext_Functions(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QOpenGLContext) GetProcAddress(procName core.QByteArray_ITF) unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return C.QOpenGLContext_GetProcAddress(ptr.Pointer(), core.PointerFromQByteArray(procName))
+	}
+	return nil
+}
+
+func (ptr *QOpenGLContext) GetProcAddress2(procName string) unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		var procNameC *C.char
+		if procName != "" {
+			procNameC = C.CString(procName)
+			defer C.free(unsafe.Pointer(procNameC))
+		}
+		return C.QOpenGLContext_GetProcAddress2(ptr.Pointer(), procNameC)
 	}
 	return nil
 }
@@ -46827,6 +46854,15 @@ func (ptr *QPixmap) DestroyQPixmapDefault() {
 		C.QPixmap_DestroyQPixmapDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QPixmap) ToVariant() *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QPixmap_ToVariant(ptr.Pointer()))
+		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
 }
 
 //export callbackQPixmap_PaintEngine
@@ -72558,6 +72594,7 @@ func (ptr *QWindowStateChangeEvent) OldState() core.Qt__WindowState {
 }
 
 func init() {
+	qt.ItfMap["gui.QAbstractOpenGLFunctions_ITF"] = QAbstractOpenGLFunctions{}
 	qt.ItfMap["gui.QAbstractTextDocumentLayout_ITF"] = QAbstractTextDocumentLayout{}
 	qt.ItfMap["gui.QAbstractUndoItem_ITF"] = QAbstractUndoItem{}
 	qt.ItfMap["gui.QAccessible_ITF"] = QAccessible{}
@@ -72901,6 +72938,7 @@ func init() {
 	qt.FuncMap["gui.NewQEnterEvent"] = NewQEnterEvent
 	qt.ItfMap["gui.QExposeEvent_ITF"] = QExposeEvent{}
 	qt.FuncMap["gui.NewQExposeEvent"] = NewQExposeEvent
+	qt.ItfMap["gui.QFileDialogOptions_ITF"] = QFileDialogOptions{}
 	qt.ItfMap["gui.QFileOpenEvent_ITF"] = QFileOpenEvent{}
 	qt.ItfMap["gui.QFocusEvent_ITF"] = QFocusEvent{}
 	qt.FuncMap["gui.NewQFocusEvent"] = NewQFocusEvent
@@ -73037,6 +73075,7 @@ func init() {
 	qt.FuncMap["gui.NewQFontMetricsF3"] = NewQFontMetricsF3
 	qt.FuncMap["gui.NewQFontMetricsF4"] = NewQFontMetricsF4
 	qt.FuncMap["gui.NewQFontMetricsF5"] = NewQFontMetricsF5
+	qt.ItfMap["gui.QGenericMatrix_ITF"] = QGenericMatrix{}
 	qt.ItfMap["gui.QGenericPlugin_ITF"] = QGenericPlugin{}
 	qt.FuncMap["gui.NewQGenericPlugin"] = NewQGenericPlugin
 	qt.ItfMap["gui.QGenericPluginFactory_ITF"] = QGenericPluginFactory{}
@@ -73253,6 +73292,7 @@ func init() {
 	qt.FuncMap["gui.QGuiApplication_MouseButtons"] = QGuiApplication_MouseButtons
 	qt.FuncMap["gui.QGuiApplication_OverrideCursor"] = QGuiApplication_OverrideCursor
 	qt.FuncMap["gui.QGuiApplication_Palette"] = QGuiApplication_Palette
+	qt.FuncMap["gui.QGuiApplication_PlatformFunction"] = QGuiApplication_PlatformFunction
 	qt.FuncMap["gui.QGuiApplication_PlatformName"] = QGuiApplication_PlatformName
 	qt.FuncMap["gui.QGuiApplication_PrimaryScreen"] = QGuiApplication_PrimaryScreen
 	qt.FuncMap["gui.QGuiApplication_QueryKeyboardModifiers"] = QGuiApplication_QueryKeyboardModifiers
@@ -73544,6 +73584,7 @@ func init() {
 	qt.FuncMap["gui.NewQMatrix4x43"] = NewQMatrix4x43
 	qt.FuncMap["gui.NewQMatrix4x44"] = NewQMatrix4x44
 	qt.FuncMap["gui.NewQMatrix4x46"] = NewQMatrix4x46
+	qt.ItfMap["gui.QMessageDialogOptions_ITF"] = QMessageDialogOptions{}
 	qt.ItfMap["gui.QMouseEvent_ITF"] = QMouseEvent{}
 	qt.FuncMap["gui.NewQMouseEvent"] = NewQMouseEvent
 	qt.FuncMap["gui.NewQMouseEvent2"] = NewQMouseEvent2
@@ -73689,6 +73730,60 @@ func init() {
 	qt.EnumMap["gui.QOpenGLFunctions__TextureRGFormats"] = int64(QOpenGLFunctions__TextureRGFormats)
 	qt.EnumMap["gui.QOpenGLFunctions__MultipleRenderTargets"] = int64(QOpenGLFunctions__MultipleRenderTargets)
 	qt.EnumMap["gui.QOpenGLFunctions__BlendEquationAdvanced"] = int64(QOpenGLFunctions__BlendEquationAdvanced)
+	qt.ItfMap["gui.QOpenGLFunctions_1_0_ITF"] = QOpenGLFunctions_1_0{}
+	qt.ItfMap["gui.QOpenGLFunctions_1_0_CoreBackend_ITF"] = QOpenGLFunctions_1_0_CoreBackend{}
+	qt.ItfMap["gui.QOpenGLFunctions_1_0_DeprecatedBackend_ITF"] = QOpenGLFunctions_1_0_DeprecatedBackend{}
+	qt.ItfMap["gui.QOpenGLFunctions_1_1_ITF"] = QOpenGLFunctions_1_1{}
+	qt.ItfMap["gui.QOpenGLFunctions_1_1_CoreBackend_ITF"] = QOpenGLFunctions_1_1_CoreBackend{}
+	qt.ItfMap["gui.QOpenGLFunctions_1_1_DeprecatedBackend_ITF"] = QOpenGLFunctions_1_1_DeprecatedBackend{}
+	qt.ItfMap["gui.QOpenGLFunctions_1_2_ITF"] = QOpenGLFunctions_1_2{}
+	qt.ItfMap["gui.QOpenGLFunctions_1_2_CoreBackend_ITF"] = QOpenGLFunctions_1_2_CoreBackend{}
+	qt.ItfMap["gui.QOpenGLFunctions_1_2_DeprecatedBackend_ITF"] = QOpenGLFunctions_1_2_DeprecatedBackend{}
+	qt.ItfMap["gui.QOpenGLFunctions_1_3_ITF"] = QOpenGLFunctions_1_3{}
+	qt.ItfMap["gui.QOpenGLFunctions_1_3_CoreBackend_ITF"] = QOpenGLFunctions_1_3_CoreBackend{}
+	qt.ItfMap["gui.QOpenGLFunctions_1_3_DeprecatedBackend_ITF"] = QOpenGLFunctions_1_3_DeprecatedBackend{}
+	qt.ItfMap["gui.QOpenGLFunctions_1_4_ITF"] = QOpenGLFunctions_1_4{}
+	qt.ItfMap["gui.QOpenGLFunctions_1_4_CoreBackend_ITF"] = QOpenGLFunctions_1_4_CoreBackend{}
+	qt.ItfMap["gui.QOpenGLFunctions_1_4_DeprecatedBackend_ITF"] = QOpenGLFunctions_1_4_DeprecatedBackend{}
+	qt.ItfMap["gui.QOpenGLFunctions_1_5_ITF"] = QOpenGLFunctions_1_5{}
+	qt.ItfMap["gui.QOpenGLFunctions_1_5_CoreBackend_ITF"] = QOpenGLFunctions_1_5_CoreBackend{}
+	qt.ItfMap["gui.QOpenGLFunctions_2_0_ITF"] = QOpenGLFunctions_2_0{}
+	qt.ItfMap["gui.QOpenGLFunctions_2_0_CoreBackend_ITF"] = QOpenGLFunctions_2_0_CoreBackend{}
+	qt.ItfMap["gui.QOpenGLFunctions_2_0_DeprecatedBackend_ITF"] = QOpenGLFunctions_2_0_DeprecatedBackend{}
+	qt.ItfMap["gui.QOpenGLFunctions_2_1_ITF"] = QOpenGLFunctions_2_1{}
+	qt.ItfMap["gui.QOpenGLFunctions_2_1_CoreBackend_ITF"] = QOpenGLFunctions_2_1_CoreBackend{}
+	qt.ItfMap["gui.QOpenGLFunctions_3_0_ITF"] = QOpenGLFunctions_3_0{}
+	qt.ItfMap["gui.QOpenGLFunctions_3_0_CoreBackend_ITF"] = QOpenGLFunctions_3_0_CoreBackend{}
+	qt.ItfMap["gui.QOpenGLFunctions_3_0_DeprecatedBackend_ITF"] = QOpenGLFunctions_3_0_DeprecatedBackend{}
+	qt.ItfMap["gui.QOpenGLFunctions_3_1_ITF"] = QOpenGLFunctions_3_1{}
+	qt.ItfMap["gui.QOpenGLFunctions_3_1_CoreBackend_ITF"] = QOpenGLFunctions_3_1_CoreBackend{}
+	qt.ItfMap["gui.QOpenGLFunctions_3_2_Compatibility_ITF"] = QOpenGLFunctions_3_2_Compatibility{}
+	qt.ItfMap["gui.QOpenGLFunctions_3_2_Core_ITF"] = QOpenGLFunctions_3_2_Core{}
+	qt.ItfMap["gui.QOpenGLFunctions_3_2_CoreBackend_ITF"] = QOpenGLFunctions_3_2_CoreBackend{}
+	qt.ItfMap["gui.QOpenGLFunctions_3_3_Compatibility_ITF"] = QOpenGLFunctions_3_3_Compatibility{}
+	qt.ItfMap["gui.QOpenGLFunctions_3_3_Core_ITF"] = QOpenGLFunctions_3_3_Core{}
+	qt.ItfMap["gui.QOpenGLFunctions_3_3_CoreBackend_ITF"] = QOpenGLFunctions_3_3_CoreBackend{}
+	qt.ItfMap["gui.QOpenGLFunctions_3_3_DeprecatedBackend_ITF"] = QOpenGLFunctions_3_3_DeprecatedBackend{}
+	qt.ItfMap["gui.QOpenGLFunctions_4_0_Compatibility_ITF"] = QOpenGLFunctions_4_0_Compatibility{}
+	qt.ItfMap["gui.QOpenGLFunctions_4_0_Core_ITF"] = QOpenGLFunctions_4_0_Core{}
+	qt.ItfMap["gui.QOpenGLFunctions_4_0_CoreBackend_ITF"] = QOpenGLFunctions_4_0_CoreBackend{}
+	qt.ItfMap["gui.QOpenGLFunctions_4_1_Compatibility_ITF"] = QOpenGLFunctions_4_1_Compatibility{}
+	qt.ItfMap["gui.QOpenGLFunctions_4_1_Core_ITF"] = QOpenGLFunctions_4_1_Core{}
+	qt.ItfMap["gui.QOpenGLFunctions_4_1_CoreBackend_ITF"] = QOpenGLFunctions_4_1_CoreBackend{}
+	qt.ItfMap["gui.QOpenGLFunctions_4_2_Compatibility_ITF"] = QOpenGLFunctions_4_2_Compatibility{}
+	qt.ItfMap["gui.QOpenGLFunctions_4_2_Core_ITF"] = QOpenGLFunctions_4_2_Core{}
+	qt.ItfMap["gui.QOpenGLFunctions_4_2_CoreBackend_ITF"] = QOpenGLFunctions_4_2_CoreBackend{}
+	qt.ItfMap["gui.QOpenGLFunctions_4_3_Compatibility_ITF"] = QOpenGLFunctions_4_3_Compatibility{}
+	qt.ItfMap["gui.QOpenGLFunctions_4_3_Core_ITF"] = QOpenGLFunctions_4_3_Core{}
+	qt.ItfMap["gui.QOpenGLFunctions_4_3_CoreBackend_ITF"] = QOpenGLFunctions_4_3_CoreBackend{}
+	qt.ItfMap["gui.QOpenGLFunctions_4_4_Compatibility_ITF"] = QOpenGLFunctions_4_4_Compatibility{}
+	qt.ItfMap["gui.QOpenGLFunctions_4_4_Core_ITF"] = QOpenGLFunctions_4_4_Core{}
+	qt.ItfMap["gui.QOpenGLFunctions_4_4_CoreBackend_ITF"] = QOpenGLFunctions_4_4_CoreBackend{}
+	qt.ItfMap["gui.QOpenGLFunctions_4_5_Compatibility_ITF"] = QOpenGLFunctions_4_5_Compatibility{}
+	qt.ItfMap["gui.QOpenGLFunctions_4_5_Core_ITF"] = QOpenGLFunctions_4_5_Core{}
+	qt.ItfMap["gui.QOpenGLFunctions_4_5_CoreBackend_ITF"] = QOpenGLFunctions_4_5_CoreBackend{}
+	qt.ItfMap["gui.QOpenGLFunctions_4_5_DeprecatedBackend_ITF"] = QOpenGLFunctions_4_5_DeprecatedBackend{}
+	qt.ItfMap["gui.QOpenGLFunctions_ES2_ITF"] = QOpenGLFunctions_ES2{}
 	qt.ItfMap["gui.QOpenGLPaintDevice_ITF"] = QOpenGLPaintDevice{}
 	qt.FuncMap["gui.NewQOpenGLPaintDevice"] = NewQOpenGLPaintDevice
 	qt.FuncMap["gui.NewQOpenGLPaintDevice2"] = NewQOpenGLPaintDevice2
@@ -74549,10 +74644,19 @@ func init() {
 	qt.FuncMap["gui.QPixmapCache_Insert"] = QPixmapCache_Insert
 	qt.FuncMap["gui.QPixmapCache_Remove"] = QPixmapCache_Remove
 	qt.FuncMap["gui.QPixmapCache_SetCacheLimit"] = QPixmapCache_SetCacheLimit
+	qt.ItfMap["gui.QPlatformDragQtResponse_ITF"] = QPlatformDragQtResponse{}
+	qt.ItfMap["gui.QPlatformDropQtResponse_ITF"] = QPlatformDropQtResponse{}
+	qt.ItfMap["gui.QPlatformIntegrationPlugin_ITF"] = QPlatformIntegrationPlugin{}
+	qt.ItfMap["gui.QPlatformMenu_ITF"] = QPlatformMenu{}
+	qt.ItfMap["gui.QPlatformMenuBar_ITF"] = QPlatformMenuBar{}
+	qt.ItfMap["gui.QPlatformMenuItem_ITF"] = QPlatformMenuItem{}
+	qt.ItfMap["gui.QPlatformOffscreenSurface_ITF"] = QPlatformOffscreenSurface{}
+	qt.ItfMap["gui.QPlatformSessionManager_ITF"] = QPlatformSessionManager{}
 	qt.ItfMap["gui.QPlatformSurfaceEvent_ITF"] = QPlatformSurfaceEvent{}
 	qt.FuncMap["gui.NewQPlatformSurfaceEvent"] = NewQPlatformSurfaceEvent
 	qt.EnumMap["gui.QPlatformSurfaceEvent__SurfaceCreated"] = int64(QPlatformSurfaceEvent__SurfaceCreated)
 	qt.EnumMap["gui.QPlatformSurfaceEvent__SurfaceAboutToBeDestroyed"] = int64(QPlatformSurfaceEvent__SurfaceAboutToBeDestroyed)
+	qt.ItfMap["gui.QPlatformTextureList_ITF"] = QPlatformTextureList{}
 	qt.ItfMap["gui.QPointingDeviceUniqueId_ITF"] = QPointingDeviceUniqueId{}
 	qt.FuncMap["gui.NewQPointingDeviceUniqueId"] = NewQPointingDeviceUniqueId
 	qt.FuncMap["gui.QPointingDeviceUniqueId_FromNumericId"] = QPointingDeviceUniqueId_FromNumericId
@@ -74591,6 +74695,7 @@ func init() {
 	qt.FuncMap["gui.NewQRadialGradient5"] = NewQRadialGradient5
 	qt.FuncMap["gui.NewQRadialGradient6"] = NewQRadialGradient6
 	qt.FuncMap["gui.NewQRadialGradient7"] = NewQRadialGradient7
+	qt.ItfMap["gui.QRasterPaintEngine_ITF"] = QRasterPaintEngine{}
 	qt.ItfMap["gui.QRasterWindow_ITF"] = QRasterWindow{}
 	qt.FuncMap["gui.NewQRasterWindow"] = NewQRasterWindow
 	qt.ItfMap["gui.QRawFont_ITF"] = QRawFont{}
@@ -74662,6 +74767,7 @@ func init() {
 	qt.ItfMap["gui.QStatusTipEvent_ITF"] = QStatusTipEvent{}
 	qt.FuncMap["gui.NewQStatusTipEvent"] = NewQStatusTipEvent
 	qt.ItfMap["gui.QStyleHints_ITF"] = QStyleHints{}
+	qt.ItfMap["gui.QSupportedWritingSystems_ITF"] = QSupportedWritingSystems{}
 	qt.ItfMap["gui.QSurface_ITF"] = QSurface{}
 	qt.EnumMap["gui.QSurface__Window"] = int64(QSurface__Window)
 	qt.EnumMap["gui.QSurface__Offscreen"] = int64(QSurface__Offscreen)
@@ -75066,8 +75172,16 @@ func init() {
 	qt.FuncMap["gui.NewQVector4D8"] = NewQVector4D8
 	qt.FuncMap["gui.NewQVector4D9"] = NewQVector4D9
 	qt.FuncMap["gui.QVector4D_DotProduct"] = QVector4D_DotProduct
+	qt.ItfMap["gui.QVulkanDeviceFunctions_ITF"] = QVulkanDeviceFunctions{}
+	qt.ItfMap["gui.QVulkanExtension_ITF"] = QVulkanExtension{}
+	qt.ItfMap["gui.QVulkanFunctions_ITF"] = QVulkanFunctions{}
+	qt.ItfMap["gui.QVulkanInfoVector_ITF"] = QVulkanInfoVector{}
+	qt.ItfMap["gui.QVulkanInstance_ITF"] = QVulkanInstance{}
 	qt.EnumMap["gui.QVulkanInstance__NoDebugOutputRedirect"] = int64(QVulkanInstance__NoDebugOutputRedirect)
+	qt.ItfMap["gui.QVulkanLayer_ITF"] = QVulkanLayer{}
+	qt.ItfMap["gui.QVulkanWindow_ITF"] = QVulkanWindow{}
 	qt.EnumMap["gui.QVulkanWindow__PersistentResources"] = int64(QVulkanWindow__PersistentResources)
+	qt.ItfMap["gui.QVulkanWindowRenderer_ITF"] = QVulkanWindowRenderer{}
 	qt.ItfMap["gui.QWhatsThisClickedEvent_ITF"] = QWhatsThisClickedEvent{}
 	qt.FuncMap["gui.NewQWhatsThisClickedEvent"] = NewQWhatsThisClickedEvent
 	qt.ItfMap["gui.QWheelEvent_ITF"] = QWheelEvent{}

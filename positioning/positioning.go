@@ -26,7 +26,7 @@ func cGoUnpackBytes(s C.struct_QtPositioning_PackedString) []byte {
 	defer cGoFreePacked(s.ptr)
 	if int(s.len) == -1 {
 		gs := C.GoString(s.data)
-		return *(*[]byte)(unsafe.Pointer(&gs))
+		return []byte(gs)
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }
@@ -5852,6 +5852,7 @@ func callbackQNmeaPositionInfoSource_Error2(ptr unsafe.Pointer, positioningError
 }
 
 func init() {
+	qt.ItfMap["positioning.LocationSingleton_ITF"] = LocationSingleton{}
 	qt.ItfMap["positioning.QGeoAddress_ITF"] = QGeoAddress{}
 	qt.FuncMap["positioning.NewQGeoAddress"] = NewQGeoAddress
 	qt.FuncMap["positioning.NewQGeoAddress2"] = NewQGeoAddress2
@@ -5888,6 +5889,7 @@ func init() {
 	qt.EnumMap["positioning.QGeoCoordinate__DegreesMinutesWithHemisphere"] = int64(QGeoCoordinate__DegreesMinutesWithHemisphere)
 	qt.EnumMap["positioning.QGeoCoordinate__DegreesMinutesSeconds"] = int64(QGeoCoordinate__DegreesMinutesSeconds)
 	qt.EnumMap["positioning.QGeoCoordinate__DegreesMinutesSecondsWithHemisphere"] = int64(QGeoCoordinate__DegreesMinutesSecondsWithHemisphere)
+	qt.ItfMap["positioning.QGeoLocation_ITF"] = QGeoLocation{}
 	qt.ItfMap["positioning.QGeoPath_ITF"] = QGeoPath{}
 	qt.FuncMap["positioning.NewQGeoPath"] = NewQGeoPath
 	qt.FuncMap["positioning.NewQGeoPath2"] = NewQGeoPath2
