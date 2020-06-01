@@ -3,7 +3,7 @@ jobs:
     job: '${{ parameters.tag }}'
     timeoutInMinutes: 0
     pool:
-      vmImage: macOS-10.14
+      vmImage: macOS-latest
     dependsOn: '${{ parameters.dep }}'
     steps:
       -

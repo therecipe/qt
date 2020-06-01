@@ -11,17 +11,17 @@ jobs:
     template: docker_windows_ci_template.yml
     parameters:
       name: windows_ft
-      image: windows-2019
+      image: windows-latest
   -
     template: docker_darwin_ci_template.yml
     parameters:
       name: darwin_ft
-      image: macOS-10.14
+      image: macOS-latest
   -
     template: docker_linux_ci_template.yml
     parameters:
       name: linux_ft
-      image: ubuntu-16.04
+      image: ubuntu-latest
   -
     template: docker_job_template.yml
     parameters:

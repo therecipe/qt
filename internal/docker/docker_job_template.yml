@@ -3,9 +3,11 @@ jobs:
     job: '${{ parameters.tag }}'
     timeoutInMinutes: 0
     pool:
-      vmImage: ubuntu-16.04
+      vmImage: ubuntu-latest
     dependsOn: '${{ parameters.dep }}'
     steps:
+      -
+        script: 'sudo df -h; sudo rm -rf /usr/share/dotnet; sudo df -h;'
       -
         script: 'docker build --force-rm -f internal/docker/${{ parameters.file }} -t therecipe/qt:${{ parameters.tag }} .'
       -
