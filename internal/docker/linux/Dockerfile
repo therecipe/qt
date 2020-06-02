@@ -45,3 +45,10 @@ RUN $GOPATH/bin/qtsetup generate
 RUN cd $GOPATH/src/github.com/therecipe/qt/internal/examples/widgets/line_edits && $GOPATH/bin/qtdeploy build linux && rm -rf ./deploy
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates git pkg-config
+
+
+ENV PATH $HOME/flutter/bin:$PATH
+
+RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install curl unzip && apt-get -qq clean
+RUN git clone -q --depth 1 -b stable https://github.com/flutter/flutter.git $HOME/flutter
+RUN flutter config --no-analytics && flutter precache --linux --no-android

@@ -21,7 +21,7 @@ Impressions
 Installation
 ------------
 
-The following instructions assume that you already installed [Go](https://golang.org/dl/)
+The following instructions assume that you already installed [Go](https://golang.org/dl/) and [Git](https://git-scm.com/downloads)
 
 ##### Windows [(more info)](https://github.com/therecipe/qt/wiki/Installation-on-Windows)
 

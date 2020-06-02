@@ -824,7 +824,7 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 			}
 		}
 
-		if _, ok := os.LookupEnv("CGO_LDFLAGS"); target == "linux" && !(utils.QT_STATIC() || utils.QT_PKG_CONFIG() || ok) {
+		if _, ok := os.LookupEnv("CGO_LDFLAGS"); target == "linux" && !((utils.QT_STATIC() || utils.QT_PKG_CONFIG() || ok) && !ImportsFlutter()) {
 			env["CGO_LDFLAGS"] = "-Wl,-rpath,$ORIGIN/lib -Wl,--disable-new-dtags"
 		}
 

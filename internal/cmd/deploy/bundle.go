@@ -369,9 +369,12 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 		copy(assets+string(filepath.Separator)+".", depPath)
 
 		if cmd.ImportsFlutter() {
-			utils.MkdirAll(filepath.Join(depPath, "flutter_assets"))
-
-			copy(filepath.Join(path, "build", "flutter_assets"+string(filepath.Separator)+"."), filepath.Join(depPath, "flutter_assets"))
+			if runtime.GOOS == "windows" {
+				utils.MkdirAll(filepath.Join(depPath, "flutter_assets"))
+				copy(filepath.Join(path, "build", "flutter_assets"+string(filepath.Separator)+"."), filepath.Join(depPath, "flutter_assets"))
+			} else {
+				copy(filepath.Join(path, "build", "flutter_assets"), filepath.Join(depPath, "flutter_assets"))
+			}
 			copy(filepath.Join(path, "flutter_engine.dll"), filepath.Join(depPath, "flutter_engine.dll"))
 			copy(filepath.Join(path, "icudtl.dat"), filepath.Join(depPath, "icudtl.dat"))
 		}

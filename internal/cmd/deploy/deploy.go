@@ -102,16 +102,15 @@ func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast b
 		}
 
 		rcc.Rcc(path, target, tags, os.Getenv("QTRCC_OUTPUT_DIR"), useuic, quickcompiler, true, true)
+		if cmd.ImportsFlutter() {
+			flutter(target, path)
+		}
 		if !fast {
 			moc.Moc(path, target, tags, false, false, true, true)
 		}
 
 		if ((!fast || utils.QT_STUB()) || ((target == "js" || target == "wasm") && (utils.QT_DOCKER() || utils.QT_VAGRANT()))) && !utils.QT_FAT() {
 			minimal.Minimal(path, target, tags, true)
-		}
-
-		if cmd.ImportsFlutter() {
-			flutter(target, path)
 		}
 
 		build(mode, target, path, ldFlags, tags, name, depPath, fast, comply)

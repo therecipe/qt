@@ -10,16 +10,57 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"runtime"
 	"strings"
 
 	"github.com/therecipe/qt/internal/utils"
 )
 
 func flutter(target string, path string) {
-	fPath, err := exec.LookPath("flutter")
+	var ext string
+	if runtime.GOOS == "windows" {
+		ext = ".exe"
+	}
+	fPath, err := exec.LookPath("flutter" + ext)
 	if err != nil {
 		utils.Log.WithError(err).Error("failed to find the flutter binary in your PATH")
 		return
+	}
+
+	//symlink engine libs
+
+	defer func() {
+		if utils.QT_DOCKER() {
+			for _, hiddenDir := range []string{".packages", ".dart_tool"} {
+				utils.RemoveAll(filepath.Join(path, hiddenDir))
+			}
+		}
+
+		switch target {
+		case "windows":
+			for _, f := range []string{"flutter_engine.dll", "flutter_engine.dll.lib"} {
+				utils.RemoveAll(utils.GoQtPkgPath("flutter", f))
+				os.Symlink(filepath.Join(path, f), utils.GoQtPkgPath("flutter", f))
+			}
+
+		case "darwin":
+			f := "FlutterEmbedder.framework"
+			utils.RemoveAll(utils.GoQtPkgPath("flutter", f))
+			os.Symlink(filepath.Join(path, f), utils.GoQtPkgPath("flutter", f))
+
+		case "linux":
+			f := "libflutter_engine.so"
+			utils.RemoveAll(utils.GoQtPkgPath("flutter", f))
+			os.Symlink(filepath.Join(path, f), utils.GoQtPkgPath("flutter", f))
+		}
+	}()
+
+	//build the flutter binaries
+
+	if (target == "linux" && utils.QT_DOCKER()) || !utils.QT_DOCKER() {
+		cmd := exec.Command(fPath, "build", "bundle")
+		cmd.Dir = path
+		utils.RunCmd(cmd, "build the flutter bundle")
 	}
 
 	//check cache
@@ -44,10 +85,6 @@ func flutter(target string, path string) {
 
 	//get engine version
 
-	cmd := exec.Command(fPath, "build", "bundle")
-	cmd.Dir = path
-	utils.RunCmd(cmd, "build the flutter bundle")
-
 	var vs struct {
 		Channel        string `json:"channel"`
 		EngineRevision string `json:"engineRevision"`
@@ -57,36 +94,24 @@ func flutter(target string, path string) {
 		utils.Log.WithError(err).Error("failed to unmarshal the flutter engine version response")
 	}
 
-	//download and symlink engine
+	//download engine libs
 
-	url := fmt.Sprintf("https://storage.googleapis.com/flutter_infra/flutter/%v/%v-x64/", vs.EngineRevision, target)
-	switch target {
-	case "windows":
-		url += "windows-x64-embedder.zip"
-	case "darwin":
-		url += "FlutterEmbedder.framework.zip"
-	case "linux":
-		url += "linux-x64-embedder"
-	}
-
-	unzip(download(url), path, target)
-
-	switch target {
-	case "windows":
-		for _, f := range []string{"flutter_engine.dll", "flutter_engine.dll.lib"} {
-			utils.RemoveAll(utils.GoQtPkgPath("flutter", f))
-			os.Symlink(filepath.Join(path, f), utils.GoQtPkgPath("flutter", f))
+	for _, t := range []string{"windows", "darwin", "linux"} {
+		if target != t && !utils.QT_DOCKER() {
+			continue
 		}
 
-	case "darwin":
-		f := "FlutterEmbedder.framework"
-		utils.RemoveAll(utils.GoQtPkgPath("flutter", f))
-		os.Symlink(filepath.Join(path, f), utils.GoQtPkgPath("flutter", f))
+		url := fmt.Sprintf("https://storage.googleapis.com/flutter_infra/flutter/%v/%v-x64/", vs.EngineRevision, t)
+		switch t {
+		case "windows":
+			url += "windows-x64-embedder.zip"
+		case "darwin":
+			url += "FlutterEmbedder.framework.zip"
+		case "linux":
+			url += "linux-x64-embedder"
+		}
 
-	case "linux":
-		f := "libflutter_engine.so"
-		utils.RemoveAll(utils.GoQtPkgPath("flutter", f))
-		os.Symlink(filepath.Join(path, f), utils.GoQtPkgPath("flutter", f))
+		unzip(download(url), path, t)
 	}
 
 	//download additional artifacts
@@ -97,6 +122,8 @@ func flutter(target string, path string) {
 }
 
 func download(url string) []byte {
+	utils.Log.WithField("url", url).Debug("download file")
+
 	resp, err := http.Get(url)
 	if err != nil {
 		utils.Log.WithError(err).Errorf("failed to download %v", url)
@@ -105,7 +132,7 @@ func download(url string) []byte {
 
 	bb := new(bytes.Buffer)
 	copyWithProgress(bb, resp.Body, func(off int64) {
-		utils.Log.Debugf("%v => %v%%\n", filepath.Base(url), off/(resp.ContentLength/100))
+		utils.Log.Debugf("%v => %v%%", filepath.Base(url), off/(resp.ContentLength/100))
 	})
 	resp.Body.Close()
 

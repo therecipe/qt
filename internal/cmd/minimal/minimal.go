@@ -274,16 +274,17 @@ func Minimal(path, target, tags string, skipSetup bool) {
 		}
 	case "js", "wasm":
 		exportClass(parser.State.ClassMap["QSvgWidget"], files)
-	default: //"android", "android-emulator": //TODO: generate minimal androidextras instead, otherwise using the androidextras module reports missing classes when building for targets other than android
-		exportClass(parser.State.ClassMap["QChildEvent"], files)
-		exportClass(parser.State.ClassMap["QTimerEvent"], files)
-		exportClass(parser.State.ClassMap["QMetaObject"], files)
-		exportClass(parser.State.ClassMap["QEvent"], files)
-		exportClass(parser.State.ClassMap["QMetaMethod"], files)
-		exportClass(parser.State.ClassMap["QByteArray"], files)
-		exportClass(parser.State.ClassMap["QVariant"], files)
-		exportClass(parser.State.ClassMap["QObject"], files)
 	}
+	//"android", "android-emulator": //TODO: generate minimal androidextras instead, otherwise using the androidextras module might report missing classes when building for targets other than android
+	exportClass(parser.State.ClassMap["QChildEvent"], files)
+	exportClass(parser.State.ClassMap["QTimerEvent"], files)
+	exportClass(parser.State.ClassMap["QMetaObject"], files)
+	exportClass(parser.State.ClassMap["QEvent"], files)
+	exportClass(parser.State.ClassMap["QMetaMethod"], files)
+	exportClass(parser.State.ClassMap["QByteArray"], files)
+	exportClass(parser.State.ClassMap["QVariant"], files)
+	exportClass(parser.State.ClassMap["QObject"], files)
+
 	if utils.QT_STATIC() {
 		exportClass(parser.State.ClassMap["QSvgWidget"], files)
 	}
