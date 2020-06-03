@@ -17,15 +17,6 @@ import (
 )
 
 func flutter(target string, path string) {
-	var ext string
-	if runtime.GOOS == "windows" {
-		ext = ".exe"
-	}
-	fPath, err := exec.LookPath("flutter" + ext)
-	if err != nil {
-		utils.Log.WithError(err).Error("failed to find the flutter binary in your PATH")
-		return
-	}
 
 	//symlink engine libs
 
@@ -60,6 +51,16 @@ func flutter(target string, path string) {
 	}()
 
 	//build the flutter binaries
+
+	var ext string
+	if runtime.GOOS == "windows" {
+		ext = ".exe"
+	}
+	fPath, err := exec.LookPath("flutter" + ext)
+	if err != nil {
+		utils.Log.WithError(err).Error("failed to find the flutter binary in your PATH")
+		return
+	}
 
 	if (target == "linux" && utils.QT_DOCKER()) || !utils.QT_DOCKER() {
 		cmd := exec.Command(fPath, "build", "bundle")

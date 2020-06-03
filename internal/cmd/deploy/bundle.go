@@ -45,7 +45,7 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 
 		var suffix string
 		if !utils.ExistsDir(dst) {
-			if runtime.GOOS == "windows" && utils.MSYSTEM() == "" && !utils.QT_DOCKER() {
+			if runtime.GOOS == "windows" && utils.MSYSTEM() == "" {
 				suffix = "*"
 			}
 		}
@@ -107,7 +107,7 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 			break
 		}
 
-		prefPath := utils.QT_DIR()
+		prefPath := utils.QT_INSTALL_PREFIX(target)
 
 		start := bytes.Index(data, []byte(prefPath))
 		if start == -1 {
@@ -119,7 +119,7 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 			break
 		}
 
-		rep := append([]byte(prefPath), []byte(pPath)...)
+		rep := []byte(pPath)
 		if lendiff := end - len(rep); lendiff < 0 {
 			end -= lendiff
 		} else {
@@ -375,8 +375,10 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 			} else {
 				copy(filepath.Join(path, "build", "flutter_assets"), filepath.Join(depPath, "flutter_assets"))
 			}
-			copy(filepath.Join(path, "flutter_engine.dll"), filepath.Join(depPath, "flutter_engine.dll"))
-			copy(filepath.Join(path, "icudtl.dat"), filepath.Join(depPath, "icudtl.dat"))
+
+			//TODO: new generic copy method; xcopy is somewhat broken under wine
+			utils.Save(filepath.Join(depPath, "flutter_engine.dll"), utils.Load(filepath.Join(path, "flutter_engine.dll")))
+			utils.Save(filepath.Join(depPath, "icudtl.dat"), utils.Load(filepath.Join(path, "icudtl.dat")))
 		}
 
 		//TODO: -->
