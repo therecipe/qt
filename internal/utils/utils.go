@@ -14,13 +14,13 @@ import (
 )
 
 func ExistsFile(name string) bool {
-	_, err := os.Stat(name)
-	return err == nil
+	f, err := os.Stat(name)
+	return err == nil && !f.IsDir()
 }
 
 func ExistsDir(name string) bool {
-	_, err := os.Stat(name)
-	return err == nil
+	d, err := os.Stat(name)
+	return err == nil && d.IsDir()
 }
 
 func MkdirAll(dir string) error {

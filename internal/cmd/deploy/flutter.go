@@ -40,7 +40,11 @@ func flutter(target string, path string) {
 		case "windows":
 			for _, f := range []string{"flutter_engine.dll", "flutter_engine.dll.lib"} {
 				utils.RemoveAll(utils.GoQtPkgPath("flutter", f))
-				os.Symlink(filepath.Join(path, f), utils.GoQtPkgPath("flutter", f))
+				if utils.QT_DOCKER() && runtime.GOOS == "windows" {
+					utils.Save(utils.GoQtPkgPath("flutter", f), utils.Load(filepath.Join(path, f))) //TODO:
+				} else {
+					os.Symlink(filepath.Join(path, f), utils.GoQtPkgPath("flutter", f))
+				}
 			}
 
 		case "darwin":

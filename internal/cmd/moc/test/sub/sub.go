@@ -3,12 +3,10 @@ package sub
 import (
 	"github.com/therecipe/qt/internal/cmd/moc/test/sub/subsub"
 
-	"a" //vendor
 	"github.com/therecipe/qt/internal/cmd/moc/test/sub/b"
 	abc "github.com/therecipe/qt/internal/cmd/moc/test/sub/c"
 	. "github.com/therecipe/qt/internal/cmd/moc/test/sub/d"
 
-	"ago" //vendor
 	"github.com/therecipe/qt/internal/cmd/moc/test/sub/bgo"
 	abcgo "github.com/therecipe/qt/internal/cmd/moc/test/sub/cgo"
 	. "github.com/therecipe/qt/internal/cmd/moc/test/sub/dgo"
@@ -56,19 +54,6 @@ type SubTestStruct struct {
 
 	_ func(StructSubGoDGo)  `signal:"subSignald3"`
 	_ func(*StructSubGoDGo) `signal:"subSignald3R"`
-}
-
-type SubTestStructNotUsed struct {
-	subsubcustom.SubSubTestStruct
-
-	_ func(a.StructSubGoA)  `signal:"vendorSignal1"`
-	_ func(*a.StructSubGoA) `signal:"vendorSignal1R"`
-
-	_ func(a.StructSubMocA)  `signal:"vendorSignal2"`
-	_ func(*a.StructSubMocA) `signal:"vendorSignal2R"`
-
-	_ func(ago.StructSubGoAGo)  `signal:"vendorSignal3"`
-	_ func(*ago.StructSubGoAGo) `signal:"vendorSignal3R"`
 }
 
 func (s *SubTestStruct) init() {

@@ -37,15 +37,15 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 		}
 
 		var args []string
-		if _, err := ioutil.ReadDir(src); err == nil {
+		if utils.ExistsDir(src) {
 			if runtime.GOOS != "windows" || utils.MSYSTEM() != "" {
 				args = append(args, "-R")
 			}
 		}
 
 		var suffix string
-		if _, err := ioutil.ReadDir(dst); err != nil {
-			if runtime.GOOS == "windows" && utils.MSYSTEM() == "" {
+		if !utils.ExistsDir(dst) {
+			if runtime.GOOS == "windows" && utils.MSYSTEM() == "" && !utils.QT_DOCKER() {
 				suffix = "*"
 			}
 		}
