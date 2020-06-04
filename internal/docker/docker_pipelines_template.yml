@@ -1,12 +1,16 @@
 jobs:
   -
-    template: docker_entry_template.yml
+    template: docker_showcase_template.yml
     parameters:
       tag: entry
   -
-    template: docker_widgets_playground_template.yml
+    template: docker_showcase_template.yml
     parameters:
       tag: widgets_playground
+  -
+    template: docker_showcase_template.yml
+    parameters:
+      tag: flutter
   -
     template: docker_windows_ci_template.yml
     parameters:

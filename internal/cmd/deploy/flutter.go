@@ -20,6 +20,12 @@ func flutter(target string, path string) {
 
 	//symlink engine libs
 
+	if utils.QT_DOCKER() {
+		for _, hiddenDir := range []string{".packages", ".dart_tool"} {
+			utils.RemoveAll(filepath.Join(path, hiddenDir))
+		}
+	}
+
 	defer func() {
 		if utils.QT_DOCKER() {
 			for _, hiddenDir := range []string{".packages", ".dart_tool"} {
@@ -62,11 +68,9 @@ func flutter(target string, path string) {
 		return
 	}
 
-	if (target == "linux" && utils.QT_DOCKER()) || !utils.QT_DOCKER() {
-		cmd := exec.Command(fPath, "build", "bundle")
-		cmd.Dir = path
-		utils.RunCmd(cmd, "build the flutter bundle")
-	}
+	cmd := exec.Command(fPath, "build", "bundle")
+	cmd.Dir = path
+	utils.RunCmd(cmd, "build the flutter bundle")
 
 	//check cache
 
@@ -189,7 +193,7 @@ func unzip(data []byte, dst string, target string) {
 			io.Copy(bb, fr)
 			fr.Close()
 
-			os.Symlink(filepath.Join(filepath.Dir(filepath.Join(dst, f.Name)), bb.String()), filepath.Join(dst, f.Name))
+			os.Symlink(bb.String(), filepath.Join(dst, f.Name))
 			continue
 		}
 

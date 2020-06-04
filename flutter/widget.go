@@ -196,9 +196,7 @@ func NewFlutterWidget(parent widgets.QWidget_ITF) *FlutterWidget {
 	if TEST_RESIZING {
 		go func() {
 			time.Sleep(5 * time.Second)
-			for {
-				time.Sleep(time.Second / 15)
-
+			for range time.NewTicker(time.Second / 15).C {
 				RunOnMainBlocking(func() {
 					if win.Width() < widgets.QApplication_Desktop().Screen(0).Width() {
 						win.Resize2(win.Width()+1, win.Height()+1)
@@ -220,8 +218,7 @@ func NewFlutterWidget(parent widgets.QWidget_ITF) *FlutterWidget {
 
 		//flutter event loop hack using a deprecated api
 		//TODO: replace with custom_task_runners
-		for {
-			time.Sleep(time.Second / 60)
+		for range time.NewTicker(time.Second / 60).C {
 			C.__FlutterEngineFlushPendingTasksNow()
 		}
 	}()
