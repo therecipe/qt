@@ -48,7 +48,7 @@ func build(mode, target, path, ldFlagsCustom, tagsCustom, name, depPath string, 
 		env["CGO_ENABLED"] = "0"
 		ending = ".wasm"
 	case "linux":
-		if fast || utils.QT_PKG_CONFIG() || utils.QT_STATIC() {
+		if (fast || utils.QT_PKG_CONFIG() || utils.QT_STATIC()) && !cmd.ImportsFlutter() {
 			env["CGO_LDFLAGS"] = strings.Replace(env["CGO_LDFLAGS"], "-Wl,-rpath,$ORIGIN/lib -Wl,--disable-new-dtags", "", -1)
 		}
 	}

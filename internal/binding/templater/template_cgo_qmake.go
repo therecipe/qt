@@ -717,6 +717,7 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 					tmp = strings.Replace(tmp, "-ffunction-sections", "", -1)
 					tmp = strings.Replace(tmp, "-fdata-sections", "", -1)
 					tmp = strings.Replace(tmp, "-Wl,--gc-sections", "", -1)
+					tmp = strings.Replace(tmp, filepath.Join(utils.QT_MSYS2_DIR(), "qt5-static", "lib", "libqmldbg_profiler.a"), "", -1)
 				}
 				tmp = strings.Replace(tmp, " -lwinmm ", " ", -1)
 				tmp = strings.Replace(tmp, " -lkernel32 ", " -lwinmm -lkernel32 ", -1)

@@ -828,7 +828,7 @@ default:
 	} else if utils.QT_GEN_DART() {
 		gosplitted = strings.Split(bb.String(), "\n")
 
-		fmt.Fprint(tsd, "import '../internal.dart';\n")
+		fmt.Fprint(tsd, "import 'internal.dart';\n")
 
 		fmt.Fprint(tsd, "bool inited = false;\nvoid initModule() {\nif (inited) { return; }\ninited = true;\n")
 		for _, c := range parser.SortedClassesForModule(module, true) {
