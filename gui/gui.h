@@ -1955,7 +1955,7 @@ void* QOpenGLContext_Functions(void* ptr);
 void* QOpenGLContext_GetProcAddress(void* ptr, void* procName);
 void* QOpenGLContext_GetProcAddress2(void* ptr, char* procName);
 void* QOpenGLContext_QOpenGLContext_GlobalShareContext();
-char QOpenGLContext_HasExtension(void* ptr, void* extension);
+char QOpenGLContext_HasExtension(void* ptr, void* extensi);
 char QOpenGLContext_IsOpenGLES(void* ptr);
 char QOpenGLContext_IsValid(void* ptr);
 char QOpenGLContext_MakeCurrent(void* ptr, void* surface);

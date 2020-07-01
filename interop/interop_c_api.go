@@ -1,3 +1,5 @@
+// +build !http_interop
+
 package interop
 
 import "C"

@@ -266,7 +266,7 @@ char QVirtualKeyboardInputEngine_VirtualKeyClick(void* ptr, long long key, struc
 void QVirtualKeyboardInputEngine_ConnectVirtualKeyClicked(void* ptr, long long t);
 void QVirtualKeyboardInputEngine_DisconnectVirtualKeyClicked(void* ptr);
 void QVirtualKeyboardInputEngine_VirtualKeyClicked(void* ptr, long long key, struct QtVirtualKeyboard_PackedString text, long long modifiers, char isAutoRepeat);
-char QVirtualKeyboardInputEngine_VirtualKeyPress(void* ptr, long long key, struct QtVirtualKeyboard_PackedString text, long long modifiers, char repeat);
+char QVirtualKeyboardInputEngine_VirtualKeyPress(void* ptr, long long key, struct QtVirtualKeyboard_PackedString text, long long modifiers, char repe);
 char QVirtualKeyboardInputEngine_VirtualKeyRelease(void* ptr, long long key, struct QtVirtualKeyboard_PackedString text, long long modifiers);
 void* QVirtualKeyboardInputEngine_WordCandidateListModel(void* ptr);
 void QVirtualKeyboardInputEngine_ConnectWordCandidateListModelChanged(void* ptr, long long t);

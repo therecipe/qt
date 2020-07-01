@@ -1627,7 +1627,7 @@ class MyQDBusPendingCallWatcher: public QDBusPendingCallWatcher
 {
 public:
 	MyQDBusPendingCallWatcher(const QDBusPendingCall &call, QObject *parent = Q_NULLPTR) : QDBusPendingCallWatcher(call, parent) {QDBusPendingCallWatcher_QDBusPendingCallWatcher_QRegisterMetaType();};
-	void Signal_Finished(QDBusPendingCallWatcher * self) { callbackQDBusPendingCallWatcher_Finished(this, self); };
+	void Signal_Finished(QDBusPendingCallWatcher * se) { callbackQDBusPendingCallWatcher_Finished(this, se); };
 	 ~MyQDBusPendingCallWatcher() { callbackQDBusPendingCallWatcher_DestroyQDBusPendingCallWatcher(this); };
 	void childEvent(QChildEvent * event) { callbackQDBusPendingCallWatcher_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQDBusPendingCallWatcher_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -1662,9 +1662,9 @@ void QDBusPendingCallWatcher_DisconnectFinished(void* ptr)
 	QObject::disconnect(static_cast<QDBusPendingCallWatcher*>(ptr), static_cast<void (QDBusPendingCallWatcher::*)(QDBusPendingCallWatcher *)>(&QDBusPendingCallWatcher::finished), static_cast<MyQDBusPendingCallWatcher*>(ptr), static_cast<void (MyQDBusPendingCallWatcher::*)(QDBusPendingCallWatcher *)>(&MyQDBusPendingCallWatcher::Signal_Finished));
 }
 
-void QDBusPendingCallWatcher_Finished(void* ptr, void* self)
+void QDBusPendingCallWatcher_Finished(void* ptr, void* se)
 {
-		static_cast<QDBusPendingCallWatcher*>(ptr)->finished(static_cast<QDBusPendingCallWatcher*>(self));
+		static_cast<QDBusPendingCallWatcher*>(ptr)->finished(static_cast<QDBusPendingCallWatcher*>(se));
 }
 
 char QDBusPendingCallWatcher_IsFinished(void* ptr)

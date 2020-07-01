@@ -109,21 +109,21 @@ func (ptr *QScriptClass) Engine() *QScriptEngine {
 }
 
 //export callbackQScriptClass_Extension
-func callbackQScriptClass_Extension(ptr unsafe.Pointer, extension C.longlong, argument unsafe.Pointer) unsafe.Pointer {
+func callbackQScriptClass_Extension(ptr unsafe.Pointer, extensi C.longlong, argument unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "extension"); signal != nil {
-		return core.PointerFromQVariant((*(*func(QScriptClass__Extension, *core.QVariant) *core.QVariant)(signal))(QScriptClass__Extension(extension), core.NewQVariantFromPointer(argument)))
+		return core.PointerFromQVariant((*(*func(QScriptClass__Extension, *core.QVariant) *core.QVariant)(signal))(QScriptClass__Extension(extensi), core.NewQVariantFromPointer(argument)))
 	}
 
-	return core.PointerFromQVariant(NewQScriptClassFromPointer(ptr).ExtensionDefault(QScriptClass__Extension(extension), core.NewQVariantFromPointer(argument)))
+	return core.PointerFromQVariant(NewQScriptClassFromPointer(ptr).ExtensionDefault(QScriptClass__Extension(extensi), core.NewQVariantFromPointer(argument)))
 }
 
-func (ptr *QScriptClass) ConnectExtension(f func(extension QScriptClass__Extension, argument *core.QVariant) *core.QVariant) {
+func (ptr *QScriptClass) ConnectExtension(f func(extensi QScriptClass__Extension, argument *core.QVariant) *core.QVariant) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "extension"); signal != nil {
-			f := func(extension QScriptClass__Extension, argument *core.QVariant) *core.QVariant {
-				(*(*func(QScriptClass__Extension, *core.QVariant) *core.QVariant)(signal))(extension, argument)
-				return f(extension, argument)
+			f := func(extensi QScriptClass__Extension, argument *core.QVariant) *core.QVariant {
+				(*(*func(QScriptClass__Extension, *core.QVariant) *core.QVariant)(signal))(extensi, argument)
+				return f(extensi, argument)
 			}
 			qt.ConnectSignal(ptr.Pointer(), "extension", unsafe.Pointer(&f))
 		} else {
@@ -139,18 +139,18 @@ func (ptr *QScriptClass) DisconnectExtension() {
 	}
 }
 
-func (ptr *QScriptClass) Extension(extension QScriptClass__Extension, argument core.QVariant_ITF) *core.QVariant {
+func (ptr *QScriptClass) Extension(extensi QScriptClass__Extension, argument core.QVariant_ITF) *core.QVariant {
 	if ptr.Pointer() != nil {
-		tmpValue := core.NewQVariantFromPointer(C.QScriptClass_Extension(ptr.Pointer(), C.longlong(extension), core.PointerFromQVariant(argument)))
+		tmpValue := core.NewQVariantFromPointer(C.QScriptClass_Extension(ptr.Pointer(), C.longlong(extensi), core.PointerFromQVariant(argument)))
 		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
 }
 
-func (ptr *QScriptClass) ExtensionDefault(extension QScriptClass__Extension, argument core.QVariant_ITF) *core.QVariant {
+func (ptr *QScriptClass) ExtensionDefault(extensi QScriptClass__Extension, argument core.QVariant_ITF) *core.QVariant {
 	if ptr.Pointer() != nil {
-		tmpValue := core.NewQVariantFromPointer(C.QScriptClass_ExtensionDefault(ptr.Pointer(), C.longlong(extension), core.PointerFromQVariant(argument)))
+		tmpValue := core.NewQVariantFromPointer(C.QScriptClass_ExtensionDefault(ptr.Pointer(), C.longlong(extensi), core.PointerFromQVariant(argument)))
 		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -480,21 +480,21 @@ func (ptr *QScriptClass) SetPropertyDefault(object QScriptValue_ITF, name QScrip
 }
 
 //export callbackQScriptClass_SupportsExtension
-func callbackQScriptClass_SupportsExtension(ptr unsafe.Pointer, extension C.longlong) C.char {
+func callbackQScriptClass_SupportsExtension(ptr unsafe.Pointer, extensi C.longlong) C.char {
 	if signal := qt.GetSignal(ptr, "supportsExtension"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(QScriptClass__Extension) bool)(signal))(QScriptClass__Extension(extension)))))
+		return C.char(int8(qt.GoBoolToInt((*(*func(QScriptClass__Extension) bool)(signal))(QScriptClass__Extension(extensi)))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewQScriptClassFromPointer(ptr).SupportsExtensionDefault(QScriptClass__Extension(extension)))))
+	return C.char(int8(qt.GoBoolToInt(NewQScriptClassFromPointer(ptr).SupportsExtensionDefault(QScriptClass__Extension(extensi)))))
 }
 
-func (ptr *QScriptClass) ConnectSupportsExtension(f func(extension QScriptClass__Extension) bool) {
+func (ptr *QScriptClass) ConnectSupportsExtension(f func(extensi QScriptClass__Extension) bool) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "supportsExtension"); signal != nil {
-			f := func(extension QScriptClass__Extension) bool {
-				(*(*func(QScriptClass__Extension) bool)(signal))(extension)
-				return f(extension)
+			f := func(extensi QScriptClass__Extension) bool {
+				(*(*func(QScriptClass__Extension) bool)(signal))(extensi)
+				return f(extensi)
 			}
 			qt.ConnectSignal(ptr.Pointer(), "supportsExtension", unsafe.Pointer(&f))
 		} else {
@@ -510,16 +510,16 @@ func (ptr *QScriptClass) DisconnectSupportsExtension() {
 	}
 }
 
-func (ptr *QScriptClass) SupportsExtension(extension QScriptClass__Extension) bool {
+func (ptr *QScriptClass) SupportsExtension(extensi QScriptClass__Extension) bool {
 	if ptr.Pointer() != nil {
-		return int8(C.QScriptClass_SupportsExtension(ptr.Pointer(), C.longlong(extension))) != 0
+		return int8(C.QScriptClass_SupportsExtension(ptr.Pointer(), C.longlong(extensi))) != 0
 	}
 	return false
 }
 
-func (ptr *QScriptClass) SupportsExtensionDefault(extension QScriptClass__Extension) bool {
+func (ptr *QScriptClass) SupportsExtensionDefault(extensi QScriptClass__Extension) bool {
 	if ptr.Pointer() != nil {
-		return int8(C.QScriptClass_SupportsExtensionDefault(ptr.Pointer(), C.longlong(extension))) != 0
+		return int8(C.QScriptClass_SupportsExtensionDefault(ptr.Pointer(), C.longlong(extensi))) != 0
 	}
 	return false
 }
@@ -1170,14 +1170,14 @@ func (ptr *QScriptEngine) HasUncaughtException() bool {
 	return false
 }
 
-func (ptr *QScriptEngine) ImportExtension(extension string) *QScriptValue {
+func (ptr *QScriptEngine) ImportExtension(extensi string) *QScriptValue {
 	if ptr.Pointer() != nil {
-		var extensionC *C.char
-		if extension != "" {
-			extensionC = C.CString(extension)
-			defer C.free(unsafe.Pointer(extensionC))
+		var extensiC *C.char
+		if extensi != "" {
+			extensiC = C.CString(extensi)
+			defer C.free(unsafe.Pointer(extensiC))
 		}
-		tmpValue := NewQScriptValueFromPointer(C.QScriptEngine_ImportExtension(ptr.Pointer(), C.struct_QtScript_PackedString{data: extensionC, len: C.longlong(len(extension))}))
+		tmpValue := NewQScriptValueFromPointer(C.QScriptEngine_ImportExtension(ptr.Pointer(), C.struct_QtScript_PackedString{data: extensiC, len: C.longlong(len(extensi))}))
 		qt.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
 		return tmpValue
 	}
@@ -1988,21 +1988,21 @@ func (ptr *QScriptEngineAgent) ExceptionThrowDefault(scriptId int64, exception Q
 }
 
 //export callbackQScriptEngineAgent_Extension
-func callbackQScriptEngineAgent_Extension(ptr unsafe.Pointer, extension C.longlong, argument unsafe.Pointer) unsafe.Pointer {
+func callbackQScriptEngineAgent_Extension(ptr unsafe.Pointer, extensi C.longlong, argument unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "extension"); signal != nil {
-		return core.PointerFromQVariant((*(*func(QScriptEngineAgent__Extension, *core.QVariant) *core.QVariant)(signal))(QScriptEngineAgent__Extension(extension), core.NewQVariantFromPointer(argument)))
+		return core.PointerFromQVariant((*(*func(QScriptEngineAgent__Extension, *core.QVariant) *core.QVariant)(signal))(QScriptEngineAgent__Extension(extensi), core.NewQVariantFromPointer(argument)))
 	}
 
-	return core.PointerFromQVariant(NewQScriptEngineAgentFromPointer(ptr).ExtensionDefault(QScriptEngineAgent__Extension(extension), core.NewQVariantFromPointer(argument)))
+	return core.PointerFromQVariant(NewQScriptEngineAgentFromPointer(ptr).ExtensionDefault(QScriptEngineAgent__Extension(extensi), core.NewQVariantFromPointer(argument)))
 }
 
-func (ptr *QScriptEngineAgent) ConnectExtension(f func(extension QScriptEngineAgent__Extension, argument *core.QVariant) *core.QVariant) {
+func (ptr *QScriptEngineAgent) ConnectExtension(f func(extensi QScriptEngineAgent__Extension, argument *core.QVariant) *core.QVariant) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "extension"); signal != nil {
-			f := func(extension QScriptEngineAgent__Extension, argument *core.QVariant) *core.QVariant {
-				(*(*func(QScriptEngineAgent__Extension, *core.QVariant) *core.QVariant)(signal))(extension, argument)
-				return f(extension, argument)
+			f := func(extensi QScriptEngineAgent__Extension, argument *core.QVariant) *core.QVariant {
+				(*(*func(QScriptEngineAgent__Extension, *core.QVariant) *core.QVariant)(signal))(extensi, argument)
+				return f(extensi, argument)
 			}
 			qt.ConnectSignal(ptr.Pointer(), "extension", unsafe.Pointer(&f))
 		} else {
@@ -2018,18 +2018,18 @@ func (ptr *QScriptEngineAgent) DisconnectExtension() {
 	}
 }
 
-func (ptr *QScriptEngineAgent) Extension(extension QScriptEngineAgent__Extension, argument core.QVariant_ITF) *core.QVariant {
+func (ptr *QScriptEngineAgent) Extension(extensi QScriptEngineAgent__Extension, argument core.QVariant_ITF) *core.QVariant {
 	if ptr.Pointer() != nil {
-		tmpValue := core.NewQVariantFromPointer(C.QScriptEngineAgent_Extension(ptr.Pointer(), C.longlong(extension), core.PointerFromQVariant(argument)))
+		tmpValue := core.NewQVariantFromPointer(C.QScriptEngineAgent_Extension(ptr.Pointer(), C.longlong(extensi), core.PointerFromQVariant(argument)))
 		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
 }
 
-func (ptr *QScriptEngineAgent) ExtensionDefault(extension QScriptEngineAgent__Extension, argument core.QVariant_ITF) *core.QVariant {
+func (ptr *QScriptEngineAgent) ExtensionDefault(extensi QScriptEngineAgent__Extension, argument core.QVariant_ITF) *core.QVariant {
 	if ptr.Pointer() != nil {
-		tmpValue := core.NewQVariantFromPointer(C.QScriptEngineAgent_ExtensionDefault(ptr.Pointer(), C.longlong(extension), core.PointerFromQVariant(argument)))
+		tmpValue := core.NewQVariantFromPointer(C.QScriptEngineAgent_ExtensionDefault(ptr.Pointer(), C.longlong(extensi), core.PointerFromQVariant(argument)))
 		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -2272,21 +2272,21 @@ func (ptr *QScriptEngineAgent) ScriptUnloadDefault(id int64) {
 }
 
 //export callbackQScriptEngineAgent_SupportsExtension
-func callbackQScriptEngineAgent_SupportsExtension(ptr unsafe.Pointer, extension C.longlong) C.char {
+func callbackQScriptEngineAgent_SupportsExtension(ptr unsafe.Pointer, extensi C.longlong) C.char {
 	if signal := qt.GetSignal(ptr, "supportsExtension"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(QScriptEngineAgent__Extension) bool)(signal))(QScriptEngineAgent__Extension(extension)))))
+		return C.char(int8(qt.GoBoolToInt((*(*func(QScriptEngineAgent__Extension) bool)(signal))(QScriptEngineAgent__Extension(extensi)))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewQScriptEngineAgentFromPointer(ptr).SupportsExtensionDefault(QScriptEngineAgent__Extension(extension)))))
+	return C.char(int8(qt.GoBoolToInt(NewQScriptEngineAgentFromPointer(ptr).SupportsExtensionDefault(QScriptEngineAgent__Extension(extensi)))))
 }
 
-func (ptr *QScriptEngineAgent) ConnectSupportsExtension(f func(extension QScriptEngineAgent__Extension) bool) {
+func (ptr *QScriptEngineAgent) ConnectSupportsExtension(f func(extensi QScriptEngineAgent__Extension) bool) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "supportsExtension"); signal != nil {
-			f := func(extension QScriptEngineAgent__Extension) bool {
-				(*(*func(QScriptEngineAgent__Extension) bool)(signal))(extension)
-				return f(extension)
+			f := func(extensi QScriptEngineAgent__Extension) bool {
+				(*(*func(QScriptEngineAgent__Extension) bool)(signal))(extensi)
+				return f(extensi)
 			}
 			qt.ConnectSignal(ptr.Pointer(), "supportsExtension", unsafe.Pointer(&f))
 		} else {
@@ -2302,16 +2302,16 @@ func (ptr *QScriptEngineAgent) DisconnectSupportsExtension() {
 	}
 }
 
-func (ptr *QScriptEngineAgent) SupportsExtension(extension QScriptEngineAgent__Extension) bool {
+func (ptr *QScriptEngineAgent) SupportsExtension(extensi QScriptEngineAgent__Extension) bool {
 	if ptr.Pointer() != nil {
-		return int8(C.QScriptEngineAgent_SupportsExtension(ptr.Pointer(), C.longlong(extension))) != 0
+		return int8(C.QScriptEngineAgent_SupportsExtension(ptr.Pointer(), C.longlong(extensi))) != 0
 	}
 	return false
 }
 
-func (ptr *QScriptEngineAgent) SupportsExtensionDefault(extension QScriptEngineAgent__Extension) bool {
+func (ptr *QScriptEngineAgent) SupportsExtensionDefault(extensi QScriptEngineAgent__Extension) bool {
 	if ptr.Pointer() != nil {
-		return int8(C.QScriptEngineAgent_SupportsExtensionDefault(ptr.Pointer(), C.longlong(extension))) != 0
+		return int8(C.QScriptEngineAgent_SupportsExtensionDefault(ptr.Pointer(), C.longlong(extensi))) != 0
 	}
 	return false
 }

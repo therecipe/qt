@@ -3598,14 +3598,14 @@ func (ptr *QVirtualKeyboardInputEngine) VirtualKeyClicked(key core.Qt__Key, text
 	}
 }
 
-func (ptr *QVirtualKeyboardInputEngine) VirtualKeyPress(key core.Qt__Key, text string, modifiers core.Qt__KeyboardModifier, repeat bool) bool {
+func (ptr *QVirtualKeyboardInputEngine) VirtualKeyPress(key core.Qt__Key, text string, modifiers core.Qt__KeyboardModifier, repe bool) bool {
 	if ptr.Pointer() != nil {
 		var textC *C.char
 		if text != "" {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		return int8(C.QVirtualKeyboardInputEngine_VirtualKeyPress(ptr.Pointer(), C.longlong(key), C.struct_QtVirtualKeyboard_PackedString{data: textC, len: C.longlong(len(text))}, C.longlong(modifiers), C.char(int8(qt.GoBoolToInt(repeat))))) != 0
+		return int8(C.QVirtualKeyboardInputEngine_VirtualKeyPress(ptr.Pointer(), C.longlong(key), C.struct_QtVirtualKeyboard_PackedString{data: textC, len: C.longlong(len(text))}, C.longlong(modifiers), C.char(int8(qt.GoBoolToInt(repe))))) != 0
 	}
 	return false
 }

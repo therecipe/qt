@@ -522,3 +522,11 @@ func QT_GEN_TSD() bool {
 func QT_GEN_DART() bool {
 	return os.Getenv("QT_GEN_DART") == "true"
 }
+
+func QT_GEN_HAXE() bool {
+	return os.Getenv("QT_GEN_HAXE") == "true"
+}
+
+func QT_GEN_SWIFT() bool {
+	return os.Getenv("QT_GEN_SWIFT") == "true"
+}

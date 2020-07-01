@@ -375,7 +375,7 @@ public:
 	qint64 bytesToWrite() const { return callbackQAbstractSocket_BytesToWrite(const_cast<void*>(static_cast<const void*>(this))); };
 	bool canReadLine() const { return callbackQAbstractSocket_CanReadLine(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	void close() { callbackQAbstractSocket_Close(this); };
-	void connectToHost(const QString & hostName, quint16 port, QIODevice::OpenMode openMode, QAbstractSocket::NetworkLayerProtocol protocol) { QByteArray* tcf2288 = new QByteArray(hostName.toUtf8()); QtNetwork_PackedString hostNamePacked = { const_cast<char*>(tcf2288->prepend("WHITESPACE").constData()+10), tcf2288->size()-10, tcf2288 };callbackQAbstractSocket_ConnectToHost(this, hostNamePacked, port, openMode, protocol); };
+	void connectToHost(const QString & hostName, quint16 port, QIODevice::OpenMode openMode, QAbstractSocket::NetworkLayerProtocol protoc) { QByteArray* tcf2288 = new QByteArray(hostName.toUtf8()); QtNetwork_PackedString hostNamePacked = { const_cast<char*>(tcf2288->prepend("WHITESPACE").constData()+10), tcf2288->size()-10, tcf2288 };callbackQAbstractSocket_ConnectToHost(this, hostNamePacked, port, openMode, protoc); };
 	void connectToHost(const QHostAddress & address, quint16 port, QIODevice::OpenMode openMode) { callbackQAbstractSocket_ConnectToHost2(this, const_cast<QHostAddress*>(&address), port, openMode); };
 	void Signal_Connected() { callbackQAbstractSocket_Connected(this); };
 	void disconnectFromHost() { callbackQAbstractSocket_DisconnectFromHost(this); };
@@ -553,21 +553,21 @@ void QAbstractSocket_CloseDefault(void* ptr)
 	}
 }
 
-void QAbstractSocket_ConnectToHost(void* ptr, struct QtNetwork_PackedString hostName, unsigned short port, long long openMode, long long protocol)
+void QAbstractSocket_ConnectToHost(void* ptr, struct QtNetwork_PackedString hostName, unsigned short port, long long openMode, long long protoc)
 {
-	static_cast<QAbstractSocket*>(ptr)->connectToHost(QString::fromUtf8(hostName.data, hostName.len), port, static_cast<QIODevice::OpenModeFlag>(openMode), static_cast<QAbstractSocket::NetworkLayerProtocol>(protocol));
+	static_cast<QAbstractSocket*>(ptr)->connectToHost(QString::fromUtf8(hostName.data, hostName.len), port, static_cast<QIODevice::OpenModeFlag>(openMode), static_cast<QAbstractSocket::NetworkLayerProtocol>(protoc));
 }
 
-void QAbstractSocket_ConnectToHostDefault(void* ptr, struct QtNetwork_PackedString hostName, unsigned short port, long long openMode, long long protocol)
+void QAbstractSocket_ConnectToHostDefault(void* ptr, struct QtNetwork_PackedString hostName, unsigned short port, long long openMode, long long protoc)
 {
 	if (dynamic_cast<QUdpSocket*>(static_cast<QObject*>(ptr))) {
-		static_cast<QUdpSocket*>(ptr)->QUdpSocket::connectToHost(QString::fromUtf8(hostName.data, hostName.len), port, static_cast<QIODevice::OpenModeFlag>(openMode), static_cast<QAbstractSocket::NetworkLayerProtocol>(protocol));
+		static_cast<QUdpSocket*>(ptr)->QUdpSocket::connectToHost(QString::fromUtf8(hostName.data, hostName.len), port, static_cast<QIODevice::OpenModeFlag>(openMode), static_cast<QAbstractSocket::NetworkLayerProtocol>(protoc));
 	} else if (dynamic_cast<QSslSocket*>(static_cast<QObject*>(ptr))) {
-		static_cast<QSslSocket*>(ptr)->QSslSocket::connectToHost(QString::fromUtf8(hostName.data, hostName.len), port, static_cast<QIODevice::OpenModeFlag>(openMode), static_cast<QAbstractSocket::NetworkLayerProtocol>(protocol));
+		static_cast<QSslSocket*>(ptr)->QSslSocket::connectToHost(QString::fromUtf8(hostName.data, hostName.len), port, static_cast<QIODevice::OpenModeFlag>(openMode), static_cast<QAbstractSocket::NetworkLayerProtocol>(protoc));
 	} else if (dynamic_cast<QTcpSocket*>(static_cast<QObject*>(ptr))) {
-		static_cast<QTcpSocket*>(ptr)->QTcpSocket::connectToHost(QString::fromUtf8(hostName.data, hostName.len), port, static_cast<QIODevice::OpenModeFlag>(openMode), static_cast<QAbstractSocket::NetworkLayerProtocol>(protocol));
+		static_cast<QTcpSocket*>(ptr)->QTcpSocket::connectToHost(QString::fromUtf8(hostName.data, hostName.len), port, static_cast<QIODevice::OpenModeFlag>(openMode), static_cast<QAbstractSocket::NetworkLayerProtocol>(protoc));
 	} else {
-		static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::connectToHost(QString::fromUtf8(hostName.data, hostName.len), port, static_cast<QIODevice::OpenModeFlag>(openMode), static_cast<QAbstractSocket::NetworkLayerProtocol>(protocol));
+		static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::connectToHost(QString::fromUtf8(hostName.data, hostName.len), port, static_cast<QIODevice::OpenModeFlag>(openMode), static_cast<QAbstractSocket::NetworkLayerProtocol>(protoc));
 	}
 }
 
@@ -7753,9 +7753,9 @@ void* QSslCipher_NewQSslCipher2(struct QtNetwork_PackedString name)
 	return new QSslCipher(QString::fromUtf8(name.data, name.len));
 }
 
-void* QSslCipher_NewQSslCipher3(struct QtNetwork_PackedString name, long long protocol)
+void* QSslCipher_NewQSslCipher3(struct QtNetwork_PackedString name, long long protoc)
 {
-	return new QSslCipher(QString::fromUtf8(name.data, name.len), static_cast<QSsl::SslProtocol>(protocol));
+	return new QSslCipher(QString::fromUtf8(name.data, name.len), static_cast<QSsl::SslProtocol>(protoc));
 }
 
 void* QSslCipher_NewQSslCipher4(void* other)
@@ -8024,9 +8024,9 @@ void QSslConfiguration_SetPrivateKey(void* ptr, void* key)
 	static_cast<QSslConfiguration*>(ptr)->setPrivateKey(*static_cast<QSslKey*>(key));
 }
 
-void QSslConfiguration_SetProtocol(void* ptr, long long protocol)
+void QSslConfiguration_SetProtocol(void* ptr, long long protoc)
 {
-	static_cast<QSslConfiguration*>(ptr)->setProtocol(static_cast<QSsl::SslProtocol>(protocol));
+	static_cast<QSslConfiguration*>(ptr)->setProtocol(static_cast<QSsl::SslProtocol>(protoc));
 }
 
 void QSslConfiguration_SetSessionTicket(void* ptr, void* sessionTicket)
@@ -8658,7 +8658,7 @@ public:
 	bool waitForReadyRead(int msecs) { return callbackQAbstractSocket_WaitForReadyRead(this, msecs) != 0; };
 	qint64 writeData(const char * data, qint64 l) { QtNetwork_PackedString dataPacked = { const_cast<char*>(data), l, NULL };return callbackQAbstractSocket_WriteData(this, dataPacked, l); };
 	 ~MyQSslSocket() { callbackQSslSocket_DestroyQSslSocket(this); };
-	void connectToHost(const QString & hostName, quint16 port, QIODevice::OpenMode openMode, QAbstractSocket::NetworkLayerProtocol protocol) { QByteArray* tcf2288 = new QByteArray(hostName.toUtf8()); QtNetwork_PackedString hostNamePacked = { const_cast<char*>(tcf2288->prepend("WHITESPACE").constData()+10), tcf2288->size()-10, tcf2288 };callbackQAbstractSocket_ConnectToHost(this, hostNamePacked, port, openMode, protocol); };
+	void connectToHost(const QString & hostName, quint16 port, QIODevice::OpenMode openMode, QAbstractSocket::NetworkLayerProtocol protoc) { QByteArray* tcf2288 = new QByteArray(hostName.toUtf8()); QtNetwork_PackedString hostNamePacked = { const_cast<char*>(tcf2288->prepend("WHITESPACE").constData()+10), tcf2288->size()-10, tcf2288 };callbackQAbstractSocket_ConnectToHost(this, hostNamePacked, port, openMode, protoc); };
 	void connectToHost(const QHostAddress & address, quint16 port, QIODevice::OpenMode openMode) { callbackQAbstractSocket_ConnectToHost2(this, const_cast<QHostAddress*>(&address), port, openMode); };
 	void Signal_Connected() { callbackQAbstractSocket_Connected(this); };
 	void disconnectFromHost() { callbackQAbstractSocket_DisconnectFromHost(this); };
@@ -8775,14 +8775,14 @@ void QSslSocket_QSslSocket_AddDefaultCaCertificates2(void* certificates)
 	QSslSocket::addDefaultCaCertificates(*static_cast<QList<QSslCertificate>*>(certificates));
 }
 
-void QSslSocket_ConnectToHostEncrypted(void* ptr, struct QtNetwork_PackedString hostName, unsigned short port, long long mode, long long protocol)
+void QSslSocket_ConnectToHostEncrypted(void* ptr, struct QtNetwork_PackedString hostName, unsigned short port, long long mode, long long protoc)
 {
-	static_cast<QSslSocket*>(ptr)->connectToHostEncrypted(QString::fromUtf8(hostName.data, hostName.len), port, static_cast<QIODevice::OpenModeFlag>(mode), static_cast<QAbstractSocket::NetworkLayerProtocol>(protocol));
+	static_cast<QSslSocket*>(ptr)->connectToHostEncrypted(QString::fromUtf8(hostName.data, hostName.len), port, static_cast<QIODevice::OpenModeFlag>(mode), static_cast<QAbstractSocket::NetworkLayerProtocol>(protoc));
 }
 
-void QSslSocket_ConnectToHostEncrypted2(void* ptr, struct QtNetwork_PackedString hostName, unsigned short port, struct QtNetwork_PackedString sslPeerName, long long mode, long long protocol)
+void QSslSocket_ConnectToHostEncrypted2(void* ptr, struct QtNetwork_PackedString hostName, unsigned short port, struct QtNetwork_PackedString sslPeerName, long long mode, long long protoc)
 {
-	static_cast<QSslSocket*>(ptr)->connectToHostEncrypted(QString::fromUtf8(hostName.data, hostName.len), port, QString::fromUtf8(sslPeerName.data, sslPeerName.len), static_cast<QIODevice::OpenModeFlag>(mode), static_cast<QAbstractSocket::NetworkLayerProtocol>(protocol));
+	static_cast<QSslSocket*>(ptr)->connectToHostEncrypted(QString::fromUtf8(hostName.data, hostName.len), port, QString::fromUtf8(sslPeerName.data, sslPeerName.len), static_cast<QIODevice::OpenModeFlag>(mode), static_cast<QAbstractSocket::NetworkLayerProtocol>(protoc));
 }
 
 void QSslSocket_ConnectEncrypted(void* ptr, long long t)
@@ -8995,9 +8995,9 @@ void QSslSocket_SetPrivateKey2(void* ptr, struct QtNetwork_PackedString fileName
 	static_cast<QSslSocket*>(ptr)->setPrivateKey(QString::fromUtf8(fileName.data, fileName.len), static_cast<QSsl::KeyAlgorithm>(algorithm), static_cast<QSsl::EncodingFormat>(format), *static_cast<QByteArray*>(passPhrase));
 }
 
-void QSslSocket_SetProtocol(void* ptr, long long protocol)
+void QSslSocket_SetProtocol(void* ptr, long long protoc)
 {
-	static_cast<QSslSocket*>(ptr)->setProtocol(static_cast<QSsl::SslProtocol>(protocol));
+	static_cast<QSslSocket*>(ptr)->setProtocol(static_cast<QSsl::SslProtocol>(protoc));
 }
 
 void QSslSocket_SetSslConfiguration(void* ptr, void* configuration)
@@ -9725,7 +9725,7 @@ public:
 	qint64 bytesToWrite() const { return callbackQAbstractSocket_BytesToWrite(const_cast<void*>(static_cast<const void*>(this))); };
 	bool canReadLine() const { return callbackQAbstractSocket_CanReadLine(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	void close() { callbackQAbstractSocket_Close(this); };
-	void connectToHost(const QString & hostName, quint16 port, QIODevice::OpenMode openMode, QAbstractSocket::NetworkLayerProtocol protocol) { QByteArray* tcf2288 = new QByteArray(hostName.toUtf8()); QtNetwork_PackedString hostNamePacked = { const_cast<char*>(tcf2288->prepend("WHITESPACE").constData()+10), tcf2288->size()-10, tcf2288 };callbackQAbstractSocket_ConnectToHost(this, hostNamePacked, port, openMode, protocol); };
+	void connectToHost(const QString & hostName, quint16 port, QIODevice::OpenMode openMode, QAbstractSocket::NetworkLayerProtocol protoc) { QByteArray* tcf2288 = new QByteArray(hostName.toUtf8()); QtNetwork_PackedString hostNamePacked = { const_cast<char*>(tcf2288->prepend("WHITESPACE").constData()+10), tcf2288->size()-10, tcf2288 };callbackQAbstractSocket_ConnectToHost(this, hostNamePacked, port, openMode, protoc); };
 	void connectToHost(const QHostAddress & address, quint16 port, QIODevice::OpenMode openMode) { callbackQAbstractSocket_ConnectToHost2(this, const_cast<QHostAddress*>(&address), port, openMode); };
 	void Signal_Connected() { callbackQAbstractSocket_Connected(this); };
 	void disconnectFromHost() { callbackQAbstractSocket_DisconnectFromHost(this); };
@@ -9843,7 +9843,7 @@ public:
 	qint64 bytesToWrite() const { return callbackQAbstractSocket_BytesToWrite(const_cast<void*>(static_cast<const void*>(this))); };
 	bool canReadLine() const { return callbackQAbstractSocket_CanReadLine(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	void close() { callbackQAbstractSocket_Close(this); };
-	void connectToHost(const QString & hostName, quint16 port, QIODevice::OpenMode openMode, QAbstractSocket::NetworkLayerProtocol protocol) { QByteArray* tcf2288 = new QByteArray(hostName.toUtf8()); QtNetwork_PackedString hostNamePacked = { const_cast<char*>(tcf2288->prepend("WHITESPACE").constData()+10), tcf2288->size()-10, tcf2288 };callbackQAbstractSocket_ConnectToHost(this, hostNamePacked, port, openMode, protocol); };
+	void connectToHost(const QString & hostName, quint16 port, QIODevice::OpenMode openMode, QAbstractSocket::NetworkLayerProtocol protoc) { QByteArray* tcf2288 = new QByteArray(hostName.toUtf8()); QtNetwork_PackedString hostNamePacked = { const_cast<char*>(tcf2288->prepend("WHITESPACE").constData()+10), tcf2288->size()-10, tcf2288 };callbackQAbstractSocket_ConnectToHost(this, hostNamePacked, port, openMode, protoc); };
 	void connectToHost(const QHostAddress & address, quint16 port, QIODevice::OpenMode openMode) { callbackQAbstractSocket_ConnectToHost2(this, const_cast<QHostAddress*>(&address), port, openMode); };
 	void Signal_Connected() { callbackQAbstractSocket_Connected(this); };
 	void disconnectFromHost() { callbackQAbstractSocket_DisconnectFromHost(this); };

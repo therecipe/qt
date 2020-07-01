@@ -277,7 +277,7 @@ func RunOnMainBlocking(f func()) {
 	}
 
 	done := make(chan bool, 0)
-	interop.Helper.RunOnMainThread(func() { f(); done <- true })
+	interop.MainThreadHelper.RunOnMainThread(func() { f(); done <- true })
 	<-done
 }
 

@@ -134,7 +134,8 @@ func Minimal(path, target, tags string, skipSetup bool) {
 					if err != nil || info.IsDir() || strings.HasPrefix(path, filepath.Join(rootPath, "deploy")) {
 						return err
 					}
-					if filepath.Ext(path) == ".js" || (filepath.Ext(path) == ".ts" && !strings.HasSuffix(path, ".d.ts")) || filepath.Ext(path) == ".qml" || filepath.Ext(path) == ".dart" {
+					if filepath.Ext(path) == ".js" || (filepath.Ext(path) == ".ts" && !strings.HasSuffix(path, ".d.ts")) || filepath.Ext(path) == ".qml" ||
+						filepath.Ext(path) == ".dart" || filepath.Ext(path) == ".hx" || filepath.Ext(path) == ".swift" {
 						file := utils.Load(path)
 						fileMutex.Lock()
 						if strings.Contains(file, utils.PackageName) {
@@ -335,7 +336,7 @@ func Minimal(path, target, tags string, skipSetup bool) {
 
 	if _, ok := parser.State.ClassMap["QJSValue"]; ok {
 		exportClass(parser.State.ClassMap["QJSValue"], files)
-		for _, fn := range []string{"property", "setProperty", "toQObject", "isCallable", "isNull", "isUndefined", "toString", "call", "toInt", "isString"} {
+		for _, fn := range []string{"property", "setProperty", "toQObject", "isCallable", "isNull", "isUndefined", "toString", "call", "toInt", "isString", "isObject"} {
 			exportFunction(parser.State.ClassMap["QJSValue"].GetFunction(fn), files)
 		}
 	}

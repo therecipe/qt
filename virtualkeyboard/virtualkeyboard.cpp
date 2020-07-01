@@ -1492,9 +1492,9 @@ void QVirtualKeyboardInputEngine_VirtualKeyClicked(void* ptr, long long key, str
 	static_cast<QVirtualKeyboardInputEngine*>(ptr)->virtualKeyClicked(static_cast<Qt::Key>(key), QString::fromUtf8(text.data, text.len), static_cast<Qt::KeyboardModifier>(modifiers), isAutoRepeat != 0);
 }
 
-char QVirtualKeyboardInputEngine_VirtualKeyPress(void* ptr, long long key, struct QtVirtualKeyboard_PackedString text, long long modifiers, char repeat)
+char QVirtualKeyboardInputEngine_VirtualKeyPress(void* ptr, long long key, struct QtVirtualKeyboard_PackedString text, long long modifiers, char repe)
 {
-	return static_cast<QVirtualKeyboardInputEngine*>(ptr)->virtualKeyPress(static_cast<Qt::Key>(key), QString::fromUtf8(text.data, text.len), static_cast<Qt::KeyboardModifier>(modifiers), repeat != 0);
+	return static_cast<QVirtualKeyboardInputEngine*>(ptr)->virtualKeyPress(static_cast<Qt::Key>(key), QString::fromUtf8(text.data, text.len), static_cast<Qt::KeyboardModifier>(modifiers), repe != 0);
 }
 
 char QVirtualKeyboardInputEngine_VirtualKeyRelease(void* ptr, long long key, struct QtVirtualKeyboard_PackedString text, long long modifiers)

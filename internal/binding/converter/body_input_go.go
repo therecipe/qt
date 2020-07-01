@@ -18,13 +18,7 @@ func GoInputParametersForC(function *parser.Function) string {
 	if function.SignalMode == "" {
 		for _, parameter := range function.Parameters {
 			if parameter.PureGoType != "" && !(parameter.Value == "QMap<QString, QVariant>" || parameter.Value == "QList<QVariant>") && !parser.IsBlackListedPureGoType(parameter.PureGoType) {
-				input = append(input, GoInput(fmt.Sprintf("uintptr(unsafe.Pointer(%v%v))",
-					func() string {
-						if !strings.HasPrefix(parameter.PureGoType, "*") {
-							return "&"
-						}
-						return ""
-					}(), parser.CleanName(parameter.Name, parameter.Value)), parameter.Value, function, parameter.PureGoType))
+				input = append(input, GoInput(fmt.Sprintf("%vTID", parser.CleanName(parameter.Name, parameter.Value)), parameter.Value, function, parameter.PureGoType))
 			} else {
 				var alloc = GoInput(parameter.Name, parameter.Value, function, parameter.PureGoType)
 				if strings.Contains(alloc, "C.CString") || strings.Contains(alloc, "qt.GoBoolToInt(*") || strings.Contains(alloc, "*C.char") || strings.Contains(alloc, "C.long(int32(*") {
@@ -72,17 +66,13 @@ func GoInputParametersForJS(function *parser.Function) string {
 		for _, parameter := range function.Parameters {
 			if parameter.PureGoType != "" && !(parameter.Value == "QMap<QString, QVariant>" || parameter.Value == "QList<QVariant>") && !parser.IsBlackListedPureGoType(parameter.PureGoType) {
 				if parser.UseWasm() {
-					if parameter.PureGoType != "" && !(parameter.Value == "QMap<QString, QVariant>" || parameter.Value == "QList<QVariant>") && !parser.IsBlackListedPureGoType(parameter.PureGoType) {
-						input = append(input, GoInput(fmt.Sprintf("unsafe.Pointer(%v%v)",
-							func() string {
-								if !strings.HasPrefix(parameter.PureGoType, "*") {
-									return "&"
-								}
-								return ""
-							}(), parser.CleanName(parameter.Name, parameter.Value)), parameter.Value, function, parameter.PureGoType))
-					} else {
-						input = append(input, GoInputJS(parser.CleanName(parameter.Name, parameter.Value), parameter.Value, function, parameter.PureGoType))
-					}
+					input = append(input, GoInput(fmt.Sprintf("unsafe.Pointer(%v%v)",
+						func() string {
+							if !strings.HasPrefix(parameter.PureGoType, "*") {
+								return "&"
+							}
+							return ""
+						}(), parser.CleanName(parameter.Name, parameter.Value)), parameter.Value, function, parameter.PureGoType))
 				} else {
 					input = append(input, GoInputJS(fmt.Sprintf("%vTID", parser.CleanName(parameter.Name, parameter.Value)), parameter.Value, function, parameter.PureGoType))
 				}

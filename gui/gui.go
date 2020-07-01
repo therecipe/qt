@@ -26175,9 +26175,9 @@ func (ptr *QOpenGLContext) GlobalShareContext() *QOpenGLContext {
 	return tmpValue
 }
 
-func (ptr *QOpenGLContext) HasExtension(extension core.QByteArray_ITF) bool {
+func (ptr *QOpenGLContext) HasExtension(extensi core.QByteArray_ITF) bool {
 	if ptr.Pointer() != nil {
-		return int8(C.QOpenGLContext_HasExtension(ptr.Pointer(), core.PointerFromQByteArray(extension))) != 0
+		return int8(C.QOpenGLContext_HasExtension(ptr.Pointer(), core.PointerFromQByteArray(extensi))) != 0
 	}
 	return false
 }

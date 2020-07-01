@@ -12149,9 +12149,9 @@ void* QOpenGLContext_QOpenGLContext_GlobalShareContext()
 	return QOpenGLContext::globalShareContext();
 }
 
-char QOpenGLContext_HasExtension(void* ptr, void* extension)
+char QOpenGLContext_HasExtension(void* ptr, void* extensi)
 {
-	return static_cast<QOpenGLContext*>(ptr)->hasExtension(*static_cast<QByteArray*>(extension));
+	return static_cast<QOpenGLContext*>(ptr)->hasExtension(*static_cast<QByteArray*>(extensi));
 }
 
 char QOpenGLContext_IsOpenGLES(void* ptr)

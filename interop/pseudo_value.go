@@ -162,14 +162,28 @@ func (this *PseudoQJSValue) Call(in []*PseudoQJSValue) *PseudoQJSValue {
 
 func (this *PseudoQJSValue) callRemote(in []*PseudoQJSValue) *PseudoQJSValue {
 
-	i := []interface{}{this.Property("___pointer").ToInterface(), this.Property("callableName").ToInterface()}
+	var pointer interface{}
+	if ReturnPointersAsStrings {
+		pointer = this.Property("___pointer").ToString()
+	} else {
+		pointer = this.Property("___pointer").ToInterface()
+	}
+
+	i := []interface{}{pointer, this.Property("callableName").ToInterface()}
 	for _, v := range in {
 		if v.Property("___pointer").ToString() != "" {
+			var p interface{}
+			if ReturnPointersAsStrings {
+				p = v.Property("___pointer").ToString()
+			} else {
+				p = v.Property("___pointer").ToInterface()
+			}
+
 			i = append(i, struct {
 				Pointer   interface{} `json:"___pointer"`
 				ClassName interface{} `json:"___className"`
 			}{
-				v.Property("___pointer").ToInterface(),
+				p,
 				v.Property("___className").ToInterface(),
 			})
 		} else {
@@ -191,28 +205,29 @@ func (this *PseudoQJSValue) callRemote(in []*PseudoQJSValue) *PseudoQJSValue {
 	}
 	ib, _ := json.Marshal(i)
 
+	remoteMainThreadIsBlockedMutex.Lock()
+	blocked := remoteMainThreadIsBlocked
+	remoteMainThreadIsBlockedMutex.Unlock()
+	if blocked {
+		m := make(map[string]interface{})
+		m["___earlyReturn"] = "true"
+		m["___data"] = string(ib)
+		return NewPseudoQJSValue1(m)
+	}
+
+	localMainThreadIsBlocked = true
+	defer func() { localMainThreadIsBlocked = false }()
+
+	AsyncCallIntoRemote(string(ib))
+
 	var ret string
-	if mainThreadIsBlockedAlready {
-		syncCallChan <- string(ib)
+	for {
+		select {
+		case ret = <-asyncCallChan:
+			goto br
 
-		for { //blocks main thread and therefore needs core.QCoreApplication_ProcessEvents
-			select {
-			case ret = <-syncCallChan:
-				goto br
-			default:
-				core.QCoreApplication_ProcessEvents2(core.QEventLoop__AllEvents, 7) //TODO: is there some better way?
-			}
-		}
-	} else {
-		AsyncCallIntoRemote(string(ib))
-
-		for { //blocks main thread and therefore needs core.QCoreApplication_ProcessEvents
-			select {
-			case ret = <-asyncCallChan:
-				goto br
-			default:
-				core.QCoreApplication_ProcessEvents2(core.QEventLoop__AllEvents, 7) //TODO: is there some better way?
-			}
+		case f := <-mainThreadHelperChan:
+			f()
 		}
 	}
 br:

@@ -32066,17 +32066,17 @@ func (ptr *QMetaType) Compare(lhs unsafe.Pointer, rhs unsafe.Pointer, typeId int
 	return int8(C.QMetaType_QMetaType_Compare(lhs, rhs, C.int(int32(typeId)), C.int(int32(result)))) != 0
 }
 
-func QMetaType_Construct2(ty int, where unsafe.Pointer, copy unsafe.Pointer) unsafe.Pointer {
-	return C.QMetaType_QMetaType_Construct2(C.int(int32(ty)), where, copy)
+func QMetaType_Construct2(ty int, whe unsafe.Pointer, copy unsafe.Pointer) unsafe.Pointer {
+	return C.QMetaType_QMetaType_Construct2(C.int(int32(ty)), whe, copy)
 }
 
-func (ptr *QMetaType) Construct2(ty int, where unsafe.Pointer, copy unsafe.Pointer) unsafe.Pointer {
-	return C.QMetaType_QMetaType_Construct2(C.int(int32(ty)), where, copy)
+func (ptr *QMetaType) Construct2(ty int, whe unsafe.Pointer, copy unsafe.Pointer) unsafe.Pointer {
+	return C.QMetaType_QMetaType_Construct2(C.int(int32(ty)), whe, copy)
 }
 
-func (ptr *QMetaType) Construct3(where unsafe.Pointer, copy unsafe.Pointer) unsafe.Pointer {
+func (ptr *QMetaType) Construct3(whe unsafe.Pointer, copy unsafe.Pointer) unsafe.Pointer {
 	if ptr.Pointer() != nil {
-		return C.QMetaType_Construct3(ptr.Pointer(), where, copy)
+		return C.QMetaType_Construct3(ptr.Pointer(), whe, copy)
 	}
 	return nil
 }
@@ -32126,12 +32126,12 @@ func (ptr *QMetaType) Destroy2(data unsafe.Pointer) {
 	}
 }
 
-func QMetaType_Destruct(ty int, where unsafe.Pointer) {
-	C.QMetaType_QMetaType_Destruct(C.int(int32(ty)), where)
+func QMetaType_Destruct(ty int, whe unsafe.Pointer) {
+	C.QMetaType_QMetaType_Destruct(C.int(int32(ty)), whe)
 }
 
-func (ptr *QMetaType) Destruct(ty int, where unsafe.Pointer) {
-	C.QMetaType_QMetaType_Destruct(C.int(int32(ty)), where)
+func (ptr *QMetaType) Destruct(ty int, whe unsafe.Pointer) {
+	C.QMetaType_QMetaType_Destruct(C.int(int32(ty)), whe)
 }
 
 func (ptr *QMetaType) Destruct2(data unsafe.Pointer) {

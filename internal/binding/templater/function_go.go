@@ -159,7 +159,7 @@ func goFunctionBody(function *parser.Function) string {
 			if function.IsMocFunction && function.SignalMode == "" {
 				for i, p := range function.Parameters {
 					if p.PureGoType != "" && !(p.Value == "QMap<QString, QVariant>" || p.Value == "QList<QVariant>") && !parser.IsBlackListedPureGoType(p.PureGoType) {
-						if UseJs() && !parser.UseWasm() {
+						if !parser.UseWasm() { //TODO: does wasm need "unsafe" pointer arithmetic ?
 							fmt.Fprintf(bb, "%vTID := (time.Now().UnixNano()+(%v*1e10))/1e9\n", parser.CleanName(p.Name, p.Value), i)
 							fmt.Fprintf(bb, "qt.RegisterTemp(unsafe.Pointer(uintptr(%[2]vTID)), unsafe.Pointer(%[1]v%[2]v))\n",
 								func() string {
@@ -418,7 +418,7 @@ func goFunctionBody(function *parser.Function) string {
 				} else {
 					if function.IsMocFunction && function.PureGoOutput != "" && !(function.Output == "QMap<QString, QVariant>" || function.Output == "QList<QVariant>") && !parser.IsBlackListedPureGoType(function.PureGoOutput) {
 						fmt.Fprintf(bb, "oP := %v\n", fmt.Sprintf("(*(*%v)(signal))(%v)", converter.GoHeaderInputSignalFunction(function), converter.GoInputParametersForCallback(function)))
-						if UseJs() && !parser.UseWasm() {
+						if !parser.UseWasm() { //TODO: does wasm need "unsafe" pointer arithmetic ?
 							fmt.Fprintf(bb, "rTID := (time.Now().UnixNano()+(1*1e10))/1e9\n")
 							fmt.Fprintf(bb, "qt.RegisterTemp(unsafe.Pointer(uintptr(rTID)), unsafe.Pointer(%voP))\n",
 								func() string {
@@ -504,7 +504,7 @@ func goFunctionBody(function *parser.Function) string {
 							} else {
 								fmt.Fprintf(bb, "oP := %v\n", fmt.Sprintf("New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(class.Name), strings.TrimSuffix(strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), "z__"), function.OverloadNumber, converter.GoInputParametersForCallback(function)))
 							}
-							if UseJs() && !parser.UseWasm() {
+							if !parser.UseWasm() { //TODO: does wasm need "unsafe" pointer arithmetic ?
 								fmt.Fprintf(bb, "rTID := (time.Now().UnixNano()+(1*1e10))/1e9\n")
 								fmt.Fprintf(bb, "qt.RegisterTemp(unsafe.Pointer(uintptr(rTID)), unsafe.Pointer(%voP))\n",
 									func() string {

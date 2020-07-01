@@ -328,6 +328,8 @@ type testStruct struct {
 
 	_ func(map[string]error, map[error]string, map[error]error) map[string]string          `slot:"errorStringTest13,auto"`
 	_ func(map[error][]string, map[string][]string, map[error][]error, map[string][]error) `slot:"errorStringTest14,auto"`
+
+	_ func(f func()) `slot:"funcTest,auto"`
 }
 
 type subTestStruct struct {
@@ -1259,6 +1261,12 @@ func TestPropertiesMap(t *testing.T) {
 	if test.PropMapReturnTest2()[0].ObjectName() != sTest.ObjectName() {
 		t.Fatal("PropMapReturnTest2")
 	}
+
+	var b bool
+	test.FuncTest(func() { b = true })
+	if !b {
+		t.Fatal("FuncTest")
+	}
 }
 
 func TestSignalInput(t *testing.T) {
@@ -1768,6 +1776,10 @@ func (*testStruct) errorStringTest13(map[string]error, map[error]string, map[err
 }
 
 func (*testStruct) errorStringTest14(map[error][]string, map[string][]string, map[error][]error, map[string][]error) {
+}
+
+func (*testStruct) funcTest(f func()) {
+	f()
 }
 
 func TestBoolPointer(t *testing.T) {

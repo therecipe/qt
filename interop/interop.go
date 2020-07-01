@@ -1,9 +1,11 @@
 package interop
 
 import (
+	"encoding/json"
 	"math"
 	"reflect"
 	"runtime"
+	"strconv"
 	"strings"
 	"sync"
 	"unsafe"
@@ -17,6 +19,18 @@ var (
 
 	finalizerMap      = make(map[unsafe.Pointer][]*core.QObject)
 	finalizerMapMutex sync.Mutex
+
+	//needed only for interop  --->
+	ReturnPointersAsStrings bool
+
+	syncCallIntoRemoteChan       = make(chan string, 0)
+	syncCallIntoRemoteReturnChan = make(chan string, 0)
+
+	fromJsToRefReturnsOnChan bool
+	fromJsToRefReturnChan    = make(chan []reflect.Value, 0)
+
+	Z_wrapperFunctionReturnChan = make(chan *PseudoQJSValue, 0)
+	//needed only for interop  <---
 )
 
 type ptr_itf interface {
@@ -203,6 +217,31 @@ func Z_wrapperFunction(jsvals *PseudoQJSValue) *PseudoQJSValue {
 		}
 
 		ret := m.Call(input)
+
+		//needed only for interop  --->
+		if fromJsToRefReturnsOnChan {
+			fromJsToRefReturnsOnChan = false
+			go func() {
+				ret = <-fromJsToRefReturnChan
+
+				if len(ret) == 0 {
+					Z_wrapperFunctionReturnChan <- NewPseudoQJSValue(PseudoQJSValue__UndefinedValue)
+					return
+				}
+
+				rret := engine.NewGoType(ret[0].Interface())
+				if reflect.TypeOf(ret[0].Interface()).Implements(reflect.TypeOf((*core.QObject_ITF)(nil)).Elem()) { //TODO: check for destroyed signal instead, or simply override the destructor instead ?
+					if qt.ExistsSignal(ret[0].Interface().(ptr_itf).Pointer(), "destroyed") {
+						engine.GlobalObject().Property("___connectDestroyed").Call([]*PseudoQJSValue{rret}) //TODO: connect destroyed/destructor from go instead ?
+					}
+				}
+
+				Z_wrapperFunctionReturnChan <- rret
+			}()
+			return NewPseudoQJSValue(PseudoQJSValue__UndefinedValue)
+		}
+		//needed only for interop  <---
+
 		if len(ret) == 0 {
 			return NewPseudoQJSValue(PseudoQJSValue__UndefinedValue)
 		}
@@ -256,10 +295,35 @@ func (ptr *PseudoQJSEngine) fromJsToRef(tofi reflect.Type, jsval *PseudoQJSValue
 			for i, arg := range args {
 				input[i] = ptr.NewGoType(arg.Interface())
 			}
-			if ret := jsval.Call(input); tofi.NumOut() != 0 {
-				return []reflect.Value{ptr.fromJsToRef(tofi.Out(0), ret)}
+			ret := jsval.Call(input)
+
+			//the default path to return on this function
+			if !(ret.IsObject() && ret.Property("___earlyReturn").ToString() == "true") {
+				if tofi.NumOut() != 0 {
+					return []reflect.Value{ptr.fromJsToRef(tofi.Out(0), ret)}
+				}
+				return nil
+			}
+
+			//needed only for interop  --->
+			fromJsToRefReturnsOnChan = true
+
+			syncCallIntoRemoteChan <- string(ret.Property("___data").ToString())
+			go func() {
+				var o interface{}
+				json.Unmarshal([]byte(<-syncCallIntoRemoteReturnChan), &o)
+				if tofi.NumOut() != 0 {
+					fromJsToRefReturnChan <- []reflect.Value{ptr.fromJsToRef(tofi.Out(0), ptr.ToScriptValue(core.NewQVariant1(o)))}
+				} else {
+					fromJsToRefReturnChan <- nil
+				}
+			}()
+
+			if tofi.NumOut() != 0 {
+				return []reflect.Value{reflect.ValueOf("___earlyReturn")}
 			}
 			return nil
+			//needed only for interop  <---
 		})
 
 		//TODO: merge into (*core.QVariant).ToGoType ? >>>
@@ -586,7 +650,11 @@ func (ptr *PseudoQJSEngine) makeFuncWrapper(fn string) *PseudoQJSValue {
 }
 
 func (ptr *PseudoQJSEngine) makeObjectWrapper(in interface{}, jsv *PseudoQJSValue) {
-	jsv.SetProperty("___pointer", ptr.ToScriptValue(core.NewQVariant1(uint64(uintptr(in.(ptr_itf).Pointer()))))) //TODO: can be shortened once NewQVariant1 supports unsafe.Pointer
+	if ReturnPointersAsStrings {
+		jsv.SetProperty("___pointer", ptr.ToScriptValue(core.NewQVariant1(strconv.FormatUint(uint64(uintptr(in.(ptr_itf).Pointer())), 10)))) //TODO: can be shortened once NewQVariant1 supports unsafe.Pointer
+	} else {
+		jsv.SetProperty("___pointer", ptr.ToScriptValue(core.NewQVariant1(uint64(uintptr(in.(ptr_itf).Pointer()))))) //TODO: can be shortened once NewQVariant1 supports unsafe.Pointer
+	}
 
 	rv := reflect.ValueOf(in)
 
