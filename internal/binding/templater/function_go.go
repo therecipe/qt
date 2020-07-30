@@ -364,7 +364,11 @@ func goFunctionBody(function *parser.Function) string {
 						if !strings.HasSuffix(function.Name, "Changed") { //TODO: check if property instead
 							fmt.Fprintf(bb, "qt.UnregisterTemp(unsafe.Pointer(uintptr(%v)))\n", parser.CleanName(p.Name, p.Value))
 						}
-						fmt.Fprintf(bb, "%[1]vD = (*(*%v)(%[1]vI))\n", parser.CleanName(p.Name, p.Value), p.PureGoType)
+						if strings.HasPrefix(p.PureGoType, "*") {
+							fmt.Fprintf(bb, "%[1]vD = (%v)(%[1]vI)\n", parser.CleanName(p.Name, p.Value), p.PureGoType)
+						} else {
+							fmt.Fprintf(bb, "%[1]vD = (*(*%v)(%[1]vI))\n", parser.CleanName(p.Name, p.Value), p.PureGoType)
+						}
 						fmt.Fprint(bb, "}\n")
 					}
 				}
