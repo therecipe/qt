@@ -12,9 +12,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/therecipe/qt/internal/binding/converter"
-	"github.com/therecipe/qt/internal/binding/parser"
-	"github.com/therecipe/qt/internal/utils"
+	"github.com/StarAurryon/qt/internal/binding/converter"
+	"github.com/StarAurryon/qt/internal/binding/parser"
+	"github.com/StarAurryon/qt/internal/utils"
 )
 
 var exportedFunctions []string
@@ -661,7 +661,7 @@ extern "C" int32_t __isPlatformVersionAtLeast(int32_t Platform, int32_t Major, i
 #ifndef QT_CORE_LIB
 	#error ------------------------------------------------------------------
 	#error please run: '$(go env GOPATH)/bin/qtsetup'
-	#error more info here: https://github.com/therecipe/qt/wiki/Installation
+	#error more info here: https://github.com/StarAurryon/qt/wiki/Installation
 	#error ------------------------------------------------------------------
 #endif`
 			}

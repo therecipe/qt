@@ -1,9 +1,9 @@
 package controller
 
 import (
-	"github.com/therecipe/qt/core"
+	"github.com/StarAurryon/qt/core"
 
-	"github.com/therecipe/qt/internal/examples/showcases/wallet/theme/controller"
+	"github.com/StarAurryon/qt/internal/examples/showcases/wallet/theme/controller"
 )
 
 type colorController struct {

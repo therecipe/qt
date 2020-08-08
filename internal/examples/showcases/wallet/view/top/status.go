@@ -1,9 +1,9 @@
 package top
 
 import (
-	"github.com/therecipe/qt/quick"
+	"github.com/StarAurryon/qt/quick"
 
-	"github.com/therecipe/qt/internal/examples/showcases/wallet/view/top/controller"
+	"github.com/StarAurryon/qt/internal/examples/showcases/wallet/view/top/controller"
 )
 
 func init() { statusTemplate_QmlRegisterType2("TopTemplate", 1, 0, "StatusTemplate") }

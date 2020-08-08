@@ -8,8 +8,8 @@ package script
 //#include "script.h"
 import "C"
 import (
-	"github.com/therecipe/qt"
-	"github.com/therecipe/qt/core"
+	"github.com/StarAurryon/qt"
+	"github.com/StarAurryon/qt/core"
 	"strings"
 	"unsafe"
 )

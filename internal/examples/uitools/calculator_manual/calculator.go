@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/uitools"
-	"github.com/therecipe/qt/widgets"
+	"github.com/StarAurryon/qt/core"
+	"github.com/StarAurryon/qt/uitools"
+	"github.com/StarAurryon/qt/widgets"
 )
 
 func main() {

@@ -20,7 +20,7 @@ ENV WINEPATH C:\\go\\bin
 
 COPY --from=base $HOME/.wine/drive_c/go $HOME/.wine/drive_c/go
 COPY --from=base $HOME/.wine/drive_c/gopath/bin $HOME/.wine/drive_c/gopath/bin
-COPY --from=base $HOME/.wine/drive_c/gopath/src/github.com/therecipe/qt $HOME/.wine/drive_c/gopath/src/github.com/therecipe/qt
+COPY --from=base $HOME/.wine/drive_c/gopath/src/github.com/StarAurryon/qt $HOME/.wine/drive_c/gopath/src/github.com/StarAurryon/qt
 COPY --from=base $HOME/.wine/drive_c/Qt/Qt5.9.6/5.9.6/mingw53_32 $HOME/.wine/drive_c/Qt/Qt5.9.6/5.9.6/mingw53_32
 COPY --from=base $HOME/.wine/drive_c/Qt/Qt5.9.6/Docs $HOME/.wine/drive_c/Qt/Qt5.9.6/Docs
 COPY --from=base $HOME/.wine/drive_c/Qt/Qt5.9.6/Tools/mingw530_32 $HOME/.wine/drive_c/Qt/Qt5.9.6/Tools/mingw530_32
@@ -41,7 +41,7 @@ RUN echo 'REGEDIT4\n\n\
 RUN wine $GOPATH\\bin\\qtsetup prep
 RUN wine $GOPATH\\bin\\qtsetup check
 RUN wine $GOPATH\\bin\\qtsetup generate
-RUN cd $HOME/.wine/drive_c/gopath/src/github.com/therecipe/qt/internal/examples/widgets/line_edits && sed -i -e 's/AddWidget2/AddWidget/g' line_edits.go && wine qtdeploy build && rm -rf ./deploy
+RUN cd $HOME/.wine/drive_c/gopath/src/github.com/StarAurryon/qt/internal/examples/widgets/line_edits && sed -i -e 's/AddWidget2/AddWidget/g' line_edits.go && wine qtdeploy build && rm -rf ./deploy
 
 RUN echo "#!/bin/bash\nexport GOPATH=\$(winepath -0 -w \$(echo \$GOPATH | sed -e 's/:/ /g') | sed -e 's/Z:/;Z:/2g')" > /usr/bin/qtpath && chmod +x /usr/bin/qtpath
 RUN echo '#!/bin/bash\nsource qtpath\nwine qtdeploy "$@"' > /usr/bin/qtdeploy && chmod +x /usr/bin/qtdeploy

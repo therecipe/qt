@@ -17,7 +17,7 @@ import "C"
 import (
 	"unsafe"
 
-	"github.com/therecipe/qt/interop"
+	"github.com/StarAurryon/qt/interop"
 )
 
 var (

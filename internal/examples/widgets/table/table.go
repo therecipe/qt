@@ -7,9 +7,9 @@ import (
 	"strconv"
 
 	"github.com/emirpasic/gods/lists/arraylist"
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/gui"
-	"github.com/therecipe/qt/widgets"
+	"github.com/StarAurryon/qt/core"
+	"github.com/StarAurryon/qt/gui"
+	"github.com/StarAurryon/qt/widgets"
 )
 
 var statusbar *widgets.QStatusBar

@@ -8,9 +8,9 @@ package gui
 //#include "gui.h"
 import "C"
 import (
-	"github.com/therecipe/qt"
-	"github.com/therecipe/qt/core"
-	_ "github.com/therecipe/qt/internal/binding/runtime"
+	"github.com/StarAurryon/qt"
+	"github.com/StarAurryon/qt/core"
+	_ "github.com/StarAurryon/qt/internal/binding/runtime"
 	"strings"
 	"unsafe"
 )

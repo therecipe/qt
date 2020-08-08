@@ -8,9 +8,9 @@ package xmlpatterns
 //#include "xmlpatterns.h"
 import "C"
 import (
-	"github.com/therecipe/qt"
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/network"
+	"github.com/StarAurryon/qt"
+	"github.com/StarAurryon/qt/core"
+	"github.com/StarAurryon/qt/network"
 	"strings"
 	"unsafe"
 )

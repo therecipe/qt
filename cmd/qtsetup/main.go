@@ -7,10 +7,10 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/therecipe/qt/internal/cmd"
-	"github.com/therecipe/qt/internal/cmd/setup"
+	"github.com/StarAurryon/qt/internal/cmd"
+	"github.com/StarAurryon/qt/internal/cmd/setup"
 
-	"github.com/therecipe/qt/internal/utils"
+	"github.com/StarAurryon/qt/internal/utils"
 )
 
 func main() {

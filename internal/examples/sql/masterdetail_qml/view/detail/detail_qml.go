@@ -3,9 +3,9 @@
 package detail
 
 import (
-	"github.com/therecipe/qt/quick"
+	"github.com/StarAurryon/qt/quick"
 
-	"github.com/therecipe/qt/internal/examples/sql/masterdetail_qml/controller"
+	"github.com/StarAurryon/qt/internal/examples/sql/masterdetail_qml/controller"
 )
 
 func init() {

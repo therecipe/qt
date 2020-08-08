@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/therecipe/qt/internal/binding/parser"
+	"github.com/StarAurryon/qt/internal/binding/parser"
 
-	"github.com/therecipe/qt/internal/utils"
+	"github.com/StarAurryon/qt/internal/utils"
 )
 
 func convertToHaxe(className string, l string, convertClassMethods bool) string {

@@ -3,10 +3,10 @@ package main
 import (
 	"os"
 
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/gui"
-	"github.com/therecipe/qt/quick"
-	"github.com/therecipe/qt/sailfish"
+	"github.com/StarAurryon/qt/core"
+	"github.com/StarAurryon/qt/gui"
+	"github.com/StarAurryon/qt/quick"
+	"github.com/StarAurryon/qt/sailfish"
 )
 
 func main() {

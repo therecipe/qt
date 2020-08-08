@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/therecipe/qt/charts"
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/gui"
+	"github.com/StarAurryon/qt/charts"
+	"github.com/StarAurryon/qt/core"
+	"github.com/StarAurryon/qt/gui"
 )
 
 type Chart struct {

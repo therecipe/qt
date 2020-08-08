@@ -3,9 +3,9 @@ package main
 import (
 	"runtime"
 
-	"github.com/therecipe/qt/androidextras"
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/qml"
+	"github.com/StarAurryon/qt/androidextras"
+	"github.com/StarAurryon/qt/core"
+	"github.com/StarAurryon/qt/qml"
 )
 
 var Application *application

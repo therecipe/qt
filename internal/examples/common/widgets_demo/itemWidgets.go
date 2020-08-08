@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/therecipe/qt/widgets"
+	"github.com/StarAurryon/qt/widgets"
 )
 
 func itemWidgets() {

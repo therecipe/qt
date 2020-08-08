@@ -3,9 +3,9 @@ package main
 import (
 	"os"
 
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/gui"
-	"github.com/therecipe/qt/widgets"
+	"github.com/StarAurryon/qt/core"
+	"github.com/StarAurryon/qt/gui"
+	"github.com/StarAurryon/qt/widgets"
 )
 
 var (
@@ -38,7 +38,7 @@ func main() {
 	mainWindow.SetCentralWidget(scrollWidget)
 	mainWindow.ShowMaximized()
 
-	//->needed to work around some iOS issue: https://github.com/therecipe/qt/issues/451
+	//->needed to work around some iOS issue: https://github.com/StarAurryon/qt/issues/451
 	gui.QGuiApplication_Screens()[0].SetOrientationUpdateMask(core.Qt__PrimaryOrientation | core.Qt__LandscapeOrientation | core.Qt__PortraitOrientation | core.Qt__InvertedLandscapeOrientation | core.Qt__InvertedPortraitOrientation)
 	gui.QGuiApplication_Screens()[0].ConnectOrientationChanged(func(core.Qt__ScreenOrientation) {
 		mainWindow.Hide()

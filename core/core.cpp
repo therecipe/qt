@@ -9,7 +9,7 @@
 #ifndef QT_CORE_LIB
 	#error ------------------------------------------------------------------
 	#error please run: '$(go env GOPATH)/bin/qtsetup'
-	#error more info here: https://github.com/therecipe/qt/wiki/Installation
+	#error more info here: https://github.com/StarAurryon/qt/wiki/Installation
 	#error ------------------------------------------------------------------
 #endif
 #include <QAbstractAnimation>

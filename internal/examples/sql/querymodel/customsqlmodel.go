@@ -3,9 +3,9 @@ package main
 import (
 	"strings"
 
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/gui"
-	"github.com/therecipe/qt/sql"
+	"github.com/StarAurryon/qt/core"
+	"github.com/StarAurryon/qt/gui"
+	"github.com/StarAurryon/qt/sql"
 )
 
 type CustomSqlModel struct {
