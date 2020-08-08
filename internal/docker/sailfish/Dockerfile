@@ -6,7 +6,7 @@ ENV GOPATH $HOME/work
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates curl git
 RUN GO=go1.13.4.linux-386.tar.gz && curl -sL --retry 10 --retry-delay 60 -O https://dl.google.com/go/$GO && tar -xzf $GO -C /usr/local
-RUN /usr/local/go/bin/go get -tags=no_env github.com/therecipe/qt/cmd/...
+RUN /usr/local/go/bin/go get -tags=no_env github.com/StarAurryon/qt/cmd/...
 
 
 FROM i386/ubuntu:14.04
@@ -23,7 +23,7 @@ ENV QT_SAILFISH_VERSION 2.2.1.18
 
 COPY --from=base /usr/local/go /usr/local/go
 COPY --from=base $GOPATH/bin $GOPATH/bin
-COPY --from=base $GOPATH/src/github.com/therecipe/qt $GOPATH/src/github.com/therecipe/qt
+COPY --from=base $GOPATH/src/github.com/StarAurryon/qt $GOPATH/src/github.com/StarAurryon/qt
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates curl p7zip-full && apt-get -qq clean
 RUN apt-get -qq update && apt-get -y -qq purge python && apt-get -qq clean
@@ -79,10 +79,10 @@ RUN $GOPATH/bin/qtsetup prep
 
 RUN $GOPATH/bin/qtsetup generate sailfish
 RUN $GOPATH/bin/qtsetup install sailfish
-RUN cd $GOPATH/src/github.com/therecipe/qt/internal/examples/sailfish/listview && $GOPATH/bin/qtdeploy build sailfish && rm -rf ./deploy
+RUN cd $GOPATH/src/github.com/StarAurryon/qt/internal/examples/sailfish/listview && $GOPATH/bin/qtdeploy build sailfish && rm -rf ./deploy
 
 RUN $GOPATH/bin/qtsetup generate sailfish-emulator
 RUN $GOPATH/bin/qtsetup install sailfish-emulator
-RUN cd $GOPATH/src/github.com/therecipe/qt/internal/examples/sailfish/listview && $GOPATH/bin/qtdeploy build sailfish-emulator && rm -rf ./deploy
+RUN cd $GOPATH/src/github.com/StarAurryon/qt/internal/examples/sailfish/listview && $GOPATH/bin/qtdeploy build sailfish-emulator && rm -rf ./deploy
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates pkg-config

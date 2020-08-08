@@ -1,9 +1,9 @@
 package wallet
 
 import (
-	"github.com/therecipe/qt/quick"
+	"github.com/StarAurryon/qt/quick"
 
-	"github.com/therecipe/qt/internal/examples/showcases/wallet/wallet/controller"
+	"github.com/StarAurryon/qt/internal/examples/showcases/wallet/wallet/controller"
 )
 
 func init() { buttonTemplate_QmlRegisterType2("WalletTemplate", 1, 0, "ButtonTemplate") }

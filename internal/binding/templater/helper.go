@@ -3,8 +3,8 @@ package templater
 import (
 	"strings"
 
-	"github.com/therecipe/qt/internal/binding/parser"
-	"github.com/therecipe/qt/internal/utils"
+	"github.com/StarAurryon/qt/internal/binding/parser"
+	"github.com/StarAurryon/qt/internal/utils"
 )
 
 func hasUnimplementedPureVirtualFunctions(className string) bool {

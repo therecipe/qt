@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/therecipe/qt/internal/binding/parser"
+	"github.com/StarAurryon/qt/internal/binding/parser"
 )
 
 func GoInput(name, value string, f *parser.Function, p string) string {

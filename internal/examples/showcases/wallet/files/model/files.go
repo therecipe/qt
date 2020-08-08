@@ -1,6 +1,6 @@
 package model
 
-import "github.com/therecipe/qt/core"
+import "github.com/StarAurryon/qt/core"
 
 type File struct {
 	Name          string

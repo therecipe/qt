@@ -1,6 +1,6 @@
 package main
 
-import "github.com/therecipe/qt/core"
+import "github.com/StarAurryon/qt/core"
 
 var (
 	materialRed        = []string{"#FFCDD2", "#F44336", "#D32F2F", "#000000", "#FFFFFF", "#FFFFFF", "black", "white", "white"}

@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/therecipe/qt/widgets"
+	"github.com/StarAurryon/qt/widgets"
 )
 
 type QSystemTrayIconWithCustomSlot struct {

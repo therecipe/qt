@@ -8,10 +8,10 @@ package scripttools
 //#include "scripttools.h"
 import "C"
 import (
-	"github.com/therecipe/qt"
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/script"
-	"github.com/therecipe/qt/widgets"
+	"github.com/StarAurryon/qt"
+	"github.com/StarAurryon/qt/core"
+	"github.com/StarAurryon/qt/script"
+	"github.com/StarAurryon/qt/widgets"
 	"strings"
 	"unsafe"
 )

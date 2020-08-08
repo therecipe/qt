@@ -3,7 +3,7 @@ package converter
 import (
 	"fmt"
 
-	"github.com/therecipe/qt/internal/binding/parser"
+	"github.com/StarAurryon/qt/internal/binding/parser"
 )
 
 func CppOutputParameters(function *parser.Function, name string) string {

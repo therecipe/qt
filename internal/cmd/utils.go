@@ -10,7 +10,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/therecipe/qt/internal/utils"
+	"github.com/StarAurryon/qt/internal/utils"
 )
 
 var (
@@ -74,9 +74,9 @@ func GetImports(path, target, tagsCustom string, level int, onlyDirect bool) []s
 					stdImport[c] = k
 					c++
 				}
-				stdImport[len(stdImport)-1] = "github.com/therecipe/qt/internal/binding/runtime"
+				stdImport[len(stdImport)-1] = "github.com/StarAurryon/qt/internal/binding/runtime"
 
-				cmd := utils.GoList(fmt.Sprintf("{{if not .Standard}}{{if eq .ImportPath \"%v\"}}{{else}}{{range .Imports}}{{if eq . \"github.com/therecipe/qt/qml\" \"github.com/therecipe/qt/quick\"}}{{.}}{{end}}{{end}}{{end}}{{end}}", strings.Join(stdImport, "\" \"")), "-deps", utils.BuildTags(tags))
+				cmd := utils.GoList(fmt.Sprintf("{{if not .Standard}}{{if eq .ImportPath \"%v\"}}{{else}}{{range .Imports}}{{if eq . \"github.com/StarAurryon/qt/qml\" \"github.com/StarAurryon/qt/quick\"}}{{.}}{{end}}{{end}}{{end}}{{end}}", strings.Join(stdImport, "\" \"")), "-deps", utils.BuildTags(tags))
 				if !utils.UseGOMOD(path) || (utils.UseGOMOD(path) && !strings.Contains(strings.Replace(path, "\\", "/", -1), "/vendor/")) {
 					cmd.Dir = path
 				} else if utils.UseGOMOD(path) && strings.Contains(strings.Replace(path, "\\", "/", -1), "/vendor/") {
@@ -100,9 +100,9 @@ func GetImports(path, target, tagsCustom string, level int, onlyDirect bool) []s
 					stdImport[c] = k
 					c++
 				}
-				stdImport[len(stdImport)-1] = "github.com/therecipe/qt/internal/binding/runtime"
+				stdImport[len(stdImport)-1] = "github.com/StarAurryon/qt/internal/binding/runtime"
 
-				cmd := utils.GoList(fmt.Sprintf("{{if not .Standard}}{{if eq .ImportPath \"%v\"}}{{else}}{{range .Imports}}{{if eq . \"github.com/therecipe/qt/interop\"}}{{.}}{{end}}{{end}}{{end}}{{end}}", strings.Join(stdImport, "\" \"")), "-deps", utils.BuildTags(tags))
+				cmd := utils.GoList(fmt.Sprintf("{{if not .Standard}}{{if eq .ImportPath \"%v\"}}{{else}}{{range .Imports}}{{if eq . \"github.com/StarAurryon/qt/interop\"}}{{.}}{{end}}{{end}}{{end}}{{end}}", strings.Join(stdImport, "\" \"")), "-deps", utils.BuildTags(tags))
 				if !utils.UseGOMOD(path) || (utils.UseGOMOD(path) && !strings.Contains(strings.Replace(path, "\\", "/", -1), "/vendor/")) {
 					cmd.Dir = path
 				} else if utils.UseGOMOD(path) && strings.Contains(strings.Replace(path, "\\", "/", -1), "/vendor/") {
@@ -126,9 +126,9 @@ func GetImports(path, target, tagsCustom string, level int, onlyDirect bool) []s
 					stdImport[c] = k
 					c++
 				}
-				stdImport[len(stdImport)-1] = "github.com/therecipe/qt/internal/binding/runtime"
+				stdImport[len(stdImport)-1] = "github.com/StarAurryon/qt/internal/binding/runtime"
 
-				cmd := utils.GoList(fmt.Sprintf("{{if not .Standard}}{{if eq .ImportPath \"%v\"}}{{else}}{{range .Imports}}{{if eq . \"github.com/therecipe/qt/flutter\"}}{{.}}{{end}}{{end}}{{end}}{{end}}", strings.Join(stdImport, "\" \"")), "-deps", utils.BuildTags(tags))
+				cmd := utils.GoList(fmt.Sprintf("{{if not .Standard}}{{if eq .ImportPath \"%v\"}}{{else}}{{range .Imports}}{{if eq . \"github.com/StarAurryon/qt/flutter\"}}{{.}}{{end}}{{end}}{{end}}{{end}}", strings.Join(stdImport, "\" \"")), "-deps", utils.BuildTags(tags))
 				if !utils.UseGOMOD(path) || (utils.UseGOMOD(path) && !strings.Contains(strings.Replace(path, "\\", "/", -1), "/vendor/")) {
 					cmd.Dir = path
 				} else if utils.UseGOMOD(path) && strings.Contains(strings.Replace(path, "\\", "/", -1), "/vendor/") {
@@ -197,8 +197,8 @@ func GetImports(path, target, tagsCustom string, level int, onlyDirect bool) []s
 				wg.Done()
 			}()
 
-			if strings.Contains(l, "github.com/therecipe/qt") && !(strings.Contains(l, "qt/internal") || strings.Contains(l, "qt/flutter") || strings.Contains(l, "qt/interop")) {
-				if strings.Contains(l, "github.com/therecipe/qt/") {
+			if strings.Contains(l, "github.com/StarAurryon/qt") && !(strings.Contains(l, "qt/internal") || strings.Contains(l, "qt/flutter") || strings.Contains(l, "qt/interop")) {
+				if strings.Contains(l, "github.com/StarAurryon/qt/") {
 					importedStdMutex.Lock()
 					importedStd[l] = struct{}{}
 					importedStdMutex.Unlock()
@@ -234,7 +234,7 @@ func GetImports(path, target, tagsCustom string, level int, onlyDirect bool) []s
 func GetQtStdImports() (o []string) {
 	importedStdMutex.Lock()
 	for k := range importedStd {
-		o = append(o, strings.TrimPrefix(k, "github.com/therecipe/qt/"))
+		o = append(o, strings.TrimPrefix(k, "github.com/StarAurryon/qt/"))
 	}
 	importedStdMutex.Unlock()
 	return
@@ -301,7 +301,7 @@ func GetGoFiles(path, target, tagsCustom string) []string {
 
 //TODO: directly parse go.mod to make it possible to skip "go mod download"
 func QtModVersion(path string) string {
-	cmd := exec.Command("go", "list", "-m", "-f", "{{.Version}}", "github.com/therecipe/qt")
+	cmd := exec.Command("go", "list", "-m", "-f", "{{.Version}}", "github.com/StarAurryon/qt")
 	cmd.Dir = path
 	version := strings.TrimSpace(utils.RunCmdOptional(cmd, "get qt tooling version"))
 	if !strings.HasPrefix(version, "v") {
@@ -323,7 +323,7 @@ func RestartWithPinnedVersion(path string) bool {
 		return false
 	}
 
-	cmd = exec.Command("go", "install", "-v", "-tags=no_env", "github.com/therecipe/qt/cmd/...")
+	cmd = exec.Command("go", "install", "-v", "-tags=no_env", "github.com/StarAurryon/qt/cmd/...")
 	cmd.Dir = path
 	cmd.Env = append(os.Environ(), "GOBIN="+utils.GOBIN())
 	utils.RunCmd(cmd, "re-install qt tooling based on the go.mod version")

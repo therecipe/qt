@@ -3,10 +3,10 @@
 package album
 
 import (
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/widgets"
+	"github.com/StarAurryon/qt/core"
+	"github.com/StarAurryon/qt/widgets"
 
-	"github.com/therecipe/qt/internal/examples/sql/masterdetail_qml/controller"
+	"github.com/StarAurryon/qt/internal/examples/sql/masterdetail_qml/controller"
 )
 
 type albumController struct {

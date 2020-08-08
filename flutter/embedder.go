@@ -48,7 +48,7 @@ import (
 	"time"
 	"unsafe"
 
-	"github.com/therecipe/qt/core"
+	"github.com/StarAurryon/qt/core"
 )
 
 func FlutterEngineRun() {

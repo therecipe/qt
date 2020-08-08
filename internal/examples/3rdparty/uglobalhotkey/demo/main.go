@@ -3,9 +3,9 @@ package main
 import (
 	"os"
 
-	"github.com/therecipe/qt/widgets"
+	"github.com/StarAurryon/qt/widgets"
 
-	"github.com/therecipe/qt/internal/examples/3rdparty/uglobalhotkey/UGlobalHotkey"
+	"github.com/StarAurryon/qt/internal/examples/3rdparty/uglobalhotkey/UGlobalHotkey"
 )
 
 func main() {

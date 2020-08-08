@@ -1,3 +1,3 @@
 package qtmoc
 
-import _ "github.com/therecipe/qt/internal/cmd/moc/test/sub"
+import _ "github.com/StarAurryon/qt/internal/cmd/moc/test/sub"

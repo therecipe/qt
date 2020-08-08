@@ -6,7 +6,7 @@ ENV GOPATH $HOME/work
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates curl git
 RUN GO=go1.12.9.linux-amd64.tar.gz && curl -sL --retry 10 --retry-delay 60 -O https://dl.google.com/go/$GO && tar -xzf $GO -C /usr/local
-RUN /usr/local/go/bin/go get -tags=no_env github.com/therecipe/qt/cmd/...
+RUN /usr/local/go/bin/go get -tags=no_env github.com/StarAurryon/qt/cmd/...
 
 
 FROM ubuntu:16.04
@@ -22,7 +22,7 @@ ENV QT_QMAKE_DIR /usr/local/Qt-5.13.0/bin
 
 COPY --from=base /usr/local/go /usr/local/go
 COPY --from=base $GOPATH/bin $GOPATH/bin
-COPY --from=base $GOPATH/src/github.com/therecipe/qt $GOPATH/src/github.com/therecipe/qt
+COPY --from=base $GOPATH/src/github.com/StarAurryon/qt $GOPATH/src/github.com/StarAurryon/qt
 COPY --from=therecipe/qt:js_base_thread $HOME/emsdk $HOME/emsdk
 COPY --from=therecipe/qt:js_base_thread $HOME/.emscripten $HOME/.emscripten
 COPY --from=therecipe/qt:js_base_thread /usr/local/Qt-5.13.0 /usr/local/Qt-5.13.0
@@ -37,6 +37,6 @@ RUN $GOPATH/bin/qtsetup check js
 RUN QT_STUB=true $GOPATH/bin/qtsetup generate
 RUN $GOPATH/bin/qtsetup generate js
 RUN $GOPATH/bin/qtsetup install js
-RUN cd $GOPATH/src/github.com/therecipe/qt/internal/examples/widgets/line_edits && $GOPATH/bin/qtdeploy build js && rm -rf ./deploy
+RUN cd $GOPATH/src/github.com/StarAurryon/qt/internal/examples/widgets/line_edits && $GOPATH/bin/qtdeploy build js && rm -rf ./deploy
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates git pkg-config
