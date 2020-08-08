@@ -27,7 +27,7 @@ The following instructions assume that you already installed [Go](https://golang
 
 ```powershell
 set GO111MODULE=off
-go get -v github.com/therecipe/qt/cmd/... && for /f %v in ('go env GOPATH') do %v\bin\qtsetup test && %v\bin\qtsetup -test=false
+go get -v github.com/StarAurryon/qt/cmd/... && for /f %v in ('go env GOPATH') do %v\bin\qtsetup test && %v\bin\qtsetup -test=false
 ```
 
 ##### macOS [(more info)](https://github.com/therecipe/qt/wiki/Installation-on-macOS)
@@ -39,7 +39,7 @@ export GO111MODULE=off; xcode-select --install; go get -v github.com/therecipe/q
 ##### Linux [(more info)](https://github.com/therecipe/qt/wiki/Installation-on-Linux)
 
 ```bash
-export GO111MODULE=off; go get -v github.com/therecipe/qt/cmd/... && $(go env GOPATH)/bin/qtsetup test && $(go env GOPATH)/bin/qtsetup -test=false
+export GO111MODULE=off; go get -v github.com/StarAurryon/qt/cmd/... && $(go env GOPATH)/bin/qtsetup test && $(go env GOPATH)/bin/qtsetup -test=false
 ```
 
 Resources
