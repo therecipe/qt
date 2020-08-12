@@ -7,6 +7,7 @@ import (
 
 	"github.com/therecipe/qt/internal/binding/converter"
 	"github.com/therecipe/qt/internal/binding/parser"
+	"github.com/therecipe/qt/internal/utils"
 )
 
 func goEnum(e *parser.Enum, _ *parser.Value) string {
@@ -36,7 +37,7 @@ func goEnum(e *parser.Enum, _ *parser.Value) string {
 					t = converter.GoEnum(v.Name, v.Value, e)
 				}
 				var c, _ = e.Class()
-				if strings.HasPrefix(t, "C.") && c.Stub {
+				if strings.HasPrefix(t, "C.") && (c.Stub || utils.QT_GEN_GO_WRAPPER()) { //TODO: enums support for interop api (this affects only the go wrapper)
 					t = "0"
 				}
 				if e.ClassName() == "QColorSpace" { //TODO: 5.14.0

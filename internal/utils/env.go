@@ -530,3 +530,7 @@ func QT_GEN_HAXE() bool {
 func QT_GEN_SWIFT() bool {
 	return os.Getenv("QT_GEN_SWIFT") == "true"
 }
+
+func QT_GEN_GO_WRAPPER() bool {
+	return os.Getenv("QT_GEN_GO") == "true"
+}

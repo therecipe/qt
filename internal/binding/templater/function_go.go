@@ -13,7 +13,7 @@ import (
 func goFunction(function *parser.Function) string {
 	var o = fmt.Sprintf("%v{\n%v\n}", goFunctionHeader(function), goFunctionBody(function))
 	var c, _ = function.Class()
-	if !function.IsSupported() || (c.Stub && function.SignalMode == parser.CALLBACK) {
+	if !function.IsSupported() || ((c.Stub || utils.QT_GEN_GO_WRAPPER()) && function.SignalMode == parser.CALLBACK) {
 		return ""
 	}
 	return o
@@ -71,6 +71,66 @@ func goFunctionBody(function *parser.Function) string {
 			converter.GoHeaderOutput(function),
 		)
 	}
+
+	if utils.QT_GEN_GO_WRAPPER() {
+
+		fn := converter.GoHeaderName(function)
+
+		switch function.SignalMode {
+		case parser.CONNECT:
+			fmt.Fprintf(bb, "\ninternal.CallLocalAndRegisterRemoteFunction([]interface{}{\"\", uintptr(ptr.Pointer()), ptr.%vClassNameInternalF(), \"%v\", \"___REMOTE_CALLBACK___\"}, f)", func() string {
+				if bases := class.GetBases(); len(bases) > 1 {
+					return fmt.Sprintf("%v_PTR().", strings.Title(bases[0]))
+				}
+				return ""
+			}(), fn)
+
+		case parser.DISCONNECT:
+			fmt.Fprintf(bb, "\ninternal.CallLocalAndDeregisterRemoteFunction([]interface{}{\"\", uintptr(ptr.Pointer()), ptr.%vClassNameInternalF(), \"%v\"})", func() string {
+				if bases := class.GetBases(); len(bases) > 1 {
+					return fmt.Sprintf("%v_PTR().", strings.Title(bases[0]))
+				}
+				return ""
+			}(), fn)
+
+		default:
+
+			var input []string
+			for _, p := range function.Parameters {
+				input = append(input, parser.CleanName(p.Name, p.Value))
+			}
+			var in string
+			if len(input) > 0 {
+				in = "," + strings.Join(input, ",")
+			}
+
+			var ret_pre string
+			var ret_suf string
+			if out := converter.GoHeaderOutput(function); out != "" {
+				ret_pre = "return "
+				ret_suf = fmt.Sprintf(".(%v)", out)
+
+				if strings.Contains(ret_suf, "__") && !strings.Contains(ret_suf, "[") { //TODO: support for slices and maps containing enums
+					ret_pre += out + "("
+					ret_suf = ".(float64))"
+				}
+			}
+
+			if function.Static || function.Meta == parser.CONSTRUCTOR {
+				fmt.Fprintf(bb, "\n%vinternal.CallLocalFunction([]interface{}{\"\", \"\", \"%v.%v\", \"\"%v})%v", ret_pre, goModule(class.Module), fn, in, ret_suf)
+			} else {
+				fmt.Fprintf(bb, "\n%vinternal.CallLocalFunction([]interface{}{\"\", uintptr(ptr.Pointer()), ptr.%vClassNameInternalF(), \"%v\"%v})%v", ret_pre, func() string {
+					if bases := class.GetBases(); len(bases) > 1 {
+						return fmt.Sprintf("%v_PTR().", strings.Title(bases[0]))
+					}
+					return ""
+				}(), fn, in, ret_suf)
+			}
+		}
+
+		return bb.String()
+	}
+
 	if utils.QT_FELGO() && class.IsSubClassOf("QCoreApplication") && function.Name == "exec" {
 		fmt.Fprintf(bb, "defer New%[1]vFromPointer(%[2]vQCoreApplication_Instance().Pointer()).Destroy%[1]v()\n",
 			class.Name,
@@ -160,24 +220,14 @@ func goFunctionBody(function *parser.Function) string {
 				for i, p := range function.Parameters {
 					if p.PureGoType != "" && !(p.Value == "QMap<QString, QVariant>" || p.Value == "QList<QVariant>") && !parser.IsBlackListedPureGoType(p.PureGoType) {
 						if !parser.UseWasm() { //TODO: does wasm need "unsafe" pointer arithmetic ?
-							fmt.Fprintf(bb, "%vTID := (time.Now().UnixNano()+(%v*1e10))/1e9\n", parser.CleanName(p.Name, p.Value), i)
-							fmt.Fprintf(bb, "qt.RegisterTemp(unsafe.Pointer(uintptr(%[2]vTID)), unsafe.Pointer(%[1]v%[2]v))\n",
-								func() string {
-									if !strings.HasPrefix(p.PureGoType, "*") {
-										return "&"
-									}
-									return ""
-								}(),
-								parser.CleanName(p.Name, p.Value))
+							if parser.UseJs() { //TODO: this is potentially broken, does js still need this ?
+								fmt.Fprintf(bb, "%vTID := (time.Now().UnixNano()-((time.Now().UnixNano()/1e10)*1e10))+(time.Now().UnixNano()/1e10)+(%v*1e5)\n", parser.CleanName(p.Name, p.Value), i)
+							} else {
+								fmt.Fprintf(bb, "%vTID := time.Now().UnixNano()+%v\n", parser.CleanName(p.Name, p.Value), i)
+							}
+							fmt.Fprintf(bb, "qt.RegisterTemp(unsafe.Pointer(uintptr(%[1]vTID)), unsafe.Pointer(&%[1]v))\n", parser.CleanName(p.Name, p.Value))
 						} else {
-							fmt.Fprintf(bb, "qt.RegisterTemp(unsafe.Pointer(%[1]v%[2]v), unsafe.Pointer(%[1]v%[2]v))\n",
-								func() string {
-									if !strings.HasPrefix(p.PureGoType, "*") {
-										return "&"
-									}
-									return ""
-								}(),
-								parser.CleanName(p.Name, p.Value))
+							fmt.Fprintf(bb, "qt.RegisterTemp(unsafe.Pointer(&%[1]v), unsafe.Pointer(&%[1]v))\n", parser.CleanName(p.Name, p.Value))
 						}
 					}
 				}
@@ -419,28 +469,16 @@ func goFunctionBody(function *parser.Function) string {
 					if function.IsMocFunction && function.PureGoOutput != "" && !(function.Output == "QMap<QString, QVariant>" || function.Output == "QList<QVariant>") && !parser.IsBlackListedPureGoType(function.PureGoOutput) {
 						fmt.Fprintf(bb, "oP := %v\n", fmt.Sprintf("(*(*%v)(signal))(%v)", converter.GoHeaderInputSignalFunction(function), converter.GoInputParametersForCallback(function)))
 						if !parser.UseWasm() { //TODO: does wasm need "unsafe" pointer arithmetic ?
-							fmt.Fprintf(bb, "rTID := (time.Now().UnixNano()+(1*1e10))/1e9\n")
-							fmt.Fprintf(bb, "qt.RegisterTemp(unsafe.Pointer(uintptr(rTID)), unsafe.Pointer(%voP))\n",
-								func() string {
-									if !strings.HasPrefix(function.PureGoOutput, "*") {
-										return "&"
-									}
-									return ""
-								}())
+							if parser.UseJs() { //TODO: this is potentially broken, does js still need this ?
+								fmt.Fprint(bb, "rTID := (time.Now().UnixNano()-((time.Now().UnixNano()/1e10)*1e10))+((time.Now().UnixNano()/1e10))\n")
+							} else {
+								fmt.Fprint(bb, "rTID := time.Now().UnixNano()\n")
+							}
+							fmt.Fprint(bb, "qt.RegisterTemp(unsafe.Pointer(uintptr(rTID)), unsafe.Pointer(&oP))\n")
 							fmt.Fprintf(bb, "return %v", converter.GoInput("rTID", function.Output, function, function.PureGoOutput))
 						} else {
-							fmt.Fprintf(bb, "qt.RegisterTemp(unsafe.Pointer(%[1]voP), unsafe.Pointer(%[1]voP))\n", func() string {
-								if !strings.HasPrefix(function.PureGoOutput, "*") {
-									return "&"
-								}
-								return ""
-							}())
-							fmt.Fprintf(bb, "return %v", converter.GoInput(fmt.Sprintf("uintptr(unsafe.Pointer(%voP))", func() string {
-								if !strings.HasPrefix(function.PureGoOutput, "*") {
-									return "&"
-								}
-								return ""
-							}()), function.Output, function, function.PureGoOutput))
+							fmt.Fprint(bb, "qt.RegisterTemp(unsafe.Pointer(&oP), unsafe.Pointer(&oP))\n")
+							fmt.Fprintf(bb, "return %v", converter.GoInput("uintptr(unsafe.Pointer(&oP))", function.Output, function, function.PureGoOutput))
 						}
 					} else {
 						if (parser.CleanValue(function.Output) == "QString" || parser.CleanValue(function.Output) == "QStringList") && !parser.UseJs() {
@@ -505,28 +543,16 @@ func goFunctionBody(function *parser.Function) string {
 								fmt.Fprintf(bb, "oP := %v\n", fmt.Sprintf("New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(class.Name), strings.TrimSuffix(strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), "z__"), function.OverloadNumber, converter.GoInputParametersForCallback(function)))
 							}
 							if !parser.UseWasm() { //TODO: does wasm need "unsafe" pointer arithmetic ?
-								fmt.Fprintf(bb, "rTID := (time.Now().UnixNano()+(1*1e10))/1e9\n")
-								fmt.Fprintf(bb, "qt.RegisterTemp(unsafe.Pointer(uintptr(rTID)), unsafe.Pointer(%voP))\n",
-									func() string {
-										if !strings.HasPrefix(function.PureGoOutput, "*") {
-											return "&"
-										}
-										return ""
-									}())
+								if parser.UseJs() { //TODO: this is potentially broken, does js still need this ?
+									fmt.Fprint(bb, "rTID := (time.Now().UnixNano()-((time.Now().UnixNano()/1e10)*1e10))+((time.Now().UnixNano()/1e10))\n")
+								} else {
+									fmt.Fprint(bb, "rTID := time.Now().UnixNano()\n")
+								}
+								fmt.Fprint(bb, "qt.RegisterTemp(unsafe.Pointer(uintptr(rTID)), unsafe.Pointer(&oP))\n")
 								fmt.Fprintf(bb, "return %v", converter.GoInput("rTID", function.Output, function, function.PureGoOutput))
 							} else {
-								fmt.Fprintf(bb, "qt.RegisterTemp(unsafe.Pointer(%[1]voP), unsafe.Pointer(%[1]voP))\n", func() string {
-									if !strings.HasPrefix(function.PureGoOutput, "*") {
-										return "&"
-									}
-									return ""
-								}())
-								fmt.Fprintf(bb, "return %v", converter.GoInput(fmt.Sprintf("uintptr(unsafe.Pointer(%voP))", func() string {
-									if !strings.HasPrefix(function.PureGoOutput, "*") {
-										return "&"
-									}
-									return ""
-								}()), function.Output, function, function.PureGoOutput))
+								fmt.Fprint(bb, "qt.RegisterTemp(unsafe.Pointer(&oP), unsafe.Pointer(&oP))\n")
+								fmt.Fprintf(bb, "return %v", converter.GoInput("uintptr(unsafe.Pointer(&oP))", function.Output, function, function.PureGoOutput))
 							}
 						} else {
 							if (parser.CleanValue(function.Output) == "QString" || parser.CleanValue(function.Output) == "QStringList") && !parser.UseJs() {

@@ -15,7 +15,7 @@ import (
 
 func GoTemplate(module string, stub bool, mode int, pkg, target, tags string) []byte {
 
-	if module == "AndroidExtras" {
+	if !utils.QT_GEN_GO_WRAPPER() && module == "AndroidExtras" {
 		utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "utils-androidextras_android.go"), utils.Load(filepath.Join(strings.TrimSpace(utils.GoListOptional("{{.Dir}}", "github.com/therecipe/qt/internal", "-find", "get files dir")), "/binding/files/utils-androidextras_android.go")))
 	} else if module == "Qml" {
 		cont := utils.Load(filepath.Join(strings.TrimSpace(utils.GoListOptional("{{.Dir}}", "github.com/therecipe/qt/internal", "-find", "get files dir")), "/binding/files/utils-qml.go"))
@@ -47,7 +47,7 @@ func GoTemplate(module string, stub bool, mode int, pkg, target, tags string) []
 		module = "Qt" + module
 	}
 
-	if !(UseStub(stub, module, mode) || UseJs()) {
+	if !utils.QT_GEN_GO_WRAPPER() && !(UseStub(stub, module, mode) || UseJs()) {
 		var m string
 		if module != "QtCore" {
 			m = "core."
@@ -98,6 +98,9 @@ func GoTemplate(module string, stub bool, mode int, pkg, target, tags string) []
 
 					func() string {
 						if class.Bases == "" {
+							if utils.QT_GEN_GO_WRAPPER() {
+								return "internal.Internal"
+							}
 							return "ptr unsafe.Pointer"
 						}
 
@@ -150,8 +153,13 @@ func GoTemplate(module string, stub bool, mode int, pkg, target, tags string) []
 			fmt.Fprintf(bb, "func (ptr *%[1]v) %[1]v_PTR() *%[1]v {\nreturn ptr\n}\n\n", class.Name)
 
 			if class.Bases == "" {
-				fmt.Fprintf(bb, "func (ptr *%v) Pointer() unsafe.Pointer {\nif ptr != nil {\nreturn ptr.ptr\n}\nreturn nil\n}\n\n", class.Name)
-				fmt.Fprintf(bb, "func (ptr *%v) SetPointer(p unsafe.Pointer) {\nif ptr != nil {\nptr.ptr = p\n}\n}\n\n", class.Name)
+				if !utils.QT_GEN_GO_WRAPPER() {
+					fmt.Fprintf(bb, "func (ptr *%v) Pointer() unsafe.Pointer {\nif ptr != nil {\nreturn ptr.ptr\n}\nreturn nil\n}\n\n", class.Name)
+					fmt.Fprintf(bb, "func (ptr *%v) SetPointer(p unsafe.Pointer) {\nif ptr != nil {\nptr.ptr = p\n}\n}\n\n", class.Name)
+				} else {
+					fmt.Fprintf(bb, "func (ptr *%v) Pointer() unsafe.Pointer {\nif ptr != nil {\nreturn unsafe.Pointer(ptr.Internal.Pointer())\n}\nreturn nil\n}\n\n", class.Name)
+					fmt.Fprintf(bb, "func (ptr *%v) SetPointer(p unsafe.Pointer) {\nif ptr != nil {\nptr.Internal.SetPointer(uintptr(p))\n}\n}\n\n", class.Name)
+				}
 			} else {
 				fmt.Fprintf(bb, "func (ptr *%v) Pointer() unsafe.Pointer {\nif ptr != nil {\nreturn ptr.%v_PTR().Pointer()\n}\nreturn nil\n}\n\n", class.Name, class.GetBases()[0])
 
@@ -173,7 +181,7 @@ func GoTemplate(module string, stub bool, mode int, pkg, target, tags string) []
 			}
 
 			fmt.Fprintf(bb, `
-func PointerFrom%v(ptr %[2]v_ITF) unsafe.Pointer {
+func PointerFrom%[1]v(ptr %[2]v_ITF) unsafe.Pointer {
 	if ptr != nil {
 		return ptr.%[2]v_PTR().Pointer()
 	}
@@ -211,17 +219,58 @@ func New%vFromPointer(ptr unsafe.Pointer) (n *%[2]v) {
 						return fmt.Sprintf("%v.%v", strings.ToLower(strings.TrimPrefix(parser.State.ClassMap[bc].Module, "Qt")), bc)
 					}(), class.GetBases()[0])
 			} else {
-				fmt.Fprintf(bb, `
-func New%vFromPointer(ptr unsafe.Pointer) (n *%[2]v) {
+				if utils.QT_GEN_GO_WRAPPER() {
+					if len(class.GetBases()) >= 1 {
+						fmt.Fprintf(bb, `
+func (n *%v) InitFromInternal(ptr uintptr, name string) {
+	%v
+}
+`, class.Name, func() string {
+							var bb = new(bytes.Buffer)
+							defer bb.Reset()
+							for _, parentClassName := range class.GetBases() {
+								fmt.Fprintf(bb, "n.%v_PTR().InitFromInternal(uintptr(ptr), name)\n", parentClassName)
+							}
+							return bb.String()
+						}())
+
+						fmt.Fprintf(bb, `
+func (n *%v) ClassNameInternalF()string {
+	return n.%v_PTR().ClassNameInternalF()
+}
+`, class.Name, class.GetBases()[0])
+					} else {
+						fmt.Fprintf(bb, `
+func (n *%v) ClassNameInternalF()string {
+	return n.Internal.ClassNameInternalF()
+}
+`, class.Name)
+					}
+
+					fmt.Fprintf(bb, `
+func New%[1]vFromPointer(ptr unsafe.Pointer) (n *%[2]v) {
+	n = new(%[2]v)
+	n.InitFromInternal(uintptr(ptr), "%[3]v.%[2]v")
+	return
+}
+`, strings.Title(class.Name), class.Name, goModule(class.Module))
+
+				} else {
+					fmt.Fprintf(bb, `
+func New%[1]vFromPointer(ptr unsafe.Pointer) (n *%[2]v) {
 	n = new(%[2]v)
 	n.SetPointer(ptr)
 	return
 }
 `, strings.Title(class.Name), class.Name)
+				}
 			}
 
 			if !class.HasDestructor() {
 				if UseStub(stub, module, mode) {
+					fmt.Fprintf(bb, "\nfunc (ptr *%v) Destroy%v() {\n}\n\n", class.Name, strings.Title(class.Name))
+				} else if utils.QT_GEN_GO_WRAPPER() {
+					//TODO:
 					fmt.Fprintf(bb, "\nfunc (ptr *%v) Destroy%v() {\n}\n\n", class.Name, strings.Title(class.Name))
 				} else if !class.IsSubClassOfQObject() {
 					var ds string
@@ -761,13 +810,13 @@ default:
 		cTemplate(bb, class, goEnum, goFunction, "\n\n", true)
 	}
 
-	if module == "QtQml" {
+	if module == "QtQml" && !utils.QT_GEN_GO_WRAPPER() {
 		fmt.Fprint(bb, "var (\n\thelper *core.QObject\n\thelperMutex sync.Mutex\n\thelperMap []string\n)\n")
 	}
 
 	fmt.Fprint(bb, "func init() {\n")
 
-	if module == "QtQml" && !utils.QT_STUB() {
+	if module == "QtQml" && !(utils.QT_STUB() || utils.QT_GEN_GO_WRAPPER()) {
 		var free string
 		if !UseJs() {
 			free = `C.QJSValue_DestroyQJSValue(unsafe.Pointer(uintptr(ptr)))
@@ -872,7 +921,11 @@ default:
 			continue
 		}
 
-		if c.IsSupported() && (cmd.ImportsQmlOrQuick() || cmd.ImportsInterop()) || mode == NONE {
+		if c.IsSupported() && utils.QT_GEN_GO_WRAPPER() {
+			bb.WriteString(fmt.Sprintf("internal.ConstructorTable[\"%v.%v\"] = New%vFromPointer\n", goModule(c.Module), c.Name, strings.Title(c.Name)))
+		}
+
+		if (c.IsSupported() && (cmd.ImportsQmlOrQuick() || cmd.ImportsInterop()) || mode == NONE) && !utils.QT_GEN_GO_WRAPPER() {
 			bb.WriteString(fmt.Sprintf("qt.ItfMap[\"%[1]v.%[2]v_ITF\"] = %[2]v{}\n", goModule(func() string {
 				if mode == MOC {
 					return pkg
@@ -1191,65 +1244,67 @@ default:
 		}
 
 		implemented := make(map[string]struct{})
-		for _, f := range c.Functions {
-			if f.Meta != parser.CONSTRUCTOR && !f.Static {
-				continue
-			}
-			if strings.Contains(f.Name, "RegisterMetaType") || strings.Contains(f.Name, "RegisterType") { //TODO:
-				continue
-			}
-			var _, e = implemented[fmt.Sprint(f.Name, f.OverloadNumber)]
-			if e || !f.IsSupported() {
-				continue
-			}
-			implemented[fmt.Sprint(f.Name, f.OverloadNumber)] = struct{}{}
+		if !utils.QT_GEN_GO_WRAPPER() {
+			for _, f := range c.Functions {
+				if f.Meta != parser.CONSTRUCTOR && !f.Static {
+					continue
+				}
+				if strings.Contains(f.Name, "RegisterMetaType") || strings.Contains(f.Name, "RegisterType") { //TODO:
+					continue
+				}
+				var _, e = implemented[fmt.Sprint(f.Name, f.OverloadNumber)]
+				if e || !f.IsSupported() {
+					continue
+				}
+				implemented[fmt.Sprint(f.Name, f.OverloadNumber)] = struct{}{}
 
-			if parser.UseJs() {
-				var ip string
-				oldsm := f.SignalMode
-				f.SignalMode = parser.CALLBACK
-				f.FakeForJSCallback = true
-				ip = converter.GoHeaderInput(f)
-				ip = strings.TrimPrefix(ip, "ptr uintptr, ")
-				f.SignalMode = oldsm
-				f.FakeForJSCallback = false
-				var out string
-				if parser.UseWasm() {
-					out = "" //TODO: export classes for jsinterop example
-				} else {
-					if converter.GoHeaderOutput(f) != "" {
-						out = fmt.Sprintf("module.Set(\"%v\", func(%v) *js.Object { return qt.MakeWrapper(%v(%v)); })\n", converter.GoHeaderName(f), ip, converter.GoHeaderName(f), converter.GoInputParametersForCallback(f))
+				if parser.UseJs() {
+					var ip string
+					oldsm := f.SignalMode
+					f.SignalMode = parser.CALLBACK
+					f.FakeForJSCallback = true
+					ip = converter.GoHeaderInput(f)
+					ip = strings.TrimPrefix(ip, "ptr uintptr, ")
+					f.SignalMode = oldsm
+					f.FakeForJSCallback = false
+					var out string
+					if parser.UseWasm() {
+						out = "" //TODO: export classes for jsinterop example
 					} else {
-						out = fmt.Sprintf("module.Set(\"%v\", func(%v) { %v(%v); })\n", converter.GoHeaderName(f), ip, converter.GoHeaderName(f), converter.GoInputParametersForCallback(f))
+						if converter.GoHeaderOutput(f) != "" {
+							out = fmt.Sprintf("module.Set(\"%v\", func(%v) *js.Object { return qt.MakeWrapper(%v(%v)); })\n", converter.GoHeaderName(f), ip, converter.GoHeaderName(f), converter.GoInputParametersForCallback(f))
+						} else {
+							out = fmt.Sprintf("module.Set(\"%v\", func(%v) { %v(%v); })\n", converter.GoHeaderName(f), ip, converter.GoHeaderName(f), converter.GoInputParametersForCallback(f))
+						}
+					}
+					if !strings.Contains(out, "unsupported_") && !strings.Contains(out, "C.") && strings.Contains(bb.String(), converter.GoHeaderName(f)+"(") {
+						bb.WriteString(out)
 					}
 				}
-				if !strings.Contains(out, "unsupported_") && !strings.Contains(out, "C.") && strings.Contains(bb.String(), converter.GoHeaderName(f)+"(") {
-					bb.WriteString(out)
-				}
-			}
-			if cmd.ImportsQmlOrQuick() || cmd.ImportsInterop() || mode == NONE {
-				out := fmt.Sprintf("qt.FuncMap[\"%[1]v.%[2]v\"] = %[2]v\n", goModule(func() string {
-					if mode == MOC {
-						return pkg
+				if cmd.ImportsQmlOrQuick() || cmd.ImportsInterop() || mode == NONE {
+					out := fmt.Sprintf("qt.FuncMap[\"%[1]v.%[2]v\"] = %[2]v\n", goModule(func() string {
+						if mode == MOC {
+							return pkg
+						}
+						return module
+					}()), converter.GoHeaderName(f))
+					if !strings.Contains(out, "unsupported_") && strings.Contains(bb.String(), converter.GoHeaderName(f)+"(") {
+						bb.WriteString(out)
 					}
-					return module
-				}()), converter.GoHeaderName(f))
-				if !strings.Contains(out, "unsupported_") && strings.Contains(bb.String(), converter.GoHeaderName(f)+"(") {
-					bb.WriteString(out)
 				}
 			}
-		}
 
-		if c.Name == "QVariant" {
-			if parser.UseJs() {
-				if parser.UseWasm() {
-					//TODO:
-				} else {
-					fmt.Fprint(bb, "module.Set(\"NewQVariant1\", func(i interface{}) *js.Object { return qt.MakeWrapper(NewQVariant1(i)) })\n")
+			if c.Name == "QVariant" {
+				if parser.UseJs() {
+					if parser.UseWasm() {
+						//TODO:
+					} else {
+						fmt.Fprint(bb, "module.Set(\"NewQVariant1\", func(i interface{}) *js.Object { return qt.MakeWrapper(NewQVariant1(i)) })\n")
+					}
 				}
-			}
-			if cmd.ImportsQmlOrQuick() || cmd.ImportsInterop() || mode == NONE {
-				fmt.Fprint(bb, "qt.FuncMap[\"core.NewQVariant1\"] = NewQVariant1\n")
+				if cmd.ImportsQmlOrQuick() || cmd.ImportsInterop() || mode == NONE {
+					fmt.Fprint(bb, "qt.FuncMap[\"core.NewQVariant1\"] = NewQVariant1\n")
+				}
 			}
 		}
 
@@ -1280,24 +1335,26 @@ default:
 			}
 		}
 
-		for _, e := range c.Enums {
-			if e.ClassName() == "QColorSpace" { //TODO: 5.14.0
-				continue
-			}
-			for _, v := range e.Values {
-				if v.Name == "ByteOrder" {
+		if !utils.QT_GEN_GO_WRAPPER() {
+			for _, e := range c.Enums {
+				if e.ClassName() == "QColorSpace" { //TODO: 5.14.0
 					continue
 				}
-				if parser.UseWasm() {
-					//TODO: same as for js ?
-				} else if parser.UseJs() {
-					fmt.Fprintf(bb, "module.Set(\"%v__%v\", int64(%v__%v))\n", strings.Split(e.Fullname, "::")[0], v.Name, strings.Split(e.Fullname, "::")[0], v.Name)
-				}
-				if cmd.ImportsQmlOrQuick() || cmd.ImportsInterop() || mode == NONE {
-					bb.WriteString(fmt.Sprintf("qt.EnumMap[\"%[1]v.%[2]v__%[3]v\"] = int64(%[2]v__%[3]v)\n", goModule(module), strings.Split(e.Fullname, "::")[0], v.Name))
+				for _, v := range e.Values {
+					if v.Name == "ByteOrder" {
+						continue
+					}
+					if parser.UseWasm() {
+						//TODO: same as for js ?
+					} else if parser.UseJs() {
+						fmt.Fprintf(bb, "module.Set(\"%v__%v\", int64(%v__%v))\n", strings.Split(e.Fullname, "::")[0], v.Name, strings.Split(e.Fullname, "::")[0], v.Name)
+					}
+					if cmd.ImportsQmlOrQuick() || cmd.ImportsInterop() || mode == NONE {
+						bb.WriteString(fmt.Sprintf("qt.EnumMap[\"%[1]v.%[2]v__%[3]v\"] = int64(%[2]v__%[3]v)\n", goModule(module), strings.Split(e.Fullname, "::")[0], v.Name))
 
-					if utils.QT_GEN_TSD() {
-						fmt.Fprintf(tsd, "\tconst %v__%v: number;\n", strings.Split(e.Fullname, "::")[0], v.Name)
+						if utils.QT_GEN_TSD() {
+							fmt.Fprintf(tsd, "\tconst %v__%v: number;\n", strings.Split(e.Fullname, "::")[0], v.Name)
+						}
 					}
 				}
 			}
@@ -1318,7 +1375,7 @@ func preambleGo(oldModule string, module string, input []byte, stub bool, mode i
 	tsdbb := new(bytes.Buffer)
 	defer tsdbb.Reset()
 
-	if UseStub(stub, oldModule, mode) || UseJs() {
+	if UseStub(stub, oldModule, mode) || UseJs() || utils.QT_GEN_GO_WRAPPER() {
 		fmt.Fprintf(bb, `%v
 
 package %v
@@ -1399,7 +1456,7 @@ import "C"
 
 	var dartInput []string
 	fmt.Fprint(bb, "import (\n")
-	for _, m := range append(parser.GetLibs(), "qt", "strings", "unsafe", "log", "runtime", "fmt", "errors", "js", "time", "hex", "reflect", "math", "sync", "strconv") {
+	for _, m := range append(parser.GetLibs(), "qt", "strings", "unsafe", "log", "runtime", "fmt", "errors", "js", "time", "hex", "reflect", "math", "sync", "strconv", "internal") {
 		mlow := strings.ToLower(m)
 		if strings.Contains(inputString, fmt.Sprintf(" %v.", mlow)) ||
 			strings.Contains(inputString, fmt.Sprintf("\t%v.", mlow)) ||
@@ -1419,6 +1476,9 @@ import "C"
 
 			case "qt":
 				fmt.Fprintln(bb, "\"github.com/therecipe/qt\"")
+
+			case "internal":
+				fmt.Fprintln(bb, "\"github.com/therecipe/qt/internal\"")
 
 			case "js":
 				if parser.UseWasm() {
@@ -1500,7 +1560,7 @@ import "C"
 			}
 		}
 
-		if module == "gui" && utils.QT_API_NUM(utils.QT_VERSION()) >= 5050 {
+		if module == "gui" && utils.QT_API_NUM(utils.QT_VERSION()) >= 5050 && !utils.QT_GEN_GO_WRAPPER() {
 			if mode == NONE {
 				fmt.Fprintln(bb, "_ \"github.com/therecipe/qt/internal/binding/runtime\"")
 			} else if mode == MINIMAL && (cmd.ImportsQmlOrQuick() || cmd.ImportsInterop()) {

@@ -364,22 +364,30 @@ func Minimal(path, target, tags string, skipSetup bool) {
 		}
 
 		utils.MkdirAll(utils.GoQtPkgPath(strings.ToLower(m)))
-		utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+"-minimal.cpp"), templater.CppTemplate(m, templater.MINIMAL, target, ""))
-		utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+"-minimal.h"), templater.HTemplate(m, templater.MINIMAL, ""))
+		if !utils.QT_GEN_GO_WRAPPER() {
+			utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+"-minimal.cpp"), templater.CppTemplate(m, templater.MINIMAL, target, ""))
+			utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+"-minimal.h"), templater.HTemplate(m, templater.MINIMAL, ""))
+		} else {
+			utils.RemoveAll(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+"-minimal.cpp"))
+			utils.RemoveAll(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+"-minimal.h"))
+			utils.RemoveAll(utils.GoQtPkgPath(strings.ToLower(m), templater.CgoFileNames(utils.GoQtPkgPath(strings.ToLower(m)), target, templater.MINIMAL)[0]))
+		}
 		utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+"-minimal.go"), templater.GoTemplate(m, false, templater.MINIMAL, m, target, ""))
 	}
 
-	for _, m := range parser.GetLibs() {
-		if !parser.ShouldBuildForTargetM(m, target) ||
-			m == "AndroidExtras" || m == "Sailfish" {
-			continue
-		}
+	if !utils.QT_GEN_GO_WRAPPER() {
+		for _, m := range parser.GetLibs() {
+			if !parser.ShouldBuildForTargetM(m, target) ||
+				m == "AndroidExtras" || m == "Sailfish" {
+				continue
+			}
 
-		wg.Add(1)
-		go func(m string, libs []string) {
-			templater.CgoTemplateSafe(m, "", target, templater.MINIMAL, m, "", libs)
-			wg.Done()
-		}(m, parser.LibDeps[m])
+			wg.Add(1)
+			go func(m string, libs []string) {
+				templater.CgoTemplateSafe(m, "", target, templater.MINIMAL, m, "", libs)
+				wg.Done()
+			}(m, parser.LibDeps[m])
+		}
 	}
 	wg.Wait()
 

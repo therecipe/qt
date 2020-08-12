@@ -257,6 +257,9 @@ func shouldBuildForTarget(module, target string, min bool) bool {
 	if module == "internal/binding/runtime" {
 		return true
 	}
+	if utils.QT_GEN_GO_WRAPPER() && module == "AndroidExtras" { //TODO:
+		return false
+	}
 
 	if State.Minimal == true || min {
 		for _, m := range cmd.GetQtStdImports() {
