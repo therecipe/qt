@@ -57,9 +57,14 @@ func genPseudoIn(s string) *PseudoQJSValue {
 func genPseudoOut(ret *PseudoQJSValue) string {
 
 	var o []byte
-	if ret == nil {
-		var someOutput []interface{}
-		o, _ = json.Marshal(someOutput)
+	if ret == nil || ret.IsNull() || ret.IsUndefined() {
+		switch ret.TypeName() {
+		case "QString":
+			return "\"\""
+		default:
+			var someOutput []interface{}
+			o, _ = json.Marshal(someOutput)
+		}
 	} else {
 		eg := PseudoQJSEngine_qjsEngine(nil)
 

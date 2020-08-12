@@ -255,7 +255,7 @@ func ShouldBuildForTargetM(module, target string) bool {
 }
 func shouldBuildForTarget(module, target string, min bool) bool {
 	if module == "internal/binding/runtime" {
-		return true
+		return !utils.QT_GEN_GO_WRAPPER()
 	}
 	if utils.QT_GEN_GO_WRAPPER() && module == "AndroidExtras" { //TODO:
 		return false

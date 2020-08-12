@@ -410,6 +410,10 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 		args = append(args, []string{"-e", "QT_DEBUG_CONSOLE=true"}...) //TODO: won't work with wine images atm
 	}
 
+	if utils.QT_FAT() {
+		args = append(args, []string{"-e", "QT_FAT=true"}...) //TODO: won't work with wine images atm
+	}
+
 	if api := utils.QT_API(""); api != "" {
 		args = append(args, []string{"-e", "QT_API=" + api}...) //TODO: won't work with wine images atm
 	}

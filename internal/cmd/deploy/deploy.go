@@ -101,11 +101,13 @@ func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast b
 			utils.RemoveAll(depPath + "_obj")
 		}
 
-		rcc.Rcc(path, target, tags, os.Getenv("QTRCC_OUTPUT_DIR"), useuic, quickcompiler, true, true)
+		if !(utils.QT_GEN_GO_WRAPPER() && !utils.QT_FAT()) {
+			rcc.Rcc(path, target, tags, os.Getenv("QTRCC_OUTPUT_DIR"), useuic, quickcompiler, true, true)
+		}
 		if cmd.ImportsFlutter() {
 			flutter(target, path)
 		}
-		if !fast {
+		if !fast && !(utils.QT_GEN_GO_WRAPPER() && !utils.QT_FAT()) {
 			moc.Moc(path, target, tags, false, false, true, true)
 		}
 
@@ -115,7 +117,7 @@ func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast b
 
 		build(mode, target, path, ldFlags, tags, name, depPath, fast, comply)
 
-		if !(fast || ((utils.QT_DEBUG_QML() || utils.QT_FELGO_LIVE()) && target == runtime.GOOS)) || (target == "js" || target == "wasm") {
+		if !(fast || ((utils.QT_DEBUG_QML() || utils.QT_FELGO_LIVE()) && target == runtime.GOOS)) && !(utils.QT_GEN_GO_WRAPPER() && !utils.QT_FAT()) || (target == "js" || target == "wasm") {
 			bundle(mode, target, path, name, depPath, tags, fast)
 		} else if fast || (utils.QT_DEBUG_QML() || utils.QT_FELGO_LIVE()) {
 			switch target {
