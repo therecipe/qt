@@ -119,7 +119,7 @@ func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast b
 
 		if !(fast || ((utils.QT_DEBUG_QML() || utils.QT_FELGO_LIVE()) && target == runtime.GOOS)) && !(utils.QT_GEN_GO_WRAPPER() && !utils.QT_FAT()) || (target == "js" || target == "wasm") {
 			bundle(mode, target, path, name, depPath, tags, fast)
-		} else if fast || (utils.QT_DEBUG_QML() || utils.QT_FELGO_LIVE()) {
+		} else if fast || (utils.QT_DEBUG_QML() || utils.QT_FELGO_LIVE()) || utils.QT_GEN_GO_WRAPPER() {
 			switch target {
 			case "darwin":
 				if fn := filepath.Join(depPath, name+".app", "Contents", "Info.plist"); !utils.ExistsFile(fn) {

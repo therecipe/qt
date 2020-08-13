@@ -27,7 +27,8 @@ func Generate(target string, docker, vagrant bool) {
 
 	mode := "full"
 	switch {
-	case target == "js", target == "wasm":
+	case target == "js", target == "wasm",
+		(utils.QT_STATIC() || utils.QT_MXE_STATIC() || utils.QT_MSYS2_STATIC()) && utils.QT_DOCKER():
 
 	case target != runtime.GOOS:
 		mode = "cgo"
