@@ -1,13 +1,16 @@
 package internal
 
 import (
+	"archive/zip"
 	"bufio"
 	"bytes"
 	"encoding/json"
 	"fmt"
 	"io"
 	"net/http"
+	"os"
 	"os/exec"
+	"path/filepath"
 	"reflect"
 	"runtime"
 	"strings"
@@ -205,23 +208,111 @@ func CallLocalFunction(l []interface{}) interface{} {
 	return convert(output)
 }
 
+type InteropServerConfig struct {
+	Download    bool
+	Override    bool
+	Path        string
+	DownloadUrl string
+}
+
+var Config = &InteropServerConfig{
+	true,
+	false,
+	"",
+	"",
+}
+
 // TODO: NewQApplication
 func InitProcess() (*exec.Cmd, io.ReadCloser) {
 
-	//TODO: download qt server binaries
-	switch runtime.GOOS {
-	case "windows":
-	case "darwin":
-	case "linux":
+	var runPath string
+
+	if Config.Download && Config.Path == "" {
+
+		var ending string
+		if runtime.GOOS == "windows" {
+			ending = ".exe"
+		}
+
+		pwd, _ := os.Getwd()
+		arg, _ := filepath.Abs(filepath.Dir(os.Args[0]))
+
+		for _, path := range []string{pwd, arg} {
+			runPath = filepath.Join(path, fmt.Sprintf("qtbox%v", ending))
+			println("looking for qtbox in:", runPath)
+
+			if strings.HasPrefix(runPath, "/var/folders/") {
+				runPath = filepath.Join(pwd, "qtbox")
+				break
+			}
+
+			if _, err := os.Stat(runPath); err == nil {
+				break
+			}
+		}
+
+		println("final qtbox location:", runPath)
+
+		if _, err := os.Stat(runPath); err == nil && Config.Override || err != nil {
+
+			var copyWithProgress = func(w io.Writer, r io.Reader, callback func(off int64)) error {
+				tee := io.TeeReader(r, w)
+				buf := make([]byte, bytes.MinRead*10)
+				off := int64(0)
+				for count := 0; ; count++ {
+					n, err := tee.Read(buf)
+					off += int64(n)
+					if count%100 == 0 {
+						callback(off)
+					}
+
+					if err == io.EOF {
+						break
+					}
+					if err != nil {
+						return err
+					}
+				}
+				callback(off)
+				return nil
+			}
+
+			dlpath := fmt.Sprintf("https://github.com/therecipe/box/releases/download/v0.0.0/%v_%v_%v_%v_%v.zip", runtime.GOOS, runtime.GOARCH, "513", "full", "http")
+			if Config.DownloadUrl != "" {
+				dlpath = Config.DownloadUrl
+			}
+			resp, err := http.Get(dlpath)
+			if err != nil {
+				println("failed to download qtbox:", err.Error())
+			} else {
+
+				bb := new(bytes.Buffer)
+				copyWithProgress(bb, resp.Body, func(off int64) {
+					fmt.Printf("downloading qtbox => %v%%\n", off/(resp.ContentLength/100))
+				})
+				resp.Body.Close()
+
+				r, _ := zip.NewReader(bytes.NewReader(bb.Bytes()), int64(bb.Len()))
+				fr, _ := r.File[0].Open()
+				fw, _ := os.OpenFile(runPath, os.O_RDWR|os.O_CREATE, 0755)
+				io.Copy(fw, fr)
+				fr.Close()
+				fw.Close()
+			}
+		}
 	}
 
-	process := exec.Command("./interop_server")
+	if Config.Path != "" {
+		runPath = Config.Path
+	}
+
+	process := exec.Command(runPath)
 	rc, err := process.StderrPipe()
 	if err != nil {
 		println(err.Error())
 	}
 	process.Start()
-	time.Sleep(3 * time.Second)
+	time.Sleep(3 * time.Second) //TODO:
 	return process, rc
 }
 

@@ -12,6 +12,11 @@ jobs:
     parameters:
       tag: flutter
   -
+    template: docker_showcase_template.yml
+    parameters:
+      tag: box
+      dep: windows_64_static
+  -
     template: docker_windows_ci_template.yml
     parameters:
       name: windows_ft
