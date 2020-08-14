@@ -27,8 +27,7 @@ func Generate(target string, docker, vagrant bool) {
 
 	mode := "full"
 	switch {
-	case target == "js", target == "wasm",
-		(utils.QT_STATIC() || utils.QT_MXE_STATIC() || utils.QT_MSYS2_STATIC()) && utils.QT_DOCKER():
+	case target == "js", target == "wasm":
 
 	case target != runtime.GOOS:
 		mode = "cgo"
@@ -54,7 +53,8 @@ func Generate(target string, docker, vagrant bool) {
 		}
 		utils.Log.Infof("generating %v qt/%v%v", mode, strings.ToLower(module), license)
 
-		if target == runtime.GOOS || utils.QT_FAT() || (mode == "full" && (target == "js" || target == "wasm")) { //TODO: REVIEW
+		if target == runtime.GOOS || utils.QT_FAT() || (mode == "full" && (target == "js" || target == "wasm")) ||
+			(utils.QT_STATIC() || utils.QT_MXE_STATIC()) && utils.QT_DOCKER() { //TODO: REVIEW
 			templater.GenModule(module, target, templater.NONE)
 		} else {
 			templater.CgoTemplate(module, "", target, templater.MINIMAL, "", "") //TODO: collect errors

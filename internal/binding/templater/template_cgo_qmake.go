@@ -624,6 +624,9 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 		if !utils.QT_MSVC() {
 			fmt.Fprint(bb, "#cgo LDFLAGS: -Wl,--allow-multiple-definition\n")
 		}
+		if utils.QT_MXE() && utils.QT_MXE_STATIC() && mode == NONE { //TODO: MSYS2 as well ?
+			fmt.Fprint(bb, "#cgo CXXFLAGS: -Wa,-mbig-obj\n")
+		}
 	case "ios":
 		fmt.Fprintf(bb, "#cgo CXXFLAGS: -isysroot %v/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/%v -miphoneos-version-min=11.0\n", utils.XCODE_DIR(), utils.IPHONEOS_SDK_DIR())
 		fmt.Fprintf(bb, "#cgo LDFLAGS: -Wl,-syslibroot,%v/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/%v -miphoneos-version-min=11.0\n", utils.XCODE_DIR(), utils.IPHONEOS_SDK_DIR())
