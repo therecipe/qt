@@ -17,6 +17,12 @@ jobs:
       -
         script: 'while ! docker ps 2>/dev/null; do sleep 5; echo "waiting for docker to come up"; docker ps; done'
       -
+        script: 'sed -i -e "s/2048/8192/g" $HOME/Library/Group\ Containers/group.com.docker/settings.json'
+      -
+        script: 'killall Docker && nohup /Applications/Docker.app/Contents/MacOS/Docker --unattended &'
+      -
+        script: 'while ! docker ps 2>/dev/null; do sleep 5; echo "waiting for docker to come up"; docker ps; done'
+      -
         script: 'brew install bbe'
       -
         script: 'go get -v -tags=no_env github.com/therecipe/qt/cmd/... && $(go env GOPATH)/bin/qtsetup prep'
