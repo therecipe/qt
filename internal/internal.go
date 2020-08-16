@@ -241,6 +241,11 @@ func InitProcess() (*exec.Cmd, io.ReadCloser) {
 			runPath = filepath.Join(path, fmt.Sprintf("qtbox%v", ending))
 			println("looking for qtbox in:", runPath)
 
+			if strings.HasPrefix(runPath, "/private/var/folders/") { //app is quarantined on macOS
+				runPath = filepath.Join(os.TempDir(), "qtbox")
+				break
+			}
+
 			if strings.HasPrefix(runPath, "/var/folders/") {
 				runPath = filepath.Join(pwd, "qtbox")
 				break
@@ -293,11 +298,49 @@ func InitProcess() (*exec.Cmd, io.ReadCloser) {
 				resp.Body.Close()
 
 				r, _ := zip.NewReader(bytes.NewReader(bb.Bytes()), int64(bb.Len()))
-				fr, _ := r.File[0].Open()
-				fw, _ := os.OpenFile(runPath, os.O_RDWR|os.O_CREATE, 0755)
-				io.Copy(fw, fr)
-				fr.Close()
-				fw.Close()
+				if len(r.File) == 1 {
+					fr, _ := r.File[0].Open()
+					fw, _ := os.OpenFile(runPath, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, r.File[0].Mode())
+					io.Copy(fw, fr)
+					fr.Close()
+					fw.Close()
+				} else {
+
+					dst := filepath.Dir(runPath)
+
+					for _, f := range r.File {
+						if f.FileInfo().IsDir() {
+							os.MkdirAll(filepath.Join(dst, f.Name), f.Mode())
+							continue
+						}
+
+						dn, fn := filepath.Split(f.Name)
+						if strings.HasPrefix(fn, "full") {
+							fn = filepath.Join(dn, "qtbox"+ending)
+						} else {
+							fn = f.Name
+						}
+
+						fw, errC := os.OpenFile(filepath.Join(dst, fn), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, f.Mode())
+						if errC != nil {
+							println("failed to create file", errC.Error())
+						}
+
+						fr, errR := f.Open()
+						if errR != nil {
+							println("failed to read file", errR.Error())
+						}
+
+						io.Copy(fw, fr)
+
+						fw.Close()
+						fr.Close()
+					}
+
+					os.Rename(filepath.Join(dst, r.File[0].Name), filepath.Join(dst, "qtbox"))
+
+					runPath = filepath.Join(dst, "qtbox", "qtbox"+ending)
+				}
 			}
 		}
 	}
