@@ -15,7 +15,7 @@ jobs:
     template: docker_showcase_template.yml
     parameters:
       tag: box
-#      dep: windows_64_static
+      dep: windows_64_shared_wine
   -
     template: docker_windows_ci_template.yml
     parameters:

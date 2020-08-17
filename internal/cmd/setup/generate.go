@@ -36,7 +36,7 @@ func Generate(target string, docker, vagrant bool) {
 		mode = "stub"
 	}
 
-	if target == "windows" && runtime.GOOS == target {
+	if target == "windows" && runtime.GOOS == target && os.Getenv("QT_DEBUG_CONSOLE") != "false" {
 		os.Setenv("QT_DEBUG_CONSOLE", "true")
 	}
 
@@ -53,8 +53,7 @@ func Generate(target string, docker, vagrant bool) {
 		}
 		utils.Log.Infof("generating %v qt/%v%v", mode, strings.ToLower(module), license)
 
-		if target == runtime.GOOS || utils.QT_FAT() || (mode == "full" && (target == "js" || target == "wasm")) ||
-			(utils.QT_STATIC() || utils.QT_MXE_STATIC()) && utils.QT_DOCKER() { //TODO: REVIEW
+		if target == runtime.GOOS || utils.QT_FAT() || (mode == "full" && (target == "js" || target == "wasm")) { //TODO: REVIEW
 			templater.GenModule(module, target, templater.NONE)
 		} else {
 			templater.CgoTemplate(module, "", target, templater.MINIMAL, "", "") //TODO: collect errors

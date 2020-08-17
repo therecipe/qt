@@ -5,11 +5,11 @@ Introduction
 
 [Go](https://en.wikipedia.org/wiki/Go_(programming_language)), also known as Golang, is a programming language designed at Google.
 
-[therecipe/qt](https://github.com/therecipe/qt) allows you to write Qt applications entirely in Go or JavaScript.
+[therecipe/qt](https://github.com/therecipe/qt) allows you to write Qt applications entirely in Go, [JavaScript/TypeScript](https://github.com/therecipe/entry), [Dart/Flutter](https://github.com/therecipe/flutter), [Haxe](https://github.com/therecipe/haxe) and [Swift](https://github.com/therecipe/swift)
 
 Beside the language bindings provided, `therecipe/qt` also greatly simplifies the deployment of Qt applications to various software and hardware platforms.
 
-At the time of writing, almost all Qt functions and classes are accessible from Go and JavaScript, and you should be able to find everything you need to build fully featured Qt applications.
+At the time of writing, almost all Qt functions and classes are accessible, and you should be able to find everything you need to build fully featured Qt applications.
 
 Impressions
 -----------
@@ -22,6 +22,22 @@ Installation
 ------------
 
 The following instructions assume that you already installed [Go](https://golang.org/dl/) and [Git](https://git-scm.com/downloads)
+
+#### (Experimental) cgo-less version (try this first, if you are new and want to test this binding)
+
+##### Windows
+
+```powershell
+go get -ldflags="-w" github.com/therecipe/examples/basic/widgets && for /f %v in ('go env GOPATH') do %v\bin\widgets.exe
+```
+
+##### macOS/Linux
+
+```bash
+go get -ldflags="-w" github.com/therecipe/examples/basic/widgets && $(go env GOPATH)/bin/widgets
+```
+
+#### Default version
 
 ##### Windows [(more info)](https://github.com/therecipe/qt/wiki/Installation-on-Windows)
 

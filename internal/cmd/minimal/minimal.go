@@ -289,7 +289,7 @@ func Minimal(path, target, tags string, skipSetup bool) {
 	if utils.QT_STATIC() {
 		exportClass(parser.State.ClassMap["QSvgWidget"], files)
 	}
-	if utils.QT_FELGO() {
+	if utils.QT_FELGO() || utils.QT_GEN_GO_WRAPPER() {
 		exportClass(parser.State.ClassMap["QCoreApplication"], files)
 		exportFunction(parser.State.ClassMap["QCoreApplication"].GetFunction("instance"), files)
 	}

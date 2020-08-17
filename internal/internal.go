@@ -62,13 +62,15 @@ func handleCallback(message string) string {
 	var msg []interface{}
 	json.Unmarshal([]byte(message), &msg)
 
+	meth := reflect.ValueOf(callbackTable[uintptr(msg[0].(float64))][msg[1].(string)])
+
 	rv := make([]reflect.Value, len(msg)-2)
 	for i, v := range convertList(msg[2:]) {
-		rv[i] = reflect.ValueOf(v)
+		rv[i] = reflect.ValueOf(v).Convert(meth.Type().In(i))
 	}
 
 	var output []byte
-	if ret := reflect.ValueOf(callbackTable[uintptr(msg[0].(float64))][msg[1].(string)]).Call(rv); len(ret) > 0 {
+	if ret := meth.Call(rv); len(ret) > 0 {
 		output, _ = json.Marshal(convertToJson(ret[0].Interface()))
 	}
 
@@ -154,17 +156,25 @@ func convertToJson(i interface{}) interface{} {
 		return convertMapToJson(i.(map[string]interface{}))
 
 	case reflect.Slice:
-		return convertListToJson(i.([]interface{}))
+		switch i.(type) {
+		//TODO:
+		case []string:
+		case []uint, []uint8, []uint16, []uint32, []uint64:
+		case []int, []int8, []int16, []int32, []int64:
+		//
+		//case []*qml.QQmlError:
+
+		default:
+			return convertListToJson(i.([]interface{}))
+		}
 
 	case reflect.Ptr:
 		return map[string]interface{}{
 			"___pointer":   uintptr(reflect.ValueOf(i).MethodByName("Pointer").Call(nil)[0].Interface().(unsafe.Pointer)),
 			"___className": reflect.ValueOf(i).MethodByName("ClassNameInternalF").Call(nil)[0].Interface(),
 		}
-
-	default:
-		return i
 	}
+	return i
 }
 
 var inited = false
@@ -222,8 +232,13 @@ var Config = &InteropServerConfig{
 	"",
 }
 
+var (
+	proc   *exec.Cmd
+	stderr io.ReadCloser
+)
+
 // TODO: NewQApplication
-func InitProcess() (*exec.Cmd, io.ReadCloser) {
+func InitProcess() {
 
 	var runPath string
 
@@ -258,7 +273,11 @@ func InitProcess() (*exec.Cmd, io.ReadCloser) {
 
 		println("final qtbox location:", runPath)
 
-		if _, err := os.Stat(runPath); err == nil && Config.Override || err != nil {
+		dst := filepath.Dir(runPath)
+		_, err := os.Stat(runPath)
+		_, errF := os.Stat(filepath.Join(dst, "qtbox"))
+
+		if Config.Override || (err != nil && errF != nil) {
 
 			var copyWithProgress = func(w io.Writer, r io.Reader, callback func(off int64)) error {
 				tee := io.TeeReader(r, w)
@@ -306,16 +325,21 @@ func InitProcess() (*exec.Cmd, io.ReadCloser) {
 					fw.Close()
 				} else {
 
-					dst := filepath.Dir(runPath)
-
 					for _, f := range r.File {
+
+						//TODO: pack runtimes with correct name
+						fns := strings.Split(f.Name, "/")
+						fns[0] = "qtbox"
+						f.Name = strings.Join(fns, "/")
+						//
+
 						if f.FileInfo().IsDir() {
 							os.MkdirAll(filepath.Join(dst, f.Name), f.Mode())
 							continue
 						}
 
 						dn, fn := filepath.Split(f.Name)
-						if strings.HasPrefix(fn, "full") {
+						if strings.HasPrefix(fn, "full") { //TODO: pack runtimes with correct name
 							fn = filepath.Join(dn, "qtbox"+ending)
 						} else {
 							fn = f.Name
@@ -337,8 +361,6 @@ func InitProcess() (*exec.Cmd, io.ReadCloser) {
 						fr.Close()
 					}
 
-					os.Rename(filepath.Join(dst, r.File[0].Name), filepath.Join(dst, "qtbox"))
-
 					runPath = filepath.Join(dst, "qtbox", "qtbox"+ending)
 				}
 			}
@@ -355,13 +377,16 @@ func InitProcess() (*exec.Cmd, io.ReadCloser) {
 		println(err.Error())
 	}
 	process.Start()
+
 	time.Sleep(3 * time.Second) //TODO:
-	return process, rc
+
+	proc = process
+	stderr = rc
 }
 
 // TODO: QApplication_Exec
-func Exec(p *exec.Cmd, rc io.ReadCloser) {
-	scanner := bufio.NewScanner(rc)
+func Exec() {
+	scanner := bufio.NewScanner(stderr)
 
 	go func() {
 		for scanner.Scan() {
@@ -376,5 +401,5 @@ func Exec(p *exec.Cmd, rc io.ReadCloser) {
 		}
 	}()
 
-	p.Wait()
+	proc.Wait()
 }

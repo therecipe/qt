@@ -95,6 +95,23 @@ func goFunctionBody(function *parser.Function) string {
 
 		default:
 
+			//TODO:
+			if class.IsSubClassOf("QCoreApplication") {
+				if function.Meta == parser.CONSTRUCTOR {
+					return fmt.Sprintf("\ngow.InitProcess()\nreturn New%vFromPointer(%vQCoreApplication_Instance().Pointer())", class.Name, func() string {
+						if goModule(class.Module) != "core" {
+							return "core."
+						}
+						return ""
+					}())
+				}
+
+				if function.Name == "exec" {
+					return "\ngow.Exec()\nreturn 0"
+				}
+			}
+			//
+
 			var input []string
 			for _, p := range function.Parameters {
 				input = append(input, parser.CleanName(p.Name, p.Value))
@@ -110,7 +127,9 @@ func goFunctionBody(function *parser.Function) string {
 				ret_pre = "return "
 				ret_suf = fmt.Sprintf(".(%v)", out)
 
-				if strings.Contains(ret_suf, "__") && !strings.Contains(ret_suf, "[") { //TODO: support for slices and maps containing enums
+				//TODO: is there some better way ?
+				//TODO: support for slices and maps as well
+				if (strings.Contains(ret_suf, "__") || strings.HasPrefix(ret_suf, ".(int") || strings.HasPrefix(ret_suf, ".(uint")) && !strings.Contains(ret_suf, "[") {
 					ret_pre += out + "("
 					ret_suf = ".(float64))"
 				}

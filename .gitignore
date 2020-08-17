@@ -9,6 +9,7 @@
 *.vagrant
 .DS_Store
 Mfile*
+qtbox
 
 */*-minimal.*
 */*.o

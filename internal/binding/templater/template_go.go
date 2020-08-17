@@ -1456,7 +1456,7 @@ import "C"
 
 	var dartInput []string
 	fmt.Fprint(bb, "import (\n")
-	for _, m := range append(parser.GetLibs(), "qt", "strings", "unsafe", "log", "runtime", "fmt", "errors", "js", "time", "hex", "reflect", "math", "sync", "strconv", "internal") {
+	for _, m := range append(parser.GetLibs(), "qt", "strings", "unsafe", "log", "runtime", "fmt", "errors", "js", "time", "hex", "reflect", "math", "sync", "strconv", "internal", "gow") {
 		mlow := strings.ToLower(m)
 		if strings.Contains(inputString, fmt.Sprintf(" %v.", mlow)) ||
 			strings.Contains(inputString, fmt.Sprintf("\t%v.", mlow)) ||
@@ -1479,6 +1479,9 @@ import "C"
 
 			case "internal":
 				fmt.Fprintln(bb, "\"github.com/therecipe/qt/internal\"")
+
+			case "gow":
+				fmt.Fprintln(bb, "\"github.com/therecipe/qt/interop/gow\"")
 
 			case "js":
 				if parser.UseWasm() {
